@@ -37,5 +37,17 @@ jobs:
             echo "No changes"
           else
             git commit -m "Acquire and hash repeated GovInfo Statutes at Large citations"
-            git push origin HEAD:main
+            for attempt in 1 2 3 4; do
+              git fetch --no-tags origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                echo 'Official statute source corpus pushed successfully'
+                break
+              fi
+              if [ "$attempt" -eq 4 ]; then
+                echo 'Remote advanced repeatedly; manual reconciliation required' >&2
+                exit 1
+              fi
+              sleep 2
+            done
           fi
