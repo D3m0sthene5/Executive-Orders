@@ -199,6 +199,21 @@ class TrackerTest(unittest.TestCase):
         orders, _ = self.run_tracker(files={tracker.J["opus_status"]: header + "EO:3,yes,unique_supported,yes,\n"})
         self.assertEqual(orders["EO:3"]["step_opus_media"], "done")
 
+    def test_opus_media_resolved_by_byte_identical_refetch(self):
+        header = "instrument_id,in_accepted_844,media_status,all_cited_media_resolved,ambiguous_members,media_gap\n"
+        status = header + "EO:3,yes,no_member_signal,no,0,cited_files_not_packaged\n"
+        refetch = json.dumps({"url": "https://www.govinfo.gov/a.pdf", "instrument_ids": ["EO:3"], "expected_sha256": "c" * 64})
+        good = json.dumps({"wanted_id": "opus-refetch:" + "c" * 64, "sha256": "c" * 64,
+                           "expected_sha256": "c" * 64, "matches_expected_sha256": True})
+        bad = json.dumps({"wanted_id": "opus-refetch:" + "c" * 64, "sha256": "d" * 64,
+                          "expected_sha256": "c" * 64, "matches_expected_sha256": False})
+        files = {tracker.J["opus_status"]: status, tracker.J["opus_refetch"]: refetch + "\n"}
+        orders, _ = self.run_tracker(files={**files, tracker.J["ladder_sources"][0]: good + "\n"})
+        self.assertEqual(orders["EO:3"]["step_opus_media"], "done")
+        orders, _ = self.run_tracker(files={**files, tracker.J["ladder_sources"][0]: bad + "\n"})
+        self.assertEqual(orders["EO:3"]["step_opus_media"], "open")
+        self.assertIn("OPUS_MEDIA_REFETCH_NEEDED", orders["EO:3"]["blockers"])
+
     def test_claim_with_no_clauses_lights_no_claim_step(self):
         claim = copy.deepcopy(COMPLETE_NO_CLAIM)
         claim["operative_clauses"] = []

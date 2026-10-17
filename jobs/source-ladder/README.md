@@ -87,6 +87,13 @@ The job reads, in this order:
    `urls` and `citation` are each optional, but give at least one. `step` is a
    readiness step (`original_text`, `shared_sources`, ...; default
    `original_text`). Bad lines are reported in the log and in SUMMARY.json.
+3. **Opus originals to re-fetch** (added after the list below): every file on
+   `jobs/opus-media-match/output/REFETCH_LIST.jsonl`, which Opus downloaded but
+   its release left out (848 URLs, 774 distinct files, about 3 GB, on
+   2026-10-17). URLs with the same expected sha256 are one item, fetched once.
+   Each SOURCES record then carries `expected_sha256` and
+   `matches_expected_sha256`, so a copy that is byte-identical to Opus's
+   original is proven; the readiness tracker only counts matching copies.
 2. **The Stage 20 shared sources not yet retrieved**: every authority in
    `research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv` whose
    `source_already_retrieved` is not `yes` and that

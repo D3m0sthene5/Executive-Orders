@@ -70,6 +70,7 @@ J = {
     "fr_fragments": ["jobs/fr-originals/data/full_run/FRAGMENTS.jsonl", "jobs/fr-originals/output/FRAGMENTS.jsonl"],
     "opus_fragments": ["jobs/opus-media-match/output/FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
+    "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
     "checker": "jobs/claim-checker/output/PER_CLAIM.json",
 }
@@ -159,8 +160,21 @@ def load_job_outputs(root):
     paths = existing(J["ladder_sources"])
     rows, more = read_jsonl(paths)
     problems += more
-    ladder_found = {r["wanted_id"] for r in rows if r.get("wanted_id") and r.get("sha256")}
+    # A re-fetch counts only when its bytes match the hash Opus recorded (if it recorded one).
+    ladder_found = {r["wanted_id"] for r in rows if r.get("wanted_id") and r.get("sha256")
+                    and r.get("matches_expected_sha256") is not False}
     used["source-ladder"] = len(ladder_found) if paths else None
+
+    # Opus originals still missing per order, from opus-media-match's re-fetch list.
+    refetch_path = os.path.join(root, J["opus_refetch"])
+    opus_missing = collections.defaultdict(set)
+    if os.path.exists(refetch_path):
+        rows, more = read_jsonl([refetch_path])
+        problems += more
+        for r in rows:
+            for i in r.get("instrument_ids") or []:
+                # same key as source-ladder's work item: the expected sha256, else the URL
+                opus_missing[i].add("opus-refetch:" + (r.get("expected_sha256") or r.get("url") or ""))
 
     checker_path = os.path.join(root, J["checker"])
     checker = None
@@ -173,6 +187,7 @@ def load_job_outputs(root):
             checker = {}
     used["claim-checker"] = len(checker) if checker is not None else None
     return {"fr": fr, "opus_text": opus_text, "opus_status": opus_status, "ladder_found": ladder_found,
+            "opus_missing": opus_missing,
             "checker": checker, "used": used}, problems
 
 
@@ -291,7 +306,11 @@ def build(root):
             else:
                 # Done only when every medium the Opus records cite is resolved.
                 ms = jobs["opus_status"].get(i) or {}
-                steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes"
+                missing = jobs["opus_missing"].get(i, set())
+                refetched_all = bool(missing) and missing <= jobs["ladder_found"]
+                steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
+                    refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
+                    and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
                 if not steps["opus_media"]:
                     gap = ms.get("media_gap", "")
                     if gap in OPUS_GAP_BLOCKER:
