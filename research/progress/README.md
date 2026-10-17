@@ -28,6 +28,8 @@ Updated 2026-10-17. Legal cutoff: 2026-10-14 (America/New_York). **Correction:**
 | Opus reported footprint-complete AI claims | 836 / 844 | Claimed research completeness, not independent clause verification |
 | Stage 20 cases with unclassified ISO date mentions | 323 / 844 | Textual date leads; not first-cessation events |
 | Stage 20 repeated authority-reference clusters | 98 | Shared source-recovery families; citations do not imply common legal effect |
+| Stage 20 case-specific source–authority tasks | 352 across 236 distinct orders | [Source-once, per-case review workbench](../stage20/output/SHARED_SOURCE_WORKBENCH.html) tracks separate impact, pages, dates and savings |
+| Original-media members uniquely attributable to one accepted case from archive paths | 0 / 496 | Every shared-batch source image has multiple candidate-case paths; exact instrument and page still need direct documentary evidence |
 | Production human review rows | 0 | No independent human-certified conclusions |
 | Early included proxies, 1789–1861 | 3 | Too few to estimate historical coverage |
 | Early included proxies, 1862–1906 | 617 | Original recovery and census crosswalk needed |
