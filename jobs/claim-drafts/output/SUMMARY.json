@@ -1,0 +1,120 @@
+{
+  "job": "claim-drafts",
+  "legal_cutoff": "2026-10-14",
+  "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
+  "job_limit": null,
+  "scope": "decided",
+  "ids_requested": null,
+  "ids_not_in_universe": [],
+  "orders_with_draft": 3359,
+  "decided_orders_with_draft": 3359,
+  "undecided_orders_with_draft": 0,
+  "drafts_whose_only_remaining_gaps_are_judgment_fields": 0,
+  "of_which_decided": 0,
+  "only_judgment_left_by_status": {
+    "no": 0,
+    "yes": 0
+  },
+  "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
+  "top_conflict_types": {
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36
+  },
+  "orders_with_any_conflict": 36,
+  "yes_orders_with_partial_end_candidate": 0,
+  "filled": {
+    "original_representation": 160,
+    "original_candidate_needing_check_only": 0,
+    "operative_clauses": 0,
+    "clauses_total": 0,
+    "later_source_search": 0,
+    "later_source_search_note": "never machine-filled; complete machine searches are in _draft.proposals.later_source_search_machine",
+    "later_source_search_machine_proposed": 0
+  },
+  "candidates": {
+    "whole_order_end": 0,
+    "current_predicate": 0,
+    "later_events": 0
+  },
+  "orders_by_remaining_gate_error": {
+    "clause_*_state": 3359,
+    "research_rationale": 3359,
+    "bounded_later_search": 3359,
+    "unresolved_material_gaps": 3359,
+    "clause_*_original_text_or_source": 3359,
+    "savings_residuals_evidence": 3359,
+    "original_representation_provenance": 3199,
+    "whole_order_end_evidence": 2954,
+    "yes_without_continuing_clause": 405
+  },
+  "orders_by_gate_error_if_proposals_accepted": {
+    "bounded_later_search": 3359,
+    "clause_*_original_text_or_source": 3359,
+    "clause_*_state": 3359,
+    "original_representation_provenance": 3199,
+    "savings_residuals_evidence": 3199,
+    "whole_order_end_evidence": 2954,
+    "yes_without_continuing_clause": 405
+  },
+  "readiness_by_step": {
+    "original_text": {
+      "done_now_by_custody": 174,
+      "research": 3185
+    },
+    "clause_inventory": {
+      "research": 3359
+    },
+    "ending_or_current_basis": {
+      "research": 3359
+    },
+    "savings_residuals": {
+      "agent_judgment": 160,
+      "research": 3199
+    },
+    "counterevidence": {
+      "research": 3359
+    },
+    "shared_sources": {
+      "done_now": 7,
+      "n/a": 3123,
+      "research": 229
+    },
+    "opus_media": {
+      "n/a": 2515,
+      "research": 844
+    }
+  },
+  "estimated_effort": {
+    "large": 3359
+  },
+  "claim_checker": {
+    "note": "jobs/claim-checker could not be used: FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/checker.py'",
+    "drafts_by_mechanical_result": {},
+    "check_rows_by_status": {}
+  },
+  "inputs": [],
+  "input_counts": {},
+  "input_notes": [],
+  "input_problems": [],
+  "fragment_orders_not_in_universe": 0,
+  "fragment_orders_not_in_universe_examples": [],
+  "machine_searches": [],
+  "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+  "outputs": [
+    "DRAFT_CLAIMS.jsonl",
+    "TODO_BY_ORDER.csv",
+    "CONFLICTS.csv",
+    "SUMMARY.json"
+  ],
+  "legend": {
+    "gate.errors_now": "claim_gate.validate_claim errors of the claim exactly as drafted: the agent's to-do list",
+    "gate.errors_if_proposals_accepted": "feasibility test only: the suggested candidates and placeholder text were put in a COPY of the claim; whatever still fails there has no machine evidence yet (compact form: clause_*_state x12 means twelve clauses)",
+    "gate.only_judgment_left": "true when that copy passes the gate: every remaining gap is a judgment the agent makes from evidence already in the draft",
+    "gate.placeholder_clause": "true when no clause inventory exists: the claim then holds one placeholder clause (DRAFT-PLACEHOLDER-no-clause-inventory) so the gate checks every part (an empty list makes the gate stop early, and the readiness tracker would count the unchecked steps); replace it with the real clauses",
+    "proposals.later_source_search_machine": "complete machine searches, never put into the claim: copy the 'entry' of the same search_id from SUMMARY.json machine_searches into claim.later_source_search only after judging it adequate for the order and resolving every CONFLICT line",
+    "readiness.by_step": "confirm = machine evidence is in the draft or proposals and an agent must check and accept it; agent_judgment = needs reading and a decision; resolve_conflicts = conflicts listed; research = no machine evidence yet; done_now / done_now_by_custody = the tracker already counts it; n/a = not applicable",
+    "proposals": "candidates already in the claim's field shapes ('proposal'), with 'meta' explaining where each came from; dates are the acting instrument's signing or printed date, never a verified effective date (later-event proposals therefore say date_candidate; rename it to effective_date only after confirming)",
+    "later_source_search_partial": "machine searches that did not cover the whole corpus (sample runs); their full wording is in SUMMARY.json machine_searches"
+  },
+  "network_requests": 0,
+  "elapsed_seconds": 0.5
+}
