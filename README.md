@@ -2,7 +2,7 @@
 
 **Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) for research status, the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256, and the [release guide](research/releases/README.md) for restoration.
 
-This repository holds the consolidated input archive for **The Afterlife of Executive Orders**. It is a research handoff, not an executed Stage 17 release or a set of human-certified legal findings.
+This repository holds the consolidated inputs, versioned public research releases, workpapers, and reproducibility tools for **The Afterlife of Executive Orders**. The research remains provisional and contains no independently human-certified legal findings.
 
 The original ZIP is **2,966,329,767 bytes**, above GitHub's per-file limit. Its two byte-exact parts are stored with Git LFS:
 
