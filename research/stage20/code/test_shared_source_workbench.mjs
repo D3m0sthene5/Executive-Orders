@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {parseCSV,writeCSV,discoveryRoutes,makeModel,workbench} from './build_shared_source_workbench.mjs';
+let sample=parseCSV('a,b\n"Hello, world","quoted ""word"""\n');
+assert.equal(sample[0].a,'Hello, world');
+assert.deepEqual(parseCSV(writeCSV(sample,['a','b'])),sample);
+assert.equal(discoveryRoutes('STAT','66 Stat. 259').length,2);
+const cases=Array.from({length:3359},(_,i)=>({instrument_id:'EO:'+(40000+i),provisional_status:'no',decision_origin:'frozen',conversion_lane:'research',whole_lifecycle_completed:'no'}));
+const groups=Array.from({length:98},(_,i)=>({reference_type:'EO',reference_as_mentioned:String(40000+i),affected_candidate_count:'2',case_ids:'EO:'+ (40000+i) +' | EO:'+ (40001+i),evidence_state:'textual_cooccurrence_only'}));
+const built=makeModel(groups,cases,{shared:'test',conversion:'test'});
+assert.equal(built.metrics.source_families,98);
+assert.equal(built.metrics.cross_case_source_research_tasks,196);
+assert.equal(built.metrics.certified_lifecycle_dossiers_generated,0);
+assert.equal(built.families[0].affected_cases[0].independently_certified,false);
+assert.match(workbench(built),/Export uncertified multi-EO source worksheet/);
+groups[0].affected_candidate_count='3';assert.throws(()=>makeModel(groups,cases,{}),/count/);
+console.log('Shared-source case-specific workflow tests passed.');
