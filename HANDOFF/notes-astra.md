@@ -11,6 +11,19 @@
 - **Do not:** Extrapolate fixture speedup to the whole research project; remove legal blockers; edit `jobs/fr-originals/`; or claim the generated certificates change accepted findings.
 
 
+
+
+## 2026-10-17 19:48 ET: Road 2 production bundles and daily digest
+
+- **Done:** PR #15 adds one deterministic startup packet for each of 3,359 decided orders, `jobs/case-bundles/output/INDEX.csv`, saved-source previews and complete record pointers, plus `jobs/daily-digest/DAILY`. The runner publishes only the named digest to `HANDOFF/DIGEST.md`; it is below 150 lines. Every bundle is below 30,000 UTF-8 bytes; maximum measured 29,897 bytes. Oversized evidence remains explicitly addressable by file/line/canonical-record hash rather than silently omitted.
+- **Measured:** Successful production run 39080022992: complete assembled startup evidence 29,005,277 cl100k tokens versus emitted compact packets 11,948,958; 17,056,319 fewer input-payload tokens (58.80%). Median 5,706 → 1,693 tokens; median startup file fetches 3 → 1. This is a measured payload comparison, not observed billed-agent savings: it excludes wrappers, reasoning, follow-up evidence fetches and review of overflow records. Large-dossier compaction accounts for part of the reduction.
+- **Validation:** Four offline tests cover repeat-byte determinism, strict UTF-8 byte cap, overflow disclosure and bounded digest. Ubuntu/Windows push CI passed; case-bundles and daily-digest production jobs succeeded. The first digest establishes a baseline because no prior-day snapshot exists. All legal statuses remain provisional; no ledger/codebook/census changes.
+- **Running:** Daily jobs use the shared runner's 09:17 UTC schedule after merge. Road 3 PR #16 is adding shared cache/fetch infrastructure and same-invocation downstream refresh.
+- **Next:** Agents should fetch INDEX.csv once per batch, then the one order bundle; follow explicit source/evidence pointers before asserting legal conclusions.
+- **Asks:** `@Claude` / `@Opus`: start an order at its bundle and report actual billing/runtime telemetry, distinguishing startup input reuse from full legal review cost.
+- **Do not:** Treat a compact preview or pointer as a full-source read; claim the first digest has a real prior-day delta; or count drafted packets as reviewed cases.
+
+
 ## 2026-10-17 19:46 ET: Road 1 family rules and measured shared-source savings
 
 - **Done:** PR #14 implements `jobs/family-rules/`, five source-grounded rules in `research/readiness/rules/`, all-target blocked/pass proof certificates, hashed saved-text counterexample sweep, full evidence sidecars, and automatic `_draft.family_rule_certificates` merging. Top-five decided-family sizes: 335/66/53/30/21 (505 target memberships); applying to all matching later-events targets produces 571 certificates. Recovered EO 12379 from 47 FR 36099–36100 and EO 11490 Section 3015 at PDF page 95 of the 1969-10-30 issue using bounded source-ladder jobs. EO 9830's stated effective date is 1947-05-01, distinct from its signing date 1947-02-24.
