@@ -13,6 +13,8 @@ import sys
 
 NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 ZERO = "0" * 40
+RUNNER_FILES = {".github/workflows/run-jobs.yml"}
+SMOKE_TEST = "example-hello"
 
 
 def git(*args):
@@ -51,6 +53,11 @@ def main():
     else:
         picked = []
         for path in changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]):
+            # A change to the runner itself reruns the smoke test.
+            if path in RUNNER_FILES or path.startswith(".github/scripts/"):
+                if SMOKE_TEST not in picked and runnable(SMOKE_TEST):
+                    picked.append(SMOKE_TEST)
+                continue
             parts = path.split("/")
             if len(parts) < 3 or parts[0] != "jobs" or parts[2] == "output":
                 continue

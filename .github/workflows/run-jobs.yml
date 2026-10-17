@@ -13,6 +13,9 @@ on:
   push:
     paths:
       - "jobs/**"
+      # Changing the runner reruns jobs/example-hello as a check.
+      - ".github/workflows/run-jobs.yml"
+      - ".github/scripts/**"
   workflow_dispatch:
     inputs:
       job:
@@ -82,6 +85,7 @@ jobs:
       - name: Commit results to the branch
         if: always() && steps.pick.outputs.jobs != ''
         env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
           BRANCH: ${{ github.ref_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: bash .github/scripts/commit_results.sh
