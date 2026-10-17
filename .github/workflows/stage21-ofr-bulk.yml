@@ -1,0 +1,56 @@
+name: Stage 21 — official EO bulk index and reverse-disposition leads
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage21-ofr-bulk.yml'
+      - 'research/stage21/code/ofr_bulk_excavator.py'
+      - 'research/stage21/code/test_ofr_bulk_excavator.py'
+
+permissions:
+  contents: write
+
+jobs:
+  catalog-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Checkout without eager LFS download
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+      - name: Python tests
+        run: python -m unittest discover -s research/stage21/code -p 'test_ofr_bulk_excavator.py' -v
+      - name: Acquire entire official EO index and compile research-only overlays
+        run: |
+          python research/stage21/code/ofr_bulk_excavator.py --fetch
+          python research/stage21/code/ofr_bulk_excavator.py --check
+      - name: Sanity-check primary scientific headline
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m = json.loads(Path('research/stage21/output/METRICS.json').read_text())
+          assert m['reconciled_provisional_instruments'] == 3359
+          assert m['shared_EO_authority_families'] == 73
+          assert m['shared_EO_case_source_edges'] == 269
+          assert m['certified_whole_lifecycle_dossiers_added'] == 0
+          print('Source-custody and no-certification invariants passed')
+          PY
+      - name: Commit catalog snapshot, reproducible crosswalks and report
+        run: |
+          git config user.name "EO Evidence Reconstruction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage21/sources research/stage21/output
+          if git diff --cached --quiet; then
+            echo "No new source snapshots or derived outputs"
+          else
+            git commit -m "Acquire full OFR executive-order index and derive protected Stage 21 crosswalks"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
