@@ -12,6 +12,8 @@ Known missing companion: `OPUS_STAGE11_CHECKPOINT2_EVIDENCE_ORIGINALS.zip`. It w
 
 Original sealed Stage 12, Stage 13, and Stage 15 releases and the Stage 15 coordinator key remain in protected ChatGPT Library storage. The originals were locally retrieved, hash-checked, and excluded from the public release. **No private GitHub archive was created:** automatic approval review rejected creation of a separate private repository as a consequential access/resource change. This is the remaining publication exception. The older 29-part transfer was not published because it overlaps the final public package and may contain sealed material.
 
+The Stage 17 builder and claim-review round-trip test ran from the fresh checkout. A clean build using local SQLite 3.49.1 yielded SHA-256 `f245257384e4d297c23495c041167229f9679abc7f47cd4fe0c66b9acd3d9e82`, reproducibly on a second run. The published database was created with SQLite 3.46.1 and has SHA-256 `c362f5a8de7c31be2d1a700b00272aca9597136d74ff575fdc72ac24373984e1`. Both have identical schema and sorted row contents across all 34 tables, but are not byte-identical. Restore the published database pack when exact canonical bytes are required. See [`STAGE17_REBUILD_COMPARISON.json`](research/releases/STAGE17_REBUILD_COMPARISON.json).
+
 ## Recovery instructions
 
 1. Read `research/releases/RELEASES_MANIFEST.json` and `research/releases/MIGRATION_JOURNAL.json`.

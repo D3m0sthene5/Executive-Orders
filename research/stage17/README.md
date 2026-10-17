@@ -37,4 +37,6 @@ See `research/stage17/reports/STAGE17_REPORT.md`, `research/stage17/sources/veri
 
 The 92 MB canonical SQLite is distributed in the **Stage 17 verified release ZIP** and the smaller compressed database pack, both available from [`research/releases/`](../releases/README.md) in GitHub. The source code, pinned evidence facts, executable claim importer, and QA results are versioned here; the earlier 2.966 GB consolidated source archive remains in LFS. Restore with `python research/releases/restore_releases.py --all --decompress --out restored_research`. The large original LFS payloads have a separate verification status in [`MIGRATION_STATUS.md`](../../MIGRATION_STATUS.md).
 
+A fresh rebuild on SQLite 3.49.1 reproduced every schema and table row but not the published database's byte hash, which was written with SQLite 3.46.1. The rebuild is repeatable on the tested runtime. Use the published compressed database pack for the exact canonical SHA-256; see [`STAGE17_REBUILD_COMPARISON.json`](../releases/STAGE17_REBUILD_COMPARISON.json).
+
 The reviewer may open a generated HTML dossier, select individual claims, record a rationale and choose **Export JSON**. The standard-library importer verifies the current claim fingerprint and inserts the review in one SQL transaction. Never distribute or import the test fixture as a human approval.
