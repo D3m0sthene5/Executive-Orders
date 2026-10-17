@@ -1,0 +1,70 @@
+{
+  "schema": "eo-claim-check/v1",
+  "job": "claim-checker",
+  "legal_cutoff": "2026-10-14",
+  "claim_files": [],
+  "claim_lines_found": 0,
+  "job_limit": null,
+  "claims_checked": 0,
+  "claims_parse_errors": 0,
+  "claims_checker_errors": 0,
+  "orders_with_claim": 0,
+  "claims_all_checks_passed": 0,
+  "claims_mechanical_pass": 0,
+  "claims_mechanical_unverified": 0,
+  "claims_mechanical_fail": 0,
+  "claims_gate_passed": 0,
+  "steps_checker_passed_effective_claims": {
+    "original_text": 0,
+    "clause_inventory": 0,
+    "ending_or_current_basis": 0,
+    "savings_residuals": 0,
+    "counterevidence": 0
+  },
+  "check_results": {
+    "source_held": {},
+    "source_identity": {},
+    "quote_verbatim": {},
+    "date_valid": {},
+    "date_after_signing": {},
+    "order_exists": {},
+    "structural_gate": {},
+    "parse": {},
+    "checker_error": {}
+  },
+  "source_status_counts": {},
+  "source_identity_counts": {},
+  "quote_status_counts": {},
+  "source_status_policy": {
+    "held_bytes_verified": "pass",
+    "held_bytes_in_release_or_repo": "pass",
+    "custody_record_only": "skip"
+  },
+  "claim_checks_csv": {
+    "mode": "non_pass_rows",
+    "rows_written": 0,
+    "rows_total": 0,
+    "max_mb": 50.0,
+    "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+  },
+  "held_copies_indexed_by_origin": {
+    "opus_media_member_map": 496,
+    "opus_stage11_fetch_meta": 9203,
+    "opus_stage11_manifest": 27237,
+    "stage18_source_manifest": 25,
+    "stage20_statute_fetch_index": 7,
+    "stage21_acquisition_log": 160,
+    "stage21_custody": 160
+  },
+  "held_distinct_sha256": 27461,
+  "opus_text_pack_texts": 0,
+  "signing_dates_loaded": {
+    "identity_layer_year_only": 14854,
+    "stage14_fetch_manifest": 1144,
+    "stage21_crosswalk": 402
+  },
+  "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+  "pypdf_available": true,
+  "fetch": null,
+  "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+}
