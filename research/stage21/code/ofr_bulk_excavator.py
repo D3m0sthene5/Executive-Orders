@@ -316,7 +316,7 @@ def fetch_source():
         final = urllib.parse.urlsplit(response.geturl())
         if final.scheme != "https" or final.hostname not in (
                 "www.federalregister.gov", "federalregister.gov"):
-            raise ValueError("Untrusted OFR redirect")
+            raise ValueError("Unexpected OFR export redirect hostname: " + str(final.hostname))
         data = response.read(MAX_BYTES + 1)
         if len(data) > MAX_BYTES:
             raise ValueError("OFR response exceeded bounded size")
