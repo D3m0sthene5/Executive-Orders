@@ -1,0 +1,68 @@
+test_build_end_to_end (test_build.BuildIntegrationTest.test_build_end_to_end) ... ok
+test_job_limit_and_ids (test_build.BuildIntegrationTest.test_job_limit_and_ids) ... ok
+test_grades (test_build.SourceHelperTests.test_grades) ... ok
+test_ids_and_years (test_build.SourceHelperTests.test_ids_and_years) ... ok
+test_meta_lookup (test_build.SourceHelperTests.test_meta_lookup) ... ok
+test_pdf_text_removes_furniture_and_keeps_pages (test_build.SourceHelperTests.test_pdf_text_removes_furniture_and_keeps_pages) ... ok
+test_bad_job_limit_and_missing_inputs_stop_the_job (test_regressions.BuildRegressions.test_bad_job_limit_and_missing_inputs_stop_the_job) ... ok
+test_wrong_order_pages_never_reach_fragments (test_regressions.BuildRegressions.test_wrong_order_pages_never_reach_fragments) ... ok
+test_app_page_identity (test_regressions.SourceRegressions.test_app_page_identity) ... ok
+test_app_url_numbers_and_grades (test_regressions.SourceRegressions.test_app_url_numbers_and_grades) ... ok
+test_ocr_page_map (test_regressions.SourceRegressions.test_ocr_page_map) ... ok
+test_10122_section_marker_without_period (test_regressions.StructureRegressions.test_10122_section_marker_without_period) ... ok
+test_11269_roman_section_and_heading_line_that_names_an_order (test_regressions.StructureRegressions.test_11269_roman_section_and_heading_line_that_names_an_order) ... ok
+test_11609_dated_list_line_is_not_a_heading (test_regressions.StructureRegressions.test_11609_dated_list_line_is_not_a_heading) ... ok
+test_12957_pronoun_clause_and_inline_first_item (test_regressions.StructureRegressions.test_12957_pronoun_clause_and_inline_first_item) ... ok
+test_12974_amender_lists_hyphenated_reference_and_effective_date (test_regressions.StructureRegressions.test_12974_amender_lists_hyphenated_reference_and_effective_date) ... ok
+test_14168_split_marker_lines (test_regressions.StructureRegressions.test_14168_split_marker_lines) ... ok
+test_14251_typed_closing_quotes_end_the_inserted_text (test_regressions.StructureRegressions.test_14251_typed_closing_quotes_end_the_inserted_text) ... ok
+test_2859_identity_doubt (test_regressions.StructureRegressions.test_2859_identity_doubt) ... ok
+test_5642_long_unit_is_flagged (test_regressions.StructureRegressions.test_5642_long_unit_is_flagged) ... ok
+test_8467_ocr_masthead_is_detected (test_regressions.StructureRegressions.test_8467_ocr_masthead_is_detected) ... ok
+test_heading_date_is_the_orders_own (test_regressions.StructureRegressions.test_heading_date_is_the_orders_own) ... ok
+test_own_number_in_prescribed_contract_text_is_not_a_doubt (test_regressions.StructureRegressions.test_own_number_in_prescribed_contract_text_is_not_a_doubt) ... ok
+test_unsplit_section_markers_are_flagged (test_regressions.StructureRegressions.test_unsplit_section_markers_are_flagged) ... ok
+test_1900s_one_paragraph (test_segment.EraTests.test_1900s_one_paragraph) ... ok
+test_1937_ocr_trailing_number (test_segment.EraTests.test_1937_ocr_trailing_number) ... ok
+test_1940s_numbered_paragraphs_and_recitals (test_segment.EraTests.test_1940s_numbered_paragraphs_and_recitals) ... ok
+test_1950s_sections_with_subsections (test_segment.EraTests.test_1950s_sections_with_subsections) ... ok
+test_1970s_carter_dash_numbering (test_segment.EraTests.test_1970s_carter_dash_numbering) ... ok
+test_1990s_fused_recital_and_amendment (test_segment.EraTests.test_1990s_fused_recital_and_amendment) ... ok
+test_2020s_sections_quotes_furniture_general_provisions (test_segment.EraTests.test_2020s_sections_quotes_furniture_general_provisions) ... ok
+test_body_only_and_identity_warning (test_segment.HelperTests.test_body_only_and_identity_warning) ... ok
+test_furniture (test_segment.HelperTests.test_furniture) ... ok
+test_number_boundaries (test_segment.HelperTests.test_number_boundaries) ... ok
+test_ocr_spaced_section_markers_run_on (test_segment.HelperTests.test_ocr_spaced_section_markers_run_on) ... ok
+test_placeholder_text_is_not_a_clause (test_segment.HelperTests.test_placeholder_text_is_not_a_clause) ... ok
+test_recital_split_variants (test_segment.HelperTests.test_recital_split_variants) ... ok
+test_revocation_list_items_inherit_lead_in_verb (test_segment.HelperTests.test_revocation_list_items_inherit_lead_in_verb) ... ok
+test_signature_lines (test_segment.HelperTests.test_signature_lines) ... ok
+test_unnumbered_multi_paragraph_and_quoted_insertion (test_segment.HelperTests.test_unnumbered_multi_paragraph_and_quoted_insertion) ... ok
+test_wrapped_reference_is_not_a_heading (test_segment.HelperTests.test_wrapped_reference_is_not_a_heading) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.349s
+
+OK
+releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip is a Git LFS pointer; running git lfs pull for it
+Universe: 14972 orders; provisional cases: 3359
+Stage 21 PDFs: 160 usable, 226 problems
+Opus zip: 8904 text members, 2698 usable order-text sources, 2647 order candidates
+Other jobs: {'fr-originals': 'no SOURCES.jsonl yet', 'source-ladder': 'no SOURCES.jsonl yet'}
+Dropped 43 candidates whose FR issue year does not fit the order's date
+Orders with at least one candidate text: 1402; processing 1402
+  200/1402 orders processed
+  600/1402 orders processed
+  800/1402 orders processed
+  1000/1402 orders processed
+  1200/1402 orders processed
+  1400/1402 orders processed
+
+Summary
+  Orders with a saved text found: 1402; processed: 1402
+  Draft clause inventories written: 1115 (930 with no structural problems detected, 185 partial)
+  Held back because the text may be a different order: 45 (see IDENTITY_QUARANTINE.csv)
+  Orders whose text could not be split: 242 (see NOT_SEGMENTED.csv)
+  Clauses: 9817; by era: 1907-1936: 33 orders/323 clauses, 1937-1989: 847 orders/5872 clauses, 1990-2026: 234 orders/3615 clauses, Unknown date: 1 orders/7 clauses
+  Self-check: 9817/9817 clause texts are exact substrings of the saved text (re-check from files: 9817 ok, 0 failed); zip text vs meta hash: {'match': 927, 'recorded_hash_is_for_another_text_variant': 19, 'not_recorded': 10}
+  These are DRAFTS for human review: no provisional status, ledger or count was changed.

@@ -1,0 +1,126 @@
+{
+  "job": "clause-drafts",
+  "generated_utc": "2026-10-17T20:23:57Z",
+  "legal_cutoff": "2026-10-14",
+  "job_limit": null,
+  "job_ids": null,
+  "inputs": {
+    "availability": {
+      "universe": "ok",
+      "opus_zip": "ok",
+      "stage21_custody": "ok"
+    },
+    "allow_partial_inputs": false,
+    "stage21_pdfs_usable": 160,
+    "opus_zip": {
+      "text_members": 8904,
+      "with_meta": 7533,
+      "source_ok": 2698,
+      "skipped": {
+        "not_an_order_text_host": 4325,
+        "layout_columns_text": 404,
+        "http_status_403": 3,
+        "http_status_404": 2,
+        "no_meta": 1371,
+        "app_page_not_an_executive_order": 100,
+        "error_or_block_page_text": 1
+      },
+      "member_text_hash_check": {
+        "match": 2335,
+        "recorded_hash_is_for_another_text_variant": 202,
+        "not_recorded": 161
+      }
+    },
+    "other_jobs": {
+      "fr-originals": "no SOURCES.jsonl yet",
+      "source-ladder": "no SOURCES.jsonl yet"
+    },
+    "input_problems": 269
+  },
+  "orders_in_universe": 14972,
+  "orders_with_candidate_text": 1402,
+  "orders_processed": 1402,
+  "fragments_written": 1115,
+  "orders_not_segmented": 242,
+  "orders_identity_quarantined": 45,
+  "identity_quarantine_reasons": {
+    "body_cites_its_own_order_number_identity_doubtful": 2,
+    "no_heading_in_text_identity_from_source_url_only": 42,
+    "identity_doubt_document_dated": 1
+  },
+  "clauses_total": 9817,
+  "segmentation_quality": {
+    "good": 930,
+    "partial": 185
+  },
+  "by_source_grade": {
+    "mirror_transcription_app": 791,
+    "official_fr_scan_ocr_text": 120,
+    "official_fr_pdf_text_layer": 160,
+    "official_fr_html_text": 44
+  },
+  "by_structure": {
+    "unnumbered_paragraphs": 177,
+    "numbered_paragraphs": 181,
+    "top_level_lettered_items": 14,
+    "single_operative_paragraph": 241,
+    "sections": 468,
+    "dash_numbered_sections": 34
+  },
+  "by_clause_kind": {
+    "operative": 7564,
+    "operative_in_preamble": 334,
+    "lead_in": 445,
+    "definitions": 168,
+    "amends_other_order": 381,
+    "revokes_or_supersedes_other_order": 358,
+    "revokes_or_amends_unnumbered_order": 2,
+    "annex_after_signature": 28,
+    "effective_date": 134,
+    "general_provisions": 295,
+    "purpose_or_policy": 108
+  },
+  "by_era": {
+    "1907-1936": {
+      "orders": 33,
+      "clauses": 323,
+      "good": 31,
+      "partial": 2
+    },
+    "1937-1989": {
+      "orders": 847,
+      "clauses": 5872,
+      "partial": 156,
+      "good": 691
+    },
+    "1990-2026": {
+      "orders": 234,
+      "clauses": 3615,
+      "good": 208,
+      "partial": 26
+    },
+    "Unknown date": {
+      "orders": 1,
+      "clauses": 7,
+      "partial": 1
+    }
+  },
+  "source_records_written": 1115,
+  "source_records_bytes_unknown": 734,
+  "ocr_fragments_with_candidate_fr_page": 89,
+  "self_check": {
+    "clauses_checked": 9817,
+    "original_operative_text_is_exact_substring_of_saved_text": 9817,
+    "failures": 0,
+    "recheck_from_written_files_ok": 9817,
+    "recheck_from_written_files_failed": 0,
+    "opus_text_member_sha256_vs_meta_text_hash_for_sources_used": {
+      "match": 927,
+      "recorded_hash_is_for_another_text_variant": 19,
+      "not_recorded": 10
+    },
+    "passed": true
+  },
+  "seconds": 47.6,
+  "what_this_is_not": "Draft clause boundaries from saved texts. Not legal conclusions; no status, ledger or count is changed."
+}
