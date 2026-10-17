@@ -21,3 +21,11 @@ The restore script verifies the complete ZIP's SHA-256: `52edb4d40d07fb713514968
 The ZIP contains the named Stage 16 and Opus Stage 11 checkpoint releases, the provisional Stage 17 bridge, unique prior source packages, all ten Stage 2 source volumes, the verified Stage 3 archive, and the Clifford Lord scan. Read its `README.md` and `manifest.json` after extraction for provenance and exact file hashes.
 
 **Known gap:** `OPUS_STAGE11_CHECKPOINT2_EVIDENCE_ORIGINALS.zip` was not found among the available local files. The Opus checkpoint findings still require independent source reinspection. No Stage 17 research prompt was executed in preparing this archive.
+
+## Stage 17 — integrated scientific research (October 17, 2026)
+
+Research source code, pinned primary-source transcripts, case-specific temporal findings, the offline human-review docket, reproducible counters and the next machine-readable historical research queue are under [`research/stage17/`](research/stage17/README.md).
+
+The earlier ~2.97GB consolidated archive remains under Git LFS, unchanged. The Stage17 canonical database can be rebuilt from the exact pinned Stage16 and Opus Checkpoint2 ZIPs; a verified binary release is archived in the project Library at `/Executive Order Research/Audit Releases/EO_STAGE17_GITHUB_MIGRATION_2026-10-17.zip` because the GitHub chat connector cannot directly push 92 MB SQLite artifacts. The Opus original image companion remains missing.
+
+As of this Stage17 checkpoint: 14,972 working bibliographic identities, 3,055 legacy-v2 provisional present-status findings (20.404756% of the working bibliography), 13 new scoped provision expirations, five early unnumbered printed catalogue leads **not** added to the census, and **zero** human-certified conclusions. National all-history enumeration and whole-order first cessation remain largely unresolved. These quantities must not be interpreted as survival rates.
