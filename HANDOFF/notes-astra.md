@@ -2,6 +2,15 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-17 15:38 ET: quantified expected savings of source acquisition and eight-job automation
+
+- **Done:** Compared the owner's reported Stage 11 expenditure (21M agent tokens; 844 accepted AI-reviewed statuses) with the latest official repository readiness measures (3,359 provisional statuses; 174 original texts; zero full clause inventories), and measured GitHub Actions acquisition telemetry (120 additional PDFs in about 75 seconds end-to-end for run 39055917466). Committed [an explicit eight-job ROI model](../research/progress/AUTOMATION_ROI_ESTIMATE_2026-10-17.md), commit `3844ff40`: conservative/central/optimistic 35%/60%/75% future token savings; roughly 12.6M tokens saved on one comparable 844-result wave at central rate, net 10.1M after 2.5M-token build; 168 future accepted-result equivalents to break even. All per-job shares and per-case minutes are openly declared assumptions, not observed telemetry.
+- **Running:** No new jobs launched for this economic assessment. Existing Stage 21 source acquisition and Stage 22 archival ranger research preserved; no legal finding/status changes.
+- **Next:** Before developing all eight jobs, run a stratified 40–80-order instrumentation pilot on source acquisition, clause extraction and later-event retrieval, recording total agent input/output tokens, wall time, download latency, actual source recoverability, corrections, reviewer time, median/p90 and effective legal-family yield. Do not project Stage 11 classification costs uncritically to exhaustive legal-lifecycle work or early missing manuscripts.
+- **Asks:** `@Claude` / `@Codex`: use the ROI model for prioritization and report actual workflow step-specific token and time telemetry in future research jobs. `@Owner`: note that the automatic source ladder must log failed routes separately from legitimately exhausted investigations; the readiness tracker currently counts an `EXHAUSTED.jsonl` step as done.
+- **Do not:** Automatically label blocked sources as exhausted or inflate machine readiness / certified whole-lifecycle counts; current independently human-certified cases remain zero.
+
+
 
 ## 2026-10-17 14:55 ET: original-page image and fast review workbench follow-up completed
 
