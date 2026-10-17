@@ -1,6 +1,6 @@
 # Executive Orders
 
-**Migration entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. The [release manifest](research/releases/RELEASES_MANIFEST.json) describes the prepared Stage 12–17 public package; its presence alone does not mean the archive parts are on GitHub.
+**Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) for research status, the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256, and the [release guide](research/releases/README.md) for restoration.
 
 This repository holds the consolidated input archive for **The Afterlife of Executive Orders**. It is a research handoff, not an executed Stage 17 release or a set of human-certified legal findings.
 
@@ -28,6 +28,6 @@ The ZIP contains the named Stage 16 and Opus Stage 11 checkpoint releases, the p
 
 Research source code, pinned primary-source transcripts, case-specific temporal findings, the offline human-review docket, reproducible counters and the next machine-readable historical research queue are under [`research/stage17/`](research/stage17/README.md).
 
-The earlier ~2.97GB consolidated archive remains under Git LFS, unchanged. The Stage17 canonical database can be rebuilt from the exact pinned Stage16 and Opus Checkpoint2 ZIPs; a verified binary release is archived in the project Library at `/Executive Order Research/Audit Releases/EO_STAGE17_GITHUB_MIGRATION_2026-10-17.zip` because the GitHub chat connector cannot directly push 92 MB SQLite artifacts. The Opus original image companion remains missing.
+The earlier ~2.97GB consolidated archive remains under Git LFS, unchanged. The Stage 12–17 public releases and compressed Stage 17 canonical SQLite are published as hash-indexed binary parts under [`research/releases/`](research/releases/README.md). The Stage 12, 13, and 15 public archives omit sealed blind-review answers. The Opus original-image companion remains missing.
 
 As of this Stage17 checkpoint: 14,972 working bibliographic identities, 3,055 legacy-v2 provisional present-status findings (20.404756% of the working bibliography), 13 new scoped provision expirations, five early unnumbered printed catalogue leads **not** added to the census, and **zero** human-certified conclusions. National all-history enumeration and whole-order first cessation remain largely unresolved. These quantities must not be interpreted as survival rates.

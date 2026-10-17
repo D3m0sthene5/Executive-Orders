@@ -11,10 +11,50 @@ All content is verified against SHA-256. No input chunks are modified.
 Public Stage 15 is intentionally missing the sealed baseline labels for blind QA.
 """
 from __future__ import annotations
-import argparse, hashlib, json, pathlib, shutil, subprocess, tarfile
+import argparse, hashlib, json, pathlib, shutil, sqlite3, subprocess, tarfile, zipfile
 
 HERE = pathlib.Path(__file__).resolve().parent
 CHUNKS = json.loads((HERE / 'RELEASES_MANIFEST.json').read_text())
+
+def hash_file(path:pathlib.Path)->str:
+    digest=hashlib.sha256()
+    with path.open('rb') as source:
+        for block in iter(lambda:source.read(4*1024*1024),b''):
+            digest.update(block)
+    return digest.hexdigest()
+
+def decompress_zstd(source:pathlib.Path)->pathlib.Path:
+    output=source.with_suffix('')
+    if shutil.which('zstd'):
+        subprocess.run(['zstd','-d','-q','-f',str(source),'-o',str(output)],check=True)
+    else:
+        try:
+            import zstandard
+        except ImportError as exc:
+            raise RuntimeError('Install zstd CLI or run: python -m pip install zstandard') from exc
+        with source.open('rb') as input_file,output.open('wb') as output_file:
+            zstandard.ZstdDecompressor().copy_stream(input_file,output_file)
+    return output
+
+def extract_verified_workpapers(source:pathlib.Path,dest:pathlib.Path)->None:
+    records=json.loads((HERE/'RESEARCH_FILES_SHA256.json').read_text())['files']
+    expected={record['path']:record for record in records}
+    with tarfile.open(source) as archive:
+        members=archive.getmembers()
+        if len(members)!=len(expected) or {m.name for m in members}!=set(expected):
+            raise ValueError('Workpaper TAR membership differs from file manifest')
+        for member in members:
+            rel=pathlib.PurePosixPath(member.name)
+            if not member.isfile() or rel.is_absolute() or '..' in rel.parts:
+                raise ValueError(f'Unsafe workpaper member: {member.name}')
+            data=archive.extractfile(member).read()
+            record=expected[member.name]
+            if len(data)!=record['bytes'] or hashlib.sha256(data).hexdigest()!=record['sha256']:
+                raise ValueError(f'Workpaper SHA-256 mismatch: {member.name}')
+            output=dest.joinpath(*rel.parts)
+            output.parent.mkdir(parents=True,exist_ok=True)
+            output.write_bytes(data)
+    print(f'VERIFIED {len(records)} WORKPAPERS in {dest}')
 
 def restore_one(item:dict, dest:pathlib.Path, stem:str)->pathlib.Path:
     dest.mkdir(parents=True,exist_ok=True)
@@ -50,17 +90,26 @@ def main():
     dest=pathlib.Path(args.out)
     for a in CHUNKS['releases']:
         if args.all or args.release==a['stage']:
-            restore_one(a,dest,a['name'])
+            release=restore_one(a,dest,a['name'])
+            with zipfile.ZipFile(release) as archive:
+                bad=archive.testzip()
+                if bad:raise ValueError(f'Corrupt ZIP member: {bad}')
+            print(f'VERIFIED ZIP {a["stage"]}')
     for a in CHUNKS['research_packs']:
         if args.all or (args.database and a['label']=='database') or (args.workpapers and a['label']=='workpapers'):
             zst=restore_one(a,dest,a['name'])
             if args.decompress:
-                subprocess.run(['zstd','-d','-q','-f',str(zst),'-o',str(zst.with_suffix(''))],check=True)
+                unpacked=decompress_zstd(zst)
                 if a['label']=='database':
                     expected='c362f5a8de7c31be2d1a700b00272aca9597136d74ff575fdc72ac24373984e1'
-                    actual=hashlib.sha256(zst.with_suffix('').read_bytes()).hexdigest()
+                    actual=hash_file(unpacked)
                     if actual!=expected:raise ValueError('Canonical Stage17 SQLite SHA-256 mismatch')
+                    with sqlite3.connect(f'file:{unpacked.resolve().as_posix()}?mode=ro',uri=True) as db:
+                        if db.execute('PRAGMA integrity_check').fetchone()!=('ok',):
+                            raise ValueError('Canonical Stage17 SQLite integrity check failed')
                     print('VERIFIED CANONICAL SQLITE '+actual)
+                else:
+                    extract_verified_workpapers(unpacked,dest/'workpapers')
     return 0
 
 if __name__=='__main__':raise SystemExit(main())
