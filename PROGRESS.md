@@ -4,6 +4,8 @@
 
 **Moving tracker:** [`research/progress/README.md`](research/progress/README.md) shows verified counts, remaining effort, and planning windows. The [per-case completeness audit](research/progress/DECIDED_CASE_COMPLETENESS_STAGE17.csv) and [scientific validity assessment](research/progress/SCIENTIFIC_STATUS_2026-10-17.md) explain why status labels are not yet causal histories.
 
+**Headline correction (Stage 19):** 0 of 14,972 working identities (0.000000%) have a released, source-linked, whole-lifecycle dossier that passes the full field gate and an independent human review. Reaching 25% under this definition requires 3,743 completed dossiers. The 22.435212% figure below counts provisional YES/NO labels only; it does not establish how or when an order ceased, or why it remains operative. The [Stage 19 excavators](research/stage19/README.md) publish a 3,359-case causal queue, 80 review packets and an early-source ranger.
+
 ## Version-by-version work
 
 - **Stage 12:** independent census audit, duplicate/date corrections, initial census comparators, sample protocols and visual reports.
@@ -20,7 +22,7 @@
 | Working bibliographic identities (not complete historical census) | 14,972 | 14,972 |
 | Provisional substantive YES / NO / UNKNOWN | 268 / 2,787 / 11,917 | 405 / 2,954 / 11,613 |
 | Provisional status coverage within bibliography | 3,055 / 14,972 = 20.404756% | 3,359 / 14,972 = 22.435212% |
-| Additional decisions for 25% of current bibliography | 688 | 384 |
+| Additional provisional labels for a label-only 25% (not the lifecycle goal) | 688 | 384 |
 | New Stage 17 provision histories | 13 | 13; Opus adds status labels, not new provision histories |
 | New Stage 17 dated legal transitions | 26 | 26 |
 | Human-certified legal claims | 0 | 0 |

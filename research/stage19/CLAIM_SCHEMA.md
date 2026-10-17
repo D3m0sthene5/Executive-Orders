@@ -1,0 +1,14 @@
+# Whole-lifecycle claim and independent review inputs
+
+The excavator accepts one JSON object per line in two separate files. A claim is a research assertion; a review is a second person's documented source check. The tracker counts an identity only if the claim passes [`claim_gate.py`](code/claim_gate.py), matches the reconciled status, and a separate `independent_human` review with decision `uphold` matches the claim SHA-256. A changed claim invalidates an older review. This is a **structural and provenance gate**, not proof that the submitted legal judgment is correct.
+
+Required claim fields (`schema: eo-lifecycle-claim/v1`):
+
+- `instrument_id`, `whole_order_status` (`yes` or `no`), and `original_representation` with exact page/item and provenance: HTTPS URL plus SHA-256 or archival identifier, or an archival identifier plus SHA-256 of a local scan.
+- `operative_clauses`: an asserted *complete* original clause inventory. Each clause has unique `scope_id`, original operative text/source, `state_at_cutoff`, and `later_events` (possibly empty). A terminated or never-activated clause needs `first_end` with exact date, actor, mechanism and source. An operative clause needs `current_predicate` with legal basis, source and `checked_through` date.
+- For `no`, `whole_order_end` with exact date, actor, mechanism and source. Its date must equal the latest first-end date among the complete clause inventory. For `yes`, `whole_order_end` must be null and at least one clause must have a continuing predicate checked through the October 14, 2026 legal cutoff. Every later event requires an effective date, actor, mechanism and source.
+- `savings_residuals` with state, reason and source; `later_source_search` with at least one repository, bounded query/scope and checked-on date; `unresolved_material_gaps: []`; and a substantive `research_rationale`.
+
+The independent review object (`schema: eo-lifecycle-review/v1`) needs `instrument_id`, `claim_sha256`, `reviewer`, `reviewer_role: independent_human`, `decision: uphold`, a substantive `rationale`, checked HTTPS source URLs and `reviewed_on`. The reviewer must actually read the cited pages, test earlier effective cessations and savings, and resolve disputes; filling fields alone does not establish correctness. Source authenticity and claim completeness can still fail despite passing code.
+
+Generate the claim fingerprint with `claim_gate.claim_sha(claim)` using the exact parsed claim object. The reviewer should sign off only on that frozen object. If research changes any field, obtain a new review. The HTML workbench exports `eo-lifecycle-worksheet/v1`, a separate draft format that [`validate_worksheet.py`](code/validate_worksheet.py) can check against its packet fingerprint. A worksheet never increments the tracker. The existing Stage 17 review importer remains the production path for legal claim certification; Stage 19 does not fabricate or import human decisions.

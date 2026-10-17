@@ -4,6 +4,8 @@
 
 This repository holds the consolidated inputs, versioned public research releases, workpapers, and reproducibility tools for **The Afterlife of Executive Orders**. The research remains provisional and contains no independently human-certified legal findings.
 
+**Whole-lifecycle progress:** 0 / 14,972 = **0.000000%** released, source-linked and independently reviewed complete dossiers. The earlier 22.435212% measures only provisional YES/NO labels. A complete case must account for the original operative scope, whether and when it first ended, the actor and legal mechanism, surviving effects or a continuing predicate, counterevidence and independent review. See the [moving tracker](research/progress/README.md) and [Stage 19 excavators](research/stage19/README.md).
+
 The original ZIP is **2,966,329,767 bytes**, above GitHub's per-file limit. Its two byte-exact parts are stored with Git LFS:
 
 | File | Bytes | SHA-256 |
@@ -35,3 +37,7 @@ As of the Stage 17 canonical checkpoint: 14,972 working bibliographic identities
 ## Stage 18 — direct-source and early-history pilot
 
 [Stage 18](research/stage18/README.md) preserves official printed pages for all 14 Stage 17 pilot orders, crosswalks 13 scoped clauses and 26 transitions to those pages, corrects two source-reading/date errors, locates primary historical representations for all five initial 1789–90 catalogue leads, and traces EO 1's provisional court to a July 28, 1866 statutory transfer as construed by the Supreme Court. It is an additive AI research layer: no new early identity or EO 1 assessment is added to the 14,972 denominator or 3,359 reconciled YES/NO numerator, and no human certification is claimed. See the [moving tracker](research/progress/README.md) for the remaining effort and planning windows.
+
+## Stage 19 — batch causal and early-source excavators
+
+[Stage 19](research/stage19/README.md) records the required 10-by-10 idea funnel, generates a blocker-coded queue for every reconciled decided case and source-linked packets for stratified human review, and maps multiple archival search routes from Lord chronology leads. Candidate searches and worksheet exports never change the EO census or lifecycle numerator automatically.
