@@ -20,7 +20,7 @@ def fetch(url):
         raise ValueError("Unapproved original manuscript JPEG source")
     req=urllib.request.Request(url,headers={"User-Agent":"ExecutiveOrdersOriginalManuscriptPages/1.0",
                                             "Accept":"image/jpeg"})
-    with urllib.request.urlopen(req,timeout=25) as r:
+    with urllib.request.urlopen(req,timeout=17) as r:
         final=urllib.parse.urlsplit(r.geturl())
         if final.scheme!="https" or final.hostname!="tile.loc.gov":
             raise ValueError("Unexpected media redirect")
@@ -59,7 +59,7 @@ def main():
             print(id_,n,item["source_state"],flush=True)
             time.sleep(0.5)
     with (OUT/"PAGE_IMAGE_CUSTODY.csv").open("w",newline="",encoding="utf-8") as f:
-        w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n")
+        w=csv.DictWriter(f,fieldnames=list(rows[0])+["error"],lineterminator="\n",extrasaction="ignore")
         w.writeheader();w.writerows(rows)
     metric={"schema":"eo-early-LOC-full-page-images/v1",
             "target_items":len(IDS),"LOC_page_resources_in_known_item_manifest":len(rows),
