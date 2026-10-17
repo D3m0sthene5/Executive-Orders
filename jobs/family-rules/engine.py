@@ -86,7 +86,7 @@ def run(root, out):
     paths = sorted({p for base in (root/'jobs', root/'research') if base.exists() for p in base.rglob('*')
                     if p.is_file() and p.suffix.lower() in {'.txt', '.xml', '.html', '.htm'}
                     and p.name not in {'needs.txt','requirements.txt','triggers.txt','after.txt','log.txt','install-log.txt'}
-                    and 'family-rules' not in p.parts and 'case-bundles' not in p.parts})
+                    and 'family-rules' not in p.parts and 'case-bundles' not in p.parts}, key=lambda p:p.as_posix())
     docs = []
     # Only identity-linked original-text manifests can establish an owner/date.
     # The first EO citation in a modern compilation does not date that document.
@@ -117,7 +117,7 @@ def run(root, out):
         docs.append((rel, ids, owner, d, text)); manifest.append({'path':rel,'sha256':digest(raw),'date_hint':d})
         if owner: own_texts[owner].append(text)
     sweep_hash = digest(canonical(manifest).encode())
-    rules = [json.loads(p.read_text(encoding='utf-8')) for p in sorted((root/'research/readiness/rules').glob('*.json'))]
+    rules = [json.loads(p.read_text(encoding='utf-8')) for p in sorted((root/'research/readiness/rules').glob('*.json'),key=lambda p:p.as_posix())]
     fragments, certs = [], []
     for rule in rules:
         errors = rule_errors(rule, root)
