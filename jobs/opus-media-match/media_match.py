@@ -756,6 +756,7 @@ def _jsonl(data):
 
 
 UNPACKAGED = set()   # files the Opus release left out (too large / HTML); filled by load_cases
+UNPACKAGED_INFO = {}  # path -> {"sha256", "bytes"} of those files, from UNPACKAGED_LARGE_ORIGINALS.jsonl
 MEDIA_EXT = (".pdf", ".png", ".jpg", ".jpeg", ".tif", ".tiff", ".gif")
 
 
@@ -763,6 +764,7 @@ def load_cases(complete_zip_path, accepted_ids, note_leads=None):
     """Build Case objects for every order in the Stage 11 records. Returns
     (cases: dict id -> Case, metas: dict path -> meta dict)."""
     UNPACKAGED.clear()
+    UNPACKAGED_INFO.clear()
     cases = {}
 
     def case(i):
@@ -840,6 +842,7 @@ def load_cases(complete_zip_path, accepted_ids, note_leads=None):
             for r in _jsonl(z.read(up)):
                 if isinstance(r.get("path"), str):
                     UNPACKAGED.add(r["path"])
+                    UNPACKAGED_INFO[r["path"]] = {"sha256": r.get("sha256"), "bytes": r.get("bytes")}
     if note_leads:
         for r in note_leads:
             i = r.get("instrument_id")
@@ -1584,9 +1587,20 @@ def run(repo_root, output_dir, cache_dir=None, limit=None, ocr_enabled=True, pat
             for _, m in metas_for(mpath, msha, metas_by_sha, metas_by_dir_key) + metas_by_stem_prefix(mpath, metas_by_dir):
                 for u in meta_urls(m):
                     packaged_urls[u].append((mdir, bool(msha and m.get("sha256") == msha)))
+    # Expected bytes of each left-out original, so a re-fetch can prove it got the same file.
+    expected_by_url = {}
     for upath in UNPACKAGED:
         for _, m in metas_for(upath, None, metas_by_sha, metas_by_dir_key) + metas_by_stem_prefix(upath, metas_by_dir):
             unpackaged_urls.update(meta_urls(m))
+            # The .meta.json sha256 is of the bytes Opus downloaded from the URL (the list's
+            # own sha256 is of whichever file was left out, often only the text extract).
+            ctype = str(m.get("content_type") or "").lower()
+            local = str(m.get("local_file") or "").lower()
+            if ctype.startswith(("application/pdf", "image/")) or local.endswith((".pdf", ".png", ".jpg", ".jpeg", ".tif", ".tiff")):
+                for u in meta_urls(m):
+                    expected_by_url.setdefault(u, {"sha256": m.get("sha256"), "bytes": m.get("bytes"),
+                                                   "opus_path": m.get("local_file") or upath})
+    refetch = {}  # url -> {"instrument_ids": set, "reasons": set}
     case_rows = []
     for c in sorted(cases.values(), key=lambda x: (not x.accepted, number_sort_key(x.num), x.id)):
         b = by_case.get(c.id, {"unique": [], "ambiguous": [], "order_text": [], "record_link": []})
@@ -1625,6 +1639,19 @@ def run(repo_root, output_dir, cache_dir=None, limit=None, ocr_enabled=True, pat
             note = "its records cite PDF/image files or URLs that are in the companion, but none of those files gave a signal"
         resolved = (status == "unique_supported" and not b["ambiguous"] and not mc["urls_not_in_companion"]
                     and not n_unpk)
+        # Every cited original missing from the companion goes on the re-fetch list.
+        missing = {u: "left_out_of_release_too_large" for u in mc["urls_not_packaged"]}
+        for path_ in not_packaged:
+            for _, m in metas_for(path_, None, metas_by_sha, metas_by_dir_key) + metas_by_stem_prefix(path_, metas_by_dir):
+                for u in meta_urls(m):
+                    if u.startswith("https://"):
+                        missing.setdefault(u, "left_out_of_release_too_large")
+        for u in mc["urls_not_in_companion"]:
+            missing.setdefault(u, "original_not_kept_by_opus")
+        for u, why in missing.items():
+            r = refetch.setdefault(u, {"instrument_ids": set(), "reasons": set()})
+            r["instrument_ids"].add(c.id)
+            r["reasons"].add(why)
         case_rows.append({
             "instrument_id": c.id, "in_accepted_844": "yes" if c.accepted else "no", "media_status": status,
             "all_cited_media_resolved": "yes" if resolved else "no",
@@ -1664,6 +1691,21 @@ def run(repo_root, output_dir, cache_dir=None, limit=None, ocr_enabled=True, pat
     with open(out / "FRAGMENTS.jsonl", "w", encoding="utf-8", newline="\n") as fh:
         for f in fragments:
             fh.write(json.dumps(f, ensure_ascii=False, sort_keys=True) + "\n")
+    # Re-fetch list for the source-ladder job (it reads this file automatically).
+    accepted_ids = {c.id for c in cases.values() if c.accepted}
+    refetch_rows = []
+    for u, r in refetch.items():
+        exp = expected_by_url.get(u) or {}
+        ids = sorted(r["instrument_ids"])
+        refetch_rows.append({
+            "url": u, "instrument_ids": ids, "accepted_844_ids": [i for i in ids if i in accepted_ids],
+            "reasons": sorted(r["reasons"]), "expected_sha256": exp.get("sha256"),
+            "expected_bytes": exp.get("bytes"), "opus_path": exp.get("opus_path"),
+        })
+    refetch_rows.sort(key=lambda x: (-len(x["accepted_844_ids"]), -len(x["instrument_ids"]), x["url"]))
+    with open(out / "REFETCH_LIST.jsonl", "w", encoding="utf-8", newline="\n") as fh:
+        for row in refetch_rows:
+            fh.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
     acc_rows = [r for r in case_rows if r["in_accepted_844"] == "yes"]
     grades = collections.Counter(r["grade"] for r in match_rows)
@@ -1690,6 +1732,9 @@ def run(repo_root, output_dir, cache_dir=None, limit=None, ocr_enabled=True, pat
             "ocr_failure_examples": ocr.failure_notes,
         },
         "stage11_orders_in_records": len(cases), "quotes_indexed": len(quotes_index),
+        "refetch_list": {"urls": len(refetch_rows),
+                         "urls_with_expected_sha256": sum(1 for r in refetch_rows if r["expected_sha256"]),
+                         "accepted_orders_covered": len({i for r in refetch_rows for i in r["accepted_844_ids"]})},
         "boilerplate_quotes_dropped": len(generic),
         "pairs_by_grade": {k: v for k, v in grades.items() if k != "unmatched"},
         "members_by_best_grade": dict(collections.Counter(r["best_grade"] for r in member_rows)),
