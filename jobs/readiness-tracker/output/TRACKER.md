@@ -18,39 +18,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
 | Savings clauses and surviving effects closed | 0 | 3,359 | 0.0% |
 | Search for later contrary sources recorded, no open conflicts | 0 | 3,359 | 0.0% |
-| Every shared legal source it cites has been retrieved | 7 | 236 | 3.0% |
+| Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 0 | 844 | 0.0% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 844 | machine job | Match the 496 Opus evidence images to orders by their contents |
+| 844 | machine job | Match the 496 Opus evidence images to orders by their contents (opus-media-match) |
 | 242 | machine job | Run one bulk download of the official links already found (Stage 21 crosswalk) |
-| 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
-| 11 | one source | Retrieve shared source EO::9337 |
 | 10 | one source | Retrieve shared source EO::4314 |
-| 9 | one source | Retrieve shared source EO::8417 |
-| 9 | one source | Retrieve shared source EO::9515 |
-| 8 | one source | Retrieve shared source USC::31 U.S.C. 1552 |
-| 7 | one source | Retrieve shared source EO::10153 |
-| 7 | one source | Retrieve shared source EO::9492 |
-| 7 | one source | Retrieve shared source EO::9792 |
-| 7 | one source | Retrieve shared source EO::9886 |
-| 7 | one source | Retrieve shared source EO::10608 |
-| 6 | one source | Retrieve shared source EO::11401 |
 | 6 | one source | Retrieve shared source EO::6868 |
-| 6 | one source | Retrieve shared source EO::13286 |
-| 6 | one source | Retrieve shared source EO::10713 |
-| 6 | one source | Retrieve shared source EO::11211 |
-| 6 | one source | Retrieve shared source EO::14173 |
-| 6 | one source | Retrieve shared source EO::12282 |
-| 6 | one source | Retrieve shared source EO::9526 |
-| 6 | one source | Retrieve shared source EO::9714 |
-| 5 | one source | Retrieve shared source EO::10084 |
-| 5 | one source | Retrieve shared source EO::11766 |
-| 5 | one source | Retrieve shared source EO::10152 |
-| | | ...and 68 more in `SHARED_UNLOCKS.csv` |
+| 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
+| 3 | one source | Retrieve shared source EO::6964 |
+| 3 | one source | Retrieve shared source EO::6910 |
+| 2 | one source | Retrieve shared source CFR::26 CFR 458.324 |
 
 ## What blocks orders
 
@@ -65,14 +47,24 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `OPUS_MEDIA_NOT_MATCHED_TO_ORDER` | 844 | 844 |
 | `CURRENT_BASIS_UNPROVED` | 405 | 405 |
 | `OFFICIAL_URL_KNOWN_NOT_DOWNLOADED` | 242 | 242 |
-| `SHARED_SOURCE_NOT_RETRIEVED` | 229 | 229 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
+| `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 
 ## How to move an order forward
 
 - Add or extend its claim in `research/readiness/claims/*.jsonl` (format: `research/stage19/CLAIM_SCHEMA.md`).
-  Partial claims count: each step lights up as soon as its part passes the gate.
+  Partial claims count: each step lights up once its part passes the gate and claim-checker.
+- Start from the order's draft in `jobs/claim-drafts/output/` (see `jobs/claim-drafts/AGENT_GUIDE.md`).
+- Need a source? Add it to `research/readiness/FETCH_QUEUE.jsonl`; source-ladder fetches it.
 - If a step cannot be finished by machine, add a line to `research/readiness/EXHAUSTED.jsonl` with
   `instrument_id`, `step`, `searched` (list of repositories and queries), `recorded_by`, `recorded_on`.
 - Step names: `provisional_status`, `original_text`, `clause_inventory`, `ending_or_current_basis`, `savings_residuals`, `counterevidence`, `shared_sources`, `opus_media`.
 - Per-order detail is in `READINESS_BY_ORDER.csv`.
+
+## Job outputs read
+
+- fr-originals: not run yet
+- opus-media-match fragments: not run yet
+- opus-media-match status: not run yet
+- source-ladder: 85
+- claim-checker: 0
