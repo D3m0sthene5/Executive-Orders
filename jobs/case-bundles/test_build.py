@@ -13,6 +13,13 @@ class BundleTests(unittest.TestCase):
     def test_oversized_draft_is_explicit(self):
         p={'instrument_id':'EO:1','draft_record':{'path':'draft.jsonl','line':1},'claim_draft':{'text':'a'*80000},'fragments':[], 'later_events':[], 'current_law_hits':[], 'conflicts':[], 'text_pointers':[]}
         q=bounded(p);self.assertLessEqual(len((canon(q)+'\n').encode()),LIMIT);self.assertIn('claim_draft',q['overflow']);self.assertIn('record',q['claim_draft'])
+    def test_fallback_retains_source_custody(self):
+        source={'url':'https://example.org/source','sha256':'a'*64,'page_or_item':'1'}
+        fragment={'record':{'path':'fragment.jsonl','line':1},'sources':[source],'data':['a'*1000 for _ in range(500)]}
+        p={'instrument_id':'EO:1','draft_record':{'path':'draft.jsonl'},'claim_draft':{'text':'x'*50000},'fragments':[fragment], 'later_events':[],'current_law_hits':[],'conflicts':[],'text_pointers':[]}
+        q=bounded(p)
+        self.assertEqual(q['fragments'][0]['sources'][0]['sha256'],'a'*64)
+        self.assertLess(len(canon(q).encode()),30000)
     def test_unicode_budget(self):
         p={'instrument_id':'EO:1','draft_record':{},'claim_draft':{'text':'漢'*50000},'fragments':[],'later_events':[],'current_law_hits':[],'conflicts':[],'text_pointers':[]}
         self.assertLess(len(canon(bounded(p)).encode()),30000)

@@ -36,9 +36,13 @@ def bounded(packet):
         if len((canon(packet)+'\n').encode())<=LIMIT:return packet
     # Pathological cases: retain every fragment pointer, all sections, and the order's blocker summary.
     for key in ('fragments','later_events','current_law_hits','conflicts'):
-        packet[key]=[{'record':x.get('record'),'summary':'See complete record at pointer'} for x in packet[key]]
+        packet[key]=[{'record':x.get('record') or packet['draft_record'],'sources':x.get('sources',[]),'summary':'See complete record at pointer'} for x in packet[key]]
     packet['claim_draft']={'record':packet['draft_record'],'summary':'See complete draft at pointer'}
-    packet['text_pointers']=[{k:v for k,v in x.items() if k!='first_1500_characters'} for x in packet['text_pointers']]
+    if len((canon(packet)+'\n').encode())>LIMIT:
+        for item in packet['text_pointers']:
+            if 'first_1500_characters' in item:
+                item['preview_truncated_for_budget']=True
+                item['first_1500_characters']=item['first_1500_characters'][:400]
     if len((canon(packet)+'\n').encode())>LIMIT:raise ValueError('Order exceeds startup budget even as pointers; no silent omission: '+packet['instrument_id'])
     return packet
 
