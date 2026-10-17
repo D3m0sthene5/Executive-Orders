@@ -1,0 +1,72 @@
+# Historical LOC manuscripts recovered from already downloaded JSON
+
+Recovered 65 unique LOC item/resource links from 23 cached official API responses.
+These are **catalog candidates**. Verify the document's own pages, presidential action, date and inclusion before counting.
+
+## Candidates (sorted by research relevance, not legal confidence)
+
+- [George Washington Papers, Series 4, General Correspondence: John Hendricks, July 1780, British Spy Instructions](https://www.loc.gov/item/mgw424610/) — 1780-07; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: Benedict Arnold, August 1780, Travel Instructions](https://www.loc.gov/item/mgw425214/) — 1780-08; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: George Washington to Secretary of War (Benjamin Lincoln), March 7, 1782](https://www.loc.gov/item/mgw430411/) — 1782-03-07; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: Continental Congress, February 7, 1781, Secretary of War Resolution](https://www.loc.gov/item/mgw431013/) — 1781-02-07; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: Military Parade, September 17, 1782, Instructions](https://www.loc.gov/item/mgw432123/) — 1782-09-17; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: Continental Congress, October 3, 1787, Resolutions on Report of Secretary of War](https://www.loc.gov/item/mgw435959/) — 1787-10-03; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: John Adams to Congress, December 31, 1798, Message to Congress, with Report from James McH](https://www.loc.gov/item/mgw441513/) — 1798-12-31; research rank 6
+- [James Madison, May 28, 1781. Notes on Congress's Actions on Instructions to Pea.](https://www.loc.gov/item/mjm012134/) — 1781-05-28; research rank 6
+- [John Graham to Master of the ship Union, September 20, 1808. Instructions.](https://www.loc.gov/item/mjm015020/) — 1808-09-20; research rank 6
+- [Samuel Hanson of Samuel to Thomas Turner, April 10, 1811. Instructions.](https://www.loc.gov/item/mjm015901/) — 1811-04-10; research rank 6
+- [Joseph Bloomfield to Samuel Raisin, November 18, 1813. Instructions.](https://www.loc.gov/item/mjm017191/) — 1813-11-18; research rank 6
+- [James Madison, August 10, 1814. List, Military Instructions.](https://www.loc.gov/item/mjm017450/) — 1814-08-10; research rank 6
+- [James Madison, August 24, 1814. Observations on the capture of Washington DC by British troops.](https://www.loc.gov/item/mjm017468/) — 1814-08-24; research rank 6
+- [James Madison to Benjamin W. Crowninshield, October 19, 1816. Instructions.](https://www.loc.gov/item/mjm018302/) — 1816-10-19; research rank 6
+- [James Madison. Frontpages and cover page for "Letters, notes instructing Secretary of War Dec. 1813-14".](https://www.loc.gov/item/mjm022715/) — 1813-12; research rank 6
+- [James Madison to Mordecai Collins, Lewis Collins, and Sawney (Slave), November, 1790. Instructions.](https://www.loc.gov/item/mjm023773/) — 1790-11; research rank 6
+- [James K. Polk Papers: Series 5: Messages and Speeches, 1833-1849; 1848; Jan. 12 , instructions for John Slidell](https://www.loc.gov/item/mss365090092/) — 1848-01-12; research rank 6
+- [Thomas Jefferson to Thomas Barclay, May 13, 1791, with Instructions](https://www.loc.gov/item/mtjbib005416/) — 1791-05-13; research rank 6
+- [Congress to Armed Private Vessels, July 9, 1798, Printed Instructions](https://www.loc.gov/item/mtjbib009108/) — 1798-07-09; research rank 6
+- [Francis Mentges to Secretary of War (Henry Dearborn), December 19, 1801](https://www.loc.gov/item/mtjbib011417/) — 1801-12-19; research rank 6
+- [Thomas Jefferson to Meriwether Lewis, June 20, 1803, Instructions](https://www.loc.gov/item/mtjbib012509/) — 1803-06-20; research rank 6
+- [State Department to Lear, December 30, 1805, Instructions](https://www.loc.gov/item/mtjbib015462/) — 1805-12-30; research rank 6
+- [George Washington Papers, Series 4, General Correspondence: George Washington to James Cleveland, March 1775, Instructions](https://www.loc.gov/item/mgw443599/) — 1775-03; research rank 4
+- [George Washington Papers, Series 4, General Correspondence: George Washington to Charles Dyar, William Burke, and John Ayers, January 20, 1776, Instru](https://www.loc.gov/item/mgw444399/) — 1776-01-20; research rank 4
+- [George Washington Papers, Series 4, General Correspondence: George Washington to Benjamin Flower, January 16, 1777, Instructions](https://www.loc.gov/item/mgw445037/) — 1777-01-16; research rank 4
+- [George Washington Papers, Series 4, General Correspondence: George Washington to Christopher Greene, October 7, 1777, Instructions](https://www.loc.gov/item/mgw448489/) — 1777-10-07; research rank 4
+- [George Washington Papers, Series 4, General Correspondence: George Washington, February 28, 1778, Instructions to Officers](https://www.loc.gov/item/mgw449622/) — 1778-02-28; research rank 4
+- [James Madison. List of Instructions for French Consuls.](https://www.loc.gov/item/mjm021795/) — ; research rank 4
+- [Thomas Jefferson, June 1776, Building Instructions](https://www.loc.gov/item/mtjbib000263/) — 1776-06; research rank 4
+- [Thomas Jefferson, no date, Etiquette Instructions](https://www.loc.gov/item/mtjbib025818/) — ; research rank 4
+- [John Armstrong to Andrew Jackson, May 22, 1814](https://www.loc.gov/item/maj003015/) — 1814-05-22; research rank 3
+- [James Upton to Andrew Jackson, August 4, 1814](https://www.loc.gov/item/maj003275/) — 1814-08-04; research rank 3
+- [Andrew Jackson to John D. Henley, January 23, 1815](https://www.loc.gov/item/maj004757/) — 1815-01-23; research rank 3
+- [Jean Joseph Amable Humbert](https://www.loc.gov/item/maj004867/) — 1815-01-01; research rank 3
+- [James Monroe to Andrew Jackson, February 14, 1815](https://www.loc.gov/item/maj005092/) — 1815-02-14; research rank 3
+- [Alexander James Dallas to Andrew Jackson, March 14, 1815](https://www.loc.gov/item/maj005368/) — 1815-03-14; research rank 3
+- [John Rhea to Andrew Jackson, November 27, 1817](https://www.loc.gov/item/maj007540/) — 1817-11-27; research rank 3
+- [Andrew Jackson to John Branch, April 19, 1831](https://www.loc.gov/item/maj012239/) — 1831-04-19; research rank 3
+- [Andrew Jackson to Andrew Jackson, Jr.](https://www.loc.gov/item/maj012548/) — 1831-01-01; research rank 3
+- [Andrew Jackson to Lewis Cass, October 29, 1832](https://www.loc.gov/item/maj012871/) — 1832-10-29; research rank 3
+- [Andrew Jackson to Martin Company, January 22, 1836](https://www.loc.gov/item/maj014790/) — 1836-01-22; research rank 3
+- [Andrew Jackson to John Forsyth, January 23, 1838](https://www.loc.gov/item/maj015822/) — 1838-01-23; research rank 3
+- [Andrew Jackson to William S. Fulton, January 23, 1838](https://www.loc.gov/item/maj015823/) — 1838-01-23; research rank 3
+- [Andrew Jackson to Francis Preston Blair, June 4, 1838](https://www.loc.gov/item/maj015958/) — 1838-06-04; research rank 3
+- [Andrew Jackson](https://www.loc.gov/item/maj025068/) — 1821-01-01; research rank 3
+- [George Washington Papers, Series 2, Letterbooks 1754-1799: Letterbook 35, May 9, 1789 - March 29, 1792](https://www.loc.gov/item/mgw2.035/) — 1789-05-09; research rank 3
+- [George Washington Papers, Series 2, Letterbooks 1754-1799: Letterbook 37, March 27, 1795 - Dec. 10, 1796](https://www.loc.gov/item/mgw2.037/) — 1795-03-27; research rank 3
+- [James Madison to Edmund Pendleton, December 12, 1780.](https://www.loc.gov/item/mjm012108/) — 1780-12-12; research rank 3
+- [James Madison to William Eustis, December 4, 1812.](https://www.loc.gov/item/mjm016773/) — 1812-12-04; research rank 3
+- [James Madison to Daniel D. Tompkins, September 28, 1814.](https://www.loc.gov/item/mjm017428/) — 1814-09-28; research rank 3
+- [James Madison to John Armstrong, August 13, 1814.](https://www.loc.gov/item/mjm017456/) — 1814-08-13; research rank 3
+- [James Madison, August 29, 1814. Memorandum on conversations with John Armstrong regarding war plans.](https://www.loc.gov/item/mjm017471/) — 1814-08-29; research rank 3
+- [James Madison, August 24, 1814. Notes, Diary Entry for Aug. 24, 1814 and Aug. 29, 1814.](https://www.loc.gov/item/mjm022930/) — 1814-08-24; research rank 3
+- [Thomas Jefferson to Senate, December 17, 1791](https://www.loc.gov/item/mtjbib005762/) — 1791-12-17; research rank 3
+- [Thomas Jefferson, February 25, 1793, Opinions on Debt to France](https://www.loc.gov/item/mtjbib007104/) — 1793-02-25; research rank 3
+- [Thomas Jefferson, February 25, 1793, Opinions on Indian Treaty](https://www.loc.gov/item/mtjbib007105/) — 1793-02-25; research rank 3
+- [Thomas Jefferson, July 8, 1793, Hamilton's Opinion on French armed vessel, the Little Sarah](https://www.loc.gov/item/mtjbib007697/) — 1793-07-08; research rank 3
+- [Thomas Jefferson, February 18, 1802, Instruction for Armed Vessels](https://www.loc.gov/item/mtjbib011110/) — 1802-02-18; research rank 3
+- [Thomas Jefferson to James Wilkinson, November 8, 1806, Instruction](https://www.loc.gov/item/mtjbib016595/) — 1806-11-08; research rank 3
+- [Thomas Jefferson to Henry Dearborn, March 29, 1807](https://www.loc.gov/item/mtjbib017088/) — 1807-03-29; research rank 3
+- [Thomas Jefferson to William Short, July 13, 1808](https://www.loc.gov/item/mtjbib018770/) — 1808-07-13; research rank 3
+- [James Monroe to Thomas Jefferson, June 7, 1813](https://www.loc.gov/item/mtjbib021424/) — 1813-06-07; research rank 3
+- [Andrew Jackson](https://www.loc.gov/item/maj018712/) — ; research rank 1
+- [George Washington Papers, Series 4, General Correspondence: George Washington to William Howe, August 17, 1776](https://www.loc.gov/item/mgw445702/) — 1776-08-17; research rank 1
+- [George Washington Papers, Series 5, Financial Papers: George Washington's Revolutionary War Expense Account, 1775-1783](https://www.loc.gov/item/mgw500022/) — 1775; research rank 1
