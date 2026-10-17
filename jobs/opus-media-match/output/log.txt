@@ -1,0 +1,77 @@
+Installing tesseract-ocr and poppler-utils for OCR ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+test_run_on_fixture_release (test_media_match.EndToEnd.test_run_on_fixture_release) ... ok
+test_citation_plus_filename_is_only_ambiguous (test_media_match.Grading.test_citation_plus_filename_is_only_ambiguous) ... ok
+test_citing_the_same_whole_issue_is_not_order_specific (test_media_match.Grading.test_citing_the_same_whole_issue_is_not_order_specific) ... ok
+test_heading_plus_filename_is_unique_and_order_text (test_media_match.Grading.test_heading_plus_filename_is_unique_and_order_text) ... ok
+test_long_rare_quote_alone_is_enough_but_not_own_text_in_other_document (test_media_match.Grading.test_long_rare_quote_alone_is_enough_but_not_own_text_in_other_document) ... ok
+test_order_text_span (test_media_match.Grading.test_order_text_span) ... ok
+test_page_ranges (test_media_match.Grading.test_page_ranges) ... ok
+test_stock_phrase_on_page_of_other_orders_is_not_counted (test_media_match.Grading.test_stock_phrase_on_page_of_other_orders_is_not_counted) ... ok
+test_whole_issue_link_still_counts_when_cited_page_is_in_the_excerpt (test_media_match.Grading.test_whole_issue_link_still_counts_when_cited_page_is_in_the_excerpt) ... ok
+test_failing_ocr_is_counted_and_page_stays_open (test_media_match.OcrPath.test_failing_ocr_is_counted_and_page_stays_open) ... ok
+test_image_ocr_with_stand_in_tesseract_and_cache (test_media_match.OcrPath.test_image_ocr_with_stand_in_tesseract_and_cache) ... ok
+test_without_ocr_images_are_counted_as_needing_it (test_media_match.OcrPath.test_without_ocr_images_are_counted_as_needing_it) ... ok
+test_citations (test_media_match.TextHelpers.test_citations) ... ok
+test_collapse (test_media_match.TextHelpers.test_collapse) ... ok
+test_eo_number_variants (test_media_match.TextHelpers.test_eo_number_variants) ... ok
+test_filename_features (test_media_match.TextHelpers.test_filename_features) ... ok
+test_glued_statute_head (test_media_match.TextHelpers.test_glued_statute_head) ... ok
+test_headings_and_signature_block (test_media_match.TextHelpers.test_headings_and_signature_block) ... ok
+test_member_key (test_media_match.TextHelpers.test_member_key) ... ok
+test_page_heads (test_media_match.TextHelpers.test_page_heads) ... ok
+test_quotes (test_media_match.TextHelpers.test_quotes) ... ok
+test_suffix_letters_keep_orders_apart (test_media_match.TextHelpers.test_suffix_letters_keep_orders_apart) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.151s
+
+OK
+Fetching Git LFS file releases/opus_stage11_complete/OPUS_STAGE11_EVIDENCE_ORIGINALS.zip ...
+Updated Git hooks.
+Git LFS initialized.
+Fetching Git LFS file releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip ...
+Updated Git hooks.
+Git LFS initialized.
+Reading Opus case records from releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip ...
+  1155 orders in the Stage 11 records (844 accepted), 7934 quotes, 9436 cache meta files.
+OCR: tesseract + pdftoppm
+Media members: 496; processing 496.
+  read 25/496 members
+  read 50/496 members
+  read 75/496 members
+  read 100/496 members
+  read 125/496 members
+  read 150/496 members
+  read 175/496 members
+  read 200/496 members
+  read 225/496 members
+  read 250/496 members
+  read 275/496 members
+  read 300/496 members
+  read 325/496 members
+  read 350/496 members
+  read 375/496 members
+  read 400/496 members
+  read 425/496 members
+  read 450/496 members
+  read 475/496 members
+  read 496/496 members
+
+Summary
+- Read 496 of 496 media files (496 matched the Stage 20 hash list, 0 did not).
+- 491 files gave text; 84 files (92 pages) still need OCR; OCR done on 183 pages.
+- File/order pairs: {"unique_supported": 1576, "ambiguous": 560}; files with no match: 44.
+- Of the 844 accepted Opus orders: 364 have at least one unique_supported file (82 with nothing else left open), 68 only ambiguous candidates, 412 none.
+  Of those with none: 205 cite no PDF/image at all; 10 cite PDF/image URLs whose originals are not in the companion (re-fetch); 197 cite only files left out as too large; 0 other.
+- 143 original_representation candidate fragments written.
+These are leads for human checking, not legal findings. Outputs: /home/runner/work/Executive-Orders/Executive-Orders/jobs/opus-media-match/output

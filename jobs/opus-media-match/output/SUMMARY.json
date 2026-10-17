@@ -1,0 +1,86 @@
+{
+  "job": "opus-media-match",
+  "started_utc": "2026-10-17T21:14:10Z",
+  "finished_utc": "2026-10-17T21:28:40Z",
+  "legal_cutoff": "2026-10-14",
+  "limit": null,
+  "inputs": {
+    "media_zip": {
+      "path": "releases/opus_stage11_complete/OPUS_STAGE11_EVIDENCE_ORIGINALS.zip",
+      "sha256": "5ece42b87164b3d8422e53fba554a28b5f644362cea920b72c7996a8e0b88e9a",
+      "bytes": 358846280,
+      "matches_stage20_integrity_record": true
+    },
+    "complete_zip": "releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip",
+    "member_map": "research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv",
+    "accepted_list": "research/stage20/output/OPUS_FULL_844.jsonl"
+  },
+  "members_in_zip": 496,
+  "members_processed": 496,
+  "distinct_sha256_processed": 418,
+  "member_kinds": {
+    "pdf": 395,
+    "png": 75,
+    "jpg": 3,
+    "html_saved_under_media_name": 21,
+    "empty": 2
+  },
+  "sha256_check": {
+    "matches_member_map": 496,
+    "mismatch": 0,
+    "not_in_member_map": 0
+  },
+  "text": {
+    "members_with_some_text": 491,
+    "members_needing_ocr": 84,
+    "pages_needing_ocr": 92,
+    "members_needing_ocr_with_no_text_at_all": 3,
+    "members_needing_ocr_for_some_blank_pages_only": 81,
+    "ocr_available": {
+      "images": true,
+      "pdf_pages": true,
+      "enabled": true
+    },
+    "members_ocr_done": 165,
+    "pages_ocr_done": 183,
+    "ocr_pages_attempted_this_run": 167,
+    "ocr_failures_this_run": 0,
+    "ocr_failure_examples": []
+  },
+  "stage11_orders_in_records": 1155,
+  "quotes_indexed": 5777,
+  "boilerplate_quotes_dropped": 5,
+  "pairs_by_grade": {
+    "unique_supported": 1576,
+    "ambiguous": 560
+  },
+  "members_by_best_grade": {
+    "unique_supported": 403,
+    "unmatched": 44,
+    "ambiguous": 49
+  },
+  "unmatched_members": 44,
+  "accepted_844": {
+    "orders": 844,
+    "with_unique_supported_member": 364,
+    "ambiguous_only": 68,
+    "no_member_signal": 412,
+    "no_member_signal_because_records_cite_no_media_at_all": 205,
+    "no_member_signal_because_cited_originals_not_in_companion": 10,
+    "no_member_signal_because_cited_files_not_packaged": 197,
+    "no_member_signal_other": 0,
+    "with_all_cited_media_resolved": 82,
+    "with_cited_media_urls_not_in_companion": 20,
+    "with_order_text_candidate": 107,
+    "with_member_linked_by_opus_records": 344
+  },
+  "fragments_written": 143,
+  "sources": {
+    "records": 496,
+    "usable_as_document_false": 23,
+    "url_set_bytes_verified_equal_to_url": 220,
+    "excerpts_or_conversions_url_null": 222,
+    "upstream_sha_unknown_url_null": 0
+  },
+  "qualification": "Machine leads only. A unique_supported pair means the page content and at least one other independent signal (or a specific verbatim quote) tie the file to the order; it does NOT mean one order per file (one statute page can support dozens of orders). It does not establish authenticity, completeness, the first effective end, or any legal status, and it changes no provisional status, ledger or count."
+}
