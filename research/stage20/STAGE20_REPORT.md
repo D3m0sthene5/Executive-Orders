@@ -1,20 +1,30 @@
-# Stage 20 scientific and production checkpoint
+# Stage 20 evidence-recovery and conversion checkpoint
 
-Cutoff 2026-10-14, America/New_York. Unmodified legal codebook 2.0.0.
+Legal cutoff: 2026-10-14 (America/New_York). Legal codebook v2.0.0 unchanged. This checkpoint records the **successful full-844 recovery workflow**; the first Stage 20 draft table recording 304 narratives, 32 clusters and unverified media is superseded.
 
-| Metric | Value | Legal meaning |
+| Quantity | Latest finding | What it can and cannot establish |
 |---|---:|---|
-| Working identity proxies | 14,972 | Historical census remains incomplete |
-| Reconciled provisional yes/no entries | 3,359 | AI/legacy decision proposals |
-| Complete Opus accepted cases | 844 | Research archive records, *not* first-cause histories |
-| Recovered verbatim Opus notes now indexed | 304 | Directly auditable research leads (304 of 844) |
-| Opus footprint-complete *claims* in recovered notes | 297 | Assertions requiring original inspection |
-| Notes containing unclassified ISO date mentions | 110 | No automatic attribution to cessation |
-| Shared textual legal-reference clusters (2+ cases) | 32 | Batch source acquisition opportunities |
-| Human-certified whole-order lifecycle dossiers | **0** | Revised primary progress criterion |
+| Working included bibliographic identities | 14,972 | Working frame, not complete historical census |
+| Provisional substantive YES/NO decisions | 3,359 (22.435212%) | Status proposal coverage only |
+| Complete Opus accepted AI producer/reviewer records | 844 (212 YES, 632 NO) | Includes 540 previously Stage17-integrated and 304 Stage17-pending cases |
+| Opus reviewer narratives recovered and indexed | **844 / 844** | Audit and original source-recovery leads, not legal verification |
+| AI operative-footprint-complete claims | **836 / 844** | Producer/reviewer research assertions needing clause audit |
+| Cases with unclassified exact ISO-date mentions | **323 / 844** | Date mentions could refer to events, citations or review timestamps |
+| Shared reference clusters (≥2 cases) | **98** | Source acquisition batching opportunities, no shared causal finding |
+| Original-image companion entries matched to bytes and manifest hash | **496 / 496** | Integrity of archived media, not original-document legal authentication |
+| Original-media files with candidate case-folder match | 341 | Unverified folder/path associations only |
+| Ranger systematic years 1789–1861 | 73 | Annual coverage survey plans including 61 newly covered years |
+| Ranger annual search routes | 438 | Planned, not executed; no new authentic EO established |
+| Independently human-reviewed whole-lifecycle dossiers | **0 / 14,972** | Strict scientific numerator unchanged |
 
-**Progress recovered, not erased:** The real research corpus is preserved, annotated, and cross-indexed. Whole-lifecycle completion remains zero because no independently reviewed full original-to-cutoff history has been submitted and admitted. Existing formal revocation, an expired appointment, Opus 'footprint complete', or a reviewer date claim is not in itself a proof of the first effective end of all relevant clauses.
+Full archival recovery and verification is recorded by GitHub Actions [run 39051699089](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39051699089), which completed successfully. The [full conversion metrics](output/CONVERSION_METRICS.json) and [companion integrity record](output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) preserve these findings. [Stage 20 workbench](output/CONVERSION_WORKBENCH.html) shows recovered prior AI reasoning and exports uncertified research proposals; [the shared authority queue](output/SHARED_SOURCE_REFERENCE_QUEUE.csv) enables source de-duplication.
 
-**Highest-leverage next work:** 1) extract all 844 complete Opus notes from LFS, fail closed on the expected archive checksum; 2) inspect the newly uploaded LFS original-image companion, verify member hashes and map images to case-level cited pages; 3) acquire shared later sources once per 32 candidate clusters and propagate *source locations*, not common verdicts; 4) run 20–50 blinded human checks to measure what percentage of draft research can actually be certified and how long each takes; 5) extend systematic early-year ranger coverage without inflating the population.
+## Why zero remains correct, and how to change it
 
-**Reproducibility:** Three frozen Git blob identifiers are in `CONVERSION_METRICS.json`. Code asserts population size, unique IDs and status agreement and supports bitwise output checks. No previous classifications, source files or adjudication versions were overwritten.
+The old 22.4% provisional status work survives intact. The recovered AI notes and evidence media now provide a practical foundation for completing primary-source checks, original full-clause inventories, first effective cessation/current-predicate research, and savings/contra searches. The full conversion index distinguishes research readiness from legal conclusions. Each legacy record must pass the [Stage 19 claim schema](../stage19/CLAIM_SCHEMA.md) and real independent-human source review before incrementing the full-lifecycle numerator. If all 3,359 prior provisional cases passed that review they would cover 22.435212% of the current working bibliography; another 384 independently verified dossiers would still be required to hit 25%. The number of future failures or exclusions is unknown.
+
+## Highest-leverage next work
+
+Use the 98 shared-reference clusters to retrieve and hash each common later instrument once; route authenticated pages to all relevant EO cases without sharing conclusions. Select a stratified audit sample spanning formal revocation, earlier functional termination, affirmative current delegated authority, ambiguous savings and early attribution. Record original evidence and named reviewer time per case, gate failures and disagreement rates before projecting a throughput-based completion date. Recheck previously dated cessation claims for intervening earlier causes, successor policy and accrued-rights survival. For 1789–1861 the ranger has **planned routes only**; execute bounded catalog scans and preserve negative-result limits and image provenance before expanding the historical denominator.
+
+The strict methodology remains decisive: neither AI confidence, prior accepted verdict, source media integrity, reviewer-note date, nor record completeness asserted by an AI can prove legal history. Reopening and correcting a previously provisional NO/YES is expected when documentary evidence conflicts with its earlier status.
