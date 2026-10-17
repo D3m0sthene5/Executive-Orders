@@ -148,6 +148,10 @@ def build(root):
         claim = claims.get(i)
         gate_errors = claim_gate.validate_claim(claim, expected_status=status) if claim else None
         claim_steps_failing = {step_for_gate_error(e) for e in gate_errors or []}
+        if "operative_clauses_empty" in (gate_errors or []):
+            # The gate stops at an empty clause list without checking the ending,
+            # savings or later search, so none of those can count.
+            claim_steps_failing |= {"clause_inventory", "ending_or_current_basis", "savings_residuals", "counterevidence"}
 
         def from_claim(step):
             return claim is not None and step not in claim_steps_failing

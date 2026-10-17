@@ -134,6 +134,14 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:2"]["ready_tier"], "machine_exhausted")
         self.assertEqual(s["ready_by_tier"], {"machine_exhausted": 1})
 
+    def test_claim_with_no_clauses_lights_no_claim_step(self):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["operative_clauses"] = []
+        orders, _ = self.run_tracker([claim])
+        o = orders["EO:2"]
+        for step in ("clause_inventory", "ending_or_current_basis", "savings_residuals", "counterevidence"):
+            self.assertEqual(o[f"step_{step}"], "open", step)
+
     def test_status_mismatch_keeps_the_ending_step_open(self):
         claim = copy.deepcopy(COMPLETE_NO_CLAIM)
         claim["instrument_id"] = "EO:1"  # EO:1 is provisionally YES
