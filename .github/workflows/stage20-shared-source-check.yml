@@ -1,0 +1,32 @@
+name: Verify Stage 20 shared-source workbench
+
+on:
+  push:
+    paths:
+      - '.github/workflows/stage20-shared-source-check.yml'
+      - 'research/stage20/code/build_shared_source_workbench.mjs'
+      - 'research/stage20/code/test_shared_source_workbench.mjs'
+      - 'research/stage20/output/SHARED_SOURCE_*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source files without LFS media
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Unit tests for provenance and case-specific gates
+        run: node research/stage20/code/test_shared_source_workbench.mjs
+      - name: Reproduce all shared-source tasks and HTML byte for byte
+        run: node research/stage20/code/build_shared_source_workbench.mjs --check
