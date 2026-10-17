@@ -1,0 +1,9 @@
+# External, preserved sources and exact provenance
+
+The Stage 13 ZIP includes the **unmodified Stage 12 self-contained frozen baseline** `STAGE12_FROZEN_BASELINE.zip` and the independently recovered **original 1,943-record CSV** `EO_Original_1943_Status_Queue_2026-10-14.csv` (SHA256 `a49f6fef67b36cad9a580fbda860d027e4acf8d86fbf65c05598774581f8cf3c`). The Stage 12 ZIP contains a copy of the unmodified Stage 11 compact release and its signed machine-readable Stage 11 baseline JSONL.
+
+The 1943 Clifford Lord *Unnumbered Series 1789–1941* full scanned PDF is separately preserved at Library path `/Executive Order Research/Sources/Clifford_Lord_Unnumbered_Executive_Orders_1943.pdf` (SHA256 `0553dd2318903af8fd4cdbb56140cd035f3bac52ec5420148307206940ab69e1`). It was not duplicated inside Stage 13 because it is large and already saved in the user Library. Official LOC link: https://www.loc.gov/item/43013029/ . The 1023 geometry leads must be audited against that exact PDF page image before any population classification.
+
+Stage10 frozen government disposition importer archive remains in Library at `/Executive Order Research/Checkpoints/EO_DISPOSITION_IMPORT_STAGE10_CHECKPOINT_2026-10-16.zip` (SHA256 `a3f9d87441a95c680fa008fe5469c7f1ded402ab2491e6249ae42b04c9aed682`). Stage13 18 NARA editorial date labels are extracted from the archived file `EO_IMPORT_WORK/FULL_RESULTS/UNNUMBERED_SOURCE_ROW_MATCHES.jsonl`; original official HTML source https://www.archives.gov/federal-register/codification/executive-orders-01.html . The supplied Stage10 bulk file is byte-for-byte unchanged.
+
+Legal source URLs and exactly how their text constrains inferences are in `LEGAL/PROVISION_LEVEL_FALSIFICATION_FINDINGS.md`; their online availability and the 1989 as-of limits must not be confused with 2026 current authoritative source texts.

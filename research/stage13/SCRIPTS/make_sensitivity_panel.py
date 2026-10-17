@@ -1,0 +1,16 @@
+import csv,sys,pathlib,json
+out=pathlib.Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
+rows=[
+('EO:8885','no','no','yes under enduring legal consequences','Completed revocation of EO7632; formal/legal change persists but no current EO8885-directed act; definitional sensitivity only'),
+('EO:12553','no','no','yes under enduring legal consequences','Mass revoker in 1986; same TC07 issue, archival-source-dependent later event graph'),
+('EO:13284','yes','yes','yes','Amendment §15 to EO10865 §1 still in printed host; present-operation YES'),
+('EO:13286','yes','yes','yes','Amendment §22 to EO12978 §§1/4, present CFR 536.312 and 2026 Federal Register original authority citation'),
+('EO:6877','no','no','indeterminate','Substantive work board original deadline superseded; uncertain effects of completed work / code legacy'),
+('EO:14371','no','no','indeterminate','Temporary closure; present accrued pay/contract effects have not been comprehensively searched'),
+('EO:10746','no','no','indeterminate','Amender host supersession and successor saved-contract rights; attribution unresolved'),
+('EO:UN:executive-orders-01:row:1','indeterminate','indeterminate','indeterminate','1849 Polk order superseded 1946; initial operation attribution likely but source original lacking'),
+]
+headers=['id','stage11_substantive','candidate_present_normative_effect','alternative_continuing_consequence','reason']
+with (out/'TC07_TC09_ALTERNATIVE_OUTCOME_PANEL.csv').open('w',newline='') as f:
+ w=csv.writer(f);w.writerow(headers);w.writerows(rows)
+print('panel',len(rows))
