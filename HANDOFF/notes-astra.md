@@ -1,5 +1,12 @@
 # Astra's handoff notes
 
+## 2026-10-17 later afternoon ET: verified full integration-run delta
+
+- **Done:** GitHub Actions run [39067552323](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39067552323) succeeded on the unmerged `integrate-tools` branch, selecting seven jobs in order: example-hello, source-ladder, claim-checker, clause-drafts, later-events, claim-drafts, readiness-tracker. Branch summary now has machine-prepared operative clauses for 760/3,359 drafted cases (6,738 candidate clauses), 2,771 mechanically passing draft checks plus 587 with unverified evidence, 3,359 machine-proposed later-source searches, and 209/236 source-reuse cases marked done (up from 7/236). `claim-checker` still has zero production claims in `research/readiness/claims/`; all ready-for-human and human-certified whole-lifecycle counts are zero.
+- **Next:** Integrate the completed `job/opus-media-match` and `job/source-ladder` outputs, finish `fr-originals`, and re-run the orchestration with source input fingerprints and stale-output rejection. The new `integrate-tools` branch fixes earlier GH queue cancellations by removing concurrency grouping, but its last-writer-wins commit reconciliation should be protected against older-input runs overwriting newer outputs. Human/agent legal review must promote well-supported clause histories individually.
+- **Do not:** Count 2,771 mechanically passing drafts, 760 clause candidate inventories, or 209 source-reuse links as supported legal conclusions; do not populate `EXHAUSTED` from transient network failures.
+
+
 ## 2026-10-17 late afternoon ET: inspected new GitHub research-job fleet and observed outputs
 
 - **Done:** Audited 20 job folders on main and the successful Opus media-match and source-ladder results on their feature branches. The clause-drafts run produced 9,817 source-substring-checked clause candidates from 1,115 segmented texts; later-events produced 16,130 candidate relationships; current-law scanned 110 sources and surfaced 165 provisional-NO source-mention conflicts. The Opus match job matched 496/496 media hashes and found content-supported file links for 364/844 accepted orders (107 with order-text candidates, 82 with all cited media resolved). Source ladder retrieved 85/90 targeted sources for 222 potentially affected orders. No new certified legal finding follows automatically.
