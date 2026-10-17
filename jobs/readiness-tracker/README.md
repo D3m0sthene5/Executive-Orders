@@ -29,3 +29,7 @@ ready when all its steps are done and either its claim passes the gate in full
 
 To add a new source of evidence, add its file to `P` in `tracker.py`, its folder
 to `needs.txt`, and a test.
+
+## Historical census candidate track
+
+The separately run census-candidates job publishes an item-level register for the early rangers and Lord's index appearances. Its counts are appended in a separate section of TRACKER.md and SUMMARY.json when the job output exists. They are excluded from the 14,972 working-EO denominator. No catalog hit or scanned document is automatically admitted.
