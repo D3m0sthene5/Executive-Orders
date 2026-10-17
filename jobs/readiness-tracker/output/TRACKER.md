@@ -13,7 +13,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 54 | 3,359 | 1.6% |
+| Original text saved in the project | 174 | 3,359 | 5.2% |
 | Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
 | Savings clauses and surviving effects closed | 0 | 3,359 | 0.0% |
@@ -26,7 +26,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 844 | machine job | Match the 496 Opus evidence images to orders by their contents |
-| 362 | machine job | Run one bulk download of the official links already found (Stage 21 crosswalk) |
+| 242 | machine job | Run one bulk download of the official links already found (Stage 21 crosswalk) |
 | 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
 | 11 | one source | Retrieve shared source EO::9337 |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -64,7 +64,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `FIRST_END_UNPROVED` | 2,954 | 2,954 |
 | `OPUS_MEDIA_NOT_MATCHED_TO_ORDER` | 844 | 844 |
 | `CURRENT_BASIS_UNPROVED` | 405 | 405 |
-| `OFFICIAL_URL_KNOWN_NOT_DOWNLOADED` | 362 | 362 |
+| `OFFICIAL_URL_KNOWN_NOT_DOWNLOADED` | 242 | 242 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 229 | 229 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 
