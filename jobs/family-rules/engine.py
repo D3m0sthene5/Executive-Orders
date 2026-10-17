@@ -88,6 +88,21 @@ def run(root, out):
                     and p.name not in {'needs.txt','requirements.txt','triggers.txt','after.txt','log.txt','install-log.txt'}
                     and 'family-rules' not in p.parts and 'case-bundles' not in p.parts})
     docs = []
+    # Only identity-linked original-text manifests can establish an owner/date.
+    # The first EO citation in a modern compilation does not date that document.
+    registered = {}
+    for producer in ('clause-drafts','fr-originals'):
+        folders=[root/'jobs'/producer/'output']
+        if producer=='fr-originals':folders.append(root/'jobs'/producer/'data/full_run')
+        for folder in folders:
+            for source in jsonl(folder/'SOURCES.jsonl'):
+                ids=source.get('instrument_ids') or [source.get('instrument_id')]
+                rel=source.get('text_path')
+                if len(ids)==1 and isinstance(ids[0],str) and isinstance(rel,str):
+                    try:q=child(folder,rel)
+                    except ValueError:continue
+                    date=source.get('publication_date') or source.get('document_date') or ''
+                    registered[q]=(ids[0],date if valid_date(date) else '')
     refs_path = root/'jobs/current-law/eo_refs.py'
     spec = importlib.util.spec_from_file_location('family_eo_refs', refs_path)
     refs = importlib.util.module_from_spec(spec); spec.loader.exec_module(refs)
@@ -96,10 +111,8 @@ def run(root, out):
     for p in paths:
         raw = p.read_bytes(); text = raw.decode('utf-8', errors='replace')
         ids = {f"EO:{h['number']}{h['suffix']}" for h in refs.find_eo_refs(text)}
-        # A file's earliest heading is only an identity hint; lack of reliable date blocks any match.
-        heading = next(iter(refs.find_eo_refs(text[:1000])), None)
-        owner = f"EO:{heading['number']}{heading['suffix']}" if heading else ''
-        d = catalog.get(owner, {}).get('signing_date', '')
+        # Unregistered or undated saved text is conservative counterevidence.
+        owner,d=registered.get(p.resolve(), ('',''))
         rel = p.relative_to(root).as_posix()
         docs.append((rel, ids, owner, d, text)); manifest.append({'path':rel,'sha256':digest(raw),'date_hint':d})
         if owner: own_texts[owner].append(text)
