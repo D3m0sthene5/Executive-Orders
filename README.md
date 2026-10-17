@@ -1,5 +1,7 @@
 # Executive Orders
 
+**Migration entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. The [release manifest](research/releases/RELEASES_MANIFEST.json) describes the prepared Stage 12–17 public package; its presence alone does not mean the archive parts are on GitHub.
+
 This repository holds the consolidated input archive for **The Afterlife of Executive Orders**. It is a research handoff, not an executed Stage 17 release or a set of human-certified legal findings.
 
 The original ZIP is **2,966,329,767 bytes**, above GitHub's per-file limit. Its two byte-exact parts are stored with Git LFS:
