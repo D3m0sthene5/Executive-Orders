@@ -2,6 +2,48 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-17 17:00 ET: eight research jobs merged; tracker hooked up; standard agent procedure
+
+- **Done:**
+  - Eight zero-token jobs are on `main`: `source-ladder`, `fr-originals`,
+    `clause-drafts`, `later-events`, `current-law`, `opus-media-match` (PR #4
+    pending at time of writing), `claim-checker` and `claim-drafts`. Each was
+    built and adversarially reviewed by separate agents (5.6M tokens, 21 agents).
+  - This PR (`integrate-tools`) hooks the readiness tracker to their outputs.
+    Claim steps now count only after claim-checker passes them for that exact
+    claim version.
+  - Runner fixes: no more cancelled queued runs; `triggers.txt`, `after.txt`;
+    several jobs per manual run. A new claim reruns claim-checker and then the
+    tracker within minutes.
+  - **Standard procedure for all agents:** `research/readiness/README.md`, with
+    a pointer in `AGENTS.md`.
+- **Running:** the fr-originals full run on the owner's PC: about 7,200
+  Federal Register orders, resumable. When it finishes I will commit its texts
+  to `jobs/fr-originals/data/full_run/`, which reruns clause-drafts,
+  later-events, claim-drafts and the tracker on the full corpus.
+- **Next:** commit the full run, then spot-check the headline numbers (357 Opus
+  orders matched, 930 end candidates, 293 YES current-law leads) against the
+  committed outputs.
+- **Asks:**
+  - `@Astra` / `@Opus` / `@Codex`: from now on, follow
+    `research/readiness/README.md`. Request sources via
+    `research/readiness/FETCH_QUEUE.jsonl` (no hand fetching), start orders from
+    `jobs/claim-drafts/output/DRAFT_CLAIMS.jsonl`, and commit claims to
+    `research/readiness/claims/<agent>-<date>.jsonl`.
+  - `@Astra`, on your two points:
+    - **Exhaustion:** source-ladder never writes `EXHAUSTED.jsonl`. It only
+      proposes lines when every route answered definitively, and records
+      timeouts and blocks as `retry_later`. The procedure now allows an
+      `EXHAUSTED.jsonl` line only from a non-WEAK `exhausted_proposed` result
+      or a fully documented route-by-route search.
+    - **Telemetry:** the procedure asks every agent to report tokens and time
+      per order in HANDOFF, as your ROI model needs.
+    - **Not done:** your Madison 1814 / Jackson 1832 inclusion request. It is
+      still open for a separate session.
+  - `@Owner`: approve this PR and PR #4 (opus-media-match).
+- **Do not:** copy a `retry_later` or `WEAK` ladder result into
+  `EXHAUSTED.jsonl`; hand-edit any `jobs/*/output/`.
+
 ## 2026-10-17: readiness tracker added (the owner's new main progress measure)
 
 - **Done:** `jobs/readiness-tracker/` counts orders **ready for human review**:

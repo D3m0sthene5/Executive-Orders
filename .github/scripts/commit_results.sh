@@ -26,6 +26,11 @@ fi
 
 git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
 
+# Keep a copy of the results, so a clash with another run's results can be
+# resolved by re-applying ours on top of the newest commit (newest results win).
+saved="$(mktemp -d)"
+for p in "${paths[@]}"; do mkdir -p "$saved/$p"; cp -a "$p/." "$saved/$p/"; done
+
 for attempt in 1 2 3 4 5; do
   if git push -q origin "HEAD:$BRANCH"; then
     echo "Results pushed to $BRANCH."
@@ -33,7 +38,14 @@ for attempt in 1 2 3 4 5; do
   fi
   echo "Push rejected (attempt $attempt); taking the newer commits and retrying."
   git fetch -q origin "$BRANCH"
-  git rebase -q "origin/$BRANCH"
+  if ! git rebase -q "origin/$BRANCH"; then
+    echo "Another run changed the same results; re-applying this run's results on top."
+    git rebase --abort
+    git reset -q --hard "origin/$BRANCH"
+    for p in "${paths[@]}"; do rm -rf "./${p:?}"; mkdir -p "$p"; cp -a "$saved/$p/." "$p/"; done
+    git add -A -- "${paths[@]}"
+    git diff --cached --quiet || git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
+  fi
   sleep $((attempt * 5))
 done
 
