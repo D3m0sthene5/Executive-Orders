@@ -66,6 +66,35 @@ def run(root=ROOT,out=OUT,limit=20,pages_limit=2,ocr_limit=4):
       inp.unlink(missing_ok=True)
    sources.append(dict(path=rel,original_sha256=digest,bytes=len(orig),original_saved_in_project=True))
   except Exception as e:fail.append(dict(path=rel,error=type(e).__name__+": "+str(e)[:160]))
+
+ # Two real historical printed-image sources test OCR when PDFs already have text layers.
+ # An OCR derivative is never substituted for the original scan without visual review.
+ if len(ocr)<ocr_limit:
+  from PIL import Image
+  for jpg in ("rbpe21201200-001dr.jpg","statutes14-p344.jpg"):
+   if len(ocr)>=ocr_limit:break
+   imagepath=root/"research/stage18/sources"/jpg
+   if not imagepath.is_file():continue
+   rel=imagepath.relative_to(root).as_posix()
+   try:
+    b=imagepath.read_bytes();digest=sha(b)
+    inp=out/"ocr"/("historical_"+jpg+".source.pdf")
+    dst=out/"ocr"/("historical_"+jpg+".ocr.pdf")
+    side=out/"texts"/("historical_"+jpg+".ocr.txt")
+    with Image.open(imagepath) as image:
+     image.convert("RGB").save(inp,"PDF",resolution=200.0)
+    runargs=["ocrmypdf","-l","eng","--skip-text","--output-type","pdf","--optimize","0","--sidecar",str(side),str(inp),str(dst)]
+    p=subprocess.run(runargs,capture_output=True,text=True,timeout=180)
+    success=p.returncode==0 and dst.is_file()
+    recovered=side.read_text(encoding="utf-8",errors="replace") if success and side.is_file() else ""
+    ocr.append(dict(file=rel,page=1,original_sha256=digest,success=success,
+      recovered_characters=len(recovered),ocr_derivative_sha256=sha(dst.read_bytes()) if success else "",
+      derivative_path=dst.relative_to(out).as_posix() if success else "",error=p.stderr[-400:] if p.returncode else "",
+      original_unchanged=True))
+    inp.unlink(missing_ok=True)
+    sources.append(dict(path=rel,original_sha256=digest,bytes=len(b),original_saved_in_project=True))
+   except Exception as e:
+    fail.append(dict(path=rel,error="historical image OCR: "+type(e).__name__+": "+str(e)[:160]))
  def save_csv(n,rows,columns):
   with (out/n).open("w",encoding="utf-8",newline="") as f:
    w=csv.DictWriter(f,fieldnames=columns,extrasaction="ignore");w.writeheader();w.writerows(rows)
