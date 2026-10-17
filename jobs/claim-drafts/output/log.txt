@@ -1,0 +1,72 @@
+test_claim_has_exactly_the_stage19_fields (test_drafts.ClaimShape.test_claim_has_exactly_the_stage19_fields) ... ok
+test_status_copied_from_ledger_only (test_drafts.ClaimShape.test_status_copied_from_ledger_only) ... ok
+test_unresolved_gaps_listed_so_draft_never_passes_as_is (test_drafts.ClaimShape.test_unresolved_gaps_listed_so_draft_never_passes_as_is) ... ok
+test_clause_offsets_verified (test_drafts.Clauses.test_clause_offsets_verified) ... ok
+test_offset_mismatch_is_a_conflict (test_drafts.Clauses.test_offset_mismatch_is_a_conflict) ... ok
+test_quarantined_order_says_why (test_drafts.Clauses.test_quarantined_order_says_why) ... ok
+test_section_hint_for_later_event (test_drafts.Clauses.test_section_hint_for_later_event) ... ok
+test_section_lists_in_qualifier (test_drafts.Clauses.test_section_lists_in_qualifier) ... ok
+test_wrong_type_scope_id_does_not_crash (test_drafts.Clauses.test_wrong_type_scope_id_does_not_crash) ... ok
+test_current_law_actor_and_mechanism_normalised (test_drafts.Endings.test_current_law_actor_and_mechanism_normalised) ... ok
+test_events_after_cutoff_are_excluded (test_drafts.Endings.test_events_after_cutoff_are_excluded) ... ok
+test_later_event_shape_matches_claim (test_drafts.Endings.test_later_event_shape_matches_claim) ... ok
+test_no_order_cited_in_current_law_is_conflict (test_drafts.Endings.test_no_order_cited_in_current_law_is_conflict) ... ok
+test_two_jobs_disagree_on_whole_end (test_drafts.Endings.test_two_jobs_disagree_on_whole_end) ... ok
+test_yes_order_with_whole_end_candidate_is_conflict (test_drafts.Endings.test_yes_order_with_whole_end_candidate_is_conflict) ... ok
+test_bare_order_needs_research (test_drafts.GateAndReadiness.test_bare_order_needs_research) ... ok
+test_compress_errors (test_drafts.GateAndReadiness.test_compress_errors) ... ok
+test_full_current_law_run_enters_usc_search (test_drafts.GateAndReadiness.test_full_current_law_run_enters_usc_search) ... ok
+test_judgment_only_when_evidence_exists (test_drafts.GateAndReadiness.test_judgment_only_when_evidence_exists) ... ok
+test_machine_searches_are_never_put_into_the_claim (test_drafts.GateAndReadiness.test_machine_searches_are_never_put_into_the_claim) ... ok
+test_yes_needs_predicate_through_cutoff (test_drafts.GateAndReadiness.test_yes_needs_predicate_through_cutoff) ... ok
+test_duplicate_env_folders_read_once_and_labels_are_portable (test_drafts.InputSafety.test_duplicate_env_folders_read_once_and_labels_are_portable) ... ok
+test_failed_run_status_is_not_merged (test_drafts.InputSafety.test_failed_run_status_is_not_merged) ... ok
+test_succeeded_status_is_merged (test_drafts.InputSafety.test_succeeded_status_is_merged) ... ok
+test_decided_first_and_limit (test_drafts.Inputs.test_decided_first_and_limit) ... ok
+test_env_inputs_infer_job_and_skip_bad (test_drafts.Inputs.test_env_inputs_infer_job_and_skip_bad) ... ok
+test_fr_originals_falls_back_to_full_run (test_drafts.Inputs.test_fr_originals_falls_back_to_full_run) ... ok
+test_high_confidence_fr_original_is_filled (test_drafts.Originals.test_high_confidence_fr_original_is_filled) ... ok
+test_needs_page_check_is_never_filled (test_drafts.Originals.test_needs_page_check_is_never_filled) ... ok
+test_opus_ref_uses_archival_form_not_upstream_url (test_drafts.Originals.test_opus_ref_uses_archival_form_not_upstream_url) ... ok
+test_bad_limit_exits_2 (test_drafts.Outputs.test_bad_limit_exits_2) ... ok
+test_bad_max_file_mb_exits_2 (test_drafts.Outputs.test_bad_max_file_mb_exits_2) ... ok
+test_default_scope_is_decided_only (test_drafts.Outputs.test_default_scope_is_decided_only) ... ok
+test_end_to_end (test_drafts.Outputs.test_end_to_end) ... ok
+test_limit_and_ids (test_drafts.Outputs.test_limit_and_ids) ... ok
+test_refuses_to_write_into_research (test_drafts.Outputs.test_refuses_to_write_into_research) ... ok
+test_rolling_writer_splits (test_drafts.Outputs.test_rolling_writer_splits) ... ok
+test_wrongly_typed_sibling_fields_do_not_stop_the_run (test_drafts.Outputs.test_wrongly_typed_sibling_fields_do_not_stop_the_run) ... ok
+test_conflict_judgment_and_effort (test_drafts.PartialEndOnYes.test_conflict_judgment_and_effort) ... ok
+test_counterevidence_needs_status_and_clauses (test_drafts.TrackerSafety.test_counterevidence_needs_status_and_clauses) ... ok
+test_every_fixture_draft_is_safe (test_drafts.TrackerSafety.test_every_fixture_draft_is_safe) ... ok
+test_full_runs_and_conflicts_still_safe (test_drafts.TrackerSafety.test_full_runs_and_conflicts_still_safe) ... ok
+test_no_clause_draft_has_placeholder_so_gate_checks_everything (test_drafts.TrackerSafety.test_no_clause_draft_has_placeholder_so_gate_checks_everything) ... ok
+test_pre_1937_order_catalog_search_flagged (test_drafts.TrackerSafety.test_pre_1937_order_catalog_search_flagged) ... ok
+test_uses_the_real_tracker_mapping (test_drafts.TrackerSafety.test_uses_the_real_tracker_mapping) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 0.508s
+
+OK
+  input folder later-events: /tmp/claim-drafts-test-gegd1v2f/repo/jobs/later-events/output
+  input folder clause-drafts: /tmp/claim-drafts-test-gegd1v2f/repo/jobs/clause-drafts/output
+Reading inputs (repo /home/runner/work/Executive-Orders/Executive-Orders) ...
+  orders to draft: 3359 (decided first; scope=decided)
+  claim checker: jobs/claim-checker could not be used: FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/checker.py'
+  ... 500 drafts (0 s)
+  ... 1000 drafts (0 s)
+  ... 1500 drafts (0 s)
+  ... 2000 drafts (0 s)
+  ... 2500 drafts (0 s)
+  ... 3000 drafts (0 s)
+
+Drafted 3359 orders (3359 with a provisional status) in 0.5 s, with no network requests.
+  original text filled from a strong candidate: 160; weak candidate only: 0
+  clause inventories: 0 (0 clauses)
+  whole-order-end candidates: 0; current-law leads: 0; later-event candidates: 0
+  drafts where only judgment is left (the gate would pass once an agent accepts or decides): 0 (0 decided)
+  ... plus drafts where only judgment and a recorded later-source search are left: 0
+  orders with a conflict: 36; top: QUARANTINED_RELATIONSHIP_CONFLICT 36
+  effort: {'large': 3359}
+  claim checker: jobs/claim-checker could not be used: FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/checker.py'
+Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-drafts/output: DRAFT_CLAIMS.jsonl, TODO_BY_ORDER.csv, CONFLICTS.csv, SUMMARY.json. These are drafts and leads, never claims.
