@@ -106,7 +106,7 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
     # Batch ownership is only a workload optimization; all source associations
     # remain visible to the researcher and cannot be used as shared verdicts.
     ranking = sorted(family_members,
-        key=lambda f: (-sum(f in downloaded[id_] for id_ in family_members[f]),
+        key=lambda f: (-sum(f in downloaded.get(id_, set()) for id_ in family_members[f]),
                        -len(family_members[f]), f))
     owner = {}
     for family in ranking:
@@ -241,7 +241,7 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
         "shared_authority_families": len(family_members),
         "candidate_case_source_edges": len(source_cases),
         "cases_with_one_or_more_shared_source_families": len(owner),
-        "cases_with_acquired_statute_pdf_candidates": len(downloaded),
+        "cases_with_acquired_statute_pdf_candidates": sum(bool(links) for links in downloaded.values()),
         "candidate_case_statute_pdf_edges": sum(map(len, downloaded.values())),
         "opus_causal_note_context_cases": len(causal_by_case),
         "stratified_pilot_assignments": len(pilot),
