@@ -27,11 +27,12 @@ def atomic(path,raw):
 
 class FetchPool:
     def __init__(self,cache,workers=12,per_host=6,transport=None,max_bytes=100_000_000,
-                 timeout=35,user_agent='EO-Road-System/1.0',min_interval=0.1,offline=False):
+                 timeout=35,user_agent='EO-Road-System/1.0',min_interval=0.1,offline=False,max_cache_bytes=None):
         self.cache=Path(cache);self.cache.mkdir(parents=True,exist_ok=True)
         self.workers=max(1,min(int(workers),32));self.per_host=max(1,min(int(per_host),6))
         self.transport_fn=transport or http_transport;self.max_bytes=max_bytes;self.timeout=timeout
         self.user_agent=user_agent;self.min_interval=min_interval;self.offline=offline
+        self.max_cache_bytes=max_cache_bytes or int(os.environ.get('JOB_CACHE_MB','1024'))*1024*1024
         self.lock=threading.RLock();self.hosts={};self.urls={};self.robots={};self.robots_locks={};self.next_start={}
         self.requests=0;self.bytes_downloaded=0;self.cache_hits=0
     def url_lock(self,url):
@@ -87,7 +88,7 @@ class FetchPool:
                     if sha(raw)==m['sha256']:
                         with self.lock:self.cache_hits+=1
                         return m['status'],m['headers'],io.BytesIO(raw)
-                except (ValueError,KeyError):pass
+                except (OSError,ValueError,KeyError):pass
                 meta.unlink(missing_ok=True);bodypath.unlink(missing_ok=True)
             if self.offline:raise FetchError('offline_and_not_cached')
             delay=self.allowed(url) if not urllib.parse.urlsplit(url).path=='/robots.txt' else 0
@@ -137,6 +138,7 @@ class FetchPool:
                 # A resumed object is a complete 200 response to downstream document validators.
                 rh.pop('content-range',None);rh['content-length']=str(len(raw))
                 atomic(meta,(json.dumps({'url':url,'status':200,'headers':rh,'bytes':len(raw),'sha256':sha(raw)},sort_keys=True)+'\n').encode())
+                with self.lock:prune(self.cache,self.max_cache_bytes,ignore_temporary=True)
                 return 200,rh,io.BytesIO(raw)
     def fetch(self,url):
         current=url
@@ -160,10 +162,10 @@ class FetchPool:
             except Exception as e:return {'url':url,'error':type(e).__name__+': '+str(e)}
         return self.map(one,list(dict.fromkeys(urls)))
 
-def prune(cache,cap_bytes):
+def prune(cache,cap_bytes,ignore_temporary=False):
     """Evict oldest complete URL groups, then temporary files, to an enforced job cap."""
     cache=Path(cache)
-    files=sorted((p for p in cache.rglob('*') if p.is_file()),key=lambda p:(p.stat().st_mtime_ns,p.as_posix()))
+    files=sorted((p for p in cache.rglob('*') if p.is_file() and (not ignore_temporary or p.suffix not in {'.part','.resume','.tmp'})),key=lambda p:(p.stat().st_mtime_ns,p.as_posix()))
     total=sum(p.stat().st_size for p in files);removed=0
     for p in files:
         if total<=cap_bytes:break

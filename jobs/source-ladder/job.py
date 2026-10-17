@@ -107,9 +107,10 @@ def main():
         print("  problem:", p)
 
     sys.path.insert(0, str(repo / "jobs/_lib"))
-    from fetch_pool import FetchPool
+    from fetch_pool import FetchPool, prune
     pool = FetchPool(cache / "pool", workers=env_int("JOB_WORKERS") or 12,
-                     user_agent=fetch_ladder.USER_AGENT, min_interval=1.0, offline=offline)
+                     user_agent=fetch_ladder.USER_AGENT, min_interval=1.0, offline=offline,
+                     max_cache_bytes=int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
     class PooledFetcher(fetch_ladder.Fetcher):
         def _wait(self, host):
             # Host spacing and robots crawl delay are shared by the pool.
@@ -181,7 +182,7 @@ def main():
         if res["source"]:
             src = res["source"]
             att = next(a for a in reversed(res["attempts"]) if a.get("accepted"))
-            src["cache_path"] = fetcher.rel_cache(att["path"]) if att.get("path") else None
+            src["cache_path"] = (Path(att["path"]).relative_to(cache).as_posix()) if att.get("path") else None
             if res["text"]:
                 header = (f"Wanted: {w.wanted_id}\nCited by: {', '.join(w.instrument_ids)}\nSource: {src['url']}\n"
                           f"SHA-256 of the downloaded file: {src['sha256']}\nLocation: {src['page_or_item']}\n"
@@ -200,6 +201,7 @@ def main():
             row.update(result=res["outcome"], why=res["why"])
             print(f"  not found, {res['outcome']}: {res['why']}")
         results.append(row)
+        prune(cache / "ladder", int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
 
     done = {r["wanted_id"] for r in results}
     for w in items:

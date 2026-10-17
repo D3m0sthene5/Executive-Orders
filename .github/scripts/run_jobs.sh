@@ -43,7 +43,7 @@ for name in $JOBS; do
     cmd=(python "$dir/job.py")
   fi
 
-  JOB_CACHE_DIR="$cache" JOB_NAME="$name" JOB_DIR="$dir" OUTPUT_DIR="$out" REPO_ROOT="$REPO_ROOT" \
+  JOB_CACHE_MB="$cap_mb" JOB_CACHE_DIR="$cache" JOB_NAME="$name" JOB_DIR="$dir" OUTPUT_DIR="$out" REPO_ROOT="$REPO_ROOT" \
     "${cmd[@]}" 2>&1 | tee "$out/log.txt"
   code=${PIPESTATUS[0]}
   python "$REPO_ROOT/jobs/_lib/cache_cap.py" "$cache" "$cap_mb"

@@ -64,6 +64,12 @@ class PoolTests(unittest.TestCase):
             pool=FetchPool(Path(d)/'pool',transport=lambda u,h,t:(404 if u.endswith('robots.txt') else 200,{'content-type':'text/html'},io.BytesIO(b'<html>captcha</html>')),min_interval=0)
             fetcher=m.Fetcher(Path(d)/'ladder',transport=pool.request,sleep=lambda _:None)
             self.assertFalse(fetcher.fetch('https://test/a.pdf',expect='pdf')['accepted'])
+    def test_pool_enforces_cache_cap(self):
+        with tempfile.TemporaryDirectory() as d:
+            def net(u,h,t):return (404,{},io.BytesIO(b'')) if u.endswith('robots.txt') else (200,{},io.BytesIO(b'x'*1000))
+            p=FetchPool(d,transport=net,min_interval=0,max_cache_bytes=500)
+            self.assertEqual(p.fetch('https://test/a')['body'],b'x'*1000)
+            self.assertLessEqual(sum(x.stat().st_size for x in Path(d).rglob('*') if x.is_file()),500)
     def test_url_policy_and_cap(self):
         with tempfile.TemporaryDirectory() as d:
             p=FetchPool(d,offline=True)
