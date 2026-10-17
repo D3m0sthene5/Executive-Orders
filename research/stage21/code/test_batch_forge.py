@@ -63,5 +63,49 @@ class MassBatchTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             build(c,s,t,n,{})
 
+
+    def test_original_source_candidates_are_linked_without_certification(self):
+        c,s,t,n=data()
+        urls=[]
+        custody=[]
+        for i,case in enumerate(c):
+            ident=case['instrument_id']
+            url=('https://www.govinfo.gov/content/pkg/FR-1949/pdf/'+
+                 ident.replace(':','-')+'.pdf') if i<386 else ''
+            urls.append({
+                'instrument_id':ident,
+                'provisional_status_UNVERIFIED':case['provisional_status'],
+                'selected_literal_URL':url,
+                'PDF_candidate':url,
+                'selected_format':'pdf_url' if url else '',
+                'document_identity_authenticated':'no',
+                'operative_clause_legal_effect_verified':'no',
+                'independent_human_review':'no'})
+            if i<386:
+                state=('PDF_BYTES_CAPTURED_NOT_AUTHENTICATED'
+                       if i==0 else 'not_attempted')
+                custody.append({
+                    'instrument_id':ident, 'official_PDF_candidate_URL':url,
+                    'custody_state':state,
+                    'source_repository_path':(
+                        'research/stage21/original_sources/EO_'+ident[3:]+'.pdf'
+                        if i==0 else ''),
+                    'sha256_source_bytes_if_present':'a'*64 if i==0 else '',
+                    'original_EO_identity_and_pages_human_verified':'no',
+                    'operative_clause_scope_verified':'no',
+                    'causal_effects_verified':'no',
+                    'independent_human_certified':'no'})
+        m=build(c,s,t,n,{'fixture':'x'},urls,custody)
+        self.assertEqual(m['metrics']['provisional_cases_with_PDF_source_candidate'],386)
+        self.assertEqual(m['metrics']['original_candidate_PDFs_locally_captured'],1)
+        self.assertEqual(m['metrics']['human_certified_dossiers'],0)
+        match=next(row for batch in m['batches'] for row in batch['cases']
+                   if row['instrument_id']==c[0]['instrument_id'])
+        self.assertEqual(match['original_legal_text_and_page_authenticated'],False)
+        self.assertTrue(match['captured_original_PDF_candidate_repository_path'])
+        custody[0]['independent_human_certified']='yes'
+        with self.assertRaises(ValueError):
+            build(c,s,t,n,{},urls,custody)
+
 if __name__ == '__main__':
     unittest.main()
