@@ -18,6 +18,9 @@ to the same branch, so the next agent can read them.
    `needs.txt` for the repo folders the script reads (see below).
 4. Commit and push. The run starts by itself.
 
+To run a job every day, add an empty file named `DAILY` to its folder. It then
+runs once a day (09:17 UTC) on `main`, and commits only if its results changed.
+
 To run a job again without changing it, open the **Actions** tab, choose
 **Run jobs**, then **Run workflow**, pick the branch and type the job name.
 Changing any file in the job's folder (outside `output/`) also reruns it.
