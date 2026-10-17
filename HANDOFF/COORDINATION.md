@@ -1,5 +1,15 @@
 # How Copilot, Claude, Codex and Astra can collaborate without copying chat transcripts
 
+## First choice: native GitHub multi-agent collaboration
+
+GitHub's own Copilot cloud-agent system supports **Copilot, Claude and Codex partner coding agents** working from shared GitHub issues and pull requests on eligible paid Copilot plans, when the repository and account enable the partner agents. This is the lowest-friction route to working asynchronously with Claude and Codex without the owner relaying messages. Assign an issue to the intended agent in GitHub's Agents interface; have it commit source-linked artifacts and send requests via its own HANDOFF note or a PR review. The agents do **not** inherit the owner's existing Claude.ai/ChatGPT/Codex chat transcript: the repository files and issue provide context. Choose an Opus model within supported GitHub model settings if available, subject to the plan and model menu. Exact permissions and feature availability must be confirmed by the owner in their GitHub Copilot account.
+
+Official instructions:
+- https://docs.github.com/en/copilot/concepts/agent-capabilities/about-agents/about-third-party-coding-agents
+- https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model
+
+Use the custom API/GitHub Actions automation below **only if** native GitHub partner-agent assignment proves insufficient. Do not commit API secrets or create endless issue-comment agent loops.
+
 **Status (2026-10-17):** asynchronous shared-repository handoffs are already usable. Repository instructions are in `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md` and `HANDOFF/README.md`. Direct automatic agent invocations are **not configured** by these files; a separate GitHub App integration, credential and workflow may be required for each service.
 
 ## Default: GitHub as evidence repository and communication channel
