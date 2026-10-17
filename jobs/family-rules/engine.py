@@ -116,6 +116,14 @@ def run(root, out):
                     for p, ids, owner, d, _ in docs if target in ids and owner != rule['acting_id'] and (not d or d > (rule.get('effective_date') or ''))]
             cert = assess(rule, target, edges, own_texts[target], mentions[target], hits, errors)
             cert.update(sweep_manifest_sha256=sweep_hash, saved_texts_scanned=len(docs))
+            evidence={'counterexamples':cert['counterexamples'],'current_law_hits':cert['current_law_hits']}
+            evidence_rel=f"evidence/{rule['acting_id'].replace(':','_')}/{target.replace(':','_')}.json"
+            write(out/evidence_rel,evidence)
+            cert['counterexample_count']=len(cert['counterexamples'])
+            cert['current_law_hit_count']=len(cert['current_law_hits'])
+            cert['evidence_pointer']={'path':evidence_rel,'record_sha256':digest(canonical(evidence).encode())}
+            cert['counterexamples']=cert['counterexamples'][:1]
+            cert['current_law_hits']=[{'source_refs':x.get('source_refs',[])} for x in cert['current_law_hits'][:1]]
             certs.append(cert)
             fragments.append({'instrument_id':target,'kind':'family_rule_checks','produced_by':'family-rules','data':cert,'sources':[rule.get('source') or {}]})
             write(out/'certificates'/rule['acting_id'].replace(':','_')/(target.replace(':','_')+'.json'), cert)
@@ -149,7 +157,7 @@ def run(root, out):
                 'one_family_source_and_all_certificate_tokens':None if source_tokens is None else source_tokens+cert_tokens,
                 'certificate_tokens':cert_tokens,
                 'measured_input_tokens_saved':None if source_tokens is None else (len(cs)-1)*source_tokens-cert_tokens})
-        write(out/'METRICS.json',{'tokenizer':'cl100k_base','comparison':'Repeated acting-source input per target versus reading it once plus every generated proof certificate. Excludes model reasoning and tool wrappers; blocked certificates remain blocked.','families':metrics})
+        write(out/'METRICS.json',{'tokenizer':'cl100k_base','comparison':'Repeated acting-source input per target versus reading it once plus every generated proof certificate. Excludes follow-up evidence retrieval, model reasoning and tool wrappers; blocked certificates remain blocked.','families':metrics})
     except ImportError:
         write(out/'METRICS.json',{'tokenizer':'unavailable','tokens_measured':False})
     return certs
