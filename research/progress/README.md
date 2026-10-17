@@ -29,6 +29,7 @@ Updated 2026-10-17. Legal cutoff: 2026-10-14 (America/New_York). **Correction:**
 | Stage 20 cases with unclassified ISO date mentions | 323 / 844 | Textual date leads; not first-cessation events |
 | Stage 20 repeated authority-reference clusters | 98 | Shared source-recovery families; citations do not imply common legal effect |
 | Stage 20 case-specific source–authority tasks | 352 across 236 distinct orders | [Source-once, per-case review workbench](../stage20/output/SHARED_SOURCE_WORKBENCH.html) tracks separate impact, pages, dates and savings |
+| Downloaded GovInfo statutory source candidates | 7 of 10 attempted references; 18 source–EO links across 14 EOs | [Statute source-custody review packets](../stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv); downloaded bytes, hashes, legal scope and causal effect remain distinct evidence tiers |
 | Original-media members uniquely attributable to one accepted case from archive paths | 0 / 496 | Every shared-batch source image has multiple candidate-case paths; exact instrument and page still need direct documentary evidence |
 | Production human review rows | 0 | No independent human-certified conclusions |
 | Early included proxies, 1789–1861 | 3 | Too few to estimate historical coverage |
