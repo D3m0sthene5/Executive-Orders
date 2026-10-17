@@ -1,0 +1,78 @@
+name: Reconcile full Opus research and original images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage20-opus-recovery.yml'
+      - 'research/stage20/code/build_conversion_bridge.mjs'
+      - 'research/stage20/code/extract_full_opus.py'
+      - 'research/stage20/code/verify_opus_media.py'
+
+permissions:
+  contents: write
+
+jobs:
+  evidence-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - name: Check out sources without eager whole-repo LFS download
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+          persist-credentials: true
+
+      - name: Retrieve ONLY the two Opus Stage 11 archives from Git LFS
+        run: |
+          git lfs install --local
+          git lfs pull -I "releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip,releases/opus_stage11_complete/OPUS_STAGE11_EVIDENCE_ORIGINALS.zip" -X ""
+          python - <<'PY'
+          from pathlib import Path
+          pairs = [
+              ('releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip', 207604486),
+              ('releases/opus_stage11_complete/OPUS_STAGE11_EVIDENCE_ORIGINALS.zip', 358846280),
+          ]
+          for filename, size in pairs:
+              found=Path(filename).stat().st_size
+              if found!=size:
+                  raise SystemExit(f"Unrestored LFS pointer or unexpected archive size: {filename}: {found}")
+          print('Both LFS archive byte lengths match published metadata')
+          PY
+
+      - name: Recover all 844 accepted Opus narratives
+        run: |
+          python research/stage20/code/extract_full_opus.py \
+            releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip \
+            research/stage20/output/OPUS_FULL_844.jsonl
+
+      - name: Verify 496 original-image members against the manifest
+        run: |
+          python research/stage20/code/verify_opus_media.py \
+            releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip \
+            releases/opus_stage11_complete/OPUS_STAGE11_EVIDENCE_ORIGINALS.zip \
+            research/stage20/output
+
+      - name: Rebuild and test the complete conversion evidence workbench
+        run: |
+          node research/stage20/code/build_conversion_bridge.mjs \
+            --full-opus research/stage20/output/OPUS_FULL_844.jsonl
+          node research/stage20/code/build_conversion_bridge.mjs \
+            --full-opus research/stage20/output/OPUS_FULL_844.jsonl --check
+          node research/stage20/code/extend_early_ranger.mjs --check
+          python research/stage19/code/test_excavators.py
+
+      - name: Commit verified outputs to the canonical GitHub repository
+        run: |
+          git config user.name "EO Evidence Reconstruction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage20/output/
+          if git diff --cached --quiet; then
+            echo "No output changes"
+          else
+            git commit -m "Verify Opus media and materialize all 844 review narratives"
+            git push origin HEAD:main
+          fi
