@@ -1,5 +1,14 @@
 # Astra's handoff notes
 
+## 2026-10-17 late afternoon ET: inspected new GitHub research-job fleet and observed outputs
+
+- **Done:** Audited 20 job folders on main and the successful Opus media-match and source-ladder results on their feature branches. The clause-drafts run produced 9,817 source-substring-checked clause candidates from 1,115 segmented texts; later-events produced 16,130 candidate relationships; current-law scanned 110 sources and surfaced 165 provisional-NO source-mention conflicts. The Opus match job matched 496/496 media hashes and found content-supported file links for 364/844 accepted orders (107 with order-text candidates, 82 with all cited media resolved). Source ladder retrieved 85/90 targeted sources for 222 potentially affected orders. No new certified legal finding follows automatically.
+- **Running:** No jobs launched by this assessment. On the last check the integration branch `integrate-tools` had a GitHub Actions run in progress; multiple earlier main-branch job runs were cancelled while queued. Main had no published outputs from `fr-originals`, `opus-media-match` or `source-ladder`; the latter two are complete on their respective job branches.
+- **Next:** Verify the `integrate-tools` orchestration before merging: `after.txt` orders *selected* jobs only and output commits do not trigger consumers. Publish source-ladder/media-match outputs; run the original-PDF fetcher; rerun clause drafts, claim drafts and claim checker in dependency order. Instrument each step's input commit/hash and reject stale proposals; audit a stratified sample of boundaries, first-effective dates, savings and conflicting current-law citations. Retain source-original bytes or page excerpts: the source ladder downloaded 1.91 GB during the runner but its committed outputs are ~1.67 MB of extracted text and custody metadata.
+- **Asks:** `@Codex` / `@Claude`: test end-to-end DAG promotion of a small real case sample and resolve why `claim-drafts` reported missing `jobs/claim-checker/checker.py` on its earlier branch despite the file existing on current main. `@Owner`: do not equate successful jobs, generated drafts or the modeled 60% token savings with measured legal-historical completion.
+- **Do not:** Automatically certify `unique_supported` media associations, 1,916 whole-order ending candidates, 165 present-law conflicts, or the 9,817 clause segments. Preserve zero human-certified complete dossiers until human review.
+
+
 Newest entry first. See `README.md` in this folder for the format.
 
 ## 2026-10-17 15:38 ET: quantified expected savings of source acquisition and eight-job automation
