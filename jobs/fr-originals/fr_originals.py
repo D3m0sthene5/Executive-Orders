@@ -353,8 +353,75 @@ def load_state(state_dir, iid):
     return None
 
 
-def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_pdfs=True, log=print):
-    """Process the plan (resuming from state). Returns (states, run_stats)."""
+def make_ctx(repo, cache, offline=False, max_requests=None):
+    """Everything process_order needs: one downloader, the source ladder, state folders."""
+    import eo_extract
+    import fetch_ladder
+    repo, cache = Path(repo), Path(cache)
+    fetcher = fetch_ladder.Fetcher(cache, max_requests=max_requests, offline=offline)
+    return {
+        "repo": repo, "fetcher": fetcher,
+        "ladder": fetch_ladder.Ladder(fetcher, extract=eo_extract.eo_extract),
+        "custody": load_custody(repo), "crosswalk": load_crosswalk_pdfs(repo),
+        "state_dir": cache / "state", "state_texts": cache / "state" / "texts", "issue_blobs": set(),
+    }
+
+
+def default_workers(on_github, cpus=None):
+    """Parallel worker processes: every hardware thread on a PC (no cap), 4 on GitHub's
+    2-CPU runner (its workers mostly wait on downloads)."""
+    import os
+    cpus = cpus or os.cpu_count() or 1
+    return 4 if on_github else max(1, cpus)
+
+
+# ---- parallel workers (one process each; they share the cache and per-order state files) ----
+_WORKER = {}
+
+
+def _init_worker(spec, keep_pdfs, extra_paths):
+    import sys as _sys
+    for x in reversed(extra_paths):
+        if x not in _sys.path:
+            _sys.path.insert(0, x)
+    _WORKER["ctx"] = make_ctx(spec["repo"], spec["cache"], spec.get("offline", False), spec.get("max_requests"))
+    _WORKER["keep_pdfs"] = keep_pdfs
+
+
+def _work_group(group):
+    """Process all orders of one issue in a worker. Returns [(state, info)]."""
+    import fetch_ladder
+    ctx, out = _WORKER["ctx"], []
+    try:
+        for it in group:
+            t = time.time()
+            req0, bytes0 = ctx["fetcher"].requests, ctx["fetcher"].bytes_downloaded
+            try:
+                st = process_order(ctx, it)
+            except fetch_ladder.BudgetExceeded as exc:
+                out.append((None, {"stopped": str(exc), "instrument_id": it["instrument_id"]}))
+                break
+            st["seconds"] = round(time.time() - t, 2)
+            st["fresh_bytes"] = ctx["fetcher"].bytes_downloaded - bytes0
+            write_state(ctx["state_dir"], st)
+            out.append((st, {"network": ctx["fetcher"].requests > req0, "seconds": time.time() - t,
+                             "bytes": st["fresh_bytes"]}))
+    finally:
+        if not _WORKER["keep_pdfs"]:
+            for b in list(ctx["issue_blobs"]):
+                if b:
+                    ctx["fetcher"].forget_body(b)
+            ctx["issue_blobs"].clear()
+    return out
+
+
+def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_pdfs=True, log=print,
+        workers=1, ctx_spec=None):
+    """Process the plan (resuming from state). Returns (states, run_stats).
+
+    workers > 1 (with ctx_spec = {"repo", "cache", "offline", "max_requests"}) processes whole
+    issues in that many worker processes at once; each order's result is identical to a
+    one-process run, because every worker runs the same process_order on the same cache."""
     import fetch_ladder
     t0 = time.time()
     state_dir = ctx["state_dir"]
@@ -395,6 +462,9 @@ def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_p
             issue_bytes.append(ctx["fetcher"].bytes_downloaded - bytes0)
         return st
 
+    if workers > 1 and ctx_spec:
+        return _run_parallel(ctx, selected, by_issue, states, done_ids, stats, issue_bytes, fresh_seconds,
+                             t0, time_budget_s, keep_pdfs, log, workers, ctx_spec, len(finished))
     n = 0
     for it in selected:
         if it["instrument_id"] in done_ids:
@@ -427,6 +497,61 @@ def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_p
     stats["seconds"] = round(time.time() - t0, 1)
     return states, {"stats": dict(stats), "pending": pending, "stopped": stopped, "selected": len(selected),
                     "already_finished": len(finished), "issue_bytes": issue_bytes, "fresh_seconds": fresh_seconds}
+
+
+def _run_parallel(ctx, selected, by_issue, states, done_ids, stats, issue_bytes, fresh_seconds,
+                  t0, time_budget_s, keep_pdfs, log, workers, ctx_spec, already_finished):
+    import sys as _sys
+    from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
+    groups, seen = [], set()
+    for it in selected:  # whole issues, in plan order (decided orders first)
+        if it["instrument_id"] in seen or it["instrument_id"] in done_ids:
+            continue
+        g = by_issue.get(issue_key(it), [it]) if issue_key(it) else [it]
+        g = [x for x in g if x["instrument_id"] not in done_ids and x["instrument_id"] not in seen]
+        seen.update(x["instrument_id"] for x in g)
+        groups.append(g)
+    spec = dict(ctx_spec)
+    if spec.get("max_requests"):
+        spec["max_requests"] = max(1, spec["max_requests"] // workers)
+    log(f"Parallel run: {len(groups)} issue groups ({len(seen)} orders) over {workers} worker processes.")
+    stopped, n, nxt, running = "", 0, 0, {}
+    with ProcessPoolExecutor(max_workers=workers, initializer=_init_worker,
+                             initargs=(spec, keep_pdfs, list(_sys.path))) as pool:
+        while nxt < len(groups) or running:
+            while not stopped and nxt < len(groups) and len(running) < workers * 2:
+                if time_budget_s is not None and time.time() - t0 > time_budget_s:
+                    stopped = f"time budget of {time_budget_s / 60:.0f} minutes reached"
+                    break
+                running[pool.submit(_work_group, groups[nxt])] = groups[nxt]
+                nxt += 1
+            if not running:
+                break
+            finished_now, _ = wait(running, return_when=FIRST_COMPLETED)
+            for fut in finished_now:
+                running.pop(fut)
+                for st, info in fut.result():
+                    if st is None:
+                        stopped = stopped or info["stopped"]
+                        continue
+                    n += 1
+                    states[st["instrument_id"]] = st
+                    done_ids.add(st["instrument_id"])
+                    if info["network"]:
+                        stats["orders_with_network"] += 1
+                        fresh_seconds.append(info["seconds"])
+                    if info["bytes"] > 0:
+                        issue_bytes.append(info["bytes"])
+                    tag = st["status"] if st["status"] == "found" else "not found: " + st["not_found"]["reason"]
+                    conf = f" ({st['source'].get('location_confidence')})" if st["status"] == "found" else ""
+                    log(f"[{n}/{len(seen)}] {st['instrument_id']}: {tag}{conf}")
+            if stopped:
+                nxt = len(groups)  # submit nothing more; let running groups finish
+    pending = [it["instrument_id"] for it in selected if it["instrument_id"] not in done_ids]
+    stats["seconds"] = round(time.time() - t0, 1)
+    stats["parallel_workers"] = workers
+    return states, {"stats": dict(stats), "pending": pending, "stopped": stopped, "selected": len(selected),
+                    "already_finished": already_finished, "issue_bytes": issue_bytes, "fresh_seconds": fresh_seconds}
 
 
 def write_outputs(out, ctx, plan, states, run_info, extra_summary=None, full_plan=None, prior_found=0):

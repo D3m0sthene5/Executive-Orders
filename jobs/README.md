@@ -41,6 +41,14 @@ The script runs from the repo root. These environment variables are set:
 | `REPO_ROOT`  | The repo root.                                             |
 | `JOB_NAME`   | The folder name.                                           |
 
+**Mass downloads and other long jobs: work in parallel.** A job that fetches
+or processes many files should spread the work over worker processes (see
+`fr-originals`: `JOB_WORKERS`, `make_ctx`, `_run_parallel`) and keep one result
+file per item, so workers never collide and a stopped run resumes. Default to
+every CPU thread on the owner's PC and about 4 workers on GitHub's 2-CPU
+runner. Measured on 2026-10-17: one process downloading one file at a time
+reached 3.5 MB/s; parallel workers reached 45–55 MB/s on the same connection.
+
 The repo is several GB, so only `.github/`, `jobs/` and `HANDOFF/` are
 downloaded by default. List any other folders the script reads in `needs.txt`,
 one per line, for example `research/stage19`. Git LFS files (such as the

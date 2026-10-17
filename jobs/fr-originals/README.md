@@ -90,9 +90,9 @@ earlier stay in the outputs. Stage 21 reuse records also give `repo_path`
 **The full run belongs on the PC.** About 6,500 orders need a download:
 roughly 3,400 scanned daily issues plus 1,500 small PDFs. The scans grow from
 about 3 MB an issue in the 1930s to about 200 MB in the early 1990s, so the
-whole run downloads **about 130 GB** and takes **roughly 8 to 16 hours** (the
-sample measured 2.5 to 5 MB/s including text extraction). It can be stopped
-and restarted at any time.
+whole run downloads **about 130 GB**. With parallel workers (below) it takes
+about 1.5–2 hours on the owner's PC, limited by the internet connection; one
+process alone took 8 to 16 hours. It can be stopped and restarted at any time.
 
 ```
 python -m pip install --user -r jobs/fr-originals/requirements.txt
@@ -103,6 +103,18 @@ REPO_ROOT=. OUTPUT_DIR=C:/Users/danie/eo-runs/fr-originals/output JOB_CACHE_DIR=
 To save disk, add `JOB_KEEP_PDFS=0`: each scanned issue is deleted once its
 orders are done (its sha256, size and URL stay recorded, so it can be fetched
 again and checked).
+
+**Parallel workers (`JOB_WORKERS`).** Whole issues are spread over that many
+worker processes, each downloading and reading its own issue; they share the
+cache and the per-order state files, so a stopped run still resumes and the
+results are identical to a one-process run (tested on real 1940 orders:
+SOURCES, FRAGMENTS and texts byte-identical with 1 and 6 workers). Default: every
+CPU thread on a PC (16 on the owner's Ryzen 7 9800X3D), 4 on GitHub
+(`settings.json` → `github_workers`); `JOB_WORKERS=1` gives the old one-at-a-time
+run. On 2026-10-17 one process managed about 5–15 orders a minute (one 3.5 MB/s
+download at a time, one CPU core); with parallel downloads and processing the
+same run did about 50–60 a minute, limited by the internet connection
+(about 45–55 MB/s on Wi-Fi), not the processor.
 
 **Where to put the finished PC run (important).** GitHub's runner deletes
 `jobs/fr-originals/output/` before every run of this job, and any push that
