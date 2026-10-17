@@ -106,7 +106,28 @@ def main():
     for p in problems:
         print("  problem:", p)
 
-    fetcher = fetch_ladder.Fetcher(cache, max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+    sys.path.insert(0, str(repo / "jobs/_lib"))
+    from fetch_pool import FetchPool
+    pool = FetchPool(cache / "pool", workers=env_int("JOB_WORKERS") or 12,
+                     user_agent=fetch_ladder.USER_AGENT, min_interval=1.0, offline=offline)
+    class PooledFetcher(fetch_ladder.Fetcher):
+        def _wait(self, host):
+            # Host spacing and robots crawl delay are shared by the pool.
+            pass
+    fetcher = PooledFetcher(cache / "ladder", transport=pool.request,
+                            max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+    # Fetch one best route per item concurrently. The original ladder still validates
+    # identity, expected hashes, document bytes, and every subsequent fallback.
+    # A bounded request-budget run stays sequential so prefetch cannot overspend it.
+    prefetch_urls = []
+    if not offline and env_int("JOB_MAX_REQUESTS") is None:
+        for w in items:
+            if w.wanted_id in carried:
+                continue
+            plan = fetch_ladder.plan_routes(w)
+            if plan:
+                prefetch_urls.append(plan[0].url)
+        pool.prefetch(prefetch_urls)
 
     def extract(wanted, route, att, f):
         kind, _ = fetch_ladder.parse_citation(wanted.citation)
@@ -215,6 +236,7 @@ def main():
         "not_attempted_budget": counts.get("not_attempted_budget", 0),
         "orders_covered_by_found_sources": len({i for s in sources for i in s["instrument_ids"]}),
         "found_by_route": dict(Counter(s["route"] for s in sources)),
+        "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
         "seconds": round(time.time() - t0, 1),

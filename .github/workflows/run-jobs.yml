@@ -61,6 +61,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Restore each job's bounded download cache
+        uses: actions/cache@v4
+        with:
+          path: .job-cache
+          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            job-downloads-v1-${{ github.ref_name }}-
+
       - name: Choose which jobs to run
         id: pick
         env:

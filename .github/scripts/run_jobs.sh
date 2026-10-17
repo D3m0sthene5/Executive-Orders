@@ -15,6 +15,13 @@ for name in $JOBS; do
   echo "::group::Job $name"
   rm -rf "$out"
   mkdir -p "$out"
+  cache="$REPO_ROOT/.job-cache/$name"
+  mkdir -p "$cache"
+  cap_mb=1024
+  if [ -f "$dir/CACHE_MB" ]; then
+    read -r cap_mb < "$dir/CACHE_MB"
+    [[ "$cap_mb" =~ ^[0-9]+$ ]] && [ "$cap_mb" -ge 1 ] && [ "$cap_mb" -le 4096 ] || { echo "Invalid CACHE_MB for $name"; exit 1; }
+  fi
   started="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
   if [ -f "$dir/needs.txt" ]; then
@@ -36,9 +43,10 @@ for name in $JOBS; do
     cmd=(python "$dir/job.py")
   fi
 
-  JOB_NAME="$name" JOB_DIR="$dir" OUTPUT_DIR="$out" REPO_ROOT="$REPO_ROOT" \
+  JOB_CACHE_DIR="$cache" JOB_NAME="$name" JOB_DIR="$dir" OUTPUT_DIR="$out" REPO_ROOT="$REPO_ROOT" \
     "${cmd[@]}" 2>&1 | tee "$out/log.txt"
   code=${PIPESTATUS[0]}
+  python "$REPO_ROOT/jobs/_lib/cache_cap.py" "$cache" "$cap_mb"
   finished="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   [ "$code" -ne 0 ] && failed=1
 

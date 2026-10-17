@@ -9,12 +9,17 @@ import csv,gzip,hashlib,json,os,re,time,urllib.error,urllib.parse,urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime,timezone
 from pathlib import Path
+import sys
 
 ROOT=Path(os.environ["REPO_ROOT"])
 OUT=Path(os.environ["OUTPUT_DIR"])
 SEEDS=ROOT/"jobs/early-ranger-original-items/output/PRIMARY_ITEM_METADATA.jsonl"
 MAX=3_000_000
 USER_AGENT="EO-Historical-Research-Transcription-Reuse/1.0"
+
+sys.path.insert(0,str(ROOT/"jobs/_lib"))
+from fetch_pool import FetchPool
+POOL=FetchPool(Path(os.environ.get("JOB_CACHE_DIR",str(OUT.parent/"download-cache"))),max_bytes=MAX)
 
 def sha(x):return hashlib.sha256(x).hexdigest()
 def validate_url(url):
@@ -48,6 +53,7 @@ def main():
     if len(plan)!=9:raise ValueError("LOC XML transcription availability changed")
     (OUT/"xml_original").mkdir(parents=True,exist_ok=True)
     (OUT/"derived_text").mkdir(parents=True,exist_ok=True)
+    POOL.prefetch([u for _,u in plan])
     result=[]
     for record,url in plan:
         id_=record["catalog_item_id"]
@@ -58,14 +64,9 @@ def main():
              "transcript_word_count":0,"cue_phrases_NOT_authentication":[],
              "derivation":"XML_text_nodes_unreviewed","legal_directive_verified":False}
         try:
-            req=urllib.request.Request(url,headers={"User-Agent":USER_AGENT,
-                                                    "Accept":"application/xml,text/xml"})
-            with urllib.request.urlopen(req,timeout=22) as response:
-                dest=urllib.parse.urlsplit(response.geturl())
-                if dest.scheme!="https" or dest.hostname!="tile.loc.gov":
-                    raise ValueError("Unexpected XML download redirect")
-                raw=response.read(MAX+1)
-                if len(raw)>MAX:raise ValueError("XML response exceeded bound")
+            fetched=POOL.fetch(url)
+            if urllib.parse.urlsplit(fetched['final_url']).hostname!='tile.loc.gov':raise ValueError('Unexpected XML download redirect')
+            raw=fetched['body']
             root=ET.fromstring(raw)
             plain=one_text(root)
             if len(plain)<25:raise ValueError("XML lacked usable text nodes")
@@ -88,7 +89,7 @@ def main():
             row["error"]=type(exc).__name__+": "+str(exc)[:250]
         result.append(row)
         print(id_,row["download_state"],row["transcript_word_count"],flush=True)
-        time.sleep(0.55)
+
     OUT.mkdir(parents=True,exist_ok=True)
     (OUT/"TRANSCRIPTION_INVENTORY.jsonl").write_text(
         "".join(json.dumps(x,ensure_ascii=False,sort_keys=True)+"\n" for x in result),encoding="utf-8")
