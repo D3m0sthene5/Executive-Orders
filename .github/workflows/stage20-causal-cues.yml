@@ -1,0 +1,48 @@
+name: Compile auditable causal and shared-source research cues
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage20-causal-cues.yml'
+      - 'research/stage20/code/build_causal_cues.py'
+      - 'research/stage20/code/test_causal_cues.py'
+      - 'research/stage20/output/OPUS_NOTE_LEADS.jsonl'
+      - 'research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  build-evidence-cues:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - name: Checkout text-only evidence references
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 1
+      - name: Test source-ambiguity and date-cue safety rules
+        run: |
+          python -m unittest discover -s research/stage20/code -p 'test_causal_cues.py' -v
+      - name: Build and independently round-trip check causal cue outputs
+        run: |
+          python research/stage20/code/build_causal_cues.py
+          python research/stage20/code/build_causal_cues.py --check
+      - name: Persist evidence cues to main if all checks pass
+        run: |
+          git config user.name "EO Causal Cue Excavator"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage20/output/CAUSAL_LEAD_PACKETS_844.jsonl \
+            research/stage20/output/CAUSAL_LEAD_PRIORITIES_844.csv \
+            research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv \
+            research/stage20/output/CAUSAL_CUE_SUMMARY.json
+          if git diff --cached --quiet; then
+            echo "No generated output changes"
+          else
+            git commit -m "Recover case-level causal date contexts and quantify shared Opus source ambiguity"
+            git push origin HEAD:main
+          fi
