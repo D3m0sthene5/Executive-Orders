@@ -1,0 +1,37 @@
+issue_id,verbatim_problem_or_precise_acceptance_test,status,evidence_artifact,remaining_required_to_close
+1.1,All 1789-2026 EO total distinct from bibliographic IDs,PARTIAL,CENSUS/POPULATION_ESTIMANDS.json,A complete count is unknowable without additional historical manuscripts; retain unknown full universe
+1.2,Only 19 documented unnumbered source rows cannot stand in for historically unnumbered EOs,PARTIAL,CENSUS/LORD_ACQUISITION_QA.json,Resolve >1500 source entries into signed documents using originals; current 1023 markers not complete
+1.3,44 USC §1505 excludes internal-only orders from mandatory publication,IMPLEMENTED_AS_SCOPE_GUARD,CENSUS/POPULATION_ESTIMANDS.json,Ascertain unpublished pre/post1937 records before any full-count claim
+1.4,"Keep numbered identities, physical instruments, all actually issued orders as different totals",IMPLEMENTED_AS_DATA_MODEL,CENSUS/POPULATION_ESTIMANDS.json,Physical and all-issued totals remain unknown
+1.5,Resolve duplicate/suffix/group identity and partial cross-source coverage,PARTIAL,CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv,Authenticate 3016-family and Lord dates; crosswalk per-administration with APP
+2.1,EO3016C delegated author attribution,PARTIAL,CENSUS/3016_C_K_N_AUTHORSHIP_AUDIT.csv,Physically inspect the signed document; opinion supports Polk issuance
+2.2,EO3016K delegated author attribution was missing,PARTIAL,CENSUS/3016_C_K_N_AUTHORSHIP_AUDIT.csv,Physically inspect indexed EO 3016-K original; opinion supports Polk issuance
+2.3,EO3016N signature and delegated authority must not be guessed from other Polk orders,OPEN_HOLD,CENSUS/3016_C_K_N_AUTHORSHIP_AUDIT.csv,Find EO3016N original/signature; distinct Vogelstein transaction
+2.4,"Track actual signer, delegated power, Presidential signature vs numbered membership",IMPLEMENTED_AS_DATA_MODEL,AUDIT/EO_STAGE15_SCHEMA_AND_RISK_SIDECAR.sqlite,Population-wide field backfill awaits originals
+3.1,TC07 spent repeals vs TC09 operative amendments vs TC06 durable status inconsistencies,PARTIAL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Independent doctrinal audit and broad outcome sensitivity before final rule
+3.2,Present commands/constitutive statuses separate from enduring legal consequences,IMPLEMENTED_AS_DATA_MODEL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Do not recode current statuses until attribution rule adopted
+3.3,"Repeal A, amending B, land C all may change legal regime indefinitely",PARTIAL,LEGAL/SEEDED_OPERATIVE_EPISODE_EXAMPLES.csv,Test land reservation and final property transfer in blind doctrinal panel
+3.4,Property transfers and saved rights need stable attribution convention,OPEN_HOLD,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Legal expert review and property instrument primary-source tracing
+3.5,Count both current normative effects and legal consequences under credible theories,PARTIAL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Re-adjudicate representative original and host text sample; compute whole-inventory ranges
+5.1,Order must have ever become operative (including never operative cases),IMPLEMENTED_AS_DATA_MODEL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Populate per instrument on primary evidence before causal tallies
+5.2,"Hortatory, conditional-untriggered, and invalid ab initio need separate states",IMPLEMENTED_AS_DATA_MODEL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Do not equate judicial invalidity with no historical effect
+5.3,"Track actual effective date, fulfillment, dormant authority, revival",IMPLEMENTED_AS_DATA_MODEL,LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json,Episode data still sparse and evidentiary
+5.4,Whole-order YES can contain expired provisions; first cessation not only in NO,PARTIAL,LEGAL/SEEDED_OPERATIVE_EPISODE_EXAMPLES.csv,Generate all provision timelines for YES as well as NO after originals recovered
+5.5,Provision/operative episode-level history required beneath headline,PARTIAL,AUDIT/EO_STAGE15_SCHEMA_AND_RISK_SIDECAR.sqlite,Existing determined record lacks episode details in majority of cases
+6.1,Status coverage 2515 / 14973 vs cause progress not same metric,IMPLEMENTED_AS_REPORTING,CAUSAL/INDEPENDENT_PROGRESS_METRICS.json,Do not treat status coverage as historical answer
+6.2,2216 / 2322 mechanism unknown; 2223 / 2322 first dates unknown,IMPLEMENTED_AS_REPORTING,CAUSAL/INDEPENDENT_PROGRESS_METRICS.json,"Populate independently supported exact cause, not merely later bounds"
+6.3,Later revocation not original first cessation; classify chronology,PARTIAL,AUDIT/RESEARCH_GRAPH_RELEASE_GATES.json,Resolve causal histories for 2322 NO and expired provisions of active orders
+6.4,"Issuance cohorts, delayed observation, censoring, revival, competing risks",IMPLEMENTED_AS_DESIGN,STATISTICS/SURVIVAL_ANALYSIS_PROTOCOL.md,Complete rigorous sample before fitting survival model
+6.5,Representative population sample independent of selective determinate review,IMPLEMENTED_AS_SAMPLING_FRAME,STATISTICS/STRATIFIED_POPULATION_SAMPLE_120_BLIND.csv,Independently audit sampled identity/document/status; no estimates yet
+7.1,Authority termination versus disappearance of all effects (NIRA/war),IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Adjudicate all clauses before concluding any flagged order has no effect
+7.2,Subsequent revocation vs first cessation (3461/12553/retirement),IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Build earlier event timeline including cause proof
+7.3,Wrong source attribution for amendments/repealers/savings,IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Map exact host version and saving law
+7.4,Assume granted permission exercised (appointments/sales),IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Acquire administrative completion or alternative extinguishment
+7.5,Program disappears but incumbent/land/institution rights survive,IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Adjudicate property/beneficiary/savings chains
+7.6,Completed task does not end every clause and residual,IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Review all original sections including residual duties
+7.7,Editorial/archival silence cannot prove 2026 cessation,IMPLEMENTED_AS_SCREEN,LEGAL/CONSERVATIVE_RISK_SCREEN_NO_ORDERS.csv,Acquire actual original and successor sources; screening not answer
+7.8,Shared-source correlated model reviews must not masquerade as independent truth,PARTIAL,STATISTICS/STRATIFIED_POPULATION_SAMPLE_120_BLIND.csv,Carry out two-level human/independent source-blind review of actual cases
+EXTRA.1,Stage14 reverse-date relationship survived quarantine,IMPLEMENTED_AS_GRAPH_GUARD,AUDIT/RELATIONSHIP_CHRONOLOGY_VIOLATIONS.csv,"Confirm corrected direction in source, do not auto-reverse when source metadata ambiguous"
+EXTRA.2,Original 1943 cohort false positives,VERIFIED_IN_STAGE13,../EO_STAGE13_FOUNDATIONAL_VALIDATION_2026-10-16/AUDIT/ORIGINAL_1943_FLAG_ERROR_VERIFIED.json,Original record kept; corrected in prior overlay
+EXTRA.3,513 Stage14 omission of already-known National Archives successor references,IMPLEMENTED_AS_GRAPH_GUARD,AUDIT/RECOVERED_MISSING_NARA_SUCCESSOR_CANDIDATES.csv,512 chronology-compatible references restored as research candidates only; primary documents and scope still unreviewed
+EXTRA.4,Regenerate complete research dependency priorities after relationship recovery,IMPLEMENTED_AS_GRAPH_GUARD,AUDIT/REBUILT_HIGH_LEVERAGE_ENDING_SOURCE_QUEUE.csv,Prove shared source once before legal expansion; do not count candidates as determinations
