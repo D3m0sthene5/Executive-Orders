@@ -20,6 +20,8 @@ INPUTS = {
     "source_cases": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
     "statute_cases": "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv",
     "causal": "research/stage20/output/CAUSAL_LEAD_PRIORITIES_844.csv",
+    "original_links": "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv",
+    "original_custody": "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv",
 }
 MAX_PER_BATCH = 20
 
@@ -41,7 +43,8 @@ def count_bool(value):
     return str(value).lower() in ("true", "yes", "1")
 
 
-def build(conversion, source_cases, statute_cases, causal, source_hashes):
+def build(conversion, source_cases, statute_cases, causal, source_hashes,
+          original_links=None, original_custody=None):
     if len(conversion) != 3359 or len(source_cases) != 352 or len(statute_cases) != 42:
         raise ValueError("Unexpected Stage 20 inventory; reconcile before bulk batching")
     by_case = {}
@@ -54,6 +57,54 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
         if c.get("provisional_status") not in ("yes", "no"):
             raise ValueError("Unexpected legacy status")
         by_case[identity] = c
+    original_links = [] if original_links is None else original_links
+    original_custody = [] if original_custody is None else original_custody
+    if original_links and len(original_links) != 3359:
+        raise ValueError("Original-source crosswalk is incomplete")
+    original_by_case = {}
+    for item in original_links:
+        identity = item["instrument_id"]
+        if identity not in by_case or identity in original_by_case:
+            raise ValueError("Duplicate/missing original source identity")
+        if item["provisional_status_UNVERIFIED"] != by_case[identity]["provisional_status"]:
+            raise ValueError("Original URL crosswalk status conflict")
+        if any(item.get(k) != "no" for k in (
+            "document_identity_authenticated",
+            "operative_clause_legal_effect_verified", "independent_human_review")):
+            raise ValueError("Unreviewed original source became certified")
+        if item.get("selected_literal_URL") and item.get("selected_format") not in (
+            "pdf_url", "html_url", "full_text_xml_url"):
+            raise ValueError("Unrecognized official source format")
+        original_by_case[identity] = item
+
+    if original_custody and len(original_custody) != 386:
+        raise ValueError("Original PDF custody crosswalk changed")
+    custody_by_case = {}
+    for item in original_custody:
+        identity = item["instrument_id"]
+        reference = original_by_case.get(identity, {})
+        if not reference.get("PDF_candidate") or identity in custody_by_case:
+            raise ValueError("Unmatched or duplicate original PDF custody")
+        if reference["PDF_candidate"] != item["official_PDF_candidate_URL"]:
+            raise ValueError("Acquired PDF source does not match original indexed URL")
+        if any(item.get(k) != "no" for k in (
+            "original_EO_identity_and_pages_human_verified",
+            "operative_clause_scope_verified", "causal_effects_verified",
+            "independent_human_certified")):
+            raise ValueError("Acquired PDF improperly marked legally certified")
+        state = item["custody_state"]
+        if state not in ("not_attempted", "PDF_BYTES_CAPTURED_NOT_AUTHENTICATED",
+                         "fetch_failed_REVIEW_MANUALLY"):
+            raise ValueError("Unrecognized PDF custody state")
+        if state == "PDF_BYTES_CAPTURED_NOT_AUTHENTICATED":
+            rel = item.get("source_repository_path") or ""
+            digest = item.get("sha256_source_bytes_if_present") or ""
+            if (rel != "research/stage21/original_sources/EO_" + identity[3:] + ".pdf"
+                or len(digest) != 64
+                or any(x not in "0123456789abcdef" for x in digest)):
+                raise ValueError("Captured PDF missing expected path/digest")
+        custody_by_case[identity] = item
+
     family_members = defaultdict(set)
     authorities = defaultdict(set)
     for s in source_cases:
@@ -116,18 +167,24 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
     for id_, c in by_case.items():
         family = owner.get(id_)
         priority = int(c.get("research_triage_not_confidence") or 0)
-        if family and downloaded.get(id_):
+        original = original_by_case.get(id_, {})
+        custody = custody_by_case.get(id_, {})
+        if custody.get("custody_state") == "PDF_BYTES_CAPTURED_NOT_AUTHENTICATED":
+            bucket = "00_original_pdf_bytes_captured"
+        elif family and downloaded.get(id_):
             bucket = "01_downloaded_statute_reference"
+        elif original.get("selected_literal_URL"):
+            bucket = "02_official_original_URL_candidate"
         elif family and family.startswith("EO::"):
-            bucket = "02_shared_executive_order_reference"
+            bucket = "03_shared_executive_order_reference"
         elif family:
-            bucket = "03_other_shared_authority"
+            bucket = "04_other_shared_authority"
         elif count_bool(c.get("source_entry_locally_preserved")):
-            bucket = "04_local_source_seed"
+            bucket = "05_local_source_seed"
         elif c.get("opus_narrative_materialized") == "yes":
-            bucket = "05_opus_notes_recovered"
+            bucket = "06_opus_notes_recovered"
         else:
-            bucket = "06_original_source_acquisition"
+            bucket = "07_original_source_acquisition"
         buckets[bucket].append((id_, family, priority))
     outputs = []
     for bucket in sorted(buckets):
@@ -149,8 +206,21 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
                         "textual_reference_ONLY_source_not_authenticated"
                     }))
                 causal_seed = causal_by_case.get(identity)
+                original = original_by_case.get(identity, {})
+                custody = custody_by_case.get(identity, {})
                 cases.append({
                     "instrument_id": identity,
+                    "literal_official_original_candidate_URL":
+                        original.get("selected_literal_URL", ""),
+                    "literal_official_original_PDF_candidate_URL":
+                        original.get("PDF_candidate", ""),
+                    "original_PDF_custody_state":
+                        custody.get("custody_state", "not_indexed_or_attempted"),
+                    "captured_original_PDF_candidate_repository_path":
+                        custody.get("source_repository_path", ""),
+                    "captured_original_PDF_candidate_SHA256":
+                        custody.get("sha256_source_bytes_if_present", ""),
+                    "original_legal_text_and_page_authenticated": False,
                     "legacy_provisional_status": c["provisional_status"],
                     "decision_origin": c["decision_origin"],
                     "source_batch_owner": family or "",
@@ -205,6 +275,12 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
             "batch_lane": b["workload_lane"],
             "provisional_status_NOT_CERTIFIED": c["legacy_provisional_status"],
             "shared_reference_count": len(c["all_shared_authority_mention_keys"]),
+            "official_original_link_candidate": c["literal_official_original_candidate_URL"],
+            "original_PDF_custody_state": c["original_PDF_custody_state"],
+            "original_PDF_repository_path": c[
+                "captured_original_PDF_candidate_repository_path"],
+            "original_PDF_SHA256_NOT_AUTHENTICATION": c[
+                "captured_original_PDF_candidate_SHA256"],
             "downloaded_statute_reference_count": len(
                 c["retrieved_statute_pdf_candidate_keys"]),
             "all_shared_references": " | ".join(
@@ -243,6 +319,17 @@ def build(conversion, source_cases, statute_cases, causal, source_hashes):
         "cases_with_one_or_more_shared_source_families": len(owner),
         "cases_with_acquired_statute_pdf_candidates": sum(bool(links) for links in downloaded.values()),
         "candidate_case_statute_pdf_edges": sum(map(len, downloaded.values())),
+        "provisional_cases_with_official_original_source_URL":
+            sum(bool(x.get("selected_literal_URL")) for x in original_by_case.values()),
+        "provisional_cases_with_PDF_source_candidate":
+            sum(bool(x.get("PDF_candidate")) for x in original_by_case.values()),
+        "original_candidate_PDFs_locally_captured":
+            sum(x.get("custody_state") == "PDF_BYTES_CAPTURED_NOT_AUTHENTICATED"
+                for x in custody_by_case.values()),
+        "original_candidate_PDF_acquisition_failures":
+            sum(x.get("custody_state") == "fetch_failed_REVIEW_MANUALLY"
+                for x in custody_by_case.values()),
+        "original_page_identities_authenticated": 0,
         "opus_causal_note_context_cases": len(causal_by_case),
         "stratified_pilot_assignments": len(pilot),
         "batches_by_lane": dict(Counter(b["workload_lane"] for b in outputs)),
@@ -310,6 +397,11 @@ for(const item of b.sources){s+='<div class="case"><b>'+esc(item.source_key)+'</
 }
 for(const c of b.cases){const w=research[c.instrument_id]||{};
 s+='<div class="case"><h3>'+esc(c.instrument_id)+' — provisional '+esc(c.legacy_provisional_status)+'</h3>';
+if(c.literal_official_original_candidate_URL){
+s+='<p><a href="'+esc(c.literal_official_original_candidate_URL)+'" target="_blank" rel="noopener noreferrer">Open indexed official EO source candidate</a></p>';}
+if(c.captured_original_PDF_candidate_repository_path){
+s+='<p><a href="https://github.com/D3m0sthene5/Executive-Orders/blob/main/'+encodeURI(c.captured_original_PDF_candidate_repository_path)+'" target="_blank" rel="noopener noreferrer">Open archived PDF candidate</a> · SHA-256: <code>'+esc(c.captured_original_PDF_candidate_SHA256)+'</code></p>';}
+s+='<p class="muted">Original PDF custody: '+esc(c.original_PDF_custody_state)+' — original pages and clause inventory NOT verified.</p>';
 s+='<p class="muted">AI footprint claim: '+esc(c.prior_AI_footprint_claim_UNVERIFIED)+
  ' · AI date mentions: '+esc(c.prior_AI_date_mentions_UNVERIFIED)+
  ' · references: '+esc(c.all_shared_authority_mention_keys.join(' · '))+'</p>';
@@ -376,7 +468,8 @@ def build_files(root=ROOT):
     parsed = {name: parse_csv(data) for name, data in raw.items()}
     model = build(parsed["conversion"], parsed["source_cases"],
                   parsed["statute_cases"], parsed["causal"],
-                  {n: hashlib.sha256(v).hexdigest() for n, v in raw.items()})
+                  {n: hashlib.sha256(v).hexdigest() for n, v in raw.items()},
+                  parsed["original_links"], parsed["original_custody"])
     return model, output_bytes(model)
 
 
