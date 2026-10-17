@@ -10,7 +10,7 @@
       "applicable": 3359
     },
     "original_text": {
-      "done": 206,
+      "done": 307,
       "applicable": 3359
     },
     "clause_inventory": {
@@ -34,53 +34,63 @@
       "applicable": 236
     },
     "opus_media": {
-      "done": 0,
+      "done": 82,
       "applicable": 844
     }
   },
   "decided_by_steps_done": {
     "1/6": 2344,
-    "1/7": 590,
+    "1/7": 473,
     "1/8": 20,
     "2/6": 171,
-    "2/7": 18,
-    "2/8": 206,
-    "3/8": 10
+    "2/7": 104,
+    "2/8": 173,
+    "3/7": 31,
+    "3/8": 41,
+    "4/8": 2
   },
   "orders_blocked_by": {
-    "NO_OFFICIAL_SOURCE_LOCATED": 14516,
+    "NO_OFFICIAL_SOURCE_LOCATED": 14400,
     "NO_PROVISIONAL_STATUS": 11613,
     "NO_CLAUSE_INVENTORY": 3359,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
     "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
     "FIRST_END_UNPROVED": 2954,
-    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 405,
     "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 8
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 8,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
     "NO_CLAUSE_INVENTORY": 3359,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
     "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
     "FIRST_END_UNPROVED": 2954,
-    "NO_OFFICIAL_SOURCE_LOCATED": 2903,
-    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "NO_OFFICIAL_SOURCE_LOCATED": 2802,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 405,
     "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 8,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
   "shared_unlocks": [
     {
-      "action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
+      "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
-      "orders_unblocked": 844,
-      "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER"
+      "orders_unblocked": 472,
+      "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
     },
     {
       "action": "Run one bulk download of the official links already found (Stage 21 crosswalk)",
@@ -129,6 +139,12 @@
       "kind": "one_source",
       "orders_unblocked": 2,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    },
+    {
+      "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+      "kind": "agent_check",
+      "orders_unblocked": 1,
+      "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
     }
   ],
   "input_problems": [],
@@ -162,8 +178,8 @@
     },
     "job_outputs_used": {
       "fr-originals": 40,
-      "opus-media-match fragments": null,
-      "opus-media-match status": null,
+      "opus-media-match fragments": 122,
+      "opus-media-match status": 1155,
       "source-ladder": 85,
       "claim-checker": 0
     }
