@@ -20,6 +20,14 @@ class BundleTests(unittest.TestCase):
         q=bounded(p)
         self.assertEqual(q['fragments'][0]['sources'][0]['sha256'],'a'*64)
         self.assertLess(len(canon(q).encode()),30000)
+    def test_dense_sources_have_explicit_hashed_overflow(self):
+        sources=[{'url':'https://example.org/'+str(i)+'x'*1000,'sha256':'a'*64} for i in range(100)]
+        frag={'record':{'path':'fragments.jsonl','line':2},'sources':sources,'data':['x'*1000]*100}
+        p={'instrument_id':'EO:1','draft_record':{},'claim_draft':{},'fragments':[frag],'later_events':[],'current_law_hits':[],'conflicts':[], 'text_pointers':[{'path':str(i),'first_1500_characters':'z'*1500} for i in range(40)]}
+        q=bounded(p)
+        self.assertLess(len(canon(q).encode()),30000)
+        self.assertEqual(q['fragments'][0]['sources']['count'],100)
+        self.assertEqual(q['fragments'][0]['sources']['in_full_record']['line'],2)
     def test_unicode_budget(self):
         p={'instrument_id':'EO:1','draft_record':{},'claim_draft':{'text':'漢'*50000},'fragments':[],'later_events':[],'current_law_hits':[],'conflicts':[],'text_pointers':[]}
         self.assertLess(len(canon(bounded(p)).encode()),30000)

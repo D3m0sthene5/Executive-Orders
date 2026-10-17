@@ -43,6 +43,19 @@ def bounded(packet):
             if 'first_1500_characters' in item:
                 item['preview_truncated_for_budget']=True
                 item['first_1500_characters']=item['first_1500_characters'][:400]
+    if len((canon(packet)+'\n').encode())>LIMIT:
+        # Dense current-law fragments can cite hundreds of sources. Keep their
+        # exact source-set hash/count and the full fragment pointer, rather than
+        # pretending every citation can fit inside a fixed startup budget.
+        for key in ('fragments','later_events','current_law_hits','conflicts'):
+            for item in packet[key]:
+                refs=item.get('sources',[])
+                if refs:
+                    item['sources']={'in_full_record':item['record'],'count':len(refs),'canonical_sha256':sha(canon(refs).encode())}
+    if len((canon(packet)+'\n').encode())>LIMIT:
+        for item in packet['text_pointers']:
+            item.pop('first_1500_characters',None)
+            item['preview_omitted_for_budget']=True
     if len((canon(packet)+'\n').encode())>LIMIT:raise ValueError('Order exceeds startup budget even as pointers; no silent omission: '+packet['instrument_id'])
     return packet
 
