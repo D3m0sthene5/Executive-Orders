@@ -1,0 +1,44 @@
+# CLAUDE OPUS — STAGE 9 HIGH-YIELD PRESENT-STATUS PRODUCTION
+
+**Project:** The Afterlife of Executive Orders  
+**Legal cutoff:** October 14, 2026, America/New_York  
+**Codebook:** 2.0.0, frozen  
+**Assignment:** Independently reviewed PRESENT-STATUS classifications in new, non-civil-service source families. **Execute research and produce a delta now; do not return a plan.**
+
+## 1. Recover the corrected baseline; do not redo completed work
+
+Unzip `EO_STAGE8_RECONCILED_HANDOFF_2026-10-16.zip` (and recover original project releases if already in your workspace). Read `README_FIRST.md`, `STAGE8_RECONCILIATION_AUDIT.json`, `STAGE8_TECHNICALLY_ACCEPTED_340.jsonl`, `STAGE8_UNRESOLVED_28.jsonl`, and `STAGE8_PRELIMINARY_MERGED_LEDGER.jsonl`. The original Astra/Opus ZIPs and frozen membership data are also bundled.
+
+The fixed historical population is **14,973 validated** of **15,010 ledger rows**; historical census completeness is not established. The independently reconstructed Stage 7 ledger has 191 substantive YES, 1,695 NO, 13,087 UNKNOWN: **12.596006%** coverage. Your Stage 8 evidence package adds **340 separate, accepted-by-reported-reviewer NO/NO findings** (256 retirement P2 and 84 NIRA P2), all checked against Stage 7 UNKNOWN IDs and all disjoint from V1–V5. The combined **technical integration baseline is 191 YES, 2,035 NO, 12,747 UNKNOWN = 14.866760%**. This is not a fresh legal audit of all 340. Do not quote your older 14.8868% figure: it mistakenly counted three quarantined Stage 7 Astra orders (EO 5333, 5335, 5347).
+
+Do not repeat work on the finished 281-retirement or 87-NIRA P2 cohorts. Retain their evidence, statuses, exceptions, and frozen causal cohorts. The 340-member V6_OPUS causal handoff concerns historical *causes* and remains unresearched; do not claim to complete it in this present-status assignment. Stage 8 queue = **28 unique unresolved orders**, not 26. The five reviewer-only NO conclusions (EO 8256, 8497, 8904, 10225, 11619) are not counted until independently confirmed. NRA holds EO 6296A and 6749 are not NO. External-only evidence paths and inherited title/date conflicts remain source-quality limitations.
+
+## 2. Exclusive jurisdiction and high-yield search
+
+Astra owns the **1,181 frozen civil-service appointment/reinstatement/eligibility assignments** (705 P1, 476 P2), plus its held review cases. You may not classify any ID in that original reserved scope. Recover the exact assignment manifest (`EO_Stage7_Astra_Opus_Split_2026-10-15.zip` or original Astra Stage 7 archive) from the available workspace and build an exclusion set before accepting any fresh ID. Exclude all previously determined IDs, all Stage 7/8 Opus assignments, and any unresolved identity. If the original manifest is unavailable, work only on explicit exclusion-screened candidates in `STAGE9_UNASSIGNED_FAMILY_LEADS.jsonl` and reviewer-confirmation cases already in your Stage 8 packet; mark other proposed IDs `OWNERSHIP_NOT_VERIFIED` and do not promote them.
+
+Start with these **high-yield pilots in parallel**, using the supplied `STAGE9_*_CANDIDATES.jsonl` as candidate leads rather than authority to classify:
+
+**A. Pre-1977 executive authorizations to inspect tax returns (103 broad ledger-title leads).** Read the original orders and the actual transition under Tax Reform Act of 1976 §1202 / 26 U.S.C. §6103, including effective date, savings clauses, 1977 rules for data already disclosed, congressional committee authority and time-limited authorizations. The 1976 rewrite alone is NOT a proof of whole-order cessation. Conduct a 12–16-case stratified producer pilot plus independent review; expand quickly only if a legally complete repeatable rule emerges.
+
+**B. World War I eight-hour-day suspension orders (46 leads).** Test 8–12 substantively distinct orders, separating finite contracts, wartime-only relief, general delegations, successor statutes, saved rights, and retrospective wage claims. Full original operative text and actual end-trigger required. No assumptions from age or title. Expand if a common rule survives counterexamples.
+
+**C. Alien Property Custodian authorizations (196 broad leads).** First isolate *single identified sales/dispositions* from continuing delegations or regulations. Test 8–12 single-transaction items against executed sale records, termination/savings and property claims. A grant to sell is not proof a sale occurred; lingering property status may count. Pivot away if documentary proof is expensive.
+
+As quick, controlled secondary opportunities, process (i) the five uncounted retirement reviewer determinations with an actually separate confirmation, (ii) unassigned *rail emergency-board*, *one-day federal-office closing*, and *commemoration* candidates in `STAGE9_UNASSIGNED_FAMILY_LEADS.jsonl`, (iii) the 16 NRA P3 orders **only after recovering their original exact IDs** and checking that they remain UNKNOWN. Do not recycle the completed P2 orders. Deferred GSP tariffs remain low priority after Astra's 20-case, zero-gain pilot exposed 19 U.S.C. §3011 savings and version-mapping problems.
+
+Pilot results should direct the expansion, not the initial list order. Each 10–16-case pilot produces an independently reviewed numerator: newly determinate YES/NO, unavailable original text, new legal blockers, person-hours/subagent tokens actually measured, and error rate. Expand whichever family has the best **validated statuses per total token and elapsed minute**. Stop a low-yield family quickly, reallocate to stronger cases, and continue production until the working session is exhausted. No artificial quota; no unsupported bulk NO.
+
+## 3. Mandatory legal and evidence gates
+
+For every candidate: (1) identify the validated EO; (2) retrieve its complete operative provisions, including referenced annexes as necessary; (3) map each operative clause to actor/object/authority/time/conditions; (4) retrieve controlling law, repeal/expiration, savings, later amendment/revival, and affected host; (5) assess substantive and any-operative-effect statuses **separately** under Codebook 2.0.0; (6) independently review the decision and record dissent, limiting predicates, and counterevidence. Any unclosed scope is `indeterminate`, never a guessed `no`. A finite event or completed sale may be spent under TC07, but a continuing right, property status, statutory incorporation or saved provision may remain. In particular, **Indian land trust periods are often extended until Congress directs otherwise under 25 U.S.C. §5102**: never bulk-expire trust allotment orders by title date.
+
+Use a shared immutable source cache; one family statute retrieval supports many orders. Store direct quotes with exact source page/section, retrieval method/date, local evidence file and SHA-256; never fabricate a cache retrieval timestamp. For web-only transcripts, say `hosted_transcript`; do not label original bytes held. Search metadata, summaries and uninspected snippets are insufficient for NO. Retain historical causes as UNKNOWN; protect the frozen first-cessation, housekeeping, identity and formal-disposition fields. Never overwrite inherited title/date conflicts silently. If delegated agents exist, use bounded parallel producers and separate reviewers; log real agent identities and measured throughput. If independent agents are unavailable, label the resulting decisions provisional rather than pretending independence.
+
+## 4. Artifacts and exact accounting
+
+Write `OPUS_STAGE9_STATUS_DELTA.zip` containing: one proposed/accepted-or-held record for **each researched ID**, immutable quote-level source/evidence files, independent reviewer records, applicability-rule predicates and exception checks, exact owner and baseline-status checks, successful acceptance list, held/failed queue, actual per-family yield and token/time telemetry if available, conflict log, manifest of source hashes, and `CLAUDE_NEW_NO_V7_OPUS_PROVISIONAL.jsonl` for **newly accepted NO** members only. Also include a succinct `REPORT.md` and `NEXT_FAMILY_CANDIDATES.json` grounded in the actual latest ledger rather than a Stage 3 approximation.
+
+Every summary must state `prior_accepted_substantive_determinate = 2,226`, `added_ACCEPTED_YES`, `added_ACCEPTED_NO`, `substantive_UNKNOWN_remaining = 12,747 - newly_accepted`, and `coverage_pct = (2,226 + newly_accepted)/14,973*100` (modify numerator for any previously accepted status genuinely overturned by documented independent audit). Show Stage 8's 340 as **prior** work, never Stage 9 throughput. Include both numerator and denominator. Record missing exact scope manifests as a blocker, not as proof of nonoverlap.
+
+**Start with independent confirmation of the five reviewer disagreements, then launch the three stratified family pilots. Commit the highest-yield fully reviewed expansion in this session. Deliver the actual archive, not a proposed workflow.**
