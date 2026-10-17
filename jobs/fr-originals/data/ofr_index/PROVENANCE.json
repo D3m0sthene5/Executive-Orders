@@ -1,0 +1,68 @@
+{
+ "what": "Office of the Federal Register (federalregister.gov API) bulk export of every executive order it lists, 1937 to 2026, with pre-1994 records, 7 pages of up to 1000 results. Exact original response bytes, gzip-compressed (mtime 0) for size; sha256 values are of the UNCOMPRESSED original bytes.",
+ "api_query": "https://www.federalregister.gov/api/v1/documents?conditions[correction]=0&conditions[presidential_document_type]=executive_order&conditions[search_type_id]=3&conditions[type][]=PRESDOCU&fields[]=citation,document_number,end_page,html_url,pdf_url,type,subtype,publication_date,signing_date,start_page,title,disposition_notes,executive_order_number,not_received_for_publication,full_text_xml_url,body_html_url,json_url&format=json&include_pre_1994_docs=true&order=executive_order_number&per_page=1000",
+ "retrieved": "previous Stage 1 project capture, 2026-10-15 (exact time not recorded upstream)",
+ "copied_from": "EO_STAGE17_CONSOLIDATED_INPUTS_2026-10-16.zip (repo root, Git LFS parts) > history/EO_STAGE11_FULL_SOURCE_HANDOFF_2026-10-16.zip > INPUTS/EO_DISPOSITION_IMPORT_STAGE10_CHECKPOINT_2026-10-16.zip > EO_IMPORT_WORK/RAW_OFFICIAL_SOURCES/",
+ "upstream_provenance_file": "EO_IMPORT_WORK/RAW_OFFICIAL_SOURCES/CACHED_SOURCE_PROVENANCE.json (sha256 d037b53013b373750332d1023213faaa4e9e2cc18ad44e93628273fa3d5506b2)",
+ "upstream_counts": {
+  "fr_page_count_reported": 6939,
+  "fr_rows_verified": 6939,
+  "fr_distinct_reported_eo_numbers": 6937,
+  "fr_duplicate_reported_eo_numbers": {
+   "10571": 2,
+   "13526": 2
+  }
+ },
+ "caution": "Catalog metadata only. Citations and dates are OFR editorial data; disposition notes are leads, never legal endings. FederalRegister.gov says its online text is not the official legal edition; the govinfo PDFs are.",
+ "files": [
+  {
+   "file": "fedreg_bulk_01.json.gz",
+   "uncompressed_name": "fedreg_bulk_01.json",
+   "uncompressed_bytes": 604257,
+   "uncompressed_sha256": "1014e9551425fb1cf3c50a3fdfb980e9dfa46ef0efc03c81d04ebe6bdc1c5622",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_02.json.gz",
+   "uncompressed_name": "fedreg_bulk_02.json",
+   "uncompressed_bytes": 637589,
+   "uncompressed_sha256": "38028716264c6d67cd2447a2bfa4cc3140f56d1ea13122a6607d61974ca502b8",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_03.json.gz",
+   "uncompressed_name": "fedreg_bulk_03.json",
+   "uncompressed_bytes": 672247,
+   "uncompressed_sha256": "511e4f55118d26d05b80efe365c139f0ff81d903fc1e82de10a72d1673bb548a",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_04.json.gz",
+   "uncompressed_name": "fedreg_bulk_04.json",
+   "uncompressed_bytes": 684697,
+   "uncompressed_sha256": "38deadfc853a9cda9de8de1ac0cb0950e264f0f81cdb9899757440189d01f639",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_05.json.gz",
+   "uncompressed_name": "fedreg_bulk_05.json",
+   "uncompressed_bytes": 649213,
+   "uncompressed_sha256": "cdcfccbf6b5cde11868e8b4c2902ff8b465a34edb19513133e47a80062296aec",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_06.json.gz",
+   "uncompressed_name": "fedreg_bulk_06.json",
+   "uncompressed_bytes": 851866,
+   "uncompressed_sha256": "7610a418091dd0e60df26b90be36690ef13863866fbeefb1299a8e5ad8243d51",
+   "results": 1000
+  },
+  {
+   "file": "fedreg_bulk_07.json.gz",
+   "uncompressed_name": "fedreg_bulk_07.json",
+   "uncompressed_bytes": 939746,
+   "uncompressed_sha256": "b5a00fb0f74b55c4cc620d1cac88c5f3327cddb5878214e8662f395acc7c3d38",
+   "results": 939
+  }
+ ]
+}
