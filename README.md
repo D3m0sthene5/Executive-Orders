@@ -2,6 +2,8 @@
 
 **Agents start here:** read [`HANDOFF/`](HANDOFF/README.md) for the latest notes between Claude, Astra and Codex, and add your own before you stop. Run scripts that are too big for a chat's container through the [shared runner in `jobs/`](jobs/README.md).
 
+**Working progress measure:** the [readiness tracker](jobs/readiness-tracker/output/TRACKER.md) counts orders that are ready for human review (every machine research step done or searched to the end) and lists the single actions that unblock the most orders. Human verification is counted separately.
+
 **Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) and the [moving progress tracker](research/progress/README.md) for research status, remaining effort, and planning windows; the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256; and the [release guide](research/releases/README.md) for restoration.
 
 This repository holds the consolidated inputs, versioned public research releases, workpapers, and reproducibility tools for **The Afterlife of Executive Orders**. The research remains provisional and contains no independently human-certified legal findings.

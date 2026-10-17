@@ -1,0 +1,92 @@
+test_bad_exhausted_record_is_reported_not_counted (test_tracker.TrackerTest.test_bad_exhausted_record_is_reported_not_counted) ... ok
+test_complete_claim_makes_an_order_ready (test_tracker.TrackerTest.test_complete_claim_makes_an_order_ready) ... ok
+test_exhausted_step_counts_as_machine_finished (test_tracker.TrackerTest.test_exhausted_step_counts_as_machine_finished) ... ok
+test_partial_claim_lights_up_only_the_steps_it_satisfies (test_tracker.TrackerTest.test_partial_claim_lights_up_only_the_steps_it_satisfies) ... ok
+test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count (test_tracker.TrackerTest.test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count) ... ok
+test_status_mismatch_keeps_the_ending_step_open (test_tracker.TrackerTest.test_status_mismatch_keeps_the_ending_step_open) ... ok
+test_without_claims_nothing_is_ready_and_blockers_are_specific (test_tracker.TrackerTest.test_without_claims_nothing_is_ready_and_blockers_are_specific) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.037s
+
+OK
+# Readiness tracker
+
+**Ready for human review: 0 of 14,972 orders (0.0%)**
+
+An order is ready when the machines have finished every step it needs: each step is backed by a saved
+source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
+`research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
+
+Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been researched yet.
+
+## Steps finished (orders with a provisional status)
+
+| Step | Done | Of | Share |
+|---|---:|---:|---:|
+| Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
+| Original text saved in the project | 54 | 3,359 | 1.6% |
+| Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
+| Savings clauses and surviving effects closed | 0 | 3,359 | 0.0% |
+| Search for later contrary sources recorded, no open conflicts | 0 | 3,359 | 0.0% |
+| Every shared legal source it cites has been retrieved | 7 | 236 | 3.0% |
+| Opus evidence images matched to this order (Opus cases only) | 0 | 844 | 0.0% |
+
+## Do these first: one action, many orders
+
+| Orders unblocked | Kind | Action |
+|---:|---|---|
+| 844 | machine job | Match the 496 Opus evidence images to orders by their contents |
+| 362 | machine job | Run one bulk download of the official links already found (Stage 21 crosswalk) |
+| 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
+| 11 | one source | Retrieve shared source EO::9337 |
+| 10 | one source | Retrieve shared source EO::4314 |
+| 9 | one source | Retrieve shared source EO::8417 |
+| 9 | one source | Retrieve shared source EO::9515 |
+| 8 | one source | Retrieve shared source USC::31 U.S.C. 1552 |
+| 7 | one source | Retrieve shared source EO::10153 |
+| 7 | one source | Retrieve shared source EO::9492 |
+| 7 | one source | Retrieve shared source EO::9792 |
+| 7 | one source | Retrieve shared source EO::9886 |
+| 7 | one source | Retrieve shared source EO::10608 |
+| 6 | one source | Retrieve shared source EO::11401 |
+| 6 | one source | Retrieve shared source EO::6868 |
+| 6 | one source | Retrieve shared source EO::13286 |
+| 6 | one source | Retrieve shared source EO::10713 |
+| 6 | one source | Retrieve shared source EO::11211 |
+| 6 | one source | Retrieve shared source EO::14173 |
+| 6 | one source | Retrieve shared source EO::12282 |
+| 6 | one source | Retrieve shared source EO::9526 |
+| 6 | one source | Retrieve shared source EO::9714 |
+| 5 | one source | Retrieve shared source EO::10084 |
+| 5 | one source | Retrieve shared source EO::11766 |
+| 5 | one source | Retrieve shared source EO::10152 |
+| | | ...and 68 more in `SHARED_UNLOCKS.csv` |
+
+## What blocks orders
+
+| Blocker | Orders with a status | All orders |
+|---|---:|---:|
+| `NO_OFFICIAL_SOURCE_LOCATED` | 2,943 | 14,556 |
+| `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
+| `NO_CLAUSE_INVENTORY` | 3,359 | 3,359 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,359 | 3,359 |
+| `LATER_SOURCE_SEARCH_NOT_RECORDED` | 3,359 | 3,359 |
+| `FIRST_END_UNPROVED` | 2,954 | 2,954 |
+| `OPUS_MEDIA_NOT_MATCHED_TO_ORDER` | 844 | 844 |
+| `CURRENT_BASIS_UNPROVED` | 405 | 405 |
+| `OFFICIAL_URL_KNOWN_NOT_DOWNLOADED` | 362 | 362 |
+| `SHARED_SOURCE_NOT_RETRIEVED` | 229 | 229 |
+| `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
+
+## How to move an order forward
+
+- Add or extend its claim in `research/readiness/claims/*.jsonl` (format: `research/stage19/CLAIM_SCHEMA.md`).
+  Partial claims count: each step lights up as soon as its part passes the gate.
+- If a step cannot be finished by machine, add a line to `research/readiness/EXHAUSTED.jsonl` with
+  `instrument_id`, `step`, `searched` (list of repositories and queries), `recorded_by`, `recorded_on`.
+- Step names: `provisional_status`, `original_text`, `clause_inventory`, `ending_or_current_basis`, `savings_residuals`, `counterevidence`, `shared_sources`, `opus_media`.
+- Per-order detail is in `READINESS_BY_ORDER.csv`.
+
+Outputs written to /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/output

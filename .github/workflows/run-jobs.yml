@@ -4,7 +4,8 @@
 #
 # A job runs when a push changes any file in its folder outside output/, or when
 # someone starts this workflow by hand (Actions tab -> Run jobs -> Run workflow)
-# and types the job name. Results are committed back to the same branch in
+# and types the job name. Jobs whose folder contains a file named DAILY also run
+# once a day on the default branch. Results are committed back to the same branch in
 # jobs/<name>/output/. Commits made by this workflow do not start it again.
 
 name: Run jobs
@@ -16,6 +17,8 @@ on:
       # Changing the runner reruns jobs/example-hello as a check.
       - ".github/workflows/run-jobs.yml"
       - ".github/scripts/**"
+  schedule:
+    - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file
   workflow_dispatch:
     inputs:
       job:
@@ -86,6 +89,7 @@ jobs:
         if: always() && steps.pick.outputs.jobs != ''
         env:
           JOBS: ${{ steps.pick.outputs.jobs }}
+          EVENT: ${{ github.event_name }}
           BRANCH: ${{ github.ref_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: bash .github/scripts/commit_results.sh

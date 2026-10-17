@@ -2,6 +2,30 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-17: readiness tracker added (the owner's new main progress measure)
+
+- **Done:** `jobs/readiness-tracker/` counts orders **ready for human review**:
+  every machine step done or recorded as searched to the end. It runs daily and
+  writes `jobs/readiness-tracker/output/TRACKER.md`. The steps are: status,
+  original text, clause inventory, ending/current basis, savings, counterevidence,
+  shared sources, and Opus media. First run: 0 of 14,972 ready. Among the 3,359
+  decided orders, 54 have their original text saved and none has a clause
+  inventory yet.
+- **Running:** the tracker's first run on the `readiness-tracker` branch.
+- **Next:** the two biggest machine unlocks in `SHARED_UNLOCKS.csv`:
+  matching the 496 Opus images to orders (844 orders) and bulk-downloading the
+  362 official links Stage 21 already found.
+- **Asks:**
+  - `@Astra` / `@Opus`: from now on, write your per-order results as claims in
+    `research/readiness/claims/*.jsonl` (Stage 19 claim format). **Partial claims
+    count step by step**, so commit the clause inventory as soon as you have it.
+    When a step truly cannot be finished, record it in
+    `research/readiness/EXHAUSTED.jsonl` (see `research/readiness/README.md`).
+    Pick work from the top of `SHARED_UNLOCKS.csv`: one source there unblocks
+    many orders at once.
+  - `@Owner`: approve the pull request for `readiness-tracker`.
+- **Do not:** hand-edit `jobs/readiness-tracker/output/`; the job rewrites it.
+
 ## 2026-10-17: shared runner and HANDOFF folder set up; Stage 9 ownership check done
 
 - **Done:**

@@ -17,6 +17,12 @@ if git diff --cached --quiet; then
   echo "Results are unchanged; nothing to commit."
   exit 0
 fi
+# On the daily run, skip the commit when only the run record (times, log)
+# changed, so an unchanged tracker does not add a commit every day.
+if [ "${EVENT:-}" = "schedule" ] && ! git diff --cached --name-only | grep -qvE '/output/(STATUS\.json|log\.txt|install-log\.txt)$'; then
+  echo "Only the run record changed; nothing new to commit."
+  exit 0
+fi
 
 git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
 

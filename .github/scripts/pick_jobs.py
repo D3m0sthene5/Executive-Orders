@@ -1,7 +1,8 @@
 """Decide which jobs/<name>/ folders the runner should run.
 
 A push runs every job whose folder had a file changed outside output/.
-A manual run runs the one job that was named. Folders starting with "_" (the
+A manual run runs the one job that was named. The daily scheduled run runs
+every job whose folder contains a file named DAILY. Folders starting with "_" (the
 template) are never run. The result goes to the step output "jobs" as a
 space-separated list.
 """
@@ -44,7 +45,12 @@ def changed_files(before, after):
 
 
 def main():
-    if os.environ.get("EVENT") == "workflow_dispatch":
+    if os.environ.get("EVENT") == "schedule":
+        picked = sorted(
+            name for name in os.listdir("jobs")
+            if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
+        )
+    elif os.environ.get("EVENT") == "workflow_dispatch":
         name = (os.environ.get("INPUT_JOB") or "").strip().strip("/")
         name = name.removeprefix("jobs/")
         if not runnable(name):
