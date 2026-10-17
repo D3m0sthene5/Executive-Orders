@@ -1,0 +1,25 @@
+name: Road system offline tests
+on:
+  push:
+    paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**']
+  pull_request:
+    paths: ['jobs/**', '.github/**', 'research/readiness/rules/**']
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          sparse-checkout: |
+            .github
+            jobs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python .github/scripts/test_roads.py
