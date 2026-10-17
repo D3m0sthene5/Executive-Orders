@@ -30,3 +30,7 @@ In addition to fully human-certified cases, publish transparent *separate* metri
 ### Pilot
 
 Have two reviewers independently inspect the initial stratified pilot queue with the same frozen original evidence. Track total minutes, first-ending mistakes, incomplete-clause mistakes, savings omissions, and disagreements *by legal mechanism family*. Only after obtaining measured pass rates should the system schedule batches across more humans or AI agents. Batch exports are **research-only**, lack individual reviewed-claim fingerprints, and never modify the certified ledger.
+
+## Current source-custody acceleration
+
+The builder now also incorporates the frozen Stage 14 official-URL overlay (402 provisional case candidates, 386 PDF links) and the growing bounded Stage 21 PDF-custody manifest. Captured original PDF bytes are prioritized as an early review lane, with individual GitHub source links and byte SHA-256 directly in the case workbench. Future pushes of the source-custody CSV trigger deterministic republishing of batch workbooks. A downloaded document remains **unverified** for EO identity, page, clause completeness and legal effect. Earlier Stage 20 research notes remain accessible across the same 3,359 unique cases.
