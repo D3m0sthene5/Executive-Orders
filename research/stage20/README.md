@@ -13,6 +13,8 @@ The Stage 19 0/14,972 independently human-reviewed whole-lifecycle headline is *
 | [CONVERSION_WORKBENCH.html](output/CONVERSION_WORKBENCH.html) | Offline searchable AI reviewer-note research interface and uncertified researcher-proposal export |
 | [SHARED_SOURCE_WORKBENCH.html](output/SHARED_SOURCE_WORKBENCH.html) | Source-once/per-order review interface across 98 clusters, 352 linked research tasks and 236 distinct cases; no legal-effect claims accepted |
 | [SHARED_SOURCE_CASE_REVIEW_QUEUE.csv](output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv) | Flat task ledger assigning one separate source-and-clause legal inquiry per case–citation pair |
+| [STATUTE_SOURCE_READY_WORKBENCH.html](output/STATUTE_SOURCE_READY_WORKBENCH.html) | Seven acquired GovInfo PDF candidates linked by verified retrieval metadata to 18 statute–EO research tasks across 14 distinct orders; three retrievals remain unavailable/invalid |
+| [STATUTE_CASE_REVIEW_QUEUE.csv](output/STATUTE_CASE_REVIEW_QUEUE.csv) | Machine-readable 42 potential statute–case co-mentions, including 18 with downloaded PDF candidates; all legal relationships unresolved |
 | [CAUSAL_CUE_SUMMARY.json](output/CAUSAL_CUE_SUMMARY.json) | Case-specific date-context research hints and explicit warnings about shared-batch image ambiguity |
 | [OPUS_ORIGINAL_MEDIA_INTEGRITY.json](output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) | **496 of 496** media members match the Opus manifest's member sizes and SHA-256 checksums; 0 unmatched members |
 | [OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv](output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv) | Manifest paths with source byte hashes and **provisional** evidence-folder case-association hints |
