@@ -1,0 +1,36 @@
+name: Reuse frozen official EO source links
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage21-reuse-sources.yml'
+      - 'research/stage21/code/attach_stage14_sources.py'
+      - 'research/stage21/code/test_stage14_sources.py'
+permissions:
+  contents: write
+jobs:
+  source-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Check no-certification and source-domain gates
+        run: python -m unittest discover -s research/stage21/code -p 'test_stage14_sources.py' -v
+      - name: Join official literal links to the research queue
+        run: |
+          python research/stage21/code/attach_stage14_sources.py
+          python research/stage21/code/attach_stage14_sources.py --check
+      - name: Save reproducible source overlay
+        run: |
+          git config user.name "EO Evidence Reconstruction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage21/sources_index
+          if ! git diff --cached --quiet; then
+            git commit -m "Recover official document URL leads for provisional case batches"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
