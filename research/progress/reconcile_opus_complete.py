@@ -108,7 +108,7 @@ result = {
     "manifest_file_entries": len(listed),
     "included_manifest_files_sha256_verified": len(actual_paths),
     "manifest_media_entries_not_in_zip": len(omitted_media),
-    "manifest_media_extensions": dict(Counter(Path(x).suffix.lower() for x in omitted_media)),
+    "manifest_media_extensions": dict(sorted(Counter(Path(x).suffix.lower() for x in omitted_media).items())),
     "zip_filename_encoding_aliases_resolved": len(renamed),
     "included_file_hash_failures": 0,
     "original_media_companion_on_github": False,
@@ -116,12 +116,12 @@ result = {
     "complete_status_records": len(records),
     "complete_status_record_decision_states": dict(Counter(x.get("decision_state") for x in records)),
     "complete_status_records_with_text_obtained": sum(x.get("text_obtained") is True for x in records),
-    "complete_yes_no": dict(Counter(complete_map.values())),
+    "complete_yes_no": dict(sorted(Counter(complete_map.values()).items())),
     "interim_accepted": len(interim_map),
     "stage17_interim_import": len(stage17_import),
     "new_vs_interim": len(new_since_interim),
     "new_vs_stage17_canonical": len(new_since_stage17),
-    "new_vs_stage17_yes_no": dict(Counter(complete_map[x] for x in new_since_stage17)),
+    "new_vs_stage17_yes_no": dict(sorted(Counter(complete_map[x] for x in new_since_stage17).items())),
     "new_with_stage16_structured_episode": new_with_stage16_episode,
     "new_with_stage17_structured_provision": new_with_stage17_provision,
     "interim_verdict_changes": changed_interim,
@@ -159,7 +159,7 @@ fields = [
     "what_remains_inferential", "evidence_dir", "review_dir",
 ]
 with (out / "OPUS_COMPLETE_304_PENDING_CANONICAL_INTEGRATION.csv").open("w", encoding="utf-8", newline="") as fh:
-    writer = csv.DictWriter(fh, fieldnames=fields)
+    writer = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
     writer.writeheader()
     for instrument in sorted(new_since_stage17):
         writer.writerow({field: record_map[instrument].get(field) for field in fields})
@@ -213,7 +213,7 @@ for instrument in new_since_stage17:
         "audit_next_step": "inspect original images and full provision footprint; reconstruct first causal history",
     }
 with (out / "DECIDED_CASE_COMPLETENESS_RECONCILED.csv").open("w", encoding="utf-8", newline="") as fh:
-    writer = csv.DictWriter(fh, fieldnames=fieldnames)
+    writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")
     writer.writeheader()
     writer.writerows(combined[x] for x in sorted(combined))
 if len(combined) != result["reconciled_decisions"]:
