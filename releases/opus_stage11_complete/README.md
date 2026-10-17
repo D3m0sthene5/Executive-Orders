@@ -12,4 +12,4 @@ Built 2026-10-17. All 1,161 Stage 11 worklist IDs were researched and independen
 
 Every status is an AI producer's proposal checked by a separate AI reviewer. None is a human-certified legal finding. Read `REPORT.md` inside the zip first.
 
-PDFs and page images are in a separate 359 MB companion, `OPUS_STAGE11_EVIDENCE_ORIGINALS.zip` (SHA-256 `5ece42b87164b3d8422e53fba554a28b5f644362cea920b72c7996a8e0b88e9a`), which is not uploaded here.
+PDFs and page images are in a separate 359 MB companion, `OPUS_STAGE11_EVIDENCE_ORIGINALS.zip` (SHA-256 `5ece42b87164b3d8422e53fba554a28b5f644362cea920b72c7996a8e0b88e9a`), stored with Git LFS in this folder.
