@@ -36,6 +36,9 @@ class Gates(unittest.TestCase):
         claim=no_claim()
         review={"schema":"eo-lifecycle-review/v1","instrument_id":"EO:TEST","claim_sha256":claim_sha(claim),"reviewer":"Independent Historian","reviewer_role":"independent_human","decision":"uphold","rationale":"I checked the original order, later statute, and contrary cessation dates against the source pages.","checked_source_urls":[ref("original")["url"],ref("statute")["url"]],"reviewed_on":"2026-10-17"}
         self.assertEqual(validate_review(review,claim),[])
+        review["checked_source_urls"]=[ref("original")["url"]]
+        self.assertIn("unchecked_cited_source",validate_review(review,claim))
+        review["checked_source_urls"].append(ref("statute")["url"])
         claim["whole_order_end"]["date"]="1950-01-02"
         self.assertIn("stale_claim_fingerprint",validate_review(review,claim))
         self.assertIn("whole_order_end_not_last_clause_end",validate_claim(claim,"no"))
@@ -58,6 +61,12 @@ class Gates(unittest.TestCase):
         self.assertEqual(validate_claim(claim,"no"),[])
         claim["operative_clauses"][0]["later_events"]=[{"actor":"President","mechanism":"amendment","source":ref("amendment")}]
         self.assertIn("clause_0_later_event_evidence",validate_claim(claim,"no"))
+
+    def test_offline_review_can_cite_archival_item(self):
+        claim=no_claim()
+        claim["original_representation"]={"archival_id":"NARA:box-1","local_file_sha256":"a"*64,"page_or_item":"folio 4"}
+        review={"schema":"eo-lifecycle-review/v1","instrument_id":"EO:TEST","claim_sha256":claim_sha(claim),"reviewer":"Independent Historian","reviewer_role":"independent_human","decision":"uphold","rationale":"I checked the archived original and subsequent statute, including the original clause and residuals.","checked_source_urls":[ref("original")["url"],ref("statute")["url"]],"checked_archival_items":["NARA:box-1"],"reviewed_on":"2026-10-17"}
+        self.assertEqual(validate_review(review,claim),[])
 
     def test_worksheet_is_not_certification(self):
         packet={"instrument":{"id":"EO:TEST"},"packet_fingerprint":"abc"}

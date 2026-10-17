@@ -126,8 +126,27 @@ def validate_review(review,claim):
     if not isinstance(review.get("rationale"),str) or len(review["rationale"].strip())<40:
         errors.append("review_rationale")
     checked=review.get("checked_source_urls")
-    if not isinstance(checked,list) or not checked or not all(isinstance(u,str) and u.startswith("https://") for u in checked):
+    archived=review.get("checked_archival_items",[])
+    if not isinstance(checked,list) or not all(isinstance(u,str) and u.startswith("https://") for u in checked) or not isinstance(archived,list) or not all(isinstance(x,str) and x.strip() for x in archived) or not (checked or archived):
         errors.append("checked_sources")
+    else:
+        cited=[claim.get("original_representation"),claim.get("savings_residuals",{}).get("source")]
+        whole=claim.get("whole_order_end")
+        if isinstance(whole,dict):
+            cited.append(whole.get("source"))
+        for clause in claim.get("operative_clauses",[]):
+            if not isinstance(clause,dict):
+                continue
+            cited.append(clause.get("original_source"))
+            for field in ("first_end","current_predicate"):
+                item=clause.get(field)
+                if isinstance(item,dict):
+                    cited.append(item.get("source"))
+            for item in clause.get("later_events",[]):
+                if isinstance(item,dict):
+                    cited.append(item.get("source"))
+        if any(isinstance(source,dict) and not ((source.get("url") in checked) or (source.get("archival_id") in archived)) for source in cited):
+            errors.append("unchecked_cited_source")
     if not exact_date(review.get("reviewed_on")):
         errors.append("review_date")
     return errors
