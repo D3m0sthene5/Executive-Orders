@@ -4,6 +4,7 @@ Usage: python research/progress/reconcile_opus_final.py STAGE17.sqlite OPUS_FINA
 """
 
 import argparse
+import csv
 import hashlib
 import json
 import sqlite3
@@ -65,4 +66,17 @@ if missing_from_final or changed_prior or len(new) != 57 or ids - included:
     raise SystemExit("Opus release differs from the expected additive 57-decision overlay")
 target = Path(__file__).parent / "OPUS_FINAL_RECONCILIATION.json"
 target.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+status_by_id = {x["instrument_id"]: x for x in status_records}
+csv_target = Path(__file__).parent / "OPUS_FINAL_57_PENDING_INTEGRATION.csv"
+fields = [
+    "instrument_id", "final_substantive_effect", "final_any_operative_EO_effect",
+    "ledger_signing_date", "ledger_title", "lane", "text_obtained", "text_source_grade",
+    "footprint_complete", "historical_causes", "review_verdict", "review_problems",
+    "what_remains_inferential", "evidence_dir", "review_dir",
+]
+with csv_target.open("w", encoding="utf-8", newline="") as fh:
+    writer = csv.DictWriter(fh, fieldnames=fields)
+    writer.writeheader()
+    for instrument in sorted(new):
+        writer.writerow({key: status_by_id[instrument].get(key) for key in fields})
 print(json.dumps(result, indent=2))
