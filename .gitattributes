@@ -8,3 +8,10 @@ research/checkpoints/** -text
 *.sh text eol=lf
 .github/** text eol=lf
 jobs/**/*.py text eol=lf
+
+# Evidence bytes and output hashes must survive Windows checkouts unchanged.
+jobs/**/output/** -text
+jobs/**/data/** -text
+research/readiness/rules/*.json text eol=lf
+jobs/**/CACHE_MB text eol=lf
+HANDOFF/*.md text eol=lf

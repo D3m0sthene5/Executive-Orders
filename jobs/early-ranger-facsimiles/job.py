@@ -7,6 +7,7 @@ No OCR, accession, identity certification, legal status, or cause is inferred.
 import csv,gzip,hashlib,json,os,re,time,urllib.parse,urllib.request,urllib.error
 from datetime import datetime,timezone
 from pathlib import Path
+import sys
 
 ROOT=Path(os.environ["REPO_ROOT"])
 OUT=Path(os.environ["OUTPUT_DIR"])
@@ -17,6 +18,10 @@ TARGET=[
 ]
 MAX_PER_FILE=13_000_000
 MAX_PER_DOC_FILES=9
+
+sys.path.insert(0,str(ROOT/"jobs/_lib"))
+from fetch_pool import FetchPool
+POOL=FetchPool(Path(os.environ.get("JOB_CACHE_DIR",str(OUT.parent/"download-cache"))),max_bytes=MAX_PER_FILE)
 
 def sha(data):return hashlib.sha256(data).hexdigest()
 def acceptable(url):
@@ -40,15 +45,9 @@ def plan(record):
 
 def fetch(url):
     if not acceptable(url):raise ValueError("Unapproved candidate image link")
-    request=urllib.request.Request(url,headers={
-        "User-Agent":"ExecutiveOrdersHistoricalFacsimileRecovery/1.0",
-        "Accept":"application/pdf,image/jpeg"})
-    with urllib.request.urlopen(request,timeout=35) as response:
-        final=urllib.parse.urlsplit(response.geturl())
-        if final.scheme!="https" or final.hostname!="tile.loc.gov":
-            raise ValueError("Unexpected facsimile redirect host")
-        body=response.read(MAX_PER_FILE+1)
-        if len(body)>MAX_PER_FILE:raise ValueError("Facsimile exceeded bound")
+    result=POOL.fetch(url)
+    if urllib.parse.urlsplit(result['final_url']).hostname!='tile.loc.gov':raise ValueError('Unexpected facsimile redirect host')
+    body=result['body']
     suffix=urllib.parse.urlsplit(url).path.lower()
     if suffix.endswith(".pdf") and not(body.startswith(b"%PDF-") and b"%%EOF" in body[-4096:]):
         raise ValueError("not valid PDF byte structure")
@@ -62,6 +61,7 @@ def main():
     if len(index)!=len(inp):raise ValueError("duplicate catalog id")
     if any(id_ not in index for id_ in TARGET):raise ValueError("target missing source metadata")
     OUT.mkdir(parents=True,exist_ok=True)
+    POOL.prefetch([u for id_ in TARGET for u in plan(index[id_])])
     links=[]
     for id_ in TARGET:
         record=index[id_]
@@ -90,7 +90,7 @@ def main():
                 row["error"]=type(e).__name__+": "+str(e)[:280]
             files.append(row)
             print(id_,i+1,len(urls),row["state"],flush=True)
-            time.sleep(0.6)
+
         links.append({
             "catalog_item_id":id_,
             "item_url":record["url"],

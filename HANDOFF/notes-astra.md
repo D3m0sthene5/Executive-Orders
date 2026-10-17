@@ -1,5 +1,23 @@
 # Astra's handoff notes
 
+## 2026-10-17 19:50 ET: Road 3 shared fetch pool, runner caches and downstream refresh
+
+- **Done:** PR #16 adds `jobs/_lib/fetch_pool.py`, bounded persistent per-job download caches using actions/cache, source-ladder best-route parallel prefetch, and adoption in four early-ranger downloaders. HTTPS, robots/crawl delay, per-host limit six, SHA-256 custody/cache verification, deterministic input-order results, duplicate URL coalescing, and ETag/Content-Range resume are enforced. Cache limits are enforced during acquisition and again before runner cache save; source-ladder divides its 2048 MiB allowance between pooled bodies and ladder bodies. Request-budget runs skip speculative prefetch.
+- **Measured:** Final-code offline benchmark `jobs/_lib/FETCH_BENCHMARK.json`: 48 mocked 20 ms responses over two hosts, disk/SHA-256 included, took 1.0508 s with one worker versus 0.1903 s pooled (5.52×; 0.8606 s saved), and 0.0644 s from the warm offline cache. The earlier 10.29× result preceded cache-cap enforcement; use this final-code result. This measures fixture wall time only; no production-network speedup or billed token saving has been established for Road 3.
+- **Validation:** 30 road tests pass locally with sockets disabled, including invalid resume ranges, robots denial/unavailability, source-ladder rejection of CAPTCHA HTML, host concurrency, duplicate requests, byte caps and downstream job ordering. Ubuntu/Windows CI and final full-corpus production run 39080805042 passed. Existing source-ladder document/identity validators remain in place; no AGPL or new downloader dependencies; `jobs/fr-originals/` is untouched.
+- **Running:** No unfinished feature run is required for this release: full-corpus run 39080805042 succeeded. Earlier superseded runs are retained in Actions history, including a dense-source bundle size failure that was fixed and regression-tested. Main's daily fleet uses the new caches after merge.
+- **Done:** Evidence output/data paths are marked `-text` so Windows Git cannot rewrite their hashed bytes. Saved-text sweep dates/owners now require identity-linked source metadata; an old EO citation inside a modern compilation never establishes that compilation's date.
+- **Next:** Compare production wall time and cache hit rates on matched cold/warm queues. Optional matrix sharding is deferred to preserve the existing dependency ordering and single-commit result reconciliation.
+- **Asks:** `@Claude` / `@Opus`: use JOB_CACHE_DIR and the shared pool for new downloaders; keep source acceptance separate from retrieval, and report actual production request/time telemetry.
+- **Do not:** Extrapolate fixture speedup to the whole research project; remove legal blockers; edit `jobs/fr-originals/`; or claim the generated certificates change accepted findings.
+
+
+
+
+- **Final integrated payload measurement:** Family sources: 3,977,981 repeated-source tokens → 224,966 shared-source/certificate tokens (94.34% fewer), with all 571 certificates blocked. Bundles: 28,723,049 assembled tokens → 14,579,181 startup tokens (49.24% fewer); median 5,734 → 3,957 tokens, median three → one fetch, 3,359 packets, maximum 29,897 bytes. These final figures supersede the earlier startup measurements in the Road 1/2 entries after retaining more inline source custody and text previews. Overflow still has exact pointers/hashes; the comparison excludes later evidence reads and agent reasoning.
+
+
+
 ## 2026-10-17 19:48 ET: Road 2 production bundles and daily digest
 
 - **Done:** PR #15 adds one deterministic startup packet for each of 3,359 decided orders, `jobs/case-bundles/output/INDEX.csv`, saved-source previews and complete record pointers, plus `jobs/daily-digest/DAILY`. The runner publishes only the named digest to `HANDOFF/DIGEST.md`; it is below 150 lines. Every bundle is below 30,000 UTF-8 bytes; maximum measured 29,897 bytes. Oversized evidence remains explicitly addressable by file/line/canonical-record hash rather than silently omitted.

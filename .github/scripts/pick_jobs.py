@@ -79,6 +79,15 @@ def ordered(picked):
     return out
 
 
+def with_consumers(picked):
+    """Include downstream jobs because output-only bot commits trigger no workflow."""
+    selected=set(picked)
+    while True:
+        more={name for name in all_jobs() if any(dep in selected for dep in job_list(name,'after.txt'))}
+        if more <= selected:return sorted(selected)
+        selected |= more
+
+
 def main():
     if os.environ.get("EVENT") == "schedule":
         picked = sorted(
@@ -119,7 +128,7 @@ def main():
             if name not in picked and any(fnmatch.fnmatch(p, pat) for p in inputs for pat in patterns):
                 picked.append(name)
 
-    picked = ordered(picked)
+    picked = ordered(with_consumers(picked))
     print("Jobs to run:", ", ".join(picked) or "none")
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")

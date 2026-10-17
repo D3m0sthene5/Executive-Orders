@@ -10,6 +10,7 @@ import collections, csv, gzip, hashlib, io, json, os, re, time
 import urllib.error, urllib.parse, urllib.request
 from datetime import datetime,timezone
 from pathlib import Path
+import sys
 
 ROOT=Path(os.environ["REPO_ROOT"])
 OUT=Path(os.environ["OUTPUT_DIR"])
@@ -19,6 +20,10 @@ CACHE=OUT/"raw_LOC_metadata"
 RESPONSE_MAX=4_000_000
 TIMEOUT=17
 MAX_ITEMS=22
+
+sys.path.insert(0,str(ROOT/"jobs/_lib"))
+from fetch_pool import FetchPool
+POOL=FetchPool(Path(os.environ.get("JOB_CACHE_DIR",str(OUT.parent/"download-cache"))),max_bytes=RESPONSE_MAX)
 
 def hash256(data):return hashlib.sha256(data).hexdigest()
 def load_csv(p):
@@ -38,15 +43,9 @@ def item_id(url):
 
 def fetch_item(item):
     url="https://www.loc.gov/item/"+item+"/?fo=json&at=item,resources"
-    req=urllib.request.Request(url,headers={"User-Agent":"ExecutiveOrdersHistoricalSourceResearch/Stage22 (noncommercial)","Accept":"application/json"})
-    with urllib.request.urlopen(req,timeout=TIMEOUT) as response:
-        final=urllib.parse.urlsplit(response.geturl())
-        if final.scheme!="https" or final.hostname not in ("www.loc.gov","loc.gov"):
-            raise ValueError("unexpected LOC JSON redirect")
-        body=response.read(RESPONSE_MAX+1)
-        if len(body)>RESPONSE_MAX:raise ValueError("OFR original document metadata exceeded bounded size")
-        if "json" not in (response.headers.get("content-type") or "").lower():
-            raise ValueError("LOC returned non-JSON metadata")
+    fetched=POOL.fetch(url)
+    if urllib.parse.urlsplit(fetched['final_url']).hostname not in ('www.loc.gov','loc.gov'):raise ValueError('unexpected LOC JSON redirect')
+    body=fetched['body']
     data=json.loads(body)
     if not isinstance(data,dict) or not isinstance(data.get("item"),dict):
         raise ValueError("LOC JSON missing item object")

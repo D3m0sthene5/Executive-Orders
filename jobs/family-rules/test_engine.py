@@ -35,4 +35,25 @@ class ProofTests(unittest.TestCase):
             self.assertIn('RULE_QUOTE_NOT_EXACT',rule_errors(r,root))
             r['source']['text_path']='../escape'
             self.assertIn('RULE_TEXT_UNAVAILABLE',rule_errors(r,root))
+class CorpusDateTests(unittest.TestCase):
+    def test_old_citation_does_not_date_an_unregistered_compilation(self):
+        from engine import run, write
+        from unittest.mock import patch
+        import json
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);out=root/'result'
+            p=root/'jobs/later-events/output';p.mkdir(parents=True)
+            (p/'EDGES.csv').write_text('edge_id,acting_id,target_id,mechanism,qualifier,date_candidate\nLE-1,EO:20,EO:10,revocation,,1950-01-01\n')
+            (p/'CATALOG_INDEX.csv').write_text('id,signing_date\nEO:10,1940-01-01\n')
+            p=root/'jobs/current-law';p.mkdir(parents=True)
+            original=Path(__file__).resolve().parents[1]/'current-law/eo_refs.py'
+            (p/'eo_refs.py').write_bytes(original.read_bytes())
+            p=root/'jobs/mixed/output/texts';p.mkdir(parents=True)
+            (p/'modern.txt').write_text('Executive Order 10 is discussed in this undated compilation.')
+            rule={'acting_id':'EO:20','mechanism':'revocation','effective_date':'1950-01-01','scope':{'kind':'explicit_targets','targets':['EO:10']}}
+            write(root/'research/readiness/rules/EO_20.json',rule)
+            with patch.dict('sys.modules',{'tiktoken':None}):certs=run(root,out)
+            self.assertEqual(certs[0]['counterexample_count'],1)
+            self.assertIn('LATER_OR_UNDATED_SAVED_TEXT_USE',certs[0]['blockers'])
+
 if __name__ == '__main__': unittest.main()

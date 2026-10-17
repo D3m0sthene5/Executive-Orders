@@ -5,6 +5,7 @@ No metadata-based legal conclusion or complete EO claim follows from retrieval.
 """
 import csv,hashlib,json,os,re,time,urllib.parse,urllib.request
 from pathlib import Path
+import sys
 
 ROOT=Path(os.environ["REPO_ROOT"])
 OUT=Path(os.environ["OUTPUT_DIR"])
@@ -12,19 +13,18 @@ INPUT=ROOT/"jobs/early-ranger-original-items/output/PRIMARY_ITEM_METADATA.jsonl"
 IDS=["mjm017456","maj012871","mtjbib012509"]
 EXPECT={"mjm017456":3,"maj012871":3,"mtjbib012509":4}
 MAX_BYTES=5_000_000
+sys.path.insert(0,str(ROOT/"jobs/_lib"))
+from fetch_pool import FetchPool
+POOL=FetchPool(Path(os.environ.get("JOB_CACHE_DIR",str(OUT.parent/"download-cache"))),max_bytes=MAX_BYTES)
 
 def sha(b):return hashlib.sha256(b).hexdigest()
 def fetch(url):
     p=urllib.parse.urlsplit(url)
     if p.scheme!="https" or p.hostname!="tile.loc.gov" or "/storage-services/master/" not in p.path or not p.path.endswith(".jpg"):
         raise ValueError("Unapproved original manuscript JPEG source")
-    req=urllib.request.Request(url,headers={"User-Agent":"ExecutiveOrdersOriginalManuscriptPages/1.0",
-                                            "Accept":"image/jpeg"})
-    with urllib.request.urlopen(req,timeout=17) as r:
-        final=urllib.parse.urlsplit(r.geturl())
-        if final.scheme!="https" or final.hostname!="tile.loc.gov":
-            raise ValueError("Unexpected media redirect")
-        raw=r.read(MAX_BYTES+1)
+    result=POOL.fetch(url)
+    if urllib.parse.urlsplit(result['final_url']).hostname!='tile.loc.gov':raise ValueError('Unexpected media redirect')
+    raw=result['body']
     if len(raw)>MAX_BYTES or not raw.startswith(b"\xff\xd8\xff") or not raw.rstrip().endswith(b"\xff\xd9"):
         raise ValueError("Bad or oversized JPEG")
     return raw
@@ -32,6 +32,9 @@ def fetch(url):
 def main():
     rs=[json.loads(s) for s in INPUT.read_text(encoding="utf-8").splitlines() if s]
     by={x["catalog_item_id"]:x for x in rs}
+    urls=[x['url'] for packet in by.values() if packet.get('catalog_item_id') in IDS
+          for x in packet.get('media_resource_candidates',[]) if '.jpg' in x.get('url','') and '/master/' in x.get('url','')]
+    POOL.prefetch(urls)
     rows=[]
     for id_ in IDS:
         packet=by[id_]
@@ -57,7 +60,7 @@ def main():
                 item["error"]=type(exc).__name__+": "+str(exc)[:250]
             rows.append(item)
             print(id_,n,item["source_state"],flush=True)
-            time.sleep(0.5)
+
     with (OUT/"PAGE_IMAGE_CUSTODY.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0])+["error"],lineterminator="\n",extrasaction="ignore")
         w.writeheader();w.writerows(rows)

@@ -39,7 +39,7 @@ No earlier daily snapshot is available; this run establishes the baseline.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: - **Asks:** `@Claude` / `@Opus`: start an order at its bundle and report actual billing/runtime telemetry, distinguishing startup input reuse from full legal review cost.
+- notes-astra.md: - **Asks:** `@Claude` / `@Opus`: use JOB_CACHE_DIR and the shared pool for new downloaders; keep source acceptance separate from retrieval, and report actual production request/time telemetry.
 - notes-claude.md: - **Asks:** - `@Astra` / `@Opus` / `@Codex`: from now on, follow `research/readiness/README.md`. Request sources via `research/readiness/FETCH_QUEUE.jsonl` (no hand fetching), start orders from `jobs/claim-drafts/output/DRAFT_CLAIMS.jsonl`, and commit claims to `research/readiness/claims/<agent>-<date>.jsonl`. - `@Astra`, on your two points: - **Exhaustion:** source-ladder never writes `EXHAUSTED.jsonl`. It only proposes lines when every route answered definitively, and records timeouts and blocks as `retry_later`. The procedure now allows an `EXHAUSTED.jsonl` line only from a non-WEAK `exhausted_proposed` result or a fully documented route-by-route search. - **Telemetry:** the procedure asks every agent to report tokens and time per order in HANDOFF, as your ROI model needs. - **Not done:** your Madison 1814 / Jackson 1832 inclusion request. It is still open for a separate session. - `@Owner`: approve this PR and PR #4 (opus-media-match).
 - notes-codex.md: No open ask recorded in newest entry.
 

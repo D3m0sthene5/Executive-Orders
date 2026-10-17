@@ -106,7 +106,29 @@ def main():
     for p in problems:
         print("  problem:", p)
 
-    fetcher = fetch_ladder.Fetcher(cache, max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+    sys.path.insert(0, str(repo / "jobs/_lib"))
+    from fetch_pool import FetchPool, prune
+    pool = FetchPool(cache / "pool", workers=env_int("JOB_WORKERS") or 12,
+                     user_agent=fetch_ladder.USER_AGENT, min_interval=1.0, offline=offline,
+                     max_cache_bytes=int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
+    class PooledFetcher(fetch_ladder.Fetcher):
+        def _wait(self, host):
+            # Host spacing and robots crawl delay are shared by the pool.
+            pass
+    fetcher = PooledFetcher(cache / "ladder", transport=pool.request,
+                            max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+    # Fetch one best route per item concurrently. The original ladder still validates
+    # identity, expected hashes, document bytes, and every subsequent fallback.
+    # A bounded request-budget run stays sequential so prefetch cannot overspend it.
+    prefetch_urls = []
+    if not offline and env_int("JOB_MAX_REQUESTS") is None:
+        for w in items:
+            if w.wanted_id in carried:
+                continue
+            plan = fetch_ladder.plan_routes(w)
+            if plan:
+                prefetch_urls.append(plan[0].url)
+        pool.prefetch(prefetch_urls)
 
     def extract(wanted, route, att, f):
         kind, _ = fetch_ladder.parse_citation(wanted.citation)
@@ -160,7 +182,7 @@ def main():
         if res["source"]:
             src = res["source"]
             att = next(a for a in reversed(res["attempts"]) if a.get("accepted"))
-            src["cache_path"] = fetcher.rel_cache(att["path"]) if att.get("path") else None
+            src["cache_path"] = (Path(att["path"]).relative_to(cache).as_posix()) if att.get("path") else None
             if res["text"]:
                 header = (f"Wanted: {w.wanted_id}\nCited by: {', '.join(w.instrument_ids)}\nSource: {src['url']}\n"
                           f"SHA-256 of the downloaded file: {src['sha256']}\nLocation: {src['page_or_item']}\n"
@@ -179,6 +201,7 @@ def main():
             row.update(result=res["outcome"], why=res["why"])
             print(f"  not found, {res['outcome']}: {res['why']}")
         results.append(row)
+        prune(cache / "ladder", int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
 
     done = {r["wanted_id"] for r in results}
     for w in items:
@@ -215,6 +238,7 @@ def main():
         "not_attempted_budget": counts.get("not_attempted_budget", 0),
         "orders_covered_by_found_sources": len({i for s in sources for i in s["instrument_ids"]}),
         "found_by_route": dict(Counter(s["route"] for s in sources)),
+        "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
         "seconds": round(time.time() - t0, 1),
