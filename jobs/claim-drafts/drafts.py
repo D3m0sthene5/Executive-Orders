@@ -49,7 +49,7 @@ LEGAL_CUTOFF = "2026-10-14"
 KNOWN_JOBS = ["fr-originals", "source-ladder", "clause-drafts", "later-events", "current-law", "opus-media-match"]
 NOT_INPUT_JOBS = {JOB_NAME, "claim-checker", "readiness-tracker", "example-hello", "_template"}
 FRAGMENT_KINDS = {"operative_clauses", "later_event_candidates", "whole_order_end_candidates",
-                  "current_predicate_candidates", "savings_leads", "original_representation"}
+                  "current_predicate_candidates", "savings_leads", "original_representation", "family_rule_checks"}
 TRACKER_STEPS = ["original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals",
                  "counterevidence", "shared_sources", "opus_media"]
 CLAIM_STEPS = TRACKER_STEPS[:5]
@@ -1354,6 +1354,7 @@ def build_draft(iid, merged, rd, gate, step_for):
         effort = "medium"
 
     draft = {
+        "family_rule_certificates": [f["data"] for _, f in merged.frags.get(iid, {}).get("family_rule_checks", [])],
         "status": "MACHINE DRAFT - UNVERIFIED; not a claim; see jobs/claim-drafts/AGENT_GUIDE.md",
         "produced_by": JOB_NAME,
         "provisional_status": status, "decision_origin": origin, "in_decided_3359": bool(d),
