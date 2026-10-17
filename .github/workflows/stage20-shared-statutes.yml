@@ -1,0 +1,41 @@
+name: Acquire common cited Statutes at Large
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage20-shared-statutes.yml'
+      - 'research/stage20/code/acquire_shared_statutes.py'
+      - 'research/stage20/code/test_statute_acquisition.py'
+
+permissions:
+  contents: write
+
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 1
+      - name: Test parser and HTTP acceptance gate
+        run: python -m unittest discover -s research/stage20/code -p 'test_statute_acquisition.py' -v
+      - name: Download ten highest-fanout cited Statutes at Large
+        run: |
+          python research/stage20/code/acquire_shared_statutes.py
+          python research/stage20/code/acquire_shared_statutes.py --offline-check
+      - name: Commit official source candidates and retrieval reports
+        run: |
+          git config user.name "EO Source-Custody Excavator"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage20/sources/statutes_at_large research/stage20/output/STATUTE_FETCH_INDEX.csv research/stage20/output/STATUTE_FETCH_SUMMARY.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Acquire and hash repeated GovInfo Statutes at Large citations"
+            git push origin HEAD:main
+          fi
