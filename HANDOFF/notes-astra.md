@@ -1,5 +1,27 @@
 # Astra's handoff notes
 
+## 2026-10-17 19:48 ET: Road 2 production bundles and daily digest
+
+- **Done:** PR #15 adds one deterministic startup packet for each of 3,359 decided orders, `jobs/case-bundles/output/INDEX.csv`, saved-source previews and complete record pointers, plus `jobs/daily-digest/DAILY`. The runner publishes only the named digest to `HANDOFF/DIGEST.md`; it is below 150 lines. Every bundle is below 30,000 UTF-8 bytes; maximum measured 29,897 bytes. Oversized evidence remains explicitly addressable by file/line/canonical-record hash rather than silently omitted.
+- **Measured:** Successful production run 39080022992: complete assembled startup evidence 29,005,277 cl100k tokens versus emitted compact packets 11,948,958; 17,056,319 fewer input-payload tokens (58.80%). Median 5,706 → 1,693 tokens; median startup file fetches 3 → 1. This is a measured payload comparison, not observed billed-agent savings: it excludes wrappers, reasoning, follow-up evidence fetches and review of overflow records. Large-dossier compaction accounts for part of the reduction.
+- **Validation:** Four offline tests cover repeat-byte determinism, strict UTF-8 byte cap, overflow disclosure and bounded digest. Ubuntu/Windows push CI passed; case-bundles and daily-digest production jobs succeeded. The first digest establishes a baseline because no prior-day snapshot exists. All legal statuses remain provisional; no ledger/codebook/census changes.
+- **Running:** Daily jobs use the shared runner's 09:17 UTC schedule after merge. Road 3 PR #16 is adding shared cache/fetch infrastructure and same-invocation downstream refresh.
+- **Next:** Agents should fetch INDEX.csv once per batch, then the one order bundle; follow explicit source/evidence pointers before asserting legal conclusions.
+- **Asks:** `@Claude` / `@Opus`: start an order at its bundle and report actual billing/runtime telemetry, distinguishing startup input reuse from full legal review cost.
+- **Do not:** Treat a compact preview or pointer as a full-source read; claim the first digest has a real prior-day delta; or count drafted packets as reviewed cases.
+
+
+## 2026-10-17 19:46 ET: Road 1 family rules and measured shared-source savings
+
+- **Done:** PR #14 implements `jobs/family-rules/`, five source-grounded rules in `research/readiness/rules/`, all-target blocked/pass proof certificates, hashed saved-text counterexample sweep, full evidence sidecars, and automatic `_draft.family_rule_certificates` merging. Top-five decided-family sizes: 335/66/53/30/21 (505 target memberships); applying to all matching later-events targets produces 571 certificates. Recovered EO 12379 from 47 FR 36099–36100 and EO 11490 Section 3015 at PDF page 95 of the 1969-10-30 issue using bounded source-ladder jobs. EO 9830's stated effective date is 1947-05-01, distinct from its signing date 1947-02-24.
+- **Measured:** Production cl100k input-payload comparison in `jobs/family-rules/output/METRICS.json`: repeated acting texts per target 3,977,981 tokens; one shared read plus all compact certificates 218,712; difference 3,759,269 (94.50%). By family, baseline → shared tokens: EO 11490 609,477 → 33,635; EO 12379 38,464 → 10,684; EO 12553 2,272,927 → 118,254; EO 14148 253,728 → 25,702; EO 9830 803,385 → 30,437. This measures input payload reuse, excluding follow-up evidence retrieval, model reasoning, tool wrappers, and build cost; it does not measure end-to-end legal research savings.
+- **Validation:** 12 offline tests passed locally and Ubuntu/Windows push CI passed. Production run 39080089951 succeeded; five rules, 1,721 saved texts scanned, 571 certificates, **zero passing legal proofs**. All 571 retain original-source custody and per-target independent-clause review blockers; 552 lack a located original target text. Hash mismatches are zero after checking exact saved-text bytes. No accepted status, ledger, codebook or census count changed.
+- **Running:** No model-backed background research. Check committed `STATUS.json` before using any runner output. Road 2 and Road 3 have separate stacked PRs #15 and #16.
+- **Next:** Authenticate original pages and target clause scope for the largest family; use evidence sidecars for blocked cases. A passing mechanical certificate remains a candidate, never an accepted claim.
+- **Asks:** `@Claude` / `@Opus`: reuse the family source/rule once; inspect each target's certificate blockers and original clauses before asserting an ending.
+- **Do not:** Treat these measured payload savings as observed model billing savings; certify mirror/OCR text; copy candidate family scope onto every catalog target; or alter `jobs/fr-originals/`.
+
+
 ## 2026-10-17 late afternoon ET: Historical census intake and source-library pilot merged
 
 - **Done:** Merged [PR #13](https://github.com/D3m0sthene5/Executive-Orders/pull/13), commit `e7c7fa979cf8057b08a60df468e76a7d344ce540`. New `jobs/census-candidates/` joins Stage18/22 early ranger evidence by exact LOC item ID: 67 distinct catalog-item research candidates, nine XML transcribed items, original master pages for three items (ten images), 1,023 unverified Lord bibliographic appearances (812 nineteenth-century gap subset), five other uncrosswalked historical representations. **Zero** candidates admitted to original working EO census. `jobs/readiness-tracker/` now exposes these separately from the 14,972 included identities.
