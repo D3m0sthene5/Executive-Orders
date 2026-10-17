@@ -1,6 +1,8 @@
 # Executive Order Research — project status and reproducible releases
 
-**Project code and migration status:** [Executive-Orders](https://github.com/D3m0sthene5/Executive-Orders). The original all-history objective remains active, with a legal cutoff of October 14, 2026. The public release migration is in progress; see [`MIGRATION_STATUS.md`](MIGRATION_STATUS.md) and the [machine-readable migration journal](research/releases/MIGRATION_JOURNAL.json) for the actual publication state. The release manifest describes intended parts and must not be treated as proof of their upload.
+**Project code and migration status:** [Executive-Orders](https://github.com/D3m0sthene5/Executive-Orders). The original all-history objective remains active, with a legal cutoff of October 14, 2026. The Stage 12–17 public release migration has been independently restored from GitHub; sealed originals still lack a private GitHub destination. See [`MIGRATION_STATUS.md`](MIGRATION_STATUS.md) and the [machine-readable migration journal](research/releases/MIGRATION_JOURNAL.json).
+
+**Moving tracker:** [`research/progress/README.md`](research/progress/README.md) shows verified counts, remaining effort, and planning windows. The [per-case completeness audit](research/progress/DECIDED_CASE_COMPLETENESS_STAGE17.csv) and [scientific validity assessment](research/progress/SCIENTIFIC_STATUS_2026-10-17.md) explain why status labels are not yet causal histories.
 
 ## Version-by-version work
 
@@ -13,19 +15,20 @@
 
 ## Current measures
 
-| Measure | Stage 17 checkpoint |
-|---|---:|
-| Working bibliographic identities (not complete historical census) | 14,972 |
-| Provisional substantive YES / NO / UNKNOWN | 268 / 2,787 / 11,917 |
-| Provisional status coverage within bibliography | 20.404756% |
-| New Stage 17 provision histories | 13 |
-| New Stage 17 dated legal transitions | 26 |
-| Human-certified legal claims | 0 |
-| Historical universe completion percentage | Unknown / not estimable |
-| Whole-order first-cessation coverage | Mostly unresolved |
+| Measure | Stage 17 canonical checkpoint | Final Opus overlay reconciled, not yet rebuilt into Stage 17 SQLite |
+|---|---:|---:|
+| Working bibliographic identities (not complete historical census) | 14,972 | 14,972 |
+| Provisional substantive YES / NO / UNKNOWN | 268 / 2,787 / 11,917 | 309 / 2,803 / 11,860 |
+| Provisional status coverage within bibliography | 3,055 / 14,972 = 20.404756% | 3,112 / 14,972 = 20.785466% |
+| Additional decisions for 25% of current bibliography | 688 | 631 |
+| New Stage 17 provision histories | 13 | 13; Opus adds status labels, not new provision histories |
+| New Stage 17 dated legal transitions | 26 | 26 |
+| Human-certified legal claims | 0 | 0 |
+| Historical universe completion percentage | Unknown / not estimable | Unknown / not estimable |
+| Whole-order first-cessation coverage | Mostly unresolved | Opus 597 historical causes explicitly unknown |
 
 ## Remaining defects
 
-Historical unnumbered issuance is seriously underrepresented. Model-reviewed outcomes lack a representative independent accuracy estimate. Later formal revocation dates cannot be substituted for first cessation. The original-image companion for Opus findings is missing. Publication of a reproduction-ready database does not transform these findings into certified legal histories.
+Historical unnumbered issuance is seriously underrepresented. Model-reviewed outcomes lack a representative independent accuracy estimate. Later formal revocation dates cannot be substituted for first cessation. The original-image companions for the Stage 17 Opus import and final Opus release have not been verified. Publication of a reproduction-ready database does not transform these findings into certified legal histories.
 
 Do not use this repository's interim status coverage as the survival proportion among all American executive orders.

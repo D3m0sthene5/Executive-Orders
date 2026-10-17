@@ -1,6 +1,6 @@
 # Executive Orders
 
-**Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) for research status, the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256, and the [release guide](research/releases/README.md) for restoration.
+**Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) and the [moving progress tracker](research/progress/README.md) for research status, remaining effort, and planning windows; the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256; and the [release guide](research/releases/README.md) for restoration.
 
 This repository holds the consolidated inputs, versioned public research releases, workpapers, and reproducibility tools for **The Afterlife of Executive Orders**. The research remains provisional and contains no independently human-certified legal findings.
 
@@ -30,4 +30,4 @@ Research source code, pinned primary-source transcripts, case-specific temporal 
 
 The earlier ~2.97GB consolidated archive remains under Git LFS, unchanged. The Stage 12–17 public releases and compressed Stage 17 canonical SQLite are published as hash-indexed binary parts under [`research/releases/`](research/releases/README.md). The Stage 12, 13, and 15 public archives omit sealed blind-review answers. The Opus original-image companion remains missing.
 
-As of this Stage17 checkpoint: 14,972 working bibliographic identities, 3,055 legacy-v2 provisional present-status findings (20.404756% of the working bibliography), 13 new scoped provision expirations, five early unnumbered printed catalogue leads **not** added to the census, and **zero** human-certified conclusions. National all-history enumeration and whole-order first cessation remain largely unresolved. These quantities must not be interpreted as survival rates.
+As of the Stage 17 canonical checkpoint: 14,972 working bibliographic identities, 3,055 legacy-v2 provisional present-status findings (20.404756% of the working bibliography), 13 new scoped provision expirations, five early unnumbered printed catalogue leads **not** added to the census, and **zero** human-certified conclusions. The separately published final Opus Stage 11 archive includes 57 further additive decisions: a reconciled provisional 3,112/14,972, or 20.785466%, pending a new canonical rebuild. National all-history enumeration and whole-order first cessation remain largely unresolved. These quantities must not be interpreted as survival rates.
