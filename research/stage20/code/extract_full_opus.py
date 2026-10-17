@@ -31,6 +31,15 @@ def main():
     destination.parent.mkdir(parents=True,exist_ok=True)
     with destination.open("w",encoding="utf-8") as f:
         for x in sorted(aid):
-            f.write(json.dumps({k:rid[x].get(k) for k in fields},ensure_ascii=False,sort_keys=True)+"\n")
+            row={k:rid[x].get(k) for k in fields}
+            # The 304-row reconciliation CSV serialized list/dict reviewer notes
+            # using Python str(). Reproduce that exact string representation so
+            # the full-844 Node crosswalk can check the existing records byte for byte.
+            # Preserve the typed JSON alongside it, without treating either as proof.
+            for key in ("review_problems","what_remains_inferential"):
+                original=row[key]
+                row[key]="" if original is None else (original if isinstance(original,str) else str(original))
+                row[key+"_structured"]=original
+            f.write(json.dumps(row,ensure_ascii=False,sort_keys=True)+"\n")
     print(json.dumps({"recovered_notes":len(aid),"human_certifications":0,"sha256":EXPECTED_SHA}))
 if __name__=="__main__":main()
