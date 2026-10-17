@@ -12,12 +12,14 @@ Legal cutoff: 2026-10-14 (America/New_York). Legal codebook v2.0.0 unchanged. Th
 | Cases with unclassified exact ISO-date mentions | **323 / 844** | Date mentions could refer to events, citations or review timestamps |
 | Shared reference clusters (≥2 cases) | **98** | Source acquisition batching opportunities, no shared causal finding |
 | Original-image companion entries matched to bytes and manifest hash | **496 / 496** | Integrity of archived media, not original-document legal authentication |
-| Original-media files with candidate case-folder match | 341 | Unverified folder/path associations only |
+| Original-media files with candidate case-folder match in initial manifest audit | 341 | Weak directory/path hints only; **not unique evidence** for a case |
+| Verified media members uniquely associated with one accepted case by batch path | **0 / 496** | All 496 have multiple possible accepted-case batch associations; see [ambiguity audit](output/CAUSAL_CUE_SUMMARY.json) |
+| Shared-source case-specific research tasks | **352** across **236** distinct cases | 98 shared reference sources; one source-custody record per family and separate proposed effect per cited EO |
 | Ranger systematic years 1789–1861 | 73 | Annual coverage survey plans including 61 newly covered years |
 | Ranger annual search routes | 438 | Planned, not executed; no new authentic EO established |
 | Independently human-reviewed whole-lifecycle dossiers | **0 / 14,972** | Strict scientific numerator unchanged |
 
-Full archival recovery and verification is recorded by GitHub Actions [run 39051699089](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39051699089), which completed successfully. The [full conversion metrics](output/CONVERSION_METRICS.json) and [companion integrity record](output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) preserve these findings. [Stage 20 workbench](output/CONVERSION_WORKBENCH.html) shows recovered prior AI reasoning and exports uncertified research proposals; [the shared authority queue](output/SHARED_SOURCE_REFERENCE_QUEUE.csv) enables source de-duplication.
+Full archival recovery and verification is recorded by GitHub Actions [run 39051699089](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39051699089), which completed successfully. The [full conversion metrics](output/CONVERSION_METRICS.json) and [companion integrity record](output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) preserve these findings. [Stage 20 workbench](output/CONVERSION_WORKBENCH.html) shows recovered prior AI reasoning and exports uncertified research proposals; [the shared authority queue](output/SHARED_SOURCE_REFERENCE_QUEUE.csv) enables source de-duplication, and the [shared-source review workbench](output/SHARED_SOURCE_WORKBENCH.html) makes the 352 per-case legal inquiries explicit. The [causal cue pilot](CAUSAL_CUE_EXCAVATION.md) shows why media stored in shared archives cannot be treated as uniquely matched original-order evidence without reviewing the specific pages.
 
 ## Why zero remains correct, and how to change it
 
