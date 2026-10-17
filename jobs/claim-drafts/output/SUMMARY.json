@@ -9,10 +9,10 @@
   "orders_with_draft": 3359,
   "decided_orders_with_draft": 3359,
   "undecided_orders_with_draft": 0,
-  "drafts_whose_only_remaining_gaps_are_judgment_fields": 97,
-  "of_which_decided": 97,
+  "drafts_whose_only_remaining_gaps_are_judgment_fields": 102,
+  "of_which_decided": 102,
   "only_judgment_left_by_status": {
-    "no": 47,
+    "no": 52,
     "yes": 50
   },
   "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
@@ -33,7 +33,7 @@
   "orders_with_any_conflict": 291,
   "yes_orders_with_partial_end_candidate": 39,
   "filled": {
-    "original_representation": 160,
+    "original_representation": 298,
     "original_candidate_needing_check_only": 56,
     "operative_clauses": 760,
     "clauses_total": 6738,
@@ -47,20 +47,20 @@
     "later_events": 1556
   },
   "orders_by_remaining_gate_error": {
-    "clause_*_state": 3359,
     "bounded_later_search": 3359,
     "unresolved_material_gaps": 3359,
+    "clause_*_state": 3359,
     "savings_residuals_evidence": 3359,
     "research_rationale": 3359,
-    "original_representation_provenance": 3199,
+    "original_representation_provenance": 3061,
     "whole_order_end_evidence": 2954,
     "clause_*_original_text_or_source": 2599,
     "yes_without_continuing_clause": 405
   },
   "orders_by_gate_error_if_proposals_accepted": {
-    "original_representation_provenance": 3143,
+    "original_representation_provenance": 3005,
     "clause_*_original_text_or_source": 2599,
-    "savings_residuals_evidence": 2257,
+    "savings_residuals_evidence": 2137,
     "whole_order_end_evidence": 2021,
     "clause_*_state": 1708,
     "clause_*_current_predicate": 96,
@@ -101,12 +101,12 @@
     "clause_*_current_predicate x21": 1,
     "clause_*_current_predicate x14": 1,
     "clause_*_state x35": 1,
+    "clause_*_state x25": 1,
     "clause_*_current_predicate x32": 1,
     "clause_*_current_predicate x43": 1,
     "clause_*_current_predicate x8": 1,
     "clause_*_state x28": 1,
     "clause_*_state x44": 1,
-    "clause_*_state x25": 1,
     "clause_*_state x23": 1,
     "clause_*_current_predicate x18": 1,
     "clause_*_state x27": 1,
@@ -117,9 +117,9 @@
   },
   "readiness_by_step": {
     "original_text": {
-      "confirm": 55,
+      "confirm": 188,
       "done_now_by_custody": 174,
-      "research": 3130
+      "research": 2997
     },
     "clause_inventory": {
       "confirm": 232,
@@ -131,8 +131,8 @@
       "research": 3167
     },
     "savings_residuals": {
-      "agent_judgment": 1102,
-      "research": 2257
+      "agent_judgment": 1222,
+      "research": 2137
     },
     "counterevidence": {
       "confirm": 655,
@@ -146,31 +146,32 @@
       "research": 27
     },
     "opus_media": {
+      "confirm": 82,
       "n/a": 2515,
-      "research": 844
+      "research": 762
     }
   },
   "estimated_effort": {
-    "large": 3061,
-    "medium": 212,
-    "small": 86
+    "large": 2946,
+    "medium": 322,
+    "small": 91
   },
   "claim_checker": {
-    "note": "jobs/claim-checker imported; 39735 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)",
+    "note": "jobs/claim-checker imported; 40276 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)",
     "drafts_by_mechanical_result": {
       "fail": 1,
-      "pass": 2771,
-      "pass_with_unverified": 587
+      "pass": 2739,
+      "pass_with_unverified": 619
     },
     "check_rows_by_status": {
       "order_exists:in_universe": 4653,
       "order_exists:not_in_universe": 1,
       "quote_verbatim:exact": 6648,
       "quote_verbatim:too_short_to_verify": 90,
-      "source_held:custody_record_only": 4743,
-      "source_held:held_bytes_in_release_or_repo": 4,
-      "source_held:held_bytes_verified": 2151,
-      "source_identity:recorded_for_this_order": 6898
+      "source_held:custody_record_only": 4817,
+      "source_held:held_bytes_in_release_or_repo": 120,
+      "source_held:held_bytes_verified": 2099,
+      "source_identity:recorded_for_this_order": 7036
     }
   },
   "inputs": [
@@ -183,8 +184,28 @@
       "path": "jobs/current-law/output"
     },
     {
+      "job": "family-rule-sources",
+      "path": "jobs/family-rule-sources/output"
+    },
+    {
+      "job": "family-rule-tail",
+      "path": "jobs/family-rule-tail/output"
+    },
+    {
+      "job": "family-rules",
+      "path": "jobs/family-rules/output"
+    },
+    {
+      "job": "fr-originals",
+      "path": "jobs/fr-originals/output"
+    },
+    {
       "job": "later-events",
       "path": "jobs/later-events/output"
+    },
+    {
+      "job": "opus-media-match",
+      "path": "jobs/opus-media-match/output"
     },
     {
       "job": "source-ladder",
@@ -194,17 +215,25 @@
   "input_counts": {
     "fragments_read:clause-drafts": 1123,
     "fragments_read:current-law": 3476,
+    "fragments_read:family-rule-sources": 0,
+    "fragments_read:family-rule-tail": 0,
+    "fragments_read:family-rules": 571,
+    "fragments_read:fr-originals": 40,
     "fragments_read:later-events": 6496,
+    "fragments_read:opus-media-match": 143,
     "fragments_read:source-ladder": 0,
+    "fragments_unusable": 6,
     "sources_read:clause-drafts": 1123,
     "sources_read:current-law": 110,
+    "sources_read:family-rule-sources": 2,
+    "sources_read:family-rule-tail": 1,
+    "sources_read:family-rules": 0,
+    "sources_read:fr-originals": 40,
     "sources_read:later-events": 1129,
-    "sources_read:source-ladder": 85
+    "sources_read:opus-media-match": 496,
+    "sources_read:source-ladder": 87
   },
-  "input_notes": [
-    "fr-originals: no output yet (jobs/fr-originals/output has no FRAGMENTS.jsonl or SOURCES.jsonl)",
-    "opus-media-match: no output yet (jobs/opus-media-match/output has no FRAGMENTS.jsonl or SOURCES.jsonl)"
-  ],
+  "input_notes": [],
   "input_problems": [],
   "fragment_orders_not_in_universe": 0,
   "fragment_orders_not_in_universe_examples": [],
@@ -261,5 +290,5 @@
     "later_source_search_partial": "machine searches that did not cover the whole corpus (sample runs); their full wording is in SUMMARY.json machine_searches"
   },
   "network_requests": 0,
-  "elapsed_seconds": 9.6
+  "elapsed_seconds": 7.9
 }
