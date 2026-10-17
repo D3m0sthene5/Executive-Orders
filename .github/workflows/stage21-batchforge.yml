@@ -1,0 +1,42 @@
+name: Build deterministic bulk EO review batches
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage21-batchforge.yml'
+      - 'research/stage21/code/ofr_batch_forge.py'
+      - 'research/stage21/code/test_batch_forge.py'
+
+permissions:
+  contents: write
+
+jobs:
+  produce-research-batches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Verify batch builder and negative gates
+        run: python -m unittest discover -s research/stage21/code -p 'test_batch_forge.py' -v
+      - name: Assemble all 3,359 legacy cases once each into bounded review batches
+        run: |
+          python research/stage21/code/ofr_batch_forge.py
+          python research/stage21/code/ofr_batch_forge.py --check
+      - name: Commit machine-checkable batch artifacts
+        run: |
+          git config user.name "EO Evidence Reconstruction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage21/batches
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Generate 3359 nonduplicative human-auditable research assignments"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
