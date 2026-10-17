@@ -15,6 +15,8 @@ Legal cutoff: 2026-10-14 (America/New_York). Legal codebook v2.0.0 unchanged. Th
 | Original-media files with candidate case-folder match in initial manifest audit | 341 | Weak directory/path hints only; **not unique evidence** for a case |
 | Verified media members uniquely associated with one accepted case by batch path | **0 / 496** | All 496 have multiple possible accepted-case batch associations; see [ambiguity audit](output/CAUSAL_CUE_SUMMARY.json) |
 | Shared-source case-specific research tasks | **352** across **236** distinct cases | 98 shared reference sources; one source-custody record per family and separate proposed effect per cited EO |
+| GovInfo Statutes at Large acquisition | **7 / 10** candidate PDFs downloaded; 3 unavailable/invalid | SHA-256 source-custody candidates, not yet legally authenticated for each case |
+| Reused downloaded statute PDF case-links | **18** across **14** distinct EOs | [Statute-specific review workbench](output/STATUTE_SOURCE_READY_WORKBENCH.html); no clause effects or dates automatically accepted |
 | Ranger systematic years 1789–1861 | 73 | Annual coverage survey plans including 61 newly covered years |
 | Ranger annual search routes | 438 | Planned, not executed; no new authentic EO established |
 | Independently human-reviewed whole-lifecycle dossiers | **0 / 14,972** | Strict scientific numerator unchanged |
