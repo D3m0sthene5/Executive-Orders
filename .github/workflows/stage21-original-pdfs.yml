@@ -1,4 +1,4 @@
-name: Acquire first 40 official EO PDF candidates
+name: Continue official EO PDF source acquisition
 on:
   workflow_dispatch:
   push:
@@ -11,7 +11,7 @@ permissions:
 jobs:
   official-pdf-custody:
     runs-on: ubuntu-latest
-    timeout-minutes: 28
+    timeout-minutes: 45
     env:
       GIT_LFS_SKIP_SMUDGE: '1'
     steps:
@@ -20,10 +20,13 @@ jobs:
           lfs: false
       - name: Unit-test bounded source retrieval and identity controls
         run: python -m unittest discover -s research/stage21/code -p 'test_acquire_official_pdfs.py' -v
-      - name: Fetch at most 40 unchanged official PDF source responses
+      - name: Acquire three fresh, nonoverlapping 40-document batches
         run: |
-          python research/stage21/code/acquire_official_pdfs.py --fetch --limit 40
-          python research/stage21/code/acquire_official_pdfs.py --check
+          for i in 1 2 3; do
+            echo "Original source acquisition tranche $i of 3"
+            python research/stage21/code/acquire_official_pdfs.py --fetch --limit 40
+            python research/stage21/code/acquire_official_pdfs.py --check
+          done
       - name: Commit original source bytes, failures and independent hashes
         run: |
           git config user.name "EO Evidence Reconstruction"
