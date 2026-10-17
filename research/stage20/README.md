@@ -11,6 +11,9 @@ The Stage 19 0/14,972 independently human-reviewed whole-lifecycle headline is *
 | [OPUS_FULL_844.jsonl](output/OPUS_FULL_844.jsonl) | Full-archive structured material extracted after source ZIP SHA-256 verification, retained as research leads |
 | [SHARED_SOURCE_REFERENCE_QUEUE.csv](output/SHARED_SOURCE_REFERENCE_QUEUE.csv) | **98** repeated legal-reference clusters enabling shared official-source acquisition, without propagating legal conclusions |
 | [CONVERSION_WORKBENCH.html](output/CONVERSION_WORKBENCH.html) | Offline searchable AI reviewer-note research interface and uncertified researcher-proposal export |
+| [SHARED_SOURCE_WORKBENCH.html](output/SHARED_SOURCE_WORKBENCH.html) | Source-once/per-order review interface across 98 clusters, 352 linked research tasks and 236 distinct cases; no legal-effect claims accepted |
+| [SHARED_SOURCE_CASE_REVIEW_QUEUE.csv](output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv) | Flat task ledger assigning one separate source-and-clause legal inquiry per case–citation pair |
+| [CAUSAL_CUE_SUMMARY.json](output/CAUSAL_CUE_SUMMARY.json) | Case-specific date-context research hints and explicit warnings about shared-batch image ambiguity |
 | [OPUS_ORIGINAL_MEDIA_INTEGRITY.json](output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) | **496 of 496** media members match the Opus manifest's member sizes and SHA-256 checksums; 0 unmatched members |
 | [OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv](output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv) | Manifest paths with source byte hashes and **provisional** evidence-folder case-association hints |
 | [ARCHIVAL_COVERAGE_GRID.csv](output/ARCHIVAL_COVERAGE_GRID.csv) | 73 year-cells across 1789–1861 including 61 additional systematic years |
