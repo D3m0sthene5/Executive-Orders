@@ -472,6 +472,15 @@ def write_outputs(out, orders, summary, inputs):
     if used:
         lines += ["", "## Job outputs read", ""] + [
             f"- {job}: {'not run yet' if n is None else f'{n:,}'}" for job, n in used.items()]
+    candidate = s.get("historical_census_candidates_OUTSIDE_DENOMINATOR")
+    if candidate:
+        lines += ["", "## Historical census candidates — separate from the 14,972 working identities", "",
+          f"- Distinct LOC catalog item candidates: {candidate['distinct_LOC_item_ID_candidates']:,} (not yet admitted).",
+          f"- LOC item transcripts obtained: {candidate['LOC_transcribed_items']:,}.",
+          f"- LOC items with retained original-page images: {candidate['LOC_items_with_original_page_images']:,}.",
+          f"- Lord indexed date-row appearances awaiting identity authentication: {candidate['Lord_index_appearances_UNAUTHENTICATED']:,}, including {candidate['Lord_19c_gap_appearances']:,} nineteenth-century gap leads.",
+          "**Newly admitted EOs: 0.** Catalog data and manuscripts need independent signer, authority, duplicate and legal inclusion review.",
+          "See jobs/census-candidates/output/CENSUS_READINESS.md and ITEM_CANDIDATES.csv."]
     if s["input_problems"]:
         lines += ["", "## Input problems", ""] + [f"- {p}" for p in s["input_problems"]]
     with open(os.path.join(out, "TRACKER.md"), "w", encoding="utf-8") as fh:
@@ -482,6 +491,22 @@ def main():
     root, out = os.environ.get("REPO_ROOT", "."), os.environ.get("OUTPUT_DIR", "readiness-output")
     orders, problems = build(root)
     summary = summarise(orders, problems)
+    # The early rangers survey potential *new* identities outside the existing
+    # 14,972 working bibliography. They must NEVER be added to order metrics.
+    census_file = os.path.join(root, "jobs/census-candidates/output/SUMMARY.json")
+    if os.path.isfile(census_file):
+        with open(census_file, encoding="utf-8") as f:
+            candidate_metrics = json.load(f)
+        summary["historical_census_candidates_OUTSIDE_DENOMINATOR"] = {
+            "distinct_LOC_item_ID_candidates": candidate_metrics["distinct_LOC_item_ID_candidates"],
+            "LOC_transcribed_items": candidate_metrics["items_with_LOC_XML_transcript"],
+            "LOC_items_with_original_page_images": candidate_metrics["items_with_saved_original_pages"],
+            "Lord_index_appearances_UNAUTHENTICATED": candidate_metrics["Lord_index_appearances_UNAUTHENTICATED"],
+            "Lord_19c_gap_appearances": candidate_metrics["Lord_19c_gap_rows"],
+            "newly_admitted_EOs": candidate_metrics["newly_admitted_EOs"],
+            "separate_from_14972_census": True
+        }
+
     inputs = {k: v for k, v in P.items() if k != "claim_gate_dir"}
     inputs["job_outputs"] = {k: (v if isinstance(v, str) else " + ".join(v)) for k, v in J.items()}
     # How many orders (or authorities) each job's output supplied; null = that job has not run yet.
