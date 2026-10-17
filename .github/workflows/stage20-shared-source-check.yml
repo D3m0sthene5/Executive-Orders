@@ -7,6 +7,12 @@ on:
       - 'research/stage20/code/build_shared_source_workbench.mjs'
       - 'research/stage20/code/test_shared_source_workbench.mjs'
       - 'research/stage20/output/SHARED_SOURCE_*'
+      - 'research/stage20/code/merge_statute_custody.mjs'
+      - 'research/stage20/code/test_statute_custody.mjs'
+      - 'research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv'
+      - 'research/stage20/output/STATUTE_SOURCE_CASE_PACKETS.jsonl'
+      - 'research/stage20/output/STATUTE_SOURCE_READY_WORKBENCH.html'
+      - 'research/stage20/output/STATUTE_CUSTODY_METRICS.json'
   workflow_dispatch:
 
 permissions:
@@ -30,3 +36,7 @@ jobs:
         run: node research/stage20/code/test_shared_source_workbench.mjs
       - name: Reproduce all shared-source tasks and HTML byte for byte
         run: node research/stage20/code/build_shared_source_workbench.mjs --check
+      - name: Test statutory source-custody merge
+        run: node research/stage20/code/test_statute_custody.mjs
+      - name: Reproduce the acquired-PDF-to-case reviewer packets
+        run: node research/stage20/code/merge_statute_custody.mjs --check
