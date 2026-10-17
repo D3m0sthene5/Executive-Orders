@@ -83,7 +83,9 @@ def main():
 
     queue_items, problems = ladder_queue.read_fetch_queue(repo / ladder_queue.FETCH_QUEUE, eo_index)
     shared = ladder_queue.shared_source_wanted(repo, eo_index, hints) if (repo / ladder_queue.SHARED).exists() else []
-    items = queue_items + shared
+    opus, more = ladder_queue.opus_refetch_wanted(repo)
+    problems += more
+    items = queue_items + shared + opus
     only = [x.strip() for x in os.environ.get("JOB_ONLY", "").split(",") if x.strip()]
     if only:  # e.g. JOB_ONLY="USC::,CFR::" or JOB_ONLY="STAT::66 Stat. 259"
         items = [w for w in items if any(w.wanted_id == o or w.wanted_id.startswith(o) for o in only)]
@@ -97,7 +99,8 @@ def main():
         prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
                  else prior_output.PriorOutput.from_git_head(repo, f"jobs/{name}/output"))
     carried = {} if os.environ.get("JOB_REFETCH") == "1" else previous_found(prior)
-    print(f"Queue: {len(queue_items)} from FETCH_QUEUE.jsonl, {len(shared)} shared sources not yet retrieved; "
+    print(f"Queue: {len(queue_items)} from FETCH_QUEUE.jsonl, {len(shared)} shared sources not yet retrieved, "
+          f"{len(opus)} Opus originals to re-fetch; "
           f"working on {len(items)} ({sum(1 for w in items if w.wanted_id in carried)} already found in "
           f"{prior.label if prior else 'no earlier output'} and carried forward).")
     for p in problems:

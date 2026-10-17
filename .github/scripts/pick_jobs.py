@@ -1,12 +1,16 @@
 """Decide which jobs/<name>/ folders the runner should run.
 
 A push runs every job whose folder had a file changed outside output/.
-A manual run runs the one job that was named. The daily scheduled run runs
-every job whose folder contains a file named DAILY. Folders starting with "_" (the
+A push also runs every job whose triggers.txt has a pattern (fnmatch, e.g.
+"research/readiness/claims/*") matching a changed path. A manual run runs the
+named job(s), separated by spaces or commas. The daily scheduled run runs every
+job whose folder contains a file named DAILY. Picked jobs are ordered so that
+any job listed in a job's after.txt runs before it. Folders starting with "_" (the
 template) are never run. The result goes to the step output "jobs" as a
 space-separated list.
 """
 
+import fnmatch
 import os
 import re
 import subprocess
@@ -44,6 +48,37 @@ def changed_files(before, after):
     return out.stdout.splitlines()
 
 
+def job_list(name, filename):
+    """Non-comment lines of jobs/<name>/<filename>, or [] if it does not exist."""
+    path = os.path.join("jobs", name, filename)
+    if not os.path.isfile(path):
+        return []
+    with open(path, encoding="utf-8") as fh:
+        return [l.split("#", 1)[0].strip() for l in fh if l.split("#", 1)[0].strip()]
+
+
+def all_jobs():
+    return sorted(n for n in os.listdir("jobs") if not n.startswith("_") and runnable(n))
+
+
+def ordered(picked):
+    """Stable order in which every job's after.txt predecessors (if picked) come first."""
+    picked, done, out = list(dict.fromkeys(picked)), set(), []
+
+    def visit(name, path=()):
+        if name in done or name in path:
+            return
+        for before in job_list(name, "after.txt"):
+            if before in picked:
+                visit(before, path + (name,))
+        done.add(name)
+        out.append(name)
+
+    for name in picked:
+        visit(name)
+    return out
+
+
 def main():
     if os.environ.get("EVENT") == "schedule":
         picked = sorted(
@@ -51,14 +86,20 @@ def main():
             if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
         )
     elif os.environ.get("EVENT") == "workflow_dispatch":
-        name = (os.environ.get("INPUT_JOB") or "").strip().strip("/")
-        name = name.removeprefix("jobs/")
-        if not runnable(name):
-            sys.exit(f"There is no job called '{name}'. It needs jobs/{name}/job.sh or job.py.")
-        picked = [name]
+        picked = []
+        for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
+            name = name.strip().strip("/").removeprefix("jobs/")
+            if not name:
+                continue
+            if not runnable(name):
+                sys.exit(f"There is no job called '{name}'. It needs jobs/{name}/job.sh or job.py.")
+            picked.append(name)
+        if not picked:
+            sys.exit("Type at least one job name.")
     else:
         picked = []
-        for path in changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]):
+        changed = changed_files(os.environ.get("BEFORE"), os.environ["AFTER"])
+        for path in changed:
             # A change to the runner itself reruns the smoke test.
             if path in RUNNER_FILES or path.startswith(".github/scripts/"):
                 if SMOKE_TEST not in picked and runnable(SMOKE_TEST):
@@ -71,7 +112,14 @@ def main():
             if name.startswith("_") or name in picked or not runnable(name):
                 continue
             picked.append(name)
+        # Jobs that asked to rerun when these paths change (job outputs never count).
+        inputs = [p for p in changed if not re.match(r"^jobs/[^/]+/output/", p)]
+        for name in all_jobs():
+            patterns = job_list(name, "triggers.txt")
+            if name not in picked and any(fnmatch.fnmatch(p, pat) for p in inputs for pat in patterns):
+                picked.append(name)
 
+    picked = ordered(picked)
     print("Jobs to run:", ", ".join(picked) or "none")
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")

@@ -9,6 +9,9 @@
    (research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv and
    STATUTE_CASE_REVIEW_QUEUE.csv), one item per authority, carrying every
    order that cites it.
+3. opus-media-match's re-fetch list (jobs/opus-media-match/output/REFETCH_LIST.jsonl):
+   originals Opus downloaded but its release left out, one item per URL, with
+   the sha256 Opus recorded so the copy can be checked byte for byte.
 """
 from __future__ import annotations
 
@@ -26,6 +29,7 @@ SHARED = "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv"
 STATUTE = "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv"
 STATUTE_INDEX = "research/stage20/output/STATUTE_FETCH_INDEX.csv"
 HINTS = "research/stage14/QUEUES/INDEXED_CACHED_EO_SOURCE_HINTS.csv"
+OPUS_REFETCH = "jobs/opus-media-match/output/REFETCH_LIST.jsonl"
 
 
 def read_csv(path):
@@ -158,3 +162,44 @@ def shared_source_wanted(repo, eo_index=None, hints=None):
         out.append(w)
     out.sort(key=lambda w: (-len(w.instrument_ids), w.wanted_id))
     return out
+
+
+def opus_refetch_key(row):
+    """One work item per expected file: rows with the same expected sha256 are the same
+    document under different URLs, so they are fetched once."""
+    return "opus-refetch:" + (row.get("expected_sha256") or row.get("url") or "")
+
+
+def opus_refetch_wanted(repo):
+    """One item per distinct file on opus-media-match's re-fetch list (missing file = none)."""
+    path = Path(repo) / OPUS_REFETCH
+    groups, problems = {}, []
+    if not path.exists():
+        return [], problems
+    for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            r = json.loads(line)
+        except ValueError as exc:
+            problems.append(f"REFETCH_LIST.jsonl line {n}: not JSON ({exc})")
+            continue
+        url = r.get("url")
+        ids = r.get("instrument_ids") or []
+        if not isinstance(url, str) or not url.startswith("https://") or not ids:
+            problems.append(f"REFETCH_LIST.jsonl line {n}: needs an https url and instrument_ids")
+            continue
+        g = groups.setdefault(opus_refetch_key(r), {"urls": [], "ids": set(), "row": r})
+        if url not in g["urls"]:
+            g["urls"].append(url)
+        g["ids"].update(ids)
+    out = []
+    for key, g in groups.items():
+        r = g["row"]
+        expect = "pdf" if any(".pdf" in u.split("?", 1)[0].lower() for u in g["urls"]) else "any"
+        out.append(fetch_ladder.Wanted(
+            wanted_id=key, instrument_ids=sorted(g["ids"]), urls=g["urls"], citation="",
+            step="opus_media", requested_by="opus-media-match re-fetch list", expect=expect,
+            extra={"expected_sha256": r.get("expected_sha256"), "expected_bytes": r.get("expected_bytes")}))
+    out.sort(key=lambda w: (-len(w.instrument_ids), w.wanted_id))
+    return out, problems

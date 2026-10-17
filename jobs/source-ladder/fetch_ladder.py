@@ -934,6 +934,9 @@ class Ladder:
             "notes": result.get("notes", ""),
             "wanted_id": wanted.wanted_id,
             "citation": wanted.citation,
+            **({"expected_sha256": wanted.extra["expected_sha256"],
+                "matches_expected_sha256": att["sha256"] == wanted.extra["expected_sha256"]}
+               if wanted.extra.get("expected_sha256") else {}),
         }
 
     @staticmethod

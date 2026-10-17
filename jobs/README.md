@@ -21,6 +21,11 @@ to the same branch, so the next agent can read them.
 To run a job every day, add an empty file named `DAILY` to its folder. It then
 runs once a day (09:17 UTC) on `main`, and commits only if its results changed.
 
+To rerun a job when files outside its folder change, list fnmatch patterns in
+`triggers.txt` (for example `research/readiness/claims/*`). Committed job outputs
+never trigger. To make a job run after others when they run together, list
+their names in `after.txt`. A manual run can name several jobs at once.
+
 To run a job again without changing it, open the **Actions** tab, choose
 **Run jobs**, then **Run workflow**, pick the branch and type the job name.
 Changing any file in the job's folder (outside `output/`) also reruns it.

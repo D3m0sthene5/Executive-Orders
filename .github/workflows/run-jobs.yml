@@ -17,12 +17,15 @@ on:
       # Changing the runner reruns jobs/example-hello as a check.
       - ".github/workflows/run-jobs.yml"
       - ".github/scripts/**"
+      # Claims, fetch requests and EXHAUSTED records rerun the jobs that read them
+      # (each job lists what it reads in triggers.txt).
+      - "research/readiness/**"
   schedule:
     - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file
   workflow_dispatch:
     inputs:
       job:
-        description: "Job folder name under jobs/ (for example: example-hello)"
+        description: "Job folder name(s) under jobs/, separated by spaces (for example: claim-checker readiness-tracker)"
         required: true
 
 permissions:
@@ -33,10 +36,9 @@ permissions:
 env:
   GIT_LFS_SKIP_SMUDGE: "1"
 
-# One run per branch at a time, so two runs never race to commit results.
-concurrency:
-  group: run-jobs-${{ github.ref }}
-  cancel-in-progress: false
+# No concurrency group: GitHub keeps only one waiting run per group and cancels
+# the rest, which skipped jobs when several merges landed at once. Runs that
+# finish together are reconciled in commit_results.sh instead.
 
 jobs:
   run:

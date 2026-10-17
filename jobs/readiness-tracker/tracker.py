@@ -64,6 +64,24 @@ P = {
     "claim_gate_dir": "research/stage19/code",
 }
 
+# Outputs of the other jobs. Each is optional: when a job has not run yet, the
+# tracker falls back to the older evidence above and says so in SUMMARY.json.
+J = {
+    "fr_fragments": ["jobs/fr-originals/data/full_run/FRAGMENTS.jsonl", "jobs/fr-originals/output/FRAGMENTS.jsonl"],
+    "opus_fragments": ["jobs/opus-media-match/output/FRAGMENTS.jsonl"],
+    "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
+    "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
+    "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
+    "checker": "jobs/claim-checker/output/PER_CLAIM.json",
+}
+
+# Opus media blockers, from opus-media-match's media_gap / media_status.
+OPUS_GAP_BLOCKER = {
+    "cited_files_not_packaged": "OPUS_MEDIA_REFETCH_NEEDED",
+    "originals_not_in_companion": "OPUS_MEDIA_ORIGINAL_NOT_KEPT",
+    "none_cited": "OPUS_MEDIA_NONE_CITED",
+}
+
 
 def read_csv(root, key):
     path = os.path.join(root, P[key])
@@ -109,9 +127,75 @@ def load_exhausted(root):
     return out, problems
 
 
+def load_job_outputs(root):
+    """Read the other jobs' committed outputs; missing ones are reported, not fatal."""
+    used, problems = {}, []
+
+    def existing(paths):
+        return [os.path.join(root, p) for p in paths if os.path.exists(os.path.join(root, p))]
+
+    fr = {}
+    paths = existing(J["fr_fragments"])
+    rows, more = read_jsonl(paths)
+    problems += more
+    for r in rows:  # later files win: output/ is the newest cumulative copy
+        if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
+            fr[r["instrument_id"]] = r.get("data") or {}
+    used["fr-originals"] = len(fr) if paths else None
+
+    paths = existing(J["opus_fragments"])
+    rows, more = read_jsonl(paths)
+    problems += more
+    opus_text = {r["instrument_id"] for r in rows
+                 if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
+    used["opus-media-match fragments"] = len(opus_text) if paths else None
+
+    status_path = os.path.join(root, J["opus_status"])
+    opus_status = None
+    if os.path.exists(status_path):
+        with open(status_path, encoding="utf-8", newline="") as fh:
+            opus_status = {r["instrument_id"]: r for r in csv.DictReader(fh)}
+    used["opus-media-match status"] = len(opus_status) if opus_status is not None else None
+
+    paths = existing(J["ladder_sources"])
+    rows, more = read_jsonl(paths)
+    problems += more
+    # A re-fetch counts only when its bytes match the hash Opus recorded (if it recorded one).
+    ladder_found = {r["wanted_id"] for r in rows if r.get("wanted_id") and r.get("sha256")
+                    and r.get("matches_expected_sha256") is not False}
+    used["source-ladder"] = len(ladder_found) if paths else None
+
+    # Opus originals still missing per order, from opus-media-match's re-fetch list.
+    refetch_path = os.path.join(root, J["opus_refetch"])
+    opus_missing = collections.defaultdict(set)
+    if os.path.exists(refetch_path):
+        rows, more = read_jsonl([refetch_path])
+        problems += more
+        for r in rows:
+            for i in r.get("instrument_ids") or []:
+                # same key as source-ladder's work item: the expected sha256, else the URL
+                opus_missing[i].add("opus-refetch:" + (r.get("expected_sha256") or r.get("url") or ""))
+
+    checker_path = os.path.join(root, J["checker"])
+    checker = None
+    if os.path.exists(checker_path):
+        try:
+            with open(checker_path, encoding="utf-8") as fh:
+                checker = json.load(fh).get("by_instrument") or {}
+        except (json.JSONDecodeError, AttributeError) as exc:
+            problems.append(f"claim-checker PER_CLAIM.json unreadable: {exc}")
+            checker = {}
+    used["claim-checker"] = len(checker) if checker is not None else None
+    return {"fr": fr, "opus_text": opus_text, "opus_status": opus_status, "ladder_found": ladder_found,
+            "opus_missing": opus_missing,
+            "checker": checker, "used": used}, problems
+
+
 def build(root):
     sys.path.insert(0, os.path.join(root, P["claim_gate_dir"]))
     import claim_gate  # the project's own structural gate
+
+    jobs, job_problems = load_job_outputs(root)
 
     universe = [r["id"] for r in read_csv(root, "universe") if r["included_in_bibliography"] == "1"]
     decided = {r["instrument_id"]: r for r in read_csv(root, "decided")}
@@ -122,7 +206,9 @@ def build(root):
     statute_ok = {(r["source_key"], r["instrument_id"]) for r in read_csv(root, "statute") if r["acquired_pdf_bytes"] == "yes"}
     shared_missing = collections.defaultdict(list)  # order -> authorities not yet retrieved
     for r in read_csv(root, "shared"):
-        if r["source_already_retrieved"] != "yes" and (r["authority"], r["cited_in"]) not in statute_ok:
+        retrieved = (r["source_already_retrieved"] == "yes" or (r["authority"], r["cited_in"]) in statute_ok
+                     or r["authority"] in jobs["ladder_found"])
+        if not retrieved:
             shared_missing[r["cited_in"]].append(r["authority"])
     shared_cited = {r["cited_in"] for r in read_csv(root, "shared")}
 
@@ -138,7 +224,7 @@ def build(root):
         if isinstance(i, str):
             claims[i] = c  # later files and lines win
     exhausted, more = load_exhausted(root)
-    problems += more
+    problems += more + job_problems
 
     orders = []
     for i in universe:
@@ -153,8 +239,22 @@ def build(root):
             # savings or later search, so none of those can count.
             claim_steps_failing |= {"clause_inventory", "ending_or_current_basis", "savings_residuals", "counterevidence"}
 
+        # A claim step counts only when the gate passes it AND claim-checker has
+        # passed that step for this exact version of the claim.
+        check = (jobs["checker"] or {}).get(i) if claim else None
+        checked_current = bool(check) and check.get("claim_sha256") == claim_gate.claim_sha(claim)
+
         def from_claim(step):
-            return claim is not None and step not in claim_steps_failing
+            if claim is None or step in claim_steps_failing:
+                return False
+            return checked_current and bool((check.get("steps_checker_passed") or {}).get(step))
+
+        def claim_blocker(step, default_code):
+            if claim is None:
+                return default_code
+            if step in claim_steps_failing:
+                return f"CLAIM_INCOMPLETE:{step}"
+            return f"CLAIM_CHECK_FAILED:{step}" if checked_current else "CLAIM_NOT_YET_CHECKED"
 
         # 1. provisional status
         steps["provisional_status"] = status in ("yes", "no")
@@ -163,10 +263,16 @@ def build(root):
 
         # 2. original text
         cq, cx, cu = causal.get(i, {}), crosswalk.get(i, {}), custody.get(i, {})
-        saved = cq.get("locally_preserved_primary_representation") == "1" or cu.get("custody_state", "").startswith("PDF_BYTES_CAPTURED")
+        fr = jobs["fr"].get(i)
+        saved = (cq.get("locally_preserved_primary_representation") == "1"
+                 or cu.get("custody_state", "").startswith("PDF_BYTES_CAPTURED")
+                 or (fr is not None and fr.get("needs_page_check") is False)
+                 or i in jobs["opus_text"])
         steps["original_text"] = saved or from_claim("original_text")
         if not steps["original_text"]:
-            if cx.get("selected_literal_URL"):
+            if fr is not None:
+                blockers["original_text"].append("ORIGINAL_FOUND_NEEDS_PAGE_CHECK")
+            elif cx.get("selected_literal_URL"):
                 blockers["original_text"].append("OFFICIAL_URL_KNOWN_NOT_DOWNLOADED")
             else:
                 blockers["original_text"].append("NO_OFFICIAL_SOURCE_LOCATED")
@@ -180,7 +286,7 @@ def build(root):
         ):
             steps[step] = from_claim(step)
             if not steps[step] and status:  # unresearched orders are blocked by status alone
-                blockers[step].append(code if claim is None else f"CLAIM_INCOMPLETE:{step}")
+                blockers[step].append(claim_blocker(step, code))
         if int(cq.get("quarantined_relationship_count") or 0):
             steps["counterevidence"] = False
             blockers["counterevidence"].append("QUARANTINED_RELATIONSHIP_CONFLICT")
@@ -193,9 +299,28 @@ def build(root):
 
         # 8. Opus media (Opus cases only)
         if d and d["decision_origin"].startswith("opus"):
-            steps["opus_media"] = i in media_linked
-            if not steps["opus_media"]:
-                blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
+            if jobs["opus_status"] is None:  # opus-media-match has not run: older audit
+                steps["opus_media"] = i in media_linked
+                if not steps["opus_media"]:
+                    blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
+            else:
+                # Done only when every medium the Opus records cite is resolved.
+                ms = jobs["opus_status"].get(i) or {}
+                missing = jobs["opus_missing"].get(i, set())
+                refetched_all = bool(missing) and missing <= jobs["ladder_found"]
+                steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
+                    refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
+                    and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
+                if not steps["opus_media"]:
+                    gap = ms.get("media_gap", "")
+                    if gap in OPUS_GAP_BLOCKER:
+                        blockers["opus_media"].append(OPUS_GAP_BLOCKER[gap])
+                    elif ms.get("media_status") == "ambiguous_only":
+                        blockers["opus_media"].append("OPUS_MEDIA_MATCH_AMBIGUOUS")
+                    elif ms.get("media_status") == "unique_supported":
+                        blockers["opus_media"].append("OPUS_MEDIA_PARTLY_RESOLVED")
+                    else:
+                        blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
 
         # Exhausted steps count as machine-finished.
         exhausted_steps = []
@@ -224,6 +349,7 @@ def build(root):
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
+    build.job_outputs_used = jobs["used"]
     return orders, problems
 
 
@@ -254,8 +380,16 @@ def summarise(orders, problems):
     unlocks = [
         {"action": "Run one bulk download of the official links already found (Stage 21 crosswalk)",
          "kind": "machine_job", "orders_unblocked": blocker_orders["OFFICIAL_URL_KNOWN_NOT_DOWNLOADED"], "blocker": "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED"},
-        {"action": "Match the 496 Opus evidence images to orders by their contents",
+        {"action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
          "kind": "machine_job", "orders_unblocked": blocker_orders["OPUS_MEDIA_NOT_MATCHED_TO_ORDER"], "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER"},
+        {"action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+         "kind": "machine_job", "orders_unblocked": blocker_orders["OPUS_MEDIA_REFETCH_NEEDED"], "blocker": "OPUS_MEDIA_REFETCH_NEEDED"},
+        {"action": "Check the page location of fr-originals finds marked medium/low confidence",
+         "kind": "agent_check", "orders_unblocked": blocker_orders["ORIGINAL_FOUND_NEEDS_PAGE_CHECK"], "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"},
+        {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+         "kind": "agent_check", "orders_unblocked": blocker_orders["OPUS_MEDIA_MATCH_AMBIGUOUS"], "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"},
+        {"action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+         "kind": "machine_job", "orders_unblocked": blocker_orders["CLAIM_NOT_YET_CHECKED"], "blocker": "CLAIM_NOT_YET_CHECKED"},
     ] + [
         {"action": f"Retrieve shared source {a}", "kind": "one_source", "orders_unblocked": n, "blocker": f"SHARED_SOURCE_NOT_RETRIEVED:{a}"}
         for a, n in shared.most_common()
@@ -327,11 +461,17 @@ def write_outputs(out, orders, summary, inputs):
         lines.append(f"| `{code}` | {s['decided_orders_blocked_by'].get(code, 0):,} | {n:,} |")
     lines += ["", "## How to move an order forward", "",
               "- Add or extend its claim in `research/readiness/claims/*.jsonl` (format: `research/stage19/CLAIM_SCHEMA.md`).",
-              "  Partial claims count: each step lights up as soon as its part passes the gate.",
+              "  Partial claims count: each step lights up once its part passes the gate and claim-checker.",
+              "- Start from the order's draft in `jobs/claim-drafts/output/` (see `jobs/claim-drafts/AGENT_GUIDE.md`).",
+              "- Need a source? Add it to `research/readiness/FETCH_QUEUE.jsonl`; source-ladder fetches it.",
               "- If a step cannot be finished by machine, add a line to `research/readiness/EXHAUSTED.jsonl` with",
               "  `instrument_id`, `step`, `searched` (list of repositories and queries), `recorded_by`, `recorded_on`.",
               f"- Step names: {', '.join(f'`{n}`' for n in STEP_NAMES)}.",
               "- Per-order detail is in `READINESS_BY_ORDER.csv`."]
+    used = inputs.get("job_outputs_used", {})
+    if used:
+        lines += ["", "## Job outputs read", ""] + [
+            f"- {job}: {'not run yet' if n is None else f'{n:,}'}" for job, n in used.items()]
     if s["input_problems"]:
         lines += ["", "## Input problems", ""] + [f"- {p}" for p in s["input_problems"]]
     with open(os.path.join(out, "TRACKER.md"), "w", encoding="utf-8") as fh:
@@ -343,6 +483,9 @@ def main():
     orders, problems = build(root)
     summary = summarise(orders, problems)
     inputs = {k: v for k, v in P.items() if k != "claim_gate_dir"}
+    inputs["job_outputs"] = {k: (v if isinstance(v, str) else " + ".join(v)) for k, v in J.items()}
+    # How many orders (or authorities) each job's output supplied; null = that job has not run yet.
+    inputs["job_outputs_used"] = getattr(build, "job_outputs_used", {})
     write_outputs(out, orders, summary, inputs)
     print(open(os.path.join(out, "TRACKER.md"), encoding="utf-8").read())
 

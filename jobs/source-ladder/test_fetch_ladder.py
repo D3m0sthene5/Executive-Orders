@@ -595,3 +595,34 @@ class PriorOutputTests(Base):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class OpusRefetchQueueTest(unittest.TestCase):
+    def test_reads_refetch_list_and_skips_bad_lines(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / ladder_queue.OPUS_REFETCH
+            p.parent.mkdir(parents=True)
+            p.write_text(json.dumps({"url": "https://www.govinfo.gov/a.pdf", "instrument_ids": ["EO:2", "EO:1"],
+                                     "expected_sha256": "e" * 64}) + "\n" + "not json\n"
+                         + json.dumps({"url": "https://www.govinfo.gov/link/a", "instrument_ids": ["EO:4"],
+                                       "expected_sha256": "e" * 64}) + "\n"
+                         + json.dumps({"url": "http://x", "instrument_ids": ["EO:3"]}) + "\n", encoding="utf-8")
+            wanted, problems = ladder_queue.opus_refetch_wanted(d)
+        self.assertEqual(len(wanted), 1)
+        w = wanted[0]
+        # Two URLs with the same expected sha256 are one file: one item, both URLs as routes.
+        self.assertEqual((w.wanted_id, w.instrument_ids, w.step, w.expect, w.urls),
+                         ("opus-refetch:" + "e" * 64, ["EO:1", "EO:2", "EO:4"], "opus_media", "pdf",
+                          ["https://www.govinfo.gov/a.pdf", "https://www.govinfo.gov/link/a"]))
+        self.assertEqual(w.extra["expected_sha256"], "e" * 64)
+        self.assertEqual(len(problems), 2)
+
+    def test_source_record_reports_hash_match(self):
+        w = fl.Wanted(wanted_id="opus-refetch:u", instrument_ids=["EO:1"], extra={"expected_sha256": "f" * 64})
+        att = {"sha256": "f" * 64, "final_url": "https://www.govinfo.gov/a.pdf", "url": "https://www.govinfo.gov/a.pdf",
+               "bytes": 3, "time_utc": "2026-10-17T00:00:00Z"}
+        route = fl.Route("given", "https://www.govinfo.gov/a.pdf", tier="given")
+        rec = fl.Ladder.source_record(w, route, att, {})
+        self.assertTrue(rec["matches_expected_sha256"])
+        att["sha256"] = "0" * 64
+        self.assertFalse(fl.Ladder.source_record(w, route, att, {})["matches_expected_sha256"])
