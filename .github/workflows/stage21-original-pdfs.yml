@@ -1,0 +1,36 @@
+name: Acquire first 40 official EO PDF candidates
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage21-original-pdfs.yml'
+      - 'research/stage21/code/acquire_official_pdfs.py'
+      - 'research/stage21/code/test_acquire_official_pdfs.py'
+permissions:
+  contents: write
+jobs:
+  official-pdf-custody:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Unit-test bounded source retrieval and identity controls
+        run: python -m unittest discover -s research/stage21/code -p 'test_acquire_official_pdfs.py' -v
+      - name: Fetch at most 40 unchanged official PDF source responses
+        run: |
+          python research/stage21/code/acquire_official_pdfs.py --fetch --limit 40
+          python research/stage21/code/acquire_official_pdfs.py --check
+      - name: Commit original source bytes, failures and independent hashes
+        run: |
+          git config user.name "EO Evidence Reconstruction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/stage21/original_sources
+          if ! git diff --cached --quiet; then
+            git commit -m "Acquire bounded original EO PDF source candidates with immutable custody"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
