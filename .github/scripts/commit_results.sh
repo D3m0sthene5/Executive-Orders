@@ -10,6 +10,16 @@ paths=()
 for name in $JOBS; do
   [ -d "jobs/$name/output" ] && paths+=("jobs/$name/output")
 done
+if [[ " $JOBS " == *" daily-digest "* ]] && [ -f jobs/daily-digest/output/DIGEST.md ]; then
+  python - <<'PYDIGEST'
+from pathlib import Path
+p=Path('jobs/daily-digest/output/DIGEST.md')
+if len(p.read_text(encoding='utf-8').splitlines()) >= 150:
+    raise SystemExit('Digest exceeds 149 lines')
+Path('HANDOFF/DIGEST.md').write_bytes(p.read_bytes())
+PYDIGEST
+  paths+=("HANDOFF/DIGEST.md")
+fi
 [ ${#paths[@]} -eq 0 ] && { echo "No results to commit."; exit 0; }
 
 git add -A -- "${paths[@]}"
@@ -29,7 +39,7 @@ git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
 # Keep a copy of the results, so a clash with another run's results can be
 # resolved by re-applying ours on top of the newest commit (newest results win).
 saved="$(mktemp -d)"
-for p in "${paths[@]}"; do mkdir -p "$saved/$p"; cp -a "$p/." "$saved/$p/"; done
+for p in "${paths[@]}"; do mkdir -p "$saved/$(dirname "$p")"; cp -a "$p" "$saved/$p"; done
 
 for attempt in 1 2 3 4 5; do
   if git push -q origin "HEAD:$BRANCH"; then
@@ -42,7 +52,7 @@ for attempt in 1 2 3 4 5; do
     echo "Another run changed the same results; re-applying this run's results on top."
     git rebase --abort
     git reset -q --hard "origin/$BRANCH"
-    for p in "${paths[@]}"; do rm -rf "./${p:?}"; mkdir -p "$p"; cp -a "$saved/$p/." "$p/"; done
+    for p in "${paths[@]}"; do rm -rf "./${p:?}"; mkdir -p "$(dirname "$p")"; cp -a "$saved/$p" "$p"; done
     git add -A -- "${paths[@]}"
     git diff --cached --quiet || git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
   fi
