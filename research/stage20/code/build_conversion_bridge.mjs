@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 function parseCSV(s){
  const all=[];let line=[],buf="",quoted=false;
@@ -88,11 +89,19 @@ const paths={"decisions":"research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED
 const pinnedSourceBlobShas={"decisions":"f579711285cad6784b4eb213656b0fd9f9a32217","opus":"b00b870299c0e68fb38e3068ef438ddfd9609567","queue":"1eac9a4dd8ba4892fa6df6fff401ad829bef6f7f"};
 function main(){
  const params=process.argv.slice(2);
- const read=name=>parseCSV(fs.readFileSync(path.join(ROOT,paths[name]),'utf8'));
+ const read=name=>{
+   const bytes=fs.readFileSync(path.join(ROOT,paths[name]));
+   // Check the actual Git object identifier, rather than merely echoing a pinned
+   // identifier while processing changed data. Git SHA-1 includes the blob header.
+   const hash=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
+   if(hash!==pinnedSourceBlobShas[name])throw Error('Frozen Stage20 input changed: '+name+' expected '+pinnedSourceBlobShas[name]+' got '+hash);
+   return parseCSV(bytes.toString('utf8'));
+ };
  const at=params.indexOf('--full-opus');
  const full=at<0?[]:fs.readFileSync(path.resolve(params[at+1]),'utf8').split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x));
  const m=buildIndex(read('decisions'),read('opus'),read('queue'),pinnedSourceBlobShas,full);
- if(m.notes.length==304 && (m.metrics.opus_footprint_claims_unverified!==297 ||m.metrics.opus_cases_with_unclassified_ISO_date_mentions!==110))throw Error('Published 304-case regression');
+ if(m.notes.length===304 && (m.metrics.opus_footprint_claims_unverified!==297 ||m.metrics.opus_cases_with_unclassified_ISO_date_mentions!==110))throw Error('Published 304-case regression');
+ if(m.notes.length===844 && m.metrics.opus_footprint_claims_unverified!==836)throw Error('Full Opus footprint claim count differs from the reported 836; reconcile upstream evidence before publishing');
  const content={
  'CONVERSION_INDEX.csv':writeCSV(m.rank,["instrument_id","provisional_status","decision_origin","conversion_lane","research_triage_not_confidence","opus_narrative_materialized","opus_footprint_claim","date_mentions_unclassified","reference_leads_count","possible_mechanism_keywords","source_entry_locally_preserved","structured_history_rows","quarantined_leads","next_action","whole_lifecycle_completed","original_decision_unchanged"]),
  'OPUS_NOTE_LEADS.jsonl':m.notes.map(x=>JSON.stringify(x)).join('\n')+'\n',
