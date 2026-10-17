@@ -13,3 +13,5 @@ The final Opus Stage 11 release, built 2026-10-17 after the owner stopped new re
 Every status is an AI producer's proposal checked by a separate AI reviewer. None is a human-certified legal finding. Read `REPORT.md` inside the zip first.
 
 The PDFs and page images are not in this zip. They are in a separate 269 MB companion, `OPUS_STAGE11_EVIDENCE_ORIGINALS.zip` (SHA-256 `22e433a53ecd90cba7fd7b9b54092e8945275d7cd603f6fd0b51a3c6e7557d33`), which is not uploaded here.
+
+**Superseded** by the complete release in `releases/opus_stage11_complete/` (844 accepted, 22.433714%). This file is kept unchanged because other records verify it.
