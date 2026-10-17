@@ -1,0 +1,91 @@
+# Shared script runner. Any agent (Claude, Astra, Codex) or the owner can run a
+# script on GitHub's machines by committing it under jobs/<name>/. See
+# jobs/README.md for how to write one.
+#
+# A job runs when a push changes any file in its folder outside output/, or when
+# someone starts this workflow by hand (Actions tab -> Run jobs -> Run workflow)
+# and types the job name. Results are committed back to the same branch in
+# jobs/<name>/output/. Commits made by this workflow do not start it again.
+
+name: Run jobs
+
+on:
+  push:
+    paths:
+      - "jobs/**"
+      # Changing the runner reruns jobs/example-hello as a check.
+      - ".github/workflows/run-jobs.yml"
+      - ".github/scripts/**"
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "Job folder name under jobs/ (for example: example-hello)"
+        required: true
+
+permissions:
+  contents: write
+
+# Leave Git LFS files (the multi-GB archive parts) as small pointer files unless
+# a job downloads one itself with `git lfs pull --include "<path>"`.
+env:
+  GIT_LFS_SKIP_SMUDGE: "1"
+
+# One run per branch at a time, so two runs never race to commit results.
+concurrency:
+  group: run-jobs-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      # The repo is several GB, so only the runner, jobs and HANDOFF folders are
+      # downloaded up front. A job lists any other folders it needs in
+      # jobs/<name>/needs.txt and they are added before it runs.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            jobs
+            HANDOFF
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Choose which jobs to run
+        id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          INPUT_JOB: ${{ github.event.inputs.job }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: python .github/scripts/pick_jobs.py
+
+      - name: Run the jobs
+        if: steps.pick.outputs.jobs != ''
+        env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
+          TRIGGER: ${{ github.event_name }} by ${{ github.actor }}
+        run: bash .github/scripts/run_jobs.sh
+
+      - name: Keep oversized files as a download
+        if: always() && steps.pick.outputs.jobs != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: oversized-outputs-${{ github.run_id }}
+          path: oversized/
+          if-no-files-found: ignore
+          retention-days: 90
+
+      - name: Commit results to the branch
+        if: always() && steps.pick.outputs.jobs != ''
+        env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
+          BRANCH: ${{ github.ref_name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash .github/scripts/commit_results.sh
