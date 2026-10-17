@@ -15,20 +15,20 @@
 
 ## Current measures
 
-| Measure | Stage 17 canonical checkpoint | Final Opus overlay reconciled, not yet rebuilt into Stage 17 SQLite |
+| Measure | Stage 17 canonical checkpoint | Complete Opus overlay reconciled, not yet rebuilt into Stage 17 SQLite |
 |---|---:|---:|
 | Working bibliographic identities (not complete historical census) | 14,972 | 14,972 |
-| Provisional substantive YES / NO / UNKNOWN | 268 / 2,787 / 11,917 | 309 / 2,803 / 11,860 |
-| Provisional status coverage within bibliography | 3,055 / 14,972 = 20.404756% | 3,112 / 14,972 = 20.785466% |
-| Additional decisions for 25% of current bibliography | 688 | 631 |
+| Provisional substantive YES / NO / UNKNOWN | 268 / 2,787 / 11,917 | 405 / 2,954 / 11,613 |
+| Provisional status coverage within bibliography | 3,055 / 14,972 = 20.404756% | 3,359 / 14,972 = 22.435212% |
+| Additional decisions for 25% of current bibliography | 688 | 384 |
 | New Stage 17 provision histories | 13 | 13; Opus adds status labels, not new provision histories |
 | New Stage 17 dated legal transitions | 26 | 26 |
 | Human-certified legal claims | 0 | 0 |
 | Historical universe completion percentage | Unknown / not estimable | Unknown / not estimable |
-| Whole-order first-cessation coverage | Mostly unresolved | Opus 597 historical causes explicitly unknown |
+| Whole-order first-cessation coverage | Mostly unresolved | Opus 844 historical causes explicitly unknown |
 
 ## Remaining defects
 
-Historical unnumbered issuance is seriously underrepresented. Model-reviewed outcomes lack a representative independent accuracy estimate. Later formal revocation dates cannot be substituted for first cessation. The original-image companions for the Stage 17 Opus import and final Opus release have not been verified. Publication of a reproduction-ready database does not transform these findings into certified legal histories.
+Historical unnumbered issuance is seriously underrepresented. Model-reviewed outcomes lack a representative independent accuracy estimate. Later formal revocation dates cannot be substituted for first cessation. The original-image companions for the Stage 17 Opus import and complete Opus release have not been verified or published in this repository. Publication of a reproduction-ready database does not transform these findings into certified legal histories.
 
 Do not use this repository's interim status coverage as the survival proportion among all American executive orders.
