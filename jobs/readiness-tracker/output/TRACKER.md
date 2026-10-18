@@ -13,11 +13,11 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 2,240 | 3,359 | 66.7% |
-| Complete inventory of the order's operative clauses | 1 | 3,359 | 0.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1 | 3,359 | 0.0% |
-| Savings clauses and surviving effects closed | 1 | 3,359 | 0.0% |
-| Search for later contrary sources recorded, no open conflicts | 2 | 3,359 | 0.1% |
+| Original text saved in the project | 2,281 | 3,359 | 67.9% |
+| Complete inventory of the order's operative clauses | 7 | 3,359 | 0.2% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 2 | 3,359 | 0.1% |
+| Savings clauses and surviving effects closed | 7 | 3,359 | 0.2% |
+| Search for later contrary sources recorded, no open conflicts | 2,461 | 3,359 | 73.3% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
 
@@ -26,7 +26,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 472 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
-| 417 | agent check | Check the page location of fr-originals finds marked medium/low confidence |
+| 265 | agent check | Check the page location of fr-originals finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -43,18 +43,18 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `NO_OFFICIAL_SOURCE_LOCATED` | 990 | 8,474 |
 | `NO_CLAUSE_INVENTORY` | 3,318 | 3,318 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,318 | 3,318 |
-| `LATER_SOURCE_SEARCH_NOT_RECORDED` | 3,318 | 3,318 |
 | `FIRST_END_UNPROVED` | 2,918 | 2,918 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 693 | 693 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 129 | 417 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 265 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
+| `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 172 | 172 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `CLAIM_INCOMPLETE` | 39 | 39 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |
-| `CLAIM_CHECK_FAILED` | 11 | 11 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -73,8 +73,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - fr-originals: 6,497
 - opus-media-match fragments: 122
 - opus-media-match status: 1,155
-- source-ladder: 147
+- source-ladder: 122
 - claim-checker: 41
+- machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
 

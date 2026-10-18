@@ -44,8 +44,7 @@
           "pass": 155
         },
         "source_held": {
-          "pass": 22,
-          "skip": 211
+          "pass": 233
         },
         "source_identity": {
           "pass": 167
@@ -60,7 +59,7 @@
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
         "rows_total": 1086,
-        "rows_written": 523
+        "rows_written": 312
       },
       "claim_files": [
         "astra-2026-10-17-p12553a.jsonl",
@@ -75,8 +74,8 @@
       "claims_checker_errors": 0,
       "claims_gate_passed": 1,
       "claims_mechanical_fail": 0,
-      "claims_mechanical_pass": 6,
-      "claims_mechanical_unverified": 36,
+      "claims_mechanical_pass": 42,
+      "claims_mechanical_unverified": 0,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
       "fetch": null,
@@ -89,7 +88,7 @@
         "jobs/fr-originals/output/SOURCES.jsonl": 6497,
         "jobs/later-events/output/SOURCES.jsonl": 7626,
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
-        "jobs/source-ladder/output/SOURCES.jsonl": 147,
+        "jobs/source-ladder/output/SOURCES.jsonl": 122,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
         "opus_stage11_manifest": 27237,
@@ -98,7 +97,7 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 31659,
+      "held_distinct_sha256": 31658,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -119,20 +118,21 @@
         "recorded_for_this_order": 167
       },
       "source_status_counts": {
-        "custody_record_only": 211,
-        "held_bytes_verified": 22
+        "gpo_published_hash_match": 116,
+        "held_bytes_verified": 117
       },
       "source_status_policy": {
         "custody_record_only": "skip",
+        "gpo_published_hash_match": "pass",
         "held_bytes_in_release_or_repo": "pass",
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 1,
+        "clause_inventory": 7,
         "counterevidence": 2,
-        "ending_or_current_basis": 1,
-        "original_text": 5,
-        "savings_residuals": 1
+        "ending_or_current_basis": 2,
+        "original_text": 11,
+        "savings_residuals": 7
       }
     },
     "claim-drafts": {
@@ -147,22 +147,22 @@
           "order_exists:not_in_universe": 10,
           "quote_verbatim:exact": 13119,
           "quote_verbatim:too_short_to_verify": 109,
-          "source_held:custody_record_only": 13262,
-          "source_held:held_bytes_in_release_or_repo": 123,
-          "source_held:held_bytes_verified": 2083,
-          "source_identity:recorded_for_this_order": 15468
+          "source_held:custody_record_only": 4360,
+          "source_held:gpo_published_hash_match": 5000,
+          "source_held:held_bytes_verified": 6149,
+          "source_identity:recorded_for_this_order": 15509
         },
         "drafts_by_mechanical_result": {
           "fail": 10,
-          "pass": 1213,
-          "pass_with_unverified": 2136
+          "pass": 2792,
+          "pass_with_unverified": 557
         },
-        "note": "jobs/claim-checker imported; 56914 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 56889 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 770,
-      "elapsed_seconds": 48.9,
+      "elapsed_seconds": 391.8,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1280,
@@ -175,8 +175,8 @@
         "later_source_search_machine_proposed": 3359,
         "later_source_search_note": "never machine-filled; complete machine searches are in _draft.proposals.later_source_search_machine",
         "operative_clauses": 1806,
-        "original_candidate_needing_check_only": 129,
-        "original_representation": 2240
+        "original_candidate_needing_check_only": 88,
+        "original_representation": 2281
       },
       "fragment_orders_not_in_universe": 34,
       "fragment_orders_not_in_universe_examples": [
@@ -223,7 +223,7 @@
         "sources_read:fr-originals": 6497,
         "sources_read:later-events": 7626,
         "sources_read:opus-media-match": 496,
-        "sources_read:source-ladder": 147
+        "sources_read:source-ladder": 122
       },
       "input_notes": [],
       "input_problems": [],
@@ -396,7 +396,7 @@
         "bounded_later_search": 3359,
         "clause_*_original_text_or_source": 1553,
         "clause_*_state": 3359,
-        "original_representation_provenance": 1119,
+        "original_representation_provenance": 1078,
         "research_rationale": 3359,
         "savings_residuals_evidence": 3359,
         "unresolved_material_gaps": 3359,
@@ -520,7 +520,7 @@
       },
       "clauses_total": 35750,
       "fragments_written": 4747,
-      "generated_utc": "2026-10-18T00:43:43Z",
+      "generated_utc": "2026-10-18T00:45:11Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 95,
         "identity_doubt_document_dated": 17,
@@ -555,7 +555,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "372 order-text candidates"
+          "source-ladder": "347 order-text candidates"
         },
         "stage21_pdfs_usable": 160
       },
@@ -569,7 +569,7 @@
       "orders_not_segmented": 1672,
       "orders_processed": 6563,
       "orders_with_candidate_text": 6563,
-      "seconds": 100.3,
+      "seconds": 62.2,
       "segmentation_quality": {
         "good": 1889,
         "partial": 2858
@@ -2182,8 +2182,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 18396,
-      "sweep_manifest_sha256": "994884560944b94a7eb5875f0b8fc4de0bd2aa9275532592a23ed20834e0a6fa",
+      "saved_texts_scanned": 18681,
+      "sweep_manifest_sha256": "a4f41717a0b81aad24d2f6cffcc88a5a21407de27e7f5be58d9b753947a76171",
       "targets": 748
     },
     "fr-originals": {
@@ -2195,6 +2195,11 @@
         "low": 268,
         "medium": 155
       },
+      "found_by_confidence_after_recheck": {
+        "high": 6229,
+        "low": 147,
+        "medium": 121
+      },
       "found_by_route": {
         "official/govinfo_fr_issue_pdf": 4823,
         "official/govinfo_link_fr": 182,
@@ -2203,6 +2208,7 @@
       },
       "found_decided": 2368,
       "found_needing_page_check": 423,
+      "found_needing_page_check_after_recheck": 268,
       "full_run_estimate": {
         "by_decade": {},
         "decades_without_a_measured_issue": [],
@@ -2233,12 +2239,13 @@
       "orders_selected_this_run": 0,
       "pending_not_reached": 0,
       "prior_committed_found": 6497,
+      "recheck_upgrades_applied": 155,
       "reused_stage21_captures": 40,
       "run_date": "2026-10-18",
       "run_stats": {
         "parallel_workers": 4,
         "resumed_from_state": 7214,
-        "seconds": 0.3
+        "seconds": 0.2
       },
       "settings_used": {
         "keep_issue_pdfs": false,
@@ -2251,7 +2258,7 @@
       "stopped_early": ""
     },
     "later-events": {
-      "cache_hits": 0,
+      "cache_hits": 7,
       "catalog_complete": true,
       "catalog_records_post_cutoff_ignored": 0,
       "catalog_records_used": 6938,
@@ -2321,12 +2328,12 @@
         "withheld_full_and_partial_evidence_conflict": 98,
         "withheld_text_only_unverified": 219
       },
-      "generated_utc": "2026-10-18T00:04:25Z",
+      "generated_utc": "2026-10-18T00:45:37Z",
       "job": "later-events",
       "job_limit": null,
       "legal_conclusions": 0,
       "legal_cutoff": "2026-10-14",
-      "network_requests": 7,
+      "network_requests": 0,
       "orders_with_whole_order_end_candidate": 1871,
       "source_ids_unique": true,
       "source_records": 7626,
@@ -2378,6 +2385,21 @@
       "pages_processed": 28,
       "reporter_citation_leads": 54
     },
+    "official-fixity": {
+      "carried_forward": 0,
+      "checked_this_run": 4987,
+      "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
+      "files": 4987,
+      "job": "official-fixity",
+      "orders_with_a_gpo_matched_file": 5013,
+      "premis_bytes_read_this_run": 225509376,
+      "results": {
+        "match": 3385,
+        "not_listed": 1597,
+        "partial_match": 5
+      },
+      "seconds": 78.8
+    },
     "opus-media-match": {
       "accepted_844": {
         "ambiguous_only": 68,
@@ -2395,7 +2417,7 @@
       },
       "boilerplate_quotes_dropped": 5,
       "distinct_sha256_processed": 418,
-      "finished_utc": "2026-10-17T21:28:40Z",
+      "finished_utc": "2026-10-18T00:54:40Z",
       "fragments_written": 143,
       "inputs": {
         "accepted_list": "research/stage20/output/OPUS_FULL_844.jsonl",
@@ -2431,6 +2453,11 @@
       },
       "qualification": "Machine leads only. A unique_supported pair means the page content and at least one other independent signal (or a specific verbatim quote) tie the file to the order; it does NOT mean one order per file (one statute page can support dozens of orders). It does not establish authenticity, completeness, the first effective end, or any legal status, and it changes no provisional status, ledger or count.",
       "quotes_indexed": 5777,
+      "refetch_list": {
+        "accepted_orders_covered": 492,
+        "urls": 848,
+        "urls_with_expected_sha256": 770
+      },
       "sha256_check": {
         "matches_member_map": 496,
         "mismatch": 0,
@@ -2444,7 +2471,7 @@
         "usable_as_document_false": 23
       },
       "stage11_orders_in_records": 1155,
-      "started_utc": "2026-10-17T21:14:10Z",
+      "started_utc": "2026-10-18T00:46:24Z",
       "text": {
         "members_needing_ocr": 84,
         "members_needing_ocr_for_some_blank_pages_only": 81,
@@ -2466,33 +2493,36 @@
     },
     "readiness-tracker": {
       "decided_by_steps_done": {
-        "1/6": 1037,
-        "1/7": 62,
-        "1/8": 4,
-        "2/6": 1476,
-        "2/7": 482,
-        "2/8": 35,
-        "3/6": 1,
-        "3/7": 64,
-        "3/8": 183,
-        "4/8": 14,
-        "6/6": 1
+        "1/6": 662,
+        "1/7": 30,
+        "1/8": 2,
+        "2/6": 487,
+        "2/7": 67,
+        "2/8": 6,
+        "3/6": 1355,
+        "3/7": 449,
+        "3/8": 35,
+        "4/6": 9,
+        "4/7": 62,
+        "4/8": 184,
+        "5/8": 9,
+        "6/6": 2
       },
       "decided_orders_blocked_by": {
-        "CLAIM_CHECK_FAILED": 11,
         "CLAIM_INCOMPLETE": 39,
         "CURRENT_BASIS_UNPROVED": 400,
         "FIRST_END_UNPROVED": 2918,
-        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3318,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
         "NO_CLAUSE_INVENTORY": 3318,
         "NO_OFFICIAL_SOURCE_LOCATED": 990,
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 0,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 129,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
@@ -2517,8 +2547,15 @@
         "exhausted": "research/readiness/EXHAUSTED.jsonl",
         "job_outputs": {
           "checker": "jobs/claim-checker/output/PER_CLAIM.json",
+          "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
+          "cl_status": "jobs/current-law/output/STATUS.json",
+          "cl_summary": "jobs/current-law/output/SUMMARY.json",
           "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
           "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
+          "le_catalog": "jobs/later-events/output/CATALOG_INDEX.csv",
+          "le_conflicts": "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv",
+          "le_status": "jobs/later-events/output/STATUS.json",
+          "le_summary": "jobs/later-events/output/SUMMARY.json",
           "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
           "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
           "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv"
@@ -2526,9 +2563,10 @@
         "job_outputs_used": {
           "claim-checker": 41,
           "fr-originals": 6497,
+          "machine later-source search": 6938,
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
-          "source-ladder": 147
+          "source-ladder": 122
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -2536,20 +2574,20 @@
         "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
       },
       "orders_blocked_by": {
-        "CLAIM_CHECK_FAILED": 11,
         "CLAIM_INCOMPLETE": 39,
         "CURRENT_BASIS_UNPROVED": 400,
         "FIRST_END_UNPROVED": 2918,
-        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3318,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
         "NO_CLAUSE_INVENTORY": 3318,
         "NO_OFFICIAL_SOURCE_LOCATED": 8474,
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 11613,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 417,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 265,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
@@ -2571,7 +2609,7 @@
           "action": "Check the page location of fr-originals finds marked medium/low confidence",
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
-          "orders_unblocked": 417
+          "orders_unblocked": 265
         },
         {
           "action": "Retrieve shared source EO::4314",
@@ -2619,15 +2657,15 @@
       "step_done_among_decided": {
         "clause_inventory": {
           "applicable": 3359,
-          "done": 1
+          "done": 7
         },
         "counterevidence": {
           "applicable": 3359,
-          "done": 2
+          "done": 2461
         },
         "ending_or_current_basis": {
           "applicable": 3359,
-          "done": 1
+          "done": 2
         },
         "opus_media": {
           "applicable": 844,
@@ -2635,7 +2673,7 @@
         },
         "original_text": {
           "applicable": 3359,
-          "done": 2240
+          "done": 2281
         },
         "provisional_status": {
           "applicable": 3359,
@@ -2643,7 +2681,7 @@
         },
         "savings_residuals": {
           "applicable": 3359,
-          "done": 1
+          "done": 7
         },
         "shared_sources": {
           "applicable": 236,
@@ -2652,40 +2690,39 @@
       }
     },
     "source-ladder": {
-      "attempts_logged": 69,
-      "bytes_downloaded": 327863094,
+      "attempts_logged": 43,
+      "bytes_downloaded": 784275283,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
       "exhausted_proposed_items": 4,
       "exhausted_proposed_lines": 22,
       "fetch_queue_problems": [],
-      "found": 147,
+      "found": 122,
       "found_by_route": {
-        "given/given": 54,
+        "given/given": 34,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 5,
         "official/govinfo_link_fr": 2,
         "official/govinfo_link_statute": 3,
         "official/govinfo_link_uscode": 9,
-        "official/ofr_index_pdf_url": 9,
-        "wayback_given/wayback_id_": 5
+        "official/ofr_index_pdf_url": 9
       },
-      "found_carried_forward": 122,
-      "from_fetch_queue": 80,
+      "found_carried_forward": 87,
+      "from_fetch_queue": 49,
       "from_stage20_shared_sources": 90,
-      "http_requests": 69,
-      "items_in_queue": 170,
-      "items_worked": 170,
+      "http_requests": 48,
+      "items_in_queue": 139,
+      "items_worked": 139,
       "job": "source-ladder",
-      "no_route": 16,
+      "no_route": 12,
       "not_attempted_budget": 0,
       "offline": false,
-      "orders_covered_by_found_sources": 280,
-      "pool_cache_hits": 18,
-      "pool_network_requests": 84,
-      "prefetched_urls": 32,
-      "retry_later": 3,
+      "orders_covered_by_found_sources": 257,
+      "pool_cache_hits": 34,
+      "pool_network_requests": 59,
+      "prefetched_urls": 40,
+      "retry_later": 1,
       "run_date": "2026-10-18",
-      "seconds": 463.1,
+      "seconds": 173.0,
       "stopped_early": ""
     }
   }
