@@ -270,3 +270,46 @@ class ReviewFixTests(Base):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ParallelRun(unittest.TestCase):
+    """workers > 1 must give the same per-order results as one process."""
+
+    def run_with(self, workers):
+        cache = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, cache, True)
+        repo = HERE.parent.parent
+        spec = {"repo": str(repo), "cache": str(cache), "offline": True, "max_requests": None}
+        ctx = fr_originals.make_ctx(**spec)
+        plan = [{"instrument_id": f"EO:{n}", "decided": n % 2 == 0, "record": None, "others": [],
+                 "category": "not_in_ofr_index" if n % 3 else "fr_volume_1_1936"} for n in range(9001, 9013)]
+        states, info = fr_originals.run(ctx, plan, workers=workers, ctx_spec=spec, log=lambda *a: None)
+        saved = sorted(p.name for p in (cache / "state").glob("EO_*.json"))
+        return states, info, saved
+
+    def test_parallel_matches_single_process(self):
+        one, info1, saved1 = self.run_with(1)
+        many, info3, saved3 = self.run_with(3)
+        strip = lambda s: {k: v for k, v in s.items() if k not in ("processed_utc", "seconds")}
+        self.assertEqual(set(one), set(many))
+        for iid in one:
+            self.assertEqual(strip(one[iid]), strip(many[iid]), iid)
+        self.assertEqual(saved1, saved3)  # every order's state file written by the workers
+        self.assertEqual(info3["stats"].get("parallel_workers"), 3)
+        self.assertEqual(info3["pending"], [])
+
+    def test_resume_skips_finished_orders_in_parallel(self):
+        cache = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, cache, True)
+        spec = {"repo": str(HERE.parent.parent), "cache": str(cache), "offline": True, "max_requests": None}
+        plan = [{"instrument_id": f"EO:{n}", "decided": False, "record": None, "others": [],
+                 "category": "not_in_ofr_index"} for n in range(9101, 9105)]
+        fr_originals.run(fr_originals.make_ctx(**spec), plan, workers=2, ctx_spec=spec, log=lambda *a: None)
+        _, info = fr_originals.run(fr_originals.make_ctx(**spec), plan, workers=2, ctx_spec=spec, log=lambda *a: None)
+        self.assertEqual(info["already_finished"], 4)
+        self.assertEqual(info["selected"], 0)
+
+    def test_default_workers(self):
+        self.assertEqual(fr_originals.default_workers(True, cpus=2), 4)
+        self.assertEqual(fr_originals.default_workers(False, cpus=16), 16)  # no cap on a PC
+        self.assertEqual(fr_originals.default_workers(False, cpus=1), 1)

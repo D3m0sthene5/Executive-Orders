@@ -66,15 +66,14 @@ def main():
           f"({sum(1 for p in plan if p['decided'])} decided first). "
           f"This run: {limit if limit is not None else 'all'} orders; keep scanned PDFs: {keep}; cache: {cache}")
 
-    fetcher = fetch_ladder.Fetcher(cache, max_requests=int(max_req) if max_req else None,
-                                   offline=env("JOB_OFFLINE") == "1")
-    import eo_extract
-    ctx = {
-        "repo": repo, "fetcher": fetcher,
-        "ladder": fetch_ladder.Ladder(fetcher, extract=eo_extract.eo_extract),
-        "custody": fr_originals.load_custody(repo), "crosswalk": fr_originals.load_crosswalk_pdfs(repo),
-        "state_dir": cache / "state", "state_texts": cache / "state" / "texts", "issue_blobs": set(),
-    }
+    ctx_spec = {"repo": str(repo), "cache": str(cache), "offline": env("JOB_OFFLINE") == "1",
+                "max_requests": int(max_req) if max_req else None}
+    ctx = fr_originals.make_ctx(**ctx_spec)
+    fetcher = ctx["fetcher"]
+    workers = env("JOB_WORKERS")
+    workers = int(workers) if workers else settings.get("github_workers", 4) if on_github \
+        else fr_originals.default_workers(False)
+    print(f"Worker processes: {workers} (set JOB_WORKERS to change; 1 = one order at a time)")
     # Results committed earlier are never thrown away: the owner's full PC run
     # (data/full_run/) and the last committed output/ seed the state folder first.
     prior_found = 0
@@ -88,7 +87,8 @@ def main():
         priors.append(prior_output.PriorOutput.from_git_head(repo, f"jobs/{name}/output"))
         carried, prior_found = fr_originals.carry_forward(ctx, full_plan, priors)
     states, info = fr_originals.run(ctx, plan, limit=limit, time_budget_s=budget * 60 if budget else None,
-                                    retry_not_found=env("JOB_RETRY_NOT_FOUND") == "1", keep_pdfs=keep)
+                                    retry_not_found=env("JOB_RETRY_NOT_FOUND") == "1", keep_pdfs=keep,
+                                    workers=workers, ctx_spec=ctx_spec)
     s = fr_originals.write_outputs(out, ctx, plan, states, info,
                                    {"settings_used": {"limit": limit, "time_budget_minutes": budget,
                                                       "keep_issue_pdfs": keep, "on_github": on_github,
@@ -103,7 +103,10 @@ def main():
           f"{s['not_found']} not found {s['not_found_by_reason']}.")
     if s["stopped_early"]:
         print(f"Stopped early: {s['stopped_early']}; {s['pending_not_reached']} selected orders left for the next run.")
-    print(f"{fetcher.requests} HTTP requests, {fetcher.bytes_downloaded / 1e6:.0f} MB downloaded.")
+    if info["stats"].get("parallel_workers"):
+        print(f"{workers} worker processes; downloads were counted inside the workers.")
+    else:
+        print(f"{fetcher.requests} HTTP requests, {fetcher.bytes_downloaded / 1e6:.0f} MB downloaded.")
     if est["of_which_need_network"] == 0:
         print("Full-run projection: nothing left that needs a download.")
     elif est["decades_without_a_measured_issue"] or any(not d["measured"] for d in est["by_decade"].values())             or est["estimated_hours"] is None:
