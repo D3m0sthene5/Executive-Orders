@@ -67,6 +67,48 @@ def test_challenge_stops():
     raise AssertionError("challenge page must stop acquisition")
 
 
+
+def _warc_record(body, http_extra=b"", warc_extra=b""):
+    import gzip
+    http = b"HTTP/1.1 200 OK\r\ncontent-type: text/html; charset=utf-8\r\n" + http_extra + b"\r\n" + body
+    warc = (b"WARC/1.0\r\nWARC-Type: response\r\nWARC-Date: 2025-09-09T11:29:43Z\r\n"
+            b"WARC-Target-URI: https://www.presidency.ucsb.edu/documents/executive-order-9066-x\r\n"
+            + warc_extra + b"Content-Length: " + str(len(http)).encode() + b"\r\n\r\n" + http)
+    return gzip.compress(warc)
+
+
+def test_mirror_warc_record():
+    import app_mirror as m
+    warc, http, body, length = m.split_warc(_warc_record(DOCUMENT.encode()))
+    assert warc["warc-target-uri"].endswith("executive-order-9066-x") and body == DOCUMENT.encode()
+    assert a.parse_document(body.decode())["app_node"] == "210696"
+    chunked = b"5\r\nhello\r\n6\r\n world\r\n0\r\n\r\n"
+    assert m.split_warc(_warc_record(chunked, b"transfer-encoding: chunked\r\n"))[2] == b"hello world"
+    try:
+        m.split_warc(_warc_record(b"x", warc_extra=b"WARC-Truncated: length\r\n"))
+    except m.ArchiveError:
+        pass
+    else:
+        raise AssertionError("truncated captures must be refused")
+
+
+def test_mirror_covered_and_audit(tmp_path=None):
+    import json, tempfile
+    from pathlib import Path
+    out = Path(tempfile.mkdtemp())
+    with (out / "MIRROR_DOCUMENTS.jsonl").open("w", encoding="utf-8") as fh:
+        for i in range(10):
+            fh.write(json.dumps({"path": f"/documents/executive-order-{i}", "route": "archive/common-crawl",
+                                 "sha256": "s", "text_sha256": "t"}) + "\n")
+    skip, audit = a.mirror_covered(out, 0)
+    assert len(skip) == 10 and not audit
+    skip, audit = a.mirror_covered(out, 4)
+    assert len(audit) == 3 and len(skip) == 7 and "/documents/executive-order-0" in audit
+    (out / "MIRROR_AUDIT.jsonl").write_text(json.dumps({"path": "/documents/executive-order-0"}) + "\n", encoding="utf-8")
+    skip, audit = a.mirror_covered(out, 4)
+    assert len(audit) == 2 and "/documents/executive-order-0" in skip
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

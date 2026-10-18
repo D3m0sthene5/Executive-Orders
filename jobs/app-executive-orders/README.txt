@@ -24,6 +24,22 @@ Timing: statistics 1 request; index about 110 requests (about 18 min);
 documents one request per order (about 10,900; about 30 h at 10 s). Stop
 with Ctrl-C at any time; the next run skips everything already saved.
 
+Archive lane (app_mirror.py): most APP order pages were captured by Common
+Crawl (2025 and earlier crawls; APP's robots.txt now disallows CCBot, so 2026
+crawls hold nothing) and by the Wayback Machine. Reading those captures loads
+the archives, not APP, so this lane runs several workers and finishes in
+minutes. It never sends a request to APP.
+  python jobs/app-executive-orders/app_mirror.py cc-index      --download --cache-dir <dir> [--crawls 32]
+  python jobs/app-executive-orders/app_mirror.py wayback-index --download --cache-dir <dir>
+  python jobs/app-executive-orders/app_mirror.py documents     --download --cache-dir <dir> [--ids-file data/PRIORITY.txt] [--workers 4]
+It walks the queue in the opposite order to the live lane and re-reads
+DOCUMENTS.jsonl every minute, so both can run at once. Afterwards rerun the
+live documents phase with --audit-every 50: it skips every path in
+MIRROR_DOCUMENTS.jsonl except every 50th, which it fetches live and compares
+in MIRROR_AUDIT.jsonl (text and page hash agreement, capture date), so the
+captures carry a measured staleness rate. A capture is the APP page as of
+its capture date; every record names the archive, crawl and capture date.
+
 output/
   STATISTICS.json/.csv     APP table "Executive Orders by President" plus its
                            methodology text, notes, sources and last-updated
@@ -43,6 +59,15 @@ output/
   FRAGMENTS.jsonl          claim-kit producer records for numbered orders, only
                            when listing and page headings agree on the number.
   STATE.json, ATTEMPTS.jsonl, FAILURES.jsonl   progress and individual failures.
+  MIRROR_INDEX.jsonl       one capture per path and archive (crawl, timestamp,
+                           WARC file/offset/length or Wayback timestamp).
+  MIRROR_DOCUMENTS/SOURCES/FRAGMENTS/ATTEMPTS/FAILURES.jsonl, MIRROR_STATE.json
+                           the archive lane's records, same shape as the live
+                           lane's plus route archive/<archive> and a capture
+                           block (archive, crawl, captured_utc, WARC record).
+  MIRROR_AUDIT.jsonl       live-vs-capture comparisons for the audit sample.
+  texts/<slug>.live.txt    live text of an audited page (the capture's text
+                           stays in texts/<slug>.txt).
 
 Every representation is grade mirror_transcription, representation_type
 secondary_compilation_transcription, acceptable_as_original=false. APP is an
