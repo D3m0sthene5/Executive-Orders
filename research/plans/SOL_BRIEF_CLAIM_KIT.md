@@ -1,4 +1,4 @@
-# Brief for Sol (ChatGPT): build `claim-kit` and run a 50-order pilot
+# Brief for Sol (ChatGPT): build `claim-kit`, the whole-project tool any AI uses, and prove it in a 50-order pilot
 
 **From:** Claude, 2026-10-18. **Owner:** Danny. Read this whole file before starting. It is self-contained.
 
@@ -29,11 +29,55 @@ re-read context tokens and 8 tool calls. Tools were not the bottleneck; agents w
 The main reason reviewers rejected claims was a **missed earlier end**: the order's own term, an earlier partial
 amendment, or an amendment mistaken for an end.
 
-## 3. What to build: one zero-token job, `jobs/claim-kit/`
+## 3. Design principle: one tool for every AI and the whole project, with the largest possible head
 
-It must be deterministic, use no AI or network, and run on the shared runner (see `jobs/README.md`). It must work
-**for every order and every future source**, not just one family. Model the style on
-`jobs/ofr-compilations/` and `jobs/claim-drafts/`.
+This is **project infrastructure, not a pilot script**. Build it so that any agent can use it the same way for
+every order and every research step, from now on:
+
+- any AI: Claude, Astra, Codex, Sol, Opus, a future model;
+- any person;
+- any order and any step.
+
+- **Largest possible head (economies of scale).** The machine stage runs **once over the whole corpus**, not per batch:
+  - all 14,972 census orders;
+  - every held text from every source job;
+  - every acting order;
+  - every later-event, codification and current-law record.
+
+  Everything that can be computed without legal judgment is computed there, once, and shared:
+  - segmentation;
+  - every target and acting-order provision pair;
+  - effective dates;
+  - own terms;
+  - chains;
+  - savings phrases;
+  - current-law and eCFR citations for orders still in force;
+  - conflicts;
+  - missing-source lists.
+
+  Agents should start from a dossier where only judgment is left.
+- **Families first.** Group work by shared evidence (same acting order, same parent order "as amended", same statute, same fixed-term pattern, same source volume). Rank families by **orders unlocked per analysis**. One family analysis plus a short per-order check should cost far less than separate orders. For truly uniform families, emit **batch review sheets**: one table of 50–100 rows approved row by row.
+- **Every step and every status, not just revocations:**
+  - NO orders: ends, earlier ends, savings;
+  - YES orders: the current predicate and its legal basis, using current-law and eCFR leads checked through the cutoff;
+  - partial claims: what is missing;
+  - undecided orders (no provisional status): a separate **status-lead** queue for whoever decides statuses. It is never written into statuses.
+- **AI-agnostic interface.** Plain files plus a small CLI, with no model-specific prompts:
+  - `python jobs/claim-kit/kit.py next --agent <name> --n 20` claims the next work items, ranked by unlocks. Use a lock file under `research/readiness/` so two agents never take the same order;
+  - `kit.py dossier EO:n` prints the dossier;
+  - `kit.py sheet EO:n` writes a blank decision sheet;
+  - `kit.py assemble <sheets>` builds the claims;
+  - `kit.py check <claims>` pre-gates them;
+  - `kit.py status` prints a progress summary.
+
+  Write a model-neutral `jobs/claim-kit/AGENT_PROTOCOL.md` (one page) that any AI can follow cold. Point `AGENTS.md` and `research/readiness/README.md` at it. Add the pointer only; don't rewrite those files.
+- **Extensible.** A new source job (a new book, a new archive) plugs in by declaring its fragments in its own `data/PROVENANCE.json` or output. There must be no code change in claim-kit per source.
+- **Scales on the runner.** It must run the full corpus within the runner's limits (about 5.5 hours, 7 GB RAM; see `jobs/README.md`), resume incrementally, and keep the existing tests green.
+
+## 4. What to build: one zero-token job, `jobs/claim-kit/`
+
+It must be deterministic, use no AI or network, and run on the shared runner (see `jobs/README.md`). Model the
+style on `jobs/ofr-compilations/` and `jobs/claim-drafts/`. Its stages are below.
 
 **Stage A: excavators** (machine evidence; leads only). Write the exact formats in `research/plans/CLAIM_KIT_CONTRACT.md`.
 1. `CLAUSES.jsonl`: clause segmentation v2 for every order with a held text. Cover:
@@ -78,7 +122,7 @@ It must be deterministic, use no AI or network, and run on the shared runner (se
 
 Wire the kit into `after.txt` so it runs after `claim-drafts`. Read `.github/scripts/pick_jobs.py` and avoid cycles; one was just fixed. **Do not edit `.github/`.**
 
-## 4. Pilot: prove it pays before scaling
+## 5. Pilot: prove it pays before scaling
 
 Pick the next **50 decided orders** in families (one acting order, many targets). Exclude:
 
@@ -102,7 +146,7 @@ Use short-lived, context-lean agents: one order or one small family each, fed on
 
 The kit pays off only if cost falls substantially **and** the rejection rate does not rise.
 
-## 5. Hard rules (non-negotiable)
+## 6. Hard rules (non-negotiable)
 
 - Machine outputs are leads only. Never change provisional statuses, ledger rows, the codebook or counts. Never admit census identities. Never write human reviews.
 - Never fetch sources by hand. Request them via `research/readiness/FETCH_QUEUE.jsonl`. No crawling of presidency.ucsb.edu.
@@ -117,8 +161,8 @@ The kit pays off only if cost falls substantially **and** the rejection rate doe
 - Work on a new branch from `wire-new-sources`, for example `claim-kit`. Commit messages end with a co-author line naming yourself. Do not merge to `main`; Danny decides, and Claude will wire your branch in.
 - Write `HANDOFF/notes-sol.md` (Done / Running / Next / Asks / Do not), including the telemetry above.
 
-## 6. Definition of done
+## 7. Definition of done
 
-- `jobs/claim-kit/` runs green on GitHub on your branch. Its outputs cover every decided order with a held text, and its tests pass.
+- `jobs/claim-kit/` runs green on GitHub on your branch. The machine stage covers all 14,972 orders (every held text, every acting order, YES and NO, plus the status-lead queue for undecided orders), the CLI and `AGENT_PROTOCOL.md` work for any AI, and its tests pass.
 - About 50 pilot claims are committed with a reviewer accept/reject record, and the tracker shows their effect.
 - `HANDOFF/notes-sol.md` reports the cost comparison and anything left undone.
