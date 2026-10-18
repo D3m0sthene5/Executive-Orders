@@ -1,0 +1,48 @@
+test_amendment_notes_counted (test_codification.Body.test_amendment_notes_counted) ... ok
+test_dated_references (test_codification.Body.test_dated_references) ... ok
+test_documents_anchor_on_source_and_end_at_next_heading (test_codification.Body.test_documents_anchor_on_source_and_end_at_next_heading) ... ok
+test_heading_mid_line_on_a_fragmented_page_and_chapter_cut (test_codification.Body.test_heading_mid_line_on_a_fragmented_page_and_chapter_cut) ... ok
+test_running_heads_and_printed_page_dropped (test_codification.Body.test_running_heads_and_printed_page_dropped) ... ok
+test_disposition_rows (test_codification.CommittedBook.test_disposition_rows) ... ok
+test_invariants (test_codification.CommittedBook.test_invariants) ... ok
+test_source_line_counts (test_codification.CommittedBook.test_source_line_counts) ... ok
+test_categories_and_acting_documents (test_codification.DispositionTable.test_categories_and_acting_documents) ... ok
+test_columns_pairing_and_wrapped_lines (test_codification.DispositionTable.test_columns_pairing_and_wrapped_lines) ... ok
+test_doubled_commas_do_not_hide_acting_documents (test_codification.DispositionTable.test_doubled_commas_do_not_hide_acting_documents) ... ok
+test_each_acting_document_gets_its_own_verb (test_codification.DispositionTable.test_each_acting_document_gets_its_own_verb) ... ok
+test_free_text_stays_with_its_row (test_codification.DispositionTable.test_free_text_stays_with_its_row) ... ok
+test_glued_numbers (test_codification.DispositionTable.test_glued_numbers) ... ok
+test_impossible_acting_numbers_are_flagged_not_used (test_codification.DispositionTable.test_impossible_acting_numbers_are_flagged_not_used) ... ok
+test_italic_affected_list_is_not_a_disposition (test_codification.DispositionTable.test_italic_affected_list_is_not_a_disposition) ... ok
+test_number_normalisation (test_codification.DispositionTable.test_number_normalisation) ... ok
+test_second_chunk_on_a_rows_own_line_stays_with_that_row (test_codification.DispositionTable.test_second_chunk_on_a_rows_own_line_stays_with_that_row) ... ok
+test_self_reference_is_flagged_not_emitted (test_codification.DispositionTable.test_self_reference_is_flagged_not_emitted) ... ok
+test_stray_digit_pieces_are_dropped (test_codification.DispositionTable.test_stray_digit_pieces_are_dropped) ... ok
+test_table_starts_under_heading_and_continues_across_pages (test_codification.DispositionTable.test_table_starts_under_heading_and_continues_across_pages) ... ok
+test_two_rows_in_one_ocr_piece_are_split (test_codification.DispositionTable.test_two_rows_in_one_ocr_piece_are_split) ... ok
+test_unnumbered_date_rows (test_codification.DispositionTable.test_unnumbered_date_rows) ... ok
+test_unpaired_items_are_reported_not_guessed (test_codification.DispositionTable.test_unpaired_items_are_reported_not_guessed) ... ok
+test_wrapped_reference_read_into_the_amendments_column (test_codification.DispositionTable.test_wrapped_reference_read_into_the_amendments_column) ... ok
+test_pdf_checks (test_codification.EndToEnd.test_pdf_checks) ... ok
+test_small_book_against_a_small_census (test_codification.EndToEnd.test_small_book_against_a_small_census) ... ok
+test_date_and_fr_citation_from_squashed_text (test_codification.SourceLines.test_date_and_fr_citation_from_squashed_text) ... ok
+test_fragmented_words_and_glued_months (test_codification.SourceLines.test_fragmented_words_and_glued_months) ... ok
+test_no_date_not_in_fr_and_restated (test_codification.SourceLines.test_no_date_not_in_fr_and_restated) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.993s
+
+OK
+Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989. PDF check: pdf_not_checked_out.
+Codified texts: 555 Executive Orders and 47 proclamations found by their SOURCE lines; 554 EOs have an exact date (no date: EO:10631); confidence {'high': 420, 'medium': 135}; 151 body pages came out a few words per line.
+  Census state: {'census_year_only': 554, 'no_date_in_source': 1}. Provisional status: {'undecided': 256, 'yes': 210, 'no': 89}. Checks: {'decided_NO_but_codified_in_force_1989': 89, 'table_page_62_outside_body_pages_620-621': 1}.
+Disposition table: 4225 rows (4207 numbered, 18 dated unnumbered); 0 without a disposition; 2 unpaired fragments; pairing {'high': 4055, 'medium': 164, 'low': 6}.
+  Groups: {'ended_by_1989': 2861, 'in_force_1989': 578, 'effect_merged_into_other_document': 408, 'excluded_not_ended': 281, 'other': 97}.
+  Rows split from one OCR piece: ['EO:2786']; stray digit pieces dropped: [(1045, '1'), (1089, '1')]; acting EOs rejected: none.
+  EO 9538-12667 numbers not read: [10217, 10275, 10288, 10595]. Numbered rows in the census: 4207 of 4207.
+  Against the OFR online data read by later-events (revoked/superseded rows): {'later_events_has_no_ending_edge': 225, 'same_acting_order': 1664, 'DIFFERENT_acting_order': 4}.
+Unnumbered rows: {'rows': 18, 'nara_census_match': {'match': 16, 'ambiguous_same_date': 2}, 'lord_1943_match': {'unmatched': 14, 'ambiguous': 1, 'match': 3}}. Dated references: {'distinct_eos': 1090, 'without_source_line': 536, 'disagree_with_source_line': 3, 'census_state_without_source_line': {'census_year_only': 535, 'NOT_IN_CENSUS': 1}}.
+Status leads: {'UNDECIDED_ENDED_BY_1989': 1298, 'UNDECIDED_IN_FORCE_1989': 261, 'DECIDED_NO_BUT_IN_FORCE_1989_LATER_ENDING_KNOWN': 15, 'DECIDED_YES_BUT_ENDED_BY_1989': 3, 'DECIDED_NO_BUT_IN_FORCE_1989_NO_LATER_ENDING_IN_LATER_EVENTS': 84}.
+Census leads: {'EXACT_DATE_FROM_SOURCE_LINE_CENSUS_YEAR_ONLY': 554, 'EXACT_DATE_FROM_DATED_REFERENCE_CENSUS_YEAR_ONLY': 533, 'NOT_IN_CENSUS_DATED_REFERENCE': 1, 'UNNUMBERED_ROW_DATE_FOR_BLANK_CENSUS_DATE': 16, 'UNNUMBERED_ROW_AMBIGUOUS_CENSUS_MATCH': 2, 'IN_CENSUS_NOT_FOUND_IN_TABLE_(PARSER_OR_SOURCE)': 4}.
+Fragments (later_event_candidates only): {'instruments': 1924, 'items': 1969, 'items_with_date': 1831}.
+Leads only: nothing is admitted, merged, dated or changed. The codified texts are as amended to 1989-01-20, not originals.
