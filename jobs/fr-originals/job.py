@@ -8,6 +8,12 @@ seed from data/full_run/ and the last committed output/).
 On GitHub (GITHUB_ACTIONS=true) the defaults come from settings.json.
 JOB_LIMIT counts only orders that still need work; orders already finished
 (in the cache or in committed results) are always kept in the outputs.
+
+Opt-in RECHECK mode (fr_recheck.py, pdfplumber): JOB_RECHECK=1, or "recheck": true in
+settings.json. It rechecks found orders whose result is not high (needs_page_check true);
+JOB_RECHECK_LIMIT (default: all; settings "recheck_github_limit" on GitHub),
+JOB_RECHECK_ONLY_IDS, JOB_RECHECK_REDO=1. In recheck mode no new orders are located
+unless JOB_LIMIT is given. The default run is unchanged.
 """
 from __future__ import annotations
 
@@ -53,6 +59,9 @@ def main():
     keep = env("JOB_KEEP_PDFS")
     keep = (keep == "1") if keep is not None else (settings["github_keep_issue_pdfs"] if on_github else True)
     max_req = env("JOB_MAX_REQUESTS")
+    recheck = (env("JOB_RECHECK") == "1") if env("JOB_RECHECK") is not None else bool(settings.get("recheck", False))
+    if recheck and env("JOB_LIMIT") is None:
+        limit = 0  # recheck mode: only recheck, unless JOB_LIMIT asks for new orders too
 
     universe = set()
     if (repo / fr_originals.PATHS["universe"]).exists():
@@ -86,14 +95,39 @@ def main():
                                                                 label=f"jobs/{name}/data/full_run"))
         priors.append(prior_output.PriorOutput.from_git_head(repo, f"jobs/{name}/output"))
         carried, prior_found = fr_originals.carry_forward(ctx, full_plan, priors)
+        import fr_recheck
+        fr_recheck.carry_forward_recheck(ctx, full_plan, priors)
     states, info = fr_originals.run(ctx, plan, limit=limit, time_budget_s=budget * 60 if budget else None,
                                     retry_not_found=env("JOB_RETRY_NOT_FOUND") == "1", keep_pdfs=keep,
                                     workers=workers, ctx_spec=ctx_spec)
-    s = fr_originals.write_outputs(out, ctx, plan, states, info,
-                                   {"settings_used": {"limit": limit, "time_budget_minutes": budget,
-                                                      "keep_issue_pdfs": keep, "on_github": on_github,
-                                                      "only_ids": only}}, full_plan=full_plan,
+    extra = {"settings_used": {"limit": limit, "time_budget_minutes": budget, "keep_issue_pdfs": keep,
+                               "on_github": on_github, "only_ids": only}}
+    import fr_recheck
+    rinfo = None
+    if recheck:
+        rlimit = env("JOB_RECHECK_LIMIT")
+        rlimit = int(rlimit) if rlimit else (settings.get("recheck_github_limit") if on_github else None)
+        ronly = [x.strip() for x in (env("JOB_RECHECK_ONLY_IDS") or "").split(",") if x.strip()]
+        print(f"RECHECK mode (pdfplumber): rechecking medium/low finds; limit {rlimit if rlimit is not None else 'all'}.")
+        _, rinfo = fr_recheck.run_recheck(ctx, plan, states, limit=rlimit,
+                                          time_budget_s=budget * 60 if budget else None, keep_pdfs=keep,
+                                          only=ronly, redo=env("JOB_RECHECK_REDO") == "1")
+        extra["settings_used"].update(recheck=True, recheck_limit=rlimit, recheck_only_ids=ronly)
+    s = fr_originals.write_outputs(out, ctx, plan, states, info, extra, full_plan=full_plan,
                                    prior_found=prior_found)
+    if recheck or fr_recheck.recheck_dir(ctx).is_dir():
+        rs = fr_recheck.write_recheck_outputs(out, ctx, full_plan, states, rinfo)
+        print(f"Recheck: {rs['orders_rechecked_total']} orders rechecked so far: {rs['upgraded_to_high']} upgraded to "
+              f"high, {rs['stayed']} stayed as they were, {rs['errors']} errors (of {rs['orders_eligible_now']} "
+              "medium/low orders in the outputs). See RECHECK.jsonl / RECHECK_SUMMARY.json.")
+        if recheck:
+            s["recheck"] = {k: rs[k] for k in ("orders_eligible_now", "orders_rechecked_total", "upgraded_to_high",
+                                              "stayed", "errors", "by_base_confidence_and_result",
+                                              "upgrades_by_evidence_kind", "upgraded_with_other_pages_than_base",
+                                              "heading_found_off_the_cited_page", "this_run") if k in rs}
+            s["recheck"]["details"] = "RECHECK_SUMMARY.json (examples, stay reasons) and RECHECK.jsonl (evidence per order)"
+            import fetch_ladder as _fl
+            _fl.write_text_lf(out / "SUMMARY.json", json.dumps(s, indent=1) + "\n")
     est = s["full_run_estimate"]
     print()
     print(f"Done in {info['stats'].get('seconds')} s. This run worked {info['selected']} orders; "

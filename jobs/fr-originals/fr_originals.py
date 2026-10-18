@@ -349,8 +349,61 @@ def load_state(state_dir, iid):
     if p.exists():
         s = json.loads(p.read_text(encoding="utf-8"))
         if s.get("state_version") == STATE_VERSION:
-            return s
+            return strip_recheck_overlay(s)
     return None
+
+
+def base_fragment(frag, src):
+    """The default locator's own fragment for an order whose fragment carries a recheck
+    upgrade (data.recheck_evidence): rebuilt from the SOURCES record, which the recheck never
+    changes. A fragment without recheck_evidence is returned as it is."""
+    d = (frag or {}).get("data") or {}
+    ev = d.get("recheck_evidence")
+    if not frag or ev is None:
+        return frag
+    import eo_extract
+    item = {"instrument_id": frag["instrument_id"],
+            "record": {"citation": d.get("fr_citation"), "publication_date": d.get("publication_date"),
+                       "signing_date": d.get("signing_date"), "title": d.get("title")}}
+    scanned = (src.get("route") != "reuse/stage21_original_sources"
+               and eo_extract.issue_pdf(src.get("url", "").split("id_/", 1)[-1]))
+    try:
+        return fragment_for(item, src, confidence_note({"confidence": src.get("location_confidence")}, scanned))
+    except KeyError:  # an incomplete SOURCES record: put back what the recheck kept of the old fragment
+        out = json.loads(json.dumps(frag))
+        base = ev.get("base") or {}
+        out["data"].pop("recheck_evidence", None)
+        for k in ("location_confidence", "page_or_item", "text_path"):
+            if base.get(k) is not None:
+                out["data"][k] = base[k]
+        conf = out["data"].get("location_confidence")
+        out["data"]["needs_page_check"] = conf != "high"
+        for s_ in out.get("sources") or []:
+            if base.get("page_or_item") is not None:
+                s_["page_or_item"] = base["page_or_item"]
+        out["confidence_note"] = confidence_note({"confidence": conf}, scanned)
+        return out
+
+
+def strip_recheck_overlay(st):
+    """Keep the state the default locator's own result. A recheck upgrade is an overlay that
+    fr_recheck.overlay() applies at output time from a current, valid recheck record only; a
+    fragment or source carried in from an output that already had the overlay applied is put
+    back to the base result here, so an upgrade can always be withdrawn (RECHECK_VERSION bump,
+    missing RECHECK.jsonl or recheck text)."""
+    if not st or st.get("status") != "found":
+        return st
+    src, frag = st.get("source") or {}, st.get("fragment")
+    has_frag_overlay = bool(frag and (frag.get("data") or {}).get("recheck_evidence") is not None)
+    if "recheck" not in src and not has_frag_overlay:
+        return st
+    st = dict(st)
+    src = dict(src)
+    src.pop("recheck", None)
+    st["source"] = src
+    if has_frag_overlay:
+        st["fragment"] = base_fragment(frag, src)
+    return st
 
 
 def make_ctx(repo, cache, offline=False, max_requests=None):
@@ -565,13 +618,26 @@ def write_outputs(out, ctx, plan, states, run_info, extra_summary=None, full_pla
         if st:
             all_states[p["instrument_id"]] = st
     order = [p["instrument_id"] for p in full_plan if p["instrument_id"] in all_states]
+    # Opt-in pdfplumber recheck (fr_recheck.py): upgrades found earlier replace that order's
+    # medium/low fragment. Empty (and the outputs unchanged) when no recheck has run.
+    import fr_recheck
+    upgrades = fr_recheck.overlay(ctx, full_plan, all_states)
     sources, fragments, missing, attempts = [], [], [], []
     for iid in order:
         st = all_states[iid]
         attempts.extend(st.get("attempts") or [])
         if st["status"] == "found":
-            sources.append(st["source"])
-            fragments.append(st["fragment"])
+            src, frag = st["source"], st["fragment"]
+            if iid in upgrades:
+                frag, rname, _ = upgrades[iid]
+                src = dict(src, recheck={"result": "upgraded", "location_confidence": "high",
+                                         "page_or_item": frag["data"]["page_or_item"],
+                                         "text_path": frag["data"]["text_path"], "see": "RECHECK.jsonl"})
+                rtext = fr_recheck.recheck_text_path(ctx, rname or "")
+                if rname and rtext.is_file():
+                    shutil.copyfile(rtext, out / "texts" / rname)
+            sources.append(src)
+            fragments.append(frag)
             src_text = ctx["state_texts"] / (st.get("text_file") or "")
             if st.get("text_file") and src_text.is_file():
                 shutil.copyfile(src_text, out / "texts" / st["text_file"])
@@ -622,6 +688,11 @@ def write_outputs(out, ctx, plan, states, run_info, extra_summary=None, full_pla
                          f"{len(sources)} are in this output"),
         "caution": "Source custody and location leads only. Nothing here changes a provisional status, ledger or count.",
     }
+    if upgrades:
+        after = Counter(f["data"].get("location_confidence") for f in fragments)
+        summary["recheck_upgrades_applied"] = len(upgrades)
+        summary["found_by_confidence_after_recheck"] = dict(after)
+        summary["found_needing_page_check_after_recheck"] = sum(1 for f in fragments if f["data"].get("needs_page_check"))
     if extra_summary:
         summary.update(extra_summary)
     fetch_ladder_write(out / "SUMMARY.json", json.dumps(summary, indent=1) + "\n")
@@ -672,6 +743,12 @@ def carry_forward(ctx, full_plan, priors, log=print):
                 frag = json.loads(json.dumps(frag))
                 frag["data"].setdefault("location_verified", False)
                 frag["data"].setdefault("needs_page_check", src.get("location_confidence") != "high")
+            # A committed output may hold recheck upgrades (fr_recheck.py); the state keeps the base
+            # result only, and the upgrade is applied again at output time if its record is valid.
+            stripped = strip_recheck_overlay({"status": "found", "source": src, "fragment": frag})
+            if stripped["fragment"] is not frag:
+                stats["recheck_overlays_put_back_to_base"] += 1
+            src, frag = stripped["source"], stripped["fragment"]
             write_state(ctx["state_dir"], {
                 "state_version": STATE_VERSION, "instrument_id": iid, "status": "found", "permanent": True,
                 "source": src, "fragment": frag, "not_found": None, "attempts": [], "text_file": name,
@@ -688,7 +765,10 @@ def carry_forward(ctx, full_plan, priors, log=print):
                 "attempts": [], "text_file": None, "processed_utc": None, "carried_forward_from": prior.label})
             stats["not_found_carried"] += 1
         log(f"Carried forward from {prior.label}: {stats['found_carried']} found and "
-            f"{stats['not_found_carried']} not-found orders so far.")
+            f"{stats['not_found_carried']} not-found orders so far"
+            + (f" ({stats['recheck_overlays_put_back_to_base']} recheck upgrades put back to the base result; "
+               "they are re-applied only from valid RECHECK.jsonl records)." if stats["recheck_overlays_put_back_to_base"]
+               else "."))
     return dict(stats), prior_found
 
 
