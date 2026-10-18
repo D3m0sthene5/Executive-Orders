@@ -1,0 +1,18 @@
+test_hoover_v2_is_complete (test_ofr.CommittedVolume.test_hoover_v2_is_complete) ... ok
+test_volume_against_a_small_census (test_ofr.EndToEnd.test_volume_against_a_small_census) ... ok
+test_headings_and_closing_tags (test_ofr.Parsing.test_headings_and_closing_tags) ... ok
+test_orders_split_across_pages (test_ofr.Parsing.test_orders_split_across_pages) ... ok
+test_page_lines_drop_running_head_and_page_number (test_ofr.Parsing.test_page_lines_drop_running_head_and_page_number) ... ok
+test_table2_year_lines_and_split_columns (test_ofr.Parsing.test_table2_year_lines_and_split_columns) ... ok
+test_table3_pairs_only_same_line (test_ofr.Parsing.test_table3_pairs_only_same_line) ... ok
+test_wrapped_heading_date_and_closing_tag (test_ofr.Parsing.test_wrapped_heading_date_and_closing_tag) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.124s
+
+OK
+HOOVER_V2: 526 orders printed (EO 5550-6070; lettered EO:5605A, EO:5638A, EO:5855A, EO:6005A, EO:6022A); confidence {'high': 523, 'medium': 3}; PDF check: pdf_not_checked_out.
+  Census: 500 of 500 census ids in range have a text here; leads {'NOT_IN_CENSUS': 26, 'census_date_blank': 11, 'NOT_IN_CENSUS_listed_in_table2_only': 1}.
+  Decided orders with a text here: 29 (29 had the original_text step open). Fragments: 500.
+  Table 2: 1000 orders listed; month/day agrees with the heading for 516 of the 516 whose day was read. Table 3: 214 paired lines (174 on executive orders), 136 unpaired.
+Leads only: nothing is admitted, merged, dated or changed.
