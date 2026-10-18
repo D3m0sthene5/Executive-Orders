@@ -285,6 +285,50 @@ class ExcavatorTests(unittest.TestCase):
             self.assertEqual((r["verb"], r["scope"]), ("revoke", scope))
             self.assert_quote(text, r, "provision_text")
 
+    def test_neighbor_blocks_cannot_supply_own_terms_actor_or_effective_date(self):
+        text = ("Instrument: EO:9\nSource: https://example.gov/page.pdf\n\n"
+                "Executive Order 8 of January 1, 1900\n"
+                "Section 1. Executive Order 1 is revoked.\n"
+                "Section 2. This body continues for four years from January 1, 1900.\n"
+                "Section 3. This order is effective on January 2, 1900.\n"
+                "THE WHITE HOUSE\nJanuary 1, 1900.\n[FR Doc. prior]\n"
+                "Executive Order 9 of January 1, 2000\nA title\n"
+                "By virtue of the authority vested in me, Executive Order 2 is amended by deleting the text of\n"
+                "Section 602(d)(2) of the Order and inserting the following:\nAn operative replacement.\n"
+                "THE WHITE HOUSE\nJanuary 1, 2000.\n[FR Doc. own]\n"
+                "Executive Order 10 of January 2, 2000\n"
+                "Section 1. Executive Order 3 is revoked.\n"
+                "Section 2. This order is effective on January 3, 2000.\nTHE WHITE HOUSE\n")
+        clauses = excavate.segment("EO:9", text, SOURCE)["clauses"]
+        self.assertEqual(len(clauses), 1)
+        self.assertTrue(clauses[0]["text"].startswith("By virtue"))
+        self.assertEqual(clauses[0]["kind"], "amendment_instruction")
+        self.assertNotIn("1900", clauses[0]["text"])
+        self.assertFalse(excavate.own_terms("EO:9", text, SOURCE, clauses))
+        records = excavate.discover_mentions("EO:9", text, SOURCE)
+        self.assertEqual([r["target_id"] for r in records], ["EO:2"])
+        self.assertIsNone(excavate.acting_provision("EO:1", "EO:9", text, SOURCE))
+        self.assertEqual(records[0]["effective_wording"], [])
+        self.assertIsNone(records[0]["effective_date"])
+        self.assert_quote(text, records[0], "provision_text")
+
+    def test_real_eo12649_skips_preceding_footer_and_following_memorandum(self):
+        path = Path(__file__).resolve().parents[2] / "jobs/fr-originals/output/texts/EO_12649.txt"
+        if not path.is_file():
+            self.skipTest("Real FR EO12649 text not hydrated")
+        text = path.read_bytes().decode("utf-8")
+        clauses = excavate.segment("EO:12649", text, SOURCE)["clauses"]
+        self.assertEqual(len(clauses), 1)
+        clause = clauses[0]
+        self.assertTrue(clause["text"].startswith("By virtue"))
+        self.assertTrue(clause["text"].endswith("Production Act.”"))
+        self.assertEqual(clause["kind"], "amendment_instruction")
+        self.assertGreater(clause["char_start"], text.index("Executive Order 12649"))
+        self.assertNotIn("Memorandum", clause["text"])
+        self.assert_quote(text, clause)
+        actors = excavate.discover_mentions("EO:12649", text, SOURCE)
+        self.assertEqual([r["target_id"] for r in actors], ["EO:10480"])
+
     def test_contract_examples_parse_and_roundtrip(self):
         fixtures = Path(__file__).resolve().parents[2] / "research/plans/claim_kit_contract/fixtures"
         paths = sorted(fixtures.glob("*.example.jsonl"))

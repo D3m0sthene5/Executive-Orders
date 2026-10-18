@@ -19,7 +19,7 @@ DATE = r"(?:\d{4}-\d{2}-\d{2}|(?:January|February|March|April|May|June|July|Augu
 EO_NUMBER = r"\d(?:[ \t]*\d){0,4}[A-Z]?(?:½)?"
 EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
 CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?)\b", re.I)
-HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)[.):]?)|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
+HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)(?:[.):](?=\s|$)|(?=[ \t]*$)))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
 WHITE_HOUSE = r"(?im)^[ \t]*T[ \t]*H[ \t]*E[ \t]+W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E[ \t]*[,.;]?[ \t]*$"
 NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "twelve": 12, "thirty": 30, "sixty": 60, "ninety": 90}
 NUMBERS.update({"eleven": 11, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20, "forty": 40, "fifty": 50, "seventy": 70, "eighty": 80})
@@ -97,9 +97,9 @@ def _signature_start(text, end):
     return end
 
 
-def _body_end(text):
+def _body_end(text, start=0):
     patterns = [r"(?m)^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", WHITE_HOUSE, r"(?im)^\s*IN WITNESS WHEREOF\b"]
-    found = [m.start() for p in patterns for m in re.finditer(p, text) if not re.search(r"(?im)^\s*SCHEDULE\b", text[m.end():])]
+    found = [m.start() for p in patterns for m in re.finditer(p, text) if m.start() >= start and not re.search(r"(?im)^\s*SCHEDULE\b", text[m.end():])]
     end = min(found, default=len(text))
     # A signature immediately before the White House line is recognizable as
     # a short name line. Keep this bounded to that position, not arbitrary
@@ -114,6 +114,23 @@ def _paragraph_start(text, offset):
     return boundary + 2 if boundary >= 0 else 0
 
 
+@lru_cache(maxsize=32)
+def _extent(instrument_id, text):
+    """Bound an attributed order before using any signature or legal wording.
+
+    Neighboring pages can begin with a previous order's FR Doc or signature.
+    Only a printed heading matching the supplied identity licenses skipping
+    those blocks. Space-separated printed digits are read, never repaired.
+    """
+    heading = re.compile(r"(?im)^[ \t]*(?:[^\n]{0,30}?[-—–][ \t]*)?Executive[ \t]+Order[ \t]+(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)(?=\s+(?:of|o[ \t]+f)\b|[ \t]*$)")
+    headers = list(heading.finditer(text))
+    own = next((h for h in headers if "EO:" + re.sub(r"[ \t]", "", h[1]).upper() == instrument_id), None)
+    start = own.start() if own else 0
+    next_header = next((h for h in headers if own and h.start() > own.start() and "EO:" + re.sub(r"[ \t]", "", h[1]).upper() != instrument_id), None)
+    upper = next_header.start() if next_header else len(text)
+    return start, _body_end(text[:upper], start)
+
+
 def segment(instrument_id, text, source):
     """Build disjoint operative spans, retaining nested heading paths.
 
@@ -121,23 +138,16 @@ def segment(instrument_id, text, source):
     An unnumbered operative lead before numbered sections is always retained.
     """
     notes = ["Machine segmentation lead; compare the inventory with the official original."]
-    end = _body_end(text)
-    printed = list(re.finditer(r"(?im)^\s*EXECUTIVE\s+ORDER\s+(?:NO\.?\s*)?(\d{1,5}[A-Z]?)(?:\s|$)", text))
-    own_header = next((m for m in printed if "EO:" + m[1].upper() == instrument_id), None)
-    if own_header:
-        next_header = next((m for m in printed if m.start() > own_header.start() and "EO:" + m[1].upper() != instrument_id), None)
-        if next_header:
-            end = min(end, next_header.start())
-            notes.append("Stopped before the next distinct printed executive-order header.")
-    headings = list(HEADING.finditer(text, 0, end))
-    operative = re.search(r"\b(?:I\s+(?:hereby\s+)?(?:order|direct|extend|establish|revoke|amend)|it\s+is\s+(?:hereby\s+)?ordered|(?:is|are)\s+(?:hereby\s+)?(?:amended|revoked|established)|[A-Za-z]+\s+(?:shall|is hereby))\b", text[:end], re.I)
+    body_start, end = _extent(instrument_id, text)
+    headings = list(HEADING.finditer(text, body_start, end))
+    operative = re.compile(r"\b(?:I\s+(?:hereby\s+)?(?:order|direct|extend|establish|revoke|amend)|it\s+is\s+(?:hereby\s+)?ordered|(?:is|are)\s+(?:hereby\s+)?(?:amended|revoked|established)|[A-Za-z]+\s+(?:shall|is hereby))\b", re.I).search(text, body_start, end)
     if headings:
         start = headings[0].start()
         if operative and operative.start() < start:
             # Authority text is excluded only when it has a clear operative tail.
             lead = text[:start]
             para = _paragraph_start(lead, operative.start())
-            start = max(0, para)
+            start = max(body_start, para)
             whereas = re.search(r"\b(?:NOW,?\s+THEREFORE|I\s+hereby)\b", lead[start:], re.I)
             if whereas:
                 start += whereas.start()
@@ -150,13 +160,13 @@ def segment(instrument_id, text, source):
                 if not command:
                     start = headings[0].start()
     elif operative:
-        start = _paragraph_start(text, operative.start())
+        start = max(body_start, _paragraph_start(text, operative.start()))
     else:
-        start = 0
+        start = body_start
         notes.append("No confident operative boundary found; unstructured text retained for review.")
     # Exclude authority-only lead paragraphs; retain authority in one-sentence orders.
     if not headings:
-        authority = list(re.finditer(r"(?im)^\s*(?:By virtue|By the authority|Pursuant to)\b", text[:end]))
+        authority = [m for m in re.finditer(r"(?im)^\s*(?:By virtue|By the authority|Pursuant to)\b", text[:end]) if m.start() >= body_start]
         prior_authority = [a for a in authority if operative and a.start() <= operative.start()]
         if prior_authority:
             start = prior_authority[-1].start()
@@ -165,7 +175,7 @@ def segment(instrument_id, text, source):
     # into an otherwise unnumbered operative lead.
     metadata = re.search(r"(?m)^Instrument:\s*EO:", text[:end])
     if metadata:
-        authorities = list(re.finditer(r"(?im)^[ \t]*(?:By\s+(?:virtue|the\s+authority|authority)|Pursuant\s+to)\b", text[:end]))
+        authorities = [m for m in re.finditer(r"(?im)^[ \t]*(?:By\s+(?:virtue|the\s+authority|authority)|Pursuant\s+to)\b", text[:end]) if m.start() >= body_start]
         first_heading = headings[0].start() if headings else end
         authority = next((m for m in authorities if m.start() < first_heading), None)
         if authority and start < authority.start():
@@ -239,7 +249,7 @@ def own_terms(instrument_id, text, source, clauses):
     result = []
     windows = [(c["char_start"], c["char_end"]) for c in clauses if isinstance(c, dict) and type(c.get("char_start")) is int and type(c.get("char_end")) is int]
     if not windows:
-        windows = [(0, _body_end(text))]
+        windows = [_extent(instrument_id, text)]
     sentence_spans = ((start + a, start + b) for start, end in windows for a, b in _sentences(text[start:end]))
     for a, b in sentence_spans:
         sentence = text[a:b]
@@ -314,23 +324,23 @@ def _historical_amender(text, offset):
     return bool(re.search(r"\bas\s+amended\s+by(?:(?!;|\n\s*\(\s*[a-z]\s*\)).){0,150}\Z", text[max(0, offset - 170):offset], re.I | re.S))
 
 
-def _list_instruction(text, ref):
+def _list_instruction(text, ref, body_start=0, body_end=None):
     """Locate a governing multiline change list, without repairing its text."""
-    section = [h for h in HEADING.finditer(text, 0, ref[1]) if h["section"]]
-    start = section[-1].start() if section else _paragraph_start(text, ref[1])
+    section = [h for h in HEADING.finditer(text, body_start, ref[1]) if h["section"]]
+    start = section[-1].start() if section else max(body_start, _paragraph_start(text, ref[1]))
     before = text[start:ref[1]]
     intro = re.search(r"\bfollowing\b[^:]{0,800}\b(?:are|is)\s+(?:hereby\s+)?(?:revoked|superseded|amended|abolished|terminated)\s*:", before, re.I | re.S)
     if not intro:
         return None
     intro_end = start + intro.end()
-    items = [h for h in HEADING.finditer(text, intro_end) if h["sub"] or h["item"] or h["section"]]
-    next_item = next((h.start() for h in items if h.start() > ref[1]), _body_end(text))
+    items = [h for h in HEADING.finditer(text, intro_end, body_end or len(text)) if h["sub"] or h["item"] or h["section"]]
+    next_item = next((h.start() for h in items if h.start() > ref[1]), body_end or _body_end(text, body_start))
     return start, next_item, intro[0]
 
 
-def _effective(text, provision, signing_date, filing_date):
+def _effective(text, provision, signing_date, filing_date, body_start=0, body_end=None):
     spans = []
-    for a, b in _sentences(text):
+    for a, b in ((body_start + a, body_start + b) for a, b in _sentences(text[body_start:body_end])):
         s = text[a:b]
         if re.search(r"\b(?:effective|take\s+effect|takes\s+effect|in\s+effect|upon\s+(?:signing|signature))\b", s, re.I):
             spans.append({"text": s, "char_start": a, "char_end": b})
@@ -372,7 +382,8 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     remains an incomplete record with empty quote and explicit gap, never a quote
     reconstructed from a disposition table.
     """
-    refs = list(_references(text))
+    body_start, body_end = _extent(actor_id, text)
+    refs = [r for r in _references(text) if body_start <= r[1] < body_end]
     chosen = [r for r in refs if r[0] == target_id and not _historical_amender(text, r[1])]
     via = False
     if not chosen and parent_id:
@@ -380,8 +391,8 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
         via = bool(chosen)
     if not chosen:
         return None
-    sentences = list(_sentences(text))
-    list_context = next((context for r in chosen if (context := _list_instruction(text, r))), None)
+    sentences = [(body_start + a, body_start + b) for a, b in _sentences(text[body_start:body_end])]
+    list_context = next((context for r in chosen if (context := _list_instruction(text, r, body_start, body_end))), None)
     candidates = [(list_context[0], list_context[1])] if list_context else [(a, b) for a, b in sentences if any(a <= r[1] < b for r in chosen) and _changes(text[a:b])]
     # Lists often put the change instruction in the enclosing section header.
     if not candidates:
@@ -394,6 +405,7 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
         for ref in chosen:
             before = text[:ref[1]]
             instruction = list(re.finditer(r"(?im)^.*\b(?:following|listed|enumerated)\b[^\n]*\b(?:revoked|superseded|amended|abolished|terminated)\s*:\s*", before))
+            instruction = [i for i in instruction if i.start() >= body_start]
             if instruction:
                 intro = instruction[-1]
                 intervening = before[intro.end():]
@@ -427,7 +439,7 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     scope_wording = re.sub(r"^\s*(?:Sec(?:tion)?\.?\s+\d+[A-Za-z]?[.):]\s*)", "", provision, flags=re.I)
     partial = bool(exceptions or re.search(r"\b(?:section|subsection|paragraph|item|part|schedule)\s+(?:\d|\(|[IVX]+\b)", scope_wording, re.I) or verb == "amend")
     savings = [text[x:y] for x, y in sentences if re.search(r"\b(?:shall\s+not\s+(?:affect|impair)|without\s+(?:affecting|prejudice)|pending\s+(?:proceedings|matters|actions)|rights?\s+(?:accrued|vested)|savings?|remain\s+in\s+(?:full\s+)?force|continue\s+in\s+effect)\b", text[x:y], re.I)]
-    effective, effective_class, effective_date, date_note = _effective(text, provision, signing_date, filing_date)
+    effective, effective_class, effective_date, date_note = _effective(text, provision, signing_date, filing_date, body_start, body_end)
     notes = ["Machine lead only; no legal ending asserted.", date_note]
     if not candidates:
         notes.append("MISSING_CHANGE_PROVISION: printed reference found, but no change provision located; quote and offsets intentionally empty.")
@@ -443,7 +455,8 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
 def discover_mentions(actor_id, text, source, signing_date=None, filing_date=None):
     """One pass over actor text; caller must filter printed IDs to its census."""
     result = []
-    for target in sorted({r[0] for r in _references(text)}):
+    start, end = _extent(actor_id, text)
+    for target in sorted({r[0] for r in _references(text) if start <= r[1] < end}):
         if target != actor_id:
             record = acting_provision(target, actor_id, text, source, signing_date, filing_date)
             if record and record["provision_text"]:
@@ -453,7 +466,9 @@ def discover_mentions(actor_id, text, source, signing_date=None, filing_date=Non
 
 def generic_reference_count(text):
     """Count unassigned generic change wording, never attach it to a target."""
-    return sum(bool(CHANGE.search(text[a:b]) and re.search(r"\ball\s+(?:prior\s+|previous\s+|executive\s+)?orders?\b|\borders?\s+inconsistent\b", text[a:b], re.I)) for a, b in _sentences(text))
+    iid = re.search(r"(?m)^Instrument:\s*(EO:[^\s]+)", text)
+    start, end = _extent(iid[1], text) if iid else (0, len(text))
+    return sum(bool(CHANGE.search(text[start + a:start + b]) and re.search(r"\ball\s+(?:prior\s+|previous\s+|executive\s+)?orders?\b|\borders?\s+inconsistent\b", text[start + a:start + b], re.I)) for a, b in _sentences(text[start:end]))
 
 
 def chain(target_id, acting_records, generic_refs_excluded=0):

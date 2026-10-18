@@ -62,7 +62,7 @@ def safe_read(repo, rel):
         raise ValueError('text path escapes repository')
     return p.read_bytes().decode('utf-8')
 
-def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
+def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
     evidence={}
@@ -100,7 +100,7 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
                 key=eid+f':effective#{n}'
                 evidence[key]=dict(e, id=key, source=a['actor_source'],actor_id=a['actor_id'])
     actor_contexts=[]
-    for actor in sorted({a['actor_id'] for a in acts}):
+    for actor in sorted({a['actor_id'] for a in acts}|set(known_actors or [])):
         ar=selected.get(actor)
         if not ar:continue
         key='ACTOR_TEXT:'+actor
@@ -237,6 +237,9 @@ def build(repo, out, cache=None):
     for a in list(primary_acts.values()):
         if re.search(r'\bas\s+amended\b',a.get('provision_text',''),re.I):
             for child in parents.get(a.get('target_id'),set()):
+                child_date=selected.get(child,{}).get('signing_date')
+                actor_date=a.get('signing_date')
+                if child_date and actor_date and actor_date<child_date:continue
                 if child!=a['actor_id']:
                     pairs.setdefault((child,a['actor_id'],a['target_id']),{'target_id':child,'actor_id':a['actor_id'],'parent_id':a['target_id']})
     actors_by=collections.defaultdict(list);missing_sources=[];located_pairs={}
@@ -246,10 +249,17 @@ def build(repo, out, cache=None):
         if actor not in universe:
             missing_by[target].append('Acting identity absent from census: '+actor);continue
         ar=selected.get(actor)
-        a=None
-        if ar:
-            a=acting_provision(target,actor,ar['text'],ar['source'],ar.get('signing_date'),ar.get('filing_date'),parent_id=parent)
-        if not a:a=primary_acts.get(key)
+        # Explicit provisions were already located in the whole-text pass. Reuse
+        # them; rescanning a shared parent for every amender creates a quadratic
+        # CPU cost without adding evidence.
+        a=primary_acts.get((target,actor,None))
+        if a is None and parent:
+            base=primary_acts.get((parent,actor,None))
+            if base and re.search(r'\bas\s+amended\b',base.get('provision_text',''),re.I):
+                a=dict(base,id='ACT:'+target+'>'+actor,target_id=target,names_target=False,
+                       reaches_target_via=parent+' as amended',
+                       scope='partial' if base.get('scope')=='partial' else 'whole_via_parent',
+                       notes=base.get('notes','')+' Indirect parent membership is an unconfirmed lead.')
         if a and a.get('provision_text'):
             pair=(target,actor)
             a={k:v for k,v in a.items() if not k.startswith('_')}
@@ -264,6 +274,8 @@ def build(repo, out, cache=None):
     with ShardedJsonl(out/'ACTING_REPRESENTATIONS.jsonl') as fh:
         for pair,values in sorted(all_variants.items()):
             for variant in values.values():line(fh,variant)
+    known_actors_by=collections.defaultdict(set)
+    for target,actor,_ in pairs:known_actors_by[target].add(actor)
     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
     families=collections.defaultdict(set)
@@ -289,7 +301,7 @@ def build(repo, out, cache=None):
             if iid not in corpus['statuses']:
                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid])
+            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
             name=filename(iid)
             dump(out/'dossiers'/(name+'.json'),dossier)
             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))
