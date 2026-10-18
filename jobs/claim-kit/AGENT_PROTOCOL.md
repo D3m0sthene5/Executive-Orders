@@ -5,6 +5,13 @@ segmentation, candidate date, family grouping or search result establishes legal
 Start at the committed `output/SUMMARY.json` and `STATUS.json`: check the input commit
 and read warnings. Never reuse a decision against a changed dossier fingerprint.
 
+For bounded production batches, prefer the executable `prepare` / `view` /
+`apply` / `batch-check` path in [BATCH.md](BATCH.md). It shares exact source text,
+retains blocked members, supports inventory corrections and saves full audits.
+Undecided identities use its independently reviewed experimental-overlay path;
+owner acceptance remains separate from a working proposal. The legacy individual
+JSON commands below remain supported.
+
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
    `jobs/claim-drafts/AGENT_GUIDE.md` and `research/stage19/CLAIM_SCHEMA.md`.
    `python jobs/claim-kit/kit.py next --agent NAME --n 20` reserves disjoint work in
@@ -54,3 +61,22 @@ missing originals via FETCH_QUEUE. This sheet has no publication command and doe
 not bypass provisional adjudication. Once that adjudication is recorded through
 the established process, resume the dossier/sheet/assemble/check steps above.
 History fragments are machine leads only. See `jobs/status-history/README.md`.
+For OCR inventory corrections, add `inventory_overrides` to the decision sheet:
+`[{"scope_id":"EO:123#corrected-1","source_id":"ORIGINAL:EO:123","char_start":100,"char_end":250,"reason":"Explain the corrected operative boundary."}]`.
+Use the dossier's exact `original_source_id`; offsets are absolute Unicode character
+offsets in its held text file, enclosed within that original evidence span. Supply
+every corrected clause, with unique scopes and disjoint nonempty spans; no free quote
+or source fields are accepted. Replace the sheet's `clauses` with decisions for exactly
+those scopes, omitting `clause_id` so assembly derives it. Keep the original dossier
+fingerprint and explicitly confirm the complete inventory. Assembly copies exact text
+and source provenance, pins the override list in claim metadata, and reconstructs it
+when checking. `assemble.derive_inventory(dossier, overrides)` returns
+`(clauses, derived_evidence_by_id, errors)` without editing the dossier or deciding law.
+Sheets retain raw dossier IDs. Assembled source provenance stores each ID as unpadded
+base64url UTF-8 under `evidence_id`, marked `evidence_id_encoding: base64url-utf8`;
+the checker decodes it solely for exact dossier lookup. Legal citations, quotes,
+actors and producer rationale remain unchanged.
+
+A source marked `requires_page_check` also requires explicit
+`original_pages_confirmed: true` after the official pages/images were inspected;
+confirming an extracted OCR text alone does not satisfy that flag.

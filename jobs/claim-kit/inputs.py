@@ -135,6 +135,35 @@ def _grade(node, inherited_grade, original_context, origin):
     return grade, acceptable, derivative
 
 
+def _quality(node, inherited=None):
+    """Carry locator warnings through wrappers; a weak locator cannot self-upgrade."""
+    quality = dict(inherited or {})
+    declared = []
+    for key in ("ref", "source", "original_source"):
+        if isinstance(node.get(key), dict):
+            declared.append(node[key])
+    if isinstance(node.get("sources"), list) and len(node["sources"]) == 1:
+        if isinstance(node["sources"][0], dict):
+            declared.append(node["sources"][0])
+    declared.append(node)
+    requires_check = quality.get("requires_page_check", False)
+    for declaration in declared:
+        requires_check = requires_check or any(
+            _boolean(declaration.get(key)) is True
+            for key in ("needs_page_check", "requires_page_check"))
+        location = declaration.get("location_confidence")
+        if location is not None:
+            quality["location_confidence"] = location
+            requires_check = requires_check or str(location).lower() != "high"
+        if declaration.get("confidence") is not None:
+            quality["confidence"] = declaration["confidence"]
+        verified = _boolean(declaration.get("location_verified"))
+        if verified is not None:
+            quality["location_verified"] = verified
+    quality["requires_page_check"] = bool(requires_check)
+    return quality
+
+
 class _Collector:
     def __init__(self, repo, universe, warnings):
         self.repo = repo
@@ -152,7 +181,8 @@ class _Collector:
         # Exact census forms only; never rewrite suffixes or infer identities.
         return value if isinstance(value, str) and value in self.universe else None
 
-    def add_text(self, iid, node, base, source, grade, acceptable, dates, origin, provenance=False):
+    def add_text(self, iid, node, base, source, grade, acceptable, dates, origin,
+                 provenance=False, quality=None):
         declared_source = node.get("source") if isinstance(node.get("source"), dict) else {}
         raw = (node.get("text_path") or declared_source.get("text_path") or
                (node.get("path") if provenance else None))
@@ -201,9 +231,13 @@ class _Collector:
         ref = {key: source.get(key) for key in ("url", "sha256", "page_or_item")}
         ref.update({key: source[key] for key in ("archival_id", "local_file_sha256") if source.get(key)})
         ref.update(text_path=rel, text_sha256=actual)
+        quality = dict(quality or {})
+        quality.setdefault("requires_page_check", False)
+        ref.update(quality)
         row = {"instrument_id": iid, "text_path": rel, "source": ref,
                "grade": grade, "acceptable_as_original": acceptable,
-               "signing_date": dates.get("signing_date"), "filing_date": dates.get("filing_date")}
+               "signing_date": dates.get("signing_date"), "filing_date": dates.get("filing_date"),
+               **quality}
         # Preserve each distinct citation/representation/grade. Repeated clause
         # offsets in the same exact text are one representation.
         key = _canonical(row)
@@ -212,11 +246,12 @@ class _Collector:
             self.texts.append(row)
 
     def walk_texts(self, node, base, origin, iid=None, source=None, grade=None,
-                   original_context=False, dates=None, acceptable=None, provenance=False):
+                   original_context=False, dates=None, acceptable=None, provenance=False,
+                   quality=None):
         if isinstance(node, list):
             for item in node:
                 self.walk_texts(item, base, origin, iid, source, grade, original_context,
-                                dates, acceptable, provenance)
+                                dates, acceptable, provenance, quality)
             return
         if not isinstance(node, dict):
             return
@@ -234,6 +269,11 @@ class _Collector:
             local_source = _source(sources[0], local_source)
         original_context = original_context or node.get("kind") == "original_representation"
         local_grade, local_acceptable, derivative = _grade(node, grade, original_context, origin)
+        local_quality = _quality(node, quality)
+        if "needs_page_check" in str(local_grade):
+            local_quality["requires_page_check"] = True
+        if local_quality["requires_page_check"] and "needs_page_check" not in str(local_grade):
+            local_grade = str(local_grade) + "_needs_page_check"
         explicit = _boolean(node.get("acceptable_as_original"))
         if acceptable is False or explicit is False:
             local_acceptable = False
@@ -247,15 +287,16 @@ class _Collector:
         if isinstance(node.get("text_offsets"), dict):
             pointer = node["text_offsets"]
             self.add_text(iid, pointer, base, local_source, local_grade,
-                          local_acceptable, local_dates, origin, provenance)
+                          local_acceptable, local_dates, origin, provenance, local_quality)
         self.add_text(iid, node, base, local_source, local_grade, local_acceptable,
-                      local_dates, origin, provenance)
+                      local_dates, origin, provenance, local_quality)
         for key, child in node.items():
             if key in {"source", "original_source", "ref", "sources", "text_offsets"}:
                 continue
             if isinstance(child, (dict, list)):
                 self.walk_texts(child, base, origin, iid, local_source, local_grade,
-                                original_context, local_dates, inherited_acceptable, provenance)
+                                original_context, local_dates, inherited_acceptable, provenance,
+                                local_quality)
 
     def add_pair(self, target, event, origin):
         if not isinstance(event, dict):

@@ -23,6 +23,27 @@ def dump(path, obj):
 def line(fh, obj):
     fh.write(json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':'))+'\n')
 
+class ShardedJsonl:
+    """Keep all corpus records in git; the runner moves files above 95 MB away."""
+    def __init__(self,path,limit=75000000):
+        self.path=Path(path);self.limit=limit;self.part=0;self.size=0;self.fh=None
+    def __enter__(self):
+        self.path.parent.mkdir(parents=True,exist_ok=True)
+        # Only files with this exact managed stem belong to this writer.
+        for old in self.path.parent.glob(self.path.stem+'.part*.jsonl'):old.unlink()
+        self.fh=self.path.open('w',encoding='utf-8',newline='\n');return self
+    def write(self,value):
+        size=len(value.encode('utf-8'))
+        if size>self.limit:raise ValueError('Single corpus record exceeds shard size: '+self.path.name)
+        if self.size and self.size+size>self.limit:
+            self.fh.close();self.part+=1;self.size=0
+            path=self.path.with_name(self.path.stem+f'.part{self.part:04}.jsonl')
+            self.fh=path.open('w',encoding='utf-8',newline='\n')
+        self.fh.write(value);self.size+=size
+    def __exit__(self,*args):
+        if self.fh:self.fh.close()
+
+
 def filename(iid):
     if not re.fullmatch(r'EO:[A-Za-z0-9_.-]+', iid):
         # Historical census identifiers can contain punctuation. Never conflate identities.
@@ -41,7 +62,7 @@ def safe_read(repo, rel):
         raise ValueError('text path escapes repository')
     return p.read_bytes().decode('utf-8')
 
-def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
+def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
     evidence={}
@@ -54,7 +75,7 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
             'id':original_id, 'source':rec['source'], 'text':rec['text'],
             'char_start':0, 'char_end':len(rec['text']),
             'acceptable_as_original':bool(rec.get('acceptable_as_original')),
-            'grade':rec.get('grade'), 'actor_id':iid,
+            'grade':rec.get('grade'), 'requires_page_check':bool(rec.get('requires_page_check')),'location_confidence':rec.get('location_confidence'), 'actor_id':iid,
             'signing_date':rec.get('signing_date'), 'role':'original'}
     if clause_rec:
         for c in clause_rec.get('clauses',[]):
@@ -79,7 +100,7 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
                 key=eid+f':effective#{n}'
                 evidence[key]=dict(e, id=key, source=a['actor_source'],actor_id=a['actor_id'])
     actor_contexts=[]
-    for actor in sorted({a['actor_id'] for a in acts}):
+    for actor in sorted({a['actor_id'] for a in acts}|set(known_actors or [])):
         ar=selected.get(actor)
         if not ar:continue
         key='ACTOR_TEXT:'+actor
@@ -106,6 +127,7 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
         if entry:
             searches.append(dict(item, **{k:v for k,v in entry.items() if k!='search_id'}))
     missing=list(missing)
+    if rec and rec.get('requires_page_check'):missing.append('Official-source page location requires a separate page/image check before original confirmation.')
     if not rec: missing.append('No attributed held text located for this order.')
     elif not rec.get('acceptable_as_original'):
         missing.append('Held representation is a lead; complete official original requires confirmation/acquisition.')
@@ -139,7 +161,7 @@ def build(repo, out, cache=None):
         raise ValueError('OUTPUT_DIR overlaps protected project inputs')
     if rel.parts[0]=='jobs' and (len(rel.parts)<3 or rel.parts[1]!='claim-kit'):
         raise ValueError('OUTPUT_DIR cannot overwrite another source job')
-    if rel.parts[0]=='jobs' and rel.parts[2]!='output':
+    if rel.parts[0]=='jobs' and rel.parts[:3]!=('jobs','claim-kit','output'):
         raise ValueError('Claim-kit OUTPUT_DIR must be under jobs/claim-kit/output')
     corpus=load_corpus(repo)
     if any((repo/r['text_path']).resolve().is_relative_to(out) for r in corpus['texts']):
@@ -159,8 +181,19 @@ def build(repo, out, cache=None):
     cache_path=Path(cache).resolve() if cache else None
     if cache_path:cache_path.mkdir(parents=True,exist_ok=True)
     cache_hits=0
-    text_records=sorted(corpus['texts'],key=lambda r:(rank_text(r),r['instrument_id']))
-    with (out/'TEXT_CLAUSES.jsonl').open('w',encoding='utf-8') as all_clauses:
+    declared=sorted(corpus['texts'],key=lambda r:(rank_text(r),r['instrument_id']))
+    text_records=[];seen_texts=set()
+    # Clause-level citations often declare the same file hundreds of times with
+    # different page labels. Preserve every declaration, parse each actual held
+    # order/artifact/text once, and choose its best original/locator candidate.
+    with ShardedJsonl(out/'TEXT_REPRESENTATIONS.jsonl') as fh:
+        for r in declared:
+            line(fh,r)
+            key=(r['instrument_id'],r['text_path'],r['source'].get('sha256'),r['source'].get('text_sha256'))
+            if key not in seen_texts:seen_texts.add(key);text_records.append(r)
+    counts['declared_text_representations']=len(declared)
+    counts['distinct_held_text_artifacts']=len(text_records)
+    with ShardedJsonl(out/'TEXT_CLAUSES.jsonl') as all_clauses:
         for r in text_records:
             iid=r['instrument_id']
             if iid not in universe:continue
@@ -168,7 +201,7 @@ def build(repo, out, cache=None):
             except (OSError,ValueError,UnicodeError) as e:
                 missing_by[iid].append('Missing/unreadable held text: '+r['text_path']+' ('+type(e).__name__+')');counts['text_read_failures']+=1;continue
             if not text.strip():counts['empty_texts']+=1;continue
-            source=dict(r['source'],text_path=r['text_path'],text_sha256=hashlib.sha256(text.encode()).hexdigest())
+            source=dict(r['source'],text_path=r['text_path'],text_sha256=hashlib.sha256(text.encode()).hexdigest(),signing_date=r.get('signing_date'),filing_date=r.get('filing_date'))
             key=canonical_sha({'parser':code_hash,'iid':iid,'source':source,'signing':r.get('signing_date'),'filing':r.get('filing_date')})
             cp=cache_path/(key+'.json') if cache_path else None
             data=None
@@ -188,6 +221,7 @@ def build(repo, out, cache=None):
                 all_terms[iid][term['id']]=term
             if generic_reference_count(text):generic_refs.add((iid,source['text_sha256'],generic_reference_count(text)))
             counts['held_texts_scanned']+=1
+            if counts['held_texts_scanned']%250==0:print(f"claim-kit: scanned {counts['held_texts_scanned']}/{len(text_records)} held representations",flush=True)
             if iid not in selected:
                 selected[iid]=dict(r,source=source,text=text)
                 segments[iid]=data['clauses']
@@ -216,18 +250,29 @@ def build(repo, out, cache=None):
     for a in list(primary_acts.values()):
         if re.search(r'\bas\s+amended\b',a.get('provision_text',''),re.I):
             for child in parents.get(a.get('target_id'),set()):
+                child_date=selected.get(child,{}).get('signing_date')
+                actor_date=a.get('signing_date')
+                if child_date and actor_date and actor_date<child_date:continue
                 if child!=a['actor_id']:
                     pairs.setdefault((child,a['actor_id'],a['target_id']),{'target_id':child,'actor_id':a['actor_id'],'parent_id':a['target_id']})
     actors_by=collections.defaultdict(list);missing_sources=[];located_pairs={}
-    for key,p in sorted(pairs.items(),key=lambda kv:str(kv[0])):
+    for pair_no,(key,p) in enumerate(sorted(pairs.items(),key=lambda kv:(kv[0][1],kv[0][0],str(kv[0][2]))),1):
+        if pair_no%2000==0:print(f'claim-kit: located {pair_no}/{len(pairs)} known provision pairs',flush=True)
         target,actor,parent=key
         if actor not in universe:
             missing_by[target].append('Acting identity absent from census: '+actor);continue
         ar=selected.get(actor)
-        a=None
-        if ar:
-            a=acting_provision(target,actor,ar['text'],ar['source'],ar.get('signing_date'),ar.get('filing_date'),parent_id=parent)
-        if not a:a=primary_acts.get(key)
+        # Explicit provisions were already located in the whole-text pass. Reuse
+        # them; rescanning a shared parent for every amender creates a quadratic
+        # CPU cost without adding evidence.
+        a=primary_acts.get((target,actor,None))
+        if a is None and parent:
+            base=primary_acts.get((parent,actor,None))
+            if base and re.search(r'\bas\s+amended\b',base.get('provision_text',''),re.I):
+                a=dict(base,id='ACT:'+target+'>'+actor,target_id=target,names_target=False,
+                       reaches_target_via=parent+' as amended',
+                       scope='partial' if base.get('scope')=='partial' else 'whole_via_parent',
+                       notes=base.get('notes','')+' Indirect parent membership is an unconfirmed lead.')
         if a and a.get('provision_text'):
             pair=(target,actor)
             a={k:v for k,v in a.items() if not k.startswith('_')}
@@ -239,14 +284,16 @@ def build(repo, out, cache=None):
     for (target,actor),a in sorted(located_pairs.items()):
         a['alternative_provisions']=list(all_variants.get((target,actor),{}).values())
         actors_by[target].append(a)
-    with (out/'ACTING_REPRESENTATIONS.jsonl').open('w',encoding='utf-8') as fh:
+    with ShardedJsonl(out/'ACTING_REPRESENTATIONS.jsonl') as fh:
         for pair,values in sorted(all_variants.items()):
             for variant in values.values():line(fh,variant)
+    known_actors_by=collections.defaultdict(set)
+    for target,actor,_ in pairs:known_actors_by[target].add(actor)
     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
     families=collections.defaultdict(set)
     index=[]
-    with (out/'CLAUSES.jsonl').open('w',encoding='utf-8') as cf, (out/'OWN_TERMS.jsonl').open('w',encoding='utf-8') as tf, (out/'ACTING_PROVISIONS.jsonl').open('w',encoding='utf-8') as af, (out/'CHAINS.jsonl').open('w',encoding='utf-8') as chf, (out/'STATUS_LEADS.jsonl').open('w',encoding='utf-8') as sf:
+    with ShardedJsonl(out/'CLAUSES.jsonl') as cf, ShardedJsonl(out/'OWN_TERMS.jsonl') as tf, ShardedJsonl(out/'ACTING_PROVISIONS.jsonl') as af, ShardedJsonl(out/'CHAINS.jsonl') as chf, ShardedJsonl(out/'STATUS_LEADS.jsonl') as sf, ShardedJsonl(out/'OVERLAY_INPUTS.jsonl') as of:
         for iid in sorted(universe):
             c=segments.get(iid)
             if c:line(cf,c)
@@ -265,9 +312,15 @@ def build(repo, out, cache=None):
             chain_rec=chain(iid,acts,generic_refs_excluded=generic_total)
             line(chf,chain_rec)
             if iid not in corpus['statuses']:
+                draft=corpus['drafts'].get(iid,{})
+                search_ids={s.get('search_id') for s in draft.get('_draft',{}).get('proposals',{}).get('later_source_search_machine',[])}
+                line(of,{'schema':'eo-claim-kit-overlay-input/v1','instrument_id':iid,
+                         'selected':{k:v for k,v in selected[iid].items() if k!='text'} if iid in selected else None,
+                         'draft':draft,'machine_searches':{k:v for k,v in corpus['machine_searches'].items() if k in search_ids},
+                         'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid])
+            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
             name=filename(iid)
             dump(out/'dossiers'/(name+'.json'),dossier)
             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))
@@ -288,11 +341,11 @@ def build(repo, out, cache=None):
             for iid in members:
                 w.writerow([iid,'dossiers/'+filename(iid)+'.json',segments[iid]['clauses'][0]['scope_id'],actor,'','','','','',''])
     dump(out/'INDEX.json',index);dump(out/'FAMILIES.json',family_rows)
-    with (out/'MISSING_SOURCES.jsonl').open('w',encoding='utf-8') as fh:
+    with ShardedJsonl(out/'MISSING_SOURCES.jsonl') as fh:
         for row in missing_sources:line(fh,row)
     # Assemble committed producer decision sheets. Never writes claims/, statuses, or reviews.
     assembly=[];accepted=0
-    with (out/'ASSEMBLED_CLAIMS.jsonl').open('w',encoding='utf-8') as fh:
+    with ShardedJsonl(out/'ASSEMBLED_CLAIMS.jsonl') as fh:
         for path in sorted((repo/'research/readiness/decisions').glob('*/*.json')):
             try:
                 sheet=json.loads(path.read_text('utf-8'))
@@ -309,7 +362,11 @@ def build(repo, out, cache=None):
                 assembly.append({'sheet':str(path.relative_to(repo)),'errors':[type(e).__name__+': '+str(e)]})
     dump(out/'ASSEMBLY_REPORT.json',assembly)
     counts.update(dossiers=len(index),status_leads=len(universe)-len(decided),families=len(family_rows),assembled_claims=accepted)
-    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'lead_only':True,'legal_cutoff':CUTOFF}
+    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
+    summary['overlay_input_schema']='eo-claim-kit-overlay-input/v1'
+    summary['compiled_code_sha256']={p:hashlib.sha256(Path(__file__).with_name(p).read_bytes()).hexdigest()
+        for p in ('build.py','inputs.py','excavate.py','current_evidence.py','assemble.py')}
+    summary['jsonl_shard_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.jsonl'))}
     dump(out/'SUMMARY.json',summary)
     dump(out/'METRICS.json',{'wall_seconds':round(time.monotonic()-started,3),'cache_hits':cache_hits,'output_bytes':sum(p.stat().st_size for p in out.rglob('*') if p.is_file())})
     print(json.dumps(summary['counts'],sort_keys=True))
