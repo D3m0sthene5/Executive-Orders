@@ -1,0 +1,17 @@
+{
+ "wpa_numbered_subset": {
+  "file": "data/WPA_NUMBERED_pre1900.csv",
+  "what": "The 105 rows of the wpa-lists job's NUMBERED_ENTRIES.csv dated 1862-1899, copied unchanged; used when jobs/wpa-lists/output is absent (that job is on branch wpa-lists until merged).",
+  "made_from": {"branch": "origin/wpa-lists", "commit": "121ca07e5b70708230852d1fb2fc0b75bbf23747", "path": "jobs/wpa-lists/output/NUMBERED_ENTRIES.csv", "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64", "rows": 8437},
+  "sha256": "80d995ce98fb10bb3117c087524ade010654ced2e92000fd2de18ae6b2fcbf60",
+  "rows": 105
+ },
+ "lord_subset": "jobs/early-orders-hunt/data/lord_subset/UNNUMBERED_ENTRIES_pre1900.csv (hashes in that job's data/PROVENANCE.json); jobs/wpa-lists/output/UNNUMBERED_ENTRIES.csv when present",
+ "richardson": "jobs/richardson-volumes/output/RICH_*_ORDERS.csv, with that job's lord_entries and wpa_ids citation links",
+ "indian_reservations": "jobs/indian-reservations-1912/output/IR1912_ACTS.csv, with that job's lord_seqs and numbered_eo links",
+ "books": "jobs/early-orders-hunt/output/books/*_pages.jsonl.gz (MR_* and GLO_*), read for dated 'Executive order' mentions",
+ "source_universe": {
+  "file": "data/SOURCE_UNIVERSE.csv",
+  "what": "A series-level map of the archival and printed series that could hold an executive order 1789-1899, with each series' search status in this project as of 2026-10-18. Statuses: searched_to_end (the series was read or parsed completely by a job), sampled (some items read, no systematic pass), planned (routes written, not executed), not_searched, inaccessible_online (needs an archive visit or a scan request). Compiled by Claude from the repository's own records and the repositories' public finding aids; record-group and microfilm numbers should be confirmed against the current NARA catalog before a request is sent."
+ }
+}
