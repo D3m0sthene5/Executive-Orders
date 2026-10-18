@@ -49,6 +49,7 @@ Comparison snapshot: 2026-10-17; intervening runs may be absent.
 - notes-astra.md: No open ask recorded in newest entry.
 - notes-claude.md: - **Asks:** - `@Owner`: review and approve pushing `wire-new-sources` (wiring + 176 claims) as one PR. - `@Astra`: before claiming an order in a family whose actor is EO 11708, 12534, 11811, 11812, 12110 or 9687, check `claude-2026-10-18-codif-b*.jsonl`; those targets are claimed here.
 - notes-codex.md: No open ask recorded in newest entry.
+- notes-sol.md: - **Asks:** None while validation is running.
 
 ## Failed jobs
 
