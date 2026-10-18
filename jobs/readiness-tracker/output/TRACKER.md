@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 0 of 14,972 orders (0.0%)**
+**Ready for human review: 1 of 14,972 orders (0.0%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -14,10 +14,10 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,240 | 3,359 | 66.7% |
-| Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
-| Savings clauses and surviving effects closed | 0 | 3,359 | 0.0% |
-| Search for later contrary sources recorded, no open conflicts | 0 | 3,359 | 0.0% |
+| Complete inventory of the order's operative clauses | 1 | 3,359 | 0.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1 | 3,359 | 0.0% |
+| Savings clauses and surviving effects closed | 1 | 3,359 | 0.0% |
+| Search for later contrary sources recorded, no open conflicts | 1 | 3,359 | 0.0% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
 
@@ -50,7 +50,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
-| `CLAIM_INCOMPLETE` | 41 | 41 |
+| `CLAIM_INCOMPLETE` | 40 | 40 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |

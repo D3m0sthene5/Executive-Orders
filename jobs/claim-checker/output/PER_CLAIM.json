@@ -88,17 +88,17 @@
    }
   },
   "EO:13306": {
-   "claim_key": "research/readiness/claims/astra-2026-10-17-p3originals.jsonl:1",
-   "claim_sha256": "7ead9b226bc28d38ed3a6b00149684eb38f08728667d41680077cefb68a61762",
+   "claim_key": "research/readiness/claims/astra-2026-10-18-p3complete.jsonl:1",
+   "claim_sha256": "a6502fe6e8b0c10e01ccf76169140f6ec433b8b32f759095c1f33deb63c28731",
    "mechanical_result": "pass",
-   "gate_passed": false,
-   "all_checks_passed": false,
+   "gate_passed": true,
+   "all_checks_passed": true,
    "steps_checker_passed": {
     "original_text": true,
-    "clause_inventory": false,
-    "ending_or_current_basis": false,
-    "savings_residuals": false,
-    "counterevidence": false
+    "clause_inventory": true,
+    "ending_or_current_basis": true,
+    "savings_residuals": true,
+    "counterevidence": true
    }
   },
   "EO:13373": {
@@ -3497,7 +3497,7 @@
    ],
    "failures_total": 5,
    "unverified": [],
-   "effective_for_tracker": true
+   "effective_for_tracker": false
   },
   {
    "claim_key": "research/readiness/claims/astra-2026-10-17-p3originals.jsonl:2",
@@ -4426,6 +4426,78 @@
     "source_held:custody_record_only@savings_residuals.source",
     "source_held:custody_record_only@whole_order_end.source"
    ],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/claims/astra-2026-10-18-p3complete.jsonl:1",
+   "file": "research/readiness/claims/astra-2026-10-18-p3complete.jsonl",
+   "line": 1,
+   "instrument_id": "EO:13306",
+   "claim_sha256": "a6502fe6e8b0c10e01ccf76169140f6ec433b8b32f759095c1f33deb63c28731",
+   "provisional_status": "yes",
+   "mechanical_result": "pass",
+   "gate_passed": true,
+   "all_checks_passed": true,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 12
+    },
+    "source_identity": {
+     "pass": 6
+    },
+    "quote_verbatim": {
+     "pass": 5
+    },
+    "date_valid": {
+     "pass": 9
+    },
+    "date_after_signing": {
+     "pass": 5
+    },
+    "order_exists": {
+     "pass": 1
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [],
    "effective_for_tracker": true
   }
  ]
