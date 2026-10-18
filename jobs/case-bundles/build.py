@@ -104,14 +104,16 @@ def run(root,out,tokenizer=None):
             'notice':'Research startup packet; statuses remain provisional. Overflow records are explicit and require their source pointers.'}
         before=canon(packet).encode(); packet=bounded(packet);after=(canon(packet)+'\n').encode()
         num=iid.removeprefix('EO:'); safe=re.sub('[^0-9A-Za-z_-]','_',num);prefix=safe.zfill(5)[:2]
+        full_rel=f'drafts/{prefix}/EO_{safe}.json'
+        emit(out/full_rel,d)
         rel=f'bundles/{prefix}/EO_{safe}.json';emit(out/rel,packet)
-        index.append({'instrument_id':iid,'path':rel,'bytes':len(after),'sha256':sha(after),'overflow_sections':len(packet.get('overflow',{}))})
+        index.append({'instrument_id':iid,'path':rel,'bytes':len(after),'sha256':sha(after),'overflow_sections':len(packet.get('overflow',{})), 'full_draft_path':full_rel})
         m={'instrument_id':iid,'assembled_bytes_before':len(before),'bundle_bytes_after':len(after),'startup_fetches_before':1+len({x['record']['path'] for x in fragments[iid]})+len(texts),'startup_fetches_after':1}
         if tokenizer:m.update(tokens_before=len(tokenizer(before.decode())),tokens_after=len(tokenizer(after.decode())))
         metrics.append(m)
     out.mkdir(parents=True,exist_ok=True)
     with (out/'INDEX.csv').open('w',encoding='utf-8',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=['instrument_id','path','bytes','sha256','overflow_sections'],lineterminator='\n');w.writeheader();w.writerows(index)
+        w=csv.DictWriter(f,fieldnames=['instrument_id','path','bytes','sha256','overflow_sections','full_draft_path'],lineterminator='\n');w.writeheader();w.writerows(index)
     emit(out/'INPUTS.json',inputs)
     emit(out/'METRICS.json',{'job':'case-bundles','orders':len(metrics),'max_bundle_bytes':max((x['bundle_bytes_after'] for x in metrics),default=0),
         'comparison':'Same assembled evidence, before compact startup budget versus emitted bundle; excludes tool wrappers and agent reasoning.',

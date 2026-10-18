@@ -10,6 +10,7 @@ class BundleTests(unittest.TestCase):
             out=root/'out';rows=run(root,out);b=(out/rows[0]['path']).read_bytes();run(root,out)
             self.assertEqual(b,(out/rows[0]['path']).read_bytes());self.assertLess(len(b),30000)
             self.assertEqual(json.loads(b)['gate_errors'],['needs_review'])
+            self.assertEqual(json.loads((out/rows[0]['full_draft_path']).read_text())['instrument_id'],'EO:10')
     def test_oversized_draft_is_explicit(self):
         p={'instrument_id':'EO:1','draft_record':{'path':'draft.jsonl','line':1},'claim_draft':{'text':'a'*80000},'fragments':[], 'later_events':[], 'current_law_hits':[], 'conflicts':[], 'text_pointers':[]}
         q=bounded(p);self.assertLessEqual(len((canon(q)+'\n').encode()),LIMIT);self.assertIn('claim_draft',q['overflow']);self.assertIn('record',q['claim_draft'])

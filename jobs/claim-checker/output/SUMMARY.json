@@ -2,16 +2,20 @@
   "schema": "eo-claim-check/v1",
   "job": "claim-checker",
   "legal_cutoff": "2026-10-14",
-  "claim_files": [],
-  "claim_lines_found": 0,
+  "claim_files": [
+    "astra-2026-10-17-p12553a.jsonl",
+    "astra-2026-10-17-p12553b.jsonl",
+    "astra-2026-10-17-pother.jsonl"
+  ],
+  "claim_lines_found": 36,
   "job_limit": null,
-  "claims_checked": 0,
+  "claims_checked": 36,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
-  "orders_with_claim": 0,
+  "orders_with_claim": 36,
   "claims_all_checks_passed": 0,
   "claims_mechanical_pass": 0,
-  "claims_mechanical_unverified": 0,
+  "claims_mechanical_unverified": 36,
   "claims_mechanical_fail": 0,
   "claims_gate_passed": 0,
   "steps_checker_passed_effective_claims": {
@@ -22,19 +26,39 @@
     "counterevidence": 0
   },
   "check_results": {
-    "source_held": {},
-    "source_identity": {},
-    "quote_verbatim": {},
-    "date_valid": {},
-    "date_after_signing": {},
-    "order_exists": {},
-    "structural_gate": {},
+    "source_held": {
+      "skip": 211
+    },
+    "source_identity": {
+      "pass": 151
+    },
+    "quote_verbatim": {
+      "pass": 145
+    },
+    "date_valid": {
+      "pass": 54
+    },
+    "date_after_signing": {
+      "pass": 54
+    },
+    "order_exists": {
+      "pass": 80
+    },
+    "structural_gate": {
+      "fail": 288
+    },
     "parse": {},
     "checker_error": {}
   },
-  "source_status_counts": {},
-  "source_identity_counts": {},
-  "quote_status_counts": {},
+  "source_status_counts": {
+    "custody_record_only": 211
+  },
+  "source_identity_counts": {
+    "recorded_for_this_order": 151
+  },
+  "quote_status_counts": {
+    "exact": 145
+  },
   "source_status_policy": {
     "held_bytes_verified": "pass",
     "held_bytes_in_release_or_repo": "pass",
@@ -42,8 +66,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 0,
-    "rows_total": 0,
+    "rows_written": 499,
+    "rows_total": 983,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
