@@ -1,0 +1,27 @@
+{
+ "lord_subset": {
+  "file": "data/lord_subset/UNNUMBERED_ENTRIES_pre1900.csv",
+  "what": "The rows of the wpa-lists job's UNNUMBERED_ENTRIES.csv whose year is 1789-1899 (1,158 of 1,562), copied unchanged. Used when jobs/wpa-lists/output is absent (that job is on branch wpa-lists until merged).",
+  "made_from": {
+   "branch": "origin/wpa-lists",
+   "commit": "121ca07e5b70708230852d1fb2fc0b75bbf23747",
+   "path": "jobs/wpa-lists/output/UNNUMBERED_ENTRIES.csv",
+   "sha256": "c0fd09487366f6394594a89d0dff546499904a69c39447d6e89550ee72f43833",
+   "rows": 1562
+  },
+  "sha256": "e2e0cca687bd627c9c7535cff00da4850db1c0aec80e8bc56f31601aac91443b",
+  "rows": 1158,
+  "underlying_book": "Clifford L. Lord, ed., List and Index of Presidential Executive Orders, Unnumbered Series (New Jersey Historical Records Survey, 1943); HathiTrust, University of Michigan copy; text layer and hashes in jobs/wpa-lists/data/PROVENANCE.json on that branch"
+ },
+ "other_inputs": {
+  "stage14_lord_ocr_leads": "research/stage14/LORD/LORD_CHRONOLOGICAL_REVIEW_LEADS.csv (1,023 date markers read from the Library of Congress scan of Lord's list, gdc.43013029; dates NOT_AUTHENTICATED)",
+  "stage18_curated_candidates": "research/stage18/data/EARLY_SOURCE_CANDIDATES.csv (six 1789-1862 candidates with located primary representations, none counted)",
+  "richardson_pages_in_repo": "jobs/richardson-volumes/data/richardson_v{6,7,9}_pages.jsonl (HathiTrust PDF text layers already held; used instead of downloading those three volumes again)"
+ },
+ "internet_archive": {
+  "metadata_api": "https://archive.org/metadata/<identifier> (JSON: item metadata and the file list with sizes and sha1/md5 as published by the Archive)",
+  "page_text": "https://archive.org/download/<identifier>/<identifier>_djvu.xml (DjVuXML: one OBJECT per page image with the OCR words; the job checks its sha1 against the metadata file list)",
+  "search_api": "https://archive.org/advancedsearch.php (used only to list candidate copies for books whose identifier is not yet known)",
+  "robots": "https://archive.org/robots.txt allows these paths (checked 2026-10-18)"
+ }
+}

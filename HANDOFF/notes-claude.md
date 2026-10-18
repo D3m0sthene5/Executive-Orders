@@ -2,6 +2,78 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 14:30 ET: census-completeness, a measured answer to "have we looked everywhere?"
+
+- **Done (branch `census-completeness`, stacked on `early-orders-hunt`; local only, nothing pushed):**
+  - `jobs/census-completeness/`: treats every list of pre-1900 orders the project holds as a capture of one population
+    (Lord 1943; Richardson VI/VII/IX documents from `richardson-volumes`; the 1912 Indian-reservation acts; dated
+    "Executive order" mentions read from the MR and GLO books `early-orders-hunt` fetched; the WPA numbered list is
+    kept only to set numbered orders aside), matches mentions conservatively (same day and a shared distinctive word,
+    or a citation link the earlier job made; a date alone never matches), and estimates the undiscovered remainder
+    per era with the Mt maximum-likelihood estimate (Darroch) and its asymptotic interval, Chapman two-list estimates
+    against Lord, and Chao1 as a check. Three matching scenarios bracket the result (strict, blind-only, every
+    same-date pair as one order). Assumptions and the direction of each bias are written into the outputs. 12 tests,
+    including recovery of a synthetic hidden population of 400.
+  - `data/SOURCE_UNIVERSE.csv`: a 40-row series-level map of where orders could be (NARA record groups 11, 45, 56,
+    59, 75, 94, 107, 48/49; LOC presidential papers; Founders Online; the printed compilations; newspapers) with
+    each series' search status in this project. Only 8 rows are `searched_to_end`.
+  - `research/plans/SCAN_REQUESTS_2026-10-18.md`: three draft reference/scan-request emails (NARA Archives I for
+    RG 107 letters received 1789-1861; NARA for GLO/BIA reservation files; LOC Manuscript Division for the
+    1841-1861 presidents' outgoing letters) plus a reproduction-order template. Drafts only; nothing sent.
+  - Measured (local, books from the hunt's first six fetches): 1,394 distinct unnumbered orders 1789-1899 observed.
+    1801-1861: 213 observed, Mt total 316 (269-362), undiscovered 43-103 depending on matching. 1862-1899: 1,174
+    observed, Mt total 1,729 (1,634-1,825), undiscovered 295-555. Lord lists 31% of president-signed documents in
+    Richardson VI and 51% in Richardson IX. All lower bounds: Lord cites these books, so the lists are positively
+    dependent, and orders that reached no printed compilation are invisible to every list.
+- **Running:** nothing. `early-orders-hunt`'s first GitHub run (PR #25) was in progress at the time of writing;
+  this job reads its `output/books/`.
+- **Next:** push after PR #25 lands (the branch stacks on it); a person settles the 260 pre-1862 ambiguous pairs;
+  adjudicate the 72 president-signed Richardson VI documents Lord does not list against the codebook; draw the
+  random audit months and send the three emails; add Kappler and the Civil Service Commission reports to the hunt
+  registry (338 and many Lord citations respectively, none fetched).
+- **Asks:**
+  - `@Owner`: review the three draft emails and the audit-month sampling before anything is sent; approve pushing
+    `census-completeness` once PR #25 is merged.
+  - `@Astra`: the Mt/Chapman/Chao1 choice and the dependence argument in `complete.py` would benefit from your
+    adversarial read; the estimators are population-level by construction.
+- **Do not:** quote any undiscovered count without its bracket and the dependence caveat; treat an unmatched book
+  mention as a missing order (AMBIGUOUS_MATCHES.csv exists for that); admit anything from these outputs.
+
+## 2026-10-18 13:00 ET: early-orders-hunt, a zero-token job that goes and gets the printed texts of 1789-1899 orders
+
+- **Done (branch `early-orders-hunt`, from main `43f415dd`; local only, nothing pushed):**
+  - `jobs/early-orders-hunt/`: reads Lord's 1943 unnumbered list (the `wpa-lists` parse, or a committed pre-1900
+    subset of it with hashes in `data/PROVENANCE.json`), the 1,023 Stage 14 scan date markers and the six Stage 18
+    candidates; parses every printed-source citation (Richardson vol/appendix/page, `YEAR MR page`, `YEAR GLO page`,
+    Statutes at Large, Annals, American State Papers, Kappler, Sparks, documents, newspapers); fetches each cited
+    book once from the Internet Archive (`data/BOOKS.json`: Richardson GPO vols I-X, the four War Department
+    reservation books 1898-1916, fifteen GLO annual reports), checks the Archive's sha1 and the edition (the Bureau
+    of National Literature Richardson reprints are repaginated and are refused), maps printed pages from running
+    heads, and cuts the passage carrying the lead's date or subject into `texts/` with image, page, line span and
+    hashes. Pre-1862 leads with a day date and no book text get bounded loc.gov collection searches (Chronicling
+    America, the president's papers), responses saved by hash. Richardson VI/VII/IX are read from
+    `jobs/richardson-volumes/data/`, not downloaded again. 20 offline tests (a fake Archive serves a synthetic book).
+  - Measured locally (6 books, 327 s, 120 MB, 26 requests): 1,994 leads (320 pre-1862); 6,744 citations
+    (4,775 GLO, 1,050 MR, 436 Richardson); 2,261 citations resolved to a page, 1,594 with date and subject on it;
+    **texts cut for 950 leads, 125 pre-1862**; heads agreed with the page map on 93-100% of readable pages.
+    Spot-read: Washington Barracks (MR 1916 p. 52, "announced by Executive order dated July 25, 1798"), the 1838
+    Pensacola live-oak reserve, the 1827 Bois Blanc fuel reserve all cut correctly. A second run confirmed the
+    alternate-copy fallback: the first `GLO_1893` copy was an 84-page extract (0 texts); the full copy gives 273.
+  - Telemetry: zero model tokens in the job; this session's agent time about 2.5 h including the survey.
+- **Running:** nothing on GitHub yet. Outputs are in the session scratchpad only.
+- **Next:** push the branch and run the job once on GitHub (`HUNT_MAX_BOOKS` default 12; the cache carries fetched
+  books to the next run, so three runs cover the registry); then have a person read 10-15 pre-1862 slices against
+  the scan images; then put `RICH_X` (appendix) and `RICH_VIII` page files into `richardson-volumes` with one
+  PROVENANCE entry each, so its parser splits them into orders. `GLO_1886`, `GLO_1897` and `GLO_1901` still need an
+  Archive identifier (candidates listed in `books/<key>.json`).
+- **Asks:**
+  - `@Owner`: approve pushing `early-orders-hunt` and running it on GitHub.
+  - `@Astra`: the `wpa-lists` branch is still unmerged; the job falls back to a committed subset of its output.
+    When it merges, nothing changes except the source line in `SUMMARY.json`.
+- **Do not:** treat a `texts/*.txt` slice as the original or as an identity: it is OCR of a printed compilation and
+  a lead for `original_text`; signer, capacity and inclusion stay with the reviewer. Never write a search with
+  no results into `EXHAUSTED.jsonl`.
+
 ## 2026-10-18 02:00 ET: printed volumes wired in; 176 claims from the 1989 Codification / FR revocation families; ready 1 -> 130
 
 - **Done (branch `wire-new-sources`, local only, nothing pushed):**
