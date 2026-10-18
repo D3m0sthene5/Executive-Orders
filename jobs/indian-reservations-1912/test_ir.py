@@ -1,3 +1,4 @@
+import collections
 import csv
 import hashlib
 import json
@@ -71,15 +72,17 @@ class Lines(unittest.TestCase):
 
 class Dates(unittest.TestCase):
     def test_damaged_digits_resolved_by_term(self):
-        y, mo, d, _, repaired = ir.read_date("December 1^, 1872", GRANT)
+        y, mo, d, _, repaired, _ = ir.read_date("December 1^, 1872", GRANT)
         self.assertEqual((y, mo, d, repaired), ("1872", 12, "", True))   # several days possible: day left blank
-        self.assertEqual(ir.read_date("Decemler SO, 190fl.", ROOSEVELT)[:3], ("1908", 12, "30"))
+        # the year's "fl" can only be 8; the day's "SO" is not plain digits, so it is not taken even though
+        # only 30 is a day: it waits for another source (see DamagedDays)
+        self.assertEqual(ir.read_date("Decemler SO, 190fl.", ROOSEVELT)[:3], ("1908", 12, ""))
         self.assertEqual(ir.read_date("D,ec. 13, 1910", TAFT)[:3], ("1910", 12, "13"))
         self.assertEqual(ir.read_date("AtJGTTST 9, 1&55.", PIERCE)[:3], ("1855", 8, "9"))
         # "1375" is 1873 on the page: an italic 8 read as 3, and the last digit is no safer. Only the decade
         # is trusted, so Grant's 1870-1877 leaves the year open; a short term can still settle it.
         self.assertIsNone(ir.read_date("Noveml>er 22, 1375.", GRANT))
-        y, mo, d, _, repaired = ir.read_date("June 3, 1381.", ir.TERMS["GARFIELD"])
+        y, mo, d, _, repaired, _ = ir.read_date("June 3, 1381.", ir.TERMS["GARFIELD"])
         self.assertEqual((y, mo, d, repaired), ("1881", 6, "3", True))
         self.assertEqual(ir.read_date("The White House, February 11\n., 1912.", TAFT)[:3], ("1912", 2, "11"))
         self.assertIsNone(ir.read_date("Executive Mansion, June 3, 188^.", ir.TERMS["ARTHUR"]))   # 1882-1884 all fit
@@ -371,6 +374,143 @@ class Printings(unittest.TestCase):
         self.assertEqual(ir.order_date([{"seq": 1, "date": "1879-06"}, {"seq": 2, "date": "1879"}]), ("1879-06", "only_partial_dates"))
 
 
+MCKINLEY, JOHNSON = ir.TERMS["MCKINLEY"], ir.TERMS["JOHNSON"]
+
+
+def dated(seq, date, cands=(), page=None):
+    """An act for corroborate_days: a damaged day has candidates and no basis; a plain one is 'printed'."""
+    return {"seq": seq, "lead_id": f"IR1912:p{page or seq}:1", "date": date, "day_candidates": list(cands),
+            "day_basis": "" if cands else "printed", "date_repaired": bool(cands), "span": (0, 0)}
+
+
+class DamagedDays(unittest.TestCase):
+    """A day printed as anything but plain digits is never guessed. On the italic headers 'H' is 14, not 4
+    (the page images of IR pp. 15, 18, 34, 70, 73, 89 and 148), and 'i' is 1 on p. 13 but 4 on p. 206."""
+
+    def test_a_damaged_day_is_left_blank_with_its_readings(self):
+        cases = [("Washington, May H, 1900.", MCKINLEY, "1900", 5, (4, 11, 14)),        # p. 15:2, May 14
+                 ("November H, 1901.", ROOSEVELT, "1901", 11, (4, 11, 14)),             # p. 18:3, Nov 14
+                 ("Executive Mansion, December H, 1872.", GRANT, "1872", 12, (4, 11, 14)),   # p. 34:1, Dec 14
+                 ("Juyie H, 1867.", JOHNSON, "1867", 6, (4, 11, 14)),                   # p. 70:1, June 14
+                 ("June H, 1867.", JOHNSON, "1867", 6, (4, 11, 14)),                    # p. 73:2, June 14
+                 ("Novemher H, 1871.", GRANT, "1871", 11, (4, 11, 14)),                 # p. 89:1, Nov 14
+                 ("March H, 1871.", GRANT, "1871", 3, (4, 11, 14)),                     # p. 148:1, Mar 14
+                 ("November i, 1873. '", GRANT, "1873", 11, (1, 4)),                    # p. 206:1, Nov 4
+                 ("Deceigiber i, 1910.", TAFT, "1910", 12, (1, 4)),                     # p. 13:2, Dec 1
+                 ("Decemler SO, 190fl.", ROOSEVELT, "1908", 12, (30,)),
+                 ("December 1^, 1872", GRANT, "1872", 12, tuple(range(10, 20)))]
+        for text, term, y, mo, cands in cases:
+            got = ir.read_date(text, term)
+            self.assertEqual((got[0], got[1], got[2], got[5]), (y, mo, "", cands), text)
+            self.assertTrue(got[4], text)
+        self.assertEqual(ir.read_date("May 26. 1874..", GRANT)[2], "26")              # plain digits are read
+        self.assertEqual(ir.read_date("May 26. 1874..", GRANT)[5], ())
+        self.assertEqual(ir.day_readings("^"), [])                                    # noise alone: nothing
+        self.assertEqual(ir.day_readings("W"), [])
+        self.assertEqual(ir.day_readings("£0"), [20])
+        self.assertEqual(ir.day_readings("H"), [4, 11, 14])
+
+    def test_a_day_comes_only_from_another_source(self):
+        acts = [dated(1, "1872-12", (4, 11, 14), 34), dated(2, "1872-12", range(10, 20), 5),   # one order, two printings
+                dated(3, "1871-11", (4, 11, 14), 89),
+                dated(4, "1870-03", (30,), 55),                                              # only 30 fits: still no day
+                dated(5, "1867-06", (4, 11, 14), 70), dated(6, "1867-06-14", page=73),       # one order, two printings
+                dated(7, "1910-12", (1, 4), 13),
+                dated(8, "1873-11", (1, 4), 206),
+                dated(9, "1876-10-30", page=6)]
+        group = {1: 1, 2: 1, 3: 3, 4: 4, 5: 5, 6: 5, 7: 7, 8: 8, 9: 9}
+        refs = [("1872-12-14", 9, "the order of December 14, 1872")]                 # cited on p. 6
+        lord_rows = [{"lord_seq": "408", "resolution": "match", "acts": "IR1912:p89:1"},
+                     {"lord_seq": "439", "resolution": "match", "acts": "IR1912:p206:1"},
+                     {"lord_seq": "364", "resolution": "ambiguous", "acts": "IR1912:p55:1"}]
+        lord_by_seq = {"408": {"year": "1871", "date": "Nov 14"}, "439": {"year": "1873", "date": "Nov 22"},
+                       "364": {"year": "1870", "date": "Mar 30"}}
+        n = ir.corroborate_days(acts, group, refs, lord_rows, lord_by_seq, {7: ("1910-12-01", "EO:1267")})
+        got = {a["lead_id"]: a["date"] for a in acts}
+        self.assertEqual(got, {"IR1912:p34:1": "1872-12-14", "IR1912:p5:1": "1872-12-14",     # the book's citation
+                               "IR1912:p89:1": "1871-11-14",                                  # Lord
+                               "IR1912:p55:1": "1870-03",          # an ambiguous Lord row is no source
+                               "IR1912:p70:1": "1867-06-14", "IR1912:p73:1": "1867-06-14",    # another printing
+                               "IR1912:p13:1": "1910-12-01",                                  # WPA
+                               "IR1912:p206:1": "1873-11",         # Lord's day 22 is not a reading of 'i'
+                               "IR1912:p6:1": "1876-10-30"})
+        self.assertEqual(n, 5)
+        self.assertTrue(acts[0]["day_basis"].startswith("in_book_reference IR1912:p6:1"))
+        self.assertEqual((acts[2]["day_basis"], acts[6]["day_basis"]), ("lord seq 408", "wpa EO:1267"))
+
+    def test_weak_or_conflicting_sources_give_no_day(self):
+        acts = [dated(1, "1880-11", (4, 11, 14), 30), dated(2, "1880-11-14", page=50),   # Nov 14, 1880 in plain digits
+                dated(3, "1881-05", (4, 14), 31), dated(4, "1881-05", (4, 14), 41),       # two different orders
+                dated(5, "1885-02", (4, 11, 14), 60),
+                dated(9, "1890-01-01", page=9)]
+        group = {a["seq"]: a["seq"] for a in acts}
+        refs = [("1880-11-14", 9, "order of November 14, 1880"),     # is the Nov 14 order's, not p. 30's
+                ("1881-05-14", 9, "order of May 14, 1881"),          # would fit two orders: identifies neither
+                ("1885-02-11", 9, "order of February 11, 1885")]
+        lord_rows = [{"lord_seq": "1", "resolution": "match", "acts": "IR1912:p60:1"}]
+        n = ir.corroborate_days(acts, group, refs, lord_rows, {"1": {"year": "1885", "date": "Feb 14"}})
+        self.assertEqual(n, 0)
+        self.assertEqual([a["date"] for a in acts], ["1880-11", "1880-11-14", "1881-05", "1881-05", "1885-02", "1890-01-01"])
+        self.assertTrue(acts[4]["day_basis"].startswith("sources_disagree"))      # 11 from the book, 14 from Lord
+
+    def test_in_book_references_read_plain_digits_only(self):
+        lines = ["It is hereby ordered that the order of December 14, 1872, setting",
+                 "apart, and the Executive order dated Novemher ^4, 187^, and the Executive",
+                 "order of the Secretary of the Interior dated May 3, 1880, are revoked."]
+        refs = ir.in_book_references([{"seq": 1, "span": (0, 2)}], lines)
+        self.assertEqual([d for d, _, _ in refs], ["1872-12-14"])
+
+
+class LateNumbered(unittest.TestCase):
+    """Orders from 1900 on that the date rules leave unpaired are compared with the numbered list by
+    subject: IR p. 52:1 is EO 1224 (its month is unread), p. 53:3 is EO 1517 (the OCR reads April 18,
+    the page April 13)."""
+
+    NUMBERED = [
+        wpa(1209, "1910", "June 8", "Santa Barbara National Forest, Calif.,enlarged by addi tion of alllands of the San Luis National Forest."),
+        wpa(1224, "1910", "July 7", "E. 0. of Aug. 25, 1877,* reserving certain lands in Cali forniafor Indian purposes,revoked "
+                                    "insofaras itaffectscertaindescribed lands. IX R 52 ; III K 676. * Not a Numbered Order. [109]"),
+        wpa(1517, "1912", "Apr 13", "Certain describedlands in Californiareserved for Indian use. III K 677."),
+        wpa(1522, "1912", "Apr 24", "Certain described lands in Californiareserved for Indian use. IR 53; III K 675."),
+        wpa(196, "1902", "Dec 27", "Dr. Charles W. Newton made eligiblefor permanent ap pointment as physician at the Western "
+                                   "Navajo Indian Agency, Arizona, without competitive examination. 1903 CSR 74.")]
+    ACTS = [act(1, "1910", (52, 52), state="CALIFORNIA", reservation="MORONGO BAND"),
+            act(2, "1912-04-18", (53, 53), state="CALIFORNIA", reservation="TUOLUMNE BAND"),
+            act(3, "1902-12", (37, 37), reservation="WHITE MOUNTAIN RESERVATION", signer="ROOSEVELT")]
+    TEXTS = {1: "It is hereby ordered that Executive order dated August 25 1877 settirtg aside certain described land "
+                "in the State of California forIndian purposes, be, and the same hereby is,revoked in so far as",
+             2: "the lot 2 ... of the Mount Diablo meridian, in California, be, and the same are hereby, reserved from "
+                "settlement, entry, sale, or other disposition, and set aside for Indian use",
+             3: "It is hereby ordered that the tract be set apart for the Apache Indians"}
+    ODATE = {1: "1910", 2: "1912-04-18", 3: "1902-12"}
+
+    def test_numbered_orders_from_1900_pair_by_subject(self):
+        got, ties, best = ir.match_late(self.ACTS, self.NUMBERED, self.TEXTS, {}, self.ODATE, taken={"EO:1522"})
+        self.assertEqual({s: (r["id"], lv) for s, (r, _, lv) in got.items()},
+                         {1: ("EO:1224", "late_same_year_subject"), 2: ("EO:1517", "late_same_month_subject")})
+        self.assertEqual(ties, {})
+        self.assertNotIn(3, got)          # a civil-service appointment at an Indian agency is not a land order
+
+    def test_weak_subjects_and_older_orders_are_not_paired(self):
+        # the year alone and 'California, Indian' are not enough: the cited 1877 order is what pairs p. 52:1
+        got, _, best = ir.match_late(self.ACTS[:1], self.NUMBERED, {1: "revoked in part for Indian purposes"}, {},
+                                     {1: "1910"}, set())
+        self.assertEqual(got, {})
+        self.assertEqual(best[1][0], "EO:1224")
+        old = [act(1, "1877-08-25", (52, 52), state="CALIFORNIA", reservation="MORONGO BAND", signer="HAYES")]
+        self.assertEqual(ir.match_late(old, self.NUMBERED, self.TEXTS, {}, {1: "1877-08-25"}, set())[0], {})
+        # two equally good entries: neither is taken
+        got, ties, _ = ir.match_late(self.ACTS[1:2], self.NUMBERED + [wpa(1530, "1912", "Apr 30", "Lands in "
+                                     "California reserved for Indian use.")], self.TEXTS, {}, self.ODATE, {"EO:1522"})
+        self.assertEqual((got, ties[2]["entries"]), ({}, ["EO:1517", "EO:1530"]))
+
+    def test_book_and_wpa_dates_agree_on_a_prefix(self):
+        self.assertEqual(ir.agreed_date("1912-04-18", "1912-04-13"), "1912-04")
+        self.assertEqual(ir.agreed_date("1910", "1910-07-07"), "1910")
+        self.assertEqual(ir.agreed_date("1912-02-17", "1912-02-17"), "1912-02-17")
+        self.assertEqual(ir.agreed_date("1912-02-17", ""), "1912-02-17")
+
+
 SECOND = [page(16, """ARIZONA.
 WHITE MOUNTAIN RESERVATION.
 Executive Mansion, May 15, 1876.
@@ -422,19 +562,21 @@ class EndToEnd(unittest.TestCase):
         job, repo = td / "job", td / "repo"
         (job / "data").mkdir(parents=True)
         (repo / "census").mkdir(parents=True)
-        (repo / "wpa").mkdir()
+        (job / "wpa").mkdir()
         text = "".join(json.dumps(p, ensure_ascii=False) + "\n" for p in pages)
         (job / "data" / "v.jsonl").write_text(text, encoding="utf-8", newline="\n")
         with open(repo / "census" / "c.csv", "w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["id", "date_effective"])
             w.writerows([["EO:100", "1876"], ["EO:200", "1902"]])
-        with open(repo / "wpa" / "NUMBERED_ENTRIES.csv", "w", encoding="utf-8", newline="") as fh:
+        with open(job / "wpa" / "NUMBERED_ENTRIES.csv", "w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["id", "year", "month_day", "text"])
             w.writerows([["EO:100", "1876", "May 15", "Lands set apart for the Indians, Ariz. IR 4"],
-                         ["EO:300", "1911", "Apr 14", "Lands withdrawn for a reservoir, San Pasqual Indian Reservation, Calif. IR 9"]])
-        with open(repo / "wpa" / "UNNUMBERED_ENTRIES.csv", "w", encoding="utf-8", newline="") as fh:
+                         ["EO:300", "1911", "Apr 14", "Lands withdrawn for a reservoir, San Pasqual Indian Reservation, Calif. IR 9"],
+                         # the proclamation of p. 5 has this date and subject, but a proclamation is not an order
+                         ["EO:200", "1902", "May 29", "Lands reserved for the Puyallup Indian Reservation, Wash. IR 5"]])
+        with open(job / "wpa" / "UNNUMBERED_ENTRIES.csv", "w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["seq", "year", "date", "pairing", "summary", "citation_text"])
             w.writerow(["7", "1875", "Apr 28", "paired", "Camp Verde reservation revoked. I IR 3", ""])
@@ -445,7 +587,7 @@ class EndToEnd(unittest.TestCase):
                "pdf": pdf, "pdf_sha256": hashlib.sha256(b"%PDF real").hexdigest(), "text": "data/v.jsonl",
                "text_sha256": hashlib.sha256((job / "data" / "v.jsonl").read_bytes()).hexdigest(), "extractor": "x",
                "body_pdf_pages": [16, 237], "printed_page_offset": 13}
-        prov = {"census": "census/c.csv", "readiness": "none.csv", "wpa_lists": "wpa", "volumes": [vol]}
+        prov = {"census": "census/c.csv", "readiness": "none.csv", "wpa_lists": {"dir": "wpa"}, "volumes": [vol]}
         (job / "data" / "PROVENANCE.json").write_text(json.dumps(prov), encoding="utf-8")
         return job, repo, prov
 
@@ -456,8 +598,17 @@ class EndToEnd(unittest.TestCase):
             out = td / "out"
             s = ir.run(repo, job, out)
             self.assertEqual((s["acts"], s["numbered_matches"], s["pdf_check"]), (6, 1, "pdf_not_checked_out"))
+            self.assertEqual(s["wpa_lists_source"], "vendored subset (wpa)")   # read from the job folder by default
             with open(out / "CENSUS_LEADS.csv", encoding="utf-8") as fh:
-                leads = {(r["lead"], r["lead_id"] or r["instrument_id"]) for r in csv.DictReader(fh)}
+                rows = list(csv.DictReader(fh))
+            leads = {(r["lead"], r["lead_id"] or r["instrument_id"]) for r in rows}
+            kinds = {(r["lead"], r["lead_id"]): r["kind"] for r in rows}
+            # the proclamation of p. 5:2 is not an unnumbered executive order, and is not paired with EO 200
+            self.assertIn(("PROCLAMATION_NOT_AN_EXECUTIVE_ORDER", "IR1912:p5:2"), leads)
+            self.assertNotIn(("UNNUMBERED_NOT_IN_CENSUS", "IR1912:p5:2"), leads)
+            self.assertEqual(kinds[("PROCLAMATION_NOT_AN_EXECUTIVE_ORDER", "IR1912:p5:2")], "proclamation")
+            self.assertEqual(kinds[("UNNUMBERED_NOT_IN_CENSUS", "IR1912:p3:1")], "order")
+            self.assertEqual(kinds[("UNNUMBERED_NOT_IN_CENSUS", "IR1912:p4:3")], "indorsement_or_approval")
             self.assertIn(("BOOK_EXACT_DATE_FOR_YEAR_ONLY", "IR1912:p4:1"), leads)
             self.assertIn(("UNNUMBERED_NOT_IN_CENSUS", "IR1912:p3:1"), leads)
             self.assertIn(("UNDATED_ACT", "IR1912:p5:1"), leads)
@@ -490,7 +641,7 @@ class EndToEnd(unittest.TestCase):
             unnumbered = [l for l in leads if l["lead"] == "UNNUMBERED_NOT_IN_CENSUS"]
             # p. 6:1 reprints the unnumbered p. 3:1: one lead, not two; p. 6:2 reprints EO 100: no lead at all
             ids = [l["lead_id"] for l in unnumbered]
-            self.assertEqual(len(ids), 5)                       # 6 orders, one of them EO 100
+            self.assertEqual(len(ids), 4)                       # 6 orders: one is EO 100, one a proclamation
             self.assertNotIn("IR1912:p6:1", ids)
             self.assertNotIn("IR1912:p6:2", ids)
             camp_verde = unnumbered[ids.index("IR1912:p3:1")]
@@ -526,6 +677,21 @@ class EndToEnd(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 ir.run(repo, job, td / "o4")
 
+    def test_vendored_lists_are_hash_checked_and_wpa_dir_overrides(self):
+        with tempfile.TemporaryDirectory() as td:
+            td = pathlib.Path(td)
+            job, repo, prov = self.build(td)
+            good = hashlib.sha256((job / "wpa" / "NUMBERED_ENTRIES.csv").read_bytes()).hexdigest()
+            prov["wpa_lists"]["sha256"] = {"NUMBERED_ENTRIES.csv": good}
+            (job / "data" / "PROVENANCE.json").write_text(json.dumps(prov), encoding="utf-8")
+            self.assertEqual(ir.run(repo, job, td / "o1")["numbered_matches"], 1)
+            prov["wpa_lists"]["sha256"] = {"NUMBERED_ENTRIES.csv": "0" * 64}
+            (job / "data" / "PROVENANCE.json").write_text(json.dumps(prov), encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                ir.run(repo, job, td / "o2")
+            s = ir.run(repo, job, td / "o3", wpa_dir=job / "wpa")    # an override is not checked against PROVENANCE
+            self.assertEqual((s["wpa_lists_source"], s["numbered_matches"]), ("WPA_DIR override", 1))
+
     def test_runs_without_wpa_lists(self):
         with tempfile.TemporaryDirectory() as td:
             td = pathlib.Path(td)
@@ -533,24 +699,25 @@ class EndToEnd(unittest.TestCase):
             s = ir.run(repo, job, td / "o", wpa_dir=td / "missing")
             self.assertEqual((s["wpa_lists_read"], s["numbered_matches"], s["acts"]), (False, 0, 6))
             self.assertNotIn("UNNUMBERED_NOT_IN_CENSUS", s["census_leads"])
-            self.assertEqual(s["acts_by_census_state"], {"not_compared_wpa_lists_missing": 6})
+            self.assertEqual(s["acts_by_census_state"], {"not_compared_wpa_lists_missing": 5,
+                                                         "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER": 1})
 
 
 PROV = json.loads((HERE / "data" / "PROVENANCE.json").read_text(encoding="utf-8"))
 VOL = PROV["volumes"][0]
-WPA_DIR = pathlib.Path(os.environ.get("WPA_DIR") or REPO / PROV["wpa_lists"])
-# The pinned counts below were measured with these exact inputs; with other inputs the matching tests are skipped.
-PINNED_INPUTS = {
-    "NUMBERED_ENTRIES.csv": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64",
-    "UNNUMBERED_ENTRIES.csv": "c0fd09487366f6394594a89d0dff546499904a69c39447d6e89550ee72f43833",
-}
+# The WPA lists: the committed subset in the job folder, unless WPA_DIR names another folder.
+WPA_DIR = pathlib.Path(os.environ.get("WPA_DIR") or HERE / PROV["wpa_lists"]["dir"])
+# The pinned counts below were measured with the committed subset, which gives the same outputs as the full
+# files it was cut from (wpa-lists commit 65570e4c); with any other inputs the matching test is skipped.
+PINNED_INPUTS = [PROV["wpa_lists"]["sha256"], PROV["wpa_lists"]["derived_from"]["sha256"]]
 
 
 def pinned_wpa():
     try:
-        return all(hashlib.sha256((WPA_DIR / n).read_bytes()).hexdigest() == h for n, h in PINNED_INPUTS.items())
+        got = {n: hashlib.sha256((WPA_DIR / n).read_bytes()).hexdigest() for n in PINNED_INPUTS[0]}
     except OSError:
         return False
+    return got in PINNED_INPUTS
 
 
 class CommittedVolume(unittest.TestCase):
@@ -566,6 +733,21 @@ class CommittedVolume(unittest.TestCase):
 
     def test_text_layer_hash(self):
         self.assertEqual(self.sha, VOL["text_sha256"])
+
+    def test_vendored_wpa_lists(self):
+        wl = PROV["wpa_lists"]
+        self.assertEqual((wl["dir"], wl["derived_from"]["branch"], wl["derived_from"]["commit"]),
+                         ("data/wpa_lists_subset", "wpa-lists", "65570e4c"))
+        for name, h in wl["sha256"].items():
+            self.assertEqual(hashlib.sha256((HERE / wl["dir"] / name).read_bytes()).hexdigest(), h, name)
+        numbered = ir.read_csv(HERE / wl["dir"] / "NUMBERED_ENTRIES.csv")
+        lord = ir.read_csv(HERE / wl["dir"] / "UNNUMBERED_ENTRIES.csv")
+        self.assertEqual((len(numbered), len(lord)), (wl["rows"]["NUMBERED_ENTRIES.csv"], wl["rows"]["UNNUMBERED_ENTRIES.csv"]))
+        # exactly the rows the job reads: numbered entries of 1850-1913 or citing this book; Lord rows citing it
+        self.assertTrue(all(1850 <= int(r["year"]) <= 1913 or ir.IR_NUM.search(r["text"]) for r in numbered))
+        self.assertTrue(all(ir.IR_LORD.search(r["summary"] + " ;; " + r["citation_text"]) for r in lord))
+        self.assertIn("EO:1224", {r["id"] for r in numbered})
+        self.assertIn("EO:1517", {r["id"] for r in numbered})
 
     def test_acts_and_headings(self):
         from collections import Counter
@@ -607,6 +789,12 @@ class CommittedVolume(unittest.TestCase):
     def test_known_acts(self):
         by = {a["lead_id"]: a for a in self.acts}
         self.assertEqual((by["IR1912:p5:2"]["date"], by["IR1912:p5:2"]["signer"]), ("1872-12", "GRANT"))
+        # damaged day glyphs: the page images read 14 for 'H' and 4 for p. 206's 'i'. Parsing alone gives no day.
+        for lid, month in (("IR1912:p15:2", "1900-05"), ("IR1912:p18:3", "1901-11"), ("IR1912:p34:1", "1872-12"),
+                           ("IR1912:p70:1", "1867-06"), ("IR1912:p73:2", "1867-06"), ("IR1912:p89:1", "1871-11"),
+                           ("IR1912:p148:1", "1871-03")):
+            self.assertEqual((by[lid]["date"], by[lid].get("day_candidates")), (month, [4, 11, 14]), lid)
+        self.assertEqual((by["IR1912:p206:1"]["date"], by["IR1912:p206:1"].get("day_candidates")), ("1873-11", [1, 4]))
         self.assertEqual(by["IR1912:p81:2"]["date"], "1855-08-09")       # "AtJGTTST 9, 1&55."
         self.assertEqual((by["IR1912:p45:1"]["date"], by["IR1912:p45:1"]["referral_date"]), ("", "1911-04-15"))
         self.assertEqual(by["IR1912:p28:3"]["date"], "1879")              # header month unreadable; not the cited 1879-01-10
@@ -618,27 +806,73 @@ class CommittedVolume(unittest.TestCase):
         longest = max(self.acts, key=lambda a: a["pdf_end"] - a["pdf_start"])
         self.assertEqual((longest["signer"], longest["pdf_start"], longest["pdf_end"]), ("CLEVELAND", 189, 200))
 
-    # Skipped only when the WPA lists are absent or another version. When WPA_DIR is set and pinned but the
-    # census cannot be found, the test fails instead of skipping (set REPO_ROOT).
-    @unittest.skipUnless(pinned_wpa() and (os.environ.get("WPA_DIR") or (REPO / PROV["census"]).exists()),
-                         "WPA lists or census not present, or WPA lists not the pinned version")
+    # Skipped only when WPA_DIR names lists other than the pinned ones, or when the census is missing and
+    # REPO_ROOT is not set. When REPO_ROOT is set (job.py sets it) a missing census fails the test.
+    @unittest.skipUnless(pinned_wpa() and (os.environ.get("REPO_ROOT") or (REPO / PROV["census"]).exists()),
+                         "census not present, or WPA_DIR names lists other than the pinned version")
     def test_matching_against_the_wpa_lists(self):
         self.assertTrue((REPO / PROV["census"]).exists(), f"census not found under REPO_ROOT={REPO}")
         with tempfile.TemporaryDirectory() as td:
-            s = ir.run(REPO, HERE, td, WPA_DIR)
+            s = ir.run(REPO, HERE, td, os.environ.get("WPA_DIR") or None)
             with open(pathlib.Path(td) / "IR1912_ACTS.csv", encoding="utf-8") as fh:
                 rows = {r["lead_id"]: r for r in csv.DictReader(fh)}
-        self.assertEqual(s["numbered_matches"], 53)
-        self.assertEqual(s["numbered_match_level"], {"exact_date": 42, "same_month_and_IR_page": 10, "undated_IR_page_in_term": 1})
+            with open(pathlib.Path(td) / "CENSUS_LEADS.csv", encoding="utf-8") as fh:
+                leads = list(csv.DictReader(fh))
+            with open(pathlib.Path(td) / "FRAGMENTS.jsonl", encoding="utf-8") as fh:
+                frags = {f["instrument_id"]: f for f in map(json.loads, fh)}
+            papers = {r["lead_id"]: r["papers_path"] for r in rows.values()}
+            self.assertFalse((pathlib.Path(td) / "texts" / "undated-187x_IR1912-p6-2_colorado-river-reservation.papers.txt").exists())
+        if not os.environ.get("WPA_DIR"):
+            self.assertEqual(s["wpa_lists_source"], "vendored subset (data/wpa_lists_subset)")
+        # damaged days: given only by another source, never guessed (the page images read 14 and 4)
+        want = {"IR1912:p15:2": "1900-05-14", "IR1912:p18:3": "1901-11", "IR1912:p34:1": "1872-12-14",
+                "IR1912:p5:2": "1872-12-14", "IR1912:p70:1": "1867-06-14", "IR1912:p73:2": "1867-06-14",
+                "IR1912:p89:1": "1871-11-14", "IR1912:p148:1": "1871-03-14", "IR1912:p206:1": "1873-11",
+                "IR1912:p13:2": "1910-12-01"}
+        self.assertEqual({k: rows[k]["date"] for k in want}, want)
+        self.assertTrue(rows["IR1912:p34:1"]["day_basis"].startswith("in_book_reference IR1912:p6:1"))
+        self.assertEqual(rows["IR1912:p15:2"]["day_basis"], "lord seq 1119")
+        self.assertTrue(rows["IR1912:p70:1"]["text_path"].startswith("texts/1867-06-14_"))
+        for r in rows.values():   # no full date rests on a damaged day without a named source
+            if r["day_candidates"] and len(r["date"]) == 10:
+                self.assertRegex(r["day_basis"], r"^(other_printing|in_book_reference|lord|wpa) ", r["lead_id"])
+        self.assertEqual(s["dates"]["day_damaged"], 35)
+        self.assertEqual((s["dates"]["day_from_other_sources"], s["dates"]["day_damaged_left_month_only"]), (19, 16))
+        # numbered orders from 1900 on are paired by subject, not reported as unnumbered
+        self.assertEqual(s["numbered_late_subject_pairs"], {"IR1912:p52:1": "EO:1224", "IR1912:p53:3": "EO:1517"})
+        self.assertEqual((rows["IR1912:p52:1"]["numbered_eo"], rows["IR1912:p53:3"]["numbered_eo"]), ("EO:1224", "EO:1517"))
+        self.assertEqual(frags["EO:1517"]["data"]["signing_date"], "1912-04")      # the book reads 18, the WPA list 13
+        self.assertTrue(frags["EO:1517"]["data"]["needs_page_check"])
+        by_lead = collections.defaultdict(set)
+        for l in leads:
+            by_lead[l["lead_id"]].add(l["lead"])
+        self.assertEqual(by_lead["IR1912:p53:3"], {"BOOK_DATE_DIFFERS_FROM_WPA"})
+        self.assertNotIn("UNNUMBERED_NOT_IN_CENSUS", by_lead["IR1912:p52:1"])
+        # proclamations have their own lead and a kind column
+        procl = sorted(l["lead_id"] for l in leads if l["lead"] == "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER")
+        self.assertEqual(procl, ["IR1912:p143:3", "IR1912:p50:1", "IR1912:p51:1", "IR1912:p94:1"])
+        self.assertTrue(all(l["kind"] == "proclamation" for l in leads if l["lead_id"] in procl))
+        self.assertFalse(any(l["kind"] == "proclamation" for l in leads if l["lead"] == "UNNUMBERED_NOT_IN_CENSUS"))
+        # a Lord row resolved to the act that gives another day of the same month keeps 'high' away
+        self.assertEqual((rows["IR1912:p88:3"]["date_check_against_lists"], rows["IR1912:p88:3"]["confidence"]),
+                         ("LORD_DAY_DIFFERS", "medium"))
+        self.assertEqual(papers["IR1912:p6:2"], "")      # only the subhead '[Partly In California.]'
+        self.assertEqual(s["numbered_matches"], 55)
+        self.assertEqual(s["numbered_match_level"], {"exact_date": 40, "same_month_and_IR_page": 11,
+                                                     "same_month_day_candidate": 1, "undated_IR_page_in_term": 1,
+                                                     "late_same_month_subject": 1, "late_same_year_subject": 1})
         self.assertEqual(s["numbered_ties_not_paired"], {})
         self.assertEqual(s["wpa_ir_citations"], 45)
         self.assertEqual(s["wpa_ir_citation_resolution"], {"matched_act_on_page": 43, "MATCHED_ACT_ELSEWHERE": 2})
         self.assertEqual((s["lord_ir_citations"], s["lord_rows_citing_ir"]), (249, 178))
         self.assertEqual(s["lord_resolution"], {"match": 182, "ambiguous": 52, "unmatched": 15})
-        self.assertEqual(s["census_leads"]["BOOK_EXACT_DATE_FOR_YEAR_ONLY"], 42)
-        self.assertEqual(s["census_leads"]["UNNUMBERED_NOT_IN_CENSUS"], 222)      # orders, not printings
+        self.assertEqual(s["census_leads"]["BOOK_EXACT_DATE_FOR_YEAR_ONLY"], 45)
+        self.assertEqual(s["census_leads"]["UNNUMBERED_NOT_IN_CENSUS"], 216)      # orders, not printings
+        self.assertEqual(s["census_leads"]["PROCLAMATION_NOT_AN_EXECUTIVE_ORDER"], 4)
+        self.assertEqual(s["census_leads"]["BOOK_DATE_DIFFERS_FROM_WPA"], 1)
+        self.assertEqual(s["census_leads"]["DATE_CONFLICT_WITH_LORD"], 5)
         self.assertEqual(s["census_leads"]["REPRINT_DATE_CONFLICT"], 2)
-        self.assertEqual(s["fragments"], 53)
+        self.assertEqual(s["fragments"], 55)
         # the Feb 17, 1912 forest orders: each paired with its own forest; reprints inherit, never lead
         got = {k: (rows[k]["numbered_eo"], rows[k]["paired_printing"]) for k in
                ("IR1912:p11:2", "IR1912:p11:3", "IR1912:p37:2", "IR1912:p37:3", "IR1912:p22:3", "IR1912:p130:2")}

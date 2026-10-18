@@ -12,7 +12,10 @@ heading). Notes, countersignatures and referrals printed after a signature belon
 Its date comes, in order, from a proclamation's "Done at ... this ... day of" clause, the last
 "Executive Mansion, <date>" / "White House, <date>" header, a date printed right after the
 signature, or (indorsements only) the last standalone dateline before the signature. OCR-damaged
-digits are repaired only when exactly one reading falls inside the signer's term.
+year digits are repaired only when exactly one reading falls inside the signer's term. A day printed
+as anything but plain digits is never guessed: the date keeps only its month unless another printing,
+Lord's list, the WPA numbered list or a citation elsewhere in the book gives a day the glyph can stand
+for (on the italic headers 'H' is 14, not 4).
 
 Machine leads only: nothing here admits, merges, dates or changes a census identity or a status.
 """
@@ -62,6 +65,14 @@ DIG = {"0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7"
        "A": "4", "^": "0123456789", "?": "0123456789", "fl": "8", "g": "9", "q": "9", "G": "6", "b": "6",
        "T": "7", "H": "4", "W": "0123456789", "M": "0123456789", "}": "0123456789", "Ii": "4", "IB": "18",
        "j": "1", "U": "0", "u": "0", "e": "6", "n": "1", "x": "0123456789", "f": "1", "r": "1"}
+# What a misread DAY glyph may stand for, as whole readings. These are candidates only: a day read
+# this way is kept only when another source gives one of them (see corroborate_days). On the italic
+# headers 'H' is "14" ("December H, 1872" is the order the book itself cites as of December 14, 1872;
+# the page images of p. 15, 18, 70, 73, 89 and 148 read 14), and 'i' is 1 (p. 13) or 4 (p. 206).
+DAY_GLYPH = {k: list(v) for k, v in DIG.items() if len(v) < 10}
+DAY_GLYPH.update({"H": ["4", "11", "14"], "Ii": ["4", "11", "14"], "i": ["1", "4"], "IB": ["13", "18"]})
+DAY_NOISE = set("^?W}Mx")      # stands for any digit; a day made only of these has no candidates
+MAX_DAY_READINGS = 10
 
 STATES = ["ARIZONA", "CALIFORNIA", "COLORADO", "FLORIDA", "IDAHO", "MICHIGAN", "MINNESOTA", "MONTANA",
           "NEBRASKA", "NEVADA", "NEW MEXICO", "NORTH DAKOTA", "OKLAHOMA", "OREGON", "SOUTH DAKOTA", "UTAH",
@@ -101,6 +112,34 @@ def glyph_readings(tok):
     return ["".join(p) for p in itertools.product(*parts)][:5000]
 
 
+def day_readings(tok):
+    """The days (1-31) a damaged day token could stand for ("H" -> [4, 11, 14], "1^" -> [10..19]);
+    [] when the token is only noise, cannot be read, or allows more than MAX_DAY_READINGS days."""
+    tok = tok.strip(" .,;:'`-~*")
+    if not tok or len(tok) > 4:
+        return []
+    parts, i, noise = [], 0, 0
+    while i < len(tok):
+        two = tok[i:i + 2]
+        if len(two) == 2 and two in DAY_GLYPH:
+            parts.append(DAY_GLYPH[two])
+            i += 2
+            continue
+        c = tok[i]
+        if c in DAY_NOISE:
+            parts.append(list("0123456789"))
+            noise += 1
+        elif c in DAY_GLYPH:
+            parts.append(DAY_GLYPH[c])
+        else:
+            return []
+        i += 1
+    if noise == len(parts):
+        return []
+    vals = sorted({int(x) for x in ("".join(p) for p in itertools.product(*parts)) if len(x) <= 2 and 1 <= int(x) <= 31})
+    return vals if len(vals) <= MAX_DAY_READINGS else []
+
+
 def month_of(word):
     """Month number of an OCR-damaged month word ("Decemher", "Felruary", "AtJGTTST"), else None."""
     w = re.sub(r"[^A-Za-z]", "", word)
@@ -116,8 +155,10 @@ def month_of(word):
 
 
 def read_date(text, term=None):
-    """First date in text as (year, month, day, raw, repaired); day may be "". With a signer's term,
-    damaged digits are kept only when exactly one reading lies inside the term."""
+    """First date in text as (year, month, day, raw, repaired, day_candidates); day may be "". With a
+    signer's term, damaged year digits are kept only when exactly one reading lies inside the term. A
+    day is kept only when printed as plain digits; a damaged day is left blank and its possible readings
+    are returned as day_candidates (never chosen here: see corroborate_days)."""
     text = re.sub(r"\b([A-Z]),(?=[a-z]{2})", r"\1", text)   # "D,ec. 13" -> "Dec. 13"
     toks = [t for t in re.split(r"[\s,;]+", text) if t and re.search(r"[A-Za-z0-9^&£%?}\]|]", t)]
     for k, tok in enumerate(toks):
@@ -135,7 +176,8 @@ def read_date(text, term=None):
             years = [f"18{year_tok[2]}{k}" for k in range(10)]   # last digit is no safer, so only the decade is trusted
         if not years:
             continue
-        days = [d for d in glyph_readings(day_tok) if len(d) <= 2 and 1 <= int(d) <= 31]
+        literal_day = bool(re.fullmatch(r"\d{1,2}", day_tok)) and 1 <= int(day_tok) <= 31
+        days = [str(int(day_tok))] if literal_day else [str(x) for x in day_readings(day_tok)]
         cands = [(y, d) for y in years for d in (days or [""])]
         if term:
             lo, hi = term
@@ -143,12 +185,13 @@ def read_date(text, term=None):
                     if lo[:4] <= y <= hi[:4] and (not d or lo <= f"{y}-{mo:02d}-{int(d):02d}" <= hi)]
             cands = keep or cands
         ys = sorted({y for y, _ in cands})
-        ds = sorted({d for _, d in cands})
         if len(ys) != 1:
             continue
-        d = str(int(ds[0])) if len(ds) == 1 and ds[0] else ""
-        literal = bool(re.fullmatch(r"1[89]\d\d", year_tok)) and bool(re.fullmatch(r"\d{1,2}", day_tok))
-        return ys[0], mo, d, " ".join(toks[k:k + 3]), not literal
+        ds = sorted({int(d) for y, d in cands if d and y == ys[0]})
+        d = str(ds[0]) if literal_day and ds else ""
+        day_cands = () if literal_day else tuple(ds)
+        literal = bool(re.fullmatch(r"1[89]\d\d", year_tok)) and literal_day
+        return ys[0], mo, d, " ".join(toks[k:k + 3]), not literal, day_cands
     return None
 
 
@@ -201,7 +244,7 @@ def proclamation_date(text):
     year = total + cur
     if not mo or not 1850 < year < 1913:
         return None
-    return str(year), mo, str(day) if day else "", m.group(0)[:80], False
+    return str(year), mo, str(day) if day else "", m.group(0)[:80], False, ()
 
 
 def iso(y, mo, d):
@@ -313,6 +356,7 @@ def reservation_heading(line):
     return None
 
 
+SUBHEAD = r"\s*[\[Il|({]\s*[A-Z][^\]\[]{0,60}\]\W*"   # a bracketed subhead, its '[' possibly misread
 DATELINE = re.compile(r"\S{3,}\.?\s+\S{1,4}\s*[,.]\s*\S{4}\.?\W{0,3}$")
 REFERRAL = re.compile(r"(?i)^\W*(respectfully\s+)?(referred|returned)\b")
 OFFICIAL_SIGNOFF = re.compile(r"(?i)(secretary(\s+of\s+the\s+interior|\s+of\s+war|\s+of\s+state)?|commissioner|general)\W*$")
@@ -458,7 +502,7 @@ def parse(st):
             header_unread = t[:80]
             ym = re.search(r"\b(1[89]\d\d)\.?\W*$", t)
             if ym and term[0][:4] <= ym.group(1) <= term[1][:4]:   # the year is printed clearly, the month is not
-                date, src = (ym.group(1), "", "", t[-12:], False), "header_year_only"
+                date, src = (ym.group(1), "", "", t[-12:], False, ()), "header_year_only"
             else:   # only the decade: "1375" is 187x (an italic 8 read as 3)
                 pm = re.search(r"(1[389]\d)\S\W*$", t) or re.search(r"(1[389]\d)\S", t)
                 decade = ("18" + pm.group(1)[2] if pm.group(1)[:2] == "13" else pm.group(1)) + "x" if pm else ""
@@ -477,7 +521,7 @@ def parse(st):
                         break
         if not date:
             src = ""
-        y, mo, d, raw, repaired = date if date else ("", "", "", "", False)
+        y, mo, d, raw, repaired, day_cands = date if date else ("", "", "", "", False, ())
         referral = ""
         if "referral" in t_kinds:
             r = read_date(trailer[0][2], term)
@@ -487,6 +531,7 @@ def parse(st):
             "date": iso(y, mo, d), "date_raw": raw.replace("\n", " "), "date_source": src,
             "header_unread": "" if date else header_unread,
             "date_repaired": bool(repaired), "decade": decade or (y[:3] + "x" if y else ""),
+            "day_candidates": list(day_cands) if mo else [], "day_basis": "printed" if d else "",
             "year_in_term": ("yes" if term[0][:4] <= y <= term[1][:4] else "NO") if y else "",
             "signature_line": s, "signature_score": score, "referral_date": referral,
             "trailer": "|".join(t_kinds),
@@ -539,73 +584,48 @@ def act_forests(text):
     return ACT_FOREST.findall(re.sub(r"(?<=[A-Za-z])-\s+(?=[a-z])", "", text or ""))
 
 
-def match_numbered(acts, numbered, act_text=None, group=None):
-    """Pair acts with WPA numbered entries. Candidates share the exact date; or the month, with an IR
-    page citation; or, for undated acts, an IR page citation inside the signer's term. A WPA entry that
-    names a National Forest is a candidate only for an act whose text names that same forest first:
-    the forest it acts on, not one it mentions in passing, and not a word of the reservation's name
-    ('White Mountain Apache'). Printings of one order (group: {seq: first printing's seq}) compete as
-    one, scored by their best printing. Pairs are assigned globally, best score first, so a same-day
-    cluster resolves as a whole. A pairing that could have gone another way at the same score is not
-    made, whichever side the tie is on: an order with two equally good entries, or an entry with two
-    equally good orders. Returns ({seq: (entry, score, level)} keyed by the printing that scored,
-    {first printing's seq: {"entries": [...], "acts": [first printings' seqs]}} for ties)."""
-    act_text = act_text or {}
-    group = group or {}
-    by_date, by_month, by_page = collections.defaultdict(list), collections.defaultdict(list), collections.defaultdict(list)
-    for r in numbered:
-        d = wpa_date(r)
-        if d:
-            by_date[d].append(r)
-            by_month[d[:7]].append(r)
-        for p in IR_NUM.findall(r.get("text", "")):
-            by_page[int(p)].append(r)
-    rank = {"exact_date": 0, "same_month_and_IR_page": 1, "year_and_IR_page": 2, "undated_IR_page_in_term": 3}
-    pairs = []
-    for a in acts:
-        if len(a["date"]) == 10:
-            cands, level = by_date.get(a["date"], []), "exact_date"
-        elif len(a["date"]) == 7:
-            cands, level = by_month.get(a["date"], []), "same_month_and_IR_page"
-        elif len(a["date"]) == 4:
-            cands = [r for p in act_pages(a) for r in by_page.get(p, []) if r["year"] == a["date"]]
-            level = "year_and_IR_page"
-        elif not a["date"]:
-            lo, hi = TERMS[a["signer"]]
-            cands = [r for p in act_pages(a) for r in by_page.get(p, [])]
-            cands = [r for r in cands if lo[:4] <= r["year"] <= hi[:4]
-                     and (not a["decade"] or r["year"].startswith(a["decade"][:3]))]
-            level = "undated_IR_page_in_term"
-        else:
-            continue
-        key = [k for k in re.sub(r"[^A-Za-z ]", "", a["reservation"]).split()
-               if len(k) > 3 and k not in ("RESERVATION", "INDIAN", "PUEBLO", "MILITARY", "VALLEY", "RIVER")]
-        seen = set()
-        for r in cands:
-            if r["id"] in seen:
-                continue
-            seen.add(r["id"])
-            text = r.get("text", "")
-            page_hit = any(a["printed_start"] - 1 <= int(p) <= a["printed_end"] + 1 for p in IR_NUM.findall(text))
-            if level != "exact_date" and not page_hit:
-                continue
-            forests = FOREST.findall(text)
-            if forests and a["seq"] in act_text:
-                named = act_forests(act_text[a["seq"]])
-                if not named or not same_name(forests[0], named[0]):
-                    continue
-            sc = 1 + (4 if page_hit else 0)
-            if re.search(r"(?i)indian|reservation|pueblo|tribe", text):
-                sc += 2
-            if key and any(k.lower()[:5] in text.lower() for k in key):
-                sc += 2
-            named = {s for s, pat in STATE_PAT.items() if re.search(pat, text)}
-            if a["state"] in named:
-                sc += 2
-            elif named and not (a["state"] in NAVAJO_STATES and named & NAVAJO_STATES):
-                sc -= 3
-            if sc >= (3 if level == "exact_date" else 5):
-                pairs.append((-sc, rank[level], a["seq"], r["id"], level, r))
+def reservation_keys(a):
+    return [k for k in re.sub(r"[^A-Za-z ]", "", a["reservation"]).split()
+            if len(k) > 3 and k not in ("RESERVATION", "INDIAN", "PUEBLO", "MILITARY", "VALLEY", "RIVER")]
+
+
+def subject_score(a, r, act_text):
+    """(score, page_hit) of pairing act a with WPA numbered entry r on subject, or None when the entry
+    names a National Forest the act does not act on. Points: the entry cites this page of the book (4),
+    names Indians, a reservation, pueblo or tribe (2), the reservation (2), the act's state (2); another
+    state named costs 3."""
+    text = r.get("text", "")
+    page_hit = any(a["printed_start"] - 1 <= int(p) <= a["printed_end"] + 1 for p in IR_NUM.findall(text))
+    forests = FOREST.findall(text)
+    if forests and a["seq"] in act_text:
+        named = act_forests(act_text[a["seq"]])
+        if not named or not same_name(forests[0], named[0]):
+            return None
+    sc = 1 + (4 if page_hit else 0)
+    if re.search(r"(?i)indian|reservation|pueblo|tribe", text):
+        sc += 2
+    key = reservation_keys(a)
+    if key and any(k.lower()[:5] in text.lower() for k in key):
+        sc += 2
+    named = {s for s, pat in STATE_PAT.items() if re.search(pat, text)}
+    if a["state"] in named:
+        sc += 2
+    elif named and not (a["state"] in NAVAJO_STATES and named & NAVAJO_STATES):
+        sc -= 3
+    return sc, page_hit
+
+
+RANK = {"exact_date": 0, "same_month_and_IR_page": 1, "same_month_day_candidate": 2, "year_and_IR_page": 3,
+        "undated_IR_page_in_term": 4, "late_same_month_subject": 5, "late_same_year_subject": 6}
+
+
+def assign_pairs(pairs, group):
+    """Assign (-score, rank, seq, entry id, level, entry) candidates globally, best score first. The
+    printings of one order (group: {seq: first printing's seq}) compete as one, scored by their best
+    printing. A pairing that could have gone another way at the same score is not made, whichever side
+    the tie is on: an order with two equally good entries, or an entry with two equally good orders.
+    Returns ({seq: (entry, score, level)} keyed by the printing that scored, {first printing's seq:
+    {"entries": [...], "acts": [first printings' seqs]}} for ties)."""
     best = {}   # (order, entry) -> its best printing's (-score, rank, seq, level, entry)
     for negsc, rk, seq, rid, level, r in sorted(pairs, key=lambda t: t[:4]):
         best.setdefault((group.get(seq, seq), rid), (negsc, rk, seq, level, r))
@@ -642,6 +662,138 @@ def match_numbered(acts, numbered, act_text=None, group=None):
             taken.pop(assigned_g.pop(g)[0], None)
     assigned = {seq: (r, sc, level) for rid, sc, seq, level, r in assigned_g.values()}
     return assigned, {g: {"entries": sorted(v["entries"]), "acts": sorted(v["acts"])} for g, v in ties.items()}
+
+
+def match_numbered(acts, numbered, act_text=None, group=None):
+    """Pair acts with WPA numbered entries. Candidates share the exact date; or the month, with an IR
+    page citation; or the month and a day the act's damaged day glyph can stand for (no page needed,
+    but score 5); or, for undated acts, an IR page citation inside the signer's term. A WPA entry that
+    names a National Forest is a candidate only for an act whose text names that same forest first:
+    the forest it acts on, not one it mentions in passing, and not a word of the reservation's name
+    ('White Mountain Apache'). Pairs are assigned by assign_pairs. Proclamations are not passed in."""
+    act_text = act_text or {}
+    group = group or {}
+    by_date, by_month, by_page = collections.defaultdict(list), collections.defaultdict(list), collections.defaultdict(list)
+    for r in numbered:
+        d = wpa_date(r)
+        if d:
+            by_date[d].append(r)
+            by_month[d[:7]].append(r)
+        for p in IR_NUM.findall(r.get("text", "")):
+            by_page[int(p)].append(r)
+    pairs = []
+    for a in acts:
+        if len(a["date"]) == 10:
+            cands, level = by_date.get(a["date"], []), "exact_date"
+        elif len(a["date"]) == 7:
+            cands, level = by_month.get(a["date"], []), "same_month_and_IR_page"
+        elif len(a["date"]) == 4:
+            cands = [r for p in act_pages(a) for r in by_page.get(p, []) if r["year"] == a["date"]]
+            level = "year_and_IR_page"
+        elif not a["date"]:
+            lo, hi = TERMS[a["signer"]]
+            cands = [r for p in act_pages(a) for r in by_page.get(p, [])]
+            cands = [r for r in cands if lo[:4] <= r["year"] <= hi[:4]
+                     and (not a["decade"] or r["year"].startswith(a["decade"][:3]))]
+            level = "undated_IR_page_in_term"
+        else:
+            continue
+        seen = set()
+        for r in cands:
+            if r["id"] in seen:
+                continue
+            seen.add(r["id"])
+            hit = subject_score(a, r, act_text)
+            if hit is None:
+                continue
+            sc, page_hit = hit
+            lv = level
+            if level == "same_month_and_IR_page" and not page_hit:
+                wd = wpa_date(r)
+                if not (wd and int(wd[8:]) in a.get("day_candidates", [])):
+                    continue
+                lv = "same_month_day_candidate"
+            elif level != "exact_date" and not page_hit:
+                continue
+            if sc >= (3 if lv == "exact_date" else 5):
+                pairs.append((-sc, RANK[lv], a["seq"], r["id"], lv, r))
+    return assign_pairs(pairs, group)
+
+
+WPA_TEXT_DATE = re.compile(r"\b([A-Z][a-z]{2,8})\.?\s*(\d{1,2})\s*,\s*(1[789]\d\d)\b")
+ACT_TEXT_DATE = re.compile(r"\b([A-Z][a-z]{2,8})\.?\s+(\d{1,2})\s*,?\s*(1[789]\d\d)\b")
+LATE_MIN = {"late_same_month_subject": 5, "late_same_year_subject": 7}
+LAND = re.compile(r"(?i)lands?\b|reserv|withdr[ae]w|set\s*apart|set\s*aside|restor|boundar|allot|tract")
+
+
+def text_dates(pattern, text):
+    out = set()
+    for mon, d, y in pattern.findall(re.sub(r"\s+", " ", text or "")):
+        mo = month_of(mon)
+        if mo and 1 <= int(d) <= 31:
+            out.add(f"{y}-{mo:02d}-{int(d):02d}")
+    return out
+
+
+def match_late(acts, numbered, act_text, group, odate, taken):
+    """The numbered series reaches back past 1900, so an order of 1900 or later that the date rules did
+    not pair may still be a numbered order whose date the OCR (or the WPA list) prints otherwise
+    ('April 18' on p. 53 for EO 1517 of April 13, 1912). Each such order (odate: {first printing's seq:
+    order date}, from 1900) is compared with the numbered entries of its year not already taken: of
+    its month when the book prints one, else of the year. Only entries about land count (LAND: lands,
+    reserved, withdrawn, set apart, restored, boundaries, allotment, tract), so a civil-service
+    appointment at an Indian agency of the same month does not. The subject is scored as in
+    subject_score, plus 2 when the state is named only with an OCR space inside it ('Cali fornia'),
+    plus 3 when the entry cites a date the act's text also cites ('E. O. of Aug. 25, 1877'). The bar is
+    LATE_MIN (higher when only the year is shared), and pairs are assigned by assign_pairs.
+    Returns (assigned, ties, best candidate per order {first printing's seq: (entry id, score, level)})."""
+    by_year = collections.defaultdict(list)
+    for r in numbered:
+        if r["id"].upper() not in taken:
+            by_year[r.get("year", "")].append(r)
+    pairs, best = [], {}
+    for a in acts:
+        g = group.get(a["seq"], a["seq"])
+        od = odate.get(g, "")
+        if not od or od[:4] < "1900":
+            continue
+        cited = text_dates(ACT_TEXT_DATE, act_text.get(a["seq"], ""))
+        for r in by_year.get(od[:4], []):
+            wd = wpa_date(r)
+            if len(od) >= 7:
+                if not wd or wd[:7] != od[:7]:
+                    continue
+                level = "late_same_month_subject"
+            else:
+                level = "late_same_year_subject"
+            text = r.get("text", "")
+            hit = subject_score(a, r, act_text) if LAND.search(text) else None
+            if hit is None:
+                continue
+            sc = hit[0] + (3 if cited & text_dates(WPA_TEXT_DATE, text) else 0)
+            if (a["state"] and not re.search(STATE_PAT[a["state"]], text)
+                    and a["state"].replace(" ", "").lower() in re.sub(r"\s+", "", text).lower()):
+                sc += 2
+            if g not in best or sc > best[g][1]:
+                best[g] = (r["id"].upper(), sc, level)
+            if sc >= LATE_MIN[level]:
+                pairs.append((-sc, RANK[level], a["seq"], r["id"], level, r))
+    assigned, ties = assign_pairs(pairs, group)
+    return assigned, ties, best
+
+
+def agreed_date(book, wpa):
+    """The part of the book's date that the WPA date does not contradict ('1912-04-18' and '1912-04-13'
+    agree on '1912-04')."""
+    if not wpa or not book:
+        return book
+    out = ""
+    for k in (4, 7, 10):
+        if len(book) >= k and len(wpa) >= k and book[:k] != wpa[:k]:
+            break
+        if len(book) >= k:
+            out = book[:k]
+    return out
 
 
 # ---------------------------------------------------------------- printings of one order
@@ -768,6 +920,94 @@ def lord_crosswalk(acts, lord):
     return rows
 
 
+# ---------------------------------------------------------------- days the glyph alone cannot give
+
+CITED_DATE = re.compile(r"(?i)\b(?:executive\s+)?orders?\s+(?:of\s+the\s+president\s*)?,?\s*(?:dated|of)\s+"
+                        r"((?:[A-Za-z]{3,}\.?)\s+\S{1,4},?\s+\S{4})")
+
+
+def in_book_references(acts, lines_of):
+    """Dates the book cites for orders ('the order of December 14, 1872'), day and year printed as
+    plain digits, with the act whose span (related papers, act and trailer) prints the citation:
+    [(iso date, citing act's seq, snippet)]."""
+    out = []
+    for a in acts:
+        lo, hi = a["span"]
+        t = re.sub(r"\s+", " ", re.sub(r"-\s*\n\s*", "", "\n".join(lines_of[lo:hi + 1])))
+        for m in CITED_DATE.finditer(t):
+            if not month_of(m.group(1).split()[0]):
+                continue
+            d = read_date(m.group(1))
+            if d and d[2] and not d[4]:
+                out.append((iso(*d[:3]), a["seq"], m.group(0)[:70]))
+    return out
+
+
+def corroborate_days(acts, group, refs=(), lord_rows=(), lord_by_seq=None, wpa_dates=None):
+    """Give a day to a printing whose day glyph is damaged (its date is month-only and it has
+    day_candidates) only when an independent source gives a day the glyph can stand for and no source
+    gives another one: a printing of the same order with the day in plain digits; a citation of that
+    date elsewhere in the book (not in the order's own printings, not explained by another order printed
+    with that date, and supporting no other order); Lord's list (a row resolved to a printing of this
+    order alone); or the WPA numbered entry paired with the order (wpa_dates: {first printing's seq:
+    (WPA date, entry id)}). The sources are recorded in day_basis. Returns the number of days given."""
+    import calendar
+    lord_by_seq = lord_by_seq or {}
+    wpa_dates = wpa_dates or {}
+    by_seq = {a["seq"]: a for a in acts}
+    members = collections.defaultdict(list)
+    for a in acts:
+        members[group.get(a["seq"], a["seq"])].append(a)
+    lord_for = collections.defaultdict(set)
+    for r in lord_rows:
+        if r["resolution"] == "match":
+            for lid in r["acts"].split("|"):
+                lord_for[lid].add(r["lord_seq"])
+    printed = collections.defaultdict(set)   # full date printed in plain digits -> orders
+    for a in acts:
+        if len(a["date"]) == 10 and a["day_basis"] == "printed":
+            printed[a["date"]].add(group.get(a["seq"], a["seq"]))
+    support, ref_orders = {}, collections.defaultdict(set)
+    for a in acts:
+        if len(a["date"]) != 7 or not a["day_candidates"]:
+            continue
+        g, ym, cands = group.get(a["seq"], a["seq"]), a["date"], set(a["day_candidates"])
+        sup = []   # (day, kind, source, citation key)
+        for b in members[g]:
+            if b is not a and b["day_basis"] == "printed" and b["date"][:7] == ym and int(b["date"][8:]) in cands:
+                sup.append((int(b["date"][8:]), "other_printing", b["lead_id"], None))
+        for d, seq, snip in refs:
+            if (d[:7] == ym and int(d[8:]) in cands and group.get(seq, seq) != g
+                    and not (printed.get(d, set()) - {g})):
+                sup.append((int(d[8:]), "in_book_reference", f"{by_seq[seq]['lead_id']} '{snip}'", (d, seq)))
+                ref_orders[(d, seq)].add(g)
+        for b in members[g]:
+            for q in sorted(lord_for.get(b["lead_id"], ()), key=int):
+                lr = lord_by_seq.get(q, {})
+                mo, dd = month_day(lr.get("date", "")) if lr.get("date") else (None, None)
+                if mo and dd and f"{lr.get('year', '')}-{mo:02d}" == ym and dd in cands:
+                    sup.append((dd, "lord", f"seq {q}", None))
+        w, eo = wpa_dates.get(g, ("", ""))
+        if len(w) == 10 and w[:7] == ym and int(w[8:]) in cands:
+            sup.append((int(w[8:]), "wpa", eo, None))
+        support[a["seq"]] = sup
+    given = 0
+    for seq, sup in support.items():
+        a = by_seq[seq]
+        # a citation that would give a day to two different orders identifies neither
+        sup = [x for x in sup if x[3] is None or len(ref_orders[x[3]]) == 1]
+        days = sorted({x[0] for x in sup})
+        y, mo = int(a["date"][:4]), int(a["date"][5:7])
+        if len(days) == 1 and days[0] <= calendar.monthrange(y, mo)[1]:
+            a["date"] = f"{a['date']}-{days[0]:02d}"
+            a["day_basis"] = "; ".join(f"{k} {src}" for _, k, src, _ in sup)
+            a["date_repaired"] = True
+            given += 1
+        elif len(days) > 1:
+            a["day_basis"] = "sources_disagree: " + "; ".join(f"{d} ({k} {src})" for d, k, src, _ in sup)
+    return given
+
+
 # ---------------------------------------------------------------- ending leads
 
 ENDING_SIGNALS = [
@@ -869,7 +1109,15 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
     census = {r["id"].upper(): r for r in read_csv(repo / prov["census"])}
     rp = repo / prov["readiness"]
     readiness = {r["instrument_id"].upper(): r for r in read_csv(rp)} if rp.exists() else {}
-    wpa = pathlib.Path(wpa_dir) if wpa_dir else repo / prov["wpa_lists"]
+    wl = prov["wpa_lists"]
+    if wpa_dir:
+        wpa, wpa_source = pathlib.Path(wpa_dir), "WPA_DIR override"
+    else:   # the committed subset of the wpa-lists job's output, checked against its recorded sha256
+        wpa, wpa_source = job_dir / wl["dir"], f"vendored subset ({wl['dir']})"
+        for name, h in wl.get("sha256", {}).items():
+            got = sha256_bytes((wpa / name).read_bytes()) if (wpa / name).exists() else "missing"
+            if got != h:
+                raise SystemExit(f"{wl['dir']}/{name}: sha256 {got} does not match PROVENANCE.json")
     num_p, un_p = wpa / "NUMBERED_ENTRIES.csv", wpa / "UNNUMBERED_ENTRIES.csv"
     numbered = read_csv(num_p) if num_p.exists() else []
     lord = read_csv(un_p) if un_p.exists() else []
@@ -887,9 +1135,26 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
     for a in acts:
         printings[group[a["seq"]]].append(a)
 
+    # a damaged day is never guessed: it is taken only from another printing, a citation in the book,
+    # Lord's list or (below) the paired WPA entry
+    refs = in_book_references(acts, lines_of)
+    lord_by_seq = {r["seq"]: r for r in lord}
+    days_given = corroborate_days(acts, group, refs, lord_crosswalk(acts, lord), lord_by_seq)
+
     act_text = {a["seq"]: " ".join(lines_of[a["act_lines"][0]:a["span"][1] + 1]) for a in acts}
-    assigned, ties = match_numbered(acts, numbered, act_text, group)
+    pairable = [a for a in acts if a["kind"] != "proclamation"]   # proclamations are not executive orders
+    assigned, ties = match_numbered(pairable, numbered, act_text, group)
+    # orders of 1900 or later still unpaired: compared with the numbered entries of their year by subject
+    done = {group[seq] for seq in assigned} | set(ties)
+    taken = {hit[0]["id"].upper() for hit in assigned.values()} | {e.upper() for t in ties.values() for e in t["entries"]}
+    late_odate = {g: order_date(ms)[0] for g, ms in printings.items() if g not in done}
+    late_assigned, late_ties, late_best = match_late([a for a in pairable if group[a["seq"]] not in done], numbered,
+                                                     act_text, group, late_odate, taken)
+    assigned.update(late_assigned)
+    ties.update(late_ties)
     paired = {group[seq]: (seq, hit) for seq, hit in assigned.items()}   # order -> (printing paired, (entry, score, level))
+    days_given += corroborate_days(acts, group, refs, lord_crosswalk(acts, lord), lord_by_seq,
+                                   {g: (wpa_date(hit[0]), hit[0]["id"].upper()) for g, (_, hit) in paired.items()})
     odate = {g: order_date(ms, wpa_date(paired[g][1][0]) if g in paired else "") for g, ms in printings.items()}
 
     lord_rows = lord_crosswalk(acts, lord)
@@ -898,7 +1163,6 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         if r["resolution"] in ("match", "ambiguous"):
             for lid in r["acts"].split("|"):
                 lord_by_act[lid][r["resolution"]].add(r["lord_seq"])
-    lord_by_seq = {r["seq"]: r for r in lord}
     lord_unmatched = collections.defaultdict(list)   # page -> Lord rows citing it that no act of their year explains
     for r in lord_rows:
         if r["resolution"] == "unmatched":
@@ -928,7 +1192,9 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         c = census.get(eo) if eo else None
         de = (c or {}).get("date_effective", "").strip()
         tie = ties.get(g)
-        if not numbered:
+        if a["kind"] == "proclamation":
+            cstate = "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER"
+        elif not numbered:
             cstate = "not_compared_wpa_lists_missing"
         elif tie:
             cstate = "AMBIGUOUS_NUMBERED_MATCH"
@@ -968,6 +1234,8 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
             check = "wpa_month_agrees"
         elif a["date"] in lord_dates:
             check = "lord_date_agrees"
+        elif len(a["date"]) == 10 and any(x[:7] == a["date"][:7] for x in lord_dates):
+            check = "LORD_DAY_DIFFERS"   # a row resolved to this act gives the same month, another day
         elif a["date"][:4] in lord_years:
             check = "lord_year_agrees"
         elif lord_years or wdate:
@@ -984,7 +1252,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         # 'high' needs a full date read literally, inside the term, that another source or printing repeats
         # and nothing contradicts: a literal OCR reading is not by itself a guarantee ('February 11' for 17)
         corroborated = check in ("wpa_date_agrees", "lord_date_agrees") or any(b["date"] == a["date"] for b in others)
-        contradicted = check in ("LORD_SAME_MONTH_OTHER_YEAR", "OTHER_LIST_DATE_DIFFERS") or off
+        contradicted = check in ("LORD_SAME_MONTH_OTHER_YEAR", "LORD_DAY_DIFFERS", "OTHER_LIST_DATE_DIFFERS") or off
         literal = bool(a["date_source"]) and not a["date_repaired"] and len(a["date"]) == 10 and a["year_in_term"] == "yes"
         confidence = "high" if literal and corroborated and not contradicted else "medium" if a["date"] else "low"
         lo, hi = a["act_lines"]
@@ -1006,11 +1274,17 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                   + f"# Source: {vol['title']} ({vol['published']}); {vol['digitized_by']}\n"
                   f"# PDF: {vol['pdf']} sha256 {vol['pdf_sha256']}\n"
                   f"# {act_pdf}; {act_printed}; date from {a['date_source'] or 'nowhere (unread)'}"
-                  f"{' after digit repair' if a['date_repaired'] else ''}; confidence {confidence}\n"
+                  f"{' after digit repair' if a['date_repaired'] else ''}"
+                  f"{'; day from ' + a['day_basis'] if a['day_basis'] and a['day_basis'] != 'printed' else ''}"
+                  f"{'; day glyph could be ' + '/'.join(map(str, a['day_candidates'])) if a['day_candidates'] and len(a['date']) == 7 else ''}"
+                  f"; confidence {confidence}\n"
                   f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and page numbers removed. "
                   f"Not human-verified. Body sha256 {body_sha}\n\n")
         (out / fname).write_text(header + body, encoding="utf-8", newline="\n")
         papers_path, papers_pages = "", ""
+        if a["papers"] and all(re.fullmatch(SUBHEAD, lines_of[k]) or not lines_of[k].strip()
+                               for k in range(a["papers"][0], a["papers"][1] + 1)):
+            a["papers"] = None   # only '[Partly in California.]' (OCR 'IPartly In California.]') before the order
         if a["papers"]:
             plo, phi = a["papers"]
             ptext = "\n".join(lines_of[plo:phi + 1]).strip() + "\n"
@@ -1023,6 +1297,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         row = {
             "lead_id": a["lead_id"], "seq": a["seq"], "kind": a["kind"], "signer": a["signer"], "date": a["date"],
             "date_source": a["date_source"], "date_raw": a["date_raw"], "date_repaired": a["date_repaired"],
+            "day_candidates": "|".join(map(str, a["day_candidates"])), "day_basis": a["day_basis"],
             "header_unread": a["header_unread"],
             "decade": a["decade"], "year_in_term": a["year_in_term"], "date_check_against_lists": check,
             "order_lead_id": by_seq[g]["lead_id"], "printings": len(others) + 1,
@@ -1046,11 +1321,18 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         evidence = f"{vol['short']}, {act_printed}, {act_pdf}"
         if c and pseq == a["seq"]:
             exact = level == "exact_date"
+            how = {"exact_date": "on the exact date",
+                   "same_month_and_IR_page": "by month and the WPA list's citation of this page",
+                   "same_month_day_candidate": "by month and a day the damaged day glyph can stand for",
+                   "year_and_IR_page": "by year and the WPA list's citation of this page",
+                   "undated_IR_page_in_term": "by the WPA list's citation of this page within the signer's term",
+                   "late_same_month_subject": "by month and subject only (the days differ or one is unread)",
+                   "late_same_year_subject": "by year and subject only (the book's month is unread)"}[level]
             fragments.append({
                 "instrument_id": eo, "kind": "original_representation", "produced_by": "indian-reservations-1912",
                 "confidence_note": ("Machine location lead, confidence " + ("high" if exact else "medium") + ". "
                                     "The book prints no order numbers: this act was paired with the WPA numbered list "
-                                    + ("on the exact date" if exact else "by month or IR page citation only") +
+                                    + how +
                                     f" (score {score}). "
                                     + (f"The book prints the same order again at {', '.join(label(b) for b in others)}. " if others else "")
                                     + "Official compilation (GPO 1912), Cornell copy scanned by the Internet "
@@ -1059,19 +1341,23 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                 "data": {"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence,
                          "route": "official/gpo_compilation_1912", "location_confidence": "high" if exact else "medium",
                          "location_verified": False, "needs_page_check": not exact,
-                         "signing_date": od, "title": f"{a['reservation'].title()}, {a['state'].title()}",
+                         "signing_date": agreed_date(od, wdate), "title": f"{a['reservation'].title()}, {a['state'].title()}",
                          "text_path": fname, "text_sha256": body_sha, "match_level": level,
                          "source_id": f"indian-reservations-1912:{a['lead_id']}:{vol['pdf_sha256'][:12]}"},
                 "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence}]})
 
         def lead(kind, note="", lord_seqs=None):
-            leads.append({"lead": kind, "lead_id": a["lead_id"], "instrument_id": eo, "date_in_book": a["date"],
+            leads.append({"lead": kind, "kind": a["kind"], "lead_id": a["lead_id"], "instrument_id": eo, "date_in_book": a["date"],
                           "decade": a["decade"], "signer": a["signer"], "census_date_effective": de, "wpa_date": wdate,
                           "lord_seqs": row["lord_seqs"] if lord_seqs is None else lord_seqs,
                           "other_printings": row["other_printings"], "evidence": evidence, "text_path": fname, "note": note})
         also = (f"; the book prints this order {len(others) + 1} times (also {', '.join(label(b) for b in others)}); "
                 f"one order, not {len(others) + 1}" if others else "")
-        if numbered and a["seq"] == rep:   # one lead per order, never one per printing
+        if a["kind"] == "proclamation" and a["seq"] == rep:
+            lead("PROCLAMATION_NOT_AN_EXECUTIVE_ORDER", "a proclamation ('In witness whereof', 'Done at ...', seal, "
+                 "countersigned by the Secretary of State), not an executive order: not an unnumbered-order lead and "
+                 "not paired with the numbered list" + also)
+        elif numbered and a["seq"] == rep:   # one lead per order, never one per printing
             if tie:
                 lead("AMBIGUOUS_NUMBERED_MATCH", "equal-score pairings, none made: WPA entries " + ", ".join(tie["entries"])
                      + ("; orders competing for the same entry: " + ", ".join(by_seq[s]["lead_id"] for s in tie["acts"])
@@ -1080,17 +1366,34 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                 lord_note = (f"; Lord's unnumbered list cites a printing's page and year (seq {joined(g_lord)})" if g_lord
                              else f"; Lord's citation of the page is ambiguous (seq {joined(g_lord_amb)})" if g_lord_amb
                              else "; Lord does not cite the page for this year")
-                late = od[:4] >= "1900" if od else (a["decade"][:2] == "19" or a["signer"] in ("ROOSEVELT", "TAFT"))
-                lead("UNNUMBERED_NOT_IN_CENSUS", "no WPA numbered entry matched" + lord_note
-                     + ("; from 1900 on this may be a numbered order whose WPA date differs (not checked)"
-                        if late and not g_lord else "") + also, joined(g_lord))
+                if od and od[:4] >= "1900":
+                    lb = late_best.get(g)
+                    late_note = ("; from 1900 on: compared with the WPA numbered entries of "
+                                 + (od[:7] if len(od) >= 7 else od[:4]) + " by subject, none paired"
+                                 + (f" (best {lb[0]}, score {lb[1]}, needs {LATE_MIN[lb[2]]})" if lb else " (no entry about land of that date)"))
+                elif not od and (a["decade"][:2] == "19" or a["signer"] in ("ROOSEVELT", "TAFT")):
+                    late_note = "; undated, from 1900 on: may be a numbered order (not compared, no date)"
+                else:
+                    late_note = ""
+                lead("UNNUMBERED_NOT_IN_CENSUS", "no WPA numbered entry matched" + lord_note + late_note + also, joined(g_lord))
+            elif cstate == "census_year_only" and len(od) == 10 and len(wdate) == 10 and od != wdate:
+                lead("BOOK_DATE_DIFFERS_FROM_WPA", f"match {level}, score {score}; the book reads {od}, the WPA list "
+                     f"{wdate}; check the page image" + also)
             elif cstate == "census_year_only" and len(od) == 10 and od[:4] == de:
-                lead("BOOK_EXACT_DATE_FOR_YEAR_ONLY", f"match {level}, score {score}; book date {od}" + also)
+                with_od = [b for b in printings[g] if b["date"] == od]
+                day_note = ("" if any(b["day_basis"] == "printed" for b in with_od) else
+                            f"; the day glyph is damaged, the day is from {with_od[0]['day_basis']}" if with_od else "")
+                lead("BOOK_EXACT_DATE_FOR_YEAR_ONLY", f"match {level}, score {score}; book date {od}" + day_note + also)
             elif cstate in ("YEAR_CONFLICT", "DATE_CONFLICT", "census_date_blank", "NUMBERED_NOT_IN_CENSUS"):
                 lead(cstate, f"match {level}, score {score}" + also)
         if conflict:
             lead("DATE_CONFLICT_WITH_LORD", f"book reads '{a['date_raw']}'"
                  + (" after digit repair" if a["date_repaired"] else "") + "; Lord cites this page for " + "; ".join(conflict))
+        elif check == "LORD_DAY_DIFFERS":
+            lead("DATE_CONFLICT_WITH_LORD", f"book reads '{a['date_raw']}' ({a['date']}"
+                 + (f", day from {a['day_basis']}" if a["day_basis"] != "printed" else "") + "); Lord's list, resolved to "
+                 "this act, gives " + ", ".join(sorted(x for x in lord_dates if x[:7] == a["date"][:7]))
+                 + ("; another printing repeats the book's date" if any(b["date"] == a["date"] for b in others) else ""))
         if a["year_in_term"] == "NO":
             lead("DATE_OUT_OF_TERM", f"read '{a['date_raw']}' outside {a['signer'].title()}'s term; OCR misread suspected")
         if off:
@@ -1124,7 +1427,8 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                              "acts_on_page": "|".join(label(b) for b in here),
                              "in_census": "yes" if eo in census else "no"})
             if res != "matched_act_on_page":
-                leads.append({"lead": "WPA_CITATION_MISMATCH", "lead_id": m["lead_id"] if m else "", "instrument_id": eo,
+                leads.append({"lead": "WPA_CITATION_MISMATCH", "kind": m["kind"] if m else "",
+                              "lead_id": m["lead_id"] if m else "", "instrument_id": eo,
                               "date_in_book": m["order_date"] if m else "", "decade": "", "signer": "",
                               "census_date_effective": census.get(eo, {}).get("date_effective", ""),
                               "wpa_date": wpa_date(r), "lord_seqs": "", "other_printings": "",
@@ -1136,7 +1440,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
     endings = ending_leads(acts, lines_of, group)
 
     write_csv(out / f"{key}_ACTS.csv", act_rows, list(act_rows[0].keys()))
-    write_csv(out / "CENSUS_LEADS.csv", leads, ["lead", "lead_id", "instrument_id", "date_in_book", "decade", "signer",
+    write_csv(out / "CENSUS_LEADS.csv", leads, ["lead", "kind", "lead_id", "instrument_id", "date_in_book", "decade", "signer",
                                                 "census_date_effective", "wpa_date", "lord_seqs", "other_printings",
                                                 "evidence", "text_path", "note"])
     write_csv(out / "LORD_IR_CROSSWALK.csv", lord_rows, ["lord_seq", "lord_year", "lord_date", "lord_pairing", "volume",
@@ -1166,7 +1470,8 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
         "volume": key, "title": vol["title"], "pdf_check": pdf_check, "text_sha256": vol["text_sha256"],
         "census": prov["census"], "readiness_read": bool(readiness),
-        "wpa_lists_read": bool(numbered), "wpa_dir": str(wpa),
+        "wpa_lists_read": bool(numbered), "wpa_lists_source": wpa_source,
+        "wpa_dir": wl["dir"] if wpa_source.startswith("vendored") else str(wpa),
         "body_lines": len(st), "running_heads_removed": heads_removed,
         "states": sum(1 for h in heads if h["kind"] == "state"),
         "reservation_headings": sum(1 for h in heads if h["kind"] == "reservation"),
@@ -1182,7 +1487,12 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         "dates": {"full": sum(1 for a in acts if len(a["date"]) == 10), "year_month": sum(1 for a in acts if len(a["date"]) == 7),
                   "year_only": sum(1 for a in acts if len(a["date"]) == 4),
                   "undated": sum(1 for a in acts if not a["date"]), "repaired": sum(1 for a in acts if a["date_repaired"]),
-                  "out_of_term": sum(1 for a in acts if a["year_in_term"] == "NO")},
+                  "out_of_term": sum(1 for a in acts if a["year_in_term"] == "NO"),
+                  "day_damaged": sum(1 for a in acts if a["day_candidates"]),
+                  "day_from_other_sources": days_given,
+                  "day_damaged_left_month_only": sum(1 for a in acts if a["day_candidates"] and len(a["date"]) == 7)},
+        "day_sources": dict(C(k.split(" ")[0] for a in acts if a["day_candidates"] and len(a["date"]) == 10
+                              for k in a["day_basis"].split("; "))),
         "order_dates": {"full": sum(1 for d in ods if len(d) == 10), "year_month": sum(1 for d in ods if len(d) == 7),
                         "year_only": sum(1 for d in ods if len(d) == 4), "undated": sum(1 for d in ods if not d)},
         "acts_before_1900": sum(1 for a in acts if a["date"] and a["date"] < "1900"),
@@ -1194,6 +1504,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
         "numbered_matches": len(assigned),
         "numbered_ties_not_paired": {by_seq[g]["lead_id"]: v["entries"] for g, v in ties.items()},
         "numbered_match_level": dict(C(level for _, _, level in assigned.values())),
+        "numbered_late_subject_pairs": {by_seq[group[seq]]["lead_id"]: hit[0]["id"].upper() for seq, hit in late_assigned.items()},
         "numbered_matches_in_census": sum(1 for r in rep_rows if r["numbered_eo"] and r["census"] != "NUMBERED_NOT_IN_CENSUS"),
         "numbered_reprints_inheriting_pairing": sum(1 for r in act_rows if r["numbered_eo"] and r["paired_printing"] != r["lead_id"]),
         "acts_by_census_state": dict(C(r["census"] for r in act_rows)),

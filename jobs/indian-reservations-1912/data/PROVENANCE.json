@@ -1,7 +1,32 @@
 {
  "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
  "readiness": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
- "wpa_lists": "jobs/wpa-lists/output",
+ "wpa_lists": {
+  "dir": "data/wpa_lists_subset",
+  "what": "The rows this job reads from the wpa-lists job's output, copied unchanged (same header, same bytes per row): every NUMBERED_ENTRIES.csv row dated 1850-1913 or citing this book ('IR 22'), and every UNNUMBERED_ENTRIES.csv (Lord's list) row citing this book ('I IR 24') in its summary or citation_text. With these rows the job's outputs are the same as with the full files. Used unless WPA_DIR names another folder.",
+  "derived_from": {
+   "job": "wpa-lists",
+   "branch": "wpa-lists",
+   "commit": "65570e4c",
+   "outputs": "the job's output folder from that commit, run locally (scratchpad wpa_out)",
+   "sha256": {
+    "NUMBERED_ENTRIES.csv": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64",
+    "UNNUMBERED_ENTRIES.csv": "c0fd09487366f6394594a89d0dff546499904a69c39447d6e89550ee72f43833"
+   },
+   "rows": {
+    "NUMBERED_ENTRIES.csv": 8437,
+    "UNNUMBERED_ENTRIES.csv": 1562
+   }
+  },
+  "rows": {
+   "NUMBERED_ENTRIES.csv": 1936,
+   "UNNUMBERED_ENTRIES.csv": 178
+  },
+  "sha256": {
+   "NUMBERED_ENTRIES.csv": "3c301b0da722f3e3c839b2dfc0d51b13f8898676354e3ff76c01a768b6d48249",
+   "UNNUMBERED_ENTRIES.csv": "96ea6c6b6fed92d1b4359278a582ee6bff5e50cb2b8386a40abb2f3ef9328524"
+  }
+ },
  "volumes": [
   {
    "key": "IR1912",

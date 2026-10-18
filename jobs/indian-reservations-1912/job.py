@@ -24,12 +24,16 @@ print(f"  Printings: {s['orders']} distinct orders; {s['reprints']} acts reprint
       f"the printings disagree on the date, and {s['printings_off_their_order_date']} printings differ from the date taken).")
 print(f"  Dates (printings): {d['full']} full, {d['year_month']} month only, {d['year_only']} year only, {d['undated']} unread; "
       f"{d['repaired']} needed digit repair; {d['out_of_term']} fall outside the signer's term. Confidence {s['confidence']}.")
+print(f"  Damaged day glyphs: {d['day_damaged']} printings; {d['day_from_other_sources']} got their day from another "
+      f"source ({s['day_sources']}), {d['day_damaged_left_month_only']} keep only the month (a day is never guessed).")
 print(f"  Dates (orders): {o['full']} full, {o['year_month']} month only, {o['year_only']} year only, {o['undated']} unread; "
       f"{s['orders_before_1900']} orders before 1900, {s['orders_from_1900']} from 1900 ({s['orders_by_decade']}).")
 if s["wpa_lists_read"]:
+    print(f"  WPA lists: {s['wpa_lists_source']}.")
     print(f"  WPA numbered list: {s['numbered_matches']} orders paired ({s['numbered_match_level']}); "
           f"{len(s['numbered_ties_not_paired'])} ties left unpaired; {s['numbered_reprints_inheriting_pairing']} reprints carry "
-          f"their order's pairing; {s['wpa_ir_citations']} IR page citations ({s['wpa_ir_citation_resolution']}).")
+          f"their order's pairing; {s['wpa_ir_citations']} IR page citations ({s['wpa_ir_citation_resolution']}). "
+          f"Paired by subject from 1900 on: {s['numbered_late_subject_pairs']}.")
     print(f"  Lord's unnumbered list: {s['lord_ir_citations']} IR citations in {s['lord_rows_citing_ir']} rows "
           f"({s['lord_resolution']}).")
 else:
