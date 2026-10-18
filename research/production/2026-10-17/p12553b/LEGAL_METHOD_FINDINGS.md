@@ -36,6 +36,15 @@ the local hydration lacked the census CSV. Its absence is an environment
 input problem, not evidence exhaustion. No second claim batch was generated
 while waiting for the required post-batch checker report.
 
+The subsequent Actions pilot report checked the five exact current claim
+versions. All five hashes matched, all five results were
+`pass_with_unverified`, and all structural gates and checked research steps
+remained false. `CHECKER_RESULTS.json` preserves this package's results and
+the report hash. The corpus-wide pilot checked 36 claims with 145 exact
+quotations and 211 custody-record-only references; no fully passing claim
+or readiness gain resulted. No additional claim batch was authorized from
+this outcome.
+
 ## Additional evidence read while waiting for checker
 
 Each following order was started from its one bundle fetch, then the relevant
