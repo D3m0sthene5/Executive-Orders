@@ -243,6 +243,20 @@ def page_dates(text):
     return out
 
 
+MONTH_DAY = re.compile(r"\b" + MONTH_ALT + r"\.?\s+(\d{1,2})(?:st|nd|rd|th|d)?\b")
+
+
+def page_month_days(text):
+    """("08-03", start, end) for every "August 3" on the page, whatever follows it."""
+    out = []
+    for m in MONTH_DAY.finditer(text):
+        mo = hunt.MONTH_NO.get(m.group(1).lower()[:4]) or hunt.MONTH_NO.get(m.group(1).lower()[:3])
+        d = int(m.group(2))
+        if mo and 1 <= d <= 31:
+            out.append((f"{mo:02d}-{d:02d}", m.start(), m.end()))
+    return out
+
+
 def page_numbers(text):
     out = []
     for m in NUMBER_RE.finditer(text):
@@ -363,6 +377,25 @@ def match_book(book, pages, targets, by_date, by_number):
                 cand.append((iid, {"how": "date_and_subject", "date": date, "anchor": [s, e],
                                    "keyword_hits": [h for h, _ in hits], "positions": [s] + [p for _, p in hits],
                                    "score": 3 + min(len(hits), 4)}))
+        # A report covering known years (the Civil Service Commission's) dates each order as a heading whose
+        # year the OCR often garbles ("August 3, 1022"). There the month and day are enough, for an order of
+        # one of those years, when two of the summary's names follow within the entry.
+        years = set(str(y) for y in book.get("years") or ())
+        if years:
+            exact = set((d, s) for d, s, _ in dates)
+            for md, s, e in page_month_days(text):
+                for y in years:
+                    date = f"{y}-{md}"
+                    if (date, s) in exact:
+                        continue
+                    for iid, entry in by_date.get(date, ()):
+                        hits = kw_hits(low, expand(entry["keywords"]), s - 200, e + 900, common)
+                        names = [h for h, _ in hits if h in entry["names"]]
+                        if len(set(names)) < 2 or CITED_CUE.search(text[max(0, s - 120):s]):
+                            continue
+                        cand.append((iid, {"how": "monthday_and_names", "date": date, "anchor": [s, e],
+                                           "keyword_hits": [h for h, _ in hits], "positions": [s] + [p for _, p in hits],
+                                           "score": 2 + min(len(hits), 4)}))
         for n, suffix, s, e in nums:
             for iid in by_number.get((n, suffix), ()):
                 t = targets[iid]
@@ -393,7 +426,7 @@ def match_book(book, pages, targets, by_date, by_number):
     # if they tie, all are kept and marked shared (the reviewer decides which entry is which).
     by_passage = collections.defaultdict(list)
     for iid, hit in found.items():
-        if hit["how"] == "date_and_subject":
+        if hit["how"] in ("date_and_subject", "monthday_and_names"):
             by_passage[(hit["image"], hit["anchor"][0])].append(iid)
     for ids in by_passage.values():
         if len(ids) < 2:
@@ -562,7 +595,8 @@ def fetch_book(book, pool, budget, out_books, log):
         (out_books / f"{book['key']}.json").write_text(json.dumps(rec, indent=1, sort_keys=True) + "\n", encoding="utf-8")
         b = {"key": book["key"], "series": book["series"], "label": book["label"], "held": False, "path": pages_path,
              "format": "hunt_gz", "url": cust["page_text_url"], "sha256": cust["page_text_sha256"],
-             "item_url": cust["item_url"], "archival_id": "ia:" + ident, "via": "data/BOOKS.json"}
+             "item_url": cust["item_url"], "archival_id": "ia:" + ident, "via": "data/BOOKS.json",
+             "years": book.get("years")}
         log(f"  {book['key']}: {len(pages)} pages from {ident}; sha1 {'matches' if cust.get('sha1_matches_archive') else 'NOT matched'}")
         return rec, b
     rec["status"] = rec["copies_tried"][-1]["status"] if rec["copies_tried"] else "no_identifier"

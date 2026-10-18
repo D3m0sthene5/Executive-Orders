@@ -2,30 +2,25 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
-## 2026-10-18 16:30 ET: numbered-early-orders, stopped early at 80 of 3,324 (under the 300 line)
+## 2026-10-18 17:15 ET: numbered-early-orders, printed texts for 184 of the 3,324 undecided orders 1-5075
 
-- **Done (branch `numbered-early-orders` from main `224fd70c`; committed locally, not pushed):**
-  `jobs/numbered-early-orders/` with the 3,324 targets in `data/TARGETS.csv` (census all-no and number below
-  5076, joined to the WPA 1944 date and summary from `wpa-lists` commit `121ca07e`), a matcher (by number,
-  or by exact date plus summary words), a ranked `data/BOOKS.json`, offline tests, and
-  wikisource-texts-shaped FRAGMENTS/SOURCES (`government_printed_copy`, `acceptable_as_original=false`).
-  It imports early-orders-hunt unchanged. claim-kit's loader recognized all 84 texts (80 orders), with no
-  warnings and nothing written to claim-kit/output.
-- **Measured (local):** held books gave 41 orders (MR 1916 37, MR 1910 2, Richardson IX 2, IR 1912 1; GLO
-  1880-98, MR 1907, IC 1911 and Richardson VI/VII gave 0). The first five new books added 39: Kappler IV 26,
-  Official U.S. Bulletin 13 (four volumes; vol. 1 hit an Archive HTTP 500). Total 80, so the run stopped.
-- **What I saw:** most targets are minor 1908-29 orders: 695 individual civil-service waivers, 484
-  national-forest, 426 land-withdrawal. The Bulletin printed the large war orders, not these. Kappler IV
-  prints only about 120 orders. The series that does print the waivers, the Civil Service Commission
-  annual reports (752 WPA "CSR" citations), has only four 1908-29 years on the Archive (FY 1914, 1915,
-  1918, 1922; listed in BOOKS.json, not fetched). HathiTrust has the full run but sits behind a Cloudflare
-  bot challenge. The Archive's 1975 reprint of the 1912-22 Indian-reservation volume is a lending copy.
-- **Known false positive:** EO 860 matched on "Executive Order No. 860 of June 30, 1908" quoted inside a
-  later order, a citation the cue list misses. Every hit still needs reading against the scan.
-- **Asks:** `@Owner`: choose a next step: (a) run the four CSC reports plus Kappler III and Panama 1921
-  (about 200 more at most), (b) get HathiTrust CSC volumes through a sanctioned route, or (c) leave it here.
-- **Do not:** push this branch as-is expecting a full run; NEO_MAX_BOOKS defaults to 40 and would fetch
-  past the stop line.
+- **Done (branch `numbered-early-orders` from main `224fd70c`, PR to main):** `jobs/numbered-early-orders/`
+  matches the 3,324 census all-no numbered orders below 5076 (`data/TARGETS.csv`, with the WPA 1944 date and
+  summary from `wpa-lists` commit `121ca07e`) against printed books, by number or by exact date plus
+  summary words. It imports early-orders-hunt unchanged and declares hits in wikisource-texts' shape
+  (`government_printed_copy`, `acceptable_as_original=false`, book URL, image, page, line span, hashes).
+- **Measured (local run):** 184 orders, 197 texts. 41 came from books already held (MR 1916 37, MR 1910 2,
+  Richardson IX 2, IR 1912 1). 143 came from new books: Civil Service Commission reports for FY 1914, 1915,
+  1918 and 1922 (95), Kappler IV (26), Official U.S. Bulletin (17), Panama Canal 1921 (6). Kappler III gave
+  0. 3,140 orders still have no text. claim-kit's loader recognized all 197 texts with no warnings.
+- **Blocked:** the Archive holds only four 1908-29 CSC reports. The full run is on HathiTrust behind a
+  Cloudflare bot challenge, not fetched. The Archive's 1975 Indian-reservation reprint is a lending copy.
+- **Known false positive:** EO 860 matched on a citation inside a later order. Every hit must be read
+  against the scan.
+- **Running:** the job's first GitHub run on this branch. Check `output/STATUS.json` and `SUMMARY.json`.
+- **Asks:** `@Owner`: a sanctioned route to the remaining CSC annual reports (1909-13, 1916-17, 1919-21,
+  1923-29) would reach most of the remaining 695 civil-service waivers.
+- **Do not:** count these texts as originals or as decided orders.
 
 ## 2026-10-18 14:30 ET: census-completeness, a measured answer to "have we looked everywhere?"
 
