@@ -1,0 +1,794 @@
+{
+  "app_robots": "# =========================================================\n# APP STABILITY BOT BLOCK LIST (Updated 01-27-2026)\n# =========================================================\n\n# --- High-Volume Commercial Crawlers (Detected in Logs) ---\n\n# Perplexity AI\nUser-agent: PerplexityBot\nDisallow: /\n\n# Serpstat SEO Tool\nUser-agent: Serpstatbot\nDisallow: /\n\n# Semrush SEO Tool\nUser-agent: SemrushBot\nDisallow: /\nUser-agent: SemrushBot-SA\nDisallow: /\n\n# TikTok/ByteDance (Matches IP 152.42.x.x)\nUser-agent: Bytespider\nDisallow: /\nUser-agent: Bytedance\nDisallow: /\n\n# Amazon Crawler\nUser-agent: Amazonbot\nDisallow: /\n\n# --- Proactive Block for Major AI/LLM Scrapers ---\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic (Claude)\nUser-agent: ClaudeBot\nDisallow: /\n\n# Common Crawl\nUser-agent: CCBot\nDisallow: /\nUser-agent: CCBot/2.0\nDisallow: /\n\n# =========================================================\n# GENERAL DRUPAL RULES\n# =========================================================\n\nUser-agent: *\n# Stop legacy 404 page url from being indexed.\nDisallow: /404.html\n\n# Block expensive RSS feed generation (High CPU/DB usage)\n# Standard compliant blocking (Prefix matching)\nDisallow: /taxonomy/term/*/feed\nDisallow: /taxonomy/term/*/feed/\nDisallow: /feed/\nDisallow: /rss.xml\nDisallow: */feed/\nDisallow: /rss.xml\n\n# Throttle other bots to help server stability\nCrawl-delay: 10\n\n# CSS, JS, Images - Allow these so Google can render the page\nAllow: /misc/*.css$\nAllow: /misc/*.css?\nAllow: /misc/*.js$\nAllow: /misc/*.js?\nAllow: /misc/*.gif\nAllow: /misc/*.jpg\nAllow: /misc/*.jpeg\nAllow: /misc/*.png\nAllow: /modules/*.css$\nAllow: /modules/*.css?\nAllow: /modules/*.js$\nAllow: /modules/*.js?\nAllow: /modules/*.gif\nAllow: /modules/*.jpg\nAllow: /modules/*.jpeg\nAllow: /modules/*.png\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /themes/*.css$\nAllow: /themes/*.css?\nAllow: /themes/*.js$\nAllow: /themes/*.js?\nAllow: /themes/*.gif\nAllow: /themes/*.jpg\nAllow: /themes/*.jpeg\nAllow: /themes/*.png\n\n# Directories\nDisallow: /includes/\nDisallow: /misc/\nDisallow: /modules/\nDisallow: /profiles/\nDisallow: /scripts/\nDisallow: /themes/\n\n# Files\nDisallow: /CHANGELOG.txt\nDisallow: /cron.php\nDisallow: /INSTALL.mysql.txt\nDisallow: /INSTALL.pgsql.txt\nDisallow: /INSTALL.sqlite.txt\nDisallow: /install.php\nDisallow: /INSTALL.txt\nDisallow: /LICENSE.txt\nDisallow: /MAINTAINERS.txt\nDisallow: /update.php\nDisallow: /UPGRADE.txt\nDisallow: /xmlrpc.php\n\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips/\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register/\nDisallow: /user/password/\nDisallow: /user/login/\nDisallow: /user/logout/\n\n# Paths (no clean URLs)\nDisallow: /?q=admin/\nDisallow: /?q=comment/reply/\nDisallow: /?q=filter/tips/\nDisallow: /?q=node/add/\nDisallow: /?q=search/\nDisallow: /?q=user/password/\nDisallow: /?q=user/register/\nDisallow: /?q=user/login/\nDisallow: /?q=user/logout/\n",
+  "govinfo_robots": "#\n# robots.txt\n#\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n\nDisallow: /app/search/*\n\nSitemap: https://www.govinfo.gov/sitemap/sitemap.xml\nSitemap: https://www.govinfo.gov/sitemap/BILLS_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/BUDGET_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CCAL_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CDIR_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CDOC_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CFR_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CHRG_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CMR_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/COMPS_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CPRT_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CRECB_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CREC_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CRI_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CRPT_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/CZIC_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/DCPD_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/ECONI_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/ERIC_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/ERP_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/FR_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/GAOREPORTS_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/GOVMAN_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/GOVPUB_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/GPO_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/HJOURNAL_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/HMAN_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/HOB_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/LSA_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/PAI_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/PLAW_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/PPP_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/SERIALSET_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/SMAN_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/STATUTE_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/USCODE_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/USCOURTS_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/USREPORTS_sitemap_index.xml\nSitemap: https://www.govinfo.gov/sitemap/WCPD_sitemap_index.xml\n\n# Bulkdata sitemaps\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/BILLSTATUS/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/BILLSUM/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/BILLS/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/CBD/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/CFR/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/ECFR/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/FR/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/GOVMAN/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/HMAN/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/PAI/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/PPP/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/PLAW/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/SCD/sitemapindex.xml\nSitemap: https://www.govinfo.gov/sitemap/bulkdata/STATUTE/sitemapindex.xml",
+  "ia_hoover": {
+    "numFound": 4,
+    "docs": [
+      {
+        "date": "1974-01-01T00:00:00Z",
+        "identifier": "proclamationsexe0001herb",
+        "title": "Proclamations and Executive Orders: Herbert Hoover. March 4, 1929 to March 4, 1933"
+      },
+      {
+        "date": "1974-01-01T00:00:00Z",
+        "identifier": "4731703.proc.001.umich.edu",
+        "title": "Herbert Hoover [electronic resource] : proclamations and executive orders, March 4, 1929 to March 4, 1933"
+      },
+      {
+        "date": "1974-01-01T00:00:00Z",
+        "identifier": "4731703.proc.002.umich.edu",
+        "title": "Herbert Hoover [electronic resource] : proclamations and executive orders, March 4, 1929 to March 4, 1933"
+      },
+      {
+        "date": "1979-01-01T00:00:00Z",
+        "identifier": "cumulatedindexes0000unse_h5z5",
+        "title": "The Cumulated indexes to the public papers of the presidents of the United States, Herbert Hoover, 1929-1933 : with the index from Proclamations and executive orders, Herbert Hoover, March 4, 1929 to March 4, 1933"
+      }
+    ],
+    "results": []
+  },
+  "ia_gpo": {
+    "numFound": 4,
+    "docs": [
+      {
+        "date": "1933-01-01T00:00:00Z",
+        "identifier": "codeoffaircompet2975unit",
+        "title": "Code of fair competition for the bituminous coal industry as approved by President Roosevelt in executive orders of September 18, 1933, and September 29, 1933, incorporating so far as possible the conditions of the executive orders in the text of the code"
+      },
+      {
+        "date": "1931-01-01T00:00:00Z",
+        "identifier": "specificationsfo00unit_2",
+        "title": "Specifications for descriptions of tracts of land for use in executive orders and proclamations [microform]"
+      },
+      {
+        "date": "1937-01-01T00:00:00Z",
+        "identifier": "measuves00cana",
+        "title": "Measurement of vessels for the Panama Canal: including rates of toll and proclamations and executive orders pertaining thereto"
+      },
+      {
+        "date": "1933-01-01T00:00:00Z",
+        "identifier": "publicactsnos27800unit",
+        "title": "Public acts nos. 2 and 78, 73d Congress [microform], and executive orders, dated March 31, 1933, June 6, 1933, and July 28, 1933, issued pursuant thereto governing the granting of benefits to veterans of the armed forces of the United States and their dependents"
+      }
+    ],
+    "results": []
+  },
+  "ia_fdr": {
+    "numFound": 44,
+    "docs": [
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_Y0-AAB-324",
+        "title": "THE PUBLIC PAPERS AND ADDRESSES OF FRANKLIN D. ROOSEVELT"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "4925383.1934.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "4926579.1939.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0001fran",
+        "title": "The public papers and addresses of Franklin D. Roosevelt vol 1: The genesis of the new dial 1928-1932"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "iaunidentified0007unse_c2l2",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0003fran",
+        "title": "The public papers and addresses of Franklin D. Roosevelt vol 3: The advance of recovery and reform 1934"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0004fran_h2i8",
+        "title": "The public papers and addresses of Franklin D. Roosevelt vol 4: The court disapproves 1935"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "bwb_C0-CDK-155",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr1934unse",
+        "title": "The public papers and addresses of Franklin D. Roosevelt : vol. 03, the advance of recovery and reform, 1934"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_P9-CKY-279",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0002fran_c6u6",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_S0-EDY-003_1937",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0000unse_n0v4",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0000fran",
+        "title": "The Public papers and addresses"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_S0-EDX-997_1940",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "4925988.1936.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "4925387.1935.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "bwb_W7-CVF-732",
+        "title": "The Public Papers and Addresses of Franklin D. Roosevelt: VOLUME III-The Advance"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr1937unse",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0002fran",
+        "title": "The public papers and addresses of Franklin D. Roosevelt vol 2: The year of crisis 1933"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "bwb_P9-CKY-501_5",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "franklindrooseve1938unse",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_S0-EDY-000_1938",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1935-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0004fran",
+        "title": "The Public Papers and Addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_S0-BSE-209_1937",
+        "title": "The Public Papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "bwb_W7-CVF-729",
+        "title": "The Public Papers and Addresses of Franklin D. Roosevelt. Volume One: The Genesis of the New Deal 1928-1932"
+      },
+      {
+        "date": "1935-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0004unse",
+        "title": "The public papers and addresses of Franklind D. Roosevelt"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "bwb_S0-EDX-998_1939",
+        "title": "the public papers and addresses of franklin d. roosevelt"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "4926593.1942.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource]"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "4925381.1933.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0000unse",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0003roos",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0010fran",
+        "title": "The public papers and addresses of Franklin D. Roosevelt vol 10 1941: The call to battle stations"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "4926605.1944.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource]"
+      },
+      {
+        "date": "1941-01-01T00:00:00Z",
+        "identifier": "4926315.1938.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "4925052.1928.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource] : with a special introduction and explanatory notes by President Roosevelt"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "4926590.1941.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource]"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0002roos",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0001roos",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0004roos",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1969-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0000fran_r2s6",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0005roos",
+        "title": "The public papers and addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1938-01-01T00:00:00Z",
+        "identifier": "publicpapersaddr0005fran",
+        "title": "The Public Papers And Addresses of Franklin D. Roosevelt"
+      },
+      {
+        "date": "1950-01-01T00:00:00Z",
+        "identifier": "4926600.1943.001.umich.edu",
+        "title": "The public papers and addresses of Franklin D. Roosevelt. [electronic resource]"
+      }
+    ],
+    "results": []
+  },
+  "loc_cfr": {
+    "numFound": null,
+    "docs": [],
+    "results": [
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T20CIP31/",
+        "title": "Code of Federal Regulations: General Administrative Provisions, 20 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T20CIP4/",
+        "title": "Code of Federal Regulations: Appeals In Cases Of Employees Of Alaska Railroad, 20 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T20CIIIP402/",
+        "title": "Code of Federal Regulations: Federal Old-age Benefits, 20 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-TIndex/",
+        "title": "Code of Federal Regulations: Index (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-TTables/",
+        "title": "Code of Federal Regulations: Tables Of Documents Published In The Federal Register (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-TPrelim/",
+        "title": "Code of Federal Regulations: Preliminary Material (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CIIIP35/",
+        "title": "Code of Federal Regulations: Payment Of Bills And Accounts, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CIVP43/",
+        "title": "Code of Federal Regulations: Promotion Of Rifle Practice, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CVIIIP81/",
+        "title": "Code of Federal Regulations: Procurement Of Military Supplies And Animals, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CVIIP73/",
+        "title": "Code of Federal Regulations: Appointment Of Commissioned Officers And Chaplains, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CVIIP74/",
+        "title": "Code of Federal Regulations: Enlistment Of Flying Cadets, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T10CVIP62/",
+        "title": "Code of Federal Regulations: Reserve Officers' Training Corps, 10 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T13CIP0/",
+        "title": "Code of Federal Regulations: General, 13 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP285/",
+        "title": "Code of Federal Regulations: Rules Of Practice, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP4/",
+        "title": "Code of Federal Regulations: Airplane Airworthiness, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP3/",
+        "title": "Code of Federal Regulations: Aircraft Title Transfer, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP292/",
+        "title": "Code of Federal Regulations: Exemptions And Classifications, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP0/",
+        "title": "Code of Federal Regulations: Aircraft Registration Certificate, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP1/",
+        "title": "Code of Federal Regulations: Aircraft Certificates, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP20/",
+        "title": "Code of Federal Regulations: Pilot Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP216/",
+        "title": "Code of Federal Regulations: Rates For Transportation Of Mail, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP224/",
+        "title": "Code of Federal Regulations: Tariffs, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP228/",
+        "title": "Code of Federal Regulations: Free And Reduced Rate Transportation, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP23/",
+        "title": "Code of Federal Regulations: Ground Instructor Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP241/",
+        "title": "Code of Federal Regulations: Permits For Foreign Air Carriers, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP25/",
+        "title": "Code of Federal Regulations: Parachute Rigger Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP26/",
+        "title": "Code of Federal Regulations: Air Traffic Control Tower Operator Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP27/",
+        "title": "Code of Federal Regulations: Air Carrier Dispatcher Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP2/",
+        "title": "Code of Federal Regulations: Aircraft Identification Marks, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP202/",
+        "title": "Code of Federal Regulations: Accounts And Reports, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP21/",
+        "title": "Code of Federal Regulations: Airline Transport Pilot Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP14/",
+        "title": "Code of Federal Regulations: Aircraft Propeller Airworthiness, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP15/",
+        "title": "Code of Federal Regulations: Aircraft Equipment Airworthiness, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP238/",
+        "title": "Code of Federal Regulations: Certificates Of Public Convenience And Necessity, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP24/",
+        "title": "Code of Federal Regulations: Mechanic Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP13/",
+        "title": "Code of Federal Regulations: Aircraft Engine Airworthiness, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP18/",
+        "title": "Code of Federal Regulations: Repair And Alteration Of Aircraft, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP40/",
+        "title": "Code of Federal Regulations: Air Carrier Operating Certification (Interstate), 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP50/",
+        "title": "Code of Federal Regulations: Flying School Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP52/",
+        "title": "Code of Federal Regulations: Aircraft Repair Station Rating, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP60/",
+        "title": "Code of Federal Regulations: Air Traffic Rules, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP61/",
+        "title": "Code of Federal Regulations: Scheduled Air Carrier Rules (Interstate), 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP90/",
+        "title": "Code of Federal Regulations: Air Mail, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP91/",
+        "title": "Code of Federal Regulations: Aircraft Accident Investigations, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP92/",
+        "title": "Code of Federal Regulations: Hearings Upon Certificates (Issued, Renewed, Denied, Suspended, Or Revoked), 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP93/",
+        "title": "Code of Federal Regulations: Evidence, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP94/",
+        "title": "Code of Federal Regulations: Penalties, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP95/",
+        "title": "Code of Federal Regulations: Imposition, Remission, And Mitigation Of Penalties, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP96/",
+        "title": "Code of Federal Regulations: Authorization To Act For The Authority, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP98/",
+        "title": "Code of Federal Regulations: Definitions, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T14CIP99/",
+        "title": "Code of Federal Regulations: Mode Of Citation Of Regulations, 14 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP130/",
+        "title": "Code of Federal Regulations: Fur Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP131/",
+        "title": "Code of Federal Regulations: Shrinkage Of Woven Cotton Yard Goods, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP132/",
+        "title": "Code of Federal Regulations: Macaroni, Noodles, And Related Products Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP133/",
+        "title": "Code of Federal Regulations: Tomato Paste Manufacturing Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP134/",
+        "title": "Code of Federal Regulations: Oleomargarine Manufacturing Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP135/",
+        "title": "Code of Federal Regulations: Silk Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP3/",
+        "title": "Code of Federal Regulations: Digest Of Cease And Desist Orders, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T16CIP98/",
+        "title": "Code of Federal Regulations: Baby Chick Industry, 16 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP201/",
+        "title": "Code of Federal Regulations: Rules Of Practice, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP230/",
+        "title": "Code of Federal Regulations: General Rules And Regulations, Securities Act Of 1933, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP239/",
+        "title": "Code of Federal Regulations: Forms, Securities, Act Of 1933, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP240/",
+        "title": "Code of Federal Regulations: Rules And Regulations, Securities Exchange Act Of 1934, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP249/",
+        "title": "Code of Federal Regulations: Forms, Securities Exchange Act Of 1934, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP250/",
+        "title": "Code of Federal Regulations: General Rules And Regulations, Public Utility Holding Company Act Of 1935, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIIP259/",
+        "title": "Code of Federal Regulations: Forms, Public Utility Holding Act Of 1935, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIP1/",
+        "title": "Code of Federal Regulations: General Regulations Under The Commodity Exchange Act, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIP150/",
+        "title": "Code of Federal Regulations: Orders Of The Commodity Exchange Commission, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T17CIP8/",
+        "title": "Code of Federal Regulations: Special Provisions Applicable To Wool Tops, 17 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP125/",
+        "title": "Code of Federal Regulations: Preservation Of Records Of Public Utilities And Licensees, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP210/",
+        "title": "Code of Federal Regulations: Statements And Reports (Schedules), 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP250/",
+        "title": "Code of Federal Regulations: Natural Gas Act, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP50/",
+        "title": "Code of Federal Regulations: Administration, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP53/",
+        "title": "Code of Federal Regulations: Application For Authorization To Export Or Import Natural Gas, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP54/",
+        "title": "Code of Federal Regulations: Filing Of Rate Schedules, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP57/",
+        "title": "Code of Federal Regulations: Application For Approval Of Abandonment Of Facilities Or Service And For Certificate Of Convenience And Necessity, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP58/",
+        "title": "Code of Federal Regulations: Accounts, Records, And Memoranda, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T18CIP67/",
+        "title": "Code of Federal Regulations: Cooperative Procedure With State Commissions, 18 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIIP206/",
+        "title": "Code of Federal Regulations: International Boundary Commission (United States And Mexico) Rio Grande Rectification Project, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP18/",
+        "title": "Code of Federal Regulations: Expatriation; Presumption, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP24/",
+        "title": "Code of Federal Regulations: Foreign Principals, Registration Of Agents, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP29/",
+        "title": "Code of Federal Regulations: Instruction Of Citizens Of The American Republics At Educational Institutions Of The United States Government, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP30/",
+        "title": "Code of Federal Regulations: Mexico; Stolen Or Embezzled Motor Vehicles, Trailers, Airplanes, Etc., 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP61/",
+        "title": "Code of Federal Regulations: Visas; Documents Required Of Aliens Entering The United States, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP83/",
+        "title": "Code of Federal Regulations: Relief Of Seamen, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP88/",
+        "title": "Code of Federal Regulations: Mutiny And Insubordination; Transportation Of Persons Charged With Crimes Against The United States, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP89/",
+        "title": "Code of Federal Regulations: Immigration And Quarantine, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP79/",
+        "title": "Code of Federal Regulations: Citizenship; Protection Of Passports, And Registration, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP80/",
+        "title": "Code of Federal Regulations: Merchant Vessels, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP91/",
+        "title": "Code of Federal Regulations: Miscellaneous Instructions, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP92/",
+        "title": "Code of Federal Regulations: Commissions To Take Testimony, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP93/",
+        "title": "Code of Federal Regulations: Compensation Of Foreign Service Officers, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP94/",
+        "title": "Code of Federal Regulations: Foreign Service Fees, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP95/",
+        "title": "Code of Federal Regulations: Protection And Promotion Of American Trade, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T22CIP96/",
+        "title": "Code of Federal Regulations: Documentation Of Merchandise, 22 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T24CVP561/",
+        "title": "Code of Federal Regulations: Transactions And Operations In Mutual Mortgage Insurance Fund And Housing Insurance Fund Debentures, 24 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T24CVP532/",
+        "title": "Code of Federal Regulations: Administrative Rules Under Section 207. National Housing Act, 24 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T24CVIP610/",
+        "title": "Code of Federal Regulations: Construction Contracts; General, 24 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T24CVIP611/",
+        "title": "Code of Federal Regulations: Construction Contract Documents, 24 C.F.R. (1938)",
+        "date": "1938-01-01"
+      },
+      {
+        "id": "http://www.loc.gov/item/cfr1940003-T24CVP500/",
+        "title": "Code of Federal Regulations: General, 24 C.F.R. (1938)",
+        "date": "1938-01-01"
+      }
+    ]
+  },
+  "fraser_robots": "User-agent:*\nCrawl-delay: 10\nSitemap: https://fraser.stlouisfed.org/files/sitemaps/sitemap.xml\n",
+  "archives_robots": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\nCrawl-delay: 10\n\nSitemap: https://www.archives.gov/sitemap.xml\nSitemap: https://www.archives.gov/files/sitemap.xml\nSitemap: https://www.archives.gov/research/native-americans/bia/photos/sitemap.xml\nSitemap: https://www.archives.gov/files/sitemap-other.xml\n\nDisallow: /citizen-archivist/history-hub/hh-test\nDisallow: /developer/artificial-intelligence-and-machine-learning-datasets\nDisallow: /developer/1940-census\nDisallow: /developer/national-archives-catalog-dataset\n\nUser-agent: usasearch\nCrawl-delay: 2\n",
+  "hoover_robots": "User-agent: *\nDisallow:\n",
+  "fdr_robots": {
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1010)>"
+  }
+}
