@@ -45,31 +45,31 @@ test_pre_1937_order_catalog_search_flagged (test_drafts.TrackerSafety.test_pre_1
 test_uses_the_real_tracker_mapping (test_drafts.TrackerSafety.test_uses_the_real_tracker_mapping) ... ok
 
 ----------------------------------------------------------------------
-Ran 45 tests in 0.724s
+Ran 45 tests in 0.741s
 
 OK
-  input folder later-events: /tmp/claim-drafts-test-lzx1m2tg/repo/jobs/later-events/output
-  input folder clause-drafts: /tmp/claim-drafts-test-lzx1m2tg/repo/jobs/clause-drafts/output
+  input folder later-events: /tmp/claim-drafts-test-d6z01dk9/repo/jobs/later-events/output
+  input folder clause-drafts: /tmp/claim-drafts-test-d6z01dk9/repo/jobs/clause-drafts/output
 Reading inputs (repo /home/runner/work/Executive-Orders/Executive-Orders) ...
   input clause-drafts: /home/runner/work/Executive-Orders/Executive-Orders/jobs/clause-drafts/output (4747 fragments, 4747 source records)
   input current-law: /home/runner/work/Executive-Orders/Executive-Orders/jobs/current-law/output (3476 fragments, 110 source records)
   input family-rule-sources: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rule-sources/output (0 fragments, 2 source records)
   input family-rule-tail: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rule-tail/output (0 fragments, 1 source records)
-  input family-rules: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rules/output (576 fragments, 0 source records)
+  input family-rules: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rules/output (748 fragments, 0 source records)
   input fr-originals: /home/runner/work/Executive-Orders/Executive-Orders/jobs/fr-originals/output (6497 fragments, 6497 source records)
   input later-events: /home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output (6513 fragments, 7626 source records)
   input opus-media-match: /home/runner/work/Executive-Orders/Executive-Orders/jobs/opus-media-match/output (143 fragments, 496 source records)
-  input source-ladder: /home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/output (0 fragments, 122 source records)
+  input source-ladder: /home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/output (0 fragments, 147 source records)
   orders to draft: 3359 (decided first; scope=decided)
-  claim checker: jobs/claim-checker imported; 56889 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)
-  ... 500 drafts (8 s)
-  ... 1000 drafts (13 s)
-  ... 1500 drafts (15 s)
-  ... 2000 drafts (16 s)
-  ... 2500 drafts (17 s)
-  ... 3000 drafts (17 s)
+  claim checker: jobs/claim-checker imported; 56914 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)
+  ... 500 drafts (93 s)
+  ... 1000 drafts (243 s)
+  ... 1500 drafts (355 s)
+  ... 2000 drafts (366 s)
+  ... 2500 drafts (380 s)
+  ... 3000 drafts (380 s)
 
-Drafted 3359 orders (3359 with a provisional status) in 17.4 s, with no network requests.
+Drafted 3359 orders (3359 with a provisional status) in 380.1 s, with no network requests.
   original text filled from a strong candidate: 2240; weak candidate only: 129
   clause inventories: 1806 (13228 clauses)
   whole-order-end candidates: 938; current-law leads: 510; later-event candidates: 1563
@@ -77,5 +77,5 @@ Drafted 3359 orders (3359 with a provisional status) in 17.4 s, with no network 
   ... plus drafts where only judgment and a recorded later-source search are left: 0
   orders with a conflict: 311; top: NO_ORDER_CITED_IN_CURRENT_LAW 163, PARTIAL_END_CANDIDATE_ON_YES_ORDER 43, QUARANTINED_RELATIONSHIP_CONFLICT 36, FULL_AND_PARTIAL_EVIDENCE_CONFLICT 36, WHOLE_END_ACTOR_DISAGREEMENT 33
   effort: {'large': 1280, 'medium': 1347, 'small': 732}
-  claim checker: {'fail': 10, 'pass': 1213, 'pass_with_unverified': 2136}
+  claim checker: {'fail': 10, 'pass': 2792, 'pass_with_unverified': 557}
 Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-drafts/output: DRAFT_CLAIMS.jsonl, TODO_BY_ORDER.csv, CONFLICTS.csv, SUMMARY.json. These are drafts and leads, never claims.

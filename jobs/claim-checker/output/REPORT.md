@@ -7,13 +7,13 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 - Claims checked: 42 (parse errors: 0)
 - Orders with a claim (latest claim per order): 41
 - All checks passed: 1
-- Mechanical checks passed: 6; with unverifiable items: 36; failed: 0
+- Mechanical checks passed: 42; with unverifiable items: 0; failed: 0
 - Structural gate passed: 1
 
 ## Source references
 
-- custody_record_only: 211
-- held_bytes_verified: 22
+- gpo_published_hash_match: 116
+- held_bytes_verified: 117
 
 ## Quotations
 
