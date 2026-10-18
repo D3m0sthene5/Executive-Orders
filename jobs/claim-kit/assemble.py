@@ -386,6 +386,7 @@ def _assemble(sheet, dossier, repo):
              "unresolved_material_gaps": deepcopy(sheet.get("unresolved_material_gaps")),
              "claim_kit": {"dossier_sha256": fingerprint, "agent": sheet.get("agent"),
                            "producer_approved": sheet.get("approved") is True,
+                           "original_pages_confirmed":sheet.get("original_pages_confirmed") is True,
                            "inventory_overrides": deepcopy(overrides)}}
     clauses = sheet.get("clauses")
     expected = corrected if corrected is not None else dossier.get("clauses")
