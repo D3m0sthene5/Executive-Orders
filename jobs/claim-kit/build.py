@@ -125,6 +125,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing):
         'draft_material_gaps':draft.get('claim',{}).get('unresolved_material_gaps',[]),
         'missing':sorted(set(missing)),
         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
+    if iid in corpus.get('status_histories',{}):
+        dossier['status_history']=corpus['status_histories'][iid]
     dossier['fingerprint']=canonical_sha(dossier)
     return dossier
 
@@ -263,7 +265,7 @@ def build(repo, out, cache=None):
             chain_rec=chain(iid,acts,generic_refs_excluded=generic_total)
             line(chf,chain_rec)
             if iid not in corpus['statuses']:
-                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
+                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
             dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid])
             name=filename(iid)

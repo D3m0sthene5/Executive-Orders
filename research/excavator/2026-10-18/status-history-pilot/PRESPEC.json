@@ -1,0 +1,85 @@
+{
+  "schema": "eo-status-history-pilot-prespec/v1",
+  "created_utc": "2026-10-18T08:49:07.799554+00:00",
+  "implementation_clock_floor_start_utc": "2026-10-18T08:40:15Z",
+  "legal_cutoff": "2026-10-14",
+  "selection": "stratified SHA256(status-history-2026-10-18:identity) ordering without replacement plus prespecified identity hazards",
+  "sample": [
+    {
+      "stratum": "undecided ended snapshot",
+      "instrument_id": "EO:12331",
+      "history_fingerprint": "ef9c4c56863f42e204cc8f7a0594ff1e3757ab1ead3c778968c407ae5b05936b"
+    },
+    {
+      "stratum": "undecided ended snapshot",
+      "instrument_id": "EO:11250",
+      "history_fingerprint": "e3b6a766d686240550dc3bc14129b88d5d1a080279dacbc781a231c64dd16bf8"
+    },
+    {
+      "stratum": "undecided active snapshot",
+      "instrument_id": "EO:11583",
+      "history_fingerprint": "3a3bdea1a4af52d625a4a509dfcda04feeba8a751c68cf08c2d041652c0596bb"
+    },
+    {
+      "stratum": "undecided active snapshot",
+      "instrument_id": "EO:10108",
+      "history_fingerprint": "770a12b9a74815e9ad23ed2130ccf470ad03e5c20e46d514d1dd439a7bc2410e"
+    },
+    {
+      "stratum": "undecided partial or qualified change",
+      "instrument_id": "EO:11541",
+      "history_fingerprint": "10694932a26ce4a720722dec323b7b0c81e6dbc5788ae0708ea0277a445067af"
+    },
+    {
+      "stratum": "provisional yes versus ended snapshot",
+      "instrument_id": "EO:7509",
+      "history_fingerprint": "62910bffb63fe8d30ab0bb6096b4274973e9b3e9d52f399ceb4696b47a701bdf"
+    },
+    {
+      "stratum": "undecided later cleanup cannot supply first end",
+      "instrument_id": "EO:8597",
+      "history_fingerprint": "07f361cac9e517fc7dfd16250b3ff1fbd0701c25f2ed098ccbe7c6cfbe48ab01"
+    },
+    {
+      "stratum": "undecided unverified raw event",
+      "instrument_id": "EO:11790",
+      "history_fingerprint": "22a0aa32cb9a42737ccead6f2648e7276a3750b771f571a9e1b86d1f376fe3d8"
+    },
+    {
+      "stratum": "undecided empty catalog notes",
+      "instrument_id": "EO:12979",
+      "history_fingerprint": "2cdcfbc6d12524f0a0073f6694deb1c8c22351f075b71fbead90b5849a79925b"
+    },
+    {
+      "stratum": "existing duplicate-number crosswalk",
+      "instrument_id": "EO:10571A",
+      "history_fingerprint": "c00a49ee347938ccfb74091df2f3be8a78cf93e94398424b181d95ad01a5642a"
+    },
+    {
+      "stratum": "raw duplicate/correction record",
+      "instrument_id": "EO:13526",
+      "history_fingerprint": "91e02ea7095d275c5bedb4f7e88ac64fdd7e73a0870afd12b2a9c9728df8aab8"
+    },
+    {
+      "stratum": "historical numbering suffix",
+      "instrument_id": "EO:9-2",
+      "history_fingerprint": "8312dc35c43cbd17c60bd68d798f02f92af18ff77c88202b8d7602db83c651a7"
+    }
+  ],
+  "difficult_witnesses": [
+    "S1989:4f306ab87b2c39476abc04e0",
+    "S1989:5300f2d5f55fc3e7b56ee603"
+  ],
+  "raw_unmatched_records": "jobs/status-history/output/UNRESOLVED_WITNESSES.jsonl",
+  "input_fingerprint": "617e44bdfb79bdb7ce390b1ae65aced03be70884286b29a9157f2732ee7dd14e",
+  "review_questions": [
+    "exact identity crosswalk, raw text/coordinates and source hashes",
+    "capture date versus snapshot versus effective date",
+    "qualified changes, earlier end, savings and contrary evidence",
+    "no empty-note or active-snapshot inference to present status",
+    "specific decision work remains and evidence usable via claim-kit"
+  ],
+  "stop_rule": "Any wrong identity or unsupported legal interpretation in a reusable component requires correction and independent rereview before scaling. No retrospective substitution for failed sample units.",
+  "token_billing": null,
+  "human_certification": false
+}

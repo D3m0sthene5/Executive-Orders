@@ -143,6 +143,7 @@ class _Collector:
         self.texts = []
         self.pairs = []
         self.current = defaultdict(list)
+        self.status_histories = {}
         self.hashes = {}
         self.text_keys = set()
         self.pair_keys = set()
@@ -281,6 +282,22 @@ class _Collector:
         iid = self.identity(frag.get("instrument_id"))
         kind, data = frag.get("kind"), frag.get("data")
         rows = data if isinstance(data, list) else [data]
+        if kind == 'status_history_candidates':
+            if not iid or not isinstance(data,dict):return
+            path=_path(self.repo,base,data.get('history_path'))
+            try:
+                if path is None:raise ValueError('unsafe history pointer')
+                raw=path.read_bytes();history=json.loads(raw)
+                if hashlib.sha256(raw).hexdigest()!=data.get('history_sha256') or history.get('instrument_id')!=iid:
+                    raise ValueError('changed history or wrong identity')
+                if (base/'FAILED.json').exists():raise ValueError('status-history run failed; outputs stale')
+                status=base/'STATUS.json'
+                if status.exists() and json.loads(status.read_bytes()).get('result')!='succeeded':
+                    raise ValueError('status-history runner did not succeed')
+                self.status_histories[iid]=dict(data,input_origin=origin,machine_lead=True)
+            except (OSError,ValueError,UnicodeError) as exc:
+                self.warnings.append(f'{origin}: status history rejected for {iid}: {exc}')
+            return  # A status observation must never become an original or legal event.
         # These instrument_ids name the affected/cited order, not the author
         # of the evidence. Their statute/actor text must never become a text
         # representation of the target order.
@@ -471,4 +488,5 @@ def load_corpus(repo):
     return {"universe": universe, "statuses": statuses, "drafts": drafts,
             "texts": collector.texts, "pairs": collector.pairs,
             "current_law": dict(collector.current), "machine_searches": searches,
+            "status_histories": collector.status_histories,
             "warnings": sorted(set(warnings))}

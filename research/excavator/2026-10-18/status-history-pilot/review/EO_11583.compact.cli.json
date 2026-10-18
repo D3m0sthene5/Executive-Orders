@@ -1,0 +1,211 @@
+{
+  "schema": "eo-status-history-start/v1",
+  "instrument_id": "EO:11583",
+  "history_fingerprint": "3a3bdea1a4af52d625a4a509dfcda04feeba8a751c68cf08c2d041652c0596bb",
+  "legal_cutoff": "2026-10-14",
+  "provisional_status": null,
+  "flags": [
+    "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API",
+    "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK",
+    "PRE_SNAPSHOT_END_LEAD_VS_ACTIVE_SNAPSHOT_CHECK_SCOPE_OR_REVIVAL"
+  ],
+  "temporal_constraints_LEADS_ONLY": [
+    {
+      "kind": "editorial_active_at_point",
+      "lower": "1989-01-20",
+      "meaning": "Editorial observation at one date; no continuity before/after and no present legal predicate inferred.",
+      "upper": "1989-01-20"
+    }
+  ],
+  "next_actions": [
+    "Confirm identity and read the cited source field/page; editorial observations are leads.",
+    "Recommend a provisional status with a source rationale through the established adjudication process; this packet cannot write one.",
+    "Trace changes after 1989-01-20 through 2026-10-14; a snapshot cannot establish present operation.",
+    "Check each candidate event for identity, partial scope, effective wording, savings and contrary evidence; signing dates are not effective dates.",
+    "Resolve every flag explicitly; retain unresolved material gaps.",
+    "Use claim-kit original/clause/chain evidence and its existing decision/assembly workflow after a provisional status is established."
+  ],
+  "observation_count": 2,
+  "event_count": 14,
+  "full_evidence_command": "python jobs/claim-kit/kit.py history EO:11583 --full",
+  "observations": [
+    {
+      "id": "API:14d804c8f4271c3b0856b9c8",
+      "kind": "api_observation",
+      "as_of": null,
+      "retrieved_on": "2026-10-15",
+      "date_meaning": "Capture date only; editorial event dates are separately typed candidates.",
+      "editorial_group": null,
+      "interpretation": null,
+      "raw_note_preview": "Revokes: EO 11136, January 3, 1964; EO      11349, May 1, 1967\nConsumer Advisory Council continued by: EO 11827,      January 4, 1975; EO 11948, December 20, 1976\nAmended by: EO 11595, May 26, 1971; EO      11702, January 25, 1973; EO 12007,      August 22, 1977; EO 12608, September 9, 1987\nCouncil ",
+      "preview_is_complete": false,
+      "source_pointer": "jobs/fr-originals/data/ofr_index/fedreg_bulk_05.json.gz",
+      "source_sha256": "cdcfccbf6b5cde11868e8b4c2902ff8b465a34edb19513133e47a80062296aec",
+      "json_pointer": "/results/85/disposition_notes",
+      "pdf_page": null,
+      "printed_page": null,
+      "full_record_sha256": "db7a1ba97a08a6b4fd6a0e73c74c2f47c184ad143ef6caafff0414a6b4356ed6"
+    },
+    {
+      "id": "S1989:4770491ca5980e173e559308",
+      "kind": "printed_snapshot",
+      "as_of": "1989-01-20",
+      "retrieved_on": null,
+      "date_meaning": "editorial snapshot date, not signing/publication/effective date",
+      "editorial_group": "in_force_1989",
+      "interpretation": "Codified atChapter 16, p. 309",
+      "raw_note_preview": "",
+      "preview_is_complete": true,
+      "source_pointer": "jobs/ofr-codification-1989/data/codification_1989_eo_table_chunks.jsonl",
+      "source_sha256": "6c760d36b1d22350dc22890bbf31afb0a67911c3bc295abd567cc0e706fe2ccd",
+      "json_pointer": null,
+      "pdf_page": 1085,
+      "printed_page": "1074",
+      "full_record_sha256": "2584c03696319dfce123c9ba8bb60bfe1a9c8ed55cd0b724dcaeca6271bb00f6"
+    }
+  ],
+  "candidate_events": [
+    {
+      "id": "EV:LE-c6b1a6de6439",
+      "actor_id": "EO:11566",
+      "mechanism": "cross_reference",
+      "candidate_date": "1970-10-26",
+      "date_meaning": "date of the referenced instrument (a cross-reference, not an event date)",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-1128c2a04c4a",
+      "actor_id": "EO:11595",
+      "mechanism": "amendment",
+      "candidate_date": "1971-05-26",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:e37a27dc651faa2db40e2dc8"
+    },
+    {
+      "id": "EV:LE-42ed7061ea64",
+      "actor_id": "EO:11595",
+      "mechanism": "amendment",
+      "candidate_date": "1971-05-26",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-1b54c1b2e847",
+      "actor_id": "EO:11702",
+      "mechanism": "amendment",
+      "candidate_date": "1973-01-25",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-7c3f1b70e20e",
+      "actor_id": "EO:11702",
+      "mechanism": "amendment",
+      "candidate_date": "1973-01-25",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:beac4e10e1000d38f94be543"
+    },
+    {
+      "id": "EV:LE-0b5bdfad2df2",
+      "actor_id": "EO:11827",
+      "mechanism": "continuation",
+      "candidate_date": "1975-01-04",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "affects the consumer advisory council",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-191bfe8f44d2",
+      "actor_id": "EO:11948",
+      "mechanism": "continuation",
+      "candidate_date": "1976-12-20",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "bodies established by the listed orders",
+      "verified_raw_span": true,
+      "observation_id": "API:ed26116a84132784ce5c9810"
+    },
+    {
+      "id": "EV:LE-fb71137a35c4",
+      "actor_id": "EO:11948",
+      "mechanism": "continuation",
+      "candidate_date": "1976-12-20",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "affects the consumer advisory council",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-0322358f8d59",
+      "actor_id": "EO:12007",
+      "mechanism": "termination",
+      "candidate_date": "1977-08-22",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "affects the council",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-4ec5113fb2ed",
+      "actor_id": "EO:12007",
+      "mechanism": "amendment",
+      "candidate_date": "1977-08-22",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:57de5ecce457e5e05164df74"
+    },
+    {
+      "id": "EV:LE-68410e0c091f",
+      "actor_id": "EO:12007",
+      "mechanism": "amendment",
+      "candidate_date": "1977-08-22",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": false,
+      "observation_id": null
+    },
+    {
+      "id": "EV:LE-14ee718f9e31",
+      "actor_id": "EO:12608",
+      "mechanism": "amendment",
+      "candidate_date": "1987-09-09",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:e6178f883a61be12a120061e"
+    },
+    {
+      "id": "EV:LE-53f29a5e0c06",
+      "actor_id": "EO:12608",
+      "mechanism": "amendment",
+      "candidate_date": "1987-09-09",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    },
+    {
+      "id": "EV:LE-a7653cc1c771",
+      "actor_id": "EO:13714",
+      "mechanism": "cross_reference",
+      "candidate_date": "2015-12-15",
+      "date_meaning": "date of the referenced instrument (a cross-reference, not an event date)",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:14d804c8f4271c3b0856b9c8"
+    }
+  ],
+  "notice": "Startup preview only. Read full cited fields/pages, scope and contrary evidence before any status/lifecycle decision.",
+  "omitted_event_records": 0
+}

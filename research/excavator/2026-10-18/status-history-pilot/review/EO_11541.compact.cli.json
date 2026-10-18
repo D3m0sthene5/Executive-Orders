@@ -1,0 +1,200 @@
+{
+  "schema": "eo-status-history-start/v1",
+  "instrument_id": "EO:11541",
+  "history_fingerprint": "10694932a26ce4a720722dec323b7b0c81e6dbc5788ae0708ea0277a445067af",
+  "legal_cutoff": "2026-10-14",
+  "provisional_status": null,
+  "flags": [
+    "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK",
+    "PRE_SNAPSHOT_END_LEAD_VS_ACTIVE_SNAPSHOT_CHECK_SCOPE_OR_REVIVAL"
+  ],
+  "temporal_constraints_LEADS_ONLY": [
+    {
+      "kind": "editorial_active_at_point",
+      "lower": "1989-01-20",
+      "meaning": "Editorial observation at one date; no continuity before/after and no present legal predicate inferred.",
+      "upper": "1989-01-20"
+    }
+  ],
+  "next_actions": [
+    "Confirm identity and read the cited source field/page; editorial observations are leads.",
+    "Recommend a provisional status with a source rationale through the established adjudication process; this packet cannot write one.",
+    "Trace changes after 1989-01-20 through 2026-10-14; a snapshot cannot establish present operation.",
+    "Check each candidate event for identity, partial scope, effective wording, savings and contrary evidence; signing dates are not effective dates.",
+    "Resolve every flag explicitly; retain unresolved material gaps.",
+    "Use claim-kit original/clause/chain evidence and its existing decision/assembly workflow after a provisional status is established."
+  ],
+  "observation_count": 2,
+  "event_count": 13,
+  "full_evidence_command": "python jobs/claim-kit/kit.py history EO:11541 --full",
+  "observations": [
+    {
+      "id": "API:b561bce0eed9f72aedb62211",
+      "kind": "api_observation",
+      "as_of": null,
+      "retrieved_on": "2026-10-15",
+      "date_meaning": "Capture date only; editorial event dates are separately typed candidates.",
+      "editorial_group": null,
+      "interpretation": null,
+      "raw_note_preview": "Amended by: EO 12013, October 7,       1977; EO 12027, December 5, 1977; EO       12318, August 21, 1981\nTerminates committees in: EO 11452,       May 29, 1969; EO 11493, November 13,       1969\nSuperseded in part by: EO 11609, July 22,       1971; EO 11713, April 21, 1973; EO       11717, May 9, 19",
+      "preview_is_complete": false,
+      "source_pointer": "jobs/fr-originals/data/ofr_index/fedreg_bulk_05.json.gz",
+      "source_sha256": "cdcfccbf6b5cde11868e8b4c2902ff8b465a34edb19513133e47a80062296aec",
+      "json_pointer": "/results/43/disposition_notes",
+      "pdf_page": null,
+      "printed_page": null,
+      "full_record_sha256": "874a284c4a1eedd837ce8696f0f6e9600ea72c959ae64e86b5055debf84437cd"
+    },
+    {
+      "id": "S1989:7fdd33787abbbff9cf561a5d",
+      "kind": "printed_snapshot",
+      "as_of": "1989-01-20",
+      "retrieved_on": null,
+      "date_meaning": "editorial snapshot date, not signing/publication/effective date",
+      "editorial_group": "in_force_1989",
+      "interpretation": "Codified atChapter34, p. 690",
+      "raw_note_preview": "",
+      "preview_is_complete": true,
+      "source_pointer": "jobs/ofr-codification-1989/data/codification_1989_eo_table_chunks.jsonl",
+      "source_sha256": "6c760d36b1d22350dc22890bbf31afb0a67911c3bc295abd567cc0e706fe2ccd",
+      "json_pointer": null,
+      "pdf_page": 1084,
+      "printed_page": "1073",
+      "full_record_sha256": "3ca31345177f2a6ba263c22bd4c92623f5993a610bde00a932d72cf5bc39709d"
+    }
+  ],
+  "candidate_events": [
+    {
+      "id": "EV:LE-34b467edeb32",
+      "actor_id": "EO:11609",
+      "mechanism": "supersession",
+      "candidate_date": "1971-07-22",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    },
+    {
+      "id": "EV:LE-d51011aa897c",
+      "actor_id": "EO:11609",
+      "mechanism": "supersession",
+      "candidate_date": "1971-07-22",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:a20ff68dbd4b3153ea201ac2"
+    },
+    {
+      "id": "EV:LE-544eba69486d",
+      "actor_id": "EO:11713",
+      "mechanism": "supersession",
+      "candidate_date": "1973-04-21",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    },
+    {
+      "id": "EV:LE-c5af8ca16063",
+      "actor_id": "EO:11713",
+      "mechanism": "supersession",
+      "candidate_date": "1973-04-21",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:58cbfd6e5e6c87f18eeaf1db"
+    },
+    {
+      "id": "EV:LE-dcbb0ba4b24d",
+      "actor_id": "EO:11717",
+      "mechanism": "supersession",
+      "candidate_date": "1973-05-09",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:9ec4401128a31f007f9aa45b"
+    },
+    {
+      "id": "EV:LE-f7ec4d70dc1e",
+      "actor_id": "EO:11717",
+      "mechanism": "supersession",
+      "candidate_date": "1973-05-09",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "in part",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    },
+    {
+      "id": "EV:LE-701946c21274",
+      "actor_id": "EO:12013",
+      "mechanism": "amendment",
+      "candidate_date": "1977-10-07",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:8e11c3c0579a902e77089132"
+    },
+    {
+      "id": "EV:LE-fde7a7e35dcc",
+      "actor_id": "EO:12013",
+      "mechanism": "amendment",
+      "candidate_date": "1977-10-07",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    },
+    {
+      "id": "EV:LE-c4ae3c07ecde",
+      "actor_id": "EO:12027",
+      "mechanism": "amendment",
+      "candidate_date": "1977-12-05",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:7578911bbcb2718d3129cb4c"
+    },
+    {
+      "id": "EV:LE-e8414f6e1927",
+      "actor_id": "EO:12027",
+      "mechanism": "amendment",
+      "candidate_date": "1977-12-05",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    },
+    {
+      "id": "EV:LE-09904a08e127",
+      "actor_id": "EO:12107",
+      "mechanism": "amendment",
+      "candidate_date": "1978-12-28",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:798ef70ceb61ce7b495eebe4"
+    },
+    {
+      "id": "EV:LE-68dc76442fc4",
+      "actor_id": "EO:12318",
+      "mechanism": "amendment",
+      "candidate_date": "1981-08-21",
+      "date_meaning": "acting order signing_date from OFR catalog",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:ced49c6f1e0343f0852916e1"
+    },
+    {
+      "id": "EV:LE-ac487ad79889",
+      "actor_id": "EO:12318",
+      "mechanism": "amendment",
+      "candidate_date": "1981-08-21",
+      "date_meaning": "date stated next to the acting instrument in the OFR note",
+      "qualifier": "",
+      "verified_raw_span": true,
+      "observation_id": "API:b561bce0eed9f72aedb62211"
+    }
+  ],
+  "notice": "Startup preview only. Read full cited fields/pages, scope and contrary evidence before any status/lifecycle decision.",
+  "omitted_event_records": 0
+}

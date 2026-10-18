@@ -95,12 +95,29 @@ def main(argv=None):
     s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path)
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
+    s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
+    s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('assemble');s.add_argument('sheets',nargs='+',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('check');s.add_argument('claims',type=Path)
     sub.add_parser('status')
     s=sub.add_parser('release');s.add_argument('--agent',required=True);s.add_argument('instrument_ids',nargs='+')
     a=p.parse_args(argv);repo=a.repo.resolve();out=(a.output or repo/'jobs/claim-kit/output').resolve()
     try:
+        if a.command in ('history','status-sheet'):
+            # Reuse the status-history producer; this creates no rival dossier,
+            # claim assembler or automatic provisional-status publication path.
+            import importlib.util
+            spec=importlib.util.spec_from_file_location('claim_kit_status_history',repo/'jobs/status-history/history.py')
+            mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+            packet=mod.show(repo/'jobs/status-history/output',a.instrument_id)
+            validation=mod.validate_packet(repo,packet)
+            if validation:raise ValueError('Status-history source validation failed: '+str(validation))
+            if a.command=='history':
+                print(json.dumps(packet,ensure_ascii=False,indent=2) if a.full else mod.canon(mod.compact(packet)))
+            else:
+                if a.write.exists():raise ValueError('Status decision exists; refusing overwrite')
+                dump(a.write,mod.blank_decision(packet,a.agent));print(str(a.write))
+            return 0
         if a.command=='build':build(repo,out,os.environ.get('JOB_CACHE_DIR'));return 0
         if a.command=='next':
             excluded=read(a.exclude,[]) if a.exclude else []

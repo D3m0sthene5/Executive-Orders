@@ -202,7 +202,7 @@ class ExcavatorTests(unittest.TestCase):
         self.assertEqual(len(paths), 4)
         counts = []
         for path in paths:
-            records = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+            records = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line.strip()]
             self.assertEqual(json.loads(json.dumps(records)), records)
             counts.append(len(records))
             for record in records:

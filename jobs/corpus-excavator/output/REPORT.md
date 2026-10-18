@@ -1,6 +1,6 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `12693fd6075347ca7a554150849082e543d2b9f815d0b45b8154261648e028f7`.
+Legal cutoff: 2026-10-14. Inputs: `803e9e39ec839dfdfece92136fbe3266acc0a321cf5eefde70a0282696c32552`.
 
 Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for human review.
 
@@ -8,22 +8,22 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for h
 
 | Rank | Source queue item | Open step memberships | Other step tasks left |
 |---:|---|---:|---:|
-| 1 | opus-refetch:2b7b024da1e6c96030efbb1f98c676da8fa03d4410845c4bc1e4ad554e9570f4 | 3 | 6 |
-| 2 | opus-refetch:dd7eb50e381aec2c9edd24b7174ecaa3ac4ed58c536ffb2686fa5018affda3e5 | 1 | 0 |
-| 3 | opus-refetch:7b418d69527a803abc2a760f1ac80881a8e2cc4e27de0ae6e24a3061d1c86fbf | 47 | 145 |
-| 4 | opus-refetch:https://www.govinfo.gov/content/pkg/USCODE-2024-title22/html/USCODE-2024-title22-chap51-sec3602.htm | 16 | 48 |
-| 5 | opus-refetch:https://www.govinfo.gov/link/uscode/22/3602?link-type=html&year=2024 | 16 | 48 |
-| 6 | opus-refetch:881859243da21bea9a6026dd5895230e0d8c3c4416afdbe41e50ad21eee10015 | 16 | 80 |
-| 7 | opus-refetch:c9fcb1910615c2d9b677700a8fa96edc8da2cfdca204ed04f51e5f8dde99ebe7 | 16 | 80 |
-| 8 | opus-refetch:046e92d126ea4c478512cce26586b54d8e7bd9ab1c4f5866c59ed9197cf26d22 | 15 | 47 |
-| 9 | EO::4314 | 10 | 43 |
-| 10 | opus-refetch:ee87f6027e6f3902a09e1907d991c5d40fab8b3931446ccf7d8a558325636ebb | 9 | 34 |
-| 11 | opus-refetch:49d5ee1f5698523d2cf766ce016f6a2281ed5ea1e0a1f4f0c69c5842b583c3ca | 7 | 21 |
-| 12 | opus-refetch:6754052371f2c492744a9558514460e22c6984ea6cb829b68be74b92b6be9cf3 | 7 | 21 |
+| 1 | EO::4314 | 10 | 43 |
+| 2 | opus-refetch:b04b652fc90c357ba06fb2104f1a2722761e18c55f64d3ae880e38d2cd58ff10 | 7 | 21 |
+| 3 | opus-refetch:e45eddd16507aede8c60ff998c030966b4ddac104a2a88a7ca7cd515803f3626 | 7 | 21 |
+| 4 | opus-refetch:028192344a4d21aabc385ded905073d88111dd585b446dead659505ed11d23fd | 6 | 18 |
+| 5 | opus-refetch:2a9f4ea619e65770c51cb0eae74cee99b149eb361afcff57665927fd2a16dfbe | 6 | 18 |
+| 6 | opus-refetch:66244c4c065274e85cb83aa3cb3ea366689c343c80b846bf04e719bb2553f126 | 6 | 18 |
+| 7 | opus-refetch:6c3380c1453231d50d487bfa9348358c5a129202b1a49aadf363e01c3f7bd678 | 6 | 18 |
+| 8 | opus-refetch:dd8e15a058ab705228e569370ae5ebe3596bd92e932f7340be666eddcb915e5a | 6 | 18 |
+| 9 | opus-refetch:https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg357.pdf | 6 | 18 |
+| 10 | EO::6868 | 6 | 25 |
+| 11 | opus-refetch:252063912027da27b014f3527516a671642bba9d4ee4c88bed5acd57a7b3730c | 5 | 15 |
+| 12 | opus-refetch:ca2fda5aeba49aac1bb3c93f94a7c6b58a1dc3641219ea334dce99536b5fb20a | 5 | 15 |
 
-Readiness ceiling if the entire pass succeeds: 1; demonstrated readiness gain before execution: 0.
+Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 
 Use SOURCE_PLAN.json with source-ladder JOB_PLAN_FILE. It contains existing queued requests only.
 All per-order remaining work is in ORDER_FRONTIER.jsonl. Claim-kit owns dossiers, decisions and assembly.
-Historical discovery: 115 candidates/gaps outside the census, zero admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
+Historical discovery: 115 witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
 Read UPSTREAM_STATUS and UNRESOLVED_RETRIEVALS before reuse. Retrieval failure never means search exhaustion.

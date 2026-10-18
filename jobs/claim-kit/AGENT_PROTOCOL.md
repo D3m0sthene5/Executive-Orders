@@ -45,3 +45,12 @@ and read warnings. Never reuse a decision against a changed dossier fingerprint.
 
 Commands accept global `--repo` and `--output` before the subcommand. Only `build`
 (the runner's `job.py`) writes machine outputs. The assembler does not fetch sources.
+
+For undecided orders, start with `kit.py history EO:NUMBER`, then `--full` to read
+the exact held fields and page chunks. `kit.py status-sheet EO:NUMBER --agent NAME
+--write PATH` creates a blank, history-pinned status-research decision. Review the
+typed snapshot/capture/candidate dates, partial scope and every conflict; request
+missing originals via FETCH_QUEUE. This sheet has no publication command and does
+not bypass provisional adjudication. Once that adjudication is recorded through
+the established process, resume the dossier/sheet/assemble/check steps above.
+History fragments are machine leads only. See `jobs/status-history/README.md`.

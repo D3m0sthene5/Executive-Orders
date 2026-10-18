@@ -181,13 +181,17 @@ class CorpusTests(unittest.TestCase):
         self.addCleanup(lambda: outside.unlink(missing_ok=True))
         link = self.repo / "jobs/new/output/escape.txt"
         link.parent.mkdir(parents=True, exist_ok=True)
-        link.symlink_to(outside)
+        has_symlink=True
+        try:link.symlink_to(outside)
+        except OSError as exc:
+            if getattr(exc,'winerror',None)!=1314:raise
+            has_symlink=False  # Windows runner lacks link privilege; retain literal-path checks.
         self.jsonl("jobs/new/output/FRAGMENTS.jsonl", [
             self.original(path="../../../../outside.txt"), self.original(path=str(outside)),
-            self.original(path="C:\\secret.txt"), self.original(path="escape.txt")])
+            self.original(path="C:\\secret.txt"), *([self.original(path="escape.txt")] if has_symlink else [])])
         corpus = inputs.load_corpus(self.repo)
         self.assertEqual(corpus["texts"], [])
-        self.assertEqual(sum("unsafe text path" in w for w in corpus["warnings"]), 4)
+        self.assertEqual(sum("unsafe text path" in w for w in corpus["warnings"]), 4 if has_symlink else 3)
 
     def test_safe_cross_directory_links_and_repo_relative_paths(self):
         self.write("jobs/new/data/order.txt", "Held.")
@@ -291,6 +295,25 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual(len(corpus["texts"]), 1)
         self.assertTrue(any("malformed JSON" in w for w in corpus["warnings"]))
         self.assertTrue(any("non-object JSON" in w for w in corpus["warnings"]))
+
+    def test_status_history_is_consumed_without_status_or_original_promotion(self):
+        history={'schema':'eo-status-history/v1','instrument_id':'EO:1','provisional_status':None}
+        raw=json.dumps(history)
+        self.write('jobs/status-history/output/histories/EO_1.json',raw)
+        self.jsonl('jobs/status-history/output/FRAGMENTS.jsonl',[{
+            'instrument_id':'EO:1','kind':'status_history_candidates','data':{
+                'history_path':'jobs/status-history/output/histories/EO_1.json',
+                'history_sha256':hashlib.sha256(raw.encode()).hexdigest()}}])
+        corpus=inputs.load_corpus(self.repo)
+        self.assertIn('EO:1',corpus['status_histories'])
+        self.assertNotIn('EO:1',corpus['statuses']);self.assertEqual(corpus['texts'],[])
+        self.write('jobs/status-history/output/STATUS.json','{"result":"failed"}')
+        self.assertEqual(inputs.load_corpus(self.repo)['status_histories'],{})
+        self.write('jobs/status-history/output/STATUS.json','{"result":"succeeded"}')
+        self.write('jobs/status-history/output/histories/EO_1.json','changed')
+        corpus=inputs.load_corpus(self.repo)
+        self.assertEqual(corpus['status_histories'],{})
+        self.assertTrue(any('status history rejected' in v for v in corpus['warnings']))
 
 
 if __name__ == "__main__":

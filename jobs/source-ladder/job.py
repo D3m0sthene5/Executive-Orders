@@ -92,7 +92,8 @@ def main():
         prior_dir = os.environ.get('JOB_PRIOR_OUTPUT_DIR')
         prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
                  else prior_output.PriorOutput.from_git_head(repo, f'jobs/{name}/output'))
-    carried = {} if os.environ.get('JOB_REFETCH') == '1' else previous_found(prior)
+    all_prior_found = previous_found(prior)
+    carried = {} if os.environ.get('JOB_REFETCH') == '1' else all_prior_found
     items = queue_items + shared + opus
     plan_path = os.environ.get('JOB_PLAN_FILE')
     plan_used = None
@@ -174,7 +175,7 @@ def main():
     # pass. These are carried evidence, not new acquisitions or readiness gains.
     if plan_used:
         from plan import retain_unselected
-        old_sources, old_results = retain_unselected(prior, carried, {w.wanted_id for w in items}, out)
+        old_sources, old_results = retain_unselected(prior, all_prior_found, {w.wanted_id for w in items}, out)
         sources.extend(old_sources)
         results.extend(old_results)
 
