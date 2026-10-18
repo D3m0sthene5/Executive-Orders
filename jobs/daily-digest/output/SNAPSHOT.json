@@ -31,34 +31,34 @@
       "check_results": {
         "checker_error": {},
         "date_after_signing": {
-          "pass": 1591
+          "pass": 1762
         },
         "date_valid": {
-          "pass": 2433
+          "pass": 2926
         },
         "order_exists": {
-          "pass": 1165
+          "pass": 1287
         },
         "parse": {},
         "quote_verbatim": {
-          "pass": 3164
+          "pass": 3571
         },
         "source_held": {
-          "pass": 3016
+          "pass": 3316
         },
         "source_identity": {
-          "pass": 1234
+          "pass": 1352
         },
         "structural_gate": {
           "fail": 696,
-          "pass": 133
+          "pass": 144
         }
       },
       "claim_checks_csv": {
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 13432,
+        "rows_total": 15054,
         "rows_written": 696
       },
       "claim_files": [
@@ -74,15 +74,16 @@
         "claude-2026-10-18-codif-b4.jsonl",
         "claude-2026-10-18-codif-b5.jsonl",
         "claude-2026-10-18-codif-b6.jsonl",
-        "claude-2026-10-18-codif-b7.jsonl"
+        "claude-2026-10-18-codif-b7.jsonl",
+        "sol-2026-10-18.jsonl"
       ],
-      "claim_lines_found": 218,
-      "claims_all_checks_passed": 133,
-      "claims_checked": 218,
+      "claim_lines_found": 229,
+      "claims_all_checks_passed": 144,
+      "claims_checked": 229,
       "claims_checker_errors": 0,
-      "claims_gate_passed": 133,
+      "claims_gate_passed": 144,
       "claims_mechanical_fail": 0,
-      "claims_mechanical_pass": 218,
+      "claims_mechanical_pass": 229,
       "claims_mechanical_unverified": 0,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
@@ -119,10 +120,10 @@
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "opus_text_pack_texts": 0,
-      "orders_with_claim": 217,
+      "orders_with_claim": 228,
       "pypdf_available": true,
       "quote_status_counts": {
-        "exact": 3164
+        "exact": 3571
       },
       "schema": "eo-claim-check/v1",
       "signing_dates_loaded": {
@@ -132,11 +133,11 @@
         "stage21_crosswalk": 402
       },
       "source_identity_counts": {
-        "recorded_for_this_order": 1234
+        "recorded_for_this_order": 1352
       },
       "source_status_counts": {
-        "gpo_published_hash_match": 2899,
-        "held_bytes_verified": 117
+        "gpo_published_hash_match": 3030,
+        "held_bytes_verified": 286
       },
       "source_status_policy": {
         "custody_record_only": "skip",
@@ -145,11 +146,11 @@
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 178,
-        "counterevidence": 168,
-        "ending_or_current_basis": 134,
-        "original_text": 187,
-        "savings_residuals": 166
+        "clause_inventory": 189,
+        "counterevidence": 179,
+        "ending_or_current_basis": 145,
+        "original_text": 198,
+        "savings_residuals": 177
       }
     },
     "claim-drafts": {
@@ -191,7 +192,7 @@
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 780,
-      "elapsed_seconds": 376.7,
+      "elapsed_seconds": 295.8,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1243,
@@ -535,18 +536,34 @@
         "universe": 14972
       },
       "counts": {
-        "assembled_claims": 0,
+        "assembled_claims": 11,
         "decided_orders": 3359,
+        "declared_text_representations": 69615,
+        "distinct_held_text_artifacts": 18404,
         "dossiers": 3359,
-        "families": 3725,
-        "generic_references_excluded": 123,
-        "held_texts_scanned": 69615,
-        "known_pairs": 21414,
-        "located_actor_pairs": 11941,
+        "families": 3257,
+        "generic_references_excluded": 101,
+        "held_texts_scanned": 18404,
+        "known_pairs": 13926,
+        "located_actor_pairs": 7296,
         "orders_with_held_text": 6569,
         "status_leads": 11613,
         "universe_orders": 14972
       },
+      "input_commit": "327478535fdf991baf3a1db1f4ca044cde91f95c",
+      "jsonl_shards": [
+        "ACTING_PROVISIONS.jsonl",
+        "ACTING_REPRESENTATIONS.jsonl",
+        "ASSEMBLED_CLAIMS.jsonl",
+        "CHAINS.jsonl",
+        "CLAUSES.jsonl",
+        "MISSING_SOURCES.jsonl",
+        "OWN_TERMS.jsonl",
+        "STATUS_LEADS.jsonl",
+        "TEXT_CLAUSES.jsonl",
+        "TEXT_CLAUSES.part0001.jsonl",
+        "TEXT_REPRESENTATIONS.jsonl"
+      ],
       "lead_only": true,
       "legal_cutoff": "2026-10-14",
       "schema": "eo-claim-kit-summary/v1",
@@ -5678,7 +5695,7 @@
         "2/6": 501,
         "2/7": 68,
         "2/8": 6,
-        "3/6": 1202,
+        "3/6": 1191,
         "3/7": 448,
         "3/8": 35,
         "4/6": 24,
@@ -5686,15 +5703,15 @@
         "4/8": 184,
         "5/6": 25,
         "5/8": 9,
-        "6/6": 131,
+        "6/6": 142,
         "6/7": 1
       },
       "decided_orders_blocked_by": {
         "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 400,
-        "FIRST_END_UNPROVED": 2742,
+        "FIRST_END_UNPROVED": 2731,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
-        "NO_CLAUSE_INVENTORY": 3142,
+        "NO_CLAUSE_INVENTORY": 3131,
         "NO_OFFICIAL_SOURCE_LOCATED": 959,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 0,
@@ -5706,7 +5723,7 @@
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3131,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
@@ -5745,7 +5762,7 @@
           "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv"
         },
         "job_outputs_used": {
-          "claim-checker": 217,
+          "claim-checker": 228,
           "fr-originals": 6497,
           "indian-reservations-1912": 55,
           "isthmian-canal-1911": 105,
@@ -5764,9 +5781,9 @@
       "orders_blocked_by": {
         "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 400,
-        "FIRST_END_UNPROVED": 2742,
+        "FIRST_END_UNPROVED": 2731,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
-        "NO_CLAUSE_INVENTORY": 3142,
+        "NO_CLAUSE_INVENTORY": 3131,
         "NO_OFFICIAL_SOURCE_LOCATED": 7814,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 11613,
@@ -5778,15 +5795,15 @@
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3131,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
       "ready_by_tier": {
-        "complete_claim": 130
+        "complete_claim": 141
       },
-      "ready_for_human_review": 130,
+      "ready_for_human_review": 141,
       "shared_unlocks": [
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
@@ -5846,7 +5863,7 @@
       "step_done_among_decided": {
         "clause_inventory": {
           "applicable": 3359,
-          "done": 178
+          "done": 189
         },
         "counterevidence": {
           "applicable": 3359,
@@ -5854,7 +5871,7 @@
         },
         "ending_or_current_basis": {
           "applicable": 3359,
-          "done": 134
+          "done": 145
         },
         "opus_media": {
           "applicable": 844,
@@ -5870,7 +5887,7 @@
         },
         "savings_residuals": {
           "applicable": 3359,
-          "done": 166
+          "done": 177
         },
         "shared_sources": {
           "applicable": 236,

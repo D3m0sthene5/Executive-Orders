@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 130 of 14,972 orders (0.9%)**
+**Ready for human review: 141 of 14,972 orders (0.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -14,9 +14,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 178 | 3,359 | 5.3% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 134 | 3,359 | 4.0% |
-| Savings clauses and surviving effects closed | 166 | 3,359 | 4.9% |
+| Complete inventory of the order's operative clauses | 189 | 3,359 | 5.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 145 | 3,359 | 4.3% |
+| Savings clauses and surviving effects closed | 177 | 3,359 | 5.3% |
 | Search for later contrary sources recorded, no open conflicts | 2,470 | 3,359 | 73.5% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
@@ -41,9 +41,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
-| `NO_CLAUSE_INVENTORY` | 3,142 | 3,142 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,142 | 3,142 |
-| `FIRST_END_UNPROVED` | 2,742 | 2,742 |
+| `NO_CLAUSE_INVENTORY` | 3,131 | 3,131 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,131 | 3,131 |
+| `FIRST_END_UNPROVED` | 2,731 | 2,731 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 693 | 693 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
@@ -79,7 +79,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - richardson-volumes (lead only, never counted as the original): 68
 - opus-media-match status: 1,155
 - source-ladder: 147
-- claim-checker: 217
+- claim-checker: 228
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
