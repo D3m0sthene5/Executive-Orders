@@ -1,0 +1,21 @@
+Executive-order evidence gap census, 2026-10-18
+
+Missing evidence | Orders
+-----------------|-------
+unclassified     | 11,613
+TOTAL            | 11,613
+
+STOPPED: 11,613/11,613 orders (100%) are unclassified, exceeding the requested 30% limit.
+The supplied preflight.py replays a frozen 50-order snapshot and uses manually enumerated order lists. Its collector asserts that exact cohort. It has no full-corpus classification interface or confidence score. It was run unchanged in an isolated scratch directory; its four generated outputs matched the existing pilot outputs byte for byte. None of its 50 orders belongs to the current undecided population. No fallback category was assigned to unsupported orders.
+
+Top three evidence gaps and tools: unavailable. The supplied script classified zero undecided orders, so it cannot support a ranking or evidence-acquisition tool recommendation. No sorting changes or new tools were built.
+
+Population: all 11,613 entries without a provisional yes/no status in the current-main READINESS_BY_ORDER.csv, not the 4,817-order subset with collected histories. That subset also has 4,817/4,817 unclassified. Stable instrument IDs preserve unnumbered orders; their order_number is blank. Confidence is recorded as not provided, rather than inventing a score.
+
+Coverage check: saved CSV rows=11613, unique instrument IDs=11613, omitted undecided IDs=0, extra IDs=0.
+Base/main commit: 43f415dd440d4e7236b625b1b6edebbc0916d436
+Population source: jobs/readiness-tracker/output/READINESS_BY_ORDER.csv
+Population source SHA-256: 920725405b79adc0ad08089e927c2f596a30081a5d80f4f4e21ac9bcaf0cccc5
+Pilot source: research/excavator/2026-10-18/batch-pilot/preflight/ (existing local untracked inputs, absent from current main)
+Script SHA-256: 8dc3e57b64d1306c13cebc54d3c0c2bd85e2ac287337ca03877eb9ed1d04b86b
+Input snapshot SHA-256: be389dc9884698d0446f2e8ecaabc03a7172776603675616ff39875c0eb679f2
