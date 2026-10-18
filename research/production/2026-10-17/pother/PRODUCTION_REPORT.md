@@ -21,6 +21,12 @@ Other material limitations are explicit in the rules. EO10480 section606 preserv
 
 Three additional requests in `NEXT15_SOURCE_REQUESTS.jsonl` address the signature image, conditional regulation date, and ambiguous EO12258 OCR item. All twenty new rules retain custody false and empty target-review lists. Independent reviewers approved these as blocked source leads only; none certifies a target lifecycle.
 
+## Narrow follow-up after the frozen batch
+
+The complete EO14139 draft and family evidence sidecar were read after the connector repair. Its U.S. Code reference is an editorial revocation-status note at 5 U.S.C.3345, and all three undated saved-text counterexamples are copies of the original order. An independently approved partial counterevidence revision is saved in `EO_14139_COUNTEREVIDENCE_PROPOSAL.json`, canonical claim SHA256 `84e518c18da2d7b792727a017bbcf3c824d0edb7bc97f994ffa8da7c28c483f2`. It adopts the exact bounded search entries while retaining original-custody and October10-14 statutory-coverage gaps. The active claim file remains unchanged pending coordinator publication and a fresh claim-checker run; no new step is counted in this report.
+
+The complete saved originals of EO12195 and EO12196 corroborate that the former establishes the Liberian-relations commission while the latter governs occupational safety. EO12195 terminates upon the actual final report, no later than six months after February22,1980. Its August22 outer bound predates EO12258's December31 formal revocation. `EO_12195_IDENTITY_AND_EARLIER_END.md` records this independently reviewed finding and preserves the missing actual report date and extension search. The frozen EO12258 rule remains unchanged.
+
 ## Independent review and stop rule
 
 The first six-claim pilot failed independent review on five claims (83.3%). Treating the execution date of a predecessor revocation/amendment as its exact first substantive cessation was unsupported. Expansion stopped. The corrected pilot leaves those state/date/whole-end fields unknown, while preserving the real clause inventory and source-grounded prospective rescission. The reviewer accepted all six corrected claims as partial only. Both original and corrected reviews are retained, with frozen-file hashes, in `INDEPENDENT_PILOT_REVIEW.json` and `INDEPENDENT_PILOT_REVIEW_REV2.json`.
