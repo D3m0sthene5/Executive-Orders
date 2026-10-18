@@ -30,31 +30,49 @@
     "claim-checker": {
       "check_results": {
         "checker_error": {},
-        "date_after_signing": {},
-        "date_valid": {},
-        "order_exists": {},
+        "date_after_signing": {
+          "pass": 54
+        },
+        "date_valid": {
+          "pass": 54
+        },
+        "order_exists": {
+          "pass": 80
+        },
         "parse": {},
-        "quote_verbatim": {},
-        "source_held": {},
-        "source_identity": {},
-        "structural_gate": {}
+        "quote_verbatim": {
+          "pass": 145
+        },
+        "source_held": {
+          "skip": 211
+        },
+        "source_identity": {
+          "pass": 151
+        },
+        "structural_gate": {
+          "fail": 288
+        }
       },
       "claim_checks_csv": {
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 0,
-        "rows_written": 0
+        "rows_total": 983,
+        "rows_written": 499
       },
-      "claim_files": [],
-      "claim_lines_found": 0,
+      "claim_files": [
+        "astra-2026-10-17-p12553a.jsonl",
+        "astra-2026-10-17-p12553b.jsonl",
+        "astra-2026-10-17-pother.jsonl"
+      ],
+      "claim_lines_found": 36,
       "claims_all_checks_passed": 0,
-      "claims_checked": 0,
+      "claims_checked": 36,
       "claims_checker_errors": 0,
       "claims_gate_passed": 0,
       "claims_mechanical_fail": 0,
       "claims_mechanical_pass": 0,
-      "claims_mechanical_unverified": 0,
+      "claims_mechanical_unverified": 36,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
       "fetch": null,
@@ -81,9 +99,11 @@
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "opus_text_pack_texts": 0,
-      "orders_with_claim": 0,
+      "orders_with_claim": 36,
       "pypdf_available": true,
-      "quote_status_counts": {},
+      "quote_status_counts": {
+        "exact": 145
+      },
       "schema": "eo-claim-check/v1",
       "signing_dates_loaded": {
         "identity_layer_year_only": 14854,
@@ -91,8 +111,12 @@
         "stage14_fetch_manifest": 1144,
         "stage21_crosswalk": 402
       },
-      "source_identity_counts": {},
-      "source_status_counts": {},
+      "source_identity_counts": {
+        "recorded_for_this_order": 151
+      },
+      "source_status_counts": {
+        "custody_record_only": 211
+      },
       "source_status_policy": {
         "custody_record_only": "skip",
         "held_bytes_in_release_or_repo": "pass",
@@ -119,8 +143,8 @@
           "quote_verbatim:exact": 13119,
           "quote_verbatim:too_short_to_verify": 109,
           "source_held:custody_record_only": 13262,
-          "source_held:held_bytes_in_release_or_repo": 123,
-          "source_held:held_bytes_verified": 2083,
+          "source_held:held_bytes_in_release_or_repo": 127,
+          "source_held:held_bytes_verified": 2079,
           "source_identity:recorded_for_this_order": 15468
         },
         "drafts_by_mechanical_result": {
@@ -133,7 +157,7 @@
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 770,
-      "elapsed_seconds": 38.5,
+      "elapsed_seconds": 17.5,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1280,
@@ -2150,8 +2174,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 5,
-      "saved_texts_scanned": 18303,
-      "sweep_manifest_sha256": "2b107e913fd7070b450c27682d6462513b4598b6265a211163d560dfdd036996",
+      "saved_texts_scanned": 18285,
+      "sweep_manifest_sha256": "809a462e32541899e32560e4857a686e89d6ef4cfe27069bf739990d40ca094e",
       "targets": 571
     },
     "fr-originals": {
@@ -2445,10 +2469,12 @@
         "4/8": 14
       },
       "decided_orders_blocked_by": {
+        "CLAIM_CHECK_FAILED": 11,
+        "CLAIM_INCOMPLETE": 36,
         "CURRENT_BASIS_UNPROVED": 405,
-        "FIRST_END_UNPROVED": 2954,
-        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
-        "NO_CLAUSE_INVENTORY": 3359,
+        "FIRST_END_UNPROVED": 2918,
+        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3323,
+        "NO_CLAUSE_INVENTORY": 3323,
         "NO_OFFICIAL_SOURCE_LOCATED": 990,
         "NO_PROVISIONAL_STATUS": 0,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
@@ -2458,7 +2484,7 @@
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 129,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3323,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
@@ -2488,7 +2514,7 @@
           "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv"
         },
         "job_outputs_used": {
-          "claim-checker": 0,
+          "claim-checker": 36,
           "fr-originals": 6497,
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
@@ -2500,10 +2526,12 @@
         "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
       },
       "orders_blocked_by": {
+        "CLAIM_CHECK_FAILED": 11,
+        "CLAIM_INCOMPLETE": 36,
         "CURRENT_BASIS_UNPROVED": 405,
-        "FIRST_END_UNPROVED": 2954,
-        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
-        "NO_CLAUSE_INVENTORY": 3359,
+        "FIRST_END_UNPROVED": 2918,
+        "LATER_SOURCE_SEARCH_NOT_RECORDED": 3323,
+        "NO_CLAUSE_INVENTORY": 3323,
         "NO_OFFICIAL_SOURCE_LOCATED": 8474,
         "NO_PROVISIONAL_STATUS": 11613,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
@@ -2513,7 +2541,7 @@
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 417,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3323,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "orders_total": 14972,
@@ -2643,7 +2671,7 @@
       "prefetched_urls": 5,
       "retry_later": 1,
       "run_date": "2026-10-17",
-      "seconds": 17.6,
+      "seconds": 18.3,
       "stopped_early": ""
     }
   }
