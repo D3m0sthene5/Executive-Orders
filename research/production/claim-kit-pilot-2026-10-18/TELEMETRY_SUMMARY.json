@@ -1,0 +1,464 @@
+{
+  "schema": "eo-claim-kit-pilot-telemetry-summary/v1",
+  "generated_at_utc": "2026-10-18T07:09:37.889233+00:00",
+  "scope": "Available local producer/reviewer telemetry only; no legal re-review or claim creation. Snapshot before GitHub full-freeze confirmation.",
+  "outcomes": {
+    "evaluated_orders": 50,
+    "producer_positive_candidates": 10,
+    "producer_unable": 40,
+    "initial_review_decisions": 10,
+    "initial_review_accept": 9,
+    "initial_review_reject": 1,
+    "initial_review_rejection_rate": 0.1,
+    "corrected_order": "EO:13028",
+    "corrected_rereview_accept": 1,
+    "latest_unique_locally_accepted_candidates": 10,
+    "total_review_decisions_including_rereview": 11,
+    "committed_claim_count": "not established by these records; do not call ten committed",
+    "freeze_confirmation": "pending"
+  },
+  "counting_policy": [
+    "functions.exec wrappers are the reported function-call unit. Nested exec_command calls are listed separately and never added to wrappers.",
+    "Collaboration calls are a separate column; do not mix totals or add pre-finalization snapshots to final snapshots.",
+    "Producer and reviewer work are distinct and may be added only across nonoverlapping role batches; producer-13138 HANDOFF and OUTCOMES describe the same work.",
+    "Ratios use the full observed cohort denominators 10 latest locally accepted candidates and 50 evaluated orders. Incomplete producer numerators are labeled recorded subtotals/floors, never estimated complete totals.",
+    "Aggregation-task overhead and root coordinator orchestration are outside production/review counts."
+  ],
+  "producer_records": [
+    {
+      "family": "EO:11948",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "evaluated": 2,
+      "positive_candidates": 1,
+      "reported_functions_exec": null,
+      "reported_nested_exec_command": null,
+      "reported_collaboration_send_message": null,
+      "source_fields": "telemetry",
+      "scope_note": "No function, nested-command or collaboration count recorded; wall is assembly/write only."
+    },
+    {
+      "family": "EO:12692",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-12692/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-12692/OUTCOMES.json",
+      "evaluated": 6,
+      "positive_candidates": 0,
+      "reported_functions_exec": 12,
+      "reported_nested_exec_command": 12,
+      "reported_collaboration_send_message": 3,
+      "source_fields": "telemetry.actual_tool_calls_so_far",
+      "scope_note": "Counts recorded through persisted-file verification; clock begins fourth command."
+    },
+    {
+      "family": "EO:12869",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "evaluated": 5,
+      "positive_candidates": 2,
+      "reported_functions_exec": 10,
+      "reported_nested_exec_command": 13,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "measurements",
+      "scope_note": "Use final function_exec_calls/exec_command_calls, not earlier pre_finalization snapshots."
+    },
+    {
+      "family": "EO:12919",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-12919/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-12919/OUTCOMES.json",
+      "evaluated": 5,
+      "positive_candidates": 0,
+      "reported_functions_exec": 12,
+      "reported_nested_exec_command": 12,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "telemetry",
+      "scope_note": "Use final functions_exec_calls/nested_exec_command_calls; supersedes through_write=10."
+    },
+    {
+      "family": "EO:13138",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/HANDOFF.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/OUTCOMES.json",
+      "evaluated": 4,
+      "positive_candidates": 1,
+      "reported_functions_exec": 12,
+      "reported_nested_exec_command": 13,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "HANDOFF.json:telemetry",
+      "scope_note": "Counts held in HANDOFF.json, not OUTCOMES.json; count this family once."
+    },
+    {
+      "family": "EO:13225",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13225/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13225/OUTCOMES.json",
+      "evaluated": 3,
+      "positive_candidates": 0,
+      "reported_functions_exec": 10,
+      "reported_nested_exec_command": 12,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "telemetry",
+      "scope_note": "Includes failed finalization; tool wall is not full elapsed task time."
+    },
+    {
+      "family": "EO:13316",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "evaluated": 6,
+      "positive_candidates": 1,
+      "reported_functions_exec": 13,
+      "reported_nested_exec_command": 13,
+      "reported_collaboration_send_message": 3,
+      "source_fields": "metrics.tool_calls",
+      "scope_note": "Partial timer begins fourth command."
+    },
+    {
+      "family": "EO:13345",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "evaluated": 3,
+      "positive_candidates": 2,
+      "reported_functions_exec": 13,
+      "reported_nested_exec_command": 13,
+      "reported_collaboration_send_message": 4,
+      "source_fields": "telemetry",
+      "scope_note": "Recorded call counters are 13/13/4; later correction wall is 56.894 seconds but separate incremental correction call counts are not recorded. Do not invent increments."
+    },
+    {
+      "family": "EO:13350",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "evaluated": 5,
+      "positive_candidates": 2,
+      "reported_functions_exec": 12,
+      "reported_nested_exec_command": 12,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "usage.tool_calls_scope",
+      "scope_note": "actual_tool_calls=14 means 12 functions plus 2 collaboration; do not count as 14 functions or add nested calls."
+    },
+    {
+      "family": "EO:13385",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "evaluated": 3,
+      "positive_candidates": 1,
+      "reported_functions_exec": null,
+      "reported_nested_exec_command": null,
+      "reported_collaboration_send_message": null,
+      "source_fields": "measurement",
+      "scope_note": "Initial snapshot explicitly records 11 functions, 11 nested commands and 2 collaboration updates. Later tool_calls_total=14 lacks explicit category/scope reconciliation; mechanical_correction_tool_calls=2 not added to avoid double count."
+    },
+    {
+      "family": "EO:13423",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13423/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-13423/OUTCOMES.json",
+      "evaluated": 5,
+      "positive_candidates": 0,
+      "reported_functions_exec": 21,
+      "reported_nested_exec_command": 21,
+      "reported_collaboration_send_message": 3,
+      "source_fields": "usage",
+      "scope_note": "Discard total_including_orchestration_and_nested=45 as a doubled wrapper+command total; retain 21 functions, 21 nested, 3 collaboration separately."
+    },
+    {
+      "family": "EO:14173",
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-14173/OUTCOMES.json",
+      "outcomes_path": "research/production/claim-kit-pilot-2026-10-18/producer-14173/OUTCOMES.json",
+      "evaluated": 3,
+      "positive_candidates": 0,
+      "reported_functions_exec": 14,
+      "reported_nested_exec_command": 23,
+      "reported_collaboration_send_message": 2,
+      "source_fields": "actual_tool_calls",
+      "scope_note": "Counts include final record write; measured wall 233.145 seconds starts at recorded producer start."
+    }
+  ],
+  "producer_13385_heterogeneous_counts": {
+    "explicit_earlier_snapshot": {
+      "functions_exec": 11,
+      "nested_exec_command": 11,
+      "collaboration_updates": 2
+    },
+    "latest_tool_calls_total_uncategorized": 14,
+    "mechanical_correction_tool_calls": 2,
+    "do_not_add_snapshots": true
+  },
+  "reviewer_records": [
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-first-three.json",
+      "stage": "initial",
+      "functions_exec": 6,
+      "nested_exec_command": 6,
+      "collaboration_send_message": 1,
+      "accept": 3,
+      "reject": 0,
+      "scope_note": "Six functions.exec/exec_command calls in this review task. One coordinator message before writing. Final reporting message is outside this recorded source-review interval."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-11868.json",
+      "stage": "initial",
+      "functions_exec": 9,
+      "nested_exec_command": 13,
+      "collaboration_send_message": 1,
+      "accept": 1,
+      "reject": 0,
+      "scope_note": "Final coordinator reporting is outside this recorded review interval. No external fetch was authorized or attempted."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13050.json",
+      "stage": "initial",
+      "functions_exec": 12,
+      "nested_exec_command": 12,
+      "collaboration_send_message": 3,
+      "accept": 1,
+      "reject": 0,
+      "scope_note": "As recorded; final reporting may be outside measurement."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13283.json",
+      "stage": "initial",
+      "functions_exec": 11,
+      "nested_exec_command": 11,
+      "collaboration_send_message": 1,
+      "accept": 1,
+      "reject": 0,
+      "scope_note": "Counts include the final record-writing call; counts are observed local calls, not estimates."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345.json",
+      "stage": "initial",
+      "functions_exec": 12,
+      "nested_exec_command": 12,
+      "collaboration_send_message": 2,
+      "accept": 1,
+      "reject": 1,
+      "scope_note": "As recorded; final reporting may be outside measurement."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13350.json",
+      "stage": "initial",
+      "functions_exec": 11,
+      "nested_exec_command": 11,
+      "collaboration_send_message": 2,
+      "accept": 2,
+      "reject": 0,
+      "scope_note": "Includes this write call and every prior functions.exec/exec_command call in this review task; final reporting is outside interval."
+    },
+    {
+      "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345-rereview.json",
+      "stage": "corrected_rereview",
+      "functions_exec": 3,
+      "nested_exec_command": 3,
+      "collaboration_send_message": 0,
+      "accept": 1,
+      "reject": 0,
+      "scope_note": "This acceptance applies only to the corrected sheet hash recorded in the separate followup row; it does not erase or rewrite the initial rejection."
+    }
+  ],
+  "initial_reviewer_totals": {
+    "functions_exec": 61,
+    "nested_exec_command": 65,
+    "collaboration_send_message": 10
+  },
+  "available_aggregate_rates": [
+    {
+      "scope": "producer_comparable_reported_subtotal",
+      "functions_exec": 129,
+      "nested_exec_command_separate": 144,
+      "collaboration_send_message_separate": 25,
+      "functions_per_10_final_locally_accepted_candidates": 129,
+      "functions_per_final_locally_accepted_candidate": 12.9,
+      "functions_per_50_evaluated_orders": 129,
+      "functions_per_evaluated_order": 2.58,
+      "note": "Ten of twelve producer families: 45 evaluations, 8 positive candidates. Missing families are not treated as zero."
+    },
+    {
+      "scope": "reviewer_all_recorded_including_rereview",
+      "functions_exec": 64,
+      "nested_exec_command_separate": 68,
+      "collaboration_send_message_separate": 10,
+      "functions_per_10_final_locally_accepted_candidates": 64,
+      "functions_per_final_locally_accepted_candidate": 6.4,
+      "functions_per_50_evaluated_orders": 64,
+      "functions_per_evaluated_order": 1.28,
+      "note": "All six initial review batches plus corrected EO:13028 rereview."
+    },
+    {
+      "scope": "combined_comparable_reported_subtotal",
+      "functions_exec": 193,
+      "nested_exec_command_separate": 212,
+      "collaboration_send_message_separate": 35,
+      "functions_per_10_final_locally_accepted_candidates": 193,
+      "functions_per_final_locally_accepted_candidate": 19.3,
+      "functions_per_50_evaluated_orders": 193,
+      "functions_per_evaluated_order": 3.86,
+      "note": "Incomplete recorded producer subtotal plus complete recorded reviewer batches; not a full pilot total."
+    },
+    {
+      "scope": "combined_recorded_floor_with_13385_earlier_snapshot",
+      "functions_exec": 204,
+      "nested_exec_command_separate": 223,
+      "collaboration_send_message_separate": 37,
+      "functions_per_10_final_locally_accepted_candidates": 204,
+      "functions_per_final_locally_accepted_candidate": 20.4,
+      "functions_per_50_evaluated_orders": 204,
+      "functions_per_evaluated_order": 4.08,
+      "note": "Adds only explicit earlier producer-13385 11/11/2 snapshot. Later increments and producer-11948 still missing."
+    }
+  ],
+  "missing_metrics": {
+    "complete_pilot_function_call_total": null,
+    "unrecorded_or_ambiguous_call_scopes": [
+      "producer-11948 all call counts absent",
+      "producer-13385 final function versus collaboration total ambiguous",
+      "producer-13345 separate incremental correction call count absent",
+      "final reporting messages often excluded; root orchestration is not included"
+    ],
+    "full_pilot_wall_seconds": null,
+    "wall_reason": "Most producers/reviewers recorded only late verification/synthesis intervals or sums of command durations. Parallel execution prevents summing task times into elapsed pilot wall. Full-task start/end not available for all batches.",
+    "model_new_input_tokens": null,
+    "model_cached_or_reread_input_tokens": null,
+    "model_output_tokens": null,
+    "model_total_tokens": null,
+    "token_reason": "Per-agent model usage/cache telemetry not exposed; no token savings or token-per-candidate estimate can be computed."
+  },
+  "available_wall_examples_seconds": {
+    "producer_14173_recorded_full_task": 233.145,
+    "review_first_three_measured_task": 113.11935502200049,
+    "review_13345_corrected_rereview_interval": 40.56563711166382,
+    "review_11868_late_interval_only": 77.0504940640003,
+    "review_13350_late_interval_only": 71.95746040344238,
+    "review_13345_late_verification_only": 56.494,
+    "review_13050_prior_command_duration_sum_only": 5.7
+  },
+  "baseline": {
+    "base_commit": "5e3e00b2c1bdb0fcd68202b4aff735f7dd691353",
+    "tracker_ready": 130,
+    "universe": 14972,
+    "decided": 3359,
+    "accepted_claims_existing": 176,
+    "baseline_new_input_tokens_per_accepted_claim_approx": 33000,
+    "baseline_cached_input_tokens_per_accepted_claim_approx": 2100000,
+    "baseline_tool_calls_per_accepted_claim_approx": 8,
+    "baseline_reviewer_rejection_rate": 0.107,
+    "pilot_model_token_telemetry_available": false
+  },
+  "baseline_comparison": "Baseline is approximately 8 tool calls, 33000 new input tokens, 2100000 cached/reread input tokens per accepted claim, and 10.7% rejection (about 11%). Pilot initial rejection is 10% (1/10); too small and differently scoped for an improvement claim. Available combined recorded floor already reaches 204 functions across the 10 local candidates (20.4 each), but incomplete numerator, unknown baseline call definition and candidate-versus-committed denominator prevent a like-for-like efficiency claim. Token/cache comparison unavailable.",
+  "aggregation_overhead_excluded": {
+    "functions_exec": 7,
+    "nested_exec_command": 7,
+    "collaboration_send_message_before_write": 2,
+    "scope": "This telemetry-aggregation task only, through final write; not production or review."
+  },
+  "evidence_files": [
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/BASELINE.json",
+      "sha256": "8330149778c73ac7a2e6150ddac9cb77a8b5421858ee26dd345b223862d11242"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "sha256": "cb6ae1864236b6dc5f6adc67676b8e6f0fa7b12dc4d5cb9278e3d8c10729536f"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12692/OUTCOMES.json",
+      "sha256": "aa3b114bd0545c22a008c8a3092e27b68b5503537c0f12f1beabba54a3e2c148"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "sha256": "d9f4782953c6e83bee08e45f43b554d9942513eafd12068f044c2598b3e906cd"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12919/OUTCOMES.json",
+      "sha256": "97855cfe649b03d8638329895336565ec1c870d98cf7875e348866be1d8aa61e"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/HANDOFF.json",
+      "sha256": "6741d4fa9d7671a9593902fea452ace65cdb3e45a65dbc094950af1de6345057"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/OUTCOMES.json",
+      "sha256": "95b50d0b5a8db79e61daf074a4614089ba03eb66043edc0d96ed55bc67af4c74"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13225/OUTCOMES.json",
+      "sha256": "0521cb92b5f5d86309a9e772ed3a5658715d94fd6cedba49fd5caebb948ad99e"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "sha256": "cb5999ca611952d9c7af3431dcfa1ae195403c52a94550dedc47c32684b4c693"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "sha256": "fe3475a2989b03b81f991ddbee9f06c664495b6cf1aa284115e7f51524752720"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "sha256": "2e3cafc74d630904ff33a8c2d6095f70f19729cf9807442093d0c61632092aa0"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "sha256": "bb04bcf6b29bf044d1338062cd54f102dc98460f455b9219abceb2aa095a33c1"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13423/OUTCOMES.json",
+      "sha256": "ed1ce1ffd5e511efa3c6c4f8cd04b712c769c4cb41aba9753d8b2d4f9068eb51"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-14173/OUTCOMES.json",
+      "sha256": "721a3c4c770a5f2061c17814981fe792d56873153eb1be5683492523ef510564"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_11868.jsonl",
+      "sha256": "f47b1159370f53971119929cdfc33f1bdb1bf806fd49c6d2bf39397c23d8365a"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_13050.jsonl",
+      "sha256": "e3556dcf717690f13a4b408922b3dbc96434c6255b09a297c7cf7924fa7ec24b"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_13283.jsonl",
+      "sha256": "3b4a13ea0f829c8c4763f8ff0c9eab54f617ac45a932745c2d9c53f5af028139"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-11868.json",
+      "sha256": "d8ac6695fcf2b57d567711c10facfec54583a548fbb504e231d2057716b9731d"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13050.json",
+      "sha256": "5ba43d25624e768c1f057e5000808edd36ac84f445dfc60ffc5658d054b8677f"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13283.json",
+      "sha256": "dfdfabc55dc640e7dc2bd058ec988e50e9acf150de72b772a6599ab4e32c90f6"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345-rereview.json",
+      "sha256": "ba25c9720e75ceb968c8d1af7b5db9f538625de3025e0b3d1c94b1a7299ffa3a"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345.json",
+      "sha256": "417b9c426f6c6ed97ddd5c05a5664bfb5be18c5a93dc0eaeb1e8e7168bbe1eb1"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13350.json",
+      "sha256": "5062ed2d7e74199efb1cb617a32f809ad425d08f1ab0a081793d058d49666832"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-first-three.json",
+      "sha256": "17ed3ab13b85e259751845837fe66889fc20cc2e029e287ed7e2676283fe6d25"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13345-rereview.jsonl",
+      "sha256": "21de052bc189f2c9008612856c3fb9b0714bbb23cf42d83282e5f29c01bd87b2"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13345.jsonl",
+      "sha256": "df224322da70484958d21be1828702954332f2c5edf14fc12ef9b56158bfae10"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13350.jsonl",
+      "sha256": "5166bdb7b42fee38a0610eb14f8aae5a79e9396fe188a831243a1b04af6394a1"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/first-three.jsonl",
+      "sha256": "335509939bd30df42659a30e6a632703806b6131efb7a3679dac88f82d62c32b"
+    }
+  ]
+}

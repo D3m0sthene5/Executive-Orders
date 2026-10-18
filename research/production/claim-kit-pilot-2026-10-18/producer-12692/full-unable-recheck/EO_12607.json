@@ -1,0 +1,92 @@
+{
+  "instrument_id": "EO:12607",
+  "outcome": "unable_to_complete",
+  "old_dossier_sha256": "e4e1b8e153d97e99cfcd7e36c10d99ad4f07a65f5258789ad2781a184085eb90",
+  "new_dossier_sha256": "769f1aaf08b80616f23b4ffe09ee5c0c78691b7bff736a4ad9e9d0960f054454",
+  "new_dossier_file_sha256": "4bba85e3a2542569108bc31120797a3c49d2c42d1455b48940c08398fe3dc5e4",
+  "archived_initial_sheet": "research/production/claim-kit-pilot-2026-10-18/producer-12692/pre-full-unable/EO_12607.decision.json",
+  "archived_initial_sheet_sha256": "adff15308801df5921191169b64cc70d2112c0badf0be423459c59d7255c6109",
+  "updated_sheet": "research/production/claim-kit-pilot-2026-10-18/producer-12692/EO_12607.decision.json",
+  "updated_sheet_sha256": "845327b936be74c6cfc975ad719cbf2a6adfe47aee9ffb375e5bb2bfce1e126d",
+  "new_proof": "New alternate own-term records reveal general section 4(b): Commission terminates 30 days after submitting final report. One official-OCR alternate is page-check flagged; other machine transcription is unverified. Selected original remains truncated after section 2(d).",
+  "remaining_material_gaps": [
+    "EO:12692 actor source still requires_page_check=true. Official images 54 FR 40627-40628/PDF pages 11-12 have not been inspected. Alternate transcription flags do not waive that requirement.",
+    "Selected original remains incomplete after section 2(d); a complete authenticated original and inventory are still unconfirmed.",
+    "Actual final-report submission date is absent; newly supplied 30-day termination snippet cannot be triggered from the amended March 31 deadline.",
+    "Original alternate TERM record requires_page_check=true and selected original false; official pages must resolve source completeness/flag discrepancy."
+  ],
+  "rationale": "Frozen selected original still ends after section 2(d), followed by a page-285 filing marker; it cannot establish complete original inventory. Alternate termination snippets now clarify that actual final submission plus 30 days, not the March report deadline, controls Commission life. EO12627 changes reporting date March 1 to March 31, 1988 only. It proves neither actual delivery nor whole-order cessation. Complete original authentication/inventory and actual report date remain missing. Both an original alternate and EO12692 actor require official page inspection. No free-text clauses or dates are fabricated.",
+  "source_audit": [
+    {
+      "evidence_id": "ORIGINAL:EO:12607",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12607.recheck.txt",
+      "text_sha256": "4beabc4d02284e6cc574ad02eabe4a691c48c4892ab33b64136e98f3a27070eb",
+      "declared_pdf_sha256": "78f274e0c00de681714078b5049b8a2dd581e10e33f8badeae1529f362a797ae",
+      "requires_page_check": false,
+      "official_images_inspected": false,
+      "exact_held_text_span_verified": true
+    },
+    {
+      "evidence_id": "ACTOR_TEXT:EO:12627",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12627.txt",
+      "text_sha256": "b08b11691fde0f5e0da796d6e52c858e96c081b20a69e9f5a4c1d83af1eb307a",
+      "declared_pdf_sha256": "f28e4b44659719142a59ec563ee5578c076fb8e4d2305cf293a2930e13b10e6c",
+      "requires_page_check": false,
+      "official_images_inspected": false,
+      "exact_held_text_span_verified": true
+    },
+    {
+      "evidence_id": "ACTOR_TEXT:EO:12692",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12692.txt",
+      "text_sha256": "65357a92a15b30af7fb366c5d58f4b25dc05f3c1b88f87161058a505f95dbc94",
+      "declared_pdf_sha256": "4fed43c8ec3525e806ca8c16834089265bf3c95a0e8987b506444d45fcafe80c",
+      "requires_page_check": true,
+      "official_images_inspected": false,
+      "exact_held_text_span_verified": true
+    }
+  ],
+  "own_terms_read": [
+    "TERM:EO:12607:323842b8920ade72@4beabc4d02284e6c",
+    "TERM:EO:12607:2791ca30ce20a7af@2a31a5cd2c689304",
+    "TERM:EO:12607:09fae2d3a0599019@2a31a5cd2c689304",
+    "TERM:EO:12607:fb8c6c4150c9d9c5@efce803a633d600b",
+    "TERM:EO:12607:3a1308f5c434dc57@efce803a633d600b",
+    "TERM:EO:12607:db07944533740350@efce803a633d600b"
+  ],
+  "actor_contexts_read": [
+    "ACTOR_TEXT:EO:12627",
+    "ACTOR_TEXT:EO:12692"
+  ],
+  "machine_missing": [],
+  "machine_conflicts": [],
+  "pre_gate": {
+    "claim_emitted": false,
+    "errors": [
+      "approved_required",
+      "original_confirmed_required",
+      "inventory_confirmed_required",
+      "unresolved_material_gaps",
+      "clause_0_state",
+      "clause_1_state",
+      "clause_2_state",
+      "clause_3_state",
+      "clause_4_state",
+      "clause_5_state",
+      "clause_6_state",
+      "clause_7_state",
+      "clause_8_state",
+      "clause_9_state",
+      "clause_10_state",
+      "clause_11_state",
+      "clause_12_state",
+      "clause_13_state",
+      "clause_14_state",
+      "whole_order_end_evidence",
+      "savings_residuals_evidence",
+      "bounded_later_search",
+      "producer_approval_required"
+    ]
+  },
+  "approved": false,
+  "inventory_rebinding_note": "Unconfirmed truncated inventory uses fresh frozen blank-sheet machine scope/source IDs; no stale clause IDs retained."
+}

@@ -1,0 +1,155 @@
+{
+  "schema": "eo-claim-kit-final-local-check/v1",
+  "frozen_output_commit": "717e0a4bfad161532e54755f9cf2cb97964ac03d",
+  "claims_sha256": "856daad84f001273f3ad9aeff9697aaa881df70ec3f4a817d078613e38f88ac1",
+  "kit_check": [
+    {
+      "line": 1,
+      "errors": []
+    },
+    {
+      "line": 2,
+      "errors": []
+    },
+    {
+      "line": 3,
+      "errors": []
+    },
+    {
+      "line": 4,
+      "errors": []
+    },
+    {
+      "line": 5,
+      "errors": []
+    },
+    {
+      "line": 6,
+      "errors": []
+    },
+    {
+      "line": 7,
+      "errors": []
+    },
+    {
+      "line": 8,
+      "errors": []
+    },
+    {
+      "line": 9,
+      "errors": []
+    },
+    {
+      "line": 10,
+      "errors": []
+    },
+    {
+      "line": 11,
+      "errors": []
+    },
+    {
+      "line": 12,
+      "errors": []
+    }
+  ],
+  "actual_checker_summary": {
+    "schema": "eo-claim-check/v1",
+    "job": "claim-checker",
+    "legal_cutoff": "2026-10-14",
+    "claim_files": [
+      "sol-2026-10-18.jsonl"
+    ],
+    "claim_lines_found": 12,
+    "job_limit": null,
+    "claims_checked": 12,
+    "claims_parse_errors": 0,
+    "claims_checker_errors": 0,
+    "orders_with_claim": 12,
+    "claims_all_checks_passed": 6,
+    "claims_mechanical_pass": 6,
+    "claims_mechanical_unverified": 6,
+    "claims_mechanical_fail": 0,
+    "claims_gate_passed": 12,
+    "steps_checker_passed_effective_claims": {
+      "original_text": 12,
+      "clause_inventory": 9,
+      "ending_or_current_basis": 8,
+      "savings_residuals": 8,
+      "counterevidence": 12
+    },
+    "check_results": {
+      "source_held": {
+        "pass": 287,
+        "skip": 88
+      },
+      "source_identity": {
+        "pass": 142
+      },
+      "quote_verbatim": {
+        "pass": 501,
+        "warn": 4
+      },
+      "date_valid": {
+        "pass": 620
+      },
+      "date_after_signing": {
+        "pass": 221
+      },
+      "order_exists": {
+        "pass": 130
+      },
+      "structural_gate": {
+        "pass": 12
+      },
+      "parse": {},
+      "checker_error": {}
+    },
+    "source_status_counts": {
+      "custody_record_only": 88,
+      "gpo_published_hash_match": 171,
+      "held_bytes_in_release_or_repo": 116
+    },
+    "source_identity_counts": {
+      "recorded_for_this_order": 142
+    },
+    "quote_status_counts": {
+      "exact": 501,
+      "too_short_to_verify": 4
+    },
+    "source_status_policy": {
+      "held_bytes_verified": "pass",
+      "held_bytes_in_release_or_repo": "pass",
+      "gpo_published_hash_match": "pass",
+      "custody_record_only": "skip"
+    },
+    "claim_checks_csv": {
+      "mode": "non_pass_rows",
+      "rows_written": 92,
+      "rows_total": 2005,
+      "max_mb": 50.0,
+      "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+    },
+    "held_copies_indexed_by_origin": {
+      "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+      "jobs/current-law/output/SOURCES.jsonl": 110,
+      "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+      "jobs/later-events/output/SOURCES.jsonl": 7626,
+      "opus_media_member_map": 496,
+      "stage21_custody": 160
+    },
+    "held_distinct_sha256": 6431,
+    "opus_text_pack_texts": 0,
+    "signing_dates_loaded": {
+      "identity_layer_year_only": 14854
+    },
+    "gate_error_step_mapping_from": "fallback copy in checker.py",
+    "pypdf_available": true,
+    "fetch": null,
+    "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+  },
+  "network_disabled": true,
+  "downloads_disabled_environment": "CLAIM_CHECKER_VERIFY_DOWNLOADS=0",
+  "warning": "Offline custody result uses partial local metadata; full GitHub results supersede it. Mechanical checks are not legal conclusions.",
+  "checked_at_utc": "2026-10-18T08:01:00Z",
+  "short_quote_warning": "Four split inventory spans are too short for the downstream checker quote heuristic; strict claim-kit exact-slice/offset/hash checks verify all selected spans. This does not remove the downstream warning."
+}

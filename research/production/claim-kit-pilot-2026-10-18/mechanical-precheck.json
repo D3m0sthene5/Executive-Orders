@@ -1,0 +1,693 @@
+{
+  "approved_file": "tmp/sol-local-approved.jsonl",
+  "approved_file_sha256": "3c24499ec861f8fcd640c013f32558fd70ed4f57058bc3bf6915221952a5a72d",
+  "assembled_claims": 10,
+  "checked_utc": "2026-10-18T07:09:20.013125+00:00",
+  "checker_runs": [
+    {
+      "input_snapshot": "tmp/sol-local-approved-before-id-encoding.jsonl",
+      "output_dir": "tmp/sol-mechanical-checker",
+      "summary": {
+        "check_results": {
+          "checker_error": {},
+          "date_after_signing": {
+            "pass": 152
+          },
+          "date_valid": {
+            "pass": 419
+          },
+          "order_exists": {
+            "fail": 5,
+            "pass": 110
+          },
+          "parse": {},
+          "quote_verbatim": {
+            "pass": 368
+          },
+          "source_held": {
+            "skip": 270
+          },
+          "source_identity": {
+            "pass": 108
+          },
+          "structural_gate": {
+            "pass": 10
+          }
+        },
+        "claim_checks_csv": {
+          "max_mb": 50.0,
+          "mode": "non_pass_rows",
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
+          "rows_total": 1442,
+          "rows_written": 275
+        },
+        "claim_files": [
+          "sol-local-approved.jsonl"
+        ],
+        "claim_lines_found": 10,
+        "claims_all_checks_passed": 0,
+        "claims_checked": 10,
+        "claims_checker_errors": 0,
+        "claims_gate_passed": 10,
+        "claims_mechanical_fail": 5,
+        "claims_mechanical_pass": 0,
+        "claims_mechanical_unverified": 5,
+        "claims_parse_errors": 0,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
+        "fetch": null,
+        "gate_error_step_mapping_from": "fallback copy in checker.py",
+        "held_copies_indexed_by_origin": {
+          "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/later-events/output/SOURCES.jsonl": 7626
+        },
+        "held_distinct_sha256": 6029,
+        "job": "claim-checker",
+        "job_limit": null,
+        "legal_cutoff": "2026-10-14",
+        "opus_text_pack_texts": 0,
+        "orders_with_claim": 10,
+        "pypdf_available": true,
+        "quote_status_counts": {
+          "exact": 368
+        },
+        "schema": "eo-claim-check/v1",
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 108
+        },
+        "source_status_counts": {
+          "custody_record_only": 270
+        },
+        "source_status_policy": {
+          "custody_record_only": "skip",
+          "gpo_published_hash_match": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "held_bytes_verified": "pass"
+        },
+        "steps_checker_passed_effective_claims": {
+          "clause_inventory": 0,
+          "counterevidence": 9,
+          "ending_or_current_basis": 0,
+          "original_text": 0,
+          "savings_residuals": 0
+        }
+      }
+    },
+    {
+      "input_snapshot": "tmp/sol-local-approved-before-id-encoding.jsonl",
+      "output_dir": "tmp/sol-mechanical-checker-with-fixity",
+      "summary": {
+        "check_results": {
+          "checker_error": {},
+          "date_after_signing": {
+            "pass": 152
+          },
+          "date_valid": {
+            "pass": 419
+          },
+          "order_exists": {
+            "fail": 5,
+            "pass": 110
+          },
+          "parse": {},
+          "quote_verbatim": {
+            "pass": 368
+          },
+          "source_held": {
+            "pass": 101,
+            "skip": 169
+          },
+          "source_identity": {
+            "pass": 108
+          },
+          "structural_gate": {
+            "pass": 10
+          }
+        },
+        "claim_checks_csv": {
+          "max_mb": 50.0,
+          "mode": "non_pass_rows",
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
+          "rows_total": 1442,
+          "rows_written": 174
+        },
+        "claim_files": [
+          "sol-local-approved.jsonl"
+        ],
+        "claim_lines_found": 10,
+        "claims_all_checks_passed": 3,
+        "claims_checked": 10,
+        "claims_checker_errors": 0,
+        "claims_gate_passed": 10,
+        "claims_mechanical_fail": 5,
+        "claims_mechanical_pass": 3,
+        "claims_mechanical_unverified": 2,
+        "claims_parse_errors": 0,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
+        "fetch": null,
+        "gate_error_step_mapping_from": "fallback copy in checker.py",
+        "held_copies_indexed_by_origin": {
+          "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/later-events/output/SOURCES.jsonl": 7626
+        },
+        "held_distinct_sha256": 6029,
+        "job": "claim-checker",
+        "job_limit": null,
+        "legal_cutoff": "2026-10-14",
+        "opus_text_pack_texts": 0,
+        "orders_with_claim": 10,
+        "pypdf_available": true,
+        "quote_status_counts": {
+          "exact": 368
+        },
+        "schema": "eo-claim-check/v1",
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 108
+        },
+        "source_status_counts": {
+          "custody_record_only": 169,
+          "gpo_published_hash_match": 101
+        },
+        "source_status_policy": {
+          "custody_record_only": "skip",
+          "gpo_published_hash_match": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "held_bytes_verified": "pass"
+        },
+        "steps_checker_passed_effective_claims": {
+          "clause_inventory": 5,
+          "counterevidence": 9,
+          "ending_or_current_basis": 3,
+          "original_text": 5,
+          "savings_residuals": 3
+        }
+      }
+    },
+    {
+      "input_snapshot": "tmp/sol-local-approved-before-id-encoding.jsonl",
+      "output_dir": "tmp/sol-mechanical-checker-with-indexes",
+      "summary": {
+        "check_results": {
+          "checker_error": {},
+          "date_after_signing": {
+            "pass": 152
+          },
+          "date_valid": {
+            "pass": 419
+          },
+          "order_exists": {
+            "fail": 5,
+            "pass": 110
+          },
+          "parse": {},
+          "quote_verbatim": {
+            "pass": 368
+          },
+          "source_held": {
+            "pass": 206,
+            "skip": 64
+          },
+          "source_identity": {
+            "pass": 108
+          },
+          "structural_gate": {
+            "pass": 10
+          }
+        },
+        "claim_checks_csv": {
+          "max_mb": 50.0,
+          "mode": "non_pass_rows",
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
+          "rows_total": 1442,
+          "rows_written": 69
+        },
+        "claim_files": [
+          "sol-local-approved.jsonl"
+        ],
+        "claim_lines_found": 10,
+        "claims_all_checks_passed": 3,
+        "claims_checked": 10,
+        "claims_checker_errors": 0,
+        "claims_gate_passed": 10,
+        "claims_mechanical_fail": 5,
+        "claims_mechanical_pass": 3,
+        "claims_mechanical_unverified": 2,
+        "claims_parse_errors": 0,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
+        "fetch": null,
+        "gate_error_step_mapping_from": "fallback copy in checker.py",
+        "held_copies_indexed_by_origin": {
+          "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/later-events/output/SOURCES.jsonl": 7626,
+          "opus_media_member_map": 496,
+          "stage21_custody": 160
+        },
+        "held_distinct_sha256": 6431,
+        "job": "claim-checker",
+        "job_limit": null,
+        "legal_cutoff": "2026-10-14",
+        "opus_text_pack_texts": 0,
+        "orders_with_claim": 10,
+        "pypdf_available": true,
+        "quote_status_counts": {
+          "exact": 368
+        },
+        "schema": "eo-claim-check/v1",
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 108
+        },
+        "source_status_counts": {
+          "custody_record_only": 64,
+          "gpo_published_hash_match": 101,
+          "held_bytes_in_release_or_repo": 105
+        },
+        "source_status_policy": {
+          "custody_record_only": "skip",
+          "gpo_published_hash_match": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "held_bytes_verified": "pass"
+        },
+        "steps_checker_passed_effective_claims": {
+          "clause_inventory": 7,
+          "counterevidence": 9,
+          "ending_or_current_basis": 5,
+          "original_text": 9,
+          "savings_residuals": 5
+        }
+      }
+    },
+    {
+      "input_sha256": "3c24499ec861f8fcd640c013f32558fd70ed4f57058bc3bf6915221952a5a72d",
+      "input_snapshot": "tmp/sol-local-approved.jsonl",
+      "output_dir": "tmp/sol-mechanical-checker-encoded-ids",
+      "summary": {
+        "check_results": {
+          "checker_error": {},
+          "date_after_signing": {
+            "pass": 152
+          },
+          "date_valid": {
+            "pass": 419
+          },
+          "order_exists": {
+            "pass": 110
+          },
+          "parse": {},
+          "quote_verbatim": {
+            "pass": 368
+          },
+          "source_held": {
+            "pass": 206,
+            "skip": 64
+          },
+          "source_identity": {
+            "pass": 108
+          },
+          "structural_gate": {
+            "pass": 10
+          }
+        },
+        "claim_checks_csv": {
+          "max_mb": 50.0,
+          "mode": "non_pass_rows",
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
+          "rows_total": 1437,
+          "rows_written": 64
+        },
+        "claim_files": [
+          "sol-local-approved.jsonl"
+        ],
+        "claim_lines_found": 10,
+        "claims_all_checks_passed": 5,
+        "claims_checked": 10,
+        "claims_checker_errors": 0,
+        "claims_gate_passed": 10,
+        "claims_mechanical_fail": 0,
+        "claims_mechanical_pass": 5,
+        "claims_mechanical_unverified": 5,
+        "claims_parse_errors": 0,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
+        "fetch": null,
+        "gate_error_step_mapping_from": "fallback copy in checker.py",
+        "held_copies_indexed_by_origin": {
+          "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/later-events/output/SOURCES.jsonl": 7626,
+          "opus_media_member_map": 496,
+          "stage21_custody": 160
+        },
+        "held_distinct_sha256": 6431,
+        "job": "claim-checker",
+        "job_limit": null,
+        "legal_cutoff": "2026-10-14",
+        "opus_text_pack_texts": 0,
+        "orders_with_claim": 10,
+        "pypdf_available": true,
+        "quote_status_counts": {
+          "exact": 368
+        },
+        "schema": "eo-claim-check/v1",
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 108
+        },
+        "source_status_counts": {
+          "custody_record_only": 64,
+          "gpo_published_hash_match": 101,
+          "held_bytes_in_release_or_repo": 105
+        },
+        "source_status_policy": {
+          "custody_record_only": "skip",
+          "gpo_published_hash_match": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "held_bytes_verified": "pass"
+        },
+        "steps_checker_passed_effective_claims": {
+          "clause_inventory": 8,
+          "counterevidence": 10,
+          "ending_or_current_basis": 7,
+          "original_text": 10,
+          "savings_residuals": 7
+        }
+      }
+    }
+  ],
+  "encoding_remedy": {
+    "format": {
+      "evidence_id": "unpadded base64url of complete UTF-8 record ID",
+      "evidence_id_encoding": "base64url-utf8"
+    },
+    "implemented": true,
+    "kit_test_wall_seconds": 1.184,
+    "kit_tests_passed": 114,
+    "lookup": "Strict canonical decoding solely at dossier lookup; invalid markers, malformed encodings, and unknown decoded IDs rejected.",
+    "rationale_change": {
+      "acknowledgment_source": "Root coordinator message and producer-13385 OUTCOMES; not edited by mechanical precheck agent.",
+      "description": "Producer replaced one machine evidence-ID spelling in rationale with acting-order effective-date evidence wording. No legal analysis or quote changed.",
+      "independent_reviewer_reacknowledgment": "pending full GitHub freeze",
+      "instrument_id": "EO:13283",
+      "producer_acknowledged": true
+    },
+    "scope": "Only machine source evidence-ID serialization in assembler; raw decision-sheet IDs and source URLs, hashes, pages, quotes, and actor fields preserved."
+  },
+  "latest_per_instrument": {
+    "EO:11868": {
+      "all_checks_passed": true,
+      "claim_key": "tmp/sol-local-approved.jsonl:1",
+      "claim_sha256": "81d12d8f907eca3458272f595cf2c232cae566888ba608de42c73e44b3550005",
+      "gate_passed": true,
+      "mechanical_result": "pass",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:12720": {
+      "all_checks_passed": true,
+      "claim_key": "tmp/sol-local-approved.jsonl:2",
+      "claim_sha256": "5d69cf0d7bdcbf02af5ba44e770b3cba0811486790522259bbd3f67c48055970",
+      "gate_passed": true,
+      "mechanical_result": "pass",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:12734": {
+      "all_checks_passed": true,
+      "claim_key": "tmp/sol-local-approved.jsonl:8",
+      "claim_sha256": "183e3a63b5617d24de4990ecb1db5aa82567d13c4e3caec7895e1f57bae89311",
+      "gate_passed": true,
+      "mechanical_result": "pass",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:12813": {
+      "all_checks_passed": true,
+      "claim_key": "tmp/sol-local-approved.jsonl:3",
+      "claim_sha256": "19a90c311e2350385788be5b59f40c456ec7162abf15ead0b7f249652bf5d5d6",
+      "gate_passed": true,
+      "mechanical_result": "pass",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:12817": {
+      "all_checks_passed": true,
+      "claim_key": "tmp/sol-local-approved.jsonl:9",
+      "claim_sha256": "3e01546ce0f9b3c4f8c4662e300f250739001a91779dec1c73f6a50d0e9b6a97",
+      "gate_passed": true,
+      "mechanical_result": "pass",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:13028": {
+      "all_checks_passed": false,
+      "claim_key": "tmp/sol-local-approved.jsonl:6",
+      "claim_sha256": "94ef493215a900bd7c385fd93aede15061cb8f39c4f855d86a14d6c5361f7455",
+      "gate_passed": true,
+      "mechanical_result": "pass_with_unverified",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": false,
+        "original_text": true,
+        "savings_residuals": false
+      }
+    },
+    "EO:13050": {
+      "all_checks_passed": false,
+      "claim_key": "tmp/sol-local-approved.jsonl:4",
+      "claim_sha256": "6ec2e8b24d54b5000cc3eab273a217c2509764a9e5f9d030fbf2fef4154ea2a7",
+      "gate_passed": true,
+      "mechanical_result": "pass_with_unverified",
+      "steps_checker_passed": {
+        "clause_inventory": false,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:13131": {
+      "all_checks_passed": false,
+      "claim_key": "tmp/sol-local-approved.jsonl:7",
+      "claim_sha256": "c52a866ad1b2335f802bc27a277a0580e3d0b9620aee6a4d11063a5aa00b6eed",
+      "gate_passed": true,
+      "mechanical_result": "pass_with_unverified",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": false,
+        "original_text": true,
+        "savings_residuals": false
+      }
+    },
+    "EO:13263": {
+      "all_checks_passed": false,
+      "claim_key": "tmp/sol-local-approved.jsonl:5",
+      "claim_sha256": "347057703b829f0f529fac018f7387b83b34bd2290d421318783ea455135e348",
+      "gate_passed": true,
+      "mechanical_result": "pass_with_unverified",
+      "steps_checker_passed": {
+        "clause_inventory": false,
+        "counterevidence": true,
+        "ending_or_current_basis": true,
+        "original_text": true,
+        "savings_residuals": true
+      }
+    },
+    "EO:13283": {
+      "all_checks_passed": false,
+      "claim_key": "tmp/sol-local-approved.jsonl:10",
+      "claim_sha256": "202b1cff93e49fb46407dafff0a15a888f9558a4fff8c3b89b495dbccced8371",
+      "gate_passed": true,
+      "mechanical_result": "pass_with_unverified",
+      "steps_checker_passed": {
+        "clause_inventory": true,
+        "counterevidence": true,
+        "ending_or_current_basis": false,
+        "original_text": true,
+        "savings_residuals": false
+      }
+    }
+  },
+  "limitations": [
+    "Full GitHub dossier freeze and independent reviewer reacknowledgment remain pending; these are provisional local outputs and have not been placed in readiness claims.",
+    "206 source-reference positions meet the existing checker policy: 101 GPO fixity matches and 105 held-in-release/repo metadata records. No source downloads or new original-byte rehashes were performed.",
+    "64 source-reference positions across four distinct source hashes remain record-only and are not checker-passed.",
+    "All five prior punctuation false positives are resolved in the current local assembled file. There are zero mechanical failures, five fully checker-passed claims, and five pass_with_unverified claims.",
+    "Passing structural, source identity, quote, date, and order-number checks does not establish legal correctness."
+  ],
+  "network_policy": {
+    "CLAIM_CHECKER_FETCH": "0",
+    "CLAIM_CHECKER_VERIFY_DOWNLOADS": "0",
+    "checker_argv": [
+      "python",
+      "jobs/claim-checker/checker.py"
+    ],
+    "external_source_downloads": 0,
+    "fetch_flag_present": false
+  },
+  "original_approved_snapshot": "tmp/sol-local-approved-before-id-encoding.jsonl",
+  "original_approved_snapshot_sha256": "7c6fbe7079a09a4cc8c724faddcfd7e59d6510e38a6ef5cb09f229fdac75b296",
+  "prior_false_positive_failures": [
+    {
+      "assessment": "Machine evidence-id punctuation misparsed as an executive-order census identifier; no source identity/date failure found.",
+      "check": "order_exists",
+      "detail": "'EO:13050:bf1a41a61e8e5aa3' is not in the 14,972-order universe",
+      "field": "operative_clauses[0].first_end.source.evidence_id",
+      "field_value": "TERM:EO:13050:bf1a41a61e8e5aa3@90efad9f7e3cac9a",
+      "instrument_id": "EO:13050",
+      "status": "not_in_universe",
+      "step": "ending_or_current_basis"
+    },
+    {
+      "assessment": "Machine evidence-id punctuation misparsed as an executive-order census identifier; no source identity/date failure found.",
+      "check": "order_exists",
+      "detail": "'EO:13263:f9cca2c30f1d9b7f' is not in the 14,972-order universe",
+      "field": "operative_clauses[0].first_end.source.evidence_id",
+      "field_value": "TERM:EO:13263:f9cca2c30f1d9b7f@07053034c3d85976",
+      "instrument_id": "EO:13263",
+      "status": "not_in_universe",
+      "step": "ending_or_current_basis"
+    },
+    {
+      "assessment": "Machine evidence-id punctuation misparsed as an executive-order census identifier; no source identity/date failure found.",
+      "check": "order_exists",
+      "detail": "'EO:13350:effective' is not in the 14,972-order universe",
+      "field": "savings_residuals.source.evidence_id",
+      "field_value": "ACT:EO:12734>EO:13350:effective#1",
+      "instrument_id": "EO:12734",
+      "status": "not_in_universe",
+      "step": "savings_residuals"
+    },
+    {
+      "assessment": "Machine evidence-id punctuation misparsed as an executive-order census identifier; no source identity/date failure found.",
+      "check": "order_exists",
+      "detail": "'EO:13350:effective' is not in the 14,972-order universe",
+      "field": "savings_residuals.source.evidence_id",
+      "field_value": "ACT:EO:12817>EO:13350:effective#1",
+      "instrument_id": "EO:12817",
+      "status": "not_in_universe",
+      "step": "savings_residuals"
+    },
+    {
+      "assessment": "Machine evidence-id punctuation misparsed as an executive-order census identifier; no source identity/date failure found.",
+      "check": "order_exists",
+      "detail": "'EO:13385:effective' is not in the 14,972-order universe",
+      "field": "research_rationale",
+      "field_value": "Read full ORIGINAL:EO:13283 chars 0-6535, all three own-term leads, full ACTOR_TEXT:EO:13385 chars 0-9941, actor provisions, chain, searches and missing list. ORIGINAL §§1-7 establish and regulate the Office; temporary communicator teams and funding/personnel qualifications do not terminate the Office on an earlier date. Original §3(a) reference to EO:12333 only excludes special activities from the assessment mandate, so the missing target-provision pointer is not an unresolved lifecycle gap. Independent authorities protected in §§5-6 remain preexisting authorities, while the agency-assistance duty is tied to the Office mission. EO:13385 §9 (ACT:EO:13283>EO:13385 chars 9619-9652) unconditionally revokes this order, and §10 (ACT:EO:13283>EO:13385:effective#0 chars 9663-9712) expressly makes the order effective September 30, 2005, rather than its September 29 signing date. No savings qualification applies. Read the held bounded catalog search of disposition notes and saved order texts and eCFR search; neither supplies an earlier end or a continuation lead beyond this unconditional revocation. USC search has a 2026-10-09 currency limit and is not used to assert an October 14 current predicate. Corrected inventory removes empty headings, separable page furniture and signature, preserving all operative original provisions. This is a local producer draft for review pending complete GitHub freeze, not publication or human review.",
+      "instrument_id": "EO:13283",
+      "status": "not_in_universe",
+      "step": "claim_record"
+    }
+  ],
+  "producer_approved_sheets": 10,
+  "remaining_failures": [],
+  "remaining_unverified_sources": [
+    {
+      "instrument_ids": [
+        "EO:13263"
+      ],
+      "reference_count": 7,
+      "sha256": "2c61fa55bd860b31aa4d1dbd9cd3100a57e71bafd15795ea610fa045ab71e2f6",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2003-09-23/pdf/03-24217.pdf"
+    },
+    {
+      "instrument_ids": [
+        "EO:13283"
+      ],
+      "reference_count": 13,
+      "sha256": "421f11423c562b3dbecf85ad82f2ebaf16f5d329a1cbb1e84b10e87cbe491272",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2005-10-04/pdf/05-19993.pdf"
+    },
+    {
+      "instrument_ids": [
+        "EO:13028",
+        "EO:13131"
+      ],
+      "reference_count": 29,
+      "sha256": "a489ed8d9081a21c050c04d5d377b21714036cdba4a0cea52673fdbec5ef8fe2",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2004-07-13/pdf/04-15933.pdf"
+    },
+    {
+      "instrument_ids": [
+        "EO:13050"
+      ],
+      "reference_count": 15,
+      "sha256": "dad8da2858e80af84a22cb6255fee337010290cdc3946b55688b1d8f89f22889",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1999-10-04/pdf/99-25958.pdf"
+    }
+  ],
+  "schema": "eo-claim-kit-mechanical-precheck/v1",
+  "scope": "Local provisional mechanical precheck only; GitHub dossier freeze confirmation pending. No readiness claims, statuses, or reviews written.",
+  "sheets_total": 50,
+  "source_metadata_hydrated": [
+    {
+      "branch": "wire-new-sources",
+      "git_blob_sha": "16113f0fd0b2093f8965bbd2c1ba4b0f9b6185cd",
+      "path": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "records": 3385
+    },
+    {
+      "branch": "wire-new-sources",
+      "path": "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv"
+    },
+    {
+      "branch": "wire-new-sources",
+      "path": "research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv"
+    }
+  ],
+  "strict_assembly_report": "tmp/sol-local-assembly-report.json",
+  "strict_gates_all_passed": true,
+  "unavailable_metadata": [
+    {
+      "git_blob_sha": "5763794817ab03f5204976c38c9e71af452388b9",
+      "path": "jobs/claim-checker/data/opus_manifest_index.csv.gz",
+      "reason": "GitHub connector fetch_blob and fetch endpoints reject non-UTF8 gzip; no alternate download attempted."
+    }
+  ],
+  "unverified_reference_counts_by_step": {
+    "clause_inventory": 22,
+    "ending_or_current_basis": 39,
+    "savings_residuals": 3
+  }
+}

@@ -1,0 +1,568 @@
+{
+  "schema": "eo-claim-kit-final-telemetry/v1",
+  "generated_at_utc": "2026-10-18T07:19:22.401170+00:00",
+  "status": "10 accepted frozen candidates; commitment depends on root final checker and is not asserted here.",
+  "outcomes": {
+    "initial_evaluated": 50,
+    "initial_positive_candidates": 10,
+    "initial_producer_unable": 40,
+    "initial_review_accept": 9,
+    "initial_review_reject": 1,
+    "initial_review_rejection_rate": 0.1,
+    "corrected_EO_13028_rereview": "accept; initial rejection preserved",
+    "unique_frozen_accepted_candidates": 10,
+    "committed_claims": "not established; pending root final checks",
+    "frozen_candidate_records": {
+      "EO:11868": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_11868.jsonl"
+      },
+      "EO:13050": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13050.jsonl"
+      },
+      "EO:13283": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13283.jsonl"
+      },
+      "EO:13028": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13345.jsonl"
+      },
+      "EO:13131": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13345.jsonl"
+      },
+      "EO:12734": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13350.jsonl"
+      },
+      "EO:12817": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13350.jsonl"
+      },
+      "EO:12720": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-first-three.jsonl"
+      },
+      "EO:12813": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-first-three.jsonl"
+      },
+      "EO:13263": {
+        "decision": "accept",
+        "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-first-three.jsonl"
+      }
+    },
+    "frozen_review_file_row_counts": {
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_11868.jsonl": 1,
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13050.jsonl": 1,
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13283.jsonl": 2,
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13345.jsonl": 2,
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13350.jsonl": 2,
+      "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-first-three.jsonl": 3
+    },
+    "duplicate_candidate_rows_counted_once": true
+  },
+  "initial_50_evaluation_phase": {
+    "evidence_snapshot": "research/production/claim-kit-pilot-2026-10-18/TELEMETRY_SUMMARY.json",
+    "recorded_function_floor": 204,
+    "recorded_nested_command_floor_separate": 223,
+    "recorded_collaboration_floor_separate": 37,
+    "includes": "Initial producer production, initial independent review, corrected EO13028 rereview and producer13385 earlier explicit 11/11/2 snapshot.",
+    "excludes": "Unrecorded producer11948 counters, ambiguous producer13385 later total, unknown incremental corrections, root orchestration and aggregation overhead.",
+    "preservation_note": "Keep the earlier phase floor; do not recompute from current cumulative OUTCOMES. Earlier summary has historical pins for files later updated; final current-byte pin manifest and stale-pin reconciliation below supersede those pins."
+  },
+  "frozen_confirmation_phase": {
+    "producer_records": [
+      {
+        "family": "EO:11948",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": null,
+        "incremental_nested_exec_command": null,
+        "incremental_collaboration_send_message": null,
+        "note": "Cumulative 12 functions, 14 nested commands, 4 messages spans initial and freeze turns. Initial phase had no counts. Kept separately; no fabricated phase split."
+      },
+      {
+        "family": "EO:12869",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": 3,
+        "incremental_nested_exec_command": 3,
+        "incremental_collaboration_send_message": null,
+        "note": "incremental_measurements; collaboration increment unrecorded."
+      },
+      {
+        "family": "EO:13138",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": 4,
+        "incremental_nested_exec_command": 4,
+        "incremental_collaboration_send_message": 0,
+        "note": "incremental_telemetry; zero collaboration explicitly recorded."
+      },
+      {
+        "family": "EO:13316",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": 3,
+        "incremental_nested_exec_command": 3,
+        "incremental_collaboration_send_message": null,
+        "note": "metrics.incremental_tool_calls; collaboration increment unrecorded."
+      },
+      {
+        "family": "EO:13345",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": 5,
+        "incremental_nested_exec_command": 5,
+        "incremental_collaboration_send_message": 2,
+        "note": "telemetry explicitly separates incremental from cumulative 18/18/6."
+      },
+      {
+        "family": "EO:13350",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": 4,
+        "incremental_nested_exec_command": 4,
+        "incremental_collaboration_send_message": null,
+        "note": "incremental_usage.actual_tool_calls explicitly defined as four functions, one command each; collaboration unrecorded."
+      },
+      {
+        "family": "EO:13385",
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/FREEZE_CONFIRMATION.json",
+        "incremental_functions_exec": null,
+        "incremental_nested_exec_command": null,
+        "incremental_collaboration_send_message": null,
+        "note": "incremental_tool_calls=9 and cumulative_tool_calls=23 are uncategorized. Do not infer functions, commands or messages or add them to prior snapshot."
+      }
+    ],
+    "reviewer_records": [
+      {
+        "batch": "first-three",
+        "incremental_functions_exec": 9,
+        "incremental_nested_exec_command": 9,
+        "incremental_collaboration_send_message": 2,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-frozen-first-three.json",
+        "unique_candidates": 3,
+        "note": "Incremental frozen rereview only; initial review counters excluded."
+      },
+      {
+        "batch": "11868",
+        "incremental_functions_exec": 5,
+        "incremental_nested_exec_command": 5,
+        "incremental_collaboration_send_message": 1,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_11868.jsonl",
+        "unique_candidates": 1,
+        "note": "Incremental frozen rereview only; initial review counters excluded."
+      },
+      {
+        "batch": "13050",
+        "incremental_functions_exec": 7,
+        "incremental_nested_exec_command": 7,
+        "incremental_collaboration_send_message": 1,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13050.jsonl",
+        "unique_candidates": 1,
+        "note": "Incremental frozen rereview only; initial review counters excluded."
+      },
+      {
+        "batch": "13283",
+        "incremental_functions_exec": 9,
+        "incremental_nested_exec_command": 9,
+        "incremental_collaboration_send_message": 1,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13283.jsonl",
+        "unique_candidates": 1,
+        "note": "Incremental frozen rereview only; initial review counters excluded."
+      },
+      {
+        "batch": "family-13345",
+        "incremental_functions_exec": 7,
+        "incremental_nested_exec_command": 7,
+        "incremental_collaboration_send_message": 1,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-frozen-13345.json",
+        "unique_candidates": 2,
+        "note": "Incremental frozen rereview only; initial review counters excluded."
+      },
+      {
+        "batch": "family-13350",
+        "incremental_functions_exec": 7,
+        "incremental_nested_exec_command": 7,
+        "incremental_collaboration_send_message": null,
+        "evidence_path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13350.jsonl",
+        "unique_candidates": 2,
+        "note": "Family telemetry repeated in two candidate rows is counted once; final reporting can be outside counter scope."
+      }
+    ],
+    "known_categorized_producer_increment_subtotal": {
+      "functions_exec": 19,
+      "nested_exec_command_separate": 19,
+      "collaboration_send_message_separate": 2,
+      "function_coverage": "5 of 7 producer freeze confirmation batches; message coverage 2 of 7, never treat missing as zero"
+    },
+    "known_categorized_reviewer_increment_subtotal": {
+      "functions_exec": 44,
+      "nested_exec_command_separate": 44,
+      "collaboration_send_message_separate": 6,
+      "function_coverage": "All six disjoint frozen review batches for ten candidates; message coverage 5 of 6"
+    },
+    "known_categorized_increment_subtotal": {
+      "functions_exec": 63,
+      "nested_exec_command_separate": 63,
+      "collaboration_send_message_separate": 8
+    },
+    "uncategorized_producer_13385": {
+      "incremental_reported_total": 9,
+      "cumulative_reported_total": 23,
+      "included_in_categorized_totals": false
+    }
+  },
+  "producer_11948_cross_phase_cumulative_addition": {
+    "functions_exec": 12,
+    "nested_exec_command_separate": 14,
+    "collaboration_send_message_separate": 4,
+    "evidence_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/FREEZE_CONFIRMATION.json",
+    "counting": "Added once across both phases, because initial204 floor omitted every11948 producer call. No allocation to initial versus freeze is available."
+  },
+  "all_phase_recorded_floor": {
+    "functions_exec": 279,
+    "nested_exec_command_separate": 300,
+    "collaboration_send_message_separate": 49,
+    "function_arithmetic": "204 initial recorded floor + 19 known producer freeze increments + 44 known frozen reviewer increments + 12 cross-phase11948 cumulative",
+    "functions_per_10_frozen_candidates": 279,
+    "functions_per_frozen_candidate": 27.9,
+    "functions_per_50_evaluated": 279,
+    "functions_per_evaluated_order": 5.58,
+    "scope": "A conservative recorded floor, not complete pilot tool cost. Wrappers and nested commands are not added to one another. Collaboration calls remain separate."
+  },
+  "wall_time": {
+    "full_machine_cold_run_seconds": 280.517,
+    "cold_run_basis": "Coordinator-supplied actual cold-run duration; distinct from agent reasoning and total pilot elapsed time.",
+    "full_pilot_elapsed_seconds": null,
+    "why_unavailable": "Most initial task clocks began after reading, some freeze counters have no full timer, and parallel task durations cannot be summed into elapsed pilot wall."
+  },
+  "model_usage": {
+    "new_input_tokens": null,
+    "cache_or_reread_input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "reason": "No per-agent model token/cache metrics exposed. Do not infer them from tool calls, wall time or file size."
+  },
+  "baseline": {
+    "base_commit": "5e3e00b2c1bdb0fcd68202b4aff735f7dd691353",
+    "tracker_ready": 130,
+    "universe": 14972,
+    "decided": 3359,
+    "accepted_claims_existing": 176,
+    "baseline_new_input_tokens_per_accepted_claim_approx": 33000,
+    "baseline_cached_input_tokens_per_accepted_claim_approx": 2100000,
+    "baseline_tool_calls_per_accepted_claim_approx": 8,
+    "baseline_reviewer_rejection_rate": 0.107,
+    "pilot_model_token_telemetry_available": false
+  },
+  "target_assessment": {
+    "target": "50 committed whole-lifecycle claims and substantial cost reduction",
+    "met": false,
+    "reason": "Only ten frozen AI-accepted candidates are evidenced at this snapshot; commitment remains conditional on root final checks. Recorded279-function floor is27.9 per frozen candidate, while baseline was approximately8 calls per accepted claim with an unspecified call definition. No token/cache metrics or complete pilot costs exist to establish substantial reduction.",
+    "review_rejection_comparison": "Initial10% (1/10) versus baseline10.7% (about11%); too small and differently scoped to claim an improvement."
+  },
+  "pin_policy": "All evidence_files pins below are hashes of current files. Historical initial-phase hashes are documentary only unless an exact preserved pre-freeze snapshot path is found. Never attach an old hash to current changed bytes as verification.",
+  "historical_initial_pin_reconciliation": [
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "historical_sha256_documentary_only": "cb6ae1864236b6dc5f6adc67676b8e6f0fa7b12dc4d5cb9278e3d8c10729536f",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "current_sha256": "3b680a29a71e8f29578ba2f0056ca107467ac009c0ccc1097dd402987714fcc4",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "historical_sha256_documentary_only": "d9f4782953c6e83bee08e45f43b554d9942513eafd12068f044c2598b3e906cd",
+      "matching_preserved_snapshot": "research/production/claim-kit-pilot-2026-10-18/producer-12869/pre-freeze/OUTCOMES.json",
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "current_sha256": "6e86b56542e6ababe43dd2dafa21f3393eef3e18aeee62d31e9128bea98008c8",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/HANDOFF.json",
+      "historical_sha256_documentary_only": "6741d4fa9d7671a9593902fea452ace65cdb3e45a65dbc094950af1de6345057",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/HANDOFF.json",
+      "current_sha256": "1ba5fb45c8b98f7200ab8bdb7cf12ceaf1069b090821da43e669496cb6d18779",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/OUTCOMES.json",
+      "historical_sha256_documentary_only": "95b50d0b5a8db79e61daf074a4614089ba03eb66043edc0d96ed55bc67af4c74",
+      "matching_preserved_snapshot": "research/production/claim-kit-pilot-2026-10-18/producer-13138/pre-freeze/OUTCOMES.json",
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/OUTCOMES.json",
+      "current_sha256": "e3a784c1ce26549c1268db30e6481bf6ffae78f665a79edb10954f7311475ff0",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "historical_sha256_documentary_only": "cb5999ca611952d9c7af3431dcfa1ae195403c52a94550dedc47c32684b4c693",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "current_sha256": "2e482d05d82dd15c36d31f4a2a7a1708778782ce8a2001912986800998b5329e",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "historical_sha256_documentary_only": "fe3475a2989b03b81f991ddbee9f06c664495b6cf1aa284115e7f51524752720",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "current_sha256": "f5772a005da22739e5936f7ff090fafa901ce2b836c467202416113ba207d4df",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "historical_sha256_documentary_only": "2e3cafc74d630904ff33a8c2d6095f70f19729cf9807442093d0c61632092aa0",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "current_sha256": "8859a89d0b94841322b60846c06d70557e743f2d1ed712bb75dbe0d92b723799",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    },
+    {
+      "historical_path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "historical_sha256_documentary_only": "bb04bcf6b29bf044d1338062cd54f102dc98460f455b9219abceb2aa095a33c1",
+      "matching_preserved_snapshot": null,
+      "current_path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "current_sha256": "e994b982810b811831d7aebc9143dd247fc0b597068cd864ed1f9e176ac163b1",
+      "note": "Old hash is historical documentation, not a current-path verification. Use current_sha256 or matching snapshot path for live pinning."
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/BASELINE.json",
+      "sha256": "8330149778c73ac7a2e6150ddac9cb77a8b5421858ee26dd345b223862d11242",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/TELEMETRY_SUMMARY.json",
+      "sha256": "fdc2567701f5176866427f4c2c6a2b46ad1dfc8df471d7575d532cfa776f6b43",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/FREEZE_CONFIRMATION.json",
+      "sha256": "92b92c57d6961dc3785728d21ac15c71425c3ec45b0f48fbd316a3167680f017",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-11948/OUTCOMES.json",
+      "sha256": "3b680a29a71e8f29578ba2f0056ca107467ac009c0ccc1097dd402987714fcc4",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12692/OUTCOMES.json",
+      "sha256": "aa3b114bd0545c22a008c8a3092e27b68b5503537c0f12f1beabba54a3e2c148",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/FREEZE_CONFIRMATION.json",
+      "sha256": "9075f4a8af8355b0042eed2f6b612f6fc6dd018474d11080430b445a486a5a6a",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/OUTCOMES.json",
+      "sha256": "6e86b56542e6ababe43dd2dafa21f3393eef3e18aeee62d31e9128bea98008c8",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12869/pre-freeze/OUTCOMES.json",
+      "sha256": "d9f4782953c6e83bee08e45f43b554d9942513eafd12068f044c2598b3e906cd",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-12919/OUTCOMES.json",
+      "sha256": "97855cfe649b03d8638329895336565ec1c870d98cf7875e348866be1d8aa61e",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/FREEZE_CONFIRMATION.json",
+      "sha256": "d2e1362ed8cd9ccf30c013e3e80ef1f53263a8ea6bf77b2bf5e19a053289023b",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/HANDOFF.json",
+      "sha256": "1ba5fb45c8b98f7200ab8bdb7cf12ceaf1069b090821da43e669496cb6d18779",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/OUTCOMES.json",
+      "sha256": "e3a784c1ce26549c1268db30e6481bf6ffae78f665a79edb10954f7311475ff0",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13138/pre-freeze/OUTCOMES.json",
+      "sha256": "95b50d0b5a8db79e61daf074a4614089ba03eb66043edc0d96ed55bc67af4c74",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13225/OUTCOMES.json",
+      "sha256": "0521cb92b5f5d86309a9e772ed3a5658715d94fd6cedba49fd5caebb948ad99e",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/FREEZE_CONFIRMATION.json",
+      "sha256": "d61e4200c87d2933f8a5b7486cdcdfa9585ba61256720726ea6f91f056575f8b",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13316/OUTCOMES.json",
+      "sha256": "2e482d05d82dd15c36d31f4a2a7a1708778782ce8a2001912986800998b5329e",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/FREEZE_CONFIRMATION.json",
+      "sha256": "a9191b637ee1e404414190fad3cd8ddaf60da9742d394b1487bc029798587d6e",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/OUTCOMES.json",
+      "sha256": "f5772a005da22739e5936f7ff090fafa901ce2b836c467202416113ba207d4df",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/FREEZE_CONFIRMATION.json",
+      "sha256": "e62f5a139607988a0c5bab32c7d8de6a63e985f4e130b5cc956de3960d656df6",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/OUTCOMES.json",
+      "sha256": "8859a89d0b94841322b60846c06d70557e743f2d1ed712bb75dbe0d92b723799",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/FREEZE_CONFIRMATION.json",
+      "sha256": "31b925070ba0b0810dfb802e00004f21d71634751e51a62189910fa1dbc70c1a",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13385/OUTCOMES.json",
+      "sha256": "e994b982810b811831d7aebc9143dd247fc0b597068cd864ed1f9e176ac163b1",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13423/OUTCOMES.json",
+      "sha256": "ed1ce1ffd5e511efa3c6c4f8cd04b712c769c4cb41aba9753d8b2d4f9068eb51",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-14173/OUTCOMES.json",
+      "sha256": "721a3c4c770a5f2061c17814981fe792d56873153eb1be5683492523ef510564",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_11868.jsonl",
+      "sha256": "f47b1159370f53971119929cdfc33f1bdb1bf806fd49c6d2bf39397c23d8365a",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_13050.jsonl",
+      "sha256": "e3556dcf717690f13a4b408922b3dbc96434c6255b09a297c7cf7924fa7ec24b",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/EO_13283.jsonl",
+      "sha256": "3b4a13ea0f829c8c4763f8ff0c9eab54f617ac45a932745c2d9c53f5af028139",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-11868.json",
+      "sha256": "d8ac6695fcf2b57d567711c10facfec54583a548fbb504e231d2057716b9731d",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13050.json",
+      "sha256": "5ba43d25624e768c1f057e5000808edd36ac84f445dfc60ffc5658d054b8677f",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13283.json",
+      "sha256": "dfdfabc55dc640e7dc2bd058ec988e50e9acf150de72b772a6599ab4e32c90f6",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345-rereview.json",
+      "sha256": "ba25c9720e75ceb968c8d1af7b5db9f538625de3025e0b3d1c94b1a7299ffa3a",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13345.json",
+      "sha256": "417b9c426f6c6ed97ddd5c05a5664bfb5be18c5a93dc0eaeb1e8e7168bbe1eb1",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-13350.json",
+      "sha256": "5062ed2d7e74199efb1cb617a32f809ad425d08f1ab0a081793d058d49666832",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-first-three.json",
+      "sha256": "17ed3ab13b85e259751845837fe66889fc20cc2e029e287ed7e2676283fe6d25",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-frozen-13345.json",
+      "sha256": "1fa50fbe4ffa433cb0ba8612f3ed4119122da507b280899a7704708e8d3145f7",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-frozen-first-three.json",
+      "sha256": "2b9364de4692ca6e984315391cbe3eb5aab5bb07c487895df753c911d01077b1",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13345-rereview.jsonl",
+      "sha256": "21de052bc189f2c9008612856c3fb9b0714bbb23cf42d83282e5f29c01bd87b2",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13345.jsonl",
+      "sha256": "df224322da70484958d21be1828702954332f2c5edf14fc12ef9b56158bfae10",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/family-13350.jsonl",
+      "sha256": "5166bdb7b42fee38a0610eb14f8aae5a79e9396fe188a831243a1b04af6394a1",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/first-three.jsonl",
+      "sha256": "335509939bd30df42659a30e6a632703806b6131efb7a3679dac88f82d62c32b",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_11868.jsonl",
+      "sha256": "be7589a28fe616f3548d2aa03b6fd4befe6650a79d918e7269e562410b4d7425",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13050.jsonl",
+      "sha256": "5fcfe5ae88da981f6d0ebbe189dfa8bc902b5ce306e9b3dd702093946d60296c",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-EO_13283.jsonl",
+      "sha256": "1db9fbc11567413e88e6920a7edcd28a1c6df648f52379b975322804a8b015cf",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13345.jsonl",
+      "sha256": "1a32326502b55350063e9fc5ce9c4376c21ebcce4ce845cc029320b95cc53d4d",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-family-13350.jsonl",
+      "sha256": "c541130c2e7549d409f5307fd0de031d6b1b3189722089a20095d6611e3e9188",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/frozen-first-three.jsonl",
+      "sha256": "5c66ca6a89659f5a52719b3ec0470fa91432b10866e5fc57d4fd70c44656e97f",
+      "scope": "Current bytes at final aggregation snapshot; this pin does not assert that cumulative counters belong solely to the initial phase."
+    }
+  ],
+  "aggregation_overhead_excluded": {
+    "final_refresh_functions_exec": 6,
+    "final_refresh_nested_exec_command": 6,
+    "final_refresh_collaboration_messages_before_write": 1,
+    "note": "This refresh only; excluded from production/review costs. Includes one failed JSONL single-object read."
+  }
+}

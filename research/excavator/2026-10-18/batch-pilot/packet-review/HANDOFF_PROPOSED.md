@@ -1,0 +1,9 @@
+## 2026-10-18 09:38 ET: independent six-case packet completeness audit
+
+- **Done:** Independent decoder and readable-material auditor pass the unchanged pinned six-case packet. All six dossier JSON values/fingerprints, 146 evidence/text records, 6 originals, 16 actor contexts, 43 clauses, 26 exception/savings records, 35 source dictionaries, 23 blocks and 33 held text-file hashes checked. The exact packet-era codec source hash is verified. See `packet-review/REPORT.md` and `FINAL_REVIEW.json`.
+- **Measured:** Normalized input 650,060 bytes (raw files 650,064); packet 376,608 bytes; READ 263,944 bytes. Separate payload reductions 42.07% and 59.40%; both files together 640,552 bytes / 1.46% reduction. No net research saving inferred. Final audit script 0.063 seconds. Own audit-phase runtime through 13:38:04 UTC: 3,651,329 input (3,604,224 cached), 19,721 output (6,674 reasoning included), 18 outer tools; wall 507.365 seconds. Final handoff/measurement calls and billing unavailable.
+- **Preserved:** Initial audit, packet/readable copies, all pins, four detected deliberate loss controls, and initial control-harness newline failure. No producer outputs or decisions were read and no legal outcome hints sent to an arm.
+- **Next:** Root can use this verdict for the six pinned evidence dossiers. Separately verify the full fifty codec extension; actual overflow count is zero in this readable sample. Reaudit any changed packet/renderer output before treating its material completeness as checked.
+- **Do not:** Treat packet completeness as original-source authentication or legal acceptance, generalize this readable verdict to all fifty, reproduce the unknown-member prototype figures, or add the two representation savings together.
+
+This proposed note remains inside the assigned packet-review folder; no shared HANDOFF file was edited.

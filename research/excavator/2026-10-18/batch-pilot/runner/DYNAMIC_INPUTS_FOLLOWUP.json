@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "issue": "Root review found undeclared dynamic claim-kit reads in jobs/*/data and jobs/*/output.",
+  "result": "fixed_and_full_suite_passed",
+  "started_utc": "2026-10-18T13:39:41.157851+00:00",
+  "finished_utc": "2026-10-18T13:44:15.133216+00:00",
+  "observed_wall_seconds": 273.975,
+  "declaration": "jobs/claim-kit/inputs.txt",
+  "patterns": [
+    "jobs/*/data/**",
+    "jobs/*/output/**"
+  ],
+  "semantics": "inputs.txt uses fnmatch paths like triggers.txt, with wildcards spanning separators; own output excluded.",
+  "sparse_acquisition": "prepare collects only selected skip-worktree file parents, adds them via sparse-checkout --stdin, and leaves unmatched sparse trees excluded.",
+  "full_final_road_suite": {
+    "passed": 53,
+    "failed": 0,
+    "groups": [
+      {
+        "passed": 13,
+        "seconds": 0.141
+      },
+      {
+        "passed": 5,
+        "seconds": 0.035
+      },
+      {
+        "passed": 1,
+        "seconds": 0.006
+      },
+      {
+        "passed": 11,
+        "seconds": 0.248
+      },
+      {
+        "passed": 23,
+        "seconds": 54.925
+      }
+    ],
+    "log": "final-road-tests.log"
+  },
+  "new_meaningful_fixtures": [
+    "new source producer nested data invalidates captured consumer",
+    "changed nonpredecessor source data invalidates captured consumer",
+    "changed nonpredecessor output invalidates captured consumer",
+    "new output producer invalidates captured consumer",
+    "dynamic declaration preserves exact same-invocation producer chain",
+    "prepare materializes only matching sparse declarations",
+    "shell runner acquires dynamic catalogue from sparse checkout"
+  ],
+  "unchanged_frozen_claim_kit_code": true,
+  "frozen_code_checks": {
+    "assemble.py": {
+      "pinned": "b3bb75865b49678fafcc69838fa52dccec760f102d5427065e2d00310fd16c03",
+      "actual": "b3bb75865b49678fafcc69838fa52dccec760f102d5427065e2d00310fd16c03"
+    },
+    "build.py": {
+      "pinned": "defb19b9cd222eccb19e776452983622e9feb3e612d1692fdc6bb9cc41a94657",
+      "actual": "defb19b9cd222eccb19e776452983622e9feb3e612d1692fdc6bb9cc41a94657"
+    },
+    "current_evidence.py": {
+      "pinned": "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c",
+      "actual": "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c"
+    },
+    "excavate.py": {
+      "pinned": "dcf5a83e0b143daf364e718512c17efb6d04414b36bd13e10a099aa9e2256cca",
+      "actual": "dcf5a83e0b143daf364e718512c17efb6d04414b36bd13e10a099aa9e2256cca"
+    },
+    "inputs.py": {
+      "pinned": "d08b3ddd8d8b42c9b0223bf0e0c4eef8c13f63bb2beb2221c2227ecaf38f4dcc",
+      "actual": "d08b3ddd8d8b42c9b0223bf0e0c4eef8c13f63bb2beb2221c2227ecaf38f4dcc"
+    }
+  },
+  "current_compiled_non_jobs_text_representation_paths": 0,
+  "actual_agent_tokens": null,
+  "actual_agent_token_reason": "No per-agent billing/token meter is exposed in this subtask.",
+  "coordination": "@Astra: runner owner review is requested for the declaration/prepare mechanism. Code/output catalogue changes must update inputs.txt or needs.txt when reads move outside the declared trees. Root records coordination in its own HANDOFF; this subtask edits no HANDOFF files.",
+  "project_commits_or_pushes": false
+}

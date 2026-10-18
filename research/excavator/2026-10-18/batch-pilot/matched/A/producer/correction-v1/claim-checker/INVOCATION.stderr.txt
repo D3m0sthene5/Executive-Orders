@@ -1,0 +1,841 @@
+test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught) ... ERROR
+test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard) ... ERROR
+test_dates (test_checker.CheckerTests.test_dates) ... ERROR
+test_fetch_with_class_based_ladder (test_checker.CheckerTests.test_fetch_with_class_based_ladder) ... ERROR
+test_good_claim_passes_everything (test_checker.CheckerTests.test_good_claim_passes_everything) ... ERROR
+test_gpo_published_hash_counts_as_held (test_checker.CheckerTests.test_gpo_published_hash_counts_as_held) ... ERROR
+test_local_bytes_differ_from_record (test_checker.CheckerTests.test_local_bytes_differ_from_record) ... ERROR
+test_main_end_to_end_with_limit_and_fetch (test_checker.CheckerTests.test_main_end_to_end_with_limit_and_fetch) ... ERROR
+test_main_with_no_claims (test_checker.CheckerTests.test_main_with_no_claims) ... ERROR
+test_malformed_values_do_not_stop_the_run (test_checker.CheckerTests.test_malformed_values_do_not_stop_the_run)
+A list-valued scope_id makes claim_gate raise; that claim is reported and the run goes on. ... ERROR
+test_opus_hash_only_and_committed_index (test_checker.CheckerTests.test_opus_hash_only_and_committed_index) ... ERROR
+test_opus_text_pack (test_checker.CheckerTests.test_opus_text_pack) ... ERROR
+test_partial_claim_steps (test_checker.CheckerTests.test_partial_claim_steps) ... ERROR
+test_pdf_quote (test_checker.CheckerTests.test_pdf_quote) ... ERROR
+test_quote_inside_a_sources_list_item (test_checker.CheckerTests.test_quote_inside_a_sources_list_item) ... ERROR
+test_source_of_another_order (test_checker.CheckerTests.test_source_of_another_order) ... ERROR
+test_too_short_quotation (test_checker.CheckerTests.test_too_short_quotation) ... ERROR
+test_unknown_instrument_and_year_only_signing (test_checker.CheckerTests.test_unknown_instrument_and_year_only_signing) ... ERROR
+test_verify_by_download_uses_cache_and_budget (test_checker.CheckerTests.test_verify_by_download_uses_cache_and_budget) ... ERROR
+test_cited_orders (test_checker.PureFunctionTests.test_cited_orders) ... ok
+test_find_quote (test_checker.PureFunctionTests.test_find_quote) ... ok
+test_html_and_lfs (test_checker.PureFunctionTests.test_html_and_lfs) ... ERROR
+test_norm_url_and_sha (test_checker.PureFunctionTests.test_norm_url_and_sha) ... ok
+test_prepared_text_is_reused (test_checker.PureFunctionTests.test_prepared_text_is_reused) ... ok
+test_committed_volume_behind_an_lfs_pointer_is_held (test_checker.SourceBookTests.test_committed_volume_behind_an_lfs_pointer_is_held) ... ERROR
+test_volume_bytes_on_this_machine_are_rehashed (test_checker.SourceBookTests.test_volume_bytes_on_this_machine_are_rehashed) ... ERROR
+test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.test_volume_missing_from_the_checkout_is_not_held) ... ERROR
+test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held) ... ERROR
+
+======================================================================
+ERROR: test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ardanane\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ardanane\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ardanane\\research'
+
+======================================================================
+ERROR: test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-y1t7frfw\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-y1t7frfw\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-y1t7frfw\\research'
+
+======================================================================
+ERROR: test_dates (test_checker.CheckerTests.test_dates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-71jp_yho\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-71jp_yho\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-71jp_yho\\research'
+
+======================================================================
+ERROR: test_fetch_with_class_based_ladder (test_checker.CheckerTests.test_fetch_with_class_based_ladder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ff7taizv\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ff7taizv\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-ff7taizv\\research'
+
+======================================================================
+ERROR: test_good_claim_passes_everything (test_checker.CheckerTests.test_good_claim_passes_everything)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-hrwby6yl\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-hrwby6yl\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-hrwby6yl\\research'
+
+======================================================================
+ERROR: test_gpo_published_hash_counts_as_held (test_checker.CheckerTests.test_gpo_published_hash_counts_as_held)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-o5kit8fv\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-o5kit8fv\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-o5kit8fv\\research'
+
+======================================================================
+ERROR: test_local_bytes_differ_from_record (test_checker.CheckerTests.test_local_bytes_differ_from_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-722m4uoh\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-722m4uoh\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-722m4uoh\\research'
+
+======================================================================
+ERROR: test_main_end_to_end_with_limit_and_fetch (test_checker.CheckerTests.test_main_end_to_end_with_limit_and_fetch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-tkul9v3y\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-tkul9v3y\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-tkul9v3y\\research'
+
+======================================================================
+ERROR: test_main_with_no_claims (test_checker.CheckerTests.test_main_with_no_claims)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-wjp3a9c7\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-wjp3a9c7\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-wjp3a9c7\\research'
+
+======================================================================
+ERROR: test_malformed_values_do_not_stop_the_run (test_checker.CheckerTests.test_malformed_values_do_not_stop_the_run)
+A list-valued scope_id makes claim_gate raise; that claim is reported and the run goes on.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-t2_9q7r0\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-t2_9q7r0\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-t2_9q7r0\\research'
+
+======================================================================
+ERROR: test_opus_hash_only_and_committed_index (test_checker.CheckerTests.test_opus_hash_only_and_committed_index)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-0f6tvj_r\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-0f6tvj_r\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-0f6tvj_r\\research'
+
+======================================================================
+ERROR: test_opus_text_pack (test_checker.CheckerTests.test_opus_text_pack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-q94iwgu7\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-q94iwgu7\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-q94iwgu7\\research'
+
+======================================================================
+ERROR: test_partial_claim_steps (test_checker.CheckerTests.test_partial_claim_steps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-sbqwenay\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-sbqwenay\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-sbqwenay\\research'
+
+======================================================================
+ERROR: test_pdf_quote (test_checker.CheckerTests.test_pdf_quote)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-_xx_rii4\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-_xx_rii4\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-_xx_rii4\\research'
+
+======================================================================
+ERROR: test_quote_inside_a_sources_list_item (test_checker.CheckerTests.test_quote_inside_a_sources_list_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-icn0j4lw\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-icn0j4lw\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-icn0j4lw\\research'
+
+======================================================================
+ERROR: test_source_of_another_order (test_checker.CheckerTests.test_source_of_another_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9wvhn3q8\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9wvhn3q8\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9wvhn3q8\\research'
+
+======================================================================
+ERROR: test_too_short_quotation (test_checker.CheckerTests.test_too_short_quotation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9had0coa\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9had0coa\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-9had0coa\\research'
+
+======================================================================
+ERROR: test_unknown_instrument_and_year_only_signing (test_checker.CheckerTests.test_unknown_instrument_and_year_only_signing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-pcdt4nvf\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-pcdt4nvf\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-pcdt4nvf\\research'
+
+======================================================================
+ERROR: test_verify_by_download_uses_cache_and_budget (test_checker.CheckerTests.test_verify_by_download_uses_cache_and_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-7rc7hwus\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-7rc7hwus\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-7rc7hwus\\research'
+
+======================================================================
+ERROR: test_html_and_lfs (test_checker.PureFunctionTests.test_html_and_lfs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 614, in test_html_and_lfs
+    p.write_bytes(S.LFS_MAGIC + b"\noid sha256:abc\nsize 5\n")
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1036, in write_bytes
+    with self.open(mode='wb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\tmpp3rdjy0h\\x.zip'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\tmpp3rdjy0h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 612, in test_html_and_lfs
+    with tempfile.TemporaryDirectory() as d:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\tmpp3rdjy0h'
+
+======================================================================
+ERROR: test_committed_volume_behind_an_lfs_pointer_is_held (test_checker.SourceBookTests.test_committed_volume_behind_an_lfs_pointer_is_held)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-qm8xtz25\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-qm8xtz25\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-qm8xtz25\\research'
+
+======================================================================
+ERROR: test_volume_bytes_on_this_machine_are_rehashed (test_checker.SourceBookTests.test_volume_bytes_on_this_machine_are_rehashed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-g7_9u4y2\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-g7_9u4y2\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-g7_9u4y2\\research'
+
+======================================================================
+ERROR: test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.test_volume_missing_from_the_checkout_is_not_held)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-jqrqdj4y\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-jqrqdj4y\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-jqrqdj4y\\research'
+
+======================================================================
+ERROR: test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-r_tv7x5a\\research\\stage15\\CENSUS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-r_tv7x5a\\research\\stage15'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 231, in setUp
+    self.repo, self.jobdir = build_repo(self.tmp)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 114, in build_repo
+    write_csv(r / C.P["universe"], ["id", "included_in_bibliography", "date_effective"],
+  File "C:\Users\danie\Documents\Codex\2026-10-18\files-pasted-by-the-user-work\work\executive-orders\jobs\claim-checker\test_checker.py", line 81, in write_csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\danie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\danie\\AppData\\Local\\Packages\\sandbox.{2edfe34e-c3bf-4bcb-8545-59c7e5654178}\\AC\\Temp\\claim-checker-test-r_tv7x5a\\research'
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.070s
+
+FAILED (errors=24)
+Unit tests failed; the claim checker was not run.
