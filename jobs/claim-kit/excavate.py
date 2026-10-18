@@ -15,9 +15,11 @@ FLAGS = re.I | re.M
 MONTHS = {name.lower(): n for n, name in enumerate(calendar.month_name) if name}
 MONTHS.update({name.lower(): n for n, name in enumerate(calendar.month_abbr) if name})
 DATE = r"(?:\d{4}-\d{2}-\d{2}|(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan\.?|Feb\.?|Mar\.?|Apr\.?|Jun\.?|Jul\.?|Aug\.?|Sep\.?|Sept\.?|Oct\.?|Nov\.?|Dec\.?)\s+\d{1,2}(?:st|nd|rd|th)?\s*,?\s*\d{4}|\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})"
-EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(\d{1,5}[A-Z]?(?:½)?)(?![\w-]|,\d)", re.I)
+EO_NUMBER = r"\d(?:[ \t]*\d){0,4}[A-Z]?(?:½)?"
+EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
 CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?)\b", re.I)
-HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+)(?P<sec>[0-9]+[A-Za-z]?)[.):]?)|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\((?P<letter>[a-z])\))|(?P<item>(?:\((?P<number>[0-9]+|[ivx]{2,})\)|(?P<decimal>[0-9]+)\.(?=\s))))", re.I)
+HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)[.):]?)|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
+WHITE_HOUSE = r"(?im)^[ \t]*T[ \t]*H[ \t]*E[ \t]+W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E[ \t]*[,.;]?[ \t]*$"
 NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "twelve": 12, "thirty": 30, "sixty": 60, "ninety": 90}
 NUMBERS.update({"eleven": 11, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20, "forty": 40, "fifty": 50, "seventy": 70, "eighty": 80})
 NUMBER = r"(?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[ -](?:one|two|three|four|five|six|seven|eight|nine)|\d+|" + "|".join(NUMBERS) + r")"
@@ -71,16 +73,39 @@ def _trim(text, start, end):
 
 
 def _page(text, offset, source):
+    # Producer page markers carry actual PDF page numbers, not relative page
+    # indices. Use the closest preceding marker without modifying the text.
+    markers = list(re.finditer(r"(?im)^===\s*PDF\s+page\s+(\d+)\s+of\s+\d+\s*===", text[:offset]))
+    if markers:
+        return int(markers[-1][1])
     # Form feeds delimit PDF pages when present; otherwise don't invent a page.
     explicit = re.search(r"PDF\s+pages?\s+(\d+)", str(source.get("page_or_item", "")), re.I)
     first = int(explicit[1]) if explicit else None
     return first + text[:offset].count("\f") if first is not None else None
 
 
+def _signature_start(text, end):
+    prior = re.search(r"(?m)^([^\n]{3,75})\n[ \t]*\Z", text[:end])
+    if prior:
+        letters = re.sub(r"[^A-Za-z]", "", prior[1])
+        presidents = ("GeorgeWashington", "JohnAdams", "ThomasJefferson", "JamesMadison", "JamesMonroe", "JohnQuincyAdams", "AndrewJackson", "MartinVanBuren", "WilliamHenryHarrison", "JohnTyler", "JamesKPolk", "ZacharyTaylor", "MillardFillmore", "FranklinPierce", "JamesBuchanan", "AbrahamLincoln", "AndrewJohnson", "USGrant", "UlyssesSGrant", "RutherfordBHayes", "JamesAGarfield", "ChesterAArthur", "GroverCleveland", "BenjaminHarrison", "WilliamMcKinley", "TheodoreRoosevelt", "WilliamHTaft", "WoodrowWilson", "WarrenGHarding", "CalvinCoolidge", "HerbertHoover", "FranklinDRoosevelt", "HarrySTruman", "DwightDEisenhower", "JohnFKennedy", "LyndonBJohnson", "RichardNixon", "RichardMNixon", "GeraldRFord", "JimmyCarter", "RonaldReagan", "GeorgeBush", "GeorgeHWBush", "WilliamJClinton", "GeorgeWBush", "BarackObama", "BarackHObama", "DonaldJTrump", "JosephRBidenJr")
+        signature = (letters.lower() in {p.lower() for p in presidents} or
+                     bool(letters and letters.isupper() and len(prior[1].split()) <= 6))
+        if signature and not re.search(r"[;:()\d]|\b(?:shall|order|unless|hereby|extended)\b", prior[1], re.I):
+            return prior.start()
+    return end
+
+
 def _body_end(text):
-    patterns = [r"(?m)^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", r"(?im)^\s*(?:THE WHITE HOUSE|The White House)\s*[,.;]?\s*$", r"(?im)^\s*IN WITNESS WHEREOF\b"]
+    patterns = [r"(?m)^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", WHITE_HOUSE, r"(?im)^\s*IN WITNESS WHEREOF\b"]
     found = [m.start() for p in patterns for m in re.finditer(p, text) if not re.search(r"(?im)^\s*SCHEDULE\b", text[m.end():])]
-    return min(found, default=len(text))
+    end = min(found, default=len(text))
+    # A signature immediately before the White House line is recognizable as
+    # a short name line. Keep this bounded to that position, not arbitrary
+    # uppercase substantive headings elsewhere in the document.
+    if any(m.start() == end for m in re.finditer(WHITE_HOUSE, text)):
+        end = _signature_start(text, end)
+    return end
 
 
 def _paragraph_start(text, offset):
@@ -115,6 +140,14 @@ def segment(instrument_id, text, source):
             whereas = re.search(r"\b(?:NOW,?\s+THEREFORE|I\s+hereby)\b", lead[start:], re.I)
             if whereas:
                 start += whereas.start()
+            # 'It is ordered as follows' concludes an authority preamble; it
+            # does not itself establish an additional operative clause. Keep
+            # a separate unnumbered command only when it precedes that formula.
+            preamble = text[start:headings[0].start()]
+            if re.search(r"\b(?:it\s+is\s+|is\s+)?(?:hereby\s+)?ordered\s+as\s+follow\s*s\s*:", preamble, re.I):
+                command = re.search(r"\bI\s+(?:hereby\s+)?(?:establish|direct|extend|transfer|revoke|amend|abolish|terminate)\b", preamble, re.I)
+                if not command:
+                    start = headings[0].start()
     elif operative:
         start = _paragraph_start(text, operative.start())
     else:
@@ -126,13 +159,23 @@ def segment(instrument_id, text, source):
         prior_authority = [a for a in authority if operative and a.start() <= operative.start()]
         if prior_authority:
             start = prior_authority[-1].start()
+    # FR text products put metadata and printed page headers before the
+    # authority paragraph. Never let paragraph whitespace pull those headers
+    # into an otherwise unnumbered operative lead.
+    metadata = re.search(r"(?m)^Instrument:\s*EO:", text[:end])
+    if metadata:
+        authorities = list(re.finditer(r"(?im)^[ \t]*(?:By\s+(?:virtue|the\s+authority|authority)|Pursuant\s+to)\b", text[:end]))
+        first_heading = headings[0].start() if headings else end
+        authority = next((m for m in authorities if m.start() < first_heading), None)
+        if authority and start < authority.start():
+            start = authority.start()
     marks = [h for h in headings if h.start() >= start]
     boundaries = sorted(set([start, end] + [h.start() for h in marks]))
     clauses, section, subsection, schedule, seen = [], "", "", "", {}
     for a, b in zip(boundaries, boundaries[1:]):
-        tail = re.search(r"(?im)^\s*(?:[A-Z][A-Z .’'-]{5,70}\n\s*)?THE WHITE HOUSE\b|^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", text[a:b])
+        tail = re.search(WHITE_HOUSE + r"|^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", text[a:b])
         if tail:
-            b = a + tail.start()
+            b = _signature_start(text, a + tail.start())
         a, b = _trim(text, a, b)
         if a == b:
             continue
@@ -159,7 +202,7 @@ def segment(instrument_id, text, source):
             if kind != "amendment_instruction":
                 kind = "whole"
         seen[scope] = seen.get(scope, 0) + 1
-        scope += "-" + str(seen[scope]) if seen[scope] > 1 else ""
+        scope += "-dup" + str(seen[scope]) if seen[scope] > 1 else ""
         scope_id = instrument_id + "#" + scope
         clauses.append({"id": "CLAUSES:" + scope_id, "scope_id": scope_id, "kind": kind, "label": label, "text": value, "char_start": a, "char_end": b, "pdf_page": _page(text, a, source)})
     return {"id": "CLAUSES:" + instrument_id, "instrument_id": instrument_id, "source": source, "clauses": clauses, "method": "heading_and_operative_boundary_v2", "confidence": "medium" if notes or not headings else "high", "notes": " ".join(notes)}
@@ -185,7 +228,11 @@ def own_terms(instrument_id, text, source, clauses):
     """Surface own-term wording without treating report deadlines as endings."""
     clauses = clauses.get("clauses", []) if isinstance(clauses, dict) else clauses
     result = []
-    for a, b in _sentences(text[:_body_end(text)]):
+    windows = [(c["char_start"], c["char_end"]) for c in clauses if isinstance(c, dict) and type(c.get("char_start")) is int and type(c.get("char_end")) is int]
+    if not windows:
+        windows = [(0, _body_end(text))]
+    sentence_spans = ((start + a, start + b) for start, end in windows for a, b in _sentences(text[start:end]))
+    for a, b in sentence_spans:
         sentence = text[a:b]
         kinds = []
         report = bool(re.search(r"\b(?:report|recommendations?|findings)\b.{0,120}\b(?:within|by|no later|not later|before|days|months|years)\b|\b(?:within|not later|no later)\b.{0,120}\b(?:report|recommendations?|findings)\b", sentence, re.I | re.S))
@@ -208,18 +255,21 @@ def own_terms(instrument_id, text, source, clauses):
             start_match = re.search(r"\b(?:from|beginning(?:\s+on)?|commencing(?:\s+on)?|starting(?:\s+on)?)\s+(" + DATE + ")", sentence, re.I)
             end_match = re.search(r"\b(?:to|through|until|on)\s+(" + DATE + ")", sentence, re.I)
             start_date = _date(start_match[1]) if start_match else None
+            stated_signing_base = bool(kind == "fixed_term" and term and re.search(r"\b(?:from|after|beginning(?:\s+on)?)\s+(?:the\s+)?date\s+of\s+this\s+order\b", sentence, re.I))
+            if not start_date and stated_signing_base:
+                start_date = _date(str(source.get("signing_date") or ""))
             end_date = _date(end_match[1]) if end_match and kind in {"fixed_term", "sunset_date", "until_event"} else None
             computed = _add_term(start_date, term[1], term[3]) if kind == "fixed_term" and term and start_date else None
             scope = next((c["scope_id"] for c in clauses if c["char_start"] <= a < c["char_end"] or a <= c["char_start"] < b), instrument_id + "#whole")
             digest = hashlib.sha256((scope + "\0" + kind + "\0" + sentence).encode()).hexdigest()[:16]
-            result.append({"id": "TERM:" + instrument_id + ":" + digest, "instrument_id": instrument_id, "scope_id": scope, "kind": kind, "text": sentence, "char_start": a, "char_end": b, "start_date": start_date, "stated_end_date": end_date, "computed_end_candidate": computed, "source": source, "confidence": "medium", "notes": "Machine wording lead; no cessation or occurrence inferred.", "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved."})
+            result.append({"id": "TERM:" + instrument_id + ":" + digest, "instrument_id": instrument_id, "scope_id": scope, "kind": kind, "text": sentence, "char_start": a, "char_end": b, "start_date": start_date, "stated_end_date": end_date, "computed_end_candidate": computed, "source": source, "confidence": "medium", "notes": "Machine wording lead; no cessation or occurrence inferred." + (" Explicit date-of-this-order base uses the source job's signing-date candidate; confirm the printed signing date." if stated_signing_base else ""), "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved."})
     return result
 
 
 def _references(text):
     """Only explicitly printed EO numbers; preserve census-form suffixes."""
     for m in EO_REF.finditer(text):
-        yield "EO:" + m[1].upper(), m.start(), m.end()
+        yield "EO:" + re.sub(r"[ \t]", "", m[1]).upper(), m.start(), m.end()
         if re.search(r"Orders\b", m[0], re.I):
             # Consume one grammatical continuation at a time. Date commas must
             # never become extra order numbers, and a later unrelated 'No.'
@@ -229,18 +279,36 @@ def _references(text):
                 r"(?:\s*,?\s*as\s+amended)?"
                 r"(?:\s*,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+)"
                 r"(?:(?:Nos?|Numbers?)\.?\s*)?"
-                r"(?P<number>\d{1,5}[A-Z]?(?:½)?)(?![\w-]|,\d)", re.I)
+                r"(?P<number>" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
             cursor = m.end()
             while True:
                 follow = continuation.match(text, cursor)
                 if not follow:
                     break
-                yield "EO:" + follow["number"].upper(), follow.start("number"), follow.end("number")
+                yield "EO:" + re.sub(r"[ \t]", "", follow["number"]).upper(), follow.start("number"), follow.end("number")
                 cursor = follow.end()
 
 
 def _changes(text):
     return [m for m in CHANGE.finditer(text) if not re.search(r"\bas\s+$", text[max(0, m.start() - 8):m.start()], re.I)]
+
+
+def _historical_amender(text, offset):
+    return bool(re.search(r"\bas\s+amended\s+by(?:(?!;|\n\s*\(\s*[a-z]\s*\)).){0,150}\Z", text[max(0, offset - 170):offset], re.I | re.S))
+
+
+def _list_instruction(text, ref):
+    """Locate a governing multiline change list, without repairing its text."""
+    section = [h for h in HEADING.finditer(text, 0, ref[1]) if h["section"]]
+    start = section[-1].start() if section else _paragraph_start(text, ref[1])
+    before = text[start:ref[1]]
+    intro = re.search(r"\bfollowing\b[^:]{0,800}\b(?:are|is)\s+(?:hereby\s+)?(?:revoked|superseded|amended|abolished|terminated)\s*:", before, re.I | re.S)
+    if not intro:
+        return None
+    intro_end = start + intro.end()
+    items = [h for h in HEADING.finditer(text, intro_end) if h["sub"] or h["item"] or h["section"]]
+    next_item = next((h.start() for h in items if h.start() > ref[1]), _body_end(text))
+    return start, next_item, intro[0]
 
 
 def _effective(text, provision, signing_date, filing_date):
@@ -288,7 +356,7 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     reconstructed from a disposition table.
     """
     refs = list(_references(text))
-    chosen = [r for r in refs if r[0] == target_id]
+    chosen = [r for r in refs if r[0] == target_id and not _historical_amender(text, r[1])]
     via = False
     if not chosen and parent_id:
         chosen = [r for r in refs if r[0] == parent_id and re.search(r"\bas\s+amended\b", text[r[2]:r[2] + 100], re.I)]
@@ -296,7 +364,8 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     if not chosen:
         return None
     sentences = list(_sentences(text))
-    candidates = [(a, b) for a, b in sentences if any(a <= r[1] < b for r in chosen) and _changes(text[a:b])]
+    list_context = next((context for r in chosen if (context := _list_instruction(text, r))), None)
+    candidates = [(list_context[0], list_context[1])] if list_context else [(a, b) for a, b in sentences if any(a <= r[1] < b for r in chosen) and _changes(text[a:b])]
     # Lists often put the change instruction in the enclosing section header.
     if not candidates:
         for clause in segment(actor_id, text, source)["clauses"]:
@@ -321,8 +390,18 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     # historical descriptor ('amended') ahead of 'is revoked'.
     local_ref = next((r for r in chosen if a is not None and a <= r[1] < b), None)
     following = [m for m in changes if local_ref and m.start() + a >= local_ref[2] and not re.search(r"as\s+$", provision[max(0, m.start() - 4):m.start()], re.I)]
-    change = (following or changes)[0] if changes else None
-    word = change[0].lower() if change else ""
+    change = (changes[-1] if list_context else (following or changes)[0]) if changes else None
+    if list_context:
+        # Historical 'as amended by EO...' inside an item must not displace
+        # the governing 'are revoked:' instruction.
+        governing_end = list_context[2].rfind(":")
+        governing = list(CHANGE.finditer(list_context[2][:governing_end]))
+        if governing:
+            word = governing[-1][0].lower()
+        else:
+            word = ""
+    else:
+        word = change[0].lower() if change else ""
     verb = next((name for prefix, name in [("revok", "revoke"), ("rescind", "revoke"), ("supersed", "supersede"), ("amend", "amend"), ("transfer", "transfer"), ("abolish", "abolish"), ("terminat", "terminate")] if word.startswith(prefix)), "other")
     negated = bool(change and re.search(r"\b(?:not|never)\b", provision[max(0, change.start() - 25):change.start()], re.I))
     if negated:

@@ -45,3 +45,15 @@ and read warnings. Never reuse a decision against a changed dossier fingerprint.
 
 Commands accept global `--repo` and `--output` before the subcommand. Only `build`
 (the runner's `job.py`) writes machine outputs. The assembler does not fetch sources.
+
+For OCR inventory corrections, add `inventory_overrides` to the decision sheet:
+`[{"scope_id":"EO:123#corrected-1","source_id":"ORIGINAL:EO:123","char_start":100,"char_end":250,"reason":"Explain the corrected operative boundary."}]`.
+Use the dossier's exact `original_source_id`; offsets are absolute Unicode character
+offsets in its held text file, enclosed within that original evidence span. Supply
+every corrected clause, with unique scopes and disjoint nonempty spans; no free quote
+or source fields are accepted. Replace the sheet's `clauses` with decisions for exactly
+those scopes, omitting `clause_id` so assembly derives it. Keep the original dossier
+fingerprint and explicitly confirm the complete inventory. Assembly copies exact text
+and source provenance, pins the override list in claim metadata, and reconstructs it
+when checking. `assemble.derive_inventory(dossier, overrides)` returns
+`(clauses, derived_evidence_by_id, errors)` without editing the dossier or deciding law.

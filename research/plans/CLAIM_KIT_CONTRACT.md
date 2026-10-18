@@ -105,3 +105,16 @@ Reservations use an O_EXCL guard plus `research/readiness/CLAIM_KIT_LOCK.json`; 
 serializes one shared checkout. Independent clones must exchange reservations by
 committing/pulling before assigning work. No local lock claims cross-branch atomicity.
 The runner cache is bounded, disposable and keyed by parser/source hashes.
+
+If the proposed segmentation needs correction, the decision sheet may supply
+`inventory_overrides`: each entry names a unique scope_id, the existing dossier's
+original_source_id as source_id, absolute char_start/char_end within that source,
+and a substantive reason. Corrected spans cannot overlap. They select exact slices
+of the pinned original evidence; they cannot supply text or citations. The sheet's
+clause decisions must match the corrected scopes and omit the old clause_id.
+Assembly pins these span judgments in `claim_kit.inventory_overrides`; `check`
+reconstructs and verifies every derived source against the original dossier.
+
+Corpus JSONL files roll at 75 MB into `<STEM>.partNNNN.jsonl`; the first shard keeps
+the required base filename. Read all shards listed in SUMMARY.json `jsonl_shards`.
+No over-95-MB corpus output should disappear into the runner's temporary artifacts.

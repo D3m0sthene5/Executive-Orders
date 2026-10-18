@@ -47,6 +47,11 @@ class ExcavatorTests(unittest.TestCase):
         clause = excavate.segment("EO:1", "I hereby establish a body.", {})["clauses"][0]
         self.assertIsNone(clause["pdf_page"])
 
+    def test_pdf_page_markers_override_first_page_for_later_clauses(self):
+        text = "=== PDF page 9 of 248 ===\nSection 1. First duty.\n=== PDF page 10 of 248 ===\nSec. 2. Second duty."
+        clauses = excavate.segment("EO:1", text, SOURCE)["clauses"]
+        self.assertEqual([c["pdf_page"] for c in clauses], [9, 10])
+
     def test_signature_before_schedule_and_neighboring_order(self):
         text = "EXECUTIVE ORDER 1\n\nI hereby establish these offices:\nJOHN DOE\nTHE WHITE HOUSE\nJune 1, 1940\nSCHEDULE A\n1. First office.\n2. Second office.\nEXECUTIVE ORDER 2\n\nI hereby establish something else."
         clauses = excavate.segment("EO:1", text, SOURCE)["clauses"]
@@ -195,6 +200,90 @@ class ExcavatorTests(unittest.TestCase):
         text = "The body continues for twenty-four years from January 1, 1940."
         result = excavate.own_terms("EO:1", text, SOURCE, [])
         self.assertEqual(result[0]["computed_end_candidate"], "1964-01-01")
+
+    def test_stated_date_of_order_term_uses_source_signing_date_only(self):
+        text = "The Commission shall terminate two years from the date of this order, unless extended."
+        for source, expected in [(dict(SOURCE, signing_date="1995-10-03"), "1997-10-03"), (SOURCE, None), (dict(SOURCE, signing_date="invalid"), None)]:
+            findings = excavate.own_terms("EO:12975", text, source, [])
+            fixed = next(f for f in findings if f["kind"] == "fixed_term")
+            self.assertEqual(fixed["computed_end_candidate"], expected)
+            self.assertIn("printed signing date", fixed["notes"])
+        # A supplied signing date alone supplies no unstated temporal base.
+        findings = excavate.own_terms("EO:1", "The body shall continue for two years.", dict(SOURCE, signing_date="1995-10-03"), [])
+        self.assertIsNone(findings[0]["computed_end_candidate"])
+
+    def test_authority_only_preamble_and_ocr_signature_regression(self):
+        text = ("Instrument: EO:12462\nSource: https://example.gov/order.pdf\n\n"
+                "=== PDF page 9 of 248 ===\nFederal Register\nExecutive Order 12462\nTitle\n"
+                "By the authority vested in me as President, it is\nhereby ordered as follow s:\n"
+                "Section 1. There is established a Committee.\n"
+                "Sec. 2. The Committee shall terminate, unless sooner\nextended.\n"
+                "TH E W H ITE HOUSE, \nF e b ru a ry 17, 1984.\n[FR Doc. 84-4874]")
+        clauses = excavate.segment("EO:12462", text, SOURCE)["clauses"]
+        self.assertEqual([c["scope_id"] for c in clauses], ["EO:12462#sec1", "EO:12462#sec2"])
+        self.assertTrue(clauses[-1]["text"].endswith("extended."))
+        self.assertNotIn("HOUSE", clauses[-1]["text"])
+        for c in clauses:
+            self.assert_quote(text, c)
+
+    def test_lowercase_crossrefs_and_comma_parenthetical_are_not_headings(self):
+        text = ("Section 601. Policies consistent with\nsection 6002 of RCRA shall apply.\n"
+                "(a) The first duty applies.\n(b) The goals in subsections\n"
+                "(a), (b), and (c) above shall apply.\nSec. 602. More duties.")
+        clauses = excavate.segment("EO:13101", text, SOURCE)["clauses"]
+        self.assertEqual([c["scope_id"] for c in clauses], ["EO:13101#sec601", "EO:13101#sec601-a", "EO:13101#sec601-b", "EO:13101#sec602"])
+        self.assertIn("(a), (b)", clauses[-2]["text"])
+
+    def test_multiline_revocation_list_and_historical_amenders(self):
+        text = ("Sec. 4. The following Executive orders or sections thereof, which established\n"
+                "committees that have terminated or whose work is completed, are revoked:\n"
+                "(a) Executive Order No. 12792, establishing a Commission;\n"
+                "(b ) Executive Order No. 12813, as amended by Executive Order No. 12815,\n"
+                "establishing a Commission;\n"
+                "(c) Section 5 of Executive Order No. 12675, establishing a Board.\n"
+                "Sec. 5. Other matters.")
+        r = excavate.acting_provision("EO:12813", "EO:12869", text, SOURCE)
+        self.assertEqual((r["verb"], r["scope"]), ("revoke", "whole"))
+        self.assert_quote(text, r, "provision_text")
+        self.assertIsNone(excavate.acting_provision("EO:12815", "EO:12869", text, SOURCE))
+        r = excavate.acting_provision("EO:12675", "EO:12869", text, SOURCE)
+        self.assertEqual(r["scope"], "partial")
+        text = text.replace("12813", "1 2813")
+        r = excavate.acting_provision("EO:12813", "EO:12869", text, SOURCE)
+        self.assertEqual(r["verb"], "revoke")
+        self.assertIn("1 2813", r["provision_text"])
+
+    def test_real_hydrated_segmentation_regressions(self):
+        repo = Path(__file__).resolve().parents[2]
+        texts = repo / "jobs/fr-originals/output/texts"
+        ids = ["10222", "12462", "13101"]
+        if not all((texts / ("EO_" + iid + ".txt")).is_file() for iid in ids):
+            self.skipTest("Real FR source text is not hydrated in this checkout")
+        for iid in ids:
+            text = (texts / ("EO_" + iid + ".txt")).read_bytes().decode("utf-8")
+            clauses = excavate.segment("EO:" + iid, text, SOURCE)["clauses"]
+            self.assertFalse(any(c["scope_id"].endswith("#lead") for c in clauses))
+            self.assertEqual(len({c["scope_id"] for c in clauses}), len(clauses))
+            self.assertFalse(any("6002" in c["scope_id"] for c in clauses))
+            self.assertNotIn("HOUSE", clauses[-1]["text"])
+            for c in clauses:
+                self.assert_quote(text, c)
+            if iid == "10222":
+                self.assertEqual(len(clauses), 3)
+            if iid == "12462":
+                self.assertTrue(clauses[-1]["text"].endswith("extended."))
+
+    def test_real_hydrated_actor_list_regressions(self):
+        repo = Path(__file__).resolve().parents[2]
+        texts = repo / "jobs/fr-originals/output/texts"
+        if not all((texts / ("EO_" + actor + ".txt")).is_file() for actor in ["12692", "12869"]):
+            self.skipTest("Real FR acting source text is not hydrated in this checkout")
+        for actor, target, scope in [("12692", "12462", "whole"), ("12692", "12592", "whole"), ("12869", "12813", "whole"), ("12869", "12675", "partial")]:
+            text = (texts / ("EO_" + actor + ".txt")).read_bytes().decode("utf-8")
+            r = excavate.acting_provision("EO:" + target, "EO:" + actor, text, SOURCE)
+            self.assertIsNotNone(r)
+            self.assertEqual((r["verb"], r["scope"]), ("revoke", scope))
+            self.assert_quote(text, r, "provision_text")
 
     def test_contract_examples_parse_and_roundtrip(self):
         fixtures = Path(__file__).resolve().parents[2] / "research/plans/claim_kit_contract/fixtures"

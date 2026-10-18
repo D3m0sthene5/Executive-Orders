@@ -23,6 +23,27 @@ def dump(path, obj):
 def line(fh, obj):
     fh.write(json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':'))+'\n')
 
+class ShardedJsonl:
+    """Keep all corpus records in git; the runner moves files above 95 MB away."""
+    def __init__(self,path,limit=75000000):
+        self.path=Path(path);self.limit=limit;self.part=0;self.size=0;self.fh=None
+    def __enter__(self):
+        self.path.parent.mkdir(parents=True,exist_ok=True)
+        # Only files with this exact managed stem belong to this writer.
+        for old in self.path.parent.glob(self.path.stem+'.part*.jsonl'):old.unlink()
+        self.fh=self.path.open('w',encoding='utf-8',newline='\n');return self
+    def write(self,value):
+        size=len(value.encode('utf-8'))
+        if size>self.limit:raise ValueError('Single corpus record exceeds shard size: '+self.path.name)
+        if self.size and self.size+size>self.limit:
+            self.fh.close();self.part+=1;self.size=0
+            path=self.path.with_name(self.path.stem+f'.part{self.part:04}.jsonl')
+            self.fh=path.open('w',encoding='utf-8',newline='\n')
+        self.fh.write(value);self.size+=size
+    def __exit__(self,*args):
+        if self.fh:self.fh.close()
+
+
 def filename(iid):
     if not re.fullmatch(r'EO:[A-Za-z0-9_.-]+', iid):
         # Historical census identifiers can contain punctuation. Never conflate identities.
@@ -166,7 +187,7 @@ def build(repo, out, cache=None):
             except (OSError,ValueError,UnicodeError) as e:
                 missing_by[iid].append('Missing/unreadable held text: '+r['text_path']+' ('+type(e).__name__+')');counts['text_read_failures']+=1;continue
             if not text.strip():counts['empty_texts']+=1;continue
-            source=dict(r['source'],text_path=r['text_path'],text_sha256=hashlib.sha256(text.encode()).hexdigest())
+            source=dict(r['source'],text_path=r['text_path'],text_sha256=hashlib.sha256(text.encode()).hexdigest(),signing_date=r.get('signing_date'),filing_date=r.get('filing_date'))
             key=canonical_sha({'parser':code_hash,'iid':iid,'source':source,'signing':r.get('signing_date'),'filing':r.get('filing_date')})
             cp=cache_path/(key+'.json') if cache_path else None
             data=None
@@ -307,7 +328,7 @@ def build(repo, out, cache=None):
                 assembly.append({'sheet':str(path.relative_to(repo)),'errors':[type(e).__name__+': '+str(e)]})
     dump(out/'ASSEMBLY_REPORT.json',assembly)
     counts.update(dossiers=len(index),status_leads=len(universe)-len(decided),families=len(family_rows),assembled_claims=accepted)
-    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'lead_only':True,'legal_cutoff':CUTOFF}
+    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
     dump(out/'SUMMARY.json',summary)
     dump(out/'METRICS.json',{'wall_seconds':round(time.monotonic()-started,3),'cache_hits':cache_hits,'output_bytes':sum(p.stat().st_size for p in out.rglob('*') if p.is_file())})
     print(json.dumps(summary['counts'],sort_keys=True))
