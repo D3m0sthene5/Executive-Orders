@@ -1,0 +1,58 @@
+test_fr_pierce_is_a_signature (test_ir.AbbreviatedSignature.test_fr_pierce_is_a_signature) ... ok
+test_acts_and_headings (test_ir.CommittedVolume.test_acts_and_headings) ... ok
+test_every_header_reaches_a_signature (test_ir.CommittedVolume.test_every_header_reaches_a_signature) ... ok
+test_known_acts (test_ir.CommittedVolume.test_known_acts) ... ok
+test_matching_against_the_wpa_lists (test_ir.CommittedVolume.test_matching_against_the_wpa_lists) ... ok
+test_reprints (test_ir.CommittedVolume.test_reprints) ... ok
+test_text_layer_hash (test_ir.CommittedVolume.test_text_layer_hash) ... ok
+test_vendored_wpa_lists (test_ir.CommittedVolume.test_vendored_wpa_lists) ... ok
+test_a_damaged_day_is_left_blank_with_its_readings (test_ir.DamagedDays.test_a_damaged_day_is_left_blank_with_its_readings) ... ok
+test_a_day_comes_only_from_another_source (test_ir.DamagedDays.test_a_day_comes_only_from_another_source) ... ok
+test_in_book_references_read_plain_digits_only (test_ir.DamagedDays.test_in_book_references_read_plain_digits_only) ... ok
+test_weak_or_conflicting_sources_give_no_day (test_ir.DamagedDays.test_weak_or_conflicting_sources_give_no_day) ... ok
+test_damaged_digits_resolved_by_term (test_ir.Dates.test_damaged_digits_resolved_by_term) ... ok
+test_header_date_never_borrows_from_the_text (test_ir.Dates.test_header_date_never_borrows_from_the_text) ... ok
+test_proclamation_clause (test_ir.Dates.test_proclamation_clause) ... ok
+test_a_reprinted_order_is_one_order (test_ir.EndToEnd.test_a_reprinted_order_is_one_order) ... ok
+test_pdf_checks_and_text_hash (test_ir.EndToEnd.test_pdf_checks_and_text_hash) ... ok
+test_runs_without_wpa_lists (test_ir.EndToEnd.test_runs_without_wpa_lists) ... ok
+test_small_volume_against_small_census (test_ir.EndToEnd.test_small_volume_against_small_census) ... ok
+test_vendored_lists_are_hash_checked_and_wpa_dir_overrides (test_ir.EndToEnd.test_vendored_lists_are_hash_checked_and_wpa_dir_overrides) ... ok
+test_new_state_school_heading_year_on_next_line_and_1375 (test_ir.HeadingsAndHeaders.test_new_state_school_heading_year_on_next_line_and_1375) ... ok
+test_book_and_wpa_dates_agree_on_a_prefix (test_ir.LateNumbered.test_book_and_wpa_dates_agree_on_a_prefix) ... ok
+test_numbered_orders_from_1900_pair_by_subject (test_ir.LateNumbered.test_numbered_orders_from_1900_pair_by_subject) ... ok
+test_weak_subjects_and_older_orders_are_not_paired (test_ir.LateNumbered.test_weak_subjects_and_older_orders_are_not_paired) ... ok
+test_headers (test_ir.Lines.test_headers) ... ok
+test_running_head_ocr_forms (test_ir.Lines.test_running_head_ocr_forms) ... ok
+test_signatures (test_ir.Lines.test_signatures) ... ok
+test_state_and_reservation_headings (test_ir.Lines.test_state_and_reservation_headings) ... ok
+test_forest_named_in_the_list_must_be_in_the_act (test_ir.Matching.test_forest_named_in_the_list_must_be_in_the_act) ... ok
+test_forest_orders_of_one_day_pair_by_the_forest_acted_on (test_ir.Matching.test_forest_orders_of_one_day_pair_by_the_forest_acted_on) ... ok
+test_lord_crosswalk_never_forces (test_ir.Matching.test_lord_crosswalk_never_forces) ... ok
+test_month_match_needs_the_ir_page_and_other_states_cost (test_ir.Matching.test_month_match_needs_the_ir_page_and_other_states_cost) ... ok
+test_printings_of_one_order_compete_as_one (test_ir.Matching.test_printings_of_one_order_compete_as_one) ... ok
+test_same_day_cluster_assigned_globally (test_ir.Matching.test_same_day_cluster_assigned_globally) ... ok
+test_ties_are_not_paired (test_ir.Matching.test_ties_are_not_paired) ... ok
+test_two_acts_tied_for_one_entry_is_a_tie (test_ir.Matching.test_two_acts_tied_for_one_entry_is_a_tie) ... ok
+test_acts_kinds_dates_and_boundaries (test_ir.Parsing.test_acts_kinds_dates_and_boundaries) ... ok
+test_ending_leads_link_the_cited_order (test_ir.Parsing.test_ending_leads_link_the_cited_order) ... ok
+test_stream_drops_heads_page_numbers_and_gpo_marks (test_ir.Parsing.test_stream_drops_heads_page_numbers_and_gpo_marks) ... ok
+test_dates_compatible (test_ir.Printings.test_dates_compatible) ... ok
+test_order_date (test_ir.Printings.test_order_date) ... ok
+test_reprints_are_one_order_and_lookalikes_are_not (test_ir.Printings.test_reprints_are_one_order_and_lookalikes_are_not) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 35.092s
+
+OK
+IR1912: 309 printed presidential acts (277 orders, 28 indorsements or approvals, 4 proclamations) under 19 states and 132 reservation headings; PDF check: pdf_not_checked_out.
+  Printings: 276 distinct orders; 33 acts reprint an order printed elsewhere in the book (22 orders printed more than once; for 2 the printings disagree on the date, and 2 printings differ from the date taken).
+  Dates (printings): 240 full, 43 month only, 4 year only, 22 unread; 68 needed digit repair; 2 fall outside the signer's term. Confidence {'medium': 180, 'high': 107, 'low': 22}.
+  Damaged day glyphs: 35 printings; 19 got their day from another source ({'in_book_reference': 21, 'lord': 9, 'wpa': 5, 'other_printing': 2}), 16 keep only the month (a day is never guessed).
+  Dates (orders): 212 full, 41 month only, 3 year only, 20 unread; 185 orders before 1900, 71 from 1900 ({'1850s': 10, '1860s': 15, '1870s': 83, '1880s': 65, '1890s': 12, '1900s': 31, '1910s': 40}).
+  WPA lists: vendored subset (data/wpa_lists_subset).
+  WPA numbered list: 55 orders paired ({'exact_date': 40, 'same_month_and_IR_page': 11, 'undated_IR_page_in_term': 1, 'same_month_day_candidate': 1, 'late_same_year_subject': 1, 'late_same_month_subject': 1}); 0 ties left unpaired; 2 reprints carry their order's pairing; 45 IR page citations ({'matched_act_on_page': 43, 'MATCHED_ACT_ELSEWHERE': 2}). Paired by subject from 1900 on: {'IR1912:p52:1': 'EO:1224', 'IR1912:p53:3': 'EO:1517'}.
+  Lord's unnumbered list: 249 IR citations in 178 rows ({'match': 183, 'ambiguous': 52, 'unmatched': 14}).
+  Census: orders {'UNNUMBERED_NOT_IN_CENSUS': 217, 'census_year_only': 55, 'PROCLAMATION_NOT_AN_EXECUTIVE_ORDER': 4}; leads {'UNNUMBERED_NOT_IN_CENSUS': 217, 'UNDATED_ACT': 20, 'BOOK_EXACT_DATE_FOR_YEAR_ONLY': 45, 'DATE_OUT_OF_TERM': 2, 'REPRINT_DATE_CONFLICT': 2, 'PROCLAMATION_NOT_AN_EXECUTIVE_ORDER': 4, 'BOOK_DATE_DIFFERS_FROM_WPA': 1, 'DATE_CONFLICT_WITH_LORD': 5, 'WPA_CITATION_MISMATCH': 2}; fragments 55; decided orders paired 0.
+  Ending leads: 132 rows ({'no_date_cited': 58, 'not_in_volume_or_unread': 31, 'same_section': 41, 'same_state': 2}).
+Leads only: nothing is admitted, merged, dated or changed.
