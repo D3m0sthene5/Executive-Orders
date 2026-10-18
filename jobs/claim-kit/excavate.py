@@ -9,6 +9,7 @@ import calendar
 import datetime as dt
 import hashlib
 import re
+from functools import lru_cache
 
 
 FLAGS = re.I | re.M
@@ -208,7 +209,7 @@ def segment(instrument_id, text, source):
     return {"id": "CLAUSES:" + instrument_id, "instrument_id": instrument_id, "source": source, "clauses": clauses, "method": "heading_and_operative_boundary_v2", "confidence": "medium" if notes or not headings else "high", "notes": " ".join(notes)}
 
 
-def _sentences(text):
+def _uncached_sentences(text):
     # Periods in Sec./No./month abbreviations must not break a reference.
     start = 0
     for match in re.finditer(r"[.!?](?=\s+(?:[A-Z(]|$))|\n\s*\n", text):
@@ -222,6 +223,14 @@ def _sentences(text):
     a, b = _trim(text, start, len(text))
     if a < b:
         yield a, b
+
+
+@lru_cache(maxsize=32)
+def _sentence_spans(text):
+    return tuple(_uncached_sentences(text))
+
+def _sentences(text):
+    return iter(_sentence_spans(text))
 
 
 def own_terms(instrument_id, text, source, clauses):
@@ -266,7 +275,7 @@ def own_terms(instrument_id, text, source, clauses):
     return result
 
 
-def _references(text):
+def _uncached_references(text):
     """Only explicitly printed EO numbers; preserve census-form suffixes."""
     for m in EO_REF.finditer(text):
         yield "EO:" + re.sub(r"[ \t]", "", m[1]).upper(), m.start(), m.end()
@@ -287,6 +296,14 @@ def _references(text):
                     break
                 yield "EO:" + re.sub(r"[ \t]", "", follow["number"]).upper(), follow.start("number"), follow.end("number")
                 cursor = follow.end()
+
+
+@lru_cache(maxsize=32)
+def _reference_spans(text):
+    return tuple(_uncached_references(text))
+
+def _references(text):
+    return iter(_reference_spans(text))
 
 
 def _changes(text):

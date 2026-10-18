@@ -83,6 +83,15 @@ class AssemblyTests(unittest.TestCase):
                          "The Board shall perform the specified duties.")
         self.assertNotIn("reviewer", json.dumps(claim))
 
+    def test_weak_original_requires_separate_page_confirmation(self):
+        self.dossier['evidence']['ORIGINAL:EO:1']['requires_page_check']=True
+        self.refresh();self.sheet['dossier_sha256']=self.dossier['fingerprint']
+        self.assertFails('original_page_check_confirmation_required')
+        self.sheet['original_pages_confirmed']=True
+        claim,errors=self.assemble();self.assertEqual(errors,[])
+        claim['claim_kit']['original_pages_confirmed']=False
+        self.assertIn('original_page_check_confirmation_required',A.check_claim(claim,self.repo,self.dossier))
+
     def test_inputs_are_immutable(self):
         before = deepcopy((self.sheet, self.dossier))
         self.assemble()

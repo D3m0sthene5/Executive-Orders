@@ -108,7 +108,7 @@ def blank_sheet(dossier, agent=""):
         "schema": DECISION_SCHEMA,
         "instrument_id": dossier.get("instrument_id"),
         "dossier_sha256": canonical_sha(dossier), "agent": agent,
-        "original_confirmed": False, "inventory_confirmed": False,
+        "original_confirmed": False, "original_pages_confirmed": False, "inventory_confirmed": False,
         "inventory_overrides": [],
         "clauses": [{"scope_id": c.get("scope_id"),
                      "clause_id": c.get("id") or "CLAUSES:" + str(c.get("scope_id", "")),
@@ -273,6 +273,9 @@ def _check_claim(claim, repo, dossier=None):
                     errors.append("corrected_inventory_mismatch")
                 elif len({c.get("scope_id") for c in actual}) != len(corrected):
                     errors.append("corrected_inventory_mismatch")
+            original_record = evidence.get(dossier.get("original_source_id"), {})
+            if original_record.get("requires_page_check") and metadata.get("original_pages_confirmed") is not True:
+                errors.append("original_page_check_confirmation_required")
             representation = claim.get("original_representation")
             if not isinstance(representation, dict) or representation.get("evidence_id") != dossier.get("original_source_id"):
                 errors.append("original_source_id_mismatch")
@@ -364,6 +367,8 @@ def _assemble(sheet, dossier, repo):
     if not isinstance(original_record, dict):
         original_record = {}
     original = _reference(original_id, evidence, errors)
+    if original_record.get("requires_page_check") and sheet.get("original_pages_confirmed") is not True:
+        errors.append("original_page_check_confirmation_required")
     grade = " ".join(str(original_record.get(k, "")) for k in
                      ("source_grade", "kind", "role", "type", "origin"))
     grade += " " + str(original.get("url", ""))

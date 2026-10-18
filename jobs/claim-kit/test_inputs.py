@@ -151,6 +151,34 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual(len(records), 2)
         self.assertTrue(all(not r["acceptable_as_original"] for r in records))
 
+    def test_fr_original_needs_page_check_preserves_locator_warning(self):
+        self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
+        self.jsonl("jobs/fr-originals/output/FRAGMENTS.jsonl", [self.original(
+            needs_page_check=True, location_confidence="medium", location_verified=False,
+            confidence="medium")])
+        record = inputs.load_corpus(self.repo)["texts"][0]
+        self.assertTrue(record["acceptable_as_original"])
+        self.assertTrue(record["requires_page_check"])
+        self.assertIn("needs_page_check", record["grade"])
+        self.assertEqual(record["location_confidence"], "medium")
+        self.assertEqual(record["confidence"], "medium")
+        self.assertFalse(record["location_verified"])
+        self.assertTrue(record["source"]["requires_page_check"])
+        self.assertEqual(record["source"]["location_confidence"], "medium")
+
+    def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
+        self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
+        fragment = {"instrument_id": "EO:1", "kind": "original_representation",
+                    "location_confidence": "low", "confidence": "low",
+                    "data": {"nested": {**self.source(), "text_path": "texts/one.txt",
+                                         "needs_page_check": False}}}
+        self.jsonl("jobs/fr-originals/output/FRAGMENTS.jsonl", [fragment])
+        record = inputs.load_corpus(self.repo)["texts"][0]
+        self.assertTrue(record["requires_page_check"])
+        self.assertEqual(record["location_confidence"], "low")
+        self.assertEqual(record["source"]["confidence"], "low")
+        self.assertIn("needs_page_check", record["grade"])
+
     def test_shared_volume_and_excluded_identity_not_assigned_wholesale(self):
         self.write("jobs/new/output/book.txt", "Contains several orders.")
         self.jsonl("jobs/new/output/SOURCES.jsonl", [
