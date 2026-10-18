@@ -173,14 +173,23 @@ def run_cc_index(out, crawls, throttle):
     write_captures(out, best, "common-crawl")
 
 
-def run_wayback_index(out, throttle):
+def wayback_cdx_url():
+    return (f"{WAYBACK_CDX}?url={urllib.parse.quote(PATTERN, safe='*')}&output=json&filter=statuscode:200"
+            "&filter=mimetype:text/html&collapse=urlkey&fl=original,timestamp,digest")
+
+
+def run_wayback_index(out, cache, throttle):
     index = {r["path"] for r in live.lines(out / "INDEX.jsonl")}
     have = {c["path"] for c in live.lines(out / "MIRROR_INDEX.jsonl")}
-    url = (f"{WAYBACK_CDX}?url={urllib.parse.quote(PATTERN, safe='*')}&output=json&filter=statuscode:200"
-           "&filter=mimetype:text/html&collapse=urlkey&fl=original,timestamp,digest")
-    status, _, raw = http_get(url, timeout=300, throttle=throttle)
-    if status != 200 or not raw.lstrip().startswith(b"["):
-        raise ArchiveError("Wayback CDX unavailable (status %s)" % status)
+    cached = cache / "wayback" / "cdx.json"  # a same-day CDX answer is reused; delete it to ask again
+    if cached.is_file() and time.time() - cached.stat().st_mtime < 86400 and cached.read_bytes().lstrip().startswith(b"["):
+        raw = cached.read_bytes()
+    else:
+        status, _, raw = http_get(wayback_cdx_url(), timeout=600, throttle=throttle)
+        if status != 200 or not raw.lstrip().startswith(b"["):
+            raise ArchiveError("Wayback CDX unavailable (status %s)" % status)
+        cached.parent.mkdir(parents=True, exist_ok=True)
+        cached.write_bytes(raw)
     rows = json.loads(raw.decode("utf-8"))[1:]
     best = {}
     for original, ts, digest in rows:
@@ -413,9 +422,12 @@ def run_documents(out, cache, max_new, ids_file, workers, interval, archives):
         except Exception as exc:
             entry.update(result="failed", reason=str(exc)[:500], error_type=type(exc).__name__)
             with write_lock:
-                failed.add(cap["path"])
                 counts["failed"] += 1
-                live.append(out / "MIRROR_FAILURES.jsonl", entry)
+                # Archive outages and short reads are retried by the next run; only the capture's own
+                # content (no text, identity mismatch, truncated record) is a permanent failure.
+                if isinstance(exc, live.PageFailure) or "truncated" in str(exc):
+                    failed.add(cap["path"])
+                    live.append(out / "MIRROR_FAILURES.jsonl", entry)
         with write_lock:
             live.append(out / "MIRROR_ATTEMPTS.jsonl", entry)
             n = counts["saved"] + counts["failed"] + counts["skipped_live"]
@@ -438,6 +450,7 @@ def main():
     ap.add_argument("--cache-dir", type=Path, help="Raw capture cache (not committed); reruns reuse it without new requests")
     ap.add_argument("--out", type=Path, default=HERE / "output")
     ap.add_argument("--crawls", type=int, default=12, help="cc-index: how many of the newest Common Crawl crawls to ask")
+    ap.add_argument("--crawl-ids", help="cc-index: comma-separated crawl ids (CC-MAIN-2025-38,...) instead of --crawls")
     ap.add_argument("--max-new", type=int, default=100000)
     ap.add_argument("--ids-file", help="Whitespace-separated instrument IDs (EO:123) to fetch first")
     ap.add_argument("--workers", type=int, default=4)
@@ -449,9 +462,10 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     args.cache_dir.mkdir(parents=True, exist_ok=True)
     if args.phase == "cc-index":
-        run_cc_index(args.out, cc_collections(args.crawls), Throttle(1.0))
+        crawls = args.crawl_ids.split(",") if args.crawl_ids else cc_collections(args.crawls)
+        run_cc_index(args.out, crawls, Throttle(1.0))
     elif args.phase == "wayback-index":
-        run_wayback_index(args.out, Throttle(1.5))
+        run_wayback_index(args.out, args.cache_dir, Throttle(1.5))
     else:
         run_documents(args.out, args.cache_dir, args.max_new, args.ids_file, max(1, min(args.workers, 8)),
                       args.interval, set(args.archives.split(",")))

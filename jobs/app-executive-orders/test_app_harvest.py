@@ -107,6 +107,11 @@ def test_mirror_covered_and_audit(tmp_path=None):
     (out / "MIRROR_AUDIT.jsonl").write_text(json.dumps({"path": "/documents/executive-order-0"}) + "\n", encoding="utf-8")
     skip, audit = a.mirror_covered(out, 4)
     assert len(audit) == 2 and "/documents/executive-order-0" in skip
+    (out / "MIRROR_FAILURES.jsonl").write_text(
+        json.dumps({"path": "/documents/executive-order-np", "reason": "no_usable_text"}) + "\n"
+        + json.dumps({"path": "/documents/executive-order-bad", "reason": "malformed WARC record"}) + "\n", encoding="utf-8")
+    skip, audit = a.mirror_covered(out, 4)
+    assert "/documents/executive-order-np" in skip and "/documents/executive-order-bad" not in skip
 
 
 if __name__ == "__main__":

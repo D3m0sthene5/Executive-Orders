@@ -280,7 +280,9 @@ def mirror_covered(out, audit_every):
         for i, path in enumerate(sorted(covered)):
             if i % audit_every == 0 and path not in audited:
                 audit[path] = covered[path]
-    return {p for p in covered if p not in audit}, audit
+    # A capture whose page parsed but holds no text (APP's "[Not Published.]") is a finding, not a fetch problem.
+    empty = {f["path"] for f in lines(out / "MIRROR_FAILURES.jsonl") if f.get("reason") == "no_usable_text"}
+    return {p for p in covered if p not in audit} | empty, audit
 
 
 def run_documents(pool, out, max_new, ids_file, audit_every=0):
