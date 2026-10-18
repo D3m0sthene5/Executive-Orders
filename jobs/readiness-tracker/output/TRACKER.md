@@ -41,17 +41,17 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 990 | 8,474 |
-| `NO_CLAUSE_INVENTORY` | 3,323 | 3,323 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,323 | 3,323 |
-| `LATER_SOURCE_SEARCH_NOT_RECORDED` | 3,323 | 3,323 |
+| `NO_CLAUSE_INVENTORY` | 3,318 | 3,318 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,318 | 3,318 |
+| `LATER_SOURCE_SEARCH_NOT_RECORDED` | 3,318 | 3,318 |
 | `FIRST_END_UNPROVED` | 2,918 | 2,918 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 129 | 417 |
-| `CURRENT_BASIS_UNPROVED` | 405 | 405 |
+| `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
+| `CLAIM_INCOMPLETE` | 41 | 41 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
-| `CLAIM_INCOMPLETE` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |
 | `CLAIM_CHECK_FAILED` | 11 | 11 |
@@ -74,7 +74,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - opus-media-match fragments: 122
 - opus-media-match status: 1,155
 - source-ladder: 87
-- claim-checker: 36
+- claim-checker: 41
 
 ## Historical census candidates — separate from the 14,972 working identities
 
