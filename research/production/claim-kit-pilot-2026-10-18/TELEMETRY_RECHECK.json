@@ -1,6 +1,6 @@
 {
   "schema": "eo-claim-kit-ai-recheck-telemetry/v1",
-  "generated_at_utc": "2026-10-18T07:55:20.288389+00:00",
+  "generated_at_utc": "2026-10-18T08:00:14.509309+00:00",
   "producer_records": [
     {
       "family": "EO:12692",
@@ -125,26 +125,26 @@
     }
   ],
   "categorized_available_increment_subtotals": {
-    "producer_functions_exec": 51,
-    "producer_nested_commands_separate": 54,
+    "producer_functions_exec": 54,
+    "producer_nested_commands_separate": 57,
     "producer_collaboration_separate": 7,
-    "reviewer_functions_exec": 11,
-    "reviewer_nested_commands_separate": 11,
+    "reviewer_functions_exec": 15,
+    "reviewer_nested_commands_separate": 15,
     "reviewer_collaboration_separate": 3
   },
   "phase_floors": {
     "initial50_evaluation_functions": 204,
     "frozen10_confirmation_and_cross_phase11948_addition_functions": 75,
     "historical_pre_recheck_functions": 279,
-    "recheck_producer_functions": 51,
-    "new_recheck_review_functions": 11,
-    "additional_recorded_recheck_functions": 62,
-    "all_phase_recorded_function_floor": 341,
-    "all_phase_recorded_nested_commands_separate": 365,
+    "recheck_producer_functions": 54,
+    "new_recheck_review_functions": 15,
+    "additional_recorded_recheck_functions": 69,
+    "all_phase_recorded_function_floor": 348,
+    "all_phase_recorded_nested_commands_separate": 372,
     "all_phase_recorded_collaboration_separate": 59,
-    "current_accepted_frozen_denominator": 11,
-    "functions_per_current_frozen_candidate": 31.0,
-    "functions_per_initial_evaluated_order": 6.82
+    "current_accepted_frozen_denominator": 12,
+    "functions_per_current_frozen_candidate": 29.0,
+    "functions_per_initial_evaluated_order": 6.96
   },
   "counting_limits": [
     "Missing counters are not zero. Producer13385 reports3 incremental/cumulative26 without category; excluded from categorized totals.",
@@ -296,12 +296,20 @@
       "sha256": "5db0a33a18d2b3a965fb1e2a4cde031d999fc69a66e139b5e969623f382dc5aa"
     },
     {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/EO_12757.decision.json",
+      "sha256": "057ff3029c02d14c38eff07abb6a96d4ccbc8aafa203207ec8c09bcf2890ab54"
+    },
+    {
       "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/FULL_UNABLE_RECHECK.json",
       "sha256": "20d2e4af548dc2971115d51984d8c074ce11b49829d822948973c21443834304"
     },
     {
       "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/pre-full-unable/EO_12757.decision.json",
       "sha256": "d8cbb116858de4f04d4538aec2ac3cf14a30ddf81de3b91833ff7dcc5b0eafb9"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/producer-13345/rejected/EO_12757.full-recheck.initial.decision.json",
+      "sha256": "d442d75a3a053762765caea7ea459bb82e45ab6a121c3543415d70681dc8b4f1"
     },
     {
       "path": "research/production/claim-kit-pilot-2026-10-18/producer-13350/FULL_UNABLE_RECHECK.json",
@@ -372,12 +380,20 @@
       "sha256": "c1ef1c67495b7d6e9727a9ea0f69ab599aabf85647d2f0dfe424bd7388bd240a"
     },
     {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-full-recheck-EO_12757-rereview.json",
+      "sha256": "b45f01d8d87a35c56bb68d244d9468a7e214e8bf48a34a6c54c81d79e49b8f49"
+    },
+    {
       "path": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-full-recheck-EO_12757.json",
       "sha256": "27db0071936ba998120c4e801a2434ba4e8931f442c4c9bb1f172533e9c56d73"
     },
     {
       "path": "research/production/claim-kit-pilot-2026-10-18/reviews/full-recheck-EO_12687.jsonl",
       "sha256": "6bea197f812b597c224e4cf15c95728beb7c4c1c4c558041d7eaac8e94b102ae"
+    },
+    {
+      "path": "research/production/claim-kit-pilot-2026-10-18/reviews/full-recheck-EO_12757-rereview.jsonl",
+      "sha256": "7cd398e5b0f700de6282ec80bb48862ecc7cc7c65b50823cefecc64d617a58b6"
     },
     {
       "path": "research/production/claim-kit-pilot-2026-10-18/reviews/full-recheck-EO_12757.jsonl",
@@ -388,6 +404,39 @@
     "functions_exec": 8,
     "nested_exec_command": 8,
     "collaboration_messages_before_write": 2,
-    "note": "Includes failed pre-write assertion and failed attempt to parse pretty JSON telemetry as JSONL; no files changed by those attempts."
-  }
+    "note": "Includes failed pre-write assertion and failed attempt to parse pretty JSON telemetry as JSONL; no files changed by those attempts.",
+    "correction_refresh": {
+      "functions_exec": 2,
+      "nested_exec_command": 2,
+      "collaboration_messages": 0
+    }
+  },
+  "correction_rereview_addenda": [
+    {
+      "instrument_id": "EO:12757",
+      "producer": {
+        "incremental_functions_exec": 3,
+        "incremental_nested_commands_separate": 3,
+        "incremental_collaboration_separate": 0,
+        "measured_wall_seconds": 63.526,
+        "source": "research/production/claim-kit-pilot-2026-10-18/producer-13345/FULL_UNABLE_RECHECK.json",
+        "source_field": "producer_corrections[-1].telemetry"
+      },
+      "independent_reviewer": {
+        "incremental_functions_exec": 4,
+        "incremental_nested_commands_separate": 4,
+        "incremental_collaboration_separate": 0,
+        "measured_wall_seconds": 69.65193748474121,
+        "source": "research/production/claim-kit-pilot-2026-10-18/reviews/TELEMETRY-full-recheck-EO_12757-rereview.json",
+        "source_field": "incremental_tool_counts"
+      },
+      "first_pass_rejection_preserved": true
+    }
+  ],
+  "first_pass_rejection_history": {
+    "initial1_of10": 0.1,
+    "expanded2_of12": 0.16666666666666666,
+    "corrected_rereviews_erase_rejections": false
+  },
+  "checkpoint_commit": "327478535fdf991baf3a1db1f4ca044cde91f95c (prior11); corrected12757 accepted, awaiting root claim addition"
 }

@@ -1,6 +1,6 @@
 # Sol's handoff notes
 
-## 2026-10-18 — checkpoint: infrastructure green; eleven accepted pilot claims
+## 2026-10-18 — checkpoint: infrastructure green; twelve accepted pilot claims
 
 ### Done
 
@@ -32,28 +32,29 @@ There are 1,314 input warnings. This is not a claim that every order has an orig
 
 ### Full-dossier recheck checkpoint
 
-All forty initial unable outcomes have now been re-evaluated against the full frozen dossiers. EO12687 newly passed separate adversarial review and strict assembly and was added as the eleventh accepted claim. EO12757 received an initial independent rejection for overbroad termination scopes; its corrected sheet awaits separate rereview. The other thirty-eight remain unable, with precise evidence gaps retained. Original unable sheets, rejection and correction history are preserved. See FULL_RECHECK_SUMMARY.json and TELEMETRY_RECHECK.json; initial source-gap lists are historical and some context omissions are resolved.
+All forty initial unable outcomes have now been re-evaluated against the full frozen dossiers. EO12687 newly passed separate adversarial review and strict assembly and was added as the eleventh accepted claim. EO12757 received an initial independent rejection for overbroad termination scopes; its corrected inventory split continuing mandates from amended composition rules and passed separate rereview. It is the twelfth committed accepted claim. The other thirty-eight remain unable, with precise evidence gaps retained. Original unable sheets, rejection and correction history are preserved. See FULL_RECHECK_SUMMARY.json and TELEMETRY_RECHECK.json; initial source-gap lists are historical and some context omissions are resolved.
 
-Expanded first-pass rejection is **2/12 (16.7%)**, above the approximately 11% baseline; corrected rereviews do not erase rejections. Current recorded all-phase floor is **341 functions / 365 nested commands / 59 collaboration calls**, excluding root orchestration and later correction/rereview increments. This is not a demonstrated cost win.
+Expanded first-pass rejection is **2/12 (16.7%)**, above the approximately 11% baseline; corrected rereviews do not erase rejections. Final recorded all-phase floor is **348 functions / 372 nested commands / 59 collaboration calls**, kept separate, excluding root orchestration and ambiguous/unrecorded counters: **29 functions per accepted candidate**, **6.96 per evaluated order**. Token/cache billing and complete elapsed pilot time remain unavailable; categorized totals and measured intervals are in TELEMETRY_RECHECK.json. This is not a demonstrated cost win.
 
 ### Running
 
-Final branch runner validation of committed decisions, actual checker and tracker effect. Strict assembly/exact-span checks pass all ten. Actual offline checker previously reported five pass, five pass_with_unverified, zero mechanical failures: sixty-four record-only references across four already-indexed PDFs. Cache-first custody requests are queued. Final frozen offline check is complete: all ten strict checks pass; actual checker again reports five full passes, five pass_with_unverified and zero mechanical failures (368 exact quotations). See FINAL_LOCAL_CHECK.json. Full runner [39107390253](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253) validates commit e8ca915 and is still running as of 07:58 UTC; tracker after value is not yet reported.
+Final branch runner validation of committed decisions, actual checker and tracker effect remains pending. The latest **twelve** claims pass all strict frozen-dossier assembly/exact-span checks. Offline actual checker: **six all-pass, six pass_with_unverified, zero mechanical failures, twelve structural passes**, 501 exact quote checks plus four short-quote warnings. Eighty-eight source references are custody-record-only; no binary custody has been invented. Strict kit validates even the four short inventory spans by exact source offsets/hash. See FINAL_LOCAL_CHECK.json; partial local custody metadata means the full runner supersedes this result. Original ten-claim checkpoint run [39107390253](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253) and eleven-claim checkpoint run [39109698942](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39109698942) were running as of 08:01 UTC. Twelve-claim validation will follow its commit; no final after count is asserted.
 
+Durable remote checkpoints: `e8ca915ca8afae4a9c84bbf282a2cff60e6b29dc` preserves initial fifty packets/reviews and ten accepted claims; `327478535fdf991baf3a1db1f4ca044cde91f95c` preserves all forty full-dossier rechecks and the eleventh claim. This checkpoint adds the independently accepted corrected twelfth claim and its frozen audit. No progress depends only on conversation context.
 Tracker baseline is **130 ready**, confirmed at base and frozen output; after value is pending. Accepted AI claims must not be substituted for tracker progress.
 
 ### Cost comparison
 
 Baseline: about 33,000 new input tokens, 2.1M cached/reread tokens and eight calls per accepted claim. Model token/cache billing is unavailable here; no token savings can be measured. Complete pilot wall time was not captured; partial parallel intervals and command durations are not elapsed pilot time.
 
-Final recorded floor: **279 functions.exec**, **300 nested commands**, **49 collaboration calls**, kept separate; **27.9 functions per accepted frozen candidate**, **5.58 per evaluated order**. This includes initial evaluation and recorded freeze confirmation, excludes root orchestration and ambiguous/unrecorded counters. Initial floor204 + categorized freeze63 + previously omitted producer11948 cumulative12, counted once. Exact fields, source hashes, timing windows and limits are in FINAL_TELEMETRY.json and short.md.
+Initial frozen-ten recorded floor: **279 functions.exec**, **300 nested commands**, **49 collaboration calls**, kept separate; **27.9 functions per accepted frozen candidate**, **5.58 per evaluated order**. This includes initial evaluation and recorded freeze confirmation, excludes root orchestration and ambiguous/unrecorded counters. Initial floor204 + categorized freeze63 + previously omitted producer11948 cumulative12, counted once. Exact fields, source hashes, timing windows and limits are in FINAL_TELEMETRY.json and short.md.
 
-This pilot **does not establish substantial cost reduction**. Initial rejection is10% on only ten candidates; it does not establish durable improvement. The brief's about-fifty-accepted-claims and cost-proof definition of done is **not met**.
+This pilot **does not establish substantial cost reduction**. Expanded first-pass rejection is **16.7% (2/12)**, above the approximately 11% baseline; corrected rereview accepts do not erase first-pass rejects. The brief's about-fifty-accepted-claims and cost-proof definition of done is **not met**.
 
 ### Next
 
 1. Verify final exact runner commit_run, ASSEMBLY_REPORT, per-claim checker and tracker delta. Older concurrent output runs can overwrite newer output files; immutable frozen commit above is the audit anchor.
-2. Complete independent rereview of corrected EO12757. For the thirty-eight still unable, obtain identified report/receipt/implementation facts, current-law operative spans through cutoff, images and custody through jobs/queue. Deadlines and later cleanup revocations cannot supply actual earlier endings.
+2. For the thirty-eight still unable, obtain identified report/receipt/implementation facts, current-law operative spans through cutoff, images and custody through jobs/queue. Deadlines and later cleanup revocations cannot supply actual earlier endings.
 3. Reach about fifty accepted committed pilot claims after evidence/review, and capture complete token/timing telemetry before claiming efficiency or scaling.
 
 ### Asks

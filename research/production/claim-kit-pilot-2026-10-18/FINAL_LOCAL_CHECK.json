@@ -1,7 +1,7 @@
 {
   "schema": "eo-claim-kit-final-local-check/v1",
   "frozen_output_commit": "717e0a4bfad161532e54755f9cf2cb97964ac03d",
-  "claims_sha256": "e3d9dd5df2908057d94a426f93f2559c7d2224db7d37387b73404275d25e54d6",
+  "claims_sha256": "856daad84f001273f3ad9aeff9697aaa881df70ec3f4a817d078613e38f88ac1",
   "kit_check": [
     {
       "line": 1,
@@ -42,6 +42,14 @@
     {
       "line": 10,
       "errors": []
+    },
+    {
+      "line": 11,
+      "errors": []
+    },
+    {
+      "line": 12,
+      "errors": []
     }
   ],
   "actual_checker_summary": {
@@ -51,60 +59,62 @@
     "claim_files": [
       "sol-2026-10-18.jsonl"
     ],
-    "claim_lines_found": 10,
+    "claim_lines_found": 12,
     "job_limit": null,
-    "claims_checked": 10,
+    "claims_checked": 12,
     "claims_parse_errors": 0,
     "claims_checker_errors": 0,
-    "orders_with_claim": 10,
-    "claims_all_checks_passed": 5,
-    "claims_mechanical_pass": 5,
-    "claims_mechanical_unverified": 5,
+    "orders_with_claim": 12,
+    "claims_all_checks_passed": 6,
+    "claims_mechanical_pass": 6,
+    "claims_mechanical_unverified": 6,
     "claims_mechanical_fail": 0,
-    "claims_gate_passed": 10,
+    "claims_gate_passed": 12,
     "steps_checker_passed_effective_claims": {
-      "original_text": 10,
-      "clause_inventory": 8,
-      "ending_or_current_basis": 7,
-      "savings_residuals": 7,
-      "counterevidence": 10
+      "original_text": 12,
+      "clause_inventory": 9,
+      "ending_or_current_basis": 8,
+      "savings_residuals": 8,
+      "counterevidence": 12
     },
     "check_results": {
       "source_held": {
-        "pass": 206,
-        "skip": 64
+        "pass": 287,
+        "skip": 88
       },
       "source_identity": {
-        "pass": 108
+        "pass": 142
       },
       "quote_verbatim": {
-        "pass": 368
+        "pass": 501,
+        "warn": 4
       },
       "date_valid": {
-        "pass": 443
+        "pass": 620
       },
       "date_after_signing": {
-        "pass": 152
+        "pass": 221
       },
       "order_exists": {
-        "pass": 112
+        "pass": 130
       },
       "structural_gate": {
-        "pass": 10
+        "pass": 12
       },
       "parse": {},
       "checker_error": {}
     },
     "source_status_counts": {
-      "custody_record_only": 64,
-      "gpo_published_hash_match": 101,
-      "held_bytes_in_release_or_repo": 105
+      "custody_record_only": 88,
+      "gpo_published_hash_match": 171,
+      "held_bytes_in_release_or_repo": 116
     },
     "source_identity_counts": {
-      "recorded_for_this_order": 108
+      "recorded_for_this_order": 142
     },
     "quote_status_counts": {
-      "exact": 368
+      "exact": 501,
+      "too_short_to_verify": 4
     },
     "source_status_policy": {
       "held_bytes_verified": "pass",
@@ -114,8 +124,8 @@
     },
     "claim_checks_csv": {
       "mode": "non_pass_rows",
-      "rows_written": 64,
-      "rows_total": 1463,
+      "rows_written": 92,
+      "rows_total": 2005,
       "max_mb": 50.0,
       "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
     },
@@ -139,5 +149,7 @@
   },
   "network_disabled": true,
   "downloads_disabled_environment": "CLAIM_CHECKER_VERIFY_DOWNLOADS=0",
-  "warning": "Offline custody result uses partial local metadata; full GitHub results supersede it. Mechanical checks are not legal conclusions."
+  "warning": "Offline custody result uses partial local metadata; full GitHub results supersede it. Mechanical checks are not legal conclusions.",
+  "checked_at_utc": "2026-10-18T08:01:00Z",
+  "short_quote_warning": "Four split inventory spans are too short for the downstream checker quote heuristic; strict claim-kit exact-slice/offset/hash checks verify all selected spans. This does not remove the downstream warning."
 }
