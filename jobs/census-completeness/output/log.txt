@@ -1,0 +1,26 @@
+test_runs_on_committed_inputs (test_complete.EndToEnd.test_runs_on_committed_inputs) ... ok
+test_source_universe_map_is_well_formed (test_complete.EndToEnd.test_source_universe_map_is_well_formed) ... ok
+test_chao1 (test_complete.Estimators.test_chao1) ... ok
+test_chapman_textbook (test_complete.Estimators.test_chapman_textbook) ... ok
+test_mt_mle_two_lists_equals_petersen (test_complete.Estimators.test_mt_mle_two_lists_equals_petersen) ... ok
+test_wilson (test_complete.Estimators.test_wilson) ... ok
+test_book_mentions_dedupe_by_date_and_heading (test_complete.Matching.test_book_mentions_dedupe_by_date_and_heading) ... ok
+test_citation_links_are_their_own_kind (test_complete.Matching.test_citation_links_are_their_own_kind) ... ok
+test_date_alone_never_matches (test_complete.Matching.test_date_alone_never_matches) ... ok
+test_numbered_orders_are_set_aside (test_complete.Matching.test_numbered_orders_are_set_aside) ... ok
+test_year_only_lord_entry_needs_two_words (test_complete.Matching.test_year_only_lord_entry_needs_two_words) ... ok
+test_recovers_known_population (test_complete.SyntheticPopulation.test_recovers_known_population) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.283s
+
+OK
+Mentions: 1853 from 6 lists (LORD 1158, IR1912 162, RICH_IX 151, RICH_VI 203, RICH_VII 74, WPA 105).
+Matches: 1258 ({'blind_date_and_token': 220, 'blind_year_and_two_tokens': 708, 'citation_link': 330}); ambiguous same-date pairs: 140.
+Mentions: 3468 from 18 lists (LORD 1158, GLO_1880 83, GLO_1884 135, GLO_1885 105, GLO_1891 78, GLO_1892 132, GLO_1893 137, GLO_1894 146, GLO_1897 178, GLO_1898 177, IR1912 162, MR_1907 141, MR_1910 137, MR_1916 166, RICH_IX 151, RICH_VI 203, RICH_VII 74, WPA 105).
+Matches: 7813 ({'blind_date_and_token': 6296, 'blind_year_and_two_tokens': 1187, 'citation_link': 330}); ambiguous same-date pairs: 5119.
+Observed distinct unnumbered orders 1789-1899: 1407; Mt undiscovered, strict matching (lower bound under dependence): 271.0 (CI [1630.8, 1725.2]).
+  1789-1800: observed 7 (+0 numbered), per list {'LORD': 7, 'GLO_1880': 0, 'GLO_1884': 0, 'GLO_1885': 0, 'GLO_1891': 0, 'GLO_1892': 0, 'GLO_1893': 0, 'GLO_1894': 0, 'GLO_1897': 0, 'GLO_1898': 0, 'IR1912': 0, 'MR_1907': 1, 'MR_1910': 1, 'MR_1916': 1, 'RICH_IX': 0, 'RICH_VI': 0, 'RICH_VII': 0}, Mt undiscovered strict None (CI None), loose None, Chao1 check 15.0
+  1801-1861: observed 218 (+0 numbered), per list {'LORD': 164, 'GLO_1880': 11, 'GLO_1884': 27, 'GLO_1885': 16, 'GLO_1891': 16, 'GLO_1892': 17, 'GLO_1893': 17, 'GLO_1894': 19, 'GLO_1897': 21, 'GLO_1898': 21, 'IR1912': 0, 'MR_1907': 16, 'MR_1910': 15, 'MR_1916': 22, 'RICH_IX': 0, 'RICH_VI': 19, 'RICH_VII': 0}, Mt undiscovered strict 32.2 (CI [234.4, 266.0]), loose 15.0, Chao1 check 1584.2
+  1862-1899: observed 1182 (+56 numbered), per list {'LORD': 764, 'GLO_1880': 52, 'GLO_1884': 95, 'GLO_1885': 72, 'GLO_1891': 54, 'GLO_1892': 89, 'GLO_1893': 92, 'GLO_1894': 105, 'GLO_1897': 115, 'GLO_1898': 119, 'IR1912': 121, 'MR_1907': 65, 'MR_1910': 66, 'MR_1916': 77, 'RICH_IX': 32, 'RICH_VI': 176, 'RICH_VII': 63}, Mt undiscovered strict 236.1 (CI [1373.8, 1462.4]), loose 101.9, Chao1 check 1800.0
+Population-level estimates; nothing admitted or changed.
