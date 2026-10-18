@@ -6,63 +6,63 @@
     "astra-2026-10-17-p12553a.jsonl",
     "astra-2026-10-17-p12553b.jsonl",
     "astra-2026-10-17-p3originals.jsonl",
-    "astra-2026-10-17-pother.jsonl",
-    "astra-2026-10-18-p3complete.jsonl"
+    "astra-2026-10-17-pother.jsonl"
   ],
-  "claim_lines_found": 42,
+  "claim_lines_found": 41,
   "job_limit": null,
-  "claims_checked": 42,
+  "claims_checked": 41,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
   "orders_with_claim": 41,
-  "claims_all_checks_passed": 1,
-  "claims_mechanical_pass": 6,
+  "claims_all_checks_passed": 0,
+  "claims_mechanical_pass": 4,
   "claims_mechanical_unverified": 36,
-  "claims_mechanical_fail": 0,
-  "claims_gate_passed": 1,
+  "claims_mechanical_fail": 1,
+  "claims_gate_passed": 0,
   "steps_checker_passed_effective_claims": {
     "original_text": 5,
-    "clause_inventory": 1,
-    "ending_or_current_basis": 1,
-    "savings_residuals": 1,
-    "counterevidence": 2
+    "clause_inventory": 0,
+    "ending_or_current_basis": 0,
+    "savings_residuals": 0,
+    "counterevidence": 0
   },
   "check_results": {
     "source_held": {
-      "pass": 22,
+      "pass": 10,
       "skip": 211
     },
     "source_identity": {
-      "pass": 167
+      "pass": 161
     },
     "quote_verbatim": {
-      "pass": 155
+      "fail": 1,
+      "pass": 149
     },
     "date_valid": {
-      "pass": 66
+      "pass": 54
     },
     "date_after_signing": {
-      "pass": 59
+      "pass": 54
     },
     "order_exists": {
       "pass": 93
     },
     "structural_gate": {
-      "fail": 312,
-      "pass": 1
+      "fail": 313
     },
     "parse": {},
     "checker_error": {}
   },
   "source_status_counts": {
     "custody_record_only": 211,
-    "held_bytes_verified": 22
+    "held_bytes_verified": 10
   },
   "source_identity_counts": {
-    "recorded_for_this_order": 167
+    "recorded_for_this_order": 161
   },
   "quote_status_counts": {
-    "exact": 155
+    "exact": 149,
+    "not_found": 1
   },
   "source_status_policy": {
     "held_bytes_verified": "pass",
@@ -71,8 +71,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 523,
-    "rows_total": 1086,
+    "rows_written": 525,
+    "rows_total": 1046,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
@@ -84,7 +84,7 @@
     "jobs/fr-originals/output/SOURCES.jsonl": 6497,
     "jobs/later-events/output/SOURCES.jsonl": 7626,
     "jobs/opus-media-match/output/SOURCES.jsonl": 496,
-    "jobs/source-ladder/output/SOURCES.jsonl": 122,
+    "jobs/source-ladder/output/SOURCES.jsonl": 147,
     "opus_media_member_map": 496,
     "opus_stage11_fetch_meta": 9203,
     "opus_stage11_manifest": 27237,
@@ -93,7 +93,7 @@
     "stage21_acquisition_log": 160,
     "stage21_custody": 160
   },
-  "held_distinct_sha256": 31658,
+  "held_distinct_sha256": 31659,
   "opus_text_pack_texts": 0,
   "signing_dates_loaded": {
     "identity_layer_year_only": 14854,

@@ -6,7 +6,7 @@ New York date: 2026-10-17. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 1 of 14,972 orders (0.0%)**
+**Ready for human review: 0 of 14,972 orders (0.0%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -20,8 +20,8 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,240 | 3,359 | 66.7% |
-| Complete inventory of the order's operative clauses | 1 | 3,359 | 0.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1 | 3,359 | 0.0% |
+| Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
 
 ## Changes since the previous day
 
