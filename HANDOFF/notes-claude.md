@@ -2,6 +2,43 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 14:30 ET: census-completeness, a measured answer to "have we looked everywhere?"
+
+- **Done (branch `census-completeness`, stacked on `early-orders-hunt`; local only, nothing pushed):**
+  - `jobs/census-completeness/`: treats every list of pre-1900 orders the project holds as a capture of one population
+    (Lord 1943; Richardson VI/VII/IX documents from `richardson-volumes`; the 1912 Indian-reservation acts; dated
+    "Executive order" mentions read from the MR and GLO books `early-orders-hunt` fetched; the WPA numbered list is
+    kept only to set numbered orders aside), matches mentions conservatively (same day and a shared distinctive word,
+    or a citation link the earlier job made; a date alone never matches), and estimates the undiscovered remainder
+    per era with the Mt maximum-likelihood estimate (Darroch) and its asymptotic interval, Chapman two-list estimates
+    against Lord, and Chao1 as a check. Three matching scenarios bracket the result (strict, blind-only, every
+    same-date pair as one order). Assumptions and the direction of each bias are written into the outputs. 12 tests,
+    including recovery of a synthetic hidden population of 400.
+  - `data/SOURCE_UNIVERSE.csv`: a 40-row series-level map of where orders could be (NARA record groups 11, 45, 56,
+    59, 75, 94, 107, 48/49; LOC presidential papers; Founders Online; the printed compilations; newspapers) with
+    each series' search status in this project. Only 8 rows are `searched_to_end`.
+  - `research/plans/SCAN_REQUESTS_2026-10-18.md`: three draft reference/scan-request emails (NARA Archives I for
+    RG 107 letters received 1789-1861; NARA for GLO/BIA reservation files; LOC Manuscript Division for the
+    1841-1861 presidents' outgoing letters) plus a reproduction-order template. Drafts only; nothing sent.
+  - Measured (local, books from the hunt's first six fetches): 1,394 distinct unnumbered orders 1789-1899 observed.
+    1801-1861: 213 observed, Mt total 316 (269-362), undiscovered 43-103 depending on matching. 1862-1899: 1,174
+    observed, Mt total 1,729 (1,634-1,825), undiscovered 295-555. Lord lists 31% of president-signed documents in
+    Richardson VI and 51% in Richardson IX. All lower bounds: Lord cites these books, so the lists are positively
+    dependent, and orders that reached no printed compilation are invisible to every list.
+- **Running:** nothing. `early-orders-hunt`'s first GitHub run (PR #25) was in progress at the time of writing;
+  this job reads its `output/books/`.
+- **Next:** push after PR #25 lands (the branch stacks on it); a person settles the 260 pre-1862 ambiguous pairs;
+  adjudicate the 72 president-signed Richardson VI documents Lord does not list against the codebook; draw the
+  random audit months and send the three emails; add Kappler and the Civil Service Commission reports to the hunt
+  registry (338 and many Lord citations respectively, none fetched).
+- **Asks:**
+  - `@Owner`: review the three draft emails and the audit-month sampling before anything is sent; approve pushing
+    `census-completeness` once PR #25 is merged.
+  - `@Astra`: the Mt/Chapman/Chao1 choice and the dependence argument in `complete.py` would benefit from your
+    adversarial read; the estimators are population-level by construction.
+- **Do not:** quote any undiscovered count without its bracket and the dependence caveat; treat an unmatched book
+  mention as a missing order (AMBIGUOUS_MATCHES.csv exists for that); admit anything from these outputs.
+
 ## 2026-10-18 13:00 ET: early-orders-hunt, a zero-token job that goes and gets the printed texts of 1789-1899 orders
 
 - **Done (branch `early-orders-hunt`, from main `43f415dd`; local only, nothing pushed):**
