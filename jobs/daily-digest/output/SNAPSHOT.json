@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "summaries": {
     "census-candidates": {
       "Lord_19c_gap_rows": 812,
@@ -31,50 +31,58 @@
       "check_results": {
         "checker_error": {},
         "date_after_signing": {
-          "pass": 59
+          "pass": 1591
         },
         "date_valid": {
-          "pass": 66
+          "pass": 2433
         },
         "order_exists": {
-          "pass": 93
+          "pass": 1165
         },
         "parse": {},
         "quote_verbatim": {
-          "pass": 155
+          "pass": 3164
         },
         "source_held": {
-          "pass": 233
+          "pass": 3016
         },
         "source_identity": {
-          "pass": 167
+          "pass": 1234
         },
         "structural_gate": {
-          "fail": 312,
-          "pass": 1
+          "fail": 696,
+          "pass": 133
         }
       },
       "claim_checks_csv": {
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 1086,
-        "rows_written": 312
+        "rows_total": 13432,
+        "rows_written": 696
       },
       "claim_files": [
         "astra-2026-10-17-p12553a.jsonl",
         "astra-2026-10-17-p12553b.jsonl",
         "astra-2026-10-17-p3originals.jsonl",
         "astra-2026-10-17-pother.jsonl",
-        "astra-2026-10-18-p3complete.jsonl"
+        "astra-2026-10-18-p3complete.jsonl",
+        "claude-2026-10-18-codif-b0.jsonl",
+        "claude-2026-10-18-codif-b1.jsonl",
+        "claude-2026-10-18-codif-b2.jsonl",
+        "claude-2026-10-18-codif-b3.jsonl",
+        "claude-2026-10-18-codif-b4.jsonl",
+        "claude-2026-10-18-codif-b5.jsonl",
+        "claude-2026-10-18-codif-b6.jsonl",
+        "claude-2026-10-18-codif-b7.jsonl"
       ],
-      "claim_lines_found": 42,
-      "claims_all_checks_passed": 1,
-      "claims_checked": 42,
+      "claim_lines_found": 218,
+      "claims_all_checks_passed": 133,
+      "claims_checked": 218,
       "claims_checker_errors": 0,
-      "claims_gate_passed": 1,
+      "claims_gate_passed": 133,
       "claims_mechanical_fail": 0,
-      "claims_mechanical_pass": 42,
+      "claims_mechanical_pass": 218,
       "claims_mechanical_unverified": 0,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
@@ -86,9 +94,18 @@
         "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
         "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
         "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+        "jobs/indian-reservations-1912/data/PROVENANCE.json": 1,
+        "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl": 55,
+        "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
+        "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
         "jobs/later-events/output/SOURCES.jsonl": 7626,
+        "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
+        "jobs/ofr-compilations/data/PROVENANCE.json": 1,
+        "jobs/ofr-compilations/output/FRAGMENTS.jsonl": 500,
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
-        "jobs/source-ladder/output/SOURCES.jsonl": 122,
+        "jobs/richardson-volumes/data/PROVENANCE.json": 3,
+        "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
+        "jobs/source-ladder/output/SOURCES.jsonl": 147,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
         "opus_stage11_manifest": 27237,
@@ -97,15 +114,15 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 31658,
+      "held_distinct_sha256": 31666,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "opus_text_pack_texts": 0,
-      "orders_with_claim": 41,
+      "orders_with_claim": 217,
       "pypdf_available": true,
       "quote_status_counts": {
-        "exact": 155
+        "exact": 3164
       },
       "schema": "eo-claim-check/v1",
       "signing_dates_loaded": {
@@ -115,10 +132,10 @@
         "stage21_crosswalk": 402
       },
       "source_identity_counts": {
-        "recorded_for_this_order": 167
+        "recorded_for_this_order": 1234
       },
       "source_status_counts": {
-        "gpo_published_hash_match": 116,
+        "gpo_published_hash_match": 2899,
         "held_bytes_verified": 117
       },
       "source_status_policy": {
@@ -128,46 +145,58 @@
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 7,
-        "counterevidence": 2,
-        "ending_or_current_basis": 2,
-        "original_text": 11,
-        "savings_residuals": 7
+        "clause_inventory": 178,
+        "counterevidence": 168,
+        "ending_or_current_basis": 134,
+        "original_text": 187,
+        "savings_residuals": 166
       }
     },
     "claim-drafts": {
+      "book_sources": {
+        "compiled_transcription_lead": 2,
+        "compiled_transcription_lead_is_the_only_original_candidate": 2,
+        "in_force_1989_lead": 273,
+        "note": "orders whose draft uses the printed-volume jobs: official GPO/OFR compilations (ofr-compilations, isthmian-canal-1911, indian-reservations-1912; graded like fr-originals), Richardson's compiled transcriptions (leads only, never the original) and the OFR 1989 Codification (whole-order-end proposals from its disposition table; in-force leads checked through 1989-01-20 only)",
+        "official_compilation_candidate": 31,
+        "original_filled_from_official_compilation": 31,
+        "whole_order_end_from_1989_disposition_table": 719,
+        "whole_order_end_only_from_1989_disposition_table": 91
+      },
       "candidates": {
         "current_predicate": 510,
-        "later_events": 1563,
-        "whole_order_end": 938
+        "current_predicate_note": "U.S. Code / eCFR leads only; the 1989 in-force snapshot is counted under book_sources",
+        "later_events": 1659,
+        "whole_order_end": 1029
       },
       "claim_checker": {
         "check_rows_by_status": {
-          "order_exists:in_universe": 5598,
+          "order_exists:in_universe": 5623,
           "order_exists:not_in_universe": 10,
           "quote_verbatim:exact": 13119,
           "quote_verbatim:too_short_to_verify": 109,
           "source_held:custody_record_only": 4360,
           "source_held:gpo_published_hash_match": 5000,
-          "source_held:held_bytes_verified": 6149,
-          "source_identity:recorded_for_this_order": 15509
+          "source_held:held_bytes_in_release_or_repo": 158,
+          "source_held:held_bytes_verified": 6022,
+          "source_identity:recorded_for_this_order": 15540
         },
         "drafts_by_mechanical_result": {
           "fail": 10,
           "pass": 2792,
           "pass_with_unverified": 557
         },
-        "note": "jobs/claim-checker imported; 56889 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 57649 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
-      "drafts_whose_only_remaining_gaps_are_judgment_fields": 770,
-      "elapsed_seconds": 391.8,
+      "drafts_whose_only_remaining_gaps_are_judgment_fields": 780,
+      "elapsed_seconds": 376.7,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
-        "large": 1280,
-        "medium": 1347,
-        "small": 732
+        "large": 1243,
+        "medium": 1377,
+        "small": 739
       },
       "filled": {
         "clauses_total": 13228,
@@ -176,7 +205,7 @@
         "later_source_search_note": "never machine-filled; complete machine searches are in _draft.proposals.later_source_search_machine",
         "operative_clauses": 1806,
         "original_candidate_needing_check_only": 88,
-        "original_representation": 2281
+        "original_representation": 2312
       },
       "fragment_orders_not_in_universe": 34,
       "fragment_orders_not_in_universe_examples": [
@@ -205,14 +234,20 @@
       "ids_not_in_universe": [],
       "ids_requested": null,
       "input_counts": {
+        "codified_1989_rows_read:ofr-codification-1989": 555,
         "fragments_read:clause-drafts": 4747,
         "fragments_read:current-law": 3476,
         "fragments_read:family-rule-sources": 0,
         "fragments_read:family-rule-tail": 0,
         "fragments_read:family-rules": 748,
         "fragments_read:fr-originals": 6497,
+        "fragments_read:indian-reservations-1912": 55,
+        "fragments_read:isthmian-canal-1911": 105,
         "fragments_read:later-events": 6513,
+        "fragments_read:ofr-codification-1989": 1924,
+        "fragments_read:ofr-compilations": 500,
         "fragments_read:opus-media-match": 143,
+        "fragments_read:richardson-volumes": 68,
         "fragments_read:source-ladder": 0,
         "fragments_unusable": 6,
         "sources_read:clause-drafts": 4747,
@@ -221,9 +256,14 @@
         "sources_read:family-rule-tail": 1,
         "sources_read:family-rules": 0,
         "sources_read:fr-originals": 6497,
+        "sources_read:indian-reservations-1912": 0,
+        "sources_read:isthmian-canal-1911": 0,
         "sources_read:later-events": 7626,
+        "sources_read:ofr-codification-1989": 0,
+        "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
-        "sources_read:source-ladder": 122
+        "sources_read:richardson-volumes": 0,
+        "sources_read:source-ladder": 147
       },
       "input_notes": [],
       "input_problems": [],
@@ -253,12 +293,32 @@
           "path": "jobs/fr-originals/output"
         },
         {
+          "job": "indian-reservations-1912",
+          "path": "jobs/indian-reservations-1912/output"
+        },
+        {
+          "job": "isthmian-canal-1911",
+          "path": "jobs/isthmian-canal-1911/output"
+        },
+        {
           "job": "later-events",
           "path": "jobs/later-events/output"
         },
         {
+          "job": "ofr-codification-1989",
+          "path": "jobs/ofr-codification-1989/output"
+        },
+        {
+          "job": "ofr-compilations",
+          "path": "jobs/ofr-compilations/output"
+        },
+        {
           "job": "opus-media-match",
           "path": "jobs/opus-media-match/output"
+        },
+        {
+          "job": "richardson-volumes",
+          "path": "jobs/richardson-volumes/output"
         },
         {
           "job": "source-ladder",
@@ -269,13 +329,16 @@
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "legend": {
+        "flags ofr_codification_1989_editorial": "a later event or whole-order end read from the OFR 1989 Codification's disposition table (status as of 1989-01-20, OCR cell); whole_end_from_1989_disposition_table marks unqualified revocations offered as whole-order ends under later-events' rule. That table and the later-events OFR catalog notes are the same OFR data, so their agreement is not counted as corroboration by two jobs",
         "gate.errors_if_proposals_accepted": "feasibility test only: the suggested candidates and placeholder text were put in a COPY of the claim; whatever still fails there has no machine evidence yet (compact form: clause_*_state x12 means twelve clauses)",
         "gate.errors_now": "claim_gate.validate_claim errors of the claim exactly as drafted: the agent's to-do list",
         "gate.only_judgment_left": "true when that copy passes the gate: every remaining gap is a judgment the agent makes from evidence already in the draft",
         "gate.placeholder_clause": "true when no clause inventory exists: the claim then holds one placeholder clause (DRAFT-PLACEHOLDER-no-clause-inventory) so the gate checks every part (an empty list makes the gate stop early, and the readiness tracker would count the unchecked steps); replace it with the real clauses",
         "later_source_search_partial": "machine searches that did not cover the whole corpus (sample runs); their full wording is in SUMMARY.json machine_searches",
         "proposals": "candidates already in the claim's field shapes ('proposal'), with 'meta' explaining where each came from; dates are the acting instrument's signing or printed date, never a verified effective date (later-event proposals therefore say date_candidate; rename it to effective_date only after confirming)",
+        "proposals.current_predicate[] basis_code ofr_codification_1989_in_force": "the OFR 1989 Codification prints the order as in force on 1989-01-20 (as amended, editorial text): a lead only; its checked_through is 1989-01-20, so it never satisfies the gate and never counts as a current-law lead",
         "proposals.later_source_search_machine": "complete machine searches, never put into the claim: copy the 'entry' of the same search_id from SUMMARY.json machine_searches into claim.later_source_search only after judging it adequate for the order and resolving every CONFLICT line",
+        "proposals.original_representation[].acceptable_as_original": "false for a compiled transcription (grade compiled_transcription_lead, Richardson): a lead to the official original, never the original by itself; the feasibility test never uses it. official_compilation_* grades are GPO/OFR printings graded like fr-originals (needs_page_check or a medium/low location is never strong)",
         "readiness.by_step": "confirm = machine evidence is in the draft or proposals and an agent must check and accept it; agent_judgment = needs reading and a decision; resolve_conflicts = conflicts listed; research = no machine evidence yet; done_now / done_now_by_custody = the tracker already counts it; n/a = not applicable"
       },
       "machine_searches": [
@@ -314,9 +377,9 @@
         }
       ],
       "network_requests": 0,
-      "of_which_decided": 770,
+      "of_which_decided": 780,
       "only_judgment_left_by_status": {
-        "no": 589,
+        "no": 599,
         "yes": 181
       },
       "orders_by_gate_error_if_proposals_accepted": {
@@ -349,7 +412,7 @@
         "clause_*_current_predicate x9": 2,
         "clause_*_first_end": 1,
         "clause_*_original_text_or_source": 1553,
-        "clause_*_state": 1508,
+        "clause_*_state": 1463,
         "clause_*_state x10": 15,
         "clause_*_state x11": 11,
         "clause_*_state x12": 15,
@@ -360,7 +423,7 @@
         "clause_*_state x17": 6,
         "clause_*_state x18": 5,
         "clause_*_state x19": 3,
-        "clause_*_state x2": 151,
+        "clause_*_state x2": 149,
         "clause_*_state x20": 1,
         "clause_*_state x21": 1,
         "clause_*_state x22": 5,
@@ -370,7 +433,7 @@
         "clause_*_state x27": 1,
         "clause_*_state x28": 1,
         "clause_*_state x29": 4,
-        "clause_*_state x3": 75,
+        "clause_*_state x3": 74,
         "clause_*_state x30": 2,
         "clause_*_state x31": 2,
         "clause_*_state x33": 1,
@@ -387,23 +450,23 @@
         "clause_*_state x8": 16,
         "clause_*_state x9": 9,
         "clause_*_state x95": 1,
-        "original_representation_provenance": 990,
-        "savings_residuals_evidence": 939,
-        "whole_order_end_evidence": 2031,
+        "original_representation_provenance": 959,
+        "savings_residuals_evidence": 912,
+        "whole_order_end_evidence": 1983,
         "yes_without_continuing_clause": 60
       },
       "orders_by_remaining_gate_error": {
         "bounded_later_search": 3359,
         "clause_*_original_text_or_source": 1553,
         "clause_*_state": 3359,
-        "original_representation_provenance": 1078,
+        "original_representation_provenance": 1047,
         "research_rationale": 3359,
         "savings_residuals_evidence": 3359,
         "unresolved_material_gaps": 3359,
         "whole_order_end_evidence": 2954,
         "yes_without_continuing_clause": 405
       },
-      "orders_with_any_conflict": 311,
+      "orders_with_any_conflict": 417,
       "orders_with_draft": 3359,
       "outputs": [
         "DRAFT_CLAIMS.jsonl",
@@ -413,18 +476,18 @@
       ],
       "readiness_by_step": {
         "clause_inventory": {
-          "confirm": 878,
-          "research": 2481
+          "confirm": 887,
+          "research": 2472
         },
         "counterevidence": {
-          "confirm": 1565,
-          "research": 1569,
-          "resolve_conflicts": 225
+          "confirm": 1523,
+          "research": 1570,
+          "resolve_conflicts": 266
         },
         "ending_or_current_basis": {
           "agent_judgment": 19,
-          "confirm": 754,
-          "research": 2586
+          "confirm": 763,
+          "research": 2577
         },
         "opus_media": {
           "confirm": 82,
@@ -432,13 +495,13 @@
           "research": 762
         },
         "original_text": {
-          "confirm": 2195,
+          "confirm": 2226,
           "done_now_by_custody": 174,
-          "research": 990
+          "research": 959
         },
         "savings_residuals": {
-          "agent_judgment": 2420,
-          "research": 939
+          "agent_judgment": 2447,
+          "research": 912
         },
         "shared_sources": {
           "confirm": 202,
@@ -450,16 +513,17 @@
       "scope": "decided",
       "top_conflict_types": {
         "EVENT_BEFORE_SIGNING": 14,
-        "FULL_AND_PARTIAL_EVIDENCE_CONFLICT": 36,
+        "FULL_AND_PARTIAL_EVIDENCE_CONFLICT": 54,
         "LATER_REINSTATEMENT_CANDIDATE": 4,
         "NO_ORDER_CITED_IN_CURRENT_LAW": 163,
+        "NO_ORDER_IN_FORCE_ON_1989_01_20": 72,
         "PARTIAL_END_CANDIDATE_ON_YES_ORDER": 43,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SIGNING_DATE_DISAGREEMENT": 1,
+        "SIGNING_DATE_DISAGREEMENT": 2,
         "STATED_EFFECTIVE_DATE_DIFFERS": 16,
-        "WHOLE_END_ACTOR_DISAGREEMENT": 33,
-        "WHOLE_END_DATE_DISAGREEMENT": 13,
-        "WHOLE_END_DATE_MISSING_OR_DISPUTED": 9,
+        "WHOLE_END_ACTOR_DISAGREEMENT": 37,
+        "WHOLE_END_DATE_DISAGREEMENT": 17,
+        "WHOLE_END_DATE_MISSING_OR_DISPUTED": 55,
         "YES_ORDER_HAS_WHOLE_END_CANDIDATE": 9
       },
       "undecided_orders_with_draft": 0,
@@ -2257,6 +2321,367 @@
       "shrink_check": "ok",
       "stopped_early": ""
     },
+    "indian-reservations-1912": {
+      "acts": 309,
+      "acts_before_1900": 214,
+      "acts_by_census_state": {
+        "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER": 4,
+        "UNNUMBERED_NOT_IN_CENSUS": 248,
+        "census_year_only": 57
+      },
+      "acts_by_kind": {
+        "indorsement_or_approval": 28,
+        "order": 277,
+        "proclamation": 4
+      },
+      "acts_by_signer": {
+        "ARTHUR": 46,
+        "BUCHANAN": 2,
+        "CLEVELAND": 20,
+        "GARFIELD": 1,
+        "GRANT": 98,
+        "HARRISON": 7,
+        "HAYES": 37,
+        "JOHNSON": 9,
+        "LINCOLN": 3,
+        "MCKINLEY": 5,
+        "PIERCE": 10,
+        "ROOSEVELT": 25,
+        "TAFT": 46
+      },
+      "acts_with_a_lord_match": 178,
+      "acts_with_trailer": {
+        "countersignature": 4,
+        "date_after_signature": 4,
+        "indorsed_by": 2,
+        "note": 13,
+        "referral": 1
+      },
+      "body_lines": 11522,
+      "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "census_leads": {
+        "BOOK_DATE_DIFFERS_FROM_WPA": 1,
+        "BOOK_EXACT_DATE_FOR_YEAR_ONLY": 45,
+        "DATE_CONFLICT_WITH_LORD": 5,
+        "DATE_OUT_OF_TERM": 2,
+        "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER": 4,
+        "REPRINT_DATE_CONFLICT": 2,
+        "UNDATED_ACT": 20,
+        "UNNUMBERED_NOT_IN_CENSUS": 217,
+        "WPA_CITATION_MISMATCH": 2
+      },
+      "confidence": {
+        "high": 107,
+        "low": 22,
+        "medium": 180
+      },
+      "date_source": {
+        "date_after_signature": 4,
+        "date_glued_after_signature": 1,
+        "header": 253,
+        "header_year_only": 4,
+        "proclamation_done_clause": 4,
+        "standalone_dateline": 21,
+        "unread": 22
+      },
+      "dates": {
+        "day_damaged": 35,
+        "day_damaged_left_month_only": 16,
+        "day_from_other_sources": 19,
+        "full": 240,
+        "out_of_term": 2,
+        "repaired": 68,
+        "undated": 22,
+        "year_month": 43,
+        "year_only": 4
+      },
+      "day_sources": {
+        "in_book_reference": 21,
+        "lord": 9,
+        "other_printing": 2,
+        "wpa": 5
+      },
+      "decided_orders_matched": 0,
+      "ending_lead_rows": 132,
+      "ending_signals": {
+        "amends_modifies_enlarges": 51,
+        "restores_to_public_domain": 60,
+        "revokes_or_cancels": 52,
+        "supersedes": 13
+      },
+      "ending_targets": {
+        "no_date_cited": 58,
+        "not_in_volume_or_unread": 31,
+        "same_section": 41,
+        "same_state": 2
+      },
+      "fragments": 55,
+      "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
+      "lord_how": {
+        "acts_on_page_other_year": 14,
+        "exact_date_on_page": 9,
+        "same_year_adjacent_page": 1,
+        "same_year_on_page": 225
+      },
+      "lord_ir_citations": 249,
+      "lord_resolution": {
+        "ambiguous": 52,
+        "match": 183,
+        "unmatched": 14
+      },
+      "lord_rows_citing_ir": 178,
+      "matched_orders_original_text_step_open": 55,
+      "numbered_late_subject_pairs": {
+        "IR1912:p52:1": "EO:1224",
+        "IR1912:p53:3": "EO:1517"
+      },
+      "numbered_match_level": {
+        "exact_date": 40,
+        "late_same_month_subject": 1,
+        "late_same_year_subject": 1,
+        "same_month_and_IR_page": 11,
+        "same_month_day_candidate": 1,
+        "undated_IR_page_in_term": 1
+      },
+      "numbered_matches": 55,
+      "numbered_matches_in_census": 55,
+      "numbered_reprints_inheriting_pairing": 2,
+      "numbered_ties_not_paired": {},
+      "order_dates": {
+        "full": 212,
+        "undated": 20,
+        "year_month": 41,
+        "year_only": 3
+      },
+      "orders": 276,
+      "orders_before_1900": 185,
+      "orders_by_census_state": {
+        "PROCLAMATION_NOT_AN_EXECUTIVE_ORDER": 4,
+        "UNNUMBERED_NOT_IN_CENSUS": 217,
+        "census_year_only": 55
+      },
+      "orders_by_decade": {
+        "1850s": 10,
+        "1860s": 15,
+        "1870s": 83,
+        "1880s": 65,
+        "1890s": 12,
+        "1900s": 31,
+        "1910s": 40
+      },
+      "orders_by_printings": {
+        "1": 254,
+        "2": 15,
+        "3": 5,
+        "5": 2
+      },
+      "orders_from_1900": 71,
+      "orders_printed_more_than_once": 22,
+      "orders_whose_printings_disagree_on_the_date": 2,
+      "pdf_check": "pdf_not_checked_out",
+      "printings_off_their_order_date": 2,
+      "readiness_read": true,
+      "reprints": 33,
+      "reservation_headings": 132,
+      "running_heads_removed": 204,
+      "states": 19,
+      "text_sha256": "a4acdbf489e606041e71981ec0580b305af7fb4e1e862ac95833094ac54e3b8a",
+      "title": "Executive Orders Relating to Indian Reservations, from May 14, 1855, to July 1, 1912",
+      "unnumbered_orders_before_1900": 185,
+      "unnumbered_orders_by_lord_support": {
+        "lord_ambiguous_1900_on": 3,
+        "lord_ambiguous_before_1900": 41,
+        "lord_ambiguous_undated": 3,
+        "lord_match_1900_on": 9,
+        "lord_match_before_1900": 139,
+        "lord_match_undated": 8,
+        "no_lord_cite_1900_on": 1,
+        "no_lord_cite_before_1900": 5,
+        "no_lord_cite_undated": 8
+      },
+      "unnumbered_orders_printed_more_than_once": 20,
+      "volume": "IR1912",
+      "wpa_dir": "data/wpa_lists_subset",
+      "wpa_entries_citing_ir": 45,
+      "wpa_ir_citation_resolution": {
+        "MATCHED_ACT_ELSEWHERE": 2,
+        "matched_act_on_page": 43
+      },
+      "wpa_ir_citations": 45,
+      "wpa_lists_read": true,
+      "wpa_lists_source": "vendored subset (data/wpa_lists_subset)"
+    },
+    "isthmian-canal-1911": {
+      "affected_document_leads": 58,
+      "affected_targets_resolved": 22,
+      "all_documents_date_check": {
+        "body_dateline_differs": 2,
+        "body_only": 1,
+        "damaged_day": 3,
+        "dateline": 68,
+        "mention_only": 2,
+        "not_found": 2,
+        "white_house_ocr": 19,
+        "white_house_strict": 80
+      },
+      "boundaries": {
+        "shared_start_page_split_at_dateline": [
+          19,
+          20
+        ],
+        "starts_below_previous_documents_tail": [
+          18,
+          90
+        ],
+        "tail_on_next_documents_first_page": [
+          17,
+          89
+        ]
+      },
+      "categories": {
+        "commission_action": 1,
+        "presidential_letter": 2,
+        "presidential_order": 107,
+        "proclamation": 1,
+        "secretary_of_war_letter": 3,
+        "secretary_of_war_order": 62,
+        "war_department_circular": 1
+      },
+      "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "census_leads": {
+        "IN_LIST_NOT_IN_VOLUME": 8,
+        "LORD_UNNUMBERED_MATCH": 4,
+        "NOT_IN_CENSUS": 6,
+        "SECWAR_ORDER_BY_DIRECTION_OF_PRESIDENT_CANDIDATE": 31,
+        "census_date_blank": 3
+      },
+      "census_sha256": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f",
+      "census_state_of_eo_ids": {
+        "census_date_blank": 3,
+        "census_year_only": 102
+      },
+      "census_unnumbered_ids_not_comparable": 19,
+      "contents_date_ocr_repaired": [
+        7,
+        18,
+        77,
+        157,
+        159,
+        175
+      ],
+      "contents_entries": 177,
+      "contents_pages_monotonic": true,
+      "crosswalk_eo_ids": 105,
+      "crosswalk_seqs": 104,
+      "date_order_inversions_seq_pairs": [
+        [
+          10,
+          11
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          89,
+          90
+        ],
+        [
+          117,
+          118
+        ],
+        [
+          148,
+          149
+        ]
+      ],
+      "date_source": {
+        "body_only_no_contents_date": 1,
+        "contents": 170,
+        "contents_ocr_repaired": 5,
+        "contents_year_from_body": 1
+      },
+      "decided_orders_original_text_step_open": [
+        "EO:283",
+        "EO:1153"
+      ],
+      "fragments": 105,
+      "gpo_footers_stripped": 15,
+      "head_number_mismatches_pdf_page_and_number": [
+        [
+          78,
+          66
+        ],
+        [
+          176,
+          1153
+        ],
+        [
+          193,
+          130
+        ]
+      ],
+      "head_numbers_read": 220,
+      "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
+      "lord_matches": {
+        "14": "1283",
+        "2": "1269",
+        "55": "1297",
+        "65": "1298"
+      },
+      "original_text_step_before": {
+        "open": 105
+      },
+      "page_offset": 13,
+      "pdf_check": "pdf_not_checked_out",
+      "presidential_order_date_check": {
+        "body_only": 1,
+        "damaged_day": 2,
+        "dateline": 6,
+        "mention_only": 1,
+        "white_house_ocr": 17,
+        "white_house_strict": 80
+      },
+      "presidential_order_dates_confirmed": 103,
+      "presidential_orders_needs_page_check": [
+        6,
+        78,
+        129,
+        171
+      ],
+      "presidential_orders_without_eo_id": [
+        2,
+        14,
+        65
+      ],
+      "readiness_provisional_status": {
+        "blank": 103,
+        "no": 2
+      },
+      "readiness_read": true,
+      "running_heads_stripped": 237,
+      "secretary_of_war_orders": {
+        "approved_by_president_only": 1,
+        "by_direction_of_president": 31,
+        "secretary_only": 30
+      },
+      "span_pages": {
+        "1": 147,
+        "2": 17,
+        "3": 5,
+        "4": 3,
+        "5": 3,
+        "8": 1,
+        "9": 1
+      },
+      "text_sha256": "41fb6d2de7be4dc99b7081ba931ddfd158c29ad64167dce068247a7aa029e0d7",
+      "texts_written": 178,
+      "volume": "Executive Orders Relating to the Isthmian Canal Commission, March, 1904, to June 12, 1911, inclusive",
+      "wpa_date_check": {
+        "wpa_partial_year_agrees": 1,
+        "yes": 104
+      }
+    },
     "later-events": {
       "cache_hits": 7,
       "catalog_complete": true,
@@ -2400,6 +2825,1422 @@
       },
       "seconds": 78.8
     },
+    "ofr-codification-1989": {
+      "body": {
+        "agreement": {
+          "CHECK": 90,
+          "agrees": 465
+        },
+        "census_state": {
+          "census_year_only": 554,
+          "no_date_in_source": 1
+        },
+        "chapter_headings": 50,
+        "checks": {
+          "decided_NO_but_codified_in_force_1989": 89,
+          "table_page_62_outside_body_pages_620-621": 1
+        },
+        "eo_by_decade": {
+          "1910s": 2,
+          "1920s": 1,
+          "1930s": 3,
+          "1940s": 42,
+          "1950s": 95,
+          "1960s": 94,
+          "1970s": 154,
+          "1980s": 163,
+          "no date": 1
+        },
+        "eo_confidence": {
+          "high": 420,
+          "medium": 135
+        },
+        "eo_distinct": 555,
+        "eo_duplicates": [],
+        "eo_heading_found": 555,
+        "eo_heading_not_found": [],
+        "eo_not_in_fr_system": 3,
+        "eo_restated": 4,
+        "eo_source_lines": 555,
+        "eo_with_amendment_notes": 232,
+        "eo_with_exact_date": 554,
+        "eo_without_date": [
+          "EO:10631"
+        ],
+        "fragmented_pages": 151,
+        "headings": 602,
+        "near_empty_pages": 23,
+        "pages_with_text": 946,
+        "pdf_pages": [
+          12,
+          980
+        ],
+        "printed_page_inferred": 3,
+        "printed_page_read": 943,
+        "proclamation_source_lines": 47,
+        "provisional_status": {
+          "no": 89,
+          "undecided": 256,
+          "yes": 210
+        },
+        "source_lines": 602,
+        "subchapter_headings": 16
+      },
+      "book": "Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989",
+      "census_leads": {
+        "EXACT_DATE_FROM_DATED_REFERENCE_CENSUS_YEAR_ONLY": 533,
+        "EXACT_DATE_FROM_SOURCE_LINE_CENSUS_YEAR_ONLY": 554,
+        "IN_CENSUS_NOT_FOUND_IN_TABLE_(PARSER_OR_SOURCE)": 4,
+        "NOT_IN_CENSUS_DATED_REFERENCE": 1,
+        "UNNUMBERED_ROW_AMBIGUOUS_CENSUS_MATCH": 2,
+        "UNNUMBERED_ROW_DATE_FOR_BLANK_CENSUS_DATE": 16
+      },
+      "disposition_table": {
+        "body_eos_not_codified_here_in_table": [],
+        "categories": {
+          "abolished": 1,
+          "abolishes_other_document": 2,
+          "amends_other_document": 296,
+          "authority": 150,
+          "authority_maintained": 15,
+          "codified_elsewhere": 23,
+          "codified_here": 555,
+          "continues_other_document": 2,
+          "discontinues_other_document": 4,
+          "eliminated": 16,
+          "executed_obsolete": 195,
+          "expired": 2,
+          "free_text": 40,
+          "free_text_ended": 151,
+          "modifies_other_document": 10,
+          "nullified": 73,
+          "public_lands": 273,
+          "replaced": 1,
+          "revoked": 1541,
+          "revokes_other_document": 73,
+          "see_note": 42,
+          "superseded": 416,
+          "supersedes_other_document": 3,
+          "tariff": 8,
+          "temporary": 299,
+          "terminated": 16,
+          "terminates_other_document": 18
+        },
+        "codified_here_not_in_body": [],
+        "codified_here_rows": 555,
+        "complete_eo_run": [
+          9538,
+          12667
+        ],
+        "complete_eo_run_gaps": [
+          10217,
+          10275,
+          10288,
+          10595
+        ],
+        "date_rows": 18,
+        "distinct_numbered_keys": 4207,
+        "flags": {
+          "acting_document_is_the_row_itself": 1,
+          "anchor_glued_to_anchor_above_y_estimated": 6,
+          "anchor_glued_to_end_of_amend_chunk": 8,
+          "anchor_glued_to_end_of_disp_chunk": 7,
+          "continued_on_next_page": 1,
+          "date_joined_from_fragments": 11,
+          "half_read_as_2": 1,
+          "merged_ocr_piece_split": 1,
+          "month_day_swallowed_by_disposition": 1,
+          "row_split_from_merged_ocr_piece": 1
+        },
+        "groups": {
+          "effect_merged_into_other_document": 408,
+          "ended_by_1989": 2861,
+          "excluded_not_ended": 281,
+          "in_force_1989": 578,
+          "other": 97
+        },
+        "later_events_check_on_revoked_superseded": {
+          "DIFFERENT_acting_order": 4,
+          "later_events_has_no_ending_edge": 225,
+          "same_acting_order": 1664
+        },
+        "merged_row_splits": [
+          {
+            "first_row_text": "Revokedby EO 3461",
+            "page": 1034,
+            "piece": "Revokedby EO 34612786 Revokedby EO 3461",
+            "second_row": "EO:2786",
+            "second_row_text": "Revokedby EO 3461"
+          }
+        ],
+        "numbered_keys_in_census": 4207,
+        "numbered_keys_not_in_census": [],
+        "numbered_rows": 4207,
+        "orphan_fragments": 2,
+        "orphans_by_kind": {
+          "AMENDMENTS_START": 1,
+          "DISPOSITION_START": 1
+        },
+        "pairing_confidence": {
+          "high": 4055,
+          "low": 6,
+          "medium": 164
+        },
+        "pdf_pages": [
+          1032,
+          1103
+        ],
+        "rejected_acting_documents": {},
+        "rows": 4225,
+        "rows_without_disposition": 0,
+        "same_line_pieces_joined": [
+          {
+            "field": "disp",
+            "page": 1039,
+            "piece": ", 7098",
+            "row": "EO:7182"
+          },
+          {
+            "field": "disp",
+            "page": 1048,
+            "piece": ", 10697",
+            "row": "EO:9303"
+          },
+          {
+            "field": "amend",
+            "page": 1070,
+            "piece": ", 11051",
+            "row": "EO:10660"
+          },
+          {
+            "field": "disp",
+            "page": 1082,
+            "piece": ", 11034",
+            "row": "EO:11380"
+          },
+          {
+            "field": "disp",
+            "page": 1088,
+            "piece": ", 11709",
+            "row": "EO:11773"
+          },
+          {
+            "field": "disp",
+            "page": 1090,
+            "piece": ", 12553",
+            "row": "EO:11920"
+          },
+          {
+            "field": "disp",
+            "page": 1094,
+            "piece": ", 12399",
+            "row": "EO:12202"
+          },
+          {
+            "field": "disp",
+            "page": 1097,
+            "piece": ", 12148",
+            "row": "EO:12381"
+          }
+        ],
+        "stray_digit_pieces_dropped": [
+          {
+            "page": 1045,
+            "text": "1",
+            "x": 395.3,
+            "y": 610.6
+          },
+          {
+            "page": 1089,
+            "text": "1",
+            "x": 398.0,
+            "y": 592.1
+          }
+        ]
+      },
+      "fragments": {
+        "instruments": 1924,
+        "items": 1969,
+        "items_with_date": 1831
+      },
+      "later_events_edges_read": true,
+      "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
+      "lord_leads_read": true,
+      "not_originals": "Codified texts are as amended to 1989-01-20 (editorial); no original_representation fragments are emitted.",
+      "pdf_check": "pdf_is_lfs_pointer_text_layer_hash_verified",
+      "readiness_read": true,
+      "reference_dates": {
+        "census_state_without_source_line": {
+          "NOT_IN_CENSUS": 1,
+          "census_year_only": 535
+        },
+        "disagree_with_source_line": 3,
+        "distinct_eos": 1090,
+        "without_source_line": 536
+      },
+      "status_leads": {
+        "DECIDED_NO_BUT_IN_FORCE_1989_LATER_ENDING_KNOWN": 15,
+        "DECIDED_NO_BUT_IN_FORCE_1989_NO_LATER_ENDING_IN_LATER_EVENTS": 84,
+        "DECIDED_YES_BUT_ENDED_BY_1989": 3,
+        "UNDECIDED_ENDED_BY_1989": 1298,
+        "UNDECIDED_IN_FORCE_1989": 261
+      },
+      "table_chunks_sha256": "294bd2c990479310e8765b42db38a3d094dbd23e3ec80b3eda78f2ea8fe6bafe",
+      "table_pages": [
+        {
+          "amx": 126.0,
+          "anchors": 37,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.0,
+          "page": 1032,
+          "pitch": 7.0,
+          "printed": "1021",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 37
+        },
+        {
+          "amx": 126.0,
+          "anchors": 65,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1033,
+          "pitch": 7.0,
+          "printed": "1022",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 65
+        },
+        {
+          "amx": 126.0,
+          "anchors": 68,
+          "dispx": 266.0,
+          "merged_row_splits": [
+            {
+              "first_row_text": "Revokedby EO 3461",
+              "page": 1034,
+              "piece": "Revokedby EO 34612786 Revokedby EO 3461",
+              "second_row": "EO:2786",
+              "second_row_text": "Revokedby EO 3461"
+            }
+          ],
+          "numx": 54.8,
+          "page": 1034,
+          "pitch": 7.0,
+          "printed": "1023",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 126.0,
+          "anchors": 59,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1035,
+          "pitch": 7.0,
+          "printed": "1024",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 126.0,
+          "anchors": 68,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1036,
+          "pitch": 7.0,
+          "printed": "1025",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 126.0,
+          "anchors": 69,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1037,
+          "pitch": 7.0,
+          "printed": "1026",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 69
+        },
+        {
+          "amx": 126.0,
+          "anchors": 54,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1038,
+          "pitch": 7.0,
+          "printed": "1027",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 54
+        },
+        {
+          "amx": 126.0,
+          "anchors": 64,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1039,
+          "pitch": 7.0,
+          "printed": "1028",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1039,
+              "piece": ", 7098",
+              "row": "EO:7182"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 64
+        },
+        {
+          "amx": 126.0,
+          "anchors": 69,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1040,
+          "pitch": 7.0,
+          "printed": "1029",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 69
+        },
+        {
+          "amx": 126.0,
+          "anchors": 69,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1041,
+          "pitch": 7.0,
+          "printed": "1030",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 69
+        },
+        {
+          "amx": 129.0,
+          "anchors": 66,
+          "dispx": 270.0,
+          "merged_row_splits": [],
+          "numx": 58.8,
+          "page": 1042,
+          "pitch": 7.0,
+          "printed": "1031",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 66
+        },
+        {
+          "amx": 125.0,
+          "anchors": 66,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 53.6,
+          "page": 1043,
+          "pitch": 7.0,
+          "printed": "1032",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 66
+        },
+        {
+          "amx": 126.0,
+          "anchors": 60,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1044,
+          "pitch": 7.0,
+          "printed": "1033",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 60
+        },
+        {
+          "amx": 126.0,
+          "anchors": 56,
+          "dispx": 268.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1045,
+          "pitch": 7.2,
+          "printed": "1034",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [
+            {
+              "page": 1045,
+              "text": "1",
+              "x": 395.3,
+              "y": 610.6
+            }
+          ],
+          "with_disposition": 56
+        },
+        {
+          "amx": 126.0,
+          "anchors": 53,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1046,
+          "pitch": 7.0,
+          "printed": "1035",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 53
+        },
+        {
+          "amx": 126.0,
+          "anchors": 48,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1047,
+          "pitch": 7.0,
+          "printed": "1036",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 48
+        },
+        {
+          "amx": 126.0,
+          "anchors": 56,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1048,
+          "pitch": 7.1,
+          "printed": "1037",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1048,
+              "piece": ", 10697",
+              "row": "EO:9303"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 56
+        },
+        {
+          "amx": 126.0,
+          "anchors": 46,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1049,
+          "pitch": 7.2,
+          "printed": "1038",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 46
+        },
+        {
+          "amx": 126.0,
+          "anchors": 51,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1050,
+          "pitch": 7.2,
+          "printed": "1039",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 51
+        },
+        {
+          "amx": 126.0,
+          "anchors": 48,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.0,
+          "page": 1051,
+          "pitch": 7.0,
+          "printed": "1040",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 48
+        },
+        {
+          "amx": 126.0,
+          "anchors": 50,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1052,
+          "pitch": 7.0,
+          "printed": "1041",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 50
+        },
+        {
+          "amx": 126.0,
+          "anchors": 48,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.0,
+          "page": 1053,
+          "pitch": 7.0,
+          "printed": "1042",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 48
+        },
+        {
+          "amx": 126.0,
+          "anchors": 49,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1054,
+          "pitch": 7.05,
+          "printed": "1043",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 49
+        },
+        {
+          "amx": 126.0,
+          "anchors": 57,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1055,
+          "pitch": 7.0,
+          "printed": "1044",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 57
+        },
+        {
+          "amx": 118.0,
+          "anchors": 51,
+          "dispx": 258.0,
+          "merged_row_splits": [],
+          "numx": 44.7,
+          "page": 1056,
+          "pitch": 7.0,
+          "printed": "1045",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 51
+        },
+        {
+          "amx": 126.0,
+          "anchors": 56,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1057,
+          "pitch": 7.0,
+          "printed": "1046",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 56
+        },
+        {
+          "amx": 126.0,
+          "anchors": 61,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1058,
+          "pitch": 7.0,
+          "printed": "1047",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 126.0,
+          "anchors": 57,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1059,
+          "pitch": 7.0,
+          "printed": "1048",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 57
+        },
+        {
+          "amx": 126.0,
+          "anchors": 59,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1060,
+          "pitch": 7.0,
+          "printed": "1049",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 126.0,
+          "anchors": 59,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1061,
+          "pitch": 7.0,
+          "printed": "1050",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 126.0,
+          "anchors": 51,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1062,
+          "pitch": 7.2,
+          "printed": "1051",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 51
+        },
+        {
+          "amx": 126.0,
+          "anchors": 55,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1063,
+          "pitch": 7.0,
+          "printed": "1052",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 55
+        },
+        {
+          "amx": 126.0,
+          "anchors": 59,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1064,
+          "pitch": 7.0,
+          "printed": "1053",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 126.0,
+          "anchors": 63,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1065,
+          "pitch": 7.0,
+          "printed": "1054",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 63
+        },
+        {
+          "amx": 126.0,
+          "anchors": 63,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1066,
+          "pitch": 7.0,
+          "printed": "1055",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 63
+        },
+        {
+          "amx": 126.0,
+          "anchors": 59,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1067,
+          "pitch": 7.0,
+          "printed": "1056",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 127.0,
+          "anchors": 62,
+          "dispx": 268.0,
+          "merged_row_splits": [],
+          "numx": 56.6,
+          "page": 1068,
+          "pitch": 7.0,
+          "printed": "1057",
+          "printed_read": false,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 62
+        },
+        {
+          "amx": 126.0,
+          "anchors": 67,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1069,
+          "pitch": 7.0,
+          "printed": "1058",
+          "printed_read": false,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 67
+        },
+        {
+          "amx": 109.0,
+          "anchors": 59,
+          "dispx": 250.0,
+          "merged_row_splits": [],
+          "numx": 38.8,
+          "page": 1070,
+          "pitch": 7.0,
+          "printed": "1059",
+          "printed_read": false,
+          "same_line_joins": [
+            {
+              "field": "amend",
+              "page": 1070,
+              "piece": ", 11051",
+              "row": "EO:10660"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 59
+        },
+        {
+          "amx": 144.0,
+          "anchors": 61,
+          "dispx": 285.0,
+          "merged_row_splits": [],
+          "numx": 73.0,
+          "page": 1071,
+          "pitch": 7.0,
+          "printed": "1060",
+          "printed_read": false,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 126.0,
+          "anchors": 58,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1072,
+          "pitch": 7.0,
+          "printed": "1061",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 58
+        },
+        {
+          "amx": 126.0,
+          "anchors": 61,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1073,
+          "pitch": 7.0,
+          "printed": "1062",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 126.0,
+          "anchors": 60,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1074,
+          "pitch": 7.0,
+          "printed": "1063",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 60
+        },
+        {
+          "amx": 126.0,
+          "anchors": 62,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1075,
+          "pitch": 7.0,
+          "printed": "1064",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 62
+        },
+        {
+          "amx": 126.0,
+          "anchors": 67,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.2,
+          "page": 1076,
+          "pitch": 7.0,
+          "printed": "1065",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 67
+        },
+        {
+          "amx": 127.0,
+          "anchors": 65,
+          "dispx": 268.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1077,
+          "pitch": 7.0,
+          "printed": "1066",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 65
+        },
+        {
+          "amx": 126.0,
+          "anchors": 62,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1078,
+          "pitch": 7.0,
+          "printed": "1067",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 62
+        },
+        {
+          "amx": 126.0,
+          "anchors": 58,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1079,
+          "pitch": 7.0,
+          "printed": "1068",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 58
+        },
+        {
+          "amx": 126.0,
+          "anchors": 62,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1080,
+          "pitch": 7.0,
+          "printed": "1069",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 62
+        },
+        {
+          "amx": 126.0,
+          "anchors": 57,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1081,
+          "pitch": 7.0,
+          "printed": "1070",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 57
+        },
+        {
+          "amx": 126.0,
+          "anchors": 52,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1082,
+          "pitch": 7.0,
+          "printed": "1071",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1082,
+              "piece": ", 11034",
+              "row": "EO:11380"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 52
+        },
+        {
+          "amx": 126.0,
+          "anchors": 66,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1083,
+          "pitch": 7.0,
+          "printed": "1072",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 66
+        },
+        {
+          "amx": 126.0,
+          "anchors": 60,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.3,
+          "page": 1084,
+          "pitch": 7.2,
+          "printed": "1073",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 60
+        },
+        {
+          "amx": 126.0,
+          "anchors": 61,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1085,
+          "pitch": 7.0,
+          "printed": "1074",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 122.0,
+          "anchors": 65,
+          "dispx": 262.0,
+          "merged_row_splits": [],
+          "numx": 51.4,
+          "page": 1086,
+          "pitch": 7.0,
+          "printed": "1075",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 65
+        },
+        {
+          "amx": 126.0,
+          "anchors": 70,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1087,
+          "pitch": 7.0,
+          "printed": "1076",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 70
+        },
+        {
+          "amx": 126.0,
+          "anchors": 64,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1088,
+          "pitch": 7.0,
+          "printed": "1077",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1088,
+              "piece": ", 11709",
+              "row": "EO:11773"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 64
+        },
+        {
+          "amx": 126.0,
+          "anchors": 67,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1089,
+          "pitch": 7.0,
+          "printed": "1078",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [
+            {
+              "page": 1089,
+              "text": "1",
+              "x": 398.0,
+              "y": 592.1
+            }
+          ],
+          "with_disposition": 67
+        },
+        {
+          "amx": 125.0,
+          "anchors": 68,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 54.5,
+          "page": 1090,
+          "pitch": 7.0,
+          "printed": "1079",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1090,
+              "piece": ", 12553",
+              "row": "EO:11920"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 126.0,
+          "anchors": 66,
+          "dispx": 268.0,
+          "merged_row_splits": [],
+          "numx": 55.7,
+          "page": 1091,
+          "pitch": 7.0,
+          "printed": "1080",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 66
+        },
+        {
+          "amx": 127.0,
+          "anchors": 69,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 57.0,
+          "page": 1092,
+          "pitch": 7.0,
+          "printed": "1081",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 69
+        },
+        {
+          "amx": 126.0,
+          "anchors": 62,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.5,
+          "page": 1093,
+          "pitch": 7.0,
+          "printed": "1082",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 62
+        },
+        {
+          "amx": 133.0,
+          "anchors": 61,
+          "dispx": 274.0,
+          "merged_row_splits": [],
+          "numx": 63.3,
+          "page": 1094,
+          "pitch": 7.0,
+          "printed": "1083",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1094,
+              "piece": ", 12399",
+              "row": "EO:12202"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 126.0,
+          "anchors": 68,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1095,
+          "pitch": 7.0,
+          "printed": "1084",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 126.0,
+          "anchors": 65,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 54.6,
+          "page": 1096,
+          "pitch": 7.0,
+          "printed": "1085",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 65
+        },
+        {
+          "amx": 126.0,
+          "anchors": 61,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.9,
+          "page": 1097,
+          "pitch": 7.0,
+          "printed": "1086",
+          "printed_read": true,
+          "same_line_joins": [
+            {
+              "field": "disp",
+              "page": 1097,
+              "piece": ", 12148",
+              "row": "EO:12381"
+            }
+          ],
+          "stray_digits_dropped": [],
+          "with_disposition": 61
+        },
+        {
+          "amx": 126.0,
+          "anchors": 68,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 54.7,
+          "page": 1098,
+          "pitch": 7.0,
+          "printed": "1087",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 125.0,
+          "anchors": 68,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 54.5,
+          "page": 1099,
+          "pitch": 7.1,
+          "printed": "1088",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 68
+        },
+        {
+          "amx": 127.0,
+          "anchors": 20,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.6,
+          "page": 1100,
+          "pitch": 7.4,
+          "printed": "1089",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 20
+        },
+        {
+          "amx": 127.0,
+          "anchors": 28,
+          "dispx": 268.0,
+          "merged_row_splits": [],
+          "numx": 56.6,
+          "page": 1101,
+          "pitch": 7.0,
+          "printed": "1090",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 28
+        },
+        {
+          "amx": 126.0,
+          "anchors": 52,
+          "dispx": 266.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1102,
+          "pitch": 7.0,
+          "printed": "1091",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 52
+        },
+        {
+          "amx": 127.0,
+          "anchors": 34,
+          "dispx": 267.0,
+          "merged_row_splits": [],
+          "numx": 55.4,
+          "page": 1103,
+          "pitch": 7.4,
+          "printed": "1092",
+          "printed_read": true,
+          "same_line_joins": [],
+          "stray_digits_dropped": [],
+          "with_disposition": 34
+        }
+      ],
+      "text_sha256": "44c32018b019586533022ebd57589bad584d3610cd178f3a85ad156bf7d24c91",
+      "unnumbered_census_rows_read": true,
+      "unnumbered_rows": {
+        "lord_1943_match": {
+          "ambiguous": 1,
+          "match": 3,
+          "unmatched": 14
+        },
+        "nara_census_match": {
+          "ambiguous_same_date": 2,
+          "match": 16
+        },
+        "rows": 18
+      }
+    },
+    "ofr-compilations": {
+      "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
+      "readiness_read": true,
+      "volumes": [
+        {
+          "census_ids_in_range": 500,
+          "census_ids_in_range_with_text": 500,
+          "census_leads": {
+            "NOT_IN_CENSUS": 26,
+            "NOT_IN_CENSUS_listed_in_table2_only": 1,
+            "census_date_blank": 11
+          },
+          "census_state": {
+            "NOT_IN_CENSUS": 26,
+            "census_date_blank": 11,
+            "census_year_only": 489
+          },
+          "confidence": {
+            "high": 523,
+            "medium": 3
+          },
+          "decided_orders_original_text_step_open": 29,
+          "decided_orders_with_text": 29,
+          "duplicate_headings": [],
+          "fragments": 500,
+          "lettered_orders": [
+            "EO:5605A",
+            "EO:5638A",
+            "EO:5855A",
+            "EO:6005A",
+            "EO:6022A"
+          ],
+          "orders_printed": 526,
+          "pdf_check": "pdf_not_checked_out",
+          "plain_numbers_in_range_without_heading": [],
+          "printed_range": [
+            5550,
+            6070
+          ],
+          "table2_day_read_for_printed_orders": 516,
+          "table2_entries": 1000,
+          "table2_month_day_agrees_with_heading": 516,
+          "table3_executive_order_lines": 174,
+          "table3_paired_lines": 214,
+          "table3_unpaired_number_lines": 136,
+          "text_sha256": "bb2e6de422a172a9dc629d81f7d47712c0d8d3844744c1d07a479a967447bf36",
+          "title": "Proclamations and Executive Orders: Herbert Hoover, March 4, 1929 to March 4, 1933, Volume II (Executive Orders 5550-6070; Tables 1-3; Index)",
+          "volume": "HOOVER_V2"
+        }
+      ]
+    },
     "opus-media-match": {
       "accepted_844": {
         "ambiguous_only": 68,
@@ -2493,30 +4334,33 @@
     },
     "readiness-tracker": {
       "decided_by_steps_done": {
-        "1/6": 662,
-        "1/7": 30,
+        "1/6": 632,
+        "1/7": 29,
         "1/8": 2,
-        "2/6": 487,
-        "2/7": 67,
+        "2/6": 501,
+        "2/7": 68,
         "2/8": 6,
-        "3/6": 1355,
-        "3/7": 449,
+        "3/6": 1202,
+        "3/7": 448,
         "3/8": 35,
-        "4/6": 9,
+        "4/6": 24,
         "4/7": 62,
         "4/8": 184,
+        "5/6": 25,
         "5/8": 9,
-        "6/6": 2
+        "6/6": 131,
+        "6/7": 1
       },
       "decided_orders_blocked_by": {
-        "CLAIM_INCOMPLETE": 39,
+        "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 400,
-        "FIRST_END_UNPROVED": 2918,
-        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
-        "NO_CLAUSE_INVENTORY": 3318,
-        "NO_OFFICIAL_SOURCE_LOCATED": 990,
+        "FIRST_END_UNPROVED": 2742,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+        "NO_CLAUSE_INVENTORY": 3142,
+        "NO_OFFICIAL_SOURCE_LOCATED": 959,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 0,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
@@ -2524,7 +4368,7 @@
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
@@ -2550,23 +4394,29 @@
           "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
           "cl_status": "jobs/current-law/output/STATUS.json",
           "cl_summary": "jobs/current-law/output/SUMMARY.json",
+          "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl",
           "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
           "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
           "le_catalog": "jobs/later-events/output/CATALOG_INDEX.csv",
           "le_conflicts": "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv",
           "le_status": "jobs/later-events/output/STATUS.json",
           "le_summary": "jobs/later-events/output/SUMMARY.json",
+          "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
           "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
           "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
           "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv"
         },
         "job_outputs_used": {
-          "claim-checker": 41,
+          "claim-checker": 217,
           "fr-originals": 6497,
+          "indian-reservations-1912": 55,
+          "isthmian-canal-1911": 105,
           "machine later-source search": 6938,
+          "ofr-compilations": 500,
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
-          "source-ladder": 122
+          "richardson-volumes (lead only, never counted as the original)": 68,
+          "source-ladder": 147
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -2574,30 +4424,31 @@
         "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
       },
       "orders_blocked_by": {
-        "CLAIM_INCOMPLETE": 39,
+        "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 400,
-        "FIRST_END_UNPROVED": 2918,
-        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
-        "NO_CLAUSE_INVENTORY": 3318,
-        "NO_OFFICIAL_SOURCE_LOCATED": 8474,
+        "FIRST_END_UNPROVED": 2742,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+        "NO_CLAUSE_INVENTORY": 3142,
+        "NO_OFFICIAL_SOURCE_LOCATED": 7814,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 11613,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 472,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 265,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-        "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
         "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
       "ready_by_tier": {
-        "complete_claim": 1
+        "complete_claim": 130
       },
-      "ready_for_human_review": 1,
+      "ready_for_human_review": 130,
       "shared_unlocks": [
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
@@ -2606,10 +4457,10 @@
           "orders_unblocked": 472
         },
         {
-          "action": "Check the page location of fr-originals finds marked medium/low confidence",
+          "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
-          "orders_unblocked": 265
+          "orders_unblocked": 286
         },
         {
           "action": "Retrieve shared source EO::4314",
@@ -2657,15 +4508,15 @@
       "step_done_among_decided": {
         "clause_inventory": {
           "applicable": 3359,
-          "done": 7
+          "done": 178
         },
         "counterevidence": {
           "applicable": 3359,
-          "done": 2461
+          "done": 2470
         },
         "ending_or_current_basis": {
           "applicable": 3359,
-          "done": 2
+          "done": 134
         },
         "opus_media": {
           "applicable": 844,
@@ -2673,7 +4524,7 @@
         },
         "original_text": {
           "applicable": 3359,
-          "done": 2281
+          "done": 2312
         },
         "provisional_status": {
           "applicable": 3359,
@@ -2681,7 +4532,7 @@
         },
         "savings_residuals": {
           "applicable": 3359,
-          "done": 7
+          "done": 166
         },
         "shared_sources": {
           "applicable": 236,
@@ -2689,40 +4540,775 @@
         }
       }
     },
+    "richardson-volumes": {
+      "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "citations_to_volumes_not_in_job": {
+        "Lord unnumbered: vol. II": 2,
+        "Lord unnumbered: vol. III": 3,
+        "Lord unnumbered: vol. IV": 7,
+        "Lord unnumbered: vol. V": 5,
+        "Lord unnumbered: vol. VIII": 84,
+        "Lord unnumbered: vol. X": 110,
+        "WPA numbered: vol. VIII": 7
+      },
+      "leads_only": "Nothing is admitted, merged, dated or changed in the census or in any status.",
+      "lists": {
+        "dir": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/richardson-volumes/data/lists_subset",
+        "numbered_sha256": "ea3672881c5226ac71022be4d534ec6d8254fcedac0a90d13eec3c89d0978cca",
+        "source": "committed subset (wpa-lists output absent)",
+        "unnumbered_sha256": "fa47018cfb0f3b4d5602008ece36d6212aafdf9ae862e50e00dfd34255853555"
+      },
+      "lord_entries_citing_richardson": 369,
+      "readiness_read": true,
+      "source_note": "Richardson's Compilation of the Messages and Papers of the Presidents is a printed compilation (GPO 1896-99) transcribed from department records and newspapers; it is NOT the signed original.",
+      "volumes": [
+        {
+          "census_ids": [
+            "EO:1",
+            "EO:2",
+            "EO:3",
+            "EO:4",
+            "EO:5"
+          ],
+          "census_ids_with_text": 5,
+          "census_leads": {
+            "CANDIDATE_TEXT_DATE_ONLY": 1,
+            "DATE_FILL": 5,
+            "IN_CENSUS_NOT_FOUND_IN_VOLUME": 1,
+            "LIST_PARSE_CORRECTION": 2,
+            "NOT_IN_CENSUS_unnumbered": 167
+          },
+          "confidence": {
+            "high": 167,
+            "medium": 46
+          },
+          "decided_orders_original_text_step_open": 1,
+          "decided_orders_with_text": 1,
+          "ending_leads": 35,
+          "fragments": 5,
+          "lists_read": "committed subset (wpa-lists output absent)",
+          "lord_citations": 44,
+          "lord_methods": {
+            "date_and_page": 10,
+            "date_not_found": 1,
+            "date_page_and_subject": 2,
+            "subject_date_differs": 1,
+            "subject_does_not_separate": 1,
+            "subject_on_page": 29
+          },
+          "lord_rows_citing": 43,
+          "lord_status": {
+            "ambiguous": 1,
+            "match": 42,
+            "unmatched": 1
+          },
+          "order_section_ends_agree_with_contents": 13,
+          "order_sections": 13,
+          "order_sections_contents": [
+            [
+              17,
+              19
+            ],
+            [
+              38,
+              44
+            ],
+            [
+              99,
+              126
+            ],
+            [
+              159,
+              160
+            ],
+            [
+              174,
+              179
+            ],
+            [
+              230,
+              243
+            ],
+            [
+              273,
+              276
+            ],
+            [
+              282,
+              284
+            ],
+            [
+              284,
+              297
+            ],
+            [
+              333,
+              353
+            ],
+            [
+              439,
+              444
+            ],
+            [
+              551,
+              558
+            ],
+            [
+              661,
+              672
+            ]
+          ],
+          "order_sections_printed": [
+            [
+              17,
+              19
+            ],
+            [
+              38,
+              44
+            ],
+            [
+              99,
+              126
+            ],
+            [
+              159,
+              160
+            ],
+            [
+              174,
+              179
+            ],
+            [
+              230,
+              243
+            ],
+            [
+              273,
+              276
+            ],
+            [
+              282,
+              284
+            ],
+            [
+              284,
+              297
+            ],
+            [
+              333,
+              353
+            ],
+            [
+              439,
+              444
+            ],
+            [
+              551,
+              558
+            ],
+            [
+              661,
+              672
+            ]
+          ],
+          "orders": 213,
+          "orders_by_date_from": {
+            "": 10,
+            "approval": 1,
+            "dateline": 193,
+            "day_of_clause": 9
+          },
+          "orders_by_form": {
+            "announcement": 3,
+            "circular": 2,
+            "commission_or_warrant": 2,
+            "general_orders": 33,
+            "letter": 17,
+            "order": 149,
+            "rules_or_regulations": 4,
+            "special_orders": 3
+          },
+          "orders_by_kind": {
+            "order": 213
+          },
+          "orders_by_signer": {
+            "by_direction_of_president": 64,
+            "department_or_other": 44,
+            "president": 105
+          },
+          "orders_cited_by_neither_list": 166,
+          "orders_printed_inside_another": 5,
+          "orders_undated": 10,
+          "orders_with_lord_entry": 42,
+          "orders_with_wpa_number": 5,
+          "page_furniture_removed": {
+            "foot_number": 3,
+            "running_head": 752,
+            "sheet_signature": 47,
+            "speck": 79
+          },
+          "page_map": {
+            "heads_agree": 751,
+            "heads_disagree": 0,
+            "heads_read": 751,
+            "pages_mapped": 752,
+            "pages_without_readable_head": 1
+          },
+          "pages_rejoined_from_pdftotext_raw": 31,
+          "pdf_check": "pdf_not_checked_out",
+          "raw_text_sha256": "e8aa5addfc204b625f053c55c44d66da8704fe4438e1d5e42cbe2c94aa4c778a",
+          "residue_units": 10,
+          "text_sha256": "75203e029deba1f33a7bc4b44768ee7a07f99a16f3cdae3b836851139a5f2620",
+          "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume VI (Abraham Lincoln, Andrew Johnson; March 4, 1861 to March 4, 1869)",
+          "units": 223,
+          "unnumbered_orders": 208,
+          "unnumbered_orders_cited_by_lord": 42,
+          "volume": "RICH_VI",
+          "wpa_citations": 3,
+          "wpa_date_only_candidates": {
+            "ambiguous": 1,
+            "match": 2,
+            "unmatched": 1
+          },
+          "wpa_entries_citing": 3,
+          "wpa_methods": {
+            "date_and_page": 2,
+            "date_page_and_subject": 1
+          },
+          "wpa_numbers_located": 5,
+          "wpa_status": {
+            "match": 3
+          }
+        },
+        {
+          "census_ids": [
+            "EO:8",
+            "EO:8-1",
+            "EO:9",
+            "EO:9-2",
+            "EO:11",
+            "EO:13",
+            "EO:16",
+            "EO:17",
+            "EO:18",
+            "EO:19",
+            "EO:20"
+          ],
+          "census_ids_with_text": 11,
+          "census_leads": {
+            "DATE_FILL": 11,
+            "IN_CENSUS_NOT_FOUND_IN_VOLUME": 5,
+            "LIST_PARSE_CORRECTION": 3,
+            "NOT_IN_CENSUS_unnumbered": 49
+          },
+          "confidence": {
+            "high": 55,
+            "medium": 20
+          },
+          "decided_orders_original_text_step_open": 1,
+          "decided_orders_with_text": 1,
+          "ending_leads": 29,
+          "fragments": 11,
+          "lists_read": "committed subset (wpa-lists output absent)",
+          "lord_citations": 35,
+          "lord_methods": {
+            "date_and_page": 16,
+            "date_not_found": 1,
+            "date_page_and_subject": 1,
+            "subject_date_differs": 1,
+            "subject_does_not_separate": 1,
+            "subject_on_page": 15
+          },
+          "lord_rows_citing": 35,
+          "lord_status": {
+            "ambiguous": 1,
+            "match": 33,
+            "unmatched": 1
+          },
+          "order_section_ends_agree_with_contents": 15,
+          "order_sections": 15,
+          "order_sections_contents": [
+            [
+              19,
+              27
+            ],
+            [
+              93,
+              95
+            ],
+            [
+              141,
+              142
+            ],
+            [
+              180,
+              184
+            ],
+            [
+              218,
+              220
+            ],
+            [
+              229,
+              235
+            ],
+            [
+              281,
+              284
+            ],
+            [
+              326,
+              332
+            ],
+            [
+              398,
+              399
+            ],
+            [
+              450,
+              451
+            ],
+            [
+              458,
+              458
+            ],
+            [
+              491,
+              491
+            ],
+            [
+              549,
+              557
+            ],
+            [
+              600,
+              600
+            ],
+            [
+              640,
+              640
+            ]
+          ],
+          "order_sections_printed": [
+            [
+              19,
+              27
+            ],
+            [
+              93,
+              95
+            ],
+            [
+              141,
+              142
+            ],
+            [
+              180,
+              184
+            ],
+            [
+              218,
+              220
+            ],
+            [
+              229,
+              235
+            ],
+            [
+              281,
+              284
+            ],
+            [
+              326,
+              332
+            ],
+            [
+              398,
+              399
+            ],
+            [
+              450,
+              451
+            ],
+            [
+              458,
+              458
+            ],
+            [
+              491,
+              491
+            ],
+            [
+              549,
+              557
+            ],
+            [
+              600,
+              600
+            ],
+            [
+              640,
+              640
+            ]
+          ],
+          "orders": 75,
+          "orders_by_date_from": {
+            "": 1,
+            "approval": 1,
+            "configured": 1,
+            "dateline": 72
+          },
+          "orders_by_form": {
+            "announcement": 1,
+            "general_orders": 14,
+            "letter": 18,
+            "order": 31,
+            "rules_or_regulations": 9,
+            "special_orders": 2
+          },
+          "orders_by_kind": {
+            "configured": 1,
+            "order": 74
+          },
+          "orders_by_signer": {
+            "by_direction_of_president": 27,
+            "department_or_other": 22,
+            "president": 26
+          },
+          "orders_cited_by_neither_list": 32,
+          "orders_printed_inside_another": 5,
+          "orders_undated": 1,
+          "orders_with_lord_entry": 33,
+          "orders_with_wpa_number": 11,
+          "page_furniture_removed": {
+            "foot_number": 7,
+            "running_head": 634,
+            "sheet_signature": 38,
+            "speck": 204
+          },
+          "page_map": {
+            "heads_agree": 632,
+            "heads_disagree": 0,
+            "heads_read": 632,
+            "pages_mapped": 637,
+            "pages_without_readable_head": 5
+          },
+          "pages_rejoined_from_pdftotext_raw": 26,
+          "pdf_check": "pdf_not_checked_out",
+          "raw_text_sha256": "37415727e33f46005050bb24c10045bd099aa232360644b1802691dd42feee80",
+          "residue_units": 8,
+          "text_sha256": "e01751df2ab40fe91c37a7dc08521e1dffc7f1786bd43a8bc0567017452eb9bb",
+          "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume VII (Ulysses S. Grant, Rutherford B. Hayes; March 4, 1869 to March 4, 1881)",
+          "units": 83,
+          "unnumbered_orders": 64,
+          "unnumbered_orders_cited_by_lord": 32,
+          "volume": "RICH_VII",
+          "wpa_citations": 11,
+          "wpa_date_only_candidates": {
+            "unmatched": 4
+          },
+          "wpa_entries_citing": 11,
+          "wpa_methods": {
+            "date_and_page": 8,
+            "date_and_page_year_after_parent_row": 1,
+            "date_page_and_subject": 2
+          },
+          "wpa_numbers_located": 11,
+          "wpa_status": {
+            "match": 11
+          }
+        },
+        {
+          "census_ids": [
+            "EO:28",
+            "EO:28-1",
+            "EO:29",
+            "EO:30",
+            "EO:31",
+            "EO:32",
+            "EO:33",
+            "EO:34",
+            "EO:35",
+            "EO:50",
+            "EO:55",
+            "EO:56",
+            "EO:57",
+            "EO:58",
+            "EO:59",
+            "EO:60",
+            "EO:61",
+            "EO:62",
+            "EO:63",
+            "EO:64",
+            "EO:64-1",
+            "EO:65",
+            "EO:66",
+            "EO:67",
+            "EO:68",
+            "EO:69",
+            "EO:70",
+            "EO:71",
+            "EO:72",
+            "EO:73",
+            "EO:74",
+            "EO:75",
+            "EO:76",
+            "EO:77",
+            "EO:78",
+            "EO:79",
+            "EO:80",
+            "EO:81",
+            "EO:82",
+            "EO:83",
+            "EO:84",
+            "EO:85",
+            "EO:86",
+            "EO:87",
+            "EO:88",
+            "EO:89",
+            "EO:90",
+            "EO:91",
+            "EO:93",
+            "EO:94",
+            "EO:95",
+            "EO:96"
+          ],
+          "census_ids_with_text": 52,
+          "census_leads": {
+            "CANDIDATE_TEXT_DATE_ONLY": 2,
+            "DATE_FILL": 52,
+            "IN_CENSUS_NOT_FOUND_IN_VOLUME": 1,
+            "LIST_PARSE_CORRECTION": 16,
+            "NOT_IN_CENSUS_numbered": 21,
+            "NOT_IN_CENSUS_unnumbered": 89
+          },
+          "confidence": {
+            "high": 142,
+            "medium": 12
+          },
+          "decided_orders_original_text_step_open": 0,
+          "decided_orders_with_text": 0,
+          "ending_leads": 192,
+          "fragments": 52,
+          "lists_read": "committed subset (wpa-lists output absent)",
+          "lord_citations": 79,
+          "lord_methods": {
+            "date_and_page": 23,
+            "date_on_other_page": 1,
+            "date_page_and_subject": 7,
+            "date_page_presidential": 1,
+            "subject_does_not_separate": 2,
+            "subject_list_year_wrong": 2,
+            "subject_on_page": 43
+          },
+          "lord_rows_citing": 78,
+          "lord_status": {
+            "ambiguous": 2,
+            "match": 77
+          },
+          "order_section_ends_agree_with_contents": 11,
+          "order_sections": 11,
+          "order_sections_contents": [
+            [
+              27,
+              32
+            ],
+            [
+              103,
+              107
+            ],
+            [
+              164,
+              180
+            ],
+            [
+              302,
+              306
+            ],
+            [
+              383,
+              385
+            ],
+            [
+              399,
+              401
+            ],
+            [
+              434,
+              434
+            ],
+            [
+              513,
+              523
+            ],
+            [
+              598,
+              625
+            ],
+            [
+              699,
+              714
+            ],
+            [
+              798,
+              801
+            ]
+          ],
+          "order_sections_printed": [
+            [
+              27,
+              32
+            ],
+            [
+              103,
+              107
+            ],
+            [
+              164,
+              180
+            ],
+            [
+              302,
+              306
+            ],
+            [
+              383,
+              385
+            ],
+            [
+              399,
+              401
+            ],
+            [
+              434,
+              434
+            ],
+            [
+              513,
+              523
+            ],
+            [
+              598,
+              625
+            ],
+            [
+              699,
+              714
+            ],
+            [
+              798,
+              801
+            ]
+          ],
+          "orders": 154,
+          "orders_by_date_from": {
+            "": 3,
+            "approval": 44,
+            "dateline": 106,
+            "message_introduction": 1
+          },
+          "orders_by_form": {
+            "announcement": 1,
+            "general_orders": 3,
+            "letter": 6,
+            "order": 25,
+            "rules_or_regulations": 119
+          },
+          "orders_by_kind": {
+            "in_message": 1,
+            "order": 153
+          },
+          "orders_by_signer": {
+            "by_direction_of_president": 7,
+            "department_or_other": 6,
+            "president": 141
+          },
+          "orders_cited_by_neither_list": 18,
+          "orders_printed_inside_another": 3,
+          "orders_undated": 3,
+          "orders_with_lord_entry": 77,
+          "orders_with_wpa_number": 59,
+          "page_furniture_removed": {
+            "foot_number": 12,
+            "running_head": 795,
+            "sheet_signature": 48,
+            "speck": 31
+          },
+          "page_map": {
+            "heads_agree": 792,
+            "heads_disagree": 0,
+            "heads_read": 792,
+            "pages_mapped": 799,
+            "pages_without_readable_head": 7
+          },
+          "pages_rejoined_from_pdftotext_raw": 14,
+          "pdf_check": "pdf_not_checked_out",
+          "raw_text_sha256": "0b8948850bd31c897d639a6b8329f2c7fe1eb0bc23166d22e2d3079eed7dc239",
+          "residue_units": 2,
+          "text_sha256": "41d93bbdf8dfbf5d12132357e4176d4bd7c75a4e4d21d0df6c029070e09ed484",
+          "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume IX (Benjamin Harrison, Grover Cleveland second term; March 4, 1889 to March 4, 1897)",
+          "units": 156,
+          "unnumbered_orders": 95,
+          "unnumbered_orders_cited_by_lord": 77,
+          "volume": "RICH_IX",
+          "wpa_citations": 76,
+          "wpa_date_only_candidates": {
+            "ambiguous": 2,
+            "match": 1,
+            "unmatched": 8
+          },
+          "wpa_entries_citing": 76,
+          "wpa_methods": {
+            "date_and_page": 35,
+            "date_and_page_year_after_parent_row": 1,
+            "date_page_and_subject": 36,
+            "entry_year_outside_volume": 4
+          },
+          "wpa_numbers_located": 73,
+          "wpa_status": {
+            "match": 72,
+            "unmatched": 4
+          }
+        }
+      ],
+      "wpa_entries_parsed": 155
+    },
     "source-ladder": {
-      "attempts_logged": 43,
-      "bytes_downloaded": 784275283,
+      "attempts_logged": 69,
+      "bytes_downloaded": 327863094,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
       "exhausted_proposed_items": 4,
       "exhausted_proposed_lines": 22,
       "fetch_queue_problems": [],
-      "found": 122,
+      "found": 147,
       "found_by_route": {
-        "given/given": 34,
+        "given/given": 54,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 5,
         "official/govinfo_link_fr": 2,
         "official/govinfo_link_statute": 3,
         "official/govinfo_link_uscode": 9,
-        "official/ofr_index_pdf_url": 9
+        "official/ofr_index_pdf_url": 9,
+        "wayback_given/wayback_id_": 5
       },
-      "found_carried_forward": 87,
-      "from_fetch_queue": 49,
+      "found_carried_forward": 122,
+      "from_fetch_queue": 80,
       "from_stage20_shared_sources": 90,
-      "http_requests": 48,
-      "items_in_queue": 139,
-      "items_worked": 139,
+      "http_requests": 69,
+      "items_in_queue": 170,
+      "items_worked": 170,
       "job": "source-ladder",
-      "no_route": 12,
+      "no_route": 16,
       "not_attempted_budget": 0,
       "offline": false,
-      "orders_covered_by_found_sources": 257,
-      "pool_cache_hits": 34,
-      "pool_network_requests": 59,
-      "prefetched_urls": 40,
-      "retry_later": 1,
+      "orders_covered_by_found_sources": 280,
+      "pool_cache_hits": 18,
+      "pool_network_requests": 84,
+      "prefetched_urls": 32,
+      "retry_later": 3,
       "run_date": "2026-10-18",
-      "seconds": 173.0,
+      "seconds": 463.1,
       "stopped_early": ""
     }
   }

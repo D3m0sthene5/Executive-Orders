@@ -615,5 +615,87 @@ class PureFunctionTests(unittest.TestCase):
             self.assertTrue(S.is_lfs_pointer(p))
 
 
+@unittest.skipUnless(REAL_GATE.is_file(), "research/stage19/code/claim_gate.py not checked out")
+class SourceBookTests(unittest.TestCase):
+    """Printed volumes committed under releases/source_books (Git LFS), named by a job's data/PROVENANCE.json."""
+
+    setUp = CheckerTests.setUp
+    tearDown = CheckerTests.tearDown
+
+    BOOK_BYTES = b"%PDF-1.4 a printed volume of executive orders (fixture bytes, never parsed)\n"
+    BOOK_TEXT = ("[page header removed]\nEXECUTIVE ORDER No. 90001\nSection 1. There is hereby established "
+                 "the Test Board, which shall advise the President on testing.\n")
+
+    def add_book(self, pointer_oid=None, real=False):
+        """A book job: data/PROVENANCE.json names the volume; FRAGMENTS.jsonl cites it for EO:90001."""
+        book_sha = sha(self.BOOK_BYTES)
+        rel = "releases/source_books/Test_Volume.pdf"
+        pdf = self.repo / rel
+        pdf.parent.mkdir(parents=True, exist_ok=True)
+        if real:
+            pdf.write_bytes(self.BOOK_BYTES)
+        else:
+            pdf.write_bytes(S.LFS_MAGIC + f"\noid sha256:{pointer_oid or book_sha}\nsize 77\n".encode())
+        job = self.repo / "jobs/book-job"
+        (job / "data").mkdir(parents=True, exist_ok=True)
+        (job / "data/PROVENANCE.json").write_text(json.dumps({"volumes": [{
+            "handle_url": "https://hdl.handle.net/2027/test.volume", "pdf": rel, "pdf_sha256": book_sha,
+            "pdf_bytes": len(self.BOOK_BYTES)}]}), "utf-8")
+        (job / "output/texts").mkdir(parents=True, exist_ok=True)
+        (job / "output/texts/EO_90001.txt").write_text(self.BOOK_TEXT, "utf-8")
+        page = "Test volume (GPO 1950), printed pages 3-3, PDF pages 9-9"
+        with open(job / "output/FRAGMENTS.jsonl", "w", encoding="utf-8") as fh:
+            fh.write(json.dumps({"instrument_id": "EO:90001", "kind": "original_representation",
+                                 "produced_by": "book-job", "data": {
+                                     "url": "https://hdl.handle.net/2027/test.volume", "sha256": book_sha,
+                                     "page_or_item": page, "needs_page_check": False,
+                                     "text_path": "texts/EO_90001.txt"}}) + "\n")
+        ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache2", today=C.dt.date(2026, 10, 17))
+        claim = good_claim()
+        book = {"url": "https://hdl.handle.net/2027/test.volume", "sha256": book_sha, "page_or_item": page}
+        claim["original_representation"] = book
+        claim["operative_clauses"][0]["original_source"] = book
+        return claim, ctx
+
+    def test_committed_volume_behind_an_lfs_pointer_is_held(self):
+        claim, ctx = self.add_book()
+        rows, _, _ = C.check_claim(claim, ctx)
+        src = {r["field"]: (r["result"], r["status"]) for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["original_representation"], ("pass", "held_bytes_in_release_or_repo"))
+        ident = {r["field"]: r["status"] for r in rows_for(rows, "source_identity")}
+        self.assertEqual(ident["original_representation"], "recorded_for_this_order")
+        q = {r["field"]: r["status"] for r in rows_for(rows, "quote_verbatim")}
+        # the clause is found word for word in the job's per-order OCR text of that volume
+        self.assertEqual(q["operative_clauses[0].original_operative_text"], "exact")
+        self.assertTrue(any("book-job: 1 committed volume(s) and 1 per-order text(s)" in n for n in ctx.index.notes))
+
+    def test_volume_pointer_to_other_bytes_is_not_held(self):
+        claim, ctx = self.add_book(pointer_oid="7" * 64)
+        rows, _, _ = C.check_claim(claim, ctx)
+        src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["original_representation"], "not_held")
+        self.assertTrue(any("is an LFS pointer to 777777777777" in n for n in ctx.index.notes))
+
+    def test_volume_bytes_on_this_machine_are_rehashed(self):
+        claim, ctx = self.add_book(real=True)
+        rows, _, _ = C.check_claim(claim, ctx)
+        src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["original_representation"], "held_bytes_verified")
+        (self.repo / "releases/source_books/Test_Volume.pdf").write_bytes(b"other bytes")
+        ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache3", today=C.dt.date(2026, 10, 17))
+        rows, _, _ = C.check_claim(claim, ctx)
+        src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["original_representation"], "held_record_but_local_bytes_differ")
+
+    def test_volume_missing_from_the_checkout_is_not_held(self):
+        claim, _ = self.add_book()
+        (self.repo / "releases/source_books/Test_Volume.pdf").unlink()
+        ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache4", today=C.dt.date(2026, 10, 17))
+        rows, _, _ = C.check_claim(claim, ctx)
+        src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["original_representation"], "not_held")
+        self.assertTrue(any("is not in this checkout" in n for n in ctx.index.notes))
+
+
 if __name__ == "__main__":
     unittest.main()

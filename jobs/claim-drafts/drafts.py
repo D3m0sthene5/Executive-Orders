@@ -46,7 +46,31 @@ CLAIM_SCHEMA = "eo-lifecycle-claim/v1"
 LEGAL_CUTOFF = "2026-10-14"
 
 # Jobs whose outputs are merged (any other jobs/*/output with FRAGMENTS.jsonl is merged too).
-KNOWN_JOBS = ["fr-originals", "source-ladder", "clause-drafts", "later-events", "current-law", "opus-media-match"]
+KNOWN_JOBS = ["fr-originals", "source-ladder", "clause-drafts", "later-events", "current-law", "opus-media-match",
+              "ofr-compilations", "isthmian-canal-1911", "indian-reservations-1912", "richardson-volumes",
+              "ofr-codification-1989"]
+# Official government printings of the orders' texts (GPO / Office of the Federal Register compilations): their
+# original_representation fragments are graded like fr-originals (a find flagged needs_page_check is never strong).
+OFFICIAL_COMPILATION_JOBS = {
+    "ofr-compilations": "Office of the Federal Register compilation (GPO 1974)",
+    "isthmian-canal-1911": "Isthmian Canal Commission compilation (GPO 1911)",
+    "indian-reservations-1912": "Indian-reservation orders compilation (GPO 1912)",
+}
+# Printed compilations transcribed from department records and newspapers (Richardson's Messages and Papers): a lead
+# to the original only. Never strong, never offered as the original in the feasibility test, never counted.
+COMPILED_TRANSCRIPTION_JOBS = {"richardson-volumes": "Richardson, Messages and Papers of the Presidents (GPO 1896-99)"}
+# The OFR 1989 Codification: editorial status as of 1989-01-20 (disposition table, and the codified texts as amended
+# to that day). Its later-event fragments may become whole-order-end proposals; its in-force rows are current-law
+# LEADS only (a 1989 snapshot never reaches the 2026-10-14 cutoff). Its texts are never originals.
+CODIFICATION_JOB = "ofr-codification-1989"
+CODIFICATION_SNAPSHOT_DATE = "1989-01-20"
+CODIFICATION_FLAG = "ofr_codification_1989_editorial"
+CODIFICATION_BASIS_CODE = "ofr_codification_1989_in_force"
+# later-events offers a whole-order end only for these mechanisms with no qualifier (FULL_END_MECHANISMS there).
+FULL_END_MECHANISMS = {"revocation", "rescission", "supersession_or_revocation"}
+# Jobs that read the same underlying source: the later-events OFR catalog notes are the online edition of the 1989
+# disposition tables, so the two agreeing is not independent corroboration.
+JOB_SOURCE_FAMILY = {CODIFICATION_JOB: "later-events"}
 NOT_INPUT_JOBS = {JOB_NAME, "claim-checker", "readiness-tracker", "example-hello", "_template"}
 FRAGMENT_KINDS = {"operative_clauses", "later_event_candidates", "whole_order_end_candidates",
                   "current_predicate_candidates", "savings_leads", "original_representation", "family_rule_checks"}
@@ -81,14 +105,18 @@ P = {
 
 # Ranking of original-text candidates (lower is better).
 ORIGINAL_RANK = {"stage21_per_document_pdf": 0, "opus_archived_media": 1, "fr_originals_high": 2,
-                 "source_ladder_fr_page": 3, "fr_originals_needs_page_check": 4, "official_html_text": 5}
-STRONG_ORIGINALS = {"stage21_per_document_pdf", "opus_archived_media", "fr_originals_high"}
+                 "official_compilation_high": 3, "source_ladder_fr_page": 4, "fr_originals_needs_page_check": 5,
+                 "official_compilation_needs_page_check": 6, "official_html_text": 7, "compiled_transcription_lead": 8}
+STRONG_ORIGINALS = {"stage21_per_document_pdf", "opus_archived_media", "fr_originals_high", "official_compilation_high"}
+# Candidates that can never be the original by themselves, even after a page check.
+LEAD_ONLY_ORIGINALS = {"compiled_transcription_lead"}
 CLAUSE_GRADE_RANK = {"official_fr_pdf_text_layer": 0, "official_fr_html_text": 1, "federalregister_gov_edition": 2,
                      "official_fr_scan_ocr_text": 3, "mirror_transcription_app": 4, "other_copy": 5}
 BASIS_RANK = {"statutory_text_reference": 0, "cfr_authority_citation": 1, "references_in_text_note": 2,
               "cfr_text_reference": 3, "cfr_source_citation": 4, "statutory_note_reference": 5,
-              "printed_eo_text": 6, "amending_order_in_status_line": 7, "cfr_appendix_text_reference": 8}
-SOURCE_JOB_PRIORITY = {"later-events": 0, "current-law": 1}
+              "printed_eo_text": 6, "amending_order_in_status_line": 7, "cfr_appendix_text_reference": 8,
+              CODIFICATION_BASIS_CODE: 20}
+SOURCE_JOB_PRIORITY = {"later-events": 0, "current-law": 1, CODIFICATION_JOB: 2}
 SAVINGS_RE = re.compile(
     r"shall not (?:be construed to )?(?:affect|impair|abate)|savings? (?:clause|provision)|"
     r"heretofore (?:taken|issued|prescribed|made|granted)|shall (?:remain|continue) in (?:full )?(?:force|effect)|"
@@ -394,6 +422,8 @@ class Merged:
         self.quarantine = {}
         self.not_segmented = {}
         self.fr_not_found = {}
+        self.codified_1989 = {}  # iid -> (InputDir, CODIFIED_1989.csv row): printed as in force on 1989-01-20
+        self.codification_book = None  # {url, sha256} of the 1989 Codification PDF
         self.searches = []  # [{job, complete, entry, scope_note}]
         self.problems = []
         self.counts = collections.Counter()
@@ -516,8 +546,38 @@ def load_inputs(inputs):
         if inp.job == "fr-originals":
             for row in read_csv(inp.path / "NOT_FOUND.csv") or []:
                 m.fr_not_found[row.get("instrument_id")] = row
+        if inp.job == CODIFICATION_JOB:
+            load_codification(m, inp, frs)
         m.searches += search_records_for(inp, srcs)
     return m
+
+
+def load_codification(m, inp, frs):
+    """The 1989 Codification's in-force rows (CODIFIED_1989.csv) and the PDF they are printed in."""
+    book = None
+    for f in frs:  # every fragment cites the same book: take its url and sha256
+        for src in as_list(f.get("sources")) + [x.get("source") for x in as_list(f.get("data")) if isinstance(x, dict)]:
+            if isinstance(src, dict) and isinstance(src.get("url"), str) and \
+                    re.fullmatch(r"[0-9a-fA-F]{64}", str(src.get("sha256") or "")):
+                book = {"url": src["url"], "sha256": src["sha256"].lower()}
+                break
+        if book:
+            break
+    if not book:  # no fragments: the job's own provenance record, when the folder sits in the repo
+        prov = read_json(inp.path.parent / "data" / "PROVENANCE.json").get("book")
+        if isinstance(prov, dict) and isinstance(prov.get("handle_url"), str) and \
+                re.fullmatch(r"[0-9a-fA-F]{64}", str(prov.get("pdf_sha256") or "")):
+            book = {"url": prov["handle_url"], "sha256": prov["pdf_sha256"].lower()}
+    m.codification_book = book
+    rows = read_csv(inp.path / "CODIFIED_1989.csv") or []
+    for row in rows:
+        iid = (row.get("census_id") or row.get("instrument_id") or "").strip()
+        if iid.startswith("EO:"):
+            m.codified_1989[iid] = (inp, row)
+    m.counts[f"codified_1989_rows_read:{inp.job}"] += len(rows)
+    if rows and not book:
+        m.problems.append(f"{inp.label()}: CODIFIED_1989.csv read, but no book url/sha256 was found; its in-force "
+                          "rows cannot be cited and are not proposed")
 
 
 class RepoData:
@@ -622,6 +682,27 @@ def original_candidates(iid, merged, rd, gate):
                           "upstream_url": d.get("upstream_url"), "match_signals": d.get("match_signals"),
                           "why": "Opus archived file whose content names this order (unique_supported); "
                                  "candidate_unverified - read the page"})
+        elif inp.job in OFFICIAL_COMPILATION_JOBS:
+            # Same rule as fr-originals: medium/low location, or the job's own needs_page_check, is never strong.
+            needs_check = bool(d.get("needs_page_check")) or d.get("location_confidence") not in ("high",)
+            ref = claim_ref({"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item")})
+            cands.append({"grade": "official_compilation_needs_page_check" if needs_check else "official_compilation_high",
+                          "ref": ref, "from": inp.label(), "source_id": d.get("source_id"),
+                          "signing_date": d.get("signing_date"), "location_confidence": d.get("location_confidence"),
+                          "match_level": d.get("match_level"), "text_path": d.get("text_path"),
+                          "why": f"{OFFICIAL_COMPILATION_JOBS[inp.job]}: official government printing, OCR text; page "
+                                 f"location {d.get('location_confidence')}" +
+                                 ("; needs a page check before it can count (fr-originals rule)" if needs_check
+                                  else "; location_verified is false - open the PDF pages")})
+        elif inp.job in COMPILED_TRANSCRIPTION_JOBS:
+            ref = claim_ref({"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item")})
+            cands.append({"grade": "compiled_transcription_lead", "ref": ref, "from": inp.label(),
+                          "source_id": d.get("source_id"), "signing_date": d.get("signing_date"),
+                          "location_confidence": d.get("location_confidence"), "identified_by": d.get("identified_by"),
+                          "text_path": d.get("text_path"),
+                          "why": f"{COMPILED_TRANSCRIPTION_JOBS[inp.job]}: a printed compilation transcribed from "
+                                 "department records and newspapers, NOT the signed or officially printed original; a "
+                                 "lead to the original and to the text, never the original by itself"})
         else:
             needs_check = bool(d.get("needs_page_check")) or d.get("location_confidence") not in ("high",)
             ref = claim_ref({"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item")})
@@ -662,6 +743,7 @@ def original_candidates(iid, merged, rd, gate):
             continue
         seen.add(key)
         c["strong"] = c["grade"] in STRONG_ORIGINALS
+        c["acceptable_as_original"] = c["grade"] not in LEAD_ONLY_ORIGINALS
         c["custody_records_in"] = source_custody(merged, ref)
         out.append(c)
     return out
@@ -757,6 +839,12 @@ def _le_item(item, inp, kind):
     exact = date if exact_date(date) else None
     meta.update({"quote": q, "quote_truncated": cut, "from_job": inp.job, "from": inp.label(),
                  "date_raw": date if date != exact else None})
+    if inp.job == CODIFICATION_JOB:
+        meta["flags"] = sorted(set(meta["flags"]) | {CODIFICATION_FLAG})
+        meta["caution"] = ("1989 OFR editorial codification: the Executive Orders disposition table states the order's "
+                           f"status as of {CODIFICATION_SNAPSHOT_DATE} (OCR table cell, rows paired by position). The "
+                           "date is the acting document's signing date, not its effective date; the order (or parts "
+                           "of it) may have ceased earlier by its own terms. Read the acting instrument")
     if kind == "whole_order_end_candidates":
         proposal = {"date": exact, "actor": actor, "mechanism": mech, "source": src}
     else:
@@ -771,28 +859,87 @@ def proposal_date(c):
     return p.get("date") or p.get("date_candidate")
 
 
+def _item_mechanism_and_scope(item):
+    """(mechanism, qualifier) of a later-events, codification or current-law item."""
+    mech = item.get("mechanism")
+    if not isinstance(mech, str):
+        mech = text_or_empty(item.get("event_type_candidate")) or text_or_empty(item.get("mechanism_candidate"))
+        mech = mech.split(" (")[0]
+    qual = next((v for v in (item.get("qualifier"), item.get("scope_hint"), item.get("acting_scope"))
+                 if isinstance(v, str) and v.strip()), "")
+    return mech.strip(), qual.strip()
+
+
+def codification_end_decision(iid, item, merged):
+    """('whole', None) when a 1989 Codification disposition item may be offered as a whole-order end, else
+    (None, flag or None). The rule is later-events' own: an unqualified revocation / rescission / 'superseded or
+    revoked' stated by the OFR, with nothing in any job's data saying the same acting instrument acted only in part.
+    Items the codification job itself flags needs_page_check (medium/low pairing on the page) stay later events."""
+    if not isinstance(item, dict):
+        return None, None
+    mech, qual = _item_mechanism_and_scope(item)
+    actor = text_or_empty(item.get("actor")).strip()
+    flags = [x for x in as_list(item.get("flags")) if isinstance(x, str)]
+    if mech not in FULL_END_MECHANISMS or qual or not actor or "acting_document_is_the_row_itself" in flags:
+        return None, None
+    if "needs_page_check" in flags:
+        return None, None
+    for _, f in merged.frags.get(iid, {}).get("later_event_candidates", []):
+        for other in f.get("data") if isinstance(f.get("data"), list) else []:
+            if not isinstance(other, dict):
+                continue
+            o_actor = text_or_empty(other.get("actor")) or text_or_empty(other.get("acting_instrument_id"))
+            if o_actor.strip().lower() != actor.lower():
+                continue
+            o_mech, o_qual = _item_mechanism_and_scope(other)
+            o_flags = as_list(other.get("flags"))
+            if (o_mech in FULL_END_MECHANISMS | {"supersession"} and o_qual) or \
+                    "full_and_partial_evidence_conflict" in o_flags:
+                return None, "full_and_partial_evidence_conflict"
+    return "whole", None
+
+
 def ending_candidates(iid, merged, kind):
     out, post_cutoff = [], []
+    items = []  # (inp, item, extra flags)
     for inp, f in merged.frags.get(iid, {}).get(kind, []):
         data = f.get("data") if isinstance(f.get("data"), list) else []
         for item in data:
-            try:
-                c = _le_item(item, inp, kind)
-            except Unusable as exc:
-                merged.counts[f"items_skipped_wrong_type:{inp.job}:{kind}"] += 1
-                if merged.counts["_wrong_type_examples"] < 20:
-                    merged.counts["_wrong_type_examples"] += 1
-                    merged.problems.append(f"{inp.label()} {iid} {kind}: item skipped ({exc})")
+            extra = set()
+            if inp.job == CODIFICATION_JOB and kind == "later_event_candidates":
+                _, why = codification_end_decision(iid, item, merged)
+                if why:
+                    extra.add(why)
+            items.append((inp, item, extra))
+    if kind == "whole_order_end_candidates":
+        # The 1989 disposition table states the order's own status: an unqualified revocation there is offered as a
+        # whole-order end under later-events' rule (the job itself emits only later_event_candidates).
+        for inp, f in merged.frags.get(iid, {}).get("later_event_candidates", []):
+            if inp.job != CODIFICATION_JOB:
                 continue
-            if not c:
-                continue
-            if kind == "later_event_candidates" and c["proposal"]["mechanism"] == "cross_reference":
-                continue
-            d = proposal_date(c)
-            if d and d > LEGAL_CUTOFF:
-                post_cutoff.append(c)
-                continue
-            out.append(c)
+            for item in f.get("data") if isinstance(f.get("data"), list) else []:
+                if codification_end_decision(iid, item, merged)[0] == "whole":
+                    items.append((inp, item, {"whole_end_from_1989_disposition_table"}))
+    for inp, item, extra in items:
+        try:
+            c = _le_item(item, inp, kind)
+        except Unusable as exc:
+            merged.counts[f"items_skipped_wrong_type:{inp.job}:{kind}"] += 1
+            if merged.counts["_wrong_type_examples"] < 20:
+                merged.counts["_wrong_type_examples"] += 1
+                merged.problems.append(f"{inp.label()} {iid} {kind}: item skipped ({exc})")
+            continue
+        if not c:
+            continue
+        if extra:
+            c["meta"]["flags"] = sorted(set(c["meta"]["flags"]) | extra)
+        if kind == "later_event_candidates" and c["proposal"]["mechanism"] == "cross_reference":
+            continue
+        d = proposal_date(c)
+        if d and d > LEGAL_CUTOFF:
+            post_cutoff.append(c)
+            continue
+        out.append(c)
     seen, uniq = set(), []
     for c in out:
         k = short_hash([c["proposal"], c["meta"].get("ids"), c["meta"].get("from_job")])
@@ -813,7 +960,9 @@ def group_whole_ends(cands):
         items.sort(key=lambda c: SOURCE_JOB_PRIORITY.get(c["meta"]["from_job"], 9))
         jobs = sorted({c["meta"]["from_job"] for c in items})
         flags = sorted({fl for c in items for fl in c["meta"].get("flags") or []})
-        out.append({"actor": actor, "date": date, "jobs": jobs, "corroborated_by_two_jobs": len(jobs) > 1,
+        # Two jobs reading the same underlying source (the OFR's disposition data) are not two corroborations.
+        families = {JOB_SOURCE_FAMILY.get(j, j) for j in jobs}
+        out.append({"actor": actor, "date": date, "jobs": jobs, "corroborated_by_two_jobs": len(families) > 1,
                     "flags": flags, "items": items})
     return out
 
@@ -825,6 +974,55 @@ def choose_whole_end(groups, signing):
     usable.sort(key=lambda g: (g["date"], not g["corroborated_by_two_jobs"],
                                SOURCE_JOB_PRIORITY.get(g["items"][0]["meta"]["from_job"], 9)))
     return usable[0]
+
+
+def is_snapshot_lead(pred):
+    """True for a current_predicate proposal that is only the 1989 in-force snapshot."""
+    return pred["meta"].get("basis_code") == CODIFICATION_BASIS_CODE
+
+
+def codification_in_force_lead(iid, merged):
+    """A current_predicate LEAD from the 1989 Codification's in-force rows (CODIFIED_1989.csv), or None.
+
+    checked_through is 1989-01-20, the book's status date, so it can never satisfy the gate (which needs
+    2026-10-14): it says only that the order was printed as in force then, in the editors' text as amended."""
+    hit = merged.codified_1989.get(iid)
+    book = merged.codification_book
+    if not hit or not book:
+        return None
+    inp, row = hit
+    n = iid.split(":", 1)[1]
+    chapter = text_or_empty(row.get("chapter")).strip()
+    title = text_or_empty(row.get("chapter_title")).strip()
+    where = f"chapter {chapter}" + (f" ({title})" if title else "")
+    page = (f"OFR Codification 1945-1989 (1989), codified text of EO {n}, {where}, printed pages "
+            f"{text_or_empty(row.get('printed_pages')) or '?'}, PDF pages {text_or_empty(row.get('pdf_pages')) or '?'}")
+    restated_by = text_or_empty(row.get("restated_by")).strip()
+    flags = [CODIFICATION_FLAG, "status_as_of_1989-01-20", "as_amended_editorial_text_not_the_original"]
+    if restated_by:
+        flags.append("restated_in_entirety_by_later_order")
+    if text_or_empty(row.get("confidence")) != "high":
+        flags.append("needs_page_check")
+    basis = (f"LEAD ONLY, not a legal basis: the OFR 1989 Codification prints EO {n} as in force on "
+             f"{CODIFICATION_SNAPSHOT_DATE} ({where}), in the editors' text as amended to that day"
+             + (f"; its provisions were revised and restated in their entirety by {restated_by}"
+                f" ({text_or_empty(row.get('restated_by_date')) or 'date not read'})" if restated_by else "")
+             + f"; find the law that keeps it operating after {CODIFICATION_SNAPSHOT_DATE} and check it through "
+               f"{LEGAL_CUTOFF}")
+    return {
+        "proposal": {"legal_basis": basis, "source": {"url": book["url"], "sha256": book["sha256"],
+                                                      "page_or_item": page},
+                     "checked_through": CODIFICATION_SNAPSHOT_DATE},
+        "meta": compact({"basis_code": CODIFICATION_BASIS_CODE, "where": f"OFR Codification 1989, {where}",
+                         "system": "ofr_codification_1989", "edition": CODIFICATION_SNAPSHOT_DATE,
+                         "text_path": row.get("text_path"), "text_sha256": row.get("text_sha256"),
+                         "confidence": row.get("confidence"), "table_disposition": row.get("table_disposition"),
+                         "source_line": truncate(text_or_empty(row.get("source_text")) or None)[0],
+                         "restated_by": restated_by or None, "flags": flags,
+                         "from_job": inp.job, "from": inp.label(),
+                         "caution": f"a {CODIFICATION_SNAPSHOT_DATE} editorial snapshot: never enough for checked_through "
+                                    f"{LEGAL_CUTOFF}; the codified text is as amended, not the original; an order "
+                                    "printed here may have ended after 1989"})}
 
 
 def predicate_candidates(iid, merged):
@@ -853,6 +1051,9 @@ def predicate_candidates(iid, merged):
                          "snippet": snip, "snippet_truncated": cut, "from_job": inp.job, "from": inp.label(),
                          "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the "
                                     "provision to see whether it keeps the order operating"}})
+    lead = codification_in_force_lead(iid, merged)
+    if lead:
+        out.append(lead)
     out.sort(key=lambda c: (c["proposal"].get("checked_through") != LEGAL_CUTOFF,
                             BASIS_RANK.get(text_or_empty(c["meta"].get("basis_code")), 9), str(c["meta"].get("where"))))
     return out
@@ -966,22 +1167,32 @@ def build_draft(iid, merged, rd, gate, step_for):
     # --- original text
     originals = original_candidates(iid, merged, rd, gate)
     strong = [c for c in originals if c["strong"]]
+    acceptable = [c for c in originals if c["acceptable_as_original"]]
+    leads_only = [c for c in originals if not c["acceptable_as_original"]]
     chosen_original = strong[0] if strong else None
     if chosen_original:
         machine.append({"field": "original_representation", "from": chosen_original["from"],
                         "grade": chosen_original["grade"], "basis": chosen_original["why"],
                         "agent_must": "open the pages; confirm this order's complete official text; fix page_or_item"})
-    elif originals:
+    elif acceptable:
         judgment.append({"field": "original_representation",
                          "why": "only weak candidates (page location not confirmed, or not the printed edition); "
                                 "check the pages and copy one into the claim",
-                         "candidates": len(originals)})
+                         "candidates": len(acceptable)})
     else:
         nf = merged.fr_not_found.get(iid) or {}
         why = "no official original-text candidate from any job"
         if nf:
             why += f"; fr-originals: {nf.get('reason')} ({(nf.get('detail') or '')[:200]})"
+        if leads_only:
+            why += (f"; {len(leads_only)} compiled-transcription lead(s) (for example Richardson) point to the text "
+                    "but are not the original by themselves")
         missing.append({"step": "original_text", "what": why})
+    if leads_only and not chosen_original:
+        judgment.append({"field": "original_representation (lead)",
+                         "why": "a printed compilation transcribed from records (Richardson) names this order: use "
+                                "it to find and read the official original; never cite it as the original by itself",
+                         "candidates": len(leads_only)})
 
     # --- clauses
     info, alternates = clause_inventory(iid, merged)
@@ -1034,6 +1245,9 @@ def build_draft(iid, merged, rd, gate, step_for):
     whole, whole_post = ending_candidates(iid, merged, "whole_order_end_candidates")
     events, events_post = ending_candidates(iid, merged, "later_event_candidates")
     preds = predicate_candidates(iid, merged)
+    # The 1989 Codification's in-force rows are proposed too, but they are not current law (see is_snapshot_lead).
+    preds_current = [p for p in preds if not is_snapshot_lead(p)]
+    snapshot = [p for p in preds if is_snapshot_lead(p)]
     groups = group_whole_ends(whole)
     suggested = choose_whole_end(groups, signing_min)
     for c in whole_post + events_post:
@@ -1090,10 +1304,24 @@ def build_draft(iid, merged, rd, gate, step_for):
                                                     + (f" ({', '.join(h)})" if h else
                                                        f" (scope: {(c['meta'].get('qualifier') or 'not stated')[:80]})")
                                                     for c, h in partial_ends[:5])})
-    if status == "no" and preds:
+    if status == "no" and preds_current:
         conflicts.append({"code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-                          "detail": f"provisional NO, but {len(preds)} current-law predicate lead(s), e.g. "
-                                    + "; ".join(str(p["meta"].get("where")) for p in preds[:3])})
+                          "detail": f"provisional NO, but {len(preds_current)} current-law predicate lead(s), e.g. "
+                                    + "; ".join(str(p["meta"].get("where")) for p in preds_current[:3])})
+    # Printed as in force on 1989-01-20 (and not restated by a later order), yet no ending candidate after that day:
+    # the order's ending, if any, came later than every candidate the machines found.
+    in_force_1989 = [p for p in snapshot if not p["meta"].get("restated_by")]
+    if status == "no" and in_force_1989:
+        later = [c for c in whole + events if (proposal_date(c) or "") > CODIFICATION_SNAPSHOT_DATE
+                 and ENDING_MECHANISM_RE.search(c["proposal"].get("mechanism") or "")]
+        if not later:
+            earlier = sorted({proposal_date(c) for c in whole if proposal_date(c)})
+            conflicts.append({"code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
+                              "detail": f"provisional NO, but the OFR 1989 Codification prints it as in force on "
+                                        f"{CODIFICATION_SNAPSHOT_DATE} ({in_force_1989[0]['meta'].get('where')}) and no "
+                                        "ending candidate is dated after that day"
+                                        + (f"; whole-order-end candidate(s) dated {', '.join(earlier[:3])} are earlier"
+                                           if earlier else "")})
     cq = rd.causal.get(iid) or {}
     try:
         quarantined = int(cq.get("quarantined_relationship_count") or 0)
@@ -1128,17 +1356,22 @@ def build_draft(iid, merged, rd, gate, step_for):
             missing.append({"step": "ending_or_current_basis",
                             "what": "provisional NO, but no job found a whole-order-end candidate"})
     elif status == "yes":
-        if preds:
+        if preds_current:
             judgment.append({"field": "operative_clauses[*].current_predicate",
-                             "why": f"choose the legal basis that keeps the order operating among {len(preds)} "
-                                    "current-law lead(s) and confirm it reaches the cutoff"})
-            if not any(p["proposal"].get("checked_through") == LEGAL_CUTOFF for p in preds):
+                             "why": f"choose the legal basis that keeps the order operating among {len(preds_current)} "
+                                    "current-law lead(s) and confirm it reaches the cutoff"
+                                    + (f" (the OFR 1989 Codification also prints it as in force on "
+                                       f"{CODIFICATION_SNAPSHOT_DATE}: a lead, never enough)" if snapshot else "")})
+            if not any(p["proposal"].get("checked_through") == LEGAL_CUTOFF for p in preds_current):
                 missing.append({"step": "ending_or_current_basis",
                                 "what": f"no current-law lead is checked through {LEGAL_CUTOFF} (U.S. Code entries "
                                         "are current only through 2026-10-09); confirm the last days by hand"})
         else:
             missing.append({"step": "ending_or_current_basis",
-                            "what": "provisional YES, but no job found a current-law predicate lead"})
+                            "what": "provisional YES, but no job found a current-law predicate lead"
+                                    + (f" (only the OFR 1989 Codification's in-force snapshot of "
+                                       f"{CODIFICATION_SNAPSHOT_DATE}, which never reaches {LEGAL_CUTOFF})"
+                                       if snapshot else "")})
         if partial_ends:
             judgment.append({"field": "operative_clauses[*].state_at_cutoff / first_end",
                              "why": f"{len(partial_ends)} later event(s) revoke, supersede or end part of this YES "
@@ -1274,8 +1507,8 @@ def build_draft(iid, merged, rd, gate, step_for):
     # --- gate now, and with the machine proposals accepted (feasibility test only)
     errors_now, crash_now = run_gate(gate, claim, status)
     hyp = copy.deepcopy(claim)
-    if not chosen_original and originals:
-        hyp["original_representation"] = originals[0]["ref"]
+    if not chosen_original and acceptable:  # a compiled transcription is never accepted as the original
+        hyp["original_representation"] = acceptable[0]["ref"]
     end_ref = None
     if status == "no" and suggested:
         p = suggested["items"][0]["proposal"]
@@ -1284,8 +1517,8 @@ def build_draft(iid, merged, rd, gate, step_for):
         hyp["whole_order_end"] = end
         for c in hyp["operative_clauses"]:
             c["state_at_cutoff"], c["first_end"] = "terminated", dict(end)
-    elif status == "yes" and preds:
-        pr = preds[0]["proposal"]
+    elif status == "yes" and preds_current:  # a 1989 snapshot never satisfies checked_through
+        pr = preds_current[0]["proposal"]
         named_end = {}  # scope_id -> first_end from a later event that ends that clause
         for ev, hints in partial_ends:
             p = ev["proposal"]
@@ -1500,6 +1733,17 @@ LEGEND = {
         "(later-event proposals therefore say date_candidate; rename it to effective_date only after confirming)",
     "later_source_search_partial": "machine searches that did not cover the whole corpus (sample runs); their full "
         "wording is in SUMMARY.json machine_searches",
+    "proposals.original_representation[].acceptable_as_original": "false for a compiled transcription (grade "
+        "compiled_transcription_lead, Richardson): a lead to the official original, never the original by itself; "
+        "the feasibility test never uses it. official_compilation_* grades are GPO/OFR printings graded like "
+        "fr-originals (needs_page_check or a medium/low location is never strong)",
+    "proposals.current_predicate[] basis_code ofr_codification_1989_in_force": "the OFR 1989 Codification prints the "
+        "order as in force on 1989-01-20 (as amended, editorial text): a lead only; its checked_through is "
+        "1989-01-20, so it never satisfies the gate and never counts as a current-law lead",
+    f"flags {CODIFICATION_FLAG}": "a later event or whole-order end read from the OFR 1989 Codification's disposition "
+        "table (status as of 1989-01-20, OCR cell); whole_end_from_1989_disposition_table marks unqualified "
+        "revocations offered as whole-order ends under later-events' rule. That table and the later-events OFR "
+        "catalog notes are the same OFR data, so their agreement is not counted as corroboration by two jobs",
 }
 
 class RollingWriter:
@@ -1694,12 +1938,24 @@ def main():
         stats[f"only_judgment_left_status_{d['provisional_status'] or 'none'}"] += d["gate"]["only_judgment_left"]
         stats["with_original_filled"] += line["claim"]["original_representation"] is not None
         stats["with_original_candidate_only"] += line["claim"]["original_representation"] is None and \
-            bool(d["proposals"]["original_representation"])
+            any(c.get("acceptable_as_original", True) for c in d["proposals"]["original_representation"])
         stats["with_clauses"] += bool(d["clause_count"])
         stats["clauses_total"] += d["clause_count"]
         stats["with_whole_end_candidate"] += bool(d["proposals"]["whole_order_end"])
-        stats["with_predicate_candidate"] += bool(d["proposals"]["current_predicate"])
+        stats["with_predicate_candidate"] += any(not is_snapshot_lead(p) for p in d["proposals"]["current_predicate"])
         stats["with_later_event_candidate"] += bool(d["proposals"]["later_events"])
+        # The book jobs wired in on 2026-10-18 (official compilations, Richardson, the 1989 Codification).
+        origs = d["proposals"]["original_representation"]
+        filled = next((m for m in d["machine_filled"] if m["field"] == "original_representation"), None)
+        stats["book_original_filled_official_compilation"] += bool(filled and filled["grade"] == "official_compilation_high")
+        stats["book_official_compilation_candidate"] += any(c["grade"].startswith("official_compilation") for c in origs)
+        stats["book_compiled_transcription_lead"] += any(c["grade"] == "compiled_transcription_lead" for c in origs)
+        stats["book_compiled_transcription_lead_only"] += bool(origs) and all(
+            c["grade"] == "compiled_transcription_lead" for c in origs)
+        whole_jobs = {p["meta"].get("from_job") for p in d["proposals"]["whole_order_end"]}
+        stats["book_whole_end_from_1989_table"] += CODIFICATION_JOB in whole_jobs
+        stats["book_whole_end_only_from_1989_table"] += whole_jobs == {CODIFICATION_JOB}
+        stats["book_in_force_1989_lead"] += any(is_snapshot_lead(p) for p in d["proposals"]["current_predicate"])
         stats["with_later_source_search_filled"] += bool(line["claim"]["later_source_search"])  # always 0 now
         stats["with_complete_machine_search_proposed"] += bool(d["proposals"]["later_source_search_machine"])
         stats["with_partial_end_on_yes"] += any(c["code"] == "PARTIAL_END_CANDIDATE_ON_YES_ORDER"
@@ -1756,7 +2012,21 @@ def main():
                    "later_source_search_machine_proposed": stats["with_complete_machine_search_proposed"]},
         "candidates": {"whole_order_end": stats["with_whole_end_candidate"],
                        "current_predicate": stats["with_predicate_candidate"],
-                       "later_events": stats["with_later_event_candidate"]},
+                       "later_events": stats["with_later_event_candidate"],
+                       "current_predicate_note": "U.S. Code / eCFR leads only; the 1989 in-force snapshot is counted "
+                                                 "under book_sources"},
+        "book_sources": {
+            "note": "orders whose draft uses the printed-volume jobs: official GPO/OFR compilations (ofr-compilations, "
+                    "isthmian-canal-1911, indian-reservations-1912; graded like fr-originals), Richardson's compiled "
+                    "transcriptions (leads only, never the original) and the OFR 1989 Codification (whole-order-end "
+                    "proposals from its disposition table; in-force leads checked through 1989-01-20 only)",
+            "original_filled_from_official_compilation": stats["book_original_filled_official_compilation"],
+            "official_compilation_candidate": stats["book_official_compilation_candidate"],
+            "compiled_transcription_lead": stats["book_compiled_transcription_lead"],
+            "compiled_transcription_lead_is_the_only_original_candidate": stats["book_compiled_transcription_lead_only"],
+            "whole_order_end_from_1989_disposition_table": stats["book_whole_end_from_1989_table"],
+            "whole_order_end_only_from_1989_disposition_table": stats["book_whole_end_only_from_1989_table"],
+            "in_force_1989_lead": stats["book_in_force_1989_lead"]},
         "orders_by_remaining_gate_error": dict(gate_err_orders.most_common()),
         "orders_by_gate_error_if_proposals_accepted": dict(hyp_err_orders.most_common()),
         "readiness_by_step": {s: dict(sorted(c.items())) for s, c in readiness_counts.items()},

@@ -274,6 +274,93 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
         index.notes.append(note)
 
 
+def lfs_pointer_oid(path):
+    """The sha256 a Git LFS pointer file names (the committed bytes' hash), or None."""
+    try:
+        text = path.read_text("utf-8", "replace")
+    except OSError:
+        return None
+    m = re.search(r"^oid sha256:([0-9a-f]{64})$", text, re.M)
+    return m.group(1) if m else None
+
+
+def _source_book_records(obj):
+    """Every {'pdf': 'releases/...', 'pdf_sha256': ...} record in a job's PROVENANCE.json (any nesting)."""
+    if isinstance(obj, dict):
+        if isinstance(obj.get("pdf"), str) and sha_hex(obj.get("pdf_sha256")):
+            yield obj
+        for v in obj.values():
+            yield from _source_book_records(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _source_book_records(v)
+
+
+def load_source_books(index, repo, exclude_jobs=()):
+    """Printed volumes committed under releases/ (Git LFS) that a job's data/PROVENANCE.json names by sha256.
+
+    A volume counts as committed only when the file is in the checkout and either is that file (re-hashed when a
+    claim cites it) or is an LFS pointer whose oid is exactly that sha256. The job's per-order OCR texts
+    (original_representation fragments citing the volume, with a text_path) are added as text copies of the same
+    bytes, listed before the volume so quotations are searched in them before the whole PDF is ever parsed."""
+    for prov in sorted((repo / "jobs").glob("*/data/PROVENANCE.json")):
+        job = prov.parent.parent.name
+        if job in exclude_jobs:
+            continue
+        try:
+            data = json.loads(prov.read_text("utf-8"))
+        except (OSError, ValueError):
+            index.notes.append(f"jobs/{job}/data/PROVENANCE.json: unreadable; its volumes are not indexed")
+            continue
+        books = {}
+        for rec in _source_book_records(data):
+            rel = _safe_child(repo, rec["pdf"])
+            sha = sha_hex(rec["pdf_sha256"])
+            if rel is None or not rec["pdf"].replace("\\", "/").startswith("releases/"):
+                continue
+            if not rel.is_file():
+                index.notes.append(f"jobs/{job}: {rec['pdf']} is not in this checkout (add releases/source_books to "
+                                   "needs.txt); not indexed")
+                continue
+            if is_lfs_pointer(rel):
+                oid = lfs_pointer_oid(rel)
+                if oid != sha:
+                    index.notes.append(f"jobs/{job}: {rec['pdf']} is an LFS pointer to {str(oid)[:12]}..., not the "
+                                       f"recorded {sha[:12]}...; not indexed")
+                    continue
+            books[sha] = (rel, rec)
+        if not books:
+            continue
+        texts = 0
+        frag_path = repo / "jobs" / job / "output" / "FRAGMENTS.jsonl"
+        if frag_path.is_file():
+            with open(frag_path, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    if '"original_representation"' not in line:
+                        continue
+                    try:
+                        f = json.loads(line)
+                    except ValueError:
+                        continue
+                    d = f.get("data") if isinstance(f, dict) else None
+                    if f.get("kind") != "original_representation" or not isinstance(d, dict):
+                        continue
+                    sha = sha_hex(d.get("sha256"))
+                    text = _safe_child(frag_path.parent, d.get("text_path"))
+                    if sha not in books or text is None or not isinstance(f.get("instrument_id"), str):
+                        continue
+                    index.add(HeldCopy(f"jobs/{job}/output/FRAGMENTS.jsonl", sha, d.get("url"),
+                                       _int(books[sha][1].get("pdf_bytes")), None, text, (), d.get("page_or_item"),
+                                       [f["instrument_id"]], "per-order OCR text of a committed volume",
+                                       custody="repo_file"))
+                    texts += 1
+        for sha, (path, rec) in books.items():
+            index.add(HeldCopy(f"jobs/{job}/data/PROVENANCE.json", sha, rec.get("handle_url") or rec.get("url"),
+                               _int(rec.get("pdf_bytes")), path, None, (), None, (), "committed volume (Git LFS)",
+                               custody="repo_file"))
+        index.notes.append(f"jobs/{job}: {len(books)} committed volume(s) and {texts} per-order text(s) indexed")
+
+
 def load_stage21(index, repo):
     p = repo / INPUTS["stage21_custody"]
     if p.is_file():
@@ -478,6 +565,7 @@ def build_index(repo, job_dir, cache_roots=(), exclude_jobs=()):
     repo = pathlib.Path(repo)
     index = HeldIndex()
     load_job_sources(index, repo, cache_roots, exclude_jobs)
+    load_source_books(index, repo, exclude_jobs)
     load_stage21(index, repo)
     load_stage20(index, repo)
     load_stage18(index, repo)

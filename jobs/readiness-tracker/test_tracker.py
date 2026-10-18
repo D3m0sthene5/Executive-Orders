@@ -183,6 +183,53 @@ class TrackerTest(unittest.TestCase):
         self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
         self.assertNotIn("NO_OFFICIAL_SOURCE_LOCATED", orders["EO:3"]["blockers"])
 
+    def test_official_compilation_counts_like_fr_originals(self):
+        def frag(i, check, conf):
+            return json.dumps({"instrument_id": i, "kind": "original_representation", "produced_by": "ofr-compilations",
+                               "data": {"url": "https://hdl.handle.net/2027/uc1.c025504761", "sha256": "e" * 64,
+                                        "page_or_item": "printed page 1", "location_confidence": conf,
+                                        "needs_page_check": check}})
+        files = {tracker.J["official_compilation_fragments"][0]: frag("EO:1", False, "high") + "\n"
+                 + frag("EO:3", True, "medium") + "\n",
+                 # a second printing of EO:3 in another volume, also flagged: still not counted
+                 tracker.J["official_compilation_fragments"][2]: frag("EO:3", True, "medium") + "\n"}
+        orders, s = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:1"]["step_original_text"], "done")
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        self.assertNotIn("NO_OFFICIAL_SOURCE_LOCATED", orders["EO:3"]["blockers"])
+        used = tracker.build.job_outputs_used
+        self.assertEqual(used["ofr-compilations"], 2)
+        self.assertEqual(used["indian-reservations-1912"], 1)
+        self.assertIsNone(used["isthmian-canal-1911"])  # that job has not run in this fixture
+
+    def test_official_compilation_without_needs_page_check_flag_does_not_count(self):
+        # The fr-originals rule: only needs_page_check exactly False counts; a missing flag is not a pass.
+        rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
+                          "data": {"url": "https://hdl.handle.net/2027/x", "location_confidence": "high"}})
+        orders, _ = self.run_tracker(files={tracker.J["official_compilation_fragments"][1]: rec + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+
+    def test_richardson_transcription_is_a_lead_never_the_original(self):
+        rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "richardson-volumes",
+                          "data": {"url": "https://hdl.handle.net/2027/ufl.31262091102953", "sha256": "f" * 64,
+                                   "page_or_item": "Richardson vol. VI, printed page 1", "location_confidence": "high",
+                                   "needs_page_check": False,
+                                   "source_kind": "printed compilation, not the signed original"}})
+        files = {tracker.J["compiled_transcription_fragments"][0]: rec + "\n"}
+        orders, s = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("NO_OFFICIAL_SOURCE_LOCATED", orders["EO:3"]["blockers"])
+        self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
+        self.assertEqual(s["decided_orders_blocked_by"]["ONLY_COMPILED_TRANSCRIPTION_FOUND"], 1)
+        # Once an official original counts, the transcription lead is no longer reported.
+        fr = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
+                         "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": False}})
+        orders, _ = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "done")
+        self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
+
     def test_source_ladder_retrieval_clears_a_shared_source(self):
         rec = json.dumps({"wanted_id": "STAT::1 Stat. 1", "sha256": "b" * 64, "instrument_ids": ["EO:1", "EO:3"]})
         orders, s = self.run_tracker(files={tracker.J["ladder_sources"][0]: rec + "\n"})

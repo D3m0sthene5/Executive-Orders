@@ -40,8 +40,11 @@ Work through `_draft.needs_judgment`, then `_draft.gate.errors_now`.
 - **`original_representation`**: if filled, open the cited pages and confirm they
   are this order's complete official text; correct `page_or_item` if needed. If
   empty, pick from `_draft.proposals.original_representation`. A candidate with
-  `strong: false` (for example `fr_originals_needs_page_check`) counts only after
-  you have checked the PDF pages yourself.
+  `strong: false` (for example `fr_originals_needs_page_check` or
+  `official_compilation_needs_page_check`) counts only after you have checked
+  the PDF pages yourself. A `compiled_transcription_lead` (Richardson,
+  `acceptable_as_original: false`) is never the original: use it to find the
+  official text.
 - **Clause inventory**: compare `operative_clauses` with the official original.
   Add missing clauses, fix boundaries, and keep each `scope_id` unique. Clauses
   copied from a mirror (`_draft.clause_inventory_info.source_grade`
@@ -66,7 +69,13 @@ Work through `_draft.needs_judgment`, then `_draft.gate.errors_now`.
     has leads in this shape. A mention in the U.S. Code or eCFR is only a lead;
     read the provision. `checked_through` must be `2026-10-14`, and you must
     actually have checked that far (U.S. Code release 119-121 is current only
-    through 2026-10-09).
+    through 2026-10-09). A lead with `basis_code`
+    `ofr_codification_1989_in_force` says only that the 1989 Codification
+    printed the order as in force on 1989-01-20; it is never a legal basis.
+  - Proposals flagged `ofr_codification_1989_editorial` come from the 1989
+    Codification's disposition table (an OCR cell, status as of 1989-01-20).
+    A formal revocation there may follow an earlier cessation by the order's
+    own terms; read the order and the acting instrument.
 - **`later_events`** of each clause: attach the candidates from
   `_draft.proposals.later_events` that affected that clause
   (`clause_hint_scope_ids` suggests where), each with `effective_date`,

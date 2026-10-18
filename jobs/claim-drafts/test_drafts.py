@@ -492,6 +492,275 @@ class PartialEndOnYes(Fixture):
         self.assertIn("yes_without_continuing_clause", d["gate"]["errors_if_proposals_accepted"])
 
 
+BOOK = {"ofr-compilations": ("https://hdl.handle.net/2027/uc1.c025504761", SHA["1"]),
+        "isthmian-canal-1911": ("https://hdl.handle.net/2027/ufl1.ark:/13960/t3dz15k02", SHA["2"]),
+        "richardson-volumes": ("https://hdl.handle.net/2027/ufl.31262091102953", SHA["3"]),
+        "ofr-codification-1989": ("https://hdl.handle.net/2027/uiug.30112026470077", SHA["4"])}
+
+
+def book_original(iid, job, *, check, conf="high", page="printed pages 5-6, PDF pages 20-21", **data):
+    url, sha = BOOK[job]
+    return frag(iid, "original_representation", {
+        "url": url, "sha256": sha, "page_or_item": f"{job} volume, {page}", "location_confidence": conf,
+        "needs_page_check": check, "location_verified": False, "signing_date": data.pop("signing_date", None),
+        "source_id": f"{job}:{iid}", "text_path": f"texts/{iid.replace(':', '_')}.txt", **data}, job,
+        sources=[{"url": url, "sha256": sha, "page_or_item": page}])
+
+
+def codification_item(actor, date, mechanism="revocation", flags=(), qualifier=""):
+    url, sha = BOOK["ofr-codification-1989"]
+    return {"actor": actor, "date_basis": ["acting document date from its SOURCE line in this codification"],
+            "date_candidate": date, "date_candidates_conflicting": [], "edge_ids": [f"OC89-{actor}-{mechanism}"],
+            "evidence_types": ["ofr_codification_1989_table"],
+            "flags": ["status_as_of_1989-01-20", "ocr_table_cell_not_human_verified", *flags],
+            "mechanism": mechanism, "qualifier": qualifier, "quote": f"Revokedby EO {actor.split(':')[1]}",
+            "quote_kind": "ocr_table_cell", "status": "CANDIDATE_UNVERIFIED", "stated_effective_date_candidates": [],
+            "source": {"url": url, "sha256": sha, "page_or_item": "OFR Codification 1945-1989 (1989), Executive "
+                                                                    "Orders disposition table, printed page 1021, PDF page 1032"}}
+
+
+CODIFIED_FIELDS = ["instrument_id", "census_id", "date", "fr_citation", "restated_by", "restated_by_date", "chapter",
+                   "chapter_title", "pdf_pages", "printed_pages", "confidence", "table_disposition", "source_text",
+                   "text_path", "text_sha256"]
+
+
+def codified_row(iid, **kw):
+    row = {"instrument_id": iid, "census_id": iid, "date": "1950-01-02", "fr_citation": "15 FR 1", "restated_by": "",
+           "restated_by_date": "", "chapter": "3", "chapter_title": "Executive Office of the President",
+           "pdf_pages": "24-25", "printed_pages": "13-14", "confidence": "high",
+           "table_disposition": "Codified atChapter 3, p. 13", "source_text": "SOURCE: The provisions of ...",
+           "text_path": f"texts/{iid.replace(':', '_')}.txt", "text_sha256": SHA["5"]}
+    row.update(kw)
+    return row
+
+
+class BookSources(Fixture):
+    """The printed-volume jobs: official compilations, Richardson, and the OFR 1989 Codification."""
+
+    def write_job(self, job, fragments, summary=None, codified=None):
+        out = self.repo / "jobs" / job / "output"
+        write_jsonl(out / "FRAGMENTS.jsonl", fragments)
+        (out / "SUMMARY.json").write_text(json.dumps(summary or {"job": job}), encoding="utf-8")
+        if codified is not None:
+            write_csv(out / "CODIFIED_1989.csv", codified, CODIFIED_FIELDS)
+
+    def proposals(self, iid):
+        return self.draft(iid)["_draft"]["proposals"]
+
+    # --- official compilations
+
+    def test_official_compilation_high_is_filled_and_strong(self):
+        self.write_job("ofr-compilations", [book_original("EO:400", "ofr-compilations", check=False)])
+        self.reload()
+        line = self.draft("EO:400")
+        ref = line["claim"]["original_representation"]
+        self.assertEqual(ref, {"url": BOOK["ofr-compilations"][0], "sha256": BOOK["ofr-compilations"][1],
+                               "page_or_item": "ofr-compilations volume, printed pages 5-6, PDF pages 20-21"})
+        self.assertTrue(self.gate.source_ok(ref))
+        cand = line["_draft"]["proposals"]["original_representation"][0]
+        self.assertEqual((cand["grade"], cand["strong"], cand["acceptable_as_original"]),
+                         ("official_compilation_high", True, True))
+        filled = [m for m in line["_draft"]["machine_filled"] if m["field"] == "original_representation"]
+        self.assertEqual(filled[0]["grade"], "official_compilation_high")
+
+    def test_official_compilation_needs_page_check_is_never_strong(self):
+        # flagged by the job, or a medium location without the flag: both stay weak (the fr-originals rule)
+        self.write_job("isthmian-canal-1911", [book_original("EO:400", "isthmian-canal-1911", check=True,
+                                                             conf="medium"),
+                                               book_original("EO:300", "isthmian-canal-1911", check=False,
+                                                             conf="medium")])
+        self.reload()
+        for iid in ("EO:400", "EO:300"):
+            line = self.draft(iid)
+            self.assertIsNone(line["claim"]["original_representation"], iid)
+            cand = line["_draft"]["proposals"]["original_representation"][0]
+            self.assertEqual((cand["grade"], cand["strong"]), ("official_compilation_needs_page_check", False))
+        # still acceptable after a page check: the feasibility test may use it
+        g = self.draft("EO:400")["_draft"]["gate"]
+        self.assertNotIn("original_representation_provenance", g["errors_if_proposals_accepted"])
+
+    def test_fr_original_outranks_an_official_compilation(self):
+        self.write_job("ofr-compilations", [book_original("EO:100", "ofr-compilations", check=False)])
+        self.reload()
+        line = self.draft("EO:100")
+        self.assertEqual(line["claim"]["original_representation"]["sha256"], SHA["a"])  # the FR page
+        grades = [c["grade"] for c in line["_draft"]["proposals"]["original_representation"]]
+        self.assertEqual(grades[:2], ["fr_originals_high", "official_compilation_high"])
+
+    # --- Richardson
+
+    def test_richardson_is_a_lead_never_the_original(self):
+        self.write_job("richardson-volumes", [book_original(
+            "EO:400", "richardson-volumes", check=False, source_kind="printed compilation, not the signed original",
+            identified_by="wpa_citation")])
+        self.reload()
+        line = self.draft("EO:400")
+        d = line["_draft"]
+        self.assertIsNone(line["claim"]["original_representation"])
+        cand = d["proposals"]["original_representation"][0]
+        self.assertEqual((cand["grade"], cand["strong"], cand["acceptable_as_original"]),
+                         ("compiled_transcription_lead", False, False))
+        what = " ".join(m["what"] for m in d["missing_evidence"] if m["step"] == "original_text")
+        self.assertIn("compiled-transcription", what)
+        # the feasibility test never accepts it, so original_text stays a research step
+        self.assertIn("original_representation_provenance", d["gate"]["errors_if_proposals_accepted"])
+        self.assertEqual(d["readiness"]["by_step"]["original_text"], "research")
+        self.assertIn("original_representation (lead)", [j["field"] for j in d["needs_judgment"]])
+
+    def test_richardson_beside_an_official_candidate_does_not_block_it(self):
+        self.write_job("richardson-volumes", [book_original("EO:400", "richardson-volumes", check=False)])
+        self.write_job("ofr-compilations", [book_original("EO:400", "ofr-compilations", check=True, conf="medium")])
+        self.reload()
+        d = self.draft("EO:400")["_draft"]
+        grades = [c["grade"] for c in d["proposals"]["original_representation"]]
+        self.assertEqual(grades, ["official_compilation_needs_page_check", "compiled_transcription_lead"])
+        self.assertNotIn("original_representation_provenance", d["gate"]["errors_if_proposals_accepted"])
+        self.assertNotIn("original_text", [m["step"] for m in d["missing_evidence"]])
+
+    # --- the 1989 Codification: endings
+
+    def test_codification_revocation_becomes_a_whole_order_end_proposal(self):
+        self.write_job("ofr-codification-1989", [frag("EO:400", "later_event_candidates", [
+            codification_item("EO:450", "1945-06-01"),
+            codification_item("EO:460", "1946-01-01", flags=["needs_page_check"]),
+            codification_item("EO:470", "1947-01-01", mechanism="supersession")], "ofr-codification-1989")])
+        self.reload()
+        d = self.draft("EO:400")["_draft"]
+        whole = d["proposals"]["whole_order_end"]
+        self.assertEqual([w["proposal"]["actor"] for w in whole], ["EO:450"])  # only the clean revocation
+        w = whole[0]
+        self.assertEqual(set(w["proposal"]), {"date", "actor", "mechanism", "source"})
+        self.assertEqual(w["proposal"]["date"], "1945-06-01")
+        self.assertIn(D.CODIFICATION_FLAG, w["meta"]["flags"])
+        self.assertIn("whole_end_from_1989_disposition_table", w["meta"]["flags"])
+        self.assertIn("not its effective date", w["meta"]["caution"])
+        self.assertTrue(w["suggested"])
+        self.assertFalse(w["group"]["corroborated_by_two_jobs"])
+        # every item is also a later event, in the later-event shape (date_candidate, never effective_date)
+        events = d["proposals"]["later_events"]
+        self.assertEqual(sorted(e["proposal"]["actor"] for e in events), ["EO:450", "EO:460", "EO:470"])
+        for e in events:
+            self.assertEqual(set(e["proposal"]), {"date_candidate", "actor", "mechanism", "source"})
+            self.assertIn(D.CODIFICATION_FLAG, e["meta"]["flags"])
+        # a provisional NO order with a dated ending: the ending is now a judgment, not missing evidence
+        self.assertNotIn("ending_or_current_basis", [m["step"] for m in d["missing_evidence"]])
+        self.assertIsNone(self.draft("EO:400")["claim"]["whole_order_end"])  # never machine-filled
+
+    def test_codification_end_withheld_when_any_job_says_partial(self):
+        self.write_job("ofr-codification-1989", [frag("EO:400", "later_event_candidates", [
+            codification_item("EO:450", "1945-06-01")], "ofr-codification-1989")])
+        le = self.repo / "jobs/later-events/output/FRAGMENTS.jsonl"
+        rows = [json.loads(x) for x in le.read_text(encoding="utf-8").splitlines()]
+        rows.append(frag("EO:400", "later_event_candidates", [{
+            "date_candidate": "1945-06-01", "actor": "EO:450", "mechanism": "revocation", "qualifier": "section 3",
+            "edge_ids": ["LE-450"], "flags": [], "evidence_types": ["ofr_note_on_target"],
+            "source": codification_item("EO:450", "1945-06-01")["source"], "quote": "Sec. 3 revoked by EO 450"}],
+            "later-events"))
+        write_jsonl(le, rows)
+        self.reload()
+        d = self.draft("EO:400")["_draft"]
+        self.assertEqual(d["proposals"]["whole_order_end"], [])
+        codes = {c["code"] for c in d["conflicts"]}
+        self.assertIn("FULL_AND_PARTIAL_EVIDENCE_CONFLICT", codes)
+        cod = [e for e in d["proposals"]["later_events"] if e["meta"]["from_job"] == "ofr-codification-1989"][0]
+        self.assertIn("full_and_partial_evidence_conflict", cod["meta"]["flags"])
+
+    def test_codification_and_later_events_are_one_source_not_two(self):
+        # later-events' OFR catalog notes are the online edition of the same 1989 tables
+        self.write_job("ofr-codification-1989", [frag("EO:100", "later_event_candidates", [
+            codification_item("EO:150", "1955-03-01")], "ofr-codification-1989")])
+        self.reload()
+        whole = self.proposals("EO:100")["whole_order_end"]
+        grp = [w["group"] for w in whole if w["proposal"]["actor"] == "EO:150"][0]
+        self.assertEqual(grp["jobs"], ["later-events", "ofr-codification-1989"])
+        self.assertFalse(grp["corroborated_by_two_jobs"])
+        # later-events stays first in the group, so its proposal is the suggested one
+        sugg = [w for w in whole if w["suggested"]][0]
+        self.assertEqual(sugg["meta"]["from_job"], "later-events")
+
+    # --- the 1989 Codification: in-force snapshot
+
+    def test_in_force_1989_is_a_lead_that_never_reaches_the_cutoff(self):
+        self.write_job("ofr-codification-1989", [], codified=[codified_row("EO:200")])
+        prov = self.repo / "jobs/ofr-codification-1989/data/PROVENANCE.json"
+        prov.parent.mkdir(parents=True)
+        prov.write_text(json.dumps({"book": {"handle_url": BOOK["ofr-codification-1989"][0],
+                                             "pdf_sha256": BOOK["ofr-codification-1989"][1]}}), encoding="utf-8")
+        self.reload()
+        d = self.draft("EO:200")["_draft"]
+        preds = d["proposals"]["current_predicate"]
+        self.assertEqual(preds[0]["meta"]["basis_code"], "cfr_authority_citation")  # current law first
+        snap = preds[-1]
+        self.assertEqual(snap["meta"]["basis_code"], D.CODIFICATION_BASIS_CODE)
+        self.assertEqual(snap["proposal"]["checked_through"], "1989-01-20")
+        self.assertTrue(snap["proposal"]["legal_basis"].startswith("LEAD ONLY"))
+        self.assertTrue(self.gate.source_ok(snap["proposal"]["source"]))
+        self.assertEqual(snap["proposal"]["source"]["sha256"], BOOK["ofr-codification-1989"][1])
+        self.assertTrue(d["gate"]["only_judgment_left"])  # the current-law lead, not the snapshot, is used
+        # Without the current-law lead the snapshot alone is never enough.
+        cl = self.repo / "jobs/current-law/output/FRAGMENTS.jsonl"
+        rows = [json.loads(x) for x in cl.read_text(encoding="utf-8").splitlines()]
+        write_jsonl(cl, [r for r in rows if r["instrument_id"] != "EO:200"])
+        self.reload()
+        d = self.draft("EO:200")["_draft"]
+        self.assertTrue(any(D.CODIFICATION_BASIS_CODE == p["meta"]["basis_code"]
+                            for p in d["proposals"]["current_predicate"]))
+        # the feasibility test does not use the snapshot, so no clause can be shown operative
+        self.assertIn("yes_without_continuing_clause", d["gate"]["errors_if_proposals_accepted"])
+        self.assertFalse(d["gate"]["only_judgment_left"])
+        # and pasting the snapshot itself into a clause still fails the gate (checked_through is 1989-01-20)
+        claim = self.draft("EO:200")["claim"]
+        snap = [p for p in d["proposals"]["current_predicate"] if p["meta"]["basis_code"] == D.CODIFICATION_BASIS_CODE]
+        claim["operative_clauses"][0].update(state_at_cutoff="operative", current_predicate=snap[0]["proposal"])
+        self.assertIn("clause_0_current_predicate", self.gate.validate_claim(claim, expected_status="yes"))
+        what = " ".join(m["what"] for m in d["missing_evidence"] if m["step"] == "ending_or_current_basis")
+        self.assertIn("no job found a current-law predicate lead", what)
+        self.assertIn("1989", what)
+        self.assertEqual(d["readiness"]["by_step"]["ending_or_current_basis"], "research")
+
+    def test_no_order_in_force_in_1989_without_a_later_end_is_a_conflict(self):
+        self.write_job("ofr-codification-1989", [frag("EO:100", "later_event_candidates", [
+            codification_item("EO:150", "1955-03-01")], "ofr-codification-1989")],
+            codified=[codified_row("EO:100"), codified_row("EO:400", restated_by="EO:410",
+                                                            restated_by_date="1964-09-01")])
+        self.reload()
+        d = self.draft("EO:100")["_draft"]
+        codes = [c["code"] for c in d["conflicts"]]
+        self.assertIn("NO_ORDER_IN_FORCE_ON_1989_01_20", codes)
+        # the 1989 snapshot is not a current-law citation: that conflict still names only the U.S. Code lead
+        cited = [c for c in d["conflicts"] if c["code"] == "NO_ORDER_CITED_IN_CURRENT_LAW"][0]
+        self.assertIn("1 current-law predicate lead", cited["detail"])
+        # an order whose text was restated by a later order is not flagged
+        d400 = self.draft("EO:400")["_draft"]
+        self.assertNotIn("NO_ORDER_IN_FORCE_ON_1989_01_20", [c["code"] for c in d400["conflicts"]])
+        snap = [p for p in d400["proposals"]["current_predicate"]
+                if p["meta"]["basis_code"] == D.CODIFICATION_BASIS_CODE]
+        self.assertIn("restated_in_entirety_by_later_order", snap[0]["meta"]["flags"])
+        self.assertIn("EO:410", snap[0]["proposal"]["legal_basis"])
+
+    def test_no_order_in_force_in_1989_with_a_later_end_is_not_a_conflict(self):
+        self.write_job("ofr-codification-1989", [frag("EO:400", "later_event_candidates", [
+            codification_item("EO:450", "1995-06-01")], "ofr-codification-1989")],
+            codified=[codified_row("EO:400")])
+        self.reload()
+        codes = [c["code"] for c in self.draft("EO:400")["_draft"]["conflicts"]]
+        self.assertNotIn("NO_ORDER_IN_FORCE_ON_1989_01_20", codes)
+
+    def test_book_drafts_stay_tracker_safe(self):
+        self.write_job("ofr-compilations", [book_original("EO:400", "ofr-compilations", check=False)])
+        self.write_job("richardson-volumes", [book_original("EO:200", "richardson-volumes", check=False)])
+        self.write_job("ofr-codification-1989", [frag("EO:400", "later_event_candidates", [
+            codification_item("EO:450", "1945-06-01")], "ofr-codification-1989")],
+            codified=[codified_row("EO:200"), codified_row("EO:400")])
+        self.reload()
+        safety = TrackerSafety("test_uses_the_real_tracker_mapping")
+        safety.gate, safety.rd, safety.step_for = self.gate, self.rd, self.step_for
+        safety.draft = self.draft
+        for iid in ("EO:100", "EO:200", "EO:300", "EO:400", "EO:500"):
+            safety.assert_safe(iid)
+            self.assertEqual(self.draft(iid)["claim"]["later_source_search"], [])
+
+
 class InputSafety(Fixture):
     def test_failed_run_status_is_not_merged(self):
         out = self.repo / "jobs/later-events/output"

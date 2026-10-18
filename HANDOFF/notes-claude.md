@@ -2,6 +2,60 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 02:00 ET: printed volumes wired in; 176 claims from the 1989 Codification / FR revocation families; ready 1 -> 130
+
+- **Done (branch `wire-new-sources`, local only, nothing pushed):**
+  - Wiring (commits `33028c03`..`150c0457`): merged `ofr-compilations`, `indian-reservations-1912`,
+    `isthmian-canal-1911`, `ofr-codification-1989` and `richardson-volumes`. The tracker counts official
+    compilations like fr-originals (only finds not flagged `needs_page_check`); Richardson is a lead only
+    (new blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND`, 68 orders, 2 decided). claim-checker holds the committed
+    volumes and their per-order texts; claim-drafts reads the printed-volume jobs. No order lost a step.
+  - Claims: `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl` .. `-b7.jsonl`, 176 decided orders
+    (all provisional `no`), copied byte for byte from the reviewer-accepted files. 197 drafted, 21 rejected
+    by the reviewers (10.7%): per batch 0/28, 2/23, 2/25, 0/24, 4/26, 12/24, 1/23, 0/24. 132 are complete
+    claims (full gate pass); 44 are partial (ending, and sometimes savings/clauses, left open in
+    `unresolved_material_gaps`, e.g. where only a deadline or a temporary body's term bounds the end).
+  - Method: 59 families, each one revoking or superseding order (actor) taken from the 1989 Codification
+    disposition tables and the Federal Register job (largest: EO 11708, 12534, 11408, 11342, 11230, 11811,
+    11812, 12110, 9687). For each family the acting order and every target were read in the held official
+    FR/OCR text; `first_end.date` is the effective date stated or implied in the acting instrument; the
+    order's own terms (expiry, temporary bodies, conditions), earlier partial amendments and statutes were
+    checked before taking the revocation as the end; partial amendments are not whole-order ends; deadlines
+    never fix an actual end date; quotations are word for word from the held text. No statuses, ledger rows,
+    codebook or counts changed; no `independent_human` reviews written.
+  - Excluded: every order already in `research/readiness/claims/`, every Astra-owned order and family
+    (EO 12076 and EO 12399 were in planned families and were left out), all targets of EO 12553.
+  - claim-checker (local, downloads off), the 176 new claims: mechanical pass 176/176, 0 fail, 0 unverified;
+    full gate 132; steps passed: original_text 176, clause_inventory 171, ending_or_current_basis 132,
+    savings_residuals 159, counterevidence 166. Every quotation exact (3,164 across all 218 claims).
+  - Tracker (local run with this run's checker output) vs main's committed `SUMMARY.json`, decided orders
+    (3,359): ready_for_human_review 1 -> 130 (129 of the new claims + EO 13306); original_text 2,281 -> 2,312;
+    clause_inventory 7 -> 177; ending_or_current_basis 2 -> 133; savings_residuals 7 -> 160;
+    counterevidence 2,461 -> 2,470. With downloads off, six of Astra's claims (EO 14134-14139) show
+    `CLAIM_CHECK_FAILED` locally (their govinfo PDFs are record-only here; GitHub re-downloads and verifies
+    them). Taking GitHub's committed result for those six (same claim hash) gives 178 / 134 / 166 and no
+    step lost anywhere; expect those numbers on GitHub.
+  - Of the 47 new claims not ready: 44 are partial (`CLAIM_INCOMPLETE`; EO 11811 and EO 9407 are also
+    quarantined); the complete claims for EO 11708 and EO 11812 are blocked by
+    `QUARANTINED_RELATIONSHIP_CONFLICT`, and EO 9789 by `OPUS_MEDIA_REFETCH_NEEDED`.
+  - Telemetry: token and wall-time per order were not measured in this integration step.
+  - Run order (`390fa519`): `ofr-codification-1989` no longer lists `readiness-tracker` in `after.txt`; with
+    `claim-drafts` now after the codification job, that made a cycle the runner broke silently (tracker before
+    `claim-drafts`). Simulated order: codification, claim-drafts, readiness-tracker, case-bundles, daily-digest.
+  - Known gap (not fixed): claim-checker now holds the Richardson volumes, and neither the gate nor the checker
+    tests that `original_representation` is an official original, so a hand-written claim citing Richardson
+    could pass `original_text`. None of the 176 claims does; worth a checker rule before anyone relies on it.
+- **Running:** nothing. Local outputs only, in the session scratchpad `final_run/` (not committed).
+- **Next:** push `wire-new-sources` and open one PR once the owner approves; let GitHub rerun claim-checker,
+  claim-drafts and the tracker. Then the 44 partial claims (find the actual end of temporary bodies and
+  deadline-bounded clauses) and the next Codification families.
+- **Asks:**
+  - `@Owner`: review and approve pushing `wire-new-sources` (wiring + 176 claims) as one PR.
+  - `@Astra`: before claiming an order in a family whose actor is EO 11708, 12534, 11811, 11812, 12110 or
+    9687, check `claude-2026-10-18-codif-b*.jsonl`; those targets are claimed here.
+- **Do not:** edit the `claude-2026-10-18-codif-b*.jsonl` lines (a changed claim waits for a new check);
+  treat a passed claim as a human review.
+
 ## 2026-10-17 20:45 ET: custody unblocked, machine later-source search, Opus re-fetch list
 
 - **Done (branch `unblock-claims`, one PR):**

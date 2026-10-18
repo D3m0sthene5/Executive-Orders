@@ -56,6 +56,14 @@ All saved copies the project records, matched by SHA-256 (and by URL to detect
 - `jobs/*/output/SOURCES.jsonl` of every job (the shared source-record format;
   their extracted text at `text_path` is used for quotations; malformed lines
   are skipped and counted in the log, never fatal),
+- printed volumes committed under `releases/` (Git LFS) that a job's `data/PROVENANCE.json` names by `pdf` and
+  `pdf_sha256` (the source-book jobs: ofr-compilations, isthmian-canal-1911, indian-reservations-1912,
+  richardson-volumes, ofr-codification-1989). A volume is held only when the file is in the checkout and either is
+  those bytes (re-hashed here when cited) or is an LFS pointer whose `oid` is exactly that sha256
+  (`held_bytes_in_release_or_repo`). The job's per-order OCR texts (`original_representation` fragments citing the
+  volume, with a `text_path`) are text copies of it, recorded for that order, so quotations and order identity are
+  checked against them. Being held says nothing about whether a volume is an original (that is the tracker's and
+  claim-drafts' rule),
 - `research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv` and
   `ACQUISITION_LOG.jsonl` (the official PDFs in that folder are re-hashed),
 - `research/stage20/output/STATUTE_FETCH_INDEX.csv` (Statutes at Large PDFs) and

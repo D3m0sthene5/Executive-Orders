@@ -69,6 +69,14 @@ P = {
 J = {
     "fr_fragments": ["jobs/fr-originals/data/full_run/FRAGMENTS.jsonl", "jobs/fr-originals/output/FRAGMENTS.jsonl"],
     "opus_fragments": ["jobs/opus-media-match/output/FRAGMENTS.jsonl"],
+    # Official government printings of the orders' texts (GPO / Office of the Federal Register compilations).
+    # They count under the same rule as fr-originals: only a find the job did not flag needs_page_check.
+    "official_compilation_fragments": ["jobs/ofr-compilations/output/FRAGMENTS.jsonl",
+                                       "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl",
+                                       "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl"],
+    # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
+    # signed or officially printed original. A lead only; it never counts as the original text.
+    "compiled_transcription_fragments": ["jobs/richardson-volumes/output/FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
@@ -158,6 +166,30 @@ def load_job_outputs(root):
                  if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
     used["opus-media-match fragments"] = len(opus_text) if paths else None
 
+    # Official compilations: {id: [data, ...]} (an order may be printed more than once).
+    official = collections.defaultdict(list)
+    for rel in J["official_compilation_fragments"]:
+        job = rel.split("/")[1]
+        paths = existing([rel])
+        rows, more = read_jsonl(paths)
+        problems += more
+        ids = set()
+        for r in rows:
+            if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
+                official[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
+                ids.add(r["instrument_id"])
+        used[job] = len(ids) if paths else None
+    transcription = set()
+    for rel in J["compiled_transcription_fragments"]:
+        job = rel.split("/")[1]
+        paths = existing([rel])
+        rows, more = read_jsonl(paths)
+        problems += more
+        ids = {r["instrument_id"] for r in rows
+               if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
+        transcription |= ids
+        used[f"{job} (lead only, never counted as the original)"] = len(ids) if paths else None
+
     status_path = os.path.join(root, J["opus_status"])
     opus_status = None
     if os.path.exists(status_path):
@@ -196,7 +228,8 @@ def load_job_outputs(root):
     used["claim-checker"] = len(checker) if checker is not None else None
     search = load_machine_search(root, problems)
     used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
-    return {"fr": fr, "opus_text": opus_text, "opus_status": opus_status, "ladder_found": ladder_found,
+    return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription,
+            "opus_status": opus_status, "ladder_found": ladder_found,
             "opus_missing": opus_missing, "search": search,
             "checker": checker, "used": used}, problems
 
@@ -328,18 +361,24 @@ def build(root):
         # 2. original text
         cq, cx, cu = causal.get(i, {}), crosswalk.get(i, {}), custody.get(i, {})
         fr = jobs["fr"].get(i)
+        official = jobs["official"].get(i, [])
         saved = (cq.get("locally_preserved_primary_representation") == "1"
                  or cu.get("custody_state", "").startswith("PDF_BYTES_CAPTURED")
                  or (fr is not None and fr.get("needs_page_check") is False)
+                 # same rule as fr-originals: a find the job itself did not flag for a page check
+                 or any(o.get("needs_page_check") is False for o in official)
                  or i in jobs["opus_text"])
         steps["original_text"] = saved or from_claim("original_text")
         if not steps["original_text"]:
-            if fr is not None:
+            if fr is not None or official:
                 blockers["original_text"].append("ORIGINAL_FOUND_NEEDS_PAGE_CHECK")
             elif cx.get("selected_literal_URL"):
                 blockers["original_text"].append("OFFICIAL_URL_KNOWN_NOT_DOWNLOADED")
             else:
                 blockers["original_text"].append("NO_OFFICIAL_SOURCE_LOCATED")
+            if i in jobs["transcription"]:
+                # Only Richardson's printed transcription was found: a lead to the original, not the original.
+                blockers["original_text"].append("ONLY_COMPILED_TRANSCRIPTION_FOUND")
 
         # 3-6. need a claim (partial claims light up the steps they satisfy)
         for step, code in (
@@ -463,7 +502,7 @@ def summarise(orders, problems):
          "kind": "machine_job", "orders_unblocked": blocker_orders["OPUS_MEDIA_NOT_MATCHED_TO_ORDER"], "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER"},
         {"action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
          "kind": "machine_job", "orders_unblocked": blocker_orders["OPUS_MEDIA_REFETCH_NEEDED"], "blocker": "OPUS_MEDIA_REFETCH_NEEDED"},
-        {"action": "Check the page location of fr-originals finds marked medium/low confidence",
+        {"action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
          "kind": "agent_check", "orders_unblocked": blocker_orders["ORIGINAL_FOUND_NEEDS_PAGE_CHECK"], "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"},
         {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
          "kind": "agent_check", "orders_unblocked": blocker_orders["OPUS_MEDIA_MATCH_AMBIGUOUS"], "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"},
