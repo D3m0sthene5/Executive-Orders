@@ -4,20 +4,20 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 42 (parse errors: 0)
-- Orders with a claim (latest claim per order): 41
-- All checks passed: 1
-- Mechanical checks passed: 42; with unverifiable items: 0; failed: 0
-- Structural gate passed: 1
+- Claims checked: 218 (parse errors: 0)
+- Orders with a claim (latest claim per order): 217
+- All checks passed: 133
+- Mechanical checks passed: 218; with unverifiable items: 0; failed: 0
+- Structural gate passed: 133
 
 ## Source references
 
-- gpo_published_hash_match: 116
+- gpo_published_hash_match: 2899
 - held_bytes_verified: 117
 
 ## Quotations
 
-- exact: 155
+- exact: 3164
 
 ## Claims with problems (first 100)
 
@@ -64,9 +64,53 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:4` | EO:14137 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:5` | EO:14138 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:1` | EO:11262 | structural_gate:clause_0_first_end@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:3` | EO:11293 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:13` | EO:11409 | structural_gate:clause_3_first_end@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:16` | EO:11468 | structural_gate:clause_1_first_end@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:18` | EO:11499 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:14` | EO:12335 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:15` | EO:12401 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:16` | EO:12433 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:17` | EO:12439 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:18` | EO:12502 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:19` | EO:12499 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:20` | EO:9303 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:21` | EO:9407 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:4` | EO:8399 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:19` | EO:9591 | structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:20` | EO:11299 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:21` | EO:11367 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:22` | EO:11941 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b2.jsonl:23` | EO:12487 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b4.jsonl:21` | EO:11811 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b4.jsonl:22` | EO:9981 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:6` | EO:11809 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:whole_order_end_evidence@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:7` | EO:11524 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:8` | EO:11576 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:9` | EO:11637 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:10` | EO:11691 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:11` | EO:11739 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:12` | EO:12087 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:20` | EO:11525 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:21` | EO:8744 | structural_gate:clause_0_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:22` | EO:11911 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:5` | EO:10440 | structural_gate:clause_7_first_end@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:12` | EO:11832 | structural_gate:clause_0_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:clause_6_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:14` | EO:11482 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:15` | EO:11849 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:16` | EO:11971 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:clause_6_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:17` | EO:11973 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:18` | EO:11998 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:19` | EO:7972 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:clause_6_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:20` | EO:8018 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:21` | EO:8261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:22` | EO:9057 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 167
+- recorded_for_this_order: 1234
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

@@ -1,9 +1,9 @@
 {
   "orders_total": 14972,
   "orders_with_provisional_status": 3359,
-  "ready_for_human_review": 1,
+  "ready_for_human_review": 130,
   "ready_by_tier": {
-    "complete_claim": 1
+    "complete_claim": 130
   },
   "human_verified": "not counted here; see the Stage 19 tracker",
   "step_done_among_decided": {
@@ -12,23 +12,23 @@
       "applicable": 3359
     },
     "original_text": {
-      "done": 2281,
+      "done": 2312,
       "applicable": 3359
     },
     "clause_inventory": {
-      "done": 7,
+      "done": 178,
       "applicable": 3359
     },
     "ending_or_current_basis": {
-      "done": 2,
+      "done": 134,
       "applicable": 3359
     },
     "savings_residuals": {
-      "done": 7,
+      "done": 166,
       "applicable": 3359
     },
     "counterevidence": {
-      "done": 2461,
+      "done": 2470,
       "applicable": 3359
     },
     "shared_sources": {
@@ -41,56 +41,60 @@
     }
   },
   "decided_by_steps_done": {
-    "1/6": 662,
-    "1/7": 30,
+    "1/6": 632,
+    "1/7": 29,
     "1/8": 2,
-    "2/6": 487,
-    "2/7": 67,
+    "2/6": 501,
+    "2/7": 68,
     "2/8": 6,
-    "3/6": 1355,
-    "3/7": 449,
+    "3/6": 1202,
+    "3/7": 448,
     "3/8": 35,
-    "4/6": 9,
+    "4/6": 24,
     "4/7": 62,
     "4/8": 184,
+    "5/6": 25,
     "5/8": 9,
-    "6/6": 2
+    "6/6": 131,
+    "6/7": 1
   },
   "orders_blocked_by": {
     "NO_PROVISIONAL_STATUS": 11613,
-    "NO_OFFICIAL_SOURCE_LOCATED": 8474,
-    "NO_CLAUSE_INVENTORY": 3318,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
-    "FIRST_END_UNPROVED": 2918,
+    "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+    "NO_CLAUSE_INVENTORY": 3142,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+    "FIRST_END_UNPROVED": 2742,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
     "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 400,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 265,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
     "OPUS_MEDIA_NONE_CITED": 217,
-    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+    "CLAIM_INCOMPLETE": 83,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-    "CLAIM_INCOMPLETE": 39,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
-    "NO_CLAUSE_INVENTORY": 3318,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
-    "FIRST_END_UNPROVED": 2918,
-    "NO_OFFICIAL_SOURCE_LOCATED": 990,
+    "NO_CLAUSE_INVENTORY": 3142,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+    "FIRST_END_UNPROVED": 2742,
+    "NO_OFFICIAL_SOURCE_LOCATED": 959,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
     "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 400,
     "OPUS_MEDIA_NONE_CITED": 217,
-    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 172,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
+    "CLAIM_INCOMPLETE": 83,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-    "CLAIM_INCOMPLETE": 39,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
@@ -102,9 +106,9 @@
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
     },
     {
-      "action": "Check the page location of fr-originals finds marked medium/low confidence",
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
       "kind": "agent_check",
-      "orders_unblocked": 265,
+      "orders_unblocked": 286,
       "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
     },
     {
@@ -174,6 +178,8 @@
     "job_outputs": {
       "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
       "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
+      "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
+      "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -189,9 +195,13 @@
     "job_outputs_used": {
       "fr-originals": 6497,
       "opus-media-match fragments": 122,
+      "ofr-compilations": 500,
+      "isthmian-canal-1911": 105,
+      "indian-reservations-1912": 55,
+      "richardson-volumes (lead only, never counted as the original)": 68,
       "opus-media-match status": 1155,
-      "source-ladder": 122,
-      "claim-checker": 41,
+      "source-ladder": 147,
+      "claim-checker": 217,
       "machine later-source search": 6938
     }
   }
