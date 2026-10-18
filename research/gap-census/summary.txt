@@ -1,21 +1,34 @@
-Executive-order evidence gap census, 2026-10-18
+Evidence on file for undecided executive orders
 
-Missing evidence | Orders
------------------|-------
-unclassified     | 11,613
-TOTAL            | 11,613
+Population: 11,613 tracker entries with no provisional yes/no status. CSV has exactly 11,613 rows, unique IDs, no omissions or extras.
 
-STOPPED: 11,613/11,613 orders (100%) are unclassified, exceeding the requested 30% limit.
-The supplied preflight.py replays a frozen 50-order snapshot and uses manually enumerated order lists. Its collector asserts that exact cohort. It has no full-corpus classification interface or confidence score. It was run unchanged in an isolated scratch directory; its four generated outputs matched the existing pilot outputs byte for byte. None of its 50 orders belongs to the current undecided population. No fallback category was assigned to unsupported orders.
+Evidence | Missing orders | Presence rule
+---------|---------------:|--------------
+attributed_current_law_text | 11,613 | Current-law lead includes text, source, and character offsets, rather than just a snippet.
+recorded_later_source_search | 11,613 | Nonempty per-order search record in tracker or claim-kit overlay output.
+current_law_reference | 10,313 | At least one current-law lead, including citation-only pointers.
+acting_provision_text | 9,833 | Nonempty acting-provision text recorded for this target, including machine leads.
+own_terms_record | 9,251 | At least one existing own-terms candidate record; no applicable term inferred.
+later_event_record | 8,625 | At least one known acting-order ID in claim-kit's overlay input.
+original_candidate_text | 7,484 | Held text whose existing acceptable_as_original flag is true; no authentication inferred.
+clause_draft | 7,466 | At least one nonempty clause text in the existing selected-text clause draft.
+held_order_text | 7,466 | Nonempty attributed order text file, including derivative representations.
+publication_reference | 7,323 | Recorded catalog citation/publication URL or attributed text page/item locator.
+status_history | 6,796 | Nonempty saved status-history file referenced by claim-kit.
 
-Top three evidence gaps and tools: unavailable. The supplied script classified zero undecided orders, so it cannot support a ranking or evidence-acquisition tool recommendation. No sorting changes or new tools were built.
+Five most common exact combinations of missing pieces
 
-Population: all 11,613 entries without a provisional yes/no status in the current-main READINESS_BY_ORDER.csv, not the 4,817-order subset with collected histories. That subset also has 4,817/4,817 unclassified. Stable instrument IDs preserve unnumbered orders; their order_number is blank. Confidence is recorded as not provided, rather than inventing a score.
+Missing pieces (all other columns are yes) | Orders
+----------------------------------------|------:
+held_order_text, original_candidate_text, publication_reference, status_history, later_event_record, acting_provision_text, clause_draft, own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 6,679
+later_event_record, acting_provision_text, current_law_reference, attributed_current_law_text, recorded_later_source_search | 603
+current_law_reference, attributed_current_law_text, recorded_later_source_search | 583
+later_event_record, acting_provision_text, own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 577
+own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 473
 
-Coverage check: saved CSV rows=11613, unique instrument IDs=11613, omitted undecided IDs=0, extra IDs=0.
-Base/main commit: 43f415dd440d4e7236b625b1b6edebbc0916d436
-Population source: jobs/readiness-tracker/output/READINESS_BY_ORDER.csv
-Population source SHA-256: 920725405b79adc0ad08089e927c2f596a30081a5d80f4f4e21ac9bcaf0cccc5
-Pilot source: research/excavator/2026-10-18/batch-pilot/preflight/ (existing local untracked inputs, absent from current main)
-Script SHA-256: 8dc3e57b64d1306c13cebc54d3c0c2bd85e2ac287337ca03877eb9ed1d04b86b
-Input snapshot SHA-256: be389dc9884698d0446f2e8ecaabc03a7172776603675616ff39875c0eb679f2
+Yes/no reports record or file presence only. No means absent from the inspected project records, not unavailable elsewhere or necessarily needed by that order. Machine leads, clause drafts, and original-candidate flags are retained without judging their accuracy or legal effect. Publication references and current-law pointers do not imply that source bytes are held. Text-file checks exclude empty files and Git LFS pointer stubs. Unnumbered orders retain their instrument IDs and have blank order_number.
+
+Evidence checkout commit: 5d28948660aa8fd58d3c8f00c6bae6fdfba09a50
+Inputs and referenced-file SHA-256 fingerprint: 8233bc3c72e4b9de6c33af554666417f22a03f33a5e914a7231adcb0ef9acfd0
+Input paths and all presence rules are in check_evidence.py. Use the existing corpus-excavator evidence checkout, whose overlay/history outputs are not on the older census branch base.
+Rerun: python research/gap-census/check_evidence.py --input-root /path/to/evidence-checkout
