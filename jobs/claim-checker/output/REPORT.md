@@ -4,20 +4,21 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 229 (parse errors: 0)
-- Orders with a claim (latest claim per order): 228
+- Claims checked: 230 (parse errors: 0)
+- Orders with a claim (latest claim per order): 229
 - All checks passed: 144
-- Mechanical checks passed: 229; with unverifiable items: 0; failed: 0
-- Structural gate passed: 144
+- Mechanical checks passed: 229; with unverifiable items: 1; failed: 0
+- Structural gate passed: 145
 
 ## Source references
 
-- gpo_published_hash_match: 3030
-- held_bytes_verified: 286
+- gpo_published_hash_match: 3070
+- held_bytes_verified: 321
 
 ## Quotations
 
-- exact: 3571
+- exact: 3665
+- too_short_to_verify: 4
 
 ## Claims with problems (first 100)
 
@@ -108,9 +109,10 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:22` | EO:9057 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/sol-2026-10-18.jsonl:12` | EO:12757 | unverifiable items |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 1352
+- recorded_for_this_order: 1376
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

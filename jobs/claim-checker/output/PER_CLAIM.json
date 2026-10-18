@@ -1907,6 +1907,20 @@
     "counterevidence": true
    }
   },
+  "EO:12757": {
+   "claim_key": "research/readiness/claims/sol-2026-10-18.jsonl:12",
+   "claim_sha256": "f4aef8056b37fc5e1082cb0bc1c8a3b519c2b06377e7d0210a89bf76f127f154",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": false,
+    "ending_or_current_basis": true,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  },
   "EO:12813": {
    "claim_key": "research/readiness/claims/sol-2026-10-18.jsonl:4",
    "claim_sha256": "05bf7307a9be8387b96911523ad3a04dcfbb780eef5b9f89b37d7b68a9fed3a0",
@@ -21241,6 +21255,84 @@
    "failures": [],
    "failures_total": 0,
    "unverified": [],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/claims/sol-2026-10-18.jsonl:12",
+   "file": "research/readiness/claims/sol-2026-10-18.jsonl",
+   "line": 12,
+   "instrument_id": "EO:12757",
+   "claim_sha256": "f4aef8056b37fc5e1082cb0bc1c8a3b519c2b06377e7d0210a89bf76f127f154",
+   "provisional_status": "no",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 75
+    },
+    "source_identity": {
+     "pass": 24
+    },
+    "quote_verbatim": {
+     "pass": 94,
+     "warn": 4
+    },
+    "date_valid": {
+     "pass": 127
+    },
+    "date_after_signing": {
+     "pass": 50
+    },
+    "order_exists": {
+     "pass": 8
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [
+    "quote_verbatim:too_short_to_verify@operative_clauses[8].original_operative_text",
+    "quote_verbatim:too_short_to_verify@operative_clauses[8].original_source.quote",
+    "quote_verbatim:too_short_to_verify@operative_clauses[19].original_operative_text",
+    "quote_verbatim:too_short_to_verify@operative_clauses[19].original_source.quote"
+   ],
    "effective_for_tracker": true
   }
  ]

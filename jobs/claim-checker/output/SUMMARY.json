@@ -18,59 +18,61 @@
     "claude-2026-10-18-codif-b7.jsonl",
     "sol-2026-10-18.jsonl"
   ],
-  "claim_lines_found": 229,
+  "claim_lines_found": 230,
   "job_limit": null,
-  "claims_checked": 229,
+  "claims_checked": 230,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
-  "orders_with_claim": 228,
+  "orders_with_claim": 229,
   "claims_all_checks_passed": 144,
   "claims_mechanical_pass": 229,
-  "claims_mechanical_unverified": 0,
+  "claims_mechanical_unverified": 1,
   "claims_mechanical_fail": 0,
-  "claims_gate_passed": 144,
+  "claims_gate_passed": 145,
   "steps_checker_passed_effective_claims": {
-    "original_text": 198,
+    "original_text": 199,
     "clause_inventory": 189,
-    "ending_or_current_basis": 145,
-    "savings_residuals": 177,
-    "counterevidence": 179
+    "ending_or_current_basis": 146,
+    "savings_residuals": 178,
+    "counterevidence": 180
   },
   "check_results": {
     "source_held": {
-      "pass": 3316
+      "pass": 3391
     },
     "source_identity": {
-      "pass": 1352
+      "pass": 1376
     },
     "quote_verbatim": {
-      "pass": 3571
+      "pass": 3665,
+      "warn": 4
     },
     "date_valid": {
-      "pass": 2926
+      "pass": 3053
     },
     "date_after_signing": {
-      "pass": 1762
+      "pass": 1812
     },
     "order_exists": {
-      "pass": 1287
+      "pass": 1295
     },
     "structural_gate": {
       "fail": 696,
-      "pass": 144
+      "pass": 145
     },
     "parse": {},
     "checker_error": {}
   },
   "source_status_counts": {
-    "gpo_published_hash_match": 3030,
-    "held_bytes_verified": 286
+    "gpo_published_hash_match": 3070,
+    "held_bytes_verified": 321
   },
   "source_identity_counts": {
-    "recorded_for_this_order": 1352
+    "recorded_for_this_order": 1376
   },
   "quote_status_counts": {
-    "exact": 3571
+    "exact": 3665,
+    "too_short_to_verify": 4
   },
   "source_status_policy": {
     "held_bytes_verified": "pass",
@@ -80,8 +82,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 696,
-    "rows_total": 15054,
+    "rows_written": 700,
+    "rows_total": 15437,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },

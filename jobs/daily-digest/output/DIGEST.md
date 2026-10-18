@@ -21,12 +21,12 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
 | Complete inventory of the order's operative clauses | 189 | 3,359 | 5.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 145 | 3,359 | 4.3% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 146 | 3,359 | 4.3% |
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-17; intervening runs may be absent.
-- claim-checker: claim_lines_found: 42 → 229; claims_all_checks_passed: 1 → 144; claims_checked: 42 → 229; claims_gate_passed: 1 → 144
+- claim-checker: claim_lines_found: 42 → 230; claims_all_checks_passed: 1 → 144; claims_checked: 42 → 230; claims_gate_passed: 1 → 145
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 770 → 780; of_which_decided: 770 → 780; orders_with_any_conflict: 311 → 417
 - indian-reservations-1912: acts: unavailable → 309; acts_before_1900: unavailable → 214; acts_with_a_lord_match: unavailable → 178; body_lines: unavailable → 11522
 - isthmian-canal-1911: affected_document_leads: unavailable → 58; affected_targets_resolved: unavailable → 22; census_unnumbered_ids_not_comparable: unavailable → 19; contents_entries: unavailable → 177
