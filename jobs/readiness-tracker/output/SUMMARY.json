@@ -1,8 +1,10 @@
 {
   "orders_total": 14972,
   "orders_with_provisional_status": 3359,
-  "ready_for_human_review": 0,
-  "ready_by_tier": {},
+  "ready_for_human_review": 1,
+  "ready_by_tier": {
+    "complete_claim": 1
+  },
   "human_verified": "not counted here; see the Stage 19 tracker",
   "step_done_among_decided": {
     "provisional_status": {
@@ -10,23 +12,23 @@
       "applicable": 3359
     },
     "original_text": {
-      "done": 307,
+      "done": 2240,
       "applicable": 3359
     },
     "clause_inventory": {
-      "done": 0,
+      "done": 1,
       "applicable": 3359
     },
     "ending_or_current_basis": {
-      "done": 0,
+      "done": 1,
       "applicable": 3359
     },
     "savings_residuals": {
-      "done": 0,
+      "done": 1,
       "applicable": 3359
     },
     "counterevidence": {
-      "done": 0,
+      "done": 2,
       "applicable": 3359
     },
     "shared_sources": {
@@ -39,49 +41,53 @@
     }
   },
   "decided_by_steps_done": {
-    "1/6": 2344,
-    "1/7": 473,
-    "1/8": 20,
-    "2/6": 171,
-    "2/7": 104,
-    "2/8": 173,
-    "3/7": 31,
-    "3/8": 41,
-    "4/8": 2
+    "1/6": 1037,
+    "1/7": 62,
+    "1/8": 4,
+    "2/6": 1476,
+    "2/7": 482,
+    "2/8": 35,
+    "3/6": 1,
+    "3/7": 64,
+    "3/8": 183,
+    "4/8": 14,
+    "6/6": 1
   },
   "orders_blocked_by": {
-    "NO_OFFICIAL_SOURCE_LOCATED": 14400,
     "NO_PROVISIONAL_STATUS": 11613,
-    "NO_CLAUSE_INVENTORY": 3359,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
-    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
-    "FIRST_END_UNPROVED": 2954,
+    "NO_OFFICIAL_SOURCE_LOCATED": 8474,
+    "NO_CLAUSE_INVENTORY": 3318,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
+    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3318,
+    "FIRST_END_UNPROVED": 2918,
     "OPUS_MEDIA_REFETCH_NEEDED": 472,
-    "CURRENT_BASIS_UNPROVED": 405,
-    "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 417,
+    "CURRENT_BASIS_UNPROVED": 400,
     "OPUS_MEDIA_NONE_CITED": 217,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "CLAIM_INCOMPLETE": 39,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 8,
+    "CLAIM_CHECK_FAILED": 11,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
-    "NO_CLAUSE_INVENTORY": 3359,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
-    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
-    "FIRST_END_UNPROVED": 2954,
-    "NO_OFFICIAL_SOURCE_LOCATED": 2802,
+    "NO_CLAUSE_INVENTORY": 3318,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3318,
+    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3318,
+    "FIRST_END_UNPROVED": 2918,
+    "NO_OFFICIAL_SOURCE_LOCATED": 990,
     "OPUS_MEDIA_REFETCH_NEEDED": 472,
-    "CURRENT_BASIS_UNPROVED": 405,
-    "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "CURRENT_BASIS_UNPROVED": 400,
     "OPUS_MEDIA_NONE_CITED": 217,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 129,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "CLAIM_INCOMPLETE": 39,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 8,
+    "CLAIM_CHECK_FAILED": 11,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
@@ -93,22 +99,16 @@
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
     },
     {
-      "action": "Run one bulk download of the official links already found (Stage 21 crosswalk)",
-      "kind": "machine_job",
-      "orders_unblocked": 242,
-      "blocker": "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED"
+      "action": "Check the page location of fr-originals finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 417,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
     },
     {
       "action": "Retrieve shared source EO::4314",
       "kind": "one_source",
       "orders_unblocked": 10,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
-    },
-    {
-      "action": "Check the page location of fr-originals finds marked medium/low confidence",
-      "kind": "agent_check",
-      "orders_unblocked": 8,
-      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
     },
     {
       "action": "Retrieve shared source EO::6868",
@@ -177,11 +177,11 @@
       "checker": "jobs/claim-checker/output/PER_CLAIM.json"
     },
     "job_outputs_used": {
-      "fr-originals": 40,
+      "fr-originals": 6497,
       "opus-media-match fragments": 122,
       "opus-media-match status": 1155,
-      "source-ladder": 87,
-      "claim-checker": 0
+      "source-ladder": 122,
+      "claim-checker": 41
     }
   }
 }

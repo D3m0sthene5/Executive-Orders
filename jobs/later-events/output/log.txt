@@ -50,10 +50,10 @@ test_segment_is_limited_to_acting_order (test_later_events.TextScanning.test_seg
 test_text_edges_end_to_end (test_later_events.TextScanning.test_text_edges_end_to_end) ... ok
 
 ----------------------------------------------------------------------
-Ran 50 tests in 0.077s
+Ran 50 tests in 0.074s
 
 OK
-later-events: repo=/home/runner/work/Executive-Orders/Executive-Orders output=/home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output cache=/home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/later-events-cache limit=None
+later-events: repo=/home/runner/work/Executive-Orders/Executive-Orders output=/home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output cache=/home/runner/work/Executive-Orders/Executive-Orders/.job-cache/later-events limit=None
 Step 1: OFR executive-order catalog (federalregister.gov API)
   catalog page 1: 1000 records (total so far 1000 of 6939)
   catalog page 2: 1000 records (total so far 2000 of 6939)
@@ -63,16 +63,15 @@ Step 1: OFR executive-order catalog (federalregister.gov API)
   catalog page 6: 1000 records (total so far 6000 of 6939)
   catalog page 7: 939 records (total so far 6939 of 6939)
 Step 2: saved order texts
-  jobs/fr-originals/output/SOURCES.jsonl not present yet (built in parallel); skipped
   Opus texts skipped: {'neither the text nor its URL names the acting order': 8, 'near-empty text': 4, 'error page': 2}
-  1122 text documents to scan: {'order_text_govinfo_pdf': 160, 'order_text_opus_mirror': 931, 'order_text_opus_official_copy': 31}
+  7619 text documents to scan: {'order_text_fr_originals': 6497, 'order_text_govinfo_pdf': 160, 'order_text_opus_mirror': 931, 'order_text_opus_official_copy': 31}
 Step 3: building edges and fragments
 
 Summary (all items are CANDIDATES for human review, not legal findings):
-  catalog records read: 6938 (5063 with editorial notes); text documents scanned: 1122
-  candidate edges: 16707; by mechanism: {'abolition': 14, 'amendment': 5606, 'authority_repeal': 38, 'ceased_to_function': 2, 'continuation': 528, 'cross_reference': 4861, 'editorial_note': 13, 'expiration': 3, 'extension': 15, 'modification': 54, 'nullification': 38, 'ratification': 10, 'reinstatement': 10, 'repeal': 1, 'rescission': 24, 'revocation': 4122, 'supersession': 1240, 'supersession_or_revocation': 30, 'supplementation': 24, 'suspension': 13, 'termination': 60, 'voiding': 1}
-  by evidence type: {'ofr_note_freetext': 103, 'ofr_note_nested': 31, 'ofr_note_on_acting': 5696, 'ofr_note_on_target': 5320, 'ofr_note_see_reference': 4861, 'order_text_govinfo_pdf': 119, 'order_text_opus_mirror': 569, 'order_text_opus_official_copy': 8}
-  orders with at least one candidate: 4742; with a full-revocation candidate: 1914
-  of the 3359 decided orders: 1836 have a candidate (1551 excluding 'See' pointers); 930 have a full-revocation candidate
+  catalog records read: 6938 (5063 with editorial notes); text documents scanned: 7619
+  candidate edges: 19994; by mechanism: {'abolition': 51, 'amendment': 7170, 'authority_repeal': 38, 'ceased_to_function': 2, 'continuation': 568, 'cross_reference': 4861, 'editorial_note': 13, 'expiration': 3, 'extension': 36, 'modification': 124, 'nullification': 38, 'ratification': 10, 'reinstatement': 17, 'repeal': 1, 'rescission': 34, 'revocation': 5178, 'supersession': 1658, 'supersession_or_revocation': 30, 'supplementation': 25, 'suspension': 19, 'termination': 117, 'voiding': 1}
+  by evidence type: {'ofr_note_freetext': 103, 'ofr_note_nested': 31, 'ofr_note_on_acting': 5696, 'ofr_note_on_target': 5320, 'ofr_note_see_reference': 4861, 'order_text_fr_originals': 3287, 'order_text_govinfo_pdf': 119, 'order_text_opus_mirror': 569, 'order_text_opus_official_copy': 8}
+  orders with at least one candidate: 4802; with a full-revocation candidate: 1871
+  of the 3359 decided orders: 1839 have a candidate (1560 excluding 'See' pointers); 917 have a full-revocation candidate
   provisional YES orders with a full-revocation candidate (counterevidence leads): 8
   network requests: 7 (cache hits 0)

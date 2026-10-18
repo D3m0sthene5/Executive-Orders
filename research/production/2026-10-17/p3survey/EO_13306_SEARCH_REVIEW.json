@@ -1,0 +1,202 @@
+{
+  "schema": "eo-production-search-review/v1",
+  "instrument_id": "EO:13306",
+  "reviewed_on": "2026-10-18",
+  "legal_cutoff": "2026-10-14",
+  "machine_searches": [
+    {
+      "search_id": "current-law:usc",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+        "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+        "checked_on": "2026-10-17",
+        "searched_by": "jobs/current-law (machine search)"
+      }
+    },
+    {
+      "search_id": "current-law:ecfr",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+        "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+        "checked_on": "2026-10-17",
+        "searched_by": "jobs/current-law (machine search)"
+      }
+    },
+    {
+      "search_id": "later-events:ofr_catalog",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-18",
+        "searched_by": "jobs/later-events (machine search)"
+      }
+    }
+  ],
+  "ofr_catalog": {
+    "blob_sha": "34956e3073137d1467d36b53915efe25cea2a5db",
+    "records": 6938,
+    "all_numeric_13306_hits": [
+      "EO:7951,7951,1938-08-12,1938-08-16,3 FR 1995,,Franklin D. Roosevelt,Withdrawal of Public Land for Lookout Station; Arkansas,,,https://www.federalregister.gov/documents/full_text/text/1938/08/16/.txt,\"Amends: EO 6964, February 5, 1935 | Revoked by: Public Land Order 3277, December 3, 1963 (28 FR 13306)\",no,ofr-api-page:e584f8bdb9ebe55b",
+      "EO:13005,13005,1996-05-21,1996-05-24,61 FR 26069,96-13306,William J. Clinton,Empowerment Contracting,https://www.federalregister.gov/documents/1996/05/24/96-13306/empowerment-contracting,https://www.govinfo.gov/content/pkg/FR-1996-05-24/pdf/96-13306.pdf,https://www.federalregister.gov/documents/full_text/text/1996/05/24/96-13306.txt,,no,ofr-api-page:8ba9e1cce593bb06",
+      "EO:13306,13306,2003-05-28,2003-06-03,68 FR 33337,03-14116,George W. Bush,Establishing the Bob Hope American Patriot Award,https://www.federalregister.gov/documents/2003/06/03/03-14116/establishing-the-bob-hope-american-patriot-award,https://www.govinfo.gov/content/pkg/FR-2003-06-03/pdf/03-14116.pdf,https://www.federalregister.gov/documents/full_text/text/2003/06/03/03-14116.txt,,no,ofr-api-page:8ba9e1cce593bb06"
+    ],
+    "assessment": "Only own EO record identifies EO13306. Two other numeric hits are a Federal Register page and another document number; neither concerns EO13306. Own record has no disposition notes."
+  },
+  "unparsed_notes": {
+    "blob_sha": "53b0f32659b5689438460eb6cafa0688566cb915",
+    "numeric_13306_hits": []
+  },
+  "text_scan": {
+    "blob_sha": "36aecb58006f64b3cd78affa0a559800f01342e0",
+    "numeric_hits": [
+      "EO:13306,fr-originals:EO:13306:dc629f67a47f,order_text_fr_originals,https://www.govinfo.gov/content/pkg/FR-2003-06-03/pdf/03-14116.pdf,yes,no,0,2267",
+      "EO:13005,fr-originals:EO:13005:3f4687fdc380,order_text_fr_originals,https://www.govinfo.gov/content/pkg/FR-1996-05-24/pdf/96-13306.pdf,yes,no,0,6626",
+      "EO:13306,stage21pdf:EO:13306,order_text_govinfo_pdf,https://www.govinfo.gov/content/pkg/FR-2003-06-03/pdf/03-14116.pdf,yes,no,0,1775"
+    ],
+    "assessment": "Both own retained representations were scanned; no outgoing relationship found. Other numeric hit is a document-number collision."
+  },
+  "later_events_summary": {
+    "job": "later-events",
+    "generated_utc": "2026-10-18T00:04:25Z",
+    "legal_cutoff": "2026-10-14",
+    "catalog_records_used": 6938,
+    "catalog_records_with_notes": 5063,
+    "catalog_records_post_cutoff_ignored": 0,
+    "text_documents_scanned": 7619,
+    "text_documents_by_evidence_type": {
+      "order_text_fr_originals": 6497,
+      "order_text_govinfo_pdf": 160,
+      "order_text_opus_mirror": 931,
+      "order_text_opus_official_copy": 31
+    },
+    "edges": 19994,
+    "edges_by_mechanism": {
+      "abolition": 51,
+      "amendment": 7170,
+      "authority_repeal": 38,
+      "ceased_to_function": 2,
+      "continuation": 568,
+      "cross_reference": 4861,
+      "editorial_note": 13,
+      "expiration": 3,
+      "extension": 36,
+      "modification": 124,
+      "nullification": 38,
+      "ratification": 10,
+      "reinstatement": 17,
+      "repeal": 1,
+      "rescission": 34,
+      "revocation": 5178,
+      "supersession": 1658,
+      "supersession_or_revocation": 30,
+      "supplementation": 25,
+      "suspension": 19,
+      "termination": 117,
+      "voiding": 1
+    },
+    "edges_by_evidence_type": {
+      "ofr_note_freetext": 103,
+      "ofr_note_nested": 31,
+      "ofr_note_on_acting": 5696,
+      "ofr_note_on_target": 5320,
+      "ofr_note_see_reference": 4861,
+      "order_text_fr_originals": 3287,
+      "order_text_govinfo_pdf": 119,
+      "order_text_opus_mirror": 569,
+      "order_text_opus_official_copy": 8
+    },
+    "edges_excluded": {
+      "duplicate": 14,
+      "self_reference": 11,
+      "date_after_cutoff": 1
+    },
+    "edges_with_date_flags": 1985,
+    "edges_without_date": 270,
+    "unparsed_note_segments": 51,
+    "unparsed_note_segments_by_reason": {
+      "no label": 22,
+      "order named after other words (mention)": 26,
+      "unrecognized label": 3
+    },
+    "edges_by_quote_kind": {
+      "verbatim_note_item": 15908,
+      "verbatim_note_segment": 103,
+      "verbatim_text_chunk(1500-char cut of a longer run)": 37,
+      "verbatim_text_sentence": 3946
+    },
+    "edges_with_stated_effective_date": 74,
+    "full_end_items_withheld_from_whole_order_end": {
+      "withheld_full_and_partial_evidence_conflict": 98,
+      "withheld_text_only_unverified": 219
+    },
+    "target_orders_with_any_edge": 4802,
+    "target_orders_with_event_edge_excluding_see": 3831,
+    "orders_with_whole_order_end_candidate": 1871,
+    "source_records": 7626,
+    "source_ids_unique": true,
+    "fragments_by_kind": {
+      "later_event_candidates": 4642,
+      "whole_order_end_candidates": 1871
+    },
+    "decided_orders_total": 3359,
+    "decided_orders_with_any_candidate": 1839,
+    "decided_orders_with_event_candidate_excluding_see": 1560,
+    "decided_orders_with_whole_order_end_candidate": 917,
+    "decided_yes_with_full_revocation_candidate": 8,
+    "decided_no_with_full_revocation_candidate": 909,
+    "legal_conclusions": 0,
+    "statuses_changed": 0,
+    "network_requests": 7,
+    "cache_hits": 0,
+    "job_limit": null,
+    "errors": [],
+    "catalog_complete": true,
+    "text_inputs_on_this_machine": {
+      "opus_release_zip": "present",
+      "stage21_custody_csv": true,
+      "pypdf": "6.20.1",
+      "other_job_sources_jsonl": {
+        "fr-originals": true
+      },
+      "running_on_github_actions": true,
+      "platform": "linux"
+    }
+  },
+  "later_events_status": {
+    "job": "later-events",
+    "result": "succeeded",
+    "exit_code": 0,
+    "started_utc": "2026-10-18T00:03:45Z",
+    "finished_utc": "2026-10-18T00:04:25Z",
+    "commit_run": "eb967ff9c09346965c8ad4b10506752234b9e710",
+    "branch": "main",
+    "trigger": "push by D3m0sthene5",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39081253235",
+    "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": []
+  },
+  "current_law_status": {
+    "job": "current-law",
+    "result": "succeeded",
+    "exit_code": 0,
+    "started_utc": "2026-10-17T20:23:07Z",
+    "finished_utc": "2026-10-17T20:28:32Z",
+    "commit_run": "aa8daacd38950a070ca8db12564c4eb82828cf07",
+    "branch": "job/current-law",
+    "trigger": "push by D3m0sthene5",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39066472792",
+    "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": []
+  },
+  "limitations": [
+    "EDGES.csv blob is19.8MB; direct GitHub fetch_blob transport closed. Latestcasebundle for EO13306 has an empty later_events array. No assertion of manualreading all7619texts.",
+    "USC release119-121 current through2026-10-09. It corroborates the original but is not alone proof throughOctober14. No identified statutory/case contrarylead was surfaced in these bounded inputs.",
+    "The searches concern cited order numbers/operative relationships. Unnamed statutory displacement or uncatalogued judicial decisions could escape them. This is bounded readiness research, not certification."
+  ]
+}

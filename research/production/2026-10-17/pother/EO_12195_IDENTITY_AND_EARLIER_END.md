@@ -1,0 +1,9 @@
+# EO12195: independently corroborated identity and earlier termination
+
+Startup: `bundles/EO_12195.json`, followed by the complete saved official derivative `saved/EO_12195.txt` (45 FR12373–12374; original PDF SHA256 `4a3a888f59911e68f8cad3e6b7b8dfab7f5089e179328599f852e965a22799db`). A separate official derivative, `saved/EO_12196.txt`, confirms the occupational-safety order is EO12196, issued February26,1980. Its original PDF SHA256 is `80d32b8f157018dc136744a869fb34a07e9fe480df11c7b67a7b1690cca25377`.
+
+EO12195 expressly establishes the President's Commission on United States-Liberian Relations. EO12258's revocation item identifying that body and EO12195 agrees with the original establishing text. Its continuation list's occupational-safety reference to the same number is the inconsistent item; EO12196 independently supplies the occupational-safety identity. This corroboration is additional source evidence, not an authenticated reading of the EO12258 page image. The frozen EO12258 rule remains unchanged.
+
+The EO12195 original supplies an earlier own-terms termination lead: section1-402 terminates the commission when its final report is transmitted, with an outer limit of six months after issuance. Section1-401 requires the report within two months of its visit to Liberia. The issue date is February22,1980, so the outer six-month date is August22,1980; an actual earlier report could terminate the commission sooner. December31,1980 formal revocation under EO12258 therefore cannot be assumed to be its first substantive cessation.
+
+An exact first-end claim needs the actual report date, any extension or replacement instrument, and analysis of each original clause. Travel expenses, support and already accrued consequences require separate residual review. No claim, status, census row or accepted count was changed by this workpaper. No date was invented for actual performance.
