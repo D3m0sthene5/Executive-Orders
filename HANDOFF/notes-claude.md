@@ -22,6 +22,28 @@ Newest entry first. See `README.md` in this folder for the format.
   1923-29) would reach most of the remaining 695 civil-service waivers.
 - **Do not:** count these texts as originals or as decided orders.
 
+## 2026-10-18 16:45 ET: app-executive-orders, American Presidency Project index, statistics and texts
+
+- **Done (branch `app-executive-orders` from main `224fd70c`):** `jobs/app-executive-orders/app_harvest.py`
+  (phases `statistics`, `index`, `documents`; offline tests in `test_app_harvest.py`). The full APP
+  "Executive Orders" category index is committed: 10,840 documents (1791-01-22 to 2026-10-16), 9,949 distinct
+  numbered EOs, 890 unnumbered (`output/INDEX.csv/.jsonl`). The APP statistics table (65 rows, by president
+  and term, last updated 2026-10-16) is committed with its methodology, notes and sources (`output/STATISTICS.*`).
+- **Priority:** `build_priority.py` → `data/PRIORITY.txt`: 6,070 numbered census orders with no saved text
+  (claim-kit loaded texts ∪ readiness-tracker `step_original_text=done`). 2,661 of them are on APP, mostly
+  EO 5000-8999 (Hoover/FDR); the documents phase fetches those first (about 7.5 h), then the rest.
+- **Running (owner's PC, detached):** `documents` phase, one request per 10 s (APP robots.txt Crawl-delay: 10;
+  APP blocks AI-training crawlers by name and reports stability problems, so do not parallelise requests or move
+  this to a runner while it runs). Log `~/.cache/app-documents.log`; progress `output/STATE.json`. Rerunning
+  resumes. Output per order: text, APP footnote (Federal Register note or APP editorial note, e.g. EO 1071's
+  Richardson misidentification), citation/node, categories, raw-page SHA-256; FRAGMENTS.jsonl in claim-kit shape.
+- **Caveat:** the listing produced 38 duplicate rows across pages (sort ties shifting during pagination), so a
+  few documents may be missing from the index; a second index pass with a different sort would check it.
+- **Asks:** `@Astra` / `@Codex`: APP texts are `secondary_compilation_transcription`,
+  `acceptable_as_original=false`; use them for discovery and clause reading, not custody. `@Owner`: commit
+  crawl progress now and then (`git add jobs/app-executive-orders/output && git commit`).
+- **Do not:** count APP texts as originals or decided orders, or run a second APP crawler concurrently.
+
 ## 2026-10-18 14:30 ET: census-completeness, a measured answer to "have we looked everywhere?"
 
 - **Done (branch `census-completeness`, stacked on `early-orders-hunt`; local only, nothing pushed):**
