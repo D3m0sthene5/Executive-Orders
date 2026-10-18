@@ -46,6 +46,8 @@ MECHANICAL_CHECKS = ["source_held", "source_identity", "quote_verbatim", "date_v
 SOURCE_STATUS_RESULT = {
     "held_bytes_verified": "pass",            # the saved bytes were re-hashed on this machine and match
     "held_bytes_in_release_or_repo": "pass",  # bytes are committed (repo file or Opus LFS release), not re-hashed here
+    "gpo_published_hash_match": "pass",       # GPO publishes these exact bytes at the URL under this SHA-256
+                                              # (jobs/official-fixity), so anyone can re-fetch and verify them
     "custody_record_only": "skip",            # only a record (hash, maybe text); the bytes are in no committed place
 }
 # Warnings that also stop a step from counting as checker-passed (they need a person to look).
@@ -427,6 +429,7 @@ class Context:
         roots = [r for r in os.environ.get("CLAIM_CHECKER_CACHE_ROOTS", "").split(os.pathsep) if r]
         self.index = index or S.build_index(self.repo, self.job_dir, roots, exclude_jobs=(JOB_NAME,))
         self.reader = S.TextReader(self.cache_dir, packed=self.index.packed_texts)
+        self.gpo_matched = load_gpo_matched(self.repo)
         self._prepared = collections.OrderedDict()  # recently used source texts, normalised once
         self.today = today or dt.datetime.now(dt.timezone.utc).date()
         try:
@@ -455,6 +458,58 @@ class Context:
                 reasons.append(why)
             out += [(self.prepared(copy, pages, how), how, copy) for pages, how in texts]
         return out, reasons
+
+
+GPO_MATCHED = "jobs/official-fixity/output/MATCHED_BY_SHA256.json"
+# Record-only govinfo sources (mostly 1995+ single-document PDFs, which GPO's PREMIS
+# records do not list) are re-downloaded once and re-hashed here; the cache persists
+# between GitHub runs. Bounded per run; set CLAIM_CHECKER_VERIFY_DOWNLOADS=0 to disable.
+VERIFY_HOSTS = ("www.govinfo.gov",)
+_VERIFY = {"left": None, "last": 0.0}
+
+
+def verify_by_download(url, sha, cache_dir):
+    """True if the URL's bytes (cached, else downloaded now) hash to sha; None if not tried."""
+    import hashlib
+    import time
+    import urllib.parse
+    import urllib.request
+    host = urllib.parse.urlsplit(url or "").hostname or ""
+    if host not in VERIFY_HOSTS or not url.startswith("https://"):
+        return None
+    store = pathlib.Path(cache_dir) / "verified" / (sha[:2] + "/" + sha + ".bin")
+    if store.is_file():
+        return hashlib.sha256(store.read_bytes()).hexdigest() == sha
+    if _VERIFY["left"] is None:
+        _VERIFY["left"] = int(os.environ.get("CLAIM_CHECKER_VERIFY_DOWNLOADS", "400") or 0)
+    if _VERIFY["left"] <= 0:
+        return None
+    _VERIFY["left"] -= 1
+    wait = 1.0 - (time.monotonic() - _VERIFY["last"])
+    if wait > 0:
+        time.sleep(wait)
+    _VERIFY["last"] = time.monotonic()
+    try:
+        req = urllib.request.Request(url.split("#", 1)[0], headers={"User-Agent": "EO-afterlife-research/1.0 (claim-checker)"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            data = r.read(200_000_000)
+    except Exception:  # noqa: BLE001  (offline, blocked, timeout: stays unverified)
+        return None
+    ok = hashlib.sha256(data).hexdigest() == sha
+    if ok:
+        store.parent.mkdir(parents=True, exist_ok=True)
+        store.write_bytes(data)
+    return ok
+
+
+def load_gpo_matched(repo):
+    """sha256 -> official-fixity record, for files byte-identical to GPO's published SHA-256."""
+    path = pathlib.Path(repo) / GPO_MATCHED
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {k: v for k, v in data.items() if isinstance(v, dict) and v.get("result") == "match"}
 
 
 def _row(rows, step, check, field, result, status, detail=""):
@@ -493,6 +548,13 @@ def check_source(ref, field, ctx, rows):
                             for c in kept if c.custody in ("repo_file", "opus_release")})
             status, detail = "held_bytes_in_release_or_repo", \
                 f"bytes are kept in {' and '.join(where)}, not on this machine, so not re-hashed here"
+        elif sha in ctx.gpo_matched:
+            g = ctx.gpo_matched[sha]
+            status, detail = "gpo_published_hash_match", (
+                f"GPO publishes these bytes at {g.get('url')} with this SHA-256 (PREMIS {g.get('premis_url')}, "
+                f"checked {g.get('checked_utc')}); verifiable by re-fetching")
+        elif verify_by_download(url, sha, ctx.cache_dir):
+            status, detail = "held_bytes_verified", "re-downloaded from the cited URL and re-hashed on this machine; match"
         else:
             status, detail = "custody_record_only", (
                 "only a custody record (hash, perhaps extracted text) exists; the original bytes are in no "

@@ -9,6 +9,8 @@ import gzip
 import hashlib
 import json
 import os
+os.environ.setdefault("CLAIM_CHECKER_VERIFY_DOWNLOADS", "0")  # tests never use the network
+import os
 import pathlib
 import shutil
 import sys
@@ -220,9 +222,11 @@ class CheckerTests(unittest.TestCase):
         # Insulate from the caller's environment (job.py passes its own settings through).
         clean = {k: v for k, v in os.environ.items()
                  if not k.startswith("CLAIM_CHECKER_") and k not in ("JOB_LIMIT", "JOB_CACHE_DIR")}
+        clean["CLAIM_CHECKER_VERIFY_DOWNLOADS"] = "0"  # tests never use the network
         patcher = mock.patch.dict(os.environ, clean, clear=True)
         patcher.start()
         self.addCleanup(patcher.stop)
+        C._VERIFY.update(left=None, last=0.0)
         self.tmp = tempfile.mkdtemp(prefix="claim-checker-test-")
         self.repo, self.jobdir = build_repo(self.tmp)
         self.ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache",
@@ -314,6 +318,39 @@ class CheckerTests(unittest.TestCase):
         src = {r["field"]: (r["result"], r["status"]) for r in rows_for(rows, "source_held")}
         self.assertEqual(src["savings_residuals.source"], ("skip", "custody_record_only"))
         self.assertEqual(src["original_representation"], ("pass", "held_bytes_in_release_or_repo"))
+
+    def test_gpo_published_hash_counts_as_held(self):
+        c = good_claim()
+        c["savings_residuals"]["source"] = {"url": "https://www.presidency.ucsb.edu/doc", "sha256": "c" * 64,
+                                            "page_or_item": "x"}
+        rows, _, _ = C.check_claim(c, self.ctx)
+        src = {r["field"]: (r["result"], r["status"]) for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["savings_residuals.source"], ("skip", "custody_record_only"))
+        fix = self.repo / C.GPO_MATCHED
+        fix.parent.mkdir(parents=True, exist_ok=True)
+        fix.write_text(json.dumps({"c" * 64: {"url": "https://www.govinfo.gov/x.pdf", "result": "match",
+                                              "premis_url": "https://www.govinfo.gov/metadata/pkg/x/premis.xml",
+                                              "checked_utc": "2026-10-17T00:00:00Z"},
+                                   "d" * 64: {"url": "u", "result": "mismatch"}}), "utf-8")
+        ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache3", today=C.dt.date(2026, 10, 17))
+        self.assertNotIn("d" * 64, ctx.gpo_matched)  # only matches count
+        rows, _, _ = C.check_claim(c, ctx)
+        src = {r["field"]: (r["result"], r["status"]) for r in rows_for(rows, "source_held")}
+        self.assertEqual(src["savings_residuals.source"], ("pass", "gpo_published_hash_match"))
+
+    def test_verify_by_download_uses_cache_and_budget(self):
+        import hashlib
+        data = b"%PDF-1.4 granule"
+        sha = hashlib.sha256(data).hexdigest()
+        cache = pathlib.Path(self.tmp) / "vcache"
+        url = "https://www.govinfo.gov/content/pkg/FR-1995-01-03/pdf/94-32388.pdf"
+        self.assertIsNone(C.verify_by_download(url, sha, cache))           # budget 0, nothing cached
+        store = cache / "verified" / sha[:2] / (sha + ".bin")
+        store.parent.mkdir(parents=True)
+        store.write_bytes(data)
+        self.assertTrue(C.verify_by_download(url, sha, cache))             # cached bytes re-hashed
+        self.assertFalse(C.verify_by_download(url, "0" * 64, cache) or False)
+        self.assertIsNone(C.verify_by_download("https://example.org/x.pdf", sha, cache))  # other hosts: never
 
     def test_local_bytes_differ_from_record(self):
         (self.repo / "research/stage21/original_sources/EO_90003.txt").write_text("tampered", "utf-8")

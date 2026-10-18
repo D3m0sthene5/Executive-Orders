@@ -214,6 +214,38 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_opus_media"], "open")
         self.assertIn("OPUS_MEDIA_REFETCH_NEEDED", orders["EO:3"]["blockers"])
 
+    def search_files(self, sample=False):
+        le = {"catalog_complete": True, "job_limit": None, "text_documents_scanned": 7619}
+        cl = {"sample_mode": sample, "job_limit": None}
+        return {
+            tracker.J["le_summary"]: json.dumps(le), tracker.J["cl_summary"]: json.dumps(cl),
+            tracker.J["le_status"]: json.dumps({"finished_utc": "2026-10-18T00:04:25Z"}),
+            tracker.J["cl_status"]: json.dumps({"finished_utc": "2026-10-17T20:28:32Z"}),
+            tracker.J["le_catalog"]: "id,post_cutoff\nEO:2,\nEO:3,\nEO:4,\n",
+            tracker.J["le_conflicts"]: "instrument_id,lead\n",
+            tracker.J["cl_conflicts"]: "instrument_id,signal\nEO:3,1_printed_as_current_text_in_usc\n",
+        }
+
+    def test_machine_search_counts_when_complete_and_clean(self):
+        orders, s = self.run_tracker(files=self.search_files())
+        self.assertEqual(orders["EO:2"]["step_counterevidence"], "done")
+        self.assertIn("MACHINE_SEARCH_FOUND_CONTRARY_LEAD:current-law", orders["EO:3"]["blockers"])
+        self.assertEqual(orders["EO:3"]["step_counterevidence"], "open")
+        self.assertIn("NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE", orders["EO:1"]["blockers"])  # not in the catalog
+        recs = tracker.build.machine_search
+        self.assertEqual(list(recs), ["EO:2"])
+        self.assertEqual(recs["EO:2"][2]["checked_on"], "2026-10-17")
+        sys.path.insert(0, str(self.root / "research/stage19/code"))
+        import claim_gate  # the record must satisfy the claim gate's bounded_later_search shape
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["later_source_search"] = recs["EO:2"]
+        self.assertNotIn("bounded_later_search", claim_gate.validate_claim(claim, expected_status="no"))
+
+    def test_machine_search_never_counts_from_a_sample_run(self):
+        orders, s = self.run_tracker(files=self.search_files(sample=True))
+        self.assertEqual(orders["EO:2"]["step_counterevidence"], "open")
+        self.assertTrue(any("incomplete" in p for p in s["input_problems"]))
+
     def test_claim_with_no_clauses_lights_no_claim_step(self):
         claim = copy.deepcopy(COMPLETE_NO_CLAIM)
         claim["operative_clauses"] = []

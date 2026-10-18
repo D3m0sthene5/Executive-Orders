@@ -73,6 +73,14 @@ J = {
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
     "checker": "jobs/claim-checker/output/PER_CLAIM.json",
+    # The bounded later-source searches the machines run over every order.
+    "le_summary": "jobs/later-events/output/SUMMARY.json",
+    "le_catalog": "jobs/later-events/output/CATALOG_INDEX.csv",
+    "le_conflicts": "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv",
+    "le_status": "jobs/later-events/output/STATUS.json",
+    "cl_summary": "jobs/current-law/output/SUMMARY.json",
+    "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
+    "cl_status": "jobs/current-law/output/STATUS.json",
 }
 
 # Opus media blockers, from opus-media-match's media_gap / media_status.
@@ -186,9 +194,64 @@ def load_job_outputs(root):
             problems.append(f"claim-checker PER_CLAIM.json unreadable: {exc}")
             checker = {}
     used["claim-checker"] = len(checker) if checker is not None else None
+    search = load_machine_search(root, problems)
+    used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
     return {"fr": fr, "opus_text": opus_text, "opus_status": opus_status, "ladder_found": ladder_found,
-            "opus_missing": opus_missing,
+            "opus_missing": opus_missing, "search": search,
             "checker": checker, "used": used}, problems
+
+
+def load_machine_search(root, problems):
+    """Which orders the machines' later-source searches fully covered, and which they flagged.
+
+    complete only when later-events read the whole OFR catalog and scanned the saved texts,
+    and current-law scanned the whole U.S. Code and eCFR (not a sample)."""
+    def js(key):
+        try:
+            with open(os.path.join(root, J[key]), encoding="utf-8") as fh:
+                return json.load(fh)
+        except (OSError, ValueError):
+            return {}
+
+    def ids(key):
+        path = os.path.join(root, J[key])
+        if not os.path.exists(path):
+            return set()
+        with open(path, encoding="utf-8", newline="") as fh:
+            return {r["instrument_id"] for r in csv.DictReader(fh) if r.get("instrument_id")}
+
+    le, cl = js("le_summary"), js("cl_summary")
+    catalog = set()
+    path = os.path.join(root, J["le_catalog"])
+    if os.path.exists(path):
+        with open(path, encoding="utf-8", newline="") as fh:
+            catalog = {r["id"] for r in csv.DictReader(fh) if r.get("id") and r.get("post_cutoff") != "yes"}
+    complete = (le.get("catalog_complete") is True and le.get("job_limit") is None
+                and (le.get("text_documents_scanned") or 0) > 0
+                and cl.get("sample_mode") is False and cl.get("job_limit") is None and bool(catalog))
+    if catalog and not complete:
+        problems.append("machine later-source search incomplete (later-events or current-law ran a sample); "
+                        "the counterevidence step is not counted from it")
+    dates = {k: (js(k).get("finished_utc") or "")[:10] for k in ("le_status", "cl_status")}
+    return {"complete": complete, "catalog": catalog, "conflicts_le": ids("le_conflicts"),
+            "conflicts_cl": ids("cl_conflicts"), "dates": dates,
+            "texts": le.get("text_documents_scanned") or 0}
+
+
+def machine_search_record(i, search):
+    """Claim-shaped later_source_search entries for what the machines searched for this order."""
+    n = i.split(":", 1)[1]
+    d_le, d_cl = search["dates"].get("le_status") or "", search["dates"].get("cl_status") or ""
+    return [
+        {"repository": "Office of the Federal Register executive-order catalog (federalregister.gov API v1, 1937-2026)",
+         "query_or_scope": f"editorial disposition notes on EO {n} and on every other catalogued order naming it "
+                           "(jobs/later-events)", "checked_on": d_le},
+        {"repository": f"project saved order texts ({search['texts']:,} documents, incl. every fr-originals official text)",
+         "query_or_scope": f"revocation, amendment, supersession and reinstatement sentences naming EO {n} "
+                           "(jobs/later-events)", "checked_on": d_le},
+        {"repository": "U.S. Code release point 119-121 and eCFR as of 2026-10-14",
+         "query_or_scope": f"every mention of EO {n} in current law (jobs/current-law)", "checked_on": d_cl},
+    ]
 
 
 def build(root):
@@ -227,6 +290,7 @@ def build(root):
     problems += more + job_problems
 
     orders = []
+    machine_searched = set()
     for i in universe:
         d = decided.get(i)
         status = d["provisional_substantive_status"] if d else None
@@ -285,10 +349,24 @@ def build(root):
             ("counterevidence", "LATER_SOURCE_SEARCH_NOT_RECORDED"),
         ):
             steps[step] = from_claim(step)
+            if step == "counterevidence" and not steps[step] and status:
+                # The machines' bounded searches count when they covered the order and found nothing contrary.
+                srch = jobs["search"]
+                flagged = [name for name, ids_ in (("later-events", srch["conflicts_le"]),
+                                                   ("current-law", srch["conflicts_cl"])) if i in ids_]
+                if srch["complete"] and i in srch["catalog"] and not flagged:
+                    steps[step] = True
+                    machine_searched.add(i)
+                    continue
+                if flagged:
+                    code = "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:" + "+".join(flagged)
+                elif srch["complete"]:
+                    code = "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
             if not steps[step] and status:  # unresearched orders are blocked by status alone
                 blockers[step].append(claim_blocker(step, code))
         if int(cq.get("quarantined_relationship_count") or 0):
             steps["counterevidence"] = False
+            machine_searched.discard(i)  # its search record must not claim "no open conflicts"
             blockers["counterevidence"].append("QUARANTINED_RELATIONSHIP_CONFLICT")
 
         # 7. shared sources (only orders that cite one)
@@ -350,6 +428,7 @@ def build(root):
             **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
     build.job_outputs_used = jobs["used"]
+    build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
     return orders, problems
 
 
@@ -417,6 +496,12 @@ def pct(n, d):
 
 def write_outputs(out, orders, summary, inputs):
     os.makedirs(out, exist_ok=True)
+    # Claim-shaped later_source_search for each order the machines' searches completed;
+    # agents copy it into the order's claim (claim-drafts and case-bundles can merge it).
+    with open(os.path.join(out, "MACHINE_LATER_SEARCH.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
+        for i, rec in getattr(build, "machine_search", {}).items():
+            fh.write(json.dumps({"instrument_id": i, "later_source_search": rec, "open_conflicts": [],
+                                 "produced_by": "readiness-tracker"}, sort_keys=True) + "\n")
     with open(os.path.join(out, "READINESS_BY_ORDER.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(orders[0]))
         w.writeheader()

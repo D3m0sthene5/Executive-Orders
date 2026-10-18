@@ -3,5 +3,8 @@
   "github_time_budget_minutes": 300,
   "github_keep_issue_pdfs": false,
   "github_workers": 4,
-  "_note": "Used only when the job runs on GitHub Actions and JOB_LIMIT etc. are not set. The full run (thousands of orders, ~100 GB of scans) belongs on the owner's PC, where the defaults are: no limit, no time budget, keep the scanned PDFs in the cache."
+  "_note": "Used only when the job runs on GitHub Actions and JOB_LIMIT etc. are not set. The full run (thousands of orders, ~100 GB of scans) belongs on the owner's PC, where the defaults are: no limit, no time budget, keep the scanned PDFs in the cache.",
+  "recheck": false,
+  "recheck_github_limit": 60,
+  "_recheck_note": "recheck: true (or env JOB_RECHECK=1) runs the opt-in pdfplumber RECHECK pass instead of locating new orders: it rechecks found orders whose result is medium/low (needs_page_check true) and may upgrade them to high only with explicit positional evidence. See README 'Recheck pass'. recheck_github_limit caps the orders rechecked per GitHub run."
 }

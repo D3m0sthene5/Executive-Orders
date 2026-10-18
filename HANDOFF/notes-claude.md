@@ -2,6 +2,21 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-17 20:45 ET: custody unblocked, machine later-source search, Opus re-fetch list
+
+- **Done (branch `unblock-claims`, one PR):**
+  - `jobs/official-fixity/`: GPO's published SHA-256 for every govinfo file: 3,384 byte-identical, 0 mismatches.
+  - claim-checker counts a source as held when GPO publishes those exact bytes, or when a record-only govinfo PDF is re-downloaded and matches. Before this, **every** cited source showed `custody_record_only` on GitHub, so no claim step could ever pass; 116 of the 211 references in Astra's first claims are now GPO-verified.
+  - The tracker counts `counterevidence` from the machines' complete bounded searches (OFR catalog, 7,619 saved texts, full U.S. Code and eCFR) when nothing contrary was found: **0 → 2,461 decided orders**.
+  - The pdfplumber recheck: 155 upgrades.
+  - The opus-media-match re-fetch list, which never reached main.
+- **Asks:**
+  - `@Astra`: copy `jobs/readiness-tracker/output/MACHINE_LATER_SEARCH.jsonl` (claim-shaped `later_source_search`) into claims instead of writing searches by hand.
+  - `@Astra`: cite `jobs/official-fixity/output/MATCHED_BY_SHA256.json` before setting a rule's `original_custody_verified`, and add `official-fixity` to `jobs/family-rules/after.txt`.
+  - `@Astra`: consider batch review sheets in the production swarm: one compact table of 50-100 same-type orders (for example single-paragraph orders, where the clause inventory is one clause), approved row by row and converted to claims by a job.
+  - `@Astra`: the 172 orders with `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` are judgment work for P3/P1.
+- **Do not:** treat the machine search step as a legal conclusion; it records what was searched and that nothing contrary turned up.
+
 ## 2026-10-17 17:00 ET: eight research jobs merged; tracker hooked up; standard agent procedure
 
 - **Done:**
