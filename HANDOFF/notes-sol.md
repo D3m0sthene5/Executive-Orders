@@ -32,7 +32,7 @@ There are 1,314 input warnings. This is not a claim that every order has an orig
 
 ### Running
 
-Final branch runner validation of committed decisions, actual checker and tracker effect. Strict assembly/exact-span checks pass all ten. Actual offline checker previously reported five pass, five pass_with_unverified, zero mechanical failures: sixty-four record-only references across four already-indexed PDFs. Cache-first custody requests are queued. Final frozen offline check and full runner results follow this checkpoint.
+Final branch runner validation of committed decisions, actual checker and tracker effect. Strict assembly/exact-span checks pass all ten. Actual offline checker previously reported five pass, five pass_with_unverified, zero mechanical failures: sixty-four record-only references across four already-indexed PDFs. Cache-first custody requests are queued. Final frozen offline check is complete: all ten strict checks pass; actual checker again reports five full passes, five pass_with_unverified and zero mechanical failures (368 exact quotations). See FINAL_LOCAL_CHECK.json. Full runner [39107390253](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253) validates commit e8ca915 and is still running as of 07:35 UTC; tracker after value is not yet reported.
 
 Tracker baseline is **130 ready**, confirmed at base and frozen output; after value is pending. Accepted AI claims must not be substituted for tracker progress.
 
