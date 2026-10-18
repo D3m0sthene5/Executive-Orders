@@ -20,24 +20,27 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 189 | 3,359 | 5.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 146 | 3,359 | 4.3% |
+| Complete inventory of the order's operative clauses | 188 | 3,359 | 5.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 144 | 3,359 | 4.3% |
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-17; intervening runs may be absent.
-- claim-checker: claim_lines_found: 42 → 230; claims_all_checks_passed: 1 → 144; claims_checked: 42 → 230; claims_gate_passed: 1 → 145
-- claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 770 → 780; of_which_decided: 770 → 780; orders_with_any_conflict: 311 → 417
+- claim-checker: claim_lines_found: 42 → 228; claims_all_checks_passed: 1 → 143; claims_checked: 42 → 228; claims_gate_passed: 1 → 143
+- claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 770 → 781; of_which_decided: 770 → 781; orders_with_any_conflict: 311 → 417
+- clause-drafts: clauses_total: 35750 → 35998; fragments_written: 4747 → 4761; ocr_fragments_with_candidate_fr_page: 60 → 59; orders_identity_quarantined: 144 → 143
+- family-rules: saved_texts_scanned: 18681 → 21686
 - indian-reservations-1912: acts: unavailable → 309; acts_before_1900: unavailable → 214; acts_with_a_lord_match: unavailable → 178; body_lines: unavailable → 11522
 - isthmian-canal-1911: affected_document_leads: unavailable → 58; affected_targets_resolved: unavailable → 22; census_unnumbered_ids_not_comparable: unavailable → 19; contents_entries: unavailable → 177
+- official-fixity: carried_forward: 0 → 4987; checked_this_run: 4987 → 209; files: 4987 → 5196; orders_with_a_gpo_matched_file: 5013 → 5020
 - readiness-tracker: ready_for_human_review: 1 → 141
 - richardson-volumes: lord_entries_citing_richardson: unavailable → 369; wpa_entries_parsed: unavailable → 155
-- source-ladder: attempts_logged: 43 → 69; bytes_downloaded: 784275283 → 327863094; found: 122 → 147; found_carried_forward: 87 → 122
+- source-ladder: attempts_logged: 43 → 894; bytes_downloaded: 784275283 → 12347070137; exhausted_proposed_items: 4 → 5; exhausted_proposed_lines: 22 → 23
 
 ## Top shared unlocks
 
-- orders_unblocked: 472; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
 - orders_unblocked: 286; kind: agent_check; action: Check the page location of fr-originals and official-compilation finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
+- orders_unblocked: 157; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
 - orders_unblocked: 10; kind: one_source; action: Retrieve shared source EO::4314; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::4314
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source USC::48 U.S.C. 863); blocker: SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)

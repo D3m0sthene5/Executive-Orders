@@ -14,19 +14,19 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 189 | 3,359 | 5.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 146 | 3,359 | 4.3% |
-| Savings clauses and surviving effects closed | 178 | 3,359 | 5.3% |
+| Complete inventory of the order's operative clauses | 188 | 3,359 | 5.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 144 | 3,359 | 4.3% |
+| Savings clauses and surviving effects closed | 176 | 3,359 | 5.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,470 | 3,359 | 73.5% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
-| Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
+| Opus evidence images matched to this order (Opus cases only) | 412 | 844 | 48.8% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 472 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 157 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -41,22 +41,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
-| `NO_CLAUSE_INVENTORY` | 3,130 | 3,130 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,130 | 3,130 |
-| `FIRST_END_UNPROVED` | 2,730 | 2,730 |
+| `NO_CLAUSE_INVENTORY` | 3,132 | 3,132 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,132 | 3,132 |
+| `FIRST_END_UNPROVED` | 2,732 | 2,732 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 693 | 693 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 159 | 159 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 157 | 157 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 2 | 68 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
-| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |
-| `CLAIM_CHECK_FAILED` | 1 | 1 |
+| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 5 | 5 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -79,8 +78,8 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - indian-reservations-1912: 55
 - richardson-volumes (lead only, never counted as the original): 68
 - opus-media-match status: 1,155
-- source-ladder: 147
-- claim-checker: 229
+- source-ladder: 917
+- claim-checker: 227
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
