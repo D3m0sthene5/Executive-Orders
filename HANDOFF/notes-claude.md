@@ -39,6 +39,12 @@ Newest entry first. See `README.md` in this folder for the format.
     quarantined); the complete claims for EO 11708 and EO 11812 are blocked by
     `QUARANTINED_RELATIONSHIP_CONFLICT`, and EO 9789 by `OPUS_MEDIA_REFETCH_NEEDED`.
   - Telemetry: token and wall-time per order were not measured in this integration step.
+  - Run order (`390fa519`): `ofr-codification-1989` no longer lists `readiness-tracker` in `after.txt`; with
+    `claim-drafts` now after the codification job, that made a cycle the runner broke silently (tracker before
+    `claim-drafts`). Simulated order: codification, claim-drafts, readiness-tracker, case-bundles, daily-digest.
+  - Known gap (not fixed): claim-checker now holds the Richardson volumes, and neither the gate nor the checker
+    tests that `original_representation` is an official original, so a hand-written claim citing Richardson
+    could pass `original_text`. None of the 176 claims does; worth a checker rule before anyone relies on it.
 - **Running:** nothing. Local outputs only, in the session scratchpad `final_run/` (not committed).
 - **Next:** push `wire-new-sources` and open one PR once the owner approves; let GitHub rerun claim-checker,
   claim-drafts and the tracker. Then the 44 partial claims (find the actual end of temporary bodies and
