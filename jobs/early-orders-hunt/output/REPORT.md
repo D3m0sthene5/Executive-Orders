@@ -1,6 +1,6 @@
 # Early orders hunt
 
-Run 2026-10-18T16:59:42Z (live, 717.2 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1014 leads now have a printed text cut from a cited page (147 of them before 1862).**
+Run 2026-10-18T18:53:03Z (live, 621.4 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1014 leads now have a printed text cut from a cited page (147 of them before 1862).**
 
 Nothing is admitted to the census, dated, merged or changed. Every text here is OCR of a printed compilation, a lead for the original_text step, never the signed original. A page hit is not an identity.
 
@@ -95,11 +95,11 @@ Nothing is admitted to the census, dated, merged or changed. Every text here is 
 
 ## Live catalog routes
 
-23 of 24 Library of Congress collection searches ran; 44 catalog records saved in LIVE_HITS.csv. A record is something to open and read, not a found order; a search with no results proves nothing.
+22 of 24 Library of Congress collection searches ran; 52 catalog records saved in LIVE_HITS.csv. A record is something to open and read, not a found order; a search with no results proves nothing.
 
 ## Requests
 
-Budget 160, spent 52, refused 0; 264,423,656 bytes downloaded, 0 cache hits.
+Budget 160, spent 52, refused 0; 264,452,660 bytes downloaded, 0 cache hits.
 
 ## Next
 
