@@ -1,0 +1,35 @@
+test_census (test_canal.CensusSnapshot.test_census) ... skipped 'census absent or changed since the snapshot'
+test_readiness (test_canal.CensusSnapshot.test_readiness) ... ok
+test_contents (test_canal.CommittedVolume.test_contents) ... ok
+test_crosswalk (test_canal.CommittedVolume.test_crosswalk) ... ok
+test_dates (test_canal.CommittedVolume.test_dates) ... ok
+test_hashes (test_canal.CommittedVolume.test_hashes) ... ok
+test_page_offset_and_heads (test_canal.CommittedVolume.test_page_offset_and_heads) ... ok
+test_secretary_of_war_orders (test_canal.CommittedVolume.test_secretary_of_war_orders) ... ok
+test_spans_and_boundaries (test_canal.CommittedVolume.test_spans_and_boundaries) ... ok
+test_contents_date_misreads (test_canal.Contents.test_contents_date_misreads) ... ok
+test_entries_issuers_and_categories (test_canal.Contents.test_entries_issuers_and_categories) ... ok
+test_page_number_mid_entry_and_ill (test_canal.Contents.test_page_number_mid_entry_and_ill) ... ok
+test_year_candidates_are_clamped (test_canal.Contents.test_year_candidates_are_clamped) ... ok
+test_affected_documents (test_canal.Documents.test_affected_documents) ... ok
+test_all_dates_and_confidence (test_canal.Documents.test_all_dates_and_confidence) ... ok
+test_dates_from_body_when_contents_has_none_or_a_damaged_year (test_canal.Documents.test_dates_from_body_when_contents_has_none_or_a_damaged_year) ... ok
+test_document_without_closing_line_is_flagged_not_split (test_canal.Documents.test_document_without_closing_line_is_flagged_not_split) ... ok
+test_shared_start_page_is_split_at_the_dateline (test_canal.Documents.test_shared_start_page_is_split_at_the_dateline) ... ok
+test_tail_on_the_next_documents_first_page (test_canal.Documents.test_tail_on_the_next_documents_first_page) ... ok
+test_pdf_and_text_hashes (test_canal.EndToEnd.test_pdf_and_text_hashes) ... ok
+test_run_against_a_small_census (test_canal.EndToEnd.test_run_against_a_small_census) ... ok
+test_body_dates (test_canal.Pages.test_body_dates) ... ok
+test_running_heads_footer_and_title (test_canal.Pages.test_running_heads_footer_and_title) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.333s
+
+OK (skipped=1)
+177 contents entries: 107 orders of the President, 62 of the Secretary of War, 2 letters of the President, 3 of the Secretary, 1 proclamation, 1 commission action, 1 circular. PDF check: pdf_not_checked_out.
+  Dates: 103 of 107 presidential orders confirmed by a closing dateline ({'body_only': 1, 'damaged_day': 2, 'dateline': 6, 'mention_only': 1, 'white_house_ocr': 17, 'white_house_strict': 80}); needs page check: [6, 78, 129, 171].
+  Boundaries: {'shared_start_page_split_at_dateline': [19, 20], 'starts_below_previous_documents_tail': [18, 90], 'tail_on_next_documents_first_page': [17, 89]}. Running heads stripped: 237; head numbers that disagree with PDF-13: [(78, 66), (176, 1153), (193, 130)].
+  Crosswalk: 105 EO ids for 104 entries; WPA date check {'wpa_partial_year_agrees': 1, 'yes': 104}; Lord matches {'2': '1269', '14': '1283', '55': '1297', '65': '1298'}; presidential orders with no EO id: [2, 14, 65].
+  Census: {'census_date_blank': 3, 'census_year_only': 102}; readiness {'blank': 103, 'no': 2}; decided orders with the original_text step open: ['EO:283', 'EO:1153']. Fragments: 105.
+  Secretary of War orders: {'by_direction_of_president': 31, 'approved_by_president_only': 1, 'secretary_only': 30}. Leads: {'IN_LIST_NOT_IN_VOLUME': 8, 'LORD_UNNUMBERED_MATCH': 4, 'NOT_IN_CENSUS': 6, 'SECWAR_ORDER_BY_DIRECTION_OF_PRESIDENT_CANDIDATE': 31, 'census_date_blank': 3}. Amend/revoke leads: 58 (22 with a target in the volume).
+Leads only: nothing is admitted, merged, dated or changed.
