@@ -1,0 +1,128 @@
+{
+ "census": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+ "readiness": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
+ "wpa_lists": "jobs/wpa-lists/output",
+ "lists_fallback": {
+  "dir": "data/lists_subset",
+  "what": "The rows of the wpa-lists job's NUMBERED_ENTRIES.csv dated 1789-1900 or citing a Richardson volume ('VI R 122'), and the rows of its UNNUMBERED_ENTRIES.csv citing Richardson in any column; copied unchanged. Used only when jobs/wpa-lists/output is absent (that job is on its own branch until merged).",
+  "made_from": {
+   "NUMBERED_ENTRIES.csv": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64",
+   "UNNUMBERED_ENTRIES.csv": "c0fd09487366f6394594a89d0dff546499904a69c39447d6e89550ee72f43833"
+  },
+  "sha256": {
+   "NUMBERED_ENTRIES.csv": "ea3672881c5226ac71022be4d534ec6d8254fcedac0a90d13eec3c89d0978cca",
+   "UNNUMBERED_ENTRIES.csv": "fa47018cfb0f3b4d5602008ece36d6212aafdf9ae862e50e00dfd34255853555"
+  }
+ },
+ "work": {
+  "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897",
+  "compiler": "James D. Richardson, a Representative from the State of Tennessee",
+  "published": "Washington: Government Printing Office, 1896-1899; published by authority of Congress (copyright 1897 by J. D. Richardson)"
+ },
+ "volumes": [
+  {
+   "key": "RICH_VI",
+   "volume": "VI",
+   "short": "Richardson vol. VI (GPO 1897)",
+   "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume VI (Abraham Lincoln, Andrew Johnson; March 4, 1861 to March 4, 1869)",
+   "published": "Washington: Government Printing Office, 1897",
+   "digitized_by": "Google, University of Florida depository copy (stamp Y4.993/1:3/1.6); HathiTrust handle 2027/ufl.31262091102953",
+   "handle_url": "https://hdl.handle.net/2027/ufl.31262091102953",
+   "supplied": "HathiTrust PDF download (its cover page gives the handle and \"Public Domain, Google-digitized\"), saved to the owner's Downloads on 2026-10-17 as ufl-31262091102953-1792287471.pdf; added unchanged",
+   "pdf": "releases/source_books/Richardson_1897_Messages_and_Papers_v6_ufl.31262091102953.pdf",
+   "pdf_sha256": "c16989352e1010f7124c8ada2b678dad7d607e455fe3a5588ce1e7cc6da60896",
+   "pdf_bytes": 201627915,
+   "pages": 797,
+   "years": [1861, 1869],
+   "president_heads": ["Abraham Lincoln", "Andrew Johnson"],
+   "signatures": [
+    {"name": "ABRAHAM LINCOLN", "printed": [1, 297]},
+    {"name": "A. LINCOLN", "printed": [1, 297]},
+    {"name": "ANDREW JOHNSON", "printed": [298, 758]}
+   ],
+   "page_offsets": [[28, 322, 25], [331, 787, 29]],
+   "order_sections": ["EXECUTIVE ORDER", "DEATH OF PRESIDENT LINCOLN"],
+   "section_last_page": {
+    "DEATH OF PRESIDENT LINCOLN": 297
+   },
+   "contents_order_sections": [[17, 19], [38, 44], [99, 126], [159, 160], [174, 179], [230, 243], [273, 276], [282, 284], [284, 297], [333, 353], [439, 444], [551, 558], [661, 672]],
+   "text": "data/richardson_v6_pages.jsonl",
+   "text_sha256": "75203e029deba1f33a7bc4b44768ee7a07f99a16f3cdae3b836851139a5f2620",
+   "raw_text": "data/richardson_v6_pages_raw.jsonl",
+   "raw_text_sha256": "e8aa5addfc204b625f053c55c44d66da8704fe4438e1d5e42cbe2c94aa4c778a",
+   "extractor": "pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR",
+   "raw_extractor": "pdftotext 4.06 (xpdf) -raw -enc UTF-8, only for the pages where pypdf gives one or two words per line (more than 30% of 20+ lines); the job joins those runs of short lines",
+   "span": ["1861-03-04", "1869-03-04"]
+  },
+  {
+   "key": "RICH_VII",
+   "volume": "VII",
+   "short": "Richardson vol. VII (GPO 1898)",
+   "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume VII (Ulysses S. Grant, Rutherford B. Hayes; March 4, 1869 to March 4, 1881)",
+   "published": "Washington: Government Printing Office, 1898",
+   "digitized_by": "Google, University of Florida depository copy (stamp Y4.993/1:3/7); HathiTrust handle 2027/ufl.31262091102805",
+   "handle_url": "https://hdl.handle.net/2027/ufl.31262091102805",
+   "supplied": "HathiTrust PDF download (its cover page gives the handle and \"Public Domain, Google-digitized\"), saved to the owner's Downloads on 2026-10-17 as ufl-31262091102805-1792287338.pdf; added unchanged",
+   "pdf": "releases/source_books/Richardson_1898_Messages_and_Papers_v7_ufl.31262091102805.pdf",
+   "pdf_sha256": "2cb26d28960b7dda00bc61f42ad64917e9add02df3dbcd39e50d7e6449e5db19",
+   "pdf_bytes": 175056162,
+   "pages": 677,
+   "years": [1869, 1881],
+   "president_heads": ["Ulysses S. Grant", "Rutherford B. Hayes"],
+   "signatures": [
+    {"name": "U. S. GRANT", "printed": [1, 436]},
+    {"name": "R. B. HAYES", "printed": [437, 640]}
+   ],
+   "page_offsets": [[28, 462, 25], [468, 669, 29]],
+   "order_sections": ["EXECUTIVE ORDER"],
+   "contents_order_sections": [[19, 27], [93, 95], [141, 142], [180, 184], [218, 220], [229, 235], [281, 284], [326, 332], [398, 399], [450, 451], [458, 458], [491, 491], [549, 557], [600, 600], [640, 640]],
+   "text": "data/richardson_v7_pages.jsonl",
+   "text_sha256": "e01751df2ab40fe91c37a7dc08521e1dffc7f1786bd43a8bc0567017452eb9bb",
+   "raw_text": "data/richardson_v7_pages_raw.jsonl",
+   "raw_text_sha256": "37415727e33f46005050bb24c10045bd099aa232360644b1802691dd42feee80",
+   "extractor": "pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR",
+   "raw_extractor": "pdftotext 4.06 (xpdf) -raw -enc UTF-8, only for the pages where pypdf gives one or two words per line (more than 30% of 20+ lines); the job joins those runs of short lines",
+   "extra_documents": [
+    {
+     "printed": 157,
+     "start_regex": "^\\s*RULES\\s+FOR\\s+THE\\s+CIVIL\\s+SERVICE\\s*\\.?\\s*$",
+     "end_regex": "^\\s*EXECUTIVE\\s+MANSION\\s*,\\s*December\\s+20\\s*,\\s*1871",
+     "date": "1871-12-19",
+     "note": "Civil service rules adopted by the President, printed after his special message of December 19, 1871 (SPECIAL MESSAGES, pp. 157-159); they have no dateline of their own, so the date is the message's. Located by reading; configured, not machine-found."
+    }
+   ],
+   "span": ["1869-03-04", "1881-03-04"]
+  },
+  {
+   "key": "RICH_IX",
+   "volume": "IX",
+   "short": "Richardson vol. IX (GPO 1898)",
+   "title": "A Compilation of the Messages and Papers of the Presidents, 1789-1897, Volume IX (Benjamin Harrison, Grover Cleveland second term; March 4, 1889 to March 4, 1897)",
+   "published": "Washington: Government Printing Office, 1898",
+   "digitized_by": "Google, Pennsylvania State University copy (gift of Dr. Asa Earl Martin); HathiTrust handle 2027/pst.000024803533",
+   "handle_url": "https://hdl.handle.net/2027/pst.000024803533",
+   "supplied": "HathiTrust PDF download (its cover page gives the handle and \"Public Domain, Google-digitized\"), saved to the owner's Downloads on 2026-10-17 as pst-000024803533-1792287350.pdf; added unchanged",
+   "pdf": "releases/source_books/Richardson_1898_Messages_and_Papers_v9_pst.000024803533.pdf",
+   "pdf_sha256": "469ae9e6986ac77c857ac963efc77450166fb51ab5301e8bc7106eebac41d4ad",
+   "pdf_bytes": 110612428,
+   "pages": 831,
+   "years": [1889, 1897],
+   "president_heads": ["Benjamin Harrison", "Grover Cleveland"],
+   "signatures": [
+    {"name": "BENJ. HARRISON", "printed": [1, 386]},
+    {"name": "GROVER CLEVELAND", "printed": [387, 801]}
+   ],
+   "page_offsets": [[26, 824, 23]],
+   "order_sections": ["EXECUTIVE ORDER"],
+   "contents_order_sections": [[27, 32], [103, 107], [164, 180], [302, 306], [383, 385], [399, 401], [434, 434], [513, 523], [598, 625], [699, 714], [798, 801]],
+   "text": "data/richardson_v9_pages.jsonl",
+   "text_sha256": "41d93bbdf8dfbf5d12132357e4176d4bd7c75a4e4d21d0df6c029070e09ed484",
+   "raw_text": "data/richardson_v9_pages_raw.jsonl",
+   "raw_text_sha256": "0b8948850bd31c897d639a6b8329f2c7fe1eb0bc23166d22e2d3079eed7dc239",
+   "extractor": "pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR",
+   "raw_extractor": "pdftotext 4.06 (xpdf) -raw -enc UTF-8, only for the pages where pypdf gives one or two words per line (more than 30% of 20+ lines); the job joins those runs of short lines",
+   "span": ["1889-03-04", "1897-03-04"]
+  }
+ ],
+ "rights_note": "A U.S. Government work (public domain). HathiTrust and Google ask that the scan images and OCR not be re-hosted commercially; this is kept for non-commercial research with attribution, and the notice page is preserved in the PDF."
+}

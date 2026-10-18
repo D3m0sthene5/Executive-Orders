@@ -1,0 +1,56 @@
+test_citations_and_census_leads (test_richardson.CommittedVolumes.test_citations_and_census_leads) ... ok
+test_documents (test_richardson.CommittedVolumes.test_documents) ... ok
+test_sections_match_the_contents (test_richardson.CommittedVolumes.test_sections_match_the_contents) ... ok
+test_text_layers_and_page_maps (test_richardson.CommittedVolumes.test_text_layers_and_page_maps) ... ok
+test_addressee_under_a_dateline_is_not_a_signature (test_richardson.Documents.test_addressee_under_a_dateline_is_not_a_signature) ... ok
+test_bare_approval_date_followed_by_the_signature (test_richardson.Documents.test_bare_approval_date_followed_by_the_signature) ... ok
+test_body_line_naming_a_secretary_does_not_end_a_document (test_richardson.Documents.test_body_line_naming_a_secretary_does_not_end_a_document) ... ok
+test_closing_approval_after_a_commission_signature_stays_with_it (test_richardson.Documents.test_closing_approval_after_a_commission_signature_stays_with_it) ... ok
+test_countersignature_is_absorbed_but_never_the_next_dateline (test_richardson.Documents.test_countersignature_is_absorbed_but_never_the_next_dateline) ... ok
+test_dates_inside_prose_and_weekdays_are_not_datelines (test_richardson.Documents.test_dates_inside_prose_and_weekdays_are_not_datelines) ... ok
+test_letter_signed_by_a_cabinet_officer_ends_before_the_next_order (test_richardson.Documents.test_letter_signed_by_a_cabinet_officer_ends_before_the_next_order) ... ok
+test_marcharch_and_a_dateline_after_an_ocr_speck (test_richardson.Documents.test_marcharch_and_a_dateline_after_an_ocr_speck) ... ok
+test_ocr_day_and_bare_caps_date_after_a_signature (test_richardson.Documents.test_ocr_day_and_bare_caps_date_after_a_signature) ... ok
+test_order_printed_inside_general_orders_is_flagged (test_richardson.Documents.test_order_printed_inside_general_orders_is_flagged) ... ok
+test_president_comma_president_ends_a_document (test_richardson.Documents.test_president_comma_president_ends_a_document) ... ok
+test_rules_published_herewith_stay_with_the_order (test_richardson.Documents.test_rules_published_herewith_stay_with_the_order) ... ok
+test_seal_inside_the_day_clause (test_richardson.Documents.test_seal_inside_the_day_clause) ... ok
+test_the_civil_service_act_date_in_the_body_is_never_the_order_date (test_richardson.Documents.test_the_civil_service_act_date_in_the_body_is_never_the_order_date) ... ok
+test_small_volume_against_a_small_census (test_richardson.EndToEnd.test_small_volume_against_a_small_census) ... ok
+test_wrong_pdf_bytes_stop_the_run (test_richardson.EndToEnd.test_wrong_pdf_bytes_stop_the_run) ... ok
+test_lord_citations_ocr_and_swallowed_rows (test_richardson.Lists.test_lord_citations_ocr_and_swallowed_rows) ... ok
+test_wpa_merged_rows_are_split (test_richardson.Lists.test_wpa_merged_rows_are_split) ... ok
+test_date_and_page (test_richardson.Matching.test_date_and_page) ... ok
+test_general_orders_wrapper_loses_to_the_order (test_richardson.Matching.test_general_orders_wrapper_loses_to_the_order) ... ok
+test_list_year_one_off_and_wrong_page (test_richardson.Matching.test_list_year_one_off_and_wrong_page) ... ok
+test_never_forced (test_richardson.Matching.test_never_forced) ... ok
+test_same_date_split_by_the_named_rule (test_richardson.Matching.test_same_date_split_by_the_named_rule) ... ok
+test_order_quoted_in_a_message (test_richardson.OrdersOutsideSections.test_order_quoted_in_a_message) ... ok
+test_fragmented_page_uses_the_raw_layer (test_richardson.PagesAndSections.test_fragmented_page_uses_the_raw_layer) ... ok
+test_page_furniture (test_richardson.PagesAndSections.test_page_furniture) ... ok
+test_running_heads_with_ocr_digits (test_richardson.PagesAndSections.test_running_heads_with_ocr_digits) ... ok
+test_sections_title_page_and_in_section_heading (test_richardson.PagesAndSections.test_sections_title_page_and_in_section_heading) ... ok
+test_title_page_head_is_kept (test_richardson.PagesAndSections.test_title_page_head_is_kept) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 9.251s
+
+OK
+WPA and Lord lists: committed subset (wpa-lists output absent) (155 numbered entries parsed, 369 Lord entries citing Richardson).
+RICH_VI: 213 orders in 13 executive-order sections (contents agree) plus 10 fragments; confidence {'high': 167, 'medium': 46}; undated 10; PDF check: pdf_not_checked_out.
+  Page map: 751 of 751 running heads agree; 31 fragmented pages taken from the pdftotext layer.
+  WPA citations: 3 {'match': 3}; Lord citations: 44 {'match': 42, 'ambiguous': 1, 'unmatched': 1}; WPA orders with no Richardson citation, matched on date and subject: {'match': 2, 'unmatched': 1, 'ambiguous': 1}.
+  5 WPA numbers located in 5 orders; 208 unnumbered orders (42 cited by Lord, 166 by neither list).
+  Census: 5 census orders get a text (fragments 5); decided orders among them 1; leads {'NOT_IN_CENSUS_unnumbered': 167, 'DATE_FILL': 5, 'IN_CENSUS_NOT_FOUND_IN_VOLUME': 1, 'LIST_PARSE_CORRECTION': 2, 'CANDIDATE_TEXT_DATE_ONLY': 1}; ending leads 35.
+RICH_VII: 75 orders in 15 executive-order sections (contents agree) plus 8 fragments; confidence {'high': 55, 'medium': 20}; undated 1; PDF check: pdf_not_checked_out.
+  Page map: 632 of 632 running heads agree; 26 fragmented pages taken from the pdftotext layer.
+  WPA citations: 11 {'match': 11}; Lord citations: 35 {'match': 33, 'ambiguous': 1, 'unmatched': 1}; WPA orders with no Richardson citation, matched on date and subject: {'unmatched': 4}.
+  11 WPA numbers located in 11 orders; 64 unnumbered orders (32 cited by Lord, 32 by neither list).
+  Census: 11 census orders get a text (fragments 11); decided orders among them 1; leads {'NOT_IN_CENSUS_unnumbered': 49, 'DATE_FILL': 11, 'IN_CENSUS_NOT_FOUND_IN_VOLUME': 5, 'LIST_PARSE_CORRECTION': 3}; ending leads 29.
+RICH_IX: 154 orders in 11 executive-order sections (contents agree) plus 2 fragments; confidence {'high': 142, 'medium': 12}; undated 3; PDF check: pdf_not_checked_out.
+  Page map: 792 of 792 running heads agree; 14 fragmented pages taken from the pdftotext layer.
+  WPA citations: 76 {'match': 72, 'unmatched': 4}; Lord citations: 79 {'match': 77, 'ambiguous': 2}; WPA orders with no Richardson citation, matched on date and subject: {'match': 1, 'unmatched': 8, 'ambiguous': 2}.
+  73 WPA numbers located in 59 orders; 95 unnumbered orders (77 cited by Lord, 18 by neither list).
+  Census: 52 census orders get a text (fragments 52); decided orders among them 0; leads {'NOT_IN_CENSUS_unnumbered': 89, 'DATE_FILL': 52, 'NOT_IN_CENSUS_numbered': 21, 'IN_CENSUS_NOT_FOUND_IN_VOLUME': 1, 'LIST_PARSE_CORRECTION': 16, 'CANDIDATE_TEXT_DATE_ONLY': 2}; ending leads 192.
+Citations into volumes this job does not hold yet: {'Lord unnumbered: vol. II': 2, 'Lord unnumbered: vol. III': 3, 'Lord unnumbered: vol. IV': 7, 'Lord unnumbered: vol. V': 5, 'Lord unnumbered: vol. VIII': 84, 'Lord unnumbered: vol. X': 110, 'WPA numbered: vol. VIII': 7}.
+Leads only: nothing is admitted, merged, dated or changed. Richardson is a printed compilation, not the signed originals.
