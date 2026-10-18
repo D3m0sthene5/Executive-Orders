@@ -81,6 +81,17 @@ class WholeHeadReviewTests(unittest.TestCase):
         self.assertIn('ACTOR_TEXT:EO:2',d['evidence'])
         self.assertTrue(any('not located' in x for x in d['missing']))
 
+    def test_page_label_aliases_are_preserved_without_repeating_extraction(self):
+        from copy import deepcopy
+        self.text('EO:1','one.txt','I hereby establish a board for four years from January 1, 2000.')
+        alias=deepcopy(self.corpus['texts'][0]);alias['source']['page_or_item']='PDF page 1; clause 2'
+        self.corpus['texts'].append(alias)
+        out=self.run_build();summary=json.loads((out/'SUMMARY.json').read_text())
+        self.assertEqual(summary['counts']['declared_text_representations'],2)
+        self.assertEqual(summary['counts']['held_texts_scanned'],1)
+        self.assertEqual(len((out/'TEXT_REPRESENTATIONS.jsonl').read_text().splitlines()),2)
+        self.assertEqual(len((out/'TEXT_CLAUSES.jsonl').read_text().splitlines()),1)
+
     def test_nonselected_generic_reference_is_counted(self):
         self.text("EO:1", "a.txt", "I hereby establish a board.")
         self.text("EO:1", "z.txt", "All prior orders are revoked.", False)

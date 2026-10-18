@@ -118,3 +118,9 @@ reconstructs and verifies every derived source against the original dossier.
 Corpus JSONL files roll at 75 MB into `<STEM>.partNNNN.jsonl`; the first shard keeps
 the required base filename. Read all shards listed in SUMMARY.json `jsonl_shards`.
 No over-95-MB corpus output should disappear into the runner's temporary artifacts.
+
+`TEXT_REPRESENTATIONS.jsonl` retains all attributed text declarations, including
+citation/page-label aliases. Extraction runs once per identity, actual text path,
+original-artifact hash and text hash; aliases of one held file do not multiply
+segmentation, term detection or actor scanning. SUMMARY distinguishes declared
+representations from distinct held artifacts and actual scans.

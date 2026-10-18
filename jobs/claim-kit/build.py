@@ -179,7 +179,18 @@ def build(repo, out, cache=None):
     cache_path=Path(cache).resolve() if cache else None
     if cache_path:cache_path.mkdir(parents=True,exist_ok=True)
     cache_hits=0
-    text_records=sorted(corpus['texts'],key=lambda r:(rank_text(r),r['instrument_id']))
+    declared=sorted(corpus['texts'],key=lambda r:(rank_text(r),r['instrument_id']))
+    text_records=[];seen_texts=set()
+    # Clause-level citations often declare the same file hundreds of times with
+    # different page labels. Preserve every declaration, parse each actual held
+    # order/artifact/text once, and choose its best original/locator candidate.
+    with ShardedJsonl(out/'TEXT_REPRESENTATIONS.jsonl') as fh:
+        for r in declared:
+            line(fh,r)
+            key=(r['instrument_id'],r['text_path'],r['source'].get('sha256'),r['source'].get('text_sha256'))
+            if key not in seen_texts:seen_texts.add(key);text_records.append(r)
+    counts['declared_text_representations']=len(declared)
+    counts['distinct_held_text_artifacts']=len(text_records)
     with ShardedJsonl(out/'TEXT_CLAUSES.jsonl') as all_clauses:
         for r in text_records:
             iid=r['instrument_id']
