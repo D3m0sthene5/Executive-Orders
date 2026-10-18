@@ -303,6 +303,21 @@ WRAPPED_DISP_REF = re.compile(r"^[.]\s*((?:EOS?s?|Procs?)\s*\.?\s*\d{1,5}(?:\s*,
 # on 2026-10-17: the rows either side are contiguous on the printed page). Number -> PDF page.
 NOT_PRINTED_IN_TABLE = {10217: 1063, 10275: 1064, 10288: 1064, 10595: 1069}
 TRAILING_NUMBER = re.compile(r"^(.*(?:EOS?s?|Procs?)\s*\.?\s*(?:\d{1,5}\s*,\s*)*)(\d{5,10})\s*$")
+# Two rows in one OCR piece: '2768......... Revokedby EO 34612786 Revokedby EO 3461'. The text before a second status
+# phrase ends in the first row's acting number with the next row's number glued on (or after a space).
+MERGED_HEAD = re.compile(r"^(?P<pre>.*(?:EOS?s?|Procs?)\s*\.?\s*(?:\d{1,5}\s*,\s*)*)(?P<digits>\d{4,10})"
+                         r"(?:\s+(?P<next>\d{3,5}[A-Z]?))?[\s.…]*$")
+MERGED_NOARG_HEAD = re.compile(r"^(?P<pre>(?:Temporary|Hortatory|Tariff|Public\s*lands|Executed\s*and\s*obsolete|Obsolete)"
+                               r"[\s.…]*?)\s*(?P<next>\d{3,5}[A-Z]?)[\s.…]*$")
+# A lone 1-2 digit OCR piece in the disposition column that is not next to any other text on its line
+# ('1' on PDF 1045 and 1089: the page images print nothing there). About 3.2 pt per character.
+STRAY_DIGITS = re.compile(r"^\s*\d{1,2}\s*$")
+STRAY_GAP = 20.0
+CHAR_W = 3.2
+# Ending verbs inside a disposition, for the mechanism of each acting document named after them
+# ('Superseded by EO 11640. Revoked by EO 11788': 11640 supersession, 11788 revocation).
+ENDING_VERB = re.compile(r"Revoked\s*by|Supersede\s*d\s*by|Supersedebdy|Supersededy|Nullified\s*by|[Tt]erminated\s*by|"
+                         r"Replaced\s*by|Eliminated\s*by")
 
 
 def first_disp_kw(t: str):
@@ -336,7 +351,7 @@ def key_order(key: str):
     return (int(m.group(1)), m.group(2)) if m else None
 
 
-def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int = 11):
+def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int = 11, max_eo: int | None = None):
     """One page of the Executive Orders disposition table -> (anchors, orphans, stats)."""
     pno = page["page"]
     chunks = page["chunks"]
@@ -379,6 +394,21 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
     dispx = float(kwx.most_common(1)[0][0]) if kwx else numx + 210
     amx_c = collections.Counter(round(x) for x, y, t in ch if numx + 40 < x < dispx - 40 and AMEND_KW.match(t))
     amx = float(amx_c.most_common(1)[0][0]) if amx_c else dispx - 140
+
+    def isolated(c0):
+        x0, y0 = c0[0], c0[1]
+        for c1 in ch:
+            if c1 is c0 or abs(c1[1] - y0) > 2.6 or c1[0] < dispx - 6:
+                continue
+            if c1[0] < x0 and c1[0] + CHAR_W * len(c1[2].rstrip()) >= x0 - STRAY_GAP:
+                return False
+            if x0 <= c1[0] <= x0 + CHAR_W * len(c0[2].strip()) + STRAY_GAP:
+                return False
+        return True
+
+    stray = [c0 for c0 in ch if c0[0] >= dispx - 6 and STRAY_DIGITS.match(c0[2]) and isolated(c0)]
+    stray_dropped = [{"page": pno, "x": c0[0], "y": c0[1], "text": c0[2].strip()} for c0 in stray]
+    ch = [c0 for c0 in ch if not any(c0 is s0 for s0 in stray)]
 
     anchors, disp_parts, amend_parts, md_frags, year_frags, orphans = [], [], [], [], [], []
 
@@ -520,6 +550,56 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
                     if k < len(digits) and digits[k] != "0" and int(digits[:k]) <= 12700]
         return []
 
+    # Two rows in one OCR piece: '2768......... Revokedby EO 34612786 Revokedby EO 3461' is printed as two rows,
+    # '2768 ... Revoked by EO 3461' and '2786 ... Revoked by EO 3461'. Where a second status phrase follows a number,
+    # the number is split into the first row's acting number and the next row's number. The split is made only when
+    # exactly one way of splitting puts the next number where the page has none, in the page's order, with an acting
+    # number no higher than the table's last EO. The second row takes the rest of the piece as its disposition.
+    def merged_candidates(t):
+        k0 = first_disp_kw(t)
+        if k0 is None:
+            return []
+        out = []
+        for m in DISP_KW.finditer(t):
+            if m.start() <= k0:
+                continue
+            head, tail = t[:m.start()], t[m.start():]
+            cands = []
+            g = MERGED_HEAD.match(head)
+            if g and g.group("next"):
+                cands.append((g.group("pre") + g.group("digits"), g.group("next")))
+            elif g:
+                d = g.group("digits")
+                cands += [(g.group("pre") + d[:k], d[k:]) for k in (3, 4, 5)
+                          if k < len(d) and d[k] != "0" and (max_eo is None or int(d[:k]) <= max_eo)]
+            g = MERGED_NOARG_HEAD.match(head)
+            if g:
+                cands.append((g.group("pre"), g.group("next")))
+            if cands:
+                out.append((cands, tail))
+        return out
+
+    merged_splits = []
+    for i in range(len(disp_parts)):
+        part = disp_parts[i]
+        x, y, t = part[:3]
+        for cands, tail in merged_candidates(t):
+            y_new = y - pitch
+            ok = [(head, num) for head, num in cands if fits("EO:" + num, y_new)]
+            if len(ok) != 1:
+                continue
+            head, num = ok[0]
+            how = ";".join(h for h in (part[4] if len(part) > 4 else "", "merged_ocr_piece_split") if h)
+            disp_parts[i] = (x, y, head.strip(), True, how)
+            add_anchor(anchor_key(NUM_RE.match(num)), y_new, num, ["row_split_from_merged_ocr_piece"])
+            new = anchors[-1]
+            new.update({"disp": [tail.strip()], "disp_dy": 0.0, "disp_how": "row_split_from_merged_ocr_piece",
+                        "disp_free_text": first_disp_kw(tail.strip()) != 0})
+            anchors.sort(key=lambda a: -a["y"])
+            merged_splits.append({"page": pno, "piece": t, "first_row_text": head.strip(), "second_row": new["key"],
+                                  "second_row_text": tail.strip()})
+            break
+
     for column, parts in (("disp", disp_parts), ("amend", amend_parts)):
         for i, part in enumerate(parts):
             x, y, t = part[:3]
@@ -632,6 +712,8 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
                         cur["disp_dy"] = abs(cur["y"] - ln["y"])
                         cur["disp_how"] = ln["how"]
                         cur["disp_free_text"] = first_disp_kw(ln["text"]) != 0
+                        if "merged_ocr_piece_split" in ln["how"]:
+                            cur["flags"].append("merged_ocr_piece_split")
                     prev_y = ln["y"]
                     continue
                 orphans.append({"page": pno, "y": ln["y"], "text": f"{name}_START:" + ln["text"]})
@@ -651,7 +733,7 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
     attach(lines_of(amend_parts), amx, "amend", "AMENDMENTS")
     stats = {"page": pno, "printed": printed, "printed_read": printed_read, "numx": numx, "dispx": dispx, "amx": amx, "pitch": round(pitch, 2),
              "anchors": len(anchors), "with_disposition": sum(1 for a in anchors if a["disp"]), "carry": carry,
-             "same_line_joins": same_line_joins}
+             "same_line_joins": same_line_joins, "merged_row_splits": merged_splits, "stray_digits_dropped": stray_dropped}
     return anchors, orphans, stats
 
 
@@ -727,10 +809,39 @@ def acting_documents(text: str) -> list[str]:
     return seen
 
 
-def parse_table(pages, census_upper: set, offset: int = 11):
+MECH = {"revoked": ("revocation", ""), "nullified": ("revocation", "nullified"), "superseded": ("supersession", ""),
+        "replaced": ("supersession", "replaced"), "terminated": ("termination", ""), "eliminated": ("termination", "eliminated")}
+
+
+def verb_mechanism(verb: str):
+    v = squash(verb).lower()
+    for prefix, cat in (("revoked", "revoked"), ("supersede", "superseded"), ("nullified", "nullified"),
+                        ("terminated", "terminated"), ("replaced", "replaced"), ("eliminated", "eliminated")):
+        if v.startswith(prefix):
+            return MECH[cat]
+    return None
+
+
+def mechanism_by_actor(disposition: str, category: str) -> dict:
+    """(mechanism, qualifier) for each acting document: that of the nearest ending verb before it ('Superseded by
+    EO 11640. Revoked by EO 11788' -> 11640 supersession, 11788 revocation); the row's own category when no verb
+    precedes it."""
+    out = {}
+    cuts = [(m.start(), verb_mechanism(m.group(0))) for m in ENDING_VERB.finditer(disposition)]
+    segs = [(0, MECH.get(category))] + cuts
+    for (start, mech), (end, _) in zip(segs, segs[1:] + [(len(disposition), None)]):
+        for actor in acting_documents(disposition[start:end]):
+            out.setdefault(actor, mech or MECH.get(category))
+    return out
+
+
+def parse_table(pages, census_upper: set, offset: int = 11, max_eo: int | None = None, known_ids: set | None = None):
+    """known_ids: when given, an EO named as the acting document must be one of these ids (the census), or it is
+    flagged and not treated as the order that ended the row. max_eo: the last EO number of the table's period;
+    a higher acting EO number is a misread and is treated the same way."""
     rows, orphans, stats = [], [], []
     for i, page in enumerate(pages):
-        a, o, s = parse_table_page(page, census_upper, i == 0, offset)
+        a, o, s = parse_table_page(page, census_upper, i == 0, offset, max_eo)
         for field, texts in s.pop("carry", {}).items():
             if not texts:
                 continue
@@ -743,6 +854,8 @@ def parse_table(pages, census_upper: set, offset: int = 11):
         rows += a
         orphans += o
         stats.append(s)
+    if max_eo is not None:   # the last EO of the period, or the table's own highest row if that is higher
+        max_eo = max([max_eo] + [key_number(r["key"]) for r in rows if key_number(r["key"]) is not None])
     for seq, a in enumerate(rows, 1):
         if a["disp"] and AMEND_KW.match(a["disp"][0]):
             # amendments text that the OCR ran into the disposition column: 'Ratifiedby EO 12294 Codified at ...'
@@ -751,7 +864,7 @@ def parse_table(pages, census_upper: set, offset: int = 11):
                 a["amend"].append(a["disp"][0][:k].strip())
                 a["disp"][0] = a["disp"][0][k:]
                 a["flags"].append("amendments_text_in_disposition_column")
-        disp = clean(" | ".join(a["disp"])).lstrip(" ,.;…")
+        disp = re.sub(r",(?:\s*,)+", ",", clean(" | ".join(a["disp"]))).lstrip(" ,.;…")   # '10858,, 10968' -> '10858, 10968'
         cat, group = categorise(disp)
         cm = re.search(r"Chapter\s*(\d{1,2})\s*,?\s*(?:p\s*\.?\s*(\d{1,4}))?", disp) if cat == "codified_here" else None
         if a["disp"]:
@@ -767,11 +880,25 @@ def parse_table(pages, census_upper: set, offset: int = 11):
             # the book names the row's own order as the acting document (EO 11818 'Revoked by EO 11818'): a printing
             # error reproduced as printed, flagged, and never emitted as a later-event candidate
             a["flags"].append("acting_document_is_the_row_itself")
+        # acting EO numbers that cannot be right: above the table's last EO, or not a census identity
+        rejected = []
+        for x in ending:
+            if not x.startswith("EO:") or x == a["key"]:
+                continue
+            n = key_number(x)
+            if max_eo is not None and n is not None and n > max_eo:
+                rejected.append(x)
+                a["flags"].append("acting_number_beyond_table_period")
+            elif known_ids is not None and x.upper() not in known_ids:
+                rejected.append(x)
+                a["flags"].append("acting_document_not_in_census")
+        if rejected and conf == "high":
+            conf = "medium"
         a.update({"seq": seq, "disposition": disp, "amendments": clean(" | ".join(a["amend"])), "category": cat,
                   "group": group, "codified_chapter": cm.group(1) if cm else "",
                   "codified_page": (cm.group(2) or "") if cm else "",
-                  "acting": acting, "ending_acting": [x for x in ending if x != a["key"]],
-                  "pairing_confidence": conf})
+                  "acting": acting, "ending_acting": [x for x in ending if x != a["key"] and x not in rejected],
+                  "rejected_acting": rejected, "pairing_confidence": conf})
     return rows, orphans, stats
 
 
@@ -804,7 +931,6 @@ def census_state(c, date):
 
 def run(repo_root, job_dir, out_dir):
     repo, job_dir, out = pathlib.Path(repo_root), pathlib.Path(job_dir), pathlib.Path(out_dir)
-    out.mkdir(parents=True, exist_ok=True)
     prov = json.loads((job_dir / "data" / "PROVENANCE.json").read_text(encoding="utf-8"))
     book = prov["book"]
     for key in ("text", "table_chunks"):
@@ -827,6 +953,7 @@ def run(repo_root, job_dir, out_dir):
             if h.hexdigest() != book["pdf_sha256"]:
                 raise SystemExit(f"{book['pdf']}: sha256 does not match PROVENANCE.json")
             pdf_check = "match"
+    out.mkdir(parents=True, exist_ok=True)   # only once the inputs are known to be the right ones
 
     census = load_csv(repo / prov["census"], "id")
     census_upper = set(census)
@@ -859,7 +986,8 @@ def run(repo_root, job_dir, out_dir):
     fragmented = set(body_stats["fragmented"])
     with open(job_dir / book["table_chunks"], encoding="utf-8") as fh:
         tpages = [json.loads(l) for l in fh]
-    trows, orphans, tstats = parse_table(tpages, census_upper, lay["printed_page_offset"])
+    trows, orphans, tstats = parse_table(tpages, census_upper, lay["printed_page_offset"],
+                                         max_eo=lay["complete_eo_run"][1], known_ids=census_upper)
 
     handle, pdf_sha = book["handle_url"], book["pdf_sha256"]
     short = book["short"]
@@ -1025,8 +1153,9 @@ def run(repo_root, job_dir, out_dir):
             r["later_events_check"] = "DIFFERENT_acting_order:" + "|".join(sorted(le_actors[cid]))[:80]
 
     status_leads, fragments = [], collections.defaultdict(list)
-    mech = {"revoked": "revocation", "nullified": "revocation", "superseded": "supersession", "replaced": "supersession",
-            "terminated": "termination", "eliminated": "termination"}
+    for r in trows:
+        r["acting_documents"] = "|".join(r["acting"])
+        r["rejected_acting_documents"] = "|".join(r["rejected_acting"])
     for r in trows:
         cid = r.get("census_id") or ""
         ps = r["provisional_status"]
@@ -1042,7 +1171,8 @@ def run(repo_root, job_dir, out_dir):
         if lead:
             status_leads.append(dict(r, lead=lead))
         actors = [a for a in r["ending_acting"] if a.startswith(("EO:", "Proc:"))]
-        if cid and r["category"] in mech and actors and r["pairing_confidence"] in ("high", "medium"):
+        if cid and r["category"] in MECH and actors and r["pairing_confidence"] in ("high", "medium"):
+            by_actor = mechanism_by_actor(r["disposition"], r["category"])
             page_or_item = f"{short}, Executive Orders disposition table, printed page {r['printed'] or '?'}, PDF page {r['page']}"
             for a in actors[:3]:
                 d = source_dates.get(a.upper()) or acting_date.get(a.upper(), "")
@@ -1055,8 +1185,11 @@ def run(repo_root, job_dir, out_dir):
                     flags.append("acting_document_date_not_attached")
                 if len(actors) > 1:
                     flags.append("several_acting_documents_named")
+                mechanism, qualifier = by_actor.get(a) or MECH[r["category"]]
+                if mechanism != MECH[r["category"]][0]:
+                    flags.append("mechanism_from_its_own_verb_not_the_rows_first")
                 fragments[cid].append({
-                    "actor": a, "mechanism": mech[r["category"]], "qualifier": r["category"] if r["category"] in ("nullified", "replaced", "eliminated") else "",
+                    "actor": a, "mechanism": mechanism, "qualifier": qualifier,
                     "date_candidate": d or None, "date_basis": [basis] if basis else [], "date_candidates_conflicting": [],
                     "stated_effective_date_candidates": [], "evidence_types": ["ofr_codification_1989_table"],
                     "edge_ids": ["OC89-" + sha256_bytes(f"{cid}|{a}|{r['disposition']}|{r['page']}".encode())[:12]],
@@ -1125,10 +1258,10 @@ def run(repo_root, job_dir, out_dir):
     # ---- write
     write_csv(out / "CODIFIED_1989.csv", codified_rows, list(codified_rows[0].keys()))
     disp_fields = ["seq", "page", "printed", "y", "key", "census_id", "in_census", "raw", "amendments", "disposition",
-                   "category", "group", "codified_chapter", "codified_page", "acting_documents", "pairing_confidence",
+                   "category", "group", "codified_chapter", "codified_page", "acting_documents", "rejected_acting_documents",
+                   "pairing_confidence",
                    "flags", "later_events_check", "provisional_status", "step_ending_or_current_basis"]
     for r in trows:
-        r["acting_documents"] = "|".join(r["acting"])
         r["flags"] = r["flags"] if isinstance(r["flags"], str) else "|".join(r["flags"])
     write_csv(out / "DISPOSITION_1989.csv", trows, disp_fields)
     write_csv(out / "DISPOSITION_ORPHANS.csv", orphans, ["page", "y", "text"])
@@ -1210,6 +1343,9 @@ def run(repo_root, job_dir, out_dir):
                                                           - {r["key"] for r in trows if r["category"] == "codified_here"}),
             "flags": dict(collections.Counter(f for r in trows for f in r["flags"].split("|") if f)),
             "same_line_pieces_joined": [j for p in tstats for j in p.get("same_line_joins", [])],
+            "merged_row_splits": [j for p in tstats for j in p.get("merged_row_splits", [])],
+            "stray_digit_pieces_dropped": [j for p in tstats for j in p.get("stray_digits_dropped", [])],
+            "rejected_acting_documents": {r["key"]: r["rejected_acting_documents"] for r in trows if r["rejected_acting_documents"]},
             "later_events_check_on_revoked_superseded": dict(collections.Counter(
                 r["later_events_check"].split(":")[0] for r in trows if r["later_events_check"])),
         },

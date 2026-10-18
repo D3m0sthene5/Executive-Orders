@@ -22,6 +22,8 @@ print(f"  Census state: {b['census_state']}. Provisional status: {b['provisional
 print(f"Disposition table: {t['rows']} rows ({t['numbered_rows']} numbered, {t['date_rows']} dated unnumbered); "
       f"{t['rows_without_disposition']} without a disposition; {t['orphan_fragments']} unpaired fragments; pairing {t['pairing_confidence']}.")
 print(f"  Groups: {t['groups']}.")
+print(f"  Rows split from one OCR piece: {[m['second_row'] for m in t['merged_row_splits']]}; stray digit pieces dropped: "
+      f"{[(d['page'], d['text']) for d in t['stray_digit_pieces_dropped']]}; acting EOs rejected: {t['rejected_acting_documents'] or 'none'}.")
 print(f"  EO {t['complete_eo_run'][0]}-{t['complete_eo_run'][1]} numbers not read: {t['complete_eo_run_gaps']}. "
       f"Numbered rows in the census: {t['numbered_keys_in_census']} of {t['distinct_numbered_keys']}.")
 print(f"  Against the OFR online data read by later-events (revoked/superseded rows): {t['later_events_check_on_revoked_superseded']}.")

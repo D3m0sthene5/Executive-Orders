@@ -359,6 +359,98 @@ class DispositionTable(unittest.TestCase):
         self.assertEqual((r["acting"], r["ending_acting"]), (["EO:11818"], []))
         self.assertIn("acting_document_is_the_row_itself", r["flags"])
 
+    def test_two_rows_in_one_ocr_piece_are_split(self):
+        # PDF 1034 as the OCR placed it. The page image prints two rows, '2768 ... Revoked by EO 3461' and
+        # '2786 ... Revoked by EO 3461'; the OCR made them one piece and glued 2786 onto the acting number 3461.
+        page = chunk_page(1034, [
+            [55.3, 467.8, "2765A. Revokedby EO 3461\n"],
+            [55.3, 460.8, "2766.. Revokedby EO 3461\n"],
+            [54.8, 452.9, "2768......... Revokedby EO 34612786 Revokedby EO 3461\n"],
+            [55.3, 439.7, "2794 Revokedby EO 3461\n"],
+        ])
+        rows, orphans = rows_of([page])
+        self.assertEqual(orphans, [])
+        self.assertEqual(list(rows), ["EO:2765A", "EO:2766", "EO:2768", "EO:2786", "EO:2794"])
+        for k in rows:
+            self.assertEqual((rows[k]["disposition"], rows[k]["ending_acting"]), ("Revokedby EO 3461", ["EO:3461"]), k)
+        self.assertIn("merged_ocr_piece_split", rows["EO:2768"]["flags"])
+        self.assertIn("row_split_from_merged_ocr_piece", rows["EO:2786"]["flags"])
+        self.assertEqual({rows["EO:2768"]["pairing_confidence"], rows["EO:2786"]["pairing_confidence"]}, {"medium"})
+        # the same with a space between the two numbers, and in a disposition-column piece of its own
+        page = chunk_page(1034, [
+            [55.3, 460.8, "2766"], [266.0, 460.8, "Revokedby EO 3461"],
+            [54.8, 452.9, "2768"], [266.0, 452.9, "Revokedby EO 3461 2786 Revokedby EO 3461"],
+            [55.3, 439.7, "2794"], [266.0, 439.7, "Revokedby EO 3461"],
+        ])
+        rows, _ = rows_of([page])
+        self.assertEqual((rows["EO:2768"]["disposition"], rows["EO:2786"]["disposition"]),
+                         ("Revokedby EO 3461", "Revokedby EO 3461"))
+        # a mixed ending is one row, not two: no split puts a number in order between 11627 and 11628
+        page = chunk_page(1086, [[51.9, 479.6, "11627"], [262.1, 479.3, "Supersededby EO 11640.Revokedby EO 11788"],
+                                 [51.9, 472.5, "11628"], [262.5, 472.5, "Temporary"]])
+        rows, _ = rows_of([page])
+        self.assertEqual((list(rows), rows["EO:11627"]["ending_acting"]), (["EO:11627", "EO:11628"], ["EO:11640", "EO:11788"]))
+
+    def test_impossible_acting_numbers_are_flagged_not_used(self):
+        # the merged piece where no second row fits (the next row is printed right below): the glued '34612' stays,
+        # and an acting EO above the table's last EO number is flagged, not treated as the order that ended the row
+        page = chunk_page(1034, [[54.8, 452.9, "2768......... Revokedby EO 34612"], [55.3, 445.9, "2769 Revokedby EO 6585"]])
+        rows, _, _ = c.parse_table([page], set(), max_eo=12667, known_ids={"EO:2768", "EO:2769"})
+        rows = {r["key"]: r for r in rows}
+        r = rows["EO:2768"]
+        self.assertEqual((r["acting"], r["ending_acting"], r["rejected_acting"]), (["EO:34612"], [], ["EO:34612"]))
+        self.assertIn("acting_number_beyond_table_period", r["flags"])
+        self.assertEqual(r["pairing_confidence"], "medium")
+        r = rows["EO:2769"]   # an acting EO that is not a census identity
+        self.assertEqual((r["ending_acting"], r["rejected_acting"]), ([], ["EO:6585"]))
+        self.assertIn("acting_document_not_in_census", r["flags"])
+
+    def test_stray_digit_pieces_are_dropped(self):
+        # PDF 1045 and 1089: a lone '1' (no newline) far right of the disposition; the page images print nothing there
+        page = chunk_page(1045, [
+            [55.5, 614.4, "8894\n"], [267.1, 613.5, "Revokedby EO 9830\n"], [395.3, 610.6, "1"],
+            [55.5, 607.4, "8900 AmendedEO 8839.Amendedby EOs 8982, 9128, Boardterminatedby EO 9361\n"],
+        ])
+        rows, orphans = rows_of([page])
+        self.assertEqual((rows["EO:8894"]["disposition"], rows["EO:8894"]["acting"]), ("Revokedby EO 9830", ["EO:9830"]))
+        self.assertEqual(orphans, [])
+        page = chunk_page(1089, [
+            [55.7, 599.0, "11813\n"], [267.1, 598.0, "Revokedby EO 12015\n"], [398.0, 592.1, "1"],
+            [55.9, 591.9, "11814.\n"], [267.1, 591.0, "Revokedby EO 12083\n"], [126.2, 590.8, "Amendedby EOS 11819, 11855.\n"],
+            [56.1, 584.9, "11815\n"], [329.0, 584.8, ",\n"], [335.1, 584.8, "p.763\n"], [267.1, 583.8, "Codified\n"],
+            [296.4, 583.8, "atChapter36\n"],
+        ])
+        rows, _ = rows_of([page])
+        self.assertEqual((rows["EO:11814"]["disposition"], rows["EO:11814"]["acting"]), ("Revokedby EO 12083", ["EO:12083"]))
+        self.assertEqual(rows["EO:11815"]["codified_chapter"], "36")
+        # digits that belong to the text beside them stay: PDF 1044 'Codified at Chapter 5, p. 33', PDF 1052 '14 U.S.C. 1)'
+        page = chunk_page(1044, [
+            [55.9, 536.7, "8743\n"], [260.1, 536.1, ", Codified\n"], [330.9, 536.1, "p.\n"], [295.4, 534.9, "atChapter\n"],
+            [323.7, 534.9, "5,\n"], [340.5, 534.9, "33\n"],
+            [55.5, 195.9, "9666\n"], [266.1, 194.8, "Nullified by Pub\n"], [313.5, 194.8, ".\n"], [322.6, 194.8, "L.94-546\n"],
+            [349.1, 194.8, "(\n"], [354.9, 194.8, "90Stat\n"], [369.7, 194.8, ".\n"], [285.7, 189.2, ",14U.S.C.\n"],
+            [271.9, 187.9, "2519\n"], [318.1, 187.8, "1"], [320.5, 187.8, ")"],
+            [55.3, 181.7, "9667\n"], [266.1, 181.5, "RevokesEO 9074\n"],
+        ])
+        rows, _ = rows_of([page])
+        self.assertEqual((rows["EO:8743"]["codified_chapter"], rows["EO:8743"]["codified_page"]), ("5", "33"))
+        self.assertTrue(rows["EO:9666"]["disposition"].endswith("14U.S.C. 1)"), rows["EO:9666"]["disposition"])
+
+    def test_each_acting_document_gets_its_own_verb(self):
+        by = c.mechanism_by_actor("Supersededby EO 11640.Revokedby EO 11788", "superseded")
+        self.assertEqual(by, {"EO:11640": ("supersession", ""), "EO:11788": ("revocation", "")})
+        by = c.mechanism_by_actor("Revokedby EO 9521.Supersededby EO 11295", "revoked")
+        self.assertEqual(by, {"EO:9521": ("revocation", ""), "EO:11295": ("supersession", "")})
+        self.assertEqual(c.mechanism_by_actor("Nullifiedby EO 10060", "nullified"), {"EO:10060": ("revocation", "nullified")})
+
+    def test_doubled_commas_do_not_hide_acting_documents(self):
+        # EO 11382 (PDF 1082): a lone ',' piece joined a comma already there: 'Revokes EOS 10534, 10771, 10858,, 10968'
+        page = chunk_page(1082, [[55.9, 539.5, "11382"], [266.0, 539.5, "Revokes EOS 10534, 10771, 10858,"],
+                                 [300.0, 539.6, ", 10968, 12334"], [55.9, 532.5, "11383"], [266.0, 532.5, "Temporary"]])
+        rows, _ = rows_of([page])
+        self.assertEqual(rows["EO:11382"]["disposition"], "Revokes EOS 10534, 10771, 10858, 10968, 12334")
+        self.assertEqual(rows["EO:11382"]["acting"], ["EO:10534", "EO:10771", "EO:10858", "EO:10968", "EO:12334"])
+
     def test_categories_and_acting_documents(self):
         self.assertEqual(c.categorise("Supersedebdy EO 10300")[0], "superseded")
         self.assertEqual(c.categorise("Codifiedat Chapter 22, p. 382"), ("codified_here", "in_force_1989"))
@@ -441,6 +533,9 @@ class EndToEnd(unittest.TestCase):
             self.assertIn(("EO:UN:x:row:1", "UNNUMBERED_ROW_DATE_FOR_BLANK_CENSUS_DATE"), leads)
             with open(out / "STATUS_LEADS.csv", encoding="utf-8") as fh:
                 st = {(r["census_id"], r["lead"]) for r in csv.DictReader(fh)}
+            with open(out / "STATUS_LEADS.csv", encoding="utf-8") as fh:
+                acting = {r["census_id"]: r["acting_documents"] for r in csv.DictReader(fh)}
+            self.assertEqual(acting["EO:9000"], "EO:10860")   # the leads carry the acting documents too
             self.assertEqual(st, {("EO:8248", "DECIDED_NO_BUT_IN_FORCE_1989_NO_LATER_ENDING_IN_LATER_EVENTS"),
                                   ("EO:9000", "DECIDED_YES_BUT_ENDED_BY_1989"),
                                   ("EO:10860", "UNDECIDED_IN_FORCE_1989"), ("EO:12114", "UNDECIDED_IN_FORCE_1989"),
@@ -469,6 +564,7 @@ class EndToEnd(unittest.TestCase):
             job, repo, out, _ = self.build(pathlib.Path(td), b"%PDF other")
             with self.assertRaises(SystemExit):
                 c.run(repo, job, out)
+            self.assertFalse(out.exists())   # a failed check leaves no empty output folder behind
 
 
 class CommittedBook(unittest.TestCase):
@@ -485,7 +581,8 @@ class CommittedBook(unittest.TestCase):
         cls.docs, _ = c.find_documents(stream)
         with open(HERE / b["table_chunks"], encoding="utf-8") as fh:
             pages = [json.loads(l) for l in fh]
-        rows, cls.orphans, _ = c.parse_table(pages, {"EO:2245½"}, lay["printed_page_offset"])
+        rows, cls.orphans, cls.tstats = c.parse_table(pages, {"EO:2245½"}, lay["printed_page_offset"],
+                                                      max_eo=lay["complete_eo_run"][1])
         cls.rows = rows
         cls.by = {}
         for r in rows:
@@ -507,7 +604,8 @@ class CommittedBook(unittest.TestCase):
         self.assertEqual(len(self.stats["fragmented"]), 151)
 
     def test_disposition_rows(self):
-        self.assertEqual(len(self.rows), 4224)
+        self.assertEqual(len(self.rows), 4225)
+        self.assertEqual(sum(1 for r in self.rows if r["key"].startswith("EO:")), 4207)
         self.assertEqual(sum(1 for r in self.rows if r["key"].startswith("date:")), 18)
         self.assertEqual(sum(1 for r in self.rows if not r["disposition"]), 0)
         self.assertEqual(len(self.orphans), 2)
@@ -536,6 +634,18 @@ class CommittedBook(unittest.TestCase):
         self.assertFalse(self.by["EO:10915"]["amendments"].endswith("EO 12220"))
         self.assertEqual(self.by["EO:11627"]["ending_acting"], ["EO:11640", "EO:11788"])
         self.assertIn("acting_document_is_the_row_itself", self.by["EO:11818"]["flags"])
+        # PDF 1034: two rows in one OCR piece ('2768......... Revokedby EO 34612786 Revokedby EO 3461'), checked
+        # against the page image by the verifier. EO 3461's own row lists both 2768 and 2786 among the orders it revokes.
+        for k in ("EO:2768", "EO:2786"):
+            self.assertEqual((self.by[k]["disposition"], self.by[k]["ending_acting"]), ("Revokedby EO 3461", ["EO:3461"]), k)
+        self.assertIn("2786", self.by["EO:3461"]["disposition"])
+        self.assertEqual([(m["page"], m["second_row"]) for p in self.tstats for m in p["merged_row_splits"]], [(1034, "EO:2786")])
+        # PDF 1045 and 1089: stray '1' pieces with nothing printed there
+        self.assertEqual((self.by["EO:8894"]["disposition"], self.by["EO:11814"]["disposition"]),
+                         ("Revokedby EO 9830", "Revokedby EO 12083"))
+        self.assertEqual(sorted((d["page"], d["text"]) for p in self.tstats for d in p["stray_digits_dropped"]),
+                         [(1045, "1"), (1089, "1")])
+        self.assertEqual(self.by["EO:11382"]["acting"][:5], ["EO:10534", "EO:10771", "EO:10858", "EO:10968", "EO:12334"])
 
     def test_invariants(self):
         body = {d["instrument_id"] for d in self.docs}
@@ -547,6 +657,12 @@ class CommittedBook(unittest.TestCase):
         self.assertEqual(sorted(c.NOT_PRINTED_IN_TABLE), [10217, 10275, 10288, 10595])
         keys = [r["key"] for r in self.rows if r["key"].startswith("EO:")]
         self.assertEqual(len(keys), len(set(keys)))
+        # no row is ended by an EO numbered above the table's last order, or by EO 1 (a stray OCR '1')
+        for r in self.rows:
+            for a in r["ending_acting"]:
+                if a.startswith("EO:"):
+                    self.assertTrue(1 < c.key_number(a) <= 12667, (r["key"], a))
+            self.assertEqual(r["rejected_acting"], [], r["key"])
 
 
 if __name__ == "__main__":
