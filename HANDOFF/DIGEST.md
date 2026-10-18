@@ -19,7 +19,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 307 | 3,359 | 9.1% |
+| Original text saved in the project | 2,281 | 3,359 | 67.9% |
 | Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
 
@@ -30,12 +30,12 @@ No earlier daily snapshot is available; this run establishes the baseline.
 ## Top shared unlocks
 
 - orders_unblocked: 472; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
-- orders_unblocked: 242; kind: machine_job; action: Run one bulk download of the official links already found (Stage 21 crosswalk); blocker: OFFICIAL_URL_KNOWN_NOT_DOWNLOADED
+- orders_unblocked: 265; kind: agent_check; action: Check the page location of fr-originals finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
 - orders_unblocked: 10; kind: one_source; action: Retrieve shared source EO::4314; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::4314
-- orders_unblocked: 8; kind: agent_check; action: Check the page location of fr-originals finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source USC::48 U.S.C. 863); blocker: SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6964; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6964
+- orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6910; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6910
 
 ## Open asks from the newest handoff entries
 
@@ -45,4 +45,4 @@ No earlier daily snapshot is available; this run establishes the baseline.
 
 ## Failed jobs
 
-No failed job status is recorded.
+- early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)

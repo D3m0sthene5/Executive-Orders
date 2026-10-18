@@ -14,7 +14,7 @@ test_status_mismatch_keeps_the_ending_step_open (test_tracker.TrackerTest.test_s
 test_without_claims_nothing_is_ready_and_blockers_are_specific (test_tracker.TrackerTest.test_without_claims_nothing_is_ready_and_blockers_are_specific) ... ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.073s
+Ran 14 tests in 0.046s
 
 OK
 # Readiness tracker
@@ -32,7 +32,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 307 | 3,359 | 9.1% |
+| Original text saved in the project | 2,281 | 3,359 | 67.9% |
 | Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
 | Savings clauses and surviving effects closed | 0 | 3,359 | 0.0% |
@@ -45,9 +45,8 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 472 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
-| 242 | machine job | Run one bulk download of the official links already found (Stage 21 crosswalk) |
+| 265 | agent check | Check the page location of fr-originals finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
-| 8 | agent check | Check the page location of fr-originals finds marked medium/low confidence |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
 | 3 | one source | Retrieve shared source EO::6964 |
@@ -59,21 +58,20 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_OFFICIAL_SOURCE_LOCATED` | 2,802 | 14,400 |
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 990 | 8,474 |
 | `NO_CLAUSE_INVENTORY` | 3,359 | 3,359 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,359 | 3,359 |
 | `LATER_SOURCE_SEARCH_NOT_RECORDED` | 3,359 | 3,359 |
 | `FIRST_END_UNPROVED` | 2,954 | 2,954 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
 | `CURRENT_BASIS_UNPROVED` | 405 | 405 |
-| `OFFICIAL_URL_KNOWN_NOT_DOWNLOADED` | 242 | 242 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 265 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 8 | 8 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -89,7 +87,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 
 ## Job outputs read
 
-- fr-originals: 40
+- fr-originals: 6,497
 - opus-media-match fragments: 122
 - opus-media-match status: 1,155
 - source-ladder: 87
