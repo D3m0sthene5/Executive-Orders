@@ -1,6 +1,6 @@
 # Early orders hunt
 
-Run 2026-10-18T16:59:42Z (live, 717.2 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1014 leads now have a printed text cut from a cited page (147 of them before 1862).**
+Run 2026-10-18T18:49:00Z (live, 617.8 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1027 leads now have a printed text cut from a cited page (146 of them before 1862).**
 
 Nothing is admitted to the census, dated, merged or changed. Every text here is OCR of a printed compilation, a lead for the original_text step, never the signed original. A page hit is not an identity.
 
@@ -15,14 +15,14 @@ Nothing is admitted to the census, dated, merged or changed. Every text here is 
 | GLO_1898 | fetched | 512 | ok; report year found | match | 478/481 | 471 |
 | GLO_1893 | fetched | 420 | ok; report year found | match | 331/342 | 467 |
 | GLO_1901 | no_identifier_yet | 0 | - | - | -/- | 453 |
-| GLO_1890 | page_text_fetch_failed | 0 | - | - | -/- | 413 |
+| GLO_1890 | fetched | 509 | ok; report year found | match | 399/416 | 413 |
 | GLO_1884 | fetched | 256 | ok; report year found | match | 192/196 | 402 |
 | GLO_1891 | fetched | 451 | ok; report year found | match | 354/366 | 388 |
 | GLO_1880 | fetched | 738 | ok; report year found | match | 454/560 | 381 |
 | GLO_1886 | no_identifier_yet | 0 | - | - | -/- | 361 |
-| MR_1907 | fetched | 484 | ok | match | 452/455 | 358 |
+| MR_1907 | fetched | 481 | ok | match | 437/450 | 358 |
 | MR_1910 | fetched | 520 | ok | match | 496/498 | 357 |
-| GLO_1885 | fetched | 463 | ok; report year found | match | 390/394 | 331 |
+| GLO_1885 | deferred_book_budget | 0 | - | - | -/- | 331 |
 | GLO_1903 | deferred_book_budget | 0 | - | - | -/- | 303 |
 | GLO_1904 | deferred_book_budget | 0 | - | - | -/- | 283 |
 | MR_1898 | deferred_book_budget | 0 | - | - | -/- | 277 |
@@ -41,12 +41,12 @@ Nothing is admitted to the census, dated, merged or changed. Every text here is 
 
 | Grade | Count | Meaning |
 |---|---:|---|
-| page_date_and_subject | 3218 | the cited page carries the lead's date and its subject words |
-| page_and_date | 324 | the cited page carries the lead's date |
-| page_and_subject | 278 | the cited page carries two or more of the lead's subject words |
-| page_only | 209 | the page was found but neither date nor subject was read on it; the slice is the page head |
-| page_not_mapped | 78 | the book is held but that printed page number was not mapped to a scan |
-| book_not_held | 2154 | the book was not fetched (budget, no identifier, offline, or failure) |
+| page_date_and_subject | 3233 | the cited page carries the lead's date and its subject words |
+| page_and_date | 326 | the cited page carries the lead's date |
+| page_and_subject | 301 | the cited page carries two or more of the lead's subject words |
+| page_only | 222 | the page was found but neither date nor subject was read on it; the slice is the page head |
+| page_not_mapped | 83 | the book is held but that printed page number was not mapped to a scan |
+| book_not_held | 2096 | the book was not fetched (budget, no identifier, offline, or failure) |
 
 ## Pre-1862 texts cut this run (first 40)
 
@@ -95,11 +95,11 @@ Nothing is admitted to the census, dated, merged or changed. Every text here is 
 
 ## Live catalog routes
 
-23 of 24 Library of Congress collection searches ran; 44 catalog records saved in LIVE_HITS.csv. A record is something to open and read, not a found order; a search with no results proves nothing.
+24 of 24 Library of Congress collection searches ran; 51 catalog records saved in LIVE_HITS.csv. A record is something to open and read, not a found order; a search with no results proves nothing.
 
 ## Requests
 
-Budget 160, spent 52, refused 0; 264,423,656 bytes downloaded, 0 cache hits.
+Budget 160, spent 52, refused 0; 261,632,903 bytes downloaded, 0 cache hits.
 
 ## Next
 
