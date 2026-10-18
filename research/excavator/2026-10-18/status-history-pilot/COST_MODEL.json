@@ -1,19 +1,46 @@
 {
   "billing": null,
-  "checkpoint_utc": "2026-10-18T09:05:01.749153+00:00",
+  "checkpoint_utc": "2026-10-18T09:16:42.219483+00:00",
   "correction_cost": "initial stale-reader repair and independent rereview included in phase elapsed floor; isolated labor and tokens unavailable",
   "double_counting_warning": "independent audit wall time overlaps coordinator work; do not add to elapsed clock",
   "excludes": [
     "earlier corpus inspection and design",
     "work after this checkpoint"
   ],
+  "final_integration_audit_addendum_seconds": 58.447845,
+  "hypothetical_full_pass_duplicate_source_units": 11081,
+  "hypothetical_full_pass_duplicate_source_units_is_not_measured_agent_behavior": true,
   "implementation_phase_clock_floor_start_utc": "2026-10-18T08:40:15+00:00",
+  "independent_review_runtime_telemetry": "review/TELEMETRY.json",
   "initial_source_audit_observed_wall_seconds": 518.133369,
-  "model_cached_tokens": null,
-  "model_input_tokens": null,
-  "model_output_tokens": null,
-  "model_reasoning_tokens": null,
-  "observed_phase_elapsed_floor_seconds": 1486.749153,
+  "model_cached_tokens": 21548032,
+  "model_input_tokens": 21980940,
+  "model_output_tokens": 129406,
+  "model_reasoning_tokens": 51534,
+  "observed_audit_wall_seconds_per_accepted_preparation_packet": 44.551475,
+  "observed_network_searches_avoided": null,
+  "observed_phase_elapsed_floor_seconds": 2187.219483,
+  "reason_total_cost_per_legally_adjudicated_order_unavailable": "No legal status/claim adjudications completed; billing and total active labor unavailable.",
+  "root_observed_full_session_usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 21548032,
+    "input_tokens": 21980940,
+    "output_tokens": 129406,
+    "reasoning_output_tokens": 51534,
+    "total_tokens": 22110346,
+    "uncached_input_tokens_derived": 432908
+  },
+  "root_observed_status_history_phase_floor_usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 9493760,
+    "input_tokens": 9676167,
+    "output_tokens": 68610,
+    "reasoning_output_tokens": 23887,
+    "total_tokens": 9744777,
+    "uncached_input_tokens_derived": 182407
+  },
+  "root_outer_tool_calls_snapshot": 131,
+  "root_runtime_telemetry": "ROOT_RUNTIME_TELEMETRY.json",
   "root_total_tool_calls": null,
   "scenarios_estimates_only": [
     {
@@ -101,5 +128,7 @@
   "schema": "eo-excavator-cost-model/v1",
   "status_audit_functions_exec_call_floor": 14,
   "status_audit_observed_wall_seconds": 476.169855,
-  "total_active_agent_hours": null
+  "token_counter_scope": "Root snapshot only in top-level model fields; independent review and later work are separate. Counters are not monetary billing or measured savings.",
+  "total_active_agent_hours": null,
+  "total_cost_per_legally_adjudicated_order": null
 }

@@ -1,0 +1,225 @@
+{
+  "schema": "eo-status-history-final-integration-ai-review-addendum/v1",
+  "reviewer": "independent_pilot_review",
+  "human_certification": false,
+  "outcome": "accepted",
+  "scope": [
+    "Reject unsuccessful runner STATUS during status-history fragment ingestion",
+    "Print canonical compact default JSON under explicit18000-byte JSON payload cap; preserve indented full mode"
+  ],
+  "original_review_json_sha256": "6d98d3596028457004d1d59c9e0e85fab468afa8af514b5d8dc3e651b4d268c7",
+  "original_review_markdown_sha256": "f9165d80da87e8ee8214f79999aa12e424a412e8cb33f08ecef524d158e6a139",
+  "original_report_preserved": true,
+  "current_code_pins": [
+    {
+      "path": "jobs/claim-kit/inputs.py",
+      "sha256": "f57315c8396ab2434aa140d38fbe9266f3bf83f2aeb57945565a44417fc17e3c",
+      "bytes": 24692
+    },
+    {
+      "path": "jobs/claim-kit/kit.py",
+      "sha256": "a6be76c9c96df12507357636bc34b7ef7673f5733f3afdf7edacbeb2bf1044ce",
+      "bytes": 10512
+    },
+    {
+      "path": "jobs/claim-kit/test_inputs.py",
+      "sha256": "25a4c7fe2ce8cc477177060fc18be306dff2589326ef0de535e9341322a4ab67",
+      "bytes": 18874
+    },
+    {
+      "path": "jobs/status-history/history.py",
+      "sha256": "604bccd34bb9d71d8ba154847e331d52ae7cd36460890fa33fb81d01e8afcb69",
+      "bytes": 29712
+    },
+    {
+      "path": "jobs/status-history/job.py",
+      "sha256": "01c5ed699042192b95268fb976f203284ae7813d1dea4df6d041fca6ad56ef16",
+      "bytes": 560
+    },
+    {
+      "path": "jobs/status-history/test_history.py",
+      "sha256": "026a55bff05e7698333de743302a2f78b380e9300b7c472724871a745e39e5c4",
+      "bytes": 4699
+    }
+  ],
+  "adapter_fixture_results": [
+    {
+      "status_result": "failed",
+      "history_consumed": false,
+      "warnings": [
+        "independent final adapter fixture: status history rejected for EO:12979: status-history runner did not succeed"
+      ],
+      "original_text_records": 0,
+      "legal_event_pairs": 0,
+      "current_predicate_records": 0
+    },
+    {
+      "status_result": "running",
+      "history_consumed": false,
+      "warnings": [
+        "independent final adapter fixture: status history rejected for EO:12979: status-history runner did not succeed"
+      ],
+      "original_text_records": 0,
+      "legal_event_pairs": 0,
+      "current_predicate_records": 0
+    },
+    {
+      "status_result": "succeeded",
+      "history_consumed": true,
+      "warnings": [],
+      "original_text_records": 0,
+      "legal_event_pairs": 0,
+      "current_predicate_records": 0
+    }
+  ],
+  "actual_default_cli_checks": [
+    {
+      "instrument_id": "EO:12331",
+      "returncode": 0,
+      "json_payload_bytes": 3235,
+      "stdout_bytes_including_terminator": 3237,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "929f0ba18af7bc588da90e2b75327b4f220c0f21b15073bdb6a8a17a259609ca"
+    },
+    {
+      "instrument_id": "EO:11250",
+      "returncode": 0,
+      "json_payload_bytes": 4150,
+      "stdout_bytes_including_terminator": 4152,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "5b4c4645f60b95ad610934fd8d625c09a604df1a1798a7a5994e547c5a123e1d"
+    },
+    {
+      "instrument_id": "EO:11583",
+      "returncode": 0,
+      "json_payload_bytes": 6999,
+      "stdout_bytes_including_terminator": 7001,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "3309d53a8951bf6493dfceac966e5debe00cb6186f8054c1e4639f0af3035456"
+    },
+    {
+      "instrument_id": "EO:10108",
+      "returncode": 0,
+      "json_payload_bytes": 2529,
+      "stdout_bytes_including_terminator": 2531,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "8d789cdd6999c9ba935e9aaabb2f02d0800fc6e67e11f91fef6ac753d57e433a"
+    },
+    {
+      "instrument_id": "EO:11541",
+      "returncode": 0,
+      "json_payload_bytes": 6552,
+      "stdout_bytes_including_terminator": 6554,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "4b2ec457cc009ce606d1f4ccb4313fcc8bcb183388e1b336592191f7fa1ac8e3"
+    },
+    {
+      "instrument_id": "EO:7509",
+      "returncode": 0,
+      "json_payload_bytes": 1897,
+      "stdout_bytes_including_terminator": 1899,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "ec1fb7aabe129cd8f02f0d76cf72f34d6ca36557e447e3f55e296031d2dea54b"
+    },
+    {
+      "instrument_id": "EO:8597",
+      "returncode": 0,
+      "json_payload_bytes": 3443,
+      "stdout_bytes_including_terminator": 3445,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "f2edd16ffbe1e9ea26420f88271e5e74684319e13b0cd04f3bd31f5ca8e0724e"
+    },
+    {
+      "instrument_id": "EO:11790",
+      "returncode": 0,
+      "json_payload_bytes": 5224,
+      "stdout_bytes_including_terminator": 5226,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "d56a573eb21c2b285f635e8b34f48c7c713aa32616128b4e70d050a180604a28"
+    },
+    {
+      "instrument_id": "EO:12979",
+      "returncode": 0,
+      "json_payload_bytes": 1682,
+      "stdout_bytes_including_terminator": 1684,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "c7d4ab241e0df4d0c2a5dfc8cc76f7017193d9935869710dbcf58a8a096941e6"
+    },
+    {
+      "instrument_id": "EO:10571A",
+      "returncode": 0,
+      "json_payload_bytes": 2298,
+      "stdout_bytes_including_terminator": 2300,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "f1421a39886bc3953ee2179ce94ecb65a3991d280596b97a6003fb5434eb8d3d"
+    },
+    {
+      "instrument_id": "EO:13526",
+      "returncode": 0,
+      "json_payload_bytes": 3741,
+      "stdout_bytes_including_terminator": 3743,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "2c168edca48a049a6a06cebd54eb1a0a7914a563256027ea0ee53da70bcb425e"
+    },
+    {
+      "instrument_id": "EO:9-2",
+      "returncode": 0,
+      "json_payload_bytes": 1902,
+      "stdout_bytes_including_terminator": 1904,
+      "stderr": "",
+      "canonical_payload": true,
+      "under_18000_byte_json_cap": true,
+      "fingerprint_matches_prespec": true,
+      "stdout_sha256": "5850060b4ce9a490f3055d250a4140d14b8cb1c27b2af7265e5ad3e8591e7296"
+    }
+  ],
+  "full_mode_check": {
+    "returncode": 0,
+    "fingerprint_matches_prespec": true,
+    "remains_indented": true,
+    "stdout_sha256": "8f26a267adb1d3e2350c0d02d3324fed42b862fd79662bf9240ff830a7506bb9",
+    "bytes": 45264
+  },
+  "all_original_history_fingerprints_unchanged": true,
+  "default_output_size_note": "Cap applies to canonical JSON payload. stdout also includes platform line terminator, measured separately.",
+  "observed_start_utc": "2026-10-18T09:04:20+00:00",
+  "observed_finish_utc": "2026-10-18T09:05:18.447845+00:00",
+  "observed_elapsed_seconds": 58.447845,
+  "observed_functions_exec_call_floor": 3,
+  "billing_tokens": null,
+  "legal_status_or_first_end_promotions_accepted": 0,
+  "EO9789_hold_lifted": false
+}

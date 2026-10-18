@@ -75,13 +75,34 @@ and found no source mismatch in the final sample. Its report documents the exact
 remaining work for every order. It did not inspect book page images or authenticate
 every original. A material initial stale-reader error was found, preserved, repaired
 and independently retested on the same fixture; no replacement sample was used.
+Its final integration addendum independently checks unsuccessful STATUS rejection
+and all twelve actual compact CLI outputs. The prespec retains the initial global
+input/code fingerprint; code corrections change the global manifest, while all
+twelve pinned order-history fingerprints remain unchanged.
 
 ## Costs, uncertainty and repeated use
 
-Available model input/cached/output/reasoning billing is **unavailable**, not zero.
-Total root tool-call count and active agent/reviewer labor were not instrumented
-from the start. The status-history audit recorded at least 14 functions.exec calls
-and 476.17 wall seconds; the first source audit recorded 518.13 seconds. Those
+The local own-chat rollout exposes **runtime token counters**; monetary billing
+and complete active agent/reviewer labor remain unavailable. The root snapshot at
+09:14:09 UTC records 21,980,940 input tokens, including 21,548,032 cached, and
+129,406 output tokens, including 51,534 reasoning. Since the 08:40:15 phase floor,
+it records 9,676,167 input (9,493,760 cached) and 68,610 output (23,887 reasoning).
+Input includes cached input; output includes reasoning. Do not add them twice.
+These are build/research costs, not savings. Snapshots exclude subsequent work;
+the independent reviewer has a separate telemetry addendum. Only aggregate usage
+and tool names are exported; no prompts, account data or tool arguments are saved.
+See `status-history-pilot/ROOT_RUNTIME_TELEMETRY.json` and its reproducible exporter.
+Completed independent audits separately record 13,448,342 input (13,181,440
+cached), 40,114 output (8,033 reasoning included), and 66 outer calls. Its
+`review/TELEMETRY.json` separates the two audits, final integration rereview and
+telemetry-extraction overhead. Earlier null-token statements in frozen audits
+are superseded by that addendum for its stated windows; the audits are preserved.
+
+The root snapshot counts 131 outer tool calls (123 exec wrappers), including 58
+since the phase floor. Nested calls and retries inside wrappers are not fully
+counted. The status-history audit originally recorded at least 14 exec calls
+and 476.17 wall seconds; its final integration addendum took 58.45 seconds. The
+first source audit recorded 518.13 seconds. Those
 wall clocks overlap coordinator work and must not be summed as elapsed session
 time. The status-history implementation clock floor starts 08:40:15 UTC; it omits
 earlier inspection/design. The initial stale-reader correction and verification
@@ -106,6 +127,8 @@ the final full QA took 12.125 seconds; actual claim-kit corpus ingestion took
 source-ladder 47 and profiler 8. The large claim-kit dossier rebuild is delegated
 to the existing job runner; inspect its STATUS before treating generated pointers
 as current. Local direct CLI/collector operation is already verified.
+The warm run's exact metrics are frozen in `status-history-pilot/WARM_RUN_METRICS.json`
+so a subsequent cold runner build does not erase that observation.
 
 ## Preserved acquisition pilot and safety correction
 
@@ -118,12 +141,24 @@ hashes. It retained 147 prior successes. The same-size FIFO pass made zero HTTP
 requests because its twelve entries had no route; it recovered no new source.
 This compares bounded scheduling arms, not all possible FIFO outcomes.
 
+`RAW_SOURCE_CUSTODY.json` rechecks every new receipt against the eleven retained
+download paths (ten content hashes). Raw bytes remain in the project's work cache;
+committed receipts, text extracts, source URLs and audit page renders are preserved.
+
 The real tracker replay completed 19 `opus_media` steps. Its apparent 130→131
 readiness increase was **rejected**: EO 9789's uniform first-end claim does not
 resolve executed transfer, amendment, past-action, effective-date and savings
 scope. Its exact claim and review hashes now bind a negative readiness hold.
 No other agent's claim was edited. The hold prevents that rejected result from
 being counted when receipts enter the normal source output.
+
+The actual claim-checker was rerun against that frozen existing claim: all checks
+pass, with 26 held-byte source references and 27 exact quotation checks. Its 28
+unit tests also pass. `claim-checker-pilot/` preserves the input and output. This
+does not cure the legal-scope objection. The small real claim-kit build integration
+experiment in `status-history-pilot/verify_pipeline.py` separately demonstrates
+decided/undecided pointer propagation, blank-sheet rejection and source isolation;
+its result is `PIPELINE_INTEGRATION.json`. No legal claim is produced from a history.
 
 The audit also found that the main claim-kit EO 9789 inventory actually resembled
 EO 9788, and that Stat. 80's first-40-page extraction missed relevant full-PDF
