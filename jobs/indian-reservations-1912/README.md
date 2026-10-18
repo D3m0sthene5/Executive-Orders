@@ -33,10 +33,11 @@ The book prints no order numbers. An act is recognised by its shape:
    RESERVATIONS. 5", which the OCR spells many ways), its page number and the printer's marks
    ("57643°—12 2"). The printed page number is computed from the PDF page, because the OCR'd page
    numbers are unreliable.
-2. **Headings.** A short line naming one of the 19 states starts a state section. An uppercase
-   line naming a reservation, band, fishery or military reservation starts a reservation section
-   (the OCR may add a stray lowercase letter: "rORT HAH RESERVATION"). Bracketed subheads such
-   as "[Partly in California.]" are not headings.
+2. **Headings.** A short line naming one of the 19 states starts a state section, and clears the
+   reservation heading, so an act is never filed under the last state's reservation. An uppercase
+   line naming a reservation, band, fishery, school or military reservation starts a reservation
+   section (the OCR may add a stray lowercase letter: "rORT HAH RESERVATION"). Bracketed subheads
+   such as "[Partly in California.]" are not headings.
 3. **The President's signature ends an act.** The 13 Presidents' names are matched in an
    OCR-tolerant way ("Theodore Eoosbvelt.", "CiiES'rEE A. Arthur.", "IT. S. Grant."). Robert T.
    Lincoln (Secretary of War) and "Messrs. Smith and Johnson" are not signatures.
@@ -57,9 +58,24 @@ The book prints no order numbers. An act is recognised by its shape:
    the date wraps); a date printed after the signature; for indorsements, the last standalone
    dateline before the signature. A referral's date is never taken as the act's date. When the
    header cannot be read, no other date in the text is used (that would pick up statute dates such
-   as "August 23, 1894"); the job records the year if it is printed clearly, otherwise the decade
-   ("187x"). OCR-damaged digits ("December 1^, 1872", "Decemler SO, 190fl") are repaired only when
-   exactly one reading falls inside the signer's term; otherwise the day or the date is left blank.
+   as "August 23, 1894"); the job records the year if it is printed clearly (also when it sits on
+   the line under "The White House,"), otherwise the decade ("187x"). OCR-damaged digits
+   ("December 1^, 1872", "Decemler SO, 190fl") are repaired only when exactly one reading falls
+   inside the signer's term; otherwise the day or the date is left blank. A year the OCR prints as
+   "13xx" keeps only its decade: "Noveml>er 22, 1375" is 1873 on the page, so both of the last two
+   digits were misread, and inside Grant's term that leaves the year open (`187x`).
+8. **Printings of one order.** The book prints an order again under every reservation it touches
+   (the January 11, 1875 Sioux order five times). Two acts are printings of one order when the
+   same President signed both, their dates are compatible (equal; one a prefix of the other; one
+   undated in the same decade; or full dates that differ only in the day, or only in the year within
+   the decade, as an OCR misread would), they act on the same national forest if either names one,
+   and their text from header to signature, reduced to letters and digits, agrees to at least 0.97
+   (difflib ratio). Measured on this book: reprints agree at 0.976 to 1.0; the closest distinct
+   orders reach 0.961 (other dates) and 0.957 (same day, other forest); orders with identical
+   wording but other dates ("The within request is approved ...", Fort Reno and Fort Supply) are kept
+   apart by the date rule. Each printing keeps its own row and text; the order gets one date (the
+   date most printings carry; on a tie, the WPA date if it agrees with one of them, else the first
+   printing) and one set of leads.
 
 ## How acts are compared with the lists
 
@@ -68,51 +84,78 @@ The book prints no order numbers. An act is recognised by its shape:
   WPA entry cites this page within the signer's term. Each pairing is scored (page cited, Indian
   subject, the reservation's name, the state; another state named costs points), and pairs are
   assigned best first across the whole book, so a cluster of orders signed the same day sorts
-  itself out. A WPA entry that names a national forest is paired only with an act whose text names
-  that forest. If two pairings tie, neither is made.
+  itself out. The printings of one order compete as one order, scored by their best printing; the
+  other printings carry the pairing (`paired_printing` names the one that scored). A WPA entry that
+  names a national forest is paired only with an act that names the same forest **first**, which
+  is the forest the order acts on ("the boundaries of the Sitgreaves National Forest ... be
+  modified"). Naming the forest anywhere in the text is not enough: "Apache" is also in "White
+  Mountain Apache Indian Reservation", and the Apache order mentions the Crook forest in passing. A
+  tie on either side leaves the pairing unmade and is reported: an order with two entries at the
+  same score, or an entry with two orders at the same score.
 - **Lord's unnumbered list.** Every citation "I IR 24" in Lord's list is resolved to the acts on
   that page of the same year: **match** (exactly one, or the exact date singles one out),
   **ambiguous** (several) or **unmatched**. Nothing is forced; Lord's rows often mix neighbouring
   entries, so the year and the page are used, not Lord's pairing of date and summary.
-- **Census.** A paired numbered order is looked up in the census. An act with no numbered pairing
-  is reported as an unnumbered order the census lacks.
+- **Census.** A paired numbered order is looked up in the census. An order with no numbered
+  pairing is reported once as an unnumbered order the census lacks, on its first printing, with
+  its other printings listed, and with Lord's support taken from any of its printings.
 
 ## Outputs
 
 | File | Contents |
 |---|---|
-| `IR1912_ACTS.csv` | One row per act: lead id `IR1912:p<printed page>:<n>`, kind, signer, date, where the date came from, whether digits were repaired, decade, whether the year is in the signer's term, a check of the date against the WPA and Lord lists, state, reservation, PDF and printed pages (of the act and of its related papers), paired numbered order with level and score, Lord rows, census state, provisional status and `original_text` step before this job, confidence, text path and sha256 |
-| `texts/<date>_<lead id>_<reservation>.txt` | The act's text (header to signature, plus what follows the signature), with a header naming the book, PDF sha256, pages, how it was dated, confidence and the sha256 of the body below the header. Undated acts are named `undated-187x_...` |
+| `IR1912_ACTS.csv` | One row per printed act: lead id `IR1912:p<printed page>:<n>`, kind, signer, date, where the date came from, whether digits were repaired, the unread header (undated acts), decade, whether the year is in the signer's term, a check of the date against the WPA and Lord lists, the order it prints (`order_lead_id` = its first printing), the number of printings and the others, the order's date and how it was chosen, whether this printing's date agrees with the others, state, reservation, PDF and printed pages (of the act and of its related papers), paired numbered order with the printing that scored, level and score, tied entries and orders, Lord rows, census state, provisional status and `original_text` step before this job, confidence, text path and sha256 |
+| `texts/<date>_<lead id>_<reservation>.txt` | The act's text (header to signature, plus what follows the signature), with a header naming the book, PDF sha256, pages, how it was dated, confidence, the other printings of the order, and the sha256 of the body below the header. Undated acts are named `undated-187x_...` |
 | `texts/<...>.papers.txt` | The departmental letters printed before an order |
-| `FRAGMENTS.jsonl` | One `original_representation` claim fragment per paired **census** order, in the same shape as `jobs/fr-originals` (`location_verified: false`; `needs_page_check: true` unless paired on the exact date) |
-| `CENSUS_LEADS.csv` | `UNNUMBERED_NOT_IN_CENSUS` (with Lord's support or its absence), `BOOK_EXACT_DATE_FOR_YEAR_ONLY` (census has the year, the book the day), `WPA_CITATION_MISMATCH` (the WPA list cites a page of this book where its order is not), `DATE_OUT_OF_TERM`, `DATE_CONFLICT_WITH_LORD`, `UNDATED_ACT`, `AMBIGUOUS_NUMBERED_MATCH` |
+| `REPRINTS.csv` | Every pair of printings joined into one order, with both dates and the text ratio |
+| `FRAGMENTS.jsonl` | One `original_representation` claim fragment per paired **census** order (never one per printing), in the same shape as `jobs/fr-originals` (`location_verified: false`; `needs_page_check: true` unless paired on the exact date); other printings are named in the note |
+| `CENSUS_LEADS.csv` | One lead per order, never per printing: `UNNUMBERED_NOT_IN_CENSUS` (with Lord's support or its absence, and the other printings), `BOOK_EXACT_DATE_FOR_YEAR_ONLY` (census has the year, the book the day), `AMBIGUOUS_NUMBERED_MATCH`, `UNDATED_ACT` (no printing dated). Per printing: `REPRINT_DATE_CONFLICT` (this printing's date differs from the order's other printings), `DATE_OUT_OF_TERM`, `DATE_CONFLICT_WITH_LORD`. Per WPA entry: `WPA_CITATION_MISMATCH` (the WPA list cites a page of this book where its order is not printed) |
 | `LORD_IR_CROSSWALK.csv` | Every Lord citation of this book: match / ambiguous / unmatched, with the acts on the page |
 | `WPA_IR_CITATIONS.csv` | Every WPA numbered entry citing this book, and whether its paired act is on that page |
-| `ENDING_LEADS.csv` | Acts that revoke, restore, supersede or amend: the earlier order's date as cited in the text, and the act in the same section (or state) with that date, if the book prints it. Later-event leads |
+| `ENDING_LEADS.csv` | Orders (first printings) that revoke, restore, supersede or amend: the earlier order's date as cited in the text, and the order in the same section (or state) with that date, if the book prints it; several printings of that order count as one target (`target_printings` lists them). Later-event leads |
 | `IR1912_HEADINGS.csv` | The state and reservation headings found |
 | `SUMMARY.json` | All counts |
 
+**Confidence** (of a printing's date). `high`: a full date read digit for digit, inside the
+signer's term, that the WPA list, Lord's list or another printing of the same order repeats, and
+that nothing contradicts. A literal reading alone is not enough: one printing of the Apache
+forest order reads "February 11" where the page shows 17, and one printing of the 1875 Sioux order
+reads 1876. `medium`: any other date. `low`: undated.
+
 ## Measured 2026-10-17
 
-- **308 acts**: 277 orders, 27 indorsements or approvals, 4 proclamations, under 19 states and 131
-  reservation headings. Every one of the 277 order headers is followed by a recognised signature.
-- **214 acts are before 1900** (11 in the 1850s, 16 in the 1860s, 104 in the 1870s, 71 in the 1880s,
-  12 in the 1890s); 72 are from 1900–1912. 22 could not be dated.
-- Dates: 242 full, 41 month only, 3 year only, 22 unread; 69 needed digit repair; 2 read outside
-  the signer's term (OCR misreads).
-- **52 acts paired with numbered orders** (41 on the exact date, 10 by month and page, 1 undated by
-  page), all in the census with a year-only date. The book gives the exact day for 41 of them.
-  All 52 had the `original_text` step open; none has a provisional status yet.
-- **256 acts are not in the census** as far as the lists show (no numbered pairing). For 177 of them
-  Lord's list cites the page in the same year, for 52 Lord's citation is ambiguous, and for 27
-  Lord does not cite the page at all.
-- The WPA numbered list cites this book 45 times; 43 citations land on the paired act. EO 1518
-  (Flathead, April 13, 1912) is cited at p. 53 but printed at p. 94; EO 1479 (Sitgreaves National
-  Forest) is cited at p. 37, where the book prints the Crook and Apache forest orders but no
-  Sitgreaves order.
-- Lord's list cites this book 249 times in 178 rows: 183 citations match one act, 50 are
-  ambiguous, 16 are unmatched.
-- 152 ending-lead rows; for 43 the earlier order cited is found in the book.
+- **308 printed acts**: 277 orders, 27 indorsements or approvals, 4 proclamations, under 19 states
+  and 132 reservation headings. Every one of the 277 order headers is followed by a recognised
+  signature.
+- **275 distinct orders.** 33 acts reprint an order printed elsewhere in the book: 15 orders are
+  printed twice, 5 three times, 2 five times. For 2 orders the printings disagree on the date; in
+  each case one printing differs from the others (`REPRINT_DATE_CONFLICT`: p. 37:3 reads February
+  11, 1912 for the Apache order of February 17; p. 162:3 reads 1876 for the January 11, 1875 order;
+  the page images, PDF pp. 50 and 175, read 17 and 1875). Both misreads were literal digits.
+- **184 orders are before 1900** (9 in the 1850s, 15 in the 1860s, 83 in the 1870s, 65 in the
+  1880s, 12 in the 1890s); 71 are from 1900–1912; 20 could not be dated. Counted by printings, as
+  before, 213 acts are before 1900.
+- Dates of printings: 241 full, 41 month only, 4 year only, 22 unread; 68 needed digit repair; 2
+  read outside the signer's term (OCR misreads). Dates of orders: 214 full, 38 month only, 3 year
+  only, 20 unread. Confidence of printings: 108 high, 178 medium, 22 low.
+- **53 orders paired with numbered orders** (42 on the exact date, 10 by month and page, 1 undated
+  by page), all in the census with a year-only date; no tie on either side. Two reprints carry their
+  order's pairing (p. 37:3 → EO 1475, p. 130:2 → EO 1482). The book gives the exact day for 42
+  orders. All 53 had the `original_text` step open; none has a provisional status yet.
+- The Fort Apache section prints two orders of February 17, 1912: p. 11:2 acts on the Sitgreaves
+  National Forest (EO 1479) and p. 11:3 on the Apache National Forest (EO 1475). Both are paired
+  that way now; p. 37 prints the Crook order (EO 1477) and a reprint of the Apache order.
+- **222 orders are not in the census** as far as the lists show (no numbered pairing), 184 of them
+  before 1900. Before 1900: Lord's list cites a printing's page in the same year for 138, Lord's
+  citation is ambiguous for 41, and Lord does not cite the page for 5. From 1900: 9, 3 and 7.
+  Undated: 8, 3 and 8. 20 of the 222 are printed more than once.
+- The WPA numbered list cites this book 45 times; 43 citations land on a printing of the paired
+  order. EO 1518 (Flathead, April 13, 1912) is cited at p. 53 but printed at p. 94; EO 1479
+  (Sitgreaves National Forest) is cited at p. 37 but printed at p. 11.
+- Lord's list cites this book 249 times in 178 rows: 182 citations match one act, 52 are
+  ambiguous, 15 are unmatched.
+- 132 ending-lead rows (orders, not printings); for 40 the earlier order cited is found in the book
+  (38 in the same section, 2 in the same state).
 
 ## Limits
 
@@ -120,9 +163,13 @@ The text is OCR. Expect misread letters and digits; reservation names keep their
 Act boundaries, kinds, dates and wording are **not human-verified**. An act with neither a
 recognisable header nor a recognisable signature would be invisible to the parser, and how many
 there are was not measured. An order whose header the OCR destroyed is counted as an indorsement.
-Acts from 1900 on with no numbered pairing may still be numbered orders whose WPA date differs;
-this was not checked. The census's 19 undated unnumbered identities carry no title, so they could
-not be compared with anything here.
+Joining printings rests on the text-similarity threshold and the date and forest rules above; two
+distinct orders printed with near-identical words on compatible dates would be joined, and a
+reprint whose OCR is badly damaged would be left as a separate order. Neither was found by reading
+the 22 joined groups and the closest pairs left apart, but not every pair was checked against the
+page images. Orders from 1900 on with no numbered pairing may still be numbered orders whose WPA
+date differs; this was not checked. The census's 19 undated unnumbered identities carry no title,
+so they could not be compared with anything here.
 
 **Census leads only:** no identity is admitted, merged or re-dated and no status changes. The
 WPA lists are read from `jobs/wpa-lists/output/` (or `WPA_DIR`); without them the job still runs
