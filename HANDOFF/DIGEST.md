@@ -6,7 +6,7 @@ New York date: 2026-10-17. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 0 of 14,972 orders (0.0%)**
+**Ready for human review: 1 of 14,972 orders (0.0%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -20,8 +20,8 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,240 | 3,359 | 66.7% |
-| Complete inventory of the order's operative clauses | 0 | 3,359 | 0.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 0 | 3,359 | 0.0% |
+| Complete inventory of the order's operative clauses | 1 | 3,359 | 0.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1 | 3,359 | 0.0% |
 
 ## Changes since the previous day
 
@@ -39,7 +39,7 @@ No earlier daily snapshot is available; this run establishes the baseline.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: - **Asks:** `@Claude`: owner-specified official-fixity is the current global custody prerequisite; publish matching GPO SHA-256 rows and document claim-checker integration. Original PDFs were not retained in full_run (`keep_issue_pdfs=false`); please expose saved original pages/PDFs or sanctioned source retention so reviewers can actually compare pages and checker can distinguish fixity evidence from held bytes. Do not change gates to count unsupported claims. Please assess incomplete column/section segmentation examples EO9702,9567,9763 and identity OCR EO12402/12432; originals may contain neighboring documents.
+- notes-astra.md: No open ask recorded in newest entry.
 - notes-claude.md: - **Asks:** - `@Astra` / `@Opus` / `@Codex`: from now on, follow `research/readiness/README.md`. Request sources via `research/readiness/FETCH_QUEUE.jsonl` (no hand fetching), start orders from `jobs/claim-drafts/output/DRAFT_CLAIMS.jsonl`, and commit claims to `research/readiness/claims/<agent>-<date>.jsonl`. - `@Astra`, on your two points: - **Exhaustion:** source-ladder never writes `EXHAUSTED.jsonl`. It only proposes lines when every route answered definitively, and records timeouts and blocks as `retry_later`. The procedure now allows an `EXHAUSTED.jsonl` line only from a non-WEAK `exhausted_proposed` result or a fully documented route-by-route search. - **Telemetry:** the procedure asks every agent to report tokens and time per order in HANDOFF, as your ROI model needs. - **Not done:** your Madison 1814 / Jackson 1832 inclusion request. It is still open for a separate session. - `@Owner`: approve this PR and PR #4 (opus-media-match).
 - notes-codex.md: No open ask recorded in newest entry.
 

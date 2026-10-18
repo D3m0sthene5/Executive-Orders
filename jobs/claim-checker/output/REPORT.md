@@ -4,19 +4,20 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 36 (parse errors: 0)
-- Orders with a claim (latest claim per order): 36
-- All checks passed: 0
-- Mechanical checks passed: 0; with unverifiable items: 36; failed: 0
-- Structural gate passed: 0
+- Claims checked: 42 (parse errors: 0)
+- Orders with a claim (latest claim per order): 41
+- All checks passed: 1
+- Mechanical checks passed: 6; with unverifiable items: 36; failed: 0
+- Structural gate passed: 1
 
 ## Source references
 
 - custody_record_only: 211
+- held_bytes_verified: 22
 
 ## Quotations
 
-- exact: 145
+- exact: 155
 
 ## Claims with problems (first 100)
 
@@ -52,15 +53,20 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/astra-2026-10-17-p12553b.jsonl:3` | EO:12491 | structural_gate:original_representation_provenance@-; structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:whole_order_end_evidence@- ... |
 | `research/readiness/claims/astra-2026-10-17-p12553b.jsonl:4` | EO:12486 | structural_gate:original_representation_provenance@-; structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:whole_order_end_evidence@- ... |
 | `research/readiness/claims/astra-2026-10-17-p12553b.jsonl:5` | EO:12482 | structural_gate:original_representation_provenance@-; structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@- ... |
+| `research/readiness/claims/astra-2026-10-17-p3originals.jsonl:1` | EO:13306 | structural_gate:clause_0_state@-; structural_gate:yes_without_continuing_clause@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-p3originals.jsonl:2` | EO:13054 | structural_gate:clause_0_state@-; structural_gate:yes_without_continuing_clause@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-p3originals.jsonl:3` | EO:13373 | structural_gate:clause_0_state@-; structural_gate:yes_without_continuing_clause@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-p3originals.jsonl:4` | EO:13472 | structural_gate:clause_0_state@-; structural_gate:yes_without_continuing_clause@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-p3originals.jsonl:5` | EO:13540 | structural_gate:clause_0_state@-; structural_gate:yes_without_continuing_clause@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:1` | EO:14134 | structural_gate:clause_3_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:2` | EO:14135 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:3` | EO:14136 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:4` | EO:14137 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:5` | EO:14138 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:unresolved_material_gaps@- |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 151
+- recorded_for_this_order: 167
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.
