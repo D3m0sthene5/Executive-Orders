@@ -6,6 +6,8 @@ claim-checker must additionally establish custody of the original source bytes.
 """
 
 from copy import deepcopy
+import base64
+import binascii
 import hashlib
 import importlib.util
 import json
@@ -187,10 +189,42 @@ def _reference(ident, evidence, errors):
     if not isinstance(source, dict):
         errors.append("malformed_source:" + str(ident))
         return {}
-    source.update({"evidence_id": ident, "quote": record.get("text"),
+    source.update({"evidence_id": encode_evidence_id(ident),
+                   "evidence_id_encoding": "base64url-utf8", "quote": record.get("text"),
                    "char_start": record.get("char_start"),
                    "char_end": record.get("char_end")})
     return source
+
+
+def encode_evidence_id(ident):
+    """Serialize an internal record id without suggesting it is a legal citation."""
+    if not isinstance(ident, str) or not ident:
+        raise ValueError("evidence id must be a nonempty string")
+    return base64.urlsafe_b64encode(ident.encode("utf-8")).decode("ascii").rstrip("=")
+
+
+def decode_evidence_id(source):
+    """Decode only the explicitly marked, canonical claim-provenance encoding."""
+    if not isinstance(source, dict) or source.get("evidence_id_encoding") != "base64url-utf8":
+        raise ValueError("missing or unsupported evidence id encoding")
+    value = source.get("evidence_id")
+    if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", value):
+        raise ValueError("malformed encoded evidence id")
+    try:
+        raw = base64.b64decode(value + "=" * (-len(value) % 4), altchars=b"-_", validate=True)
+        ident = raw.decode("utf-8")
+    except (ValueError, UnicodeError, binascii.Error) as exc:
+        raise ValueError("malformed encoded evidence id") from exc
+    if not ident or encode_evidence_id(ident) != value:
+        raise ValueError("noncanonical encoded evidence id")
+    return ident
+
+
+def _reference_id(source):
+    try:
+        return decode_evidence_id(source)
+    except ValueError:
+        return None
 
 
 def _conflict_id(conflict):
@@ -268,7 +302,7 @@ def _check_claim(claim, repo, dossier=None):
                 if not isinstance(actual, list) or len(actual) != len(corrected):
                     errors.append("corrected_inventory_mismatch")
                 elif any(not isinstance(c, dict) or not isinstance(c.get("original_source"), dict) or
-                         expected_inventory.get(c.get("scope_id")) != c["original_source"].get("evidence_id")
+                         expected_inventory.get(c.get("scope_id")) != _reference_id(c["original_source"])
                          for c in actual):
                     errors.append("corrected_inventory_mismatch")
                 elif len({c.get("scope_id") for c in actual}) != len(corrected):
@@ -277,7 +311,7 @@ def _check_claim(claim, repo, dossier=None):
             if original_record.get("requires_page_check") and metadata.get("original_pages_confirmed") is not True:
                 errors.append("original_page_check_confirmation_required")
             representation = claim.get("original_representation")
-            if not isinstance(representation, dict) or representation.get("evidence_id") != dossier.get("original_source_id"):
+            if not isinstance(representation, dict) or _reference_id(representation) != dossier.get("original_source_id"):
                 errors.append("original_source_id_mismatch")
 
     clauses = claim.get("operative_clauses", [])
@@ -297,7 +331,9 @@ def _check_claim(claim, repo, dossier=None):
                     quote = child.get("quote") if isinstance(child, dict) else None
                     errors.extend(_source_errors(child, quote, repo, label))
                     if evidence is not None:
-                        ident = child.get("evidence_id") if isinstance(child, dict) else None
+                        ident = _reference_id(child)
+                        if ident is None:
+                            errors.append(label + ":invalid_evidence_id_encoding")
                         comparison_errors = []
                         expected = _reference(ident, evidence, comparison_errors)
                         if comparison_errors or child != expected:

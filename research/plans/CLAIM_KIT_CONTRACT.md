@@ -57,6 +57,12 @@ These are internal to claim-kit, but must allow:
 - every source pointer in a decision sheet to be a record id from the files above (`CLAUSES:EO:n#scope`, `ACT:EO:target>EO:actor`, `TERM:...`, `CHAIN:...#k`), so the assembler can copy sources and quotes mechanically;
 - each dossier to list what it could not find.
 
+Decision sheets keep these raw record IDs. Assembled claim source references encode
+the complete ID as unpadded base64url UTF-8 in `evidence_id`, with
+`evidence_id_encoding: "base64url-utf8"`; strict checking decodes it only for an
+exact dossier lookup. This machine metadata is separate from legal citations and
+does not alter source quotes, actors, or producer rationale.
+
 
 ## Implementation extension: exact representations and decisions (claim-kit v1)
 

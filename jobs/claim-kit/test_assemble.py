@@ -193,7 +193,7 @@ class AssemblyTests(unittest.TestCase):
         self.assertEqual(A._gate(self.repo).validate_claim(claim, "no"), [])
         self.assertEqual(claim["operative_clauses"][0]["scope_id"], "EO:1#operative-corrected")
         self.assertEqual(claim["operative_clauses"][0]["original_operative_text"], "The Board shall perform the specified duties.")
-        self.assertTrue(claim["operative_clauses"][0]["original_source"]["evidence_id"].startswith("OVERRIDE:ORIGINAL:EO:1#"))
+        self.assertTrue(A.decode_evidence_id(claim["operative_clauses"][0]["original_source"]).startswith("OVERRIDE:ORIGINAL:EO:1#"))
         self.assertEqual(claim["claim_kit"]["inventory_overrides"], self.sheet["inventory_overrides"])
         self.assertEqual((self.dossier, self.sheet), before)
 
@@ -244,6 +244,34 @@ class AssemblyTests(unittest.TestCase):
         self.apply_override()
         self.sheet["clauses"][0]["clause_id"] = "CLAUSES:EO:1#whole"
         self.assertFails("corrected_evidence_id_mismatch")
+
+    def test_source_evidence_ids_are_canonical_encoded_and_lookup_strictly(self):
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        source = claim["operative_clauses"][0]["first_end"]["source"]
+        self.assertEqual(source["evidence_id_encoding"], "base64url-utf8")
+        self.assertNotIn("EO:", source["evidence_id"])
+        self.assertEqual(A.decode_evidence_id(source), "ACT:EO:1>EO:2")
+        self.assertEqual(source["quote"], self.dossier["evidence"]["ACT:EO:1>EO:2"]["text"])
+        self.assertEqual(self.sheet["clauses"][0]["end_id"], "ACT:EO:1>EO:2")
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+        for change in ({"evidence_id": "ACT:EO:1>EO:2"},
+                       {"evidence_id_encoding": "unrecognized"},
+                       {"evidence_id": source["evidence_id"] + "="},
+                       {"evidence_id": "_w"},
+                       {"evidence_id": A.encode_evidence_id("ACT:EO:1>EO:999")},
+                       {"evidence_id": ""}):
+            with self.subTest(change=change):
+                changed = deepcopy(claim)
+                changed["operative_clauses"][0]["first_end"]["source"].update(change)
+                self.assertTrue(A.check_claim(changed, self.repo, self.dossier))
+
+    def test_encoded_evidence_id_unicode_roundtrip_requires_marker(self):
+        ident = "TERM:EO:123½:café:effective#1"
+        encoded = A.encode_evidence_id(ident)
+        self.assertEqual(A.decode_evidence_id({"evidence_id": encoded, "evidence_id_encoding": "base64url-utf8"}), ident)
+        with self.assertRaises(ValueError):
+            A.decode_evidence_id({"evidence_id": encoded})
 
     def test_no_free_sources(self):
         self.sheet["clauses"][0]["end_id"] = "my invented source"

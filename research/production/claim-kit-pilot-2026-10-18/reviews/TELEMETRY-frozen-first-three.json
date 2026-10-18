@@ -1,0 +1,44 @@
+{
+  "schema": "eo-claim-kit-ai-review-telemetry/v1",
+  "reviewer": "sol-independent-reviewer-12692",
+  "start_unix": 1792307644.8763764,
+  "start_monotonic": 6453.418933256,
+  "end_unix": 1792307842.9339702,
+  "end_monotonic": 6651.476528382,
+  "incremental_wall_seconds": 198.05759528,
+  "tokens": "unavailable; no model usage metadata exposed",
+  "incremental_tool_calls": {
+    "functions_exec": 9,
+    "exec_command": 9,
+    "collaboration_send_message": 2,
+    "network_calls": 0
+  },
+  "cumulative_tool_calls": {
+    "producer_phase_functions_exec": 12,
+    "initial_review_functions_exec": 6,
+    "frozen_review_functions_exec": 9,
+    "total_functions_exec": 27,
+    "total_exec_command": 27,
+    "total_collaboration_send_message": 6,
+    "total_collaboration_wait_agent": 1
+  },
+  "call_log": [
+    "1 frozen dossiers/sheets/FREEZE_CONFIRMATION read; large output truncated",
+    "2 compact complete changes/variants/terms, held source equality/hash, assembly",
+    "3 source grade downgrade and freeze reasoning; list full-run paths",
+    "4 attempted all-evidence custody audit failed at unused missing alternate before any write",
+    "5 enumerate missing unused alternates and compare dossier wording to held sources",
+    "6 attempted finalization stopped on reviewer assertion comparing newly encoded evidence IDs with raw IDs; no write",
+    "7 diagnose hash/quote/reference sets; identify base64url-utf8 IDs",
+    "8 inspect current assembler encode/decode evidence-ID implementation",
+    "9 final source verification with decoded IDs, assembly, write/reparse all three review records and telemetry"
+  ],
+  "outcomes": {
+    "accept": 3,
+    "reject": 0,
+    "claims_written": 0,
+    "producer_files_modified": false,
+    "statuses_modified": false
+  },
+  "note": "Includes two failed pre-write commands. Missing unused alternative paths are not represented as verified. No official page-image inspection performed."
+}

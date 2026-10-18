@@ -123,8 +123,14 @@ def main(argv=None):
             return 0
         if a.command=='status':
             summary=read(out/'SUMMARY.json',{'error':'No corpus run'})
+            warnings=summary.pop('warnings',[])
+            summary['warnings_count']=len(warnings)
+            summary['warnings_file']=str(out/'SUMMARY.json')
             summary['committed_claim_identities']=len(existing_claims(repo))
-            summary['reservations']=read(repo/'research/readiness/CLAIM_KIT_LOCK.json',{}).get('orders',{})
+            locked=read(repo/'research/readiness/CLAIM_KIT_LOCK.json',{}).get('orders',{})
+            summary['reserved_orders']=len(locked)
+            summary['reservations_by_agent']={name:sum(r.get('agent')==name for r in locked.values())
+                for name in sorted({r.get('agent','unassigned') for r in locked.values()})}
             print(json.dumps(summary,indent=2));return 0
         if a.command=='assemble':
             if a.write.exists():raise ValueError('Output file exists; refusing overwrite: '+str(a.write))

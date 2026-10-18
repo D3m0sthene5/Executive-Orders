@@ -57,6 +57,10 @@ fingerprint and explicitly confirm the complete inventory. Assembly copies exact
 and source provenance, pins the override list in claim metadata, and reconstructs it
 when checking. `assemble.derive_inventory(dossier, overrides)` returns
 `(clauses, derived_evidence_by_id, errors)` without editing the dossier or deciding law.
+Sheets retain raw dossier IDs. Assembled source provenance stores each ID as unpadded
+base64url UTF-8 under `evidence_id`, marked `evidence_id_encoding: base64url-utf8`;
+the checker decodes it solely for exact dossier lookup. Legal citations, quotes,
+actors and producer rationale remain unchanged.
 
 A source marked `requires_page_check` also requires explicit
 `original_pages_confirmed: true` after the official pages/images were inspected;
