@@ -1,0 +1,93 @@
+test_forms (test_numbered.Dates.test_forms) ... ok
+test_citation_cue (test_numbered.Numbers.test_citation_cue) ... ok
+test_forms (test_numbered.Numbers.test_forms) ... ok
+test_accept_needs_a_name_or_three_uncommon_words (test_numbered.Words.test_accept_needs_a_name_or_three_uncommon_words) ... ok
+test_book_splitter (test_numbered.Words.test_book_splitter) ... ok
+test_names_and_abbreviations (test_numbered.Words.test_names_and_abbreviations) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK
+Targets: 3324 orders; 3246 with a day date from the WPA list; 3125 with a date and distinctive summary words.
+Books the project already holds:
+  GLO_1880: 738 pages, 0 target orders, 0 number mentions only
+  GLO_1884: 256 pages, 0 target orders, 0 number mentions only
+  GLO_1885: 463 pages, 0 target orders, 0 number mentions only
+  GLO_1891: 451 pages, 0 target orders, 0 number mentions only
+  GLO_1892: 508 pages, 0 target orders, 0 number mentions only
+  GLO_1893: 420 pages, 0 target orders, 0 number mentions only
+  GLO_1894: 548 pages, 0 target orders, 0 number mentions only
+  GLO_1897: 490 pages, 0 target orders, 0 number mentions only
+  GLO_1898: 512 pages, 0 target orders, 0 number mentions only
+  MR_1907: 484 pages, 0 target orders, 0 number mentions only
+  MR_1910: 520 pages, 2 target orders, 0 number mentions only
+  MR_1916: 560 pages, 37 target orders, 3 number mentions only
+  IR1912: 249 pages, 1 target orders, 0 number mentions only
+  IC1911: 253 pages, 0 target orders, 0 number mentions only
+  RICH_VI: 797 pages, 0 target orders, 0 number mentions only
+  RICH_VII: 677 pages, 0 target orders, 0 number mentions only
+  RICH_IX: 831 pages, 2 target orders, 1 number mentions only
+Found in held books: 41 orders.
+New books (data/BOOKS.json, in rank order):
+  KAPPLER_IV: 936 pages from bwb_S0-DZH-184_4; sha1 matches
+  KAPPLER_IV: 936 pages, 26 target orders, 0 number mentions only
+  OUB_V1: 1984 pages from officialbulletin01unse; sha1 matches
+  OUB_V1: 1984 pages, 10 target orders, 0 number mentions only
+  OUB_V2: 1360 pages from officialbulletin02unse; sha1 matches
+  OUB_V2: 1360 pages, 5 target orders, 0 number mentions only
+  OUB_1918_1919: 2100 pages from officialusbullet00unse; sha1 matches
+  OUB_1918_1919: 2100 pages, 2 target orders, 0 number mentions only
+  OUB_197_271: 926 pages from officialusbullet1972unit; sha1 matches
+  OUB_197_271: 926 pages, 8 target orders, 0 number mentions only
+  OUB_501_575: 1656 pages from officialusbulle5015unit_0; sha1 matches
+  OUB_501_575: 1656 pages, 1 target orders, 1 number mentions only
+  CSR_1914: 237 pages from annualreport139commgoog; sha1 matches
+  CSR_1914: 237 pages, 36 target orders, 0 number mentions only
+  CSR_1915: 225 pages from annualreportuni01commgoog; sha1 matches
+  CSR_1915: 225 pages, 35 target orders, 0 number mentions only
+  CSR_1918: 289 pages from annualreportuni00commgoog; sha1 matches
+  CSR_1918: 289 pages, 5 target orders, 0 number mentions only
+  CSR_1922: 241 pages from annualreportuni02commgoog; sha1 matches
+  CSR_1922: 241 pages, 21 target orders, 1 number mentions only
+  KAPPLER_III: 816 pages from bwb_C0-AGV-824_3; sha1 matches
+  KAPPLER_III: 816 pages, 0 target orders, 0 number mentions only
+  PANAMA_1921: 336 pages from executiveordersr00unit; sha1 matches
+  PANAMA_1921: 336 pages, 6 target orders, 4 number mentions only
+  IR_1922: not fetched (access_restricted)
+{
+ "books_held_scanned": 17,
+ "books_new_fetched": 12,
+ "fetch_failures": 1,
+ "found_in_held_books": 41,
+ "found_only_in_new_books": 143,
+ "match_kinds_best_hit": {
+  "date_and_subject": 117,
+  "monthday_and_names": 20,
+  "number_and_date": 19,
+  "number_and_subject": 3,
+  "number_date_subject": 25
+ },
+ "new_orders_by_series": {
+  "CSR": 95,
+  "KAPPLER": 26,
+  "OUB": 17,
+  "PANAMA": 6
+ },
+ "not_found_reasons": {
+  "WPA date not day-precise or unreadable": 25,
+  "WPA summary has no distinctive words; findable by number only": 119,
+  "no WPA entry; findable by number only": 52,
+  "not printed in any book searched": 2938,
+  "only cited by another order's text (see MENTIONS.csv)": 6
+ },
+ "note": "Leads only. Each text is OCR of a government printed copy, never the signed original; a date-and-subject hit is a machine match a reviewer must confirm against the scan. No status, census row or identity is changed.",
+ "number_mentions_only": 6,
+ "orders_with_text": 184,
+ "requests": 30,
+ "requests_refused": 0,
+ "seconds": 115.2,
+ "still_without_text": 3140,
+ "targets": 3324,
+ "texts_saved": 197
+}
