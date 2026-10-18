@@ -17,7 +17,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Complete inventory of the order's operative clauses | 1 | 3,359 | 0.0% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 1 | 3,359 | 0.0% |
 | Savings clauses and surviving effects closed | 1 | 3,359 | 0.0% |
-| Search for later contrary sources recorded, no open conflicts | 1 | 3,359 | 0.0% |
+| Search for later contrary sources recorded, no open conflicts | 2 | 3,359 | 0.1% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
 
@@ -50,7 +50,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
-| `CLAIM_INCOMPLETE` | 40 | 40 |
+| `CLAIM_INCOMPLETE` | 39 | 39 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |

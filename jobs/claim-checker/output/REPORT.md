@@ -63,7 +63,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:3` | EO:14136 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:4` | EO:14137 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:5` | EO:14138 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:unresolved_material_gaps@- |
 
 ## Source identity (is the cited original this order's?)
 

@@ -215,7 +215,7 @@
   },
   "EO:14139": {
    "claim_key": "research/readiness/claims/astra-2026-10-17-pother.jsonl:6",
-   "claim_sha256": "bbf7d57538f3314d7e475da2c34d1edd3b9e8926a5d3c09ab2bda5273e771348",
+   "claim_sha256": "84e518c18da2d7b792727a017bbcf3c824d0edb7bc97f994ffa8da7c28c483f2",
    "mechanical_result": "pass_with_unverified",
    "gate_passed": false,
    "all_checks_passed": false,
@@ -224,7 +224,7 @@
     "clause_inventory": false,
     "ending_or_current_basis": false,
     "savings_residuals": false,
-    "counterevidence": false
+    "counterevidence": true
    }
   },
   "EO:9553": {
@@ -4337,13 +4337,12 @@
    "file": "research/readiness/claims/astra-2026-10-17-pother.jsonl",
    "line": 6,
    "instrument_id": "EO:14139",
-   "claim_sha256": "bbf7d57538f3314d7e475da2c34d1edd3b9e8926a5d3c09ab2bda5273e771348",
+   "claim_sha256": "84e518c18da2d7b792727a017bbcf3c824d0edb7bc97f994ffa8da7c28c483f2",
    "provisional_status": "no",
    "mechanical_result": "pass_with_unverified",
    "gate_passed": false,
    "all_checks_passed": false,
    "gate_errors": [
-    "bounded_later_search",
     "unresolved_material_gaps"
    ],
    "gate_claim_level_errors": [
@@ -4375,10 +4374,10 @@
      "checker_passed": false
     },
     "counterevidence": {
-     "present": false,
-     "mechanical": "absent",
-     "gate": "fail",
-     "checker_passed": false
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
     }
    },
    "check_counts": {
@@ -4392,7 +4391,7 @@
      "pass": 4
     },
     "date_valid": {
-     "pass": 9
+     "pass": 12
     },
     "date_after_signing": {
      "pass": 9
@@ -4401,14 +4400,13 @@
      "pass": 2
     },
     "structural_gate": {
-     "fail": 2
+     "fail": 1
     }
    },
    "failures": [
-    "structural_gate:bounded_later_search@-",
     "structural_gate:unresolved_material_gaps@-"
    ],
-   "failures_total": 2,
+   "failures_total": 1,
    "unverified": [
     "source_held:custody_record_only@operative_clauses[0].first_end.source",
     "source_held:custody_record_only@operative_clauses[0].later_events[0].source",
