@@ -81,3 +81,6 @@ Only two kinds of evidence justify a line:
 gap in the claim's `unresolved_material_gaps` too.
 
 None of these files changes a provisional status or any count in the research ledger.
+
+
+The model-neutral dossier and decision-sheet interface is documented in [`jobs/claim-kit/AGENT_PROTOCOL.md`](../../jobs/claim-kit/AGENT_PROTOCOL.md).
