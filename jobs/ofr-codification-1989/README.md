@@ -163,6 +163,8 @@ Anything that cannot be paired is listed in `DISPOSITION_ORPHANS.csv`, not guess
 
 ## Limits
 
+- Run order: this job runs after `later-events` only. It also reads the readiness tracker's committed output to annotate provisional statuses, but it does not list `readiness-tracker` in `after.txt`, because `claim-drafts` and the tracker run after this job and listing the tracker here would make a cycle (the runner silently breaks cycles, which ran the tracker before `claim-drafts`). Statuses come from the tracker's last committed run.
+
 - Everything is Google's OCR. Only the rows this README names as checked were compared with the page images. Status phrases and numbers can be misread (one "p. 62C" stands for p. 620).
 - Statuses are as of January 20, 1989. Anything after that date is not in the book.
 - Medium- and low-confidence pairings carry `needs_page_check` in the fragments.
