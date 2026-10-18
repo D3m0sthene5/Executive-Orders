@@ -56,3 +56,52 @@ One line per target:
 These are internal to claim-kit, but must allow:
 - every source pointer in a decision sheet to be a record id from the files above (`CLAUSES:EO:n#scope`, `ACT:EO:target>EO:actor`, `TERM:...`, `CHAIN:...#k`), so the assembler can copy sources and quotes mechanically;
 - each dossier to list what it could not find.
+
+
+## Implementation extension: exact representations and decisions (claim-kit v1)
+
+`CLAUSES.jsonl` contains the preferred attributed text per order; `TEXT_CLAUSES.jsonl`
+retains the same schema for **every** discovered held representation. Sources and
+Unicode code-point offsets address the raw UTF-8 decoded bytes, with no newline or
+OCR normalization. `OWN_TERMS.jsonl` retains all representations with stable IDs
+including the text hash. A deadline always has null end candidates.
+
+`ACTING_PROVISIONS.jsonl` has one canonical row per target/actor pair. Additional
+located spans/representations are preserved in `alternative_provisions` and in
+`ACTING_REPRESENTATIONS.jsonl`; their stable IDs append a content hash. Direct and
+parent-as-amended paths do not create duplicate canonical IDs. A missing named
+provision goes in `MISSING_SOURCES.jsonl` with its pair and reason; no blank quote
+can be cited. `CHAINS.jsonl` contains named canonical change leads only, while
+generic references are counted separately. Signing fallback is explicitly an
+assumption and has no exact effective date without wording.
+
+Dossiers use `eo-claim-kit-dossier/v1`: `instrument_id`, provisional
+`whole_order_status`, `original_source_id`, `clauses`, an ID-keyed `evidence` map,
+`actor_provisions`, `actor_contexts`, `own_terms`, `chain`, `current_law_leads`,
+`machine_searches` (full records with `search_id`, `entry` and coverage warnings),
+`draft_gate_errors`, `conflicts`, `missing` and `fingerprint`. Each evidence value
+has `source`, exact `text`, `char_start`, `char_end` and its applicable date/actor
+metadata. Actor contexts over 50 KB have explicit shared overflow files which
+must be read before judgment. Current-law serialized notes and absent original
+text caches stay leads with an explicit evidence gap; they are not legal quotes.
+
+`eo-claim-kit-decision/v1` sheets pin `dossier_sha256` and `agent`. They require
+explicit `approved`, `original_confirmed`, `inventory_confirmed`; per clause,
+`scope_id`, `clause_id`, `state`, `end_id`, `effective_date`,
+`effective_date_confirmed`, `current_basis_id`, `current_legal_basis`,
+`checked_through`, `later_events` (`id`, effective date and confirmation), and
+`reason`; plus `savings` (`state`, `source_id`, `reason`), selected `search_ids`,
+`conflict_resolutions`, `research_rationale`, `unresolved_material_gaps`.
+IDs select evidence; sheets cannot supply free-form source citations or quotations.
+Blank sheets select no legal state, date, savings or search. A changed dossier
+invalidates its decisions. Assembly fails closed and reports every rejected sheet.
+Only exact quoted sources are copied into Stage19 claims. Their `claim_kit`
+metadata pins the producer and dossier; it is not reviewer or human approval.
+
+`INDEX.json` enumerates current decided dossiers; the CLI rejects stale files absent
+from the index. `STATUS_LEADS.jsonl` separately enumerates all undecided identities
+without assigning a status. `FAMILIES.json` ranks remaining shared-evidence groups.
+Reservations use an O_EXCL guard plus `research/readiness/CLAIM_KIT_LOCK.json`; this
+serializes one shared checkout. Independent clones must exchange reservations by
+committing/pulling before assigning work. No local lock claims cross-branch atomicity.
+The runner cache is bounded, disposable and keyed by parser/source hashes.

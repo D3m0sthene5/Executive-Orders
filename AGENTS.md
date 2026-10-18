@@ -13,3 +13,6 @@ For large network scans, big corpus extraction, or commands that exceed the agen
 The scientific objective is **the legally defensible lifecycle of each executive order from 1789 to the October 14, 2026 cutoff**, plus historical census recovery. Distinguish catalog hits, editorial citation links, producer claims, research hypotheses, mechanically complete draft dossiers, and independently human-reviewed whole-lifecycle conclusions. Never auto-promote one tier to another, change an immutable codebook or count unverified orders. Prioritize enabling infrastructure that makes subsequent research cheaper, broader, faster and easier to audit.
 
 Commit code, primary-source acquisition outputs and clear status reports to GitHub. Prefer separate files/branches and pull requests for parallel agents; keep handoff concise and put large data under `research/` or `jobs/`.
+
+
+For the model-neutral claim-kit dossier/decision workflow, follow [`jobs/claim-kit/AGENT_PROTOCOL.md`](jobs/claim-kit/AGENT_PROTOCOL.md).
