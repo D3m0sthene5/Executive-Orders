@@ -17,7 +17,7 @@ import time
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / 'jobs/source-ladder'))
-from plan import queue_fingerprint, queue_inputs
+from plan import queue_fingerprint, queue_inputs, opportunity, rank_actions
 import ladder_queue
 
 CUTOFF = '2026-10-14'
@@ -110,39 +110,6 @@ def era(row):
     return 'post_cutoff_year'
 
 
-def opportunity(wanted, rows, found):
-    """A source can complete only its declared machine step, never legal judgment.
-
-    Ceiling means *all* the order's missing steps are this step and every blocker
-    is explicitly addressed. Multiple missing media are checked separately below.
-    """
-    step = wanted.step
-    affected = sorted({i for i in wanted.instrument_ids if i in rows and
-                       rows[i].get('step_'+step) == 'open'})
-    is_media = wanted.wanted_id.startswith('opus-refetch:')
-    if wanted.wanted_id in found:
-        affected = []
-    # Other blockers remain; completing a source is not completing its clauses.
-    addressed = ('OPUS_MEDIA_REFETCH_NEEDED',) if is_media else (
-        ('SHARED_SOURCE_NOT_RETRIEVED',) if step == 'shared_sources' else ())
-    near = [i for i in affected if open_steps(rows[i]) == [step] and
-            all(b.startswith(addressed) for b in rows[i].get('blockers', '').split('|') if b)] if addressed else []
-    return {'wanted_id': wanted.wanted_id, 'step': step, 'citation': wanted.citation,
-            'urls': wanted.urls, 'expected_sha256': wanted.extra.get('expected_sha256'),
-            'affected_order_ids': affected, 'potential_step_completions': len(affected),
-            'near_ready_order_ids': near, 'ready_lower_bound': 0,
-            'remaining_step_tasks': sum(max(0, len(open_steps(rows[i]))-1) for i in affected),
-            'undecided_affected': sum(rows[i].get('step_provisional_status') == 'open' for i in affected),
-            'next_action': 'source-ladder plan; verify source acceptance, then rerun checker/tracker',
-            'confidence': 'mechanical workload estimate; no legal inference'}
-
-
-def rank_actions(actions):
-    # No invented billing coefficients: first readiness proximity, then verified
-    # machine step opportunity, then lower downstream work, stable ID tie break.
-    return sorted(actions, key=lambda a: (-len(a['near_ready_order_ids']),
-                  -a['potential_step_completions'], a['remaining_step_tasks'], a['wanted_id']))
-
 
 def build(root, out, limit=12):
     t0 = time.monotonic()
@@ -166,6 +133,10 @@ def build(root, out, limit=12):
     for f in families:
         for iid in f['instrument_ids']:
             memberships[iid].add(f['family_id'])
+    for lead in inp.lines('jobs/claim-kit/output/STATUS_LEADS.jsonl'):
+        iid=lead['instrument_id']
+        memberships[iid].update('actor:'+actor for actor in lead.get('lead_actor_ids',[]))
+        memberships[iid].update('own_term:'+term['kind'] for term in lead.get('own_terms',[]) if isinstance(term,dict) and term.get('kind'))
     # One lightweight source attribution per identity; evidence stays with its
     # original producer and the kit. Distinct representations remain visible.
     sources = defaultdict(set)
@@ -255,7 +226,8 @@ def build(root, out, limit=12):
        'near_complete_orders':[r for r in order_rows if len(r['open_steps'])==1],
        'source_plan_items':len(selected),'source_plan_potential_step_memberships':sum(a['potential_step_completions'] for a in selected),
        'source_plan_readiness_ceiling':len(ceiling),'source_plan_ready_lower_bound':0,
-       'historical_candidates_outside_census':len(discovery),'new_census_admissions':0,
+       'discovery_records_outside_census':len(discovery),'discovery_by_kind':dict(Counter(r['kind'] for r in discovery)),
+       'newly_authenticated_identities':0,'new_census_admissions':0,
        'kit_input_warning_count':len(kit_summary.get('warnings',[])), 'queue_problems':queue_problems,
        'input_problems':inp.problems,'billed_tokens':None,'agent_minutes':None,'reviewer_minutes':None,
        'cost_per_correctly_advanced_order':None,'corpus_scale_cost':None,
@@ -271,7 +243,7 @@ def build(root, out, limit=12):
     lines += ['',f"Readiness ceiling if the entire pass succeeds: {len(ceiling)}; demonstrated readiness gain before execution: 0.",
               '', 'Use SOURCE_PLAN.json with source-ladder JOB_PLAN_FILE. It contains existing queued requests only.',
               'All per-order remaining work is in ORDER_FRONTIER.jsonl. Claim-kit owns dossiers, decisions and assembly.',
-              f"Historical discovery: {len(discovery)} candidates/gaps outside the census, zero admissions. Source pointers and next decisions are in DISCOVERY.jsonl.",
+              f"Historical discovery: {len(discovery)} witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.",
               'Read UPSTREAM_STATUS and UNRESOLVED_RETRIEVALS before reuse. Retrieval failure never means search exhaustion.']
     (out/'REPORT.md').write_bytes(('\n'.join(lines)+'\n').encode())
     write_json(out/'METRICS.json', {'runner_seconds':round(time.monotonic()-t0,4),
@@ -282,6 +254,9 @@ def build(root, out, limit=12):
 def discover(inp, census):
     """Exact number joins only. Date-only historical identity matches are forbidden."""
     output = []
+    provenance=inp.js('jobs/ofr-codification-1989/data/PROVENANCE.json',{})
+    book=provenance.get('book',{})
+    custody={k:book.get(k) for k in ('handle_url','pdf','pdf_sha256','text','text_sha256','supplied')}
     rel = 'jobs/ofr-codification-1989/output/DISPOSITION_1989.csv'
     for n,r in enumerate(inp.csv(rel),2):
         key = r.get('key','')
@@ -291,12 +266,12 @@ def discover(inp, census):
             iid = 'EO:'+key[3:]
         if iid and iid not in census:
             output.append({'candidate_id':iid,'kind':'numbered_editorial_witness','source_path':rel,'line':n,
-               'source_record_sha256':digest(canonical(r).encode()),'raw':r,'confidence':r.get('pairing_confidence'),
+               'source_record_sha256':digest(canonical(r).encode()),'raw':r,'source_custody':custody,'confidence':r.get('pairing_confidence'),
                'next_action':'authenticate numbered identity and official original; reconcile exact census form; no automatic admission',
                'date_meaning':'editorial observation as of 1989-01-20; never a present legal finding'})
         elif key.startswith('date:') and r.get('in_census') != 'yes':
             output.append({'candidate_id':'OFR1989:row:'+r['seq'],'kind':'unnumbered_editorial_witness',
-               'source_path':rel,'line':n,'source_record_sha256':digest(canonical(r).encode()),'raw':r,
+               'source_path':rel,'line':n,'source_record_sha256':digest(canonical(r).encode()),'raw':r,'source_custody':custody,
                'confidence':r.get('pairing_confidence'),'next_action':'inspect source page, signer, scope and codebook inclusion; date alone cannot merge identities',
                'date_meaning':'historical date printed in an editorial table; legal effect unproved'})
     # Ordinary numbered holes are gaps, not recovered identities.
@@ -311,6 +286,13 @@ def discover(inp, census):
              'source_path':'jobs/census-candidates/output/ITEM_CANDIDATES.jsonl','line':n,
              'source_record_sha256':digest(canonical(r).encode()),'raw':r,'confidence':r.get('grade'),
              'next_action':'compare retained original pages/transcript, establish presidential directive and codebook inclusion; do not admit catalog hits'})
+    by_key=defaultdict(list)
+    for r in output:
+        if r['kind']=='unnumbered_editorial_witness':by_key[r['raw']['key']].append(r['candidate_id'])
+    for r in output:
+        if r['kind']=='unnumbered_editorial_witness':
+            r['possible_duplicate_witnesses']=[i for i in by_key[r['raw']['key']] if i!=r['candidate_id']]
+            r['identity_merge_performed']=False
     return sorted(output,key=lambda r:(r['kind'],r['candidate_id']))
 
 

@@ -61,6 +61,7 @@ class PlannerTests(unittest.TestCase):
 
     def test_historical_witness_never_date_merges(self):
         class Fake:
+            def js(self,path,default):return default
             def csv(self,path):return [{'key':'eo:42A','seq':'1','pairing_confidence':'high'},
                 {'key':'date:1814-08-13','seq':'2','in_census':'no','pairing_confidence':'low'}]
             def lines(self,path):return []

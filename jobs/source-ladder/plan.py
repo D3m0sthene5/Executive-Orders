@@ -31,8 +31,8 @@ def select_plan(items, plan):
     if plan.get('schema')!='eo-source-plan/v1' or plan.get('queue_fingerprint')!=queue_fingerprint(items):
         raise ValueError('source plan is stale or has an invalid schema; rebuild the excavator')
     ids=plan.get('wanted_ids')
-    if not isinstance(ids,list) or not 1<=len(ids)<=50 or len(set(ids))!=len(ids):
-        raise ValueError('source plan must contain 1..50 distinct wanted IDs')
+    if not isinstance(ids,list) or not 0<=len(ids)<=50 or len(set(ids))!=len(ids):
+        raise ValueError('source plan must contain 0..50 distinct wanted IDs')
     by={}
     for w in items:
         if w.wanted_id in by:
@@ -69,3 +69,56 @@ def retain_unselected(prior, carried, selected, out):
                    text_path=src['text_path'] or '')
         results.append(row)
     return sources, results
+
+
+def open_steps(row):
+    steps=("provisional_status","original_text","clause_inventory","ending_or_current_basis","savings_residuals","counterevidence","shared_sources","opus_media")
+    return [step for step in steps if row.get("step_"+step)=="open"]
+
+
+def opportunity(wanted, rows, found):
+    """A source can complete only its declared machine step, never legal judgment.
+
+    Ceiling means *all* the order's missing steps are this step and every blocker
+    is explicitly addressed. Multiple missing media are checked separately below.
+    """
+    step = wanted.step
+    affected = sorted({i for i in wanted.instrument_ids if i in rows and
+                       rows[i].get('step_'+step) == 'open'})
+    is_media = wanted.wanted_id.startswith('opus-refetch:')
+    if wanted.wanted_id in found:
+        affected = []
+    # Other blockers remain; completing a source is not completing its clauses.
+    addressed = ('OPUS_MEDIA_REFETCH_NEEDED',) if is_media else (
+        ('SHARED_SOURCE_NOT_RETRIEVED',) if step == 'shared_sources' else ())
+    near = [i for i in affected if open_steps(rows[i]) == [step] and
+            all(b.startswith(addressed) for b in rows[i].get('blockers', '').split('|') if b)] if addressed else []
+    return {'wanted_id': wanted.wanted_id, 'step': step, 'citation': wanted.citation,
+            'urls': wanted.urls, 'expected_sha256': wanted.extra.get('expected_sha256'),
+            'affected_order_ids': affected, 'potential_step_completions': len(affected),
+            'near_ready_order_ids': near, 'ready_lower_bound': 0,
+            'remaining_step_tasks': sum(max(0, len(open_steps(rows[i]))-1) for i in affected),
+            'undecided_affected': sum(rows[i].get('step_provisional_status') == 'open' for i in affected),
+            'next_action': 'source-ladder plan; verify source acceptance, then rerun checker/tracker',
+            'confidence': 'mechanical workload estimate; no legal inference'}
+
+
+def rank_actions(actions):
+    # No invented billing coefficients: first readiness proximity, then verified
+    # machine step opportunity, then lower downstream work, stable ID tie break.
+    return sorted(actions, key=lambda a: (-len(a['near_ready_order_ids']),
+                  -a['potential_step_completions'], a['remaining_step_tasks'], a['wanted_id']))
+
+
+
+def make_readiness_plan(items, found, tracker_path, limit=12, budget=80):
+    import csv
+    raw=Path(tracker_path).read_bytes()
+    rows={r['instrument_id']:r for r in csv.DictReader(raw.decode('utf-8-sig').splitlines())}
+    if not 1<=limit<=50 or not 1<=budget<=300:
+        raise ValueError('readiness plan limit must be 1..50 and budget 1..300')
+    actions=rank_actions([opportunity(w,rows,found) for w in items])
+    chosen=[a['wanted_id'] for a in actions if a['potential_step_completions']][:limit]
+    return {'schema':'eo-source-plan/v1','queue_fingerprint':queue_fingerprint(items),
+            'tracker_sha256':hashlib.sha256(raw).hexdigest(),'wanted_ids':chosen,
+            'max_requests':budget,'legal_cutoff':'2026-10-14','method':'readiness proximity, step opportunity, downstream work, stable ID'}
