@@ -720,6 +720,13 @@ def pinned_wpa():
     return got in PINNED_INPUTS
 
 
+class AbbreviatedSignature(unittest.TestCase):
+    def test_fr_pierce_is_a_signature(self):
+        # p. 43 (PDF 56): Pierce's indorsement of May 22, 1856 is signed "FR. PIERCE.", OCR "Fe. Pierce."
+        self.assertEqual(ir.is_signature("Fe. Pierce.")[0], "PIERCE")
+        self.assertEqual(ir.is_signature("FR. PIERCE.")[0], "PIERCE")
+
+
 class CommittedVolume(unittest.TestCase):
     """Regression guard on the committed text layer of the 1912 volume."""
 
@@ -751,14 +758,14 @@ class CommittedVolume(unittest.TestCase):
 
     def test_acts_and_headings(self):
         from collections import Counter
-        self.assertEqual(len(self.acts), 308)
+        self.assertEqual(len(self.acts), 309)
         self.assertEqual(dict(Counter(a["kind"] for a in self.acts)),
-                         {"order": 277, "indorsement_or_approval": 27, "proclamation": 4})
+                         {"order": 277, "indorsement_or_approval": 28, "proclamation": 4})
         self.assertEqual(sum(1 for h in self.heads if h["kind"] == "state"), 19)
-        self.assertEqual(len({a["lead_id"] for a in self.acts}), 308)
+        self.assertEqual(len({a["lead_id"] for a in self.acts}), 309)
         self.assertEqual(sum(1 for a in self.acts if not a["date"]), 22)
         self.assertEqual(sum(1 for a in self.acts if a["year_in_term"] == "NO"), 2)
-        self.assertEqual(sum(1 for a in self.acts if a["date"] and a["date"] < "1900"), 213)
+        self.assertEqual(sum(1 for a in self.acts if a["date"] and a["date"] < "1900"), 214)
         self.assertEqual(sum(1 for h in self.heads if h["kind"] == "reservation"), 132)
 
     def test_reprints(self):
@@ -769,7 +776,7 @@ class CommittedVolume(unittest.TestCase):
         orders = {}
         for a in self.acts:
             orders.setdefault(group[a["seq"]], []).append(a["lead_id"])
-        self.assertEqual((len(orders), len(self.acts) - len(orders)), (275, 33))
+        self.assertEqual((len(orders), len(self.acts) - len(orders)), (276, 33))
         of = {lid: sorted(orders[group[by[lid]["seq"]]]) for lid in by}
         self.assertEqual(of["IR1912:p37:3"], ["IR1912:p11:3", "IR1912:p37:3"])          # Apache, Feb 17, 1912
         self.assertEqual(of["IR1912:p130:2"], ["IR1912:p130:2", "IR1912:p22:3"])        # Zuni
@@ -865,9 +872,9 @@ class CommittedVolume(unittest.TestCase):
         self.assertEqual(s["wpa_ir_citations"], 45)
         self.assertEqual(s["wpa_ir_citation_resolution"], {"matched_act_on_page": 43, "MATCHED_ACT_ELSEWHERE": 2})
         self.assertEqual((s["lord_ir_citations"], s["lord_rows_citing_ir"]), (249, 178))
-        self.assertEqual(s["lord_resolution"], {"match": 182, "ambiguous": 52, "unmatched": 15})
+        self.assertEqual(s["lord_resolution"], {"match": 183, "ambiguous": 52, "unmatched": 14})
         self.assertEqual(s["census_leads"]["BOOK_EXACT_DATE_FOR_YEAR_ONLY"], 45)
-        self.assertEqual(s["census_leads"]["UNNUMBERED_NOT_IN_CENSUS"], 216)      # orders, not printings
+        self.assertEqual(s["census_leads"]["UNNUMBERED_NOT_IN_CENSUS"], 217)      # orders, not printings
         self.assertEqual(s["census_leads"]["PROCLAMATION_NOT_AN_EXECUTIVE_ORDER"], 4)
         self.assertEqual(s["census_leads"]["BOOK_DATE_DIFFERS_FROM_WPA"], 1)
         self.assertEqual(s["census_leads"]["DATE_CONFLICT_WITH_LORD"], 5)

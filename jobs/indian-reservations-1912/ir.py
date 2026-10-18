@@ -39,7 +39,7 @@ ABBR = {"jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6, "jul": 7, "a
         "oct": 10, "nov": 11, "dec": 12}
 
 PRES = {
-    "PIERCE": ["FRANKLIN PIERCE"], "BUCHANAN": ["JAMES BUCHANAN"],
+    "PIERCE": ["FRANKLIN PIERCE", "FR PIERCE"], "BUCHANAN": ["JAMES BUCHANAN"],
     "LINCOLN": ["A LINCOLN", "ABRAHAM LINCOLN"], "JOHNSON": ["ANDREW JOHNSON"],
     "GRANT": ["U S GRANT"], "HAYES": ["R B HAYES", "RUTHERFORD B HAYES"],
     "GARFIELD": ["JAMES A GARFIELD", "J A GARFIELD"], "ARTHUR": ["CHESTER A ARTHUR", "C A ARTHUR"],

@@ -164,18 +164,18 @@ reads 1876. `medium`: any other date, including every day taken from another sou
 
 ## Measured 2026-10-17
 
-- **308 printed acts**: 277 orders, 27 indorsements or approvals, 4 proclamations, under 19 states
+- **309 printed acts**: 277 orders, 28 indorsements or approvals, 4 proclamations, under 19 states
   and 132 reservation headings. Every one of the 277 order headers is followed by a recognised
   signature.
-- **275 distinct orders.** 33 acts reprint an order printed elsewhere in the book: 15 orders are
+- **276 distinct orders.** 33 acts reprint an order printed elsewhere in the book: 15 orders are
   printed twice, 5 three times, 2 five times. For 2 orders the printings disagree on the date; in
   each case one printing differs from the others (`REPRINT_DATE_CONFLICT`: p. 37:3 reads February
   11, 1912 for the Apache order of February 17; p. 162:3 reads 1876 for the January 11, 1875 order;
   the page images, PDF pp. 50 and 175, read 17 and 1875). Both misreads were literal digits.
-- **184 orders are before 1900** (9 in the 1850s, 15 in the 1860s, 83 in the 1870s, 65 in the
-  1880s, 12 in the 1890s); 71 are from 1900–1912; 20 could not be dated. Counted by printings, 213
+- **185 orders are before 1900** (10 in the 1850s, 15 in the 1860s, 83 in the 1870s, 65 in the
+  1880s, 12 in the 1890s); 71 are from 1900–1912; 20 could not be dated. Counted by printings, 214
   acts are before 1900.
-- Dates of printings: 239 full, 43 month only, 4 year only, 22 unread; 68 needed digit repair; 2
+- Dates of printings: 240 full, 43 month only, 4 year only, 22 unread; 68 needed digit repair; 2
   read outside the signer's term (OCR misreads). **35 printings have a damaged day**: 19 got the day
   from another source (citations in the book 21 times, Lord's list 9, the WPA list 5, another
   printing 2; several sources may agree on one day), 16 keep only the month. The earlier run read
@@ -183,8 +183,8 @@ reads 1876. `medium`: any other date, including every day taken from another sou
   the 4th; now p. 15:2 is May 14, 1900 (Lord), p. 34:1 and its printing p. 5:2 December 14, 1872
   (the book's own citation on p. 6), pp. 70:1 and 73:2 June 14, 1867, p. 89:1 November 14, 1871,
   p. 148:1 March 14, 1871, and p. 18:3 (November 1901) and p. 206:1 (November 1873) keep only the
-  month. Dates of orders: 211 full, 41 month only, 3 year only, 20 unread. Confidence of
-  printings: 107 high, 179 medium, 22 low.
+  month. Dates of orders: 212 full, 41 month only, 3 year only, 20 unread. Confidence of
+  printings: 107 high, 180 medium, 22 low.
 - **55 orders paired with numbered orders**, all in the census with a year-only date; no tie on
   either side: 40 on the exact date, 11 by month and page, 1 by month and a damaged-day reading
   (p. 13:2, EO 1267), 1 undated by page, and 2 by subject from 1900 on (p. 52:1 → EO 1224, p. 53:3
@@ -196,22 +196,22 @@ reads 1876. `medium`: any other date, including every day taken from another sou
 - The Fort Apache section prints two orders of February 17, 1912: p. 11:2 acts on the Sitgreaves
   National Forest (EO 1479) and p. 11:3 on the Apache National Forest (EO 1475). Both are paired
   that way; p. 37 prints the Crook order (EO 1477) and a reprint of the Apache order.
-- **216 orders are not in the census** as far as the lists show (no numbered pairing; not
-  proclamations), 184 of them before 1900. Before 1900: Lord's list cites a printing's page in the
-  same year for 138, Lord's citation is ambiguous for 41, and Lord does not cite the page for 5.
+- **217 orders are not in the census** as far as the lists show (no numbered pairing; not
+  proclamations), 185 of them before 1900. Before 1900: Lord's list cites a printing's page in the
+  same year for 139, Lord's citation is ambiguous for 41, and Lord does not cite the page for 5.
   From 1900 (13, each compared with the numbered entries of its month or year, none close enough):
-  9, 3 and 1. Undated: 8, 3 and 8. 20 of the 216 are printed more than once. The 4 proclamations
+  9, 3 and 1. Undated: 8, 3 and 8. 20 of the 217 are printed more than once. The 4 proclamations
   (pp. 50:1, 51:1, 94:1, 143:3) have their own lead.
 - The WPA numbered list cites this book 45 times; 43 citations land on a printing of the paired
   order. EO 1518 (Flathead, April 13, 1912) is cited at p. 53 but printed at p. 94; EO 1479
   (Sitgreaves National Forest) is cited at p. 37 but printed at p. 11.
-- Lord's list cites this book 249 times in 178 rows: 182 citations match one act, 52 are
-  ambiguous, 15 are unmatched. For 5 printings a Lord row resolved to the act gives another day of
+- Lord's list cites this book 249 times in 178 rows: 183 citations match one act, 52 are
+  ambiguous, 14 are unmatched. For 5 printings a Lord row resolved to the act gives another day of
   the same month (`DATE_CONFLICT_WITH_LORD`; for p. 86:2, 88:3 and 163:1 another printing repeats
   the book's day).
 - 132 ending-lead rows for 118 orders (one per order and cited date); for 43 the earlier order
   cited is found in the book (41 in the same section, 2 in the same state).
-- 308 act texts and 45 related-papers files (7 places where only a subhead such as "[Partly in
+- 309 act texts and 45 related-papers files (7 places where only a subhead such as "[Partly in
   California.]" stood before the order no longer get a papers file).
 
 ## Limits
