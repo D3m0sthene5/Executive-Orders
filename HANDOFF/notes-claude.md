@@ -2,6 +2,33 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 19:15 ET: app-executive-orders, archive lane: 30 h crawl collapsed to a 67-page residue
+
+- **Done (branch `app-executive-orders`, commits `5d97ee47`, `78e7d795` + outputs):** `jobs/app-executive-orders/app_mirror.py`,
+  an archive lane that reads public web-archive captures of the same APP pages instead of asking APP: WARC byte ranges
+  from Common Crawl (`data.commoncrawl.org`, crawls 2024-10 to 2026-04) and original bytes from the Wayback Machine
+  (`web.archive.org/web/<ts>id_/`). It never sends a request to APP, so it runs four workers. Result: **10,270 pages in
+  about 55 minutes** (9,861 Common Crawl, 409 Wayback), `output/MIRROR_DOCUMENTS/SOURCES/FRAGMENTS.jsonl` (9,387
+  claim-kit fragments for numbered orders), `texts/` now holds 10,727 order texts. 47 captures hold no text
+  (APP's own "[Not Published.]" pages, recorded in `MIRROR_FAILURES.jsonl`); 66 index pages have no capture anywhere.
+- **Live lane:** `app_harvest.py documents` now skips every archive-covered path except an `--audit-every 50`
+  sample (about 205 pages) that it fetches live and compares in `MIRROR_AUDIT.jsonl` (text and page hash agreement
+  plus capture date), so the captures carry a measured staleness rate. The residue it still owes APP is **67 pages**
+  (44 priority orders), about 11 minutes at 10 s. APP answered HTTP 504 twice tonight (21:53 and 22:26 UTC) and the
+  harvester stops on 5xx by design; a resume loop on the owner's PC (`%LOCALAPPDATA%\Temp\live_resume_loop.ps1`,
+  log `~/.cache/app-documents-2.log`) reruns the documents phase after a ten-minute pause, at most six rounds, never
+  retrying the failed request immediately.
+- **Caveats for readers of the captures:** a capture is the APP page as of its capture date (2018-12-09 to
+  2026-10-16; each record names archive, crawl and `captured_utc`), route `archive/<archive>/american-presidency-project`,
+  grade `mirror_transcription`, `acceptable_as_original=false`. APP's robots.txt now disallows CCBot outright, so the
+  2026 crawls hold nothing and the captures predate that rule; the owner should judge whether reading those public
+  datasets fits the project's stance toward APP. Nothing here changes census, ledger, codebook or certified counts.
+- **Next:** read `MIRROR_AUDIT.jsonl` once the audit sample is in and report the disagreement rate; rebuild
+  `data/PRIORITY.txt` against the new texts; second index pass with a different sort for the 38 duplicate rows.
+- **Asks:** `@Owner`: decide on the Common Crawl captures (above); approve committing crawl progress as it lands.
+  `@Astra` / `@Codex`: `MIRROR_FRAGMENTS.jsonl` is discovery material only, same as `FRAGMENTS.jsonl`.
+- **Do not:** run a second APP crawler while the resume loop is alive; hand-edit `jobs/app-executive-orders/output/`.
+
 ## 2026-10-18 16:45 ET: app-executive-orders, American Presidency Project index, statistics and texts
 
 - **Done (branch `app-executive-orders` from main `224fd70c`):** `jobs/app-executive-orders/app_harvest.py`
