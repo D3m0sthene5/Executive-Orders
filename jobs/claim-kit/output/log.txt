@@ -1,0 +1,30 @@
+..................................F........................................................................
+======================================================================
+FAIL: test_weak_original_requires_separate_page_confirmation (test_assemble.AssemblyTests.test_weak_original_requires_separate_page_confirmation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-kit/test_assemble.py", line 91, in test_weak_original_requires_separate_page_confirmation
+    claim,errors=self.assemble();self.assertEqual(errors,[])
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['original_page_check_confirmation_required'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'original_page_check_confirmation_required'
+
+- ['original_page_check_confirmation_required']
++ []
+
+----------------------------------------------------------------------
+Ran 107 tests in 1.056s
+
+FAILED (failures=1)
+{"assembled_claims": 0, "decided_orders": 3, "dossiers": 3, "families": 1, "generic_references_excluded": 1, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 3, "located_actor_pairs": 3, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-kit/job.py", line 9, in <module>
+    subprocess.run([sys.executable,'-m','unittest','discover','-s',str(HERE),'-p','test_*.py'],cwd=repo,check=True,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '-m', 'unittest', 'discover', '-s', '/home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-kit', '-p', 'test_*.py']' returned non-zero exit status 1.
