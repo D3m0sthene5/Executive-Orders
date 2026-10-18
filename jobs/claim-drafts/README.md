@@ -28,6 +28,9 @@ rationale.
 | `jobs/later-events/output/` | later events and whole-order ending candidates from the OFR notes and order texts; the OFR catalog |
 | `jobs/current-law/output/` | U.S. Code and eCFR mentions (leads that an order still operates), and endings stated there |
 | `jobs/source-ladder/output/` | shared legal sources retrieved for the orders that cite them |
+| `jobs/ofr-compilations/output/`, `jobs/isthmian-canal-1911/output/`, `jobs/indian-reservations-1912/output/` | official government printings of the orders' texts (OFR 1974 Hoover compilation, GPO 1911 Canal Commission orders, GPO 1912 Indian-reservation orders): original-text candidates, graded like fr-originals |
+| `jobs/richardson-volumes/output/` | Richardson's *Messages and Papers* (vols VI, VII, IX): a printed compilation transcribed from records and newspapers. A lead to the original only |
+| `jobs/ofr-codification-1989/output/` | the OFR 1989 Codification: later events and whole-order ends from its disposition table (`FRAGMENTS.jsonl`), and the orders printed as in force on 1989-01-20 (`CODIFIED_1989.csv`) |
 | `research/stage21/original_sources/` | the 40 official per-document PDFs captured in Stage 21 |
 | `research/stage20/output/` | the shared-source and statute queues; the Opus media audit |
 | `research/progress/`, `research/stage15/CENSUS/`, `research/stage19/` | provisional statuses, the 14,972-order universe, the causal queue and the **claim gate** |
@@ -79,6 +82,52 @@ merged too. A job with no output yet is simply skipped (the summary says so).
 - `SUMMARY.json`: counts, including orders with a draft, drafts whose only
   remaining gaps are judgment fields, and the most common conflict types.
 
+### The printed-volume jobs (wired in 2026-10-18)
+
+- **Official compilations** (`ofr-compilations`, `isthmian-canal-1911`,
+  `indian-reservations-1912`) are government printings of the orders' texts.
+  Their `original_representation` fragments become original-text candidates
+  graded exactly like fr-originals: `official_compilation_high` (strong, so it
+  can fill `claim.original_representation`) only when the job did not flag
+  `needs_page_check` and the location is `high`; otherwise
+  `official_compilation_needs_page_check` (never strong). An FR printing found
+  by fr-originals ranks above them; they rank above the source ladder's FR
+  pages.
+- **Richardson** (`richardson-volumes`) is a compilation transcribed from
+  department records and newspapers, not the signed or officially printed
+  original. No rule in this job, the tracker or the claim checker treated a
+  compiled printing as the original (an unknown producer was always graded
+  `fr_originals_needs_page_check`, never strong; clause-drafts grades the
+  American Presidency Project as `mirror_transcription_app`). So it becomes
+  `compiled_transcription_lead`: `strong: false` and
+  `acceptable_as_original: false`. It is never filled, never used by the
+  feasibility test, and an order with only this lead keeps `original_text` in
+  `missing_evidence`.
+- **The 1989 Codification** (`ofr-codification-1989`). Its later-event
+  fragments become later-event proposals (`date_candidate`, never
+  `effective_date`), flagged `ofr_codification_1989_editorial` with a caution.
+  An unqualified revocation (or rescission, or "superseded or revoked") is also
+  offered as a whole-order-end proposal, under later-events' own rule: no
+  qualifier, no `needs_page_check` from the codification job (medium/low
+  pairing), and no item from any job saying the same acting instrument acted
+  only in part (else the item stays a later event, flagged
+  `full_and_partial_evidence_conflict`). Plain supersessions and terminations
+  stay later events, as in later-events. Those proposals carry the flag
+  `whole_end_from_1989_disposition_table`; like every whole-order-end proposal
+  their `date` is the acting document's signing date, not a confirmed
+  effective date. The disposition table and the later-events OFR catalog notes
+  are the same OFR data (the online edition of these tables), so when both
+  name the same ending the group is **not** `corroborated_by_two_jobs`, and
+  later-events' item stays first.
+  The orders printed as in force on 1989-01-20 (`CODIFIED_1989.csv`) become a
+  `current_predicate` lead with `basis_code` `ofr_codification_1989_in_force`
+  and `checked_through` `1989-01-20`. It is listed after every current-law
+  lead, never used by the feasibility test, never counted as a current-law
+  lead, and it can never pass the gate (which needs `2026-10-14`). The
+  codified texts are as amended to 1989, so they are never original-text
+  candidates.
+- `SUMMARY.json` -> `book_sources` counts the drafts that use each of these.
+
 ### What "only judgment left" means
 
 The job makes a *copy* of each draft, puts the suggested candidates and
@@ -92,6 +141,7 @@ evidence that no machine has found yet. The copy is never written out.
 | Code | Meaning |
 |---|---|
 | `NO_ORDER_CITED_IN_CURRENT_LAW` | provisional NO, but the U.S. Code or eCFR still cites the order |
+| `NO_ORDER_IN_FORCE_ON_1989_01_20` | provisional NO, the OFR 1989 Codification prints the order as in force on 1989-01-20 (not restated by a later order), and no ending candidate is dated after that day |
 | `YES_ORDER_HAS_WHOLE_END_CANDIDATE` | provisional YES, but a source says the whole order was revoked or superseded |
 | `WHOLE_END_DATE_DISAGREEMENT` / `WHOLE_END_ACTOR_DISAGREEMENT` | ending candidates name different dates or different acting instruments |
 | `WHOLE_END_DATE_MISSING_OR_DISPUTED` | an ending candidate has no single exact date |
