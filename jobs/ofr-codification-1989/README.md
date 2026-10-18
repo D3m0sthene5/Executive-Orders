@@ -57,6 +57,13 @@ the job works from the position of each piece of text:
 2. A printed line belongs to a row when it sits within 3.6 points of the row's number. Rows are about 7
    points apart. An indented line continues the row above it. A line at the top of a page continues the
    last row of the page before.
+   - **Exception: a second piece on a row's own line.** The OCR sometimes splits one printed line into two
+     pieces, and the second piece can sit a point or so higher than the first. EO 9303 is printed "Revoked
+     by EOs 9521, 10697". The OCR gives "Revokedby EOs 9521" (y 549.4) and ", 10697" (x 327, y 551.1), and
+     the number 9303 sits at y 551.0. Taken alone, the indented ", 10697" looks like a wrapped line of
+     EO 9301 above. So any piece within 1.5 points of a row number whose position was measured (not
+     estimated) joins the line that starts that row, however far it is indented. This moved 7 disposition
+     pieces and 1 amendments piece. `SUMMARY.json` lists them under `same_line_pieces_joined`.
 3. The OCR often glues text together, and the job repairs only what it can repair safely:
    - "10070 AmendedEO 9975 Revokedby EO 10810" holds all three columns in one piece. It is split at
      the first status phrase.
@@ -65,11 +72,19 @@ the job works from the position of each piece of text:
      in the right order.
    - "22452" is read as 2245½, but only when the census has EO 2245½ and the number would otherwise be
      out of order. "9-2" stays EO 9-2.
+   - ". EO 11788" in the amendments column holds two things: the full stop that ends the amendments list,
+     and the wrapped end of the disposition ("Revoked by | EO 11788"; "See note at | EO 12220, Chapter 15").
+     A piece that is only a full stop and a bare EO reference, with no verb, goes to the disposition. This
+     happens 3 times (EO 10893, 10915 and 11627).
 4. Unnumbered orders appear as dates. The month-day and the year are often separate pieces ("Aug." +
    "12,1898"). Once the date was even swallowed by the status ("Revokedby EO 9521Dec. 31"). These
    pieces are joined back together.
 5. An italic "Revoked EO 9000" in the amendments column lists what a dead order had itself revoked. It is
    not the order's own status, and the job does not treat it as one. Neither is "Revoked in part by".
+6. An order named only in "See note at EO 12220, Chapter 15" is listed in `acting_documents`. It is not
+   treated as the order that ended the row. EO 11818 is printed "Revoked by EO 11818", which is an error
+   in the book. It is reproduced as printed and flagged `acting_document_is_the_row_itself`. It is never
+   emitted as a later-event candidate.
 
 Anything that cannot be paired is listed in `DISPOSITION_ORPHANS.csv`, not guessed.
 
@@ -103,19 +118,19 @@ Anything that cannot be paired is listed in `DISPOSITION_ORPHANS.csv`, not guess
 - 4,224 rows: 4,206 numbered orders and 18 dated unnumbered orders. Every one of the 4,206 numbered ids is in the census.
 - Pairing confidence: 4,056 high, 162 medium and 6 low. No row is without a disposition, and 2 fragments are unpaired.
 - The table's 555 "Codified at Chapter" rows are exactly the 555 codified texts.
-- EO 9538–12667 should be complete. Four numbers (10217, 10275, 10288 and 10595) are missing from the OCR of the table itself: the rows around them are contiguous.
+- EO 9538–12667 should be complete. Four numbers (10217, 10275, 10288 and 10595) are not printed in the book's table at all. The page images (PDF 1063, 1064 and 1069) go straight from the number before to the number after. Their census leads say so.
 - Groups:
   - ended by 1989: 2,860 (revoked 1,540, superseded 416, temporary 299, executed and obsolete 195, authority repealed 150, …)
   - in force: 578 (codified here 555, codified elsewhere 23)
   - effect merged into another order: 408
   - excluded but not ended: 281 (public lands 273, tariff 8)
   - other: 97
-- **Cross-check.** For 1,669 revoked or superseded rows, the OFR's online data (via `jobs/later-events`) also names a revoking or superseding order. It names the same order for 1,663 of them (99.6%).
-- **Unnumbered rows.** 16 of the 18 dated rows match exactly one census row, all of which have a blank census date. 2 rows (Aug. 8, 1914) share a date with two census rows and are left ambiguous.
+- **Cross-check.** For 1,668 revoked or superseded rows, the OFR's online data (via `jobs/later-events`) also names a revoking or superseding order. It names the same order for 1,664 of them (99.8%). 4 differ: EO 9322, 10332, 10915 and 12395. For 224 more rows, `later-events` has no ending edge. EO 11818 is no longer compared, because its printed acting order is itself (`later-events` names EO 12002). Before the same-line fix, EO 9303 counted as a disagreement. That was the parser's error, not the sources'.
+- **Unnumbered rows.** 16 of the 18 dated rows match exactly one census row, all of which have a blank census date. 2 rows (Aug. 8, 1914) share a date with two census rows and are left ambiguous. Both rows read "Public lands" and "Amended by EO 8507". By position they would be `EO:UN:executive-orders-01:row:12` and `row:71`, the same numbers as their table rows. The `note` column records this but does not assert it.
 - **Status leads.** 1,298 undecided census orders had ended by 1989, and 261 were in force. 3 decided-YES orders had ended by 1989 (two through repeal of their authority).
 - **Not in the census.** One order, EO 6585 (Feb. 6, 1934), appears only in a dated reference.
 - **Reference dates.** 533 more exact-date leads come from dated references for year-only census orders that have no SOURCE line.
-- **Fragments.** 1,970 later-event items for 1,924 census orders, 1,829 of them with an acting-order date.
+- **Fragments.** 1,972 later-event items for 1,923 census orders, 1,831 of them with an acting-order date.
 
 ## Limits
 

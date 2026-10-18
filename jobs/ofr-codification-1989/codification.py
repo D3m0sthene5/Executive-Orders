@@ -217,7 +217,8 @@ def find_documents(stream, recto_titles=None):
         title = re.sub(r"^.*?(?:Executive\s*Order|Proclamation)\s*\d{1,5}(?:\s*-?\s*[A-Z](?![a-z]))?\s*[-—–]+\s*", "", title, count=1)
         src_text = clean(" ".join(l for _, _, l in stream[src_line:src_line + 25]))
         src_text = src_text[src_text.find("SOURCE"):] if "SOURCE" in src_text else src_text
-        cut = re.search(r"otherwise\s*noted\s*\.", src_text)
+        cut = (re.search(r"otherwise\s*noted\s*\.", src_text)
+               or re.search(r"Federal\s*Register(?:\s*system)?\s*\.", src_text))
         src_text = src_text[:cut.end()] if cut else src_text[:300]
         d.update({
             "lines": span, "pdf_pages": (span[0][0], span[-1][0]), "printed_pages": (span[0][1], span[-1][1]),
@@ -296,6 +297,11 @@ LEADER_NUMBER = re.compile(r"^(.*?)(?:\s*[.…]{2,}|(?:^|\s)[.…])\s*(\d{3,5}[A
 FREE_TEXT_START = re.compile(r"(?<=[\d.,;]\s)([A-Z][a-z]{3,})")
 RUNNING_HEADS = re.compile(r"^\s*(Codification\s*of\s*Presidential\s*Proclamations\s*and\s*Executive\s*Orders|"
                            r"Executive\s*Orders|Proclamations|Index)\s*$")
+# '. EO 12220' in the amendments column: a full stop, then a bare document reference with no verb of its own.
+WRAPPED_DISP_REF = re.compile(r"^[.]\s*((?:EOS?s?|Procs?)\s*\.?\s*\d{1,5}(?:\s*,\s*\d{1,5})*)\s*$")
+# EO numbers in the 9538-12667 run that the book's table does not print at all (checked against the page images
+# on 2026-10-17: the rows either side are contiguous on the printed page). Number -> PDF page.
+NOT_PRINTED_IN_TABLE = {10217: 1063, 10275: 1064, 10288: 1064, 10595: 1069}
 TRAILING_NUMBER = re.compile(r"^(.*(?:EOS?s?|Procs?)\s*\.?\s*(?:\d{1,5}\s*,\s*)*)(\d{5,10})\s*$")
 
 
@@ -383,6 +389,11 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
     def split_content(x, y, t, from_anchor=False):
         t = t.strip()
         if not t:
+            return
+        if not from_anchor and x > amx + 20 and WRAPPED_DISP_REF.match(t):
+            # '. EO 12220': the period closes the amendments list and the bare 'EO 12220' is the wrapped end of the
+            # disposition ('See note at | EO 12220, Chapter 15'; 'Revokedby | EO 11788'); OCR made it one chunk
+            disp_parts.append((dispx + 6, y, WRAPPED_DISP_REF.match(t).group(1), False, "wrapped_reference_from_amendments_column"))
             return
         k = first_disp_kw(t)
         if k is None and x < dispx - 3:
@@ -554,21 +565,63 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
             else:
                 out.append({"y": p[1], "parts": [p]})
         for ln in out:
-            ln["parts"].sort(key=lambda p: p[0])
-            real = [p for p in ln["parts"] if p[2].strip(" .…,;:")]
-            ln["x0"] = (real or ln["parts"])[0][0]
-            ln["text"] = " ".join(p[2] for p in ln["parts"] if p[2])
-            ln["forced"] = any(len(p) > 3 and p[3] for p in ln["parts"])
-            ln["how"] = ";".join(sorted({p[4] for p in ln["parts"] if len(p) > 4 and p[4]}))
+            finish_line(ln)
         return out
 
+    def finish_line(ln):
+        ln["parts"].sort(key=lambda p: p[0])
+        real = [p for p in ln["parts"] if p[2].strip(" .…,;:")]
+        ln["x0"] = (real or ln["parts"])[0][0]
+        ln["text"] = " ".join(p[2] for p in ln["parts"] if p[2])
+        ln["forced"] = any(len(p) > 3 and p[3] for p in ln["parts"])
+        ln["how"] = ";".join(sorted({p[4] for p in ln["parts"] if len(p) > 4 and p[4]}))
+
+    def starts_row(ln, col_x, field):
+        return ln["x0"] < col_x + 3.5 or ln["forced"] or (
+            field == "disp" and first_disp_kw(ln["text"]) == 0 and ln["x0"] < col_x + 5)
+
+    # A row's text can run onto a second OCR chunk on the same printed line that sits a little higher than the
+    # chunk that starts it: 'Revokedby EOs 9521' (y 549.4) + ', 10697' (x 327, y 551.1) beside the number 9303
+    # (y 551.0). Taken alone, the indented piece looks like a wrapped line of the row above. A piece within
+    # SAME_LINE_DY of a row's number whose y was measured (not estimated) is on that row's line, whatever its
+    # indent, so it is joined to the line that starts that row.
+    SAME_LINE_DY = 1.5
+
+    def join_same_line_pieces(lines, col_x, field):
+        measured = [a for a in anchors if not any(f.endswith("y_estimated") for f in a["flags"])]
+        starts = [ln for ln in lines if ln["text"].strip(" .…,") and starts_row(ln, col_x, field)]
+        start_ids = {id(ln) for ln in starts}
+
+        def nearest(y, pool, dy):
+            near = [a for a in pool if abs(a["y"] - y) <= dy]
+            return min(near, key=lambda a: abs(a["y"] - y)) if near else None
+
+        out = []
+        for ln in lines:
+            if id(ln) in start_ids or not ln["text"].strip(" .…,"):
+                out.append(ln)
+                continue
+            a = nearest(ln["y"], measured, SAME_LINE_DY)
+            own = [m for m in starts if abs(m["y"] - a["y"]) <= 3.6 and nearest(m["y"], anchors, 3.6) is a] if a else []
+            if not own:
+                out.append(ln)
+                continue
+            m = min(own, key=lambda m: abs(m["y"] - a["y"]))
+            m["parts"] += ln["parts"]
+            finish_line(m)
+            m["joined_same_line_piece"] = True
+            same_line_joins.append({"page": pno, "field": field, "row": a["key"], "piece": ln["text"]})
+        return out
+
+    same_line_joins = []
+
     def attach(lines, col_x, field, name):
+        lines = join_same_line_pieces(lines, col_x, field)
         cur, prev_y = None, None
         for ln in lines:
             if not ln["text"].strip(" .…,"):
                 continue
-            starts = ln["x0"] < col_x + 3.5 or ln["forced"] or (
-                field == "disp" and first_disp_kw(ln["text"]) == 0 and ln["x0"] < col_x + 5)
+            starts = starts_row(ln, col_x, field)
             if starts:
                 near = sorted((a for a in anchors if abs(a["y"] - ln["y"]) <= 3.6), key=lambda a: abs(a["y"] - ln["y"]))
                 free = [a for a in near if not a[field]]
@@ -597,7 +650,8 @@ def parse_table_page(page: dict, census_upper: set, is_first: bool, offset: int 
     attach(lines_of(disp_parts), dispx, "disp", "DISPOSITION")
     attach(lines_of(amend_parts), amx, "amend", "AMENDMENTS")
     stats = {"page": pno, "printed": printed, "printed_read": printed_read, "numx": numx, "dispx": dispx, "amx": amx, "pitch": round(pitch, 2),
-             "anchors": len(anchors), "with_disposition": sum(1 for a in anchors if a["disp"]), "carry": carry}
+             "anchors": len(anchors), "with_disposition": sum(1 for a in anchors if a["disp"]), "carry": carry,
+             "same_line_joins": same_line_joins}
     return anchors, orphans, stats
 
 
@@ -706,10 +760,17 @@ def parse_table(pages, census_upper: set, offset: int = 11):
                 conf = "low"
         else:
             conf = "none"
+        acting = acting_documents(disp) if group != "in_force_1989" else []
+        # documents that ended the row: not those named only in a trailing 'See note at EO 12220, Chapter 15'
+        ending = acting_documents(re.split(r"See\s*note", disp)[0]) if acting else []
+        if a["key"] in acting:
+            # the book names the row's own order as the acting document (EO 11818 'Revoked by EO 11818'): a printing
+            # error reproduced as printed, flagged, and never emitted as a later-event candidate
+            a["flags"].append("acting_document_is_the_row_itself")
         a.update({"seq": seq, "disposition": disp, "amendments": clean(" | ".join(a["amend"])), "category": cat,
                   "group": group, "codified_chapter": cm.group(1) if cm else "",
                   "codified_page": (cm.group(2) or "") if cm else "",
-                  "acting": acting_documents(disp) if group != "in_force_1989" else [],
+                  "acting": acting, "ending_acting": [x for x in ending if x != a["key"]],
                   "pairing_confidence": conf})
     return rows, orphans, stats
 
@@ -952,7 +1013,7 @@ def run(repo_root, job_dir, out_dir):
         if t and a and e.get("mechanism") in ("revocation", "supersession", "termination"):
             le_actors[t].add(a)
     for r in trows:
-        acts = {a.upper() for a in r["acting"] if a.startswith("EO:")}
+        acts = {a.upper() for a in r["ending_acting"] if a.startswith("EO:")}
         cid = (r.get("census_id") or "").upper()
         if r["category"] not in ("revoked", "superseded") or not acts or not cid or not edges:
             r["later_events_check"] = ""
@@ -980,7 +1041,7 @@ def run(repo_root, job_dir, out_dir):
             lead = "UNDECIDED_" + ("ENDED_BY_1989" if r["group"] == "ended_by_1989" else "IN_FORCE_1989")
         if lead:
             status_leads.append(dict(r, lead=lead))
-        actors = [a for a in r["acting"] if a.startswith(("EO:", "Proc:"))]
+        actors = [a for a in r["ending_acting"] if a.startswith(("EO:", "Proc:"))]
         if cid and r["category"] in mech and actors and r["pairing_confidence"] in ("high", "medium"):
             page_or_item = f"{short}, Executive Orders disposition table, printed page {r['printed'] or '?'}, PDF page {r['page']}"
             for a in actors[:3]:
@@ -1051,9 +1112,13 @@ def run(repo_root, job_dir, out_dir):
     for cid, c in census.items():
         m = re.fullmatch(r"EO:(\d+)([A-Z]?)", cid)
         if m and lo <= int(m.group(1)) <= hi and cid not in table_keys:
+            n = int(m.group(1))
+            seen_on = NOT_PRINTED_IN_TABLE.get(n) if not m.group(2) else None
             leads.append({"instrument_id": c["id"], "lead": "IN_CENSUS_NOT_FOUND_IN_TABLE_(PARSER_OR_SOURCE)", "date_in_source": "",
                           "census_date_effective": c.get("date_effective", ""),
-                          "evidence": f"{short}: the table lists every EO {lo}-{hi}; this one was not read"})
+                          "evidence": f"{short}: the table lists every EO {lo}-{hi}; this one was not read" + (
+                              f"; the page image (PDF page {seen_on}) shows the book does not print this number: the rows "
+                              f"either side of it are contiguous" if seen_on else "")})
     run_numbers = {key_number(r["key"]) for r in trows if r["key"].startswith("EO:")}
     run_gaps = [n for n in range(lo, hi + 1) if n not in run_numbers]
 
@@ -1144,6 +1209,7 @@ def run(repo_root, job_dir, out_dir):
             "body_eos_not_codified_here_in_table": sorted({d["instrument_id"] for d in eo_docs}
                                                           - {r["key"] for r in trows if r["category"] == "codified_here"}),
             "flags": dict(collections.Counter(f for r in trows for f in r["flags"].split("|") if f)),
+            "same_line_pieces_joined": [j for p in tstats for j in p.get("same_line_joins", [])],
             "later_events_check_on_revoked_superseded": dict(collections.Counter(
                 r["later_events_check"].split(":")[0] for r in trows if r["later_events_check"])),
         },

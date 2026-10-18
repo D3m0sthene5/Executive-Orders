@@ -8,6 +8,7 @@ import sys
 HERE = pathlib.Path(__file__).resolve().parent
 if subprocess.run([sys.executable, "-B", "-m", "unittest", "-v", "test_codification"], cwd=HERE).returncode:
     sys.exit("Tests failed; nothing built.")
+sys.dont_write_bytecode = True   # no __pycache__ inside the job folder
 sys.path.insert(0, str(HERE))
 import codification  # noqa: E402
 

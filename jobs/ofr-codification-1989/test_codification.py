@@ -291,6 +291,74 @@ class DispositionTable(unittest.TestCase):
         self.assertEqual(rows["EO:3577"]["pairing_confidence"], "none")
         self.assertEqual(sorted(o["text"].split(":")[0] for o in orphans), ["AMENDMENTS_START", "DISPOSITION_START"])
 
+    def test_second_chunk_on_a_rows_own_line_stays_with_that_row(self):
+        # PDF 1048 as the OCR placed it: EO 9303 is printed 'Revoked by EOs 9521, 10697'. The ', 10697' piece sits
+        # 1.6 pt above the chunk that starts 9303's disposition and 0.1 pt from the number 9303, indented like a
+        # wrapped line. It belongs to 9303, not to 9301 above.
+        page = chunk_page(1048, [
+            [55.7, 564.5, "9300\n"], [266.4, 564.0, "Revokedby EO 9835\n"],
+            [55.4, 557.3, "9301\n"], [266.4, 556.6, "Revokedby EO 9607\n"],
+            [327.0, 551.1, ", 10697\n"], [55.5, 551.0, "9303\n"], [266.2, 549.4, "Revokedby EOs 9521\n"],
+            [176.7, 543.8, ".\n"], [55.7, 543.6, "9316\n"], [70.3, 543.6, ".\n"], [126.2, 543.4, "AmendedEO 8942\n"],
+            [266.3, 543.0, "Temporary\n"],
+            # PDF 1088: ', 11709' 1.4 pt above the number 11773, after a codified row
+            [55.9, 399.1, "11772\n"], [265.8, 398.1, "Codified\n"], [295.2, 398.1, "atChapter\n"], [326.3, 398.1, "22,\n"],
+            [319.5, 393.5, ", 11709\n"], [55.7, 392.1, "11773\n"], [265.8, 391.9, "RevokesEOS 11697\n"],
+            [55.7, 385.4, "11774\n"], [265.8, 385.4, "Supersededby EO 11861\n"],
+        ])
+        rows, orphans = rows_of([page])
+        self.assertEqual(orphans, [])
+        self.assertEqual((rows["EO:9301"]["disposition"], rows["EO:9301"]["acting"]), ("Revokedby EO 9607", ["EO:9607"]))
+        self.assertEqual((rows["EO:9303"]["disposition"], rows["EO:9303"]["acting"]),
+                         ("Revokedby EOs 9521, 10697", ["EO:9521", "EO:10697"]))
+        self.assertEqual(rows["EO:9316"]["disposition"], "Temporary")
+        self.assertNotIn("11709", rows["EO:11772"]["disposition"])
+        self.assertEqual(rows["EO:11773"]["disposition"], "RevokesEOS 11697, 11709")
+        # a genuinely wrapped line (no number on its own line) still continues the row above
+        page = chunk_page(1048, [
+            [56.0, 500.0, "9400"], [266.0, 500.0, "Revokedby EOs 9521,"], [272.0, 493.0, "10697"],
+            [56.0, 486.0, "9401"], [266.0, 486.0, "Temporary"],
+        ])
+        rows, orphans = rows_of([page])
+        self.assertEqual((rows["EO:9400"]["disposition"], rows["EO:9401"]["disposition"]),
+                         ("Revokedby EOs 9521, 10697", "Temporary"))
+
+    def test_wrapped_reference_read_into_the_amendments_column(self):
+        # PDF 1086: '. EO 11788' is the end of the amendments list ('.') glued to the wrapped disposition
+        page = chunk_page(1086, [
+            [51.9, 479.6, "11627\n"], [262.1, 479.3, "Supersededby EO 11640.Revokedby\n"],
+            [121.8, 478.1, "AmendedEO 11588.Amended by EOS 11630\n"], [144.0, 473.6, ", 11695\n"],
+            [162.5, 472.5, ". EO 11788\n"], [128.3, 472.2, "11632\n"],
+            [51.9, 465.5, "11628\n"], [262.5, 464.6, "Codified\n"], [291.7, 464.8, "atChapter40\n"], [329.8, 465.8, "p.797\n"],
+        ])
+        rows, orphans = rows_of([page])
+        r = rows["EO:11627"]
+        self.assertEqual(r["disposition"], "Supersededby EO 11640.Revokedby EO 11788")
+        self.assertNotIn("11788", r["amendments"])
+        self.assertEqual(r["acting"], ["EO:11640", "EO:11788"])
+        self.assertEqual(rows["EO:11628"]["category"], "codified_here")
+        # PDF 1074: a 'See note at EO n' reference is named but does not end the row
+        page = chunk_page(1074, [
+            [55.7, 520.6, "10893\n"], [259.8, 520.6, ", Revoked by EO 12163.See note\n"],
+            [125.8, 519.4, "AmendedEO 10822\n"], [370.7, 519.4, "at\n"],
+            [299.6, 513.7, ",Chapter15\n"], [166.5, 513.2, ". EO 12220\n"],
+            [55.9, 506.6, "10894\n"], [266.1, 506.1, "Temporary\n"],
+        ])
+        rows, _ = rows_of([page])
+        r = rows["EO:10893"]
+        self.assertEqual(r["disposition"], "Revoked by EO 12163.See note at EO 12220,Chapter15")
+        self.assertEqual((r["acting"], r["ending_acting"]), (["EO:12163", "EO:12220"], ["EO:12163"]))
+        self.assertEqual(r["amendments"], "AmendedEO 10822")
+
+    def test_self_reference_is_flagged_not_emitted(self):
+        # The book prints 'Revoked by EO 11818' on EO 11818's own row
+        page = chunk_page(1089, [[56.1, 563.8, "11818"], [267.1, 562.7, "Revokedby EO 11818"],
+                                 [55.9, 556.8, "11819"], [266.0, 556.8, "Temporary"]])
+        rows, _ = rows_of([page])
+        r = rows["EO:11818"]
+        self.assertEqual((r["acting"], r["ending_acting"]), (["EO:11818"], []))
+        self.assertIn("acting_document_is_the_row_itself", r["flags"])
+
     def test_categories_and_acting_documents(self):
         self.assertEqual(c.categorise("Supersedebdy EO 10300")[0], "superseded")
         self.assertEqual(c.categorise("Codifiedat Chapter 22, p. 382"), ("codified_here", "in_force_1989"))
@@ -432,6 +500,9 @@ class CommittedBook(unittest.TestCase):
         by = {d["instrument_id"]: d for d in eo}
         self.assertEqual((by["EO:8248"]["date"], by["EO:8248"]["fr_citation"]), ("1939-09-08", "4 FR 3864"))
         self.assertEqual(by["EO:1888"]["not_in_fr_system"], "yes")
+        for n in ("1888", "4601", "6166"):     # the SOURCE sentence ends at 'Federal Register system.'
+            self.assertTrue(by["EO:" + n]["source_text"].endswith("do not appear in the Federal Register system."),
+                            by["EO:" + n]["source_text"])
         self.assertEqual(by["EO:10879"]["restated"], "revised and restated")
         self.assertEqual(len(self.stats["fragmented"]), 151)
 
@@ -450,14 +521,30 @@ class CommittedBook(unittest.TestCase):
         self.assertEqual(self.by["EO:2245½"]["category"], "executed_obsolete")
         self.assertIn("EO:9-2", self.by)
         self.assertNotIn("EO:22452", self.by)
+        # second OCR chunks on a row's own line (the verifier checked these against the page images, 2026-10-17)
+        expect = {"EO:9301": "Revokedby EO 9607", "EO:9303": "Revokedby EOs 9521, 10697",
+                  "EO:11773": "RevokesEOS 11697, 11709", "EO:11920": "Revokedby EOS 12547, 12553",
+                  "EO:12202": "Revokedby EOS 12379, 12399", "EO:12381": "AmendsEOS 10480, 12148",
+                  "EO:11380": "AmendsEOS 10903, 11034", "EO:7182": "AmendsEOS 6910, 7098",
+                  "EO:12380": "Amends EOS 11157, 12274.Revokes EOS 11253, 11716"}
+        self.assertEqual({k: self.by[k]["disposition"] for k in expect}, expect)
+        for k, n in (("EO:11772", "11709"), ("EO:11919", "12553"), ("EO:12201", "12399"), ("EO:11379", "11034"),
+                     ("EO:7180", "7098")):
+            self.assertNotIn(n, self.by[k]["disposition"], k)
+        self.assertEqual(self.by["EO:10660"]["amendments"], "Amendedby EOS 10773, 11051")   # same rule, amendments column
+        self.assertEqual(self.by["EO:10915"]["disposition"], "Revoked by EO 12220.See note at EO 12220,Chapter 15")
+        self.assertFalse(self.by["EO:10915"]["amendments"].endswith("EO 12220"))
+        self.assertEqual(self.by["EO:11627"]["ending_acting"], ["EO:11640", "EO:11788"])
+        self.assertIn("acting_document_is_the_row_itself", self.by["EO:11818"]["flags"])
 
     def test_invariants(self):
         body = {d["instrument_id"] for d in self.docs}
         cod = {r["key"] for r in self.rows if r["category"] == "codified_here"}
         self.assertEqual(cod - body, set())
         nums = {c.key_number(r["key"]) for r in self.rows if r["key"].startswith("EO:")}
-        # Four numbers are absent from the OCR of the table itself (their neighbours' rows are contiguous).
+        # Four numbers are not printed in the book's table at all (page images: their neighbours' rows are contiguous).
         self.assertEqual([n for n in range(9538, 12668) if n not in nums], [10217, 10275, 10288, 10595])
+        self.assertEqual(sorted(c.NOT_PRINTED_IN_TABLE), [10217, 10275, 10288, 10595])
         keys = [r["key"] for r in self.rows if r["key"].startswith("EO:")]
         self.assertEqual(len(keys), len(set(keys)))
 
