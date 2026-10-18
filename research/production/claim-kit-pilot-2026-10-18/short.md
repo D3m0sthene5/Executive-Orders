@@ -1,17 +1,16 @@
-The pilot evaluated **50 orders** and has **10 accepted frozen candidates**. They are not counted here as committed claims; root final checks still govern commitment. Initial independent AI review accepted 9 and rejected 1 (**10%**); corrected EO:13028 subsequently passed a separate rereview.
+The pilot evaluated **50 orders**. All **40 initially unable orders have now been rechecked against full dossiers**. The existing ten frozen acceptances are unchanged. **EO:12687 passed independent review**, bringing the checkpoint to **11 accepted frozen candidates**. **EO:12757 was independently rejected; producer correction is in progress.** A corrected rereview will be recorded separately. Commitment/readiness counts are not asserted here.
 
-| Recorded phase | functions.exec | Nested commands, separate | Collaboration, separate |
+| Recorded phase | Function floor | Nested commands, separate | Collaboration, separate |
 |---|---:|---:|---:|
-| Initial 50-evaluation recorded floor | 204 | 223 | 37 |
-| Known categorized producer freeze increments | 19 | 19 | 2 |
-| Frozen reviewer increments, six batches | 44 | 44 | 6 |
-| Producer11948 cumulative across both phases, added once | 12 | 14 | 4 |
-| All-phase recorded floor | **279** | **300** | **49** |
+| Initial 50 evaluations | 204 | 223 | 37 |
+| Frozen-ten confirmation and cross-phase11948 addition | 75 | 77 | 12 |
+| Forty-unable recheck and two new independent reviews | 62 | 65 | 10 |
+| All-phase recorded floor | **341** | **365** | **59** |
 
-The floor is **27.9 function calls per frozen candidate**, or **5.58 per evaluated order**. Nested commands are never added to their wrappers. Producer11948's cumulative counter spans both phases and was absent from the initial 204 floor. Producer13385's ambiguous incremental9/cumulative23 totals are excluded from categorized totals. Other unrecorded collaboration/correction calls and root orchestration remain missing, not zero. Family review counters repeated in two candidate rows count once.
+Full contexts resolved several packet omissions and stale machine labels. Remaining gaps concern actual submission/completion or transfer facts, complete originals and required page checks, attributed current-law text, chronology, and independent commands/residuals. `FULL_RECHECK_SUMMARY.json` lists all 40 IDs, current statuses, copied proof/gaps and preserved initial-sheet paths. These are the same 50 orders, not an added cohort.
 
-The full machine cold run took **280.517 seconds**. Full pilot elapsed wall time is unavailable; partial task clocks, shell execution durations and parallel task intervals cannot establish it. Model new-input, cached/reread, output and total-token metrics remain unavailable.
+Initial-phase first-pass rejection remains **1/10=10%**. Including the two new producer-positive candidates, first-pass rejection is now **2/12=16.7%**. Corrected 13028 acceptance and any future 12757 acceptance do not erase those rejections.
 
-The target of **50 committed claims with a substantial cost reduction was not met**. The baseline was approximately 8 calls, 33,000 new input tokens and 2.1 million cached/reread input tokens per accepted claim, with 10.7% rejection (about11%). This snapshot evidences ten frozen AI acceptances and incomplete cost counters; neither a like-for-like efficiency improvement nor token savings is established.
+Missing counters are not zero. Producer13385's uncategorized3 incremental/cumulative26 totals are excluded. EO11860's revisit was already inside the11948 freeze counter. Nested commands are never added to wrappers. `TELEMETRY_RECHECK.json` separates new increments from historical phase floors; frozen-ten `FINAL_TELEMETRY.json` remains unchanged.
 
-`FINAL_TELEMETRY.json` separates the two phases, enumerates available and missing counters, reconciles changed initial evidence paths, and pins current source-file bytes. Historical old hashes are not presented as current-file verification.
+The machine cold run took **280.517 seconds**; full pilot wall and model input/cache/output metrics are unavailable. The target of **50 committed claims with substantial cost reduction remains unmet**. No cost or token improvement is established against the approximate baseline of 8 calls, 33,000 new tokens and 2.1 million cached/reread tokens per accepted claim.

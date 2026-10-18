@@ -1,6 +1,6 @@
 # Sol's handoff notes
 
-## 2026-10-18 — checkpoint: infrastructure green; ten accepted pilot claims
+## 2026-10-18 — checkpoint: infrastructure green; eleven accepted pilot claims
 
 ### Done
 
@@ -30,9 +30,15 @@ There are 1,314 input warnings. This is not a claim that every order has an orig
 - Appended sixteen deduplicated official-witness requests to FETCH_QUEUE (twelve image/page checks, four custody verifications), preserving the original eighty rows byte-for-byte. No primary sources fetched manually. Twenty-four fact/authority tasks lack verified routes; no URLs guessed. Source-gap report distinguishes indexed context and local hydration from acquisition.
 - Exercised CLI reservation on exactly fifty orders; a competing agent got zero. This was a post-research verification, not original dispatch timing. All fifty reservations subsequently released. Independent clones must commit/pull reservations; local locks cannot coordinate uncommunicating branches.
 
+### Full-dossier recheck checkpoint
+
+All forty initial unable outcomes have now been re-evaluated against the full frozen dossiers. EO12687 newly passed separate adversarial review and strict assembly and was added as the eleventh accepted claim. EO12757 received an initial independent rejection for overbroad termination scopes; its corrected sheet awaits separate rereview. The other thirty-eight remain unable, with precise evidence gaps retained. Original unable sheets, rejection and correction history are preserved. See FULL_RECHECK_SUMMARY.json and TELEMETRY_RECHECK.json; initial source-gap lists are historical and some context omissions are resolved.
+
+Expanded first-pass rejection is **2/12 (16.7%)**, above the approximately 11% baseline; corrected rereviews do not erase rejections. Current recorded all-phase floor is **341 functions / 365 nested commands / 59 collaboration calls**, excluding root orchestration and later correction/rereview increments. This is not a demonstrated cost win.
+
 ### Running
 
-Final branch runner validation of committed decisions, actual checker and tracker effect. Strict assembly/exact-span checks pass all ten. Actual offline checker previously reported five pass, five pass_with_unverified, zero mechanical failures: sixty-four record-only references across four already-indexed PDFs. Cache-first custody requests are queued. Final frozen offline check is complete: all ten strict checks pass; actual checker again reports five full passes, five pass_with_unverified and zero mechanical failures (368 exact quotations). See FINAL_LOCAL_CHECK.json. Full runner [39107390253](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253) validates commit e8ca915 and is still running as of 07:35 UTC; tracker after value is not yet reported.
+Final branch runner validation of committed decisions, actual checker and tracker effect. Strict assembly/exact-span checks pass all ten. Actual offline checker previously reported five pass, five pass_with_unverified, zero mechanical failures: sixty-four record-only references across four already-indexed PDFs. Cache-first custody requests are queued. Final frozen offline check is complete: all ten strict checks pass; actual checker again reports five full passes, five pass_with_unverified and zero mechanical failures (368 exact quotations). See FINAL_LOCAL_CHECK.json. Full runner [39107390253](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253) validates commit e8ca915 and is still running as of 07:58 UTC; tracker after value is not yet reported.
 
 Tracker baseline is **130 ready**, confirmed at base and frozen output; after value is pending. Accepted AI claims must not be substituted for tracker progress.
 
@@ -47,7 +53,7 @@ This pilot **does not establish substantial cost reduction**. Initial rejection 
 ### Next
 
 1. Verify final exact runner commit_run, ASSEMBLY_REPORT, per-claim checker and tracker delta. Older concurrent output runs can overwrite newer output files; immutable frozen commit above is the audit anchor.
-2. Re-evaluate forty unable outcomes against full dossiers. Obtain identified report/receipt/implementation facts, current-law operative spans through cutoff, images and custody through jobs/queue. Deadlines and later cleanup revocations cannot supply actual earlier endings.
+2. Complete independent rereview of corrected EO12757. For the thirty-eight still unable, obtain identified report/receipt/implementation facts, current-law operative spans through cutoff, images and custody through jobs/queue. Deadlines and later cleanup revocations cannot supply actual earlier endings.
 3. Reach about fifty accepted committed pilot claims after evidence/review, and capture complete token/timing telemetry before claiming efficiency or scaling.
 
 ### Asks
@@ -56,4 +62,4 @@ No merge or approval requested. Claude/Danny can inspect the branch and decide i
 
 ### Do not
 
-Do not merge main, promote forty unable sheets, treat machine leads or AI accepts as human verification, change authoritative statuses/counts, edit others' claims/notes, treat local absence as repository absence, infer ends from deadlines, or call this a demonstrated cost win.
+Do not merge main, promote unable sheets, treat machine leads or AI accepts as human verification, change authoritative statuses/counts, edit others' claims/notes, treat local absence as repository absence, infer ends from deadlines, or call this a demonstrated cost win.

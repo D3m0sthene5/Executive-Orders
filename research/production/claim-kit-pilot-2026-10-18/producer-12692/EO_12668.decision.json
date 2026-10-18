@@ -1,7 +1,7 @@
 {
   "schema": "eo-claim-kit-decision/v1",
   "instrument_id": "EO:12668",
-  "dossier_sha256": "5d79517f7e5803e3966aafebd7ad624fa26a404039263cf4a29306a19ee186a1",
+  "dossier_sha256": "4cbc6084e740798e455ca60cb3634b9548087127f2c20eaae98718485bafed90",
   "agent": "sol-producer-12692",
   "original_confirmed": false,
   "original_pages_confirmed": false,
@@ -197,25 +197,23 @@
   },
   "search_ids": [],
   "conflict_resolutions": {},
-  "research_rationale": "The full held OCR shows establishment, functions and reporting, agency support, FACA delegation and a Commission termination 30 days after its actual report unless extended. The March 9, 1989 reporting deadline is not proof of occurrence. The machine section 2 span incorrectly absorbs the garbled section 3 administration and section 4 Counsel-to-the-President command. Exact source spans below preserve those separate duties without supplying reconstructed text. Section 4 orders Counsel reports after the Commission report and therefore cannot automatically end with the Commission. EO:12692 section 3(c) expressly revokes the order with section 5 stated effect September 30, 1989; this is a potential later end for the independent command, not proof of the earliest end of Commission clauses. Missing actual report/extension evidence, materially garbled original OCR and the mandatory actor image check prevent approval.",
+  "research_rationale": "Original section 5(b) terminates the Commission 30 days after its actual report unless extended; March 9, 1989 is only a reporting deadline. No actual occurrence is supplied. The machine section 2 span still swallows garbled administration and Counsel-to-President section 4. Corrected candidate source spans preserve the independent post-report Counsel duty, which cannot be ended by Commission sunset alone. Original material OCR remains garbled. EO12692 whole-order revocation could later end that independent duty but requires its still-unperformed image check.",
   "unresolved_material_gaps": [
-    "EO:12692 actor source is marked requires_page_check=true; official PDF images 54 FR 40627-40628 (PDF pp.11-12) were not supplied in this dossier-only phase and have not been inspected. OCR alone is insufficient.",
-    "Actual Commission-report date and any extension evidence under section 5(b) are not supplied; March 9 reporting deadline cannot be used as the trigger.",
-    "Material original OCR garbles section 1 composition and section 3/4 headings. Proposed exact-span inventory requires image verification before completeness confirmation.",
-    "Section 4 Counsel reporting is an independent post-report command requiring separate first-end treatment; Commission sunset cannot terminate it by assumption."
+    "EO:12692 actor source still requires_page_check=true. Official images 54 FR 40627-40628/PDF pages 11-12 have not been inspected. Alternate transcription flags do not waive that requirement.",
+    "Actual Commission-report date and any extension evidence remain absent; March 9 deadline is not occurrence.",
+    "Material original OCR and corrected inventory boundaries require image verification before original/inventory confirmation.",
+    "Section 4 independent Counsel implementation-reporting command needs separate ending treatment; Commission termination alone does not end it."
   ],
   "approved": false,
   "pilot_review": {
     "outcome": "unable_to_complete",
     "draft_only": true,
-    "frozen_dossier_confirmation": "pending_coordinator",
-    "dossier_fingerprint_unchanged": true,
-    "formal_revocation_effective_wording_read": "EO:12692 section 5 states September 30, 1989; it is not claimed as first end.",
-    "actor_images_inspected": false,
-    "chain_analysis": [
-      "Original section 5(b) ends the Commission 30 days after its report unless extended; original section 2 report deadline does not establish occurrence.",
-      "Original section 4 requires Counsel to report on implementation after the Commission report, independently of Commission operations.",
-      "EO:12692 sections 3(c),5 state whole-order formal revocation effective September 30, 1989; images remain unchecked and no earlier end is established for all clauses."
+    "frozen_dossier_confirmation": "rechecked_full_frozen_dossier",
+    "output_commit": "717e0a4bfad161532e54755f9cf2cb97964ac03d",
+    "successful_code_commit": "3ca7abeb",
+    "new_proof": "No new actor, actual report occurrence or implementation fact. Complete selected OCR and term records are unchanged; independent Counsel post-report duty remains distinct from Commission functions.",
+    "complete_actor_contexts_read": [
+      "ACTOR_TEXT:EO:12692"
     ],
     "own_term_candidates_read": [
       "TERM:EO:12668:681349aebc78dc90@b9366f6442c02e91",
@@ -225,14 +223,15 @@
     ],
     "actor_provisions_read": [
       "ACT:EO:12668>EO:12692",
+      "ACT:EO:12668>EO:12692@45f3de1c2dcff39a",
       "ACT:EO:12668>EO:12692@8631ebd1d6bc150d",
-      "ACT:EO:12668>EO:12692@22a3dad0f8ee0fae"
+      "ACT:EO:12668>EO:12692@b3373a8bac25c2df"
     ],
-    "full_actor_contexts_read": [
-      "ACTOR_TEXT:EO:12692"
-    ],
-    "machine_search_assessment": "All three supplied search scopes read. No search selected because material original/chain/trigger and page-check gaps prevent bounded closure; U.S. Code scope ends October 9, 2026 and does not establish October 14 currentness.",
-    "nonmaterial_missing_lead_explanation": null,
-    "conflict_assessment": "Dossier conflicts array is empty; substantive defects discovered from held text are retained in unresolved_material_gaps."
+    "all_page_checks_performed": false,
+    "original_source_grade": "original_representation_unverified",
+    "source_grade_assessment": "Downgrade to original_representation_unverified acknowledged; no image authentication claimed. Original text hashes identical, but remaining substantive/image gaps prevent approval.",
+    "machine_missing_reconciliation": "Empty or unchanged machine missing/conflict lists do not resolve the expressly recorded substantive gaps.",
+    "current_law_assessment": "All supplied lead/search scopes reread. Historical 1989 editorial material is not current law and is not relied on; it cannot supply an actual report trigger. USC release stops October 9, 2026; no current predicate is asserted.",
+    "search_assessment": "No machine searches selected while substantive/image gaps remain; no exhaustive source absence is claimed."
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": "eo-claim-kit-decision/v1",
   "instrument_id": "EO:12757",
-  "dossier_sha256": "cab8cd6222c2f82266213c347acd316279672ac87ff99fcc70abc656b4ecd65c",
+  "dossier_sha256": "731d906c7f67580da257e7e48d86d88867baa50f1534169153b074c2e0018442",
   "agent": "sol-producer-13345",
   "original_confirmed": true,
   "original_pages_confirmed": false,
@@ -64,18 +64,39 @@
       "reason": "Retain this independent original command and remove any following page furniture or filing/signature material; the preamble is not a separate command."
     },
     {
-      "scope_id": "EO:12757#sec4",
+      "scope_id": "EO:12757#sec4-a-government-count",
       "source_id": "ORIGINAL:EO:12757",
-      "char_start": 3313,
-      "char_end": 3660,
-      "reason": "Retain this independent original command and remove any following page furniture or filing/signature material; the preamble is not a separate command."
+      "char_start": 3329,
+      "char_end": 3333,
+      "reason": "Separate the numerical rule from the other independently affected component of the original paragraph. Complete governing source context is ORIGINAL:EO:12757 offsets 3313-3660; the paired spans preserve the substantive number and full count-independent mandate without overlapping. Omitted section label and determiner introduce no independent command."
     },
     {
-      "scope_id": "EO:12757#sec4-b",
+      "scope_id": "EO:12757#sec4-a-agency-designations",
+      "source_id": "ORIGINAL:EO:12757",
+      "char_start": 3334,
+      "char_end": 3660,
+      "reason": "Separate the surviving substantive mandate from the other independently affected component of the original paragraph. Complete governing source context is ORIGINAL:EO:12757 offsets 3313-3660; the paired spans preserve the substantive number and full count-independent mandate without overlapping. Omitted section label and determiner introduce no independent command."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-commerce",
       "source_id": "ORIGINAL:EO:12757",
       "char_start": 3661,
+      "char_end": 3694,
+      "reason": "Separate the independent permissions of Commerce, Agriculture and other appropriate agencies in original section 4(b), because EO:12823 deletes only Agriculture. These three disjoint original spans partition the entire sentence: the shared predicate may each send representatives and those representatives may participate is carried by the final span and governs all three named subjects. Read each subject span with that complete original paragraph, not as a freestanding noun command."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-agriculture",
+      "source_id": "ORIGINAL:EO:12757",
+      "char_start": 3694,
+      "char_end": 3726,
+      "reason": "Separate the independent permissions of Commerce, Agriculture and other appropriate agencies in original section 4(b), because EO:12823 deletes only Agriculture. These three disjoint original spans partition the entire sentence: the shared predicate may each send representatives and those representatives may participate is carried by the final span and governs all three named subjects. Read each subject span with that complete original paragraph, not as a freestanding noun command."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-other-and-shared-command",
+      "source_id": "ORIGINAL:EO:12757",
+      "char_start": 3726,
       "char_end": 3893,
-      "reason": "Retain this independent original command and remove any following page furniture or filing/signature material; the preamble is not a separate command."
+      "reason": "Separate the independent permissions of Commerce, Agriculture and other appropriate agencies in original section 4(b), because EO:12823 deletes only Agriculture. These three disjoint original spans partition the entire sentence: the shared predicate may each send representatives and those representatives may participate is carried by the final span and governs all three named subjects. Read each subject span with that complete original paragraph, not as a freestanding noun command."
     },
     {
       "scope_id": "EO:12757#sec4-c-treasury-chair",
@@ -120,11 +141,18 @@
       "reason": "Retain this independent original command and remove any following page furniture or filing/signature material; the preamble is not a separate command."
     },
     {
-      "scope_id": "EO:12757#sec4-d",
+      "scope_id": "EO:12757#sec4-d-private-count",
       "source_id": "ORIGINAL:EO:12757",
-      "char_start": 5302,
+      "char_start": 5310,
+      "char_end": 5314,
+      "reason": "Separate the numerical rule from the other independently affected component of the original paragraph. Complete governing source context is ORIGINAL:EO:12757 offsets 5302-5409; the paired spans preserve the substantive number and full count-independent mandate without overlapping. Omitted section label and determiner introduce no independent command."
+    },
+    {
+      "scope_id": "EO:12757#sec4-d-president-selection",
+      "source_id": "ORIGINAL:EO:12757",
+      "char_start": 5315,
       "char_end": 5409,
-      "reason": "Retain this independent original command and remove any following page furniture or filing/signature material; the preamble is not a separate command."
+      "reason": "Separate the surviving substantive mandate from the other independently affected component of the original paragraph. Complete governing source context is ORIGINAL:EO:12757 offsets 5302-5409; the paired spans preserve the substantive number and full count-independent mandate without overlapping. Omitted section label and determiner introduce no independent command."
     },
     {
       "scope_id": "EO:12757#sec5",
@@ -144,262 +172,552 @@
   "clauses": [
     {
       "scope_id": "EO:12757#sec1-treasury",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13028",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13028",
+          "effective_date": "1996-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(b)(1)-(2) adds FAA functions and their separate State eligibility recommendations while retaining the original ATDA delegation and Council recommendation requirement. EO:13028 section 1(b) adds section-571 delegations and consultation machinery without removing the retained original ATDA functions. EO:13131 section 1(c) adds Tropical Forest functions and eligibility determinations, including functions added to the section-571 sentence; the original ATDA functions remain. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. EO:13028's present amendments take effect December 3, 1996; its complete text states no postponed date. EO:13131's present amendments take effect July 22, 1999; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec1-state-report",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(b)(3) changes the second Act reference to ATDA Act, identifying the same original statute without changing the conditional reporting duty. When necessary conditions when State must report; no report deadline or completed-report fact terminates the continuing command. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec2",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec2-b",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec2-c",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec3",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(c) changes Act to ATDA Act in the same section-607 State delegation; the original function and consultation duty remain. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec3-b",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(d) adds FAA advice, renames the Board Enterprise for the Americas Board, and adds Americas Framework Agreements while retaining the original ATDA framework-agreement advice. EO:13131 section 1(d) adds Tropical Forest Agreement advice while retaining the original agreement advice. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. EO:13131's present amendments take effect July 22, 1999; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec3-c",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(e) adds FAA agreement requirements while retaining the original ATDA administering-body requirements. EO:13131 section 1(e) adds Tropical Forest Agreement requirements while retaining the original administering-body requirements. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. EO:13131's present amendments take effect July 22, 1999; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
-      "scope_id": "EO:12757#sec4",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "scope_id": "EO:12757#sec4-a-government-count",
+      "state": "terminated",
+      "end_id": "ACTOR_TEXT:EO:12823",
+      "effective_date": "1992-12-03",
+      "effective_date_confirmed": true,
+      "mechanism": "amend",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:13131",
+        "ACTOR_TEXT:EO:13345"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13345",
+          "effective_date": "2004-07-08",
+          "effective_date_confirmed": true,
+          "mechanism": "revoke"
+        }
+      ],
+      "reason": "This exact word five represents only the numerical restriction on government Board members. Its governing original context is the complete section 4(a) paragraph at original offsets 3313-3660, including the shared members/shall-be predicate. The separate following mandate span accounts for the original agency membership designations. EO:12823 section 1(f)(1) expressly strikes five and inserts six, so this numerical rule first ends December 3, 1992; the original agency designations do not end with it. The complete EO:12823 states present amendments, is dated December 3, 1992 and has no postponed date; publication does not defer this numerical replacement. Later 1999/2004 events remain recorded as subsequent history and do not change its first end."
     },
     {
-      "scope_id": "EO:12757#sec4-b",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "scope_id": "EO:12757#sec4-a-agency-designations",
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "This exact contiguous original span contains the complete substantive agency-designation mandate, beginning U.S. Government members and continuing through shall be representatives from and the five named agencies. Read with the complete original section 4(a) at offsets 3313-3660; its adjacent original count five is accounted for separately and is not used to end these retained designations. EO:12823 section 1(f) changes the total count, renames the same Board and statute reference, and adds Agriculture, while retaining every original agency designation. EO:13131 section 1(f) adds Forestry/CEQ government members and leaves those original designations in place. Their first established end is the unconditional EO:13345 section 6(a) revocation on July 8, 2004; the successor Board under its section 4 has separate authority. No earlier actor removes the original agency designation mandate. Full EO:12823 and EO:13131 use present amendment language, bear December 3, 1992 and July 22, 1999 dates and state no delay. Full EO:13345 says hereby revoked with no postponement and is dated July 8, 2004; filing/publication dates do not control. EO:13118 expressly excludes functions otherwise delegated by EO:12757 and supplies no earlier termination of this command."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-commerce",
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "This exact subject/predicate span is one of the independent Commerce/other-agency permissions in original section 4(b), read with the full paragraph's shared sending-and-participation predicate. EO:12823 section 1(g) deletes only Agriculture; it leaves Commerce and other appropriate agencies authorized. The 1992 amendment is recorded without falsely terminating the retained permission. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-agriculture",
+      "state": "terminated",
+      "end_id": "ACTOR_TEXT:EO:12823",
+      "effective_date": "1992-12-03",
+      "effective_date_confirmed": true,
+      "mechanism": "amend",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "The subject Agriculture in this exact original span shares the may each send representatives and participation predicate in the remainder of original section 4(b). EO:12823 section 1(g) expressly strikes the Department of Agriculture from that optional-observer permission, while section 1(f) gives Agriculture a government-member seat. The original Agriculture observer permission therefore first ends in 1992, independently of the retained Commerce and other-agency permissions. The complete EO:12823 says is amended in the present tense, is dated December 3, 1992 and has no postponed effective date; later Federal Register publication does not defer these internal-government changes. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
+    },
+    {
+      "scope_id": "EO:12757#sec4-b-other-and-shared-command",
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "This exact subject/predicate span is one of the independent Commerce/other-agency permissions in original section 4(b), read with the full paragraph's shared sending-and-participation predicate. EO:12823 section 1(g) deletes only Agriculture; it leaves Commerce and other appropriate agencies authorized. The 1992 amendment is recorded without falsely terminating the retained permission. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-treasury-chair",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-state-vice-chair",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-epa-secretary",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
       "later_event_ids": [],
       "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "reason": "No held amendment removes this independent original Council/Board office command; changes to other provisions and additions to Board functions do not end it. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-1",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(h) adds FAA fiscal-audit review to the retained chairperson duties. EO:13131 section 1(g) adds FAA section-811 review to the retained chairperson fiscal-audit duties. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. EO:13131's present amendments take effect July 22, 1999; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-2",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(i) adds FAA Part IV to the retained vice-chairperson duties. EO:13131 section 1(h) extends FAA references to Part V while retaining the original vice-chairperson duties. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. EO:13131's present amendments take effect July 22, 1999; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec4-c-3",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(j) adds FAA report/review requirements to the retained secretary duties. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
-      "scope_id": "EO:12757#sec4-d",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "scope_id": "EO:12757#sec4-d-private-count",
+      "state": "terminated",
+      "end_id": "ACTOR_TEXT:EO:12823",
+      "effective_date": "1992-12-03",
+      "effective_date_confirmed": true,
+      "mechanism": "amend",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:13131",
+        "ACTOR_TEXT:EO:13345"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13345",
+          "effective_date": "2004-07-08",
+          "effective_date_confirmed": true,
+          "mechanism": "revoke"
+        }
+      ],
+      "reason": "This exact word four represents only the numerical restriction on private nongovernmental Board members. Its governing original context is the complete section 4(d) paragraph at original offsets 5302-5409, including the shared members/shall-be-chosen predicate. The separate following mandate span accounts for the President's selection authority. EO:12823 section 1(k) expressly strikes four and inserts five, so this numerical rule first ends December 3, 1992; the President's selection mandate does not end with it. The complete EO:12823 states present amendments, is dated December 3, 1992 and has no postponed date; publication does not defer this numerical replacement. Later 1999/2004 events remain recorded as subsequent history and do not change its first end."
+    },
+    {
+      "scope_id": "EO:12757#sec4-d-president-selection",
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823",
+        "ACTOR_TEXT:EO:13131"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        },
+        {
+          "id": "ACTOR_TEXT:EO:13131",
+          "effective_date": "1999-07-22",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "This exact contiguous original span contains the substantive selection mandate: private nongovernmental organization members of the Board shall be chosen by the President. Read with complete original section 4(d) at offsets 5302-5409; its adjacent original count four is separately accounted for. EO:12823 section 1(k) increases the count to five without changing the President's selection authority. EO:13131 section 1(i) recasts the paragraph for five ATDA members plus two additional FAA members, expressly retaining appointment by the President. Chosen and appointed describe continuity of the same presidential selection mandate, so the recast is recorded as a nonterminating amendment rather than a false 1999 first end. The retained mandate first ends as authority under this order through the unconditional EO:13345 section 6(a) revocation on July 8, 2004; statutory appointment authority or a successor order is a distinct legal basis. Full EO:12823 and EO:13131 use present amendment language, bear December 3, 1992 and July 22, 1999 dates and state no delay. Full EO:13345 says hereby revoked with no postponement and is dated July 8, 2004; filing/publication dates do not control. EO:13118 expressly excludes functions otherwise delegated by EO:12757 and supplies no earlier termination of this command."
     },
     {
       "scope_id": "EO:12757#sec5",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:12823"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:12823",
+          "effective_date": "1992-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "Section 1(l) updates statutory references without removing the default-conditioned prohibition or either exception; the original substantive rule remains. Both held own-term records quote the same conditional rule. Country payment or presidential authorization excuses a particular transaction; neither is a sunset of the general prohibition. No facts establish a whole-rule terminating trigger. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:12823's present amendments take effect December 3, 1992, with no delayed date in its complete text. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     },
     {
       "scope_id": "EO:12757#sec6",
-      "state": null,
-      "end_id": null,
-      "effective_date": null,
-      "effective_date_confirmed": false,
+      "state": "terminated",
+      "end_id": "ACT:EO:12757>EO:13345",
+      "effective_date": "2004-07-08",
+      "effective_date_confirmed": true,
+      "mechanism": "revoke",
       "current_basis_id": null,
       "current_legal_basis": "",
       "checked_through": null,
-      "later_event_ids": [],
-      "later_events": [],
-      "reason": "Unresolved: the known absent EO:12823 amendment must be compared with this original command before assigning its earliest end. EO:13345 section 6(a) supplies a final outer revocation bound of July 8, 2004; that is not automatically this clause's first end."
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:13028"
+      ],
+      "later_events": [
+        {
+          "id": "ACTOR_TEXT:EO:13028",
+          "effective_date": "1996-12-03",
+          "effective_date_confirmed": true,
+          "mechanism": "amend"
+        }
+      ],
+      "reason": "EO:13028 section 1(c) redesignates original section 6 as section 7; renumbering does not end its judicial-review limitation. The complete EO:13345 section 6(a) says hereby revoked without exception or postponement and is dated July 8, 2004; that is this retained command's first end rather than July 12 filing or July 13 publication. EO:13028's present amendments take effect December 3, 1996; its complete text states no postponed date. Full EO:13118 is tested rather than accepted as an end: its general EO:12163 delegation expressly excludes functions otherwise delegated under EO:12757 and is subject to that order. Its separate Council membership changes do not revoke this original command. Its April 1, 1999 effectiveness, with specified October 1 exceptions, changes no first-end finding here."
     }
   ],
   "savings": {
     "state": "none_after_bounded_search",
     "source_id": "ACTOR_TEXT:EO:13345",
-    "reason": "Within the complete original and held full actors EO:13028, EO:13131 and EO:13345, no clause expressly preserves EO:12757 authority after the unconditional section 6(a) revocation. EO:13345 sections 1-5 separately establish successor assignments and Board administration; they do not preserve the old order as a source of authority. This bounded observation does not cure the absent EO:12823 chain text or approve an earliest-ending claim."
+    "reason": "Read the complete original and all five full actor contexts, including the newly held EO:12823 and EO:13118. The amendments retain or enlarge certain original functions while changing government/private membership counts and deleting Agriculture from optional observers; those surviving amended commands, expressly including original agency-designation and presidential-selection mandates separated from the numerical rules, are accounted for through the 2004 final revocation. No express clause saves EO:12757 operative authority after EO:13345 section 6(a), which is unconditional. EO:13345 sections 1-5 independently establish successor foreign-affairs assignments and Board governance, not continuing authority of the revoked order. EO:13118's historical exception for EO:12757 functions is not a savings clause against the later 2004 revocation. The judicial-review limitation does not independently preserve revoked delegations, and no accrued-rights or revival lead is present in the bounded held-original/actor and OFR/eCFR searches."
   },
-  "search_ids": [],
-  "conflict_resolutions": {},
-  "research_rationale": "The complete held original contains independent Treasury and State functions, Council membership and referral machinery, State agreement and Board obligations, Board membership/officers/duties, a default-conditioned prohibition, and a judicial-review limitation. Exact-span inventory corrections remove the machine preamble clause, page furniture and filing text, and separate the independent reporting and Board-office commands. The section 5 own-term condition excuses particular agreements if the country meets its obligations or the President authorizes; it does not terminate the general rule, and no occurrence facts establish an earlier whole-clause end. EO:13028 section 1 alters delegations and redesignates original section 6 without extinguishing its judicial-review limitation. EO:13131 further changes agreement/Board provisions, including a replacement of section 4(d), which requires comparison against EO:12823 rather than assuming 1999 is the first end of the 1991 four-member rule. EO:13345 section 6(a) says the order is hereby revoked and states no postponed date; the full actor is dated July 8, 2004, while July 13 is publication. That is the outer end bound. The affirmative absent EO:12823 amendment prevents earliest-ending determinations. No hypothetical statutory gap is added. No conflicts are enumerated in the dossier. No machine search is adopted while the known material chain gap remains.",
-  "unresolved_material_gaps": [
-    "EO:12823 is affirmatively identified as an amendment of EO:12757 in the full originals of EO:13028 section 1 and EO:13131 section 1, but its text/provision is absent from this dossier. Its changes must be read to establish the first end of every affected original delegation, Board assignment and other command; the 2004 blanket revocation establishes an outer bound, not the earliest cessation of each original clause."
+  "search_ids": [
+    "later-events:ofr_catalog",
+    "current-law:ecfr"
   ],
-  "approved": false
+  "conflict_resolutions": {},
+  "research_rationale": "The full frozen dossier cures the former concrete gap by holding ACTOR_TEXT:EO:12823 in full, notwithstanding the stale machine missing-list statement that its target provision was not located. Read that complete amendment and the newly held full EO:13118, alongside the unchanged original and complete EO:13028, EO:13131 and EO:13345 contexts. EO:12823 is decisive: section 1(f) replaces the original five-government-member composition with six, section 1(g) deletes Agriculture from the optional observer permission, and section 1(k) replaces the original four-private-member composition with five. The original five-government and four-private numerical rules, and the deleted Agriculture observer permission, first end December 3, 1992, under present amendment language with no delay. The complete original agency-designation and presidential-selection mandates are separately inventoried with their shared paragraph context and retained through the July 8, 2004 revocation; numerical expansion does not terminate those mandates. The mixed original observer paragraph is partitioned into exact, disjoint Commerce, Agriculture and other-agency/shared-predicate spans; the full original paragraph establishes the governing sending-and-participation predicate for each subject. This preserves surviving Commerce/other permissions through 2004 instead of marking the whole paragraph ended in 1992. Other 1992 changes add FAA authority, rename the same Board, and update references while retaining original ATDA functions, agreement duties and officer responsibilities; each affected retained command records the amendment as a later event. EO:13028 adds section-571 functions and redesignates original section 6; EO:13131 further expands Tropical Forest/Board functions and replaces the already-amended private-member provision. These are recorded without confusing later additions/replacements with the first end of the earlier original numerical membership rules. EO:13118 amends a different order, expressly excepts EO:12757 functions, and does not supply a target cessation; its actual April 1/October 1 effective scheme is read. No own-term sunset is present. Both own-term records are identical default-condition leads: payment or authorization affects particular transactions, not the duration of the general rule; conditional reporting is likewise not an ending deadline. The final independent original Council/Board office/duty and retained permission commands end under EO:13345 section 6(a) on July 8, 2004, not publication or filing. Thus the latest original-command first end and whole-order end are July 8, 2004. New successor delegations have independent EO:13345 authority, and no savings continue this order. Complete original identity, source/text hashes and original text are unchanged; original metadata remains acceptable_as_original true and requires_page_check false, so original_pages_confirmed stays false. No conflicts are enumerated. OFR catalog/held-operative-text and cutoff eCFR coverage are accepted as adequate bounded searches; the earlier U.S. Code release is not asserted as a current predicate. No concrete material gap remains. Independent review identified that the prior complete section 4(a)/4(d) spans conflated ended counts with surviving mandates. The corrected inventory isolates the exact original count words five and four and the following complete substantive count-independent agency-designation and presidential-selection spans. Each reason identifies its full governing original paragraph; no free-text evidence or overlapping source span is introduced. The former three-way observer split is unchanged. The 1992 and 1999 count/Board amendments are recorded for both continuing mandates, whose first end is now explicitly accounted for in 2004. Whole-order end remains July 8, 2004.",
+  "unresolved_material_gaps": [],
+  "approved": true
 }

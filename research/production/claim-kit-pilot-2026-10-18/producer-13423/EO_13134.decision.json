@@ -1,7 +1,7 @@
 {
   "schema": "eo-claim-kit-decision/v1",
   "instrument_id": "EO:13134",
-  "dossier_sha256": "5e6c76e9425c69d1a8ab6b8a00d87406ee441ca91d8097c1995258d07edf543f",
+  "dossier_sha256": "f04844ea2b10a7f8e401a3df7584989252df8efa85eae6f680f5084e2d8c85d1",
   "agent": "producer-13423",
   "original_confirmed": true,
   "original_pages_confirmed": false,
@@ -962,14 +962,12 @@
   },
   "search_ids": [],
   "conflict_resolutions": {},
-  "research_rationale": "PROVISIONAL producer decision, pending GitHub full corpus freeze. Unable to accept EO:13134 for review. Read complete original ORIGINAL:EO:13134, complete EO:13423 actor context, all own-term records and chain leads, original inventory and all conflicts/current-law leads; EO:13134 also includes complete EO:13225 context. EO:13423 §11(a) is a formal revocation effective 2007-01-24; no separate delayed date appears. The correct inventory preserves independent organizational, acquisition, reporting, training, definition, waiver, contractor and other commands rather than treating deadlines as ends. All current-law references must be resolved using held legal text: here the dossier expressly lacks those provision slices. Snippets cannot support a finding that incorporation is historical or extinguished. Conflict remains unresolved, so search_ids and conflict_resolutions stay empty and producer approval remains false. The advisory committee §§3–4 was formally revoked effective 2001-09-30 with prior termination acknowledged; other Council, departmental working-group, Coordination Office and definition provisions are separate. EO:13423 revokes the order as amended. The missing 42 USC 7545 biomass definition is affirmative incorporation evidence requiring the complete held statute before deciding residual scope.",
+  "research_rationale": "FULL FROZEN RECHECK; unable. Full frozen dossier recheck: original text is byte-for-byte identical as a Unicode string to the fully read local dossier original, and all own-term texts are unchanged. Original-source provenance paths and dossier fingerprint are now pinned to full-run dossier. Added full contexts include earlier environmental orders and cross-referenced sibling orders; their actual text does not remove the affirmative current-law gaps. No attributed held operative USC/CFR provision was added. No current-law conflict is cleared from a JSON lead, citation, or snippet. Search IDs remain empty under unresolved-conflict rule. No report/implementation/goal deadline is an inferred ending. EO:13225 §3(a) acknowledges earlier termination and statutory supersession of §§3–4; §5 makes its formal revocation effective 2001-09-30. Held §306 transition text remains missing; formal revocation remains a later event, not a fabricated first cessation. The advisory committee §§3–4 was formally revoked effective 2001-09-30 with prior termination acknowledged; other Council, departmental working-group, Coordination Office and definition provisions are separate. EO:13423 revokes the order as amended. The missing 42 USC 7545 biomass definition is affirmative incorporation evidence requiring the complete held statute before deciding residual scope.",
   "unresolved_material_gaps": [
     "NO_ORDER_CITED_IN_CURRENT_LAW unresolved: need uniquely located complete attributed held legal text of USC 42 U.S.C. 7545 (with original-source hash, operative surrounding provision and cutoff currency); dossier supplies only lead/snippet and expressly records no legal-text evidence. Determine whether it incorporates a surviving independent command/definition, applies a historical reference, or is stale.",
     "EO:13225 §3(a) expressly says the EO:13134 §§3–4 committee had already terminated and was superseded by the committee under §306 of the Biomass Research and Development Act of 2000, Title III P.L.106-224. Need held §306 and effective/transition provisions to establish first cessation of each committee/advisory-support command before the formal revocation effective 2001-09-30; the Act itself is not in this dossier."
   ],
   "approved": false,
-  "producer_outcome": "unable",
-  "provisional_pending": "GitHub full corpus freeze",
   "reviewed_current_law_pointers": [
     {
       "where": "USC 42 U.S.C. 7545",
@@ -980,6 +978,31 @@
       },
       "snippet": "...Energy, as defined in section 13211 of this title, which have been made from renewable biomass. (B) The term “renewable biomass” is, as defined in Presidential Executive Order 13134, published in the Federal Register on August 16, 1999, any organic matter that is available on a renewable or recurring basis (excluding old-growth timber), in...",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+    }
+  ],
+  "producer_outcome": "unable",
+  "provisional_pending": "full-run confirmation and independent review",
+  "full_recheck_evidence": [
+    {
+      "evidence_id": "ACTOR_TEXT:EO:13148",
+      "char_start": 0,
+      "char_end": 46441,
+      "text_sha256": "b83321957c310dd3744a76074a13c6d909431aed5ba4c0741fd2ba34c47c2402",
+      "assessment": "Complete held context reviewed; contexts identical to initial originals/actors reused after text equality check. Earlier environmental orders predate this target and are background references, not later ends. Cross-referenced later environmental orders state procurement, reporting coordination and definition use, without an additional located revocation of this target."
+    },
+    {
+      "evidence_id": "ACTOR_TEXT:EO:13225",
+      "char_start": 0,
+      "char_end": 4933,
+      "text_sha256": "9fc04faf535b5640b75997c4fcd743cec3b85e0cbdf52d67b92e55a08bbe3f35",
+      "assessment": "Complete held context reviewed; contexts identical to initial originals/actors reused after text equality check. Earlier environmental orders predate this target and are background references, not later ends. Cross-referenced later environmental orders state procurement, reporting coordination and definition use, without an additional located revocation of this target."
+    },
+    {
+      "evidence_id": "ACTOR_TEXT:EO:13423",
+      "char_start": 0,
+      "char_end": 18483,
+      "text_sha256": "40db3c7ea0a37a913604e531a8b0cc1d76cf695ea13e0c457f6fe4985049703a",
+      "assessment": "Complete held context reviewed; contexts identical to initial originals/actors reused after text equality check. Earlier environmental orders predate this target and are background references, not later ends. Cross-referenced later environmental orders state procurement, reporting coordination and definition use, without an additional located revocation of this target."
     }
   ],
   "search_assessment": {
@@ -1022,10 +1045,10 @@
       }
     ],
     "selected": false,
-    "reason": "OFR catalog bounded search supplies no additional affirmative earlier lead beyond held chain; USC release omits 2026-10-10 through cutoff, eCFR bulk and point-in-time search describe citation coverage. These are bounded searches, not legal text resolving the extant conflicts. No extra unpublished-act disproof is required. Final search adoption is withheld under conflict rule."
+    "reason": "Full-corpus machine searches reviewed as bounded coverage records; extant affirmative current-law conflicts lack held legal-text slices, so search adoption remains withheld. No hypothetical unpublished-act disproof demanded."
   },
   "pre_gate": {
-    "method": "assemble.blank_sheet -> derive_inventory -> assemble.assemble",
+    "method": "assemble.blank_sheet(full) -> derive_inventory -> assemble.assemble",
     "inventory_errors": [],
     "assembled": false,
     "errors": [
