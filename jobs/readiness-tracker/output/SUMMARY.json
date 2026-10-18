@@ -10,7 +10,7 @@
       "applicable": 3359
     },
     "original_text": {
-      "done": 174,
+      "done": 2240,
       "applicable": 3359
     },
     "clause_inventory": {
@@ -34,57 +34,67 @@
       "applicable": 236
     },
     "opus_media": {
-      "done": 0,
+      "done": 82,
       "applicable": 844
     }
   },
   "decided_by_steps_done": {
-    "1/6": 2355,
-    "1/7": 603,
-    "1/8": 24,
-    "2/6": 160,
-    "2/7": 5,
-    "2/8": 206,
-    "3/8": 6
+    "1/6": 1037,
+    "1/7": 62,
+    "1/8": 4,
+    "2/6": 1478,
+    "2/7": 482,
+    "2/8": 35,
+    "3/7": 64,
+    "3/8": 183,
+    "4/8": 14
   },
   "orders_blocked_by": {
-    "NO_OFFICIAL_SOURCE_LOCATED": 14556,
     "NO_PROVISIONAL_STATUS": 11613,
+    "NO_OFFICIAL_SOURCE_LOCATED": 8474,
     "NO_CLAUSE_INVENTORY": 3359,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
     "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
     "FIRST_END_UNPROVED": 2954,
-    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 417,
     "CURRENT_BASIS_UNPROVED": 405,
-    "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-    "SHARED_SOURCE_NOT_RETRIEVED": 27
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
     "NO_CLAUSE_INVENTORY": 3359,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3359,
     "LATER_SOURCE_SEARCH_NOT_RECORDED": 3359,
     "FIRST_END_UNPROVED": 2954,
-    "NO_OFFICIAL_SOURCE_LOCATED": 2943,
-    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "NO_OFFICIAL_SOURCE_LOCATED": 990,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 405,
-    "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED": 242,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 129,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
   "shared_unlocks": [
     {
-      "action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
+      "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
-      "orders_unblocked": 844,
-      "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER"
+      "orders_unblocked": 472,
+      "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
     },
     {
-      "action": "Run one bulk download of the official links already found (Stage 21 crosswalk)",
-      "kind": "machine_job",
-      "orders_unblocked": 242,
-      "blocker": "OFFICIAL_URL_KNOWN_NOT_DOWNLOADED"
+      "action": "Check the page location of fr-originals finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 417,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -121,9 +131,24 @@
       "kind": "one_source",
       "orders_unblocked": 2,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    },
+    {
+      "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+      "kind": "agent_check",
+      "orders_unblocked": 1,
+      "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
     }
   ],
   "input_problems": [],
+  "historical_census_candidates_OUTSIDE_DENOMINATOR": {
+    "distinct_LOC_item_ID_candidates": 67,
+    "LOC_transcribed_items": 9,
+    "LOC_items_with_original_page_images": 3,
+    "Lord_index_appearances_UNAUTHENTICATED": 1023,
+    "Lord_19c_gap_appearances": 812,
+    "newly_admitted_EOs": 0,
+    "separate_from_14972_census": true
+  },
   "inputs": {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
@@ -144,9 +169,9 @@
       "checker": "jobs/claim-checker/output/PER_CLAIM.json"
     },
     "job_outputs_used": {
-      "fr-originals": null,
-      "opus-media-match fragments": null,
-      "opus-media-match status": null,
+      "fr-originals": 6497,
+      "opus-media-match fragments": 122,
+      "opus-media-match status": 1155,
       "source-ladder": 85,
       "claim-checker": 0
     }
