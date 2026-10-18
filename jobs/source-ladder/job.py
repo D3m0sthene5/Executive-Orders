@@ -45,7 +45,7 @@ def previous_found(prior):
     out = {}
     for src in prior.jsonl("SOURCES.jsonl"):
         wid = src.get("wanted_id")
-        if wid in found_ids and wid not in out:
+        if wid in found_ids and wid not in out and src.get('matches_expected_sha256') is not False:
             text = prior.read(src["text_path"]) if src.get("text_path") else None
             out[wid] = (src, text)
     return out
@@ -86,6 +86,14 @@ def main():
     opus, more = ladder_queue.opus_refetch_wanted(repo)
     problems += more
     items = queue_items + shared + opus
+    plan_path = os.environ.get('JOB_PLAN_FILE')
+    plan_used = None
+    if plan_path:
+        from plan import select_plan
+        plan_used = json.loads(Path(plan_path).read_text('utf-8'))
+        items = select_plan(items, plan_used)
+        budget = env_int('JOB_MAX_REQUESTS')
+        os.environ['JOB_MAX_REQUESTS'] = str(min(budget, plan_used['max_requests']) if budget is not None else plan_used['max_requests'])
     only = [x.strip() for x in os.environ.get("JOB_ONLY", "").split(",") if x.strip()]
     if only:  # e.g. JOB_ONLY="USC::,CFR::" or JOB_ONLY="STAT::66 Stat. 259"
         items = [w for w in items if any(w.wanted_id == o or w.wanted_id.startswith(o) for o in only)]
@@ -150,6 +158,15 @@ def main():
         rel = "texts/" + fetch_ladder.unique_file_name(w.wanted_id)
         fetch_ladder.write_text_lf(out / rel, text)
         src["text_path"] = rel
+
+    # Bounded plans must not erase evidence acquired by an earlier pass. Keep
+    # exact prior bytes and receipts even when those requests are outside this
+    # pass. These are carried evidence, not new acquisitions or readiness gains.
+    if plan_used:
+        from plan import retain_unselected
+        old_sources, old_results = retain_unselected(prior, carried, {w.wanted_id for w in items}, out)
+        sources.extend(old_sources)
+        results.extend(old_results)
 
     for n, w in enumerate(items, 1):
         print(f"[{n}/{len(items)}] {w.wanted_id} ({len(w.instrument_ids)} orders)")
@@ -220,6 +237,8 @@ def main():
     write_jsonl("SOURCES.jsonl", sources)
     write_jsonl("ATTEMPTS.jsonl", attempts)
     write_jsonl("EXHAUSTED_PROPOSED.jsonl", exhausted)
+    if plan_used and prior:
+        write_jsonl('PREVIOUS_UNRESOLVED.jsonl', [r for r in prior.csv_rows('RESULTS.csv') if r.get('result')!='found'])
     with open(out / "RESULTS.csv", "w", encoding="utf-8", newline="") as fh:
         wr = csv.DictWriter(fh, fieldnames=RESULT_COLUMNS, lineterminator="\n")
         wr.writeheader()
@@ -241,6 +260,7 @@ def main():
         "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
+        "source_plan": plan_used,
         "seconds": round(time.time() - t0, 1),
         "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
     }
