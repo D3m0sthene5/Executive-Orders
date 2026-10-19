@@ -62,6 +62,7 @@ def main():
                       max_requests=90, max_bytes=250_000_000, max_retries=2, timeout=120)
     renderer = shutil.which("pdftoppm")
     records = []
+    sources = []
     for item in items:
         record = dict(item)
         try:
@@ -85,6 +86,7 @@ def main():
             record["page_count"] = len(reader.pages)
             requested = item.get("pages") or list(range(1, min(len(reader.pages), 40) + 1))
             record["pages"] = []
+            selected_text = []
             page_dir = out / "pages" / digest
             page_dir.mkdir(parents=True, exist_ok=True)
             for p in sorted(set(requested)):
@@ -93,6 +95,7 @@ def main():
                     continue
                 text_file = page_dir / f"page-{p}.txt"
                 text_file.write_text(reader.pages[p-1].extract_text() or "", encoding="utf-8", newline="\n")
+                selected_text.append(f"=== PDF page {p} ===\n" + text_file.read_text(encoding="utf-8"))
                 page_record = {"pdf_page": p, "text": text_file.relative_to(out).as_posix(), "text_sha256": sha(text_file)}
                 if renderer:
                     prefix = page_dir / f"page-{p}"
@@ -105,6 +108,15 @@ def main():
                 else:
                     page_record["render_error"] = "pdftoppm unavailable; retained PDF still needs visual review"
                 record["pages"].append(page_record)
+            text_file = page_dir / "selected-pages.txt"
+            text_file.write_text("\n\n".join(selected_text)+"\n", encoding="utf-8", newline="\n")
+            sources.append({"url":item["url"], "final_url":attempt.get("final_url"), "sha256":digest,
+                            "bytes":pdf.stat().st_size, "cache_path":record["retained_pdf"],
+                            "text_path":text_file.relative_to(out).as_posix(), "text_sha256":sha(text_file),
+                            "page_or_item":"Selected PDF pages: " + ", ".join(str(p["pdf_page"]) for p in record["pages"]),
+                            "instrument_ids":[], "requested_for_instrument_ids":item["instrument_ids"],
+                            "route":"queued_astra_retention", "retrieved_utc":attempt.get("time_utc"),
+                            "notes":"Rehashed retained PDF; selected-page text only. Requested targets are not automatically asserted as document identities. No legal or original-representation acceptance."})
         except BudgetExceeded as exc:
             record["error"] = str(exc)
             records.append(record)
@@ -119,6 +131,7 @@ def main():
                "wall_seconds": time.monotonic()-start, "model_usage": None,
                "reviewer_role": None, "legal_findings": False, "exhaustion_findings": False}
     (out / "RESULTS.json").write_text(json.dumps(records, indent=2)+"\n", encoding="utf-8")
+    (out / "SOURCES.jsonl").write_text("".join(json.dumps(s)+"\n" for s in sources), encoding="utf-8", newline="\n")
     (out / "SUMMARY.json").write_text(json.dumps(summary, indent=2)+"\n", encoding="utf-8")
     print(json.dumps(summary))
 
