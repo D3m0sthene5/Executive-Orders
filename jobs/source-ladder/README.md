@@ -1,5 +1,16 @@
 # Source ladder (job 1)
 
+Bounded default: absent `JOB_ONLY`/`JOB_LIMIT`, rank unresolved existing requests
+against the committed readiness tracker and work at most 12, within 80 ladder HTTP
+requests. `JOB_PLAN_FILE` accepts the excavator's fingerprinted plan (0–50 requests,
+1–300 HTTP requests); stale plans fail before network acquisition. Explicit legacy
+selections also default to an 80-request ceiling. `JOB_READINESS_PLAN=0` disables
+ranking, not the finite budget. This ranking is acquisition scheduling only.
+Successful prior receipts and exact text bytes outside a bounded selection are
+retained, including when selected items are refetched. Preserve the prior committed
+output and failure records when diagnosing an unsuccessful job. Offline runs
+cannot establish exhaustion. New source counts exclude retained receipts.
+
 **What it does, in plain words.** Research agents used to spend a lot of time
 hunting for a copy of a document by hand: try the link, try another form of
 the link, try the Wayback Machine, try another official site, try a mirror.

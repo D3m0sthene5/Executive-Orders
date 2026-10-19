@@ -1,10 +1,16 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:7968",
+      "overflow": "actor-texts/EO_7968.json",
+      "text_sha256": "8b7c7056b202f8ea801c517ef1850d78eddd8c672e0892275bae4ca62f75cac0"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 233,
+    "generic_refs_excluded": 107,
     "id": "CHAIN:EO:4487",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:4487"
@@ -30,7 +36,7 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {},
-  "fingerprint": "3a8ab069e17ef20af05df65fd9dc081cd231a9e2d686e61278c797554e400ff0",
+  "fingerprint": "72df02eaeb0d2dab143e98060bb47bdda4dc4e98a89315dcc97c0f87aadafc87",
   "instrument_id": "EO:4487",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -62,8 +68,8 @@
       "complete": true,
       "coverage_warning": "order dated 1926: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-10-18",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -73,6 +79,7 @@
     }
   ],
   "missing": [
+    "Large actor context must be read at actor-texts/EO_7968.json before deciding scope/savings.",
     "No attributed held text located for this order.",
     "No clause inventory extracted; do not submit an empty inventory.",
     "target provision not located: EO:7968"
@@ -81,5 +88,17 @@
   "original_source_id": null,
   "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
+  "status_history": {
+    "event_count": 1,
+    "fingerprint": "9c5476c7ff1521b4efdaf09a64a758cc7e36d178cb8114e12458ceeb77dabd1a",
+    "flags": [],
+    "history_path": "jobs/status-history/output/histories/EO_4487.json",
+    "history_sha256": "e9405c485ac4504aca3d2d9598387145c0aad942bf3d75b28d5999de54c29378",
+    "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
+    "legal_cutoff": "2026-10-14",
+    "machine_lead": true,
+    "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
+    "observation_count": 1
+  },
   "whole_order_status": "no"
 }

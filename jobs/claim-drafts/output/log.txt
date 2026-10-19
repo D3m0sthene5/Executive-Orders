@@ -1,4 +1,3 @@
-test_app_and_declared_transcriptions_are_leads_never_the_original (test_drafts.BookSources.test_app_and_declared_transcriptions_are_leads_never_the_original) ... ok
 test_book_drafts_stay_tracker_safe (test_drafts.BookSources.test_book_drafts_stay_tracker_safe) ... ok
 test_codification_and_later_events_are_one_source_not_two (test_drafts.BookSources.test_codification_and_later_events_are_one_source_not_two) ... ok
 test_codification_end_withheld_when_any_job_says_partial (test_drafts.BookSources.test_codification_end_withheld_when_any_job_says_partial) ... ok
@@ -11,7 +10,6 @@ test_official_compilation_high_is_filled_and_strong (test_drafts.BookSources.tes
 test_official_compilation_needs_page_check_is_never_strong (test_drafts.BookSources.test_official_compilation_needs_page_check_is_never_strong) ... ok
 test_richardson_beside_an_official_candidate_does_not_block_it (test_drafts.BookSources.test_richardson_beside_an_official_candidate_does_not_block_it) ... ok
 test_richardson_is_a_lead_never_the_original (test_drafts.BookSources.test_richardson_is_a_lead_never_the_original) ... ok
-test_split_fragment_files_are_read (test_drafts.BookSources.test_split_fragment_files_are_read) ... ok
 test_claim_has_exactly_the_stage19_fields (test_drafts.ClaimShape.test_claim_has_exactly_the_stage19_fields) ... ok
 test_status_copied_from_ledger_only (test_drafts.ClaimShape.test_status_copied_from_ledger_only) ... ok
 test_unresolved_gaps_listed_so_draft_never_passes_as_is (test_drafts.ClaimShape.test_unresolved_gaps_listed_so_draft_never_passes_as_is) ... ok
@@ -59,15 +57,14 @@ test_pre_1937_order_catalog_search_flagged (test_drafts.TrackerSafety.test_pre_1
 test_uses_the_real_tracker_mapping (test_drafts.TrackerSafety.test_uses_the_real_tracker_mapping) ... ok
 
 ----------------------------------------------------------------------
-Ran 59 tests in 0.775s
+Ran 57 tests in 1.029s
 
 OK
-  input folder later-events: /tmp/claim-drafts-test-l0faz1t8/repo/jobs/later-events/output
-  input folder clause-drafts: /tmp/claim-drafts-test-l0faz1t8/repo/jobs/clause-drafts/output
+  input folder later-events: /tmp/claim-drafts-test-o7du_xny/repo/jobs/later-events/output
+  input folder clause-drafts: /tmp/claim-drafts-test-o7du_xny/repo/jobs/clause-drafts/output
 Reading inputs (repo /home/runner/work/Executive-Orders/Executive-Orders) ...
-  input app-executive-orders: /home/runner/work/Executive-Orders/Executive-Orders/jobs/app-executive-orders/output (765 fragments, 792 source records)
-  input app-transcriptions: /home/runner/work/Executive-Orders/Executive-Orders/jobs/app-transcriptions/output (9387 fragments, 9902 source records)
-  input clause-drafts: /home/runner/work/Executive-Orders/Executive-Orders/jobs/clause-drafts/output (9760 fragments, 9760 source records)
+  input app-executive-orders: /home/runner/work/Executive-Orders/Executive-Orders/jobs/app-executive-orders/output (51 fragments, 51 source records)
+  input clause-drafts: /home/runner/work/Executive-Orders/Executive-Orders/jobs/clause-drafts/output (4747 fragments, 4747 source records)
   input current-law: /home/runner/work/Executive-Orders/Executive-Orders/jobs/current-law/output (3476 fragments, 110 source records)
   input family-rule-sources: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rule-sources/output (0 fragments, 2 source records)
   input family-rule-tail: /home/runner/work/Executive-Orders/Executive-Orders/jobs/family-rule-tail/output (0 fragments, 1 source records)
@@ -76,30 +73,31 @@ Reading inputs (repo /home/runner/work/Executive-Orders/Executive-Orders) ...
   input hathi-gpo-orders: /home/runner/work/Executive-Orders/Executive-Orders/jobs/hathi-gpo-orders/output (1531 fragments, 1531 source records)
   input indian-reservations-1912: /home/runner/work/Executive-Orders/Executive-Orders/jobs/indian-reservations-1912/output (55 fragments, 0 source records)
   input isthmian-canal-1911: /home/runner/work/Executive-Orders/Executive-Orders/jobs/isthmian-canal-1911/output (105 fragments, 0 source records)
-  input later-events: /home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output (6719 fragments, 17528 source records)
+  input later-events: /home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output (6513 fragments, 7626 source records)
   input numbered-early-orders: /home/runner/work/Executive-Orders/Executive-Orders/jobs/numbered-early-orders/output (197 fragments, 197 source records)
   input ofr-codification-1989: /home/runner/work/Executive-Orders/Executive-Orders/jobs/ofr-codification-1989/output (1924 fragments, 0 source records)
   input ofr-compilations: /home/runner/work/Executive-Orders/Executive-Orders/jobs/ofr-compilations/output (500 fragments, 0 source records)
   input opus-media-match: /home/runner/work/Executive-Orders/Executive-Orders/jobs/opus-media-match/output (143 fragments, 496 source records)
   input richardson-volumes: /home/runner/work/Executive-Orders/Executive-Orders/jobs/richardson-volumes/output (68 fragments, 0 source records)
-  input source-ladder: /home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/output (0 fragments, 147 source records)
+  input source-ladder: /home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/output (0 fragments, 178 source records)
+  input status-history: /home/runner/work/Executive-Orders/Executive-Orders/jobs/status-history/output (7650 fragments, 0 source records)
   input wikisource-texts: /home/runner/work/Executive-Orders/Executive-Orders/jobs/wikisource-texts/output (1639 fragments, 1639 source records)
   orders to draft: 3359 (decided first; scope=decided)
-  claim checker: jobs/claim-checker imported; 86625 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)
-  ... 500 drafts (93 s)
-  ... 1000 drafts (96 s)
-  ... 1500 drafts (244 s)
-  ... 2000 drafts (352 s)
-  ... 2500 drafts (353 s)
-  ... 3000 drafts (362 s)
+  claim checker: jobs/claim-checker imported; 61098 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)
+  ... 500 drafts (13 s)
+  ... 1000 drafts (23 s)
+  ... 1500 drafts (33 s)
+  ... 2000 drafts (42 s)
+  ... 2500 drafts (42 s)
+  ... 3000 drafts (43 s)
 
-Drafted 3359 orders (3359 with a provisional status) in 375.7 s, with no network requests.
-  original text filled from a strong candidate: 2312; weak candidate only: 88
-  clause inventories: 3160 (19164 clauses)
-  whole-order-end candidates: 1029; current-law leads: 510; later-event candidates: 1661
-  drafts where only judgment is left (the gate would pass once an agent accepts or decides): 1114 (1114 decided)
+Drafted 3359 orders (3359 with a provisional status) in 42.8 s, with no network requests.
+  original text filled from a strong candidate: 2312; weak candidate only: 90
+  clause inventories: 1806 (13228 clauses)
+  whole-order-end candidates: 1029; current-law leads: 510; later-event candidates: 1659
+  drafts where only judgment is left (the gate would pass once an agent accepts or decides): 780 (780 decided)
   ... plus drafts where only judgment and a recorded later-source search are left: 0
-  orders with a conflict: 421; top: NO_ORDER_CITED_IN_CURRENT_LAW 163, NO_ORDER_IN_FORCE_ON_1989_01_20 72, FULL_AND_PARTIAL_EVIDENCE_CONFLICT 56, WHOLE_END_DATE_MISSING_OR_DISPUTED 55, PARTIAL_END_CANDIDATE_ON_YES_ORDER 43
-  effort: {'large': 988, 'medium': 1313, 'small': 1058}
-  claim checker: {'fail': 10, 'pass': 1438, 'pass_with_unverified': 1911}
+  orders with a conflict: 417; top: NO_ORDER_CITED_IN_CURRENT_LAW 163, NO_ORDER_IN_FORCE_ON_1989_01_20 72, WHOLE_END_DATE_MISSING_OR_DISPUTED 55, FULL_AND_PARTIAL_EVIDENCE_CONFLICT 54, PARTIAL_END_CANDIDATE_ON_YES_ORDER 43
+  effort: {'large': 1242, 'medium': 1378, 'small': 739}
+  claim checker: {'fail': 10, 'pass': 2792, 'pass_with_unverified': 557}
 Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-drafts/output: DRAFT_CLAIMS.jsonl, TODO_BY_ORDER.csv, CONFLICTS.csv, SUMMARY.json. These are drafts and leads, never claims.

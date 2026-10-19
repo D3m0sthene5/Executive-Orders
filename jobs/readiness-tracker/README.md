@@ -45,6 +45,19 @@ ready when all its steps are done and either its claim passes the gate in full
 To add a new source of evidence, add its file to `P` in `tracker.py`, its folder
 to `needs.txt`, and a test.
 
+## Negative source-audit holds
+
+`research/readiness/SOURCE_AUDIT_HOLDS.jsonl` can prevent a mechanically complete
+claim from being advertised as ready while a documented independent AI source
+audit has an unresolved material objection. Each hold binds the exact canonical
+claim SHA256 and the review file SHA256. It changes only final readiness, never
+individual steps, legal status or claims; it cannot confer acceptance. A changed
+claim gets a stale-hold warning for explicit rereview. Missing or damaged held
+review evidence fails closed. EO 9789's held claim remains unresolved.
+
+Status-history outputs are research preparation and confer no readiness step.
+The 1989 snapshot is still excluded from legal/current-status proof.
+
 ## Historical census candidate track
 
 The separately run census-candidates job publishes an item-level register for the early rangers and Lord's index appearances. Its counts are appended in a separate section of TRACKER.md and SUMMARY.json when the job output exists. They are excluded from the 14,972 working-EO denominator. No catalog hit or scanned document is automatically admitted.

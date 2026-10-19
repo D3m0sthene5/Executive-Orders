@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "result": "rejected",
+  "branch_commit": "c03a6b84feba32912a89eaec59a9c47887ce6478",
+  "jobs": [
+    "source",
+    "consumer"
+  ],
+  "problems": [
+    {
+      "job": "source",
+      "reason": "concurrent_output_advanced",
+      "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+    }
+  ],
+  "input_generations": {
+    "source": {},
+    "consumer": {
+      "source": "same_run_candidate"
+    }
+  },
+  "action": "Rerun these jobs on the current branch; retained outputs were not published."
+}

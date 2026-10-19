@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "result": "rejected",
+  "branch_commit": "3a7af177fefb9596a17e0507040a62b5355a431b",
+  "jobs": [
+    "source"
+  ],
+  "problems": [
+    {
+      "job": "source",
+      "reason": "concurrent_output_advanced",
+      "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+    },
+    {
+      "job": "source",
+      "reason": "inputs_changed",
+      "captured_inputs_sha256": "492315161e1bcabffb8e50f74bc219b4c2caba0527c4162a4cd816fc361fb3f2",
+      "branch_inputs_sha256": "df566fdcb2c019559e2fac914ba9eec845784691cce6a8617873982885422761",
+      "changed_path_count": 1,
+      "changed_paths": [
+        {
+          "path": "inputs/request.json",
+          "captured": "100644:96698708a64503b9897292485a23488df542d390",
+          "branch": "100644:7cf553277569cf2456374c9066695dd927d8a0cf"
+        }
+      ]
+    }
+  ],
+  "action": "Rerun these jobs on the current branch; retained outputs were not published."
+}

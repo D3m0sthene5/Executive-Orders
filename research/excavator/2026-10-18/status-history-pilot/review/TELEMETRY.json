@@ -1,0 +1,215 @@
+{
+  "schema": "eo-independent-review-observed-token-and-tool-telemetry/v1",
+  "own_thread_id": "01a14e19-c860-7583-b47b-f0ac2d518952",
+  "source_log_path": "C:\\Users\\danie\\.codex\\sessions\\2026\\10\\18\\rollout-2026-10-18T04-21-14-01a14e19-c860-7583-b47b-f0ac2d518952.jsonl",
+  "source_selection": "Only the single filename matching this process CODEX_THREAD_ID was opened. Every retained token record also matched payload.thread_id. No other session log was read.",
+  "cutoff_utc_inclusive": "2026-10-18T09:14:13.864Z",
+  "source_prefix_last_line": 536,
+  "source_prefix_bytes": 20625442,
+  "source_prefix_sha256": "1fb6a80498239f3954d0408d36ef9b5317e21e093d65a6ea64e51805e9da102f",
+  "extraction_generated_utc": "2026-10-18T09:15:33.245158+00:00",
+  "correction": "Runtime token counters are available in this own-thread log. Earlier billing/token-null statements documented the then-known tool surface; these observed token counters supersede token-unavailability claims for the stated windows. Dollar billing remains unavailable.",
+  "token_semantics": [
+    "input_tokens includes cached_input_tokens; cached input is a subset, not added to input.",
+    "reasoning_output_tokens is a subset of output_tokens; it is not added again to output or total.",
+    "total_tokens equals input plus output in these records. These are runtime token usage counters, not dollar invoices.",
+    "Response usage was summed once per unique response_id. event_msg token_count mirrors were deliberately not summed to avoid double counting.",
+    "Task-window wall time includes kickoff/final overhead and correction waits, so it is broader than earlier first-clock-to-artifact observation intervals.",
+    "Telemetry extraction has its own phase and is excluded from completed-audit totals. Work after the fixed cutoff, including this write and final reporting, is excluded."
+  ],
+  "phases": [
+    {
+      "phase": "first_source_audit",
+      "start_utc": "2026-10-18T08:21:14.979Z",
+      "end_utc": "2026-10-18T08:30:38.337Z",
+      "task_window_wall_seconds": 563.358,
+      "response_usage_records": 41,
+      "per_response_usage_sum": {
+        "input_tokens": 5988679,
+        "cached_input_tokens": 5797120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 21023,
+        "reasoning_output_tokens": 2798,
+        "total_tokens": 6009702,
+        "uncached_input_tokens_derived": 191559
+      },
+      "thread_cumulative_delta": {
+        "input_tokens": 5988679,
+        "cached_input_tokens": 5797120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 21023,
+        "reasoning_output_tokens": 2798,
+        "total_tokens": 6009702
+      },
+      "sum_matches_cumulative_delta": true,
+      "last_usage_record_utc": "2026-10-18T08:30:38.316Z",
+      "recorded_tool_call_count": 40,
+      "recorded_tool_calls_by_type": {
+        "custom_tool_call": 33,
+        "function_call": 7
+      },
+      "recorded_tool_calls_by_name": {
+        "exec": 33,
+        "send_message": 7
+      }
+    },
+    {
+      "phase": "status_history_audit_and_rereview",
+      "start_utc": "2026-10-18T08:50:36.173Z",
+      "end_utc": "2026-10-18T08:59:16.521Z",
+      "task_window_wall_seconds": 520.348,
+      "response_usage_records": 23,
+      "per_response_usage_sum": {
+        "input_tokens": 6017167,
+        "cached_input_tokens": 5950336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 16501,
+        "reasoning_output_tokens": 4546,
+        "total_tokens": 6033668,
+        "uncached_input_tokens_derived": 66831
+      },
+      "thread_cumulative_delta": {
+        "input_tokens": 6017167,
+        "cached_input_tokens": 5950336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 16501,
+        "reasoning_output_tokens": 4546,
+        "total_tokens": 6033668
+      },
+      "sum_matches_cumulative_delta": true,
+      "last_usage_record_utc": "2026-10-18T08:59:16.493Z",
+      "recorded_tool_call_count": 22,
+      "recorded_tool_calls_by_type": {
+        "custom_tool_call": 17,
+        "function_call": 5
+      },
+      "recorded_tool_calls_by_name": {
+        "exec": 17,
+        "send_message": 5
+      }
+    },
+    {
+      "phase": "final_integration_addendum",
+      "start_utc": "2026-10-18T09:04:11.873Z",
+      "end_utc": "2026-10-18T09:05:43.628Z",
+      "task_window_wall_seconds": 91.755,
+      "response_usage_records": 5,
+      "per_response_usage_sum": {
+        "input_tokens": 1442496,
+        "cached_input_tokens": 1433984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2590,
+        "reasoning_output_tokens": 689,
+        "total_tokens": 1445086,
+        "uncached_input_tokens_derived": 8512
+      },
+      "thread_cumulative_delta": {
+        "input_tokens": 1442496,
+        "cached_input_tokens": 1433984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2590,
+        "reasoning_output_tokens": 689,
+        "total_tokens": 1445086
+      },
+      "sum_matches_cumulative_delta": true,
+      "last_usage_record_utc": "2026-10-18T09:05:43.602Z",
+      "recorded_tool_call_count": 4,
+      "recorded_tool_calls_by_type": {
+        "custom_tool_call": 3,
+        "function_call": 1
+      },
+      "recorded_tool_calls_by_name": {
+        "exec": 3,
+        "send_message": 1
+      }
+    },
+    {
+      "phase": "telemetry_extraction_overhead_through_cutoff",
+      "start_utc": "2026-10-18T09:13:14.908Z",
+      "end_utc": "2026-10-18T09:14:13.864Z",
+      "task_window_wall_seconds": 58.956,
+      "response_usage_records": 4,
+      "per_response_usage_sum": {
+        "input_tokens": 1170174,
+        "cached_input_tokens": 1167232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1785,
+        "reasoning_output_tokens": 673,
+        "total_tokens": 1171959,
+        "uncached_input_tokens_derived": 2942
+      },
+      "thread_cumulative_delta": {
+        "input_tokens": 1170174,
+        "cached_input_tokens": 1167232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1785,
+        "reasoning_output_tokens": 673,
+        "total_tokens": 1171959
+      },
+      "sum_matches_cumulative_delta": true,
+      "last_usage_record_utc": "2026-10-18T09:14:13.864Z",
+      "recorded_tool_call_count": 4,
+      "recorded_tool_calls_by_type": {
+        "custom_tool_call": 4
+      },
+      "recorded_tool_calls_by_name": {
+        "exec": 4
+      }
+    }
+  ],
+  "all_observed_through_cutoff": {
+    "response_usage_records": 73,
+    "per_response_usage_sum": {
+      "input_tokens": 14618516,
+      "cached_input_tokens": 14348672,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 41899,
+      "reasoning_output_tokens": 8706,
+      "total_tokens": 14660415,
+      "uncached_input_tokens_derived": 269844
+    },
+    "thread_cumulative_counters": {
+      "input_tokens": 14618516,
+      "cached_input_tokens": 14348672,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 41899,
+      "reasoning_output_tokens": 8706,
+      "total_tokens": 14660415
+    },
+    "per_response_sum_matches_thread_cumulative": true,
+    "recorded_tool_call_count": 70,
+    "recorded_tool_calls_by_name": {
+      "exec": 57,
+      "send_message": 13
+    }
+  },
+  "completed_audits_excluding_telemetry_extraction": {
+    "response_usage_records": 69,
+    "per_response_usage_sum": {
+      "input_tokens": 13448342,
+      "cached_input_tokens": 13181440,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 40114,
+      "reasoning_output_tokens": 8033,
+      "total_tokens": 13488456
+    },
+    "recorded_tool_call_count": 66
+  },
+  "tool_count_scope": "Model transcript response_item function_call/custom_tool_call records only; functions.exec wrapper calls may contain multiple nested tools. Nested tools were not counted by parsing code/arguments. No messages, tool arguments, account or rate-limit fields are copied.",
+  "dollar_billing": null,
+  "dollar_billing_unavailable_reason": "Runtime token records do not supply billing dollars; no invoice/price inference made.",
+  "preserved_prior_report_hashes": [
+    {
+      "path": "research/excavator/2026-10-18/status-history-pilot/review/INDEPENDENT_AI_REVIEW.json",
+      "sha256": "6d98d3596028457004d1d59c9e0e85fab468afa8af514b5d8dc3e651b4d268c7"
+    },
+    {
+      "path": "research/excavator/2026-10-18/status-history-pilot/review/INDEPENDENT_AI_REVIEW.md",
+      "sha256": "f9165d80da87e8ee8214f79999aa12e424a412e8cb33f08ecef524d158e6a139"
+    },
+    {
+      "path": "research/excavator/2026-10-18/status-history-pilot/review/FINAL_INTEGRATION_ADDENDUM.json",
+      "sha256": "55d5e092656df8b57fef4867232eb8d69950b84353ba2472cf4bcd530fe368a2"
+    }
+  ]
+}

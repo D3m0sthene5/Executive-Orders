@@ -1,0 +1,374 @@
+{
+  "jobs/claim-kit/output/STATUS.json": {
+    "job": "claim-kit",
+    "result": "succeeded",
+    "exit_code": 0,
+    "started_utc": "2026-10-18T09:21:49Z",
+    "finished_utc": "2026-10-18T09:29:29Z",
+    "commit_run": "e8ca915ca8afae4a9c84bbf282a2cff60e6b29dc",
+    "branch": "sol-claim-kit",
+    "trigger": "push by D3m0sthene5",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253",
+    "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": []
+  },
+  "jobs/claim-checker/output/STATUS.json": {
+    "job": "claim-checker",
+    "result": "succeeded",
+    "exit_code": 0,
+    "started_utc": "2026-10-18T09:14:38Z",
+    "finished_utc": "2026-10-18T09:14:56Z",
+    "commit_run": "e8ca915ca8afae4a9c84bbf282a2cff60e6b29dc",
+    "branch": "sol-claim-kit",
+    "trigger": "push by D3m0sthene5",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253",
+    "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": []
+  },
+  "jobs/claim-checker/output/SUMMARY.json": {
+    "schema": "eo-claim-check/v1",
+    "job": "claim-checker",
+    "legal_cutoff": "2026-10-14",
+    "claim_files": [
+      "astra-2026-10-17-p12553a.jsonl",
+      "astra-2026-10-17-p12553b.jsonl",
+      "astra-2026-10-17-p3originals.jsonl",
+      "astra-2026-10-17-pother.jsonl",
+      "astra-2026-10-18-p3complete.jsonl",
+      "claude-2026-10-18-codif-b0.jsonl",
+      "claude-2026-10-18-codif-b1.jsonl",
+      "claude-2026-10-18-codif-b2.jsonl",
+      "claude-2026-10-18-codif-b3.jsonl",
+      "claude-2026-10-18-codif-b4.jsonl",
+      "claude-2026-10-18-codif-b5.jsonl",
+      "claude-2026-10-18-codif-b6.jsonl",
+      "claude-2026-10-18-codif-b7.jsonl",
+      "sol-2026-10-18.jsonl"
+    ],
+    "claim_lines_found": 228,
+    "job_limit": null,
+    "claims_checked": 228,
+    "claims_parse_errors": 0,
+    "claims_checker_errors": 0,
+    "orders_with_claim": 227,
+    "claims_all_checks_passed": 143,
+    "claims_mechanical_pass": 228,
+    "claims_mechanical_unverified": 0,
+    "claims_mechanical_fail": 0,
+    "claims_gate_passed": 143,
+    "steps_checker_passed_effective_claims": {
+      "original_text": 197,
+      "clause_inventory": 188,
+      "ending_or_current_basis": 144,
+      "savings_residuals": 176,
+      "counterevidence": 178
+    },
+    "check_results": {
+      "source_held": {
+        "pass": 3286
+      },
+      "source_identity": {
+        "pass": 1342
+      },
+      "quote_verbatim": {
+        "pass": 3532
+      },
+      "date_valid": {
+        "pass": 2876
+      },
+      "date_after_signing": {
+        "pass": 1743
+      },
+      "order_exists": {
+        "pass": 1277
+      },
+      "structural_gate": {
+        "fail": 696,
+        "pass": 143
+      },
+      "parse": {},
+      "checker_error": {}
+    },
+    "source_status_counts": {
+      "gpo_published_hash_match": 3000,
+      "held_bytes_verified": 286
+    },
+    "source_identity_counts": {
+      "recorded_for_this_order": 1342
+    },
+    "quote_status_counts": {
+      "exact": 3532
+    },
+    "source_status_policy": {
+      "held_bytes_verified": "pass",
+      "held_bytes_in_release_or_repo": "pass",
+      "gpo_published_hash_match": "pass",
+      "custody_record_only": "skip"
+    },
+    "claim_checks_csv": {
+      "mode": "non_pass_rows",
+      "rows_written": 696,
+      "rows_total": 14895,
+      "max_mb": 50.0,
+      "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+    },
+    "held_copies_indexed_by_origin": {
+      "jobs/clause-drafts/output/SOURCES.jsonl": 4761,
+      "jobs/current-law/output/SOURCES.jsonl": 110,
+      "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
+      "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
+      "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+      "jobs/indian-reservations-1912/data/PROVENANCE.json": 1,
+      "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl": 55,
+      "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
+      "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
+      "jobs/later-events/output/SOURCES.jsonl": 7626,
+      "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
+      "jobs/ofr-compilations/data/PROVENANCE.json": 1,
+      "jobs/ofr-compilations/output/FRAGMENTS.jsonl": 500,
+      "jobs/opus-media-match/output/SOURCES.jsonl": 496,
+      "jobs/richardson-volumes/data/PROVENANCE.json": 3,
+      "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
+      "jobs/source-ladder/output/SOURCES.jsonl": 917,
+      "opus_media_member_map": 496,
+      "opus_stage11_fetch_meta": 9203,
+      "opus_stage11_manifest": 27237,
+      "stage18_source_manifest": 25,
+      "stage20_statute_fetch_index": 7,
+      "stage21_acquisition_log": 160,
+      "stage21_custody": 160
+    },
+    "held_distinct_sha256": 31667,
+    "opus_text_pack_texts": 0,
+    "signing_dates_loaded": {
+      "identity_layer_year_only": 14854,
+      "jobs/fr-originals/output/NOT_FOUND.csv": 441,
+      "stage14_fetch_manifest": 1144,
+      "stage21_crosswalk": 402
+    },
+    "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+    "pypdf_available": true,
+    "fetch": null,
+    "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+  },
+  "jobs/readiness-tracker/output/STATUS.json": {
+    "job": "readiness-tracker",
+    "result": "succeeded",
+    "exit_code": 0,
+    "started_utc": "2026-10-18T09:21:07Z",
+    "finished_utc": "2026-10-18T09:21:08Z",
+    "commit_run": "e8ca915ca8afae4a9c84bbf282a2cff60e6b29dc",
+    "branch": "sol-claim-kit",
+    "trigger": "push by D3m0sthene5",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39107390253",
+    "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": []
+  },
+  "jobs/readiness-tracker/output/SUMMARY.json": {
+    "orders_total": 14972,
+    "orders_with_provisional_status": 3359,
+    "ready_for_human_review": 141,
+    "ready_by_tier": {
+      "complete_claim": 141
+    },
+    "human_verified": "not counted here; see the Stage 19 tracker",
+    "step_done_among_decided": {
+      "provisional_status": {
+        "done": 3359,
+        "applicable": 3359
+      },
+      "original_text": {
+        "done": 2312,
+        "applicable": 3359
+      },
+      "clause_inventory": {
+        "done": 188,
+        "applicable": 3359
+      },
+      "ending_or_current_basis": {
+        "done": 144,
+        "applicable": 3359
+      },
+      "savings_residuals": {
+        "done": 176,
+        "applicable": 3359
+      },
+      "counterevidence": {
+        "done": 2470,
+        "applicable": 3359
+      },
+      "shared_sources": {
+        "done": 209,
+        "applicable": 236
+      },
+      "opus_media": {
+        "done": 412,
+        "applicable": 844
+      }
+    },
+    "decided_by_steps_done": {
+      "1/6": 632,
+      "1/7": 8,
+      "2/6": 501,
+      "2/7": 68,
+      "2/8": 4,
+      "3/6": 1192,
+      "3/7": 292,
+      "3/8": 21,
+      "4/6": 24,
+      "4/7": 239,
+      "4/8": 116,
+      "5/6": 25,
+      "5/8": 95,
+      "6/6": 141,
+      "7/7": 1
+    },
+    "orders_blocked_by": {
+      "NO_PROVISIONAL_STATUS": 11613,
+      "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+      "NO_CLAUSE_INVENTORY": 3132,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3132,
+      "FIRST_END_UNPROVED": 2732,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
+      "CURRENT_BASIS_UNPROVED": 400,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
+      "OPUS_MEDIA_NONE_CITED": 217,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+      "OPUS_MEDIA_REFETCH_NEEDED": 157,
+      "CLAIM_INCOMPLETE": 83,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 5,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
+    },
+    "decided_orders_blocked_by": {
+      "NO_CLAUSE_INVENTORY": 3132,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3132,
+      "FIRST_END_UNPROVED": 2732,
+      "NO_OFFICIAL_SOURCE_LOCATED": 959,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
+      "CURRENT_BASIS_UNPROVED": 400,
+      "OPUS_MEDIA_NONE_CITED": 217,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+      "OPUS_MEDIA_REFETCH_NEEDED": 157,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
+      "CLAIM_INCOMPLETE": 83,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 5,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+      "NO_PROVISIONAL_STATUS": 0
+    },
+    "shared_unlocks": [
+      {
+        "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+        "kind": "agent_check",
+        "orders_unblocked": 286,
+        "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+      },
+      {
+        "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+        "kind": "machine_job",
+        "orders_unblocked": 157,
+        "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+      },
+      {
+        "action": "Retrieve shared source EO::4314",
+        "kind": "one_source",
+        "orders_unblocked": 10,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+      },
+      {
+        "action": "Retrieve shared source EO::6868",
+        "kind": "one_source",
+        "orders_unblocked": 6,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
+      },
+      {
+        "action": "Retrieve shared source USC::48 U.S.C. 863)",
+        "kind": "one_source",
+        "orders_unblocked": 3,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+      },
+      {
+        "action": "Retrieve shared source EO::6964",
+        "kind": "one_source",
+        "orders_unblocked": 3,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964"
+      },
+      {
+        "action": "Retrieve shared source EO::6910",
+        "kind": "one_source",
+        "orders_unblocked": 3,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
+      },
+      {
+        "action": "Retrieve shared source CFR::26 CFR 458.324",
+        "kind": "one_source",
+        "orders_unblocked": 2,
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+      },
+      {
+        "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+        "kind": "agent_check",
+        "orders_unblocked": 1,
+        "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
+      }
+    ],
+    "input_problems": [],
+    "historical_census_candidates_OUTSIDE_DENOMINATOR": {
+      "distinct_LOC_item_ID_candidates": 67,
+      "LOC_transcribed_items": 9,
+      "LOC_items_with_original_page_images": 3,
+      "Lord_index_appearances_UNAUTHENTICATED": 1023,
+      "Lord_19c_gap_appearances": 812,
+      "newly_admitted_EOs": 0,
+      "separate_from_14972_census": true
+    },
+    "inputs": {
+      "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+      "causal": "research/stage19/output/CAUSAL_QUEUE.csv",
+      "crosswalk": "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv",
+      "custody": "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv",
+      "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
+      "statute": "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv",
+      "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
+      "claims": "research/readiness/claims/*.jsonl",
+      "exhausted": "research/readiness/EXHAUSTED.jsonl",
+      "job_outputs": {
+        "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
+        "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
+        "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
+        "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl",
+        "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
+        "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
+        "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
+        "checker": "jobs/claim-checker/output/PER_CLAIM.json",
+        "le_summary": "jobs/later-events/output/SUMMARY.json",
+        "le_catalog": "jobs/later-events/output/CATALOG_INDEX.csv",
+        "le_conflicts": "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv",
+        "le_status": "jobs/later-events/output/STATUS.json",
+        "cl_summary": "jobs/current-law/output/SUMMARY.json",
+        "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
+        "cl_status": "jobs/current-law/output/STATUS.json"
+      },
+      "job_outputs_used": {
+        "fr-originals": 6497,
+        "opus-media-match fragments": 122,
+        "ofr-compilations": 500,
+        "isthmian-canal-1911": 105,
+        "indian-reservations-1912": 55,
+        "richardson-volumes (lead only, never counted as the original)": 68,
+        "opus-media-match status": 1155,
+        "source-ladder": 917,
+        "claim-checker": 227,
+        "machine later-source search": 6938
+      }
+    }
+  }
+}

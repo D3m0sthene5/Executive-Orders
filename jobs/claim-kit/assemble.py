@@ -6,6 +6,8 @@ claim-checker must additionally establish custody of the original source bytes.
 """
 
 from copy import deepcopy
+import base64
+import binascii
 import hashlib
 import importlib.util
 import json
@@ -40,13 +42,76 @@ def _records(dossier):
     return result
 
 
+def derive_inventory(dossier, overrides):
+    """Derive exact clause records from producer-selected original-source spans.
+
+    Return (clauses, evidence_by_id, errors). Offsets are absolute code-point
+    offsets in the cited held text file. Only the dossier's original evidence id
+    is permitted; the source and quote cannot be supplied or edited by a sheet.
+    The caller retains the ORIGINAL dossier fingerprint, and pins the override
+    list in claim_kit metadata so checking reconstructs these same records.
+    """
+    errors, clauses, evidence = [], [], {}
+    if not isinstance(dossier, dict) or not isinstance(overrides, list) or not overrides:
+        return [], {}, ["inventory_overrides_nonempty_list_required"]
+    original_id = dossier.get("original_source_id")
+    parent = _records(dossier).get(original_id) if isinstance(original_id, str) else None
+    if not isinstance(parent, dict):
+        return [], {}, ["inventory_override_original_missing"]
+    parent_start, parent_end, text = parent.get("char_start"), parent.get("char_end"), parent.get("text")
+    if (type(parent_start) is not int or type(parent_end) is not int or
+            not isinstance(text, str) or parent_start < 0 or
+            parent_end <= parent_start or len(text) != parent_end - parent_start or
+            not isinstance(parent.get("source"), dict)):
+        return [], {}, ["inventory_override_original_span_malformed"]
+    seen, ranges = set(), []
+    required = {"scope_id", "source_id", "char_start", "char_end", "reason"}
+    for index, override in enumerate(overrides):
+        label = f"inventory_override_{index}"
+        if not isinstance(override, dict) or set(override) != required:
+            errors.append(label + ":fields")
+            continue
+        scope, source_id = override.get("scope_id"), override.get("source_id")
+        start, end = override.get("char_start"), override.get("char_end")
+        if (not isinstance(scope, str) or
+                not scope.startswith(str(dossier.get("instrument_id")) + "#") or
+                not scope.partition("#")[2].strip()):
+            errors.append(label + ":scope_id")
+            continue
+        if scope in seen:
+            errors.append(label + ":duplicate_scope")
+        seen.add(scope)
+        if source_id != original_id:
+            errors.append(label + ":source_must_be_dossier_original")
+        if not _nonempty(override.get("reason")):
+            errors.append(label + ":reason_required")
+        if (type(start) is not int or type(end) is not int or
+                not parent_start <= start < end <= parent_end):
+            errors.append(label + ":outside_original_span")
+            continue
+        if any(start < other_end and end > other_start for other_start, other_end in ranges):
+            errors.append(label + ":overlapping_spans")
+        ranges.append((start, end))
+        quote = text[start - parent_start:end - parent_start]
+        if not quote.strip():
+            errors.append(label + ":empty_text")
+        ident = f"OVERRIDE:{original_id}#{start}-{end}"
+        record = {"id": ident, "scope_id": scope, "source": deepcopy(parent["source"]),
+                  "text": quote, "char_start": start, "char_end": end,
+                  "parent_source_id": original_id, "inventory_reason": override.get("reason")}
+        clauses.append(record)
+        evidence[ident] = record
+    return clauses, evidence, list(dict.fromkeys(errors))
+
+
 def blank_sheet(dossier, agent=""):
     """Produce an unapproved sheet, with every legal judgment left blank."""
     return {
         "schema": DECISION_SCHEMA,
         "instrument_id": dossier.get("instrument_id"),
         "dossier_sha256": canonical_sha(dossier), "agent": agent,
-        "original_confirmed": False, "inventory_confirmed": False,
+        "original_confirmed": False, "original_pages_confirmed": False, "inventory_confirmed": False,
+        "inventory_overrides": [],
         "clauses": [{"scope_id": c.get("scope_id"),
                      "clause_id": c.get("id") or "CLAUSES:" + str(c.get("scope_id", "")),
                      "state": None, "end_id": None, "effective_date": None,
@@ -124,10 +189,42 @@ def _reference(ident, evidence, errors):
     if not isinstance(source, dict):
         errors.append("malformed_source:" + str(ident))
         return {}
-    source.update({"evidence_id": ident, "quote": record.get("text"),
+    source.update({"evidence_id": encode_evidence_id(ident),
+                   "evidence_id_encoding": "base64url-utf8", "quote": record.get("text"),
                    "char_start": record.get("char_start"),
                    "char_end": record.get("char_end")})
     return source
+
+
+def encode_evidence_id(ident):
+    """Serialize an internal record id without suggesting it is a legal citation."""
+    if not isinstance(ident, str) or not ident:
+        raise ValueError("evidence id must be a nonempty string")
+    return base64.urlsafe_b64encode(ident.encode("utf-8")).decode("ascii").rstrip("=")
+
+
+def decode_evidence_id(source):
+    """Decode only the explicitly marked, canonical claim-provenance encoding."""
+    if not isinstance(source, dict) or source.get("evidence_id_encoding") != "base64url-utf8":
+        raise ValueError("missing or unsupported evidence id encoding")
+    value = source.get("evidence_id")
+    if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", value):
+        raise ValueError("malformed encoded evidence id")
+    try:
+        raw = base64.b64decode(value + "=" * (-len(value) % 4), altchars=b"-_", validate=True)
+        ident = raw.decode("utf-8")
+    except (ValueError, UnicodeError, binascii.Error) as exc:
+        raise ValueError("malformed encoded evidence id") from exc
+    if not ident or encode_evidence_id(ident) != value:
+        raise ValueError("noncanonical encoded evidence id")
+    return ident
+
+
+def _reference_id(source):
+    try:
+        return decode_evidence_id(source)
+    except ValueError:
+        return None
 
 
 def _conflict_id(conflict):
@@ -193,8 +290,28 @@ def _check_claim(claim, repo, dossier=None):
                 errors.append("stale_dossier_fingerprint")
             if metadata.get("producer_approved") is not True or not _nonempty(metadata.get("agent")):
                 errors.append("producer_approval_required")
+            overrides = metadata.get("inventory_overrides", [])
+            if not isinstance(overrides, list):
+                errors.append("inventory_overrides_not_list")
+            elif overrides:
+                corrected, derived, override_errors = derive_inventory(dossier, overrides)
+                errors.extend(override_errors)
+                evidence.update(derived)
+                expected_inventory = {c["scope_id"]: c["id"] for c in corrected}
+                actual = claim.get("operative_clauses")
+                if not isinstance(actual, list) or len(actual) != len(corrected):
+                    errors.append("corrected_inventory_mismatch")
+                elif any(not isinstance(c, dict) or not isinstance(c.get("original_source"), dict) or
+                         expected_inventory.get(c.get("scope_id")) != _reference_id(c["original_source"])
+                         for c in actual):
+                    errors.append("corrected_inventory_mismatch")
+                elif len({c.get("scope_id") for c in actual}) != len(corrected):
+                    errors.append("corrected_inventory_mismatch")
+            original_record = evidence.get(dossier.get("original_source_id"), {})
+            if original_record.get("requires_page_check") and metadata.get("original_pages_confirmed") is not True:
+                errors.append("original_page_check_confirmation_required")
             representation = claim.get("original_representation")
-            if not isinstance(representation, dict) or representation.get("evidence_id") != dossier.get("original_source_id"):
+            if not isinstance(representation, dict) or _reference_id(representation) != dossier.get("original_source_id"):
                 errors.append("original_source_id_mismatch")
 
     clauses = claim.get("operative_clauses", [])
@@ -214,7 +331,9 @@ def _check_claim(claim, repo, dossier=None):
                     quote = child.get("quote") if isinstance(child, dict) else None
                     errors.extend(_source_errors(child, quote, repo, label))
                     if evidence is not None:
-                        ident = child.get("evidence_id") if isinstance(child, dict) else None
+                        ident = _reference_id(child)
+                        if ident is None:
+                            errors.append(label + ":invalid_evidence_id_encoding")
                         comparison_errors = []
                         expected = _reference(ident, evidence, comparison_errors)
                         if comparison_errors or child != expected:
@@ -271,11 +390,21 @@ def _assemble(sheet, dossier, repo):
         if sheet.get("search_ids"):
             errors.append("conflicts_with_later_source_search")
     evidence = _records(dossier)
+    overrides = sheet.get("inventory_overrides", [])
+    corrected = None
+    if not isinstance(overrides, list):
+        errors.append("inventory_overrides_not_list")
+    elif overrides:
+        corrected, derived, override_errors = derive_inventory(dossier, overrides)
+        errors.extend(override_errors)
+        evidence.update(derived)
     original_id = dossier.get("original_source_id")
     original_record = evidence.get(original_id, {}) if isinstance(original_id, str) else {}
     if not isinstance(original_record, dict):
         original_record = {}
     original = _reference(original_id, evidence, errors)
+    if original_record.get("requires_page_check") and sheet.get("original_pages_confirmed") is not True:
+        errors.append("original_page_check_confirmation_required")
     grade = " ".join(str(original_record.get(k, "")) for k in
                      ("source_grade", "kind", "role", "type", "origin"))
     grade += " " + str(original.get("url", ""))
@@ -292,9 +421,11 @@ def _assemble(sheet, dossier, repo):
              "research_rationale": sheet.get("research_rationale"),
              "unresolved_material_gaps": deepcopy(sheet.get("unresolved_material_gaps")),
              "claim_kit": {"dossier_sha256": fingerprint, "agent": sheet.get("agent"),
-                           "producer_approved": sheet.get("approved") is True}}
+                           "producer_approved": sheet.get("approved") is True,
+                           "original_pages_confirmed":sheet.get("original_pages_confirmed") is True,
+                           "inventory_overrides": deepcopy(overrides)}}
     clauses = sheet.get("clauses")
-    expected = dossier.get("clauses")
+    expected = corrected if corrected is not None else dossier.get("clauses")
     if not isinstance(clauses, list) or not clauses:
         errors.append("operative_clauses_empty")
         clauses = []
@@ -328,6 +459,8 @@ def _assemble(sheet, dossier, repo):
             continue
         scope = decision.get("scope_id")
         ident = decision.get("clause_id") or (original_ids.get(scope) if isinstance(scope, str) else None)
+        if corrected is not None and ident != (original_ids.get(scope) if isinstance(scope, str) else None):
+            errors.append(f"clause_{index}_corrected_evidence_id_mismatch")
         rec = evidence.get(ident, {}) if isinstance(ident, str) else {}
         if not isinstance(rec, dict):
             rec = {}

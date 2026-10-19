@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "result": "rejected",
+  "branch_commit": "bff19dadfd9a8424d38236ec4f81f5dc3e576fa9",
+  "jobs": [
+    "consumer",
+    "example-hello"
+  ],
+  "problems": [
+    {
+      "job": "consumer",
+      "reason": "inputs_changed",
+      "captured_inputs_sha256": "e44f74d79dbb598ec6a39091ab3523b32cd7b19f135534e3fd5c44fb31f38524",
+      "branch_inputs_sha256": "0ee1a11ba437f5b43ba43ae30d53e2081e7a914c6c53bdc3f3f1ddbedcf10085",
+      "changed_path_count": 1,
+      "changed_paths": [
+        {
+          "path": "jobs/new-external/data/SOURCES.jsonl",
+          "captured": null,
+          "branch": "100644:192c6bd91a65e2f2532827a49ec853bdc1d0f88d"
+        }
+      ]
+    }
+  ],
+  "input_generations": {
+    "consumer": {
+      "example-hello": "captured_base"
+    },
+    "example-hello": {}
+  },
+  "action": "Rerun these jobs on the current branch; retained outputs were not published."
+}

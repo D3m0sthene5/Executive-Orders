@@ -17,6 +17,7 @@ the research ledger.
 import collections
 import csv
 import glob
+import hashlib
 import json
 import os
 import sys
@@ -330,6 +331,9 @@ def build(root):
         i = c.get("instrument_id")
         if isinstance(i, str):
             claims[i] = c  # later files and lines win
+    # A negative source audit is an unresolved research conflict, never a human
+    # review or a status change. It applies only to the exact audited claim.
+    holds = load_source_audit_holds(root, claims, claim_gate, problems)
     exhausted, more = load_exhausted(root)
     problems += more + job_problems
 
@@ -463,6 +467,9 @@ def build(root):
         # An exhausted step may leave its gap listed in the claim; nothing else may fail.
         exhausted_ok = bool(exhausted_steps) and set(claim_level) <= {"unresolved_material_gaps"}
         ready = all(steps.values()) and (complete_claim or exhausted_ok)
+        if i in holds:
+            ready = False
+            blockers['counterevidence'].append('OPEN_SOURCE_AUDIT:'+holds[i]['claim_sha256'][:12])
         orders.append({
             "instrument_id": i,
             "provisional_status": status or "",
@@ -480,6 +487,33 @@ def build(root):
     build.job_outputs_used = jobs["used"]
     build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
     return orders, problems
+
+
+def load_source_audit_holds(root, claims, gate, problems):
+    """Fail closed on damaged audit evidence; a corrected claim needs a fresh audit.
+
+    The old hold remains visible as stale when the exact claim changes. This
+    function cannot approve a claim, alter any step or certify a legal finding.
+    """
+    from pathlib import Path
+    base=Path(root).resolve()
+    path=base/'research/readiness/SOURCE_AUDIT_HOLDS.jsonl'
+    if not path.exists():return {}
+    result={}
+    for number, line in enumerate(path.read_text('utf-8').splitlines(),1):
+        if not line.strip():continue
+        row=json.loads(line)
+        if row.get('schema')!='eo-source-audit-hold/v1' or row.get('state')!='unresolved' or not row.get('reason'):
+            raise ValueError(f'invalid source-audit hold at line {number}')
+        review=(base/row['review_path']).resolve()
+        if not review.is_relative_to(base) or hashlib.sha256(review.read_bytes()).hexdigest()!=row['review_sha256']:
+            raise ValueError(f'missing, unsafe or changed source-audit evidence at line {number}')
+        iid=row['instrument_id']
+        if iid not in claims or gate.claim_sha(claims[iid])!=row['claim_sha256']:
+            problems.append(f'STALE_SOURCE_AUDIT_HOLD:{iid}: reconcile changed claim with {row["review_path"]}')
+            continue
+        result[iid]=row
+    return result
 
 
 def summarise(orders, problems):

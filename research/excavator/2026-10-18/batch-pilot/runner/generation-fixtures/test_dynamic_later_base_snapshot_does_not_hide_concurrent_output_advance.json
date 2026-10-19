@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "result": "rejected",
+  "branch_commit": "be26049423d861082e88736a97d5b368eb0a956c",
+  "jobs": [
+    "consumer",
+    "example-hello"
+  ],
+  "problems": [
+    {
+      "job": "example-hello",
+      "reason": "concurrent_output_advanced",
+      "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+    },
+    {
+      "job": "consumer",
+      "reason": "inputs_changed",
+      "captured_inputs_sha256": "e44f74d79dbb598ec6a39091ab3523b32cd7b19f135534e3fd5c44fb31f38524",
+      "branch_inputs_sha256": "d1a8862c2a125a89c7e6cc1405a6cfe7509a01804ad1ab0f333d1216caa3d225",
+      "changed_path_count": 4,
+      "changed_paths": [
+        {
+          "path": "jobs/example-hello/output/RUNNER_INPUTS.json",
+          "captured": null,
+          "branch": "100644:3fe38c3641798a084dfea9bd03a8ee5d20ad0bc2"
+        },
+        {
+          "path": "jobs/example-hello/output/STATUS.json",
+          "captured": null,
+          "branch": "100644:66a2c0845949731f1ea94bac71cbc2d737dacaae"
+        },
+        {
+          "path": "jobs/example-hello/output/log.txt",
+          "captured": null,
+          "branch": "100644:e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "path": "jobs/example-hello/output/result.txt",
+          "captured": "100644:a15ebe674fe12523d71a75233351a18815d1d2af",
+          "branch": "100644:dae11aa0ecc17887b1b6dc0d705310dc03c088fb"
+        }
+      ]
+    }
+  ],
+  "input_generations": {
+    "consumer": {
+      "example-hello": "unmatched"
+    },
+    "example-hello": {}
+  },
+  "action": "Rerun these jobs on the current branch; retained outputs were not published."
+}

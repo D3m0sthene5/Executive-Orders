@@ -1,0 +1,50 @@
+{
+  "additional_cited_held_text_read": "jobs/fr-originals/output/texts/EO_12696.txt",
+  "codec_issues": [],
+  "failures_and_corrections": [
+    {
+      "failure": "READ and git status output truncated; HANDOFF.md path absent; repeated later bounded reads cover the required sources; truncation is not evidence absence.",
+      "stage": "initial combined reads"
+    },
+    {
+      "failure": "35791-token metadata/source index display truncated; bounded follow-up reads used.",
+      "stage": "first metadata read"
+    },
+    {
+      "failure": "Windows stdout cp1252 UnicodeEncodeError U+2666; reported immediately to root; exact source reread with UTF-8 stdout.",
+      "stage": "EO12815 source read"
+    },
+    {
+      "failure": "Top-level tool output truncation removed part of EO12734/EO12817; both reread in full bounded call.",
+      "stage": "second combined source read"
+    }
+  ],
+  "legal_cutoff": "2026-10-14",
+  "packet_fingerprint": "fee3506fb6d25680f83d9450c4996259e63377c0259d7a42ab44066de99b5003",
+  "page_images_inspected": false,
+  "primary_blocks_read": [
+    "Ta6fe1150cefeb3618107762c",
+    "T2d28591a1b6d98eeedbaeecd",
+    "Tf908cf962d08c104c47aecf7",
+    "Tda0d9944c4ca98e3c66abde0",
+    "Te6b3cfb11dc4d61235cfef69",
+    "Tad35f44883d379ecc4f148a6",
+    "T081bc156744ab18cc13a327d",
+    "T8701af7d4fc66e078e5f8b98",
+    "T237b95718d2b7c42b914b72a",
+    "T4c4fa0aaf8098459f8885326",
+    "Tb08796acefa1f9055d68d973",
+    "Tdd37fe4a2d8ec6c7031aa0d5",
+    "T447738c5ecee6b8099143759",
+    "T2abd4bfc9a387d9067ac73c5",
+    "T9bf91b73f2e9ab6a53329da3"
+  ],
+  "read_method": "bounded shared-source text reads via batch.load_packet/decode and exact dossier metadata; no A or prior Sol decisions/reviews read",
+  "scope_limits": "Only six frozen dossiers; no canonical claims/statuses/census/locks/HANDOFF modified; acquisition tasks remain proposals.",
+  "warnings_preserved": [
+    "OCR remains unverified against images; original requires_page_check flags are false for all pinned original representations, while EO12696 alternate requires images.",
+    "EO12815 shared source contains neighboring tax rules; only the order page and closing White House line are relevant.",
+    "No known gap is not legal readiness.",
+    "Bounded search absence is not exhaustive all-law proof; no current predicate is inferred for a revoked authority."
+  ]
+}

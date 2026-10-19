@@ -1,12 +1,12 @@
 # How complete is the early executive-order census?
 
-Run 2026-10-18T18:53:05Z (1.4 s). 3468 dated mentions from 18 lists; 7813 cross-list matches (blind_date_and_token 6296, blind_year_and_two_tokens 1187, citation_link 330); 5119 same-date pairs left unmatched.
+Run 2026-10-19T00:29:15Z (1.2 s). 3442 dated mentions from 18 lists; 7427 cross-list matches (blind_date_and_token 5902, blind_year_and_two_tokens 1195, citation_link 330); 5002 same-date pairs left unmatched.
 
 Population-level estimates. Nothing here admits an order to the census, assigns a date to one, merges identities or changes any count or status.
 
 ## The claim this run supports
 
-Under codebook 2.0.0's working definition, across the lists read here (Lord 1943, Richardson VI/VII/IX, the 1912 Indian-reservation compilation and the reservation and land-office books fetched so far), **1407 distinct unnumbered executive orders dated 1789-1899 were observed** (56 further clusters are numbered orders already in the census and are set aside). The Mt estimate puts the number these lists have collectively missed, *among orders of the kind these lists catch*, between about **119.2** (if every same-date pair is the same order) and **271.0** (strict matching; 95% interval 1630.8 to 1725.2 total). Because Lord drew on these same books, both are lower bounds on what the printed record holds. Orders that never reached a printed compilation are outside what any overlap can count; see the source universe map for the archival series where they would be.
+Under codebook 2.0.0's working definition, across the lists read here (Lord 1943, Richardson VI/VII/IX, the 1912 Indian-reservation compilation and the reservation and land-office books fetched so far), **1420 distinct unnumbered executive orders dated 1789-1899 were observed** (56 further clusters are numbered orders already in the census and are set aside). The Mt estimate puts the number these lists have collectively missed, *among orders of the kind these lists catch*, between about **129.1** (if every same-date pair is the same order) and **295.7** (strict matching; 95% interval 1665.4 to 1766.0 total). Because Lord drew on these same books, both are lower bounds on what the printed record holds. Orders that never reached a printed compilation are outside what any overlap can count; see the source universe map for the archival series where they would be.
 
 ## Lord's coverage of each other list, by era
 
@@ -16,8 +16,8 @@ Under codebook 2.0.0's working definition, across the lists read here (Lord 1943
 | 1789-1800 | MR_1910 | 1 | 1 | 1.0 (0.2065–1) | 7.0 (7.0–7.0) |
 | 1789-1800 | MR_1916 | 1 | 1 | 1.0 (0.2065–1) | 7.0 (7.0–7.0) |
 | 1801-1861 | GLO_1880 | 11 | 8 | 0.7273 (0.4343–0.9025) | 219.0 (164–285.3) |
-| 1801-1861 | GLO_1884 | 27 | 14 | 0.5185 (0.3399–0.6926) | 307.0 (209.0–405.0) |
-| 1801-1861 | GLO_1885 | 16 | 13 | 0.8125 (0.5699–0.9341) | 199.4 (164–240.1) |
+| 1801-1861 | GLO_1884 | 27 | 12 | 0.4444 (0.2759–0.6269) | 354.4 (223.6–485.2) |
+| 1801-1861 | GLO_1890 | 8 | 4 | 0.5 (0.2152–0.7848) | 296.0 (164–452.0) |
 | 1801-1861 | GLO_1891 | 16 | 10 | 0.625 (0.3864–0.8152) | 254.0 (171.2–336.8) |
 | 1801-1861 | GLO_1892 | 17 | 14 | 0.8235 (0.5897–0.9381) | 197.0 (164–234.8) |
 | 1801-1861 | GLO_1893 | 17 | 14 | 0.8235 (0.5897–0.9381) | 197.0 (164–234.8) |
@@ -28,31 +28,31 @@ Under codebook 2.0.0's working definition, across the lists read here (Lord 1943
 | 1801-1861 | MR_1910 | 15 | 10 | 0.6667 (0.4171–0.8482) | 239.0 (165.7–312.3) |
 | 1801-1861 | MR_1916 | 22 | 15 | 0.6818 (0.4732–0.8364) | 236.2 (177.1–295.3) |
 | 1801-1861 | RICH_VI | 19 | 1 | 0.0526 (0.0094–0.2464) | 1649.0 (164–3409.6) |
-| 1862-1899 | GLO_1880 | 52 | 38 | 0.7308 (0.5975–0.8323) | 1038.6 (877.3–1199.9) |
-| 1862-1899 | GLO_1884 | 95 | 30 | 0.3158 (0.231–0.4149) | 2368.0 (1706.4–3029.6) |
-| 1862-1899 | GLO_1885 | 72 | 36 | 0.5 (0.3875–0.6125) | 1508.3 (1179.6–1837.1) |
-| 1862-1899 | GLO_1891 | 54 | 29 | 0.537 (0.4061–0.6631) | 1401.5 (1075.2–1727.8) |
-| 1862-1899 | GLO_1892 | 89 | 49 | 0.5506 (0.4473–0.6497) | 1376.0 (1132.4–1619.6) |
-| 1862-1899 | GLO_1893 | 92 | 47 | 0.5109 (0.4104–0.6105) | 1481.2 (1201.7–1760.7) |
-| 1862-1899 | GLO_1894 | 105 | 43 | 0.4095 (0.3203–0.5052) | 1842.0 (1442.2–2241.8) |
-| 1862-1899 | GLO_1897 | 115 | 62 | 0.5391 (0.4482–0.6275) | 1407.6 (1184.1–1631.0) |
-| 1862-1899 | GLO_1898 | 119 | 62 | 0.521 (0.432–0.6087) | 1456.1 (1220.4–1691.8) |
-| 1862-1899 | IR1912 | 121 | 86 | 0.7107 (0.6245–0.7841) | 1071.8 (958.7–1184.8) |
-| 1862-1899 | MR_1907 | 65 | 53 | 0.8154 (0.7045–0.8911) | 934.0 (832.4–1035.6) |
-| 1862-1899 | MR_1910 | 66 | 55 | 0.8333 (0.7257–0.9043) | 914.3 (821.6–1007.0) |
-| 1862-1899 | MR_1916 | 77 | 58 | 0.7532 (0.6465–0.836) | 1010.4 (889.0–1131.7) |
-| 1862-1899 | RICH_IX | 32 | 19 | 0.5938 (0.4226–0.7448) | 1261.2 (926.9–1595.6) |
-| 1862-1899 | RICH_VI | 176 | 38 | 0.2159 (0.1615–0.2824) | 3470.9 (2545.4–4396.4) |
-| 1862-1899 | RICH_VII | 63 | 32 | 0.5079 (0.3876–0.6273) | 1482.6 (1143.1–1822.2) |
+| 1862-1899 | GLO_1880 | 52 | 38 | 0.7308 (0.5975–0.8323) | 1035.9 (875.0–1196.8) |
+| 1862-1899 | GLO_1884 | 95 | 26 | 0.2737 (0.1941–0.3708) | 2711.9 (1875.2–3548.6) |
+| 1862-1899 | GLO_1890 | 61 | 30 | 0.4918 (0.3706–0.614) | 1525.0 (1158.8–1891.2) |
+| 1862-1899 | GLO_1891 | 54 | 29 | 0.537 (0.4061–0.6631) | 1397.8 (1072.4–1723.2) |
+| 1862-1899 | GLO_1892 | 89 | 50 | 0.5618 (0.4583–0.6602) | 1345.5 (1112.7–1578.2) |
+| 1862-1899 | GLO_1893 | 92 | 48 | 0.5217 (0.4209–0.6209) | 1447.1 (1180.1–1714.2) |
+| 1862-1899 | GLO_1894 | 105 | 44 | 0.419 (0.3292–0.5146) | 1796.3 (1414.1–2178.5) |
+| 1862-1899 | GLO_1897 | 115 | 61 | 0.5304 (0.4397–0.6192) | 1426.5 (1196.0–1657.1) |
+| 1862-1899 | GLO_1898 | 118 | 62 | 0.5254 (0.436–0.6133) | 1440.2 (1208.2–1672.2) |
+| 1862-1899 | IR1912 | 121 | 86 | 0.7107 (0.6245–0.7841) | 1069.0 (956.2–1181.7) |
+| 1862-1899 | MR_1907 | 65 | 53 | 0.8154 (0.7045–0.8911) | 931.6 (830.3–1032.9) |
+| 1862-1899 | MR_1910 | 66 | 55 | 0.8333 (0.7257–0.9043) | 911.9 (819.4–1004.3) |
+| 1862-1899 | MR_1916 | 77 | 58 | 0.7532 (0.6465–0.836) | 1007.7 (886.7–1128.7) |
+| 1862-1899 | RICH_IX | 32 | 19 | 0.5938 (0.4226–0.7448) | 1258.0 (924.4–1591.5) |
+| 1862-1899 | RICH_VI | 176 | 38 | 0.2159 (0.1615–0.2824) | 3461.8 (2538.8–4384.9) |
+| 1862-1899 | RICH_VII | 63 | 32 | 0.5079 (0.3876–0.6273) | 1478.8 (1140.1–1817.4) |
 
 ## All lists together, by era (unnumbered orders)
 
 | Era | Observed | Numbered set aside | Seen in 1 list | Seen in 2 | Mt total (95% CI) | Mt undiscovered, strict | same-date pairs as matches | blind matches only | Chao1 (check) |
 |---|---:|---:|---:|---:|---|---:|---:|---:|---:|
 | 1789-1800 | 7 | 0 | 6 | 0 | None (-–-) | None | None | None | 15.0 |
-| 1801-1861 | 218 | 0 | 178 | 10 | 250.2 (234.4–266.0) | 32.2 | 15.0 | 33.2 | 1584.2 |
-| 1862-1899 | 1182 | 56 | 840 | 196 | 1418.1 (1373.8–1462.4) | 236.1 | 101.9 | 423.3 | 1800.0 |
-| 1789-1899 | 1407 | 56 | 1024 | 206 | 1678.0 (1630.8–1725.2) | 271.0 | 119.2 | 451.4 | 2545.1 |
+| 1801-1861 | 222 | 0 | 183 | 11 | 261.0 (242.9–279.1) | 39.0 | 17.6 | 40.2 | 1522.2 |
+| 1862-1899 | 1191 | 56 | 851 | 191 | 1444.2 (1397.6–1490.8) | 253.2 | 108.9 | 451.2 | 1895.8 |
+| 1789-1899 | 1420 | 56 | 1040 | 202 | 1715.7 (1665.4–1766.0) | 295.7 | 129.1 | 489.3 | 2677.2 |
 
 ## Richardson's EXECUTIVE ORDERS sections: what Lord listed, by signer
 

@@ -1,0 +1,240 @@
+{
+  "all_observed_task_usage_lower_bound": {
+    "cached_input_tokens": 68417408,
+    "input_tokens": 69851406,
+    "output_tokens": 379273,
+    "reasoning_output_tokens": 125719,
+    "uncached_input_tokens_derived": 1433998
+  },
+  "billed_dollars": null,
+  "complete_active_labor_seconds": null,
+  "cost_verdict": "Producer effort decreased; total reviewed-workflow savings NOT demonstrated. No measured amortization break-even.",
+  "engineering_preflight_and_verification_usage_lower_bound": {
+    "cached_input_tokens": 50489216,
+    "input_tokens": 51297549,
+    "output_tokens": 265692,
+    "reasoning_output_tokens": 92582,
+    "uncached_input_tokens_derived": 808333
+  },
+  "limits": [
+    "Six cases, one run per arm, four historical accepted replicas/two difficult controls; not a randomized population estimate.",
+    "Both arms received the same full frozen evidence and legal standard. Review discovery varied: B additionally searched2003 primary sources; A already blocked affected claims for a separate valid reason.",
+    "Runtime input includes cached input; reasoning output is included in output. Neither is a billing invoice.",
+    "Correction snapshots include metadata/telemetry work but exclude later final responses. Every phase retains its actual cutoff.",
+    "Engineering totals are observed lower bounds; preflight and packet-audit windows do not overlap, but leave an unmeasured finalization gap.",
+    "Elapsed task times include tools/retries. Parallel engineering times are not added as a wall-clock duration.",
+    "Representation bytes, requested source bytes and serialized tool characters are distinct proxies; exact model exposure is unavailable."
+  ],
+  "overhead_components": {
+    "coordinator_implementation_integration": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 23886080,
+      "input_tokens": 24161184,
+      "output_tokens": 100829,
+      "reasoning_output_tokens": 35432,
+      "total_tokens": 24262013,
+      "uncached_input_tokens_derived": 275104
+    },
+    "fifty_preflight": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 6942976,
+      "input_tokens": 7108717,
+      "output_tokens": 34437,
+      "reasoning_output_tokens": 9072,
+      "total_tokens": 7143154,
+      "uncached_input_tokens_derived": 165741
+    },
+    "independent_packet_completeness": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 3604224,
+      "input_tokens": 3651329,
+      "output_tokens": 19721,
+      "reasoning_output_tokens": 6674,
+      "total_tokens": 3671050,
+      "uncached_input_tokens_derived": 47105
+    },
+    "overlay_engineering_and_tests": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 5961600,
+      "input_tokens": 6108457,
+      "output_tokens": 47386,
+      "reasoning_output_tokens": 13026,
+      "total_tokens": 6155843,
+      "uncached_input_tokens_derived": 146857
+    },
+    "runner_engineering_source_review_and_tests": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 10094336,
+      "input_tokens": 10267862,
+      "output_tokens": 63319,
+      "reasoning_output_tokens": 28378,
+      "total_tokens": 10331181,
+      "uncached_input_tokens_derived": 173526
+    }
+  },
+  "paired": {
+    "including_observed_correction": {
+      "A": {
+        "blocked_after_correction": 5,
+        "canonical_publications": 0,
+        "exact_proposals_upheld": 1,
+        "human_certifications": 0,
+        "members": 6,
+        "outer_calls": 70,
+        "sum_sequential_task_wall_seconds": 1502.782,
+        "usage": {
+          "cached_input_tokens": 8082688,
+          "input_tokens": 8365775,
+          "output_tokens": 58071,
+          "reasoning_output_tokens": 16601,
+          "uncached_input_tokens_derived": 283087
+        }
+      },
+      "B": {
+        "blocked_after_correction": 5,
+        "canonical_publications": 0,
+        "exact_proposals_upheld": 1,
+        "human_certifications": 0,
+        "members": 6,
+        "outer_calls": 77,
+        "sum_sequential_task_wall_seconds": 1584.178,
+        "usage": {
+          "cached_input_tokens": 9845504,
+          "input_tokens": 10188082,
+          "output_tokens": 55510,
+          "reasoning_output_tokens": 16536,
+          "uncached_input_tokens_derived": 342578
+        }
+      },
+      "B_minus_A_percent": {
+        "input_tokens": 21.78,
+        "outer_calls": 10.0,
+        "output_tokens": -4.41,
+        "sum_task_wall": 5.42,
+        "uncached_input_tokens": 21.02
+      }
+    },
+    "initial_producer_plus_reviewer": {
+      "A": {
+        "blocked_after_correction": 5,
+        "canonical_publications": 0,
+        "exact_proposals_upheld": 1,
+        "human_certifications": 0,
+        "members": 6,
+        "outer_calls": 58,
+        "sum_sequential_task_wall_seconds": 1195.809,
+        "usage": {
+          "cached_input_tokens": 6026496,
+          "input_tokens": 6268924,
+          "output_tokens": 45236,
+          "reasoning_output_tokens": 13038,
+          "uncached_input_tokens_derived": 242428
+        }
+      },
+      "B": {
+        "blocked_after_correction": 5,
+        "canonical_publications": 0,
+        "exact_proposals_upheld": 1,
+        "human_certifications": 0,
+        "members": 6,
+        "outer_calls": 68,
+        "sum_sequential_task_wall_seconds": 1348.858,
+        "usage": {
+          "cached_input_tokens": 8404352,
+          "input_tokens": 8724320,
+          "output_tokens": 46577,
+          "reasoning_output_tokens": 13883,
+          "uncached_input_tokens_derived": 319968
+        }
+      },
+      "B_minus_A_percent": {
+        "input_tokens": 39.17,
+        "outer_calls": 17.24,
+        "output_tokens": 2.96,
+        "sum_task_wall": 12.8,
+        "uncached_input_tokens": 31.98
+      }
+    }
+  },
+  "phases": {
+    "A_correction": {
+      "calls": 12,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 2056192,
+        "input_tokens": 2096851,
+        "output_tokens": 12835,
+        "reasoning_output_tokens": 3563,
+        "total_tokens": 2109686,
+        "uncached_input_tokens_derived": 40659
+      },
+      "wall": 306.973
+    },
+    "A_producer": {
+      "calls": 33,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3414784,
+        "input_tokens": 3537178,
+        "output_tokens": 26985,
+        "reasoning_output_tokens": 7757,
+        "total_tokens": 3564163,
+        "uncached_input_tokens_derived": 122394
+      },
+      "wall": 699.384
+    },
+    "A_reviewer": {
+      "calls": 25,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 2611712,
+        "input_tokens": 2731746,
+        "output_tokens": 18251,
+        "reasoning_output_tokens": 5281,
+        "total_tokens": 2749997,
+        "uncached_input_tokens_derived": 120034
+      },
+      "wall": 496.424568
+    },
+    "B_correction": {
+      "calls": 9,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1441152,
+        "input_tokens": 1463762,
+        "output_tokens": 8933,
+        "reasoning_output_tokens": 2653,
+        "total_tokens": 1472695,
+        "uncached_input_tokens_derived": 22610
+      },
+      "wall": 235.32
+    },
+    "B_producer": {
+      "calls": 24,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 2475392,
+        "input_tokens": 2594989,
+        "output_tokens": 16206,
+        "reasoning_output_tokens": 5005,
+        "total_tokens": 2611195,
+        "uncached_input_tokens_derived": 119597
+      },
+      "wall": 471.387
+    },
+    "B_reviewer": {
+      "calls": 44,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 5928960,
+        "input_tokens": 6129331,
+        "output_tokens": 30371,
+        "reasoning_output_tokens": 8878,
+        "total_tokens": 6159702,
+        "uncached_input_tokens_derived": 200371
+      },
+      "wall": 877.471
+    }
+  },
+  "schema": "eo-matched-excavator-cost-comparison/v1"
+}

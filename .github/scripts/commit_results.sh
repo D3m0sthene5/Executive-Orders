@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 # Commit jobs/<name>/output/ for the jobs that ran and push to the same branch.
-# If someone pushed in the meantime, rebase onto their work and try again.
+# Reconcile unrelated branch updates, but never publish results for stale inputs.
 set -euo pipefail
 
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+# Fetch/check even before the first push: fast-forward ancestry alone does not
+# prove that the branch still contains the code and inputs this run consumed.
+check_freshness() {
+  git fetch -q origin "$BRANCH"
+  python .github/scripts/result_freshness.py check "origin/$BRANCH" \
+    oversized/runner-freshness/publication-check.json $JOBS
+}
 
 paths=()
 for name in $JOBS; do
@@ -29,15 +37,17 @@ if git diff --cached --quiet; then
 fi
 # On the daily run, skip the commit when only the run record (times, log)
 # changed, so an unchanged tracker does not add a commit every day.
-if [ "${EVENT:-}" = "schedule" ] && ! git diff --cached --name-only | grep -qvE '/output/(STATUS\.json|log\.txt|install-log\.txt)$'; then
+if [ "${EVENT:-}" = "schedule" ] && ! git diff --cached --name-only | grep -qvE '/output/(STATUS\.json|log\.txt|install-log\.txt|RUNNER_INPUTS\.json)$'; then
   echo "Only the run record changed; nothing new to commit."
   exit 0
 fi
 
+check_freshness
+
 git commit -q -m "Results of job(s): $JOBS" -m "Run: $RUN_URL"
 
 # Keep a copy of the results, so a clash with another run's results can be
-# resolved by re-applying ours on top of the newest commit (newest results win).
+# resolved by re-applying only after this run's input/output versions pass.
 saved="$(mktemp -d)"
 for p in "${paths[@]}"; do mkdir -p "$saved/$(dirname "$p")"; cp -a "$p" "$saved/$p"; done
 
@@ -47,7 +57,7 @@ for attempt in 1 2 3 4 5; do
     exit 0
   fi
   echo "Push rejected (attempt $attempt); taking the newer commits and retrying."
-  git fetch -q origin "$BRANCH"
+  check_freshness
   if ! git rebase -q "origin/$BRANCH"; then
     echo "Another run changed the same results; re-applying this run's results on top."
     git rebase --abort

@@ -1,0 +1,84 @@
+{
+  "all_detected": true,
+  "controls": [
+    {
+      "control": "drop_source_body",
+      "deliberate_mutation": true,
+      "detected": true,
+      "expected_failure": "readable_source_text_exact",
+      "failures": [
+        {
+          "block": "T081bc156744ab18cc13a327d",
+          "kind": "readable_source_text_exact"
+        },
+        {
+          "evidence_id": "ACT:EO:12813>EO:12815",
+          "instrument_id": "EO:12813",
+          "kind": "readable_evidence_text_accessible"
+        },
+        {
+          "evidence_id": "ACT:EO:12813>EO:12815@2a8079aef6eade38",
+          "instrument_id": "EO:12813",
+          "kind": "readable_evidence_text_accessible"
+        },
+        {
+          "evidence_id": "ACT:EO:12813>EO:12815@67760b5bf84508a8",
+          "instrument_id": "EO:12813",
+          "kind": "readable_evidence_text_accessible"
+        },
+        {
+          "evidence_id": "ACTOR_TEXT:EO:12815",
+          "instrument_id": "EO:12813",
+          "kind": "readable_evidence_text_accessible"
+        }
+      ],
+      "verdict": "FAIL_REQUIRES_CORRECTION_AND_REREVIEW"
+    },
+    {
+      "control": "drop_exception_metadata",
+      "deliberate_mutation": true,
+      "detected": true,
+      "expected_failure": "readable_evidence_metadata_exact",
+      "failures": [
+        {
+          "evidence_id": "ACT:EO:12722>EO:12724",
+          "instrument_id": "EO:12722",
+          "kind": "readable_evidence_metadata_exact"
+        }
+      ],
+      "verdict": "FAIL_REQUIRES_CORRECTION_AND_REREVIEW"
+    },
+    {
+      "control": "drop_current_law_leads",
+      "deliberate_mutation": true,
+      "detected": true,
+      "expected_failure": "readable_material_section_exact",
+      "failures": [
+        {
+          "instrument_id": "EO:12722",
+          "kind": "readable_material_section_exact",
+          "section": "current_law_leads"
+        }
+      ],
+      "verdict": "FAIL_REQUIRES_CORRECTION_AND_REREVIEW"
+    },
+    {
+      "control": "drop_original_from_codec",
+      "deliberate_mutation": true,
+      "detected": true,
+      "expected_failure": "independent_json_value_roundtrip",
+      "failures": [
+        {
+          "instrument_id": "EO:12696",
+          "kind": "independent_json_value_roundtrip"
+        },
+        {
+          "instrument_id": "EO:12696",
+          "kind": "decoded_fingerprint"
+        }
+      ],
+      "verdict": "FAIL_REQUIRES_CORRECTION_AND_REREVIEW"
+    }
+  ],
+  "schema": "eo-independent-auditor-negative-controls/v1"
+}

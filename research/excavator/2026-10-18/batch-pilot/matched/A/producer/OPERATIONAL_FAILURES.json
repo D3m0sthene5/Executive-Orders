@@ -1,0 +1,17 @@
+[
+  {
+    "operation": "Initial batched documentation read",
+    "error": "UnicodeEncodeError: cp1252 cannot encode U+2192",
+    "correction": "Re-ran with sys.stdout.reconfigure(encoding=utf-8)."
+  },
+  {
+    "operation": "Render EO13350 via system Python fitz",
+    "error": "ModuleNotFoundError: No module named fitz",
+    "correction": "Located bundled Poppler; no package installation."
+  },
+  {
+    "operation": "First Poppler render",
+    "error": "Could not write image to producer/page_checks/EO_13350-01.png; exiting",
+    "correction": "Created producer/page_checks directory and reran successfully."
+  }
+]

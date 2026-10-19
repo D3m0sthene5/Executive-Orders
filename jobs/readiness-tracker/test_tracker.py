@@ -1,6 +1,7 @@
 """Tests for tracker.py on a tiny made-up repo, using the project's real claim gate."""
 
 import copy
+import hashlib
 import csv
 import json
 import os
@@ -338,6 +339,31 @@ class TrackerTest(unittest.TestCase):
         orders, s = self.run_tracker([], [{"instrument_id": "EO:2", "step": "savings_residuals", "searched": []}])
         self.assertEqual(orders["EO:2"]["step_savings_residuals"], "open")
         self.assertTrue(any("EXHAUSTED.jsonl" in p for p in s["input_problems"]))
+
+    def test_exact_claim_source_audit_blocks_only_readiness(self):
+        sys.path.insert(0,str(self.root/'research/stage19/code'))
+        import claim_gate
+        raw=b'Independent AI source audit: unresolved earlier end.'
+        hold={'schema':'eo-source-audit-hold/v1','instrument_id':'EO:2','state':'unresolved',
+              'claim_sha256':claim_gate.claim_sha(COMPLETE_NO_CLAIM),'reason':'first end unresolved',
+              'review_path':'research/audit.txt','review_sha256':hashlib.sha256(raw).hexdigest()}
+        files={'research/audit.txt':raw.decode(),'research/readiness/SOURCE_AUDIT_HOLDS.jsonl':json.dumps(hold)+'\n'}
+        orders,s=self.run_tracker([COMPLETE_NO_CLAIM],files=files)
+        self.assertEqual(orders['EO:2']['ready_for_human_review'],'no')
+        self.assertEqual(orders['EO:2']['step_ending_or_current_basis'],'done')
+        self.assertIn('OPEN_SOURCE_AUDIT',orders['EO:2']['blockers'])
+        changed=copy.deepcopy(COMPLETE_NO_CLAIM);changed['research_rationale']+=' Corrected.'
+        orders,s=self.run_tracker([changed],files=files)
+        self.assertEqual(orders['EO:2']['ready_for_human_review'],'yes')
+        self.assertTrue(any('STALE_SOURCE_AUDIT_HOLD' in p for p in s['input_problems']))
+
+    def test_tampered_source_audit_fails_closed(self):
+        hold={'schema':'eo-source-audit-hold/v1','instrument_id':'EO:2','state':'unresolved',
+              'claim_sha256':'a'*64,'reason':'first end unresolved',
+              'review_path':'research/audit.txt','review_sha256':'b'*64}
+        with self.assertRaises(ValueError):
+            self.run_tracker([COMPLETE_NO_CLAIM],files={'research/audit.txt':'changed',
+                'research/readiness/SOURCE_AUDIT_HOLDS.jsonl':json.dumps(hold)+'\n'})
 
 
 if __name__ == "__main__":
