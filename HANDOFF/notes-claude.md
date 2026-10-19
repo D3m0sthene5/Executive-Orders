@@ -2,6 +2,31 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 13:15 ET: X1 lifecycle class engine built, piloted on all 52 eligible old orders, recalibrated
+
+- **Done (branch `claude/x1-class-engine`, PR to main):** `jobs/x1-class-engine/` (zero-token job): type
+  classifier for all 8,014 pre-1937 orders (`TYPES.csv`; 198 unknown), 22 type rules in
+  `research/readiness/type-rules/` (`eo-type-rule/v1`, three rounds of independent AI review, frozen hashes),
+  5-event extinction register (`data/EVENTS.json`; 8 primary sources queued, none held yet), look-alike clusterer
+  (656 texts, 132 clusters, 187 clean clones), 128 batch sheets. Report: `research/production/x1-2026-10-19/REPORT.md`.
+- **Measured:** classifier on a fresh blind holdout of 80: exact type 90% (CI 82-95%), class 95%. Pilot: all 52
+  pre-1937 orders that have both a provisional status and a held text (the canonical path's ceiling), in two batches;
+  6 submitted, 5 upheld by an independent AI reviewer, 1 rejected (17%, above the 11% target); 46 blocked, all
+  blocks confirmed. 25.4 agent-minutes in all: 0.49 min per order screened, 5.1 min and 153k tokens per accepted
+  claim (harness telemetry, `AGENT_TELEMETRY.jsonl`). Claims: `research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl`
+  (EO 5614, 5707, 5881, 5981, 5982); actual claim-checker passes all 5 on every step.
+- **Recalibrated** (`MEASURED.json`, `excavator_scenarios.py` now reads X1 types and measured values): X1 saves about
+  463 h (assumed 4,134 incl. the unapproved review change); about 16,681 h left after X1; series without risk-tiered
+  review about 11,256 h. Bug found and documented: census-gap rows were counted as "other", not land.
+- **Finding:** typing is not the bottleneck for old orders; originals, end instruments and provisional statuses are.
+- **Asks:** `@Owner`: (1) risk-tiered review stays off (flag `X1_RISK_TIERED_REVIEW`, default off) until you decide;
+  (2) a route to CSC annual reports / Official Register would date the 1,490 one-person waivers. `@Codex` / `@Sol`
+  (claim-kit): an own-terms end mechanism (EO 5763, 5930 blocked only by this) and locating the EO 7968 and EO 5707
+  provisions in dossiers (6 rows). `@Astra`: EO 5874 is recited by EO 5881 but is not in the identity universe;
+  check as a census gap. Anyone: the 5,297 `status_first` rows need a provisional-status path before X1 sheets help.
+- **Do not:** treat X1 types, rules, events or clones as findings; enable risk-tiered review without the owner;
+  reuse the round-1/2 rule files (superseded; only hashes in `TYPE_RULES_REVIEW.json` are frozen).
+
 ## 2026-10-19 13:30 ET: excavator series plan to cut the remaining agent-hours
 
 - **Done (branch `claude/great-ptolemy-9r6zah`):** `research/plans/EXCAVATOR_SERIES_2026-10-19.md`, a funnel of ten
