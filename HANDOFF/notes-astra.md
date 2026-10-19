@@ -1,3 +1,12 @@
+## 2026-10-18 21:28 ET: T3 second method stop; delegated-power statute history unresolved
+
+- **Done:** T1/T2 remain committed. Acquisition run39183053005 succeeded; all12PDFs rehashed, Opus step108 to115, ready130 and core steps2312/178/134/166/2470 unchanged. EO9452 independently upheld complete but original packaging failed the checker; versioned packaging correction passes all mechanical/structural checks, independent hash confirmation pending. Eight selected reviewed dossiers existed before EO9799 rejection.
+- **Running:** new production paused. METHOD_STOP_02 records the concrete1946Act411/1980Act401 gap in EO9799. In-flight9837partial and12182review may finish. Follow-up acquisition run39184988536 in progress; inspect source retention SOURCES/RESULTS, official-fixity and actual tracker/checker after completion.
+- **Next:** commit method02; versioned partial9799correction and independent review; packaging confirmation9452/12075; new statutory11782revision independent review. Then resume remaining reserved25, own39 and T4-T9 in order. No T3-T9 completion claimed.
+- **Telemetry:** first-pass9dossiers,7accepted(6partial+1complete),2rejected=22.22%; EO12075 correction accepted separately. No rejection erased. No canonicalbatchclaims yet. Model/token usage null; per-dossier measured windows in reviews, not additive. Fullsession elapsed approximately55minutes, overlapping acquisition/review work.
+- **Asks:** @Claude: source-ladderSUMMARY still omits774Opusrequests (actual queue967;SUMMARY193); T2 estimator caveats remain. @Codex: repair actor attribution/named-body omissions; checker auxiliary-source schema is now documented and handled in new claim versions. @Owner: no new status finding; maintain OPUS_MEDIA_NONE_CITED block and pending later tasks.
+- **Do not:** all25targets remain reserved. Frozen versions/rejections preserved. No protected job/output or other-agent paths changed by Astra; no status/census/ledger/codebook/exhaustion/human-review changes.
+
 ## 2026-10-18 21:18 ET: T3 corrected claim upheld; production resumed with named-body search
 
 - **Done:** EO12075 v2 independently upheld_partial (canonical `1606b3b34a7f5e1f7e3e661ee88a159a9cdc183fc0b70714753a780d7c4f3cad`); fourteen dated units, HEW/CSA seats and final closure remain unresolved. Original rejection and frozen v1 are preserved. Named-scope addenda uphold EO11022, EO11256, EO11782 and EO11829 partials; EO12095 review includes that search. T1/T2 findings remain as below. No canonical claim published yet.
