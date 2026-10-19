@@ -1,6 +1,6 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `c53883f32e140d10ff905fd35a1146f0c17f25dcdc0dec367abb8c08f9f40edb`.
+Legal cutoff: 2026-10-14. Inputs: `beb5e6010d738a2c920faa50c245d44f7f5c1836187366b3c4661eaa7f6dd8ca`.
 
 Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for human review.
 
@@ -10,16 +10,16 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for h
 |---:|---|---:|---:|
 | 1 | EO::4314 | 10 | 43 |
 | 2 | EO::6868 | 6 | 25 |
-| 3 | opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693 | 3 | 9 |
-| 4 | opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7 | 3 | 9 |
-| 5 | opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346 | 3 | 9 |
-| 6 | opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb | 3 | 9 |
-| 7 | opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef | 3 | 9 |
-| 8 | opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720 | 3 | 9 |
-| 9 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
-| 10 | opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c | 3 | 9 |
-| 11 | opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68 | 3 | 9 |
-| 12 | opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0 | 3 | 9 |
+| 3 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
+| 4 | opus-refetch:https://www.govinfo.gov/content/pkg/USCODE-2024-title22/html/USCODE-2024-title22-chap51-sec3601.htm | 3 | 9 |
+| 5 | opus-refetch:https://www.govinfo.gov/link/statute/90/1667 | 3 | 9 |
+| 6 | opus-refetch:https://www.govinfo.gov/link/uscode/22/3601?link-type=html | 3 | 9 |
+| 7 | opus-refetch:644691d06bf8d3dd1fed55cb18b8d22384aa0defab0a4834afcd4059e62a6b73 | 3 | 10 |
+| 8 | opus-refetch:fa518fc884e40b5d9d677cc1ddc6cca0ca6c735fb7e5e034f2d93f53939de194 | 3 | 10 |
+| 9 | opus-refetch:002ae7c2bf972c3cef0e67b40d5623f228c107799f934df2a8aaa3c223026bdc | 3 | 11 |
+| 10 | opus-refetch:feaeab3a8219452baf9f2915032e7e42cac7879ea6c76a941c72f7ae0e8aaf2a | 3 | 11 |
+| 11 | opus-refetch:https://www.govinfo.gov/link/uscode/5/1013 | 3 | 11 |
+| 12 | EO::6910 | 3 | 12 |
 
 Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 
