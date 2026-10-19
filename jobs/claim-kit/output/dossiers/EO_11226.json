@@ -3,6 +3,10 @@
     {
       "actor_id": "EO:11272",
       "evidence_id": "ACTOR_TEXT:EO:11272"
+    },
+    {
+      "actor_id": "EO:11582",
+      "evidence_id": "ACTOR_TEXT:EO:11582"
     }
   ],
   "actor_provisions": [
@@ -11,7 +15,12 @@
     "ACT:EO:11226>EO:11272@df0c540d35e289f2",
     "ACT:EO:11226>EO:11272@452d0af8949e016d",
     "ACT:EO:11226>EO:11272@4bdd624ca62ad168",
-    "ACT:EO:11226>EO:11272@420fd7ef98f38b5d"
+    "ACT:EO:11226>EO:11272@420fd7ef98f38b5d",
+    "ACT:EO:11226>EO:11272@c34f5bfc4eef89af",
+    "ACT:EO:11226>EO:11272@9843df745a8e3cb2",
+    "ACT:EO:11226>EO:11582",
+    "ACT:EO:11226>EO:11582@1dc25d6e2c6b96fd",
+    "ACT:EO:11226>EO:11582@120af65072983c4f"
   ],
   "chain": {
     "confidence": "medium",
@@ -37,9 +46,31 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1966-02-25/pdf/FR-1966-02-25.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:11582",
+        "char_end": 3806,
+        "char_start": 3600,
+        "confidence": "medium",
+        "how_named": "direct",
+        "id": "CHAIN:EO:11226#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1971-02-11",
+        "source": {
+          "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+          "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+          "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 232,
     "id": "CHAIN:EO:11226",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11226"
@@ -134,8 +165,10 @@
   "conflicts": [],
   "current_law_leads": [],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
+    "clause_3_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -143,7 +176,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 4 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -333,6 +366,77 @@
           "signing_date": "1966-02-23",
           "target_id": "EO:11226",
           "verb": "amend"
+        },
+        {
+          "actor_id": "EO:11272",
+          "actor_source": {
+            "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+            "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+            "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+          },
+          "char_end": 303,
+          "char_start": 120,
+          "confidence": "medium",
+          "effective_class": "unknown",
+          "effective_date": null,
+          "effective_wording": [
+            {
+              "char_end": 1000,
+              "char_start": 861,
+              "text": "The amendments to Executive Order No. 10358, as amended, ordered by section 1 of this Order shall be effective upon issuance of this Order."
+            }
+          ],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:11226>EO:11272@c34f5bfc4eef89af",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+          "provision_label": "SECTION 1.",
+          "provision_text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "1966-02-23",
+          "target_id": "EO:11226",
+          "verb": "amend"
+        },
+        {
+          "actor_id": "EO:11272",
+          "actor_source": {
+            "archival_id": "app:node/239237",
+            "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+            "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+            "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+          },
+          "char_end": 303,
+          "char_start": 120,
+          "confidence": "medium",
+          "effective_class": "unknown",
+          "effective_date": null,
+          "effective_wording": [
+            {
+              "char_end": 1000,
+              "char_start": 861,
+              "text": "The amendments to Executive Order No. 10358, as amended, ordered by section 1 of this Order shall be effective upon issuance of this Order."
+            }
+          ],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:11226>EO:11272@9843df745a8e3cb2",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+          "provision_label": "SECTION 1.",
+          "provision_text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "1966-02-23",
+          "target_id": "EO:11226",
+          "verb": "amend"
         }
       ],
       "char_end": 1140,
@@ -512,6 +616,51 @@
       "text": "Executive Order No. 103581  of June 9,1952, as amended \nby Executive Order No. 11226 2  of May 27,1965, entitled “Observance \nof Holidays by Government Agencies,” is hereby further amended\n(1) by changing section 1 to read as follows:\n“S ection  1.",
       "verb": "amend"
     },
+    "ACT:EO:11226>EO:11272@9843df745a8e3cb2": {
+      "actor_id": "EO:11272",
+      "actor_source": {
+        "archival_id": "app:node/239237",
+        "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+        "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+        "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+      },
+      "char_end": 303,
+      "char_start": 120,
+      "confidence": "medium",
+      "effective_class": "unknown",
+      "effective_date": null,
+      "effective_wording": [
+        {
+          "char_end": 1000,
+          "char_start": 861,
+          "text": "The amendments to Executive Order No. 10358, as amended, ordered by section 1 of this Order shall be effective upon issuance of this Order."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11226>EO:11272@9843df745a8e3cb2",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+      "provision_label": "SECTION 1.",
+      "provision_text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "1966-02-23",
+      "source": {
+        "archival_id": "app:node/239237",
+        "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+        "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+        "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+      },
+      "target_id": "EO:11226",
+      "text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
+      "verb": "amend"
+    },
     "ACT:EO:11226>EO:11272@c0b35b1d6f285488": {
       "actor_id": "EO:11272",
       "actor_source": {
@@ -553,6 +702,49 @@
       },
       "target_id": "EO:11226",
       "text": "Executive Order No. 103581  of June 9,1952, as amended \nby Executive Order No. 11226 2  of May 27,1965, entitled “Observance \nof Holidays by Government Agencies,” is hereby further amended\n(1) by changing section 1 to read as follows:\n“S ection  1.",
+      "verb": "amend"
+    },
+    "ACT:EO:11226>EO:11272@c34f5bfc4eef89af": {
+      "actor_id": "EO:11272",
+      "actor_source": {
+        "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+        "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+        "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+      },
+      "char_end": 303,
+      "char_start": 120,
+      "confidence": "medium",
+      "effective_class": "unknown",
+      "effective_date": null,
+      "effective_wording": [
+        {
+          "char_end": 1000,
+          "char_start": 861,
+          "text": "The amendments to Executive Order No. 10358, as amended, ordered by section 1 of this Order shall be effective upon issuance of this Order."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11226>EO:11272@c34f5bfc4eef89af",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+      "provision_label": "SECTION 1.",
+      "provision_text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "1966-02-23",
+      "source": {
+        "page_or_item": "Executive Order 11272—To Except Employees of the Postal Field Service From Certain Provisions of Executive Order No. 10358, as Amended by Executive Order No. 11226, Relating to the Observance of Holidays by Government Agencies; February 23, 1966; APP node 239237; common-crawl capture 2025-09-17T05:47:47Z",
+        "sha256": "776da1990c63bfcdcf29ce49efbba564760ba31710617212218d40caac8fad95",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions.txt",
+        "text_sha256": "8c2ada9e78656051bc66b5ca1e7c96bec690198c34cdc24331f737a09dc9cdda",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11272-except-employees-the-postal-field-service-from-certain-provisions"
+      },
+      "target_id": "EO:11226",
+      "text": "Executive Order No. 10358 of June 9, 1952, as amended by Executive Order No. 11226 of May 27, 1965, entitled \"Observance of Holidays by Government Agencies,\" is hereby further amended",
       "verb": "amend"
     },
     "ACT:EO:11226>EO:11272@df0c540d35e289f2": {
@@ -598,6 +790,224 @@
       "text": "Executive Order No. 103581  of June 9,1952, as amended \nby Executive Order No. 11226 2  of May 27,1965, entitled “Observance \nof Holidays by Government Agencies,” is hereby further amended\n(1) by changing section 1 to read as follows:\n“S ection  1.",
       "verb": "amend"
     },
+    "ACT:EO:11226>EO:11582": {
+      "actor_id": "EO:11582",
+      "actor_source": {
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "alternative_provisions": [
+        {
+          "actor_id": "EO:11582",
+          "actor_source": {
+            "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+            "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+            "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+          },
+          "char_end": 3806,
+          "char_start": 3600,
+          "confidence": "medium",
+          "effective_class": "stated_date",
+          "effective_date": "1971-01-01",
+          "effective_wording": [
+            {
+              "char_end": 3862,
+              "char_start": 3816,
+              "text": "This order is effective as of January 1, 1971."
+            }
+          ],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:11226>EO:11582@1dc25d6e2c6b96fd",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
+          "provision_label": "SEC. 8.",
+          "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1971-02-11",
+          "target_id": "EO:11226",
+          "verb": "revoke"
+        },
+        {
+          "actor_id": "EO:11582",
+          "actor_source": {
+            "archival_id": "app:node/256691",
+            "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+            "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+            "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+          },
+          "char_end": 3806,
+          "char_start": 3600,
+          "confidence": "medium",
+          "effective_class": "stated_date",
+          "effective_date": "1971-01-01",
+          "effective_wording": [
+            {
+              "char_end": 3862,
+              "char_start": 3816,
+              "text": "This order is effective as of January 1, 1971."
+            }
+          ],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:11226>EO:11582@120af65072983c4f",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
+          "provision_label": "SEC. 8.",
+          "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1971-02-11",
+          "target_id": "EO:11226",
+          "verb": "revoke"
+        }
+      ],
+      "char_end": 3806,
+      "char_start": 3600,
+      "confidence": "medium",
+      "effective_class": "stated_date",
+      "effective_date": "1971-01-01",
+      "effective_wording": [
+        {
+          "char_end": 3862,
+          "char_start": 3816,
+          "text": "This order is effective as of January 1, 1971."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11226>EO:11582",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
+      "provision_label": "SEC. 8.",
+      "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1971-02-11",
+      "source": {
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "target_id": "EO:11226",
+      "text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "verb": "revoke"
+    },
+    "ACT:EO:11226>EO:11582:effective#0": {
+      "actor_id": "EO:11582",
+      "char_end": 3862,
+      "char_start": 3816,
+      "id": "ACT:EO:11226>EO:11582:effective#0",
+      "source": {
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "text": "This order is effective as of January 1, 1971."
+    },
+    "ACT:EO:11226>EO:11582@120af65072983c4f": {
+      "actor_id": "EO:11582",
+      "actor_source": {
+        "archival_id": "app:node/256691",
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "char_end": 3806,
+      "char_start": 3600,
+      "confidence": "medium",
+      "effective_class": "stated_date",
+      "effective_date": "1971-01-01",
+      "effective_wording": [
+        {
+          "char_end": 3862,
+          "char_start": 3816,
+          "text": "This order is effective as of January 1, 1971."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11226>EO:11582@120af65072983c4f",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
+      "provision_label": "SEC. 8.",
+      "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1971-02-11",
+      "source": {
+        "archival_id": "app:node/256691",
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "target_id": "EO:11226",
+      "text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "verb": "revoke"
+    },
+    "ACT:EO:11226>EO:11582@1dc25d6e2c6b96fd": {
+      "actor_id": "EO:11582",
+      "actor_source": {
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "char_end": 3806,
+      "char_start": 3600,
+      "confidence": "medium",
+      "effective_class": "stated_date",
+      "effective_date": "1971-01-01",
+      "effective_wording": [
+        {
+          "char_end": 3862,
+          "char_start": 3816,
+          "text": "This order is effective as of January 1, 1971."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11226>EO:11582@1dc25d6e2c6b96fd",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
+      "provision_label": "SEC. 8.",
+      "provision_text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1971-02-11",
+      "source": {
+        "page_or_item": "Executive Order 11582—Observance of Holidays by Government Agencies; February 11, 1971; APP node 256691; common-crawl capture 2025-10-09T04:01:40Z",
+        "sha256": "48d4f104127c8030dda6624e8af16610a76d7b083eaf4691747c7ac39b2055f5",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11582-observance-holidays-government-agencies.txt",
+        "text_sha256": "84d8f26ac1a04a0649ffb7a320b52c9217da09ee5bb7790852880b9447bf1474",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11582-observance-holidays-government-agencies"
+      },
+      "target_id": "EO:11226",
+      "text": "Executive Order No. 10358 of June 9, 1952, entitled Observance of Holidays by Government Agencies, and amendatory Executive Orders No. 11226 of May 27, 1965, and No. 11272 of February 23, 1966, are revoked.",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:11272": {
       "actor_id": "EO:11272",
       "char_end": 2025,
@@ -612,6 +1022,21 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1966-02-25/pdf/FR-1966-02-25.pdf"
       },
       "text": "Instrument: EO:11272\nSource: https://www.govinfo.gov/content/pkg/FR-1966-02-25/pdf/FR-1966-02-25.pdf\nSHA-256 of the downloaded file: fdc8e90f308cfee4959b9f55a54e1603597b6ffa4b64ce376da751656e117723\nLocation: 31 FR 3111, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 64 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 11272\nTO EXCEPT EMPLOYEES OF THE POSTAL FIELD SERVICE FROM CERTAIN\nPROVISIONS OF EXECUTIVE ORDER NO. 10358, AS AMENDED BY\nEXECUTIVE ORDER NO. 11226, RELATING TO THE OBSERVANCE OF\nHOLIDAYS BY GOVERNMENT AGENCIES\nBy virtue of the authority vested in me as President of the United \nStates, it is hereby ordered as follows:\nS ection  1. Executive Order No. 103581  of June 9,1952, as amended \nby Executive Order No. 11226 2  of May 27,1965, entitled “Observance \nof Holidays by Government Agencies,” is hereby further amended\n(1) by changing section 1 to read as follows:\n“S ection  1. Except as provided in section 10, this Order shall apply \nto all executive departments, independent agencies, and Government- \nowned or Government-controlled corporations, including their field \nservices.”\n(2) by adding a new section 10 as follows:\n“S ec. 10. The provisions of sections 4, 5, 6, 7, and 9 of this Order \nshall not apply to the postal field service, and the Postmaster General \nshall provide by regulation for equivalent benefits for all employees of \nthe postal field service.”\nS ec. 2. The amendments to Executive Order No. 10358, as amended, \nordered by section 1 of this Order shall be effective upon issuance of \nthis Order.\nL yndon  B. J ohnson\nT h e W h ite H ouse,\nFebruary 23,1966.\n[F.R. Doc. 66-2088; Filed, Feb. 24,1966; 11: 28 a.m.]\n13 CFR, 1949-1953 Comp., p. 875; 17 F.R. 5269.a  30 F.R. 7213.\nFEDERAL REGISTER, VOL. 31, NO. 38— FRIDAY, FEBRUARY 25, 1966\n"
+    },
+    "ACTOR_TEXT:EO:11582": {
+      "actor_id": "EO:11582",
+      "char_end": 4785,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:11582",
+      "role": "actor_context",
+      "source": {
+        "page_or_item": "36 FR 2957, PDF pages 5-6",
+        "sha256": "37b895b70d1d334251ac3b25a4800a98841af762dade27bca694ca0291f6072c",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11582.txt",
+        "text_sha256": "b3fc8054971d90f5a3b001a8ef94c413bdf12501e55d77018ecd76f07e0b411c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1971-02-13/pdf/FR-1971-02-13.pdf"
+      },
+      "text": "Instrument: EO:11582\nSource: https://www.govinfo.gov/content/pkg/FR-1971-02-13/pdf/FR-1971-02-13.pdf\nSHA-256 of the downloaded file: 37b895b70d1d334251ac3b25a4800a98841af762dade27bca694ca0291f6072c\nLocation: 36 FR 2957, PDF pages 5-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 88 ===\nPresidential Docum ents\nTitle 3—The President\nE X E C U T I V E  O R D E R  11582 \nObservance of Holidays by Government Agencies\nBy virtue of the authority vested in me as President of the United \nStates, it is hereby ordered as follows:\nSection h  Except as provided in section ?, this order shall apply to \nall executive departments, independent agencies, and Government cor­\nporations, including their field services.\nSec. 2. As used in this order:\n(a ) Holiday  means the first day of January, the third M onday of \nFebruary, the last M onday of May, the fourth day of July, the first \nM onday of September, the second Monday of October, the fourth \nM onday of October, the fourth Thursday of November, the twenty- \nfifth day of December, or any other calendar day designated as a holiday \nby Federal statute or Executive order.\n(b ) Workday  means those hours which comprise in sequence the \nemployee’s regular daily tour of duty within any 24-hour period, whether \nfalling entirely within one calendar day or not.\nSec. 3. (a) Any employee whose basic workweek does not include \nSunday and who would ordinarily be excused from work on a holiday \nfalling within his basic workweek shall be excused from  work on the \nnext workday of his basic workweek whenever a holiday falls on Sunday.\n(b ) Any employee whose basic workweek includes Sunday and who \nwould ordinarily be excused from work on a holiday falling within his \nbasic workweek shall be excused from work on the next workday of his \nbasic workweek whenever a holiday falls on a day that has been ad­\nministratively scheduled as his regular  weekly nonworkday in lieu of \nSunday.\nSec. 4. The holiday for a full-time employee for whom the head of \na department has established the first 40 hours of duty performed within \na period of not more than six days of the administrative workweek as \nhis basic workweek because of the impracticability of prescribing a regu­\nlar schedule of definite hours of duty for each workday, shall be \ndetermined as follows:\n(a ) If a holiday occurs on Sunday, the head of the department shall \ndesignate in advance either Sunday or M onday as the employee’s holiday \nand the employee’s basic 40-hour tour of duty shall be deemed to include \neight hourspif the day designated as the employee’s holiday.\nFEDERAL REGISTER, VOL. 36, NO. 31— SATURDAY, FEBRUARY 13, 1971\n\n=== PDF page 6 of 88 ===\nTHE PRESIDENT\n(b ) If a holiday occurs on Saturday, the head of the department shall \ndesignate in advance either the Saturday or the preceding Friday as \nthe employee’s holiday and the employee’s basic 40-hour tour of duty \nshall be deemed to include eight hours on the day designated as the \nemployee’s holiday.\n(c) If a holiday occurs on any other day of the week, that day shall \nbe the employee’s holiday, and the employee’s basic 40-hour tour of duty \nshall be deemed to include eight hours on that day.\n(d ) When a holiday is less than a full day, proportionate credit will \nbe given under paragraph (a),(b),or(c)of  this section.\nSec. 5, Any employee whose workday covers portions of two calendar \ndays and who would, except for this section, ordinarily be excused from \nwork scheduled for the hours of any calendar day on which a holiday \nfalls, shall instead be excused from work on his entire workday which \ncommences on any suchxalendar day.\nSec. 6 . In administering the provisions of law relating to pay and \nleave of absence, the workdays referred to in sections 3, 4, and 5 shall be \ntreated as holidays in lieu of the corresponding calendar holidays.\nSec. 7. The provisions of this order shall apply to officers and em­\nployees of the Post Office Department and the United States Postal \nService (except that sections 3, 4, 5, and 6 shall not apply to the Postal \nField Service) until changed by the Postal Service in accordance with \nthe Postal Reorganization Act.\nSec. 8 . Executive Order No. 10358 of June 9, 1952, entitled O b­\nservance of Holidays by Government Agencies,  and amendatory Execu­\ntive Orders No. 11226 of M ay 27, 1965, and No. 11272 of February 23, \n1966, are revoked.\nSec. 9. This order is effective as of January 1, 1971.\nT h e W h ite House,\nFebruary 11,1971.\n[FR Doc.71-2133 Füed 2-11-71;!: 28 pm]\nFEDERAL REGISTER, VOL. 36, NO. 31— SATURDAY, FEBRUARY 13, 1971\n"
     },
     "CLAUSES:EO:11226#lead": {
       "char_end": 780,
@@ -740,9 +1165,60 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The holiday for a full-tim e employee for whom the head  \no f a department has established the first 40 hours o f duty performed  \nw ithin a period o f not more than six days o f the adm inistrative  \nworkweek as h is basic workweek because o f the im practicability of  \nprescribing a regular schedule o f definite hours o f duty for each work­\nday, shall be determined as follow s :\n“(a)  I f  a holiday occurs on Sunday, the head o f the department  \nshall designate in advance either Sunday or Monday as the employee’s  \nholiday and the employee’s basic 40-hour tour o f duty shall be deemed  \nto include 8 hours on the day designated as the employee’s holiday.\n“(b)  I f  a holiday occurs on Saturday, the head o f the department  \nshall designate in advance either the Saturday or the preceding Friday  \nas the employee’s holiday and the employee’s basic 40-hour tour of  \nduty shall be deemed to include 8 hours on the day designated as the  \nemployee’s holiday.\n“(c)  J f a holiday occurs on any other day o f the week, that day  \nshall be the employee’s holiday, and the employee’s basic 40-hour tour  \no f duty shall be deemed to include 8 hours on th a t day.\n“(d)  W hen a holiday is less than a fu ll day, proportionate credit  \nw ill be given under paragraph (a), (b),  or (c) o f th is section.”\nSec. 2."
+    },
+    "TERM:EO:11226:ec6c04d839443242@105feca3d576451d": {
+      "actor_id": "EO:11226",
+      "char_end": 1035,
+      "char_start": 675,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11226:ec6c04d839443242@105feca3d576451d",
+      "instrument_id": "EO:11226",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11226#sec1-2",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 306499; common-crawl capture 2025-10-16T17:01:19Z; Sec. 2",
+        "sha256": "bcd36f45f1bc979ffd95418f9e705adb0293ff410a0ae9c9a5d064c33ec125da",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-11226-bcd36f45f1.txt",
+        "text_sha256": "105feca3d576451d6c266cff5515edbbba1dfb4a627e18cbf60e7bb9ce7a8cf3",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11226-amending-executive-order-no-10358-relating-the-observance-holidays"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The holiday for a full-time employee for whom the head of a department has established the first 40 hours of duty performed within a period of not more than six days of the administrative workweek as his basic workweek because of the impracticability of prescribing a regular schedule of definite hours of duty for each workday, shall be determined as follows:"
+    },
+    "TERM:EO:11226:ec6c04d839443242@494971a8f9c7099f": {
+      "actor_id": "EO:11226",
+      "char_end": 914,
+      "char_start": 554,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11226:ec6c04d839443242@494971a8f9c7099f",
+      "instrument_id": "EO:11226",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11226#sec1-2",
+      "source": {
+        "archival_id": "app:node/306499",
+        "page_or_item": "Executive Order 11226—Amending Executive Order No. 10358, Relating to the Observance of Holidays by Government Agencies; May 27, 1965; APP node 306499; common-crawl capture 2025-10-16T17:01:19Z",
+        "sha256": "bcd36f45f1bc979ffd95418f9e705adb0293ff410a0ae9c9a5d064c33ec125da",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-11226-amending-executive-order-no-10358-relating-the-observance-holidays.txt",
+        "text_sha256": "494971a8f9c7099f530bf74369c957f21b52f9dc7d9aa5b0ce475694c3c5dbb1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-11226-amending-executive-order-no-10358-relating-the-observance-holidays"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The holiday for a full-time employee for whom the head of a department has established the first 40 hours of duty performed within a period of not more than six days of the administrative workweek as his basic workweek because of the impracticability of prescribing a regular schedule of definite hours of duty for each workday, shall be determined as follows:"
     }
   },
-  "fingerprint": "3e9b68eea1a39b96d271aa2004f2c1bef919aa45fa4348fc60cc37d9ab3c247c",
+  "fingerprint": "dbf133115eeeae6ac0b5ef1aa53aeecd30c3d0b62f627e7b5587e7a34784623d",
   "instrument_id": "EO:11226",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -773,8 +1249,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17462 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -783,13 +1259,13 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:11582"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11226",
   "own_terms": [
-    "TERM:EO:11226:272e3aeb605f6b0e@f79106dcb55eab7a"
+    "TERM:EO:11226:272e3aeb605f6b0e@f79106dcb55eab7a",
+    "TERM:EO:11226:ec6c04d839443242@105feca3d576451d",
+    "TERM:EO:11226:ec6c04d839443242@494971a8f9c7099f"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"

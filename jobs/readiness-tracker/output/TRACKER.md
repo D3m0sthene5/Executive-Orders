@@ -25,6 +25,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
+| 3,172 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 472 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -41,6 +42,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 892 | 3,172 |
 | `NO_CLAUSE_INVENTORY` | 3,142 | 3,142 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,142 | 3,142 |
 | `FIRST_END_UNPROVED` | 2,742 | 2,742 |
@@ -51,7 +53,6 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 159 | 159 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 2 | 68 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
@@ -77,6 +78,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - richardson-volumes (lead only, never counted as the original): 68
+- app-executive-orders (lead only, never counted as the original): 9,843
 - opus-media-match status: 1,155
 - source-ladder: 147
 - claim-checker: 217

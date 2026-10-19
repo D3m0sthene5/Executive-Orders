@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 232,
     "id": "CHAIN:EO:7623",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:7623"
@@ -65,8 +65,9 @@
   "conflicts": [],
   "current_law_leads": [],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -74,7 +75,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 3 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -199,6 +200,57 @@
       "stated_end_date": null,
       "text": "This order shall continue in  force until revoked by the\nPresident or by act o f Congress. __ ____Franklin  D  Roosevelt\nT he W hite  H ouse ,\nM ay 29, 1937.\n[N o. 76231\n[F.R ."
     },
+    "TERM:EO:7623:97a69424bd413269@5dfa343e80f9ad5c": {
+      "actor_id": "EO:7623",
+      "char_end": 809,
+      "char_start": 721,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:7623:97a69424bd413269@5dfa343e80f9ad5c",
+      "instrument_id": "EO:7623",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:7623#whole",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 368983; common-crawl capture 2025-12-10T15:17:56Z; unnumbered paragraph 3",
+        "sha256": "9674fd7b35060cc2f74d0e870f93c1a6657206f077a2c60b4deb91ec25296e6d",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7623-9674fd7b35.txt",
+        "text_sha256": "5dfa343e80f9ad5c01ca48ee280e4081b4677d9dde152b602fa2d622f9cb0b69",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-7623-withdrawal-public-land-for-use-department-agriculture-addition"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "This order shall continue in force until revoked by the President or by act of Congress."
+    },
+    "TERM:EO:7623:97a69424bd413269@ffcd8acc6e2a08cc": {
+      "actor_id": "EO:7623",
+      "char_end": 682,
+      "char_start": 594,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:7623:97a69424bd413269@ffcd8acc6e2a08cc",
+      "instrument_id": "EO:7623",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:7623#whole",
+      "source": {
+        "archival_id": "app:node/368983",
+        "page_or_item": "Executive Order 7623—Withdrawal of Public Land for Use of Department of Agriculture as Addition to Agricultural Field Station; May 29, 1937; APP node 368983; common-crawl capture 2025-12-10T15:17:56Z",
+        "sha256": "9674fd7b35060cc2f74d0e870f93c1a6657206f077a2c60b4deb91ec25296e6d",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-7623-withdrawal-public-land-for-use-department-agriculture-addition.txt",
+        "text_sha256": "ffcd8acc6e2a08cccb83716fc939981d00d9456e6aaf84b1ec8dc953527d847d",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-7623-withdrawal-public-land-for-use-department-agriculture-addition"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "This order shall continue in force until revoked by the President or by act of Congress."
+    },
     "TERM:EO:7623:ea4167e68f2286a1@8869870f721e0834": {
       "actor_id": "EO:7623",
       "char_end": 3571,
@@ -250,7 +302,7 @@
       "text": "The reservation made by section 2 o f this order \nshall remain in force until revoked by the President or by \nact of Congress."
     }
   },
-  "fingerprint": "85888929b5b5bf56e20796640eb2211475ccee90649d7ac60f2de260c2dc342c",
+  "fingerprint": "e5a86cb7276fcc75532c633ae6aa48f00f2813592cbb7f63716429698374b736",
   "instrument_id": "EO:7623",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -281,8 +333,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17462 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -298,7 +350,9 @@
     "TERM:EO:7623:2d291e58b8b72e7e@8869870f721e0834",
     "TERM:EO:7623:f77e24b7ee23cd58@8869870f721e0834",
     "TERM:EO:7623:2d2999fb95601802@8869870f721e0834",
-    "TERM:EO:7623:ea4167e68f2286a1@8869870f721e0834"
+    "TERM:EO:7623:ea4167e68f2286a1@8869870f721e0834",
+    "TERM:EO:7623:97a69424bd413269@5dfa343e80f9ad5c",
+    "TERM:EO:7623:97a69424bd413269@ffcd8acc6e2a08cc"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"

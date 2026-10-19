@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 232,
     "id": "CHAIN:EO:5620",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:5620"
@@ -31,8 +31,8 @@
   "conflicts": [],
   "current_law_leads": [],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -40,7 +40,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -105,9 +105,60 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "Sinnott , who\nwas later judge of the United States Court of Claims until his death, July 20 , 1929 ."
+    },
+    "TERM:EO:5620:ba14b57dbd4fe577@04d53f968531c6b2": {
+      "actor_id": "EO:5620",
+      "char_end": 319,
+      "char_start": 222,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:5620:ba14b57dbd4fe577@04d53f968531c6b2",
+      "instrument_id": "EO:5620",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:5620#whole",
+      "source": {
+        "archival_id": "app:node/361226",
+        "page_or_item": "Executive Order 5620—Authorizing the Appointment of Mrs. Dorothy I. Sinnott; May 13, 1931; APP node 361226; common-crawl capture 2024-10-09T04:50:39Z",
+        "sha256": "7df9652c178f5f290617c4d77f145bd48d30591392f5e28d89eae3b4cbb33c83",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-5620-authorizing-the-appointment-mrs-dorothy-i-sinnott.txt",
+        "text_sha256": "04d53f968531c6b2821d3e89b3361db2bac44db4d814bd9e3dda599527e33245",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-5620-authorizing-the-appointment-mrs-dorothy-i-sinnott"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Sinnott, who was later judge of the United States Court of Claims until his death, July 20, 1929."
+    },
+    "TERM:EO:5620:ba14b57dbd4fe577@917af54c9aedf1ed": {
+      "actor_id": "EO:5620",
+      "char_end": 396,
+      "char_start": 299,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:5620:ba14b57dbd4fe577@917af54c9aedf1ed",
+      "instrument_id": "EO:5620",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:5620#whole",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 361226; common-crawl capture 2024-10-09T04:50:39Z; unnumbered paragraph 2",
+        "sha256": "7df9652c178f5f290617c4d77f145bd48d30591392f5e28d89eae3b4cbb33c83",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-5620-7df9652c17.txt",
+        "text_sha256": "917af54c9aedf1ed1e4799ed57e8d4679a47640fa7eb7fae6ba73155ec64ffae",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-5620-authorizing-the-appointment-mrs-dorothy-i-sinnott"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Sinnott, who was later judge of the United States Court of Claims until his death, July 20, 1929."
     }
   },
-  "fingerprint": "4efa4469c63e3196d49e14ca259d297ab823071786fa3f38d8b17bc8933c6877",
+  "fingerprint": "4604534e1924f68214ed9b443fefbe61139c84d3e0adfea4f29ab8de5b6f1d7f",
   "instrument_id": "EO:5620",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -139,8 +190,8 @@
       "complete": true,
       "coverage_warning": "order dated 1931: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17462 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -153,7 +204,9 @@
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:5620",
   "own_terms": [
-    "TERM:EO:5620:3a47b8112796e25a@07bb8feb2510f006"
+    "TERM:EO:5620:3a47b8112796e25a@07bb8feb2510f006",
+    "TERM:EO:5620:ba14b57dbd4fe577@917af54c9aedf1ed",
+    "TERM:EO:5620:ba14b57dbd4fe577@04d53f968531c6b2"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"
