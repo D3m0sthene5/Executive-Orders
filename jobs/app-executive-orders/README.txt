@@ -66,6 +66,8 @@ output/
                            lane's plus route archive/<archive> and a capture
                            block (archive, crawl, captured_utc, WARC record).
   MIRROR_AUDIT.jsonl       live-vs-capture comparisons for the audit sample.
+  MIRROR_AUDIT_SUMMARY.md  the audit result (method, agreement by archive and
+                           capture year, disagreements if any).
   texts/<slug>.live.txt    live text of an audited page (the capture's text
                            stays in texts/<slug>.txt).
 

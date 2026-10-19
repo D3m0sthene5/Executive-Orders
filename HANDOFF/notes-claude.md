@@ -2,6 +2,36 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 20:15 ET: app-executive-orders, live lane finished; capture audit 205/205 agree; PRIORITY rebuilt (3,593)
+
+- **Done (branch `app-executive-orders`, one commit):** the live lane completed at 23:58 UTC (`output/STATE.json`
+  remaining 0, complete true, 0 failures; 792 live pages, 10,270 archive captures, 10,998 texts). Harvester and the
+  resume loop have exited; **no APP crawler is running.** `output/MIRROR_AUDIT_SUMMARY.md`: every 50th
+  archive-covered path in path order (206), fetched live at 10 s between 23:05 and 23:58 UTC; **205 of 205 compared
+  texts agree byte-for-byte** (Common Crawl 194/194 across capture years 2024-2026, Wayback 11/11 across 2022-2026);
+  no disagreements to list; page hashes differ on all 205 (chrome, expected). The 206th sample path (EO 5382) had
+  been fetched live before the archive reached it; its recorded hashes agree too. `data/PRIORITY.txt` rebuilt:
+  **3,593 numbered census orders have no saved text of any kind** (was 6,070). **3,585 of them APP does not list at
+  all** (3,529 below EO 5000, 56 at EO 5000+, e.g. EO 5000-5018, 6447-6466). The other 8 are listed but APP's page
+  is "[Not Published.]" (EO 8302, 9132A, 9427A, 9451A, 9457, 10026A, ...). So the APP lane is exhausted: nothing
+  left to fetch from APP.
+- **Fix in `build_priority.py`:** claim-kit's discovery globs `FRAGMENTS*.jsonl`, so the archive lane's
+  `MIRROR_FRAGMENTS.jsonl` (9,387 records) was invisible and the plain rebuild gave 5,652, leaving 2,059 orders with
+  saved archive text on the list. The builder now also counts this job's own fragments (hash-verified): +2,090 held.
+- **Caveat:** 183 ids absent from the 16:36 list reappear now (e.g. EO 28, 29, 219, 860, 1136); they are `open` in
+  the readiness tracker and in no job's FRAGMENTS/SOURCES, so I could not see what held them earlier. Cause not found.
+- **Next:** second index pass with a different sort for the 38 duplicate listing rows; owner's decision on the
+  Common Crawl captures (19:15 entry) still open.
+- **Asks:** `@Astra` / `@Codex` (whoever maintains claim-kit): decide whether `jobs/claim-kit/inputs.py` discovery
+  should match `*FRAGMENTS*.jsonl` so the 2,090 archive texts reach the readiness pipeline, or whether the archive
+  lane should write `FRAGMENTS_MIRROR.jsonl` instead; I changed neither. Also: `load_corpus` emits 1,310
+  `text_sha256 mismatch; skipped` warnings for FRAGMENTS records in family-rules (582), ofr-compilations (500),
+  isthmian-canal-1911 (105), richardson-volumes (68) and indian-reservations-1912 (55) that point at
+  `jobs/clause-drafts/output/texts/cd-job-fr-originals-*.txt`; the files match their git blobs, so the recorded hashes
+  are stale (clause-drafts regenerated texts after those jobs ran). 728 orders lose their held text in claim-kit
+  until those jobs rerun. `@Owner`: the archive lane's stance question (19:15 entry) still needs your call.
+- **Do not:** hand-edit `jobs/app-executive-orders/output/`; count APP or capture texts as originals.
+
 ## 2026-10-18 19:15 ET: app-executive-orders, archive lane: 30 h crawl collapsed to a 67-page residue
 
 - **Done (branch `app-executive-orders`, commits `5d97ee47`, `78e7d795` + outputs):** `jobs/app-executive-orders/app_mirror.py`,
