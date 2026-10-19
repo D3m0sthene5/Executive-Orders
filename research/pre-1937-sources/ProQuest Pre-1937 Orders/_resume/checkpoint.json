@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "task": "ProQuest supplied-link PDF acquisition",
+  "status": "paused",
+  "paused_at": "2026-10-19T22:56:46.979516+00:00",
+  "prepared_at": "2026-10-19T23:12:59.736397+00:00",
+  "browser_run_active": false,
+  "resume_signal": "go",
+  "resume_context": "This ProQuest download conversation",
+  "repository": "D3m0sthene5/Executive-Orders",
+  "branch": "proquest-download-handoff-20261019",
+  "repository_folder": "research/pre-1937-sources/ProQuest Pre-1937 Orders",
+  "source_file": "_resume/proquest_download_links.html",
+  "source_sha256": "4644b0e380356060d4098affad5bd3170ddae09ed06fef256e4fe975acf73f17",
+  "source_git_blob_sha": "7b4cf9d2d54e9fdd7c65f21d092d1293f2fda846",
+  "source_bytes": 1005711,
+  "total_rows": 2765,
+  "supplied_pdf_urls": 2735,
+  "missing_links": [
+    "EO:125A",
+    "EO:130C",
+    "EO:343A",
+    "EO:400",
+    "EO:401",
+    "EO:569",
+    "EO:912",
+    "EO:1486",
+    "EO:1943",
+    "EO:2003",
+    "EO:2055",
+    "EO:2093",
+    "EO:2100",
+    "EO:2104",
+    "EO:2150",
+    "EO:2159",
+    "EO:2538",
+    "EO:3016B",
+    "EO:3016I",
+    "EO:3016O",
+    "EO:3050",
+    "EO:3104",
+    "EO:3194",
+    "EO:3278A",
+    "EO:3494",
+    "EO:3536",
+    "EO:3636",
+    "EO:4865",
+    "EO:5011A",
+    "EO:10369A"
+  ],
+  "interval_seconds": 12,
+  "next_unattempted_id": "EO:29",
+  "destination": {
+    "parent": "Downloads on the connected computer",
+    "folder_name": "ProQuest Pre-1937 Orders",
+    "resolve_absolute_path_on_each_computer": true
+  },
+  "original_computer_evidence": {
+    "browser": "Chrome",
+    "download_destination_confirmed_by_user_screenshot": true,
+    "download_settings_confirmed_by_user": true,
+    "screenshot_reference": "image(20261019-224454).png in the original conversation"
+  },
+  "downloaded_files_verified": [
+    {
+      "eo": "EO:4",
+      "name": "PT1-1865-EO-4.pdf",
+      "evidence": "user screenshot; 2211 KB, original 17:34; copies at 18:35 and 18:37"
+    },
+    {
+      "eo": "EO:7",
+      "name": "PT1-1868-EO-7.pdf",
+      "evidence": "user screenshot; 543 KB, 17:42"
+    },
+    {
+      "eo": "EO:12",
+      "name": "PT1-1874-EO-12.pdf",
+      "evidence": "user screenshot; 164 KB, 17:43"
+    }
+  ],
+  "browser_method": "Exact supplied record URL -> observed PDF button -> matching PDF.js viewer -> rendered pages -> Save",
+  "progress_log": "_resume/progress.jsonl",
+  "expected_file_manifest": "_resume/expected_files.json",
+  "pdf_transfer": {
+    "state": "blocked_browser_extension_setting",
+    "repository_pdf_files_confirmed": 0,
+    "expected_pdf_files": 13,
+    "expected_unique_orders": 11,
+    "reason": "Browser file chooser reported that Allow access to file URLs is disabled for the ChatGPT extension in Chrome. No PDF upload was completed."
+  },
+  "resume_rules": [
+    "Wait for the owner to say go before new ProQuest navigation.",
+    "Read the current audit and reconcile held PDFs before retrying uncertain saves.",
+    "Use only exact links supplied in the original HTML and the visible PDF controls reached through those records.",
+    "New-computer browser connection, sign-in and download destination must be observed; they are not contained in this package.",
+    "Keep the separate October 18 lifecycle-research task paused."
+  ],
+  "scientific_status": {
+    "acceptable_as_original": false,
+    "legal_status_or_census_updated": false,
+    "scope": "File acquisition and transfer only"
+  }
+}
