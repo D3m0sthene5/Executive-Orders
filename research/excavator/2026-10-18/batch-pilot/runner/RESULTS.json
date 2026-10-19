@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "agent": "runner_freshness",
+  "result": "implemented_and_locally_tested_not_committed",
+  "observation_start_utc": "2026-10-18T13:03:57.700026+00:00",
+  "observation_finished_utc": "2026-10-18T13:17:16.002048+00:00",
+  "observed_wall_seconds": 798.302,
+  "timing_scope": "Lower-bound wall observation beginning after initial repository/handoff reading; includes tests and waits. Not active labor or summed agent time.",
+  "actual_agent_tokens": {
+    "input_tokens": 10267862,
+    "cached_input_tokens": 10094336,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 63319,
+    "reasoning_output_tokens": 28378,
+    "total_tokens": 10331181,
+    "uncached_input_tokens_derived": 173526
+  },
+  "actual_agent_token_reason": "Exact own CODEX_THREAD_ID-matching rollout per-response runtime counters; not billed dollars. See RUNTIME_TELEMETRY.json and RUNTIME_PHASES.json; earlier unavailability record is superseded.",
+  "initial_checkout": "c9993c70",
+  "live_main_verified_by_parent": "43f415dd440d4e7236b625b1b6edebbc0916d436",
+  "road_suite_before_final_sparse_guard": {
+    "passed": 45,
+    "failed": 0,
+    "groups": [
+      13,
+      5,
+      1,
+      11,
+      15
+    ],
+    "log": "road-tests.log"
+  },
+  "final_distinct_checks_passed": 56,
+  "network": "Fixture subprocesses permit only Git file protocol; bare remotes are temporary local repositories.",
+  "touched_code": [
+    ".github/scripts/result_freshness.py",
+    ".github/scripts/test_result_freshness.py",
+    ".github/scripts/run_jobs.sh",
+    ".github/scripts/commit_results.sh",
+    ".github/scripts/test_roads.py",
+    "jobs/claim-kit/inputs.txt"
+  ],
+  "semantics": "Fail closed for the selected cohort if any job has changed declared inputs, advanced overlapping branch outputs, missing/invalid provenance, or unavailable sparse inputs. Allow unrelated branch changes and exact same-invocation chains.",
+  "retention": [
+    "jobs/<job>/output/RUNNER_INPUTS.json",
+    "oversized/runner-freshness/<job>-inputs.json in the existing pre-publication run artifact",
+    "Commit-time rejection JSON in Actions step summary and job log"
+  ],
+  "limitations": [
+    "Repository-declared inputs and code are versioned; external server state and undeclared runtime reads are not inferred.",
+    "Any overlapping output advancement is conservatively rejected, even if its declared input versions are equal.",
+    "A stale member withholds the whole selected cohort; it does not publish an inconsistent partial chain.",
+    "Already-running checkouts with the old runner cannot enforce a new guard retroactively; drain/cancel pre-guard runs before relying on rollout.",
+    "No live GitHub workflow was dispatched by this subtask; no commits/pushes outside temporary fixture repositories."
+  ],
+  "initial_focused_tests": {
+    "passed": 16,
+    "failed": 0,
+    "seconds": 37.042,
+    "log": "focused-tests.log"
+  },
+  "final_full_road_suite": {
+    "passed": 56,
+    "failed": 0,
+    "groups": [
+      {
+        "passed": 13,
+        "seconds": 0.121
+      },
+      {
+        "passed": 5,
+        "seconds": 0.028
+      },
+      {
+        "passed": 1,
+        "seconds": 0.006
+      },
+      {
+        "passed": 11,
+        "seconds": 0.237
+      },
+      {
+        "passed": 26,
+        "seconds": 67.036
+      }
+    ],
+    "log": "generation-road-tests.log",
+    "code_checkpoint": "59425dae6524a4e794ab9ca8155ad0270d550502"
+  },
+  "dynamic_input_followup": "DYNAMIC_INPUTS_FOLLOWUP.json",
+  "earlier_token_availability_record": {
+    "actual_agent_tokens": null,
+    "reason": "No per-agent token/billing meter is exposed by collaboration or execution tools in this subtask."
+  },
+  "runtime_telemetry_snapshot_cutoff_utc": "2026-10-18T13:59:02.403Z"
+}

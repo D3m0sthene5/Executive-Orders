@@ -105,7 +105,7 @@
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
         "jobs/richardson-volumes/data/PROVENANCE.json": 3,
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-        "jobs/source-ladder/output/SOURCES.jsonl": 147,
+        "jobs/source-ladder/output/SOURCES.jsonl": 168,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
         "opus_stage11_manifest": 27237,
@@ -177,8 +177,8 @@
           "quote_verbatim:too_short_to_verify": 109,
           "source_held:custody_record_only": 4360,
           "source_held:gpo_published_hash_match": 5000,
-          "source_held:held_bytes_in_release_or_repo": 158,
-          "source_held:held_bytes_verified": 6022,
+          "source_held:held_bytes_in_release_or_repo": 154,
+          "source_held:held_bytes_verified": 6026,
           "source_identity:recorded_for_this_order": 15540
         },
         "drafts_by_mechanical_result": {
@@ -186,12 +186,12 @@
           "pass": 2792,
           "pass_with_unverified": 557
         },
-        "note": "jobs/claim-checker imported; 57649 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 57670 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 780,
-      "elapsed_seconds": 15.7,
+      "elapsed_seconds": 318.5,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1243,
@@ -249,7 +249,8 @@
         "fragments_read:opus-media-match": 143,
         "fragments_read:richardson-volumes": 68,
         "fragments_read:source-ladder": 0,
-        "fragments_unusable": 6,
+        "fragments_read:status-history": 7650,
+        "fragments_unusable": 7656,
         "sources_read:clause-drafts": 4747,
         "sources_read:current-law": 110,
         "sources_read:family-rule-sources": 2,
@@ -263,7 +264,8 @@
         "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
         "sources_read:richardson-volumes": 0,
-        "sources_read:source-ladder": 147
+        "sources_read:source-ladder": 168,
+        "sources_read:status-history": 0
       },
       "input_notes": [],
       "input_problems": [],
@@ -323,6 +325,10 @@
         {
           "job": "source-ladder",
           "path": "jobs/source-ladder/output"
+        },
+        {
+          "job": "status-history",
+          "path": "jobs/status-history/output"
         }
       ],
       "job": "claim-drafts",
@@ -551,10 +557,6 @@
       "legal_cutoff": "2026-10-14",
       "schema": "eo-claim-kit-summary/v1",
       "warnings": [
-        "jobs/family-rules/output/FRAGMENTS.jsonl: held text missing: research/production/2026-10-17/pother/saved/EO_11157.txt",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: held text missing: research/production/2026-10-17/pother/saved/EO_12258.txt",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: held text missing: research/production/2026-10-17/pother/saved/EO_12399.txt",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: held text missing: research/production/2026-10-17/pother/saved/EO_8396.txt",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10010-8486556001.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10015-144846d6cd.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10029-8ac8280e03.txt; skipped",
@@ -1133,9 +1135,16 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_9910.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_9964.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_9996.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-codification-1989/output/texts/EO_11157.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-codification-1989/output/texts/EO_11825.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-compilations/output/texts/EO_5918.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/71638bd317a490d623b778ab1dc9539382d1941a81439abbfd230ee453be6b5a.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/c11e871f5aba9fee5757727795c17b21df27f60c317196b89739c2ef6d15d0b7.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/opus-refetch_ee87f6027e6f3902a09e1907d991c5d40fab8b3931446ccf7d8a558325636ebb_fe267a16aa.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12258_46FR1252_original_PDF_page14_section1-103_j_d9939d5627.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12399_48_FR_379_PDF_pages_9-10_cited_revocation_exception_effective_provisions_b6f9f1ecec.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12486_49_FR_33989_PDF_pages_9-9_2e917b31ee.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_8396_5_FR_1461_PDF_pages_1-4_cited_revocation_exception_effective_provisions_8e77abf6d8.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_9830_12_FR_1259_Part_III_revocation_list_original_PDF_page11_3ccc2633ee.txt; skipped",
         "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/indian-reservations-1912/output/texts/1905-03-10_IR1912-p18-4_navajo-reservation.txt; skipped",
         "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/indian-reservations-1912/output/texts/1905-05_IR1912-p19-1_navajo-reservation.txt; skipped",
@@ -1922,7 +1931,7 @@
       },
       "clauses_total": 35750,
       "fragments_written": 4747,
-      "generated_utc": "2026-10-18T00:45:11Z",
+      "generated_utc": "2026-10-18T09:09:14Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 95,
         "identity_doubt_document_dated": 17,
@@ -1935,7 +1944,7 @@
           "stage21_custody": "ok",
           "universe": "ok"
         },
-        "input_problems": 457,
+        "input_problems": 462,
         "opus_zip": {
           "member_text_hash_check": {
             "match": 2335,
@@ -1957,7 +1966,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "347 order-text candidates"
+          "source-ladder": "590 order-text candidates"
         },
         "stage21_pdfs_usable": 160
       },
@@ -1968,10 +1977,10 @@
       "ocr_fragments_with_candidate_fr_page": 60,
       "orders_identity_quarantined": 144,
       "orders_in_universe": 14972,
-      "orders_not_segmented": 1672,
-      "orders_processed": 6563,
-      "orders_with_candidate_text": 6563,
-      "seconds": 62.2,
+      "orders_not_segmented": 1677,
+      "orders_processed": 6568,
+      "orders_with_candidate_text": 6568,
+      "seconds": 86.9,
       "segmentation_quality": {
         "good": 1889,
         "partial": 2858
@@ -3571,7 +3580,7 @@
         "DATE_CONFLICT_OR_UNKNOWN": 41,
         "EARLIER_OR_UNDATED_ENDING": 74,
         "INDEPENDENT_CLAUSE_OR_SAVINGS_LEAD": 739,
-        "LATER_OR_UNDATED_SAVED_TEXT_USE": 670,
+        "LATER_OR_UNDATED_SAVED_TEXT_USE": 673,
         "NO_MATCHING_END_EDGE": 6,
         "ORIGINAL_SOURCE_CUSTODY_UNVERIFIED": 748,
         "QUALIFIED_OR_CONFLICTING_SCOPE": 16,
@@ -3584,8 +3593,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 18681,
-      "sweep_manifest_sha256": "a4f41717a0b81aad24d2f6cffcc88a5a21407de27e7f5be58d9b753947a76171",
+      "saved_texts_scanned": 20923,
+      "sweep_manifest_sha256": "d9a0f587b1c112b62fbdb118cd103304c84d88db974f289705c026683d48379e",
       "targets": 748
     },
     "fr-originals": {
@@ -4147,19 +4156,19 @@
       "reporter_citation_leads": 54
     },
     "official-fixity": {
-      "carried_forward": 0,
-      "checked_this_run": 4987,
+      "carried_forward": 4987,
+      "checked_this_run": 12,
       "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
-      "files": 4987,
+      "files": 4999,
       "job": "official-fixity",
       "orders_with_a_gpo_matched_file": 5013,
-      "premis_bytes_read_this_run": 225509376,
+      "premis_bytes_read_this_run": 65536,
       "results": {
-        "match": 3385,
-        "not_listed": 1597,
+        "match": 3386,
+        "not_listed": 1608,
         "partial_match": 5
       },
-      "seconds": 78.8
+      "seconds": 0.2
     },
     "ofr-codification-1989": {
       "body": {
@@ -5671,21 +5680,21 @@
     "readiness-tracker": {
       "decided_by_steps_done": {
         "1/6": 632,
-        "1/7": 29,
+        "1/7": 15,
         "1/8": 2,
         "2/6": 501,
-        "2/7": 68,
+        "2/7": 82,
         "2/8": 6,
         "3/6": 1202,
-        "3/7": 448,
+        "3/7": 444,
         "3/8": 35,
         "4/6": 24,
-        "4/7": 62,
-        "4/8": 184,
+        "4/7": 66,
+        "4/8": 177,
         "5/6": 25,
-        "5/8": 9,
+        "5/8": 16,
         "6/6": 131,
-        "6/7": 1
+        "7/7": 1
       },
       "decided_orders_blocked_by": {
         "CLAIM_INCOMPLETE": 83,
@@ -5697,11 +5706,12 @@
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 0,
         "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
+        "OPEN_SOURCE_AUDIT": 1,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 472,
+        "OPUS_MEDIA_REFETCH_NEEDED": 447,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
@@ -5752,7 +5762,7 @@
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 147
+          "source-ladder": 168
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -5769,11 +5779,12 @@
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
         "NO_PROVISIONAL_STATUS": 11613,
         "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
+        "OPEN_SOURCE_AUDIT": 1,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 472,
+        "OPUS_MEDIA_REFETCH_NEEDED": 447,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
@@ -5790,7 +5801,7 @@
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
           "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
           "kind": "machine_job",
-          "orders_unblocked": 472
+          "orders_unblocked": 447
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
@@ -5856,7 +5867,7 @@
         },
         "opus_media": {
           "applicable": 844,
-          "done": 82
+          "done": 108
         },
         "original_text": {
           "applicable": 3359,
@@ -6611,15 +6622,16 @@
       "wpa_entries_parsed": 155
     },
     "source-ladder": {
-      "attempts_logged": 69,
-      "bytes_downloaded": 327863094,
+      "attempts_logged": 12,
+      "bytes_downloaded": 137434823,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "exhausted_proposed_items": 4,
-      "exhausted_proposed_lines": 22,
+      "distinct_new_source_hashes": 10,
+      "exhausted_proposed_items": 2,
+      "exhausted_proposed_lines": 16,
       "fetch_queue_problems": [],
-      "found": 147,
+      "found": 168,
       "found_by_route": {
-        "given/given": 54,
+        "given/given": 75,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 5,
         "official/govinfo_link_fr": 2,
@@ -6628,24 +6640,92 @@
         "official/ofr_index_pdf_url": 9,
         "wayback_given/wayback_id_": 5
       },
-      "found_carried_forward": 122,
-      "from_fetch_queue": 80,
+      "found_carried_forward": 158,
+      "from_fetch_queue": 83,
       "from_stage20_shared_sources": 90,
-      "http_requests": 69,
-      "items_in_queue": 170,
-      "items_worked": 170,
+      "http_requests": 14,
+      "items_in_queue": 173,
+      "items_worked": 12,
       "job": "source-ladder",
-      "no_route": 16,
+      "new_sources_found": 10,
+      "no_route": 0,
       "not_attempted_budget": 0,
       "offline": false,
-      "orders_covered_by_found_sources": 280,
-      "pool_cache_hits": 18,
-      "pool_network_requests": 84,
-      "prefetched_urls": 32,
-      "retry_later": 3,
+      "orders_covered_by_found_sources": 365,
+      "pool_cache_hits": 0,
+      "pool_network_requests": 16,
+      "prefetched_urls": 0,
+      "retry_later": 0,
       "run_date": "2026-10-18",
-      "seconds": 463.1,
+      "seconds": 51.5,
+      "source_plan": {
+        "legal_cutoff": "2026-10-14",
+        "max_requests": 80,
+        "method": "readiness proximity, step opportunity, downstream work, stable ID",
+        "queue_fingerprint": "14d7a0e26a102ef153c28a0be0edf0580086bf164e7fd1e51429c63f44487061",
+        "schema": "eo-source-plan/v1",
+        "tracker_sha256": "8b0e893fe20559ae438240832349f691ae07621fcbd34b060229631f53142fd3",
+        "wanted_ids": [
+          "EO::4314",
+          "opus-refetch:b04b652fc90c357ba06fb2104f1a2722761e18c55f64d3ae880e38d2cd58ff10",
+          "opus-refetch:e45eddd16507aede8c60ff998c030966b4ddac104a2a88a7ca7cd515803f3626",
+          "opus-refetch:028192344a4d21aabc385ded905073d88111dd585b446dead659505ed11d23fd",
+          "opus-refetch:2a9f4ea619e65770c51cb0eae74cee99b149eb361afcff57665927fd2a16dfbe",
+          "opus-refetch:66244c4c065274e85cb83aa3cb3ea366689c343c80b846bf04e719bb2553f126",
+          "opus-refetch:6c3380c1453231d50d487bfa9348358c5a129202b1a49aadf363e01c3f7bd678",
+          "opus-refetch:dd8e15a058ab705228e569370ae5ebe3596bd92e932f7340be666eddcb915e5a",
+          "opus-refetch:https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg357.pdf",
+          "EO::6868",
+          "opus-refetch:252063912027da27b014f3527516a671642bba9d4ee4c88bed5acd57a7b3730c",
+          "opus-refetch:ca2fda5aeba49aac1bb3c93f94a7c6b58a1dc3641219ea334dce99536b5fb20a"
+        ]
+      },
       "stopped_early": ""
+    },
+    "status-history": {
+      "census_admissions": 0,
+      "census_identities": 14972,
+      "distinct_shared_source_units": 79,
+      "editorial_edges_raw_span_verified": 15660,
+      "editorial_edges_seen": 15772,
+      "flags_by_identity": {
+        "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT": 1874,
+        "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API": 69,
+        "KNOWN_LATER_CLEANUP_IS_NOT_FIRST_END_SEARCH_EARLIER": 5,
+        "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK": 426,
+        "POST_SNAPSHOT_END_BASIS_NOT_LOCATED": 84,
+        "PRE_SNAPSHOT_END_LEAD_VS_ACTIVE_SNAPSHOT_CHECK_SCOPE_OR_REVIVAL": 31,
+        "PROVISIONAL_YES_VS_ENDED_SNAPSHOT_REQUIRES_RECONCILIATION": 3,
+        "RELATIONAL_LEADS_WITHOUT_TARGET_STATUS_OBSERVATION": 202
+      },
+      "identities_with_history": 7650,
+      "identities_with_own_observation": 7448,
+      "input_fingerprint": "a1d4b0af25d75d450e8f4df97515be804f7a148be03a12a003ac7485012802a0",
+      "legal_cutoff": "2026-10-14",
+      "legal_findings": 0,
+      "limits": [
+        "Exact OCR/API spans authenticate stored text, not legal meaning or page images.",
+        "Intervals are conditional editorial constraints; no first-effective end or continuity is inferred.",
+        "No-note catalog entries and public-land exclusions never establish present legal status.",
+        "Source reuse counts measure addressable memberships, not observed billed usage or agent reads."
+      ],
+      "model_cached_tokens": null,
+      "model_input_tokens": null,
+      "model_output_tokens": null,
+      "model_reasoning_tokens": null,
+      "per_order_shared_source_lookup_memberships": 11160,
+      "printed_snapshot_identity_joins": 4223,
+      "printed_snapshot_records": 4225,
+      "printed_snapshot_undecided_identities": 2267,
+      "raw_api_observations": 6937,
+      "raw_api_response_files": 7,
+      "raw_identity_unresolved": 2,
+      "schema": "eo-status-history-summary/v1",
+      "status_observations": 11162,
+      "statuses_changed": 0,
+      "undecided_with_history": 4817,
+      "undecided_with_own_observation": 4640,
+      "unresolved_witness_records": 4
     }
   }
 }

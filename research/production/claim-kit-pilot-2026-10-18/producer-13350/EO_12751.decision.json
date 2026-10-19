@@ -1,0 +1,70 @@
+{
+  "schema": "eo-claim-kit-decision/v1",
+  "instrument_id": "EO:12751",
+  "dossier_sha256": "c65e30cd1f265a112b6a2346923343cfd35848fb2bc6af827c700ec89aa5e971",
+  "agent": "sol-producer-13350",
+  "original_confirmed": false,
+  "original_pages_confirmed": false,
+  "inventory_confirmed": true,
+  "inventory_overrides": [
+    {
+      "scope_id": "EO:12751#whole",
+      "source_id": "ORIGINAL:EO:12751",
+      "char_start": 782,
+      "char_end": 1661,
+      "reason": "Replace header-only machine clause with complete conditional VA contracting authorization; exclude neighboring Reader Aids pages."
+    }
+  ],
+  "clauses": [
+    {
+      "scope_id": "EO:12751#whole",
+      "state": null,
+      "end_id": null,
+      "effective_date": null,
+      "effective_date_confirmed": false,
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [],
+      "later_events": [],
+      "reason": "EO:13350 supplies revocation effective July 30, 2004, but the original grants authority only on a DOD request for members active in Operation Desert Storm; no source establishes whether or when this condition ceased earlier. Official page/image check remains mandatory."
+    }
+  ],
+  "savings": {
+    "state": "transferred_or_accrued",
+    "source_id": "ACT:EO:12751>EO:13350:effective#1",
+    "reason": "The ending instrument saves prior actions, pending proceedings, matured rights and duties, and incurred penalties; this could include accrued contract effects without fresh contracting authority."
+  },
+  "search_ids": [],
+  "conflict_resolutions": {},
+  "research_rationale": "Full frozen recheck leaves EO:12751 substantively unchanged. The corrected exact inventory captures the conditional VA private-facility contracting authority rather than the erroneous header-only machine inventory. The original still expressly requires official page/image checking, unavailable under this task. EO:13350 confirms revocation effective July 30, 2004 at 12:01 a.m. EDT and accrued-effects saving, but it does not establish the conditional authority's activation or any earlier cessation. No current-law conflict is present. The official-page gap independently prevents approval.",
+  "unresolved_material_gaps": [
+    "Official-source original requires_page_check remains true. No official pages/images were inspected in this no-fetch run; extracted text cannot satisfy original confirmation.",
+    "The original conditional DOD-request/Operation Desert Storm predicate and actual earliest operation/cessation are not established by the held materials. July 30, 2004 remains a revocation outer bound; no first_end is certified."
+  ],
+  "approved": false,
+  "production_note": "Producer unable-to-complete draft rechecked against GitHub-frozen full-run dossier output717e0a4bfad161532e54755f9cf2cb97964ac03d / code3ca7abeb. Prior unable sheet preserved under pre-full-unable/. No claim or human review.",
+  "reviewed_evidence_ids": [
+    "ACT:EO:12751>EO:13350",
+    "ACT:EO:12751>EO:13350:effective#0",
+    "ACT:EO:12751>EO:13350:effective#1",
+    "ACT:EO:12751>EO:13350:effective#2",
+    "ACT:EO:12751>EO:13350:effective#3",
+    "ACT:EO:12751>EO:13350:effective#4",
+    "ACT:EO:12751>EO:13350@5b0c5922f00febc6",
+    "ACT:EO:12751>EO:13350@89e66f133daba21e",
+    "ACT:EO:12751>EO:13350@fad9a3726f3c2416",
+    "ACTOR_TEXT:EO:13350",
+    "CLAUSES:EO:12751#whole",
+    "ORIGINAL:EO:12751"
+  ],
+  "full_unable_recheck": {
+    "resolved_packet_omissions": [
+      "Original and EO:13350 complete texts remain byte-identical to the earlier dossier; only source-path/location metadata and alternative revocation records changed. No new own-terms, actor, or current-law material cures the mandatory original-page flag."
+    ],
+    "remaining_blockers": [
+      "Official-source original requires_page_check remains true. No official pages/images were inspected in this no-fetch run; extracted text cannot satisfy original confirmation.",
+      "The original conditional DOD-request/Operation Desert Storm predicate and actual earliest operation/cessation are not established by the held materials. July 30, 2004 remains a revocation outer bound; no first_end is certified."
+    ]
+  }
+}

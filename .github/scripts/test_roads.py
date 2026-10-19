@@ -14,3 +14,4 @@ suite=unittest.defaultTestLoader.discover(sys.argv[1],pattern='test_*.py')
 sys.exit(not unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful())
 """
     subprocess.run([sys.executable,'-c',code,str(folder)],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_result_freshness.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})

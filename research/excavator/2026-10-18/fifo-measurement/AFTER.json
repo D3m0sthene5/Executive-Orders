@@ -1,0 +1,158 @@
+{
+  "decided_by_steps_done": {
+    "1/6": 632,
+    "1/7": 29,
+    "1/8": 2,
+    "2/6": 501,
+    "2/7": 68,
+    "2/8": 6,
+    "3/6": 1202,
+    "3/7": 448,
+    "3/8": 35,
+    "4/6": 24,
+    "4/7": 62,
+    "4/8": 184,
+    "5/6": 25,
+    "5/8": 9,
+    "6/6": 131,
+    "6/7": 1
+  },
+  "decided_orders_blocked_by": {
+    "CLAIM_INCOMPLETE": 83,
+    "CURRENT_BASIS_UNPROVED": 400,
+    "FIRST_END_UNPROVED": 2742,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+    "NO_CLAUSE_INVENTORY": 3142,
+    "NO_OFFICIAL_SOURCE_LOCATED": 959,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
+    "NO_PROVISIONAL_STATUS": 0,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27
+  },
+  "human_verified": "not counted here; see the Stage 19 tracker",
+  "input_problems": [],
+  "orders_blocked_by": {
+    "CLAIM_INCOMPLETE": 83,
+    "CURRENT_BASIS_UNPROVED": 400,
+    "FIRST_END_UNPROVED": 2742,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
+    "NO_CLAUSE_INVENTORY": 3142,
+    "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
+    "NO_PROVISIONAL_STATUS": 11613,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27
+  },
+  "orders_total": 14972,
+  "orders_with_provisional_status": 3359,
+  "ready_by_tier": {
+    "complete_claim": 130
+  },
+  "ready_for_human_review": 130,
+  "shared_unlocks": [
+    {
+      "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+      "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
+      "kind": "machine_job",
+      "orders_unblocked": 472
+    },
+    {
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "agent_check",
+      "orders_unblocked": 286
+    },
+    {
+      "action": "Retrieve shared source EO::4314",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+      "kind": "one_source",
+      "orders_unblocked": 10
+    },
+    {
+      "action": "Retrieve shared source EO::6868",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+      "kind": "one_source",
+      "orders_unblocked": 6
+    },
+    {
+      "action": "Retrieve shared source USC::48 U.S.C. 863)",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+      "kind": "one_source",
+      "orders_unblocked": 3
+    },
+    {
+      "action": "Retrieve shared source EO::6964",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+      "kind": "one_source",
+      "orders_unblocked": 3
+    },
+    {
+      "action": "Retrieve shared source EO::6910",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+      "kind": "one_source",
+      "orders_unblocked": 3
+    },
+    {
+      "action": "Retrieve shared source CFR::26 CFR 458.324",
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+      "kind": "one_source",
+      "orders_unblocked": 2
+    },
+    {
+      "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+      "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS",
+      "kind": "agent_check",
+      "orders_unblocked": 1
+    }
+  ],
+  "step_done_among_decided": {
+    "clause_inventory": {
+      "applicable": 3359,
+      "done": 178
+    },
+    "counterevidence": {
+      "applicable": 3359,
+      "done": 2470
+    },
+    "ending_or_current_basis": {
+      "applicable": 3359,
+      "done": 134
+    },
+    "opus_media": {
+      "applicable": 844,
+      "done": 82
+    },
+    "original_text": {
+      "applicable": 3359,
+      "done": 2312
+    },
+    "provisional_status": {
+      "applicable": 3359,
+      "done": 3359
+    },
+    "savings_residuals": {
+      "applicable": 3359,
+      "done": 166
+    },
+    "shared_sources": {
+      "applicable": 236,
+      "done": 209
+    }
+  }
+}

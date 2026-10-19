@@ -60,6 +60,38 @@ class WholeHeadReviewTests(unittest.TestCase):
         ids = [r["id"] for r in records]
         self.assertEqual(len(ids), len(set(ids)))
 
+    def test_parent_route_never_reaches_a_future_amender(self):
+        self.text('EO:1','one.txt','Executive Order 3 is amended by adding an office.')
+        self.corpus['texts'][-1]['signing_date']='2005-01-01'
+        self.text('EO:3','three.txt','I hereby establish these offices.')
+        self.corpus['texts'][-1]['signing_date']='1990-01-01'
+        self.text('EO:2','two.txt','Executive Order 3, as amended, is revoked.')
+        self.corpus['texts'][-1]['signing_date']='2001-01-01'
+        out=self.run_build()
+        records=[json.loads(s) for s in (out/'ACTING_PROVISIONS.jsonl').read_text().splitlines()]
+        self.assertFalse(any(r['target_id']=='EO:1' and r['actor_id']=='EO:2' for r in records))
+
+    def test_unlocated_known_provision_keeps_held_actor_context(self):
+        self.text('EO:1','one.txt','I hereby establish a board.')
+        self.text('EO:2','two.txt','I hereby revoke the earlier board direction.')
+        self.corpus['pairs']=[{'target_id':'EO:1','actor_id':'EO:2'}]
+        out=self.run_build()
+        d=json.loads((out/'dossiers/EO_1.json').read_text())
+        self.assertEqual(d['actor_provisions'],[])
+        self.assertIn('ACTOR_TEXT:EO:2',d['evidence'])
+        self.assertTrue(any('not located' in x for x in d['missing']))
+
+    def test_page_label_aliases_are_preserved_without_repeating_extraction(self):
+        from copy import deepcopy
+        self.text('EO:1','one.txt','I hereby establish a board for four years from January 1, 2000.')
+        alias=deepcopy(self.corpus['texts'][0]);alias['source']['page_or_item']='PDF page 1; clause 2'
+        self.corpus['texts'].append(alias)
+        out=self.run_build();summary=json.loads((out/'SUMMARY.json').read_text())
+        self.assertEqual(summary['counts']['declared_text_representations'],2)
+        self.assertEqual(summary['counts']['held_texts_scanned'],1)
+        self.assertEqual(len((out/'TEXT_REPRESENTATIONS.jsonl').read_text().splitlines()),2)
+        self.assertEqual(len((out/'TEXT_CLAUSES.jsonl').read_text().splitlines()),1)
+
     def test_nonselected_generic_reference_is_counted(self):
         self.text("EO:1", "a.txt", "I hereby establish a board.")
         self.text("EO:1", "z.txt", "All prior orders are revoked.", False)

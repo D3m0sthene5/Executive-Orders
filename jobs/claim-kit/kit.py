@@ -13,7 +13,7 @@ import sys
 import time
 
 sys.dont_write_bytecode=True
-from assemble import blank_sheet, assemble, check_claim
+from assemble import blank_sheet, assemble, check_claim, canonical_sha
 from build import build, dump, filename
 
 HERE=Path(__file__).resolve().parent
@@ -63,16 +63,26 @@ def pick(repo,out,agent,n,excluded=None):
     if n<1 or not re.fullmatch(r'[A-Za-z0-9_.-]+',agent):raise ValueError('agent must be a simple name and n positive')
     index=read(out/'INDEX.json',[]);by={r['instrument_id']:r for r in index}
     if not index:raise ValueError('Corpus INDEX.json missing or empty')
-    excluded=set(excluded or [])|existing_claims(repo)
+    from batch import owners,family_groups
+    excluded=set(excluded or [])|existing_claims(repo)|set(owners(repo))
     families=read(out/'FAMILIES.json',[])
     # Rank actual remaining unlocks, never the obsolete original family size.
     with reservations(repo) as locks:
         unavailable=excluded|set(locks['orders'])
         eligible={iid for iid,row in by.items() if iid not in unavailable}
-        ranked=[]
+        ranked=[];candidate_dossiers={}
         for f in families:
+            if not f['family_id'].startswith('actor:'):continue
             members=sorted(set(f['instrument_ids'])&eligible)
-            if members:ranked.append((members,f['family_id']))
+            for iid in members:
+                if iid not in candidate_dossiers:
+                    d=read(out/by[iid]['dossier'])
+                    if not d or d.get('fingerprint')!=by[iid]['fingerprint'] or d.get('fingerprint')!=canonical_sha(d):
+                        raise ValueError('Stale dossier while grouping: '+iid)
+                    candidate_dossiers[iid]=d
+        for f in family_groups(candidate_dossiers):
+            members=sorted({m['instrument_id'] for m in f['members']})
+            if len(members)>=2:ranked.append((members,f['family_id']))
         ranked.sort(key=lambda f:(-len(f[0]),f[1]))
         selected=[]
         for members,family in ranked:
@@ -95,12 +105,84 @@ def main(argv=None):
     s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path)
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
+    s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
+    s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
+    s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path)
+    s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
+    s=sub.add_parser('overlay-prepare');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('overlay-assemble');s.add_argument('bundle',type=Path);s.add_argument('--sheet',type=Path,required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('overlay-check');s.add_argument('bundle',type=Path);s.add_argument('claims',type=Path)
     s=sub.add_parser('assemble');s.add_argument('sheets',nargs='+',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('check');s.add_argument('claims',type=Path)
     sub.add_parser('status')
     s=sub.add_parser('release');s.add_argument('--agent',required=True);s.add_argument('instrument_ids',nargs='+')
     a=p.parse_args(argv);repo=a.repo.resolve();out=(a.output or repo/'jobs/claim-kit/output').resolve()
     try:
+        if a.command.startswith('overlay-'):
+            import status_overlay as overlay
+            if a.command in ('overlay-assemble','overlay-check'):
+                bundle=overlay._destination(repo,a.bundle)
+                evidence=read(bundle/'EVIDENCE.json');decision=read(bundle/'STATUS_DECISION.json')
+                review=read(bundle/'STATUS_REVIEW.json');proposal=read(bundle/'PROMOTION_PROPOSAL.json')
+                if a.command=='overlay-assemble':
+                    dest=a.write.resolve()
+                    if dest.exists() or not dest.is_relative_to(bundle):raise ValueError('new working claim must stay under isolated overlay bundle')
+                    claim,errors=overlay.assemble_working(repo,read(a.sheet),proposal,decision,review,evidence)
+                    if errors:print(json.dumps({'errors':errors,'claims_published':0}));return 1
+                    dest.parent.mkdir(parents=True,exist_ok=True)
+                    dest.write_bytes((json.dumps(claim,ensure_ascii=False,sort_keys=True)+'\n').encode())
+                    print(json.dumps({'working_claim':str(dest),'experimental_only':True,'claims_published':0}));return 0
+                rows=[]
+                for number,line in enumerate(a.claims.read_text('utf-8').splitlines(),1):
+                    if line.strip():rows.append({'line':number,'errors':overlay.check_working_claim(repo,json.loads(line),proposal,decision,review,evidence)})
+                print(json.dumps({'checked':len(rows),'failures':[r for r in rows if r['errors']],'experimental_only':True,'claims_published':0}))
+                return int(not rows or any(r['errors'] for r in rows))
+            if a.command=='overlay-prepare':
+                if a.write.exists():raise ValueError('Overlay destination exists; refusing overwrite')
+                mod=overlay._history_module(repo);packet=mod.show(repo/'jobs/status-history/output',a.instrument_id)
+                telemetry={};evidence=overlay.freeze_evidence(repo,out,packet,telemetry)
+                dest=overlay._destination(repo,a.write);dest.mkdir(parents=True)
+                dump(dest/'EVIDENCE.json',evidence);dump(dest/'STATUS_DECISION.json',overlay.extend_decision(packet,evidence,a.agent))
+                dump(dest/'FREEZE_TELEMETRY.json',telemetry)
+                print(json.dumps({'instrument_id':a.instrument_id,'evidence_fingerprint':evidence['fingerprint'],'folder':str(dest),'statuses_published':0}));return 0
+            evidence=read(a.evidence);decision=read(a.decision)
+            if a.command=='overlay-review-sheet':
+                if a.write.exists():raise ValueError('Review sheet exists; refusing overwrite')
+                dump(a.write,overlay.blank_review(decision,evidence,a.reviewer));print(str(a.write));return 0
+            review=read(a.review);proposal=overlay.propose(repo,decision,review,evidence)
+            result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence)
+            print(json.dumps({'proposal_fingerprint':proposal['fingerprint'],'folder':str(a.write),'owner_acceptance':proposal['owner_acceptance'],'statuses_published':0}));return 0
+        if a.command=='view':
+            import batch
+            print(batch.view(repo,a.packet,a.order,a.source));return 0
+        if a.command in ('prepare','apply','batch-check'):
+            import batch
+            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal)
+            elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
+            else:result=batch.check(repo,a.packet,a.applied)
+            failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
+            actual=result.get('actual_claim_checker',{})
+            if a.command=='batch-check':failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return int(failed)
+        if a.command in ('history','status-sheet'):
+            # Reuse the status-history producer; this creates no rival dossier,
+            # claim assembler or automatic provisional-status publication path.
+            import importlib.util
+            spec=importlib.util.spec_from_file_location('claim_kit_status_history',repo/'jobs/status-history/history.py')
+            mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+            packet=mod.show(repo/'jobs/status-history/output',a.instrument_id)
+            validation=mod.validate_packet(repo,packet)
+            if validation:raise ValueError('Status-history source validation failed: '+str(validation))
+            if a.command=='history':
+                print(json.dumps(packet,ensure_ascii=False,indent=2) if a.full else mod.canon(mod.compact(packet)))
+            else:
+                if a.write.exists():raise ValueError('Status decision exists; refusing overwrite')
+                dump(a.write,mod.blank_decision(packet,a.agent));print(str(a.write))
+            return 0
         if a.command=='build':build(repo,out,os.environ.get('JOB_CACHE_DIR'));return 0
         if a.command=='next':
             excluded=read(a.exclude,[]) if a.exclude else []
@@ -123,8 +205,14 @@ def main(argv=None):
             return 0
         if a.command=='status':
             summary=read(out/'SUMMARY.json',{'error':'No corpus run'})
+            warnings=summary.pop('warnings',[])
+            summary['warnings_count']=len(warnings)
+            summary['warnings_file']=str(out/'SUMMARY.json')
             summary['committed_claim_identities']=len(existing_claims(repo))
-            summary['reservations']=read(repo/'research/readiness/CLAIM_KIT_LOCK.json',{}).get('orders',{})
+            locked=read(repo/'research/readiness/CLAIM_KIT_LOCK.json',{}).get('orders',{})
+            summary['reserved_orders']=len(locked)
+            summary['reservations_by_agent']={name:sum(r.get('agent')==name for r in locked.values())
+                for name in sorted({r.get('agent','unassigned') for r in locked.values()})}
             print(json.dumps(summary,indent=2));return 0
         if a.command=='assemble':
             if a.write.exists():raise ValueError('Output file exists; refusing overwrite: '+str(a.write))

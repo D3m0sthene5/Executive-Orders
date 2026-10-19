@@ -1,0 +1,91 @@
+{
+  "agent_path": "/root/status_overlay",
+  "billed_dollars": null,
+  "complete_active_labor_seconds": null,
+  "coverage_start_utc": "2026-10-18T13:09:31.041Z",
+  "last_runtime_thread_cumulative_counter": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 5961600,
+    "input_tokens": 6108457,
+    "output_tokens": 47386,
+    "reasoning_output_tokens": 13026,
+    "total_tokens": 6155843
+  },
+  "limits": [
+    "Snapshot excludes subsequent responses and independent reviewer unless separately recorded.",
+    "Input includes cached input; reasoning output is included in output and must not be added again.",
+    "Outer tools count wrappers such as functions.exec; nested tool calls and retries are not fully counted.",
+    "Do not sum last runtime cumulative counters with per-response sums. Counter aggregation may differ; both are exposed.",
+    "These implementation/review costs do not measure savings versus equal-quality legal adjudication.",
+    "Initial and followup phases exclude intervening idle time; wall spans are not complete active labor. Only this agent rollout is exported."
+  ],
+  "observed_usage_since_phase_floor": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 1455616,
+    "input_tokens": 1479469,
+    "output_tokens": 8655,
+    "reasoning_output_tokens": 3534,
+    "total_tokens": 1488124,
+    "uncached_input_tokens_derived": 23853
+  },
+  "outer_tool_calls_by_name": {
+    "exec": 40,
+    "send_message": 12
+  },
+  "outer_tool_calls_since_phase_floor": {
+    "exec": 8,
+    "send_message": 1
+  },
+  "per_response_usage_records": 53,
+  "phase_boundary_source": "Exact own rollout first and second turn_context timestamps; initial final-answer timestamp bounds initial wall span.",
+  "phase_floor_start_utc": "2026-10-18T13:44:56.344Z",
+  "phases": {
+    "followup": {
+      "counter_through_utc": "2026-10-18T13:48:39.543Z",
+      "observed_response_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1455616,
+        "input_tokens": 1479469,
+        "output_tokens": 8655,
+        "reasoning_output_tokens": 3534,
+        "total_tokens": 1488124,
+        "uncached_input_tokens_derived": 23853
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 8,
+        "send_message": 1
+      },
+      "turn_started_utc": "2026-10-18T13:44:56.344Z"
+    },
+    "initial": {
+      "final_answer_utc": "2026-10-18T13:25:35.861Z",
+      "observed_response_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4505984,
+        "input_tokens": 4628988,
+        "output_tokens": 38731,
+        "reasoning_output_tokens": 9492,
+        "total_tokens": 4667719,
+        "uncached_input_tokens_derived": 123004
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 32,
+        "send_message": 11
+      },
+      "turn_started_utc": "2026-10-18T13:09:26.417Z"
+    }
+  },
+  "rollout_filename": "rollout-2026-10-18T09-09-25-01a14f21-9c51-7f72-b81f-8bc3f9cfe646.jsonl",
+  "schema": "eo-excavator-runtime-telemetry/v1",
+  "snapshot_cutoff_utc": "2026-10-18T13:48:39.543Z",
+  "source": "Exact own-chat rollout JSONL selected using CODEX_THREAD_ID; no conversation contents exported.",
+  "sum_observed_response_usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 5961600,
+    "input_tokens": 6108457,
+    "output_tokens": 47386,
+    "reasoning_output_tokens": 13026,
+    "total_tokens": 6155843,
+    "uncached_input_tokens_derived": 146857
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "actual_order": "EO:11352",
+  "authoritative_files_after": {
+    "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv": "fe765b62f799c2dc81f4c1f2358d2d88f8289d8044367ccba9bac160c5f505ff",
+    "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f"
+  },
+  "authoritative_files_before": {
+    "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv": "fe765b62f799c2dc81f4c1f2358d2d88f8289d8044367ccba9bac160c5f505ff",
+    "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f"
+  },
+  "authoritative_files_unchanged": true,
+  "compiled_shard_opens": 0,
+  "current_summary_sha256": "e907f9b156c8b374722fd91443fafeeab298076b2634d4405c16a34ed9ce1266",
+  "evidence_sha256": "4e184ac9feece8b5db0c05a825f921664adf5a26ac74af56dc06913b33b59bd8",
+  "normal_validation_seconds": 0.084298,
+  "original_summary_receipt_sha256": "e907f9b156c8b374722fd91443fafeeab298076b2634d4405c16a34ed9ce1266",
+  "owner_accepted": false,
+  "production_code_edits": [],
+  "proposal_exact_match": true,
+  "proposal_sha256": "210b5afb660d3a5b97fdd3dacb2b4c3d77187946dad84cb13de93be97ef0e771",
+  "receipt_only_control": "Patched SUMMARY reader in memory; no canonical files modified. Exact proposal/dossier remains valid.",
+  "receipt_only_control_seconds": 0.155347,
+  "reviewed_guard": "Current compiler schema/code/file-set and consumed shard manifest remain pinned; SUMMARY receipt metadata alone does not invalidate frozen evidence. Bounded sources, history and authority still revalidate.",
+  "schema": "eo-status-overlay-followup-verification/v1",
+  "tests": {
+    "cli_smoke": "Synthetic isolated overlay-assemble -> overlay-check succeeds. Canonical destination, overwrite, blank sheet and stripped label rejected.",
+    "command": "python -B -m unittest discover -s jobs/claim-kit -p test_status_overlay.py -v",
+    "failed": 0,
+    "passed": 35,
+    "tests": 35,
+    "unittest_reported_seconds": 8.058
+  }
+}

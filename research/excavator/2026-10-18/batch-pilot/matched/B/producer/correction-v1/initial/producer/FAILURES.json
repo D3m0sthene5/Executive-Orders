@@ -1,0 +1,22 @@
+[
+  {
+    "failure": "READ and git status output truncated; HANDOFF.md path absent; repeated later bounded reads cover the required sources; truncation is not evidence absence.",
+    "stage": "initial combined reads"
+  },
+  {
+    "failure": "35791-token metadata/source index display truncated; bounded follow-up reads used.",
+    "stage": "first metadata read"
+  },
+  {
+    "failure": "Windows stdout cp1252 UnicodeEncodeError U+2666; reported immediately to root; exact source reread with UTF-8 stdout.",
+    "stage": "EO12815 source read"
+  },
+  {
+    "failure": "Top-level tool output truncation removed part of EO12734/EO12817; both reread in full bounded call.",
+    "stage": "second combined source read"
+  },
+  {
+    "failure": "git ls-remote DNS failure; root supplied live-main verification and fixed experiment pin; no retry/fetch required.",
+    "stage": "Git main verification"
+  }
+]

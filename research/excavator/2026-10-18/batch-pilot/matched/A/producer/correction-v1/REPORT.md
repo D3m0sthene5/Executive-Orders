@@ -1,0 +1,13 @@
+# Arm A correction v1
+
+Only independently accepted EO12720 is retained as an exact proposed claim; its canonical SHA-256 is unchanged. All six frozen cases remain in the denominator: one retained proposal and five unable cases. Initial producer artifacts remain byte-for-byte preserved, including all failures and rejected claims, as verified in INITIAL_ARTIFACT_PRESERVATION.json.
+
+EO12813 approval is withdrawn because December 31, 1992 is a not-later-than bound, not an affirmatively established exact first cessation. EO12734 and EO12817 approval is withdrawn because historical congressional-transmission/publication commands need distinct supported first ends; later 2004 revocation does not supply those dates. Their corrected inventories separate these commands and keep unknown exact dates blank. EO12696 and EO12722 remain unable on their independently upheld blockers.
+
+The UNSCR1483 paragraphs 10, 16-17/23 and OFAC575.533 effective May23,2003 lead is an unresolved acquisition/legal-scope task for EO12817. Restoration of Resolution778 funds remains contemplated. The lead supplies no automatic 2003 whole ending and no inference that transfers, repayments or assets were exhausted.
+
+All six corrected sheets were run through the existing assembler: one pass, five deliberate fail-closed results, zero unexpected assembly failures. EO12720 also passed the actual claim-checker: one claim, one gate/mechanical pass, 39 exact quotations and 30 GPO published-hash source matches. The first checker invocation failed in the sandbox default TEMP; that failure is preserved. Retry with TMP/TEMP/TMPDIR inside correction-v1 passed all 28 checker unit tests and the single-claim check. No fetch flag or network acquisition was used.
+
+Precise shared research/acquisition tasks appear in ACQUISITION_TASKS.json. No canonical statuses/claims/census/reservations/HANDOFF files were written, and no human certification or publication is asserted.
+
+The initial token-unavailability statement in the preserved ../TELEMETRY.json is corrected by MODEL_USAGE_ADDENDUM.json. INITIAL_RUNTIME_TELEMETRY.json contains complete actual initial-turn counters from first response through initial submission, excluding this correction. CORRECTION_RUNTIME_TELEMETRY.json contains separately partitioned correction counters through its recorded snapshot. RUNTIME_SNAPSHOT.json is the restored capture script's numeric-only exact own-rollout export. This script may be rerun after the correction final response to include that response and mark the correction phase complete. No unrelated logs or message contents were exported. Runtime counters do not establish dollars, active labor or savings.

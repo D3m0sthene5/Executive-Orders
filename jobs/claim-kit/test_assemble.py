@@ -83,6 +83,15 @@ class AssemblyTests(unittest.TestCase):
                          "The Board shall perform the specified duties.")
         self.assertNotIn("reviewer", json.dumps(claim))
 
+    def test_weak_original_requires_separate_page_confirmation(self):
+        self.dossier['evidence']['ORIGINAL:EO:1']['requires_page_check']=True
+        self.refresh();self.sheet['dossier_sha256']=self.dossier['fingerprint']
+        self.assertFails('original_page_check_confirmation_required')
+        self.sheet['original_pages_confirmed']=True
+        claim,errors=self.assemble();self.assertEqual(errors,[])
+        claim['claim_kit']['original_pages_confirmed']=False
+        self.assertIn('original_page_check_confirmation_required',A.check_claim(claim,self.repo,self.dossier))
+
     def test_inputs_are_immutable(self):
         before = deepcopy((self.sheet, self.dossier))
         self.assemble()
@@ -146,6 +155,123 @@ class AssemblyTests(unittest.TestCase):
         self.refresh()
         self.sheet["dossier_sha256"] = self.dossier["fingerprint"]
         self.assertEqual(self.assemble()[1], [])
+
+    def override(self):
+        original = self.dossier["evidence"][self.dossier["original_source_id"]]
+        quote = "The Board shall perform the specified duties."
+        start = original["char_start"] + original["text"].index(quote)
+        return {"scope_id": "EO:1#operative-corrected", "source_id": self.dossier["original_source_id"],
+                "char_start": start, "char_end": start + len(quote),
+                "reason": "Remove printed document metadata; this exact sentence contains the operative command."}
+
+    def apply_override(self, overrides=None):
+        overrides = [self.override()] if overrides is None else overrides
+        self.sheet["inventory_overrides"] = deepcopy(overrides)
+        row = deepcopy(self.sheet["clauses"][0])
+        self.sheet["clauses"] = []
+        for override in overrides:
+            decision = deepcopy(row)
+            decision["scope_id"] = override.get("scope_id")
+            decision.pop("clause_id", None)  # The assembler selects the derived id.
+            self.sheet["clauses"].append(decision)
+
+    def test_inventory_correction_roundtrip_removes_metadata_and_bad_headings(self):
+        original = self.dossier["evidence"][self.dossier["original_source_id"]]
+        # Represent an OCR parser's metadata clause and false crossref heading.
+        self.dossier["clauses"] = [
+            {"id": "CLAUSES:EO:1#lead", "scope_id": "EO:1#lead", "source": deepcopy(original["source"]),
+             "text": "Executive Order 1. ", "char_start": 0, "char_end": 19},
+            {"id": "CLAUSES:EO:1#false-heading", "scope_id": "EO:1#false-heading", "source": deepcopy(original["source"]),
+             "text": original["text"][19:], "char_start": 19, "char_end": original["char_end"]}]
+        self.refresh()
+        self.sheet["dossier_sha256"] = self.dossier["fingerprint"]
+        self.apply_override()
+        before = deepcopy((self.dossier, self.sheet))
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+        self.assertEqual(A._gate(self.repo).validate_claim(claim, "no"), [])
+        self.assertEqual(claim["operative_clauses"][0]["scope_id"], "EO:1#operative-corrected")
+        self.assertEqual(claim["operative_clauses"][0]["original_operative_text"], "The Board shall perform the specified duties.")
+        self.assertTrue(A.decode_evidence_id(claim["operative_clauses"][0]["original_source"]).startswith("OVERRIDE:ORIGINAL:EO:1#"))
+        self.assertEqual(claim["claim_kit"]["inventory_overrides"], self.sheet["inventory_overrides"])
+        self.assertEqual((self.dossier, self.sheet), before)
+
+    def test_inventory_correction_rejects_hostile_or_malformed_spans(self):
+        changes = [{"char_start": -1}, {"char_end": 100000}, {"char_end": 0},
+                   {"char_start": True}, {"source_id": "ACT:EO:1>EO:2"},
+                   {"scope_id": "EO:999#whole"}, {"reason": ""},
+                   {"quote": "a free quote is prohibited"}, {"source": {"url": "https://invented.gov"}}]
+        for change in changes:
+            with self.subTest(change=change):
+                override = {**self.override(), **change}
+                self.apply_override([override])
+                self.assertFails("inventory_override")
+
+    def test_inventory_correction_rejects_overlap_and_duplicate_scopes(self):
+        first = self.override()
+        second = {**first, "scope_id": "EO:1#second", "char_start": first["char_start"] + 1}
+        self.apply_override([first, second])
+        self.assertFails("overlapping_spans")
+        second = {**first}
+        self.apply_override([first, second])
+        self.assertFails("duplicate_scope")
+
+    def test_inventory_correction_requires_complete_explicit_clause_decisions(self):
+        self.apply_override()
+        saved = deepcopy(self.sheet["clauses"])
+        self.sheet["clauses"] = []
+        self.assertFails("clause_inventory_mismatch")
+        self.sheet["clauses"] = saved
+        self.sheet["inventory_confirmed"] = False
+        self.assertFails("inventory_confirmed_required")
+
+    def test_inventory_correction_claim_metadata_cannot_be_edited_or_removed(self):
+        self.apply_override()
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        changed = deepcopy(claim)
+        changed["claim_kit"]["inventory_overrides"][0]["char_start"] += 1
+        self.assertTrue(A.check_claim(changed, self.repo, self.dossier))
+        changed = deepcopy(claim)
+        del changed["claim_kit"]["inventory_overrides"]
+        self.assertTrue(A.check_claim(changed, self.repo, self.dossier))
+        changed = deepcopy(claim)
+        changed["operative_clauses"][0]["original_source"]["quote"] = "invented"
+        self.assertTrue(A.check_claim(changed, self.repo, self.dossier))
+
+    def test_inventory_correction_cannot_reuse_old_clause_pointer(self):
+        self.apply_override()
+        self.sheet["clauses"][0]["clause_id"] = "CLAUSES:EO:1#whole"
+        self.assertFails("corrected_evidence_id_mismatch")
+
+    def test_source_evidence_ids_are_canonical_encoded_and_lookup_strictly(self):
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        source = claim["operative_clauses"][0]["first_end"]["source"]
+        self.assertEqual(source["evidence_id_encoding"], "base64url-utf8")
+        self.assertNotIn("EO:", source["evidence_id"])
+        self.assertEqual(A.decode_evidence_id(source), "ACT:EO:1>EO:2")
+        self.assertEqual(source["quote"], self.dossier["evidence"]["ACT:EO:1>EO:2"]["text"])
+        self.assertEqual(self.sheet["clauses"][0]["end_id"], "ACT:EO:1>EO:2")
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+        for change in ({"evidence_id": "ACT:EO:1>EO:2"},
+                       {"evidence_id_encoding": "unrecognized"},
+                       {"evidence_id": source["evidence_id"] + "="},
+                       {"evidence_id": "_w"},
+                       {"evidence_id": A.encode_evidence_id("ACT:EO:1>EO:999")},
+                       {"evidence_id": ""}):
+            with self.subTest(change=change):
+                changed = deepcopy(claim)
+                changed["operative_clauses"][0]["first_end"]["source"].update(change)
+                self.assertTrue(A.check_claim(changed, self.repo, self.dossier))
+
+    def test_encoded_evidence_id_unicode_roundtrip_requires_marker(self):
+        ident = "TERM:EO:123½:café:effective#1"
+        encoded = A.encode_evidence_id(ident)
+        self.assertEqual(A.decode_evidence_id({"evidence_id": encoded, "evidence_id_encoding": "base64url-utf8"}), ident)
+        with self.assertRaises(ValueError):
+            A.decode_evidence_id({"evidence_id": encoded})
 
     def test_no_free_sources(self):
         self.sheet["clauses"][0]["end_id"] = "my invented source"

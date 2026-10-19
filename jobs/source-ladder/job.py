@@ -45,7 +45,7 @@ def previous_found(prior):
     out = {}
     for src in prior.jsonl("SOURCES.jsonl"):
         wid = src.get("wanted_id")
-        if wid in found_ids and wid not in out:
+        if wid in found_ids and wid not in out and src.get('matches_expected_sha256') is not False:
             text = prior.read(src["text_path"]) if src.get("text_path") else None
             out[wid] = (src, text)
     return out
@@ -85,7 +85,32 @@ def main():
     shared = ladder_queue.shared_source_wanted(repo, eo_index, hints) if (repo / ladder_queue.SHARED).exists() else []
     opus, more = ladder_queue.opus_refetch_wanted(repo)
     problems += more
+    # Read the prior output before selecting work: a bounded run retains held
+    # evidence outside the selected requests and avoids spending its limit on it.
+    prior = None
+    if os.environ.get('JOB_CARRY_FORWARD','1') != '0':
+        prior_dir = os.environ.get('JOB_PRIOR_OUTPUT_DIR')
+        prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
+                 else prior_output.PriorOutput.from_git_head(repo, f'jobs/{name}/output'))
+    all_prior_found = previous_found(prior)
+    carried = {} if os.environ.get('JOB_REFETCH') == '1' else all_prior_found
     items = queue_items + shared + opus
+    plan_path = os.environ.get('JOB_PLAN_FILE')
+    plan_used = None
+    if plan_path:
+        from plan import select_plan
+        plan_used = json.loads(Path(plan_path).read_text('utf-8'))
+        items = select_plan(items, plan_used)
+        budget = env_int('JOB_MAX_REQUESTS')
+        os.environ['JOB_MAX_REQUESTS'] = str(min(budget, plan_used['max_requests']) if budget is not None else plan_used['max_requests'])
+    elif os.environ.get('JOB_READINESS_PLAN','1') != '0' and not os.environ.get('JOB_ONLY') and limit is None:
+        from plan import make_readiness_plan, select_plan
+        plan_used = make_readiness_plan(items,set(carried),repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
+                                       limit=env_int('JOB_PLAN_LIMIT') or 12,budget=env_int('JOB_MAX_REQUESTS') or 80)
+        items = select_plan(items,plan_used)
+        os.environ['JOB_MAX_REQUESTS'] = str(plan_used['max_requests'])
+    # Even explicit legacy selections get a finite request budget by default.
+    os.environ.setdefault('JOB_MAX_REQUESTS','80')
     only = [x.strip() for x in os.environ.get("JOB_ONLY", "").split(",") if x.strip()]
     if only:  # e.g. JOB_ONLY="USC::,CFR::" or JOB_ONLY="STAT::66 Stat. 259"
         items = [w for w in items if any(w.wanted_id == o or w.wanted_id.startswith(o) for o in only)]
@@ -93,12 +118,6 @@ def main():
         items = items[:limit]
 
     # Items the last committed output already found are carried forward, not downloaded again.
-    prior = None
-    if os.environ.get("JOB_CARRY_FORWARD", "1") != "0":
-        prior_dir = os.environ.get("JOB_PRIOR_OUTPUT_DIR")
-        prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
-                 else prior_output.PriorOutput.from_git_head(repo, f"jobs/{name}/output"))
-    carried = {} if os.environ.get("JOB_REFETCH") == "1" else previous_found(prior)
     print(f"Queue: {len(queue_items)} from FETCH_QUEUE.jsonl, {len(shared)} shared sources not yet retrieved, "
           f"{len(opus)} Opus originals to re-fetch; "
           f"working on {len(items)} ({sum(1 for w in items if w.wanted_id in carried)} already found in "
@@ -150,6 +169,15 @@ def main():
         rel = "texts/" + fetch_ladder.unique_file_name(w.wanted_id)
         fetch_ladder.write_text_lf(out / rel, text)
         src["text_path"] = rel
+
+    # Bounded plans must not erase evidence acquired by an earlier pass. Keep
+    # exact prior bytes and receipts even when those requests are outside this
+    # pass. These are carried evidence, not new acquisitions or readiness gains.
+    if plan_used:
+        from plan import retain_unselected
+        old_sources, old_results = retain_unselected(prior, all_prior_found, {w.wanted_id for w in items}, out)
+        sources.extend(old_sources)
+        results.extend(old_results)
 
     for n, w in enumerate(items, 1):
         print(f"[{n}/{len(items)}] {w.wanted_id} ({len(w.instrument_ids)} orders)")
@@ -218,8 +246,12 @@ def main():
     for a in attempts:
         a.pop("path", None)
     write_jsonl("SOURCES.jsonl", sources)
+    if plan_used:
+        fetch_ladder.write_text_lf(out/'SOURCE_PLAN.json',json.dumps(plan_used,sort_keys=True,indent=2)+'\n')
     write_jsonl("ATTEMPTS.jsonl", attempts)
     write_jsonl("EXHAUSTED_PROPOSED.jsonl", exhausted)
+    if plan_used and prior:
+        write_jsonl('PREVIOUS_UNRESOLVED.jsonl', [r for r in prior.csv_rows('RESULTS.csv') if r.get('result')!='found'])
     with open(out / "RESULTS.csv", "w", encoding="utf-8", newline="") as fh:
         wr = csv.DictWriter(fh, fieldnames=RESULT_COLUMNS, lineterminator="\n")
         wr.writeheader()
@@ -231,6 +263,8 @@ def main():
         "items_in_queue": len(queue_items) + len(shared), "items_worked": len(items),
         "from_fetch_queue": len(queue_items), "from_stage20_shared_sources": len(shared),
         "found": counts.get("found", 0),
+        "new_sources_found": sum(not s.get('carried_forward_from') for s in sources),
+        "distinct_new_source_hashes": len({s['sha256'] for s in sources if not s.get('carried_forward_from')}),
         "found_carried_forward": sum(1 for r in results if r["carried_forward_from"]),
         "exhausted_proposed_items": counts.get("exhausted_proposed", 0),
         "exhausted_proposed_lines": len(exhausted),
@@ -241,6 +275,7 @@ def main():
         "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
+        "source_plan": plan_used,
         "seconds": round(time.time() - t0, 1),
         "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
     }

@@ -1,0 +1,62 @@
+{
+  "producer": "sol-producer-11948",
+  "actor_family": "EO:11948",
+  "phase": "full_frozen_dossier_confirmed_for_approved_EO_11868",
+  "evidence_scope": "only the two assigned tmp/claim-kit-local/dossiers/EO_<n>.json; local assembler/schema instructions and held exact-text checks only",
+  "outcomes": [
+    {
+      "instrument_id": "EO:11860",
+      "decision_file": "EO_11860.decision.json",
+      "outcome": "unable",
+      "dossier_sha256": "7b587454f49a4293b0c1bac654b5be563784ad34b1f1114541dc94ac348870f3",
+      "assembly_errors": [
+        "approved_required",
+        "unresolved_material_gaps",
+        "unknown_evidence_id:None",
+        "effective_date_confirmation_required:None",
+        "clause_1_first_end",
+        "clause_2_first_end",
+        "producer_approval_required",
+        "operative_clauses[1].first_end.source:source_sha256",
+        "operative_clauses[1].first_end.source:text_sha256",
+        "operative_clauses[1].first_end.source:text_unavailable_or_unsafe",
+        "operative_clauses[1].first_end.source:not_dossier_evidence",
+        "operative_clauses[2].first_end.source:source_sha256",
+        "operative_clauses[2].first_end.source:text_sha256",
+        "operative_clauses[2].first_end.source:text_unavailable_or_unsafe",
+        "operative_clauses[2].first_end.source:not_dossier_evidence"
+      ],
+      "concrete_gaps": [
+        "ORIGINAL:EO:11860 section 2 requires the Committee to conclude its work within one year, without an automatic cessation clause. The dossier lacks evidence of actual completion or another event fixing the first cessation of section 2 mission functions and section 3 mission-dependent assistance/expenses before formal revocation on 1976-12-31. The deadline alone cannot supply those first-end dates."
+      ],
+      "whole_order_end": null,
+      "inventory_clause_count": 4,
+      "full_dossier_rechecked_sha256": "5bea40ee69209eb489b6a40ea86cdf7a2d291cea9bdb649df95a623afd1b8bfd",
+      "freeze_disposition": "unable unchanged; no approved claim to rebase"
+    },
+    {
+      "instrument_id": "EO:11868",
+      "decision_file": "EO_11868.decision.json",
+      "outcome": "accept_for_review",
+      "dossier_sha256": "f5efd53e28368d5986de2b50f4071f8e99b7c3d69ab2fd93b936bf503129f7c7",
+      "assembly_errors": [],
+      "concrete_gaps": [],
+      "whole_order_end": "1977-01-16",
+      "inventory_clause_count": 14,
+      "freeze_confirmation": "FREEZE_CONFIRMATION.json"
+    }
+  ],
+  "frozen_dossier_reconfirmation_required": false,
+  "telemetry": {
+    "assembly_and_write_wall_seconds": 0.04101419199923839,
+    "model_usage_tokens": "unavailable: no model usage telemetry exposed",
+    "overall_reasoning_wall_time": "unavailable: not measured",
+    "operations": "Read guides and schema; read both dossier originals, actor contexts, own terms, earlier chain, conflicts, missing and search metadata; derive corrected exact-span inventories; blank_sheet and assemble called for both; only own producer artifacts written; no claims/reviews/status/commits.",
+    "cumulative_calls_including_final_write": {
+      "functions.exec": 12,
+      "tools.exec_command": 14,
+      "collaboration.send_message": 4
+    }
+  },
+  "freeze_confirmation": "FREEZE_CONFIRMATION.json"
+}

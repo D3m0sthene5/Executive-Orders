@@ -1,0 +1,124 @@
+{
+  "schema": "runner-own-rollout-phases/v1",
+  "thread_id": "01a14f1b-edd3-7e32-b6ca-a2b51d033234",
+  "source_log_filename": "rollout-2026-10-18T09-03-12-01a14f1b-edd3-7e32-b6ca-a2b51d033234.jsonl",
+  "source_capture_script_sha256": "625fae32eaccd5b8b9125ce7c43ba9025024c2841f2c2c802418fc3bc330e342",
+  "snapshot_cutoff_utc": "2026-10-18T13:59:02.403Z",
+  "phases": [
+    {
+      "phase": "initial_runner_engineering",
+      "turn_id": "01a14f1b-ee2c-7210-90fb-c61cc94e2283",
+      "task_started_utc": "2026-10-18T13:03:12.955Z",
+      "task_completed_utc": "2026-10-18T13:17:46.915Z",
+      "usage_snapshot_cutoff_utc": "2026-10-18T13:17:46.896Z",
+      "phase_complete": true,
+      "task_wall_seconds_complete_or_through_usage_snapshot": 873.96,
+      "per_response_usage_records": 33,
+      "sum_observed_response_usage": {
+        "input_tokens": 2471489,
+        "cached_input_tokens": 2395648,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 28592,
+        "reasoning_output_tokens": 13091,
+        "total_tokens": 2500081,
+        "uncached_input_tokens_derived": 75841
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 27,
+        "send_message": 5
+      },
+      "outer_tool_calls_total": 32
+    },
+    {
+      "phase": "independent_EO11352_source_review",
+      "turn_id": "01a14f31-1692-74f1-8bbf-9d187dd18724",
+      "task_started_utc": "2026-10-18T13:26:19.553Z",
+      "task_completed_utc": "2026-10-18T13:29:18.040Z",
+      "usage_snapshot_cutoff_utc": "2026-10-18T13:29:18.021Z",
+      "phase_complete": true,
+      "task_wall_seconds_complete_or_through_usage_snapshot": 178.487,
+      "per_response_usage_records": 12,
+      "sum_observed_response_usage": {
+        "input_tokens": 1558615,
+        "cached_input_tokens": 1519488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6807,
+        "reasoning_output_tokens": 1763,
+        "total_tokens": 1565422,
+        "uncached_input_tokens_derived": 39127
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 10,
+        "send_message": 1
+      },
+      "outer_tool_calls_total": 11
+    },
+    {
+      "phase": "dynamic_input_declaration_fix",
+      "turn_id": "01a14f3d-28b5-71b2-a0e2-967c5dc9e7c7",
+      "task_started_utc": "2026-10-18T13:39:30.628Z",
+      "task_completed_utc": "2026-10-18T13:44:43.842Z",
+      "usage_snapshot_cutoff_utc": "2026-10-18T13:44:43.821Z",
+      "phase_complete": true,
+      "task_wall_seconds_complete_or_through_usage_snapshot": 313.214,
+      "per_response_usage_records": 13,
+      "sum_observed_response_usage": {
+        "input_tokens": 2034274,
+        "cached_input_tokens": 2008320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10903,
+        "reasoning_output_tokens": 5153,
+        "total_tokens": 2045177,
+        "uncached_input_tokens_derived": 25954
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 9,
+        "send_message": 3
+      },
+      "outer_tool_calls_total": 12
+    },
+    {
+      "phase": "per_consumer_output_generation_fix",
+      "turn_id": "01a14f45-d4ef-74c2-b3a2-75ff9d4b3fc7",
+      "task_started_utc": "2026-10-18T13:48:59.008Z",
+      "task_completed_utc": null,
+      "usage_snapshot_cutoff_utc": "2026-10-18T13:59:02.403Z",
+      "phase_complete": false,
+      "task_wall_seconds_complete_or_through_usage_snapshot": 603.395,
+      "per_response_usage_records": 23,
+      "sum_observed_response_usage": {
+        "input_tokens": 4203484,
+        "cached_input_tokens": 4170880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17017,
+        "reasoning_output_tokens": 8371,
+        "total_tokens": 4220501,
+        "uncached_input_tokens_derived": 32604
+      },
+      "outer_tool_calls_by_name": {
+        "exec": 18,
+        "send_message": 5
+      },
+      "outer_tool_calls_total": 23
+    }
+  ],
+  "sum_engineering_per_response_usage_excluding_source_review": {
+    "input_tokens": 8709247,
+    "cached_input_tokens": 8574848,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 56512,
+    "reasoning_output_tokens": 26615,
+    "total_tokens": 8765759,
+    "uncached_input_tokens_derived": 134399
+  },
+  "correction": "Earlier runner/EO11352 subtask reports stated actual per-agent token telemetry was unavailable because only tool-exposed counters had been checked. Exact own-thread per-response runtime usage exists in this rollout and is exported here. Earlier records are preserved as historical observations, not the final availability conclusion.",
+  "limits": [
+    "This is exact own-thread runtime telemetry, not billed dollars.",
+    "Input includes cached input. Reasoning output is already part of output; never add it again.",
+    "Do not add cumulative counters to per-response sums.",
+    "Current phase remains a snapshot until its task_complete event is recorded.",
+    "Independent EO11352 source review is separately partitioned; its cost is not runner engineering.",
+    "Outer tool wrappers are counted; nested calls and retries are not exhaustively counted.",
+    "Task wall intervals include execution/waits, not complete active labor or an equal-quality saving comparison."
+  ]
+}

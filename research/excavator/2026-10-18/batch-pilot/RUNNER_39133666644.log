@@ -1,0 +1,586 @@
+run	Set up job	﻿2026-10-18T13:55:19.3762677Z Current runner version: '2.337.0'
+run	Set up job	2026-10-18T13:55:19.3842404Z ##[group]Runner Image Provisioner
+run	Set up job	2026-10-18T13:55:19.3843760Z Hosted Compute Agent
+run	Set up job	2026-10-18T13:55:19.3844946Z Version: 20261012.601
+run	Set up job	2026-10-18T13:55:19.3846508Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+run	Set up job	2026-10-18T13:55:19.3847823Z Build Date: 2026-10-12T17:48:21Z
+run	Set up job	2026-10-18T13:55:19.3849218Z Worker ID: {8b9ba748-dfd0-4fd9-9037-5b3f28052801}
+run	Set up job	2026-10-18T13:55:19.3850506Z Region: eastus
+run	Set up job	2026-10-18T13:55:19.3851495Z Cloud: Azure
+run	Set up job	2026-10-18T13:55:19.3852651Z ##[endgroup]
+run	Set up job	2026-10-18T13:55:19.3875809Z ##[group]Operating System
+run	Set up job	2026-10-18T13:55:19.3877022Z Ubuntu
+run	Set up job	2026-10-18T13:55:19.3877882Z 24.04.5
+run	Set up job	2026-10-18T13:55:19.3878801Z LTS
+run	Set up job	2026-10-18T13:55:19.3879660Z ##[endgroup]
+run	Set up job	2026-10-18T13:55:19.3880582Z ##[group]Runner Image
+run	Set up job	2026-10-18T13:55:19.3881751Z Image: ubuntu-24.04
+run	Set up job	2026-10-18T13:55:19.3882723Z Version: 20261012.334.1
+run	Set up job	2026-10-18T13:55:19.3884693Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+run	Set up job	2026-10-18T13:55:19.3888184Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+run	Set up job	2026-10-18T13:55:19.3890119Z ##[endgroup]
+run	Set up job	2026-10-18T13:55:19.3892015Z ##[group]GITHUB_TOKEN Permissions
+run	Set up job	2026-10-18T13:55:19.3894828Z Contents: write
+run	Set up job	2026-10-18T13:55:19.3916467Z Metadata: read
+run	Set up job	2026-10-18T13:55:19.3917568Z ##[endgroup]
+run	Set up job	2026-10-18T13:55:19.3920797Z Secret source: Actions
+run	Set up job	2026-10-18T13:55:19.3922555Z Cache mode: write
+run	Set up job	2026-10-18T13:55:19.3923867Z Prepare workflow directory
+run	Set up job	2026-10-18T13:55:19.4917187Z Prepare all required actions
+run	Set up job	2026-10-18T13:55:19.4989827Z Getting action download info
+run	Set up job	2026-10-18T13:55:19.7002750Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+run	Set up job	2026-10-18T13:55:19.8304122Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+run	Set up job	2026-10-18T13:55:19.9198918Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+run	Set up job	2026-10-18T13:55:20.0239908Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+run	Set up job	2026-10-18T13:55:20.2748570Z Complete job name: run
+run	Run actions/checkout@v4	﻿2026-10-18T13:55:20.3597292Z ##[group]Run actions/checkout@v4
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3598311Z with:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3598788Z   fetch-depth: 0
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3599251Z   filter: blob:none
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3599756Z   sparse-checkout: .github
+run	Run actions/checkout@v4	jobs
+run	Run actions/checkout@v4	HANDOFF
+run	Run actions/checkout@v4	
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3600601Z   repository: D3m0sthene5/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3606254Z   token: ***
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3606765Z   ssh-strict: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3607245Z   ssh-user: git
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3607720Z   persist-credentials: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3608244Z   clean: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3608712Z   sparse-checkout-cone-mode: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3609296Z   fetch-tags: false
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3609766Z   show-progress: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3610267Z   lfs: false
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3610704Z   submodules: false
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3611213Z   set-safe-directory: true
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3612170Z   allow-unsafe-pr-checkout: false
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3613217Z env:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3613667Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Run actions/checkout@v4	2026-10-18T13:55:20.3614265Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:20.4902398Z Syncing repository: D3m0sthene5/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:20.4906160Z ##[group]Getting Git version info
+run	Run actions/checkout@v4	2026-10-18T13:55:20.4908104Z Working directory is '/home/runner/work/Executive-Orders/Executive-Orders'
+run	Run actions/checkout@v4	2026-10-18T13:55:20.4910762Z [command]/usr/bin/git version
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5073700Z git version 2.55.0
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5107941Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5123416Z Temporarily overriding HOME='/home/runner/work/_temp/4426d88c-ae4f-4ad4-a3a5-8980e767d938' before making global git config changes
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5127271Z Adding repository directory to the temporary git global config as a safe directory
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5144836Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5238611Z Deleting the contents of '/home/runner/work/Executive-Orders/Executive-Orders'
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5241460Z ##[group]Initializing the repository
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5243151Z [command]/usr/bin/git init /home/runner/work/Executive-Orders/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5397172Z hint: Using 'master' as the name for the initial branch. This default branch name
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5416622Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5418987Z hint: to use in all of your new repositories, which will suppress this warning,
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5420716Z hint: call:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5446167Z hint:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5466495Z hint: 	git config --global init.defaultBranch <name>
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5467971Z hint:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5469217Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5471249Z hint: 'development'. The just-created branch can be renamed via this command:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5472929Z hint:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5473769Z hint: 	git branch -m <name>
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5474827Z hint:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5476574Z hint: Disable this message with "git config set advice.defaultBranchName false"
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5479621Z Initialized empty Git repository in /home/runner/work/Executive-Orders/Executive-Orders/.git/
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5483894Z [command]/usr/bin/git remote add origin https://github.com/D3m0sthene5/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5523405Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5524964Z ##[group]Disabling automatic garbage collection
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5526803Z [command]/usr/bin/git config --local gc.auto 0
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5626875Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5647134Z ##[group]Setting up auth
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5666883Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+run	Run actions/checkout@v4	2026-10-18T13:55:20.5707274Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6212266Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6257419Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6509675Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6552339Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6811010Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6858769Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6861190Z ##[group]Fetching the repository
+run	Run actions/checkout@v4	2026-10-18T13:55:20.6872828Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1766986Z From https://github.com/D3m0sthene5/Executive-Orders
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1770752Z  * [new branch]      archive-all-research-progress-20261017 -> origin/archive-all-research-progress-20261017
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1778385Z  * [new branch]      astra/early-census-library-hookup-20261017 -> origin/astra/early-census-library-hookup-20261017
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1782245Z  * [new branch]      astra/production-2026-10-17 -> origin/astra/production-2026-10-17
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1786485Z  * [new branch]      astra/production-families-2026-10-18 -> origin/astra/production-families-2026-10-18
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1790785Z  * [new branch]      astra/road-1-family-rules -> origin/astra/road-1-family-rules
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1793997Z  * [new branch]      astra/road-2-case-bundles -> origin/astra/road-2-case-bundles
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1797386Z  * [new branch]      astra/road-3-runner-speed -> origin/astra/road-3-runner-speed
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1801230Z  * [new branch]      codex/corpus-excavator-20261018 -> origin/codex/corpus-excavator-20261018
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1803507Z  * [new branch]      codex/gap-census-20261018 -> origin/codex/gap-census-20261018
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1806173Z  * [new branch]      fix/tracker-empty-clauses -> origin/fix/tracker-empty-clauses
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1809268Z  * [new branch]      indian-reservations-1912 -> origin/indian-reservations-1912
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1812286Z  * [new branch]      integrate-tools       -> origin/integrate-tools
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1815095Z  * [new branch]      isthmian-canal-1911   -> origin/isthmian-canal-1911
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1818657Z  * [new branch]      job/claim-checker     -> origin/job/claim-checker
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1821630Z  * [new branch]      job/claim-drafts      -> origin/job/claim-drafts
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1824534Z  * [new branch]      job/clause-drafts     -> origin/job/clause-drafts
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1827981Z  * [new branch]      job/current-law       -> origin/job/current-law
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1830763Z  * [new branch]      job/later-events      -> origin/job/later-events
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1833819Z  * [new branch]      job/opus-media-match  -> origin/job/opus-media-match
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1837552Z  * [new branch]      job/source-ladder     -> origin/job/source-ladder
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1840622Z  * [new branch]      main                  -> origin/main
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1843843Z  * [new branch]      official-fixity       -> origin/official-fixity
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1849377Z  * [new branch]      ofr-codification-1989 -> origin/ofr-codification-1989
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1853660Z  * [new branch]      ofr-compilations      -> origin/ofr-compilations
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1857521Z  * [new branch]      parallel-runs         -> origin/parallel-runs
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1860845Z  * [new branch]      readiness-tracker     -> origin/readiness-tracker
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1864638Z  * [new branch]      richardson-volumes    -> origin/richardson-volumes
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1872177Z  * [new branch]      shared-runner-and-handoff -> origin/shared-runner-and-handoff
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1876250Z  * [new branch]      sol-claim-kit         -> origin/sol-claim-kit
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1880808Z  * [new branch]      stage17-unified-evidence-20261017 -> origin/stage17-unified-evidence-20261017
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1884707Z  * [new branch]      unblock-claims        -> origin/unblock-claims
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1888248Z  * [new branch]      wire-new-sources      -> origin/wire-new-sources
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1891346Z  * [new branch]      wpa-lists             -> origin/wpa-lists
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1898122Z [command]/usr/bin/git branch --list --remote origin/codex/corpus-excavator-20261018
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1901409Z   origin/codex/corpus-excavator-20261018
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1908834Z [command]/usr/bin/git rev-parse refs/remotes/origin/codex/corpus-excavator-20261018
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1912299Z 59425dae6524a4e794ab9ca8155ad0270d550502
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1920652Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1923369Z ##[group]Determining the checkout info
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1926223Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1928663Z ##[group]Setting up sparse checkout
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1931765Z [command]/usr/bin/git sparse-checkout set .github jobs HANDOFF
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1944863Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1947759Z ##[group]Checking out the ref
+run	Run actions/checkout@v4	2026-10-18T13:55:21.1952780Z [command]/usr/bin/git checkout --progress --force -B codex/corpus-excavator-20261018 refs/remotes/origin/codex/corpus-excavator-20261018
+run	Run actions/checkout@v4	2026-10-18T13:56:15.2252115Z Updating files:   0% (1/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.2462240Z Updating files:   0% (104/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.2813414Z Updating files:   1% (452/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.3293260Z Updating files:   2% (903/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.3786243Z Updating files:   3% (1355/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.4247985Z Updating files:   4% (1806/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.4713636Z Updating files:   5% (2257/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.5174902Z Updating files:   6% (2709/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.5458848Z Updating files:   7% (3160/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.5707151Z Updating files:   8% (3611/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.6035935Z Updating files:   9% (4063/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.6513102Z Updating files:  10% (4514/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.6936123Z Updating files:  11% (4965/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.7356075Z Updating files:  12% (5417/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.7801406Z Updating files:  13% (5868/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:15.8341521Z Updating files:  14% (6319/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:16.2634133Z Updating files:  15% (6771/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:16.5753756Z Updating files:  15% (6845/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:16.7207076Z Updating files:  16% (7222/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:16.8554417Z Updating files:  17% (7673/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.1629231Z Updating files:  18% (8125/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.2324502Z Updating files:  19% (8576/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.5070215Z Updating files:  19% (8683/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.5505923Z Updating files:  20% (9027/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.7574417Z Updating files:  21% (9479/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.8812476Z Updating files:  22% (9930/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.9417097Z Updating files:  23% (10382/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.9622000Z Updating files:  24% (10833/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:17.9826535Z Updating files:  25% (11284/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.0093550Z Updating files:  26% (11736/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.0446012Z Updating files:  27% (12187/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.0676475Z Updating files:  28% (12638/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.0859426Z Updating files:  29% (13090/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.2937528Z Updating files:  30% (13541/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.3113660Z Updating files:  30% (13888/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.3375159Z Updating files:  31% (13992/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.3638348Z Updating files:  32% (14444/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.3908830Z Updating files:  33% (14895/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.4221097Z Updating files:  34% (15346/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.4600890Z Updating files:  35% (15798/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.4978220Z Updating files:  36% (16249/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.5202829Z Updating files:  37% (16700/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.5433078Z Updating files:  38% (17152/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.5735433Z Updating files:  39% (17603/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.6006394Z Updating files:  40% (18054/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.7668473Z Updating files:  41% (18506/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.7911886Z Updating files:  42% (18957/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.8223926Z Updating files:  43% (19409/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.8446077Z Updating files:  44% (19860/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.9136195Z Updating files:  45% (20311/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:18.9770374Z Updating files:  46% (20763/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.0262282Z Updating files:  47% (21214/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.0634316Z Updating files:  48% (21665/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.0966090Z Updating files:  49% (22117/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.1309019Z Updating files:  50% (22568/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.1669747Z Updating files:  51% (23019/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.2053595Z Updating files:  52% (23471/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.2251003Z Updating files:  53% (23922/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.2440179Z Updating files:  53% (24169/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.2937935Z Updating files:  54% (24373/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.3384184Z Updating files:  55% (24825/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.3809609Z Updating files:  56% (25276/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.4260569Z Updating files:  57% (25727/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.4707201Z Updating files:  58% (26179/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.5192493Z Updating files:  59% (26630/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.5797286Z Updating files:  60% (27081/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.6273827Z Updating files:  61% (27533/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.6737070Z Updating files:  62% (27984/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.7073940Z Updating files:  63% (28436/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.7372853Z Updating files:  64% (28887/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.7763245Z Updating files:  65% (29338/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.8135559Z Updating files:  66% (29790/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.8500042Z Updating files:  67% (30241/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.8934017Z Updating files:  68% (30692/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.9415686Z Updating files:  69% (31144/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:19.9832227Z Updating files:  70% (31595/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.2460421Z Updating files:  71% (32046/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.2739773Z Updating files:  71% (32142/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.3179310Z Updating files:  72% (32498/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.3630648Z Updating files:  73% (32949/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.4117331Z Updating files:  74% (33400/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.4450864Z Updating files:  75% (33852/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.7120559Z Updating files:  76% (34303/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.7515913Z Updating files:  77% (34754/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.7797652Z Updating files:  78% (35206/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.8304908Z Updating files:  79% (35657/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.8905995Z Updating files:  80% (36108/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:20.9927861Z Updating files:  81% (36560/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.0474895Z Updating files:  82% (37011/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.0715899Z Updating files:  83% (37463/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.0956953Z Updating files:  84% (37914/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.1191284Z Updating files:  85% (38365/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.1420187Z Updating files:  86% (38817/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.1661553Z Updating files:  87% (39268/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.1929236Z Updating files:  88% (39719/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.2164385Z Updating files:  89% (40171/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.2250480Z Updating files:  90% (40622/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.2389967Z Updating files:  90% (40792/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.2636154Z Updating files:  91% (41073/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.2955994Z Updating files:  92% (41525/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.3188630Z Updating files:  93% (41976/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.3400120Z Updating files:  94% (42427/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.3688917Z Updating files:  95% (42879/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.3903239Z Updating files:  96% (43330/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.4122139Z Updating files:  97% (43781/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.4340544Z Updating files:  98% (44233/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.5070121Z Updating files:  99% (44684/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.5073504Z Updating files: 100% (45135/45135)
+run	Run actions/checkout@v4	2026-10-18T13:56:21.5074465Z Updating files: 100% (45135/45135), done.
+run	Run actions/checkout@v4	2026-10-18T13:56:21.5508517Z Switched to a new branch 'codex/corpus-excavator-20261018'
+run	Run actions/checkout@v4	2026-10-18T13:56:21.5516355Z branch 'codex/corpus-excavator-20261018' set up to track 'origin/codex/corpus-excavator-20261018'.
+run	Run actions/checkout@v4	2026-10-18T13:56:21.6619126Z ##[endgroup]
+run	Run actions/checkout@v4	2026-10-18T13:56:21.6686068Z [command]/usr/bin/git log -1 --format=%H
+run	Run actions/checkout@v4	2026-10-18T13:56:21.6705725Z 59425dae6524a4e794ab9ca8155ad0270d550502
+run	Run actions/setup-python@v5	﻿2026-10-18T13:56:21.6984824Z ##[group]Run actions/setup-python@v5
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6985140Z with:
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6985542Z   python-version: 3.12
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6985773Z   check-latest: false
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6988392Z   token: ***
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6988629Z   update-environment: true
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6988878Z   allow-prereleases: false
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6989116Z   freethreaded: false
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6989326Z env:
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6989512Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.6989731Z ##[endgroup]
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.8453311Z ##[group]Installed versions
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.8569874Z (node:2142) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.8571304Z Successfully set up CPython (3.12.15)
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.8572258Z (Use `node --trace-deprecation ...` to show where the warning was created)
+run	Run actions/setup-python@v5	2026-10-18T13:56:21.8573536Z ##[endgroup]
+run	Restore each job's bounded download cache	﻿2026-10-18T13:56:21.8867556Z ##[group]Run actions/cache@v4
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8867975Z with:
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8868265Z   path: .job-cache
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8868767Z   key: job-downloads-v1-codex/corpus-excavator-20261018-39133666644-1
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8869517Z   restore-keys: job-downloads-v1-codex/corpus-excavator-20261018-
+run	Restore each job's bounded download cache	
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8870338Z   enableCrossOsArchive: false
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8870731Z   fail-on-cache-miss: false
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8871097Z   lookup-only: false
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8871422Z   save-always: false
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8871736Z env:
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8872020Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8872476Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8873179Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8873874Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8874484Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8875097Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8876087Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+run	Restore each job's bounded download cache	2026-10-18T13:56:21.8876608Z ##[endgroup]
+run	Restore each job's bounded download cache	2026-10-18T13:56:22.0135846Z (node:2151) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+run	Restore each job's bounded download cache	2026-10-18T13:56:22.0137658Z (Use `node --trace-deprecation ...` to show where the warning was created)
+run	Restore each job's bounded download cache	2026-10-18T13:56:22.0933058Z Cache hit for restore-key: job-downloads-v1-codex/corpus-excavator-20261018-39114006807-1
+run	Restore each job's bounded download cache	2026-10-18T13:56:22.1107919Z (node:2151) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+run	Restore each job's bounded download cache	2026-10-18T13:56:23.1634215Z Received 134217728 of 713265380 (18.8%), 127.2 MBs/sec
+run	Restore each job's bounded download cache	2026-10-18T13:56:24.1636888Z Received 335544320 of 713265380 (47.0%), 159.5 MBs/sec
+run	Restore each job's bounded download cache	2026-10-18T13:56:25.1636928Z Received 515899392 of 713265380 (72.3%), 163.7 MBs/sec
+run	Restore each job's bounded download cache	2026-10-18T13:56:26.1656297Z Received 671088640 of 713265380 (94.1%), 159.7 MBs/sec
+run	Restore each job's bounded download cache	2026-10-18T13:56:26.3659984Z Received 713265380 of 713265380 (100.0%), 161.6 MBs/sec
+run	Restore each job's bounded download cache	2026-10-18T13:56:26.3663192Z Cache Size: ~680 MB (713265380 B)
+run	Restore each job's bounded download cache	2026-10-18T13:56:26.3860690Z [command]/usr/bin/tar -xf /home/runner/work/_temp/41193799-0ee3-4bda-8d56-a8d2f58e675c/cache.tzst -P -C /home/runner/work/Executive-Orders/Executive-Orders --use-compress-program unzstd
+run	Restore each job's bounded download cache	2026-10-18T13:56:33.2687783Z Cache restored successfully
+run	Restore each job's bounded download cache	2026-10-18T13:56:33.3113545Z Cache restored from key: job-downloads-v1-codex/corpus-excavator-20261018-39114006807-1
+run	Choose which jobs to run	﻿2026-10-18T13:56:33.3365070Z ##[group]Run python .github/scripts/pick_jobs.py
+run	Choose which jobs to run	2026-10-18T13:56:33.3366024Z ^[[36;1mpython .github/scripts/pick_jobs.py^[[0m
+run	Choose which jobs to run	2026-10-18T13:56:33.6994352Z shell: /usr/bin/bash -e {0}
+run	Choose which jobs to run	2026-10-18T13:56:33.6995051Z env:
+run	Choose which jobs to run	2026-10-18T13:56:33.6995706Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Choose which jobs to run	2026-10-18T13:56:33.6996260Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Choose which jobs to run	2026-10-18T13:56:33.6997067Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+run	Choose which jobs to run	2026-10-18T13:56:33.6997873Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Choose which jobs to run	2026-10-18T13:56:33.6998584Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Choose which jobs to run	2026-10-18T13:56:33.6999315Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Choose which jobs to run	2026-10-18T13:56:33.7000057Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+run	Choose which jobs to run	2026-10-18T13:56:33.7000664Z   EVENT: push
+run	Choose which jobs to run	2026-10-18T13:56:33.7001026Z   INPUT_JOB: 
+run	Choose which jobs to run	2026-10-18T13:56:33.7001441Z   BEFORE: c9993c7058d6667d3278384f389a5f0a55857ec4
+run	Choose which jobs to run	2026-10-18T13:56:33.7002054Z   AFTER: 59425dae6524a4e794ab9ca8155ad0270d550502
+run	Choose which jobs to run	2026-10-18T13:56:33.7002666Z   DEFAULT_BRANCH: main
+run	Choose which jobs to run	2026-10-18T13:56:33.7003071Z ##[endgroup]
+run	Choose which jobs to run	2026-10-18T13:56:34.7031121Z Jobs to run: claim-kit, corpus-excavator, example-hello
+run	Run the jobs	﻿2026-10-18T13:56:34.7399847Z ##[group]Run bash .github/scripts/run_jobs.sh
+run	Run the jobs	2026-10-18T13:56:34.7400251Z ^[[36;1mbash .github/scripts/run_jobs.sh^[[0m
+run	Run the jobs	2026-10-18T13:56:34.7480054Z shell: /usr/bin/bash -e {0}
+run	Run the jobs	2026-10-18T13:56:34.7480322Z env:
+run	Run the jobs	2026-10-18T13:56:34.7480520Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Run the jobs	2026-10-18T13:56:34.7480837Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Run the jobs	2026-10-18T13:56:34.7481489Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+run	Run the jobs	2026-10-18T13:56:34.7481942Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Run the jobs	2026-10-18T13:56:34.7482328Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Run the jobs	2026-10-18T13:56:34.7482717Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Run the jobs	2026-10-18T13:56:34.7483111Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+run	Run the jobs	2026-10-18T13:56:34.7483476Z   JOBS: claim-kit corpus-excavator example-hello
+run	Run the jobs	2026-10-18T13:56:34.7484033Z   TRIGGER: push by D3m0sthene5
+run	Run the jobs	2026-10-18T13:56:34.7504674Z ##[endgroup]
+run	Run the jobs	2026-10-18T13:56:34.7916688Z ##[group]Job claim-kit
+run	Run the jobs	2026-10-18T13:56:35.5824191Z Downloading folders this job needs: research/stage15/CENSUS research/progress research/readiness research/stage19/code research/plans/claim_kit_contract
+run	Run the jobs	2026-10-18T13:56:42.2370981Z .................................................................................................................................................................
+run	Run the jobs	2026-10-18T13:56:42.2372244Z ----------------------------------------------------------------------
+run	Run the jobs	2026-10-18T13:56:42.2372924Z Ran 161 tests in 3.297s
+run	Run the jobs	2026-10-18T13:56:42.2373296Z 
+run	Run the jobs	2026-10-18T13:56:42.2373516Z OK
+run	Run the jobs	2026-10-18T13:56:42.2375504Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 1, "generic_references_excluded": 1, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:56:42.2378768Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:56:42.2382095Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 3, "located_actor_pairs": 3, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:56:42.2385457Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 1, "dossiers": 3, "families": 1, "generic_references_excluded": 0, "held_texts_scanned": 1, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:56:42.2388503Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 2, "located_actor_pairs": 2, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:56:42.2391526Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 1, "located_actor_pairs": 0, "orders_with_held_text": 2, "status_leads": 0, "universe_orders": 3}
+run	Run the jobs	2026-10-18T13:57:26.5641190Z claim-kit: scanned 250/18404 held representations
+run	Run the jobs	2026-10-18T13:57:28.9903001Z claim-kit: scanned 500/18404 held representations
+run	Run the jobs	2026-10-18T13:57:31.2910351Z claim-kit: scanned 750/18404 held representations
+run	Run the jobs	2026-10-18T13:57:33.0417584Z claim-kit: scanned 1000/18404 held representations
+run	Run the jobs	2026-10-18T13:57:34.6427900Z claim-kit: scanned 1250/18404 held representations
+run	Run the jobs	2026-10-18T13:57:35.8455891Z claim-kit: scanned 1500/18404 held representations
+run	Run the jobs	2026-10-18T13:57:37.1375713Z claim-kit: scanned 1750/18404 held representations
+run	Run the jobs	2026-10-18T13:57:38.3240797Z claim-kit: scanned 2000/18404 held representations
+run	Run the jobs	2026-10-18T13:57:39.9137167Z claim-kit: scanned 2250/18404 held representations
+run	Run the jobs	2026-10-18T13:57:41.3069094Z claim-kit: scanned 2500/18404 held representations
+run	Run the jobs	2026-10-18T13:57:42.7480851Z claim-kit: scanned 2750/18404 held representations
+run	Run the jobs	2026-10-18T13:57:45.2771207Z claim-kit: scanned 3000/18404 held representations
+run	Run the jobs	2026-10-18T13:57:47.8386464Z claim-kit: scanned 3250/18404 held representations
+run	Run the jobs	2026-10-18T13:57:51.3911427Z claim-kit: scanned 3500/18404 held representations
+run	Run the jobs	2026-10-18T13:57:55.3106728Z claim-kit: scanned 3750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:01.4504913Z claim-kit: scanned 4000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:05.3589025Z claim-kit: scanned 4250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:06.4734540Z claim-kit: scanned 4500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:07.3663200Z claim-kit: scanned 4750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:08.3963607Z claim-kit: scanned 5000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:09.5621643Z claim-kit: scanned 5250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:11.3079638Z claim-kit: scanned 5500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:13.0100762Z claim-kit: scanned 5750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:14.9380867Z claim-kit: scanned 6000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:17.2549778Z claim-kit: scanned 6250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:18.9327514Z claim-kit: scanned 6500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:21.3027613Z claim-kit: scanned 6750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:23.6766118Z claim-kit: scanned 7000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:25.3727030Z claim-kit: scanned 7250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:26.9636160Z claim-kit: scanned 7500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:28.1656314Z claim-kit: scanned 7750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:29.4612398Z claim-kit: scanned 8000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:30.6393649Z claim-kit: scanned 8250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:32.1605920Z claim-kit: scanned 8500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:33.6934180Z claim-kit: scanned 8750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:35.0600117Z claim-kit: scanned 9000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:37.8207610Z claim-kit: scanned 9250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:40.2101548Z claim-kit: scanned 9500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:43.8505780Z claim-kit: scanned 9750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:47.6935556Z claim-kit: scanned 10000/18404 held representations
+run	Run the jobs	2026-10-18T13:58:54.1395503Z claim-kit: scanned 10250/18404 held representations
+run	Run the jobs	2026-10-18T13:58:57.8315757Z claim-kit: scanned 10500/18404 held representations
+run	Run the jobs	2026-10-18T13:58:58.7459834Z claim-kit: scanned 10750/18404 held representations
+run	Run the jobs	2026-10-18T13:58:59.6327018Z claim-kit: scanned 11000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:00.6798051Z claim-kit: scanned 11250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:01.8542556Z claim-kit: scanned 11500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:03.3405394Z claim-kit: scanned 11750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:04.9297063Z claim-kit: scanned 12000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:06.8121869Z claim-kit: scanned 12250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:09.2487536Z claim-kit: scanned 12500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:13.1887784Z claim-kit: scanned 12750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:16.4879970Z claim-kit: scanned 13000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:19.9232968Z claim-kit: scanned 13250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:21.6805194Z claim-kit: scanned 13500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:22.5588761Z claim-kit: scanned 13750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:23.9662785Z claim-kit: scanned 14000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:25.2247957Z claim-kit: scanned 14250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:26.1970054Z claim-kit: scanned 14500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:27.6707159Z claim-kit: scanned 14750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:30.0364431Z claim-kit: scanned 15000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:33.1769807Z claim-kit: scanned 15250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:36.5726885Z claim-kit: scanned 15500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:41.3520859Z claim-kit: scanned 15750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:45.6798539Z claim-kit: scanned 16000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:46.9250706Z claim-kit: scanned 16250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:47.5532984Z claim-kit: scanned 16500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:48.1974723Z claim-kit: scanned 16750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:48.9133557Z claim-kit: scanned 17000/18404 held representations
+run	Run the jobs	2026-10-18T13:59:49.7333594Z claim-kit: scanned 17250/18404 held representations
+run	Run the jobs	2026-10-18T13:59:51.0342694Z claim-kit: scanned 17500/18404 held representations
+run	Run the jobs	2026-10-18T13:59:54.6261837Z claim-kit: scanned 17750/18404 held representations
+run	Run the jobs	2026-10-18T13:59:55.6928030Z claim-kit: scanned 18000/18404 held representations
+run	Run the jobs	2026-10-18T14:00:14.3688229Z claim-kit: scanned 18250/18404 held representations
+run	Run the jobs	2026-10-18T14:01:12.1564381Z claim-kit: located 2000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.1693547Z claim-kit: located 4000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.1813609Z claim-kit: located 6000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.1922129Z claim-kit: located 8000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.2020458Z claim-kit: located 10000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.2108078Z claim-kit: located 12000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:12.2197161Z claim-kit: located 14000/14611 known provision pairs
+run	Run the jobs	2026-10-18T14:01:26.2184502Z {"assembled_claims": 0, "decided_orders": 3359, "declared_text_representations": 69615, "distinct_held_text_artifacts": 18404, "dossiers": 3359, "families": 3257, "generic_references_excluded": 101, "held_texts_scanned": 18404, "known_pairs": 13926, "located_actor_pairs": 7296, "orders_with_held_text": 6569, "status_leads": 11613, "universe_orders": 14972}
+run	Run the jobs	2026-10-18T14:01:27.9489239Z {"bytes_evicted": 245208783, "bytes_retained": 1073740666, "cap_bytes": 1073741824}
+run	Run the jobs	2026-10-18T14:01:28.0176389Z {
+run	Run the jobs	2026-10-18T14:01:28.0176878Z   "job": "claim-kit",
+run	Run the jobs	2026-10-18T14:01:28.0177304Z   "result": "succeeded",
+run	Run the jobs	2026-10-18T14:01:28.0177693Z   "exit_code": 0,
+run	Run the jobs	2026-10-18T14:01:28.0178067Z   "started_utc": "2026-10-18T13:56:35Z",
+run	Run the jobs	2026-10-18T14:01:28.0178531Z   "finished_utc": "2026-10-18T14:01:27Z",
+run	Run the jobs	2026-10-18T14:01:28.0179085Z   "commit_run": "59425dae6524a4e794ab9ca8155ad0270d550502",
+run	Run the jobs	2026-10-18T14:01:28.0179677Z   "branch": "codex/corpus-excavator-20261018",
+run	Run the jobs	2026-10-18T14:01:28.0180192Z   "trigger": "push by D3m0sthene5",
+run	Run the jobs	2026-10-18T14:01:28.0180739Z   "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39133666644",
+run	Run the jobs	2026-10-18T14:01:28.0181417Z   "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+run	Run the jobs	2026-10-18T14:01:28.0181913Z   "oversized_files_moved_to_run_download": []
+run	Run the jobs	2026-10-18T14:01:28.0182217Z }
+run	Run the jobs	2026-10-18T14:01:28.0250990Z ##[endgroup]
+run	Run the jobs	2026-10-18T14:01:28.0256721Z ##[group]Job corpus-excavator
+run	Run the jobs	2026-10-18T14:01:28.0377963Z Downloading folders this job needs: research/stage15/CENSUS research/stage20/output research/stage14/QUEUES research/readiness
+run	Run the jobs	2026-10-18T14:01:31.7571390Z ........
+run	Run the jobs	2026-10-18T14:01:31.7572402Z ----------------------------------------------------------------------
+run	Run the jobs	2026-10-18T14:01:31.7573341Z Ran 8 tests in 0.002s
+run	Run the jobs	2026-10-18T14:01:31.7573744Z 
+run	Run the jobs	2026-10-18T14:01:31.7574023Z OK
+run	Run the jobs	2026-10-18T14:01:33.5523301Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+run	Run the jobs	2026-10-18T14:01:33.5963264Z {
+run	Run the jobs	2026-10-18T14:01:33.5964349Z   "job": "corpus-excavator",
+run	Run the jobs	2026-10-18T14:01:33.5965476Z   "result": "succeeded",
+run	Run the jobs	2026-10-18T14:01:33.5966696Z   "exit_code": 0,
+run	Run the jobs	2026-10-18T14:01:33.5967283Z   "started_utc": "2026-10-18T14:01:28Z",
+run	Run the jobs	2026-10-18T14:01:33.5967894Z   "finished_utc": "2026-10-18T14:01:33Z",
+run	Run the jobs	2026-10-18T14:01:33.5968594Z   "commit_run": "59425dae6524a4e794ab9ca8155ad0270d550502",
+run	Run the jobs	2026-10-18T14:01:33.5969311Z   "branch": "codex/corpus-excavator-20261018",
+run	Run the jobs	2026-10-18T14:01:33.5970318Z   "trigger": "push by D3m0sthene5",
+run	Run the jobs	2026-10-18T14:01:33.5971224Z   "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39133666644",
+run	Run the jobs	2026-10-18T14:01:33.5972351Z   "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+run	Run the jobs	2026-10-18T14:01:33.5973295Z   "oversized_files_moved_to_run_download": []
+run	Run the jobs	2026-10-18T14:01:33.5973941Z }
+run	Run the jobs	2026-10-18T14:01:33.6045977Z ##[endgroup]
+run	Run the jobs	2026-10-18T14:01:33.6047306Z ##[group]Job example-hello
+run	Run the jobs	2026-10-18T14:01:33.6147029Z Downloading folders this job needs: research/stage19
+run	Run the jobs	2026-10-18T14:01:34.7865803Z {
+run	Run the jobs	2026-10-18T14:01:34.7876925Z   "python": "3.12.15",
+run	Run the jobs	2026-10-18T14:01:34.7878052Z   "machine": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+run	Run the jobs	2026-10-18T14:01:34.7884779Z   "cpus": 2,
+run	Run the jobs	2026-10-18T14:01:34.7886024Z   "free_disk_gb": 10.5,
+run	Run the jobs	2026-10-18T14:01:34.7886737Z   "stage19_files_visible": [
+run	Run the jobs	2026-10-18T14:01:34.7887429Z     "CLAIM_SCHEMA.md",
+run	Run the jobs	2026-10-18T14:01:34.7888014Z     "FUNNEL.md",
+run	Run the jobs	2026-10-18T14:01:34.7888610Z     "LOC_LIVE_TRIAL.json",
+run	Run the jobs	2026-10-18T14:01:34.7889202Z     "README.md",
+run	Run the jobs	2026-10-18T14:01:34.7889753Z     "code",
+run	Run the jobs	2026-10-18T14:01:34.7890282Z     "output",
+run	Run the jobs	2026-10-18T14:01:34.7890843Z     "ranger_output"
+run	Run the jobs	2026-10-18T14:01:34.7891335Z   ]
+run	Run the jobs	2026-10-18T14:01:34.7891810Z }
+run	Run the jobs	2026-10-18T14:01:34.8562684Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+run	Run the jobs	2026-10-18T14:01:34.9016419Z {
+run	Run the jobs	2026-10-18T14:01:34.9016918Z   "job": "example-hello",
+run	Run the jobs	2026-10-18T14:01:34.9017322Z   "result": "succeeded",
+run	Run the jobs	2026-10-18T14:01:34.9017586Z   "exit_code": 0,
+run	Run the jobs	2026-10-18T14:01:34.9017829Z   "started_utc": "2026-10-18T14:01:33Z",
+run	Run the jobs	2026-10-18T14:01:34.9018168Z   "finished_utc": "2026-10-18T14:01:34Z",
+run	Run the jobs	2026-10-18T14:01:34.9018506Z   "commit_run": "59425dae6524a4e794ab9ca8155ad0270d550502",
+run	Run the jobs	2026-10-18T14:01:34.9018868Z   "branch": "codex/corpus-excavator-20261018",
+run	Run the jobs	2026-10-18T14:01:34.9019177Z   "trigger": "push by D3m0sthene5",
+run	Run the jobs	2026-10-18T14:01:34.9019609Z   "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39133666644",
+run	Run the jobs	2026-10-18T14:01:34.9020213Z   "machine": "GitHub Actions Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+run	Run the jobs	2026-10-18T14:01:34.9020675Z   "oversized_files_moved_to_run_download": []
+run	Run the jobs	2026-10-18T14:01:34.9020951Z }
+run	Run the jobs	2026-10-18T14:01:34.9096999Z ##[endgroup]
+run	Keep oversized files as a download	﻿2026-10-18T14:01:34.9176087Z ##[group]Run actions/upload-artifact@v4
+run	Keep oversized files as a download	2026-10-18T14:01:34.9176439Z with:
+run	Keep oversized files as a download	2026-10-18T14:01:34.9176659Z   name: oversized-outputs-39133666644
+run	Keep oversized files as a download	2026-10-18T14:01:34.9176933Z   path: oversized/
+run	Keep oversized files as a download	2026-10-18T14:01:34.9177160Z   if-no-files-found: ignore
+run	Keep oversized files as a download	2026-10-18T14:01:34.9177395Z   retention-days: 90
+run	Keep oversized files as a download	2026-10-18T14:01:34.9177612Z   compression-level: 6
+run	Keep oversized files as a download	2026-10-18T14:01:34.9177823Z   overwrite: false
+run	Keep oversized files as a download	2026-10-18T14:01:34.9178039Z   include-hidden-files: false
+run	Keep oversized files as a download	2026-10-18T14:01:34.9178283Z env:
+run	Keep oversized files as a download	2026-10-18T14:01:34.9178470Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Keep oversized files as a download	2026-10-18T14:01:34.9178768Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Keep oversized files as a download	2026-10-18T14:01:34.9179227Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+run	Keep oversized files as a download	2026-10-18T14:01:34.9179708Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Keep oversized files as a download	2026-10-18T14:01:34.9180097Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Keep oversized files as a download	2026-10-18T14:01:34.9180480Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Keep oversized files as a download	2026-10-18T14:01:34.9180908Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+run	Keep oversized files as a download	2026-10-18T14:01:34.9181239Z ##[endgroup]
+run	Keep oversized files as a download	2026-10-18T14:01:35.1064151Z (node:2356) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+run	Keep oversized files as a download	2026-10-18T14:01:35.1065974Z (Use `node --trace-deprecation ...` to show where the warning was created)
+run	Keep oversized files as a download	2026-10-18T14:01:35.1313015Z With the provided path, there will be 3 files uploaded
+run	Keep oversized files as a download	2026-10-18T14:01:35.1335452Z Artifact name is valid!
+run	Keep oversized files as a download	2026-10-18T14:01:35.1355902Z Root directory input is valid!
+run	Keep oversized files as a download	2026-10-18T14:01:35.3895948Z Beginning upload of artifact content to blob storage
+run	Keep oversized files as a download	2026-10-18T14:01:35.6148718Z (node:2356) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+run	Keep oversized files as a download	2026-10-18T14:01:35.6782267Z Uploaded bytes 1295264
+run	Keep oversized files as a download	2026-10-18T14:01:35.6939583Z Finished uploading artifact content to blob storage!
+run	Keep oversized files as a download	2026-10-18T14:01:35.6941901Z SHA256 digest of uploaded artifact zip is 1e69464db88987c287a5c1bb89114e2ec84b02257d87cf67bdfa171c6171032a
+run	Keep oversized files as a download	2026-10-18T14:01:35.6943836Z Finalizing artifact upload
+run	Keep oversized files as a download	2026-10-18T14:01:35.9127754Z Artifact oversized-outputs-39133666644.zip successfully finalized. Artifact ID 12139141331
+run	Keep oversized files as a download	2026-10-18T14:01:35.9130214Z Artifact oversized-outputs-39133666644 has been successfully uploaded! Final size is 1295264 bytes. Artifact ID is 12139141331
+run	Keep oversized files as a download	2026-10-18T14:01:35.9138218Z Artifact download URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39133666644/artifacts/12139141331
+run	Commit results to the branch	﻿2026-10-18T14:01:35.9301133Z ##[group]Run bash .github/scripts/commit_results.sh
+run	Commit results to the branch	2026-10-18T14:01:35.9316413Z ^[[36;1mbash .github/scripts/commit_results.sh^[[0m
+run	Commit results to the branch	2026-10-18T14:01:35.9382391Z shell: /usr/bin/bash -e {0}
+run	Commit results to the branch	2026-10-18T14:01:35.9382730Z env:
+run	Commit results to the branch	2026-10-18T14:01:35.9382990Z   GIT_LFS_SKIP_SMUDGE: 1
+run	Commit results to the branch	2026-10-18T14:01:35.9383392Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Commit results to the branch	2026-10-18T14:01:35.9383961Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+run	Commit results to the branch	2026-10-18T14:01:35.9384531Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Commit results to the branch	2026-10-18T14:01:35.9385032Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Commit results to the branch	2026-10-18T14:01:35.9385806Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+run	Commit results to the branch	2026-10-18T14:01:35.9386338Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+run	Commit results to the branch	2026-10-18T14:01:35.9386823Z   JOBS: claim-kit corpus-excavator example-hello
+run	Commit results to the branch	2026-10-18T14:01:35.9387212Z   EVENT: push
+run	Commit results to the branch	2026-10-18T14:01:35.9387499Z   BRANCH: codex/corpus-excavator-20261018
+run	Commit results to the branch	2026-10-18T14:01:35.9388103Z   RUN_URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39133666644
+run	Commit results to the branch	2026-10-18T14:01:35.9388644Z ##[endgroup]
+run	Commit results to the branch	2026-10-18T14:02:38.5180146Z remote: warning: See https://gh.io/lfs for more information.        
+run	Commit results to the branch	2026-10-18T14:02:38.5182472Z remote: warning: File jobs/claim-kit/output/ACTING_PROVISIONS.jsonl is 55.63 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+run	Commit results to the branch	2026-10-18T14:02:38.5186098Z remote: warning: File jobs/claim-kit/output/TEXT_CLAUSES.jsonl is 71.52 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+run	Commit results to the branch	2026-10-18T14:02:38.5189395Z remote: warning: File jobs/claim-kit/output/TEXT_CLAUSES.part0001.jsonl is 61.76 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+run	Commit results to the branch	2026-10-18T14:02:38.5192374Z remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+run	Commit results to the branch	2026-10-18T14:02:38.8566534Z Results pushed to codex/corpus-excavator-20261018.
+run	Post Restore each job's bounded download cache	﻿2026-10-18T14:02:38.8650490Z Post job cleanup.
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:38.9940887Z (node:2529) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:38.9943377Z (Use `node --trace-deprecation ...` to show where the warning was created)
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:39.0136746Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/Executive-Orders/Executive-Orders --files-from manifest.txt --use-compress-program zstdmt
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:44.4754305Z (node:2529) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:45.4602919Z Sent 0 of 725322560 (0.0%), 0.0 MBs/sec
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:46.4606358Z Sent 536870912 of 725322560 (74.0%), 255.7 MBs/sec
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:47.0518240Z Sent 725322560 of 725322560 (100.0%), 266.4 MBs/sec
+run	Post Restore each job's bounded download cache	2026-10-18T14:02:47.1829095Z Cache saved with key: job-downloads-v1-codex/corpus-excavator-20261018-39133666644-1
+run	Post Run actions/setup-python@v5	﻿2026-10-18T14:02:47.1996645Z Post job cleanup.
+run	Post Run actions/setup-python@v5	2026-10-18T14:02:47.3316395Z (node:2552) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+run	Post Run actions/setup-python@v5	2026-10-18T14:02:47.3318330Z (Use `node --trace-deprecation ...` to show where the warning was created)
+run	Post Run actions/checkout@v4	﻿2026-10-18T14:02:47.3582402Z Post job cleanup.
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4755963Z [command]/usr/bin/git version
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4816283Z git version 2.55.0
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4880295Z Temporarily overriding HOME='/home/runner/work/_temp/ea287453-9053-4605-86b0-9146311be16b' before making global git config changes
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4881805Z Adding repository directory to the temporary git global config as a safe directory
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4883214Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.4962336Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.5022348Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.5735846Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.5780489Z http.https://github.com/.extraheader
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.5838350Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.5842219Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.6332025Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+run	Post Run actions/checkout@v4	2026-10-18T14:02:47.6397176Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+run	Complete job	﻿2026-10-18T14:02:47.6903675Z Cleaning up orphan processes
+run	Complete job	2026-10-18T14:02:47.7208036Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

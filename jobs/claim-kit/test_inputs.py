@@ -151,6 +151,34 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual(len(records), 2)
         self.assertTrue(all(not r["acceptable_as_original"] for r in records))
 
+    def test_fr_original_needs_page_check_preserves_locator_warning(self):
+        self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
+        self.jsonl("jobs/fr-originals/output/FRAGMENTS.jsonl", [self.original(
+            needs_page_check=True, location_confidence="medium", location_verified=False,
+            confidence="medium")])
+        record = inputs.load_corpus(self.repo)["texts"][0]
+        self.assertTrue(record["acceptable_as_original"])
+        self.assertTrue(record["requires_page_check"])
+        self.assertIn("needs_page_check", record["grade"])
+        self.assertEqual(record["location_confidence"], "medium")
+        self.assertEqual(record["confidence"], "medium")
+        self.assertFalse(record["location_verified"])
+        self.assertTrue(record["source"]["requires_page_check"])
+        self.assertEqual(record["source"]["location_confidence"], "medium")
+
+    def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
+        self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
+        fragment = {"instrument_id": "EO:1", "kind": "original_representation",
+                    "location_confidence": "low", "confidence": "low",
+                    "data": {"nested": {**self.source(), "text_path": "texts/one.txt",
+                                         "needs_page_check": False}}}
+        self.jsonl("jobs/fr-originals/output/FRAGMENTS.jsonl", [fragment])
+        record = inputs.load_corpus(self.repo)["texts"][0]
+        self.assertTrue(record["requires_page_check"])
+        self.assertEqual(record["location_confidence"], "low")
+        self.assertEqual(record["source"]["confidence"], "low")
+        self.assertIn("needs_page_check", record["grade"])
+
     def test_shared_volume_and_excluded_identity_not_assigned_wholesale(self):
         self.write("jobs/new/output/book.txt", "Contains several orders.")
         self.jsonl("jobs/new/output/SOURCES.jsonl", [
@@ -181,13 +209,17 @@ class CorpusTests(unittest.TestCase):
         self.addCleanup(lambda: outside.unlink(missing_ok=True))
         link = self.repo / "jobs/new/output/escape.txt"
         link.parent.mkdir(parents=True, exist_ok=True)
-        link.symlink_to(outside)
+        has_symlink=True
+        try:link.symlink_to(outside)
+        except OSError as exc:
+            if getattr(exc,'winerror',None)!=1314:raise
+            has_symlink=False  # Windows runner lacks link privilege; retain literal-path checks.
         self.jsonl("jobs/new/output/FRAGMENTS.jsonl", [
             self.original(path="../../../../outside.txt"), self.original(path=str(outside)),
-            self.original(path="C:\\secret.txt"), self.original(path="escape.txt")])
+            self.original(path="C:\\secret.txt"), *([self.original(path="escape.txt")] if has_symlink else [])])
         corpus = inputs.load_corpus(self.repo)
         self.assertEqual(corpus["texts"], [])
-        self.assertEqual(sum("unsafe text path" in w for w in corpus["warnings"]), 4)
+        self.assertEqual(sum("unsafe text path" in w for w in corpus["warnings"]), 4 if has_symlink else 3)
 
     def test_safe_cross_directory_links_and_repo_relative_paths(self):
         self.write("jobs/new/data/order.txt", "Held.")
@@ -291,6 +323,25 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual(len(corpus["texts"]), 1)
         self.assertTrue(any("malformed JSON" in w for w in corpus["warnings"]))
         self.assertTrue(any("non-object JSON" in w for w in corpus["warnings"]))
+
+    def test_status_history_is_consumed_without_status_or_original_promotion(self):
+        history={'schema':'eo-status-history/v1','instrument_id':'EO:1','provisional_status':None}
+        raw=json.dumps(history)
+        self.write('jobs/status-history/output/histories/EO_1.json',raw)
+        self.jsonl('jobs/status-history/output/FRAGMENTS.jsonl',[{
+            'instrument_id':'EO:1','kind':'status_history_candidates','data':{
+                'history_path':'jobs/status-history/output/histories/EO_1.json',
+                'history_sha256':hashlib.sha256(raw.encode()).hexdigest()}}])
+        corpus=inputs.load_corpus(self.repo)
+        self.assertIn('EO:1',corpus['status_histories'])
+        self.assertNotIn('EO:1',corpus['statuses']);self.assertEqual(corpus['texts'],[])
+        self.write('jobs/status-history/output/STATUS.json','{"result":"failed"}')
+        self.assertEqual(inputs.load_corpus(self.repo)['status_histories'],{})
+        self.write('jobs/status-history/output/STATUS.json','{"result":"succeeded"}')
+        self.write('jobs/status-history/output/histories/EO_1.json','changed')
+        corpus=inputs.load_corpus(self.repo)
+        self.assertEqual(corpus['status_histories'],{})
+        self.assertTrue(any('status history rejected' in v for v in corpus['warnings']))
 
 
 if __name__ == "__main__":

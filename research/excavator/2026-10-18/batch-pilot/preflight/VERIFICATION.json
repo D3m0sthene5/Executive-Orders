@@ -1,0 +1,34 @@
+{
+  "schema": "eo-fifty-preflight-verification/v1",
+  "verified_utc": "2026-10-18T13:20:23.103930+00:00",
+  "command": "python research/excavator/2026-10-18/batch-pilot/preflight/preflight.py --verify",
+  "exit_code": 0,
+  "seconds": 0.204514,
+  "repeat_render_byte_identical": true,
+  "output_sha256": {
+    "ORDERS.json": "ffcb02d0d2dfa5155e7b1c961e51d01448e07b94c490b9dbc92b59124ee0cece",
+    "TASKS.json": "5d154cc0964ecf98d69469d34b21802dfb30ff0128ff3538ba61a52d997af45c",
+    "SUMMARY.json": "b89405ba74623d296cd3ec62f41a889bb556dd57f8a89b071f24e26253b6595b",
+    "ORDERS.csv": "95b0630668abe7ddd2fa9643f238181e08d1f7709429ea40c0cf4639d72f7961"
+  },
+  "checks": [
+    "snapshot hash",
+    "fifty unique IDs;12 accepted and38 unable",
+    "all38 final gap lists preserved verbatim",
+    "unique tasks and valid target/dependency references",
+    "search JSON never original law witness",
+    "no legal/human promotion flags",
+    "exact difficult-snapshot bytes and fingerprints"
+  ],
+  "final_code_sha256": "8dc3e57b64d1306c13cebc54d3c0c2bd85e2ac287337ca03877eb9ed1d04b86b",
+  "additional_verified_invariants": [
+    "All12 freeze manifest fingerprints equal preserved full dossier fingerprints.",
+    "49 sheets match frozen full fingerprints; EO11860 deliberately retains unapproved initial sheet with explicit freeze/recheck history."
+  ],
+  "preparation_failures_and_corrections": [
+    "Initial direct GitHub DNS lookup failed; connector and approved read-only Git reads succeeded.",
+    "A single bulk blob fetch returned bad-revision despite partial object transfer; direct exact-commit object reads succeeded.",
+    "First collector assumed all50 full snapshots were preserved under pilot full-dossiers; only12 accepted snapshots are there. Remaining38 read at exact717e output commit.",
+    "A known_locations entry was structured metadata rather than a string; collector corrected and complete collection rerun."
+  ]
+}

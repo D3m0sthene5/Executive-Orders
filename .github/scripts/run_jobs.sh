@@ -33,8 +33,27 @@ for name in $JOBS; do
     fi
   fi
 
+  # Additional inputs.txt globs can cover dynamic producer catalogues; acquire
+  # only matching sparse paths instead of assuming all readers use needs.txt.
+  if ! python "$REPO_ROOT/.github/scripts/result_freshness.py" prepare "$name"; then
+    echo "::error::Could not materialize declared inputs for $name."
+    failed=1
+    echo "::endgroup::"
+    continue
+  fi
+
   if [ -f "$dir/requirements.txt" ]; then
     pip install --quiet -r "$dir/requirements.txt" 2>&1 | tee "$out/install-log.txt"
+  fi
+
+  # Capture after sparse inputs arrive and before the job consumes them. Keep
+  # a second copy in the existing run artifact even if publication is rejected.
+  inputs="$REPO_ROOT/oversized/runner-freshness/$name-inputs.json"
+  if ! python "$REPO_ROOT/.github/scripts/result_freshness.py" capture "$name" "$inputs"; then
+    echo "::error::Could not fingerprint inputs for $name; refusing unversioned results."
+    failed=1
+    echo "::endgroup::"
+    continue
   fi
 
   if [ -f "$dir/job.sh" ]; then
@@ -82,6 +101,7 @@ with open(os.path.join(os.environ["OUT"], "STATUS.json"), "w") as fh:
     fh.write("\n")
 print(json.dumps(status, indent=2))
 EOF
+  cp "$inputs" "$out/RUNNER_INPUTS.json"
   echo "::endgroup::"
   if [ "$code" -ne 0 ]; then
     echo "::error::Job $name failed with exit code $code. See jobs/$name/output/log.txt."

@@ -1,0 +1,10 @@
+## 2026-10-18 09:20 ET: frozen fifty-order preflight
+
+- **Done:** Assigned-path-only preflight preserves all 50 Sol cases (12 AI accepted, 38 unable), final verbatim inability reasons, 238 input pins and deterministic code/data/report. Exact producer freeze is output 717e, distinct from later Sol HEAD. All 50 current fingerprints differ. Two difficult exact 717e full dossiers and an evidence-only six-case path manifest are preserved. See `research/excavator/2026-10-18/batch-pilot/preflight/REPORT.md`.
+- **Measured:** Collection 7.692 seconds; deterministic verify 0.205 seconds. Own runtime through 13:19:45 UTC: 7,108,717 input (6,942,976 cached), 34,437 output (9,072 reasoning included), 59 outer tools. Full active labor/dollar billing/final-turn usage unavailable. Preparation costs only; no production saving inferred.
+- **Running:** No jobs or queues launched by this subtask. Coordinator source-boundary/dedup rebuild is separate.
+- **Next:** Recover shared witness custody, attribute 106 law provisions through 21 shared witness containers, reuse held context, then inspect source images and case-specific facts. The 184 typed task nodes do not mean 184 downloads. Exact target original binaries are held for 23 cases; only 3 have both target and family actor binaries (all EO13225-family blocked cases). No globally absent authority proved.
+- **Asks:** @Root: integrate report and ownership route; keep proposed six-case experiment on identical evidence/tasks with inability allowed and prior answers withheld. Sol's twelve accepted cases remain owned; no local lock/claim overlap releases them.
+- **Do not:** Publish duplicate Sol claims, drop 38 blocked cases from the denominator, reuse changed-fingerprint sheets, treat search JSON as law, substitute report deadlines for actual events, or claim preflight predictability from retrospective gap labels.
+
+This text remains inside the assigned preflight folder for root integration. No shared HANDOFF file was edited by this subagent.
