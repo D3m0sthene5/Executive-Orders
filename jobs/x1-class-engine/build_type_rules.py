@@ -99,13 +99,14 @@ def revise(repo, out, rev):
                 out["quoted_clause"], out["quoted_parts"], out["exemplar"], out["source"] = parts[0], parts, ex, source
             else:
                 out["additional_exemplars"].append(dict(ex, quoted_parts=parts, source=source))
-    out["review_round"] = 2
+    out["review_round"] = rev.get("round", 2)
     return out
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=str(HERE.parents[1]))
+    ap.add_argument("--only", nargs="*", help="rebuild only these rule ids (keeps reviewed files frozen)")
     a = ap.parse_args()
     repo = Path(a.repo).resolve()
     types = {r["instrument_id"]: r for r in classify.classify(repo, HERE)}
@@ -113,6 +114,8 @@ def main():
     outdir = repo / "research/readiness/type-rules"
     outdir.mkdir(parents=True, exist_ok=True)
     for rule_id, r in spec.RULES.items():
+        if a.only and rule_id not in a.only:
+            continue
         if rule_id in getattr(spec, "FROZEN", set()):
             print(rule_id, "frozen: approved in review, left unchanged")
             continue
