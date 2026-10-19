@@ -17,7 +17,7 @@ they fail.
 | Step | Done when |
 |---|---|
 | `provisional_status` | It has a provisional YES/NO (`research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv`) |
-| `original_text` | Stage 19 marks a locally preserved original, Stage 21 captured the official PDF, fr-originals or an official compilation job (ofr-compilations, isthmian-canal-1911, indian-reservations-1912) found it without `needs_page_check` (otherwise `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`), opus-media-match matched an Opus copy to it, or its claim's original passes the gate and claim-checker. A find only in Richardson (richardson-volumes) never counts; it adds the blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND` |
+| `original_text` | Stage 19 marks a locally preserved original, Stage 21 captured the official PDF, fr-originals or an official compilation job (ofr-compilations, isthmian-canal-1911, indian-reservations-1912) found it without `needs_page_check` (otherwise `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`), opus-media-match matched an Opus copy to it, or its claim's original passes the gate and claim-checker. A find only in a compiled transcription, Richardson (richardson-volumes) or the American Presidency Project (app-executive-orders, live `FRAGMENTS.jsonl` and archive-capture `MIRROR_FRAGMENTS.jsonl`), never counts; it adds the lead blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND` (lead available, original still needed) |
 | `clause_inventory`, `ending_or_current_basis`, `savings_residuals` | That part of its claim in `research/readiness/claims/` passes `claim_gate.py` **and** claim-checker passed that step for this exact claim (`jobs/claim-checker/output/PER_CLAIM.json`, matched by claim sha256) |
 | `counterevidence` | Either the claim's later-source search passes as above, **or** the machines' bounded searches covered the order and found nothing contrary: later-events read the whole OFR catalog (the order must be in it, so 1937 on) and every saved text, current-law scanned the whole U.S. Code and eCFR, and neither `COUNTEREVIDENCE_LEADS.csv` nor `POSSIBLE_CONFLICTS.csv` names the order. Never from a sample run; never with a quarantined relationship conflict. `output/MACHINE_LATER_SEARCH.jsonl` gives the claim-shaped `later_source_search` for each such order, ready to copy into its claim. Blockers say why not: `MACHINE_SEARCH_FOUND_CONTRARY_LEAD:<job>` (an agent must resolve it) or `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` (pre-1937) |
 | `shared_sources` | Only for orders citing a Stage 20 shared source: all of them retrieved (Stage 20 records or `jobs/source-ladder/output/SOURCES.jsonl`) |
@@ -31,7 +31,10 @@ carry the same kind of uncertainty: an OCR text and a machine page location, and
 print no order numbers, an identification by date and subject against the WPA list that the job grades in
 `location_confidence`. Richardson's *Messages and Papers* is a compilation transcribed from department records and
 newspapers, not the signed or officially printed original; no existing rule here treated a compiled printing as the
-original, so it stays a lead. The OFR 1989 Codification is not read here: its texts are as amended to 1989 and its
+original, so it stays a lead. The American Presidency Project is the same class: an editorial web transcription (grade
+`mirror_transcription`, `acceptable_as_original=false`), read live or from public web-archive captures of its pages;
+it locates and dates an order but authenticates nothing.
+The OFR 1989 Codification is not read here: its texts are as amended to 1989 and its
 in-force snapshot cannot show anything operating on 2026-10-14 (claim-drafts proposes both as leads only).
 
 A step recorded in `research/readiness/EXHAUSTED.jsonl` counts as done. An order is

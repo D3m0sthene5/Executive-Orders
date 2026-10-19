@@ -230,6 +230,32 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_original_text"], "done")
         self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
 
+    def test_app_transcription_live_and_archive_is_a_lead_never_the_original(self):
+        # APP pages, read live or from a web-archive capture, are the same lead-only class as Richardson,
+        # even when the record carries needs_page_check=False or a high location confidence.
+        def rec(iid, lane):
+            return json.dumps({"instrument_id": iid, "kind": "original_representation",
+                               "produced_by": "app-executive-orders", "grade": "mirror_transcription",
+                               "representation_type": "secondary_compilation_transcription",
+                               "acceptable_as_original": False,
+                               "data": {"url": "https://www.presidency.ucsb.edu/documents/x", "sha256": "e" * 64,
+                                        "route": lane, "needs_page_check": False, "location_confidence": "high",
+                                        "acceptable_as_original": False}})
+        live, mirror = tracker.J["compiled_transcription_fragments"][1:3]
+        files = {live: rec("EO:1", "live") + "\n" + rec("EO:3", "live") + "\n",
+                 mirror: rec("EO:3", "archive/common-crawl/american-presidency-project") + "\n"}
+        orders, s = self.run_tracker(files=files)
+        for i in ("EO:1", "EO:3"):
+            self.assertEqual(orders[i]["step_original_text"], "open")
+            self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders[i]["blockers"])
+        # Both lanes of one job are reported once, as distinct orders.
+        self.assertEqual(tracker.build.job_outputs_used[
+            "app-executive-orders (lead only, never counted as the original)"], 2)
+        unlock = {u["blocker"]: u["orders_unblocked"] for u in s["shared_unlocks"]}
+        self.assertEqual(unlock["ONLY_COMPILED_TRANSCRIPTION_FOUND"], 2)
+        self.assertEqual(s["step_done_among_decided"]["original_text"]["done"],
+                         self.run_tracker()[1]["step_done_among_decided"]["original_text"]["done"])
+
     def test_source_ladder_retrieval_clears_a_shared_source(self):
         rec = json.dumps({"wanted_id": "STAT::1 Stat. 1", "sha256": "b" * 64, "instrument_ids": ["EO:1", "EO:3"]})
         orders, s = self.run_tracker(files={tracker.J["ladder_sources"][0]: rec + "\n"})

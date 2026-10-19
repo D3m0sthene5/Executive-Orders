@@ -27,6 +27,7 @@ PROVISIONAL = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 DEFAULT_INPUT_JOBS = ("fr-originals", "source-ladder")
 NEEDS_JUDGMENT = ["state_at_cutoff", "first_end_or_current_predicate", "later_events", "clause_boundaries_and_completeness"]
 PREVIEW_CHARS = 200
+APP_FRAGMENTS = "FRAGMENTS_APP.jsonl"  # transcription-based drafts (American Presidency Project fallback input)
 
 # A draft with any of these warnings may be about the WRONG ORDER. It is written to
 # IDENTITY_QUARANTINE.csv instead of FRAGMENTS.jsonl / SOURCES.jsonl.
@@ -264,6 +265,12 @@ def main():
     only = {x.strip() for x in os.environ.get("JOB_IDS", "").split(",") if x.strip()}
     input_jobs = [x.strip() for x in os.environ.get("CLAUSE_INPUT_JOBS", ",".join(DEFAULT_INPUT_JOBS)).split(",") if x.strip()]
     allow_partial = os.environ.get("CLAUSE_ALLOW_PARTIAL_INPUTS", "").strip() == "1"
+    # APP transcriptions from app-executive-orders: fallback draft inputs (CLAUSE_APP_INPUT=0 turns them off).
+    use_app = os.environ.get("CLAUSE_APP_INPUT", "1").strip() != "0"
+    # Segment every candidate copy, not only until the first good one, to measure each source's
+    # segmentation outcomes (env CLAUSE_MEASURE_ALL=1 or a MEASURE_ALL file in this folder). Selection is unchanged.
+    measure_all = (os.environ.get("CLAUSE_MEASURE_ALL", "").strip() == "1"
+                   or (Path(__file__).resolve().parent / "MEASURE_ALL").is_file())
 
     universe, era, dates = read_universe(repo)
     provisional = read_provisional(repo)
@@ -308,6 +315,13 @@ def main():
     for c in jc:
         cands[c.instrument_id].append(c)
     log(f"Other jobs: {job_seen}")
+    app_seen = {}
+    if use_app:
+        ac, p, app_seen = SRC.app_job_candidates(repo, universe, dates, log)
+        problems += p
+        for c in ac:
+            cands[c.instrument_id].append(c)
+        log(f"APP transcriptions ({SRC.APP_JOB}, fallback only): {app_seen}, {len(p)} refused")
 
     # Identity sanity: an FR issue cannot print an order signed years later or long before.
     dropped = 0
@@ -335,6 +349,8 @@ def main():
     # ---- segment -------------------------------------------------------------
     loader = SRC.TextLoader(repo, zpath)
     frag_fh = open(out / "FRAGMENTS.jsonl", "w", encoding="utf-8", newline="\n")
+    # Drafts from APP transcriptions go to their own file: together the two would pass GitHub's 95 MB file limit.
+    app_fh = open(out / APP_FRAGMENTS, "w", encoding="utf-8", newline="\n")
     src_fh = open(out / "SOURCES.jsonl", "w", encoding="utf-8", newline="\n")
     rows, failures, quarantine = [], [], []
     stats = Counter()
@@ -343,37 +359,59 @@ def main():
     used_hash_checks = Counter()
     written_sources = set()
     ocr_maps = {}
+    measured = defaultdict(Counter)  # input kind -> segmentation outcome per candidate copy tried
+
+    def input_kind(c):
+        return "app_transcription_job" if c.extra.get("fallback_only") else f"{c.origin.split(':', 1)[0]}:{c.grade}"
+
+    def select_key(q, c):
+        # Usable and identity-clean first; then any non-fallback copy before an APP transcription; then quality.
+        return (q[0], q[1], 0 if c.extra.get("fallback_only") else 1) + tuple(q[2:])
+
     for n_done, iid in enumerate(chosen, 1):
         tried = []
         best = None
+        best_key = None
+        settled = False
         uyear = (dates.get(iid) or "")[:4]
         uyear = int(uyear) if uyear.isdigit() else None
         ordered = sorted(cands[iid], key=lambda c: (c.rank, c.extra.get("variant_rank", 0), c.locator))
         for cand in ordered:
+            if settled and not measure_all:
+                break
             try:
                 text, starts = loader.load(cand)
             except Exception as exc:  # noqa: BLE001
-                tried.append(f"{cand.grade}:load_error:{type(exc).__name__}")
+                measured[input_kind(cand)]["load_error"] += 1
+                if not settled:
+                    tried.append(f"{cand.grade}:load_error:{type(exc).__name__}")
                 continue
             loc, seg, evidence = try_candidate(cand, text, uyear)
             if loc is None:
-                tried.append(f"{cand.grade}:{seg}")
+                measured[input_kind(cand)]["not_located:" + re.sub(r"_(?:\d|[A-Z]).*$", "", seg)] += 1
+                if not settled:
+                    tried.append(f"{cand.grade}:{seg}")
                 continue
             q = quality(seg, loc, cand)
             state = ("good" if q[2] else "partial") if q[0] else "unusable"
             if q[0] and not q[1]:
                 state = "identity_doubt"
+            measured[input_kind(cand)][state] += 1
+            if settled:
+                continue  # measuring only; the selection is already made
             tried.append(f"{cand.grade}:segmented:{state}" + (f"({';'.join(seg['warnings'])})" if state != "good" else ""))
-            if best is None or q > best[0]:
-                best = (q, cand, text, starts, loc, seg, evidence)
+            key = select_key(q, cand)
+            if best is None or key > best_key:
+                best, best_key = (q, cand, text, starts, loc, seg, evidence), key
             if q[0] and q[1] and q[2]:
-                break  # best-ranked good copy wins
+                settled = True  # best-ranked good copy wins
         if best is None or not best[0][0]:
             failures.append({"instrument_id": iid, "era": era.get(iid, "unknown"), "candidates": len(ordered),
                              "best_source_url": best[1].url if best else "", "attempts": " | ".join(tried)})
             stats["orders_not_segmented"] += 1
             continue
         q, cand, text, starts, loc, seg, evidence = best
+        transcription = bool(cand.extra.get("transcription_based"))
         doubts = identity_problems(seg["warnings"])
         if doubts:
             quarantine.append({
@@ -499,7 +537,10 @@ def main():
             "data": clauses,
             "sources": [base_ref],
             "confidence_note": (
-                f"Machine DRAFT from a {cand.grade} copy; structure '{seg['structure']}', {len(clauses)} units; "
+                ("TRANSCRIPTION-BASED: clause texts come from an American Presidency Project transcription "
+                 "(app-executive-orders), not an official edition; check every clause against the official original. "
+                 if transcription else "")
+                + f"Machine DRAFT from a {cand.grade} copy; structure '{seg['structure']}', {len(clauses)} units; "
                 + (f"warnings: {', '.join(seg['warnings'])}; " if seg["warnings"] else "")
                 + ("no structural problems detected by the automatic checks (heading, body and signature found; "
                    "no unsplit section markers or over-long units); " if good
@@ -523,7 +564,12 @@ def main():
             "alternate_sources": alternates,
             "era": era.get(iid, "unknown"),
         }
-        frag_fh.write(json.dumps(frag, ensure_ascii=False) + "\n")
+        if transcription:
+            frag.update(transcription_based=True, representation_type="secondary_compilation_transcription",
+                        acceptable_as_original=False)
+            stats["fragments_from_app_transcription"] += 1
+            stats[f"app_quality:{'good' if good else 'partial'}"] += 1
+        (app_fh if transcription else frag_fh).write(json.dumps(frag, ensure_ascii=False) + "\n")
         stats["fragments_written"] += 1
         stats["clauses_total"] += len(clauses)
         stats[f"grade:{cand.grade}"] += 1
@@ -536,6 +582,7 @@ def main():
         if n_done % 200 == 0:
             log(f"  {n_done}/{len(chosen)} orders processed")
     frag_fh.close()
+    app_fh.close()
     src_fh.close()
     loader.close()
 
@@ -563,15 +610,16 @@ def main():
 
     # Independent re-check from the files just written (not from memory).
     recheck = Counter()
-    with open(out / "FRAGMENTS.jsonl", encoding="utf-8") as fh:
-        for line in fh:
-            f = json.loads(line)
-            for c in f["data"]:
-                with open(out / c["text_offsets"]["text_path"], encoding="utf-8", newline="") as tf:
-                    saved = tf.read()
-                o = c["text_offsets"]
-                good = saved[o["start"]:o["end"]] == c["original_operative_text"] and c["original_operative_text"] in saved
-                recheck["ok" if good else "FAILED"] += 1
+    for name in ("FRAGMENTS.jsonl", APP_FRAGMENTS):
+        with open(out / name, encoding="utf-8") as fh:
+            for line in fh:
+                f = json.loads(line)
+                for c in f["data"]:
+                    with open(out / c["text_offsets"]["text_path"], encoding="utf-8", newline="") as tf:
+                        saved = tf.read()
+                    o = c["text_offsets"]
+                    good = saved[o["start"]:o["end"]] == c["original_operative_text"] and c["original_operative_text"] in saved
+                    recheck["ok" if good else "FAILED"] += 1
     reasons = Counter(re.sub(r"_(?:\d|[A-Z]).*$", "", r) for q in quarantine for r in q["reasons"].split(";"))
     summary = {
         "job": JOB,
@@ -585,6 +633,7 @@ def main():
             "stage21_pdfs_usable": len(s21),
             "opus_zip": opus_stats,
             "other_jobs": job_seen,
+            "app_transcriptions": app_seen if use_app else "off (CLAUSE_APP_INPUT=0)",
             "input_problems": len(problems),
         },
         "orders_in_universe": len(universe),
@@ -597,6 +646,14 @@ def main():
         "clauses_total": stats["clauses_total"],
         "segmentation_quality": {k.split(":", 1)[1]: v for k, v in stats.items() if k.startswith("quality:")},
         "by_source_grade": {k.split(":", 1)[1]: v for k, v in stats.items() if k.startswith("grade:")},
+        "fragments_from_app_transcription": stats["fragments_from_app_transcription"],
+        "app_transcription_quality": {k.split(":", 1)[1]: v for k, v in stats.items() if k.startswith("app_quality:")},
+        "segmentation_outcomes_by_input": {
+            "measured_every_candidate": measure_all,
+            "note": ("one count per candidate copy tried; with measured_every_candidate false, copies after the first "
+                     "good one are not tried, so fallback inputs are only measured where nothing better was good"),
+            "by_input": {k: dict(sorted(v.items())) for k, v in sorted(measured.items())},
+        },
         "by_structure": {k.split(":", 1)[1]: v for k, v in stats.items() if k.startswith("structure:")},
         "by_clause_kind": {k.split(":", 1)[1]: v for k, v in stats.items() if k.startswith("kind:")},
         "by_era": {k: dict(v) for k, v in sorted(by_era.items())},
@@ -625,6 +682,7 @@ def main():
         f"{summary['segmentation_quality'].get('partial', 0)} partial)")
     log(f"  Held back because the text may be a different order: {stats['orders_identity_quarantined']} (see IDENTITY_QUARANTINE.csv)")
     log(f"  Orders whose text could not be split: {stats['orders_not_segmented']} (see NOT_SEGMENTED.csv)")
+    log(f"  Drafts from APP transcriptions (fallback, transcription-based): {stats['fragments_from_app_transcription']}")
     log(f"  Clauses: {stats['clauses_total']}; by era: " + ", ".join(f"{k}: {v['orders']} orders/{v['clauses']} clauses" for k, v in summary["by_era"].items()))
     log(f"  Self-check: {check['exact_substring_ok']}/{check['clauses_checked']} clause texts are exact substrings of the saved text"
         f" (re-check from files: {recheck['ok']} ok, {recheck['FAILED']} failed); zip text vs meta hash: {dict(used_hash_checks)}")
