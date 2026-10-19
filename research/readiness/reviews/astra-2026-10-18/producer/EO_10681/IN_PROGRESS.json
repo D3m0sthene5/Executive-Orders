@@ -1,0 +1,109 @@
+{
+  "status": "in_progress_stopped_at_user_request",
+  "instrument_id": "EO:10681",
+  "claim_frozen": false,
+  "claim_created": false,
+  "started_utc": "2026-10-19T01:57:17.885364+00:00",
+  "stopped_utc": "2026-10-19T02:03:48.094160+00:00",
+  "elapsed_wall_seconds": 390.208796,
+  "wall_note": "Includes repository-materialization pause; no tokens or billable usage inferred.",
+  "model_usage": null,
+  "current_files": [
+    {
+      "path": "C:\\Users\\danie\\Documents\\Codex\\2026-10-18\\files-pasted-by-the-user-you\\work\\executive-orders\\research\\readiness\\reviews\\astra-2026-10-18\\producer\\EO_10681\\original-page.png",
+      "sha256": "3b6c138dd18244ca9e9f02432a61f55ca8605879bc056b310d56634f8cc15623",
+      "bytes": 1569714
+    },
+    {
+      "path": "C:\\Users\\danie\\Documents\\Codex\\2026-10-18\\files-pasted-by-the-user-you\\work\\executive-orders\\research\\readiness\\reviews\\astra-2026-10-18\\producer\\EO_10681\\statute1962-relevant-pages.txt",
+      "sha256": "8ab91a800cbe629105f7f4c96183f9d5814525ddbbded4255e42a561ca5af71d",
+      "bytes": 24133
+    }
+  ],
+  "actual_reads": [
+    "Full held EO10681 official extract and actual PDF page1 image. Original tail alternatives read as (1) on inactive-duty training, or (2) on active-duty and inactive-duty training, if inactive-duty flight requirement for that month met. Image gap resolved.",
+    "Full rootEO10152 extract, particularly4(a)(4)/(b)(4), section4 injury exception reference to10, and effective13.",
+    "Full actual10618 target pages1/3: changes9 only, differentiated effective dates. Full10739 target: adds9(h);10892 target: changes6. They do not directly change4(c).",
+    "EO11120 full target read in preceding same-agent task; section1/root changes and4 effective re-read here. Changes6/8/9/10 and adds12; new10 injury exception affects context but does not directly replace4(c).",
+    "EO11157 full pages7-14 read in preceding same-agent task;104(c),502(g),signature re-read here. Page14 image personally inspected previously. June22,1964 express revocation;104(c) independently prescribes corresponding mixed-flight rule.",
+    "EO11292 full target read in preceding same-agent task; replaces11157 section104 after1964, not revival of10681.",
+    "1949 Act sections204 and501 fully read from former source-ladder held extract before checkout update; section204 printed809-810/PDF8-9;501(d)printed826/PDF25,501(e)printed827/PDF26. New retained1949source exists per catalog but its selected-pages text not separately re-read.",
+    "New1962 PDF relevantpages11-13 and47-52 actually extracted and read from held52-page PDF.301(a)/(f) preserves active/reserve incentive-pay structure;12(a) restatement without substantive change,12(b) references correspond,12(c) actions preserved;14 maturedrights/savings;15 November1,1962. Only initial40pages in jobselectedextract, so local relevant-page extract contains necessary tail.",
+    "All9pages new1963Act held extract read. Sections6submarine/7pressurechamber/8dualpay do not directly replace mixed-flight rule;13savings,14October1,1963. Section12(b) foreign-duty savings is distinct from target flight rule."
+  ],
+  "exact_sources": [
+    {
+      "role": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1956-10-24/pdf/FR-1956-10-24.pdf",
+      "pdf_path": "jobs/astra-source-retention/output/pdf/d674c4b5a83f57bea8342b401e534a51fabb6f31958a0019312c862d68d0cf0d.pdf",
+      "catalog_sha256": "d674c4b5a83f57bea8342b401e534a51fabb6f31958a0019312c862d68d0cf0d",
+      "pages": "PDF1/printed8129",
+      "fixity_row_read": 1719,
+      "fixity_result_read": "match",
+      "original_ocr_path": "jobs/fr-originals/data/full_run/texts/EO_10681.txt",
+      "image_file": "original-page.png"
+    },
+    {
+      "role": "1962Act",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg451.pdf",
+      "pdf_path": "jobs/astra-source-retention/output/pdf/0dae5e46a791e1c03f7542ecd8e4e926938f0174c8b5fced60fb81d96ffb743b.pdf",
+      "catalog_sha256": "0dae5e46a791e1c03f7542ecd8e4e926938f0174c8b5fced60fb81d96ffb743b",
+      "pages_read": [
+        11,
+        12,
+        13,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "local_extract": "statute1962-relevant-pages.txt",
+      "extraction": "pypdf PdfReader, actual retained52-page PDF; page boundaries inserted by producer"
+    },
+    {
+      "role": "1963Act",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-77/pdf/STATUTE-77-Pg210.pdf",
+      "pdf_path": "jobs/astra-source-retention/output/pdf/e379bcd0171e2360bbfa39cfab14c62b4522e7b0e93debec63408a48d93adb86.pdf",
+      "catalog_sha256": "e379bcd0171e2360bbfa39cfab14c62b4522e7b0e93debec63408a48d93adb86",
+      "text_path": "jobs/astra-source-retention/output/pages/e379bcd0171e2360bbfa39cfab14c62b4522e7b0e93debec63408a48d93adb86/selected-pages.txt",
+      "pages_read": "1-9"
+    },
+    {
+      "role": "1949Act",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-63/pdf/STATUTE-63-Pg802.pdf",
+      "pdf_path": "jobs/astra-source-retention/output/pdf/046e92d126ea4c478512cce26586b54d8e7bd9ab1c4f5866c59ed9197cf26d22.pdf",
+      "catalog_sha256": "046e92d126ea4c478512cce26586b54d8e7bd9ab1c4f5866c59ed9197cf26d22",
+      "old_text_sha256_read": "1e8ade82661f884dabb42a970038a890c00d51973608fba53012a8a1bb11b7e1",
+      "old_text_path": "jobs/source-ladder/output/texts/opus-refetch_046e92d126ea4c478512cce26586b54d8e7bd9ab1c4f5866c59ed9197cf26d22_6fec04cb7c.txt",
+      "caution": "Old source-ladder path disappeared transiently duringcheckout; no restoration attempted. OldGPO witnessnot_listed, notmatch."
+    }
+  ],
+  "search_checkpoint": {
+    "performed_before_checkout_update": true,
+    "old_root_counts": {
+      "jobs/fr-originals/output/texts": 6652,
+      "jobs/fr-originals/data/full_run/texts": 6652,
+      "jobs/source-ladder/output/texts": 187,
+      "jobs/astra-source-retention/output/pages": 163
+    },
+    "queries": [
+      "10681",
+      "10152",
+      "minimumflightrequirements",
+      "incentivepayfortheperformanceofhazardousduty"
+    ],
+    "normalization": "casefold;remove whitespace,soft hyphen,ASCIIhyphen",
+    "manifest_saved": false,
+    "caution": "Those counts precede repositoryupdate and mustnot be asserted as current. Exactcontexts screened; one current-law USC editorial amendment mention despite machinezero; no eCFRrow. Rerun exactfilemanifest afterresume."
+  },
+  "tentative_findings_not_claim": "Original-tail and concrete1962/1963continuity gaps now appear resolved for target. A proposedcomplete June22,1964 firstend may be supportable, but no candidate or review has been produced. Still assess original amendment execution versus continuing inserted rule, contextual11120section10 exception, accruedpay/savings and successor104(c) independently.",
+  "exact_next_steps": [
+    "Only upon explicitresume: recompute current sourcecatalog/fixity and exactsaved-text search manifest after botmerge; do not reuse premerge counts.",
+    "Read/verify current held1949 relevanttext and hash actual retained PDFs; record exactfixity rows and source metadata for all citations.",
+    "Finalize precise originalinventory using personally read pageimage; preserve OCR versus image-transcription distinction. Do not silently substitute successorwording.",
+    "Resolve firstend/residual allocation with1962/1963continuity and11120context; then create onlythiscandidate and audit, verify canonicalclaim_gateSHA andrawfileSHA, send to independentai_review. No automaticcompletefinding."
+  ],
+  "write_boundary": "Only thisproducerfolder. No canonicalclaim, protectedwrite, fetch, commit or furtherproduction. Userstop honored."
+}

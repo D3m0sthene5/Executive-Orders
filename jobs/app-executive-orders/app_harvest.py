@@ -266,7 +266,26 @@ def sort_key(row):
     return (0, int(m[1]), m[2], row["path"]) if m else (1, 0, row.get("date", ""), row["path"])
 
 
-def run_documents(pool, out, max_new, ids_file):
+def mirror_covered(out, audit_every):
+    """Paths the archive lane (app_mirror.py) already saved, minus an audit sample fetched live anyway.
+
+    Returns (skip, audit): the live lane skips `skip`; it fetches `audit` and records whether the live
+    text agrees with the capture in MIRROR_AUDIT.jsonl. The sample is every audit_every-th covered path
+    in path order (0 = no sample), minus paths already audited.
+    """
+    covered = {d["path"]: d for d in lines(out / "MIRROR_DOCUMENTS.jsonl")}
+    audited = {a["path"] for a in lines(out / "MIRROR_AUDIT.jsonl")}
+    audit = {}
+    if audit_every:
+        for i, path in enumerate(sorted(covered)):
+            if i % audit_every == 0 and path not in audited:
+                audit[path] = covered[path]
+    # A capture whose page parsed but holds no text (APP's "[Not Published.]") is a finding, not a fetch problem.
+    empty = {f["path"] for f in lines(out / "MIRROR_FAILURES.jsonl") if f.get("reason") == "no_usable_text"}
+    return {p for p in covered if p not in audit} | empty, audit
+
+
+def run_documents(pool, out, max_new, ids_file, audit_every=0):
     index = lines(out / "INDEX.jsonl")
     if not index:
         raise SystemExit("Run the index phase first: output/INDEX.jsonl is missing")
@@ -274,19 +293,22 @@ def run_documents(pool, out, max_new, ids_file):
         (out / name).touch(exist_ok=True)
     done = {d["path"] for d in lines(out / "DOCUMENTS.jsonl")}
     failed = {f["path"] for f in lines(out / "FAILURES.jsonl")}
+    mirrored, audit = mirror_covered(out, audit_every)
     priority = set()
     if ids_file:
         priority = {s.strip() for s in Path(ids_file).read_text(encoding="utf-8").split() if s.strip()}
-    queue = sorted((r for r in index if r["path"] not in done and r["path"] not in failed),
+    queue = sorted((r for r in index if r["path"] not in done and r["path"] not in failed and r["path"] not in mirrored),
                    key=lambda r: (r.get("instrument_id") not in priority, sort_key(r)))
     stopped, started_new = "", 0
 
     def checkpoint():
+        left = len(index) - len(done) - len(failed) - len(mirrored - done)
         state = {"updated_utc": stamp(), "indexed": len(index), "saved": len(done), "failed": len(failed),
-                 "remaining": len(index) - len(done) - len(failed), "site_stopped": bool(stopped),
-                 "stop_reason": stopped, "complete": len(done) + len(failed) >= len(index),
+                 "mirror_saved": len(mirrored) + len(audit), "audit_sample": len(audit),
+                 "remaining": left, "site_stopped": bool(stopped),
+                 "stop_reason": stopped, "complete": left <= 0,
                  "seconds_per_request": CRAWL_DELAY,
-                 "estimated_hours_left": round((len(index) - len(done) - len(failed)) * CRAWL_DELAY / 3600, 1)}
+                 "estimated_hours_left": round(max(0, left) * CRAWL_DELAY / 3600, 1)}
         write_json(out / "STATE.json", state)
         print(json.dumps(state), flush=True)
 
@@ -305,7 +327,8 @@ def run_documents(pool, out, max_new, ids_file):
             iid, _ = instrument_id(doc["heading"])
             if row["instrument_id"] and iid != row["instrument_id"]:
                 raise PageFailure(f"identity_mismatch: listing {row['instrument_id']} page {iid}; heading={doc['heading']}")
-            text_rel = "texts/" + text_name(row["path"]) + ".txt"
+            mirror = audit.get(row["path"])
+            text_rel = "texts/" + text_name(row["path"]) + (".live.txt" if mirror else ".txt")
             fetch_ladder.write_text_lf(out / text_rel, doc["text"] + "\n")
             retrieved = stamp()
             record = {"instrument_id": iid, "path": row["path"], "url": row["url"], "final_url": result["final_url"],
@@ -313,6 +336,15 @@ def run_documents(pool, out, max_new, ids_file):
                       "text_path": text_rel, "text_sha256": sha((out / text_rel).read_bytes()),
                       "text_chars": len(doc["text"]), "listing_title": row["title"], "listing_date": row["date"],
                       **{k: v for k, v in doc.items() if k != "text"}}
+            if mirror:
+                record["audit_of_mirror"] = mirror["route"]
+                append(out / "MIRROR_AUDIT.jsonl", {
+                    "path": row["path"], "instrument_id": iid, "archive": mirror["route"],
+                    "captured_utc": mirror.get("capture", {}).get("captured_utc", ""), "live_retrieved_utc": retrieved,
+                    "mirror_text_sha256": mirror["text_sha256"], "live_text_sha256": record["text_sha256"],
+                    "text_agrees": mirror["text_sha256"] == record["text_sha256"],
+                    "mirror_page_sha256": mirror["sha256"], "live_page_sha256": result["sha256"],
+                    "page_agrees": mirror["sha256"] == result["sha256"]})
             append(out / "DOCUMENTS.jsonl", record)
             source = {"source_id": "app-executive-orders:" + (iid or "node/" + doc["app_node"]) + ":" + result["sha256"][:12],
                       "instrument_ids": [iid] if iid else [], "url": row["url"],
@@ -366,6 +398,9 @@ def main():
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parent / "output")
     ap.add_argument("--max-new", type=int, default=100000, help="Stop after this many document pages")
     ap.add_argument("--ids-file", help="Whitespace-separated instrument IDs (EO:123) to fetch first")
+    ap.add_argument("--audit-every", type=int, default=0,
+                    help="documents: skip pages the archive lane (app_mirror.py) saved, except every Nth, "
+                         "which is fetched live and compared in MIRROR_AUDIT.jsonl (0 = skip all)")
     ap.add_argument("files", nargs="*", help="parse-test: saved HTML pages to parse offline")
     args = ap.parse_args()
     if args.phase == "parse-test":
@@ -392,7 +427,7 @@ def main():
     elif args.phase == "index":
         run_index(pool, args.out)
     else:
-        run_documents(pool, args.out, args.max_new, args.ids_file)
+        run_documents(pool, args.out, args.max_new, args.ids_file, args.audit_every)
     print(f"requests={pool.requests} cache_hits={pool.cache_hits} bytes={pool.bytes_downloaded}", flush=True)
 
 

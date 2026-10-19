@@ -1,0 +1,460 @@
+{
+  "schema": "astra-exact-source-read-audit/v1",
+  "instrument_id": "EO:11256",
+  "candidate_verdict": "partial_only_not_ready",
+  "producer_role": "ai_producer",
+  "independent_review_pending": true,
+  "required_reviewer_role": "ai_review",
+  "branch": "astra/side-2026-10-18",
+  "reservation_commit": "7c4f0eb1",
+  "draft_path": "jobs/case-bundles/output/drafts/11/EO_11256.json",
+  "draft_file_sha256": "957027c6d8ac7cf6167eff603e497b41ed5632fb5e16ee03b04ca89f386ee501",
+  "copied_only_claim": true,
+  "claim_sha256": "8fe5d2111885aa5c76c0e0468fd78b5eb081285fcfaaf902434c38401142a53f",
+  "claim_file_sha256": "c1cded07fa11d18d27de65489996eb6d2f5d8c95af4408b8b16ffc4b79729405",
+  "source_reads": [
+    {
+      "instrument_id": "EO:11256",
+      "source": {
+        "page_or_item": "30 FR 14137-14138, PDF pages 7-8; entire EO 11256 text extract",
+        "sha256": "24796bb79e2ef5f62dc451dfe1cfe9236bc79f24fdcde5336d6b9db66afb3797",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1965-11-10/pdf/FR-1965-11-10.pdf",
+        "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+        "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+        "requires_page_check": true,
+        "page_images_inspected": false
+      },
+      "full_held_text_read": true,
+      "page_images_read": false,
+      "scope": "Entire saved extract, all sections 1-7 and signature/filing tail",
+      "limitations": "OCR includes Section If and November J; section/signature numbers were not silently repaired in quoted spans."
+    },
+    {
+      "instrument_id": "EO:12379",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "page_or_item": "47 FR 36100, PDF page 10; EO 12379 section 18; full actor read on PDF pages 9-10 via held text extract",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+        "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+        "requires_page_check": true,
+        "page_images_inspected": false,
+        "quoted_text": "Sec. 18. Executive Order No. 11256, establishing the President’s Committee on  \nFood and Fiber and establishing the National Advisory Commission on Food  \nand Fiber, is revoked."
+      },
+      "full_held_text_read": true,
+      "page_images_read": false,
+      "scope": "Entire saved extract, preamble, all sections 1-25, dated signature and filing tail",
+      "effective_date_reason": "Immediate present-tense is revoked; no deferred effective wording found in complete actor. Signing date stated in heading and tail is August 17, 1982. This is not asserted as first end."
+    }
+  ],
+  "fixity_records": [
+    {
+      "path": "jobs/official-fixity/output/FIXITY.csv",
+      "line": 2105,
+      "file_sha256": "78e800b5ae9b0bc1aeed30e142991eab80c01cf66df31e5a186f4069d81b92ef",
+      "row": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1965-11-10/pdf/FR-1965-11-10.pdf",
+        "package": "FR-1965-11-10",
+        "filename": "FR-1965-11-10.pdf",
+        "recorded_sha256": "24796bb79e2ef5f62dc451dfe1cfe9236bc79f24fdcde5336d6b9db66afb3797",
+        "gpo_sha256": "24796bb79e2ef5f62dc451dfe1cfe9236bc79f24fdcde5336d6b9db66afb3797",
+        "algorithm": "SHA-256",
+        "result": "match",
+        "detail": "",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1965-11-10/premis.xml",
+        "premis_bytes_read": "65536",
+        "checked_utc": "2026-10-18T00:55:27Z",
+        "instrument_ids": "EO:11255 | EO:11256",
+        "found_in": "jobs/clause-drafts/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+      }
+    },
+    {
+      "path": "jobs/official-fixity/output/FIXITY.csv",
+      "line": 2938,
+      "file_sha256": "78e800b5ae9b0bc1aeed30e142991eab80c01cf66df31e5a186f4069d81b92ef",
+      "row": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "package": "FR-1982-08-19",
+        "filename": "FR-1982-08-19.pdf",
+        "recorded_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "gpo_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "algorithm": "SHA-256",
+        "result": "match",
+        "detail": "",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1982-08-19/premis.xml",
+        "premis_bytes_read": "65536",
+        "checked_utc": "2026-10-18T00:55:48Z",
+        "instrument_ids": "EO:12379",
+        "found_in": "jobs/family-rule-sources/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl | jobs/source-ladder/output/SOURCES.jsonl | research/readiness/rules/EO_12379.json"
+      }
+    }
+  ],
+  "clause_spans": [
+    {
+      "scope_id": "EO:11256#sec1(a)",
+      "char_start": 756,
+      "char_end": 922,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec1(b)",
+      "char_start": 923,
+      "char_end": 1310,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec2(a)",
+      "char_start": 1311,
+      "char_end": 1931,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec2(b)",
+      "char_start": 1932,
+      "char_end": 2187,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec3(a)",
+      "char_start": 2188,
+      "char_end": 2447,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec3(b)",
+      "char_start": 2448,
+      "char_end": 2610,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec3(c)",
+      "char_start": 2611,
+      "char_end": 2665,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec3(d)",
+      "char_start": 2666,
+      "char_end": 2994,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec3(e)",
+      "char_start": 2995,
+      "char_end": 3292,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(a)",
+      "char_start": 3293,
+      "char_end": 3528,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(b)-intro",
+      "char_start": 3529,
+      "char_end": 3612,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(b)(1)",
+      "char_start": 3724,
+      "char_end": 3960,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(b)(2)",
+      "char_start": 3961,
+      "char_end": 4366,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(b)(3)",
+      "char_start": 4367,
+      "char_end": 4512,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec4(c)",
+      "char_start": 4513,
+      "char_end": 4760,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec5(a)",
+      "char_start": 4761,
+      "char_end": 5238,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec5(b)",
+      "char_start": 5239,
+      "char_end": 5543,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec5(c)",
+      "char_start": 5544,
+      "char_end": 5710,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec6",
+      "char_start": 5711,
+      "char_end": 5894,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:11256#sec7",
+      "char_start": 5895,
+      "char_end": 6029,
+      "text_path": "jobs/fr-originals/output/texts/EO_11256.txt",
+      "text_sha256": "349cec10df087c266b87cb2a89c58b4e46031be5f388a1cee2de193d57ea41d9",
+      "exact_span_match": true
+    }
+  ],
+  "segmentation_change": "Draft preamble-op contained section 1 and draft sec4(b) swallowed remaining sections; corrected into 20 exact spans, removing page furniture and retaining section 7 independently. All spans preserve held OCR.",
+  "earlier_amendment_read": {
+    "path": "jobs/later-events/output/EDGES.csv",
+    "sha256": "fa510f2401aba3d43badcc3448d0f9e7fd72ddf5d9d355c43da3442140fc8af1",
+    "target_rows": [
+      {
+        "line": 4558,
+        "row": {
+          "edge_id": "LE-02d6fdde152a",
+          "acting_id": "EO:12379",
+          "acting_label": "",
+          "target_id": "EO:11256",
+          "target_label": "EO 11256, November 4, 1965",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "acting order signing_date from OFR catalog",
+          "date_flags": "",
+          "stated_effective_date": "",
+          "evidence_type": "ofr_note_on_acting",
+          "stated_on": "EO:12379",
+          "source_id": "ofr-api-page:79e100de57f8d997",
+          "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+          "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+          "page_or_item": "OFR API record executive_order_number=12379; citation 47 FR 36099; field disposition_notes",
+          "note_label": "Revokes",
+          "quote_kind": "verbatim_note_item",
+          "quote_span": "",
+          "quote": "EO 11256, November 4, 1965"
+        }
+      },
+      {
+        "line": 4559,
+        "row": {
+          "edge_id": "LE-360d00adf888",
+          "acting_id": "EO:12379",
+          "acting_label": "EO 12379, August 17, 1982",
+          "target_id": "EO:11256",
+          "target_label": "",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "date stated next to the acting instrument in the OFR note",
+          "date_flags": "",
+          "stated_effective_date": "",
+          "evidence_type": "ofr_note_on_target",
+          "stated_on": "EO:11256",
+          "source_id": "ofr-api-page:8feb38cf56288f7d",
+          "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=4&per_page=1000&search_after_cursor=WzEwNTAwLjAsIjEwNTAwIl0",
+          "source_sha256": "8feb38cf56288f7dc9c5ec38b8705791d644512f05d8e9fbf5091159ca036108",
+          "page_or_item": "OFR API record executive_order_number=11256; citation 30 FR 14137; field disposition_notes",
+          "note_label": "Revoked by",
+          "quote_kind": "verbatim_note_item",
+          "quote_span": "",
+          "quote": "Revoked by: EO 12379, August 17, 1982"
+        }
+      },
+      {
+        "line": 4560,
+        "row": {
+          "edge_id": "LE-8fc6b2d5bb4b",
+          "acting_id": "EO:12379",
+          "acting_label": "",
+          "target_id": "EO:11256",
+          "target_label": "",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "acting order signing_date from OFR catalog",
+          "date_flags": "acting_order_heading_not_found_in_text(whole text scanned)",
+          "stated_effective_date": "",
+          "evidence_type": "order_text_fr_originals",
+          "stated_on": "EO:12379",
+          "source_id": "fr-originals:EO:12379:5432431cc090",
+          "source_url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+          "source_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "page_or_item": "47 FR 36099, PDF pages 9-10",
+          "note_label": "",
+          "quote_kind": "verbatim_text_sentence",
+          "quote_span": "chars 3623-3791 of the scanned text",
+          "quote": "Executive Order No. 11256, establishing the President’s Committee on Food and Fiber and establishing the National Advisory Commission on Food and Fiber, is revoked."
+        }
+      }
+    ],
+    "conclusion": "Only EO12379 target events present. No earlier amendment or termination may be inferred from absence."
+  },
+  "machine_chain_audit": {
+    "path": "jobs/claim-kit/output/dossiers/EO_11256.json",
+    "sha256": "7b7daa7a492b87d6b3604270c5d1b384c322573f95e6561739662374c899599f",
+    "fingerprint": "9c60cbc1182bef7f3b508422a2f4d9f32fbb7d909a3de9b4fe742cf39ca4cce8",
+    "rejected_actor_ids": [
+      "EO:11654",
+      "EO:12042",
+      "EO:12071",
+      "EO:12085",
+      "EO:12089",
+      "EO:12132",
+      "EO:12192",
+      "EO:12194",
+      "EO:12207",
+      "EO:12275"
+    ],
+    "reason": "All these actor associations reuse the text of EO12379 section18 and its 1982 official PDF, with unrelated target-order signing dates. Full source identifies the actor as EO12379."
+  },
+  "machine_search_scope": {
+    "path": "jobs/claim-drafts/output/SUMMARY.json",
+    "sha256": "09cfa31c035dd092a61bb47021358cfb8a7d90457dfd5e1fea90784a21ab6369",
+    "entries": [
+      {
+        "search_id": "current-law:usc",
+        "complete": true,
+        "scope_note": "",
+        "entry": {
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "checked_on": "2026-10-17",
+          "searched_by": "jobs/current-law (machine search)"
+        }
+      },
+      {
+        "search_id": "current-law:ecfr",
+        "complete": true,
+        "scope_note": "",
+        "entry": {
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "checked_on": "2026-10-17",
+          "searched_by": "jobs/current-law (machine search)"
+        }
+      },
+      {
+        "search_id": "later-events:ofr_catalog",
+        "complete": true,
+        "scope_note": "",
+        "entry": {
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+          "checked_on": "2026-10-18",
+          "searched_by": "jobs/later-events (machine search)"
+        }
+      }
+    ],
+    "accepted_into_claim": false,
+    "reason": "USC coverage ends 2026-10-09. Number-based searches do not resolve the actual final report submission or residuals."
+  },
+  "held_search": {
+    "query": "11256|food and fiber (case insensitive)",
+    "paths": [
+      "jobs/source-ladder/output/texts",
+      "jobs/ofr-compilations/output/texts",
+      "jobs/fr-originals/output/texts",
+      "jobs/current-law/output",
+      "research/production/2026-10-17/pother"
+    ],
+    "reviewed_results": "Relevant originals/actor duplicates only; EO10300 and EO9608 hits are page numbers, EO11990/12352/12656/14072 are generic food/fiber language. No final-report submission proof found. Search is bounded, not exhausted."
+  },
+  "absent_pdf_cache_paths": [
+    "jobs/fr-originals/output/blobs/24/24796bb79e2ef5f62dc451dfe1cfe9236bc79f24fdcde5336d6b9db66afb3797.pdf",
+    "jobs/fr-originals/output/blobs/54/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a.pdf",
+    "jobs/source-ladder/output/blobs/54/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a.pdf"
+  ],
+  "other_custody_limit": "The 1989 Codification source-books PDF is a 134-byte Git LFS pointer rather than held PDF bytes; no page-image reading claimed.",
+  "gate_errors_expected_for_partial": [
+    "clause_0_first_end",
+    "clause_1_first_end",
+    "clause_2_first_end",
+    "clause_3_first_end",
+    "clause_4_first_end",
+    "clause_5_first_end",
+    "clause_6_first_end",
+    "clause_7_first_end",
+    "clause_8_first_end",
+    "clause_9_first_end",
+    "clause_10_first_end",
+    "clause_11_first_end",
+    "clause_12_first_end",
+    "clause_13_first_end",
+    "clause_14_first_end",
+    "clause_15_first_end",
+    "clause_16_first_end",
+    "clause_17_first_end",
+    "clause_18_first_end",
+    "clause_19_state",
+    "whole_order_end_evidence",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps"
+  ],
+  "exact_source_span_checks": {
+    "original_spans": 20,
+    "all_exact": true,
+    "actor_quote_exact": true
+  },
+  "telemetry": {
+    "model": "inherited parent model; exact runtime identifier unavailable",
+    "billed_input_tokens": null,
+    "billed_output_tokens": null,
+    "total_wall_seconds": null,
+    "measured_window_started_utc": "2026-10-19T00:46:23Z",
+    "measured_window_ended_utc": "2026-10-19T00:48:46.076547+00:00",
+    "note": "Explicit clock observation began after initial instruction/source reads, so measured interval is partial; total agent wall time and actual model billing unavailable.",
+    "measured_window_wall_seconds": 143.077
+  }
+}

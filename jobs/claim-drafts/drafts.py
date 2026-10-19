@@ -58,7 +58,15 @@ OFFICIAL_COMPILATION_JOBS = {
 }
 # Printed compilations transcribed from department records and newspapers (Richardson's Messages and Papers): a lead
 # to the original only. Never strong, never offered as the original in the feasibility test, never counted.
-COMPILED_TRANSCRIPTION_JOBS = {"richardson-volumes": "Richardson, Messages and Papers of the Presidents (GPO 1896-99)"}
+COMPILED_TRANSCRIPTION_JOBS = {"richardson-volumes": "Richardson, Messages and Papers of the Presidents (GPO 1896-99)",
+                               "app-executive-orders": "American Presidency Project (UCSB) web transcription",
+                               "app-transcriptions": "American Presidency Project (UCSB) web transcription"}
+# What each compiled transcription is, for the proposal's "why".
+TRANSCRIPTION_NATURE = {"richardson-volumes": "a printed compilation transcribed from department records and newspapers",
+                        "app-executive-orders": "an editorial transcription published on the web, read live or from "
+                                                "a web-archive capture of the page",
+                        "app-transcriptions": "an editorial transcription published on the web, read live or from "
+                                              "a web-archive capture of the page"}
 # The OFR 1989 Codification: editorial status as of 1989-01-20 (disposition table, and the codified texts as amended
 # to that day). Its later-event fragments may become whole-order-end proposals; its in-force rows are current-law
 # LEADS only (a 1989 snapshot never reaches the 2026-10-14 cutoff). Its texts are never originals.
@@ -503,6 +511,9 @@ def load_inputs(inputs):
     for inp in inputs:
         label = inp.label()
         frs = read_jsonl(inp.path / "FRAGMENTS.jsonl", m.problems, f"{label} FRAGMENTS.jsonl")
+        # A producer may split its fragments to stay under the 95 MB file limit (clause-drafts: FRAGMENTS_APP.jsonl).
+        for part in sorted(inp.path.glob("FRAGMENTS_*.jsonl")):
+            frs += read_jsonl(part, m.problems, f"{label} {part.name}")
         srcs = read_jsonl(inp.path / "SOURCES.jsonl", m.problems, f"{label} SOURCES.jsonl")
         m.counts[f"fragments_read:{inp.job}"] += len(frs)
         m.counts[f"sources_read:{inp.job}"] += len(srcs)
@@ -658,6 +669,17 @@ def source_custody(merged, ref):
     return sorted({inp.job for inp, _ in found})
 
 
+def declared_lead_only(f, d):
+    """True when an original_representation record says it is a transcription, not an original."""
+    for node in (f, d):
+        if node.get("acceptable_as_original") is False or node.get("acceptable_as_original") == "false":
+            return True
+        if "transcription" in str(node.get("representation_type") or "") or \
+                "mirror_transcription" in str(node.get("grade") or ""):
+            return True
+    return False
+
+
 def original_candidates(iid, merged, rd, gate):
     cands = []
     cu = rd.custody.get(iid) or {}
@@ -694,14 +716,17 @@ def original_candidates(iid, merged, rd, gate):
                                  f"location {d.get('location_confidence')}" +
                                  ("; needs a page check before it can count (fr-originals rule)" if needs_check
                                   else "; location_verified is false - open the PDF pages")})
-        elif inp.job in COMPILED_TRANSCRIPTION_JOBS:
+        elif inp.job in COMPILED_TRANSCRIPTION_JOBS or declared_lead_only(f, d):
+            # A producer that declares its record a transcription (acceptable_as_original=false) is never graded
+            # as an original, whatever its location confidence or page-check flag says.
             ref = claim_ref({"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item")})
+            name = COMPILED_TRANSCRIPTION_JOBS.get(inp.job, f"{inp.job} (declared acceptable_as_original=false)")
+            nature = TRANSCRIPTION_NATURE.get(inp.job, "a transcription by the producer's own declaration")
             cands.append({"grade": "compiled_transcription_lead", "ref": ref, "from": inp.label(),
                           "source_id": d.get("source_id"), "signing_date": d.get("signing_date"),
                           "location_confidence": d.get("location_confidence"), "identified_by": d.get("identified_by"),
                           "text_path": d.get("text_path"),
-                          "why": f"{COMPILED_TRANSCRIPTION_JOBS[inp.job]}: a printed compilation transcribed from "
-                                 "department records and newspapers, NOT the signed or officially printed original; a "
+                          "why": f"{name}: {nature}, NOT the signed or officially printed original; a "
                                  "lead to the original and to the text, never the original by itself"})
         else:
             needs_check = bool(d.get("needs_page_check")) or d.get("location_confidence") not in ("high",)

@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `07b7cd47ef3bef9faae602dadf5c6f5293d5324fde3247383bf26dc7ba8738a8`.
+Legal cutoff: 2026-10-14. Inputs: `bf38850c4134b840199f3b0e374d73a3d9cf2e501745e5d4335aa14e80a6145f`.
 
-Verified committed tracker: 14,972 identities; 11,613 undecided; 135 ready for human review.
+Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -10,16 +10,16 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 135 ready for h
 |---:|---|---:|---:|
 | 1 | EO::4314 | 10 | 43 |
 | 2 | EO::6868 | 6 | 25 |
-| 3 | opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693 | 3 | 9 |
-| 4 | opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7 | 3 | 9 |
-| 5 | opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346 | 3 | 9 |
-| 6 | opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb | 3 | 9 |
-| 7 | opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef | 3 | 9 |
-| 8 | opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720 | 3 | 9 |
-| 9 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
-| 10 | opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c | 3 | 9 |
-| 11 | opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68 | 3 | 9 |
-| 12 | opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0 | 3 | 9 |
+| 3 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
+| 4 | opus-refetch:fa518fc884e40b5d9d677cc1ddc6cca0ca6c735fb7e5e034f2d93f53939de194 | 3 | 10 |
+| 5 | EO::6910 | 3 | 12 |
+| 6 | EO::6964 | 3 | 12 |
+| 7 | opus-refetch:0bcaaa70a2b7ec9e1100be0f3b457e9817586607ba9276c12acfb67cc9429a40 | 3 | 12 |
+| 8 | opus-refetch:412baf60f5e3176157a6580d5f660e98f7f41b0e7b4c6c2ed9cc09917460342d | 3 | 12 |
+| 9 | opus-refetch:1899d3315ca2d188d4f728ff40ccff905d28bb4b40a830f9b9857b3dda1555d7 | 2 | 6 |
+| 10 | opus-refetch:27223026486919d8a91fef6dee4e8deaf225835148c6a75629fc21e4264f8cb7 | 2 | 6 |
+| 11 | opus-refetch:28c731eac574fbd684f7ed7d0218339b7925b1debdfd1b463b007f8dceb42a6f | 2 | 6 |
+| 12 | opus-refetch:2b054bb27831e4a9f375ccc9e450ce23b4b2a4fb52eceaf0198c50baf5ec8a0d | 2 | 6 |
 
 Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 

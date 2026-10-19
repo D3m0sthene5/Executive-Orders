@@ -1,0 +1,343 @@
+{
+  "schema": "astra-ai-claim-review/v1",
+  "instrument_id": "EO:12075",
+  "reviewer_role": "ai_review",
+  "reviewer": "Independent reviewer t3_reviewer_b",
+  "review_scope": "Packaging correction and discovery-lead relocation only. Prior independent partial source review retained.",
+  "claim_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v4/claim.json",
+  "claim_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+  "claim_file_sha256": "dcce3b63204c4a4dbda242d0638459d03c82f4dd682b01a25ca3b1e04d35496f",
+  "verdict": "uphold_partial",
+  "complete_claim_accepted": false,
+  "substantive_correction_required_for_partial_acceptance": false,
+  "substantive_change": false,
+  "reason": "Eight auxiliary source objects are wrapped under source. The supplemental sources array remains identical to accepted v2. Two discovery-lead fields are preserved verbatim in the linked v3 workpaper. Reversing only those changes restores exact parsed-JSON equality with accepted v2. Affirmative source records, quotations, inventory, first ends, status, rationale and explicit gaps are unchanged. The prior partial findings remain supported; complete acceptance remains withheld.",
+  "versions": [
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v2/claim.json",
+      "claim_sha256": "1606b3b34a7f5e1f7e3e661ee88a159a9cdc183fc0b70714753a780d7c4f3cad",
+      "claim_file_sha256": "e142a362d076dd09a093fc11b63230aa7716e08cb23c3ad0a5a8454bcd503f36"
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v3/claim.json",
+      "claim_sha256": "af03a1880467aa58f28d6d2b4b156cb23e7a27eb032b2d7dbce9268d6a7ca5ce",
+      "claim_file_sha256": "8b43b1a033a0e19bd21ae011145dd9d9549c9193ccefa4cddf47499c0b6586a5"
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v4/claim.json",
+      "claim_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+      "claim_file_sha256": "dcce3b63204c4a4dbda242d0638459d03c82f4dd682b01a25ca3b1e04d35496f"
+    }
+  ],
+  "prior_review": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_12075/v2/REVIEW.json",
+    "sha256": "590ceef604ba7a0afa3a3f9f02bda2e50cf7d1d6801adda91d1d10425ea19826",
+    "verdict": "uphold_partial",
+    "preserved": true
+  },
+  "preserved_original_rejection": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_12075/REVIEW.json",
+    "sha256": "d1bcc3479e63ced5c0dd0c13d74df44419c57dca7eb1ed44a5889d18e965a2dc",
+    "verdict": "reject",
+    "rejection_metric_unchanged": true
+  },
+  "packaging_audits": [
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v3/PACKAGING_AUDIT.json",
+      "sha256": "2dc2eed2d46b9c0f2c6907918944d8d3a56975d30862adf03cc689de4ff50308"
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v4/PACKAGING_AUDIT.json",
+      "sha256": "cabfdfc4fa501327f80d031454132ce1d6720b340d7e59be4951a23f4e73a534"
+    }
+  ],
+  "comparison": {
+    "reverse_changes_restore_exact_v2": true,
+    "wrappers": [
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[0]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12379.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[1]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12075.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1978-08-18/pdf/FR-1978-08-18.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[2]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12148.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-07-24/pdf/FR-1979-07-24.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[3]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12149.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-07-24/pdf/FR-1979-07-24.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[4]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12314.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-07-27/pdf/FR-1981-07-27.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[5]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12212.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1980-05-05/pdf/FR-1980-05-05.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[6]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12250.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1980-11-04/pdf/FR-1980-11-04.pdf"
+      },
+      {
+        "path": "$.savings_residuals_analysis.supporting_sources[7]",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12407.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1983-02-24/pdf/FR-1983-02-24.pdf"
+      }
+    ],
+    "v3_to_v4_only_change": "Remove a redundant source wrapper from each of the three supplemental_duties_analysis.sources entries. Exact equality after this reversal.",
+    "other_differences": [],
+    "all_affirmative_quote_and_finding_values_unchanged": true
+  },
+  "relocation_assessment": {
+    "workpaper": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v3/PACKAGING_AUDIT.json",
+    "pending_event_leads_identical_to_v2": true,
+    "pending_primary_source_leads_identical_to_v2": true,
+    "workpaper_link_retained_in_v4": true,
+    "no_affirmative_evidence_removed": "The moved records are unresolved HEW/CSA discovery leads, including a duplicate EO12212 source. EO12212 remains directly sourced in HEW later_events and the savings analysis. Original EO12075, EO12379 revocation, EO12148 membership addition, EO12149 regional duties and EO12314 removal remain directly sourced. Editorial notes provide concrete leads, not proof of an earlier cessation or statutory succession. Their exact text and caveats remain in the linked workpaper and frozen v2.",
+    "material_gaps_unchanged": [
+      "Section 1-102(g): actual P.L.96-88 / 20 USC3508(b) reorganization, reference/succession and savings text is not held/read. EO12212 establishes May4,1980 for the Act; the editorial redesignation lead does not establish seat cessation. Preserve first_end null until the original legal effect is resolved.",
+      "Section 1-102(l): actual P.L.97-35 abolition/transfer/savings and effective-date text around95Stat516-519 is not held/read. OFR editorial abolition lead is concrete, but neither its exact first-end date nor succession of this Council seat is established.",
+      "Overall savings/residuals closure and final adequate later-source-search acceptance remain pending the two narrow statutory roster investigations. Numeric and named-body search work is recorded separately; it is not universal exhaustion."
+    ],
+    "partial_boundaries": "HEW and CSA first ends remain null. Fourteen other original units retain 1982-08-17. Whole-order end remains 1982-08-17 on independently continuing original commands. Savings remains null and accepted later_source_search remains empty."
+  },
+  "accepted_scope": {
+    "dated_original_units": 14,
+    "dated_first_end": "1982-08-17",
+    "null_first_end_scopes": [
+      "EO:12075#sec1-102-g",
+      "EO:12075#sec1-102-l"
+    ],
+    "whole_order_end": "1982-08-17",
+    "whole_order_status": "no",
+    "cutoff_termination": "Accepted as to the original EO12075 authorities after express revocation. This is not a determination that separately sourced statutory rights or functions ceased.",
+    "savings_residuals": null,
+    "later_source_search": [],
+    "complete_readiness": false
+  },
+  "source_audit": {
+    "prior_path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_12075/v2/SOURCE_AUDIT.json",
+    "prior_sha256": "a95360811ae1461fd741171e96714843304ff82ec04f7ceb02047ef3158aeda5",
+    "prior_audit_still_applies": true,
+    "prior_summary": {
+      "distinct_source_files": 10,
+      "quoted_parts_occurrences": 150,
+      "distinct_quoted_parts": 20,
+      "quote_failures": 0,
+      "clause_units": 16,
+      "original_quote_failures": 0,
+      "text_hash_failures": 0,
+      "first_end_dated": 14,
+      "first_end_null_scopes": [
+        "EO:12075#sec1-102-g",
+        "EO:12075#sec1-102-l"
+      ],
+      "fixity_matched_source_files": 8,
+      "checker_run": false
+    },
+    "current_source_hash_verification": [
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12075.txt",
+        "sha256": "676eb5349216d1b241278b5109c430d4e0dd5c97090a5aa19695fbebb6b401db",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12379.txt",
+        "sha256": "c7c738d02047e0faabb73bdca7b9cbf5cb9953abb67a629f658cb125eb3f1613",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12148.txt",
+        "sha256": "791642295612b8bdc647dfe2daddec7acf226bbc48f30417d1057fec8bfe0297",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12212.txt",
+        "sha256": "aece46949737f82263c165d02773791b7b137f64c5d3392a6dae0a92dc74a776",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12149.txt",
+        "sha256": "e7254c6aeaa5ff8073ce3edec42a980199773fdd65ed45bf0f7a3d2459785686",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12314.txt",
+        "sha256": "e8884178d425e2f5a4bd20b7b0e1fa1f983507d37463beb3fa379ce8c94f50c7",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/source-ladder/output/texts/USC_50_U.S.C._4701-4703_3c42e99307.txt",
+        "sha256": "fc8ac7c688712593addfe632bd60d1801f286c4f355ccce74a08add41e0b0048",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/ofr-codification-1989/output/texts/EO_12160.txt",
+        "sha256": "747719aab5843f1fc647f70ee81adf401f510c01a16579d27d1f13d2fccfb1f0",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12407.txt",
+        "sha256": "e3a0f0c4320b99053fb98c9a52d17651a84574a09ee59903f1b89e6b051515ca",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12250.txt",
+        "sha256": "30effe146b7e82cdb3d08a47c6f739212fffd17c7c2ba85bed7367fc3031fd5b",
+        "unchanged": true
+      }
+    ],
+    "fixity_file": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+    "current_fixity_file_sha256": "2fd3d01eb8922d93130bcbc829d185e2ab9058db175368ca7119fbb0ee40110b",
+    "prior_fixity_file_sha256": "032dd5f63cfd6efa2d917b22c57a2e866ad4afacef88ef078cc0d2c7c1e306f6",
+    "whole_index_unchanged": false,
+    "relevant_fixity_records_unchanged": true,
+    "fixity_records": [
+      {
+        "pdf_sha256": "2d731c5647d2d25bcf4cf76d00d5ab581fa0294dc05b467fcacd803d68b3a5e0",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:43Z",
+          "gpo_sha256": "2d731c5647d2d25bcf4cf76d00d5ab581fa0294dc05b467fcacd803d68b3a5e0",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1978-08-18/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1978-08-18/pdf/FR-1978-08-18.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:48Z",
+          "gpo_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1982-08-19/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "4ae8a12787c2eec98e140ed0c6e0bb19057a3fa5c8e541f4f09d9798389baa26",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:44Z",
+          "gpo_sha256": "4ae8a12787c2eec98e140ed0c6e0bb19057a3fa5c8e541f4f09d9798389baa26",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1979-07-24/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1979-07-24/pdf/FR-1979-07-24.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:45Z",
+          "gpo_sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1980-05-05/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1980-05-05/pdf/FR-1980-05-05.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "4ae8a12787c2eec98e140ed0c6e0bb19057a3fa5c8e541f4f09d9798389baa26",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:44Z",
+          "gpo_sha256": "4ae8a12787c2eec98e140ed0c6e0bb19057a3fa5c8e541f4f09d9798389baa26",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1979-07-24/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1979-07-24/pdf/FR-1979-07-24.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "d3994ddc67a126706a17cb08a71c88447f6a7772d0ea18f6172ff5cafe47029d",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:47Z",
+          "gpo_sha256": "d3994ddc67a126706a17cb08a71c88447f6a7772d0ea18f6172ff5cafe47029d",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1981-07-27/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1981-07-27/pdf/FR-1981-07-27.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "112c7022cd8ab896fdc12bed071d776538c706bf39dad6388e80f87a1b2f71bc",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:49Z",
+          "gpo_sha256": "112c7022cd8ab896fdc12bed071d776538c706bf39dad6388e80f87a1b2f71bc",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1983-02-24/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1983-02-24/pdf/FR-1983-02-24.pdf"
+        }
+      },
+      {
+        "pdf_sha256": "ed3607db376445fa4cec3930726269b0892089d99f4f0282f3c5323a64fad3c3",
+        "record_unchanged": true,
+        "record": {
+          "checked_utc": "2026-10-18T00:55:46Z",
+          "gpo_sha256": "ed3607db376445fa4cec3930726269b0892089d99f4f0282f3c5323a64fad3c3",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1980-11-04/premis.xml",
+          "result": "match",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1980-11-04/pdf/FR-1980-11-04.pdf"
+        }
+      }
+    ],
+    "fixity_note": "An initial whole-index equality assertion failed. Independent comparison then established that all eight relevant official fixity records are exactly unchanged, and all ten held source-text hashes match. No cause for the global index change is inferred. The two editorial leads retain their original non-fixity status.",
+    "limits": "No new complete source reads or images claimed. Prior noimage, source-grade, full-read and bounded-search limits remain. Prior quote counts describe v2 including relocated workpaper material; no v4-only recount asserted."
+  },
+  "existing_checker_result": {
+    "path": "research/readiness/reviews/astra-2026-10-18/checker-preflight-packaging-final/PER_CLAIM.json",
+    "sha256": "1fe8656fa9a8a9ff6b58991ab460ee89ad17d47caa70235a02ab8ad32dce5cbf",
+    "row": {
+      "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_12075.jsonl:1",
+      "claim_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+      "mechanical_result": "pass",
+      "gate_passed": false,
+      "all_checks_passed": false,
+      "steps_checker_passed": {
+        "original_text": true,
+        "clause_inventory": true,
+        "ending_or_current_basis": false,
+        "savings_residuals": false,
+        "counterevidence": false
+      }
+    },
+    "gate_errors": [
+      "clause_2_first_end",
+      "clause_4_first_end",
+      "savings_residuals_evidence",
+      "bounded_later_search",
+      "unresolved_material_gaps"
+    ],
+    "interpretation": "Mechanical pass on this exact hash. Structural gaps remain the two null first ends, savings, bounded later-search acceptance and explicit material gaps expected for this partial claim."
+  },
+  "unresolved_material_gaps": [
+    "Section 1-102(g): actual P.L.96-88 / 20 USC3508(b) reorganization, reference/succession and savings text is not held/read. EO12212 establishes May4,1980 for the Act; the editorial redesignation lead does not establish seat cessation. Preserve first_end null until the original legal effect is resolved.",
+    "Section 1-102(l): actual P.L.97-35 abolition/transfer/savings and effective-date text around95Stat516-519 is not held/read. OFR editorial abolition lead is concrete, but neither its exact first-end date nor succession of this Council seat is established.",
+    "Overall savings/residuals closure and final adequate later-source-search acceptance remain pending the two narrow statutory roster investigations. Numeric and named-body search work is recorded separately; it is not universal exhaustion."
+  ],
+  "required_packaging_corrections": [],
+  "actual_checker_run": false,
+  "human_certification": false,
+  "status_or_count_changes": false,
+  "rejection_metric_effect": "None. Packaging verification is not a new substantive rejection or an additional independently reviewed dossier. Preserve the first-attempt rejection.",
+  "telemetry": {
+    "started_utc": "2026-10-19T01:31:10Z",
+    "finished_utc": "2026-10-19T01:33:18.252791Z",
+    "real_elapsed_seconds": 128.253,
+    "model": null,
+    "token_usage": null,
+    "usage_note": "Actual model/token telemetry unavailable; no estimate. Timing covers this single packaging and relocation review."
+  }
+}

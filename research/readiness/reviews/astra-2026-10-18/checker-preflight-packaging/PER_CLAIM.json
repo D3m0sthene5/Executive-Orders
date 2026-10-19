@@ -1,0 +1,320 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:11782": {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_11782.jsonl:1",
+   "claim_sha256": "e9c8b5f3773b1012ccea13fd07af2f7852cbf527d95e958e36dccb4cd7b6d95c",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": false,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": true
+   }
+  },
+  "EO:12075": {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_12075.jsonl:1",
+   "claim_sha256": "af03a1880467aa58f28d6d2b4b156cb23e7a27eb032b2d7dbce9268d6a7ca5ce",
+   "mechanical_result": "fail",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": false,
+    "clause_inventory": false,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": false
+   }
+  },
+  "EO:9452": {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_9452.jsonl:1",
+   "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+   "mechanical_result": "pass",
+   "gate_passed": true,
+   "all_checks_passed": true,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": true,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_11782.jsonl:1",
+   "file": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_11782.jsonl",
+   "line": 1,
+   "instrument_id": "EO:11782",
+   "claim_sha256": "e9c8b5f3773b1012ccea13fd07af2f7852cbf527d95e958e36dccb4cd7b6d95c",
+   "provisional_status": "no",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "fail": 7,
+     "pass": 25,
+     "skip": 8
+    },
+    "source_identity": {
+     "pass": 6
+    },
+    "quote_verbatim": {
+     "pass": 36,
+     "skip": 15
+    },
+    "date_valid": {
+     "pass": 16
+    },
+    "date_after_signing": {
+     "pass": 12
+    },
+    "order_exists": {
+     "pass": 3
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [
+    "source_held:not_held@operative_clauses[0].first_end.supporting_sources[2].source",
+    "source_held:not_held@operative_clauses[1].first_end.supporting_sources[2].source",
+    "source_held:not_held@operative_clauses[2].first_end.supporting_sources[2].source",
+    "source_held:not_held@operative_clauses[3].first_end.supporting_sources[2].source",
+    "source_held:not_held@operative_clauses[4].first_end.supporting_sources[2].source",
+    "source_held:not_held@savings_residuals.supporting_sources[0].source",
+    "source_held:not_held@whole_order_end.supporting_sources[2].source"
+   ],
+   "failures_total": 7,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[0].first_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@operative_clauses[0].first_end.supporting_sources[2].source.quoted_parts[0]",
+    "source_held:custody_record_only@operative_clauses[1].first_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[1].first_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@operative_clauses[1].first_end.supporting_sources[2].source.quoted_parts[0]",
+    "source_held:custody_record_only@operative_clauses[1].later_events[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[1].later_events[1].source.quoted_parts[0]",
+    "source_held:custody_record_only@operative_clauses[2].first_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[2].first_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@operative_clauses[2].first_end.supporting_sources[2].source.quoted_parts[0]",
+    "source_held:custody_record_only@operative_clauses[3].first_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[3].first_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@operative_clauses[3].first_end.supporting_sources[2].source.quoted_parts[0]",
+    "source_held:custody_record_only@operative_clauses[4].first_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@operative_clauses[4].first_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@operative_clauses[4].first_end.supporting_sources[2].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@savings_residuals.supporting_sources[0].source.quoted_parts[0]",
+    "source_held:custody_record_only@savings_residuals.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@savings_residuals.supporting_sources[1].source.quoted_parts[0]",
+    "source_held:custody_record_only@whole_order_end.supporting_sources[1].source",
+    "quote_verbatim:source_text_not_available@whole_order_end.supporting_sources[1].source.quoted_parts[0]",
+    "quote_verbatim:source_text_not_available@whole_order_end.supporting_sources[2].source.quoted_parts[0]"
+   ],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_12075.jsonl:1",
+   "file": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_12075.jsonl",
+   "line": 1,
+   "instrument_id": "EO:12075",
+   "claim_sha256": "af03a1880467aa58f28d6d2b4b156cb23e7a27eb032b2d7dbce9268d6a7ca5ce",
+   "provisional_status": "no",
+   "mechanical_result": "fail",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "gate_errors": [
+    "clause_2_first_end",
+    "clause_4_first_end",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps"
+   ],
+   "gate_claim_level_errors": [
+    "unresolved_material_gaps"
+   ],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "fail",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": false,
+     "mechanical": "absent",
+     "gate": "fail",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": false,
+     "mechanical": "absent",
+     "gate": "fail",
+     "checker_passed": false
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "fail": 3,
+     "pass": 79
+    },
+    "source_identity": {
+     "pass": 17
+    },
+    "quote_verbatim": {
+     "pass": 160
+    },
+    "date_valid": {
+     "pass": 55
+    },
+    "date_after_signing": {
+     "pass": 51
+    },
+    "order_exists": {
+     "pass": 8
+    },
+    "structural_gate": {
+     "fail": 5
+    }
+   },
+   "failures": [
+    "source_held:no_hash_in_reference@supplemental_duties_analysis.sources[0]",
+    "source_held:no_hash_in_reference@supplemental_duties_analysis.sources[1]",
+    "source_held:no_hash_in_reference@supplemental_duties_analysis.sources[2]",
+    "structural_gate:clause_2_first_end@-",
+    "structural_gate:clause_4_first_end@-",
+    "structural_gate:savings_residuals_evidence@-",
+    "structural_gate:bounded_later_search@-",
+    "structural_gate:unresolved_material_gaps@-"
+   ],
+   "failures_total": 8,
+   "unverified": [],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_9452.jsonl:1",
+   "file": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_9452.jsonl",
+   "line": 1,
+   "instrument_id": "EO:9452",
+   "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+   "provisional_status": "no",
+   "mechanical_result": "pass",
+   "gate_passed": true,
+   "all_checks_passed": true,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 18
+    },
+    "source_identity": {
+     "pass": 4
+    },
+    "quote_verbatim": {
+     "pass": 31
+    },
+    "date_valid": {
+     "pass": 13
+    },
+    "date_after_signing": {
+     "pass": 9
+    },
+    "order_exists": {
+     "pass": 6
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [],
+   "effective_for_tracker": true
+  }
+ ]
+}

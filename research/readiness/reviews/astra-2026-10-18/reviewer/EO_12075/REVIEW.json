@@ -1,0 +1,145 @@
+{
+  "schema": "astra-ai-claim-review/v1",
+  "instrument_id": "EO:12075",
+  "reviewer_role": "ai_review",
+  "reviewer": "t3_reviewer_b",
+  "claim_sha256": "86ec647a9ee7722359cfb99439d8849c14649ec281167f1d9ec665c8f7e0c7cd",
+  "claim_file_sha256": "ce36b0d3536d5c82789e07e1dbda34b8ec2ff43c0092b04ed1663d91e29564b9",
+  "claim_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/claim.json",
+  "verdict": "reject",
+  "complete_claim_accepted": false,
+  "reason": "The proposed complete claim omits a genuine named-body lifecycle branch: EO 12149 assigns duties to the Interagency Coordinating Council and EO 12314 revokes that order and gives regional-council policy oversight to OMB before the 1982 cleanup. Numeric citation searches do not reveal these sources. Their interaction with the original general coordination commands and the absence of a surviving independent command must be explained in the frozen claim before complete acceptance. This is a completeness/reasoning rejection, not a finding that the stated whole-order end is wrong.",
+  "substantive_correction_required": true,
+  "findings_upheld": [
+    "The complete EO 12075 original contains twelve operative provisions, correctly separated in the candidate. It establishes an indefinite council; no sunset or report-triggered expiry appears. Reporting in 1-304 is a continuing duty.",
+    "EO 12148 section 5-210 adds FEMA to section 1-102; section 6 expressly makes the amendment effective July 15, 1979. It does not end the original open membership command. Its section 2-302 savings concerns section 1 transferred functions and does not preserve this council membership after revocation.",
+    "EO 12379 section 14 expressly revokes EO 12075 as amended. Its complete text has no delayed-effective clause or relevant saving. August 17, 1982 is supported as the formal revocation date, and mere preamble references to inactivity establish no earlier legal cessation.",
+    "Original 1-205 reserves existing EOP procedures; it does not create an independent post-council directive. The other administrative clauses serve this council.",
+    "All 12 original-operative quotations and all 58 quoted-parts occurrences match contiguous held text exactly. All three claim text hashes and original issue PDF fixity entries match. The claim fingerprints match the frozen assignment.",
+    "Ten supposed earlier revocation actors in the machine chain are false associations to the same full EO 12379 source. The real text identifies EO 12379 and August 17, 1982, not those earlier actor IDs or dates."
+  ],
+  "omitted_named_body_branch": {
+    "EO:12149": {
+      "pages": "44 FR 43247-43248, PDF pages 17-18",
+      "date": "1979-07-20",
+      "provisions": [
+        "1-204: regional problems are referred to the Interagency Coordinating Council",
+        "1-301: Council and OMB establish Federal Regional Council policy, provide guidance, respond to initiatives and resolve referred policy issues; Council also guides Federal Cochairmen",
+        "1-303: Council can request staff for joint interagency task forces"
+      ],
+      "effect": "Adds or specifies duties for the existing Council without citing EO 12075 by number."
+    },
+    "EO:12314": {
+      "pages": "46 FR 38329-38330, PDF pages 9-10",
+      "date": "1981-07-22",
+      "provisions": [
+        "Section 3(a) gives Federal Regional Council policy guidance and oversight to OMB in consultation with White House offices",
+        "Section 4(b) expressly revokes EO 12149"
+      ],
+      "effect": "Ends the separately conferred EO 12149 duties before EO 12379. It does not expressly revoke EO 12075. Whether any portion of EO 12075 original coordination commands was displaced must be distinguished from cessation of these later added duties."
+    },
+    "no_invented_earlier_end": "I do not assign July 22, 1981 as an original-clause or whole-order end merely because the supplemental order was revoked. The broad EO 12075 mandates may continue until August 17, 1982; a corrected producer claim must explain that source-specific conclusion."
+  },
+  "required_corrections": [
+    "Read the complete held EO 12149 and EO 12314 sources listed in this review, including their signatures, all operative provisions and absence/presence of savings. Both source issue hashes have matching official fixity records.",
+    "Amend research_rationale and savings_residuals to address the EO 12149/EO 12314 branch explicitly, distinguish duties created under EO 12149 from original EO 12075 commands, and explain any partial displacement versus continued original authority. Cite those sources and exact spans in supporting_sources; record a bounded named-Council text search after examining its hits.",
+    "Record relevant supplemental/removal events in later_events where the producer concludes they affect original scopes, or explain clearly why they concern independently added duties only. Preserve the original 12-clause inventory unless substantive source review warrants a finer scope. Do not invent an earlier first_end from the 1981 date.",
+    "Refreeze the corrected claim and obtain a review of the new canonical and raw-file hashes before complete acceptance. Root must run the actual checker afterward."
+  ],
+  "source_audit": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_12075/SOURCE_AUDIT.json",
+    "file_sha256": "8e2273cbbcee7fb22ebec3cbc0626e0c8d2e7a2ea882a5933b5047d60a6770fe",
+    "all_claim_source_urls_checked": true,
+    "complete_primary_extracts_read": [
+      "EO:12075",
+      "EO:12148",
+      "EO:12379",
+      "EO:12149",
+      "EO:12314",
+      "EO:12250"
+    ],
+    "read_method": "complete held official PDF extracts; no images inspected",
+    "noimage": true,
+    "official_fixity_file_sha256": "032dd5f63cfd6efa2d917b22c57a2e866ad4afacef88ef078cc0d2c7c1e306f6",
+    "quote_summary": {
+      "quoted_parts_checked": 58,
+      "quote_failures": 0,
+      "operative_clauses_checked": 12,
+      "inventory_quote_failures": 0,
+      "checker_run": false
+    }
+  },
+  "accepted_search_scope_review": [
+    {
+      "search": "current-law:usc",
+      "judgment": "Accepted as bounded citation search only",
+      "coverage": "58 USLM title files; release 119-121 current through 2026-10-09, not 2026-10-14. Two actual EO 12075 mention rows in MENTIONS.csv are the historical revocation note at 42 USC1450/1451 and the EO12148 membership amendment at 42 USC5195. Neither establishes a continuing predicate. Complete relevant primary amendment text was read. No full USC ZIP or later statute sweep claimed."
+    },
+    {
+      "search": "current-law:ecfr",
+      "judgment": "Accepted as bounded citation search only",
+      "coverage": "Date=2026-10-14, all reported hits read for five query forms, 49 titles (35 absent); SUMMARY problems empty and no bulk-behind flags. Target ORDERS_CURRENT_LAW row has zero eCFR mentions. The dossier machine_hits_for_this_order=3 is not three target eCFR findings."
+    },
+    {
+      "search": "later-events:ofr_catalog",
+      "judgment": "Accepted for numbered citation leads; insufficient alone for this named-body branch",
+      "coverage": "6938 catalog records, 7619 texts; complete catalog true, errors empty; six current target edge rows resolve to EO12148 amendment and EO12379 revocation. Those actors independently verified from complete sources."
+    },
+    {
+      "search": "reviewer supplemental held-original scan",
+      "judgment": "Finds omitted material context",
+      "coverage": "rg over jobs/fr-originals/data/full_run/texts for case-insensitive Interagency whitespace Coordinating whitespace Council or 12075, followed by EO12149 revocation search. Relevant new source EO12149; EO12314 found via number. EO12250 section1-305 names a different statutory Rehabilitation Act Council, confirmed from its complete text. EO8193A and EO9625 numeric hits are page/table numbers, not target references. This is a bounded local scan, not exhaustion."
+    }
+  ],
+  "exact_omitted_source_spans": [
+    {
+      "instrument_id": "EO:12149",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12149.txt",
+      "char_start": 4550,
+      "char_end": 5182,
+      "exact_quote": "1-301. The Interagency Coordinating Council, in conjunction with the Office of \nManagement and Budget shall, consistent with the objectives and priorities \nestablished by the President, establish policy with respect to Federal Regional \nCouncil matters, provide guidance to the Councils, respond to their initiatives \nand seek to resolve policy issues referred to it by the Councils. The Inter­\nagency Coordinating Council shall also provide policy guidance to the Federal \nCochairmen of the Regional Action Planning Commissions on intergovernmen­\ntal matters pertaining to activities undertaken by the Federal Regional Coun­\ncils.\n"
+    },
+    {
+      "instrument_id": "EO:12149",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12149.txt",
+      "char_start": 5377,
+      "char_end": 5631,
+      "exact_quote": "1-303. Each Agency represented on a Council shall provide, to the extent \npermitted by law, appropriate staff for common or joint interagency task \nforces as requested by the Federal Regional Council Chairman or by the \nInteragency Coordinating Council.\n"
+    },
+    {
+      "instrument_id": "EO:12314",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12314.txt",
+      "char_start": 4109,
+      "char_end": 4734,
+      "exact_quote": "Sec. 3. O v e rs ig h t\n(a) The Office of M anagem ent and Budget will provide policy guidance to the  \nCouncils in consultation with the W hite House Office of Policy Development;  \nestablish policy with respect to Federal Regional Council procedural matters;  \nrespond to Council initiatives; seek to resolve policy issues referred to it by  \nthe Councils; coordinate Federal Regional Council activities relating to State  \nand local governments with the W hite House Office of Intergovernmental  \nAffairs; and, coordinate Council activities relating to specific programmatic  \nareas with the appropriate Federal agencies.\n"
+    },
+    {
+      "instrument_id": "EO:12314",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12314.txt",
+      "char_start": 5172,
+      "char_end": 5215,
+      "exact_quote": "(b) Executive O rder No. 12149 is revoked.\n"
+    }
+  ],
+  "ocr_limitations": [
+    "EO12075 label 1-10? and i-302 are preserved as extracted; their paragraph identities are clear from sequence, content and the EO12148 explicit 1-102 reference. No substantive ambiguity in operative commands identified.",
+    "EO12148 heading reads July 28 in OCR, but its signature reads July 20 and section 6 unambiguously sets July 15 effective date. No finding relies on the ambiguous heading. No image authentication is claimed."
+  ],
+  "unresolved_material_gaps": [
+    "Frozen claim does not address the EO12149/EO12314 named-Council duties and their earlier removal. This must be resolved in its claimed complete lifecycle reasoning."
+  ],
+  "proposed_source_requests": [],
+  "actual_checker_run": false,
+  "human_certification": false,
+  "status_or_count_changes": false,
+  "telemetry": {
+    "started_utc": "2026-10-19T01:00:28Z",
+    "finished_utc": "2026-10-19T01:03:41.321631Z",
+    "elapsed_seconds": 193.322,
+    "model": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "usage_note": "Actual model/token billing telemetry unavailable. Time is this reviewer wall interval, not additive team time."
+  }
+}

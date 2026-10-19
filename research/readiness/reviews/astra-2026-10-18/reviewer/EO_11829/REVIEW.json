@@ -1,0 +1,368 @@
+{
+  "schema": "astra-ai-claim-review/v1",
+  "instrument_id": "EO:11829",
+  "reviewer": "Astra independent AI reviewer /root/t3_reviewer",
+  "reviewer_role": "ai_review",
+  "reviewed_on": "2026-10-19",
+  "reviewed_utc": "2026-10-19T01:02:11.378942+00:00",
+  "candidate_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11829/claim.json",
+  "claim_sha256": "b6e4fac686d6f2200e9ea707140269335f20dc84164671a5d8a43c1a9c56e731",
+  "claim_file_sha256": "b3df5773c921b1cb5bca592693e98a5596560f50413520ac38f6b8090d1fdde2",
+  "hash_method": "claim_gate.claim_sha for canonical claim; hashlib.sha256 of actual file bytes for raw file. No checker invoked.",
+  "verdict": "uphold_partial",
+  "decision": "The frozen candidate accurately preserves a partial source-read lifecycle finding. Five terminated cutoff states and the two dated formal later events are supported; all earliest-end dates, the whole-order end, and the separate notice/records states remain unresolved.",
+  "scope": {
+    "original_spans": 7,
+    "original_quote_occurrences_checked": 7,
+    "later_event_quote_occurrences_checked": 8,
+    "distinct_later_event_quotes_checked": 2,
+    "first_end_dates_asserted": 0,
+    "whole_order_end_asserted": false,
+    "whole_order_status_preserved": "no",
+    "savings_residuals_unresolved": true
+  },
+  "rationale": [
+    "The original establishes a Committee, its information functions, meetings/liaison, support, conditional termination, notice and records transfer. Seven textual units cover the complete substantive text; the three section 4 sentences remain distinct.",
+    "Section 4 makes actual completion of the Mediator duties under Public Law 93-531 section 1(a) the Committee termination condition. The negotiation time-limit reference in section 2(b) does not establish that occurrence. No completion date is inferred from a deadline or formal cleanup.",
+    "EO11853 expressly replaces section 2(a), bears April 17, 1975, and has no deferred commencement provision. Its complete replacement text is exact. The amendment date is a supported later event, but earlier own-terms cessation remains unproved and first_end correctly stays null.",
+    "EO12379 section 11 expressly revokes EO11829 as amended. The complete revoker bears August 17, 1982 and has no target savings or deferred effective clause. The candidate uses that date as formal revocation only. Its terminated cutoff findings do not claim that was the first cessation.",
+    "The original separately directs notice to the Chairman and transfer of any Committee records. Their occurrence is not established by either the amendment or revoker. Null notice/records states and null savings_residuals avoid a blanket completed-wind-down finding.",
+    "The actual statutory predicate and historical completion record are absent from the inspected packet; these are concrete limitations. Complete matched EO extracts suffice to support the limited formal amendment/revocation findings despite uninspected page images.",
+    "The ten claim-kit earlier actor/date bindings repeat EO12379 language and cannot establish those events. Rejecting these metadata bindings is not a claim to have read every earlier actor original or exhausted possible earlier effects."
+  ],
+  "sources_checked": [
+    {
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "pdf_sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec4-records",
+      "read_scope": "Full held official extract, including all sections and signature; not page-image inspection.",
+      "official_fixity_result": "match",
+      "page_images_inspected": false
+    },
+    {
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "pdf_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "read_scope": "Full held official extract, including all sections and signature; not page-image inspection.",
+      "official_fixity_result": "match",
+      "page_images_inspected": false
+    },
+    {
+      "text_path": "jobs/fr-originals/output/texts/EO_11853.txt",
+      "text_sha256": "1cfac9dcde37c2b2301ee1f0d37d767cf76387f260af954f210d8c4c4b1fb323",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-04-21/pdf/FR-1975-04-21.pdf",
+      "pdf_sha256": "82d8db2e7db11e843e0d32f791865b23dceb7ae2ca6835c15b725abf1169fc65",
+      "page_or_item": "40 FR 17537, PDF page 9; EO 11853 complete amending provision",
+      "read_scope": "Full held official extract, including all sections and signature; not page-image inspection.",
+      "official_fixity_result": "match",
+      "page_images_inspected": false
+    },
+    {
+      "text_path": "jobs/fr-originals/output/texts/EO_12379.txt",
+      "text_sha256": "c7c738d02047e0faabb73bdca7b9cbf5cb9953abb67a629f658cb125eb3f1613",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "pdf_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF pages 9-10",
+      "read_scope": "Full held official extract, all 25 sections and signature.",
+      "official_fixity_result": "match",
+      "page_images_inspected": false
+    },
+    {
+      "path": "jobs/official-fixity/output/FIXITY.csv",
+      "file_sha256": "78e800b5ae9b0bc1aeed30e142991eab80c01cf66df31e5a186f4069d81b92ef",
+      "read_scope": "Rows for all three cited official EO PDFs; matching recorded and GPO SHA256; no new download or retained-PDF claim.",
+      "role": "custody or bounded discovery metadata; not operative legal authority"
+    },
+    {
+      "path": "jobs/later-events/output/EDGES.csv",
+      "file_sha256": "fa510f2401aba3d43badcc3448d0f9e7fd72ddf5d9d355c43da3442140fc8af1",
+      "read_scope": "Every row targeting EO:11829; only EO:11853 and EO:12379 actor identifiers observed.",
+      "role": "custody or bounded discovery metadata; not operative legal authority"
+    },
+    {
+      "path": "jobs/claim-drafts/output/SUMMARY.json",
+      "file_sha256": "09cfa31c035dd092a61bb47021358cfb8a7d90457dfd5e1fea90784a21ab6369",
+      "read_scope": "All three machine_searches scope records: USC, eCFR, OFR.",
+      "role": "custody or bounded discovery metadata; not operative legal authority"
+    },
+    {
+      "path": "jobs/claim-kit/output/dossiers/EO_11829.json",
+      "file_sha256": "b46addcc19630c5ef37e5553d7b8b60a070e9e4f98b70c519488f83d9e7efbe8",
+      "read_scope": "Target search scope and machine chain read; ten earlier actor/date bindings carry the EO12379 text and are not valid evidence of those events.",
+      "role": "custody or bounded discovery metadata; not operative legal authority"
+    }
+  ],
+  "checked_source_urls": [
+    "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+    "https://www.govinfo.gov/content/pkg/FR-1975-04-21/pdf/FR-1975-04-21.pdf",
+    "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf"
+  ],
+  "independent_source_audit_path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_11829/SOURCE_AUDIT.json",
+  "independent_source_audit_file_sha256": "7e929911baf9a5ad0d38d3350b2952e20a77732c9dbae5c2d1162166a3c764d7",
+  "quote_checks": [
+    {
+      "scope_id": "EO:11829#sec1",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec1",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "Section 1. There is established the Hopi-Navajo Land Settlement \nInteragency Committee (hereinafter referred to as the Committee). The \nmembership of the Committee shall consist of the Secretary of the Interior, \nwho shall be its Chairman, the Attorney General, the Secretary of Agri­\nculture, the Secretary of Commerce, the Secretary of Labor, the Secre­\ntary of Health, Education, and Welfare, and the Secretary of Housing \nand Urban Development.",
+      "quote_exact": true,
+      "char_start": 1167,
+      "char_end": 1615
+    },
+    {
+      "scope_id": "EO:11829#sec1",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec2(a)",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec2(a)",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "Sec. 2 . Functions of the Committee, (a.)  The Committee shall, to the \nextent permitted by law and as provided by Section 1(c)(2)  of the Act, \ndevelop relevant information for and respond to the requests of the \nMediator. The Mediator shall be appointed by the Director of the Federal \nMediation and Conciliation Service pursuant to Section 1(a)  of the Act, \nand shall facilitate the compilation and development of information \nconcerning negotiations under the Act.",
+      "quote_exact": true,
+      "char_start": 1616,
+      "char_end": 2085
+    },
+    {
+      "scope_id": "EO:11829#sec2(a)",
+      "kind": "EO:11853",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-04-21/pdf/FR-1975-04-21.pdf",
+      "sha256": "82d8db2e7db11e843e0d32f791865b23dceb7ae2ca6835c15b725abf1169fc65",
+      "page_or_item": "40 FR 17537, PDF page 9; EO 11853 complete amending provision",
+      "text_path": "jobs/fr-originals/output/texts/EO_11853.txt",
+      "text_sha256": "1cfac9dcde37c2b2301ee1f0d37d767cf76387f260af954f210d8c4c4b1fb323",
+      "quoted_text": "By virtue of the authority vested in me by Section 1(c)(2)  of the \nAct to provide for final settlement of the conflicting rights and interests \nof the Hopi and Navajo Tribes concerning lands within the reservation \nestablished by the Executive order of December 16, 1882, and lands \nwithin the reservation created by the Act of June 14, 1934, and for \nother purposes (Public Law 93— 531, approved December 22, 1974, \nhereinafter referred to as the A ct), and as President of the United States \nof America, Section 2(a)  of Executive Order No. 11829 of January 6, \n1975, is hereby amended to read as follows:\n“ Sec. 2. Functions of the Committee, (a.)  The Committee shall, to \nthe extent permitted by law, and as provided by Section 1(c)(2)  of the \nAct, develop relevant information for and respond to the requests of the \nMediator who shall be appointed by the Director of the Federal Media­\ntion and Conciliation Service pursuant to Section 1(a)  of the Act, in \norder to facilitate the expeditious and orderly compilation and develop­\nment of factual information relevant to the negotiation process estab­\nlished by the Act.”",
+      "quote_exact": true,
+      "char_start": 691,
+      "char_end": 1821
+    },
+    {
+      "scope_id": "EO:11829#sec2(a)",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec2(b)",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec2(b)",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "(b ) The Chairman shall call meetings of the Committee and shall \nestablish liaison with the Mediator. This shall be done so the Committee \ncan, in view of the time limit set for the negotiating process by Section \n3(a)  of the Act, provide information and assistance to the Mediator as \nexpeditiously as practicable.",
+      "quote_exact": true,
+      "char_start": 2086,
+      "char_end": 2403
+    },
+    {
+      "scope_id": "EO:11829#sec2(b)",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec3",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec3",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "Sec. 3. The Department of the Interior shall, to the extent permitted \nby law, furnish the Committee Such administrative services and support \nas may be necessary.",
+      "quote_exact": true,
+      "char_start": 2404,
+      "char_end": 2567
+    },
+    {
+      "scope_id": "EO:11829#sec3",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec4-termination",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec4-termination",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "Sec. 4. The Committee shall terminate upon the completion of the \nMediator’s duties, as determined in accordance with the provisions of \nSection 1(a)  of the Act.",
+      "quote_exact": true,
+      "char_start": 2568,
+      "char_end": 2730
+    },
+    {
+      "scope_id": "EO:11829#sec4-termination",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec4-notice",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec4-notice",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "The Mediator shall advise the Chairman when \nhis duties have ceased.",
+      "quote_exact": true,
+      "char_start": 2731,
+      "char_end": 2799
+    },
+    {
+      "scope_id": "EO:11829#sec4-notice",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    },
+    {
+      "scope_id": "EO:11829#sec4-records",
+      "kind": "original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf",
+      "sha256": "ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663",
+      "page_or_item": "40 FR 1497, PDF page 11; sec4-records",
+      "text_path": "jobs/fr-originals/output/texts/EO_11829.txt",
+      "text_sha256": "d598b4df30f0ceddfe66808cee56661455b26afe6c1e6724f261dad8b2ae000d",
+      "quoted_text": "Any records which may have been maintained by \nthe Committee shall be transferred to the Secretary of the Interior.",
+      "quote_exact": true,
+      "char_start": 2800,
+      "char_end": 2915
+    },
+    {
+      "scope_id": "EO:11829#sec4-records",
+      "kind": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9; EO 12379 section 11, with entire actor read on pages 9-10 via held text",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+      "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+      "quoted_text": "Sec. l l .  Executive Order No. 11829, as amended, establishing the Hopi-Navajo  \nLand Settlement Interagency Committee, is revoked.",
+      "quote_exact": true,
+      "char_start": 2582,
+      "char_end": 2714
+    }
+  ],
+  "necessity_qualifications": [
+    "The image limitation is retained as a disclosure of what was inspected, not treated as an independent legal blocker for these complete, unambiguous official EO extracts with matching recorded fixity. No page-image or newly retained-PDF check is certified.",
+    "The express records-transfer command creates a concrete residual inquiry. The candidate reference to any independent continuing records obligations records non-establishment; this review does not impose speculative, unbounded proof of the absence of every possible independent records duty.",
+    "The actual text of the controlling statute and historical completion determination are material to selecting the earliest termination date. Reading the statute alone would not establish the historical occurrence."
+  ],
+  "retained_material_gaps_as_written": [
+    "Actual original, amending and revoking PDF page images were not present at the cited cache locations and were not inspected. GPO fixity rows match the recorded PDF hashes; exact held OCR is not an authenticated page transcription.",
+    "EO 11829 section 4 ties termination to completion of the Mediator duties as determined under Public Law 93-531 section 1(a). The controlling statute and evidence of actual completion are not held in the inspected packet/search results. No original clause first-end or whole_order_end date is asserted.",
+    "EO 11853 replaced section 2(a) on April 17, 1975 using immediate amendment wording. Earlier cessation under section 4 and the statute has not been ruled out; the amendment is a later event only, with the complete replacement text retained in its source.",
+    "Section 4 separately requires the Mediator to advise the Chairman when duties cease and directs transfer of Committee records to the Secretary of the Interior. Actual notice, transfer, and any independent continuing records obligations have not been established; these commands cannot be dismissed with committee termination.",
+    "The held machine searches do not determine the historical triggering occurrence or records transfer. U.S. Code coverage stops at 2026-10-09, leaving cutoff coverage through 2026-10-14 unclosed. later_source_search remains empty.",
+    "The claim-kit chain misattributes EO 12379 language to ten other orders and their dates. These associations are rejected from the full actor text; target EDGES rows identify only EO 11853 and EO 12379. No exhaustive negative earlier-history finding is made."
+  ],
+  "all_candidate_gaps_retained": true,
+  "all_gap_necessity_claims_endorsed": false,
+  "unsupported_state_or_date_remaining": false,
+  "unsupported_state_or_date_explanation": "No unsupported affirmative state or date is adopted within the partial scope: five terminated cutoff states are supported by full formal revocation, two explicit wind-down commands remain null, and all earliest-end and whole-order dates remain null. No 1982 first-end, deadline-as-occurrence, actual notice, or completed records transfer is asserted.",
+  "no_speculative_new_gaps_added": true,
+  "checker_run_by_reviewer": false,
+  "candidate_modified": false,
+  "page_images_inspected": false,
+  "full_readiness_certified": false,
+  "human_review_certified": false,
+  "machine_search_limits": [
+    {
+      "search_id": "current-law:usc",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+        "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+        "checked_on": "2026-10-17",
+        "searched_by": "jobs/current-law (machine search)"
+      }
+    },
+    {
+      "search_id": "current-law:ecfr",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+        "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+        "checked_on": "2026-10-17",
+        "searched_by": "jobs/current-law (machine search)"
+      }
+    },
+    {
+      "search_id": "later-events:ofr_catalog",
+      "complete": true,
+      "scope_note": "",
+      "entry": {
+        "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-18",
+        "searched_by": "jobs/later-events (machine search)"
+      }
+    }
+  ],
+  "telemetry": {
+    "started_utc": "2026-10-19T00:58:07+00:00",
+    "completed_utc": "2026-10-19T01:02:11.378942+00:00",
+    "elapsed_wall_seconds": 244.378942,
+    "initial_independent_source_audit_elapsed_seconds": 63.149009,
+    "model_usage": null
+  }
+}

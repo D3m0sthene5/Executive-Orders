@@ -14,6 +14,7 @@ import fetch_ladder as fl  # noqa: E402
 import fr_pages  # noqa: E402
 import ladder_queue  # noqa: E402
 import ofr_index  # noqa: E402
+import plan as plan_mod  # noqa: E402
 
 
 def make_pdf(pages):
@@ -344,6 +345,22 @@ class QueueAndIndexTests(Base):
         self.assertEqual(items[0].urls, ["https://example.gov/a.pdf"])
         self.assertEqual(items[1].eo_record, {"citation": "8 FR 5355"})
         self.assertEqual(len(problems), 3)
+
+    def test_fetch_queue_same_citation_other_urls_get_distinct_ids(self):
+        # FETCH_QUEUE lines 118/120 (EO 9837) once shared an ID and stopped the plan.
+        line = lambda url, by="Astra": json.dumps({"instrument_id": "EO:9837", "urls": [url], "requested_by": by,
+                                                   "citation": "Official fixity", "step": "ending_or_current_basis"})
+        p = self.tmp / "FETCH_QUEUE.jsonl"
+        p.write_text("\n".join([line("https://g.gov/STATUTE-65.xml"), line("https://g.gov/STATUTE-94.xml"),
+                                line("https://g.gov/STATUTE-65.xml", "again")]), encoding="utf-8")
+        items, problems = ladder_queue.read_fetch_queue(p)
+        self.assertEqual(problems, [])
+        self.assertEqual([w.wanted_id for w in items], [
+            "queue:EO:9837:Official fixity", "queue:EO:9837:Official fixity [https://g.gov/STATUTE-94.xml]"])
+        self.assertEqual([w.urls for w in items], [["https://g.gov/STATUTE-65.xml"], ["https://g.gov/STATUTE-94.xml"]])
+        plan = {"schema": "eo-source-plan/v1", "queue_fingerprint": plan_mod.queue_fingerprint(items),
+                "wanted_ids": [w.wanted_id for w in items], "max_requests": 5}
+        self.assertEqual(plan_mod.select_plan(items, plan), items)
 
     def test_shared_queue(self):
         out = self.tmp / "research/stage20/output"

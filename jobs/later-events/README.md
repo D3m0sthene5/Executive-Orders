@@ -55,6 +55,14 @@ Everything this job writes is a **lead (a candidate)**, never a legal finding.
    ...", "This order supersedes Executive Order ...", "I hereby revoke ...":
    - texts saved by the `fr-originals` job (read through its `SOURCES.jsonl`;
      used automatically once that job has run),
+   - American Presidency Project order pages harvested by `app-executive-orders`
+     (live and web-archive captures), read through
+     `jobs/app-transcriptions/output/SOURCES.jsonl`, one text per order
+     (evidence type `order_text_app_transcriptions`). These are secondary
+     transcriptions: their edges are leads like any text edge, and their "in
+     part" wording is flagged (`transcription_text_says_partial_end_kept`) but
+     never withholds a whole-order end stated in an OFR note, so a transcription
+     can never remove a counterevidence lead,
    - the 40 GovInfo PDFs in `research/stage21/original_sources/` (sha256
      checked against the custody file; text read with `pypdf`),
    - order texts inside the Opus Stage 11 release zip (American Presidency
@@ -151,7 +159,8 @@ Optional settings:
 - `JOB_CACHE_DIR=<folder>` - where downloaded API pages are kept (default: a
   `later-events-cache` folder next to the output folder). Reruns reuse them and
   make no requests; set `LATER_EVENTS_REFRESH=1` to fetch fresh copies.
-- `LATER_EVENTS_TEXT_JOBS=fr-originals,other-job` - other jobs whose
+- `LATER_EVENTS_TEXT_JOBS=fr-originals,other-job` (default
+  `fr-originals,app-transcriptions`) - other jobs whose
   `SOURCES.jsonl` texts should be scanned (only records naming exactly one
   order are used, and the order is taken to be the text's author).
 

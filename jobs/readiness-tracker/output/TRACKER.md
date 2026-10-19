@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 135 of 14,972 orders (0.9%)**
+**Ready for human review: 130 of 14,972 orders (0.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -14,18 +14,19 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 183 | 3,359 | 5.4% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 139 | 3,359 | 4.1% |
-| Savings clauses and surviving effects closed | 171 | 3,359 | 5.1% |
-| Search for later contrary sources recorded, no open conflicts | 2,475 | 3,359 | 73.7% |
+| Complete inventory of the order's operative clauses | 178 | 3,359 | 5.3% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 134 | 3,359 | 4.0% |
+| Savings clauses and surviving effects closed | 166 | 3,359 | 4.9% |
+| Search for later contrary sources recorded, no open conflicts | 2,470 | 3,359 | 73.5% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
-| Opus evidence images matched to this order (Opus cases only) | 115 | 844 | 13.6% |
+| Opus evidence images matched to this order (Opus cases only) | 127 | 844 | 15.0% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 440 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 3,216 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 430 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
@@ -41,21 +42,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
-| `NO_CLAUSE_INVENTORY` | 3,137 | 3,137 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,137 | 3,137 |
-| `FIRST_END_UNPROVED` | 2,737 | 2,737 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 688 | 688 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 440 | 440 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 3,216 |
+| `NO_CLAUSE_INVENTORY` | 3,142 | 3,142 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,142 | 3,142 |
+| `FIRST_END_UNPROVED` | 2,742 | 2,742 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 693 | 693 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 430 | 430 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 159 | 159 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 2 | 68 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
-| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 19 | 19 |
+| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 17 | 17 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 | `OPEN_SOURCE_AUDIT` | 1 | 1 |
 
@@ -78,9 +79,10 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - richardson-volumes (lead only, never counted as the original): 68
+- app-executive-orders (lead only, never counted as the original): 9,902
 - opus-media-match status: 1,155
-- source-ladder: 178
-- claim-checker: 222
+- source-ladder: 194
+- claim-checker: 217
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
