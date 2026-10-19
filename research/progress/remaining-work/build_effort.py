@@ -25,8 +25,16 @@ def ids(path, col="instrument_id"):
         return {r[col] for r in csv.DictReader(f)}
 
 
-def main():
-    model = {r["tier"]: r for r in csv.DictReader(open(HERE / "EFFORT_MODEL.csv"))}
+def load_model():
+    return {r["tier"]: r for r in csv.DictReader(open(HERE / "EFFORT_MODEL.csv"))}
+
+
+def assign():
+    """One record per open step: order, president, step, tier, legal-step multiplier.
+
+    Orders APP counts but the project does not hold come as records with
+    instrument_id None and a count, at the hardest tier of each step."""
+    model = load_model()
     tracker = list(csv.DictReader(open(brw.TRACKER)))
     pres, _ = brw.attribute(tracker)
 
@@ -89,35 +97,38 @@ def main():
             return "OM1" if blockers & {"OPUS_MEDIA_REFETCH_NEEDED", "OPUS_MEDIA_ORIGINAL_NOT_KEPT"} else "OM2"
         raise ValueError(step)
 
-    minutes = collections.defaultdict(float)   # (president, step) -> minutes
-    steps = collections.Counter()              # (president, step) -> open steps
-    by_tier = collections.Counter(); tier_min = collections.defaultdict(float)
+    records = []
     for r in tracker:
         iid, p = r["instrument_id"], pres[r["instrument_id"]]
         blockers = {b.split(":")[0] for b in r["blockers"].split("|") if b}
         text_done = r["step_original_text"] == "done"
         mult = SIZE.get(drafts.get(iid, {}).get("estimated_effort"), 1.0)
         for s in brw.STEPS[1:]:
-            if r["step_" + s] != "open":
-                continue
-            t = tier(s, iid, blockers, text_done)
-            w = float(model[t]["minutes"]) * (mult if s in LEGAL else 1.0)
-            minutes[p, s] += w; steps[p, s] += 1
-            by_tier[s, t] += 1; tier_min[s, t] += w
-
-    # Orders APP counts that the project does not hold: hardest tier of each step.
+            if r["step_" + s] == "open":
+                records.append({"instrument_id": iid, "president": p, "step": s, "count": 1,
+                                "tier": tier(s, iid, blockers, text_done), "modern": modern(iid),
+                                "mult": mult if s in LEGAL else 1.0})
     gap_tiers = {"admit": "AD", "provisional_status": "PS2", "original_text": "OT5",
                  "clause_inventory": "CI3", "ending_or_current_basis": "EB4",
                  "savings_residuals": "SR3", "counterevidence": "CE4"}
+    for r in json.load(open(HERE / "REMAINING_WORK.json"))["presidents"]:
+        if r["not_yet_in_project"]:
+            for s, t in gap_tiers.items():
+                records.append({"instrument_id": None, "president": r["president"], "step": s,
+                                "count": r["not_yet_in_project"], "tier": t, "modern": False, "mult": 1.0})
+    return records, model
+
+
+def main():
+    records, model = assign()
     rows = json.load(open(HERE / "REMAINING_WORK.json"))["presidents"]
-    for r in rows:
-        g = r["not_yet_in_project"]
-        if not g:
-            continue
-        for s, t in gap_tiers.items():
-            w = float(model[t]["minutes"]) * g
-            minutes[r["president"], s] += w; steps[r["president"], s] += g
-            by_tier[s, t] += g; tier_min[s, t] += w
+    minutes = collections.defaultdict(float)   # (president, step) -> minutes
+    steps = collections.Counter()              # (president, step) -> open steps
+    by_tier = collections.Counter(); tier_min = collections.defaultdict(float)
+    for x in records:
+        w = float(model[x["tier"]]["minutes"]) * x["mult"] * x["count"]
+        minutes[x["president"], x["step"]] += w; steps[x["president"], x["step"]] += x["count"]
+        by_tier[x["step"], x["tier"]] += x["count"]; tier_min[x["step"], x["tier"]] += w
 
     kinds = {"admit": (1, "Find and admit to the census"),
              "provisional_status": (2, "First yes/no on whether in effect"),

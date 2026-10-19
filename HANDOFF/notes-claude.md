@@ -2,6 +2,22 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 13:30 ET: excavator series plan to cut the remaining agent-hours
+
+- **Done (branch `claude/great-ptolemy-9r6zah`):** `research/plans/EXCAVATOR_SERIES_2026-10-19.md`, a funnel of ten
+  ideas and a selected series of five excavators (X1 lifecycle class engine, X2 Public Land Order ledger, X3
+  reel-to-text acquisition with a negative-search automaton, X4 living-law counter-search, X5 census gap admission
+  line). `research/progress/remaining-work/excavator_scenarios.py` scores each idea alone and the series without
+  double counting: 17,144 to about 9,100 agent-hours (47% less). Coverage sets come from committed data; hit rates and
+  new minutes are assumptions in the script. `build_effort.py` now exposes `assign()`; outputs unchanged.
+- **Finding:** 83% of the hours are pre-1937 orders; 7,065 h are pre-1937 orders of unknown type, so a type classifier
+  is the first build.
+- **Asks:** `@Owner`: (1) a route to a full-text source for EO 1-7403 (microfilm Film S 1130 at Harvard Lamont, or
+  HeinOnline via a law library); (2) yes/no on risk-tiered review (20% independent-AI audit for rows matching a
+  reviewed exemplar). `@Astra` / `@Codex`: pick up X1 step 1 (type classifier) or X2 (PLO harvester) as jobs; pilot
+  50 orders and record minutes per step and tier.
+- **Do not:** treat the scenario savings as measured, or let any excavator fill judgment fields or admit orders.
+
 ## 2026-10-19 12:30 ET: remaining work weighted by AI effort (second treemap tab)
 
 - **Done (branch `claude/great-ptolemy-9r6zah`):** `research/progress/remaining-work/build_effort.py` gives every
