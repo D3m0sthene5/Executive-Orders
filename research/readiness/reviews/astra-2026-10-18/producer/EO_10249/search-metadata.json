@@ -1,0 +1,56 @@
+{
+  "started_utc": "2026-10-19T01:52:37.355707+00:00",
+  "finished_utc": "2026-10-19T01:52:47.754813+00:00",
+  "roots": [
+    {
+      "root": "jobs/fr-originals/data/full_run/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 6652,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/source-ladder/output/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 187,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/opus-media-match/output/text",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 414,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/ofr-codification-1989/output/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 555,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/astra-source-retention/output/pages",
+      "glob": "*/selected-pages.txt",
+      "recursive": false,
+      "files_selected": 17,
+      "exclusions": []
+    }
+  ],
+  "queries": [
+    "\\b10249\\b",
+    "foreign\\s+data",
+    "foreign\\s+service.{0,160}(?:reporting|reports|statistics)",
+    "(?:reporting|reports|statistics).{0,160}foreign\\s+service",
+    "section\\s+311.{0,100}foreign\\s+service",
+    "foreign\\s+service.{0,100}section\\s+311",
+    "(?:Department\\s+of\\s+State|State\\s+Department|Secretary\\s+of\\s+State).{0,180}(?:foreign\\s+data|reporting\\s+functions)",
+    "comprehensive\\s+statement.{0,160}foreign",
+    "22\\s+U\\.?\\s*S\\.?\\s*C\\.?\\s*846"
+  ],
+  "normalization": "UTF-8, remove hyphen/soft-hyphen followed by whitespace and newline; collapse whitespace; case-insensitive regex. Full selected files including headers and neighboring text. No date filter or deduplication.",
+  "file_count": 7825,
+  "query_file_hit_rows": 40,
+  "scope_limit": "Only exact root/glob selections. Not a repository-wide, all-jobs, historical-statute or newly rerun U.S. Code/eCFR bulk search. All matched documents are not claimed fully read."
+}

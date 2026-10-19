@@ -1,0 +1,498 @@
+{
+  "instrument_id": "EO:10249",
+  "search": {
+    "started_utc": "2026-10-19T01:52:37.355707+00:00",
+    "finished_utc": "2026-10-19T01:52:47.754813+00:00",
+    "roots": [
+      {
+        "root": "jobs/fr-originals/data/full_run/texts",
+        "glob": "*.txt",
+        "recursive": false,
+        "files_selected": 6652,
+        "exclusions": []
+      },
+      {
+        "root": "jobs/source-ladder/output/texts",
+        "glob": "*.txt",
+        "recursive": false,
+        "files_selected": 187,
+        "exclusions": []
+      },
+      {
+        "root": "jobs/opus-media-match/output/text",
+        "glob": "*.txt",
+        "recursive": false,
+        "files_selected": 414,
+        "exclusions": []
+      },
+      {
+        "root": "jobs/ofr-codification-1989/output/texts",
+        "glob": "*.txt",
+        "recursive": false,
+        "files_selected": 555,
+        "exclusions": []
+      },
+      {
+        "root": "jobs/astra-source-retention/output/pages",
+        "glob": "*/selected-pages.txt",
+        "recursive": false,
+        "files_selected": 17,
+        "exclusions": []
+      }
+    ],
+    "queries": [
+      "\\b10249\\b",
+      "foreign\\s+data",
+      "foreign\\s+service.{0,160}(?:reporting|reports|statistics)",
+      "(?:reporting|reports|statistics).{0,160}foreign\\s+service",
+      "section\\s+311.{0,100}foreign\\s+service",
+      "foreign\\s+service.{0,100}section\\s+311",
+      "(?:Department\\s+of\\s+State|State\\s+Department|Secretary\\s+of\\s+State).{0,180}(?:foreign\\s+data|reporting\\s+functions)",
+      "comprehensive\\s+statement.{0,160}foreign",
+      "22\\s+U\\.?\\s*S\\.?\\s*C\\.?\\s*846"
+    ],
+    "normalization": "UTF-8, remove hyphen/soft-hyphen followed by whitespace and newline; collapse whitespace; case-insensitive regex. Full selected files including headers and neighboring text. No date filter or deduplication.",
+    "file_count": 7825,
+    "query_file_hit_rows": 40,
+    "scope_limit": "Only exact root/glob selections. Not a repository-wide, all-jobs, historical-statute or newly rerun U.S. Code/eCFR bulk search. All matched documents are not claimed fully read."
+  },
+  "search_file_manifest": "search-file-manifest.jsonl",
+  "search_file_manifest_sha256": "4cf8d15107a6c62ece225a3731ae3cf610d1f8a930986e2227563e806047485a",
+  "search_hits_file": "search-hits.jsonl",
+  "search_hits_sha256": "8a2d94b2377ba077530e3de7c2f1fb5502d406d6c38d1ea02c33cc564c9dfca9",
+  "all_hit_contexts_read": true,
+  "hit_resolutions": [
+    {
+      "group": "EO10249 and copies",
+      "resolution": "Original actual order and its definition/recital; not later lifecycle action."
+    },
+    {
+      "group": "EO12292 and official copies",
+      "resolution": "Formal revocation, actual text and effective clause read in full."
+    },
+    {
+      "group": "EO11264",
+      "resolution": "Section 41(b) requires departments to furnish reports to personnel boards, a different direction, recipient and subject from EO10249 obtaining foreign data through the Foreign Service for agencies. Sections 42(a)-(c) save actions tied to functions affected by that board order, not a blanket continuation of EO10249. No EO10249 amendment or ending stated.",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1966-01-05/pdf/FR-1966-01-05.pdf",
+        "sha256": "798b5d66d363bcd97d5432757672d60d6f7b0659c729a7b5f3b322085e1a9030",
+        "page_or_item": "31 FR 68-69, PDF pages 6-7, section 41(b), section 42 saving provisions",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11264.txt",
+        "text_sha256": "a1dc0e6f638e7cfe28372ace3f52eb4088199c9807457f4e691400d2989a3449",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed",
+        "quoted_parts": [
+          "(b) Upon request of the Secretary, the heads of executive depart­\nments and agencies shall, as far as practicable, furnish the Board of \nthe Foreign Service and the Board of Examiners information and \nreports relating to matters within the cognizance of the respective \nboards.",
+          "S ec,. 42. Saving provisions,  (a) Except to the extent that they may \nbe inconsistent with this Order, all determinations, authorizations, \nregulations, rulings, certificates, orders, directives, contracts, agree­\nments and other actions made, issued, or entered into with respect \nto any functions affected by this Order and not revoked, superseded, \nor otherwise made inapplicable before the effective date of this Order \nshall continue in full force and effect until amended, modified, or \nterminated by appropriate authority.\n(b) For the purposes of any proceeding or other business which \nimmediately before the effective date of Reorganization Plan No. 4 \nof 1965 or of this Order was pending or in process before the Board \nof the Foreign Service or the Board of Examiners for the Foreign \nService as established by the provisions of the Foreign Service Act of \n1946 or by the provisions of Executive Order No. 11240 of August 4, \n1965, the bodies established by Parts I I  and I I I  of this Order shall be \ndeemed to represent continuations of the respective Boards.\nFEbERAL REGISTER, VOL. 31, NO. 2— WEDNESDAY, JANUARY 5, 1966\n\n=== PDF page 7 of 56 ===\nTHE PRESIDENT 69\n(c) Nothing in Reorganization Plan No. 4 of 1965 (30 F .R . 9353) \nor in this Order or in any Executive order issued before the date of \nthis Order shall be deemed to terminate or impair any of the following:\n(1) The availability to the Director of the United States Informa­\ntion Agency of the -authority which was made available to him by \nExecutive Order No. 10522 of March 26,1954.\n(2) The availability to the Administrator of the Agency for Inter­\nnational Development of the authority which was made available to \nhim by Section 2(b) (3) of State Department Delegation of Authority \nNo. 104 of November 3,1961,26 F.R . 10608. -\n(3) The availability to the Director of the Peace Corps of the \nauthority which was made available to him by Section 2(b) (3)\" of \nState Department Delegation of Authority No. 85-11A of August 29, \n1962,27 F.R . 9074.\n(4) The availability to the Secretary of State of the authority which \nwas vested in him by Section 42(3) of the Arms Control and Disarma­\nment Act (22 U.S.C. 2582(3) )."
+        ]
+      }
+    },
+    {
+      "group": "EO8189/8190/8191/8192,8305/8306/8307,8346,8356/8357/8358,8396 and ladder copy,9001A,9539,9880 ladder neighbor",
+      "resolution": "Pre-1951 background, neighboring Foreign Service regulations/organization, property/personnel reporting or non-Foreign-Service military usage. Contexts only, not a later cessation claim. Duplicate neighboring-source hits not attributed to each file-label actor."
+    },
+    {
+      "group": "EO12493 and codification copy; EO14251",
+      "resolution": "Later personnel assignments and reporting hierarchy / labor exclusions. Search contexts do not impose EO10249 data-obtaining functions or revive its regulations; no full source read claimed."
+    },
+    {
+      "group": "EO12661 and codification copy; EO12851",
+      "resolution": "Later specific defense/trade/arms reporting functions under separately named statutes, not EO10249 foreign-data requests; contexts only, no global statutory-history conclusion."
+    },
+    {
+      "group": "EO12910 FR document number 94-10249; EO13825 printed page 10249; EO9599 contents page numbers; EO10480 ladder neighboring FCC docket 10249",
+      "resolution": "Numeric false positives identified in actual contexts, not references to EO10249."
+    }
+  ],
+  "earlier_edges": [
+    {
+      "edge_id": "LE-45e71219edf4",
+      "acting_id": "EO:12292",
+      "acting_label": "EO 12292, February 23, 1981",
+      "target_id": "EO:10249",
+      "target_label": "",
+      "target_in_universe": "yes",
+      "mechanism": "revocation",
+      "qualifier": "",
+      "date_candidate": "1981-02-23",
+      "date_basis": "date stated next to the acting instrument in the OFR note",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_target",
+      "stated_on": "EO:10249",
+      "source_id": "ofr-api-page:ff34a34151c316d0",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=3&per_page=1000&search_after_cursor=Wzk1MTMuMCwiOTUxMyJd",
+      "source_sha256": "ff34a34151c316d04dbe0b25442313bea97fe428bc6fe3359f76cec9cbcd9bd7",
+      "page_or_item": "OFR API record executive_order_number=10249; citation 16 FR 5309; field disposition_notes",
+      "note_label": "Revoked by",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "Revoked by: EO 12292, February 23, 1981"
+    },
+    {
+      "edge_id": "LE-a86b9473a175",
+      "acting_id": "EO:12292",
+      "acting_label": "",
+      "target_id": "EO:10249",
+      "target_label": "EO 10249, June 4, 1951",
+      "target_in_universe": "yes",
+      "mechanism": "revocation",
+      "qualifier": "",
+      "date_candidate": "1981-02-23",
+      "date_basis": "acting order signing_date from OFR catalog",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_acting",
+      "stated_on": "EO:12292",
+      "source_id": "ofr-api-page:79e100de57f8d997",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+      "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+      "page_or_item": "OFR API record executive_order_number=12292; citation 46 FR 13967; field disposition_notes",
+      "note_label": "Revokes",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "EO 10249, June 4, 1951"
+    }
+  ],
+  "edge_resolution": "Two duplicate catalog edges; actual sole actor EO12292 section 10(e), with section 11 effective February 15, 1981. No earlier edge in inspected table. This is not evidence that no earlier statutory effect exists.",
+  "current_law_mentions": [
+    {
+      "mention_id": "usc:695d8472a2c7",
+      "system": "usc",
+      "route": "usc_release_point_xml_zip",
+      "edition": "U.S. Code release point 119-121",
+      "title": "22",
+      "citation": "22 U.S.C. 3901 note",
+      "location_kind": "note",
+      "container_id": "/us/usc/t22/s3901",
+      "section_key": "",
+      "note_topic": "executiveOrder",
+      "crossheading": "execDoc",
+      "note_heading": "Ex. Ord. No. 12292. Conformance of Existing Executive Orders to Changes Resulting From the Foreign Service Act of 1980",
+      "note_id": "iddf051704-b816-11f1-963c-e4c4db8c41be",
+      "role": "mentioned_in_printed_eo_text",
+      "is_predicate_lead": "no",
+      "caution": "",
+      "eo_raw": "Executive Order No. 10249",
+      "eo_normalized": "10249",
+      "instrument_id": "EO:10249",
+      "mapping": "exact",
+      "provisional_status": "no",
+      "occurrences": "1",
+      "snippet": "...1944; (b) Executive Order No. 9799 of November 8, 1946; (c) Executive Order No. 9837 of March 27, 1947; (d) Executive Order No. 9932 of February 27, 1948; (e) Executive Order No. 10249 of June 4, 1951; (f) Section 2 of Executive Order No. 10477 of August 1, 1953 [22 U.S.C. 1472 note]; (g) Executive Order No. 10897 of December 2, 1960; (h) Par...",
+      "source_id": "usc:119-121:xml_uscAll@119-121.zip",
+      "page_or_item": "22 U.S.C. 3901 note; note 'Ex. Ord. No. 12292. Conformance of Existing Executive Orders to Changes Resulting From the' [USLM note id iddf051704-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+      "human_url": "",
+      "changed_after_cutoff": "",
+      "checked_through": "2026-10-09",
+      "confirmed_at_cutoff_by_search": ""
+    }
+  ],
+  "ecfr_exact_hits": [],
+  "current_law_resolution": "One historic printed EO12292 revocation note, not a current operative predicate. Dossier machine summary says zero USC hits, whereas actual MENTIONS.csv has one; discrepancy recorded. Underlying USC/eCFR corpora not rerun.",
+  "machine_later_search_record": [
+    {
+      "instrument_id": "EO:10249",
+      "later_source_search": [
+        {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "editorial disposition notes on EO 10249 and on every other catalogued order naming it (jobs/later-events)",
+          "repository": "Office of the Federal Register executive-order catalog (federalregister.gov API v1, 1937-2026)"
+        },
+        {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "revocation, amendment, supersession and reinstatement sentences naming EO 10249 (jobs/later-events)",
+          "repository": "project saved order texts (7,619 documents, incl. every fr-originals official text)"
+        },
+        {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "every mention of EO 10249 in current law (jobs/current-law)",
+          "repository": "U.S. Code release point 119-121 and eCFR as of 2026-10-14"
+        }
+      ],
+      "open_conflicts": [],
+      "produced_by": "readiness-tracker"
+    }
+  ],
+  "machine_search_scopes": [
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+        "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:usc"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+        "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:ecfr"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-18",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+        "searched_by": "jobs/later-events (machine search)"
+      },
+      "machine_hits_for_this_order": 2,
+      "scope_note": "",
+      "search_id": "later-events:ofr_catalog"
+    }
+  ],
+  "machine_scope_judgment": "Retained leads, not adopted final adequate-search closure. Explicit bounded producer search is separate from these machine-reported catalog/bulk scopes.",
+  "counterexample_resolutions": [
+    {
+      "date_hint": "",
+      "owner_hint": "",
+      "reason": "undated use",
+      "text_path": "jobs/astra-source-retention/output/pages/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665/page-12.txt",
+      "text_sha256": "fa4d5c8af6165d870424ecad554b006c7020e3f70becde4c16232ae2af1f81f2",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate actual EO12292 revocation, not a later active predicate",
+      "actual_contexts": [
+        " 26,1944;\n(b) Executive Order No. 9799 of November 8,1946;\n(c) Executive Order No. 9837 of March 27,1947;\n(d) Executive Order No. 9932 of February 27,1948;\n(e) Executive Order No. 10249 of June 4,1951;\n(f) Section 2 of Executive Order No. 10477 of August 1,1953;\n(g) Executive Order No. 10897 of December 2,1960;\n(h) Part III of Executive Order No. 11264 of December 31, 1965, as amended;\n(i) Sections 1, 3, and 5 of Executive Order No. 11434 of"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "",
+      "reason": "undated use",
+      "text_path": "jobs/astra-source-retention/output/pages/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665/selected-pages.txt",
+      "text_sha256": "673a2734e8e78a770bf6c5b6f11957ac370b3476d7a62be78937e4843730a6cb",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate actual EO12292 revocation, not a later active predicate",
+      "actual_contexts": [
+        " 26,1944;\n(b) Executive Order No. 9799 of November 8,1946;\n(c) Executive Order No. 9837 of March 27,1947;\n(d) Executive Order No. 9932 of February 27,1948;\n(e) Executive Order No. 10249 of June 4,1951;\n(f) Section 2 of Executive Order No. 10477 of August 1,1953;\n(g) Executive Order No. 10897 of December 2,1960;\n(h) Part III of Executive Order No. 11264 of December 31, 1965, as amended;\n(i) Sections 1, 3, and 5 of Executive Order No. 11434 of"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "EO:10249",
+      "reason": "undated use",
+      "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-10249-41cef3c20a.txt",
+      "text_sha256": "c2f7dd4e140bb6498942fa67f013e4505c48efedc1640315465e31e07588bc8b",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate original EO10249 text",
+      "actual_contexts": [
+        "EXECUTIVE ORDER 10249\nPrescribing R egulations  W ith  R espect \nto F oreign S ervice R eporting F unc ­\ntions\nBy virtue of the authority vested in  \nme by section 311 of the Foreign Service  \nAct of 1946, 60 Stat. 1002 (22 U. S. C.  \n846), and as President of the United  \nStates,"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "EO:10249",
+      "reason": "undated use",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+      "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate original EO10249 text",
+      "actual_contexts": [
+        "Instrument: EO:10249\nSource: https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf\nSHA-256 of the downloaded file: 41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c\nLocation: 16 FR 5309, PDF pages 1-1 (confidence high)\nMachine-extracted text layer",
+        "ticated transcription: check the PDF pages.\n\n=== PDF page 1 of 72 ===\nVOLUME 16\n^ x o n a l^\nN UM BER109\nWashington, Wednesday, June 6, 1951\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10249\nPrescribing R egulations  W ith  R espect \nto F oreign S ervice R eporting F unc ­\ntions\nBy virtue of the authority vested in  \nme by section 311 of the Foreign Service  \nAct of 1946, 60 Stat. 1002 (22 U. S. C.  \n846), and as President of the United  \nStates,"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "EO:10249",
+      "reason": "undated use",
+      "text_path": "jobs/fr-originals/output/texts/EO_10249.txt",
+      "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate original EO10249 text",
+      "actual_contexts": [
+        "Instrument: EO:10249\nSource: https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf\nSHA-256 of the downloaded file: 41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c\nLocation: 16 FR 5309, PDF pages 1-1 (confidence high)\nMachine-extracted text layer",
+        "ticated transcription: check the PDF pages.\n\n=== PDF page 1 of 72 ===\nVOLUME 16\n^ x o n a l^\nN UM BER109\nWashington, Wednesday, June 6, 1951\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10249\nPrescribing R egulations  W ith  R espect \nto F oreign S ervice R eporting F unc ­\ntions\nBy virtue of the authority vested in  \nme by section 311 of the Foreign Service  \nAct of 1946, 60 Stat. 1002 (22 U. S. C.  \n846), and as President of the United  \nStates,"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "",
+      "reason": "undated use",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_12292_46_FR_13967_PDF_pages_11-12_cited_revocation_exception_effective_provisions_15220b387d.txt",
+      "text_sha256": "9ff616b499865d2ee373cf36eb5f7562c66e87e6bdca2edc01afda9119fc0caf",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate actual EO12292 revocation, not a later active predicate",
+      "actual_contexts": [
+        ")..............\n9452 (Amended by\nEO 12292)..............\n9799 (Amended by\nEO 12292)..............\n9837 (Amended by\nEO 12292)..............\n9932 (Amended by\nEO 12292)..............\n10249 (Amended by \nEO 12292)..............\n....13967\n....13967\n....13967\n....13967\n....13967\n....13967\n10471 (Amended by\nEO 12292)..................13967\n10477 (Amended in\npart by EO 12292)........13967\n10624 (Amended by\nEO 12292)..................13967\n10897 (Amen",
+        " 26,1944;\n(b) Executive Order No. 9799 of November 8,1946;\n(c) Executive Order No. 9837 of March 27,1947;\n(d) Executive Order No. 9932 of February 27,1948;\n(e) Executive Order No. 10249 of June 4,1951;\n(f) Section 2 of Executive Order No. 10477 of August 1,1953;\n(g) Executive Order No. 10897 of December 2,1960;\n(h) Part III of Executive Order No. 11264 of December 31, 1965, as amended;\n(i) Sections 1, 3, and 5 of Executive Order No. 11434 of"
+      ]
+    },
+    {
+      "date_hint": "",
+      "owner_hint": "",
+      "reason": "undated use",
+      "text_path": "research/production/2026-10-17/pother/saved/EO_12292.txt",
+      "text_sha256": "de0b8d9cbf1f0fce9c40e4786ff42baa8bd2ef4a3376e4e114556d985c428938",
+      "reading": "Target-number contexts checked; full underlying original/revoker separately read. No independent full read of every duplicate claimed.",
+      "resolution": "Duplicate actual EO12292 revocation, not a later active predicate",
+      "actual_contexts": [
+        " 26,1944;\n(b) Executive Order No. 9799 of November 8,1946;\n(c) Executive Order No. 9837 of March 27,1947;\n(d) Executive Order No. 9932 of February 27,1948;\n(e) Executive Order No. 10249 of June 4,1951;\n(f) Section 2 of Executive Order No. 10477 of August 1,1953;\n(g) Executive Order No. 10897 of December 2,1960;\n(h) Part III of Executive Order No. 11264 of December 31, 1965, as amended;\n(i) Sections 1, 3, and 5 of Executive Order No. 11434 of"
+      ]
+    }
+  ],
+  "material_gaps": [
+    {
+      "scope_ids": [
+        "EO:10249#sec4"
+      ],
+      "type": "material_original_text_damage",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf",
+        "sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+        "page_or_item": "16 FR 5309, PDF page 1, opening of section 4",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+        "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed",
+        "quoted_parts": [
+          "Sec. 4. The Department of State  \nassign priorities to requests for for  \no£ta, which priorities shall govern  \nService ^  connection with  \nfurnishing of the requested data;"
+        ]
+      },
+      "needed": "Retain and read official FR-1951-06-06 PDF page 1; verify the complete section 4 imperative, its subject and object. Existing fixity identifies the source bytes but does not repair the missing text. No page-image reading is claimed.",
+      "impact": "Exact scope and completeness of section 4 cannot be certified; inventory and whole-order closure remain partial."
+    },
+    {
+      "scope_ids": [
+        "EO:10249#sec2",
+        "EO:10249#sec3",
+        "EO:10249#sec4"
+      ],
+      "type": "specific_statutory_reporting_regime_history_unread",
+      "specific_authority": "Foreign Service Act of 1946 section 311, 60 Stat. 1002, then 22 U.S.C. 846, expressly implemented by EO10249 reporting regulations.",
+      "concrete_transition": "EO12292 says its amendments and revocations conform existing orders to changes resulting from the Foreign Service Act of 1980 and specifically revokes EO10249 in section 10(e). Actual section 311 history and the 1980 repeal/replacement/effective/continuity terms are not yet held in the inspected retention outputs. The exact replacement provision is not guessed.",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+        "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+        "page_or_item": "46 FR 13967-13968, PDF pages 11-12, preamble and section 10(e)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+        "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed",
+        "quoted_parts": [
+          "By the authority vested in me as President by the Constitution and laws of the \nUnited States of America, including the Foreign Service Act of 1980 (94 Stat. \n2071; 22 U.S.C. 3901 et seq .), and in order to conform existing Executive Orders \nto changes resulting from that Act, it is hereby ordered as follows:",
+          "(e) Executive Order No. 10249 of June 4,1951;"
+        ]
+      },
+      "supporting_sources": [
+        {
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf",
+            "sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+            "page_or_item": "16 FR 5309, PDF page 1, statutory recital",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+            "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "read_method": "held official extract; no page-image verification claimed",
+            "quoted_parts": [
+              "By virtue of the authority vested in  \nme by section 311 of the Foreign Service  \nAct of 1946, 60 Stat. 1002 (22 U. S. C.  \n846), and as President of the United  \nStates, I hereby prescribe the following  \nregulations with respect to the reporting  \nfunctions of the Foreign Service of the  \nUnited States:"
+            ]
+          }
+        }
+      ],
+      "needed": "Read actual section 311 and material amendments, and the actual 1980 change, repeal, commencement and savings provisions. Determine whether the original reporting regulations continued, were displaced earlier or ended with the known formal revocation.",
+      "impact": "All first_end values, whole_order_end and savings_residuals remain null, and final adequate-search closure is withheld. No earlier cessation is asserted from missing evidence."
+    }
+  ],
+  "full_read_source_records": [
+    {
+      "instrument_id": "EO:10249",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf",
+        "sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+        "page_or_item": "16 FR 5309, PDF pages 1-1 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+        "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed"
+      },
+      "read_scope": "Entire held official extract including all sections and signature, excluding neighboring agriculture rules and contents; section 4 material OCR damage expressly preserved",
+      "reason": "Original and own-term assessment; no claimed image verification or exact section 4 reconstruction",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:11Z",
+        "gpo_sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1951-06-06/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf"
+      },
+      "checked_historical_cache": "jobs/fr-originals/data/full_run/blobs/41/41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c.pdf",
+      "historical_cache_exists": false,
+      "checked_retention_cache": "jobs/astra-source-retention/output/pdf/41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c.pdf",
+      "retention_cache_exists": false,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12292",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+        "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+        "page_or_item": "46 FR 13967, PDF pages 11-12 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+        "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed"
+      },
+      "read_scope": "Complete actual EO, PDF pages 11-12, all amendments/revocations and signature",
+      "reason": "Effective formal revocation and concrete Foreign Service Act transition lead",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:46Z",
+        "gpo_sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1981-02-25/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf"
+      },
+      "checked_historical_cache": "jobs/fr-originals/data/full_run/blobs/df/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665.pdf",
+      "historical_cache_exists": false,
+      "checked_retention_cache": "jobs/astra-source-retention/output/pdf/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665.pdf",
+      "retention_cache_exists": true,
+      "retained_pdf_sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11264",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1966-01-05/pdf/FR-1966-01-05.pdf",
+        "sha256": "798b5d66d363bcd97d5432757672d60d6f7b0659c729a7b5f3b322085e1a9030",
+        "page_or_item": "31 FR 67, PDF pages 5-9 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11264.txt",
+        "text_sha256": "a1dc0e6f638e7cfe28372ace3f52eb4088199c9807457f4e691400d2989a3449",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match",
+        "read_method": "held official extract; no page-image verification claimed"
+      },
+      "read_scope": "Complete actual EO through signature, PDF pages 5-7; blank page 8 and neighboring rules page 9 excluded",
+      "reason": "Distinct boards and their report-supply duty; complete savings terms read",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:28Z",
+        "gpo_sha256": "798b5d66d363bcd97d5432757672d60d6f7b0659c729a7b5f3b322085e1a9030",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1966-01-05/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1966-01-05/pdf/FR-1966-01-05.pdf"
+      },
+      "checked_historical_cache": "jobs/fr-originals/data/full_run/blobs/79/798b5d66d363bcd97d5432757672d60d6f7b0659c729a7b5f3b322085e1a9030.pdf",
+      "historical_cache_exists": false,
+      "checked_retention_cache": "jobs/astra-source-retention/output/pdf/798b5d66d363bcd97d5432757672d60d6f7b0659c729a7b5f3b322085e1a9030.pdf",
+      "retention_cache_exists": false,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    }
+  ]
+}

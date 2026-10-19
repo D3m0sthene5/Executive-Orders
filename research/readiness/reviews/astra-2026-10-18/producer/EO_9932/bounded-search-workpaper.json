@@ -1,0 +1,750 @@
+{
+  "instrument_id": "EO:9932",
+  "search_started_utc": "2026-10-19T01:47:17.844703+00:00",
+  "search_finished_utc": "2026-10-19T01:47:29.250217+00:00",
+  "roots": [
+    {
+      "root": "jobs/fr-originals/data/full_run/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 6652,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/source-ladder/output/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 187,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/opus-media-match/output/text",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 414,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/ofr-codification-1989/output/texts",
+      "glob": "*.txt",
+      "recursive": false,
+      "files_selected": 555,
+      "exclusions": []
+    },
+    {
+      "root": "jobs/astra-source-retention/output/pages",
+      "glob": "*/selected-pages.txt",
+      "recursive": false,
+      "files_selected": 17,
+      "exclusions": []
+    }
+  ],
+  "queries": [
+    "\\b9932\\b",
+    "foreign\\s+service\\s+(?:reserve|staff)",
+    "(?:competitive\\s+status|reinstatement|reemployment).{0,250}foreign\\s+service",
+    "foreign\\s+service.{0,250}(?:competitive\\s+status|reinstatement|reemployment)",
+    "(?:section\\s+522|section\\s+528|civil\\s+service\\s+rule\\s+III)",
+    "civil\\s+service\\s+commission.{0,180}(?:abolish|transfer|succeed)",
+    "war.?service\\s+indefinite",
+    "temporary\\s+indefinite",
+    "Foreign\\s+Service.{0,180}section\\s+310",
+    "Foreign\\s+Service\\s+Act\\s+of\\s+(?:1946|1980)",
+    "Office\\s+of\\s+Personnel\\s+Management.{0,180}(?:reinstatement|Foreign\\s+Service)"
+  ],
+  "normalization": "UTF-8 decoding; remove soft-hyphen or hyphen followed by whitespace/newline; collapse whitespace; case-insensitive regex. Full selected files searched, including neighboring text and headers. No date filter or deduplication.",
+  "file_manifest": "search-file-manifest.jsonl",
+  "file_manifest_sha256": "4cf8d15107a6c62ece225a3731ae3cf610d1f8a930986e2227563e806047485a",
+  "hit_file": "search-hits.jsonl",
+  "hit_file_sha256": "2d489f78afd3b86151ee5be337c9a08fd0d4232bffc8d11cb72156407672720a",
+  "selected_file_count": 7825,
+  "query_file_hits": 272,
+  "scope_limit": "Only the five explicitly selected roots/globs were searched by this producer. This is not a search of all jobs, all repo files, all historical statutes, or underlying U.S. Code/eCFR bulk corpora. Search matches are discovery contexts, not a claim that every matched document was read in full.",
+  "machine_later_search_record": [
+    {
+      "instrument_id": "EO:9932",
+      "later_source_search": [
+        {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "editorial disposition notes on EO 9932 and on every other catalogued order naming it (jobs/later-events)",
+          "repository": "Office of the Federal Register executive-order catalog (federalregister.gov API v1, 1937-2026)"
+        },
+        {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "revocation, amendment, supersession and reinstatement sentences naming EO 9932 (jobs/later-events)",
+          "repository": "project saved order texts (7,619 documents, incl. every fr-originals official text)"
+        },
+        {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "every mention of EO 9932 in current law (jobs/current-law)",
+          "repository": "U.S. Code release point 119-121 and eCFR as of 2026-10-14"
+        }
+      ],
+      "open_conflicts": [],
+      "produced_by": "readiness-tracker"
+    }
+  ],
+  "machine_scopes_not_reexecuted": [
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+        "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:usc"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+        "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:ecfr"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-18",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+        "searched_by": "jobs/later-events (machine search)"
+      },
+      "machine_hits_for_this_order": 3,
+      "scope_note": "",
+      "search_id": "later-events:ofr_catalog"
+    }
+  ],
+  "machine_scope_assessment": "Machine catalog/saved-text/current-law searches are retained as leads only, not final closure. The dossier reports zero USC hits but actual MENTIONS.csv has one historic printed EO12292 note; the discrepancy is recorded, not silently accepted.",
+  "earlier_edges": [
+    {
+      "edge_id": "LE-765ea8507349",
+      "acting_id": "EO:12107",
+      "acting_label": "EO 12107, December 28, 1978",
+      "target_id": "EO:9932",
+      "target_label": "",
+      "target_in_universe": "yes",
+      "mechanism": "amendment",
+      "qualifier": "",
+      "date_candidate": "1978-12-28",
+      "date_basis": "date stated next to the acting instrument in the OFR note",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_target",
+      "stated_on": "EO:9932",
+      "source_id": "ofr-api-page:ff34a34151c316d0",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=3&per_page=1000&search_after_cursor=Wzk1MTMuMCwiOTUxMyJd",
+      "source_sha256": "ff34a34151c316d04dbe0b25442313bea97fe428bc6fe3359f76cec9cbcd9bd7",
+      "page_or_item": "OFR API record executive_order_number=9932; citation 13 FR 1099; field disposition_notes",
+      "note_label": "Amended by",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "Amended by: EO 12107, December 28, 1978"
+    },
+    {
+      "edge_id": "LE-a9e393fed838",
+      "acting_id": "EO:12107",
+      "acting_label": "",
+      "target_id": "EO:9932",
+      "target_label": "EO 9932, February 27, 1948",
+      "target_in_universe": "yes",
+      "mechanism": "amendment",
+      "qualifier": "",
+      "date_candidate": "1978-12-28",
+      "date_basis": "acting order signing_date from OFR catalog",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_acting",
+      "stated_on": "EO:12107",
+      "source_id": "ofr-api-page:79e100de57f8d997",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+      "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+      "page_or_item": "OFR API record executive_order_number=12107; citation 44 FR 1055; field disposition_notes",
+      "note_label": "Amends",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "EO 9932, February 27, 1948"
+    },
+    {
+      "edge_id": "LE-445e5364bb07",
+      "acting_id": "EO:12292",
+      "acting_label": "EO 12292, February 23, 1981",
+      "target_id": "EO:9932",
+      "target_label": "",
+      "target_in_universe": "yes",
+      "mechanism": "revocation",
+      "qualifier": "",
+      "date_candidate": "1981-02-23",
+      "date_basis": "date stated next to the acting instrument in the OFR note",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_target",
+      "stated_on": "EO:9932",
+      "source_id": "ofr-api-page:ff34a34151c316d0",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=3&per_page=1000&search_after_cursor=Wzk1MTMuMCwiOTUxMyJd",
+      "source_sha256": "ff34a34151c316d04dbe0b25442313bea97fe428bc6fe3359f76cec9cbcd9bd7",
+      "page_or_item": "OFR API record executive_order_number=9932; citation 13 FR 1099; field disposition_notes",
+      "note_label": "Revoked by",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "Revoked by: EO 12292, February 23, 1981"
+    },
+    {
+      "edge_id": "LE-97c40ee0ff7d",
+      "acting_id": "EO:12292",
+      "acting_label": "",
+      "target_id": "EO:9932",
+      "target_label": "EO 9932, February 27, 1948",
+      "target_in_universe": "yes",
+      "mechanism": "revocation",
+      "qualifier": "",
+      "date_candidate": "1981-02-23",
+      "date_basis": "acting order signing_date from OFR catalog",
+      "date_flags": "",
+      "stated_effective_date": "",
+      "evidence_type": "ofr_note_on_acting",
+      "stated_on": "EO:12292",
+      "source_id": "ofr-api-page:79e100de57f8d997",
+      "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+      "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+      "page_or_item": "OFR API record executive_order_number=12292; citation 46 FR 13967; field disposition_notes",
+      "note_label": "Revokes",
+      "quote_kind": "verbatim_note_item",
+      "quote_span": "",
+      "quote": "EO 9932, February 27, 1948"
+    }
+  ],
+  "edge_resolution": "All four rows resolve to two actual actors, read in full. EO12107 target appears expressly in section 2-101(b) despite machine missing-provision flag; effective January 1, 1979. EO12292 operative revocation is section 10(d), not machine section 9 label; effective February 15, 1981, not signature February 23.",
+  "current_law_mentions": [
+    {
+      "mention_id": "usc:a4b036d1b879",
+      "system": "usc",
+      "route": "usc_release_point_xml_zip",
+      "edition": "U.S. Code release point 119-121",
+      "title": "22",
+      "citation": "22 U.S.C. 3901 note",
+      "location_kind": "note",
+      "container_id": "/us/usc/t22/s3901",
+      "section_key": "",
+      "note_topic": "executiveOrder",
+      "crossheading": "execDoc",
+      "note_heading": "Ex. Ord. No. 12292. Conformance of Existing Executive Orders to Changes Resulting From the Foreign Service Act of 1980",
+      "note_id": "iddf051704-b816-11f1-963c-e4c4db8c41be",
+      "role": "mentioned_in_printed_eo_text",
+      "is_predicate_lead": "no",
+      "caution": "",
+      "eo_raw": "Executive Order No. 9932",
+      "eo_normalized": "9932",
+      "instrument_id": "EO:9932",
+      "mapping": "exact",
+      "provisional_status": "no",
+      "occurrences": "1",
+      "snippet": "...y revoked: (a) Executive Order No. 9452 of June 26, 1944; (b) Executive Order No. 9799 of November 8, 1946; (c) Executive Order No. 9837 of March 27, 1947; (d) Executive Order No. 9932 of February 27, 1948; (e) Executive Order No. 10249 of June 4, 1951; (f) Section 2 of Executive Order No. 10477 of August 1, 1953 [22 U.S.C. 1472 note]; (g) Ex...",
+      "source_id": "usc:119-121:xml_uscAll@119-121.zip",
+      "page_or_item": "22 U.S.C. 3901 note; note 'Ex. Ord. No. 12292. Conformance of Existing Executive Orders to Changes Resulting From the' [USLM note id iddf051704-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+      "human_url": "",
+      "changed_after_cutoff": "",
+      "checked_through": "2026-10-09",
+      "confirmed_at_cutoff_by_search": ""
+    }
+  ],
+  "current_ecfr_exact_hits": [],
+  "current_law_resolution": "The sole USC mention is a printed historic revocation, not a present predicate. No numeric eCFR hit in the inspected output. Underlying bulk sources not newly searched or certified adequate.",
+  "related_source_read_granularity": [
+    {
+      "instrument_id": "EO:9932",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1948-03-02/pdf/FR-1948-03-02.pdf",
+        "sha256": "393219a87c1c6d74f6c5ec09435f57013a26b7827f2f22f73d761b4df9afc422",
+        "page_or_item": "13 FR 1099, PDF pages 1-1 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9932.txt",
+        "text_sha256": "58349306302a68623bb13e1920e2a30e3bce50f91664240e5682945acdd16e89",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete EO9932 including all seven numbered paragraphs and signature",
+      "reason": "Original inventory and express activation",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:06Z",
+        "gpo_sha256": "393219a87c1c6d74f6c5ec09435f57013a26b7827f2f22f73d761b4df9afc422",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1948-03-02/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1948-03-02/pdf/FR-1948-03-02.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/39/393219a87c1c6d74f6c5ec09435f57013a26b7827f2f22f73d761b4df9afc422.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12107",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf",
+        "sha256": "2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b",
+        "page_or_item": "44 FR 1055, PDF pages 321-330 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12107.txt",
+        "text_sha256": "e734f4979787e2a514366e3f5f1a4e7f5e0655156d9e187790cafc5a72316561",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO, PDF pages 321-330; sections 2-101/2-404 and savings reread",
+      "reason": "Direct succession amendment, not revocation",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:43Z",
+        "gpo_sha256": "2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1979-01-03/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/2b/2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": "jobs/astra-source-retention/output/pdf/2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b.pdf",
+      "retained_pdf_sha256": "2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b",
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12292",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+        "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+        "page_or_item": "46 FR 13967, PDF pages 11-12 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+        "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO, PDF pages 11-12",
+      "reason": "Formal revocation, actual effective date, statutory transition",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:46Z",
+        "gpo_sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1981-02-25/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/df/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": "jobs/astra-source-retention/output/pdf/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665.pdf",
+      "retained_pdf_sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:9830",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf",
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "page_or_item": "12 FR 1259, PDF pages 1-11 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Civil Service Rule III and immediately surrounding provisions, extracted character range 26000-31005 and Rule IV context only; complete EO not claimed read",
+      "reason": "The original Rule III identifies multiple status routes; historical eligibility is not identical to a single terminal cohort.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:04Z",
+        "gpo_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1947-02-25/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/e9/e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:10577",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1954-11-23/pdf/FR-1954-11-23.pdf",
+        "sha256": "ac22cfb587a1d6ee5f90cf9402b9d576cbdaad9ffa690cfc39b2e95bc84c3624",
+        "page_or_item": "19 FR 7521, PDF pages 1-6 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10577.txt",
+        "text_sha256": "f698f5558d53ee2ba1e8480796e824c9c71513bc613a04530a93fc9ac84d6b5a",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO through signature, across the two reads of the full extract; neighboring agriculture material excluded",
+      "reason": "New rules expressly revoke EO9830 Part II and listed other orders, not EO9932. Appointment conversions and altered status routes require assessment, not an automatic global end.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:17Z",
+        "gpo_sha256": "ac22cfb587a1d6ee5f90cf9402b9d576cbdaad9ffa690cfc39b2e95bc84c3624",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1954-11-23/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1954-11-23/pdf/FR-1954-11-23.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/ac/ac22cfb587a1d6ee5f90cf9402b9d576cbdaad9ffa690cfc39b2e95bc84c3624.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:10217",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1951-02-28/pdf/FR-1951-02-28.pdf",
+        "sha256": "89be582ca9d5ff9fac8269e10168e5c240cd0b98fdb542ff646529de7ac30d01",
+        "page_or_item": "16 FR 1843, PDF pages 1-1 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10217.txt",
+        "text_sha256": "673200384b257bd9078cf24040eef51a819ad6f2795dbcb25c23c1b16a346620",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete EO10217 and complete neighboring CSC amendment to section 2.115(a)",
+      "reason": "EO10217 itself amends EO10157. The actual neighboring regulation converts several appointment categories from December 1, 1950; it is not an EO10217 revocation of EO9932.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:11Z",
+        "gpo_sha256": "89be582ca9d5ff9fac8269e10168e5c240cd0b98fdb542ff646529de7ac30d01",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1951-02-28/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1951-02-28/pdf/FR-1951-02-28.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/89/89be582ca9d5ff9fac8269e10168e5c240cd0b98fdb542ff646529de7ac30d01.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:9970",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1948-06-22/pdf/FR-1948-06-22.pdf",
+        "sha256": "52bc1f865eddc950b6416aef5b4ea5bf53bd410afc5f04bc423c74d13d3492b3",
+        "page_or_item": "13 FR 3333, PDF pages 1-3 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9970.txt",
+        "text_sha256": "94bc3609ee6b1a3aee02a34b6e55df6074904683386c1bc9a46afd91e79a4e12",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete neighboring CSC Part 25 section 25.225 War transfer regulation at 13 FR 3335, PDF page 3; unrelated EO9970 is not relied upon",
+      "reason": "This is an actual CSC pay-regulation definition incorporating EO9932 employment, not an EO9970 lifecycle act or a later revival.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:06Z",
+        "gpo_sha256": "52bc1f865eddc950b6416aef5b4ea5bf53bd410afc5f04bc423c74d13d3492b3",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1948-06-22/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1948-06-22/pdf/FR-1948-06-22.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/52/52bc1f865eddc950b6416aef5b4ea5bf53bd410afc5f04bc423c74d13d3492b3.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:10822",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1959-05-23/pdf/FR-1959-05-23.pdf",
+        "sha256": "65f2bda3fbb3d04b838f2ab7183eff96c518e25ae41539c476d798975dfd763c",
+        "page_or_item": "24 FR 4159, PDF pages 1-3 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10822.txt",
+        "text_sha256": "9fd4ea71e1489de6860dc5ad4cbcfb7a426c862e0e46a937b5b6ef8069033b65",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO across beginning and ending reads, PDF pages 1-3; page furniture excluded",
+      "reason": "Section 1(z-2) adds a thirty-month restriction for persons henceforth appointed under Mutual Security Act section 527(c), subject to agency agreement. It is program-specific; overlap with EO9932 statutory categories remains unresolved.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:21Z",
+        "gpo_sha256": "65f2bda3fbb3d04b838f2ab7183eff96c518e25ae41539c476d798975dfd763c",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1959-05-23/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1959-05-23/pdf/FR-1959-05-23.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/65/65f2bda3fbb3d04b838f2ab7183eff96c518e25ae41539c476d798975dfd763c.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11219",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-07/pdf/FR-1965-05-07.pdf",
+        "sha256": "8a246f8ee42a65a556bfeb3bede94a692983dca3d88b69dcc417f1bd49721a02",
+        "page_or_item": "30 FR 6381, PDF pages 5-6 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11219.txt",
+        "text_sha256": "fc1a676041af00c10a9256d40e3bb16b24235a00c2cc492c4c08d4b6a2227610",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO, PDF pages 5-6",
+      "reason": "Separate appointment route for qualified current/former Foreign Service personnel. No express EO9932 repeal; actual 1981 amendments to this route are also read in EO12292.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:27Z",
+        "gpo_sha256": "8a246f8ee42a65a556bfeb3bede94a692983dca3d88b69dcc417f1bd49721a02",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1965-05-07/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-07/pdf/FR-1965-05-07.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/8a/8a246f8ee42a65a556bfeb3bede94a692983dca3d88b69dcc417f1bd49721a02.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11579",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1971-01-21/pdf/FR-1971-01-21.pdf",
+        "sha256": "71145b221021b1b136e62fe942187546b113260c8a4d1fc22b3eee20be66b53b",
+        "page_or_item": "36 FR 969, PDF pages 5-6 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11579.txt",
+        "text_sha256": "b0e5d2cf4ff5703ff597f193918d6b05ba0723f9973639792da08372b6679bc1",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Complete actual EO, PDF pages 5-6",
+      "reason": "OPIC functions and a separate reinstatement-regulation delegation. Its transfer/savings terms preserve applicable actions and do not expressly terminate EO9932.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:34Z",
+        "gpo_sha256": "71145b221021b1b136e62fe942187546b113260c8a4d1fc22b3eee20be66b53b",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1971-01-21/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1971-01-21/pdf/FR-1971-01-21.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/71/71145b221021b1b136e62fe942187546b113260c8a4d1fc22b3eee20be66b53b.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:10893",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1960-11-10/pdf/FR-1960-11-10.pdf",
+        "sha256": "de0ebf13175cb70b9ec5ac6338faa3569939b6efb900e704b8d722ccaaa5335e",
+        "page_or_item": "25 FR 10731, PDF pages 3-5 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10893.txt",
+        "text_sha256": "a943bf0716a9812201276e56acfb66b521f8e6029df3fba37c83c50957f9baa8",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; no complete-current-task read claimed",
+      "reason": "The retrieved 528 occurrence concerns the Mutual Security Act, not Foreign Service Act section 528; statutory names must not be conflated.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:22Z",
+        "gpo_sha256": "de0ebf13175cb70b9ec5ac6338faa3569939b6efb900e704b8d722ccaaa5335e",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1960-11-10/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1960-11-10/pdf/FR-1960-11-10.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/de/de0ebf13175cb70b9ec5ac6338faa3569939b6efb900e704b8d722ccaaa5335e.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:10973",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1961-11-07/pdf/FR-1961-11-07.pdf",
+        "sha256": "c1f7f69bfd8dbf1f9be40312af60ca90618eaff5e62231a195a77c67004b91ed",
+        "page_or_item": "26 FR 10469, PDF pages 3-4 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10973.txt",
+        "text_sha256": "ac9d459b0bc466d204f2bdfa53418e2e096f1f3911e8703e4cee54b88266749a",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; relevant section 603(b) context only",
+      "reason": "Foreign-aid thirty-month reinstatement limitation; actual scope and agency-agreement exception recorded, no global end inferred.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:23Z",
+        "gpo_sha256": "c1f7f69bfd8dbf1f9be40312af60ca90618eaff5e62231a195a77c67004b91ed",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1961-11-07/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1961-11-07/pdf/FR-1961-11-07.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/c1/c1f7f69bfd8dbf1f9be40312af60ca90618eaff5e62231a195a77c67004b91ed.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11034",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1962-06-28/pdf/FR-1962-06-28.pdf",
+        "sha256": "da7ba866aa3c63fd0333ac06835be0893db65ca759c954d5abdd7980ce27d9a3",
+        "page_or_item": "27 FR 6071, PDF pages 3-6 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11034.txt",
+        "text_sha256": "1e8ba7199c5ddee6258992476c3b785961a09978e29ef001613a51cf4071eae3",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; complete relevant section 5(c) and adjoining paragraphs",
+      "reason": "Cultural exchange personnel have section 528 benefits with a thirty-month/agency-agreement rule; this is the concrete antecedent of EO12292 section 5.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:24Z",
+        "gpo_sha256": "da7ba866aa3c63fd0333ac06835be0893db65ca759c954d5abdd7980ce27d9a3",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1962-06-28/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1962-06-28/pdf/FR-1962-06-28.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/da/da7ba866aa3c63fd0333ac06835be0893db65ca759c954d5abdd7980ce27d9a3.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11041",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1962-08-09/pdf/FR-1962-08-09.pdf",
+        "sha256": "d50bfb59ea9eb487ee3c714ce83a94763e5c8064d9b25841c3865182b0d8332d",
+        "page_or_item": "27 FR 7859, PDF pages 5-7 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11041.txt",
+        "text_sha256": "b899cc8c98353e47a026de3d5687659ea3352c6623edbfe3d586eeb1fee7780d",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; complete relevant section 301 and adjoining context",
+      "reason": "Peace Corps program-specific thirty-month limit.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:24Z",
+        "gpo_sha256": "d50bfb59ea9eb487ee3c714ce83a94763e5c8064d9b25841c3865182b0d8332d",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1962-08-09/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1962-08-09/pdf/FR-1962-08-09.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/d5/d50bfb59ea9eb487ee3c714ce83a94763e5c8064d9b25841c3865182b0d8332d.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:11603",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1971-07-03/pdf/FR-1971-07-03.pdf",
+        "sha256": "7041b6690942614772aa53d2d963217379b2783de3fba21e327f2a8c274184c5",
+        "page_or_item": "36 FR 12675, PDF pages 11-15 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11603.txt",
+        "text_sha256": "4cca9a63ed632dbb59f785e0e28d4001988ce2c2ff76eb02efc9387e256acaff",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; complete relevant section 301 across PDF pages 12-13",
+      "reason": "Peace Corps program-specific thirty-month limit, not proof of EO9932-wide cessation.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:34Z",
+        "gpo_sha256": "7041b6690942614772aa53d2d963217379b2783de3fba21e327f2a8c274184c5",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1971-07-03/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1971-07-03/pdf/FR-1971-07-03.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/70/7041b6690942614772aa53d2d963217379b2783de3fba21e327f2a8c274184c5.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12137",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-18/pdf/FR-1979-05-18.pdf",
+        "sha256": "9d17e93c0fbd788bf0226c3cbf6ccd0a6fc3384dfa9eb02aacf39572260b0d22",
+        "page_or_item": "44 FR 29023, PDF pages 9-12 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12137.txt",
+        "text_sha256": "d77de3c3a243ce26ec78753e3947bc1b1fb6573803c07ceb785fe1f8241610a0",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; complete section 1-401 on PDF page 11",
+      "reason": "Actual antecedent to EO12292 section 7(b), tying Peace Corps benefits to 1946 section 528.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:44Z",
+        "gpo_sha256": "9d17e93c0fbd788bf0226c3cbf6ccd0a6fc3384dfa9eb02aacf39572260b0d22",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1979-05-18/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-18/pdf/FR-1979-05-18.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/9d/9d17e93c0fbd788bf0226c3cbf6ccd0a6fc3384dfa9eb02aacf39572260b0d22.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12163",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-10-02/pdf/FR-1979-10-02.pdf",
+        "sha256": "121a86247b8012bddf87d85f6f81b30a2ebc76de20d18b0d986fa30a8dfada72",
+        "page_or_item": "44 FR 56673, PDF pages 19-27 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12163.txt",
+        "text_sha256": "9af7f349296d39c4a3df147e15b072371d736234f2c3c71875ccbc6fe61bd591",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Every raw 528/reinstat match with 700 characters before and 750 after; section 1-602(b) and adjoining context",
+      "reason": "Actual antecedent to EO12292 section 8(d); retains agency-agreement exception to program-specific thirty-month limitation.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:44Z",
+        "gpo_sha256": "121a86247b8012bddf87d85f6f81b30a2ebc76de20d18b0d986fa30a8dfada72",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1979-10-02/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1979-10-02/pdf/FR-1979-10-02.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/12/121a86247b8012bddf87d85f6f81b30a2ebc76de20d18b0d986fa30a8dfada72.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    },
+    {
+      "instrument_id": "EO:12188",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1980-01-04/pdf/FR-1980-01-04.pdf",
+        "sha256": "36d2102c34c1a922e7bcab64be4827bdf8b0601ef773c0c5a7dd565e69b57896",
+        "page_or_item": "45 FR 989, PDF pages 11-15 (confidence high)",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12188.txt",
+        "text_sha256": "48f62bad2b18f580e1067c7d44bea1e6d6d7a7996c47ea70d3995963e5cf2eca",
+        "read_method": "held official text extract; no page image verification claimed",
+        "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "official_fixity_result": "match"
+      },
+      "read_scope": "Header and named-function search contexts only; no full EO read claimed",
+      "reason": "Commercial-service extension lead remains contextual; no cessation conclusion relies on it.",
+      "official_fixity": {
+        "checked_utc": "2026-10-18T00:55:44Z",
+        "gpo_sha256": "36d2102c34c1a922e7bcab64be4827bdf8b0601ef773c0c5a7dd565e69b57896",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1980-01-04/premis.xml",
+        "result": "match",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1980-01-04/pdf/FR-1980-01-04.pdf"
+      },
+      "historical_pdf_cache_path": "jobs/fr-originals/data/full_run/blobs/36/36d2102c34c1a922e7bcab64be4827bdf8b0601ef773c0c5a7dd565e69b57896.pdf",
+      "historical_pdf_cache_exists": false,
+      "retained_pdf_path": null,
+      "retained_pdf_sha256": null,
+      "page_image_read": false
+    }
+  ],
+  "unclosed_leads": "Foreign Service Act amendments/1980 transition; Rule III and implementing-regulation effects on pending status; intersection of program-specific thirty-month limits with EO9932 covered categories. Numeric and named searches do not alone close these issues.",
+  "out_of_scope_hit_policy": "Earlier orders are background; individual appointments/transfers, salary/retirement provisions and unrelated section numbers are not automatically target lifecycle events. Same-source duplicates do not add legal evidence. Actual EO/neighboring regulation identity was checked for material hits."
+}
