@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:13666"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:12019>EO:13666",
+    "ACT:EO:12019>EO:13666@4ae657f529af345b"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 104,
+    "events": [
+      {
+        "actor_id": "EO:13666",
+        "char_end": 394,
+        "char_start": 143,
+        "confidence": "medium",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12019#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+        "sections_touched": [
+          "partial"
+        ],
+        "signing_date": "2014-04-18",
+        "source": {
+          "archival_id": "app:node/305057",
+          "filing_date": null,
+          "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+          "requires_page_check": false,
+          "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+          "signing_date": "2014-04-18",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+          "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+        },
+        "verb": "amend"
+      }
+    ],
+    "generic_refs_excluded": 211,
     "id": "CHAIN:EO:12019",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12019"
@@ -125,8 +155,10 @@
     }
   ],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
+    "clause_3_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -134,12 +166,137 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 4 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:12019>EO:13666": {
+      "actor_id": "EO:13666",
+      "actor_source": {
+        "archival_id": "app:node/305057",
+        "filing_date": null,
+        "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+        "requires_page_check": false,
+        "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+        "signing_date": "2014-04-18",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+        "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+      },
+      "alternative_provisions": [
+        {
+          "actor_id": "EO:13666",
+          "actor_source": {
+            "archival_id": "app:node/305057",
+            "filing_date": null,
+            "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+            "requires_page_check": false,
+            "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+            "signing_date": "2014-04-18",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+            "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+          },
+          "char_end": 394,
+          "char_start": 143,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:12019>EO:13666@4ae657f529af345b",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "",
+          "provision_text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "2014-04-18",
+          "target_id": "EO:12019",
+          "verb": "amend"
+        }
+      ],
+      "char_end": 394,
+      "char_start": 143,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12019>EO:13666",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "2014-04-18",
+      "source": {
+        "archival_id": "app:node/305057",
+        "filing_date": null,
+        "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+        "requires_page_check": false,
+        "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+        "signing_date": "2014-04-18",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+        "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+      },
+      "target_id": "EO:12019",
+      "text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+      "verb": "amend"
+    },
+    "ACT:EO:12019>EO:13666@4ae657f529af345b": {
+      "actor_id": "EO:13666",
+      "actor_source": {
+        "archival_id": "app:node/305057",
+        "filing_date": null,
+        "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+        "requires_page_check": false,
+        "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+        "signing_date": "2014-04-18",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+        "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+      },
+      "char_end": 394,
+      "char_start": 143,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12019>EO:13666@4ae657f529af345b",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "2014-04-18",
+      "source": {
+        "archival_id": "app:node/305057",
+        "filing_date": null,
+        "page_or_item": "Executive Order 13666—Expanding Eligibility for the Defense Meritorious Service Medal; April 18, 2014; APP node 305057; common-crawl capture 2025-11-16T13:37:31Z",
+        "requires_page_check": false,
+        "sha256": "5255f380a59cbb0b9f5473a5ba8a573a2e61742280b2cff73a3507797c7280c9",
+        "signing_date": "2014-04-18",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal.txt",
+        "text_sha256": "e289f781288b754a4ee01977d8abe0a70432a225b9ea1bc02d7d7c3cfbce397e",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-13666-expanding-eligibility-for-the-defense-meritorious-service-medal"
+      },
+      "target_id": "EO:12019",
+      "text": "Executive Order 12019 of November 3, 1977 (Establishing the Defense Meritorious Service Medal), is amended by inserting \", or to any member of the armed forces of a friendly foreign nation,\" after \"any member of the Armed Forces of the United States\".",
+      "verb": "amend"
+    },
     "ACTOR_TEXT:EO:13666": {
       "actor_id": "EO:13666",
       "char_end": 1402,
@@ -208,7 +365,7 @@
       "text": "Instrument: EO:12019\nSource: https://www.govinfo.gov/content/pkg/FR-1977-11-07/pdf/FR-1977-11-07.pdf\nSHA-256 of the downloaded file: 100ee28c37d3b56cbd5036dfb7e528e588791d77435e54e969b0b56f2ff398cc\nLocation: 42 FR 57945, PDF pages 13-13 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 13 of 224 ===\nTHE PRESIDENT 57945\n[3 1 9 5 -0 1 ]\nExecutive Order 12019 _ • November 3, 1977\nEstablishing the Defense Meritorious Service Medal\nBy virtue of the authority vested in me as President of the United States of \nAmerica, and as Commander in Chief of the Armed Forces, it is hereby ordered as \nfollows:\nSec tio n 1. There is hereby established a Defense Meritorious Service Medal, \nwith accompanying ribbons and appurtenances, for award by the Secretary of Defense \nto any member of the Armed Forces of the United States who has rendered outstanding \nnon-combat meritorious achievement or service while assigned to the Office of the \nSecretary of Defense, the Organization of the Joint Chiefs of Staff, a specified or \nunified command, a Defense agency, or other such joint activity as may be designated \nby the Secretary of Defense.\nSec. 2. The Defense Meritorious Service Medal, with accompanying ribbons and \nappurtenances, shall be of appropriate design approved by the Secretary of Defense \nand shall be awarded under such regulations as the Secretary of Defense may pre­\nscribe, These regulations shall place the Defense Meritorious Service Medal in an \norder of precedence after the Medal of Honor, the Distinguished Service Cross, the \nDefense Distinguished Service Medal, the Distinguished Service Medal, the Silver Star \nMedal, the Defense Superior Service Medal, the Legion of Merit Medal, and the \nBronze Star Medal, but before the Meritorious Service Medal.\nSec . 3. No more than one Defense Meritorious Service Medal shall be awarded, \nto any one person, but for each succeeding outstanding meritorious achievement or \nservice justifying such an award a suitable device to be worn with that medal may be \nawarded under such regulations as the Secretary of Defense may prescribe-\nSec . 4. The Defense Meritorious Service Medal or device may be awarded \nposthumously and, when so awarded, may be presented to such representative of the \ndeceased as may be deemed appropriate by the Secretary of Defense.\nT h e W h it e H ouse ,\nNovember 3, 1977.\n[FR Doc.77-32304 Filed 11-3-77 ;3 :53 pm]\nFEDERAI REGISTER, VOL, 4 2 , NO, « 4 — MONDAY, NOVEMBER 7, 1977\n"
     }
   },
-  "fingerprint": "b60ecc3a9a3019c3f1d6fccfc4f4d51cd93b140486d682104efadd78ba85f5d2",
+  "fingerprint": "6bab065e9d0de098cd43a5cb87331e4f229c8d4b2dcaba4c1df7aaac56caf7d7",
   "instrument_id": "EO:12019",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -239,8 +396,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -252,8 +409,7 @@
   "missing": [
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "target provision not located: EO:13666"
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12019",
@@ -261,10 +417,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "fe71a9330d2c98aed7752dbdf3ef26d16d1a415460d036898b43dda15e46c6d8",
+    "fingerprint": "c0d3d2516092b80db6b61270659960ff7c54922f79b7f0e98dc96b9dbb4cf74d",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12019.json",
-    "history_sha256": "985edbdd572c5f8da06ec3b2720c72232787522eb0b29afb4b5d1bd4ab1a8a39",
+    "history_sha256": "4fbbc092de76706eab68a10d6a9343aa07f192f6e020c944125f8440b04f61cb",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

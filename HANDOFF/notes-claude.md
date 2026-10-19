@@ -2,6 +2,80 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 11:45 ET: remaining-work treemap against the APP count
+
+- **Done (branch `claude/great-ptolemy-9r6zah` from main `a6d61007`):** `research/progress/remaining-work/build_remaining_work.py`
+  (offline, reads committed outputs only) writes `REMAINING_WORK.json`, `REMAINING_WORK_BY_PRESIDENT.csv` and
+  `REMAINING_WORK_LONG.csv`. Unit: one open readiness-tracker step for one order. Orders APP counts but the project
+  does not hold (per president, APP count minus project orders, when positive) each add one "admit" step plus the six
+  core steps. Owner's treemap dashboard: https://claude.ai/artifact/531KGTebdrgdeUitKhp8du (private until shared).
+- **Measured:** APP counts 16,239 orders; the project holds 14,972; 1,314 APP-counted orders are not yet held (net
+  1,267; Coolidge has 44 more in the project than APP counts, 18 NARA unnumbered rows sit outside any president's APP
+  count by date). 86,607 open steps vs 13,503 done (13.5%). 130 ready for human review. Open steps by kind: ending or
+  current basis 16,152; savings 16,120; clause inventory 16,108; counterevidence 13,816; first yes/no 12,927;
+  original text 9,414; admit 1,314; shared sources + Opus media 756.
+- **Attribution of orders to presidents:** APP index 9,918; exact WPA/NARA/Lord date 3,122; numbered neighbours
+  agreeing on both sides 1,772; year only 158; nearest neighbour 2. Boundary years can still be off by a few orders.
+- **Next:** rerun the script after each readiness-tracker run; it is cheap (seconds).
+- **Asks:** `@Owner`: share the dashboard from its Share menu if others should see it.
+- **Do not:** read the per-president gap as a census finding; APP's pre-1945 counts are editorial (Ragsdale/Lord).
+
+## 2026-10-18 20:15 ET: app-executive-orders, live lane finished; capture audit 205/205 agree; PRIORITY rebuilt (3,593)
+
+- **Done (branch `app-executive-orders`, one commit):** the live lane completed at 23:58 UTC (`output/STATE.json`
+  remaining 0, complete true, 0 failures; 792 live pages, 10,270 archive captures, 10,998 texts). Harvester and the
+  resume loop have exited; **no APP crawler is running.** `output/MIRROR_AUDIT_SUMMARY.md`: every 50th
+  archive-covered path in path order (206), fetched live at 10 s between 23:05 and 23:58 UTC; **205 of 205 compared
+  texts agree byte-for-byte** (Common Crawl 194/194 across capture years 2024-2026, Wayback 11/11 across 2022-2026);
+  no disagreements to list; page hashes differ on all 205 (chrome, expected). The 206th sample path (EO 5382) had
+  been fetched live before the archive reached it; its recorded hashes agree too. `data/PRIORITY.txt` rebuilt:
+  **3,593 numbered census orders have no saved text of any kind** (was 6,070). **3,585 of them APP does not list at
+  all** (3,529 below EO 5000, 56 at EO 5000+, e.g. EO 5000-5018, 6447-6466). The other 8 are listed but APP's page
+  is "[Not Published.]" (EO 8302, 9132A, 9427A, 9451A, 9457, 10026A, ...). So the APP lane is exhausted: nothing
+  left to fetch from APP.
+- **Fix in `build_priority.py`:** claim-kit's discovery globs `FRAGMENTS*.jsonl`, so the archive lane's
+  `MIRROR_FRAGMENTS.jsonl` (9,387 records) was invisible and the plain rebuild gave 5,652, leaving 2,059 orders with
+  saved archive text on the list. The builder now also counts this job's own fragments (hash-verified): +2,090 held.
+- **Caveat:** 183 ids absent from the 16:36 list reappear now (e.g. EO 28, 29, 219, 860, 1136); they are `open` in
+  the readiness tracker and in no job's FRAGMENTS/SOURCES, so I could not see what held them earlier. Cause not found.
+- **Next:** second index pass with a different sort for the 38 duplicate listing rows; owner's decision on the
+  Common Crawl captures (19:15 entry) still open.
+- **Asks:** `@Astra` / `@Codex` (whoever maintains claim-kit): decide whether `jobs/claim-kit/inputs.py` discovery
+  should match `*FRAGMENTS*.jsonl` so the 2,090 archive texts reach the readiness pipeline, or whether the archive
+  lane should write `FRAGMENTS_MIRROR.jsonl` instead; I changed neither. Also: `load_corpus` emits 1,310
+  `text_sha256 mismatch; skipped` warnings for FRAGMENTS records in family-rules (582), ofr-compilations (500),
+  isthmian-canal-1911 (105), richardson-volumes (68) and indian-reservations-1912 (55) that point at
+  `jobs/clause-drafts/output/texts/cd-job-fr-originals-*.txt`; the files match their git blobs, so the recorded hashes
+  are stale (clause-drafts regenerated texts after those jobs ran). 728 orders lose their held text in claim-kit
+  until those jobs rerun. `@Owner`: the archive lane's stance question (19:15 entry) still needs your call.
+- **Do not:** hand-edit `jobs/app-executive-orders/output/`; count APP or capture texts as originals.
+
+## 2026-10-18 19:15 ET: app-executive-orders, archive lane: 30 h crawl collapsed to a 67-page residue
+
+- **Done (branch `app-executive-orders`, commits `5d97ee47`, `78e7d795` + outputs):** `jobs/app-executive-orders/app_mirror.py`,
+  an archive lane that reads public web-archive captures of the same APP pages instead of asking APP: WARC byte ranges
+  from Common Crawl (`data.commoncrawl.org`, crawls 2024-10 to 2026-04) and original bytes from the Wayback Machine
+  (`web.archive.org/web/<ts>id_/`). It never sends a request to APP, so it runs four workers. Result: **10,270 pages in
+  about 55 minutes** (9,861 Common Crawl, 409 Wayback), `output/MIRROR_DOCUMENTS/SOURCES/FRAGMENTS.jsonl` (9,387
+  claim-kit fragments for numbered orders), `texts/` now holds 10,727 order texts. 47 captures hold no text
+  (APP's own "[Not Published.]" pages, recorded in `MIRROR_FAILURES.jsonl`); 66 index pages have no capture anywhere.
+- **Live lane:** `app_harvest.py documents` now skips every archive-covered path except an `--audit-every 50`
+  sample (about 205 pages) that it fetches live and compares in `MIRROR_AUDIT.jsonl` (text and page hash agreement
+  plus capture date), so the captures carry a measured staleness rate. The residue it still owes APP is **67 pages**
+  (44 priority orders), about 11 minutes at 10 s. APP answered HTTP 504 twice tonight (21:53 and 22:26 UTC) and the
+  harvester stops on 5xx by design; a resume loop on the owner's PC (`%LOCALAPPDATA%\Temp\live_resume_loop.ps1`,
+  log `~/.cache/app-documents-2.log`) reruns the documents phase after a ten-minute pause, at most six rounds, never
+  retrying the failed request immediately.
+- **Caveats for readers of the captures:** a capture is the APP page as of its capture date (2018-12-09 to
+  2026-10-16; each record names archive, crawl and `captured_utc`), route `archive/<archive>/american-presidency-project`,
+  grade `mirror_transcription`, `acceptable_as_original=false`. APP's robots.txt now disallows CCBot outright, so the
+  2026 crawls hold nothing and the captures predate that rule; the owner should judge whether reading those public
+  datasets fits the project's stance toward APP. Nothing here changes census, ledger, codebook or certified counts.
+- **Next:** read `MIRROR_AUDIT.jsonl` once the audit sample is in and report the disagreement rate; rebuild
+  `data/PRIORITY.txt` against the new texts; second index pass with a different sort for the 38 duplicate rows.
+- **Asks:** `@Owner`: decide on the Common Crawl captures (above); approve committing crawl progress as it lands.
+  `@Astra` / `@Codex`: `MIRROR_FRAGMENTS.jsonl` is discovery material only, same as `FRAGMENTS.jsonl`.
+- **Do not:** run a second APP crawler while the resume loop is alive; hand-edit `jobs/app-executive-orders/output/`.
 ## 2026-10-18 17:15 ET: numbered-early-orders, printed texts for 184 of the 3,324 undecided orders 1-5075
 
 - **Done (branch `numbered-early-orders` from main `224fd70c`, PR to main):** `jobs/numbered-early-orders/`

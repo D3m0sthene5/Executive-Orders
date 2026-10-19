@@ -1,14 +1,36 @@
 ...............................................
 ----------------------------------------------------------------------
-Ran 47 tests in 0.163s
+Ran 47 tests in 0.171s
 
 OK
-Traceback (most recent call last):
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/job.py", line 295, in <module>
-    main()
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/job.py", line 110, in main
-    items = select_plan(items,plan_used)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/plan.py", line 39, in select_plan
-    raise ValueError('ambiguous duplicate queue ID: '+w.wanted_id)
-ValueError: ambiguous duplicate queue ID: queue:EO:9837:Official fixity for requested statute bytes
+Queue: 113 from FETCH_QUEUE.jsonl, 90 shared sources not yet retrieved, 774 Opus originals to re-fetch; working on 12 (0 already found in git HEAD:jobs/source-ladder/output and carried forward).
+[1/12] EO::4314 (10 orders)
+  every route ended definitively (1 attempts); proposed as exhausted
+[2/12] EO::6868 (6 orders)
+  every route ended definitively (1 attempts); proposed as exhausted
+[3/12] opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693 (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1950-09-01/pdf/FR-1950-09-01.pdf (3768772 bytes)
+[4/12] opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7 (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1947-04-24/pdf/FR-1947-04-24.pdf (7967246 bytes)
+[5/12] opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346 (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1944-10-27/pdf/FR-1944-10-27.pdf (15371030 bytes)
+[6/12] opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1949-10-14/pdf/FR-1949-10-14.pdf (8798774 bytes)
+[7/12] opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1946-04-23/pdf/FR-1946-04-23.pdf (24066287 bytes)
+[8/12] opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720 (3 orders)
+  found via given/given: https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN41517-AR_840-10-000-WEB-1.pdf (8195763 bytes)
+[9/12] opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c (3 orders)
+    retry 1 after URLError for https://web.archive.org/web/20250201235731id_/https://www.govinfo.gov/content/pkg/FR-1961-01-20/pdf/FR-1961-01-20.pdf
+    retry 2 after URLError for https://web.archive.org/web/20250201235731id_/https://www.govinfo.gov/content/pkg/FR-1961-01-20/pdf/FR-1961-01-20.pdf
+  not found, retry_later: 4 route(s) failed for a passing reason: FetchError: download exceeds bound; FetchError: robots unavailable: 301
+[10/12] opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1947-08-07/pdf/FR-1947-08-07.pdf (8121189 bytes)
+[11/12] opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68 (11 orders)
+  found via given/given: https://dn760103.eu.archive.org/0/items/CMHPub3020/CMH_Pub_30-20.pdf (7430984 bytes)
+[12/12] opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0 (3 orders)
+  found via given/given: https://www.govinfo.gov/content/pkg/FR-1947-01-24/pdf/FR-1947-01-24.pdf (8283213 bytes)
+
+Done in 359.8 s. Worked 12 items: 187 found (178 carried forward from the last committed output), 2 with every route ending definitively (proposed as exhausted, 16 order lines), 1 to retry later (a passing failure such as a timeout, a block or an offline run; NOT proposed as exhausted), 0 with no route, 0 not attempted.
+27 HTTP requests, 92.0 MB downloaded. Cache: /home/runner/work/Executive-Orders/Executive-Orders/.job-cache/source-ladder
+Nothing here changes a status or count; found files are source custody for human review.

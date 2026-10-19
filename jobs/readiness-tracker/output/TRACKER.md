@@ -18,39 +18,23 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | When and how it ended (NO), or what keeps it operating now (YES) | 134 | 3,359 | 4.0% |
 | Savings clauses and surviving effects closed | 166 | 3,359 | 4.9% |
 | Search for later contrary sources recorded, no open conflicts | 2,470 | 3,359 | 73.5% |
-| Every shared legal source it cites has been retrieved | 7 | 236 | 3.0% |
-| Opus evidence images matched to this order (Opus cases only) | 82 | 844 | 9.7% |
+| Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
+| Opus evidence images matched to this order (Opus cases only) | 125 | 844 | 14.8% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 472 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 3,216 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 430 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
-| 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
-| 11 | one source | Retrieve shared source EO::9337 |
 | 10 | one source | Retrieve shared source EO::4314 |
-| 9 | one source | Retrieve shared source EO::8417 |
-| 9 | one source | Retrieve shared source EO::9515 |
-| 8 | one source | Retrieve shared source USC::31 U.S.C. 1552 |
-| 7 | one source | Retrieve shared source EO::10153 |
-| 7 | one source | Retrieve shared source EO::9492 |
-| 7 | one source | Retrieve shared source EO::9792 |
-| 7 | one source | Retrieve shared source EO::9886 |
-| 7 | one source | Retrieve shared source EO::10608 |
-| 6 | one source | Retrieve shared source EO::11401 |
 | 6 | one source | Retrieve shared source EO::6868 |
-| 6 | one source | Retrieve shared source EO::13286 |
-| 6 | one source | Retrieve shared source EO::10713 |
-| 6 | one source | Retrieve shared source EO::11211 |
-| 6 | one source | Retrieve shared source EO::14173 |
-| 6 | one source | Retrieve shared source EO::12282 |
-| 6 | one source | Retrieve shared source EO::9526 |
-| 6 | one source | Retrieve shared source EO::9714 |
-| 5 | one source | Retrieve shared source EO::10084 |
-| 5 | one source | Retrieve shared source EO::11766 |
-| 5 | one source | Retrieve shared source EO::10152 |
-| | | ...and 69 more in `SHARED_UNLOCKS.csv` |
+| 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
+| 3 | one source | Retrieve shared source EO::6964 |
+| 3 | one source | Retrieve shared source EO::6910 |
+| 2 | one source | Retrieve shared source CFR::26 CFR 458.324 |
+| 1 | agent check | Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous) |
 
 ## What blocks orders
 
@@ -58,21 +42,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 3,216 |
 | `NO_CLAUSE_INVENTORY` | 3,142 | 3,142 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,142 | 3,142 |
 | `FIRST_END_UNPROVED` | 2,742 | 2,742 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 693 | 693 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 472 | 472 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 430 | 430 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
-| `SHARED_SOURCE_NOT_RETRIEVED` | 229 | 229 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 159 | 159 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 2 | 68 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
-| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 20 | 20 |
+| `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
+| `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 19 | 19 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 | `OPEN_SOURCE_AUDIT` | 1 | 1 |
 
@@ -95,8 +79,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - richardson-volumes (lead only, never counted as the original): 68
+- app-executive-orders (lead only, never counted as the original): 9,902
 - opus-media-match status: 1,155
-- source-ladder: not run yet
+- source-ladder: 187
 - claim-checker: 217
 - machine later-source search: 6,938
 

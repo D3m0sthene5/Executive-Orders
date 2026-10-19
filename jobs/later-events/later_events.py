@@ -56,6 +56,12 @@ DATE_RE = re.compile(MONTH_RE + r"\.?\s*,?\s*(\d{1,2})\s*,?\s*(\d{4})", re.I)
 
 # Mechanisms that, when not partial, count as a full-revocation candidate.
 FULL_END_MECHANISMS = {"revocation", "rescission", "supersession_or_revocation"}
+# Order texts that are secondary transcriptions (American Presidency Project pages harvested by
+# app-executive-orders, read through jobs/app-transcriptions/output/SOURCES.jsonl). Their "in part" wording is
+# recorded as a conflict flag but never withholds a whole-order end stated in an OFR note: a transcription must not
+# make a provisional YES order look free of a contrary full-revocation lead.
+TRANSCRIPTION_TEXT_EVIDENCE = {"order_text_app_transcriptions"}
+DEFAULT_TEXT_JOBS = "fr-originals,app-transcriptions"
 
 EDGE_COLUMNS = [
     "edge_id", "acting_id", "acting_label", "target_id", "target_label", "target_in_universe",
@@ -1624,13 +1630,17 @@ def build_fragments(edges):
     scope_mechanisms = FULL_END_MECHANISMS | {"supersession"}
     for target in sorted(by_target):
         partial_full = defaultdict(list)   # actor -> edge ids saying "in part"/section/...
+        partial_transcription = defaultdict(list)  # the same, from transcription texts only
         note_full = set()                  # actors with an unqualified full end in an OFR note
         groups = defaultdict(list)
         for e in by_target[target]:
             actor = e["acting_id"] or e["acting_label"]
             groups[(actor, e["mechanism"], e["qualifier"])].append(e)
             if e["mechanism"] in scope_mechanisms and is_partial(e["qualifier"]):
-                partial_full[actor].append(e["edge_id"])
+                if e["evidence_type"] in TRANSCRIPTION_TEXT_EVIDENCE:
+                    partial_transcription[actor].append(e["edge_id"])
+                else:
+                    partial_full[actor].append(e["edge_id"])
             elif (e["mechanism"] in FULL_END_MECHANISMS and not is_partial(e["qualifier"])
                   and e["evidence_type"].startswith("ofr_note")):
                 note_full.add(actor)
@@ -1670,6 +1680,10 @@ def build_fragments(edges):
                     ev["flags"] = sorted(set(ev["flags"]) | {"text_only_unverified"})
                     stats["withheld_text_only_unverified"] += 1
                 else:
+                    if partial_transcription.get(actor):
+                        ev["flags"] = sorted(set(ev["flags"]) | {"transcription_text_says_partial_end_kept"})
+                        ev["conflicting_transcription_edge_ids"] = sorted(set(partial_transcription[actor]))
+                        stats["kept_despite_transcription_partial_evidence"] += 1
                     end_items.append(ev)
             events.append(ev)
         all_sources = [ref for _, ref in sorted(sources.values(), key=lambda pr: pr[0])]
@@ -1920,7 +1934,7 @@ def main():
     limit = int(os.environ["JOB_LIMIT"]) if os.environ.get("JOB_LIMIT", "").strip() else None
     cache_dir = Path(os.environ.get("JOB_CACHE_DIR") or (out_dir.parent / (JOB_NAME + "-cache"))).resolve()
     refresh = os.environ.get("LATER_EVENTS_REFRESH", "") == "1"
-    extra_jobs = [j for j in os.environ.get("LATER_EVENTS_TEXT_JOBS", "fr-originals").split(",") if j.strip()]
+    extra_jobs = [j for j in os.environ.get("LATER_EVENTS_TEXT_JOBS", DEFAULT_TEXT_JOBS).split(",") if j.strip()]
     out_dir.mkdir(parents=True, exist_ok=True)
     cache_dir.mkdir(parents=True, exist_ok=True)
     print("later-events: repo=%s output=%s cache=%s limit=%s" % (repo, out_dir, cache_dir, limit))

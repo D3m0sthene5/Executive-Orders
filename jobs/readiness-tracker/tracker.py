@@ -77,7 +77,12 @@ J = {
                                        "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
-    "compiled_transcription_fragments": ["jobs/richardson-volumes/output/FRAGMENTS.jsonl"],
+    # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
+    # (grade mirror_transcription, acceptable_as_original=false), read live (FRAGMENTS) or from web-archive
+    # captures of the same pages (MIRROR_FRAGMENTS). Historical-document discovery, never identity or custody.
+    "compiled_transcription_fragments": ["jobs/richardson-volumes/output/FRAGMENTS.jsonl",
+                                         "jobs/app-executive-orders/output/FRAGMENTS.jsonl",
+                                         "jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
@@ -181,6 +186,7 @@ def load_job_outputs(root):
                 ids.add(r["instrument_id"])
         used[job] = len(ids) if paths else None
     transcription = set()
+    by_job = {}  # one job may publish several fragment files (app-executive-orders: live and archive lanes)
     for rel in J["compiled_transcription_fragments"]:
         job = rel.split("/")[1]
         paths = existing([rel])
@@ -189,7 +195,12 @@ def load_job_outputs(root):
         ids = {r["instrument_id"] for r in rows
                if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
         transcription |= ids
-        used[f"{job} (lead only, never counted as the original)"] = len(ids) if paths else None
+        if paths:
+            by_job[job] = by_job.get(job, set()) | ids
+        else:
+            by_job.setdefault(job, None)
+    for job, ids in by_job.items():
+        used[f"{job} (lead only, never counted as the original)"] = len(ids) if ids is not None else None
 
     status_path = os.path.join(root, J["opus_status"])
     opus_status = None
@@ -381,7 +392,7 @@ def build(root):
             else:
                 blockers["original_text"].append("NO_OFFICIAL_SOURCE_LOCATED")
             if i in jobs["transcription"]:
-                # Only Richardson's printed transcription was found: a lead to the original, not the original.
+                # Only a compiled transcription (Richardson, APP) was found: a lead to the original, not the original.
                 blockers["original_text"].append("ONLY_COMPILED_TRANSCRIPTION_FOUND")
 
         # 3-6. need a claim (partial claims light up the steps they satisfy)
@@ -538,6 +549,11 @@ def summarise(orders, problems):
          "kind": "machine_job", "orders_unblocked": blocker_orders["OPUS_MEDIA_REFETCH_NEEDED"], "blocker": "OPUS_MEDIA_REFETCH_NEEDED"},
         {"action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
          "kind": "agent_check", "orders_unblocked": blocker_orders["ORIGINAL_FOUND_NEEDS_PAGE_CHECK"], "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"},
+        {"action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): "
+                   "orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); "
+                   "earlier ones need an official compilation or archival copy",
+         "kind": "machine_job", "orders_unblocked": blocker_orders["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
+         "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"},
         {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
          "kind": "agent_check", "orders_unblocked": blocker_orders["OPUS_MEDIA_MATCH_AMBIGUOUS"], "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"},
         {"action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
