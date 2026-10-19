@@ -1,0 +1,224 @@
+{
+  "agent": "claude-x1-producer-P2",
+  "start_utc": "2026-10-19T16:42:01Z",
+  "end_utc": "2026-10-19T16:49:30Z",
+  "wall_minutes_total": 7.5,
+  "wall_clock_note": "Measured with date -u inside the sandbox; the elapsed figure is what the clock reported.",
+  "approx_minutes_per_order": 0.23,
+  "minutes_split": {
+    "reading_sources": 3.5,
+    "deciding": 2.5,
+    "mechanical_apply_check_fixing": 1.5
+  },
+  "tool_calls": 44,
+  "outcome_counts": {
+    "submit": 3,
+    "blocked": 29,
+    "unresolved": 0,
+    "route_owner": 0
+  },
+  "apply_versions": [
+    "applied-v1"
+  ],
+  "batch_check": {
+    "claims_checked": 3,
+    "strict_claim_pass": 3,
+    "strict_claim_fail": 0,
+    "actual_claim_checker_all_checks_passed": 3,
+    "actionable_failures": 0
+  },
+  "orders": [
+    {
+      "instrument_id": "EO:7435",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "partly: bird_refuge/land correct; rule's 'continues until revoked' pattern fine but no revocation evidence held; APP-only original blocks"
+    },
+    {
+      "instrument_id": "EO:7510",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "partly: bird_refuge correct; rule not usable without original/PLO evidence"
+    },
+    {
+      "instrument_id": "EO:4872",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "partly: land withdrawal type correct; no ending evidence"
+    },
+    {
+      "instrument_id": "EO:5038",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "partly: type correct, but it is a 'for classification' temporary withdrawal (rule outlier); no evidence"
+    },
+    {
+      "instrument_id": "EO:6143",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "partly: type correct; clone with EO 6276 misleading (different partial revocations)"
+    },
+    {
+      "instrument_id": "EO:6276",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "partly: type correct; cluster exemplar status not helpful"
+    },
+    {
+      "instrument_id": "EO:7373",
+      "outcome": "blocked",
+      "minutes_estimate": 0.25,
+      "x1_type_and_rule_correct_helpful": "partly: really a game range (refuge-like) with its own regulations clause; chain events belong to parent EO 6910, misleading"
+    },
+    {
+      "instrument_id": "EO:7504",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "partly: type correct; no evidence"
+    },
+    {
+      "instrument_id": "EO:7509",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "partly: game range typed general withdrawal; YES needs current predicate; FLPMA event correctly not an end"
+    },
+    {
+      "instrument_id": "EO:4359A",
+      "outcome": "blocked",
+      "minutes_estimate": 0.3,
+      "x1_type_and_rule_correct_helpful": "yes type (consular), no rule; helpful only as label"
+    },
+    {
+      "instrument_id": "EO:5621",
+      "outcome": "blocked",
+      "minutes_estimate": 0.6,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule; decisive issue (Nationality Act 1940) not flagged by X1"
+    },
+    {
+      "instrument_id": "EO:5624",
+      "outcome": "blocked",
+      "minutes_estimate": 0.5,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule; X1/chain missed pre-1937 partial amendment by EO 5707"
+    },
+    {
+      "instrument_id": "EO:5642",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule; 99 clauses too large"
+    },
+    {
+      "instrument_id": "EO:5707",
+      "outcome": "submit",
+      "minutes_estimate": 0.6,
+      "x1_type_and_rule_correct_helpful": "yes type (consular/foreign service); no rule; not needed"
+    },
+    {
+      "instrument_id": "EO:5812",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule"
+    },
+    {
+      "instrument_id": "EO:5825",
+      "outcome": "submit",
+      "minutes_estimate": 0.5,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule; not needed"
+    },
+    {
+      "instrument_id": "EO:5973",
+      "outcome": "blocked",
+      "minutes_estimate": 0.4,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule"
+    },
+    {
+      "instrument_id": "EO:6950",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "yes type; no rule"
+    },
+    {
+      "instrument_id": "EO:5869",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "partly: low confidence; really immigration documents regulations"
+    },
+    {
+      "instrument_id": "EO:1065",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "yes cs_rules_amendment; no rule"
+    },
+    {
+      "instrument_id": "EO:1153",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "yes cs_rules_amendment; no rule"
+    },
+    {
+      "instrument_id": "EO:5918",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "yes cs_rules_amendment; no rule"
+    },
+    {
+      "instrument_id": "EO:5924",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "yes cs_rules_amendment; no rule"
+    },
+    {
+      "instrument_id": "EO:7034",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "yes organization_agency (low); no rule"
+    },
+    {
+      "instrument_id": "EO:5614",
+      "outcome": "submit",
+      "minutes_estimate": 0.9,
+      "x1_type_and_rule_correct_helpful": "partly: regulations_issuance (low) - really budget/financial reporting; no rule"
+    },
+    {
+      "instrument_id": "EO:22",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "no: typed tariff_customs, actually an exhibition representation board (spent-type)"
+    },
+    {
+      "instrument_id": "EO:5737",
+      "outcome": "blocked",
+      "minutes_estimate": 0.3,
+      "x1_type_and_rule_correct_helpful": "partly: typed tariff_customs; actually Consular Regulations (tonnage-fee accounting)"
+    },
+    {
+      "instrument_id": "EO:5837",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "partly: Tariff of Consular Fees, not customs"
+    },
+    {
+      "instrument_id": "EO:5848",
+      "outcome": "blocked",
+      "minutes_estimate": 0.1,
+      "x1_type_and_rule_correct_helpful": "partly: Tariff of Consular Fees, not customs"
+    },
+    {
+      "instrument_id": "EO:5910",
+      "outcome": "blocked",
+      "minutes_estimate": 0.2,
+      "x1_type_and_rule_correct_helpful": "partly: Tariff of Consular Fees, not customs"
+    },
+    {
+      "instrument_id": "EO:7057",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "no: typed tariff_customs, actually agency establishment (Puerto Rico Reconstruction Administration)"
+    },
+    {
+      "instrument_id": "EO:9",
+      "outcome": "blocked",
+      "minutes_estimate": 0.15,
+      "x1_type_and_rule_correct_helpful": "no: typed tariff_customs (low), actually dual office-holding prohibition"
+    }
+  ]
+}

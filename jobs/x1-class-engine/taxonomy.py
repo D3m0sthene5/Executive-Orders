@@ -58,7 +58,7 @@ TYPES = [
      [r"publicwaterreserve", r"waterreserve", r"springsandwaterholes", r"wateringplace", r"waterholes?"]),
     ("power_site_reserve", "land", "TR-POWER-SITE", "strong",
      [r"powersite", r"reservoirsite", r"powerpurposes", r"waterpower", r"powerprojects?"]),
-    ("stock_driveway", "land", "TR-STOCK-DRIVEWAY", "strong",
+    ("stock_driveway", "land", "TR-LAND-WITHDRAWAL", "strong",
      [r"stockdriveway", r"driveway"]),
     ("bird_refuge", "land", "TR-BIRD-REFUGE", "strong",
      [r"birdreserv", r"birdrefuge", r"wildliferefuge", r"gamerefuge", r"gamepreserve", r"gamereserv",

@@ -1,5 +1,5 @@
 {
-  "effective_date_basis": "The end of the appropriation's period of availability stated in the appropriation act, or the date of a later order rescinding the allocation; otherwise a stated gap.",
+  "effective_date_basis": "The expenditure date is normally unavailable. The end of the appropriation's period of availability (from the appropriation act, fetched for each order) is only a not-later-than bound for the operative command, never an exact first end; obligated balances can still be paid after it (an accrued effect). A later order rescinding the allocation supplies an exact date; otherwise a stated gap.",
   "ending_pattern": "The order allocates or transfers a sum from an appropriation to an agency for a purpose. It is spent when the funds are obligated and expended, or lapses with the appropriation's period of availability.",
   "exceptions_savings": {
     "assessment": "Obligations and expenditures made under the allocation are accrued effects.",
@@ -18,13 +18,16 @@
   "legal_effect": "Research pattern only. A type rule never fills a judgment field, establishes an end, a date, a status or savings for any order, and never substitutes for reading the order's own text.",
   "lifecycle_class": "spent",
   "mechanism": "exhausted_on_performance",
+  "note": "The exemplar's authority is the Emergency Conservation Work act of March 31, 1933 (48 Stat. 22); each order's own appropriation must be fetched.",
   "outlier_conditions": [
     "The order's own text (not only the WPA summary or APP title) does not match the type, or the held text is another order's.",
     "The order does more than the type's single act (a second operative clause of another kind).",
     "A later order or statute amends, extends, revokes or revives it before the candidate end.",
     "The order states its own effective date, duration, condition or termination that differs from the pattern.",
     "The order creates a continuing program, agency or rule, not only a transfer of money.",
-    "The appropriation is 'available until expended' with no end."
+    "The appropriation is 'available until expended' with no end.",
+    "The order only amends or modifies another order: its own operative effect merges into, and normally ends with, the parent order; read the parent's text and lifecycle. (The exemplar EO 6265 amends EO 6208, which made the allocation.)",
+    "A later statute or order rescinds, impounds or re-appropriates the unobligated balance."
   ],
   "quoted_clause": "And the Secretary of Agriculture may allot from the sum hereby allocated not to\nexceed $35,000 for expenditure by the Bureau of Chemistry and Soils for the purpose\nof making soil examination, surveys, and investigations, to be withdrawn as herein-\n\nbefore provided.\nFRANKLIN D. ROOSEVELT.\n\nTue Wuite Hovse,\nSeptember 5, 1933.\n\n(No. 6265]",
   "quoted_parts": [
@@ -35,6 +38,7 @@
     "The appropriation act's availability period (shared source via FETCH_QUEUE).",
     "A search for later orders amending or rescinding the allocation."
   ],
+  "review_round": 2,
   "review_state": "drafted_awaiting_independent_review",
   "rule_id": "TR-FUND-ALLOTMENT",
   "schema": "eo-type-rule/v1",

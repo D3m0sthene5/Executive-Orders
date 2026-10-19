@@ -41,6 +41,68 @@ def rule_lifecycle(r):
             "own_terms_expiry_or_separation": "spent", "event_swept": "swept"}.get(r["mechanism"], "land")
 
 
+def held_texts(repo, iid):
+    """All held text records for one order, from claim-kit's text index."""
+    out = []
+    for line in open(repo / "jobs/claim-kit/output/TEXT_REPRESENTATIONS.jsonl"):
+        if f'"{iid}"' not in line:
+            continue
+        x = json.loads(line)
+        if x.get("instrument_id") == iid and x.get("text_path") and (repo / x["text_path"]).exists():
+            out.append(x)
+    return out
+
+
+def named_exemplar(repo, spec):
+    """Quote each (start, end) part exactly from a held text of the named order."""
+    for x in held_texts(repo, spec["id"]):
+        raw = (repo / x["text_path"]).read_text(encoding="utf-8", errors="replace")
+        parts, spans = [], []
+        for a, b in spec["parts"]:
+            i = raw.find(a)
+            j = raw.find(b, i) if i >= 0 else -1
+            if i < 0 or j < 0:
+                break
+            parts.append(raw[i:j + len(b)])
+            spans.append([i, j + len(b)])
+        else:
+            src = x.get("source") or {}
+            return parts, spans, x, src, raw
+    raise SystemExit(f"exemplar quote not found for {spec['id']}: {spec['parts'][0][0][:40]}")
+
+
+def revise(repo, out, rev):
+    """Round-2 changes required by the independent review."""
+    for k in ("ending_pattern", "effective_date_basis", "mechanism"):
+        if k in rev:
+            out[k] = rev[k]
+    if "savings" in rev:
+        out["exceptions_savings"]["assessment"] = rev["savings"]
+    if "outliers_replace" in rev:
+        out["outlier_conditions"] = spec.COMMON_OUTLIERS + rev["outliers_replace"]
+    out["outlier_conditions"] += rev.get("outliers_add", [])
+    out["required_evidence"] += rev.get("required_evidence_add", [])
+    if "note" in rev:
+        out["note"] = rev["note"]
+    exs = [e for e in (rev.get("exemplar"), rev.get("exemplar2")) if e]
+    if exs:
+        out["quoted_parts"], out["additional_exemplars"] = [], []
+        for n, e in enumerate(exs):
+            parts, spans, x, src, raw = named_exemplar(repo, e)
+            source = {"url": src.get("url"), "sha256": src.get("sha256"), "page": src.get("page_or_item"),
+                      "text_path": x["text_path"], "text_sha256": hashlib.sha256(raw.encode("utf-8")).hexdigest(),
+                      "original_custody_verified": False,
+                      "custody_limit": "Exemplar text is a held copy graded " + str(x.get("grade")) +
+                                       "; it illustrates the type's wording and is not an authenticated original."}
+            ex = {"instrument_id": e["id"], "spans": spans, "text_grade": x.get("grade"), "acceptable_as_original": False}
+            if n == 0:
+                out["quoted_clause"], out["quoted_parts"], out["exemplar"], out["source"] = parts[0], parts, ex, source
+            else:
+                out["additional_exemplars"].append(dict(ex, quoted_parts=parts, source=source))
+    out["review_round"] = 2
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=str(HERE.parents[1]))
@@ -51,6 +113,9 @@ def main():
     outdir = repo / "research/readiness/type-rules"
     outdir.mkdir(parents=True, exist_ok=True)
     for rule_id, r in spec.RULES.items():
+        if rule_id in getattr(spec, "FROZEN", set()):
+            print(rule_id, "frozen: approved in review, left unchanged")
+            continue
         cands = []
         for iid, t in types.items():
             d = docs.get(iid)
@@ -106,6 +171,13 @@ def main():
             "review_state": "drafted_awaiting_independent_review",
             "target_scope_reviewed": [],
         }
+        rev = getattr(spec, "REVISIONS", {}).get(rule_id)
+        if rev == "WITHDRAWN":
+            (outdir / f"{rule_id}.json").unlink(missing_ok=True)
+            print(rule_id, "withdrawn (no held exemplar)")
+            continue
+        if rev:
+            out = revise(repo, out, rev)
         p = outdir / f"{rule_id}.json"
         p.write_text(json.dumps(out, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
         print(rule_id, exemplar["instrument_id"] if exemplar else "-", hashlib.sha256(p.read_bytes()).hexdigest()[:12])

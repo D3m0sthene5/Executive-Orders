@@ -1,6 +1,7 @@
 {
+  "additional_exemplars": [],
   "effective_date_basis": "The date in the order, or the end of the committee's authorizing resolution or Congress; otherwise a stated gap.",
-  "ending_pattern": "The order opens returns to inspection by a named committee or official for an investigation. It ends when the inspection or the investigating body's authority ends, or on a date in its own text.",
+  "ending_pattern": "The order opens returns to inspection by a named committee or official for an investigation, under a specific Revenue Act section. It ends when the inspection or the investigating body's authority ends, or on a date in its own text; standing orders for a class of officials (for example State officers) are outliers.",
   "exceptions_savings": {
     "assessment": "Information already inspected is an accrued effect.",
     "leads": [],
@@ -8,12 +9,14 @@
   },
   "exemplar": {
     "acceptable_as_original": false,
-    "char_end": 818,
-    "char_start": 350,
-    "instrument_id": "EO:5824",
-    "scope_id": "EO:5824#whole",
-    "text_grade": "machine_read_government_printed_copy",
-    "wpa_summary": "Inspection of tax returns by State officersfor intangible property tax purposes authorized. [483 ]"
+    "instrument_id": "EO:6742",
+    "spans": [
+      [
+        416,
+        1317
+      ]
+    ],
+    "text_grade": "machine_read_government_printed_copy"
   },
   "legal_effect": "Research pattern only. A type rule never fills a judgment field, establishes an end, a date, a status or savings for any order, and never substitutes for reading the order's own text.",
   "lifecycle_class": "spent",
@@ -23,16 +26,21 @@
     "The order does more than the type's single act (a second operative clause of another kind).",
     "A later order or statute amends, extends, revokes or revives it before the candidate end.",
     "The order states its own effective date, duration, condition or termination that differs from the pattern.",
-    "The order prescribes general regulations for inspection rather than a single grant."
+    "The order prescribes general regulations for inspection rather than a single grant.",
+    "A standing class order (State officers, all years) rather than a single committee grant.",
+    "The committee's authority was renewed in a later Congress, which extends the inspection.",
+    "Statutory replacement of the authority (IRC 1939 s.55; IRC 1954 s.6103; the Tax Reform Act of 1976 rewrite of s.6103): candidate authority-lapse ends, not presumed ends."
   ],
-  "quoted_clause": "Pursuant to the provisions of section 257(a) of the Revenue Act of 1926 and\nsection 55 of the Revenue Act of 1928, it is hereby ordered that returns may be open\nto inspection by State officers for State intangible property tax purposes, in accord-\nance and upon compliance with the amendment, bearing even date herewith, to the\nrules and regulations prescribed by the Secretary of the Treasury and approved by\nthe President, bearing date of April 13, 1926, as amended.",
+  "quoted_clause": "By virtue of the authority vested in me by section 257 (a) of the Revenue Act\nof 1926 (ch. 27, 44 Stat. 9, 51), section 55 of the Revenue Act of 1928 (ch. 852, 45\nStat. 791, 809), and section 55 of the Revenue Act of 1932 (ch. 209, 47 Stat. 169, 189),\nit is hereby ordered that tax returns shall be open to inspection by the Special Com-\nmittee Investigating the Munitions Industry, United States Senate, authorized by\nSenate Resolution 206, Seventy-third Congress, to investigate the manufacture of\nand traffic in arms, munitions, and other implements of war, such inspection to be\nin accordance and upon compliance with the rules and regulations prescribed by\nthe Secretary of the Treasury and approved by the President under date of De-\ncember 13, 1932, as amended under date of August 3, 1933, as further amended\nunder dates of October 18, 1933, and May 21, 1934, and as further amended this date.",
   "quoted_parts": [
-    "Pursuant to the provisions of section 257(a) of the Revenue Act of 1926 and\nsection 55 of the Revenue Act of 1928, it is hereby ordered that returns may be open\nto inspection by State officers for State intangible property tax purposes, in accord-\nance and upon compliance with the amendment, bearing even date herewith, to the\nrules and regulations prescribed by the Secretary of the Treasury and approved by\nthe President, bearing date of April 13, 1926, as amended."
+    "By virtue of the authority vested in me by section 257 (a) of the Revenue Act\nof 1926 (ch. 27, 44 Stat. 9, 51), section 55 of the Revenue Act of 1928 (ch. 852, 45\nStat. 791, 809), and section 55 of the Revenue Act of 1932 (ch. 209, 47 Stat. 169, 189),\nit is hereby ordered that tax returns shall be open to inspection by the Special Com-\nmittee Investigating the Munitions Industry, United States Senate, authorized by\nSenate Resolution 206, Seventy-third Congress, to investigate the manufacture of\nand traffic in arms, munitions, and other implements of war, such inspection to be\nin accordance and upon compliance with the rules and regulations prescribed by\nthe Secretary of the Treasury and approved by the President under date of De-\ncember 13, 1932, as amended under date of August 3, 1933, as further amended\nunder dates of October 18, 1933, and May 21, 1934, and as further amended this date."
   ],
   "required_evidence": [
     "The order's text naming the body and returns.",
-    "The committee's authorizing resolution or term (shared source)."
+    "The committee's authorizing resolution or term (shared source).",
+    "The Revenue Act section the order relies on, and its later replacements."
   ],
+  "review_round": 2,
   "review_state": "drafted_awaiting_independent_review",
   "rule_id": "TR-TAX-RETURN-INSPECTION",
   "schema": "eo-type-rule/v1",
@@ -45,11 +53,11 @@
   "source": {
     "custody_limit": "Exemplar text is a held copy graded machine_read_government_printed_copy; it illustrates the type's wording and is not an authenticated original.",
     "original_custody_verified": false,
-    "page": "4731703.proc.002.umich.edu; printed pages 1112-1112; scanned images 340-340",
-    "sha256": "c04286bd57285d59a20a68923e80d9e0413d83aeb5279f0ba832369ba7977253",
-    "text_path": "jobs/hathi-gpo-orders/output/texts/EO_5824.txt",
-    "text_sha256": "eb4e94a6478d6259f687582265b6e8782435a74fa17f606ee65dab2cb418dfc7",
-    "url": "https://archive.org/details/4731703.proc.002.umich.edu"
+    "page": "Executive_Orders_6690-6935.djvu; scanned pages 137-137; closing number 6742",
+    "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+    "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6742.txt",
+    "text_sha256": "9e10bd748bddb891a7d8048e4af434ec4982fede7b28f6e75c144bbfd7822ec5",
+    "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6690-6935.djvu"
   },
   "target_scope_reviewed": [],
   "title": "Tax returns opened to inspection by a committee or official",

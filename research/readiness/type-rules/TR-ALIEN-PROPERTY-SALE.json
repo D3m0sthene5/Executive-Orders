@@ -1,8 +1,8 @@
 {
-  "effective_date_basis": "The date of sale from the Custodian's reports; otherwise a stated gap.",
-  "ending_pattern": "The order authorizes one disposition of specified property seized under the Trading with the Enemy Act. It is spent when the sale or disposition is completed.",
+  "effective_date_basis": "The order's own date is its effective date. The date of sale is a separate end date, from the Custodian's reports; if no report is held the end is an explicit gap, and the order date or a report year is only a not-earlier or not-later bound.",
+  "ending_pattern": "The order authorizes one disposition of specified property seized under the Trading with the Enemy Act: a sale order is spent when the sale is completed; a rejection-of-bids order is spent when issued; a resale order is spent on the resale.",
   "exceptions_savings": {
-    "assessment": "The transfer of title is an accrued effect; claims under later settlement acts are independent.",
+    "assessment": "Title passed to the buyer is an accrued effect (state transferred_or_accrued). The proceeds stayed subject to the Settlement of War Claims Act of 1928 (the exemplar itself says so); treat that as a lead to check, not as independent of the order.",
     "leads": [],
     "reviewed": false
   },
@@ -24,7 +24,10 @@
     "A later order or statute amends, extends, revokes or revives it before the candidate end.",
     "The order states its own effective date, duration, condition or termination that differs from the pattern.",
     "The order prescribes general rules for the Custodian.",
-    "Not mapped to the 1921 war-end resolution: the Trading with the Enemy Act is reported to be excepted from it."
+    "Not mapped to the 1921 war-end resolution: the Trading with the Enemy Act is reported to be excepted from it.",
+    "The authorized sale never took place, was cancelled, or was made at a different price or to a different buyer.",
+    "The property was returned to the claimant under the 1928 Act instead of being sold.",
+    "One order covers several properties sold on different dates: each needs its own end."
   ],
   "quoted_clause": "I hereby, in the pubUc interest,\nmake the following determination, order, rule, and regulation:\nThe Alien Property Custodian is hereby authorized to sell at private\nsale without public or other advertisement five hundred (500) shares of the\npreferred capital stock of the United States Metals Refining Co., of a par\nvalue of $100 per share, heretofore required to be conveyed, transferred,\nassigned, and delivered to the Alien Property Custodian as the property of\nthe Nationalbank flir Deutschland (now Darmstadter und Nationalbank)\nof Berlin, Germany, at $115 per share, a total of $57,500.\nMy reasons for the foregoing determination and order are:",
   "quoted_parts": [
@@ -34,6 +37,7 @@
     "The order's text naming the property.",
     "The Custodian's report of the sale or an explicit gap."
   ],
+  "review_round": 2,
   "review_state": "drafted_awaiting_independent_review",
   "rule_id": "TR-ALIEN-PROPERTY-SALE",
   "schema": "eo-type-rule/v1",
