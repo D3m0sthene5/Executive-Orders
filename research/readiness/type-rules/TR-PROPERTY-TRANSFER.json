@@ -1,0 +1,59 @@
+{
+  "effective_date_basis": "The delivery date from agency records, or the order's date if it effects the transfer itself; otherwise a stated gap.",
+  "ending_pattern": "The order transfers specified property from one agency to another. It is spent on delivery; custody thereafter rests on the transfer, an accrued effect.",
+  "exceptions_savings": {
+    "assessment": "The receiving agency's custody is an accrued effect (state transferred_or_accrued).",
+    "leads": [],
+    "reviewed": false
+  },
+  "exemplar": {
+    "acceptable_as_original": false,
+    "char_end": 906,
+    "char_start": 512,
+    "instrument_id": "EO:6001",
+    "scope_id": "EO:6001#whole",
+    "text_grade": "machine_read_government_printed_copy",
+    "wpa_summary": "Land Officesat Little Rock, Ark., Alliance,Neb., Cass Lake, Minn., and Gainesville,Fla.,abolishedand the businessand archives of said officestransferredto the General Land Office,Washington, D. C."
+  },
+  "legal_effect": "Research pattern only. A type rule never fills a judgment field, establishes an end, a date, a status or savings for any order, and never substitutes for reading the order's own text.",
+  "lifecycle_class": "spent",
+  "mechanism": "exhausted_on_performance",
+  "outlier_conditions": [
+    "The order's own text (not only the WPA summary or APP title) does not match the type, or the held text is another order's.",
+    "The order does more than the type's single act (a second operative clause of another kind).",
+    "A later order or statute amends, extends, revokes or revives it before the candidate end.",
+    "The order states its own effective date, duration, condition or termination that differs from the pattern.",
+    "The property is land (land types).",
+    "The order transfers functions or personnel (organization)."
+  ],
+  "quoted_clause": "by virtue of the authority therein given, it is hereby ordered that the United States\nland offices located at Little Rock, Ark., Alliance, Nebr., Cass Lake, Minn., and\nGainesville, Fla., be discontinued and the business and necessary archives of said\noffices be transferred to and consolidated with the General Land Office, Washington,\nD. C, effective at the close of business January 31, 1933.",
+  "quoted_parts": [
+    "by virtue of the authority therein given, it is hereby ordered that the United States\nland offices located at Little Rock, Ark., Alliance, Nebr., Cass Lake, Minn., and\nGainesville, Fla., be discontinued and the business and necessary archives of said\noffices be transferred to and consolidated with the General Land Office, Washington,\nD. C, effective at the close of business January 31, 1933."
+  ],
+  "required_evidence": [
+    "The order's text naming the property and agencies."
+  ],
+  "review_state": "drafted_awaiting_independent_review",
+  "rule_id": "TR-PROPERTY-TRANSFER",
+  "schema": "eo-type-rule/v1",
+  "scope": {
+    "kind": "type_membership",
+    "membership": "jobs/x1-class-engine/output/TYPES.csv",
+    "min_confidence": "medium",
+    "note": "Membership is a machine lead; each order is decided by an agent, row by row."
+  },
+  "source": {
+    "custody_limit": "Exemplar text is a held copy graded machine_read_government_printed_copy; it illustrates the type's wording and is not an authenticated original.",
+    "original_custody_verified": false,
+    "page": "4731703.proc.002.umich.edu; printed pages 1402-1402; scanned images 630-630",
+    "sha256": "c04286bd57285d59a20a68923e80d9e0413d83aeb5279f0ba832369ba7977253",
+    "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6001.txt",
+    "text_sha256": "66edb8c14ddfdd96cd16462025d8727a74be57d0b188604954b512823c23b43b",
+    "url": "https://archive.org/details/4731703.proc.002.umich.edu"
+  },
+  "target_scope_reviewed": [],
+  "title": "Transfer of a vessel, records or equipment between agencies",
+  "types": [
+    "property_transfer"
+  ]
+}
