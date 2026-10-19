@@ -1,6 +1,10 @@
 {
   "actor_contexts": [
     {
+      "actor_id": "EO:10838",
+      "evidence_id": "ACTOR_TEXT:EO:10838"
+    },
+    {
       "actor_id": "EO:10919",
       "evidence_id": "ACTOR_TEXT:EO:10919"
     },
@@ -10,6 +14,9 @@
     }
   ],
   "actor_provisions": [
+    "ACT:EO:10700>EO:10838",
+    "ACT:EO:10700>EO:10838@b37aab1bc2b46509",
+    "ACT:EO:10700>EO:10838@745181e4f79189a5",
     "ACT:EO:10700>EO:10919",
     "ACT:EO:10700>EO:10919@baba22d48a3bb188",
     "ACT:EO:10700>EO:10919@dd4dca087e5c477e",
@@ -17,18 +24,42 @@
     "ACT:EO:10700>EO:10920@d34280697ffc94ca",
     "ACT:EO:10700>EO:10920@e55a6c51aa8169fc",
     "ACT:EO:10700>EO:10920@5a21e173695ad7aa",
-    "ACT:EO:10700>EO:10920@ae341eb9ff3c8593"
+    "ACT:EO:10700>EO:10920@ae341eb9ff3c8593",
+    "ACT:EO:10700>EO:10920@2e4a883654c9735e",
+    "ACT:EO:10700>EO:10920@6f5c3674e7e980d6"
   ],
   "chain": {
     "confidence": "medium",
     "events": [
+      {
+        "actor_id": "EO:10838",
+        "char_end": 305,
+        "char_start": 0,
+        "confidence": "medium",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10700#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+        "sections_touched": [
+          "section 1(b)"
+        ],
+        "signing_date": "1959-09-16",
+        "source": {
+          "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+          "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+          "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+        },
+        "verb": "amend"
+      },
       {
         "actor_id": "EO:10919",
         "char_end": 2596,
         "char_start": 2152,
         "confidence": "medium",
         "how_named": "direct",
-        "id": "CHAIN:EO:10700#1",
+        "id": "CHAIN:EO:10700#2",
         "notes": "Change wording lead; chronology does not decide legal effect.",
         "provision_text": "Doc. 61-1582; Filed, Feb. 20, 1961;\n10:07 a.m.]\nExecutive O rder 10920\nREVOKING EXECUTIVE ORDER NO.  \n107001  OF FEBRUARY 25, 1957,  \nAS AMENDED\nBy virtue of the authority vested in me \nby the Constitution and statutes, and as \nPresident of the United States, it is \nordered th at Executive Order No. 10700 \nof February 25, 1957, entitled “Further \nProviding for the-Operations Coordinat­\ning Board”, as amended, be, and it is \nhereby, revoked.",
         "sections_touched": [
@@ -50,7 +81,7 @@
         "char_start": 2152,
         "confidence": "medium",
         "how_named": "direct",
-        "id": "CHAIN:EO:10700#2",
+        "id": "CHAIN:EO:10700#3",
         "notes": "Change wording lead; chronology does not decide legal effect.",
         "provision_text": "Doc. 61-1582; Filed, Feb. 20, 1961;\n10:07 a.m.]\nExecutive O rder 10920\nREVOKING EXECUTIVE ORDER NO.  \n107001  OF FEBRUARY 25, 1957,  \nAS AMENDED\nBy virtue of the authority vested in me \nby the Constitution and statutes, and as \nPresident of the United States, it is \nordered th at Executive Order No. 10700 \nof February 25, 1957, entitled “Further \nProviding for the-Operations Coordinat­\ning Board”, as amended, be, and it is \nhereby, revoked.",
         "sections_touched": [
@@ -67,7 +98,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10700",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10700"
@@ -94,8 +125,19 @@
   "conflicts": [],
   "current_law_leads": [],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
+    "clause_3_state",
+    "clause_4_state",
+    "clause_5_state",
+    "clause_6_state",
+    "clause_7_state",
+    "clause_8_state",
+    "clause_9_state",
+    "clause_10_state",
+    "clause_11_state",
+    "clause_12_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -103,12 +145,186 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 13 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10700>EO:10838": {
+      "actor_id": "EO:10838",
+      "actor_source": {
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "alternative_provisions": [
+        {
+          "actor_id": "EO:10838",
+          "actor_source": {
+            "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+            "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+            "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+          },
+          "char_end": 305,
+          "char_start": 0,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:10700>EO:10838@b37aab1bc2b46509",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "",
+          "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "1959-09-16",
+          "target_id": "EO:10700",
+          "verb": "amend"
+        },
+        {
+          "actor_id": "EO:10838",
+          "actor_source": {
+            "archival_id": "app:node/306825",
+            "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+            "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+            "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+          },
+          "char_end": 305,
+          "char_start": 0,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:10700>EO:10838@745181e4f79189a5",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "",
+          "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "1959-09-16",
+          "target_id": "EO:10700",
+          "verb": "amend"
+        }
+      ],
+      "char_end": 305,
+      "char_start": 0,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10700>EO:10838",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "1959-09-16",
+      "source": {
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "target_id": "EO:10700",
+      "text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "verb": "amend"
+    },
+    "ACT:EO:10700>EO:10838@745181e4f79189a5": {
+      "actor_id": "EO:10838",
+      "actor_source": {
+        "archival_id": "app:node/306825",
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "char_end": 305,
+      "char_start": 0,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10700>EO:10838@745181e4f79189a5",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "1959-09-16",
+      "source": {
+        "archival_id": "app:node/306825",
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "target_id": "EO:10700",
+      "text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "verb": "amend"
+    },
+    "ACT:EO:10700>EO:10838@b37aab1bc2b46509": {
+      "actor_id": "EO:10838",
+      "actor_source": {
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "char_end": 305,
+      "char_start": 0,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10700>EO:10838@b37aab1bc2b46509",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "1959-09-16",
+      "source": {
+        "page_or_item": "Executive Order 10838—Further Amendment of Executive Order 10700, as Amended, Providing for the Operations Coordinating Board; September 16, 1959; APP node 306825; common-crawl capture 2025-03-26T12:46:46Z",
+        "sha256": "b87398d63218d8977e4ce93473a4b2f1599b7a90ed4306b3239d2df5f5b254a2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the.txt",
+        "text_sha256": "1ed8644657bfc2be5ca93c35cb91605e712719ce39542a33e0a097861696dbd1",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10838-further-amendment-executive-order-10700-amended-providing-for-the"
+      },
+      "target_id": "EO:10700",
+      "text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that section 1(b) (1) of Executive Order No. 10700 of February 25, 1957, as amended by Executive Order No. 10773 of July 1, 1958, be, and it is hereby amended to read as follows:",
+      "verb": "amend"
+    },
     "ACT:EO:10700>EO:10919": {
       "actor_id": "EO:10919",
       "actor_source": {
@@ -405,6 +621,65 @@
           "signing_date": "1961-02-18",
           "target_id": "EO:10700",
           "verb": "revoke"
+        },
+        {
+          "actor_id": "EO:10920",
+          "actor_source": {
+            "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+            "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+            "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+          },
+          "char_end": 289,
+          "char_start": 0,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:10700>EO:10920@2e4a883654c9735e",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "",
+          "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1961-02-18",
+          "target_id": "EO:10700",
+          "verb": "revoke"
+        },
+        {
+          "actor_id": "EO:10920",
+          "actor_source": {
+            "archival_id": "app:node/237170",
+            "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+            "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+            "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+          },
+          "char_end": 289,
+          "char_start": 0,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:10700>EO:10920@6f5c3674e7e980d6",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "",
+          "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1961-02-18",
+          "target_id": "EO:10700",
+          "verb": "revoke"
         }
       ],
       "char_end": 2596,
@@ -433,6 +708,43 @@
       },
       "target_id": "EO:10700",
       "text": "Doc. 61-1582; Filed, Feb. 20, 1961;\n10:07 a.m.]\nExecutive O rder 10920\nREVOKING EXECUTIVE ORDER NO.  \n107001  OF FEBRUARY 25, 1957,  \nAS AMENDED\nBy virtue of the authority vested in me \nby the Constitution and statutes, and as \nPresident of the United States, it is \nordered th at Executive Order No. 10700 \nof February 25, 1957, entitled “Further \nProviding for the-Operations Coordinat­\ning Board”, as amended, be, and it is \nhereby, revoked.",
+      "verb": "revoke"
+    },
+    "ACT:EO:10700>EO:10920@2e4a883654c9735e": {
+      "actor_id": "EO:10920",
+      "actor_source": {
+        "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+        "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+        "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+      },
+      "char_end": 289,
+      "char_start": 0,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10700>EO:10920@2e4a883654c9735e",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1961-02-18",
+      "source": {
+        "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+        "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+        "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+      },
+      "target_id": "EO:10700",
+      "text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
       "verb": "revoke"
     },
     "ACT:EO:10700>EO:10920@5a21e173695ad7aa": {
@@ -470,6 +782,45 @@
       },
       "target_id": "EO:10700",
       "text": "Executive O rder 10920\nREVOKING EXECUTIVE ORDER NO.  \n107001  OF FEBRUARY 25, 1957,  \nAS AMENDED\nBy virtue of the authority vested in me \nby the Constitution and statutes, and as \nPresident of the United States, it is \nordered th at Executive Order No. 10700 \nof February 25, 1957, entitled “Further \nProviding for the-Operations Coordinat­\ning Board”, as amended, be, and it is \nhereby, revoked.",
+      "verb": "revoke"
+    },
+    "ACT:EO:10700>EO:10920@6f5c3674e7e980d6": {
+      "actor_id": "EO:10920",
+      "actor_source": {
+        "archival_id": "app:node/237170",
+        "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+        "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+        "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+      },
+      "char_end": 289,
+      "char_start": 0,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10700>EO:10920@6f5c3674e7e980d6",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "",
+      "provision_text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1961-02-18",
+      "source": {
+        "archival_id": "app:node/237170",
+        "page_or_item": "Executive Order 10920—Revoking Executive Order No. 10700 of February 25, 1957, as Amended (Operations Coordinating Board); February 18, 1961; APP node 237170; common-crawl capture 2025-09-12T16:40:52Z",
+        "sha256": "bf41da95f333e5355f62c5a767cc5a435f1ce7e5bbd6f3e1f89e985f96841fe7",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended.txt",
+        "text_sha256": "095772dbf5937dc6dfcd5f2624e3166adf9428ae867bedfe67a3f1abb4d32fb7",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10920-revoking-executive-order-no-10700-february-25-1957-amended"
+      },
+      "target_id": "EO:10700",
+      "text": "By virtue of the authority vested in me by the Constitution and statutes, and as President of the United States, it is ordered that Executive Order No. 10700 of February 25, 1957, entitled \"Further Providing for the Operations Coordinating Board\", as amended be, and it is hereby, revoked.",
       "verb": "revoke"
     },
     "ACT:EO:10700>EO:10920@ae341eb9ff3c8593": {
@@ -583,6 +934,21 @@
       "text": "Doc. 61-1582; Filed, Feb. 20, 1961;\n10:07 a.m.]\nExecutive O rder 10920\nREVOKING EXECUTIVE ORDER NO.  \n107001  OF FEBRUARY 25, 1957,  \nAS AMENDED\nBy virtue of the authority vested in me \nby the Constitution and statutes, and as \nPresident of the United States, it is \nordered th at Executive Order No. 10700 \nof February 25, 1957, entitled “Further \nProviding for the-Operations Coordinat­\ning Board”, as amended, be, and it is \nhereby, revoked.",
       "verb": "revoke"
     },
+    "ACTOR_TEXT:EO:10838": {
+      "actor_id": "EO:10838",
+      "char_end": 1263,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:10838",
+      "role": "actor_context",
+      "source": {
+        "page_or_item": "24 FR 7519, PDF pages 3-3",
+        "sha256": "0191a3459b7fe86517c80e172c5b45fb36a7aefcf0f1acd48eb66e6049a6fd97",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10838.recheck.txt",
+        "text_sha256": "bc71c9e31698f09a4b7096332a3d739228b84bba767df7c0498dfb46582488c1",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1959-09-18/pdf/FR-1959-09-18.pdf"
+      },
+      "text": "Instrument: EO:10838\nSource: https://www.govinfo.gov/content/pkg/FR-1959-09-18/pdf/FR-1959-09-18.pdf\nSHA-256 of the downloaded file: 0191a3459b7fe86517c80e172c5b45fb36a7aefcf0f1acd48eb66e6049a6fd97\nLocation: 24 FR 7519, PDF pages 3-3 (confidence high, from the pdfplumber recheck)\nReading-order text rebuilt from the scan's OCR word positions (pdfplumber), from the order's heading to its filing line. May contain recognition errors, and page furniture printed in between (running heads are left out; a masthead or contents column may remain). Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 ===\nExecutive Order 10838\nFURTHER AMENDMENT OF EXECU­\nTIVE ORDER NO. 10700,1 AS\nAMENDED, PROVIDING FOR\nTHE OPERATIONS COORDINATING\nBOARD\nBy virtue of the authority vested in me\nby the Constitution and statutes, and as\nPresident of the United States, it is\nordered that section 1(b)(1) of Execu­\ntive Order No. 10700 of February 25,1957,\nas amended by Executive Order No. 10773\nof July 1, 1958, be, and it is hereby\namended to read as follows:\n“(1) the Under Secretary of State for\nPolitical Affairs, who shall represent the\nSecretary of State,”.\nDwight D. Eisenhower\nThe White House,\nSeptember 16,1959.\n[F.R. Doc. 59-7856; Filed, Sept. 17, 1959;\n"
+    },
     "ACTOR_TEXT:EO:10919": {
       "actor_id": "EO:10919",
       "char_end": 2760,
@@ -647,9 +1013,111 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-27/pdf/FR-1957-02-27.pdf"
       },
       "text": "Instrument: EO:10700\nSource: https://www.govinfo.gov/content/pkg/FR-1957-02-27/pdf/FR-1957-02-27.pdf\nSHA-256 of the downloaded file: ea7f32452a6a35584de6beb0872f6f3096e6c03b5dd071897fda563aca53c243\nLocation: 22 FR 1111, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 56 ===\nFEDERAL REGISTER\nVOLUME 22 ' V / .  ' 9 3 4 NUMBER 39\nWashington, Wednesday, February 27, 1957\nTITLE 3— THE PRESIDENT\nPROCLAMATION 3170\nPan A merican D ay and P an A merican \nW eek , 1957\nBY THE PRESIDENT OF THE UNITED STATES  \nOF AMERICA  \nA PROCLAMATION\nWHEREAS on April 14, 1890, the  \nAmerican Republics founded a bureau  \nfor inter-American cooperation which  \nnow, as the Pan American Union, is an  \norgan and the general secretariat of the  \nOrganization of American States; and  \nWHEREAS the twenty-one Republics  \nof the Western Hemisphere wiil cele­\nbrate April 14, 1957, the sixty-seventh  \nanniversary of that historic action, as  \nPan American Day, at the end of a week  \nof commemorative ceremonies; and  \nWHEREAS the American Republics  \ncontinue to work together harmoniously  \nin furtherance of their mutual objective  \nof making the Organization of American  \nStates an increasingly effective instru­\nment of Hemispheric solidarity; and  \nWHEREAS they also continue stead­\nfast in their common determination to  \nmaintain their freedom and safeguard  \ntheir peace through active participation  \nin this Organization, which embodies our \ninter-American system of cooperation:  \nNOW, THEREFORE, I, DWIGHT D.  \nEISENHOWER, President of the United  \nStates of America, do hereby proclaim  \nSunday, April 14, 1957, as Pan American  \nDay, and the period from April 8 to  \nApril 14, 1957, as Pan American Week; \nand I invite the Governors of the States,  \nTerritories, and possessions of the United \nStates of America and the Governor of  \nthe Commonwealth of Puerto Rico to  \nissue similar proclamations.\n' *  also urge all our citizens and all in­\nterested organizations to join in appro­\npriate observance of Pan American Day  \nand Pan American Week, in testimony  \nof the steadfast friendship which unites  \nthe people of the United States with the  \nPoople of the other American Republics.\nIN WITNESS WHEREOF, I have  \nhereunto set my hand and caused the  \nSeal of the United States of America to  \nho affixed.\nDONE at the City of Washington this  \ntwenty-ffrst day of February in the year  \nof our Lord nineteen hundred  \n[ seal] and fifty-seven, and of the In­\ndependence of the United States  \nof America the one hundred and eighty-  \nfirst.\nD wight  D. E isenhower  \nBy the President:\nJ ohn  F oster D ulles ,\nSecretary of State.\n[F. R. Doc. 57-1525; Filed. Feb. 25, 1957;  \n4:41 p. m.]\nEXECUTIVE ORDER 10700\nF urther  P roviding for the O perations  \nCoordinating B oard\nBy virtue of the authority vested in me  \nby the Constitution and statutes, and as  \nPresident of the Únited States, it is here­\nby ordered as follows:\nS ection  1. (a) In order to assist in the  \neffective coordination among certain  \nagencies of certain functions relating to  \nthe national security and to provide for  \nthe integrated implementation of na­\ntional security policies by the said agen­\ncies, there is hereby established within  \nthe structure of the National Security  \nCouncil the Operations Coordinating  \nBoard, hereinafter referred to as the  \nBoard, which shall report to the National  \nSecurity Council.\n(b) The Board shall have as members  \nthe following: (1) the Under Secretary  \nof State, who shall represent the Secre­\ntary of State, (2) the Deputy Secretary  \nof Defense, who shall représent the  \nSecretary of Defense, (3) the Director of  \nCentral Intelligence, (4) the Director of  \nthe United States Information Agency,  \n(5) tlie Director of the International  \nCooperation Administration, and ( 6) one  \nor more representatives of the President  \nto be designated by the President. The  \nBoard shall have a chairman and a vice  \nchairman, each of whom shall be desig­\nnated by the President from among its  \nmembers. Each head of agency referred  \nto in items 1  to 5, inclusive, in this sub­\nsection may provide for an alternate  \n(Continued on p. 1113)\n,  CONTENTS\nTHE PRESIDENT\nExecutive Order Pa^ e\nFurther Providing for the Opera­\ntions Coordinating Board _____ 1111\nProclamation\nPan American Day and Pan Amer­\nican Week, 1957__ ____________ 1111\nEXECUTIVE AGENCIES\nAgricultural Marketing Service  \nProposed rule making:\nMilk; in marketing areas:\nNew York metropolitan and\nnorthern New Jersey _____ 1128\nWashington, D. C __________ 1116\nWatermelons grown in Florida,  \nGeorgia, and South Caro­\nlina ____________________I__1128\nAgriculture Department \nSee Agricultural Marketing Serv­\nice.\nAlaska Game Commission  \nRegulations concerning employ­\nment of guides revoked (see  \nFish and Wildlife Service)*\nCivil Aeronautics Administra­\ntion\nRules and regulations:\nRestricted areas; Pinecastle,\nFla., area; alteration _______ 1115\nCivil Aeronautics Board  \nNotices:\nHearings, etc.:\n* Free baggage allowances and\nexcess baggage charges ----- 1155\nKerkorian, Kirk, and Los An­\ngeles Air Service, Inc _____ 1155\nRules And regulations:\nAir traffic rules:\nCommunication in high den­\nsity air traffic zones ______ 1114\nPilot vigilance and restric­\ntions on flight testing ____ 1114\nPilot and instructor certificates;  \nextension of mandatory com­\npliance date _;____1_ _ _ ___1114\nCommerce Department\nSee also  Civil Aeronautics Admin-\nistration ;  Federal Maritime-  \nBoard ;  Foreign C o m m e r c e \nBureau.\n1111\n\n=== PDF page 2 of 56 ===\n1112 THE PRESIDENT\nFEDERALÄBEGISTER\nV , ■ » »  JP\nPublished daily, except Sundays, Mondays,  \nand days following official Federal holidays,  \nby the Federal Register Division, National  \nArchives and Records Service, General Serv­\nices Administration, pursuant to the au­\nthority contained in the Federal Register Act,  \napproved July 26, 1935 (49 Stat. 500, as  \namended; 44 U. S. C., ch. 8B), under regula­\ntions prescribed by the Administrative Com­\nmittee of the Federal Register, approved by  \nthe President. Distribution is made only by  \nthe Superintendent of Documents, Govern­\nment Printing Office, Washington 25, D. C.\nThe F ederal R egister  will be furnished by  \nmail to subscribers, free of postage, for $1.50  \nper month or $15.00 per year, payable in  \nadvance. The charge for individual copies  \n(minimum 15 cents) varies in proportion to  \nthe size of the issue. Remit check or money  \norder, made payable to the Superintendent  \nof Documents, directly to the Government  \nPrinting Office, Washington 25, D. C.\nThe regulatory material appearing herein  \nis keyed to the Code of F ederal R egulations , \nwhich is published, under 50 titles, pursuant  \nto section 11 of the Federal Register Act, as  \namended August 5, 1953. The Code of F ed­\neral R egulations  is sold by the Superin­\ntendent of Documents. Prices of books and  \npocket supplements vary.\nThere are no restrictions on the re­\npublication of material appearing in the  \nF ederal R egister , or the Code of F ederal \nR egulations .\nCFR SUPPLEMENTS\n(As of January 1, 1957)\nThe following Supplements are now  \navailable:\nTitle 17 ($0.60)\nTitle 26, Parts 170-182 ($0.35)\nPreviously announced: Title 3, 1956  \nSupp. ($0.40); Title 7, Parts 900-959  \n($0.50); Title 18 ($0.50); Title 21 ($0.50);  \nTitle 26, Parts 1-79 ($0.35), Parts 8 0 -  \n169 ($0.50), Parts 183-299 ($0.30).\nOrder from Superintendent of Documents,  \nGovernment Printing Office, Washington  \n25, D. C.\nCONTENTS— Continued\nCommerce Department— Con. Pas ®\nNotices:\nReport of appointment and  \nstatement of financial inter­\nests; Kenneth C. A lien., ___ 1154\nStatement of changes in finan­\ncial interests:\nDenney, Courtlandt P ______ 1155\nMacauley, Irving P ________  1154\nPlant, Marvin S ___________ 1155\nReid, James F., Sr ______ _ _ 1155\nDefense Mobilization Office  \nNotices:\nCalifornia Transport Corp. and  \nFrontier Refining Co.; addi­\ntion to list of companies ac­\ncepting request to participate  \nunder voluntary agreement  \nrelating to foreign petroleum  \nsupply (2 documents) _____« . 1162\nCONTENTS— Continued CONTENTS— Continued\nFederal Communications Com- Pase \nmission\nProposed rule making:\nCitizens Radio Service; exten­\nsion of time for filing com­\nments ____________________ 1152\nFederal Housing Administration\nRules and regulations:\nMultifamily housing insurance; •  \neligibility requirements of  \nmortgage covering multifam­\nily housing ________. . ._____ 1115\nFederal Maritime Board\nNotices:\nAgreements filed with the Board\nfor approval:\nCity of Oakland, Calif., and\nEncinal Terminals.: ______ 1154\nMichels, J. R., Jr., and Loretz\n&  C o._______________. . .  1154\nStates Marine Lines _____1154\nProposed rule making:\nFiling of freight rates in foreign  \nimport commerce of United  \nStates; oral argument ______ 1133\nFederal Power Commission  \nNotices:\nSouthwest Gas Producing Co.,\nInc., et al.; proceedings con­\nsolidated for purposes of hear­\ning and fixing date of hearing. 1155\nFederal Reserve System  \nRules and regulations:\nClassification of Reserve cities. 1113\nFish and Wildlife Service  \nRules and regulations :\nRegulations concerning em­\nployment of guides revoked _1116\nForeign Commerce Bureau  \nNotices :\nSpaeth, Karl-Hèinz and Ralux  \nGesellschaft Fuer Elektro­\ntechnik, MBH; export priv­\nileges denied _______________ 1153\nHousing and Home Finance  \nAgency\nSee Federal Housing Administra­\ntion.\nIndian Affairs Bureau  \nNotices:\nBureau employees; granting of  \npermission in administrative  \nor judicial proceedings _____ 1152\nInterior Department  \nSee Fish and Wildlife Service ;  In­\ndian Affairs Bureau; Land  \nManagement Bureau.\nInterstate Commerce Commis­\nsion \nNotices:\nMotor carrier applications ____ 1155\nProposed rule making :\nTransportation of explosives  \nand other dangerous articles;  \nmiscellaneous amendments _1134\nLand Management Bureau \nNotices:\nAlaska; proposed withdrawal  \nand reservation of lands (3  \ndocum ents)___________1152,1153\nLand Management Bureau—  Pas°  \nContinued \nN otices—Continued \nFlorida; filing of plat of survey  \nand order providing for open­\ning of public lan d ..______,_1152\nIllinois; filing of plat of survey  \nand order providing for open­\ning of public lands ________ 1153\nSecurities and Exchange Com­\nmission \nNotices:\nHearings, etc.:\nAmerican Natural Gas Co.  \nand Michigan Consolidated\nGas Co ________________* 1162\nGeneral Public Utilities Corp. 1163  \nOperator Consolidated Mines\nCo__________________i s__ 1162\nStandard Shares, Inc ______1164\nCODIFICATION GUIDE\nA numerical list of the parts of the Code  \nof Federal Regulations affected by documents  \npublished in this issue. Proposed rules, as  \nopposed to final actions, are identified as  \nsuch.\nTitle 3 * pa g «\nChapter I (Proclamations):\n3170_______,________________ 1111\nChapter n  (Executive orders):\n10483 (superseded by EO 10700) _ 1111 \n10610 (amended by EO 10700) —' 1111 \n10700—_________________. . .  1111\nTitle 7  \nChapter IX:\nPart 902 (proposed) _. . .___ _ 1116\nPart927 (proposed). _________ 1128\nPart 990 (proposed) ______    1128\nPart 1021 (proposed) ________  1128\nTitle 12 \nChapter II:\nPart 204..........................  1113\nTitle 14  \nChapter I:\nPart 20. _____  1114\nPart 60 (2 documents) _____.— 1U4\nChapter II:\nPart 608__________   1115\nTitle 24 \nChapter II:\nPart 232. _________________—  1115\nTitle 46  \nChapter II:\nPart 235 (proposed) __________ 1133\nTitle 47  \nChapter I :.\nPart 19 (proposed) ---- —  115*\nTitle 49\nChapter I: .\nPart 72 (proposed) __________-\nPart 73 (proposed)... _________- 11“*\nPart 74 (proposed) ___________- ll\"j!\nPart 77 (proposed) ___j---------- 1*“^\nPart 78 (proposed) ___________ H4 U\nTitle 50\nChapter II: _\nPart 161—...................................... 1110\n\n=== PDF page 3 of 56 ===\nW ednesday, F ebru ary 27, 1957 FEDERAL REGISTER '1113\nmember who shall serve as a member of  \nthe Board in lieu of the regular member  \nrepresenting the agency concerned when­\never such regular member is, for reasons  \nbeyond his control, unable to attend any  \nmeeting of the Board.\n(c) The head of any agency (other  \nthan any agency represented under  \nsection 1 (b) hereof) to which the Presi­\ndent from time to time assigns re­\nsponsibilities for the implementation of  \nnational security policies shall assign a  \nrepresentative to serve on the Board  \nwhen the Board is dealing with subjects  \nbearing directly upon the responsibilities  \nof such head. Each such representative  \nshall be an Under Secretary or corre­\nsponding official. Each such head may  \nprovide for an alternate representative  \nof his agency who shall attend any meet­\ning of the Board, requiring representa­\ntion of such agency, in lieu of the repre­\nsentative when the latter is, for reasons  \nbeyond his control, unable to attend.\n(d) Any alternate member of the  \nBoard serving under section 1 (b) of this  \norder, and any representative or alter­\nnate representative serving under sec­\ntion 1 (c) of this order, shall, while so  \nserving, have in all respects the same  \nstatus on the Board as the members of  \nthe Board provided for in section 1 (b) \nhereof.\nSec. 2. The President haying ap­\nproved any national security policy after  \nreceiving the advice of the National Se­\ncurity Council thereon, the Board shall\n(1) whenever the President shall here­\nafter so direct, advise with the agencies  \nconcerned as to (a) their detailed oper­\national planning responsibilities respect­\ning such policy, (b) the coordination of  \nthe interdepartmental aspects of the de­\ntailed operational plans developed by  \nthe agencies to carry out such policy,\n(c) the timely and coordinated execu­\ntion of such policy and plans, and (d) \nthe execution of each security action or  \nproject so that it shall make its full con­\ntribution to the attainment of national\nsecurity objectives and to the particular  \nclimate of opinion the United States is  \nseeking to achieve in the world, and ( 2) \ninitiate new proposals for action within  \nthe framework of national security  \npolicies in response to opportunity, and  \nchanges in the situation. The Board  \nshall perform such other advisory func­\ntions as the President may assign to it  \nand shall from time to time make re­\nports to the National Security Council  \nwith respect to the carrying out of this  \norder. »\nSec. 3. Subject to the provisions of  \nsection 101 (c) of the National Security  \nAct of 1947, as amended (50 U. S. C. 402\n(c)>:\n(a) (1) The Board shall have, within  \nthe staff of the National Security Coun­\ncil, such staff as may be necessary to  \nassist the Board in the performance of  \nits functions, ( 2) the said staff of the  \nBoard shall be headed by an Executive  \nOfficer of the Board, and (3) employees  \nof agencies may, consonant with law, be \ndetailed to the aforesaid Staff of the  \nBoard.\n(b) Members of the staff of the Oper­\nations Coordinating Board provided for  \nin Executive Order No. 10483, as amend­\ned, who are immediately prior to the  \ntaking effect of this order receiving com­\npensation directly out of funds available  \nto the said Board shall be transferred to  \nthe staff of the Board referred to in  \nparagraph (a) of this section as of the  \neffective date of this order. The said  \ntransfers shall be accomplished in con­\nsonance with applicable law, including  \nthe last proviso of section 12 of the Vet­\nerans Preference Act of 1944, as amend­\ned (5 U. S. C. 861).\n(c) Appropriate arrangements may be  \nmade for the detail to the staff of the  \nBoard referred to in paragraph (a) of  \nthis section of employees of agencies who  \nare immediately prior to the taking ef­\nfect of the provisions of this order de­\ntailed to the staff of the Operations  \nCoordinating Board, provided for in Ex­\necutive Order No. 10483, as amended.\nS ec. 4. As used herein, the w o r d  \n‘'agency” may be construed to mean any  \ninstrumentality of the executive branch  \nof thè Government, including any execu­\ntive department.\nSec. 5. Nothing in this order shall be  \nconstrued either to confer upon the  \nBoard any function with respect to in­\nternal security or to abrogate or restrict  \nin any manner any function vested by  \nlaw in, or assigned pursuant to law to ,1 \nany agency or head of agency (includ­\ning the Office of Defense Mobilization  \nand the Director of the Officè of Defense  \nMobilization).\nSec. 6. This order supersedes Execu­\ntive. Order No. 10483 of September 2,  \n1953, and provisions amendatory thereof  \ncontained in other Executive orders (in­\ncluding, to the extent that it relates to  \nthe Operations Coordinating Board pro­\nvided for in Executive Order No. 10483,  \nthe proviso of section 303 (b) of Execu­\ntive Order No. 10610 of May 9, 1955).  \nSubject to the provisions of this order  \n(including the limitations imposed by  \nsection 3 hereof), the Board may be  \ndeemed to be a continuation of the Oper­\nations Coordinating Board provided for  \nin Executive Order No. 10483, as  \namended.\nSec. 7. The foregoing provisions of  \nthis order shall become effective on July  \n1, 1957, except that if funds appropri­\nated for the National Security Council \nshall not have become available on that  \ndate for thè support of the Board in  \nconsonance with this order, the said  \nprovisions shall become effective on such  \nlater date as funds so appropriated be­\ncome so available.\nDwight  D. Eisenhower\nT he White  House, . ,.\nFebruary 25, 1957.\n[P. R. Doc. 57-1526; Filed, Feb. 25, 1957;\n4:41 p. m.]\nRULES AND REGULATIONS\nTITLE 12— BANKS AND  \nBANKING\nChapter II— Federal Reserve System\nSubchapter A— Board of Governors of the  \nFederal Reserve System\n[Reg. D]\nPa r t 204—Reserves op M ember B anks\nCLASSIFICATION OP RESERVE CITIES\n1 - Effective March 1, 1957, §  204.52 is \nten d ed  to read as follows:\n§  204.52 Classification o f- reserve  \nC ities. Acting in accordance with  \n1 204.51, and pursuant to authority con­\nferred upon it by section 11 (e) of the  \nFederal Reserve Act and other provisions  \nof that act, the Board of Governors has  \ntaken the following actions to become  \neffective March 1, 1957 :\n(a) The City of Washington, D. C.,  \nand every city except New York and  \nChicago in which there is situated a  \nFederal Reserve Bank or a branch of a  \nFederal Reserve Bank are hereby con­\ntinued as reserve cities.\n(b) The following cities fall within the  \nscope of paragraph (b) (2) of §  204.51  \nbased upon official call reports of condi­\ntion in the two-year period ending on  \nJune 30,1956, and, therefore, such cities,  \nin addition to the reserve cities classified  \nas such under paragraph (a) of this\n»section, are hereby continued as reserve  \ncities: 0Milwaukee, Wisconsin; Fort Worth, Texas;  \nIndianapolis, Indiana; St. Paul, Minnesota;.  \nNational City (National Stock Yards), Illi­\nnois; Tulsa, Oklahoma; Des Moines, Iowa;  \nand Columbus, Ohio.\n(c) The following cities do not fall  \nwithin the scope of paragraph (b) ( 2) of\n§  204.51 based upon official call reports  \nof condition in the two-year period end­\ning June 30, 1956, but a written request  \nfor the continuance of each such city  \nas a reserve city was received by the  \nFederal Reserve Bank of the district in  \nwhich the city is located on or before  \nFebruary 15, 1957, from every member  \nbank having its head office or a branch  \nin such city (exclusive of any member  \nbank in an outlying district in such city  \npermitted by the Board to maintain re­\nduced reserves), together with a certi­\nfied copy of a resolution of the board of  \ndirectors of such member bank duly au­\nthorizing such request; and, accordingly,  \nin accordance with paragraph (b) (3)  \nof §  204.51, the following cities, in addi­\ntion to the reserve cities classified as  \nsuch under paragraphs (a) and (b) of  \nthis section, are hereby continued as  \nreserve cities:\n"
+    },
+    "TERM:EO:10700:22bbb919e2592483@17c4939c39d827e3": {
+      "actor_id": "EO:10700",
+      "char_end": 3798,
+      "char_start": 3684,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10700:22bbb919e2592483@17c4939c39d827e3",
+      "instrument_id": "EO:10700",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10700#sec3",
+      "source": {
+        "archival_id": "app:node/234362",
+        "page_or_item": "Executive Order 10700—Further Providing for the Operations Coordinating Board; February 25, 1957; APP node 234362; common-crawl capture 2025-10-15T03:31:30Z",
+        "sha256": "3e29a192292ee8f3b2c403b8608d7ccfff910f2aa70c7cbca2103fca9b3dd510",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10700-further-providing-for-the-operations-coordinating-board.txt",
+        "text_sha256": "17c4939c39d827e35ed6b0d4d84fa003299a43403f5b2820e2b465c9fc79b837",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10700-further-providing-for-the-operations-coordinating-board"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Subject to the provisions of section 101 (c) of the National Security Act of 1947, as amended (50 U.S.C. 402 (c)):"
+    },
+    "TERM:EO:10700:22bbb919e2592483@31abcaac8d9a7467": {
+      "actor_id": "EO:10700",
+      "char_end": 3877,
+      "char_start": 3763,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10700:22bbb919e2592483@31abcaac8d9a7467",
+      "instrument_id": "EO:10700",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10700#sec3",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 234362; common-crawl capture 2025-10-15T03:31:30Z; Sec. 7",
+        "sha256": "3e29a192292ee8f3b2c403b8608d7ccfff910f2aa70c7cbca2103fca9b3dd510",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10700-3e29a19229.txt",
+        "text_sha256": "31abcaac8d9a7467f6205f1d38e3fdbe84e8a78e556d9b34804e5d8053b3ec52",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10700-further-providing-for-the-operations-coordinating-board"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Subject to the provisions of section 101 (c) of the National Security Act of 1947, as amended (50 U.S.C. 402 (c)):"
+    },
+    "TERM:EO:10700:8e3bebcafb43a489@17c4939c39d827e3": {
+      "actor_id": "EO:10700",
+      "char_end": 6186,
+      "char_start": 5953,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10700:8e3bebcafb43a489@17c4939c39d827e3",
+      "instrument_id": "EO:10700",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10700#sec6",
+      "source": {
+        "archival_id": "app:node/234362",
+        "page_or_item": "Executive Order 10700—Further Providing for the Operations Coordinating Board; February 25, 1957; APP node 234362; common-crawl capture 2025-10-15T03:31:30Z",
+        "sha256": "3e29a192292ee8f3b2c403b8608d7ccfff910f2aa70c7cbca2103fca9b3dd510",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-10700-further-providing-for-the-operations-coordinating-board.txt",
+        "text_sha256": "17c4939c39d827e35ed6b0d4d84fa003299a43403f5b2820e2b465c9fc79b837",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10700-further-providing-for-the-operations-coordinating-board"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Subject to the provisions of this order (including the limitations imposed by section 3 hereof), the Board may be deemed to be a continuation of the Operations Coordinating Board provided for in Executive Order No. 10483, as amended."
+    },
+    "TERM:EO:10700:8e3bebcafb43a489@31abcaac8d9a7467": {
+      "actor_id": "EO:10700",
+      "char_end": 6265,
+      "char_start": 6032,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10700:8e3bebcafb43a489@31abcaac8d9a7467",
+      "instrument_id": "EO:10700",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10700#sec6",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 234362; common-crawl capture 2025-10-15T03:31:30Z; Sec. 7",
+        "sha256": "3e29a192292ee8f3b2c403b8608d7ccfff910f2aa70c7cbca2103fca9b3dd510",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10700-3e29a19229.txt",
+        "text_sha256": "31abcaac8d9a7467f6205f1d38e3fdbe84e8a78e556d9b34804e5d8053b3ec52",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10700-further-providing-for-the-operations-coordinating-board"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Subject to the provisions of this order (including the limitations imposed by section 3 hereof), the Board may be deemed to be a continuation of the Operations Coordinating Board provided for in Executive Order No. 10483, as amended."
     }
   },
-  "fingerprint": "af1b42044b2372551591c85ca20c0510db46741ca988e6e82276970ca24b8c41",
+  "fingerprint": "6072107de529193985457b93f762b446d5cf285ff3dd5bfe0df19994cac54a62",
   "instrument_id": "EO:10700",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -680,24 +1148,28 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_hits_for_this_order": 5,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
     }
   ],
   "missing": [
     "target provision not located: EO:10773",
-    "target provision not located: EO:10782",
-    "target provision not located: EO:10838"
+    "target provision not located: EO:10782"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10700",
-  "own_terms": [],
+  "own_terms": [
+    "TERM:EO:10700:22bbb919e2592483@31abcaac8d9a7467",
+    "TERM:EO:10700:8e3bebcafb43a489@31abcaac8d9a7467",
+    "TERM:EO:10700:22bbb919e2592483@17c4939c39d827e3",
+    "TERM:EO:10700:8e3bebcafb43a489@17c4939c39d827e3"
+  ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"
 }

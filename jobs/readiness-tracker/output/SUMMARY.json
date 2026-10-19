@@ -61,6 +61,7 @@
   "orders_blocked_by": {
     "NO_PROVISIONAL_STATUS": 11613,
     "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3216,
     "NO_CLAUSE_INVENTORY": 3142,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
     "FIRST_END_UNPROVED": 2742,
@@ -71,7 +72,6 @@
     "OPUS_MEDIA_NONE_CITED": 217,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
     "CLAIM_INCOMPLETE": 83,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
@@ -83,6 +83,7 @@
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
     "FIRST_END_UNPROVED": 2742,
     "NO_OFFICIAL_SOURCE_LOCATED": 959,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 898,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
     "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 400,
@@ -94,11 +95,16 @@
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
   "shared_unlocks": [
+    {
+      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+      "kind": "machine_job",
+      "orders_unblocked": 3216,
+      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+    },
     {
       "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
@@ -179,7 +185,7 @@
       "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
       "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
       "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
-      "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl",
+      "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -199,6 +205,7 @@
       "isthmian-canal-1911": 105,
       "indian-reservations-1912": 55,
       "richardson-volumes (lead only, never counted as the original)": 68,
+      "app-executive-orders (lead only, never counted as the original)": 9902,
       "opus-media-match status": 1155,
       "source-ladder": 147,
       "claim-checker": 217,

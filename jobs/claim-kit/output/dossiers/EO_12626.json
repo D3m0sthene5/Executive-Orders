@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12626",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12626"
@@ -183,8 +183,10 @@
     }
   ],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
+    "clause_3_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -192,7 +194,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 4 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -325,9 +327,60 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "In executing the functions delegated to him by this Order, the Secretary \nof D efense may delegate such functions as he may deem appropriate, subject \nto his direction."
+    },
+    "TERM:EO:12626:970348c78c5a3b50@a6d198b0debf2983": {
+      "actor_id": "EO:12626",
+      "char_end": 1488,
+      "char_start": 1323,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:12626:970348c78c5a3b50@a6d198b0debf2983",
+      "instrument_id": "EO:12626",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:12626#sec4",
+      "source": {
+        "archival_id": "app:node/253810",
+        "page_or_item": "Executive Order 12626—National Defense Stockpile Manager; February 25, 1988; APP node 253810; common-crawl capture 2025-03-19T20:46:50Z",
+        "sha256": "9b002631b7e41a67f7a3e4ae1f1d36c68121fb12e867af7ea77c1588b2d40959",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-12626-national-defense-stockpile-manager.txt",
+        "text_sha256": "a6d198b0debf298377c6578b7a9dfdcb5a40fe9a177902702f28a37507ae6226",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-12626-national-defense-stockpile-manager"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In executing the functions delegated to him by this Order, the Secretary of Defense may delegate such functions as he may deem appropriate, subject to his direction."
+    },
+    "TERM:EO:12626:970348c78c5a3b50@ae7c852d2c5a9c9d": {
+      "actor_id": "EO:12626",
+      "char_end": 1546,
+      "char_start": 1381,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:12626:970348c78c5a3b50@ae7c852d2c5a9c9d",
+      "instrument_id": "EO:12626",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:12626#sec4",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 253810; common-crawl capture 2025-03-19T20:46:50Z; Sec. 4",
+        "sha256": "9b002631b7e41a67f7a3e4ae1f1d36c68121fb12e867af7ea77c1588b2d40959",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12626-9b002631b7.txt",
+        "text_sha256": "ae7c852d2c5a9c9d87bd9b5c176dc8db0efab5538f3f08c767f054890ec32617",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-12626-national-defense-stockpile-manager"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In executing the functions delegated to him by this Order, the Secretary of Defense may delegate such functions as he may deem appropriate, subject to his direction."
     }
   },
-  "fingerprint": "d6fb344280d2402ba1cc4ae95c3a520bdceaf3a38c9c877b311c982876227b86",
+  "fingerprint": "98e381506bc9a282a15e463bb3e26f0d539addf28911fb922e80c3f3b6f320f3",
   "instrument_id": "EO:12626",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -358,8 +411,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -376,7 +429,9 @@
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12626",
   "own_terms": [
-    "TERM:EO:12626:8132040e4deb0585@45b51bf7776551e2"
+    "TERM:EO:12626:8132040e4deb0585@45b51bf7776551e2",
+    "TERM:EO:12626:970348c78c5a3b50@ae7c852d2c5a9c9d",
+    "TERM:EO:12626:970348c78c5a3b50@a6d198b0debf2983"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "yes"

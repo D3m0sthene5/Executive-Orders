@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 123,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:5981",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:5981"
@@ -31,7 +31,6 @@
   "conflicts": [],
   "current_law_leads": [],
   "draft_gate_errors": [
-    "clause_0_original_text_or_source",
     "clause_0_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
@@ -40,7 +39,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 1 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -105,9 +104,60 @@
       "start_date": null,
       "stated_end_date": "1933-05-31",
       "text": "Crowley, Vocational Advisor , Veterans ' Administration , who,\nduring the current month , reaches the retirement age prescribed for automatic\nseparation from the service , is hereby exempted from the provisions of that section\nuntil May 31 , 1933 ."
+    },
+    "TERM:EO:5981:d76a0d2e290f661f@afacf04a8c83c129": {
+      "actor_id": "EO:5981",
+      "char_end": 587,
+      "char_start": 346,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": "1933-05-31",
+      "id": "TERM:EO:5981:d76a0d2e290f661f@afacf04a8c83c129",
+      "instrument_id": "EO:5981",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:5981#whole",
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 361537; common-crawl capture 2025-10-17T11:45:05Z; whole operative text",
+        "sha256": "83661e679a93dfecf93651abad06e88c885b73743506a12a36720201562006aa",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-5981-83661e679a.txt",
+        "text_sha256": "afacf04a8c83c12954b38b72a66c38ee43020863f5d3ab74b300d05ad8e506b2",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-5981-exemption-john-t-crowley-from-compulsory-retirement-for-age"
+      },
+      "start_date": null,
+      "stated_end_date": "1933-05-31",
+      "text": "Crowley, Vocational Advisor, Veterans' Administration, who, during the current month, reaches the retirement age prescribed for automatic separation from the service, is hereby exempted from the provisions of that section until May 31, 1933."
+    },
+    "TERM:EO:5981:d76a0d2e290f661f@bb4301e2f0a1276e": {
+      "actor_id": "EO:5981",
+      "char_end": 501,
+      "char_start": 260,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": "1933-05-31",
+      "id": "TERM:EO:5981:d76a0d2e290f661f@bb4301e2f0a1276e",
+      "instrument_id": "EO:5981",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:5981#whole",
+      "source": {
+        "archival_id": "app:node/361537",
+        "page_or_item": "Executive Order 5981—Exemption of John T. Crowley from Compulsory Retirement for Age; December 22, 1932; APP node 361537; common-crawl capture 2025-10-17T11:45:05Z",
+        "sha256": "83661e679a93dfecf93651abad06e88c885b73743506a12a36720201562006aa",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-5981-exemption-john-t-crowley-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "bb4301e2f0a1276e992ccc52ccfc363f35086f906108f5e84f4043eff4ebc3a0",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-5981-exemption-john-t-crowley-from-compulsory-retirement-for-age"
+      },
+      "start_date": null,
+      "stated_end_date": "1933-05-31",
+      "text": "Crowley, Vocational Advisor, Veterans' Administration, who, during the current month, reaches the retirement age prescribed for automatic separation from the service, is hereby exempted from the provisions of that section until May 31, 1933."
     }
   },
-  "fingerprint": "d588d0213d1f91ba7984e21a9b4ac69a9ee20d91beb9dfa2570fcbd67342fd4a",
+  "fingerprint": "849d6a8615fa1fbd7bee9d3173cb5198e56a51411692991a138c1ec64be585a2",
   "instrument_id": "EO:5981",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -139,8 +189,8 @@
       "complete": true,
       "coverage_warning": "order dated 1932: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
       "entry": {
-        "checked_on": "2026-10-18",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -153,7 +203,9 @@
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:5981",
   "own_terms": [
-    "TERM:EO:5981:53d702fb567e0bb0@d99655abd4b789c4"
+    "TERM:EO:5981:53d702fb567e0bb0@d99655abd4b789c4",
+    "TERM:EO:5981:d76a0d2e290f661f@afacf04a8c83c129",
+    "TERM:EO:5981:d76a0d2e290f661f@bb4301e2f0a1276e"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"
