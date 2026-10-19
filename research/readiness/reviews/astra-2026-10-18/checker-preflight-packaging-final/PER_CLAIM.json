@@ -1,0 +1,195 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:12075": {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_12075.jsonl:1",
+   "claim_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+   "mechanical_result": "pass",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": false
+   }
+  },
+  "EO:9452": {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_9452.jsonl:1",
+   "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+   "mechanical_result": "pass",
+   "gate_passed": true,
+   "all_checks_passed": true,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": true,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_12075.jsonl:1",
+   "file": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_12075.jsonl",
+   "line": 1,
+   "instrument_id": "EO:12075",
+   "claim_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+   "provisional_status": "no",
+   "mechanical_result": "pass",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "gate_errors": [
+    "clause_2_first_end",
+    "clause_4_first_end",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps"
+   ],
+   "gate_claim_level_errors": [
+    "unresolved_material_gaps"
+   ],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "fail",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": false,
+     "mechanical": "absent",
+     "gate": "fail",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": false,
+     "mechanical": "absent",
+     "gate": "fail",
+     "checker_passed": false
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 79
+    },
+    "source_identity": {
+     "pass": 17
+    },
+    "quote_verbatim": {
+     "pass": 160
+    },
+    "date_valid": {
+     "pass": 55
+    },
+    "date_after_signing": {
+     "pass": 51
+    },
+    "order_exists": {
+     "pass": 8
+    },
+    "structural_gate": {
+     "fail": 5
+    }
+   },
+   "failures": [
+    "structural_gate:clause_2_first_end@-",
+    "structural_gate:clause_4_first_end@-",
+    "structural_gate:savings_residuals_evidence@-",
+    "structural_gate:bounded_later_search@-",
+    "structural_gate:unresolved_material_gaps@-"
+   ],
+   "failures_total": 5,
+   "unverified": [],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_9452.jsonl:1",
+   "file": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging-final/EO_9452.jsonl",
+   "line": 1,
+   "instrument_id": "EO:9452",
+   "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+   "provisional_status": "no",
+   "mechanical_result": "pass",
+   "gate_passed": true,
+   "all_checks_passed": true,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 18
+    },
+    "source_identity": {
+     "pass": 4
+    },
+    "quote_verbatim": {
+     "pass": 31
+    },
+    "date_valid": {
+     "pass": 13
+    },
+    "date_after_signing": {
+     "pass": 9
+    },
+    "order_exists": {
+     "pass": 6
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [],
+   "effective_for_tracker": true
+  }
+ ]
+}

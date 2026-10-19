@@ -1,0 +1,116 @@
+{
+  "schema": "eo-claim-check/v1",
+  "job": "claim-checker",
+  "legal_cutoff": "2026-10-14",
+  "claim_files": [
+    "EO_11022.jsonl",
+    "EO_11256.jsonl"
+  ],
+  "claim_lines_found": 2,
+  "job_limit": null,
+  "claims_checked": 2,
+  "claims_parse_errors": 0,
+  "claims_checker_errors": 0,
+  "orders_with_claim": 2,
+  "claims_all_checks_passed": 0,
+  "claims_mechanical_pass": 2,
+  "claims_mechanical_unverified": 0,
+  "claims_mechanical_fail": 0,
+  "claims_gate_passed": 0,
+  "steps_checker_passed_effective_claims": {
+    "original_text": 2,
+    "clause_inventory": 0,
+    "ending_or_current_basis": 0,
+    "savings_residuals": 0,
+    "counterevidence": 0
+  },
+  "check_results": {
+    "source_held": {
+      "pass": 63
+    },
+    "source_identity": {
+      "pass": 32
+    },
+    "quote_verbatim": {
+      "pass": 92
+    },
+    "date_valid": {
+      "pass": 31
+    },
+    "date_after_signing": {
+      "pass": 31
+    },
+    "order_exists": {
+      "pass": 9
+    },
+    "structural_gate": {
+      "fail": 38
+    },
+    "parse": {},
+    "checker_error": {}
+  },
+  "source_status_counts": {
+    "gpo_published_hash_match": 63
+  },
+  "source_identity_counts": {
+    "recorded_for_this_order": 32
+  },
+  "quote_status_counts": {
+    "exact": 92
+  },
+  "source_status_policy": {
+    "held_bytes_verified": "pass",
+    "held_bytes_in_release_or_repo": "pass",
+    "gpo_published_hash_match": "pass",
+    "custody_record_only": "skip"
+  },
+  "claim_checks_csv": {
+    "mode": "non_pass_rows",
+    "rows_written": 38,
+    "rows_total": 296,
+    "max_mb": 50.0,
+    "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+  },
+  "held_copies_indexed_by_origin": {
+    "jobs/app-executive-orders/output/SOURCES.jsonl": 51,
+    "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
+    "jobs/current-law/output/SOURCES.jsonl": 110,
+    "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
+    "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
+    "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl": 1531,
+    "jobs/indian-reservations-1912/data/PROVENANCE.json": 1,
+    "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl": 55,
+    "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
+    "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
+    "jobs/later-events/output/SOURCES.jsonl": 7626,
+    "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
+    "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
+    "jobs/ofr-compilations/data/PROVENANCE.json": 1,
+    "jobs/ofr-compilations/output/FRAGMENTS.jsonl": 500,
+    "jobs/opus-media-match/output/SOURCES.jsonl": 496,
+    "jobs/richardson-volumes/data/PROVENANCE.json": 3,
+    "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
+    "jobs/source-ladder/output/SOURCES.jsonl": 168,
+    "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
+    "opus_media_member_map": 496,
+    "opus_stage11_fetch_meta": 9203,
+    "opus_stage11_manifest": 27237,
+    "stage18_source_manifest": 25,
+    "stage20_statute_fetch_index": 7,
+    "stage21_acquisition_log": 160,
+    "stage21_custody": 160
+  },
+  "held_distinct_sha256": 33421,
+  "opus_text_pack_texts": 0,
+  "signing_dates_loaded": {
+    "identity_layer_year_only": 14854,
+    "jobs/fr-originals/output/NOT_FOUND.csv": 441,
+    "stage14_fetch_manifest": 1144,
+    "stage21_crosswalk": 402
+  },
+  "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+  "pypdf_available": true,
+  "fetch": null,
+  "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+}

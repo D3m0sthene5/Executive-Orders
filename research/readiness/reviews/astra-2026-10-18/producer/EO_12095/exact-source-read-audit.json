@@ -1,0 +1,399 @@
+{
+  "schema": "astra-exact-source-read-audit/v1",
+  "instrument_id": "EO:12095",
+  "candidate_verdict": "partial_only_not_ready",
+  "producer_role": "ai_producer",
+  "required_reviewer_role": "ai_review",
+  "independent_review_pending": true,
+  "branch": "astra/side-2026-10-18",
+  "reservation_commit": "7c4f0eb1",
+  "draft_path": "jobs/case-bundles/output/drafts/12/EO_12095.json",
+  "draft_file_sha256": "8a07fcdc3e72380e1cc0279475ffb4660821855991945d300eefd0c106ef422f",
+  "copied_only_claim": true,
+  "canonical_claim_gate_sha256": "8a3271c392362c439ff697b488ddb4028130fafd6904159a1555fa9b8ea85393",
+  "raw_claim_file_sha256": "d1c45d8b9fae07fa5de6292b96a04b8b43e269ee6ae03ca3424ded3212407adb",
+  "source_reads": [
+    {
+      "instrument_id": "EO:12095",
+      "source": {
+        "page_or_item": "43 FR 51595, PDF page 11; complete EO12095 official text extract",
+        "sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf",
+        "text_path": "jobs/fr-originals/output/texts/EO_12095.txt",
+        "text_sha256": "6e9454cc7fd5185e592dc24b06fbe6b667695895e6144d18382b93a59729c186",
+        "page_images_inspected": false,
+        "text_review_basis": "Complete unambiguous official extract with matching GPO fixity; page image not inspected"
+      },
+      "full_held_text_read": true,
+      "page_images_read": false,
+      "scope": "Title, factual/legal preamble, both numbered provisions, dated and filing tail",
+      "text_adequacy": "Complete readable official extract; no material source-identity or operative-boundary ambiguity; image absence is disclosed without being treated as a standalone material blocker."
+    },
+    {
+      "instrument_id": "EO:12379",
+      "source": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "page_or_item": "47 FR 36099, PDF page 9; EO12379 section5; full actor read on pages9-10 via held official extract",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+        "text_sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+        "page_images_inspected": false,
+        "text_review_basis": "Complete official extract with matching GPO fixity; page image not inspected",
+        "quoted_text": "Sec. 5. Executive Order No. 12095, creating an Em ergency Board to Investigate  \na Dispute Betw een W ien A ir A laska, Inc., arid Certain Individuals, is revoked."
+      },
+      "full_held_text_read": true,
+      "page_images_read": false,
+      "scope": "Entire held actor, preamble and sections1-25 plus dated/filing tail; exact section5 retained",
+      "effective_date_reason": "is revoked, no deferred effective wording elsewhere in the full text, August17,1982 stated in heading and tail. Formal later event only."
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "jobs/fr-originals/output/SOURCES.jsonl",
+      "line": 1608,
+      "record": {
+        "bytes": 42935735,
+        "cache_path": "blobs/53/536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4.pdf",
+        "content_type": "application/pdf",
+        "instrument_ids": [
+          "EO:12095"
+        ],
+        "location_confidence": "high",
+        "notes": "FR-1978-11-06.pdf: 168 PDF pages; located by counted_back_from_next_numbered_page, marker heading; confidence high",
+        "page_or_item": "43 FR 51595, PDF pages 11-11",
+        "requested_url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf",
+        "retrieved_utc": "2026-10-17T22:50:44Z",
+        "route": "official/govinfo_fr_issue_pdf",
+        "sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+        "source_id": "fr-originals:EO:12095:536a1037ca26",
+        "text_path": "texts/EO_12095.txt",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf"
+      }
+    }
+  ],
+  "fixity_records": [
+    {
+      "path": "jobs/official-fixity/output/FIXITY.csv",
+      "line": 2738,
+      "file_sha256": "78e800b5ae9b0bc1aeed30e142991eab80c01cf66df31e5a186f4069d81b92ef",
+      "row": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf",
+        "package": "FR-1978-11-06",
+        "filename": "FR-1978-11-06.pdf",
+        "recorded_sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+        "gpo_sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+        "algorithm": "SHA-256",
+        "result": "match",
+        "detail": "",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1978-11-06/premis.xml",
+        "premis_bytes_read": "65536",
+        "checked_utc": "2026-10-18T00:55:43Z",
+        "instrument_ids": "EO:12095 | EO:12096",
+        "found_in": "jobs/clause-drafts/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+      }
+    },
+    {
+      "path": "jobs/official-fixity/output/FIXITY.csv",
+      "line": 2938,
+      "file_sha256": "78e800b5ae9b0bc1aeed30e142991eab80c01cf66df31e5a186f4069d81b92ef",
+      "row": {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "package": "FR-1982-08-19",
+        "filename": "FR-1982-08-19.pdf",
+        "recorded_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "gpo_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "algorithm": "SHA-256",
+        "result": "match",
+        "detail": "",
+        "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1982-08-19/premis.xml",
+        "premis_bytes_read": "65536",
+        "checked_utc": "2026-10-18T00:55:48Z",
+        "instrument_ids": "EO:12379",
+        "found_in": "jobs/family-rule-sources/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl | jobs/source-ladder/output/SOURCES.jsonl | research/readiness/rules/EO_12379.json"
+      }
+    }
+  ],
+  "clause_spans": [
+    {
+      "scope_id": "EO:12095#sec1-101-establishment",
+      "char_start": 1450,
+      "char_end": 1593,
+      "text_path": "jobs/fr-originals/output/texts/EO_12095.txt",
+      "text_sha256": "6e9454cc7fd5185e592dc24b06fbe6b667695895e6144d18382b93a59729c186",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:12095#sec1-101-disqualification",
+      "char_start": 1594,
+      "char_end": 1722,
+      "text_path": "jobs/fr-originals/output/texts/EO_12095.txt",
+      "text_sha256": "6e9454cc7fd5185e592dc24b06fbe6b667695895e6144d18382b93a59729c186",
+      "exact_span_match": true
+    },
+    {
+      "scope_id": "EO:12095#sec1-102",
+      "char_start": 1723,
+      "char_end": 1865,
+      "text_path": "jobs/fr-originals/output/texts/EO_12095.txt",
+      "text_sha256": "6e9454cc7fd5185e592dc24b06fbe6b667695895e6144d18382b93a59729c186",
+      "exact_span_match": true
+    }
+  ],
+  "segmentation_change": "Two numbered provisions divided into three disjoint exact spans to preserve the independent member-disqualification sentence. No operative text omitted; statutory recital retained in source read and gap.",
+  "earlier_amendment_read": {
+    "path": "jobs/later-events/output/EDGES.csv",
+    "sha256": "fa510f2401aba3d43badcc3448d0f9e7fd72ddf5d9d355c43da3442140fc8af1",
+    "target_rows": [
+      {
+        "line": 7519,
+        "row": {
+          "edge_id": "LE-44b95c544401",
+          "acting_id": "EO:12379",
+          "acting_label": "EO 12379, August 17, 1982",
+          "target_id": "EO:12095",
+          "target_label": "",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "date stated next to the acting instrument in the OFR note",
+          "date_flags": "",
+          "stated_effective_date": "",
+          "evidence_type": "ofr_note_on_target",
+          "stated_on": "EO:12095",
+          "source_id": "ofr-api-page:79e100de57f8d997",
+          "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+          "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+          "page_or_item": "OFR API record executive_order_number=12095; citation 43 FR 51595; field disposition_notes",
+          "note_label": "Revoked by",
+          "quote_kind": "verbatim_note_item",
+          "quote_span": "",
+          "quote": "Revoked by: EO 12379, August 17, 1982"
+        }
+      },
+      {
+        "line": 7520,
+        "row": {
+          "edge_id": "LE-b996a2b35d71",
+          "acting_id": "EO:12379",
+          "acting_label": "",
+          "target_id": "EO:12095",
+          "target_label": "EO 12095, November 2, 1978",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "acting order signing_date from OFR catalog",
+          "date_flags": "",
+          "stated_effective_date": "",
+          "evidence_type": "ofr_note_on_acting",
+          "stated_on": "EO:12379",
+          "source_id": "ofr-api-page:79e100de57f8d997",
+          "source_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bcorrection%5D=0&conditions%5Bpresidential_document_type%5D=executive_order&conditions%5Btype%5D%5B%5D=PRESDOCU&fields%5B%5D=citation&fields%5B%5D=disposition_notes&fields%5B%5D=document_number&fields%5B%5D=executive_order_number&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=signing_date&fields%5B%5D=title&format=json&include_pre_1994_docs=true&order=executive_order_number&page=5&per_page=1000&search_after_cursor=WzExNDk3LjAsIjExNDk3Il0",
+          "source_sha256": "79e100de57f8d997baaa1875f1937e8ee54569852f043ec283a3242cbcf3893e",
+          "page_or_item": "OFR API record executive_order_number=12379; citation 47 FR 36099; field disposition_notes",
+          "note_label": "Revokes",
+          "quote_kind": "verbatim_note_item",
+          "quote_span": "",
+          "quote": "EO 12095, November 2, 1978"
+        }
+      },
+      {
+        "line": 7521,
+        "row": {
+          "edge_id": "LE-f4af1f13a6cf",
+          "acting_id": "EO:12379",
+          "acting_label": "",
+          "target_id": "EO:12095",
+          "target_label": "",
+          "target_in_universe": "yes",
+          "mechanism": "revocation",
+          "qualifier": "",
+          "date_candidate": "1982-08-17",
+          "date_basis": "acting order signing_date from OFR catalog",
+          "date_flags": "acting_order_heading_not_found_in_text(whole text scanned)",
+          "stated_effective_date": "",
+          "evidence_type": "order_text_fr_originals",
+          "stated_on": "EO:12379",
+          "source_id": "fr-originals:EO:12379:5432431cc090",
+          "source_url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+          "source_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "page_or_item": "47 FR 36099, PDF pages 9-10",
+          "note_label": "",
+          "quote_kind": "verbatim_text_sentence",
+          "quote_span": "chars 1627-1782 of the scanned text",
+          "quote": "Executive Order No. 12095, creating an Em ergency Board to Investigate a Dispute Betw een W ien A ir A laska, Inc., arid Certain Individuals, is revoked."
+        }
+      }
+    ],
+    "conclusion": "Only EO12379 appears in target rows; no earlier amendment source identified. Actual report/completion is the concrete missing earlier event."
+  },
+  "own_terms_audit": {
+    "machine_candidates": [
+      {
+        "actor_id": "EO:12095",
+        "char_end": 1865,
+        "char_start": 1738,
+        "computed_end_candidate": null,
+        "confidence": "medium",
+        "effective_date": null,
+        "id": "TERM:EO:12095:da6bf2275c827113@6e9454cc7fd5185e",
+        "instrument_id": "EO:12095",
+        "kind": "report_deadline",
+        "mechanism": "own_terms_report_deadline",
+        "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+        "notes": "Machine wording lead; no cessation or occurrence inferred.",
+        "scope_id": "EO:12095#whole",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "page_or_item": "43 FR 51595, PDF pages 11-11",
+          "requires_page_check": false,
+          "sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+          "signing_date": "1978-11-02",
+          "text_path": "jobs/fr-originals/output/texts/EO_12095.txt",
+          "text_sha256": "6e9454cc7fd5185e592dc24b06fbe6b667695895e6144d18382b93a59729c186",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf"
+        },
+        "start_date": null,
+        "stated_end_date": null,
+        "text": "The board shall report its findings to the President with  \nrespect to the dispute within 30 days from the date o f this Order."
+      },
+      {
+        "actor_id": "EO:12095",
+        "char_end": 1299,
+        "char_start": 1172,
+        "computed_end_candidate": null,
+        "confidence": "medium",
+        "effective_date": null,
+        "id": "TERM:EO:12095:da6bf2275c827113@790cb7712a6a9e5f",
+        "instrument_id": "EO:12095",
+        "kind": "report_deadline",
+        "mechanism": "own_terms_report_deadline",
+        "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+        "notes": "Machine wording lead; no cessation or occurrence inferred.",
+        "scope_id": "EO:12095#whole",
+        "source": {
+          "filing_date": null,
+          "page_or_item": "43 FR 51595, PDF pages 11-11",
+          "requires_page_check": false,
+          "sha256": "536a1037ca267209618a03c084961e4d19d6604ac217c708871e23f83249f4c4",
+          "signing_date": "1978-11-02",
+          "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12095-536a1037ca.txt",
+          "text_sha256": "790cb7712a6a9e5f40b5a9ab0b48194d8b58351f00ecb02ad9b04165c3916d21",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-06/pdf/FR-1978-11-06.pdf"
+        },
+        "start_date": null,
+        "stated_end_date": null,
+        "text": "The board shall report its findings to the President with  \nrespect to the dispute within 30 days from the date o f this Order."
+      }
+    ],
+    "finding": "Original contains a report deadline only, no explicit sunset. No signing+30 or signing+60 formula accepted."
+  },
+  "machine_chain_audit": {
+    "path": "jobs/claim-kit/output/dossiers/EO_12095.json",
+    "sha256": "b89b96a1e11bf4aa6b1a772fa7a739bd96707310fb9097a049593bcc9e8a535d",
+    "fingerprint": "bfdacdb7f2dbf53211a063bf97962d5f837b7e3994578c8e1543ed3205255d30",
+    "rejected_actor_ids": [
+      "EO:11654",
+      "EO:12042",
+      "EO:12071",
+      "EO:12085",
+      "EO:12089",
+      "EO:12132",
+      "EO:12192",
+      "EO:12194",
+      "EO:12207",
+      "EO:12275"
+    ],
+    "reason": "Cross-actor entries reuse EO12379 source language with unrelated named-order dates; full held actor identifies EO12379."
+  },
+  "machine_search_scope": {
+    "entries": [
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "searched_by": "jobs/current-law (machine search)"
+        },
+        "machine_hits_for_this_order": 0,
+        "scope_note": "",
+        "search_id": "current-law:usc"
+      },
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "searched_by": "jobs/current-law (machine search)"
+        },
+        "machine_hits_for_this_order": 0,
+        "scope_note": "",
+        "search_id": "current-law:ecfr"
+      },
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "searched_by": "jobs/later-events (machine search)"
+        },
+        "machine_hits_for_this_order": 2,
+        "scope_note": "",
+        "search_id": "later-events:ofr_catalog"
+      }
+    ],
+    "accepted_ids": [
+      "later-events:ofr_catalog",
+      "current-law:ecfr"
+    ],
+    "excluded_ids": [
+      "current-law:usc"
+    ],
+    "judgment": "OFR scope identifies formal later EO events; eCFR scope supplies bounded regulatory contrary-reference search with zero target hits. Actual target EDGES and false positives reviewed. USC current only toOctober9 is not accepted as through-cutoff evidence. Search acceptance does not resolve missing historical report/statutes."
+  },
+  "held_search": {
+    "query": "Wien|12095|95-504|95.504 (case-insensitive)",
+    "paths": [
+      "jobs/source-ladder/output/texts",
+      "jobs/fr-originals/output/texts",
+      "jobs/current-law/output/USC_EO_NOTES.jsonl"
+    ],
+    "reviewed_results": "Original and EO12379 only relevant to this board. EO12497 context is unrelated CAB reporting comments listing airlines; EO12399 neighboring text concerns small-community air service under Act section419. Older matches are unrelated Wien names/carrier matters, page/document numbers, or OCR Wience; EO13470 match is a hash substring. No report text or actual submission receipt found.",
+    "not_exhausted": true
+  },
+  "savings_assessment": "Neither full order has an express savings or transfer provision. No hypothetical accrued-compensation gap added. Residuals remain null solely because the original expressly invokes statutory provisions whose relevant legal effects have not been read.",
+  "image_status": {
+    "page_images_read": false,
+    "material_text_ambiguity": false,
+    "qualification_only": true
+  },
+  "gate_errors_expected_for_partial": [
+    "clause_0_first_end",
+    "clause_1_first_end",
+    "clause_2_first_end",
+    "whole_order_end_evidence",
+    "savings_residuals_evidence",
+    "unresolved_material_gaps"
+  ],
+  "exact_source_span_checks": {
+    "original_spans": 3,
+    "all_exact": true,
+    "actor_quote_exact": true
+  },
+  "telemetry": {
+    "model": null,
+    "model_note": "Inherited model; actual runtime identifier/billing unavailable",
+    "billed_input_tokens": null,
+    "billed_output_tokens": null,
+    "wall_started_utc": "2026-10-19T00:52:35+00:00",
+    "wall_ended_utc": "2026-10-19T00:54:30.896726+00:00",
+    "observed_wall_seconds": 115.897,
+    "active_labor_seconds": null,
+    "note": "Clock observed immediately before first dossier read; billed usage unavailable, not replaced by payload metrics."
+  }
+}

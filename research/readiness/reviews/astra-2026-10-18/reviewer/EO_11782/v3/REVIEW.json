@@ -1,0 +1,963 @@
+{
+  "artifact_type": "independent_ai_claim_review",
+  "reviewer_role": "ai_review",
+  "instrument_id": "EO:11782",
+  "candidate_version": "v3",
+  "claim_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v3/claim.json",
+  "claim_sha256": "e9c8b5f3773b1012ccea13fd07af2f7852cbf527d95e958e36dccb4cd7b6d95c",
+  "claim_file_sha256": "82ce9e36962bbbb3a2041a9052baf3abedbe34a4d7d1133abdf749dcb9901f86",
+  "verdict": "reject",
+  "disposition": "versioned_provenance_correction_required",
+  "substantive_lifecycle_verdict": "uphold",
+  "verdict_scope": "Reject the frozen v3 search-provenance statement as written. Independently uphold its five original units, five 1982-08-17 first ends, whole-order end, terminated states, and bounded no-savings conclusion. This is a documentary search-scope correction, not a substantive lifecycle rejection.",
+  "reasons": [
+    {
+      "id": "SEARCH_SCOPE_01",
+      "severity": "provenance_correction",
+      "field": "later_source_search[3].query_or_scope",
+      "finding": "The field attributes FR/Opus/source-ladder coverage and an exact inventory to producer/EO_11782/v2/NAMED_SEARCH.json. That workpaper records only 7066 files (6652 FR plus 414 Opus), not the 178 source-ladder output/texts files. A nonexistent output/text directory was used for the initial ladder portion. The frozen claim must not certify that omitted collection as covered by its cited initial inventory.",
+      "required_correction": "Preserve the initial search accurately and separately record a supplemental scan of actual jobs/source-ladder/output/texts, with file count, inventory hashes, queries and disposition of all five hits. Version the candidate; do not rewrite v3.",
+      "reviewer_supplement": "Independent scan in SOURCE_AUDIT.json covers all 7244 held files: FR6652, ladder178, Opus414. The ladder adds EO12379 duplicate and four neighboring SBA Bank-rate contents hits; raw contexts read and no additional Council-changing action found."
+    }
+  ],
+  "source_audit": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_11782/v3/SOURCE_AUDIT.json",
+    "sha256": "560d4d2fb12893fd7fbaeb380f3920301226d6b3901ce695d07cc43d0ba86d7a",
+    "written_before_candidate_read": true
+  },
+  "source_audit_erratum": "Generic read_scope wording on the four held-EO source rows says including all 25 EO12379 sections. That suffix applies only to EO12379; EO11782, EO12212 and EO13829 were each read in full as their own instruments. Page arrays, source identities and text hashes remain the exact limits. No claim that other orders contain EO12379 sections.",
+  "exact_sources_checked": [
+    {
+      "name": "EO:11782",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "actual_pdf_sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "actual_pdf_bytes": 69148819,
+      "pdf_path": "jobs/astra-source-retention/output/pdf/df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876.pdf",
+      "page_count": 240,
+      "pages_read": [
+        7
+      ],
+      "page_sources": [
+        {
+          "pdf_page": 7,
+          "text_path": "jobs/astra-source-retention/output/pages/df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876/page-7.txt",
+          "text_sha256": "71e38e7881fdace6e437c2d7b9023c226832fccea141fb4591462c5a73d229c0",
+          "actual_pdf_extraction_matches_held_text": true
+        }
+      ],
+      "retention_attempt": {
+        "route": "queued_astra_retention",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+        "final_url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+        "time_utc": "2026-10-19T00:59:20Z",
+        "status": 200,
+        "error": "",
+        "bytes": 69148819,
+        "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+        "content_type": "application/pdf",
+        "from_cache": false,
+        "accepted": true,
+        "reject_reason": "",
+        "page_hint": null,
+        "redirects": []
+      },
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+          "package": "FR-1974-05-07",
+          "filename": "FR-1974-05-07.pdf",
+          "recorded_sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+          "gpo_sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+          "algorithm": "SHA-256",
+          "result": "match",
+          "detail": "",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1974-05-07/premis.xml",
+          "premis_bytes_read": "65536",
+          "checked_utc": "2026-10-18T00:55:37Z",
+          "instrument_ids": "EO:11782",
+          "found_in": "jobs/clause-drafts/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+        }
+      ]
+    },
+    {
+      "name": "EO:12379",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "actual_pdf_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "actual_pdf_bytes": 91189374,
+      "pdf_path": "jobs/astra-source-retention/output/pdf/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a.pdf",
+      "page_count": 312,
+      "pages_read": [
+        9,
+        10
+      ],
+      "page_sources": [
+        {
+          "pdf_page": 9,
+          "text_path": "jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-9.txt",
+          "text_sha256": "d3e79499e290f99bad0f2b85b458ac56adfb11d0118c84c859f0275f87aa574e",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 10,
+          "text_path": "jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-10.txt",
+          "text_sha256": "c24f01d7cf540aa2b061f5eca81da08b9230d8241bfbda0b041603198ce0bfc2",
+          "actual_pdf_extraction_matches_held_text": true
+        }
+      ],
+      "retention_attempt": {
+        "route": "queued_astra_retention",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "final_url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+        "time_utc": "2026-10-19T00:58:51Z",
+        "status": 200,
+        "error": "",
+        "bytes": 91189374,
+        "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+        "content_type": "application/pdf",
+        "from_cache": false,
+        "accepted": true,
+        "reject_reason": "",
+        "page_hint": null,
+        "redirects": []
+      },
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+          "package": "FR-1982-08-19",
+          "filename": "FR-1982-08-19.pdf",
+          "recorded_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "gpo_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "algorithm": "SHA-256",
+          "result": "match",
+          "detail": "",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1982-08-19/premis.xml",
+          "premis_bytes_read": "65536",
+          "checked_utc": "2026-10-18T00:55:48Z",
+          "instrument_ids": "EO:12379",
+          "found_in": "jobs/family-rule-sources/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl | jobs/source-ladder/output/SOURCES.jsonl | research/readiness/rules/EO_12379.json"
+        }
+      ]
+    },
+    {
+      "name": "PL92-463 FACA",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg770.pdf",
+      "sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+      "actual_pdf_sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+      "actual_pdf_bytes": 1414993,
+      "pdf_path": "jobs/astra-source-retention/output/pdf/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8.pdf",
+      "page_count": 7,
+      "pages_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "page_sources": [
+        {
+          "pdf_page": 1,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-1.txt",
+          "text_sha256": "516f4cb52ed4e4a9073a77b53a0dfb00c73e04706a8eb08531166b27d716b6b1",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 2,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-2.txt",
+          "text_sha256": "908b4e34c357956158953c58198932960657fe687adad4766b9fd5a551b56ed8",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 3,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-3.txt",
+          "text_sha256": "7d5505e33b2610634ef11a7f9e53cff5d447c2da69eb619ba08b4cd2e985510e",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 4,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-4.txt",
+          "text_sha256": "00662e797acca5bfd022c8ce184794ce113bd4e2977ca16ac6735b06a279b2b9",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 5,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-5.txt",
+          "text_sha256": "75be90bc38baf8172244e9dea8fe530d2aeda32c3cf6d93300bb889317aafaf5",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 6,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-6.txt",
+          "text_sha256": "c03fd43413add6f6bb564b0aa537a5b5941eae5ea3f1b0cca229d07c6b44f49b",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 7,
+          "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-7.txt",
+          "text_sha256": "c82764947782072ff9937bc093d304cf2be94d76b9376c0683c9d0ac59470760",
+          "actual_pdf_extraction_matches_held_text": true
+        }
+      ],
+      "retention_attempt": {
+        "route": "queued_astra_retention",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg770.pdf",
+        "final_url": "https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg770.pdf",
+        "time_utc": "2026-10-19T00:59:06Z",
+        "status": 200,
+        "error": "",
+        "bytes": 1414993,
+        "sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+        "content_type": "application/pdf",
+        "from_cache": false,
+        "accepted": true,
+        "reject_reason": "",
+        "page_hint": null,
+        "redirects": []
+      },
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg770.pdf",
+          "package": "STATUTE-86",
+          "filename": "STATUTE-86-Pg770.pdf",
+          "recorded_sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+          "gpo_sha256": "",
+          "algorithm": "",
+          "result": "not_listed",
+          "detail": "single-document PDF: PREMIS lists only the package PDF",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/STATUTE-86/premis.xml",
+          "premis_bytes_read": "0",
+          "checked_utc": "2026-10-18T00:56:00Z",
+          "instrument_ids": "EO:10095 | EO:10318 | EO:10329 | EO:10486 | EO:10891 | EO:10921 | EO:10922 | EO:10929 | EO:10934 | EO:10948 | EO:10991 | EO:11210 | EO:11215 | EO:11234 | EO:11236 | EO:11289 | EO:11341 | EO:11347 | EO:11365 | EO:11425 | EO:11509 | EO:7034",
+          "found_in": "jobs/opus-media-match/output/SOURCES.jsonl"
+        }
+      ]
+    },
+    {
+      "name": "PL93-224 Bank Act",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-87/pdf/STATUTE-87-Pg937.pdf",
+      "sha256": "0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98",
+      "actual_pdf_sha256": "0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98",
+      "actual_pdf_bytes": 1146930,
+      "pdf_path": "jobs/astra-source-retention/output/pdf/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98.pdf",
+      "page_count": 6,
+      "pages_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "page_sources": [
+        {
+          "pdf_page": 1,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-1.txt",
+          "text_sha256": "6a3937624707f1b9e80d434793010824fe7b6d9c6083f4bd520a92f2f378ce96",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 2,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-2.txt",
+          "text_sha256": "62b5c3e52ccf3a3cedc79ac80280398b045e578763915fa5275ee5520875e036",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 3,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-3.txt",
+          "text_sha256": "46b6b59af77b306181a398d1be095cad060bd9ea1595506f00df5ca1ce3093a1",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 4,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-4.txt",
+          "text_sha256": "f8524f8abbfbf854c6f760f7deb27170b445c8b6891e817dbaa286089267d513",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 5,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-5.txt",
+          "text_sha256": "fa15b1a02174b1790587b9be82133c53a5aa2d5f1bca71aaceb62f7c858fae9e",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 6,
+          "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-6.txt",
+          "text_sha256": "4fd7b21397f347aca17b1b19e30556157c33ca1881c93ddff21b4380d85a24a6",
+          "actual_pdf_extraction_matches_held_text": true
+        }
+      ],
+      "retention_attempt": {
+        "route": "queued_astra_retention",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-87/pdf/STATUTE-87-Pg937.pdf",
+        "final_url": "https://www.govinfo.gov/content/pkg/STATUTE-87/pdf/STATUTE-87-Pg937.pdf",
+        "time_utc": "2026-10-19T00:59:09Z",
+        "status": 200,
+        "error": "",
+        "bytes": 1146930,
+        "sha256": "0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98",
+        "content_type": "application/pdf",
+        "from_cache": false,
+        "accepted": true,
+        "reject_reason": "",
+        "page_hint": null,
+        "redirects": []
+      },
+      "fixity_rows": []
+    },
+    {
+      "name": "PL96-88",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg668.pdf",
+      "sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "actual_pdf_sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "actual_pdf_bytes": 5086840,
+      "pdf_path": "jobs/astra-source-retention/output/pdf/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d.pdf",
+      "page_count": 29,
+      "pages_read": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12,
+        13,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "page_sources": [
+        {
+          "pdf_page": 1,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-1.txt",
+          "text_sha256": "8cac0040dab1ae98f9820cd6c9400c50dd0fc0e7161b0416b69a6af55bcb9ed6",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 2,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-2.txt",
+          "text_sha256": "6a634af4d4c8d1e9a4d4efa8a60a60752b07ae1ab2eeeb179613fae8c2d24dee",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 3,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-3.txt",
+          "text_sha256": "6d76b859c2d917cfca30800858df83928ed90a68805b78e65d5bb49cc8399623",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 4,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-4.txt",
+          "text_sha256": "7d6f01782b5d4b29e59f8c23ae81848eb38a1afbe2b41ed49c23e62cfcd73e68",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 10,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-10.txt",
+          "text_sha256": "95b12d6eb622866b93d7692b39ff83d4b39af34cfd6ca53f83731f37b3923be1",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 11,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-11.txt",
+          "text_sha256": "9f3fe3ee98c9b74565e0fa74a6355b3248561ff220ac40688e909458822e05ad",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 12,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-12.txt",
+          "text_sha256": "3c3c6f4e0ea2b022fa707c42e5a1d721a7932172107b9d8806192b0b2438da2a",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 13,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-13.txt",
+          "text_sha256": "6cbd68bac7583bdba82b6adf14d2b68f5ad31f7d240a78ffebbb72f988f0b4e3",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 23,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-23.txt",
+          "text_sha256": "0f74b73351583fb5f44e03dfff64d3ac25ee4a2e1c33cd2b27a7d24a6eb53861",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 24,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-24.txt",
+          "text_sha256": "6a79441d1154fced46f5d3cc79bd3e40f1fa3a4f5777a644c9aa436eb8db7727",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 25,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-25.txt",
+          "text_sha256": "b170d9f3c68187dc1a639949de05f188de338922300d7b6e2f15f7809a4dd9d4",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 26,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-26.txt",
+          "text_sha256": "202580988fa8b1ffbfe5711a91e88bcd977f4eded762ddc30d676070bf490aae",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 27,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-27.txt",
+          "text_sha256": "3af9e408dd1f6ee1170205d9bd9beb87547209de81c41ec33b9102937a259c42",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 28,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-28.txt",
+          "text_sha256": "374debc8e9d04763b9aba171cd1c607e4548eda38067902ded33a2120fc6ae2f",
+          "actual_pdf_extraction_matches_held_text": true
+        },
+        {
+          "pdf_page": 29,
+          "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-29.txt",
+          "text_sha256": "046f453922a074dbfe1ab1f42d4d25ea5c5f4c382915430e179471ed73ecb29b",
+          "actual_pdf_extraction_matches_held_text": true
+        }
+      ],
+      "retention_attempt": {
+        "route": "queued_astra_retention",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg668.pdf",
+        "final_url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg668.pdf",
+        "time_utc": "2026-10-19T00:59:07Z",
+        "status": 200,
+        "error": "",
+        "bytes": 5086840,
+        "sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+        "content_type": "application/pdf",
+        "from_cache": false,
+        "accepted": true,
+        "reject_reason": "",
+        "page_hint": null,
+        "redirects": []
+      },
+      "fixity_rows": []
+    },
+    {
+      "name": "EO:11782 held full extract",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF pages 7-7",
+      "text_path": "jobs/fr-originals/output/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_scope": "Complete EO text and signature, including all 25 EO12379 sections",
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+          "package": "FR-1974-05-07",
+          "filename": "FR-1974-05-07.pdf",
+          "recorded_sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+          "gpo_sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+          "algorithm": "SHA-256",
+          "result": "match",
+          "detail": "",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1974-05-07/premis.xml",
+          "premis_bytes_read": "65536",
+          "checked_utc": "2026-10-18T00:55:37Z",
+          "instrument_ids": "EO:11782",
+          "found_in": "jobs/clause-drafts/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+        }
+      ]
+    },
+    {
+      "name": "EO:12379 held full extract",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF pages 9-10",
+      "text_path": "jobs/fr-originals/output/texts/EO_12379.txt",
+      "text_sha256": "c7c738d02047e0faabb73bdca7b9cbf5cb9953abb67a629f658cb125eb3f1613",
+      "read_scope": "Complete EO text and signature, including all 25 EO12379 sections",
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+          "package": "FR-1982-08-19",
+          "filename": "FR-1982-08-19.pdf",
+          "recorded_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "gpo_sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+          "algorithm": "SHA-256",
+          "result": "match",
+          "detail": "",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1982-08-19/premis.xml",
+          "premis_bytes_read": "65536",
+          "checked_utc": "2026-10-18T00:55:48Z",
+          "instrument_ids": "EO:12379",
+          "found_in": "jobs/family-rule-sources/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl | jobs/source-ladder/output/SOURCES.jsonl | research/readiness/rules/EO_12379.json"
+        }
+      ]
+    },
+    {
+      "name": "EO:12212 held full extract",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1980-05-05/pdf/FR-1980-05-05.pdf",
+      "sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+      "page_or_item": "45 FR 29557, PDF pages 11-11",
+      "text_path": "jobs/fr-originals/output/texts/EO_12212.txt",
+      "text_sha256": "aece46949737f82263c165d02773791b7b137f64c5d3392a6dae0a92dc74a776",
+      "read_scope": "Complete EO text and signature, including all 25 EO12379 sections",
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-1980-05-05/pdf/FR-1980-05-05.pdf",
+          "package": "FR-1980-05-05",
+          "filename": "FR-1980-05-05.pdf",
+          "recorded_sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+          "gpo_sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+          "algorithm": "SHA-256",
+          "result": "match",
+          "detail": "",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-1980-05-05/premis.xml",
+          "premis_bytes_read": "65536",
+          "checked_utc": "2026-10-18T00:55:45Z",
+          "instrument_ids": "EO:12212",
+          "found_in": "jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+        }
+      ]
+    },
+    {
+      "name": "EO:13829 held full extract",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-18/pdf/2018-08272.pdf",
+      "sha256": "1596ba97e63344783623e182740d2274b0eb3e8b9ab0d96b2c9cb31edf647af3",
+      "page_or_item": "83 FR 17281, PDF pages 1-3",
+      "text_path": "jobs/fr-originals/output/texts/EO_13829.txt",
+      "text_sha256": "f372d796073935ea901954a6a14ccb09a6a327f18864bb506d16ac29e1cb83bd",
+      "read_scope": "Complete EO text and signature, including all 25 EO12379 sections",
+      "fixity_rows": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-18/pdf/2018-08272.pdf",
+          "package": "FR-2018-04-18",
+          "filename": "2018-08272.pdf",
+          "recorded_sha256": "1596ba97e63344783623e182740d2274b0eb3e8b9ab0d96b2c9cb31edf647af3",
+          "gpo_sha256": "",
+          "algorithm": "",
+          "result": "not_listed",
+          "detail": "single-document PDF: PREMIS lists only the package PDF",
+          "premis_url": "https://www.govinfo.gov/metadata/pkg/FR-2018-04-18/premis.xml",
+          "premis_bytes_read": "0",
+          "checked_utc": "2026-10-18T00:56:00Z",
+          "instrument_ids": "EO:13829",
+          "found_in": "jobs/clause-drafts/output/SOURCES.jsonl | jobs/fr-originals/data/full_run/SOURCES.jsonl | jobs/fr-originals/output/SOURCES.jsonl | jobs/later-events/output/SOURCES.jsonl"
+        }
+      ]
+    }
+  ],
+  "unique_candidate_source_objects_checked": [
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7; section 1 establishment",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete held official extract and actual PDF page7 visually inspected; official printing, not signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+      "sha256": "5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a",
+      "page_or_item": "47 FR 36099, PDF page 9, section 15; 47 FR 36100, PDF page 10, signature and complete ending",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12379.txt",
+      "text_sha256": "c7c738d02047e0faabb73bdca7b9cbf5cb9953abb67a629f658cb125eb3f1613",
+      "read_method": "Complete held official extract and both actual PDF pages9-10 visually inspected",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match",
+      "quoted_parts": [
+        "Sec. 15. Executive Order No. 11782, establishing the Federal Financing Bank  \nAdvisory Council, is revoked.",
+        "THE W H ITE HOUSE, \nA u g u s t 17, 1982."
+      ]
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg770.pdf",
+      "sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+      "page_or_item": "86 Stat. 770, PDF page 1, FACA section 3(2); OCR heading 8 visually confirmed to be 3",
+      "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-1.txt",
+      "text_sha256": "516f4cb52ed4e4a9073a77b53a0dfb00c73e04706a8eb08531166b27d716b6b1",
+      "read_method": "Actual job-retained PDF rehashed; stated provisions read in extracted text; visual checks separately recorded.",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "not_in_observed_snapshot; retained PDF rehashed locally, no PREMIS match invented",
+      "quoted_parts": [
+        "(2) The term \"advisory committee\" means any committee, \nboard, commission, council, conference, panel, task force, or other \nsimilar group, or any subcommittee or other subgroup thereof \n(hereafter in this paragraph referred to as \"committee\"), which \nis— \n(A) established by statute or reorganization plan, or \n(B) established or utilized by the President, or \n(C) established or utilized by one or more agencies, \nin the interest of obtaining advice or recommendations for the \nPresident or one or more agencies or officers of the Federal Gov­\nernment, except that such term excludes (i) the Advisory Com­\nmission on Intei-governmental Relations, (ii) the Commission on \nGovernment Procurement, and (iii) any committee which is com­\nposed wholly of full-time officers or employees of the Federal \nGovernment. "
+      ]
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg668.pdf",
+      "sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "page_or_item": "93 Stat. 695, PDF page 28, Public Law 96-88 section 509(a)-(b)",
+      "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-28.txt",
+      "text_sha256": "374debc8e9d04763b9aba171cd1c607e4548eda38067902ded33a2120fc6ae2f",
+      "read_method": "Actual job-retained PDF rehashed; stated provisions read in extracted text; visual checks separately recorded.",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "not_in_observed_snapshot; retained PDF rehashed locally, no PREMIS match invented",
+      "quoted_parts": [
+        "REDESIGNATION \nSEC. 509. (a) The Department of Health, Education, and Welfare is Department of \nhereby redesignated the Department of Health and Human Services, Health ^d \nand the Secretary of Health, Education, and Welfare or any other 2o\"usc 3508^ ^ \nofficial of the Department of Health, Education, and Welfare is \nhereby redesignated the Secretary or official, as appropriate, of \nHealth and Human Services. \n(b) Any reference to the Department of Health, Education, and \nWelfare, the Secretary of Health, Education, and Welfare, or any \nother official of the Department of Health, Education, and Welfare in \nany law, rule, regulation, certificate, directive, instruction, or other \nofficial paper in force on the effective date of this Act shall be deemed \nto refer and apply to the Department of Health and Human Services \nor the Secretary of Health and Human Services, respectively, except \nto the extent such reference is to a function or office transferred to \nthe Secretary or the Department under this Act. \n"
+      ]
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-87/pdf/STATUTE-87-Pg937.pdf",
+      "sha256": "0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98",
+      "page_or_item": "87 Stat. 937, PDF page 1, Public Law 93-224 section 4",
+      "text_path": "jobs/astra-source-retention/output/pages/0e1cbeab7b9ffa09f1260caf7b07a6ba4fc27e43c7fbe3060882546ced64ef98/page-1.txt",
+      "text_sha256": "6a3937624707f1b9e80d434793010824fe7b6d9c6083f4bd520a92f2f378ce96",
+      "read_method": "Actual job-retained PDF rehashed; stated provisions read in extracted text; visual checks separately recorded.",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "not_in_observed_snapshot; retained PDF rehashed locally, no PREMIS match invented",
+      "quoted_parts": [
+        "CREATION OF BANK \nSEC. 4. There is hereby created a body corporate to be known as the \nFederal Financing Bank, w^hich shall have succession until dissolved \nby an Act of Congress. The Bank shall be subject to the general super­\nvision and direction of the Secretary of the Treasury. The Bank shall \nbe an instrumentality of the United States Government and shall \nmaintain such offices as may be necessary or appropriate in the conduct \nof its business. \n"
+      ]
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7; section 1 membership (1)-(8)",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete held official extract and actual PDF page7 visually inspected; official printing, not signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7; section 2 first sentence",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete held official extract and actual PDF page7 visually inspected; official printing, not signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7; section 2 second sentence",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete held official extract and actual PDF page7 visually inspected; official printing, not signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7; section 3",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete held official extract and actual PDF page7 visually inspected; official printing, not signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-05-07/pdf/FR-1974-05-07.pdf",
+      "sha256": "df3cb25b7934209d89b65516ccda54917bdfe7271c58afc206d12ac49078d876",
+      "page_or_item": "39 FR 15991, PDF page 7, complete EO 11782",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11782.txt",
+      "text_sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+      "read_method": "Complete official PDF page7 visually inspected against held extract; identifies official printing, not a signed original",
+      "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+      "official_fixity_result": "match"
+    }
+  ],
+  "quote_verification": {
+    "original_operative_spans": 5,
+    "source_object_occurrences": 40,
+    "quoted_parts_occurrences": 46,
+    "all_original_spans_equal_held_text_substrings": true,
+    "all_quoted_parts_equal_held_text_substrings": true,
+    "all_candidate_text_sha256_match_actual_held_files": true,
+    "quote_normalization_used": false,
+    "failures": []
+  },
+  "packaging_verification": {
+    "v2_vs_v3_equal_after_only_single_source_wrapper_removal": true,
+    "checker_run": false
+  },
+  "operative_inventory": [
+    {
+      "scope_id": "EO:11782#sec1-establishment",
+      "original_operative_text": "Section  1. There is hereby established the Federal Financing Bank  \nAdvisory Council.",
+      "state_at_cutoff_upheld": "terminated",
+      "first_end_upheld": "1982-08-17"
+    },
+    {
+      "scope_id": "EO:11782#sec1-membership",
+      "original_operative_text": "The Council shall consist of:\n(1 ) The Secretary of the Treasury (Chairman).\n(2 ) The Secretary of Agriculture.\n(3 ) The Secretary of Commerce.\n(4 ) The Secretary of Health, Education, and Welfare.\n(5 ) The Secretary of Housing and Urban Development.\n(6 ) The Secretary of Transportation.\n(7 ) The President of the Export-Import Bank of the United States.\n(8 ) The Postmaster General.",
+      "state_at_cutoff_upheld": "terminated",
+      "first_end_upheld": "1982-08-17"
+    },
+    {
+      "scope_id": "EO:11782#sec2-advice",
+      "original_operative_text": "Sec. 2. The Council shall provide advice and assistance to the Board  \nof Directors of the Federal Financing Bank established by the Federal  \nFinancing Bank Act of 1973 (Public Law 93-224 ; 87 Stat. 937) con­\ncerning the administration of that act.",
+      "state_at_cutoff_upheld": "terminated",
+      "first_end_upheld": "1982-08-17"
+    },
+    {
+      "scope_id": "EO:11782#sec2-coordination",
+      "original_operative_text": "It shall also serve as a coordinat­\ning forum to insure a broader understanding of, and support for, the  \nBank.",
+      "state_at_cutoff_upheld": "terminated",
+      "first_end_upheld": "1982-08-17"
+    },
+    {
+      "scope_id": "EO:11782#sec3",
+      "original_operative_text": "Sec . 3. The Department of the Treasury shall, to the extent permitted  \nby law, provide administrative support for the Council.",
+      "state_at_cutoff_upheld": "terminated",
+      "first_end_upheld": "1982-08-17"
+    }
+  ],
+  "legal_findings": [
+    "The original has continuing council establishment, eight-office membership, advice/assistance to the Bank Board, coordinating forum, and Treasury administrative support. It contains no report deadline, sunset, completion event or independent post-termination directive.",
+    "FACA section3(2) excludes committees composed wholly of full-time Federal officers/employees. Every original roster seat is such a federal office. Section14 therefore supplies no two-year termination of this Council; no speculative renewal gap remains.",
+    "Bank Act sections4-5 create a distinct body corporate and five-person board. The corporate Bank continues until dissolved by Act of Congress. The Act does not create this eight-office Advisory Council. Bank borrowing/financing powers are independent statutory functions, not saved EO11782 Council functions.",
+    "The EO advice about administration of the Bank Act is not a delegation of a specific Bank statutory power. METHOD_STOP_02 calls for actual named statutory scope, supplied here, but no hypothetical review of every historical finance-law amendment is necessary absent a concrete counterlead.",
+    "PL96-88 section104 defines Secretary as Education. Section301 transfers specified education functions and HEW advisory committees primarily concerned with those functions; this Treasury-supported Bank-financing Council is neither such HEW committee nor a listed education program.",
+    "Section509 redesignates HEW/HHS and deems references to HEW to apply to HHS, except transferred functions. This council seat continues by redesignation; it does not end on the reorganization date. Section505 preserves transferred-function orders according to their terms rather than automatically terminating them.",
+    "EO12212 explicitly makes the Act effective May4,1980, not its May2 signature. It supplies the succession date, not an earlier first end of the council or seat.",
+    "Full EO12379 revokes EO11782 in section15 effective August17,1982 without deferred terms or target saving. Its general inactive-or-no-longer-necessary recital does not itself establish earlier legal cessation; original continuing mandates do not lapse merely for inactivity.",
+    "EO13829 creates a separate 2018 Postal Task Force and assigns Bank support. It does not continue or revive the EO11782 Council.",
+    "Within the bounded actual-source record, August17,1982 is supportable as the first legal end of the five original units, after resolving FACA and HEW scope; no prior legal termination or specific saved Council mandate was located."
+  ],
+  "first_end_assessment": "All five units are ongoing indefinite legal commands. No completion trigger or sunset occurs in EO11782. Inactivity in the revoker preamble supplies no earlier legal date. FACA section3(2) excludes this wholly federal-officer body; PL96-88 section509 continues the HEW reference as HHS effective May4,1980 under EO12212; the Bank Act independently creates the corporate Bank and its distinct Board. No concrete prior cessation, reactivation or target saving is found in actual sources and bounded named/numeric searches. EO12379 section15 supplies express whole-order revocation on August17,1982; publication August19 is not substituted.",
+  "savings_assessment": "Upheld only as none after bounded search for surviving EO11782 legal operations. Independent Bank powers, past advice, completed acts and independent rights are not declared extinguished. PL96-88 section505 preserves transferred-function instruments according to their terms, without immunizing this Council from a later express revocation. EO13829 establishes a distinct 2018 task force, not a continued Council.",
+  "machine_search_scope": {
+    "path": "jobs/claim-kit/output/dossiers/EO_11782.json",
+    "sha256": "2fd9f34341b0e9015df4fdaf44860b4eaa7cd267f74bffec22c9ce7b0b2e408a",
+    "searches": [
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "searched_by": "jobs/current-law (machine search)"
+        },
+        "machine_hits_for_this_order": 2,
+        "scope_note": "",
+        "search_id": "current-law:usc"
+      },
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-17",
+          "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "searched_by": "jobs/current-law (machine search)"
+        },
+        "machine_hits_for_this_order": 2,
+        "scope_note": "",
+        "search_id": "current-law:ecfr"
+      },
+      {
+        "complete": true,
+        "entry": {
+          "checked_on": "2026-10-18",
+          "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "searched_by": "jobs/later-events (machine search)"
+        },
+        "machine_hits_for_this_order": 2,
+        "scope_note": "",
+        "search_id": "later-events:ofr_catalog"
+      }
+    ],
+    "chain_actor_ids": [
+      "EO:12379"
+    ],
+    "current_law_review": "Read current-law MENTIONS/EVENT_CANDIDATES/FRAGMENTS target rows. OLRC 12 USC2281 note repeats EO12379 revocation; editorial evidence not source of first-end judgment. Current ECFR_SEARCH_HITS.csv scan yielded no target-specific11782 row despite dossier aggregate count2; no operative eCFR predicate relied upon.",
+    "currency": "USC release119-121 current through2026-10-09; not a representation of October14 currentness. ECF R and OFR scopes retain their recorded bounds."
+  },
+  "later_events_edge_audit": {
+    "path": "jobs/later-events/output/EDGES.csv",
+    "target_rows_read": 3,
+    "all_acting_ids": [
+      "EO:12379"
+    ],
+    "partial_amendment_actor_found": false,
+    "operative_source_controls_over_index_date": true
+  },
+  "named_search": {
+    "queries": [
+      "federalfinancingbankadvisorycouncil",
+      "financingbankadvisorycouncil",
+      "federalfinancingbank"
+    ],
+    "normalization": "re.sub('[^a-z0-9]', '', text.lower())",
+    "corpora": [
+      {
+        "root": "jobs/fr-originals/output/texts",
+        "glob": "*.txt",
+        "file_count": 6652,
+        "inventory_sha256": "1838e49d2d34a20edb1dba8220f1a9b52e326ddf9ea6577fa6670b567890aab6",
+        "inventory_method": "LF-joined sorted path-space-SHA256 without trailing LF",
+        "hits": [
+          {
+            "path": "jobs/fr-originals/output/texts/EO_11782.txt",
+            "sha256": "c81be0c5f109398a5064a8a5106e5a99023c295e8140cac9dc2adeaef15b03eb",
+            "queries": [
+              "federalfinancingbankadvisorycouncil",
+              "financingbankadvisorycouncil",
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/fr-originals/output/texts/EO_12379.txt",
+            "sha256": "c7c738d02047e0faabb73bdca7b9cbf5cb9953abb67a629f658cb125eb3f1613",
+            "queries": [
+              "federalfinancingbankadvisorycouncil",
+              "financingbankadvisorycouncil",
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/fr-originals/output/texts/EO_13829.txt",
+            "sha256": "f372d796073935ea901954a6a14ccb09a6a327f18864bb506d16ac29e1cb83bd",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          }
+        ]
+      },
+      {
+        "root": "jobs/source-ladder/output/texts",
+        "glob": "*.txt",
+        "file_count": 178,
+        "inventory_sha256": "9d9c7bdc00a6e7c4e7e3047353161c196490cb3fe8081c76be7d8eef37142731",
+        "inventory_method": "LF-joined sorted path-space-SHA256 without trailing LF",
+        "hits": [
+          {
+            "path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+            "sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+            "queries": [
+              "federalfinancingbankadvisorycouncil",
+              "financingbankadvisorycouncil",
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/source-ladder/output/texts/queue_EO_12482_49_FR_26023_PDF_pages_9-9_886dec21a0.txt",
+            "sha256": "7c53238d2987d6718d737869bec999b5d3f8cf833307f16d73b707b218af79e2",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/source-ladder/output/texts/queue_EO_12491_49_FR_43443_PDF_pages_7-7_4983566bcb.txt",
+            "sha256": "a535a0df9e1514141fe7bb8dfcf7dd23aaa332b030373298dbddb76c2eb32903",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/source-ladder/output/texts/queue_EO_12492_49_FR_43445_PDF_pages_9-9_9352481eac.txt",
+            "sha256": "f1c0b42a426cf4ff7e49082e183c30b1c7f1743787c358985fee999f68c52c10",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          },
+          {
+            "path": "jobs/source-ladder/output/texts/queue_EO_12553_51_FR_7237_Executive_Order12553_February25_1986_94a19fc26b.txt",
+            "sha256": "2e42298985dc798a6676a2d9bc454d7efc062330aa0f328bf31b1635b6b5d444",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          }
+        ]
+      },
+      {
+        "root": "jobs/opus-media-match/output/text",
+        "glob": "*.txt",
+        "file_count": 414,
+        "inventory_sha256": "f3b6f04343c9adeceae23dfb1dac95daeb589826c332e2d703670f28033904f7",
+        "inventory_method": "LF-joined sorted path-space-SHA256 without trailing LF",
+        "hits": [
+          {
+            "path": "jobs/opus-media-match/output/text/b6dfc3c2fa3423ea20f6b9cd65cd1b25dfed9f0514fbc24598f2d7efa4a0ae99.txt",
+            "sha256": "ac5288bc1a4d71005193d2cde331adbe1f8e1512325d1a6b0d289db9cd42b944",
+            "queries": [
+              "federalfinancingbank"
+            ]
+          }
+        ]
+      }
+    ],
+    "genuine_sources_read": [
+      "EO11782",
+      "EO12379",
+      "EO13829",
+      "EO12212 for concrete office-succession lead"
+    ],
+    "office_scope": "Concrete HEW lead resolved by full relevant PL96-88 transfer/savings/reference/redesignation provisions and EO12212; no automatic seat cessation inferred.",
+    "excluded_hits": "Source-ladder 12482/12491/12492/12553 Bank matches are neighboring tables of contents for SBA maximum annual cost of money/Bank rate notices, not Council directives. Opus b6df... is CFR titles/agency index. Raw contexts read.",
+    "limits": "Bounded held-text search, not universal absence or exhaustion."
+  },
+  "custody": {
+    "retention_results_path": "jobs/astra-source-retention/output/RESULTS.json",
+    "retention_results_sha256": "89884ee21984af52a2c15a9c9ce85ba2c058efee8b444a197baac273d74ff2b8",
+    "fixity_path": "jobs/official-fixity/output/FIXITY.csv",
+    "fixity_sha256": "1f8cfe62e91114618f073d7290cd20f53c043a42f9fe2e18302201cade5c6b57",
+    "catalogue_exists": false,
+    "assessment": "Original/actor issue PDFs locally present and match GPO fixity rows. FACA has old not_listed single-document row, not a positive GPO match. PL96-88 and Bank Act hashes have no row in this snapshot. All three actual retained PDF hashes, acquisition attempts and extracted-page matches verified. Missing checker catalogue is a mechanical provenance-index issue, not invented source absence or GPO mismatch."
+  },
+  "custody_qualification": "FACA has an older not_listed row in full FIXITY.csv, while absent from positive-only MATCHED_BY_SHA256.json. PL96-88 and Bank Act have no row in that observed snapshot. None has an asserted positive GPO fixity match here. Actual retained PDFs, acquisition records, SHA256 and page extraction equality were verified. Catalogue/index integration remains separate from this legal review; pending follow-up job is not treated as completed.",
+  "images_independently_viewed": [
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/page-evidence/EO11782-p7.png",
+      "sha256": "d7db5a42162a3229e438e0543b91f59851555b5601b9ecd36d045f3027977348",
+      "pdf_page": 7,
+      "source": "EO:11782",
+      "independently_viewed": true,
+      "scope": "Entire provided page image visually read; original/actor section inventory and relevant statutory language confirmed. No claim to visual review of other pages."
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/page-evidence/EO12379-p9.png",
+      "sha256": "1b3e30ca7bb3123fa66cc2983c720d72ce19b56429e57dad6b7ddea26bb9ae42",
+      "pdf_page": 9,
+      "source": "EO:12379",
+      "independently_viewed": true,
+      "scope": "Entire provided page image visually read; original/actor section inventory and relevant statutory language confirmed. No claim to visual review of other pages."
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/page-evidence/EO12379-p10.png",
+      "sha256": "f5c07127410fa5a930cee09b2373f377ec3222731f03c6d0c6a24e2d055168ef",
+      "pdf_page": 10,
+      "source": "EO:12379",
+      "independently_viewed": true,
+      "scope": "Entire provided page image visually read; original/actor section inventory and relevant statutory language confirmed. No claim to visual review of other pages."
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/page-evidence/FACA-p1.png",
+      "sha256": "4580275952d55fbb0a16885bf5f496418782ab30ab379189cd6e7133d7c6ab24",
+      "pdf_page": 1,
+      "source": "PL92-463 FACA",
+      "independently_viewed": true,
+      "scope": "Entire provided page image visually read; original/actor section inventory and relevant statutory language confirmed. No claim to visual review of other pages."
+    },
+    {
+      "path": "research/readiness/reviews/astra-2026-10-18/page-evidence/PL96-88-p28.png",
+      "sha256": "a5e43a9416d5abe549a800fe2a62ef38fc155818ea94bd5d3d1b21bbc4582323",
+      "pdf_page": 28,
+      "source": "PL96-88",
+      "independently_viewed": true,
+      "scope": "Entire provided page image visually read; original/actor section inventory and relevant statutory language confirmed. No claim to visual review of other pages."
+    }
+  ],
+  "statutory_read_limits": "FACA all 7 PDF pages and Bank Act all 6 PDF pages read through each Act approval; following unrelated enactments excluded. PL96-88 pages1-4,10-13,23-29 read; complete relevant sections104,301,502-511,601-602 and surrounding text. No full-act-read claim for unread intervening provisions.",
+  "unresolved_material_legal_gaps": [],
+  "unsupported_state_or_date_remains": false,
+  "unsupported_provenance_statement_remains_in_frozen_candidate": true,
+  "gaps_retained": [
+    "Bounded discovery cannot establish universal absence.",
+    "USC release119-121 is current through2026-10-09; not an October14 currency claim.",
+    "Positive GPO fixity and checker catalogue limitations remain as stated.",
+    "Frozen v3 named-search inventory attribution requires correction."
+  ],
+  "human_certification": false,
+  "full_readiness_certification": false,
+  "started_utc": "2026-10-19T01:29:03+00:00",
+  "completed_utc": "2026-10-19T01:35:06.310026+00:00",
+  "actual_wall_seconds": 363.310026,
+  "actual_model_usage": null
+}

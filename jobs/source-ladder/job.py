@@ -260,8 +260,9 @@ def main():
     counts = Counter(r["result"] for r in results)
     summary = {
         "job": name, "run_date": date.today().isoformat(), "offline": offline,
-        "items_in_queue": len(queue_items) + len(shared), "items_worked": len(items),
+        "items_in_queue": len(queue_items) + len(shared) + len(opus), "items_worked": len(items),
         "from_fetch_queue": len(queue_items), "from_stage20_shared_sources": len(shared),
+        "from_opus_refetch": len(opus),
         "found": counts.get("found", 0),
         "new_sources_found": sum(not s.get('carried_forward_from') for s in sources),
         "distinct_new_source_hashes": len({s['sha256'] for s in sources if not s.get('carried_forward_from')}),

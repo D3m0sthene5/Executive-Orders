@@ -44,7 +44,7 @@ def eo_key(number):
 def read_fetch_queue(path, eo_index=None):
     """Wanted items from FETCH_QUEUE.jsonl, plus a list of problems with bad lines."""
     path = Path(path)
-    wanted, problems = [], []
+    wanted, problems, seen = [], [], {}
     if not path.exists():
         return wanted, problems
     for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -72,7 +72,19 @@ def read_fetch_queue(path, eo_index=None):
             problems.append(f"FETCH_QUEUE.jsonl line {n}: needs urls or a citation")
             continue
         urls = [u if not u.startswith("http://") else "https://" + u[7:] for u in urls]
-        w = fetch_ladder.Wanted(wanted_id=f"queue:{iid}:{citation or urls[0]}", instrument_ids=[iid],
+        # The queue is append-only, so a line's ID never depends on later lines: the
+        # first line keeps the plain ID, and a later line naming the same order and
+        # citation but other URLs is a different source and gets its URL (or, failing
+        # that, its line number) added. An exact repeat of an earlier line is dropped.
+        wanted_id = f"queue:{iid}:{citation or urls[0]}"
+        if wanted_id in seen:
+            if seen[wanted_id] == (urls, step):
+                continue
+            wanted_id = f"{wanted_id} [{urls[0]}]" if urls else wanted_id
+            if wanted_id in seen:
+                wanted_id = f"{wanted_id} #{n}"
+        seen[wanted_id] = (urls, step)
+        w = fetch_ladder.Wanted(wanted_id=wanted_id, instrument_ids=[iid],
                                 urls=urls, citation=citation, step=step,
                                 requested_by=str(r.get("requested_by") or ""))
         attach_eo_record(w, eo_index)
