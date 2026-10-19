@@ -1,12 +1,12 @@
 # Daily research digest
 
-New York date: 2026-10-18. Generated mechanically; all findings remain provisional.
+New York date: 2026-10-19. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
 # Readiness tracker
 
-**Ready for human review: 130 of 14,972 orders (0.9%)**
+**Ready for human review: 135 of 14,972 orders (0.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -20,26 +20,15 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 178 | 3,359 | 5.3% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 134 | 3,359 | 4.0% |
+| Complete inventory of the order's operative clauses | 183 | 3,359 | 5.4% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 139 | 3,359 | 4.1% |
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-10-17; intervening runs may be absent.
-- census-completeness: ambiguous_same_date_pairs: unavailable → 5002
-- claim-checker: claim_lines_found: 42 → 218; claims_all_checks_passed: 1 → 133; claims_checked: 42 → 218; claims_gate_passed: 1 → 133
-- claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 770 → 780; of_which_decided: 770 → 780; orders_with_any_conflict: 311 → 417
-- clause-drafts: orders_not_segmented: 1672 → 1678; orders_processed: 6563 → 6569; orders_with_candidate_text: 6563 → 6569
-- family-rules: saved_texts_scanned: 18681 → 30161
-- hathi-gpo-orders: authenticated_originals: unavailable → 0; claim_kit_recognized: unavailable → 1531; federal_register_issues_used: unavailable → 37; government_bound_volumes_used: unavailable → 10
-- indian-reservations-1912: acts: unavailable → 309; acts_before_1900: unavailable → 214; acts_with_a_lord_match: unavailable → 178; body_lines: unavailable → 11522
-- isthmian-canal-1911: affected_document_leads: unavailable → 58; affected_targets_resolved: unavailable → 22; census_unnumbered_ids_not_comparable: unavailable → 19; contents_entries: unavailable → 177
-- numbered-early-orders: books_held_scanned: unavailable → 17; books_new_fetched: unavailable → 12; fetch_failures: unavailable → 1; found_in_held_books: unavailable → 41
-- official-fixity: carried_forward: 0 → 4999; checked_this_run: 4987 → 39; files: 4987 → 5038; orders_with_a_gpo_matched_file: 5013 → 5067
-- readiness-tracker: ready_for_human_review: 1 → 130
-- richardson-volumes: lord_entries_citing_richardson: unavailable → 369; wpa_entries_parsed: unavailable → 155
-- source-ladder: attempts_logged: 43 → 12; bytes_downloaded: 784275283 → 210466245; distinct_new_source_hashes: unavailable → 10; exhausted_proposed_items: 4 → 2
-- status-history: census_admissions: unavailable → 0; census_identities: unavailable → 14972; distinct_shared_source_units: unavailable → 79; editorial_edges_raw_span_verified: unavailable → 15660
+Comparison snapshot: 2026-10-18; intervening runs may be absent.
+- claim-checker: claim_lines_found: 218 → 223; claims_all_checks_passed: 133 → 138; claims_checked: 218 → 223; claims_gate_passed: 133 → 138
+- readiness-tracker: ready_for_human_review: 130 → 135
+- x1-class-engine: batches: unavailable → 128; modern_families_5_plus: unavailable → 153; pre1937_orders: unavailable → 8014
 
 ## Top shared unlocks
 
@@ -54,7 +43,7 @@ Comparison snapshot: 2026-10-17; intervening runs may be absent.
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: No open ask recorded in newest entry.
-- notes-claude.md: - **Asks:** `@Owner`: a sanctioned route to the remaining CSC annual reports (1909-13, 1916-17, 1919-21, 1923-29) would reach most of the remaining 695 civil-service waivers.
+- notes-claude.md: - **Asks:** `@Owner`: (1) risk-tiered review stays off (flag `X1_RISK_TIERED_REVIEW`, default off) until you decide; (2) a route to CSC annual reports / Official Register would date the 1,490 one-person waivers. `@Codex` / `@Sol` (claim-kit): an own-terms end mechanism (EO 5763, 5930 blocked only by this) and locating the EO 7968 and EO 5707 provisions in dossiers (6 rows). `@Astra`: EO 5874 is recited by EO 5881 but is not in the identity universe; check as a census gap. Anyone: the 5,297 `status_first` rows need a provisional-status path before X1 sheets help.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
 
