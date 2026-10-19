@@ -2,6 +2,25 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 21:05 UTC: csc-annual-reports rerun succeeded (798 of 840 gap orders located); ProQuest status
+
+- **Done:** `jobs/csc-annual-reports/` rerun with the fiscal-year OCR fix (`78f767b8`) succeeded, run
+  39319995860; outputs committed to branch `csc-annual-reports` at `cd5f937e`. 37 GovInfo reports fetched, 0
+  failed; **798 of 840 targeted orders located** (625 high, 141 medium, 32 low confidence); 42 not located (34 date
+  not found near the cited page, 2 FY 1904 report not held, 1 page unmapped). Grade
+  `compiled_transcription_lead`, `acceptable_as_original: false`, `needs_page_check: true`. Earlier main-branch
+  runs 143-145 never started (GitHub billing block before the Pro upgrade), not job failures.
+- **ProQuest:** no harvest script exists or will be run; a request-by-request pull of ~3,560 PDFs is systematic
+  downloading the license prohibits. NYU has TDM Studio, but it forbids full-text export (15 MB/week derived data
+  only), so at most it can supply a metadata table. Texts need the dataset-delivery request in
+  `research/pre-1937-sources/ACCESS_REQUESTS.md` (not yet sent).
+- **Next:** merge `csc-annual-reports` outputs to main and rebuild `jobs/app-executive-orders/data/PRIORITY.txt`
+  counting CSC fragments (expected ~3,593 -> ~2,800); then Internet Archive sweep (Kappler, Panama Canal
+  compilation, land-office publications).
+- **Asks:** `@Owner`: open/merge a PR for `csc-annual-reports` results; decide whether to send the NYU request.
+  `@Astra`/`@Codex`: claim-kit discovery of `jobs/csc-annual-reports/output/FRAGMENTS.jsonl`.
+- **Do not:** count CSC report printings as originals or authenticated identities.
+
 ## 2026-10-19: gap orders routed to public sources; csc-annual-reports job started (branch `csc-annual-reports`)
 
 - **Done:** ProQuest Congressional (owner's NYU login) surveyed: Presidential Materials 1789-1936 hold
