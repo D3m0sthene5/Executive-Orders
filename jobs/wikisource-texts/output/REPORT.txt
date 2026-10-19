@@ -1,0 +1,17 @@
+Wikisource matched-order acquisition
+
+Fixed coverage: 1,639 orders; saved 1,639; failed 0; not attempted 0.
+Reused the 20 exact pilot HTML responses; 1,619 additional order pages saved.
+First 200 new requests: 0 failures. Site stop: none.
+Only Wikisource HTML, through unchanged FetchPool and source-ladder extraction. One worker, one request at a time, at least one second between starts, robots checked. No API or alternate source.
+
+Every text is a volunteer transcription, not an original. Page/revision links and source/text hashes are in SOURCES.jsonl; normal claim-kit FRAGMENTS.jsonl receipts retain archival revision locators and acceptable_as_original=false.
+RESULTS.csv covers every planned ID; FAILURES.jsonl records failures without retry or repair.
+
+Unchanged claim-kit loader recognizes 1,639 orders. Refreshed only its evidence-only TEXT_REPRESENTATIONS catalog; no full dossier/status-lead build or order-status change.
+Unchanged gap census rerun: exactly 11,613 distinct undecided rows; held text 5,786; all-no records 5,040 (previously 6,679).
+Only held_order_text and publication_reference changed in the census. No original-candidate flag changed.
+
+Census method: the same private evidence-input view as the prior census, with the new producer files and discovered text rows appended. All nine other inputs, including canonical status and identity records, remain byte-identical. The evidence-checkout commit in summary.txt identifies the baseline, not these appended files.
+Rerun: python research/gap-census/check_evidence.py --input-root /path/to/prior-evidence-checkout-with-this-producer-and-refreshed-text-catalog
+VALIDATION.json pins prior inputs, the refreshed text catalog, census output, and baseline commit. INGESTION_CHECK.json records unchanged claim-kit discovery.

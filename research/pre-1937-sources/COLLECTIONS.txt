@@ -1,0 +1,67 @@
+Pre-1937 executive-order text sources — 2026-10-18
+
+Best immediate source: Wikisource. Its inspected author indexes have existing
+page links matching 1,639 of the 6,679 target IDs, including 64 lettered IDs.
+This is an estimated text-availability count, not 1,639 inspected originals.
+Only 20 order pages were acquired. All 20 yielded usable readable text.
+
+Collection | Estimated overlap with the 6,679 targets | Text or scans | Access and limits
+-----------|----------------------------------------|---------------|------------------
+Wikisource executive orders: https://en.wikisource.org/wiki/Portal:Executive_Orders | About 1,600; 1,639 existing title links matched after excluding red links and deduplicating IDs. Lower-bound index coverage, not body verification for all matches. | HTML transcriptions, with source references of varying quality. | No login needed for the 20 HTML pages. Honor robots.txt and site throttling; this sample used the existing FetchPool with one worker and at least one second between starts. The API route was disallowed by robots and was not used. Retain attribution and revision/source links. Underlying order texts carry US-government public-domain notices; site contributions have their own license notices.
+HathiTrust GPO bound Executive Orders volumes, 1932–1938: https://hdl.handle.net/2027/mdp.39015087537604 (EO 5800–6070); https://hdl.handle.net/2027/mdp.39015087537893 (6071–6250); https://hdl.handle.net/2027/mdp.39015087537851 (6936–7081); https://hdl.handle.net/2027/mdp.39015087537844 (7262–8027) | Up to about 1,200: 1,178 target IDs lie in the advertised 5800–7531 range. This is a range estimate; intermediate volumes and individual inclusion still need checking, and some Federal Register orders were omitted from these bound series. | Scanned government publications with OCR, not born-digital originals. | Public page viewing and individual-page downloads; full-item access/downloads can require member-library login, depending on the item. Use the offered page/text downloads and respect item restrictions. No books were downloaded here. Best second option for broader source-page recovery.
+HathiTrust, Herbert Hoover: Proclamations and Executive Orders, March 4, 1929–March 4, 1933 (GPO, 1974; two volumes): https://catalog.hathitrust.org/Record/001137881 | About 840: 841 target IDs are within EO 5076–6070. Range-based estimate; individual matches not verified. Overlaps the preceding row. | Full-view scans; HathiTrust provides OCR formats. | The catalog confirms full-view copies of both volumes. The same item-specific HathiTrust restrictions apply; no full-volume acquisition was attempted.
+Richardson, A Compilation of the Messages and Papers of the Presidents (Library of Congress/HathiTrust/Internet Archive/Project Gutenberg editions): https://hdl.handle.net/2027/ufl.31262091102953 ; https://www.gutenberg.org/ebooks/12462 | At most roughly 115 numbered targets in the pre-1901 number range, plus a few unnumbered possibilities. The compilation is selective; this is a period ceiling, not a claim that all 115 appear. | Scans with OCR at HathiTrust/IA; edited transcriptions in Gutenberg editions. | Existing project jobs/richardson-volumes already extracts documents and joins the WPA citations. Reuse its held page texts before acquiring a book again. HathiTrust restrictions vary by copy; Gutenberg has separate reuse and automated-access guidance. No volumes acquired here.
+NARA, RG 11, Executive Orders series, NAID 299999: https://catalog.archives.gov/id/299999 ; series guide https://www.archives.gov/research/guide-fed-records/groups/011.html | Broad potential coverage across the target period, with a ceiling of 6,679; the downloadable per-ID subset is unknown, not established as 6,679. Historical custody is incomplete, and a series description does not prove a digitized item exists for every order. | Original-document scans where digitized; OCR/transcriptions may exist item by item. | Catalog/API access was not used for acquisitions. The current API requires a key and defaults to 10,000 queries/month; its terms restrict catalog scraping and bulk downloads. No automatic full-series text coverage was established.
+
+Not a text source: the WPA/Lord numbered list (1862–1938), available at
+https://archive.org/details/PresidentialExecutiveOrdersV1, is a finding aid.
+It can locate citations but contributes zero full order texts by itself.
+
+Estimate method and sample
+--------------------------
+The target is the exact 6,679 all-no rows in the census at commit
+2181b6cd47751d8d1eb690255cbc384ed53664ad. Title-only author indexes were read;
+their body hashes, ID intersection, errors, and the census hash are preserved
+in COVERAGE.json. Only hyphens immediately before letter suffixes were normalized
+(130-B to canonical EO:130B); numeric suffixes such as 8-1 stay distinct.
+Existing links may be redirects or imperfect transcriptions, so 1,639 remains
+an availability estimate. Three author-index URLs failed; those are not absence
+findings. The sample uses sixteen positions spread across the available number
+range and four lettered IDs. SAMPLE.csv records all 20 exact identities.
+
+Normal project format is retained: UTF-8, LF plain text under texts/;
+SOURCES.jsonl supplies URLs, acquisition times, hashes, raw-page paths and text
+paths; FRAGMENTS.jsonl supplies per-order representation records. Raw HTML is
+under originals/. The unchanged generic extractor also retains some page
+headings, licensing text, and editorial notes. These are readable transcriptions,
+not clean primary-source editions. EO 1990's long 201-rule text reaches its
+signature; short and lettered orders also retain their text and signatures.
+EO 4517's page explicitly warns that its source document is unknown. EO 5470
+refers to a diagram; no linked image or attachment was acquired. These limits
+are recorded in SAMPLE.csv. No order's legal status was decided.
+
+Tools reused without changes
+----------------------------
+jobs/_lib/fetch_pool.py: FetchPool.fetch, robots checks, bounded byte cache.
+jobs/source-ladder/fetch_ladder.py: extract_text and write_text_lf.
+The source-ladder HTTP client's broad captcha marker rejected ordinary wiki
+pages containing an edit-captcha configuration string. The existing FetchPool
+client retrieved the public HTML normally; no access control was bypassed and
+no downloader/extractor was changed or added to the repository.
+
+Scope correction: pre-1937 is not the same as pre-Federal Register. The sample
+EO 7454 is dated September 1936 and cites 1 FR 1697. The target also contains
+EO:7700A and three nonstandard unnumbered IDs; these were not silently dropped
+from the target count, and none was substituted for a sampled text. The new
+files do not alter the gap census, readiness outputs, source queue, or statuses.
+
+Access/terms references
+-----------------------
+HathiTrust's own download-format guidance (OCR and login/item restrictions):
+https://hathitrust.atlassian.net/wiki/spaces/GS/pages/2387247130/Formats+for+Downloading+Materials
+Wikisource rights policy: https://en.wikisource.org/wiki/Wikisource:Copyright_policy
+Wikisource collection directory and HathiTrust volume links:
+https://en.wikisource.org/wiki/Wikisource:WikiProject_United_States_Executive_Orders
+NARA Catalog API conditions: https://www.archives.gov/research/catalog/help/api
+Library of Congress publication/numbering guide:
+https://guides.loc.gov/executive-orders/publications

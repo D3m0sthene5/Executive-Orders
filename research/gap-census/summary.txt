@@ -1,0 +1,34 @@
+Evidence on file for undecided executive orders
+
+Population: 11,613 tracker entries with no provisional yes/no status. CSV has exactly 11,613 rows, unique IDs, no omissions or extras.
+
+Evidence | Missing orders | Presence rule
+---------|---------------:|--------------
+attributed_current_law_text | 11,613 | Current-law lead includes text, source, and character offsets, rather than just a snippet.
+recorded_later_source_search | 11,613 | Nonempty per-order search record in tracker or claim-kit overlay output.
+current_law_reference | 10,313 | At least one current-law lead, including citation-only pointers.
+acting_provision_text | 9,833 | Nonempty acting-provision text recorded for this target, including machine leads.
+own_terms_record | 9,251 | At least one existing own-terms candidate record; no applicable term inferred.
+later_event_record | 8,625 | At least one known acting-order ID in claim-kit's overlay input.
+original_candidate_text | 7,484 | Held text whose existing acceptable_as_original flag is true; no authentication inferred.
+clause_draft | 7,466 | At least one nonempty clause text in the existing selected-text clause draft.
+status_history | 6,796 | Nonempty saved status-history file referenced by claim-kit.
+held_order_text | 5,827 | Nonempty attributed order text file, including derivative representations.
+publication_reference | 5,684 | Recorded catalog citation/publication URL or attributed text page/item locator.
+
+Five most common exact combinations of missing pieces
+
+Missing pieces (all other columns are yes) | Orders
+----------------------------------------|------:
+held_order_text, original_candidate_text, publication_reference, status_history, later_event_record, acting_provision_text, clause_draft, own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 5,040
+original_candidate_text, status_history, later_event_record, acting_provision_text, clause_draft, own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 1,639
+later_event_record, acting_provision_text, current_law_reference, attributed_current_law_text, recorded_later_source_search | 603
+current_law_reference, attributed_current_law_text, recorded_later_source_search | 583
+later_event_record, acting_provision_text, own_terms_record, current_law_reference, attributed_current_law_text, recorded_later_source_search | 577
+
+Yes/no reports record or file presence only. No means absent from the inspected project records, not unavailable elsewhere or necessarily needed by that order. Machine leads, clause drafts, and original-candidate flags are retained without judging their accuracy or legal effect. Publication references and current-law pointers do not imply that source bytes are held. Text-file checks exclude empty files and Git LFS pointer stubs. Unnumbered orders retain their instrument IDs and have blank order_number.
+
+Evidence checkout commit: 5d28948660aa8fd58d3c8f00c6bae6fdfba09a50
+Inputs and referenced-file SHA-256 fingerprint: efec1cc3f939238c8922bd056d98f80ec60083ef3f666ab67f28b73ccfcad9fa
+Input paths and all presence rules are in check_evidence.py. Use the existing corpus-excavator evidence checkout, whose overlay/history outputs are not on the older census branch base.
+Rerun: python research/gap-census/check_evidence.py --input-root /path/to/evidence-checkout
