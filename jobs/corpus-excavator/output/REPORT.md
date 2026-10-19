@@ -1,6 +1,6 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `c3fb94ce8f9aa1c6476cc1c6a0aa7d4b75ffe380ec63239162a207907f254538`.
+Legal cutoff: 2026-10-14. Inputs: `79783fd279aa134d5eac11397184949ac22ae89c3cf90d483aeedc3dc951204b`.
 
 Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for human review.
 
@@ -10,16 +10,16 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for h
 |---:|---|---:|---:|
 | 1 | EO::4314 | 10 | 43 |
 | 2 | EO::6868 | 6 | 25 |
-| 3 | opus-refetch:e124b81ef2e8ab76fe92f8cdbf848272290f682a871437e2ea801232921d6c3b | 5 | 15 |
-| 4 | opus-refetch:008e6b7585335a78b228ef1c4657ad75221cad40c82197c7d7be074e75db83e8 | 4 | 12 |
-| 5 | opus-refetch:42ca94f5f2b920f8b1deb89691ed35af6ff8181321cf9a6e12bccd9d22c16680 | 4 | 12 |
-| 6 | opus-refetch:5e96f44e72103743fe3ec4c9aa294f02594968654b2b22ce2b9e8c73f19512a9 | 4 | 12 |
-| 7 | opus-refetch:9fb236d5d9317d3a5a6abd4422ca702af83c9e89a9c0d162f4a6305b2b452efe | 4 | 12 |
-| 8 | opus-refetch:debea47efdfbd575bde7aa3e194c85b6465e1758b4dacab499d6d2c745d681de | 4 | 12 |
-| 9 | opus-refetch:https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf#page=148 | 4 | 12 |
-| 10 | opus-refetch:https://www.govinfo.gov/link/uscode/26/7851?year=2024&link-type=html | 4 | 12 |
-| 11 | opus-refetch:aea3833bb2b39688fce6c33ec34f43248c0988ca2c7567d67ccd364abaf92280 | 4 | 14 |
-| 12 | opus-refetch:ab64c96b48cbb719c8846af963c0ec88a53dd633681934148d46adc0b5b7f366 | 4 | 15 |
+| 3 | opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693 | 3 | 9 |
+| 4 | opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7 | 3 | 9 |
+| 5 | opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346 | 3 | 9 |
+| 6 | opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb | 3 | 9 |
+| 7 | opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef | 3 | 9 |
+| 8 | opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720 | 3 | 9 |
+| 9 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
+| 10 | opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c | 3 | 9 |
+| 11 | opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68 | 3 | 9 |
+| 12 | opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0 | 3 | 9 |
 
 Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 
