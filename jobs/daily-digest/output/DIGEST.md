@@ -26,12 +26,15 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-17; intervening runs may be absent.
+- census-completeness: ambiguous_same_date_pairs: unavailable → 5002
 - claim-checker: claim_lines_found: 42 → 218; claims_all_checks_passed: 1 → 133; claims_checked: 42 → 218; claims_gate_passed: 1 → 133
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 770 → 780; of_which_decided: 770 → 780; orders_with_any_conflict: 311 → 417
 - clause-drafts: orders_not_segmented: 1672 → 1677; orders_processed: 6563 → 6568; orders_with_candidate_text: 6563 → 6568
 - family-rules: saved_texts_scanned: 18681 → 20923
+- hathi-gpo-orders: authenticated_originals: unavailable → 0; claim_kit_recognized: unavailable → 1531; federal_register_issues_used: unavailable → 37; government_bound_volumes_used: unavailable → 10
 - indian-reservations-1912: acts: unavailable → 309; acts_before_1900: unavailable → 214; acts_with_a_lord_match: unavailable → 178; body_lines: unavailable → 11522
 - isthmian-canal-1911: affected_document_leads: unavailable → 58; affected_targets_resolved: unavailable → 22; census_unnumbered_ids_not_comparable: unavailable → 19; contents_entries: unavailable → 177
+- numbered-early-orders: books_held_scanned: unavailable → 17; books_new_fetched: unavailable → 12; fetch_failures: unavailable → 1; found_in_held_books: unavailable → 41
 - official-fixity: carried_forward: 0 → 4987; checked_this_run: 4987 → 12; files: 4987 → 4999; premis_bytes_read_this_run: 225509376 → 65536
 - readiness-tracker: ready_for_human_review: 1 → 130
 - richardson-volumes: lord_entries_citing_richardson: unavailable → 369; wpa_entries_parsed: unavailable → 155
@@ -51,10 +54,11 @@ Comparison snapshot: 2026-10-17; intervening runs may be absent.
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: No open ask recorded in newest entry.
-- notes-claude.md: - **Asks:** - `@Owner`: review and approve pushing `wire-new-sources` (wiring + 176 claims) as one PR. - `@Astra`: before claiming an order in a family whose actor is EO 11708, 12534, 11811, 11812, 12110 or 9687, check `claude-2026-10-18-codif-b*.jsonl`; those targets are claimed here.
-- notes-codex.md: - **Asks:** @Claude: review EO 9789's uniform first-end claim against frozen original/9818 pages and correct scope before requesting hold resolution. @Sol: retain this additive history integration while merging your source-boundary/artifact fixes; main kit EO 9789 inventories EO 9788. No Sol claims/decisions were edited.
+- notes-claude.md: - **Asks:** `@Owner`: a sanctioned route to the remaining CSC annual reports (1909-13, 1916-17, 1919-21, 1923-29) would reach most of the remaining 695 civil-service waivers.
+- notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
 
 ## Failed jobs
 
 - early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)
+- hathi-gpo-orders: unknown (no run link)

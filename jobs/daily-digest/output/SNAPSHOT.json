@@ -27,6 +27,3833 @@
       "schema": "eo-early-candidate-register/v1",
       "uncrosswalked_historical_source_representations": 5
     },
+    "census-completeness": {
+      "ambiguous_same_date_pairs": 5002,
+      "assumptions": [
+        "Closed population: the set of executive orders issued 1789-1899 is fixed; true, but its definition (codebook 2.0.0) decides what counts, and the printed lists apply their own definitions.",
+        "Independence: Lincoln-Petersen and Chao1 assume lists catch orders independently. Lord cites the GLO, MR, Indian-reservation and Richardson volumes as his sources, so his list is positively dependent on them. Positive dependence makes these estimators UNDER-estimate the undiscovered remainder: read every N_hat as a lower bound.",
+        "Equal catchability: an order printed in a land-office schedule is far easier to catch than an unprinted letter to a Secretary. Orders that reached no printed compilation are nearly invisible to every list here, and no overlap statistic can count them. That remainder is what the archival audit in the source universe map is for.",
+        "Which estimator: the Mt maximum-likelihood estimate (Darroch) is the headline, because the lists plainly differ in catchability (Lord catches most, a single land-office report catches a tenth). Chao1 assumes catchability varies across orders, not across lists; when lists differ it over-states the remainder, so it is reported as a check only. Chapman two-list estimates against Lord are given per list.",
+        "Matching: a blind match needs the same day-precise date and a shared distinctive word; year-only Lord entries need two shared words. Under-matching inflates N_hat, over-matching deflates it; AMBIGUOUS_MATCHES.csv lists the same-date pairs that were not matched so the reader can judge.",
+        "The WPA numbered list and Lord's unnumbered list partition the known orders by design and are not two captures of one population. Clusters that contain a WPA entry or a document the earlier jobs linked to a numbered order are excluded from the estimates (they are numbered orders, already in the census); their count is reported.",
+        "Unmatched is not missing: an order the books name that the matcher did not link to Lord may be in Lord under other words or an unpaired date. The 'same-date pairs counted as matches' column is the upper bracket on matching (and the lower bracket on the remainder); the truth lies between it and the strict column, and AMBIGUOUS_MATCHES.csv is the list a reviewer would settle to narrow it."
+      ],
+      "estimates_all_matches": {
+        "1789-1800": {
+          "by_number_of_lists": {
+            "1": 6,
+            "4": 1
+          },
+          "chao1_all_lists": {
+            "N_hat": 22.0,
+            "S_obs": 7,
+            "ci95": [
+              10.3,
+              74.8
+            ],
+            "f1": 6,
+            "f2": 0,
+            "undiscovered_hat": 15.0
+          },
+          "clusters_observed": 7,
+          "lord_vs_each_list": {
+            "MR_1907": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1910": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1916": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": null,
+            "ci95": null,
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": null
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 0,
+            "GLO_1884": 0,
+            "GLO_1890": 0,
+            "GLO_1891": 0,
+            "GLO_1892": 0,
+            "GLO_1893": 0,
+            "GLO_1894": 0,
+            "GLO_1897": 0,
+            "GLO_1898": 0,
+            "IR1912": 0,
+            "LORD": 7,
+            "MR_1907": 1,
+            "MR_1910": 1,
+            "MR_1916": 1,
+            "RICH_IX": 0,
+            "RICH_VI": 0,
+            "RICH_VII": 0
+          }
+        },
+        "1789-1899": {
+          "by_number_of_lists": {
+            "1": 1040,
+            "10": 16,
+            "11": 5,
+            "12": 7,
+            "13": 5,
+            "15": 1,
+            "2": 202,
+            "3": 34,
+            "4": 33,
+            "5": 18,
+            "6": 31,
+            "7": 17,
+            "8": 5,
+            "9": 6
+          },
+          "chao1_all_lists": {
+            "N_hat": 4097.2,
+            "S_obs": 1420,
+            "ci95": [
+              3640.0,
+              4648.6
+            ],
+            "f1": 1040,
+            "f2": 202,
+            "undiscovered_hat": 2677.2
+          },
+          "clusters_observed": 1420,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 46,
+              "chapman_vs_lord": {
+                "N_hat": 1270.8,
+                "ci95": [
+                  1090.1,
+                  1451.5
+                ],
+                "m": 46,
+                "n1": 933,
+                "n2": 63,
+                "se": 92.2
+              },
+              "coverage_ci95": [
+                0.6097,
+                0.8242
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.7302
+            },
+            "GLO_1884": {
+              "also_in_lord": 38,
+              "chapman_vs_lord": {
+                "N_hat": 2944.7,
+                "ci95": [
+                  2206.2,
+                  3683.2
+                ],
+                "m": 38,
+                "n1": 933,
+                "n2": 122,
+                "se": 376.8
+              },
+              "coverage_ci95": [
+                0.2361,
+                0.3983
+              ],
+              "in_list": 122,
+              "lord_coverage": 0.3115
+            },
+            "GLO_1890": {
+              "also_in_lord": 34,
+              "chapman_vs_lord": {
+                "N_hat": 1867.0,
+                "ci95": [
+                  1443.7,
+                  2290.3
+                ],
+                "m": 34,
+                "n1": 933,
+                "n2": 69,
+                "se": 216.0
+              },
+              "coverage_ci95": [
+                0.3783,
+                0.6079
+              ],
+              "in_list": 69,
+              "lord_coverage": 0.4928
+            },
+            "GLO_1891": {
+              "also_in_lord": 39,
+              "chapman_vs_lord": {
+                "N_hat": 1656.8,
+                "ci95": [
+                  1328.8,
+                  1984.9
+                ],
+                "m": 39,
+                "n1": 933,
+                "n2": 70,
+                "se": 167.4
+              },
+              "coverage_ci95": [
+                0.4408,
+                0.6675
+              ],
+              "in_list": 70,
+              "lord_coverage": 0.5571
+            },
+            "GLO_1892": {
+              "also_in_lord": 64,
+              "chapman_vs_lord": {
+                "N_hat": 1536.5,
+                "ci95": [
+                  1312.3,
+                  1760.7
+                ],
+                "m": 64,
+                "n1": 933,
+                "n2": 106,
+                "se": 114.4
+              },
+              "coverage_ci95": [
+                0.5086,
+                0.6917
+              ],
+              "in_list": 106,
+              "lord_coverage": 0.6038
+            },
+            "GLO_1893": {
+              "also_in_lord": 62,
+              "chapman_vs_lord": {
+                "N_hat": 1629.8,
+                "ci95": [
+                  1377.6,
+                  1882.0
+                ],
+                "m": 62,
+                "n1": 933,
+                "n2": 109,
+                "se": 128.7
+              },
+              "coverage_ci95": [
+                0.4751,
+                0.6579
+              ],
+              "in_list": 109,
+              "lord_coverage": 0.5688
+            },
+            "GLO_1894": {
+              "also_in_lord": 58,
+              "chapman_vs_lord": {
+                "N_hat": 1977.8,
+                "ci95": [
+                  1625.7,
+                  2330.0
+                ],
+                "m": 58,
+                "n1": 933,
+                "n2": 124,
+                "se": 179.7
+              },
+              "coverage_ci95": [
+                0.3822,
+                0.5552
+              ],
+              "in_list": 124,
+              "lord_coverage": 0.4677
+            },
+            "GLO_1897": {
+              "also_in_lord": 73,
+              "chapman_vs_lord": {
+                "N_hat": 1728.2,
+                "ci95": [
+                  1473.5,
+                  1982.8
+                ],
+                "m": 73,
+                "n1": 933,
+                "n2": 136,
+                "se": 129.9
+              },
+              "coverage_ci95": [
+                0.4531,
+                0.6184
+              ],
+              "in_list": 136,
+              "lord_coverage": 0.5368
+            },
+            "GLO_1898": {
+              "also_in_lord": 76,
+              "chapman_vs_lord": {
+                "N_hat": 1697.2,
+                "ci95": [
+                  1455.0,
+                  1939.3
+                ],
+                "m": 76,
+                "n1": 933,
+                "n2": 139,
+                "se": 123.6
+              },
+              "coverage_ci95": [
+                0.4639,
+                0.6272
+              ],
+              "in_list": 139,
+              "lord_coverage": 0.5468
+            },
+            "IR1912": {
+              "also_in_lord": 86,
+              "chapman_vs_lord": {
+                "N_hat": 1308.7,
+                "ci95": [
+                  1169.2,
+                  1448.3
+                ],
+                "m": 86,
+                "n1": 933,
+                "n2": 121,
+                "se": 71.2
+              },
+              "coverage_ci95": [
+                0.6245,
+                0.7841
+              ],
+              "in_list": 121,
+              "lord_coverage": 0.7107
+            },
+            "MR_1907": {
+              "also_in_lord": 65,
+              "chapman_vs_lord": {
+                "N_hat": 1173.6,
+                "ci95": [
+                  1050.9,
+                  1296.3
+                ],
+                "m": 65,
+                "n1": 933,
+                "n2": 82,
+                "se": 62.6
+              },
+              "coverage_ci95": [
+                0.6928,
+                0.8663
+              ],
+              "in_list": 82,
+              "lord_coverage": 0.7927
+            },
+            "MR_1910": {
+              "also_in_lord": 66,
+              "chapman_vs_lord": {
+                "N_hat": 1156.0,
+                "ci95": [
+                  1039.7,
+                  1272.4
+                ],
+                "m": 66,
+                "n1": 933,
+                "n2": 82,
+                "se": 59.4
+              },
+              "coverage_ci95": [
+                0.7063,
+                0.8762
+              ],
+              "in_list": 82,
+              "lord_coverage": 0.8049
+            },
+            "MR_1916": {
+              "also_in_lord": 74,
+              "chapman_vs_lord": {
+                "N_hat": 1256.8,
+                "ci95": [
+                  1119.2,
+                  1394.4
+                ],
+                "m": 74,
+                "n1": 933,
+                "n2": 100,
+                "se": 70.2
+              },
+              "coverage_ci95": [
+                0.6463,
+                0.816
+              ],
+              "in_list": 100,
+              "lord_coverage": 0.74
+            },
+            "RICH_IX": {
+              "also_in_lord": 19,
+              "chapman_vs_lord": {
+                "N_hat": 1540.1,
+                "ci95": [
+                  1130.8,
+                  1949.4
+                ],
+                "m": 19,
+                "n1": 933,
+                "n2": 32,
+                "se": 208.8
+              },
+              "coverage_ci95": [
+                0.4226,
+                0.7448
+              ],
+              "in_list": 32,
+              "lord_coverage": 0.5938
+            },
+            "RICH_VI": {
+              "also_in_lord": 39,
+              "chapman_vs_lord": {
+                "N_hat": 4575.6,
+                "ci95": [
+                  3352.9,
+                  5798.3
+                ],
+                "m": 39,
+                "n1": 933,
+                "n2": 195,
+                "se": 623.9
+              },
+              "coverage_ci95": [
+                0.1499,
+                0.2617
+              ],
+              "in_list": 195,
+              "lord_coverage": 0.2
+            },
+            "RICH_VII": {
+              "also_in_lord": 32,
+              "chapman_vs_lord": {
+                "N_hat": 1810.4,
+                "ci95": [
+                  1394.2,
+                  2226.6
+                ],
+                "m": 32,
+                "n1": 933,
+                "n2": 63,
+                "se": 212.4
+              },
+              "coverage_ci95": [
+                0.3876,
+                0.6273
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.5079
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 1715.7,
+            "ci95": [
+              1665.4,
+              1766.0
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 295.7
+          },
+          "numbered_orders_excluded": 56,
+          "per_source": {
+            "GLO_1880": 63,
+            "GLO_1884": 122,
+            "GLO_1890": 69,
+            "GLO_1891": 70,
+            "GLO_1892": 106,
+            "GLO_1893": 109,
+            "GLO_1894": 124,
+            "GLO_1897": 136,
+            "GLO_1898": 139,
+            "IR1912": 121,
+            "LORD": 933,
+            "MR_1907": 82,
+            "MR_1910": 82,
+            "MR_1916": 100,
+            "RICH_IX": 32,
+            "RICH_VI": 195,
+            "RICH_VII": 63
+          }
+        },
+        "1801-1861": {
+          "by_number_of_lists": {
+            "1": 183,
+            "10": 6,
+            "12": 2,
+            "13": 1,
+            "2": 11,
+            "3": 4,
+            "4": 7,
+            "5": 1,
+            "6": 5,
+            "7": 1,
+            "9": 1
+          },
+          "chao1_all_lists": {
+            "N_hat": 1744.2,
+            "S_obs": 222,
+            "ci95": [
+              1022.7,
+              3116.0
+            ],
+            "f1": 183,
+            "f2": 11,
+            "undiscovered_hat": 1522.2
+          },
+          "clusters_observed": 222,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 8,
+              "chapman_vs_lord": {
+                "N_hat": 219.0,
+                "ci95": [
+                  164,
+                  285.3
+                ],
+                "m": 8,
+                "n1": 164,
+                "n2": 11,
+                "se": 33.8
+              },
+              "coverage_ci95": [
+                0.4343,
+                0.9025
+              ],
+              "in_list": 11,
+              "lord_coverage": 0.7273
+            },
+            "GLO_1884": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 354.4,
+                "ci95": [
+                  223.6,
+                  485.2
+                ],
+                "m": 12,
+                "n1": 164,
+                "n2": 27,
+                "se": 66.7
+              },
+              "coverage_ci95": [
+                0.2759,
+                0.6269
+              ],
+              "in_list": 27,
+              "lord_coverage": 0.4444
+            },
+            "GLO_1890": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 296.0,
+                "ci95": [
+                  164,
+                  452.0
+                ],
+                "m": 4,
+                "n1": 164,
+                "n2": 8,
+                "se": 79.6
+              },
+              "coverage_ci95": [
+                0.2152,
+                0.7848
+              ],
+              "in_list": 8,
+              "lord_coverage": 0.5
+            },
+            "GLO_1891": {
+              "also_in_lord": 10,
+              "chapman_vs_lord": {
+                "N_hat": 254.0,
+                "ci95": [
+                  171.2,
+                  336.8
+                ],
+                "m": 10,
+                "n1": 164,
+                "n2": 16,
+                "se": 42.2
+              },
+              "coverage_ci95": [
+                0.3864,
+                0.8152
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.625
+            },
+            "GLO_1892": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 197.0,
+                "ci95": [
+                  164,
+                  234.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 17,
+                "se": 19.3
+              },
+              "coverage_ci95": [
+                0.5897,
+                0.9381
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8235
+            },
+            "GLO_1893": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 197.0,
+                "ci95": [
+                  164,
+                  234.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 17,
+                "se": 19.3
+              },
+              "coverage_ci95": [
+                0.5897,
+                0.9381
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8235
+            },
+            "GLO_1894": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 219.0,
+                "ci95": [
+                  167.6,
+                  270.4
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 19,
+                "se": 26.2
+              },
+              "coverage_ci95": [
+                0.5121,
+                0.8819
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.7368
+            },
+            "GLO_1897": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 278.2,
+                "ci95": [
+                  188.4,
+                  368.0
+                ],
+                "m": 12,
+                "n1": 164,
+                "n2": 21,
+                "se": 45.8
+              },
+              "coverage_ci95": [
+                0.3655,
+                0.7553
+              ],
+              "in_list": 21,
+              "lord_coverage": 0.5714
+            },
+            "GLO_1898": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 241.0,
+                "ci95": [
+                  177.2,
+                  304.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 21,
+                "se": 32.5
+              },
+              "coverage_ci95": [
+                0.4537,
+                0.8281
+              ],
+              "in_list": 21,
+              "lord_coverage": 0.6667
+            },
+            "MR_1907": {
+              "also_in_lord": 11,
+              "chapman_vs_lord": {
+                "N_hat": 232.8,
+                "ci95": [
+                  166.4,
+                  299.1
+                ],
+                "m": 11,
+                "n1": 164,
+                "n2": 16,
+                "se": 33.9
+              },
+              "coverage_ci95": [
+                0.444,
+                0.8584
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.6875
+            },
+            "MR_1910": {
+              "also_in_lord": 10,
+              "chapman_vs_lord": {
+                "N_hat": 239.0,
+                "ci95": [
+                  165.7,
+                  312.3
+                ],
+                "m": 10,
+                "n1": 164,
+                "n2": 15,
+                "se": 37.4
+              },
+              "coverage_ci95": [
+                0.4171,
+                0.8482
+              ],
+              "in_list": 15,
+              "lord_coverage": 0.6667
+            },
+            "MR_1916": {
+              "also_in_lord": 15,
+              "chapman_vs_lord": {
+                "N_hat": 236.2,
+                "ci95": [
+                  177.1,
+                  295.3
+                ],
+                "m": 15,
+                "n1": 164,
+                "n2": 22,
+                "se": 30.2
+              },
+              "coverage_ci95": [
+                0.4732,
+                0.8364
+              ],
+              "in_list": 22,
+              "lord_coverage": 0.6818
+            },
+            "RICH_VI": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 1649.0,
+                "ci95": [
+                  164,
+                  3409.6
+                ],
+                "m": 1,
+                "n1": 164,
+                "n2": 19,
+                "se": 898.2
+              },
+              "coverage_ci95": [
+                0.0094,
+                0.2464
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.0526
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 261.0,
+            "ci95": [
+              242.9,
+              279.1
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 39.0
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 11,
+            "GLO_1884": 27,
+            "GLO_1890": 8,
+            "GLO_1891": 16,
+            "GLO_1892": 17,
+            "GLO_1893": 17,
+            "GLO_1894": 19,
+            "GLO_1897": 21,
+            "GLO_1898": 21,
+            "IR1912": 0,
+            "LORD": 164,
+            "MR_1907": 16,
+            "MR_1910": 15,
+            "MR_1916": 22,
+            "RICH_IX": 0,
+            "RICH_VI": 19,
+            "RICH_VII": 0
+          }
+        },
+        "1862-1899": {
+          "by_number_of_lists": {
+            "1": 851,
+            "10": 10,
+            "11": 5,
+            "12": 5,
+            "13": 4,
+            "15": 1,
+            "2": 191,
+            "3": 30,
+            "4": 25,
+            "5": 17,
+            "6": 26,
+            "7": 16,
+            "8": 5,
+            "9": 5
+          },
+          "chao1_all_lists": {
+            "N_hat": 3086.8,
+            "S_obs": 1191,
+            "ci95": [
+              2743.2,
+              3506.5
+            ],
+            "f1": 851,
+            "f2": 191,
+            "undiscovered_hat": 1895.8
+          },
+          "clusters_observed": 1191,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 38,
+              "chapman_vs_lord": {
+                "N_hat": 1035.9,
+                "ci95": [
+                  875.0,
+                  1196.8
+                ],
+                "m": 38,
+                "n1": 762,
+                "n2": 52,
+                "se": 82.1
+              },
+              "coverage_ci95": [
+                0.5975,
+                0.8323
+              ],
+              "in_list": 52,
+              "lord_coverage": 0.7308
+            },
+            "GLO_1884": {
+              "also_in_lord": 26,
+              "chapman_vs_lord": {
+                "N_hat": 2711.9,
+                "ci95": [
+                  1875.2,
+                  3548.6
+                ],
+                "m": 26,
+                "n1": 762,
+                "n2": 95,
+                "se": 426.9
+              },
+              "coverage_ci95": [
+                0.1941,
+                0.3708
+              ],
+              "in_list": 95,
+              "lord_coverage": 0.2737
+            },
+            "GLO_1890": {
+              "also_in_lord": 30,
+              "chapman_vs_lord": {
+                "N_hat": 1525.0,
+                "ci95": [
+                  1158.8,
+                  1891.2
+                ],
+                "m": 30,
+                "n1": 762,
+                "n2": 61,
+                "se": 186.8
+              },
+              "coverage_ci95": [
+                0.3706,
+                0.614
+              ],
+              "in_list": 61,
+              "lord_coverage": 0.4918
+            },
+            "GLO_1891": {
+              "also_in_lord": 29,
+              "chapman_vs_lord": {
+                "N_hat": 1397.8,
+                "ci95": [
+                  1072.4,
+                  1723.2
+                ],
+                "m": 29,
+                "n1": 762,
+                "n2": 54,
+                "se": 166.0
+              },
+              "coverage_ci95": [
+                0.4061,
+                0.6631
+              ],
+              "in_list": 54,
+              "lord_coverage": 0.537
+            },
+            "GLO_1892": {
+              "also_in_lord": 50,
+              "chapman_vs_lord": {
+                "N_hat": 1345.5,
+                "ci95": [
+                  1112.7,
+                  1578.2
+                ],
+                "m": 50,
+                "n1": 762,
+                "n2": 89,
+                "se": 118.7
+              },
+              "coverage_ci95": [
+                0.4583,
+                0.6602
+              ],
+              "in_list": 89,
+              "lord_coverage": 0.5618
+            },
+            "GLO_1893": {
+              "also_in_lord": 48,
+              "chapman_vs_lord": {
+                "N_hat": 1447.1,
+                "ci95": [
+                  1180.1,
+                  1714.2
+                ],
+                "m": 48,
+                "n1": 762,
+                "n2": 92,
+                "se": 136.3
+              },
+              "coverage_ci95": [
+                0.4209,
+                0.6209
+              ],
+              "in_list": 92,
+              "lord_coverage": 0.5217
+            },
+            "GLO_1894": {
+              "also_in_lord": 44,
+              "chapman_vs_lord": {
+                "N_hat": 1796.3,
+                "ci95": [
+                  1414.1,
+                  2178.5
+                ],
+                "m": 44,
+                "n1": 762,
+                "n2": 105,
+                "se": 195.0
+              },
+              "coverage_ci95": [
+                0.3292,
+                0.5146
+              ],
+              "in_list": 105,
+              "lord_coverage": 0.419
+            },
+            "GLO_1897": {
+              "also_in_lord": 61,
+              "chapman_vs_lord": {
+                "N_hat": 1426.5,
+                "ci95": [
+                  1196.0,
+                  1657.1
+                ],
+                "m": 61,
+                "n1": 762,
+                "n2": 115,
+                "se": 117.6
+              },
+              "coverage_ci95": [
+                0.4397,
+                0.6192
+              ],
+              "in_list": 115,
+              "lord_coverage": 0.5304
+            },
+            "GLO_1898": {
+              "also_in_lord": 62,
+              "chapman_vs_lord": {
+                "N_hat": 1440.2,
+                "ci95": [
+                  1208.2,
+                  1672.2
+                ],
+                "m": 62,
+                "n1": 762,
+                "n2": 118,
+                "se": 118.4
+              },
+              "coverage_ci95": [
+                0.436,
+                0.6133
+              ],
+              "in_list": 118,
+              "lord_coverage": 0.5254
+            },
+            "IR1912": {
+              "also_in_lord": 86,
+              "chapman_vs_lord": {
+                "N_hat": 1069.0,
+                "ci95": [
+                  956.2,
+                  1181.7
+                ],
+                "m": 86,
+                "n1": 762,
+                "n2": 121,
+                "se": 57.5
+              },
+              "coverage_ci95": [
+                0.6245,
+                0.7841
+              ],
+              "in_list": 121,
+              "lord_coverage": 0.7107
+            },
+            "MR_1907": {
+              "also_in_lord": 53,
+              "chapman_vs_lord": {
+                "N_hat": 931.6,
+                "ci95": [
+                  830.3,
+                  1032.9
+                ],
+                "m": 53,
+                "n1": 762,
+                "n2": 65,
+                "se": 51.7
+              },
+              "coverage_ci95": [
+                0.7045,
+                0.8911
+              ],
+              "in_list": 65,
+              "lord_coverage": 0.8154
+            },
+            "MR_1910": {
+              "also_in_lord": 55,
+              "chapman_vs_lord": {
+                "N_hat": 911.9,
+                "ci95": [
+                  819.4,
+                  1004.3
+                ],
+                "m": 55,
+                "n1": 762,
+                "n2": 66,
+                "se": 47.2
+              },
+              "coverage_ci95": [
+                0.7257,
+                0.9043
+              ],
+              "in_list": 66,
+              "lord_coverage": 0.8333
+            },
+            "MR_1916": {
+              "also_in_lord": 58,
+              "chapman_vs_lord": {
+                "N_hat": 1007.7,
+                "ci95": [
+                  886.7,
+                  1128.7
+                ],
+                "m": 58,
+                "n1": 762,
+                "n2": 77,
+                "se": 61.7
+              },
+              "coverage_ci95": [
+                0.6465,
+                0.836
+              ],
+              "in_list": 77,
+              "lord_coverage": 0.7532
+            },
+            "RICH_IX": {
+              "also_in_lord": 19,
+              "chapman_vs_lord": {
+                "N_hat": 1258.0,
+                "ci95": [
+                  924.4,
+                  1591.5
+                ],
+                "m": 19,
+                "n1": 762,
+                "n2": 32,
+                "se": 170.2
+              },
+              "coverage_ci95": [
+                0.4226,
+                0.7448
+              ],
+              "in_list": 32,
+              "lord_coverage": 0.5938
+            },
+            "RICH_VI": {
+              "also_in_lord": 38,
+              "chapman_vs_lord": {
+                "N_hat": 3461.8,
+                "ci95": [
+                  2538.8,
+                  4384.9
+                ],
+                "m": 38,
+                "n1": 762,
+                "n2": 176,
+                "se": 470.9
+              },
+              "coverage_ci95": [
+                0.1615,
+                0.2824
+              ],
+              "in_list": 176,
+              "lord_coverage": 0.2159
+            },
+            "RICH_VII": {
+              "also_in_lord": 32,
+              "chapman_vs_lord": {
+                "N_hat": 1478.8,
+                "ci95": [
+                  1140.1,
+                  1817.4
+                ],
+                "m": 32,
+                "n1": 762,
+                "n2": 63,
+                "se": 172.8
+              },
+              "coverage_ci95": [
+                0.3876,
+                0.6273
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.5079
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 1444.2,
+            "ci95": [
+              1397.6,
+              1490.8
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 253.2
+          },
+          "numbered_orders_excluded": 56,
+          "per_source": {
+            "GLO_1880": 52,
+            "GLO_1884": 95,
+            "GLO_1890": 61,
+            "GLO_1891": 54,
+            "GLO_1892": 89,
+            "GLO_1893": 92,
+            "GLO_1894": 105,
+            "GLO_1897": 115,
+            "GLO_1898": 118,
+            "IR1912": 121,
+            "LORD": 762,
+            "MR_1907": 65,
+            "MR_1910": 66,
+            "MR_1916": 77,
+            "RICH_IX": 32,
+            "RICH_VI": 176,
+            "RICH_VII": 63
+          }
+        }
+      },
+      "estimates_blind_matches_only": {
+        "1789-1800": {
+          "by_number_of_lists": {
+            "1": 6,
+            "4": 1
+          },
+          "chao1_all_lists": {
+            "N_hat": 22.0,
+            "S_obs": 7,
+            "ci95": [
+              10.3,
+              74.8
+            ],
+            "f1": 6,
+            "f2": 0,
+            "undiscovered_hat": 15.0
+          },
+          "clusters_observed": 7,
+          "lord_vs_each_list": {
+            "MR_1907": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1910": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1916": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": null,
+            "ci95": null,
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": null
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 0,
+            "GLO_1884": 0,
+            "GLO_1890": 0,
+            "GLO_1891": 0,
+            "GLO_1892": 0,
+            "GLO_1893": 0,
+            "GLO_1894": 0,
+            "GLO_1897": 0,
+            "GLO_1898": 0,
+            "IR1912": 0,
+            "LORD": 7,
+            "MR_1907": 1,
+            "MR_1910": 1,
+            "MR_1916": 1,
+            "RICH_IX": 0,
+            "RICH_VI": 0,
+            "RICH_VII": 0
+          }
+        },
+        "1789-1899": {
+          "by_number_of_lists": {
+            "1": 1290,
+            "10": 16,
+            "11": 5,
+            "12": 7,
+            "13": 5,
+            "15": 1,
+            "2": 108,
+            "3": 29,
+            "4": 33,
+            "5": 18,
+            "6": 31,
+            "7": 17,
+            "8": 7,
+            "9": 4
+          },
+          "chao1_all_lists": {
+            "N_hat": 9275.2,
+            "S_obs": 1571,
+            "ci95": [
+              7763.8,
+              11155.3
+            ],
+            "f1": 1290,
+            "f2": 108,
+            "undiscovered_hat": 7704.2
+          },
+          "clusters_observed": 1571,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 46,
+              "chapman_vs_lord": {
+                "N_hat": 1291.3,
+                "ci95": [
+                  1107.6,
+                  1474.9
+                ],
+                "m": 46,
+                "n1": 948,
+                "n2": 63,
+                "se": 93.7
+              },
+              "coverage_ci95": [
+                0.6097,
+                0.8242
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.7302
+            },
+            "GLO_1884": {
+              "also_in_lord": 38,
+              "chapman_vs_lord": {
+                "N_hat": 2992.0,
+                "ci95": [
+                  2241.4,
+                  3742.6
+                ],
+                "m": 38,
+                "n1": 948,
+                "n2": 122,
+                "se": 383.0
+              },
+              "coverage_ci95": [
+                0.2361,
+                0.3983
+              ],
+              "in_list": 122,
+              "lord_coverage": 0.3115
+            },
+            "GLO_1890": {
+              "also_in_lord": 34,
+              "chapman_vs_lord": {
+                "N_hat": 1897.0,
+                "ci95": [
+                  1466.7,
+                  2327.3
+                ],
+                "m": 34,
+                "n1": 948,
+                "n2": 69,
+                "se": 219.5
+              },
+              "coverage_ci95": [
+                0.3783,
+                0.6079
+              ],
+              "in_list": 69,
+              "lord_coverage": 0.4928
+            },
+            "GLO_1891": {
+              "also_in_lord": 39,
+              "chapman_vs_lord": {
+                "N_hat": 1683.5,
+                "ci95": [
+                  1350.0,
+                  2016.9
+                ],
+                "m": 39,
+                "n1": 948,
+                "n2": 70,
+                "se": 170.1
+              },
+              "coverage_ci95": [
+                0.4408,
+                0.6675
+              ],
+              "in_list": 70,
+              "lord_coverage": 0.5571
+            },
+            "GLO_1892": {
+              "also_in_lord": 64,
+              "chapman_vs_lord": {
+                "N_hat": 1561.2,
+                "ci95": [
+                  1333.3,
+                  1789.1
+                ],
+                "m": 64,
+                "n1": 948,
+                "n2": 106,
+                "se": 116.3
+              },
+              "coverage_ci95": [
+                0.5086,
+                0.6917
+              ],
+              "in_list": 106,
+              "lord_coverage": 0.6038
+            },
+            "GLO_1893": {
+              "also_in_lord": 62,
+              "chapman_vs_lord": {
+                "N_hat": 1656.0,
+                "ci95": [
+                  1399.6,
+                  1912.4
+                ],
+                "m": 62,
+                "n1": 948,
+                "n2": 109,
+                "se": 130.8
+              },
+              "coverage_ci95": [
+                0.4751,
+                0.6579
+              ],
+              "in_list": 109,
+              "lord_coverage": 0.5688
+            },
+            "GLO_1894": {
+              "also_in_lord": 58,
+              "chapman_vs_lord": {
+                "N_hat": 2009.6,
+                "ci95": [
+                  1651.6,
+                  2367.6
+                ],
+                "m": 58,
+                "n1": 948,
+                "n2": 124,
+                "se": 182.7
+              },
+              "coverage_ci95": [
+                0.3822,
+                0.5552
+              ],
+              "in_list": 124,
+              "lord_coverage": 0.4677
+            },
+            "GLO_1897": {
+              "also_in_lord": 73,
+              "chapman_vs_lord": {
+                "N_hat": 1755.9,
+                "ci95": [
+                  1497.0,
+                  2014.8
+                ],
+                "m": 73,
+                "n1": 948,
+                "n2": 136,
+                "se": 132.1
+              },
+              "coverage_ci95": [
+                0.4531,
+                0.6184
+              ],
+              "in_list": 136,
+              "lord_coverage": 0.5368
+            },
+            "GLO_1898": {
+              "also_in_lord": 76,
+              "chapman_vs_lord": {
+                "N_hat": 1724.5,
+                "ci95": [
+                  1478.2,
+                  1970.7
+                ],
+                "m": 76,
+                "n1": 948,
+                "n2": 139,
+                "se": 125.6
+              },
+              "coverage_ci95": [
+                0.4639,
+                0.6272
+              ],
+              "in_list": 139,
+              "lord_coverage": 0.5468
+            },
+            "IR1912": {
+              "also_in_lord": 61,
+              "chapman_vs_lord": {
+                "N_hat": 2203.1,
+                "ci95": [
+                  1806.0,
+                  2600.2
+                ],
+                "m": 61,
+                "n1": 948,
+                "n2": 143,
+                "se": 202.6
+              },
+              "coverage_ci95": [
+                0.3485,
+                0.5085
+              ],
+              "in_list": 143,
+              "lord_coverage": 0.4266
+            },
+            "MR_1907": {
+              "also_in_lord": 65,
+              "chapman_vs_lord": {
+                "N_hat": 1192.4,
+                "ci95": [
+                  1067.7,
+                  1317.2
+                ],
+                "m": 65,
+                "n1": 948,
+                "n2": 82,
+                "se": 63.6
+              },
+              "coverage_ci95": [
+                0.6928,
+                0.8663
+              ],
+              "in_list": 82,
+              "lord_coverage": 0.7927
+            },
+            "MR_1910": {
+              "also_in_lord": 66,
+              "chapman_vs_lord": {
+                "N_hat": 1174.6,
+                "ci95": [
+                  1056.4,
+                  1292.9
+                ],
+                "m": 66,
+                "n1": 948,
+                "n2": 82,
+                "se": 60.3
+              },
+              "coverage_ci95": [
+                0.7063,
+                0.8762
+              ],
+              "in_list": 82,
+              "lord_coverage": 0.8049
+            },
+            "MR_1916": {
+              "also_in_lord": 74,
+              "chapman_vs_lord": {
+                "N_hat": 1277.0,
+                "ci95": [
+                  1137.1,
+                  1416.9
+                ],
+                "m": 74,
+                "n1": 948,
+                "n2": 100,
+                "se": 71.4
+              },
+              "coverage_ci95": [
+                0.6463,
+                0.816
+              ],
+              "in_list": 100,
+              "lord_coverage": 0.74
+            },
+            "RICH_IX": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 7211.4,
+                "ci95": [
+                  1847.5,
+                  12575.3
+                ],
+                "m": 4,
+                "n1": 948,
+                "n2": 37,
+                "se": 2736.7
+              },
+              "coverage_ci95": [
+                0.0429,
+                0.2471
+              ],
+              "in_list": 37,
+              "lord_coverage": 0.1081
+            },
+            "RICH_VI": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 94424.5,
+                "ci95": [
+                  948,
+                  200626.6
+                ],
+                "m": 1,
+                "n1": 948,
+                "n2": 198,
+                "se": 54184.8
+              },
+              "coverage_ci95": [
+                0.0009,
+                0.028
+              ],
+              "in_list": 198,
+              "lord_coverage": 0.0051
+            },
+            "RICH_VII": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 12146.2,
+                "ci95": [
+                  2838.4,
+                  21454.0
+                ],
+                "m": 4,
+                "n1": 948,
+                "n2": 63,
+                "se": 4748.9
+              },
+              "coverage_ci95": [
+                0.025,
+                0.1522
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.0635
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 2060.3,
+            "ci95": [
+              1988.0,
+              2132.6
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 489.3
+          },
+          "numbered_orders_excluded": 75,
+          "per_source": {
+            "GLO_1880": 63,
+            "GLO_1884": 122,
+            "GLO_1890": 69,
+            "GLO_1891": 70,
+            "GLO_1892": 106,
+            "GLO_1893": 109,
+            "GLO_1894": 124,
+            "GLO_1897": 136,
+            "GLO_1898": 139,
+            "IR1912": 143,
+            "LORD": 948,
+            "MR_1907": 82,
+            "MR_1910": 82,
+            "MR_1916": 100,
+            "RICH_IX": 37,
+            "RICH_VI": 198,
+            "RICH_VII": 63
+          }
+        },
+        "1801-1861": {
+          "by_number_of_lists": {
+            "1": 185,
+            "10": 6,
+            "12": 2,
+            "13": 1,
+            "2": 10,
+            "3": 4,
+            "4": 7,
+            "5": 1,
+            "6": 5,
+            "7": 1,
+            "9": 1
+          },
+          "chao1_all_lists": {
+            "N_hat": 1934.2,
+            "S_obs": 223,
+            "ci95": [
+              1102.6,
+              3552.3
+            ],
+            "f1": 185,
+            "f2": 10,
+            "undiscovered_hat": 1711.2
+          },
+          "clusters_observed": 223,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 8,
+              "chapman_vs_lord": {
+                "N_hat": 219.0,
+                "ci95": [
+                  164,
+                  285.3
+                ],
+                "m": 8,
+                "n1": 164,
+                "n2": 11,
+                "se": 33.8
+              },
+              "coverage_ci95": [
+                0.4343,
+                0.9025
+              ],
+              "in_list": 11,
+              "lord_coverage": 0.7273
+            },
+            "GLO_1884": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 354.4,
+                "ci95": [
+                  223.6,
+                  485.2
+                ],
+                "m": 12,
+                "n1": 164,
+                "n2": 27,
+                "se": 66.7
+              },
+              "coverage_ci95": [
+                0.2759,
+                0.6269
+              ],
+              "in_list": 27,
+              "lord_coverage": 0.4444
+            },
+            "GLO_1890": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 296.0,
+                "ci95": [
+                  164,
+                  452.0
+                ],
+                "m": 4,
+                "n1": 164,
+                "n2": 8,
+                "se": 79.6
+              },
+              "coverage_ci95": [
+                0.2152,
+                0.7848
+              ],
+              "in_list": 8,
+              "lord_coverage": 0.5
+            },
+            "GLO_1891": {
+              "also_in_lord": 10,
+              "chapman_vs_lord": {
+                "N_hat": 254.0,
+                "ci95": [
+                  171.2,
+                  336.8
+                ],
+                "m": 10,
+                "n1": 164,
+                "n2": 16,
+                "se": 42.2
+              },
+              "coverage_ci95": [
+                0.3864,
+                0.8152
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.625
+            },
+            "GLO_1892": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 197.0,
+                "ci95": [
+                  164,
+                  234.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 17,
+                "se": 19.3
+              },
+              "coverage_ci95": [
+                0.5897,
+                0.9381
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8235
+            },
+            "GLO_1893": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 197.0,
+                "ci95": [
+                  164,
+                  234.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 17,
+                "se": 19.3
+              },
+              "coverage_ci95": [
+                0.5897,
+                0.9381
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8235
+            },
+            "GLO_1894": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 219.0,
+                "ci95": [
+                  167.6,
+                  270.4
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 19,
+                "se": 26.2
+              },
+              "coverage_ci95": [
+                0.5121,
+                0.8819
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.7368
+            },
+            "GLO_1897": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 278.2,
+                "ci95": [
+                  188.4,
+                  368.0
+                ],
+                "m": 12,
+                "n1": 164,
+                "n2": 21,
+                "se": 45.8
+              },
+              "coverage_ci95": [
+                0.3655,
+                0.7553
+              ],
+              "in_list": 21,
+              "lord_coverage": 0.5714
+            },
+            "GLO_1898": {
+              "also_in_lord": 14,
+              "chapman_vs_lord": {
+                "N_hat": 241.0,
+                "ci95": [
+                  177.2,
+                  304.8
+                ],
+                "m": 14,
+                "n1": 164,
+                "n2": 21,
+                "se": 32.5
+              },
+              "coverage_ci95": [
+                0.4537,
+                0.8281
+              ],
+              "in_list": 21,
+              "lord_coverage": 0.6667
+            },
+            "MR_1907": {
+              "also_in_lord": 11,
+              "chapman_vs_lord": {
+                "N_hat": 232.8,
+                "ci95": [
+                  166.4,
+                  299.1
+                ],
+                "m": 11,
+                "n1": 164,
+                "n2": 16,
+                "se": 33.9
+              },
+              "coverage_ci95": [
+                0.444,
+                0.8584
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.6875
+            },
+            "MR_1910": {
+              "also_in_lord": 10,
+              "chapman_vs_lord": {
+                "N_hat": 239.0,
+                "ci95": [
+                  165.7,
+                  312.3
+                ],
+                "m": 10,
+                "n1": 164,
+                "n2": 15,
+                "se": 37.4
+              },
+              "coverage_ci95": [
+                0.4171,
+                0.8482
+              ],
+              "in_list": 15,
+              "lord_coverage": 0.6667
+            },
+            "MR_1916": {
+              "also_in_lord": 15,
+              "chapman_vs_lord": {
+                "N_hat": 236.2,
+                "ci95": [
+                  177.1,
+                  295.3
+                ],
+                "m": 15,
+                "n1": 164,
+                "n2": 22,
+                "se": 30.2
+              },
+              "coverage_ci95": [
+                0.4732,
+                0.8364
+              ],
+              "in_list": 22,
+              "lord_coverage": 0.6818
+            },
+            "RICH_VI": {
+              "also_in_lord": 0,
+              "chapman_vs_lord": {
+                "N_hat": 3299.0,
+                "ci95": [
+                  164,
+                  7743.2
+                ],
+                "m": 0,
+                "n1": 164,
+                "n2": 19,
+                "se": 2267.5
+              },
+              "coverage_ci95": [
+                0,
+                0.1682
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.0
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 263.2,
+            "ci95": [
+              244.7,
+              281.7
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 40.2
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 11,
+            "GLO_1884": 27,
+            "GLO_1890": 8,
+            "GLO_1891": 16,
+            "GLO_1892": 17,
+            "GLO_1893": 17,
+            "GLO_1894": 19,
+            "GLO_1897": 21,
+            "GLO_1898": 21,
+            "IR1912": 0,
+            "LORD": 164,
+            "MR_1907": 16,
+            "MR_1910": 15,
+            "MR_1916": 22,
+            "RICH_IX": 0,
+            "RICH_VI": 19,
+            "RICH_VII": 0
+          }
+        },
+        "1862-1899": {
+          "by_number_of_lists": {
+            "1": 1099,
+            "10": 10,
+            "11": 5,
+            "12": 5,
+            "13": 4,
+            "15": 1,
+            "2": 98,
+            "3": 25,
+            "4": 25,
+            "5": 17,
+            "6": 26,
+            "7": 16,
+            "8": 7,
+            "9": 3
+          },
+          "chao1_all_lists": {
+            "N_hat": 7503.2,
+            "S_obs": 1341,
+            "ci95": [
+              6231.5,
+              9105.8
+            ],
+            "f1": 1099,
+            "f2": 98,
+            "undiscovered_hat": 6162.2
+          },
+          "clusters_observed": 1341,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 38,
+              "chapman_vs_lord": {
+                "N_hat": 1056.3,
+                "ci95": [
+                  892.2,
+                  1220.4
+                ],
+                "m": 38,
+                "n1": 777,
+                "n2": 52,
+                "se": 83.7
+              },
+              "coverage_ci95": [
+                0.5975,
+                0.8323
+              ],
+              "in_list": 52,
+              "lord_coverage": 0.7308
+            },
+            "GLO_1884": {
+              "also_in_lord": 26,
+              "chapman_vs_lord": {
+                "N_hat": 2765.2,
+                "ci95": [
+                  1911.8,
+                  3618.7
+                ],
+                "m": 26,
+                "n1": 777,
+                "n2": 95,
+                "se": 435.4
+              },
+              "coverage_ci95": [
+                0.1941,
+                0.3708
+              ],
+              "in_list": 95,
+              "lord_coverage": 0.2737
+            },
+            "GLO_1890": {
+              "also_in_lord": 30,
+              "chapman_vs_lord": {
+                "N_hat": 1555.0,
+                "ci95": [
+                  1181.5,
+                  1928.5
+                ],
+                "m": 30,
+                "n1": 777,
+                "n2": 61,
+                "se": 190.6
+              },
+              "coverage_ci95": [
+                0.3706,
+                0.614
+              ],
+              "in_list": 61,
+              "lord_coverage": 0.4918
+            },
+            "GLO_1891": {
+              "also_in_lord": 29,
+              "chapman_vs_lord": {
+                "N_hat": 1425.3,
+                "ci95": [
+                  1093.4,
+                  1757.3
+                ],
+                "m": 29,
+                "n1": 777,
+                "n2": 54,
+                "se": 169.4
+              },
+              "coverage_ci95": [
+                0.4061,
+                0.6631
+              ],
+              "in_list": 54,
+              "lord_coverage": 0.537
+            },
+            "GLO_1892": {
+              "also_in_lord": 50,
+              "chapman_vs_lord": {
+                "N_hat": 1371.9,
+                "ci95": [
+                  1134.5,
+                  1609.4
+                ],
+                "m": 50,
+                "n1": 777,
+                "n2": 89,
+                "se": 121.2
+              },
+              "coverage_ci95": [
+                0.4583,
+                0.6602
+              ],
+              "in_list": 89,
+              "lord_coverage": 0.5618
+            },
+            "GLO_1893": {
+              "also_in_lord": 48,
+              "chapman_vs_lord": {
+                "N_hat": 1475.6,
+                "ci95": [
+                  1203.1,
+                  1748.1
+                ],
+                "m": 48,
+                "n1": 777,
+                "n2": 92,
+                "se": 139.0
+              },
+              "coverage_ci95": [
+                0.4209,
+                0.6209
+              ],
+              "in_list": 92,
+              "lord_coverage": 0.5217
+            },
+            "GLO_1894": {
+              "also_in_lord": 44,
+              "chapman_vs_lord": {
+                "N_hat": 1831.6,
+                "ci95": [
+                  1441.7,
+                  2221.6
+                ],
+                "m": 44,
+                "n1": 777,
+                "n2": 105,
+                "se": 199.0
+              },
+              "coverage_ci95": [
+                0.3292,
+                0.5146
+              ],
+              "in_list": 105,
+              "lord_coverage": 0.419
+            },
+            "GLO_1897": {
+              "also_in_lord": 61,
+              "chapman_vs_lord": {
+                "N_hat": 1454.6,
+                "ci95": [
+                  1219.3,
+                  1689.9
+                ],
+                "m": 61,
+                "n1": 777,
+                "n2": 115,
+                "se": 120.0
+              },
+              "coverage_ci95": [
+                0.4397,
+                0.6192
+              ],
+              "in_list": 115,
+              "lord_coverage": 0.5304
+            },
+            "GLO_1898": {
+              "also_in_lord": 62,
+              "chapman_vs_lord": {
+                "N_hat": 1468.6,
+                "ci95": [
+                  1231.8,
+                  1705.3
+                ],
+                "m": 62,
+                "n1": 777,
+                "n2": 118,
+                "se": 120.8
+              },
+              "coverage_ci95": [
+                0.436,
+                0.6133
+              ],
+              "in_list": 118,
+              "lord_coverage": 0.5254
+            },
+            "IR1912": {
+              "also_in_lord": 61,
+              "chapman_vs_lord": {
+                "N_hat": 1806.0,
+                "ci95": [
+                  1482.9,
+                  2129.0
+                ],
+                "m": 61,
+                "n1": 777,
+                "n2": 143,
+                "se": 164.8
+              },
+              "coverage_ci95": [
+                0.3485,
+                0.5085
+              ],
+              "in_list": 143,
+              "lord_coverage": 0.4266
+            },
+            "MR_1907": {
+              "also_in_lord": 53,
+              "chapman_vs_lord": {
+                "N_hat": 949.9,
+                "ci95": [
+                  846.5,
+                  1053.3
+                ],
+                "m": 53,
+                "n1": 777,
+                "n2": 65,
+                "se": 52.7
+              },
+              "coverage_ci95": [
+                0.7045,
+                0.8911
+              ],
+              "in_list": 65,
+              "lord_coverage": 0.8154
+            },
+            "MR_1910": {
+              "also_in_lord": 55,
+              "chapman_vs_lord": {
+                "N_hat": 929.8,
+                "ci95": [
+                  835.5,
+                  1024.1
+                ],
+                "m": 55,
+                "n1": 777,
+                "n2": 66,
+                "se": 48.1
+              },
+              "coverage_ci95": [
+                0.7257,
+                0.9043
+              ],
+              "in_list": 66,
+              "lord_coverage": 0.8333
+            },
+            "MR_1916": {
+              "also_in_lord": 58,
+              "chapman_vs_lord": {
+                "N_hat": 1027.5,
+                "ci95": [
+                  904.1,
+                  1151.0
+                ],
+                "m": 58,
+                "n1": 777,
+                "n2": 77,
+                "se": 63.0
+              },
+              "coverage_ci95": [
+                0.6465,
+                0.836
+              ],
+              "in_list": 77,
+              "lord_coverage": 0.7532
+            },
+            "RICH_IX": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 5911.8,
+                "ci95": [
+                  1517.0,
+                  10306.6
+                ],
+                "m": 4,
+                "n1": 777,
+                "n2": 37,
+                "se": 2242.2
+              },
+              "coverage_ci95": [
+                0.0429,
+                0.2471
+              ],
+              "in_list": 37,
+              "lord_coverage": 0.1081
+            },
+            "RICH_VI": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 70019.0,
+                "ci95": [
+                  777,
+                  148711.3
+                ],
+                "m": 1,
+                "n1": 777,
+                "n2": 179,
+                "se": 40149.1
+              },
+              "coverage_ci95": [
+                0.001,
+                0.031
+              ],
+              "in_list": 179,
+              "lord_coverage": 0.0056
+            },
+            "RICH_VII": {
+              "also_in_lord": 4,
+              "chapman_vs_lord": {
+                "N_hat": 9957.4,
+                "ci95": [
+                  2331.2,
+                  17583.6
+                ],
+                "m": 4,
+                "n1": 777,
+                "n2": 63,
+                "se": 3890.9
+              },
+              "coverage_ci95": [
+                0.025,
+                0.1522
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.0635
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 1792.2,
+            "ci95": [
+              1721.3,
+              1863.1
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 451.2
+          },
+          "numbered_orders_excluded": 75,
+          "per_source": {
+            "GLO_1880": 52,
+            "GLO_1884": 95,
+            "GLO_1890": 61,
+            "GLO_1891": 54,
+            "GLO_1892": 89,
+            "GLO_1893": 92,
+            "GLO_1894": 105,
+            "GLO_1897": 115,
+            "GLO_1898": 118,
+            "IR1912": 143,
+            "LORD": 777,
+            "MR_1907": 65,
+            "MR_1910": 66,
+            "MR_1916": 77,
+            "RICH_IX": 37,
+            "RICH_VI": 179,
+            "RICH_VII": 63
+          }
+        }
+      },
+      "estimates_same_date_pairs_as_matches": {
+        "1789-1800": {
+          "by_number_of_lists": {
+            "1": 6,
+            "4": 1
+          },
+          "chao1_all_lists": {
+            "N_hat": 22.0,
+            "S_obs": 7,
+            "ci95": [
+              10.3,
+              74.8
+            ],
+            "f1": 6,
+            "f2": 0,
+            "undiscovered_hat": 15.0
+          },
+          "clusters_observed": 7,
+          "lord_vs_each_list": {
+            "MR_1907": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1910": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            },
+            "MR_1916": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 7.0,
+                "ci95": [
+                  7.0,
+                  7.0
+                ],
+                "m": 1,
+                "n1": 7,
+                "n2": 1,
+                "se": 0.0
+              },
+              "coverage_ci95": [
+                0.2065,
+                1
+              ],
+              "in_list": 1,
+              "lord_coverage": 1.0
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": null,
+            "ci95": null,
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": null
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 0,
+            "GLO_1884": 0,
+            "GLO_1890": 0,
+            "GLO_1891": 0,
+            "GLO_1892": 0,
+            "GLO_1893": 0,
+            "GLO_1894": 0,
+            "GLO_1897": 0,
+            "GLO_1898": 0,
+            "IR1912": 0,
+            "LORD": 7,
+            "MR_1907": 1,
+            "MR_1910": 1,
+            "MR_1916": 1,
+            "RICH_IX": 0,
+            "RICH_VI": 0,
+            "RICH_VII": 0
+          }
+        },
+        "1789-1899": {
+          "by_number_of_lists": {
+            "1": 828,
+            "10": 12,
+            "11": 12,
+            "12": 10,
+            "13": 6,
+            "14": 1,
+            "15": 1,
+            "2": 185,
+            "3": 30,
+            "4": 32,
+            "5": 14,
+            "6": 22,
+            "7": 15,
+            "8": 19,
+            "9": 8
+          },
+          "chao1_all_lists": {
+            "N_hat": 3047.9,
+            "S_obs": 1195,
+            "ci95": [
+              2707.6,
+              3464.8
+            ],
+            "f1": 828,
+            "f2": 185,
+            "undiscovered_hat": 1852.9
+          },
+          "clusters_observed": 1195,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 48,
+              "chapman_vs_lord": {
+                "N_hat": 1164.1,
+                "ci95": [
+                  1012.1,
+                  1316.0
+                ],
+                "m": 48,
+                "n1": 891,
+                "n2": 63,
+                "se": 77.5
+              },
+              "coverage_ci95": [
+                0.6436,
+                0.8501
+              ],
+              "in_list": 63,
+              "lord_coverage": 0.7619
+            },
+            "GLO_1884": {
+              "also_in_lord": 74,
+              "chapman_vs_lord": {
+                "N_hat": 1271.6,
+                "ci95": [
+                  1121.8,
+                  1421.3
+                ],
+                "m": 74,
+                "n1": 891,
+                "n2": 106,
+                "se": 76.4
+              },
+              "coverage_ci95": [
+                0.6051,
+                0.7773
+              ],
+              "in_list": 106,
+              "lord_coverage": 0.6981
+            },
+            "GLO_1890": {
+              "also_in_lord": 39,
+              "chapman_vs_lord": {
+                "N_hat": 1515.4,
+                "ci95": [
+                  1224.3,
+                  1806.5
+                ],
+                "m": 39,
+                "n1": 891,
+                "n2": 67,
+                "se": 148.5
+              },
+              "coverage_ci95": [
+                0.4627,
+                0.6926
+              ],
+              "in_list": 67,
+              "lord_coverage": 0.5821
+            },
+            "GLO_1891": {
+              "also_in_lord": 47,
+              "chapman_vs_lord": {
+                "N_hat": 1318.4,
+                "ci95": [
+                  1113.9,
+                  1522.9
+                ],
+                "m": 47,
+                "n1": 891,
+                "n2": 70,
+                "se": 104.4
+              },
+              "coverage_ci95": [
+                0.555,
+                0.77
+              ],
+              "in_list": 70,
+              "lord_coverage": 0.6714
+            },
+            "GLO_1892": {
+              "also_in_lord": 74,
+              "chapman_vs_lord": {
+                "N_hat": 1259.7,
+                "ci95": [
+                  1113.0,
+                  1406.4
+                ],
+                "m": 74,
+                "n1": 891,
+                "n2": 105,
+                "se": 74.8
+              },
+              "coverage_ci95": [
+                0.6115,
+                0.7835
+              ],
+              "in_list": 105,
+              "lord_coverage": 0.7048
+            },
+            "GLO_1893": {
+              "also_in_lord": 75,
+              "chapman_vs_lord": {
+                "N_hat": 1254.8,
+                "ci95": [
+                  1110.4,
+                  1399.3
+                ],
+                "m": 75,
+                "n1": 891,
+                "n2": 106,
+                "se": 73.7
+              },
+              "coverage_ci95": [
+                0.6149,
+                0.7857
+              ],
+              "in_list": 106,
+              "lord_coverage": 0.7075
+            },
+            "GLO_1894": {
+              "also_in_lord": 80,
+              "chapman_vs_lord": {
+                "N_hat": 1254.4,
+                "ci95": [
+                  1115.0,
+                  1393.8
+                ],
+                "m": 80,
+                "n1": 891,
+                "n2": 113,
+                "se": 71.1
+              },
+              "coverage_ci95": [
+                0.6184,
+                0.7839
+              ],
+              "in_list": 113,
+              "lord_coverage": 0.708
+            },
+            "GLO_1897": {
+              "also_in_lord": 92,
+              "chapman_vs_lord": {
+                "N_hat": 1207.5,
+                "ci95": [
+                  1089.2,
+                  1325.8
+                ],
+                "m": 92,
+                "n1": 891,
+                "n2": 125,
+                "se": 60.4
+              },
+              "coverage_ci95": [
+                0.6525,
+                0.8054
+              ],
+              "in_list": 125,
+              "lord_coverage": 0.736
+            },
+            "GLO_1898": {
+              "also_in_lord": 95,
+              "chapman_vs_lord": {
+                "N_hat": 1197.6,
+                "ci95": [
+                  1083.7,
+                  1311.6
+                ],
+                "m": 95,
+                "n1": 891,
+                "n2": 128,
+                "se": 58.1
+              },
+              "coverage_ci95": [
+                0.6601,
+                0.8101
+              ],
+              "in_list": 128,
+              "lord_coverage": 0.7422
+            },
+            "IR1912": {
+              "also_in_lord": 83,
+              "chapman_vs_lord": {
+                "N_hat": 1252.0,
+                "ci95": [
+                  1116.0,
+                  1388.1
+                ],
+                "m": 83,
+                "n1": 891,
+                "n2": 117,
+                "se": 69.4
+              },
+              "coverage_ci95": [
+                0.6215,
+                0.784
+              ],
+              "in_list": 117,
+              "lord_coverage": 0.7094
+            },
+            "MR_1907": {
+              "also_in_lord": 68,
+              "chapman_vs_lord": {
+                "N_hat": 1059.1,
+                "ci95": [
+                  964.1,
+                  1154.0
+                ],
+                "m": 68,
+                "n1": 891,
+                "n2": 81,
+                "se": 48.5
+              },
+              "coverage_ci95": [
+                0.7445,
+                0.9037
+              ],
+              "in_list": 81,
+              "lord_coverage": 0.8395
+            },
+            "MR_1910": {
+              "also_in_lord": 69,
+              "chapman_vs_lord": {
+                "N_hat": 1043.9,
+                "ci95": [
+                  954.7,
+                  1133.2
+                ],
+                "m": 69,
+                "n1": 891,
+                "n2": 81,
+                "se": 45.5
+              },
+              "coverage_ci95": [
+                0.7587,
+                0.9132
+              ],
+              "in_list": 81,
+              "lord_coverage": 0.8519
+            },
+            "MR_1916": {
+              "also_in_lord": 81,
+              "chapman_vs_lord": {
+                "N_hat": 1065.0,
+                "ci95": [
+                  976.7,
+                  1153.4
+                ],
+                "m": 81,
+                "n1": 891,
+                "n2": 97,
+                "se": 45.1
+              },
+              "coverage_ci95": [
+                0.7487,
+                0.8958
+              ],
+              "in_list": 97,
+              "lord_coverage": 0.8351
+            },
+            "RICH_IX": {
+              "also_in_lord": 19,
+              "chapman_vs_lord": {
+                "N_hat": 1381.6,
+                "ci95": [
+                  1033.3,
+                  1729.9
+                ],
+                "m": 19,
+                "n1": 891,
+                "n2": 30,
+                "se": 177.7
+              },
+              "coverage_ci95": [
+                0.4551,
+                0.7813
+              ],
+              "in_list": 30,
+              "lord_coverage": 0.6333
+            },
+            "RICH_VI": {
+              "also_in_lord": 40,
+              "chapman_vs_lord": {
+                "N_hat": 4132.7,
+                "ci95": [
+                  3051.3,
+                  5214.0
+                ],
+                "m": 40,
+                "n1": 891,
+                "n2": 189,
+                "se": 551.7
+              },
+              "coverage_ci95": [
+                0.1594,
+                0.2753
+              ],
+              "in_list": 189,
+              "lord_coverage": 0.2116
+            },
+            "RICH_VII": {
+              "also_in_lord": 33,
+              "chapman_vs_lord": {
+                "N_hat": 1520.6,
+                "ci95": [
+                  1202.6,
+                  1838.7
+                ],
+                "m": 33,
+                "n1": 891,
+                "n2": 57,
+                "se": 162.3
+              },
+              "coverage_ci95": [
+                0.4498,
+                0.6981
+              ],
+              "in_list": 57,
+              "lord_coverage": 0.5789
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 1324.1,
+            "ci95": [
+              1294.8,
+              1353.4
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 129.1
+          },
+          "numbered_orders_excluded": 53,
+          "per_source": {
+            "GLO_1880": 63,
+            "GLO_1884": 106,
+            "GLO_1890": 67,
+            "GLO_1891": 70,
+            "GLO_1892": 105,
+            "GLO_1893": 106,
+            "GLO_1894": 113,
+            "GLO_1897": 125,
+            "GLO_1898": 128,
+            "IR1912": 117,
+            "LORD": 891,
+            "MR_1907": 81,
+            "MR_1910": 81,
+            "MR_1916": 97,
+            "RICH_IX": 30,
+            "RICH_VI": 189,
+            "RICH_VII": 57
+          }
+        },
+        "1801-1861": {
+          "by_number_of_lists": {
+            "1": 157,
+            "10": 4,
+            "11": 2,
+            "12": 3,
+            "13": 1,
+            "2": 10,
+            "3": 4,
+            "4": 5,
+            "5": 2,
+            "6": 4,
+            "8": 1,
+            "9": 2
+          },
+          "chao1_all_lists": {
+            "N_hat": 1427.5,
+            "S_obs": 195,
+            "ci95": [
+              821.9,
+              2617.8
+            ],
+            "f1": 157,
+            "f2": 10,
+            "undiscovered_hat": 1232.5
+          },
+          "clusters_observed": 195,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 8,
+              "chapman_vs_lord": {
+                "N_hat": 215.0,
+                "ci95": [
+                  161,
+                  280.1
+                ],
+                "m": 8,
+                "n1": 161,
+                "n2": 11,
+                "se": 33.2
+              },
+              "coverage_ci95": [
+                0.4343,
+                0.9025
+              ],
+              "in_list": 11,
+              "lord_coverage": 0.7273
+            },
+            "GLO_1884": {
+              "also_in_lord": 19,
+              "chapman_vs_lord": {
+                "N_hat": 201.5,
+                "ci95": [
+                  165.2,
+                  237.8
+                ],
+                "m": 19,
+                "n1": 161,
+                "n2": 24,
+                "se": 18.5
+              },
+              "coverage_ci95": [
+                0.5953,
+                0.9076
+              ],
+              "in_list": 24,
+              "lord_coverage": 0.7917
+            },
+            "GLO_1890": {
+              "also_in_lord": 5,
+              "chapman_vs_lord": {
+                "N_hat": 242.0,
+                "ci95": [
+                  161,
+                  344.0
+                ],
+                "m": 5,
+                "n1": 161,
+                "n2": 8,
+                "se": 52.0
+              },
+              "coverage_ci95": [
+                0.3057,
+                0.8632
+              ],
+              "in_list": 8,
+              "lord_coverage": 0.625
+            },
+            "GLO_1891": {
+              "also_in_lord": 11,
+              "chapman_vs_lord": {
+                "N_hat": 228.5,
+                "ci95": [
+                  163.4,
+                  293.6
+                ],
+                "m": 11,
+                "n1": 161,
+                "n2": 16,
+                "se": 33.2
+              },
+              "coverage_ci95": [
+                0.444,
+                0.8584
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.6875
+            },
+            "GLO_1892": {
+              "also_in_lord": 15,
+              "chapman_vs_lord": {
+                "N_hat": 181.2,
+                "ci95": [
+                  161,
+                  208.7
+                ],
+                "m": 15,
+                "n1": 161,
+                "n2": 17,
+                "se": 14.0
+              },
+              "coverage_ci95": [
+                0.6566,
+                0.9671
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8824
+            },
+            "GLO_1893": {
+              "also_in_lord": 15,
+              "chapman_vs_lord": {
+                "N_hat": 181.2,
+                "ci95": [
+                  161,
+                  208.7
+                ],
+                "m": 15,
+                "n1": 161,
+                "n2": 17,
+                "se": 14.0
+              },
+              "coverage_ci95": [
+                0.6566,
+                0.9671
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.8824
+            },
+            "GLO_1894": {
+              "also_in_lord": 17,
+              "chapman_vs_lord": {
+                "N_hat": 179.0,
+                "ci95": [
+                  161,
+                  203.1
+                ],
+                "m": 17,
+                "n1": 161,
+                "n2": 19,
+                "se": 12.3
+              },
+              "coverage_ci95": [
+                0.6861,
+                0.9706
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.8947
+            },
+            "GLO_1897": {
+              "also_in_lord": 16,
+              "chapman_vs_lord": {
+                "N_hat": 170.5,
+                "ci95": [
+                  161,
+                  188.2
+                ],
+                "m": 16,
+                "n1": 161,
+                "n2": 17,
+                "se": 9.0
+              },
+              "coverage_ci95": [
+                0.7302,
+                0.9895
+              ],
+              "in_list": 17,
+              "lord_coverage": 0.9412
+            },
+            "GLO_1898": {
+              "also_in_lord": 17,
+              "chapman_vs_lord": {
+                "N_hat": 170.0,
+                "ci95": [
+                  161,
+                  186.6
+                ],
+                "m": 17,
+                "n1": 161,
+                "n2": 18,
+                "se": 8.5
+              },
+              "coverage_ci95": [
+                0.7424,
+                0.9901
+              ],
+              "in_list": 18,
+              "lord_coverage": 0.9444
+            },
+            "MR_1907": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 210.8,
+                "ci95": [
+                  161,
+                  262.5
+                ],
+                "m": 12,
+                "n1": 161,
+                "n2": 16,
+                "se": 26.3
+              },
+              "coverage_ci95": [
+                0.505,
+                0.8982
+              ],
+              "in_list": 16,
+              "lord_coverage": 0.75
+            },
+            "MR_1910": {
+              "also_in_lord": 12,
+              "chapman_vs_lord": {
+                "N_hat": 198.4,
+                "ci95": [
+                  161,
+                  241.8
+                ],
+                "m": 12,
+                "n1": 161,
+                "n2": 15,
+                "se": 22.1
+              },
+              "coverage_ci95": [
+                0.5481,
+                0.9295
+              ],
+              "in_list": 15,
+              "lord_coverage": 0.8
+            },
+            "MR_1916": {
+              "also_in_lord": 18,
+              "chapman_vs_lord": {
+                "N_hat": 195.1,
+                "ci95": [
+                  161.4,
+                  228.8
+                ],
+                "m": 18,
+                "n1": 161,
+                "n2": 22,
+                "se": 17.2
+              },
+              "coverage_ci95": [
+                0.6148,
+                0.9269
+              ],
+              "in_list": 22,
+              "lord_coverage": 0.8182
+            },
+            "RICH_VI": {
+              "also_in_lord": 1,
+              "chapman_vs_lord": {
+                "N_hat": 1619.0,
+                "ci95": [
+                  161,
+                  3347.4
+                ],
+                "m": 1,
+                "n1": 161,
+                "n2": 19,
+                "se": 881.8
+              },
+              "coverage_ci95": [
+                0.0094,
+                0.2464
+              ],
+              "in_list": 19,
+              "lord_coverage": 0.0526
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 212.6,
+            "ci95": [
+              201.7,
+              223.5
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 17.6
+          },
+          "numbered_orders_excluded": 0,
+          "per_source": {
+            "GLO_1880": 11,
+            "GLO_1884": 24,
+            "GLO_1890": 8,
+            "GLO_1891": 16,
+            "GLO_1892": 17,
+            "GLO_1893": 17,
+            "GLO_1894": 19,
+            "GLO_1897": 17,
+            "GLO_1898": 18,
+            "IR1912": 0,
+            "LORD": 161,
+            "MR_1907": 16,
+            "MR_1910": 15,
+            "MR_1916": 22,
+            "RICH_IX": 0,
+            "RICH_VI": 19,
+            "RICH_VII": 0
+          }
+        },
+        "1862-1899": {
+          "by_number_of_lists": {
+            "1": 665,
+            "10": 8,
+            "11": 10,
+            "12": 7,
+            "13": 5,
+            "14": 1,
+            "15": 1,
+            "2": 175,
+            "3": 26,
+            "4": 26,
+            "5": 12,
+            "6": 18,
+            "7": 15,
+            "8": 18,
+            "9": 6
+          },
+          "chao1_all_lists": {
+            "N_hat": 2256.5,
+            "S_obs": 993,
+            "ci95": [
+              2008.4,
+              2565.3
+            ],
+            "f1": 665,
+            "f2": 175,
+            "undiscovered_hat": 1263.5
+          },
+          "clusters_observed": 993,
+          "lord_vs_each_list": {
+            "GLO_1880": {
+              "also_in_lord": 40,
+              "chapman_vs_lord": {
+                "N_hat": 934.9,
+                "ci95": [
+                  804.1,
+                  1065.7
+                ],
+                "m": 40,
+                "n1": 723,
+                "n2": 52,
+                "se": 66.7
+              },
+              "coverage_ci95": [
+                0.6387,
+                0.8628
+              ],
+              "in_list": 52,
+              "lord_coverage": 0.7692
+            },
+            "GLO_1884": {
+              "also_in_lord": 55,
+              "chapman_vs_lord": {
+                "N_hat": 1072.1,
+                "ci95": [
+                  919.5,
+                  1224.7
+                ],
+                "m": 55,
+                "n1": 723,
+                "n2": 82,
+                "se": 77.9
+              },
+              "coverage_ci95": [
+                0.5634,
+                0.7628
+              ],
+              "in_list": 82,
+              "lord_coverage": 0.6707
+            },
+            "GLO_1890": {
+              "also_in_lord": 34,
+              "chapman_vs_lord": {
+                "N_hat": 1240.1,
+                "ci95": [
+                  984.8,
+                  1495.4
+                ],
+                "m": 34,
+                "n1": 723,
+                "n2": 59,
+                "se": 130.3
+              },
+              "coverage_ci95": [
+                0.4493,
+                0.6939
+              ],
+              "in_list": 59,
+              "lord_coverage": 0.5763
+            },
+            "GLO_1891": {
+              "also_in_lord": 36,
+              "chapman_vs_lord": {
+                "N_hat": 1075.2,
+                "ci95": [
+                  884.5,
+                  1265.9
+                ],
+                "m": 36,
+                "n1": 723,
+                "n2": 54,
+                "se": 97.3
+              },
+              "coverage_ci95": [
+                0.5336,
+                0.7776
+              ],
+              "in_list": 54,
+              "lord_coverage": 0.6667
+            },
+            "GLO_1892": {
+              "also_in_lord": 59,
+              "chapman_vs_lord": {
+                "N_hat": 1072.9,
+                "ci95": [
+                  925.6,
+                  1220.3
+                ],
+                "m": 59,
+                "n1": 723,
+                "n2": 88,
+                "se": 75.2
+              },
+              "coverage_ci95": [
+                0.5669,
+                0.7597
+              ],
+              "in_list": 88,
+              "lord_coverage": 0.6705
+            },
+            "GLO_1893": {
+              "also_in_lord": 60,
+              "chapman_vs_lord": {
+                "N_hat": 1067.2,
+                "ci95": [
+                  922.8,
+                  1211.6
+                ],
+                "m": 60,
+                "n1": 723,
+                "n2": 89,
+                "se": 73.7
+              },
+              "coverage_ci95": [
+                0.5713,
+                0.7626
+              ],
+              "in_list": 89,
+              "lord_coverage": 0.6742
+            },
+            "GLO_1894": {
+              "also_in_lord": 63,
+              "chapman_vs_lord": {
+                "N_hat": 1073.7,
+                "ci95": [
+                  931.2,
+                  1216.2
+                ],
+                "m": 63,
+                "n1": 723,
+                "n2": 94,
+                "se": 72.7
+              },
+              "coverage_ci95": [
+                0.5701,
+                0.7569
+              ],
+              "in_list": 94,
+              "lord_coverage": 0.6702
+            },
+            "GLO_1897": {
+              "also_in_lord": 76,
+              "chapman_vs_lord": {
+                "N_hat": 1023.9,
+                "ci95": [
+                  907.4,
+                  1140.4
+                ],
+                "m": 76,
+                "n1": 723,
+                "n2": 108,
+                "se": 59.4
+              },
+              "coverage_ci95": [
+                0.6118,
+                0.7816
+              ],
+              "in_list": 108,
+              "lord_coverage": 0.7037
+            },
+            "GLO_1898": {
+              "also_in_lord": 78,
+              "chapman_vs_lord": {
+                "N_hat": 1016.3,
+                "ci95": [
+                  903.3,
+                  1129.2
+                ],
+                "m": 78,
+                "n1": 723,
+                "n2": 110,
+                "se": 57.6
+              },
+              "coverage_ci95": [
+                0.6183,
+                0.7858
+              ],
+              "in_list": 110,
+              "lord_coverage": 0.7091
+            },
+            "IR1912": {
+              "also_in_lord": 83,
+              "chapman_vs_lord": {
+                "N_hat": 1016.0,
+                "ci95": [
+                  906.9,
+                  1125.2
+                ],
+                "m": 83,
+                "n1": 723,
+                "n2": 117,
+                "se": 55.7
+              },
+              "coverage_ci95": [
+                0.6215,
+                0.784
+              ],
+              "in_list": 117,
+              "lord_coverage": 0.7094
+            },
+            "MR_1907": {
+              "also_in_lord": 55,
+              "chapman_vs_lord": {
+                "N_hat": 839.4,
+                "ci95": [
+                  761.4,
+                  917.3
+                ],
+                "m": 55,
+                "n1": 723,
+                "n2": 64,
+                "se": 39.8
+              },
+              "coverage_ci95": [
+                0.7538,
+                0.9242
+              ],
+              "in_list": 64,
+              "lord_coverage": 0.8594
+            },
+            "MR_1910": {
+              "also_in_lord": 56,
+              "chapman_vs_lord": {
+                "N_hat": 837.3,
+                "ci95": [
+                  760.8,
+                  913.8
+                ],
+                "m": 56,
+                "n1": 723,
+                "n2": 65,
+                "se": 39.0
+              },
+              "coverage_ci95": [
+                0.7573,
+                0.9254
+              ],
+              "in_list": 65,
+              "lord_coverage": 0.8615
+            },
+            "MR_1916": {
+              "also_in_lord": 62,
+              "chapman_vs_lord": {
+                "N_hat": 860.9,
+                "ci95": [
+                  780.2,
+                  941.6
+                ],
+                "m": 62,
+                "n1": 723,
+                "n2": 74,
+                "se": 41.2
+              },
+              "coverage_ci95": [
+                0.7376,
+                0.9047
+              ],
+              "in_list": 74,
+              "lord_coverage": 0.8378
+            },
+            "RICH_IX": {
+              "also_in_lord": 19,
+              "chapman_vs_lord": {
+                "N_hat": 1121.2,
+                "ci95": [
+                  839.3,
+                  1403.1
+                ],
+                "m": 19,
+                "n1": 723,
+                "n2": 30,
+                "se": 143.8
+              },
+              "coverage_ci95": [
+                0.4551,
+                0.7813
+              ],
+              "in_list": 30,
+              "lord_coverage": 0.6333
+            },
+            "RICH_VI": {
+              "also_in_lord": 39,
+              "chapman_vs_lord": {
+                "N_hat": 3094.1,
+                "ci95": [
+                  2288.1,
+                  3900.1
+                ],
+                "m": 39,
+                "n1": 723,
+                "n2": 170,
+                "se": 411.2
+              },
+              "coverage_ci95": [
+                0.1726,
+                0.2982
+              ],
+              "in_list": 170,
+              "lord_coverage": 0.2294
+            },
+            "RICH_VII": {
+              "also_in_lord": 33,
+              "chapman_vs_lord": {
+                "N_hat": 1234.1,
+                "ci95": [
+                  977.1,
+                  1491.0
+                ],
+                "m": 33,
+                "n1": 723,
+                "n2": 57,
+                "se": 131.1
+              },
+              "coverage_ci95": [
+                0.4498,
+                0.6981
+              ],
+              "in_list": 57,
+              "lord_coverage": 0.5789
+            }
+          },
+          "mt_all_lists": {
+            "N_hat": 1101.9,
+            "ci95": [
+              1075.1,
+              1128.7
+            ],
+            "model": "Mt: lists differ in catchability, orders equally catchable within a list, lists independent (Darroch MLE, asymptotic interval)",
+            "undiscovered_hat": 108.9
+          },
+          "numbered_orders_excluded": 53,
+          "per_source": {
+            "GLO_1880": 52,
+            "GLO_1884": 82,
+            "GLO_1890": 59,
+            "GLO_1891": 54,
+            "GLO_1892": 88,
+            "GLO_1893": 89,
+            "GLO_1894": 94,
+            "GLO_1897": 108,
+            "GLO_1898": 110,
+            "IR1912": 117,
+            "LORD": 723,
+            "MR_1907": 64,
+            "MR_1910": 65,
+            "MR_1916": 74,
+            "RICH_IX": 30,
+            "RICH_VI": 170,
+            "RICH_VII": 57
+          }
+        }
+      },
+      "inputs": {
+        "books": {
+          "books": [
+            {
+              "book": "GLO_1880",
+              "mentions": 83,
+              "pages": 738,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1880_pages.jsonl.gz",
+              "sha256": "c6ef4b6fdcf2b447bfd08438a24fa180f10f4ce872f8436c544037980a8d6298"
+            },
+            {
+              "book": "GLO_1884",
+              "mentions": 135,
+              "pages": 256,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1884_pages.jsonl.gz",
+              "sha256": "4671ff5fe312ec0d531ab011fc9379f851e741369991bf9e5bd9446839db5bba"
+            },
+            {
+              "book": "GLO_1890",
+              "mentions": 79,
+              "pages": 509,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1890_pages.jsonl.gz",
+              "sha256": "cf9b6af593eb6ce58dcbd4edaa7e36f6af67f926c26016d973d1debc107585f6"
+            },
+            {
+              "book": "GLO_1891",
+              "mentions": 78,
+              "pages": 451,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1891_pages.jsonl.gz",
+              "sha256": "46b84f65099ea3f6ab02ab1817a92ee6b608a1596210d8dfe26c234001e14b47"
+            },
+            {
+              "book": "GLO_1892",
+              "mentions": 132,
+              "pages": 508,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1892_pages.jsonl.gz",
+              "sha256": "9b8a711504a8d6c0ccf680888133d8f1422e396ac49c7522d21799707374ee0d"
+            },
+            {
+              "book": "GLO_1893",
+              "mentions": 137,
+              "pages": 420,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1893_pages.jsonl.gz",
+              "sha256": "363254df72c6a8588e1da50a3b1c7c00edee96a2e15a6f12ff42dcd5a2fa0dcf"
+            },
+            {
+              "book": "GLO_1894",
+              "mentions": 146,
+              "pages": 548,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1894_pages.jsonl.gz",
+              "sha256": "67efdea384d4894b084a177a3835da50506c8ac63d311c4e793401031f2c594c"
+            },
+            {
+              "book": "GLO_1897",
+              "mentions": 178,
+              "pages": 490,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1897_pages.jsonl.gz",
+              "sha256": "0b8479813885d8d9299698d841e4155e556edb4ad8d5ac167436c7298b57ab44"
+            },
+            {
+              "book": "GLO_1898",
+              "mentions": 177,
+              "pages": 512,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/GLO_1898_pages.jsonl.gz",
+              "sha256": "d17ee92e031a4c5f31b177ee7f819dfa745187a0973e9501e86ccf70a3184368"
+            },
+            {
+              "book": "MR_1907",
+              "mentions": 141,
+              "pages": 484,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/MR_1907_pages.jsonl.gz",
+              "sha256": "45a22c4d0dfc4cf6b3f7a75e41c2aebb86534f689b95dcc3ab7de2a9b0799346"
+            },
+            {
+              "book": "MR_1910",
+              "mentions": 137,
+              "pages": 520,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/MR_1910_pages.jsonl.gz",
+              "sha256": "5c3e218638b047a4590fc0696d2b24e8acd9524d61abd7ccfbc505000a1a44d9"
+            },
+            {
+              "book": "MR_1916",
+              "mentions": 166,
+              "pages": 560,
+              "path": "/home/runner/work/Executive-Orders/Executive-Orders/jobs/early-orders-hunt/output/books/MR_1916_pages.jsonl.gz",
+              "sha256": "d622152c1c959a8dc1914635f676cace37f2ea01412df4e3118e5b254a04d219"
+            }
+          ],
+          "mentions": 1589,
+          "note": "Dated 'Executive order' mentions read from page text fetched by early-orders-hunt; one mention per date and heading."
+        },
+        "indian_reservations_1912": {
+          "mentions": 162,
+          "note": "Orders (not indorsements or proclamations) printed in Executive Orders Relating to Indian Reservations (GPO 1912); reprints folded into one order.",
+          "path": "jobs/indian-reservations-1912/output/IR1912_ACTS.csv",
+          "sha256": "eb547f855924748b0c02ae14a061f8aa63478a2d78e9ff5fd94cc870be567118"
+        },
+        "lord": {
+          "mentions": 1158,
+          "note": "Lord cites the GLO, MR, Indian-reservation and Richardson volumes as his printed sources; his list is not independent of them.",
+          "path": "jobs/early-orders-hunt/data/lord_subset/UNNUMBERED_ENTRIES_pre1900.csv",
+          "sha256": "e2e0cca687bd627c9c7535cff00da4850db1c0aec80e8bc56f31601aac91443b"
+        },
+        "richardson": {
+          "files": [
+            {
+              "path": "jobs/richardson-volumes/output/RICH_IX_ORDERS.csv",
+              "sha256": "86502a336e9069e79ca98001693b60dde000d41bf4bae966a2ab02cf1a817fcf"
+            },
+            {
+              "path": "jobs/richardson-volumes/output/RICH_VII_ORDERS.csv",
+              "sha256": "06d47deae399b254ea3560468beb950c94565739219838976114dc34e186ae95"
+            },
+            {
+              "path": "jobs/richardson-volumes/output/RICH_VI_ORDERS.csv",
+              "sha256": "261f6db150d8018e1d3a2e031ce3f72fafa25c8954e3cf400703913929bc501a"
+            }
+          ],
+          "mentions": 428,
+          "note": "Documents in the volumes' EXECUTIVE ORDERS sections; includes orders signed by the President, orders issued by his direction, and departmental orders printed there."
+        },
+        "wpa_numbered": {
+          "mentions": 105,
+          "note": "The numbered series; Lord's list excludes numbered orders by design, so the two are complementary, not two captures of one population.",
+          "path": "jobs/census-completeness/data/WPA_NUMBERED_pre1900.csv",
+          "sha256": "80d995ce98fb10bb3117c087524ade010654ced2e92000fd2de18ae6b2fcbf60"
+        }
+      },
+      "leads_only": "Population-level estimates. Nothing here admits an order to the census, assigns a date to one, merges identities or changes any count or status.",
+      "matches": {
+        "blind_date_and_token": 5902,
+        "blind_year_and_two_tokens": 1195,
+        "citation_link": 330
+      },
+      "mentions": {
+        "GLO_1880": 83,
+        "GLO_1884": 135,
+        "GLO_1890": 79,
+        "GLO_1891": 78,
+        "GLO_1892": 132,
+        "GLO_1893": 137,
+        "GLO_1894": 146,
+        "GLO_1897": 178,
+        "GLO_1898": 177,
+        "IR1912": 162,
+        "LORD": 1158,
+        "MR_1907": 141,
+        "MR_1910": 137,
+        "MR_1916": 166,
+        "RICH_IX": 151,
+        "RICH_VI": 203,
+        "RICH_VII": 74,
+        "WPA": 105
+      },
+      "richardson_coverage_by_signer": [
+        {
+          "cited_by_lord": 5,
+          "cited_by_wpa": 1,
+          "coverage_ci_high": 0.9178,
+          "coverage_ci_low": 0.3589,
+          "documents": 7,
+          "lord_coverage": 0.7143,
+          "signer": "by_direction_of_president",
+          "volume": "RICH_IX"
+        },
+        {
+          "cited_by_lord": 0,
+          "cited_by_wpa": 0,
+          "coverage_ci_high": 0.4899,
+          "coverage_ci_low": 0,
+          "documents": 4,
+          "lord_coverage": 0.0,
+          "signer": "department_or_other",
+          "volume": "RICH_IX"
+        },
+        {
+          "cited_by_lord": 71,
+          "cited_by_wpa": 58,
+          "coverage_ci_high": 0.5887,
+          "coverage_ci_low": 0.4252,
+          "documents": 140,
+          "lord_coverage": 0.5071,
+          "signer": "president",
+          "volume": "RICH_IX"
+        },
+        {
+          "cited_by_lord": 9,
+          "cited_by_wpa": 0,
+          "coverage_ci_high": 0.2534,
+          "coverage_ci_low": 0.0783,
+          "documents": 62,
+          "lord_coverage": 0.1452,
+          "signer": "by_direction_of_president",
+          "volume": "RICH_VI"
+        },
+        {
+          "cited_by_lord": 1,
+          "cited_by_wpa": 2,
+          "coverage_ci_high": 0.1382,
+          "coverage_ci_low": 0.0048,
+          "documents": 37,
+          "lord_coverage": 0.027,
+          "signer": "department_or_other",
+          "volume": "RICH_VI"
+        },
+        {
+          "cited_by_lord": 32,
+          "cited_by_wpa": 3,
+          "coverage_ci_high": 0.4019,
+          "coverage_ci_low": 0.2272,
+          "documents": 104,
+          "lord_coverage": 0.3077,
+          "signer": "president",
+          "volume": "RICH_VI"
+        },
+        {
+          "cited_by_lord": 12,
+          "cited_by_wpa": 3,
+          "coverage_ci_high": 0.6269,
+          "coverage_ci_low": 0.2759,
+          "documents": 27,
+          "lord_coverage": 0.4444,
+          "signer": "by_direction_of_president",
+          "volume": "RICH_VII"
+        },
+        {
+          "cited_by_lord": 6,
+          "cited_by_wpa": 0,
+          "coverage_ci_high": 0.4996,
+          "coverage_ci_low": 0.1381,
+          "documents": 21,
+          "lord_coverage": 0.2857,
+          "signer": "department_or_other",
+          "volume": "RICH_VII"
+        },
+        {
+          "cited_by_lord": 14,
+          "cited_by_wpa": 8,
+          "coverage_ci_high": 0.7124,
+          "coverage_ci_low": 0.3546,
+          "documents": 26,
+          "lord_coverage": 0.5385,
+          "signer": "president",
+          "volume": "RICH_VII"
+        }
+      ],
+      "run_utc": "2026-10-19T00:29:15Z",
+      "seconds": 1.2
+    },
     "claim-checker": {
       "check_results": {
         "checker_error": {},
@@ -540,21 +4367,60 @@
         "decided": 3359,
         "universe": 14972
       },
+      "compiled_code_sha256": {
+        "assemble.py": "b3bb75865b49678fafcc69838fa52dccec760f102d5427065e2d00310fd16c03",
+        "build.py": "defb19b9cd222eccb19e776452983622e9feb3e612d1692fdc6bb9cc41a94657",
+        "current_evidence.py": "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c",
+        "excavate.py": "dcf5a83e0b143daf364e718512c17efb6d04414b36bd13e10a099aa9e2256cca",
+        "inputs.py": "d08b3ddd8d8b42c9b0223bf0e0c4eef8c13f63bb2beb2221c2227ecaf38f4dcc"
+      },
       "counts": {
         "assembled_claims": 0,
         "decided_orders": 3359,
+        "declared_text_representations": 69615,
+        "distinct_held_text_artifacts": 18404,
         "dossiers": 3359,
-        "families": 3725,
-        "generic_references_excluded": 123,
-        "held_texts_scanned": 69615,
-        "known_pairs": 21414,
-        "located_actor_pairs": 11941,
+        "families": 3257,
+        "generic_references_excluded": 101,
+        "held_texts_scanned": 18404,
+        "known_pairs": 13926,
+        "located_actor_pairs": 7296,
         "orders_with_held_text": 6569,
         "status_leads": 11613,
         "universe_orders": 14972
       },
+      "input_commit": "59425dae6524a4e794ab9ca8155ad0270d550502",
+      "jsonl_shard_sha256": {
+        "ACTING_PROVISIONS.jsonl": "13b7fbd2091613a113e9cc87d3da6799a448caa10b6136f86890e720c9e5dd16",
+        "ACTING_REPRESENTATIONS.jsonl": "7425422dbb3d2a29e7c13b9ba8a22fb278e617ebff94a44ddc74dc44e091a43c",
+        "ASSEMBLED_CLAIMS.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "CHAINS.jsonl": "4bdff571ea0140b1e4c59055e676ce4e02107c41e99ad66406c29a4f869d794e",
+        "CLAUSES.jsonl": "b9ab31efae0cd3be9af5764dd0c0cd1ec49ff511e48a561d88e22fb7a6a41f0b",
+        "MISSING_SOURCES.jsonl": "2d9b3a224d7b35f6ab4b12e20a3061a906546b85484f47b36b43177e730fe52d",
+        "OVERLAY_INPUTS.jsonl": "48c893ced0cc0207cfcb577037ab0b9af4d0fe397c5e52e25537caac01351f6f",
+        "OWN_TERMS.jsonl": "45a9cd5fe2a1ba32d4eda18108350f52e72dcfea538cd1d0681ef893aadd8474",
+        "STATUS_LEADS.jsonl": "2309d42d367ceb36fb9355325886663e33409abeacfa5635a842c34e6c908115",
+        "TEXT_CLAUSES.jsonl": "c8618aec4025ba9db7cf9e053bc6180d2f5dda018f8ce0020e3c3c7915eb1580",
+        "TEXT_CLAUSES.part0001.jsonl": "2420916c7ac3efeba6f23bc27ee570d5c48cada37eb66a2c898a1c2a809a6f29",
+        "TEXT_REPRESENTATIONS.jsonl": "b7aa149a44322cd12fbeaa219096e5c5f3e16256f94f1a2babbc3ab4ae0e6ab3"
+      },
+      "jsonl_shards": [
+        "ACTING_PROVISIONS.jsonl",
+        "ACTING_REPRESENTATIONS.jsonl",
+        "ASSEMBLED_CLAIMS.jsonl",
+        "CHAINS.jsonl",
+        "CLAUSES.jsonl",
+        "MISSING_SOURCES.jsonl",
+        "OVERLAY_INPUTS.jsonl",
+        "OWN_TERMS.jsonl",
+        "STATUS_LEADS.jsonl",
+        "TEXT_CLAUSES.jsonl",
+        "TEXT_CLAUSES.part0001.jsonl",
+        "TEXT_REPRESENTATIONS.jsonl"
+      ],
       "lead_only": true,
       "legal_cutoff": "2026-10-14",
+      "overlay_input_schema": "eo-claim-kit-overlay-input/v1",
       "schema": "eo-claim-kit-summary/v1",
       "warnings": [
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10010-8486556001.txt; skipped",
@@ -3519,6 +7385,262 @@
         "why_chosen": "pinned default; listed on https://uscode.house.gov/download.html"
       }
     },
+    "early-orders-hunt": {
+      "books": {
+        "copies_tried": {},
+        "edition_not_ok": [],
+        "fetched": 12,
+        "held_in_repo": 3,
+        "ranked": [
+          {
+            "book_key": "MR_1916",
+            "leads": 390,
+            "weight": 588
+          },
+          {
+            "book_key": "GLO_1897",
+            "leads": 431,
+            "weight": 577
+          },
+          {
+            "book_key": "GLO_1894",
+            "leads": 412,
+            "weight": 537
+          },
+          {
+            "book_key": "GLO_1892",
+            "leads": 394,
+            "weight": 520
+          },
+          {
+            "book_key": "GLO_1898",
+            "leads": 345,
+            "weight": 471
+          },
+          {
+            "book_key": "GLO_1893",
+            "leads": 353,
+            "weight": 467
+          },
+          {
+            "book_key": "GLO_1901",
+            "leads": 339,
+            "weight": 453
+          },
+          {
+            "book_key": "GLO_1890",
+            "leads": 303,
+            "weight": 413
+          },
+          {
+            "book_key": "GLO_1884",
+            "leads": 279,
+            "weight": 402
+          },
+          {
+            "book_key": "GLO_1891",
+            "leads": 286,
+            "weight": 388
+          },
+          {
+            "book_key": "GLO_1880",
+            "leads": 255,
+            "weight": 381
+          },
+          {
+            "book_key": "GLO_1886",
+            "leads": 249,
+            "weight": 361
+          },
+          {
+            "book_key": "MR_1907",
+            "leads": 222,
+            "weight": 358
+          },
+          {
+            "book_key": "MR_1910",
+            "leads": 224,
+            "weight": 357
+          },
+          {
+            "book_key": "GLO_1885",
+            "leads": 245,
+            "weight": 331
+          },
+          {
+            "book_key": "GLO_1903",
+            "leads": 208,
+            "weight": 303
+          },
+          {
+            "book_key": "GLO_1904",
+            "leads": 201,
+            "weight": 283
+          },
+          {
+            "book_key": "MR_1898",
+            "leads": 181,
+            "weight": 277
+          },
+          {
+            "book_key": "GLO_1905",
+            "leads": 185,
+            "weight": 269
+          },
+          {
+            "book_key": "RICH_X",
+            "leads": 63,
+            "weight": 123
+          },
+          {
+            "book_key": "RICH_VIII",
+            "leads": 115,
+            "weight": 116
+          },
+          {
+            "book_key": "RICH_IX",
+            "leads": 114,
+            "weight": 114
+          },
+          {
+            "book_key": "RICH_VI",
+            "leads": 63,
+            "weight": 65
+          },
+          {
+            "book_key": "RICH_VII",
+            "leads": 51,
+            "weight": 51
+          },
+          {
+            "book_key": "RICH_IV",
+            "leads": 9,
+            "weight": 27
+          },
+          {
+            "book_key": "RICH_V",
+            "leads": 7,
+            "weight": 19
+          },
+          {
+            "book_key": "RICH_II",
+            "leads": 4,
+            "weight": 12
+          },
+          {
+            "book_key": "RICH_III",
+            "leads": 3,
+            "weight": 7
+          }
+        ],
+        "sha1_mismatches": [],
+        "status": {
+          "GLO_1880": "fetched",
+          "GLO_1884": "fetched",
+          "GLO_1885": "deferred_book_budget",
+          "GLO_1886": "no_identifier_yet",
+          "GLO_1890": "fetched",
+          "GLO_1891": "fetched",
+          "GLO_1892": "fetched",
+          "GLO_1893": "fetched",
+          "GLO_1894": "fetched",
+          "GLO_1897": "fetched",
+          "GLO_1898": "fetched",
+          "GLO_1901": "no_identifier_yet",
+          "GLO_1903": "deferred_book_budget",
+          "GLO_1904": "deferred_book_budget",
+          "GLO_1905": "deferred_book_budget",
+          "MR_1898": "deferred_book_budget",
+          "MR_1907": "fetched",
+          "MR_1910": "fetched",
+          "MR_1916": "fetched",
+          "RICH_II": "deferred_book_budget",
+          "RICH_III": "deferred_book_budget",
+          "RICH_IV": "deferred_book_budget",
+          "RICH_IX": "held_in_repo",
+          "RICH_V": "deferred_book_budget",
+          "RICH_VI": "held_in_repo",
+          "RICH_VII": "held_in_repo",
+          "RICH_VIII": "deferred_book_budget",
+          "RICH_X": "deferred_book_budget"
+        }
+      },
+      "citations": {
+        "by_kind": {
+          "american_state_papers": 1,
+          "annals_of_congress": 5,
+          "congressional_document": 5,
+          "glo": 4775,
+          "kappler": 338,
+          "mr": 1050,
+          "newspaper": 1,
+          "richardson": 436,
+          "sparks_washington": 2,
+          "statutes_at_large": 131
+        },
+        "total": 6744
+      },
+      "inputs": {
+        "curated_candidates": {
+          "leads": 6,
+          "path": "research/stage18/data/EARLY_SOURCE_CANDIDATES.csv",
+          "present": true,
+          "sha256": "a9e0a0ea0265bed41356dec913a95a598181e8ae82ae2d0fba894c17a7169a09"
+        },
+        "lord_list": {
+          "leads": 1158,
+          "path": "jobs/early-orders-hunt/data/lord_subset/UNNUMBERED_ENTRIES_pre1900.csv",
+          "rows_read": 1158,
+          "sha256": "e2e0cca687bd627c9c7535cff00da4850db1c0aec80e8bc56f31601aac91443b",
+          "source": "committed subset (wpa-lists output absent)"
+        },
+        "lord_scan_leads": {
+          "leads": 830,
+          "path": "research/stage14/LORD/LORD_CHRONOLOGICAL_REVIEW_LEADS.csv",
+          "present": true,
+          "rows_read": 1023,
+          "sha256": "7303bed0ca9f337353edac22a69c891b2cc47a9403a7c65d9024bc9e456ebfca"
+        }
+      },
+      "leads": {
+        "pre_1862": 320,
+        "pre_1862_with_text_cut": 146,
+        "total": 1994,
+        "with_a_book_citation": 1313,
+        "with_any_citation": 1562,
+        "with_text_cut": 1027
+      },
+      "leads_only": "Nothing is admitted to the census, dated, merged or changed. Every text here is OCR of a printed compilation, a lead for the original_text step, never the signed original. A page hit is not an identity.",
+      "legal_cutoff": "2026-10-14",
+      "live": {
+        "catalog_records": 51,
+        "routes": 24,
+        "searched": 22
+      },
+      "offline": false,
+      "requests": {
+        "budget": 160,
+        "bytes_downloaded": 267245783,
+        "cache_hits": 0,
+        "pool_requests": 75,
+        "refused": 0,
+        "spent": 50
+      },
+      "resolved": {
+        "by_grade": {
+          "book_not_held": 2096,
+          "page_and_date": 326,
+          "page_and_subject": 295,
+          "page_date_and_subject": 3240,
+          "page_not_mapped": 83,
+          "page_only": 221
+        },
+        "citations_against_books": 6261,
+        "texts_written": 4082
+      },
+      "run_utc": "2026-10-19T00:29:13Z",
+      "seconds": 656.8
+    },
     "family-rule-sources": {
       "attempts_logged": 0,
       "bytes_downloaded": 0,
@@ -3667,6 +7789,35 @@
       },
       "shrink_check": "ok",
       "stopped_early": ""
+    },
+    "hathi-gpo-orders": {
+      "all_derivative_records_acceptable_as_original_false": true,
+      "authenticated_originals": 0,
+      "claim_kit_recognized": 1531,
+      "federal_register_issues_used": 37,
+      "government_bound_volumes_used": 10,
+      "largest_remaining_volume": {
+        "held_scan": "output/books/Executive_Orders_7262-8027.djvu",
+        "qualification": "Range candidates, not verified individual texts",
+        "range_max": 8027,
+        "range_min": 7262,
+        "remaining_range_candidates": 48,
+        "source_url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu",
+        "volume": "Executive_Orders_7262-8027.djvu"
+      },
+      "missing_fdr_6071_7531": 176,
+      "missing_hoover_5076_6070": 5,
+      "orders_still_missing_text": 181,
+      "orders_targeted": 1712,
+      "orders_with_text_saved": 1531,
+      "qualification": "Text acquisition only. OCR copies need page checks; no status or original-authentication decisions.",
+      "remaining_with_candidate_scan_page": 105,
+      "saved_by_route": {
+        "commons_gpo_ocr": 689,
+        "govinfo_fr": 54,
+        "ia_hoover": 781,
+        "wikisource_scan_pages": 7
+      }
     },
     "indian-reservations-1912": {
       "acts": 309,
@@ -4154,6 +8305,42 @@
       "pages_needing_OCR": 0,
       "pages_processed": 28,
       "reporter_citation_leads": 54
+    },
+    "numbered-early-orders": {
+      "books_held_scanned": 17,
+      "books_new_fetched": 12,
+      "fetch_failures": 1,
+      "found_in_held_books": 41,
+      "found_only_in_new_books": 143,
+      "match_kinds_best_hit": {
+        "date_and_subject": 117,
+        "monthday_and_names": 20,
+        "number_and_date": 19,
+        "number_and_subject": 3,
+        "number_date_subject": 25
+      },
+      "new_orders_by_series": {
+        "CSR": 95,
+        "KAPPLER": 26,
+        "OUB": 17,
+        "PANAMA": 6
+      },
+      "not_found_reasons": {
+        "WPA date not day-precise or unreadable": 25,
+        "WPA summary has no distinctive words; findable by number only": 119,
+        "no WPA entry; findable by number only": 52,
+        "not printed in any book searched": 2938,
+        "only cited by another order's text (see MENTIONS.csv)": 6
+      },
+      "note": "Leads only. Each text is OCR of a government printed copy, never the signed original; a date-and-subject hit is a machine match a reviewer must confirm against the scan. No status, census row or identity is changed.",
+      "number_mentions_only": 6,
+      "orders_with_text": 184,
+      "requests": 30,
+      "requests_refused": 0,
+      "seconds": 103.3,
+      "still_without_text": 3140,
+      "targets": 3324,
+      "texts_saved": 197
     },
     "official-fixity": {
       "carried_forward": 4987,
