@@ -14,6 +14,7 @@ could still be and what has been searched.
 | `RICH_VI`, `RICH_VII`, `RICH_IX` | Documents in Richardson's *Executive Orders* sections, split by `richardson-volumes` | Richardson copied department records and newspapers; Lord cites him |
 | `IR1912` | Orders in *Executive Orders Relating to Indian Reservations* (GPO 1912), split by `indian-reservations-1912` | Lord cites it |
 | `MR_*`, `GLO_*` | Dated "Executive order" mentions read from the reservation and land-office books `early-orders-hunt` fetched | Lord cites them |
+| `APP` | American Presidency Project "Executive Orders" index entries dated to 1899 (`app-executive-orders`); words from the title tail and the opening of the held text; numbered entries set aside like the WPA series | An editorial web compilation drawing on Richardson, Kappler and the land books: positively dependent on them |
 
 Two kinds of cross-list match are kept apart. A **citation link** is one the earlier job already made
 from Lord's page citation. A **blind match** needs the same day-precise date and at least one shared
@@ -41,6 +42,9 @@ remainder is what the archival audit below is for.
 history), `OVERLAP_MATRIX.csv`, `RICHARDSON_COVERAGE_BY_SIGNER.csv` (what Lord listed of each
 Richardson volume, by signer), `ESTIMATES.json`, `COVERAGE_BY_SERIES.csv` (the source universe map
 with this run's counts), `REPORT.md` (the completeness claim in its defensible form), `SUMMARY.json`.
+`APP_ONLY_CANDIDATES.csv`: unnumbered orders that only the APP index names under strict matching, with the
+number of unmatched same-date mentions in other lists (a nonzero count means the order may already be known
+under other words). Candidates for census-candidates review; nothing is admitted.
 
 ## The source universe map and the archival audit
 

@@ -13,6 +13,10 @@ from the overlap estimates how many orders none of the lists has seen:
   MR_* and GLO_* books             "Executive order dated ..." mentions read from the pages that
                                    early-orders-hunt fetched (War Department reservation books, General
                                    Land Office reports)
+  APP                              American Presidency Project "Executive Orders" index (app-executive-orders):
+                                   an editorial web compilation drawing on Richardson, Kappler and the land
+                                   books, so it too is positively dependent on the printed lists; numbered
+                                   entries carry their EO number and are set aside like the WPA series
 
 Two kinds of match are kept apart: a *citation link* (the earlier job found Lord's page citation for the
 document) and a *blind* match (same day-precise date and at least one shared distinctive word; a date
@@ -172,6 +176,52 @@ def load_ir1912(repo):
                                f"IR 1912 printed pp. {r.get('act_printed_pages', '')}", lord, wpa, signer=r.get("signer", "")))
     return out, {"path": str(path.relative_to(repo)), "sha256": sha256_file(path), "mentions": len(out),
                  "note": "Orders (not indorsements or proclamations) printed in Executive Orders Relating to Indian Reservations (GPO 1912); reprints folded into one order."}
+
+
+APP_JOB_OUT = "jobs/app-executive-orders/output"
+
+
+def load_app(repo):
+    """APP index entries dated 1789-1899. The label is the page title tail plus the opening of the held text
+    (most early APP titles are just "Executive Order"), so blind matching has words to work with. Numbered
+    entries are linked to their EO number (set aside from the estimates, like the WPA series)."""
+    base = repo / APP_JOB_OUT
+    index = base / "INDEX.jsonl"
+    if not index.is_file():
+        return [], {"path": str(index), "present": False}
+    texts = {}
+    for name in ("DOCUMENTS.jsonl", "MIRROR_DOCUMENTS.jsonl"):
+        path = base / name
+        if path.is_file():
+            with path.open(encoding="utf-8") as fh:
+                for line in fh:
+                    if line.strip():
+                        r = json.loads(line)
+                        if r.get("path") and r.get("text_path"):
+                            texts.setdefault(r["path"], r["text_path"])
+    out, seen = [], set()
+    with index.open(encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            date = str(r.get("date") or "")
+            if not re.fullmatch(r"\d{4}-\d\d-\d\d", date) or int(date[:4]) > YEAR_MAX or r.get("path") in seen:
+                continue
+            seen.add(r.get("path"))
+            title = re.split(r"[\u2014\u2013]|--", str(r.get("title") or ""), maxsplit=1)
+            label = title[1] if len(title) > 1 else ""
+            tp = texts.get(r.get("path"))
+            if tp and (base / tp).is_file():
+                label += " " + (base / tp).read_text(encoding="utf-8", errors="replace")[:400]
+            numbered = [r["instrument_id"]] if r.get("instrument_id") else []
+            out.append(mention("APP", "APP:" + str(r.get("path") or "").rsplit("/", 1)[-1], date, "day", label,
+                               f"APP {r.get('url') or ''}", (), numbered, signer=r.get("president", "")))
+    return out, {"path": str(index.relative_to(repo)), "sha256": sha256_file(index), "mentions": len(out),
+                 "numbered_entries_set_aside": sum(1 for m in out if m["link_wpa"]),
+                 "note": ("American Presidency Project index pages dated to 1899 (editorial web compilation; it draws on "
+                          "Richardson, Kappler and the land books, so it is positively dependent on them and estimates stay "
+                          "lower bounds). Discovery only: an APP-only cluster is a candidate order, never an admitted one.")}
 
 
 def book_mentions(key, pages):
@@ -458,7 +508,8 @@ def run(repo_root, job_dir, output_dir, books_dir=None) -> dict:
     rich, rich_src = load_richardson(repo)
     ir, ir_src = load_ir1912(repo)
     books, books_src = load_books(repo, books_dir) if books_dir.is_dir() else ([], {"books": [], "mentions": 0, "note": f"no books at {books_dir}"})
-    mentions = lord + wpa + rich + ir + books
+    app, app_src = load_app(repo)
+    mentions = lord + wpa + rich + ir + books + app
     sources = sorted(set(m["source"] for m in mentions), key=lambda s: (s != "LORD", s))
     counts = collections.Counter(m["source"] for m in mentions)
     print(f"Mentions: {len(mentions)} from {len(sources)} lists ({', '.join(f'{s} {counts[s]}' for s in sources)}).")
@@ -502,6 +553,15 @@ def run(repo_root, job_dir, output_dir, books_dir=None) -> dict:
             row[s2] = sum(1 for c in cl_all if s1 in c["sources"] and s2 in c["sources"])
         matrix.append(row)
     write_csv(out / "OVERLAP_MATRIX.csv", matrix, ["list"] + sources)
+    # Unnumbered orders that only APP names (strict clusters): candidates for the census-candidates register.
+    by_id = {m["mention_id"]: m for m in mentions}
+    app_only = [{"cluster_id": c["cluster_id"], "date": c["date"], "stratum": c["stratum"], "label": c["label"],
+                 "app_ref": by_id[c["members"][0]]["ref"], "president": by_id[c["members"][0]].get("signer", ""),
+                 "same_date_mentions_elsewhere": sum(1 for a in ambiguous if c["members"][0] in (a["a"], a["b"]))}
+                for c in sorted(cl_all, key=lambda c: (c["date"], c["cluster_id"]))
+                if c["sources"] == ["APP"] and not c.get("numbered")]
+    write_csv(out / "APP_ONLY_CANDIDATES.csv", app_only,
+              ["cluster_id", "date", "stratum", "president", "same_date_mentions_elsewhere", "app_ref", "label"])
     write_csv(out / "RICHARDSON_COVERAGE_BY_SIGNER.csv", rich_rows, ["volume", "signer", "documents", "cited_by_lord", "cited_by_wpa", "lord_coverage", "coverage_ci_low", "coverage_ci_high"])
     per_source_all = {s: sum(1 for m in mentions if m["source"] == s) for s in sources}
     cov_rows = coverage_by_series(job_dir, per_source_all, set(b["book"] for b in books_src.get("books", [])))
@@ -519,7 +579,14 @@ def run(repo_root, job_dir, output_dir, books_dir=None) -> dict:
     summary = {
         "leads_only": "Population-level estimates. Nothing here admits an order to the census, assigns a date to one, merges identities or changes any count or status.",
         "run_utc": now_utc(), "seconds": round(time.time() - t0, 1),
-        "inputs": {"lord": lord_src, "wpa_numbered": wpa_src, "richardson": rich_src, "indian_reservations_1912": ir_src, "books": books_src},
+        "inputs": {"lord": lord_src, "wpa_numbered": wpa_src, "richardson": rich_src, "indian_reservations_1912": ir_src, "books": books_src,
+                   "app": app_src},
+        "app_only_unnumbered_candidates": {
+            "count": len(app_only),
+            "by_stratum": dict(collections.Counter(r["stratum"] for r in app_only)),
+            "with_an_unmatched_same_date_mention_elsewhere": sum(1 for r in app_only if r["same_date_mentions_elsewhere"]),
+            "file": "APP_ONLY_CANDIDATES.csv",
+            "note": "Orders no other list names (strict matching). Candidates for census-candidates review; none is admitted."},
         "mentions": per_source_all, "matches": dict(kinds), "ambiguous_same_date_pairs": len(ambiguous),
         "estimates_all_matches": est_all, "estimates_blind_matches_only": est_blind, "estimates_same_date_pairs_as_matches": est_loose,
         "richardson_coverage_by_signer": rich_rows, "assumptions": assumptions,

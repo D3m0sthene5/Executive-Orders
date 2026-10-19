@@ -146,6 +146,29 @@ class EndToEnd(unittest.TestCase):
             self.assertGreater(s["matches"].get("citation_link", 0), 100)
             self.assertIsNotNone(s["estimates_all_matches"]["1789-1899"]["mt_all_lists"])
 
+    def test_app_index_is_a_list_with_numbered_entries_set_aside(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = pathlib.Path(tmp)
+            base = repo / C.APP_JOB_OUT
+            (base / "texts").mkdir(parents=True)
+            (base / "texts/a.txt").write_text("It is hereby ordered that the Fort Ellis military reservation is reduced.", encoding="utf-8")
+            rows = [{"date": "1886-06-01", "path": "/documents/executive-order-123", "title": "Executive Order", "instrument_id": None,
+                     "url": "https://www.presidency.ucsb.edu/documents/executive-order-123", "president": "Grover Cleveland"},
+                    {"date": "1886-06-01", "path": "/documents/executive-order-123", "title": "Executive Order", "instrument_id": None},
+                    {"date": "1890-01-01", "path": "/documents/eo-7", "title": "Executive Order 7—Rules", "instrument_id": "EO:7"},
+                    {"date": "1905-01-01", "path": "/documents/x", "title": "Executive Order", "instrument_id": None},
+                    {"date": "1886", "path": "/documents/y", "title": "Executive Order", "instrument_id": None}]
+            (base / "INDEX.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+            (base / "MIRROR_DOCUMENTS.jsonl").write_text(json.dumps({"path": "/documents/executive-order-123", "text_path": "texts/a.txt"}) + "\n", encoding="utf-8")
+            out, src = C.load_app(repo)
+            self.assertEqual([m["mention_id"] for m in out], ["APP:executive-order-123", "APP:eo-7"])  # dedupe, <=1899, day dates
+            self.assertIn("ellis", out[0]["tokens"])  # words come from the held text when the title has none
+            self.assertEqual(out[1]["link_wpa"], {"EO:7"})
+            self.assertEqual(src["numbered_entries_set_aside"], 1)
+            lord = C.mention("LORD", "LORD:U:0001", "1886-06-01", "day", "Fort Ellis reservation reduced", "Lord p. 1", seq=1)
+            matches, _ = C.match_mentions([lord] + out)
+            self.assertEqual([(m["a"], m["b"]) for m in matches], [("LORD:U:0001", "APP:executive-order-123")])
+
     def test_source_universe_map_is_well_formed(self):
         with (HERE / "data/SOURCE_UNIVERSE.csv").open(encoding="utf-8", newline="") as fh:
             rows = list(csv.DictReader(fh))
