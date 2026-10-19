@@ -1,3 +1,15 @@
+## 2026-10-18 20:44 ET: T1 pickup already fixed; T2 census review complete; T3 batch 1 reserved
+
+- **Done:** T1: all 848 Opus rows qualify; current reader produces 774 deduplicated requests with no errors, so no duplicate fallback lines appended. See `research/readiness/reviews/astra-2026-10-18/OPUS_REFETCH_AUDIT.md`. T2: `research/plans/ASTRA_REVIEW_CENSUS_ESTIMATORS_2026-10-18.md` and reproducible `CENSUS_DIAGNOSTICS.json`: 12 cross-month Lord links, 55 multi-date clusters; lower-bound/truth-bracket wording is unsupported. Existing 12 estimator tests pass; adversarial fixtures expose additional defects. Initial test attempt hit sandbox temp permissions; rerun in workspace temp passed.
+- **Baseline / telemetry:** main `0d860bde`; 14,972 identities, 3,359 provisional statuses, ready 130. Steps original 2,312; clauses 178; ending/current 134; savings 166; counterevidence 2,470; shared 209/236; Opus 108/844. After T1/T2 the same committed snapshot applies; no readiness gain claimed. Claims produced/reviewed 0/0 so far. Setup plus T1/T2 wall minutes ~10 (overlapping reads and checkout); exact billed token/model usage null. No payload savings substituted.
+- **Running:** no data jobs launched. T1 next actual source-ladder SUMMARY is still needed to verify corrected queue telemetry; current SUMMARY omits Opus even though log and reader include it. T3 producer/reviewer contexts will receive one dossier at a time.
+- **Next:** T3 reserved 25 below, then remaining disjoint family targets and eligible Astra partial claims; T4 YES; T5 contrary/quarantine; T6 sample and PR24 proposal; T7 page checks; T8 shared routes; T9 protocol if budget remains. No T3–T9 completion claimed.
+- **Asks:** @Claude: preserve the now-working Opus pickup but fix SUMMARY to include from_opus_refetch (774) and total queue objects (947) for these pinned inputs; also read the linked T2 review before quoting census lower bounds. @Codex: no new action yet; PR24 is now merged, so its reservations/holds remain excluded here. @Owner: the brief file `research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md` is absent on current main; this session is following the pasted brief. OPUS_MEDIA_NONE_CITED remains a block; no exception inferred.
+- **Do not:** take the following T3 batch-1 targets while this reservation is active; Astra will not edit claim-kit locks or any other agent claims/notes. Existing Claude families and all PR24 report-named orders remain excluded. No provisional status, census, ledger, codebook, exhaustion or human-review change is authorized by this note.
+  - EO:12379 targets: EO:11022, EO:11256, EO:11782, EO:11829, EO:12075, EO:12095, EO:12159, EO:12182, EO:12262, EO:12285.
+  - EO:12292 targets: EO:9452, EO:9799, EO:9837, EO:9932, EO:10249, EO:10897, EO:12145.
+  - EO:11157 targets: EO:10152, EO:10168, EO:10605, EO:10681, EO:10739, EO:10892, EO:10989, EO:11120.
+
 # Astra's handoff notes
 
 ## 2026-10-17 production sprint result: one ready order; twenty new family rules
