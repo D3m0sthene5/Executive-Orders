@@ -1,0 +1,26 @@
+step,tier,when,minutes,basis
+admit,AD,order APP counts that the project does not hold yet: locate it (Lord / Richardson / reservation and land-office books) and authenticate signer and date,15,assumed
+provisional_status,PS1,machine status lead exists (status-history observation or OFR catalog record),3,assumed
+provisional_status,PS2,no machine status lead,8,assumed
+original_text,OT1,official original already found; page location needs a check,0.5,measured: Astra 0.17 min per source-read order (2026-10-17) x3 for writing the record
+original_text,OT2,government printed copy or compiled transcription already found; read against the scan and grade it,3,assumed
+original_text,OT3,1937 or later; Federal Register or govinfo route exists but not yet fetched,3,assumed
+original_text,OT4,before 1937; a transcription (APP or other) exists as a discovery lead,12,assumed
+original_text,OT5,no lead to any copy,25,assumed
+clause_inventory,CI1,machine clause draft exists (clause-drafts),3,calibrated: share of Codex batch-pilot dossier time
+clause_inventory,CI2,text held but no machine clause draft,6,assumed
+clause_inventory,CI3,no text held yet,9,assumed
+ending_or_current_basis,EB1,claim draft says only judgment is left,4,assumed
+ending_or_current_basis,EB2,machine history exists (status-history or later-events edges or a family-rule certificate),10,calibrated: share of Codex batch-pilot dossier time
+ending_or_current_basis,EB3,no machine history; 1937 or later,18,assumed
+ending_or_current_basis,EB4,no machine history; before 1937,30,assumed
+savings_residuals,SR1,claim draft says only judgment is left,3,assumed
+savings_residuals,SR2,machine history exists,7,calibrated: share of Codex batch-pilot dossier time
+savings_residuals,SR3,no machine history,12,assumed
+counterevidence,CE1,machine search found a contrary lead to resolve,10,assumed
+counterevidence,CE2,order is in the OFR catalog that later-events scanned,5,calibrated: share of Codex batch-pilot dossier time
+counterevidence,CE3,1937 or later; not in the scanned catalog,8,assumed
+counterevidence,CE4,before 1937; no catalog,12,assumed
+shared_sources,SS1,retrieve a cited law or regulation through source-ladder,1,assumed
+opus_media,OM1,re-fetch evidence images Opus downloaded but did not keep,0.5,assumed
+opus_media,OM2,match or settle evidence images by reading,3,assumed

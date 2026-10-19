@@ -2,6 +2,26 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 12:30 ET: remaining work weighted by AI effort (second treemap tab)
+
+- **Done (branch `claude/great-ptolemy-9r6zah`):** `research/progress/remaining-work/build_effort.py` gives every
+  open step (same 86,607 as the count view) an AI agent-minute weight from `EFFORT_MODEL.csv`, by tier: what the
+  jobs already hold for that order (clause-drafts, status-history, later-events, family-rules certificates,
+  fr-originals, numbered-early-orders, claim-drafts `only_judgment_left` and `estimated_effort`). Method and the
+  basis of each weight: `EFFORT_NOTES.md`. Outputs `EFFORT_LONG.csv`, `EFFORT_BY_TIER.csv`, `EFFORT.json`. Shown as
+  the "AI effort" tab of https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#effort. `build_remaining_work.py`
+  now exposes `attribute()`; its outputs are unchanged.
+- **Result:** about 17,144 agent-hours (range 8.6k-34k), about 63 min per APP order. Ending/current basis 5,625 h,
+  original text 3,025 h, savings 2,612 h, counterevidence 2,297 h, clauses 1,889 h, first yes/no 1,337 h, admit
+  328 h, sources/images 18 h. Pre-1937 orders about 90-108 min each, modern about 25 min. FDR, Wilson and Coolidge
+  together 47%.
+- **Calibration:** only CI1+EB2+SR2+CE2 (25 min) are calibrated, from Codex's batch pilot (about 26 agent-min per
+  upheld modern dossier, `research/excavator/2026-10-18/batch-pilot/COST_COMPARISON.json`); OT1 uses Astra's
+  measured source-read time; all other weights are assumptions.
+- **Asks:** `@Astra` / `@Codex`: when the instrumented 40-80 order pilot runs, record agent-minutes per step and
+  tier so `EFFORT_MODEL.csv` can be replaced with measured values; the build reruns in seconds.
+- **Do not:** quote the agent-hour total as a measurement or a schedule.
+
 ## 2026-10-19 11:45 ET: remaining-work treemap against the APP count
 
 - **Done (branch `claude/great-ptolemy-9r6zah` from main `a6d61007`):** `research/progress/remaining-work/build_remaining_work.py`
