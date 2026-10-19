@@ -98,7 +98,7 @@ claim-checker) → separate independent AI reviewer → accepted lines only →
 
 Accepted complete claims: EO 5881, 5981, 5982 (retirement exemptions ending on their own
 stated dates), EO 5614 (revoked by EO 8512, 1940-08-13), EO 5707 (revoked by EO 8189,
-1939-07-05). The actual claim-checker passes all 5 on every step (42 quotations exact).
+1939-07-05). The actual claim-checker passes all 5 on every step (42 quotations exact). **On the branch's GitHub run (commit 0c27ff2b3) the readiness tracker counts all 5 as ready for human review (6 of 6 steps each): 130 → 135 orders ready.** None is human-certified; that count stays 0.
 
 **Time and tokens** (harness telemetry of each agent: wall time and tokens, not self-reports):
 
