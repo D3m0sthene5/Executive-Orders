@@ -2,6 +2,24 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 11:45 ET: remaining-work treemap against the APP count
+
+- **Done (branch `claude/great-ptolemy-9r6zah` from main `a6d61007`):** `research/progress/remaining-work/build_remaining_work.py`
+  (offline, reads committed outputs only) writes `REMAINING_WORK.json`, `REMAINING_WORK_BY_PRESIDENT.csv` and
+  `REMAINING_WORK_LONG.csv`. Unit: one open readiness-tracker step for one order. Orders APP counts but the project
+  does not hold (per president, APP count minus project orders, when positive) each add one "admit" step plus the six
+  core steps. Owner's treemap dashboard: https://claude.ai/artifact/531KGTebdrgdeUitKhp8du (private until shared).
+- **Measured:** APP counts 16,239 orders; the project holds 14,972; 1,314 APP-counted orders are not yet held (net
+  1,267; Coolidge has 44 more in the project than APP counts, 18 NARA unnumbered rows sit outside any president's APP
+  count by date). 86,607 open steps vs 13,503 done (13.5%). 130 ready for human review. Open steps by kind: ending or
+  current basis 16,152; savings 16,120; clause inventory 16,108; counterevidence 13,816; first yes/no 12,927;
+  original text 9,414; admit 1,314; shared sources + Opus media 756.
+- **Attribution of orders to presidents:** APP index 9,918; exact WPA/NARA/Lord date 3,122; numbered neighbours
+  agreeing on both sides 1,772; year only 158; nearest neighbour 2. Boundary years can still be off by a few orders.
+- **Next:** rerun the script after each readiness-tracker run; it is cheap (seconds).
+- **Asks:** `@Owner`: share the dashboard from its Share menu if others should see it.
+- **Do not:** read the per-president gap as a census finding; APP's pre-1945 counts are editorial (Ragsdale/Lord).
+
 ## 2026-10-18 17:15 ET: numbered-early-orders, printed texts for 184 of the 3,324 undecided orders 1-5075
 
 - **Done (branch `numbered-early-orders` from main `224fd70c`, PR to main):** `jobs/numbered-early-orders/`
