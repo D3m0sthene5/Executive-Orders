@@ -1,0 +1,118 @@
+{
+  "artifact_type": "independent_ai_versioned_claim_confirmation",
+  "reviewer_role": "ai_review",
+  "instrument_id": "EO:11782",
+  "candidate_version": "v4",
+  "verdict": "uphold",
+  "verdict_scope": "Substantive lifecycle assertions upheld based on this same independent source-review session; v4 repairs the sole frozen-v3 provenance defect. No human or full-readiness certification.",
+  "claim_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v4/claim.json",
+  "claim_sha256": "0e29f299ba3535ad7b7beb30f39bb7dafee9c709f537eb626239d475b35682dc",
+  "claim_file_sha256": "e078d60a5c6fe931f2faa8961f61c97a0a87025fe1b02b74ba7f982c9bd0185b",
+  "independent_source_audit": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_11782/v3/SOURCE_AUDIT.json",
+    "sha256": "560d4d2fb12893fd7fbaeb380f3920301226d6b3901ce695d07cc43d0ba86d7a"
+  },
+  "preserved_prior_review": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_11782/v3/REVIEW.json",
+    "sha256": "3802dc32b0bb20ed18c98921ede9eb4fec03f921a62746ab07a5ac3edfff24dc",
+    "verdict": "reject",
+    "substantive_lifecycle_verdict": "uphold",
+    "rejection_reason": "Initial search inventory falsely attributed omitted ladder coverage; rejection remains unchanged."
+  },
+  "only_claim_change": "later_source_search[3].query_or_scope",
+  "old_search_scope": "Full original11782, revoker12379, effective-date12212 and distinct later task-force13829 read; all FACA and Bank Act provisions read; Department of Education Act sections301,502-511,601-602 read. Normalized aliases federalfinancingbankadvisorycouncil, financingbankadvisorycouncil, federalfinancingbank searched across held FR/Opus/ladder text directories; exact hit inventory in producer/EO_11782/v2/NAMED_SEARCH.json. CFR index-only Bank hits are not Council directives. No exhaustive search of unheld materials is represented.",
+  "corrected_search_scope": "Full original11782, revoker12379, effective-date12212 and distinct later task-force13829 read; all FACA and Bank Act provisions read; Department of Education Act sections301,502-511,601-602 read. Normalized aliases federalfinancingbankadvisorycouncil, financingbankadvisorycouncil, federalfinancingbank searched across7066held FR/Opus files in producer/EO_11782/v2/NAMED_SEARCH.json. That initial producer inventory mistakenly used a nonexistent singular ladder directory and therefore did not cover ladder texts. Corrective178-file ladder sweep and its five matching contexts are in producer/EO_11782/v4/LADDER_SEARCH.json: one revoker duplicate and four SBA Bank-rate contents entries, none a different Council event. The combined bounded corpus has7244files. CFR index-only Bank hits are not Council directives. No exhaustive search of unheld materials is represented.",
+  "no_source_quote_state_first_end_savings_or_gap_changes": true,
+  "corrective_search_workpaper": {
+    "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v4/LADDER_SEARCH.json",
+    "sha256": "56adca37a32f6dcc6210f209d36de960cb696960ecd079976dcde47f9130243b",
+    "root": "jobs/source-ladder/output/texts",
+    "file_count": 178,
+    "inventory_sha256": "9d9c7bdc00a6e7c4e7e3047353161c196490cb3fe8081c76be7d8eef37142731",
+    "inventory_method": "LF-joined sorted path-space-SHA256 without trailing LF",
+    "queries": [
+      "federalfinancingbankadvisorycouncil",
+      "financingbankadvisorycouncil",
+      "federalfinancingbank"
+    ],
+    "normalization": "re.sub('[^a-z0-9]', '', text.lower())",
+    "hits": [
+      {
+        "path": "jobs/source-ladder/output/texts/queue_EO_12379_EO_12379_0b10726a10.txt",
+        "sha256": "ced06cc1f7141143e3cb207b7e3f2a21e7b9da1913edeec37741fa272e1a1490",
+        "aliases": [
+          "federalfinancingbankadvisorycouncil",
+          "financingbankadvisorycouncil",
+          "federalfinancingbank"
+        ]
+      },
+      {
+        "path": "jobs/source-ladder/output/texts/queue_EO_12482_49_FR_26023_PDF_pages_9-9_886dec21a0.txt",
+        "sha256": "7c53238d2987d6718d737869bec999b5d3f8cf833307f16d73b707b218af79e2",
+        "aliases": [
+          "federalfinancingbank"
+        ]
+      },
+      {
+        "path": "jobs/source-ladder/output/texts/queue_EO_12491_49_FR_43443_PDF_pages_7-7_4983566bcb.txt",
+        "sha256": "a535a0df9e1514141fe7bb8dfcf7dd23aaa332b030373298dbddb76c2eb32903",
+        "aliases": [
+          "federalfinancingbank"
+        ]
+      },
+      {
+        "path": "jobs/source-ladder/output/texts/queue_EO_12492_49_FR_43445_PDF_pages_9-9_9352481eac.txt",
+        "sha256": "f1c0b42a426cf4ff7e49082e183c30b1c7f1743787c358985fee999f68c52c10",
+        "aliases": [
+          "federalfinancingbank"
+        ]
+      },
+      {
+        "path": "jobs/source-ladder/output/texts/queue_EO_12553_51_FR_7237_Executive_Order12553_February25_1986_94a19fc26b.txt",
+        "sha256": "2e42298985dc798a6676a2d9bc454d7efc062330aa0f328bf31b1635b6b5d444",
+        "aliases": [
+          "federalfinancingbank"
+        ]
+      }
+    ],
+    "all_five_contexts_verified_exact_against_actual_held_text": true,
+    "assessment": "Same five supplemental hits independently located and read before candidate comparison: EO12379 duplicate and four neighboring SBA Bank-rate contents entries. No different Council event. Initial7066 plus corrective178 equals bounded7244, not a claim of exhaustive unheld-source search."
+  },
+  "substantive_findings": [
+    "The original has continuing council establishment, eight-office membership, advice/assistance to the Bank Board, coordinating forum, and Treasury administrative support. It contains no report deadline, sunset, completion event or independent post-termination directive.",
+    "FACA section3(2) excludes committees composed wholly of full-time Federal officers/employees. Every original roster seat is such a federal office. Section14 therefore supplies no two-year termination of this Council; no speculative renewal gap remains.",
+    "Bank Act sections4-5 create a distinct body corporate and five-person board. The corporate Bank continues until dissolved by Act of Congress. The Act does not create this eight-office Advisory Council. Bank borrowing/financing powers are independent statutory functions, not saved EO11782 Council functions.",
+    "The EO advice about administration of the Bank Act is not a delegation of a specific Bank statutory power. METHOD_STOP_02 calls for actual named statutory scope, supplied here, but no hypothetical review of every historical finance-law amendment is necessary absent a concrete counterlead.",
+    "PL96-88 section104 defines Secretary as Education. Section301 transfers specified education functions and HEW advisory committees primarily concerned with those functions; this Treasury-supported Bank-financing Council is neither such HEW committee nor a listed education program.",
+    "Section509 redesignates HEW/HHS and deems references to HEW to apply to HHS, except transferred functions. This council seat continues by redesignation; it does not end on the reorganization date. Section505 preserves transferred-function orders according to their terms rather than automatically terminating them.",
+    "EO12212 explicitly makes the Act effective May4,1980, not its May2 signature. It supplies the succession date, not an earlier first end of the council or seat.",
+    "Full EO12379 revokes EO11782 in section15 effective August17,1982 without deferred terms or target saving. Its general inactive-or-no-longer-necessary recital does not itself establish earlier legal cessation; original continuing mandates do not lapse merely for inactivity.",
+    "EO13829 creates a separate 2018 Postal Task Force and assigns Bank support. It does not continue or revive the EO11782 Council.",
+    "Within the bounded actual-source record, August17,1982 is supportable as the first legal end of the five original units, after resolving FACA and HEW scope; no prior legal termination or specific saved Council mandate was located."
+  ],
+  "quote_verification_inherited_unchanged": {
+    "original_spans": 5,
+    "source_occurrences": 40,
+    "quoted_parts_occurrences": 46,
+    "all_equal_held_text_and_hashes": true,
+    "normalization_of_quotes": false
+  },
+  "unsupported_state_or_date_remains": false,
+  "unsupported_provenance_statement_remains": false,
+  "unresolved_material_legal_gaps": [],
+  "limits_retained": [
+    "USC release119-121 current through2026-10-09, with later-law window disclosed.",
+    "No universal absence claim beyond the bounded held sources and searches.",
+    "New statute PDFs were actually retained and rehashed. FACA full fixity row is not_listed; Bank Act and PL96-88 have no row in observed old snapshot; none has a positive GPO match asserted here.",
+    "Initial source-retention catalogue absent at independent source-audit time; follow-up job completion and checker integration are not certified.",
+    "Visual inspection limited to five images enumerated in source audit; PL96-88 reading limited to its enumerated relevant pages."
+  ],
+  "human_certification": false,
+  "full_readiness_certification": false,
+  "checker_run": false,
+  "started_utc": "2026-10-19T01:35:24.252764+00:00",
+  "completed_utc": "2026-10-19T01:35:59.344217+00:00",
+  "actual_wall_seconds": 35.091453,
+  "same_case_total_wall_seconds": 416.344217,
+  "actual_model_usage": null
+}

@@ -1,0 +1,170 @@
+{
+  "schema": "astra-ai-claim-review/v1",
+  "instrument_id": "EO:9452",
+  "reviewer_role": "ai_review",
+  "reviewer": "Independent reviewer t3_reviewer_b",
+  "review_scope": "Packaging correction only during METHOD_STOP_02; prior substantive review incorporated without a new source-reading or legal-completeness claim.",
+  "claim_path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/v2/claim.json",
+  "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+  "claim_file_sha256": "d00306a9adbd3289d06cbf7b8e3c998c93fa22a7e0f4b59aea17fe53eee9c554",
+  "verdict": "uphold",
+  "complete_claim_accepted": true,
+  "substantive_correction_required": false,
+  "substantive_change": false,
+  "reason": "The complete structural comparison found exactly four additions of a source wrapper around unchanged auxiliary source objects in savings_residuals.supporting_sources. There are no other differences. Every quotation, source field, inventory unit, first end, status, saving assessment, bounded search and material-gap field is unchanged. The prior independent substantive review and source audit therefore apply to this exact v2 candidate. This is a mechanical packaging correction, not a new substantive rejection or an additional independently reviewed dossier.",
+  "prior_review": {
+    "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_9452/REVIEW.json",
+    "sha256": "ab113a0ebfe77d9fa965448b9b82af507ac2ab14838c8f4e017d6d0a364cdd6d",
+    "verdict": "uphold",
+    "preserved": true
+  },
+  "old_claim": {
+    "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/claim.json",
+    "claim_sha256": "4953ecad04150a50f995970d6462564b1c891093636c4935ef366888e47a1dc5",
+    "claim_file_sha256": "5f6c613e4563afa9766c454fa088039dba08a4479156b5f9ab50a52b00cf7343",
+    "preserved": true
+  },
+  "packaging_audit": {
+    "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/v2/PACKAGING_AUDIT.json",
+    "sha256": "e633187a76e12945297127139c1fc6b02c410235dda29bfe7ab6b7c2772e89ad",
+    "verified_against_actual_diff": true,
+    "discovery_leads_moved": false
+  },
+  "comparison": {
+    "method": "Recursively compare parsed JSON. Permit only a new object exactly equal to source: old_object; recurse through all remaining keys and list elements. Canonical hashes use the exact serialization specified in research/stage19/code/claim_gate.py, read without running the checker.",
+    "wrappers": [
+      {
+        "path": "$.savings_residuals.supporting_sources[0]",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1944-06-29/pdf/FR-1944-06-29.pdf",
+        "wrapped_object_equal_to_original": true
+      },
+      {
+        "path": "$.savings_residuals.supporting_sources[1]",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1945-01-20/pdf/FR-1945-01-20.pdf",
+        "wrapped_object_equal_to_original": true
+      },
+      {
+        "path": "$.savings_residuals.supporting_sources[2]",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1945-02-20/pdf/FR-1945-02-20.pdf",
+        "wrapped_object_equal_to_original": true
+      },
+      {
+        "path": "$.savings_residuals.supporting_sources[3]",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1945-04-17/pdf/FR-1945-04-17.pdf",
+        "wrapped_object_equal_to_original": true
+      }
+    ],
+    "other_differences": [],
+    "all_substantive_and_quote_values_unchanged": true
+  },
+  "source_audit": {
+    "prior_path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_9452/SOURCE_AUDIT.json",
+    "prior_sha256": "dd920fd4b04395af1572624065a3363905bdad766eff29c5068bc4db61b2625b",
+    "prior_audit_still_applies": true,
+    "prior_summary": {
+      "cited_sources": 5,
+      "quote_occurrences": 28,
+      "distinct_quotes": 7,
+      "quote_failures": 0,
+      "inventory_failures": 0,
+      "hash_failures": 0,
+      "cited_source_fixity_matches": 5,
+      "additional_source_fixity_matches": 6
+    },
+    "current_source_hash_verification": [
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_9452.txt",
+        "sha256": "18e7d6259ed5717be1e78fce2e2f652d07e4728eb5a8a3d2783ca43ac20b5be1",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+        "sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_9514.txt",
+        "sha256": "ebbe50e0853b7d7a657fc9bf209436db1f80d8d920e44a895f37e2a92b6b5ad7",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_9521.txt",
+        "sha256": "45d088f2a6b611715eccf58c16db16f7076dbf9e6c7082ed65cc007197b4c401",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_9539.txt",
+        "sha256": "61216a9cfe87a129cea5a1032814bc8c044d80a918c0f725d457447d7b7e955d",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_9998.txt",
+        "sha256": "eedae135ea0e9cf487491c560874cfd25e6d3b654426f4d7e59619b91566dd0e",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12293.txt",
+        "sha256": "69a944cb186669d128843d139ffbb3bd1eb8108e5b06b6c4bc91e3edc94d321d",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_12188.txt",
+        "sha256": "48f62bad2b18f580e1067c7d44bea1e6d6d7a7996c47ea70d3995963e5cf2eca",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_10893.txt",
+        "sha256": "a943bf0716a9812201276e56acfb66b521f8e6029df3fba37c83c50957f9baa8",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_11434.txt",
+        "sha256": "6676ecee1b9975123f8e98699da8290fa2ba78b8559f9b24a9a6ce940e0aff26",
+        "unchanged": true
+      },
+      {
+        "path": "jobs/fr-originals/data/full_run/texts/EO_11295.txt",
+        "sha256": "4f7f7caf379c92189e1da5174fffabce9c5c2ced8439377c68faec6fb6d93237",
+        "unchanged": true
+      }
+    ],
+    "fixity_file": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+    "fixity_file_sha256": "2fd3d01eb8922d93130bcbc829d185e2ab9058db175368ca7119fbb0ee40110b",
+    "fixity_index_unchanged": true,
+    "limitations": "No new images or source text rereads claimed. The prior complete and bounded read scopes, exact-quote audit, noimage disclosure and search limitations remain unchanged."
+  },
+  "existing_checker_result": {
+    "path": "research/readiness/reviews/astra-2026-10-18/checker-preflight-packaging/PER_CLAIM.json",
+    "sha256": "f6fb0b4e07ca59a299f5cbbbf6e7997043b1f52f92ac6b7cb54b6be42f5c224e",
+    "exact_candidate_hash_verified": true,
+    "row": {
+      "claim_key": "research/readiness/reviews/astra-2026-10-18/checker-inputs-packaging/EO_9452.jsonl:1",
+      "claim_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+      "mechanical_result": "pass",
+      "gate_passed": true,
+      "all_checks_passed": true,
+      "steps_checker_passed": {
+        "original_text": true,
+        "clause_inventory": true,
+        "ending_or_current_basis": true,
+        "savings_residuals": true,
+        "counterevidence": true
+      }
+    },
+    "interpretation": "Observed existing mechanical pass; not substituted for independent substantive review."
+  },
+  "unresolved_material_gaps": [],
+  "required_corrections": [],
+  "actual_checker_run": false,
+  "human_certification": false,
+  "status_or_count_changes": false,
+  "rejection_metric_effect": "None: packaging correction only; preserve original substantive outcomes and earlier rejections.",
+  "telemetry": {
+    "started_utc": "2026-10-19T01:29:31Z",
+    "finished_utc": "2026-10-19T01:30:33.413991Z",
+    "real_elapsed_seconds": 62.414,
+    "model": null,
+    "token_usage": null,
+    "usage_note": "No accessible actual model/token usage meter. Timing covers this packaging verification only."
+  }
+}

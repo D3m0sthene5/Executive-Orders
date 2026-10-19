@@ -1,0 +1,21 @@
+# EO12075 v2 — partial correction
+
+The original rejected candidate and review remain frozen. This candidate is pending independent re-review and requests no complete acceptance.
+
+Version2 corrects the rejected first candidate without changing its frozen files or provisional status. The complete original has twelve numbered operative provisions; its single roster is now split into five contiguous groups, giving sixteen inventory units and isolating HEW and CSA. The Council and its broad functions have no sunset or report-triggered expiry. EO12148 adds FEMA effective July15,1979 under its express section6; it does not end existing roster commands. EO 12149 section 1-204 sends unresolved regional problems to the ICC; section 1-301 assigns ICC/OMB regional-council policy, guidance and referrals, including guidance to Federal Cochairmen; section 1-303 permits ICC requests for joint staff. These are concrete additional duties under EO 12149. EO 12314 section 4(b) expressly revokes that order and section 3 locates regional-council oversight in OMB on July 22, 1981. It neither names EO 12075 nor states that the ICC is abolished. Its narrower regional-council administration is compatible with original 1-201 to 1-204 assistance, coordination and problem-solving across executive agencies and community sectors; 1-205 already preserves EOP clearance/review/decisionmaking. Thus 1981 ends the separately added duties, not every original broad command. General support, working-group power and reporting remain tied to the surviving original Council functions. EO 12407 later revokes EO 12314 on February 22, 1983 without recreating ICC or EO 12149 duties. The HEW lead concerns name/succession after a concrete reorganization, whereas the CSA lead concerns abolition and transfer. Actual statutory texts remain unavailable, so first_end is null only for these two original seat units and savings/search closure is withheld. Fourteen other original units retain August17,1982 under the complete EO12379 section14 revocation and signature. The whole-order end remains that date because independently continuing broad Council commands end then; unresolved seats may have ended earlier but are not asserted to outlast revocation. No 1981 date is mechanically assigned to original commands, and the generic 1982 inactivity preamble supplies no earlier legal date. All legal source readings are held official extracts with official GPO fixity; editorial roster notes are explicitly leads, not originals. Complete acceptance is not requested.
+
+No surviving independent ICC command found in the eight complete official EOs read. Original 1-205 preserves pre-existing EOP procedures, not a new ICC command. EO 12148 section 2-302 preserves section 1 emergency-function transfers, not section 5-210 Council membership. EO 12149 added duties are extinguished by EO 12314; its OMB functions are separately sourced to EO 12314 and are not continuing EO 12075 commands. EO 12407 then revokes EO 12314 without a revival. The identically named council in EO 12250 is expressly the Rehabilitation Act section 507 body, not the urban/regional ICC. EO 12379 contains no target-specific saving.
+
+Overall savings/residuals disposition withheld pending actual P.L.96-88 and P.L.97-35 successor-reference, transfer, abolition, savings and effective-date text. Neither an HEW name change nor creation of an HHS Office of Community Services proves an earlier end or continuation of the corresponding original seat. No independent statutory authority is assumed to be a surviving Council command.
+
+Fourteen units have supported first ends; the HEW and CSA seat units remain null. The overall whole-order end is retained at August17,1982 because the independently continuing general commands end then. Savings and final later-search fields remain unclosed.
+
+Canonical SHA256: 1606b3b34a7f5e1f7e3e661ee88a159a9cdc183fc0b70714753a780d7c4f3cad
+
+Raw SHA256: e142a362d076dd09a093fc11b63230aa7716e08cb23c3ad0a5a8454bcd503f36
+
+Source audit SHA256: 6a1373500d2620529c120a9a88c5256a8074a622bc70a09ee17cfe81a5f62533
+
+Named-body search SHA256: 48619586808fd71ac8dd22d3997b87d3dc500819dbad56acafe63c2038986cda
+
+Elapsed wall seconds: 269.70566. Actual model/token usage null.

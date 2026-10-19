@@ -1,0 +1,9 @@
+# EO 12075 producer audit
+
+Complete producer candidate for independent review; provisional `no` unchanged. Twelve substantive clauses replace contaminated machine segmentation. Full official extracts of EO 12075 (two pages), EO 12148 (seven pages), and EO 12379 (two pages) were read and all PDF hashes match GPO fixity. No page-image verification is claimed.
+
+EO 12148 section 5-210 adds FEMA without deleting or substituting any existing original duty. Section 6 expressly makes the addition effective July 15, 1979, before the July 20 signature. The original is indefinite and 1-304 reports on performance without making report submission a termination trigger. No actual earlier ending is found in the reviewed EDGES/sources. Generic inactivity in the later cleanup preamble is not itself legal cessation. Therefore the first supported end of each original command is EO 12379 section 14's revocation on August 17, 1982.
+
+Original 1-205 limits Council action rather than creating independent EOP procedures. EO 12148 section 2-302 saves only section 1 emergency-function transfers, not the 5-210 membership addition. The complete original and revoker contain no separate saving or independent future command. Bounded machine catalog/text and current-law searches were accepted after reading their hits, with the USC October 9 limitation expressly retained. The contaminated chain's spurious actor IDs are rejected.
+
+claim.json is frozen; source-read-audit.json gives exact pages, source/text hashes, quotes, scope, exclusion reasoning and telemetry. validation.json records a passing local structural gate and exact quotations; the real checker and independent review remain pending. No new source request is needed on the evidence currently identified. No source was fetched and no canonical claim, status, lock, job output, ledger, note or count was changed.
