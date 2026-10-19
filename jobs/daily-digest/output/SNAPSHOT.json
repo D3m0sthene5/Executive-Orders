@@ -2,19 +2,19 @@
   "date": "2026-10-18",
   "summaries": {
     "astra-source-retention": {
-      "attempted": 18,
-      "download_bytes": 165570288,
+      "attempted": 28,
+      "download_bytes": 67197216,
       "exhaustion_findings": false,
-      "generated_utc": "2026-10-19T01:24:39Z",
-      "http_requests": 7,
+      "generated_utc": "2026-10-19T01:50:10Z",
+      "http_requests": 12,
       "legal_findings": false,
-      "manifest_sha256": "132bfb41ee00d4e863bfae531964e7e228c27093da639966b5f46d3ac64afe6a",
+      "manifest_sha256": "afb72963e6635dac1ea876d7fcbe98a6f7e72e71b2ce5dc3202a3fb60aa37450",
       "model_usage": null,
-      "queue_sha256": "94a8e2652f5d880b49f8969d94f7efe707cb87f482ca1213be628b302831fee0",
-      "requested": 18,
-      "retained": 17,
+      "queue_sha256": "9e5ef809f49cd4147ec3bbd24a291d543a4f958ed3ed96a3af195df9c3d5b103",
+      "requested": 28,
+      "retained": 25,
       "reviewer_role": null,
-      "wall_seconds": 33.79008992499999
+      "wall_seconds": 31.69262188099998
     },
     "census-candidates": {
       "Lord_19c_gap_rows": 812,
@@ -3932,7 +3932,7 @@
       "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
       "held_copies_indexed_by_origin": {
         "jobs/app-executive-orders/output/SOURCES.jsonl": 51,
-        "jobs/astra-source-retention/output/SOURCES.jsonl": 17,
+        "jobs/astra-source-retention/output/SOURCES.jsonl": 25,
         "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
         "jobs/current-law/output/SOURCES.jsonl": 110,
         "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
@@ -3951,7 +3951,6 @@
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
         "jobs/richardson-volumes/data/PROVENANCE.json": 3,
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-        "jobs/source-ladder/output/SOURCES.jsonl": 187,
         "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
@@ -3961,7 +3960,7 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 33426,
+      "held_distinct_sha256": 33413,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -4023,9 +4022,9 @@
           "quote_verbatim:exact": 13119,
           "quote_verbatim:too_short_to_verify": 109,
           "source_held:custody_record_only": 4360,
-          "source_held:gpo_published_hash_match": 4941,
+          "source_held:gpo_published_hash_match": 4932,
           "source_held:held_bytes_in_release_or_repo": 154,
-          "source_held:held_bytes_verified": 6085,
+          "source_held:held_bytes_verified": 6094,
           "source_identity:recorded_for_this_order": 15540
         },
         "drafts_by_mechanical_result": {
@@ -4033,12 +4032,12 @@
           "pass": 2792,
           "pass_with_unverified": 557
         },
-        "note": "jobs/claim-checker imported; 61124 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 60945 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 780,
-      "elapsed_seconds": 163.2,
+      "elapsed_seconds": 64.8,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1242,
@@ -4099,12 +4098,11 @@
         "fragments_read:ofr-compilations": 500,
         "fragments_read:opus-media-match": 143,
         "fragments_read:richardson-volumes": 68,
-        "fragments_read:source-ladder": 0,
         "fragments_read:status-history": 7650,
         "fragments_read:wikisource-texts": 1639,
         "fragments_unusable": 7656,
         "sources_read:app-executive-orders": 51,
-        "sources_read:astra-source-retention": 17,
+        "sources_read:astra-source-retention": 25,
         "sources_read:clause-drafts": 4747,
         "sources_read:current-law": 110,
         "sources_read:family-rule-sources": 2,
@@ -4120,11 +4118,12 @@
         "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
         "sources_read:richardson-volumes": 0,
-        "sources_read:source-ladder": 187,
         "sources_read:status-history": 0,
         "sources_read:wikisource-texts": 1639
       },
-      "input_notes": [],
+      "input_notes": [
+        "source-ladder: no output yet (jobs/source-ladder/output has no FRAGMENTS.jsonl or SOURCES.jsonl)"
+      ],
       "input_problems": [],
       "inputs": [
         {
@@ -4194,10 +4193,6 @@
         {
           "job": "richardson-volumes",
           "path": "jobs/richardson-volumes/output"
-        },
-        {
-          "job": "source-ladder",
-          "path": "jobs/source-ladder/output"
         },
         {
           "job": "status-history",
@@ -4387,10 +4382,9 @@
           "research": 911
         },
         "shared_sources": {
-          "confirm": 202,
           "done_now": 7,
           "n/a": 3123,
-          "research": 27
+          "research": 229
         }
       },
       "scope": "decided",
@@ -4427,32 +4421,32 @@
       "counts": {
         "assembled_claims": 0,
         "decided_orders": 3359,
-        "declared_text_representations": 76436,
-        "distinct_held_text_artifacts": 21812,
+        "declared_text_representations": 76387,
+        "distinct_held_text_artifacts": 21761,
         "dossiers": 3359,
-        "families": 3255,
-        "generic_references_excluded": 107,
-        "held_texts_scanned": 21812,
-        "known_pairs": 14020,
-        "located_actor_pairs": 7392,
-        "orders_with_held_text": 9974,
+        "families": 3253,
+        "generic_references_excluded": 104,
+        "held_texts_scanned": 21761,
+        "known_pairs": 14036,
+        "located_actor_pairs": 7407,
+        "orders_with_held_text": 9978,
         "status_leads": 11613,
         "universe_orders": 14972
       },
-      "input_commit": "92e176e9381b3b60c48a570e2403d3b1fddc7314",
+      "input_commit": "7af337e68d1750beeb8ba863c498b93b6eb3a363",
       "jsonl_shard_sha256": {
-        "ACTING_PROVISIONS.jsonl": "f06080aa0ec85e575a3c4c47e96908d89e125f3857a56a7b67ef4e3557b70ef0",
-        "ACTING_REPRESENTATIONS.jsonl": "867e6dad617d63cce2028b6ade737213ae634c33e1fedde4528ff2f4b0f8efea",
+        "ACTING_PROVISIONS.jsonl": "aa068d423276ed5fbf6322bcd2b141d9cae0bc7182c2f0f23e6a121b87a6f72c",
+        "ACTING_REPRESENTATIONS.jsonl": "5ee24ce226f1b89cdb92d915985a4e11ead2bb8238b350ca938816a8b420a9db",
         "ASSEMBLED_CLAIMS.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "CHAINS.jsonl": "1840a16853b743543b69ee7256d2e325eaed26fba4ef5c1dac4f2e5f08aa56a0",
-        "CLAUSES.jsonl": "9f31489da79fc28d9cd39cbe1dd23376446861928d724b5e3413dd84f3a2a09a",
-        "MISSING_SOURCES.jsonl": "d50f195417dcbf367802368b4ca25df758cb99fb495852d84787453a57465cca",
-        "OVERLAY_INPUTS.jsonl": "5b2d178d756b1a989688a817b39518f22440792e35db8ddee0d739fe19d375f2",
-        "OWN_TERMS.jsonl": "4763f4463dfe4cc001374a52c35daeba77f9ccf1bcecf1c56188ad6f85ac3df2",
-        "STATUS_LEADS.jsonl": "73750fbd1cbece9271a95b06b9b37bb8840eadc5ae81803c502b236f8a2877c2",
+        "CHAINS.jsonl": "c35c5ce0ca3db8d866dd84da83b65c9d9141f0ddc888b2d52540f68aa942e9b8",
+        "CLAUSES.jsonl": "eced77cb9efe003f53832c911bac218d8767401d4b3f36c7a220772e4f65248a",
+        "MISSING_SOURCES.jsonl": "7d4f2577be6caeed9ad810f7d40348a6b5e7b80e7bc2d585d1600d59aef7c9aa",
+        "OVERLAY_INPUTS.jsonl": "b8ce812fa7afee2c6fd396ef689f2276cdaf4a918de54acee01f06eb933ef3cd",
+        "OWN_TERMS.jsonl": "d496b88bde635cabb070eafb6e823f4a928e729f0d00a746837203fffc18f2bb",
+        "STATUS_LEADS.jsonl": "629146c8ea1d927cdff89ab55f488f488d6f2994e520f7f50ddade72b2a5634d",
         "TEXT_CLAUSES.jsonl": "c8618aec4025ba9db7cf9e053bc6180d2f5dda018f8ce0020e3c3c7915eb1580",
-        "TEXT_CLAUSES.part0001.jsonl": "08cd724922562800f2b432e610b60643655ddb2ce83d7248fc3258800b70ea3f",
-        "TEXT_REPRESENTATIONS.jsonl": "73b4daf4dd4809ea9d8a93fc9b3988ad637cc99f396c3724fe5c0b154ce2d7cb"
+        "TEXT_CLAUSES.part0001.jsonl": "bf46d9f535bc501396912072d287430bdd76158b62b8ac5b792ae2b66859a762",
+        "TEXT_REPRESENTATIONS.jsonl": "1dc75b01b924d52a78baa6a0236e2fb42f326fa1acaaa4afa617644d9f4c081c"
       },
       "jsonl_shards": [
         "ACTING_PROVISIONS.jsonl",
@@ -4481,8 +4475,10 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b/page-326.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-10.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-9.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/69f10174179fea565836d0faeec3ebed5cd6a7aa4d09ddf33ce64c62b15be1e3/page-1.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/82d8db2e7db11e843e0d32f791865b23dceb7ae2ca6835c15b725abf1169fc65/page-9.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/c9f34554598abe9c9ae9d577110d372940bd0af4c0d820a755225f96316aa79f/page-14.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/d674c4b5a83f57bea8342b401e534a51fabb6f31958a0019312c862d68d0cf0d/page-1.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665/page-12.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10010-8486556001.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10015-144846d6cd.txt; skipped",
@@ -4544,7 +4540,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10543-c6bac78dc6.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10562-5958989e05.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10570-a8edb23032.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10573-604d1c6e51.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10576-6b2ba60149.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10587-47e31602ee.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10593-1dffbd4c65.txt; skipped",
@@ -5034,15 +5029,11 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-compilations/output/texts/EO_5918.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/71638bd317a490d623b778ab1dc9539382d1941a81439abbfd230ee453be6b5a.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/c11e871f5aba9fee5757727795c17b21df27f60c317196b89739c2ef6d15d0b7.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12258_46FR1252_original_PDF_page14_section1-103_j_d9939d5627.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12399_48_FR_379_PDF_pages_9-10_cited_revocation_exception_effective_provisions_b6f9f1ecec.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_12486_49_FR_33989_PDF_pages_9-9_2e917b31ee.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_8396_5_FR_1461_PDF_pages_1-4_cited_revocation_exception_effective_provisions_8e77abf6d8.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/source-ladder/output/texts/queue_EO_9830_12_FR_1259_Part_III_revocation_list_original_PDF_page11_3ccc2633ee.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_1064.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_1108.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_1152.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_1266.html; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_172.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_282.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_293.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/wikisource-texts/output/originals/EO_984.html; skipped",
@@ -5831,7 +5822,7 @@
       },
       "clauses_total": 35750,
       "fragments_written": 4747,
-      "generated_utc": "2026-10-19T01:32:14Z",
+      "generated_utc": "2026-10-19T01:51:43Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 95,
         "identity_doubt_document_dated": 17,
@@ -5844,7 +5835,7 @@
           "stage21_custody": "ok",
           "universe": "ok"
         },
-        "input_problems": 479,
+        "input_problems": 270,
         "opus_zip": {
           "member_text_hash_check": {
             "match": 2335,
@@ -5866,7 +5857,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "668 order-text candidates"
+          "source-ladder": "no SOURCES.jsonl yet"
         },
         "stage21_pdfs_usable": 160
       },
@@ -5877,10 +5868,10 @@
       "ocr_fragments_with_candidate_fr_page": 60,
       "orders_identity_quarantined": 144,
       "orders_in_universe": 14972,
-      "orders_not_segmented": 1678,
-      "orders_processed": 6569,
-      "orders_with_candidate_text": 6569,
-      "seconds": 86.4,
+      "orders_not_segmented": 1672,
+      "orders_processed": 6563,
+      "orders_with_candidate_text": 6563,
+      "seconds": 85.0,
       "segmentation_quality": {
         "good": 1889,
         "partial": 2858
@@ -7736,7 +7727,7 @@
         "DATE_CONFLICT_OR_UNKNOWN": 41,
         "EARLIER_OR_UNDATED_ENDING": 74,
         "INDEPENDENT_CLAUSE_OR_SAVINGS_LEAD": 739,
-        "LATER_OR_UNDATED_SAVED_TEXT_USE": 681,
+        "LATER_OR_UNDATED_SAVED_TEXT_USE": 678,
         "NO_MATCHING_END_EDGE": 6,
         "ORIGINAL_SOURCE_CUSTODY_UNVERIFIED": 748,
         "QUALIFIED_OR_CONFLICTING_SCOPE": 16,
@@ -7749,8 +7740,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 30334,
-      "sweep_manifest_sha256": "ba0e5e0793b0676f8e5981c305c7554ba1d65335dffd6ddce59226ccd9bcea55",
+      "saved_texts_scanned": 30310,
+      "sweep_manifest_sha256": "12c5d72a2bf67a7be3a785c53da87afd8af0bc25dd8a203bc8ba23f7bb0efcf6",
       "targets": 748
     },
     "fr-originals": {
@@ -8377,19 +8368,19 @@
       "texts_saved": 197
     },
     "official-fixity": {
-      "carried_forward": 5038,
-      "checked_this_run": 8,
+      "carried_forward": 5015,
+      "checked_this_run": 5,
       "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
-      "files": 5046,
+      "files": 5020,
       "job": "official-fixity",
-      "orders_with_a_gpo_matched_file": 5067,
-      "premis_bytes_read_this_run": 131072,
+      "orders_with_a_gpo_matched_file": 5059,
+      "premis_bytes_read_this_run": 0,
       "results": {
-        "match": 3424,
-        "not_listed": 1617,
+        "match": 3421,
+        "not_listed": 1594,
         "partial_match": 5
       },
-      "seconds": 0.2
+      "seconds": 0.1
     },
     "ofr-codification-1989": {
       "body": {
@@ -9901,21 +9892,21 @@
     "readiness-tracker": {
       "decided_by_steps_done": {
         "1/6": 632,
-        "1/7": 14,
-        "1/8": 2,
+        "1/7": 29,
+        "1/8": 7,
         "2/6": 501,
-        "2/7": 81,
-        "2/8": 6,
+        "2/7": 68,
+        "2/8": 11,
         "3/6": 1202,
-        "3/7": 437,
-        "3/8": 35,
+        "3/7": 448,
+        "3/8": 204,
         "4/6": 24,
-        "4/7": 75,
-        "4/8": 172,
+        "4/7": 62,
+        "4/8": 13,
         "5/6": 25,
-        "5/8": 21,
+        "5/8": 1,
         "6/6": 131,
-        "7/7": 1
+        "6/7": 1
       },
       "decided_orders_blocked_by": {
         "CLAIM_INCOMPLETE": 83,
@@ -9930,13 +9921,13 @@
         "OPEN_SOURCE_AUDIT": 1,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 430,
+        "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
-        "SHARED_SOURCE_NOT_RETRIEVED": 27
+        "SHARED_SOURCE_NOT_RETRIEVED": 229
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
@@ -9983,7 +9974,7 @@
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 187
+          "source-ladder": null
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -10003,13 +9994,13 @@
         "OPEN_SOURCE_AUDIT": 1,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 430,
+        "OPUS_MEDIA_REFETCH_NEEDED": 472,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
-        "SHARED_SOURCE_NOT_RETRIEVED": 27
+        "SHARED_SOURCE_NOT_RETRIEVED": 229
       },
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
@@ -10022,7 +10013,7 @@
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
           "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
           "kind": "machine_job",
-          "orders_unblocked": 430
+          "orders_unblocked": 472
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
@@ -10031,10 +10022,76 @@
           "orders_unblocked": 286
         },
         {
+          "action": "Retrieve shared source STAT::66 Stat. 259",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259",
+          "kind": "one_source",
+          "orders_unblocked": 19
+        },
+        {
+          "action": "Retrieve shared source EO::9337",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9337",
+          "kind": "one_source",
+          "orders_unblocked": 11
+        },
+        {
           "action": "Retrieve shared source EO::4314",
           "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
           "kind": "one_source",
           "orders_unblocked": 10
+        },
+        {
+          "action": "Retrieve shared source EO::8417",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8417",
+          "kind": "one_source",
+          "orders_unblocked": 9
+        },
+        {
+          "action": "Retrieve shared source EO::9515",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9515",
+          "kind": "one_source",
+          "orders_unblocked": 9
+        },
+        {
+          "action": "Retrieve shared source USC::31 U.S.C. 1552",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::31 U.S.C. 1552",
+          "kind": "one_source",
+          "orders_unblocked": 8
+        },
+        {
+          "action": "Retrieve shared source EO::10153",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10153",
+          "kind": "one_source",
+          "orders_unblocked": 7
+        },
+        {
+          "action": "Retrieve shared source EO::9492",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9492",
+          "kind": "one_source",
+          "orders_unblocked": 7
+        },
+        {
+          "action": "Retrieve shared source EO::9792",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9792",
+          "kind": "one_source",
+          "orders_unblocked": 7
+        },
+        {
+          "action": "Retrieve shared source EO::9886",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9886",
+          "kind": "one_source",
+          "orders_unblocked": 7
+        },
+        {
+          "action": "Retrieve shared source EO::10608",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10608",
+          "kind": "one_source",
+          "orders_unblocked": 7
+        },
+        {
+          "action": "Retrieve shared source EO::11401",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11401",
+          "kind": "one_source",
+          "orders_unblocked": 6
         },
         {
           "action": "Retrieve shared source EO::6868",
@@ -10043,8 +10100,146 @@
           "orders_unblocked": 6
         },
         {
+          "action": "Retrieve shared source EO::13286",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13286",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::10713",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10713",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::11211",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11211",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::14173",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14173",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::12282",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12282",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::9526",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9526",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::9714",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9714",
+          "kind": "one_source",
+          "orders_unblocked": 6
+        },
+        {
+          "action": "Retrieve shared source EO::10084",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10084",
+          "kind": "one_source",
+          "orders_unblocked": 5
+        },
+        {
+          "action": "Retrieve shared source EO::11766",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11766",
+          "kind": "one_source",
+          "orders_unblocked": 5
+        },
+        {
+          "action": "Retrieve shared source EO::10152",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10152",
+          "kind": "one_source",
+          "orders_unblocked": 5
+        },
+        {
+          "action": "Retrieve shared source EO::10773",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10773",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::12107",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12107",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::11246",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11246",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::11878",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11878",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::12748",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12748",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::10355",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10355",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source EO::9195",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9195",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
+          "action": "Retrieve shared source USC::26 U.S.C. 7851(a)(1)(A)",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::26 U.S.C. 7851(a)(1)(A)",
+          "kind": "one_source",
+          "orders_unblocked": 4
+        },
+        {
           "action": "Retrieve shared source USC::48 U.S.C. 863)",
           "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source STAT::84 Stat. 298",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::84 Stat. 298",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::12608",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12608",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::11803",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11803",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::14410",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14410",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source CFR::5 CFR 6.8",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::5 CFR 6.8",
           "kind": "one_source",
           "orders_unblocked": 3
         },
@@ -10061,8 +10256,314 @@
           "orders_unblocked": 3
         },
         {
+          "action": "Retrieve shared source EO::9346",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9346",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source USC::50 U.S.C. 4701-4703",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::50 U.S.C. 4701-4703",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::9729",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9729",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::9488",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9488",
+          "kind": "one_source",
+          "orders_unblocked": 3
+        },
+        {
+          "action": "Retrieve shared source EO::10057",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10057",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source USC::36 U.S.C. 2111(b)",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::36 U.S.C. 2111(b)",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source USC::48 U.S.C. 863",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10236",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10236",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10382",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10382",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10141",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10141",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::12553",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12553",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::11609",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11609",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::8557",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8557",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10173",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10173",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::14116",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14116",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10251",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10251",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10629",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10629",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
           "action": "Retrieve shared source CFR::26 CFR 458.324",
           "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source USC::18 U.S.C. 713",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::18 U.S.C. 713",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10929",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10929",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10948",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10948",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::11533",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11533",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source STAT::92 Stat. 191",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::92 Stat. 191",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source CFR::8 CFR 252.5",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::8 CFR 252.5",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::11464",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11464",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source CFR::28 CFR 0.49",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::28 CFR 0.49",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::13672",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13672",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::14154",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14154",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source CFR::5 CFR 352",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::5 CFR 352",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::11629",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11629",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::11842",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11842",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::13197",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13197",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source CFR::41 CFR 102",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::41 CFR 102",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::12028",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12028",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::12170",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12170",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::12957",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12957",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::14382",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14382",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::12692",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12692",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::10621",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10621",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9830",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9830",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9142",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9142",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source USC::16 U.S.C. 668dd(a)(6)",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::16 U.S.C. 668dd(a)(6)",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source USC::43 U.S.C. 1714(j).",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::43 U.S.C. 1714(j).",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::8540",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8540",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::8655",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8655",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::8992",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8992",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9809",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9809",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9841",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9841",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9788",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9788",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9299",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9299",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9801",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9801",
+          "kind": "one_source",
+          "orders_unblocked": 2
+        },
+        {
+          "action": "Retrieve shared source EO::9689",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9689",
           "kind": "one_source",
           "orders_unblocked": 2
         },
@@ -10088,7 +10589,7 @@
         },
         "opus_media": {
           "applicable": 844,
-          "done": 125
+          "done": 82
         },
         "original_text": {
           "applicable": 3359,
@@ -10104,7 +10605,7 @@
         },
         "shared_sources": {
           "applicable": 236,
-          "done": 209
+          "done": 7
         }
       }
     },
@@ -10841,67 +11342,6 @@
         }
       ],
       "wpa_entries_parsed": 155
-    },
-    "source-ladder": {
-      "attempts_logged": 17,
-      "bytes_downloaded": 92003624,
-      "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "distinct_new_source_hashes": 9,
-      "exhausted_proposed_items": 2,
-      "exhausted_proposed_lines": 16,
-      "fetch_queue_problems": [],
-      "found": 187,
-      "found_by_route": {
-        "given/given": 94,
-        "official/govinfo_fr_issue_pdf": 60,
-        "official/govinfo_link_cfr": 5,
-        "official/govinfo_link_fr": 2,
-        "official/govinfo_link_statute": 3,
-        "official/govinfo_link_uscode": 9,
-        "official/ofr_index_pdf_url": 9,
-        "wayback_given/wayback_id_": 5
-      },
-      "found_carried_forward": 178,
-      "from_fetch_queue": 113,
-      "from_stage20_shared_sources": 90,
-      "http_requests": 27,
-      "items_in_queue": 203,
-      "items_worked": 12,
-      "job": "source-ladder",
-      "new_sources_found": 9,
-      "no_route": 0,
-      "not_attempted_budget": 0,
-      "offline": false,
-      "orders_covered_by_found_sources": 406,
-      "pool_cache_hits": 3,
-      "pool_network_requests": 30,
-      "prefetched_urls": 0,
-      "retry_later": 1,
-      "run_date": "2026-10-19",
-      "seconds": 359.8,
-      "source_plan": {
-        "legal_cutoff": "2026-10-14",
-        "max_requests": 80,
-        "method": "readiness proximity, step opportunity, downstream work, stable ID",
-        "queue_fingerprint": "5c0d312939593fead3b7744c5376227b96db4e988e634c24edd0491f707145d3",
-        "schema": "eo-source-plan/v1",
-        "tracker_sha256": "842ad08f1020ff0b4c55360e39ea2c444eb8e99a31f45c9097286c86620b6b73",
-        "wanted_ids": [
-          "EO::4314",
-          "EO::6868",
-          "opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693",
-          "opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7",
-          "opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346",
-          "opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb",
-          "opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef",
-          "opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720",
-          "opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c",
-          "opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c",
-          "opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68",
-          "opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0"
-        ]
-      },
-      "stopped_early": ""
     },
     "status-history": {
       "census_admissions": 0,

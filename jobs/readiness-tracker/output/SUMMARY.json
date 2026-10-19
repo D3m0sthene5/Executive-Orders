@@ -32,31 +32,31 @@
       "applicable": 3359
     },
     "shared_sources": {
-      "done": 209,
+      "done": 7,
       "applicable": 236
     },
     "opus_media": {
-      "done": 125,
+      "done": 82,
       "applicable": 844
     }
   },
   "decided_by_steps_done": {
     "1/6": 632,
-    "1/7": 14,
-    "1/8": 2,
+    "1/7": 29,
+    "1/8": 7,
     "2/6": 501,
-    "2/7": 81,
-    "2/8": 6,
+    "2/7": 68,
+    "2/8": 11,
     "3/6": 1202,
-    "3/7": 437,
-    "3/8": 35,
+    "3/7": 448,
+    "3/8": 204,
     "4/6": 24,
-    "4/7": 75,
-    "4/8": 172,
+    "4/7": 62,
+    "4/8": 13,
     "5/6": 25,
-    "5/8": 21,
+    "5/8": 1,
     "6/6": 131,
-    "7/7": 1
+    "6/7": 1
   },
   "orders_blocked_by": {
     "NO_PROVISIONAL_STATUS": 11613,
@@ -65,17 +65,17 @@
     "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
     "FIRST_END_UNPROVED": 2742,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
-    "OPUS_MEDIA_REFETCH_NEEDED": 430,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 400,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
+    "SHARED_SOURCE_NOT_RETRIEVED": 229,
     "OPUS_MEDIA_NONE_CITED": 217,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
     "CLAIM_INCOMPLETE": 83,
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 68,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-    "SHARED_SOURCE_NOT_RETRIEVED": 27,
-    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "OPEN_SOURCE_AUDIT": 1
   },
@@ -85,16 +85,16 @@
     "FIRST_END_UNPROVED": 2742,
     "NO_OFFICIAL_SOURCE_LOCATED": 959,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 693,
-    "OPUS_MEDIA_REFETCH_NEEDED": 430,
+    "OPUS_MEDIA_REFETCH_NEEDED": 472,
     "CURRENT_BASIS_UNPROVED": 400,
+    "SHARED_SOURCE_NOT_RETRIEVED": 229,
     "OPUS_MEDIA_NONE_CITED": 217,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
     "CLAIM_INCOMPLETE": 83,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
-    "SHARED_SOURCE_NOT_RETRIEVED": 27,
-    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 20,
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "OPEN_SOURCE_AUDIT": 1,
@@ -104,7 +104,7 @@
     {
       "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
-      "orders_unblocked": 430,
+      "orders_unblocked": 472,
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
     },
     {
@@ -114,10 +114,76 @@
       "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
     },
     {
+      "action": "Retrieve shared source STAT::66 Stat. 259",
+      "kind": "one_source",
+      "orders_unblocked": 19,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259"
+    },
+    {
+      "action": "Retrieve shared source EO::9337",
+      "kind": "one_source",
+      "orders_unblocked": 11,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9337"
+    },
+    {
       "action": "Retrieve shared source EO::4314",
       "kind": "one_source",
       "orders_unblocked": 10,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+    },
+    {
+      "action": "Retrieve shared source EO::8417",
+      "kind": "one_source",
+      "orders_unblocked": 9,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8417"
+    },
+    {
+      "action": "Retrieve shared source EO::9515",
+      "kind": "one_source",
+      "orders_unblocked": 9,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9515"
+    },
+    {
+      "action": "Retrieve shared source USC::31 U.S.C. 1552",
+      "kind": "one_source",
+      "orders_unblocked": 8,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::31 U.S.C. 1552"
+    },
+    {
+      "action": "Retrieve shared source EO::10153",
+      "kind": "one_source",
+      "orders_unblocked": 7,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10153"
+    },
+    {
+      "action": "Retrieve shared source EO::9492",
+      "kind": "one_source",
+      "orders_unblocked": 7,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9492"
+    },
+    {
+      "action": "Retrieve shared source EO::9792",
+      "kind": "one_source",
+      "orders_unblocked": 7,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9792"
+    },
+    {
+      "action": "Retrieve shared source EO::9886",
+      "kind": "one_source",
+      "orders_unblocked": 7,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9886"
+    },
+    {
+      "action": "Retrieve shared source EO::10608",
+      "kind": "one_source",
+      "orders_unblocked": 7,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10608"
+    },
+    {
+      "action": "Retrieve shared source EO::11401",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11401"
     },
     {
       "action": "Retrieve shared source EO::6868",
@@ -126,10 +192,148 @@
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
     },
     {
+      "action": "Retrieve shared source EO::13286",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13286"
+    },
+    {
+      "action": "Retrieve shared source EO::10713",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10713"
+    },
+    {
+      "action": "Retrieve shared source EO::11211",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11211"
+    },
+    {
+      "action": "Retrieve shared source EO::14173",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14173"
+    },
+    {
+      "action": "Retrieve shared source EO::12282",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12282"
+    },
+    {
+      "action": "Retrieve shared source EO::9526",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9526"
+    },
+    {
+      "action": "Retrieve shared source EO::9714",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9714"
+    },
+    {
+      "action": "Retrieve shared source EO::10084",
+      "kind": "one_source",
+      "orders_unblocked": 5,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10084"
+    },
+    {
+      "action": "Retrieve shared source EO::11766",
+      "kind": "one_source",
+      "orders_unblocked": 5,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11766"
+    },
+    {
+      "action": "Retrieve shared source EO::10152",
+      "kind": "one_source",
+      "orders_unblocked": 5,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10152"
+    },
+    {
+      "action": "Retrieve shared source EO::10773",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10773"
+    },
+    {
+      "action": "Retrieve shared source EO::12107",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12107"
+    },
+    {
+      "action": "Retrieve shared source EO::11246",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11246"
+    },
+    {
+      "action": "Retrieve shared source EO::11878",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11878"
+    },
+    {
+      "action": "Retrieve shared source EO::12748",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12748"
+    },
+    {
+      "action": "Retrieve shared source EO::10355",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10355"
+    },
+    {
+      "action": "Retrieve shared source EO::9195",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9195"
+    },
+    {
+      "action": "Retrieve shared source USC::26 U.S.C. 7851(a)(1)(A)",
+      "kind": "one_source",
+      "orders_unblocked": 4,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::26 U.S.C. 7851(a)(1)(A)"
+    },
+    {
       "action": "Retrieve shared source USC::48 U.S.C. 863)",
       "kind": "one_source",
       "orders_unblocked": 3,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+    },
+    {
+      "action": "Retrieve shared source STAT::84 Stat. 298",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::84 Stat. 298"
+    },
+    {
+      "action": "Retrieve shared source EO::12608",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12608"
+    },
+    {
+      "action": "Retrieve shared source EO::11803",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11803"
+    },
+    {
+      "action": "Retrieve shared source EO::14410",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14410"
+    },
+    {
+      "action": "Retrieve shared source CFR::5 CFR 6.8",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::5 CFR 6.8"
     },
     {
       "action": "Retrieve shared source EO::6964",
@@ -144,10 +348,316 @@
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
     },
     {
+      "action": "Retrieve shared source EO::9346",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9346"
+    },
+    {
+      "action": "Retrieve shared source USC::50 U.S.C. 4701-4703",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::50 U.S.C. 4701-4703"
+    },
+    {
+      "action": "Retrieve shared source EO::9729",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9729"
+    },
+    {
+      "action": "Retrieve shared source EO::9488",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9488"
+    },
+    {
+      "action": "Retrieve shared source EO::10057",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10057"
+    },
+    {
+      "action": "Retrieve shared source USC::36 U.S.C. 2111(b)",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::36 U.S.C. 2111(b)"
+    },
+    {
+      "action": "Retrieve shared source USC::48 U.S.C. 863",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863"
+    },
+    {
+      "action": "Retrieve shared source EO::10236",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10236"
+    },
+    {
+      "action": "Retrieve shared source EO::10382",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10382"
+    },
+    {
+      "action": "Retrieve shared source EO::10141",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10141"
+    },
+    {
+      "action": "Retrieve shared source EO::12553",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12553"
+    },
+    {
+      "action": "Retrieve shared source EO::11609",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11609"
+    },
+    {
+      "action": "Retrieve shared source EO::8557",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8557"
+    },
+    {
+      "action": "Retrieve shared source EO::10173",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10173"
+    },
+    {
+      "action": "Retrieve shared source EO::14116",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14116"
+    },
+    {
+      "action": "Retrieve shared source EO::10251",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10251"
+    },
+    {
+      "action": "Retrieve shared source EO::10629",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10629"
+    },
+    {
       "action": "Retrieve shared source CFR::26 CFR 458.324",
       "kind": "one_source",
       "orders_unblocked": 2,
       "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    },
+    {
+      "action": "Retrieve shared source USC::18 U.S.C. 713",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::18 U.S.C. 713"
+    },
+    {
+      "action": "Retrieve shared source EO::10929",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10929"
+    },
+    {
+      "action": "Retrieve shared source EO::10948",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10948"
+    },
+    {
+      "action": "Retrieve shared source EO::11533",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11533"
+    },
+    {
+      "action": "Retrieve shared source STAT::92 Stat. 191",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::92 Stat. 191"
+    },
+    {
+      "action": "Retrieve shared source CFR::8 CFR 252.5",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::8 CFR 252.5"
+    },
+    {
+      "action": "Retrieve shared source EO::11464",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11464"
+    },
+    {
+      "action": "Retrieve shared source CFR::28 CFR 0.49",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::28 CFR 0.49"
+    },
+    {
+      "action": "Retrieve shared source EO::13672",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13672"
+    },
+    {
+      "action": "Retrieve shared source EO::14154",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14154"
+    },
+    {
+      "action": "Retrieve shared source CFR::5 CFR 352",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::5 CFR 352"
+    },
+    {
+      "action": "Retrieve shared source EO::11629",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11629"
+    },
+    {
+      "action": "Retrieve shared source EO::11842",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::11842"
+    },
+    {
+      "action": "Retrieve shared source EO::13197",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::13197"
+    },
+    {
+      "action": "Retrieve shared source CFR::41 CFR 102",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::41 CFR 102"
+    },
+    {
+      "action": "Retrieve shared source EO::12028",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12028"
+    },
+    {
+      "action": "Retrieve shared source EO::12170",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12170"
+    },
+    {
+      "action": "Retrieve shared source EO::12957",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12957"
+    },
+    {
+      "action": "Retrieve shared source EO::14382",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::14382"
+    },
+    {
+      "action": "Retrieve shared source EO::12692",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::12692"
+    },
+    {
+      "action": "Retrieve shared source EO::10621",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::10621"
+    },
+    {
+      "action": "Retrieve shared source EO::9830",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9830"
+    },
+    {
+      "action": "Retrieve shared source EO::9142",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9142"
+    },
+    {
+      "action": "Retrieve shared source USC::16 U.S.C. 668dd(a)(6)",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::16 U.S.C. 668dd(a)(6)"
+    },
+    {
+      "action": "Retrieve shared source USC::43 U.S.C. 1714(j).",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::43 U.S.C. 1714(j)."
+    },
+    {
+      "action": "Retrieve shared source EO::8540",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8540"
+    },
+    {
+      "action": "Retrieve shared source EO::8655",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8655"
+    },
+    {
+      "action": "Retrieve shared source EO::8992",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::8992"
+    },
+    {
+      "action": "Retrieve shared source EO::9809",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9809"
+    },
+    {
+      "action": "Retrieve shared source EO::9841",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9841"
+    },
+    {
+      "action": "Retrieve shared source EO::9788",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9788"
+    },
+    {
+      "action": "Retrieve shared source EO::9299",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9299"
+    },
+    {
+      "action": "Retrieve shared source EO::9801",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9801"
+    },
+    {
+      "action": "Retrieve shared source EO::9689",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::9689"
     },
     {
       "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
@@ -202,7 +712,7 @@
       "indian-reservations-1912": 55,
       "richardson-volumes (lead only, never counted as the original)": 68,
       "opus-media-match status": 1155,
-      "source-ladder": 187,
+      "source-ladder": null,
       "claim-checker": 217,
       "machine later-source search": 6938
     }
