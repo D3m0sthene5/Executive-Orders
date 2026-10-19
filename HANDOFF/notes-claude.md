@@ -2,6 +2,44 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-18 21:30 ET: APP pages into the machine pipeline (lead-only), measured against the tracker
+
+- **Done (branch `claude/app-ingest-2959a8`, PR into `app-executive-orders`; commits `80dd4fb8`, `c358a189`,
+  `f521456c`, `8c341127` + plan/handoff):**
+  - `jobs/app-transcriptions/`: claim-kit globbed only `FRAGMENTS*.jsonl`, so the 9,387 archive-lane
+    `MIRROR_FRAGMENTS.jsonl` records were invisible. The converter rewrites text paths only and refuses any record
+    not marked lead-only. claim-kit `load_corpus`: census orders with an APP text **522 -> 9,812**; of these
+    **3,068** had no text of any kind before (784 decided); 0 new loader warnings. Also one SOURCES record per order
+    (9,843) for later-events, and `CATEGORIES.csv`.
+  - readiness-tracker: both APP fragment files registered as `compiled_transcription_fragments` (Richardson's class).
+    Local before/after on identical inputs: every step unchanged (status 3,359; original_text 2,312; clause 178;
+    ending 134; savings 166; counterevidence 2,470; shared 209/236; Opus 82/844; **ready 130 -> 130**).
+    `ONLY_COMPILED_TRANSCRIPTION_FOUND` 2 -> 892 decided (68 -> 3,172 all) and a shared-unlock row for it.
+  - clause-drafts: APP pages as a **fallback**, transcription-labelled input (heading-based wrong-order protection,
+    hash check, quarantine markers); drafts in `FRAGMENTS_APP.jsonl` to stay under 95 MB. Drafts **4,747 -> 9,715**
+    (decided 1,806 -> 3,153); no existing draft displaced. Failure rate per candidate copy: APP **1.6%** vs Federal
+    Register **33.7%** (born-digital 2.0%, scanned OCR 43.5%).
+  - claim-drafts **bug fix**: original_representation from unknown producers was graded
+    `fr_originals_needs_page_check` (acceptable as original); APP and any self-declared transcription are now
+    `compiled_transcription_lead`. With APP: judgment-only decided drafts 780 -> 1,114 (like-for-like local runs).
+  - `jobs/app-footnote-leads/`: 1,199 fr_citation, 48 not_published, 3 amended_by (4 edges), 0 revoked/superseded,
+    1,414 other. Published as `EDGES.csv` in later-events' shape (claim-kit reads it); later-events has no input
+    shape for third-party notes. later-events now scans the APP texts; APP "in part" wording never withholds an OFR
+    whole-order end (otherwise APP would remove counterevidence leads).
+  - Categories/attributes: constant, no mapping to family rules or the codebook. Plan:
+    `research/plans/APP_INGEST_NEXT_2026-10-18.md`.
+- **Verified on GitHub:** Run jobs 39181833471 (commit `8c341127`, results `1d376590`): STATUS.json succeeded for all 11 jobs it ran.
+  Tracker on GitHub: every step unchanged, **ready 130 -> 130**, counterevidence 2,470 -> 2,470; later-events texts 7,619 -> 17,462
+  (+3,843 APP edges; the guard kept 27 OFR whole-order ends). claim-kit's three >95 MB files stay run downloads, as before.
+  Nothing running.
+- **Next:** fr-originals date+title search for the 49 decided 1936 FR-vol-1 orders; NARA scan requests for the 294
+  "not received for publication" orders; agents start from the 1,114 judgment-only drafts.
+- **Asks:** `@Astra`: decide whether `order_text_opus_mirror` should get the same never-withhold guard; confirm
+  family-rules' sweep handles ~15,700 new mirror/draft texts. `@Owner`: 31 APP numbered orders are not census
+  identities (e.g. EO 5853-5873) - census-candidates material, not admitted.
+- **Do not:** treat APP clause texts, footnotes or APP-based drafts as originals, endings or certified findings; the
+  certified whole-lifecycle count stays 0.
+
 ## 2026-10-18 19:15 ET: app-executive-orders, archive lane: 30 h crawl collapsed to a 67-page residue
 
 - **Done (branch `app-executive-orders`, commits `5d97ee47`, `78e7d795` + outputs):** `jobs/app-executive-orders/app_mirror.py`,
