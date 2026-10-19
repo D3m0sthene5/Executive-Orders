@@ -56,3 +56,36 @@ Thank you,
 
 If a key is granted, store it as a GitHub Actions secret, never in the repository. A bounded `jobs/` job
 can then read it from the environment.
+
+---
+
+## 3. NYU Data Services: TDM Studio workbench for the pre-1937 executive orders
+
+**To:** NYU Data Services, data.services@nyu.edu (contact named on guides.nyu.edu/TDMStudio). Create the account
+first at tdmstudio.proquest.com/createaccount with your NYU email.
+
+**Subject:** TDM Studio: ProQuest Congressional executive orders (1862-1936) for a research workbench
+
+Hello,
+
+I am [name, NYU role and department]. I have requested a TDM Studio account with my NYU email for a
+non-commercial research project tracing the legal status of every U.S. executive order.
+
+I need ProQuest Congressional's Presidential Materials, specifically "Numbered Executive Orders,
+1862-Present", for orders issued up to 1936. About 3,560 of them (mostly EO 1-5075) have no public full-text
+copy I can find. I would like to ask:
+
+1. Can this collection be added as a TDM Studio dataset source under NYU's ProQuest Congressional
+   subscription? If it is not available yet, could you ask ProQuest whether it can be?
+2. Within the export limits, may I export a metadata table for these records: accession number, order number,
+   date, title, signed / not signed, page count and descriptors?
+3. The orders are U.S. government works in the public domain. Would ProQuest allow export of the OCR text for
+   this collection (not the page images), or deliver the PDFs once for the ~3,560 orders on my list? I can send
+   the list of order numbers.
+
+I will work inside the workbench and follow its export limits and terms, and I will not redistribute
+ProQuest's files.
+
+Thank you,
+[name]
+[NYU email]
