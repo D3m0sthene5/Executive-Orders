@@ -2,7 +2,7 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
-## 2026-10-19: gap orders routed to public sources; csc-annual-reports job started (branch `csc-annual-reports`)
+## 2026-10-19: CSC job recovered 798 gap-order texts; repo now public on GitHub Pro (branch `csc-annual-reports`)
 
 - **Done:** ProQuest Congressional (owner's NYU login) surveyed: Presidential Materials 1789-1936 hold
   53,671 records, 9,503 tagged Numbered Executive Orders, each with a PDF scan ("Replica of Original").
@@ -10,10 +10,16 @@ Newest entry first. See `README.md` in this folder for the format.
   in HathiTrust public volumes = 3,563 (`PROQUEST_RESIDUE.txt`). Routed each by the full WPA/Lord list
   (`wpa-lists` branch): `GAP_ROUTES.md/.csv`. Results: 840 cite a Civil Service Commission annual report;
   about 90 are candidates in other compilations; 2,635 have no known printing (NARA RG 11 or ProQuest only).
-- **Running:** `jobs/csc-annual-reports/` fetches the CSC annual reports from the GovInfo Serial Set
-  (public PDFs) and cuts each WPA-cited order from its date line. An offline trial on FY 1917 located 67 of
-  68 orders. Check `output/SUMMARY.json` (orders_located, by confidence) and `CITATION_RESULTS.csv` for
-  misses. Outputs are `compiled_transcription_lead` fragments with `acceptable_as_original: false`.
+- **Result:** run 39319995860 (GitHub, succeeded) located **798 of 840** WPA-cited orders in the CSC annual
+  reports (625 high, 141 medium, 32 low confidence); 42 not found, listed with reasons in
+  `jobs/csc-annual-reports/output/CITATION_RESULTS.csv`. FY 1904 has no Serial Set report. Fragments are
+  `compiled_transcription_lead`, `acceptable_as_original: false`, `needs_page_check: true`.
+- **Notice to all agents:** the owner upgraded to GitHub Pro and made the repo **public** (2026-10-19), so
+  Actions minutes on standard runners are no longer the limit. Everything committed is now public: never
+  commit licensed content (ProQuest PDFs, login-only scans) or secrets. The road tests used ~2,900 of
+  ~4,500 Actions minutes on Oct 17-19 before the change.
+- **TDM Studio (NYU):** checked; it does not include ProQuest Congressional's executive orders (only
+  committee hearings), so it is no bulk route for the ProQuest residue.
 - **Next:** extract the Panama Canal 1922 and Kappler IV candidates (archive.org texts are free);
   HathiTrust vol. 2 of the Indian reservations orders needs a person in a browser (Cloudflare).
 - **Asks:** `@Owner`: `ACCESS_REQUESTS.md` has drafts for NYU (bulk ProQuest access) and NARA (API key), not
