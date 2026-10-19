@@ -2,19 +2,19 @@
   "date": "2026-10-18",
   "summaries": {
     "astra-source-retention": {
-      "attempted": 12,
-      "download_bytes": 423969684,
+      "attempted": 18,
+      "download_bytes": 165570288,
       "exhaustion_findings": false,
-      "generated_utc": "2026-10-19T00:59:30Z",
-      "http_requests": 13,
+      "generated_utc": "2026-10-19T01:24:39Z",
+      "http_requests": 7,
       "legal_findings": false,
-      "manifest_sha256": "95227473f0e825574a2efe96fa9de6bbf2e806bcdb5ee38c35aeda001305a4b7",
+      "manifest_sha256": "132bfb41ee00d4e863bfae531964e7e228c27093da639966b5f46d3ac64afe6a",
       "model_usage": null,
-      "queue_sha256": "cd2800f44d0c61fea2b1c1c25e87768793865bfc945ee6c156f237939e562ae3",
-      "requested": 12,
-      "retained": 12,
+      "queue_sha256": "94a8e2652f5d880b49f8969d94f7efe707cb87f482ca1213be628b302831fee0",
+      "requested": 18,
+      "retained": 17,
       "reviewer_role": null,
-      "wall_seconds": 68.040171862
+      "wall_seconds": 33.79008992499999
     },
     "census-candidates": {
       "Lord_19c_gap_rows": 812,
@@ -3932,6 +3932,7 @@
       "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
       "held_copies_indexed_by_origin": {
         "jobs/app-executive-orders/output/SOURCES.jsonl": 51,
+        "jobs/astra-source-retention/output/SOURCES.jsonl": 17,
         "jobs/clause-drafts/output/SOURCES.jsonl": 4747,
         "jobs/current-law/output/SOURCES.jsonl": 110,
         "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
@@ -3950,7 +3951,7 @@
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
         "jobs/richardson-volumes/data/PROVENANCE.json": 3,
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-        "jobs/source-ladder/output/SOURCES.jsonl": 178,
+        "jobs/source-ladder/output/SOURCES.jsonl": 187,
         "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
@@ -3960,7 +3961,7 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 33421,
+      "held_distinct_sha256": 33426,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -3981,8 +3982,8 @@
         "recorded_for_this_order": 1234
       },
       "source_status_counts": {
-        "gpo_published_hash_match": 2899,
-        "held_bytes_verified": 117
+        "gpo_published_hash_match": 2786,
+        "held_bytes_verified": 230
       },
       "source_status_policy": {
         "custody_record_only": "skip",
@@ -4022,9 +4023,9 @@
           "quote_verbatim:exact": 13119,
           "quote_verbatim:too_short_to_verify": 109,
           "source_held:custody_record_only": 4360,
-          "source_held:gpo_published_hash_match": 5000,
+          "source_held:gpo_published_hash_match": 4941,
           "source_held:held_bytes_in_release_or_repo": 154,
-          "source_held:held_bytes_verified": 6026,
+          "source_held:held_bytes_verified": 6085,
           "source_identity:recorded_for_this_order": 15540
         },
         "drafts_by_mechanical_result": {
@@ -4032,12 +4033,12 @@
           "pass": 2792,
           "pass_with_unverified": 557
         },
-        "note": "jobs/claim-checker imported; 61098 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 61124 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 780,
-      "elapsed_seconds": 319.0,
+      "elapsed_seconds": 163.2,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 1242,
@@ -4082,6 +4083,7 @@
       "input_counts": {
         "codified_1989_rows_read:ofr-codification-1989": 555,
         "fragments_read:app-executive-orders": 51,
+        "fragments_read:astra-source-retention": 0,
         "fragments_read:clause-drafts": 4747,
         "fragments_read:current-law": 3476,
         "fragments_read:family-rule-sources": 0,
@@ -4102,6 +4104,7 @@
         "fragments_read:wikisource-texts": 1639,
         "fragments_unusable": 7656,
         "sources_read:app-executive-orders": 51,
+        "sources_read:astra-source-retention": 17,
         "sources_read:clause-drafts": 4747,
         "sources_read:current-law": 110,
         "sources_read:family-rule-sources": 2,
@@ -4117,7 +4120,7 @@
         "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
         "sources_read:richardson-volumes": 0,
-        "sources_read:source-ladder": 178,
+        "sources_read:source-ladder": 187,
         "sources_read:status-history": 0,
         "sources_read:wikisource-texts": 1639
       },
@@ -4127,6 +4130,10 @@
         {
           "job": "app-executive-orders",
           "path": "jobs/app-executive-orders/output"
+        },
+        {
+          "job": "astra-source-retention",
+          "path": "jobs/astra-source-retention/output"
         },
         {
           "job": "clause-drafts",
@@ -4432,7 +4439,7 @@
         "status_leads": 11613,
         "universe_orders": 14972
       },
-      "input_commit": "341f52124301b1e184f410874ab28fd3cc2663ee",
+      "input_commit": "92e176e9381b3b60c48a570e2403d3b1fddc7314",
       "jsonl_shard_sha256": {
         "ACTING_PROVISIONS.jsonl": "f06080aa0ec85e575a3c4c47e96908d89e125f3857a56a7b67ef4e3557b70ef0",
         "ACTING_REPRESENTATIONS.jsonl": "867e6dad617d63cce2028b6ade737213ae634c33e1fedde4528ff2f4b0f8efea",
@@ -4475,6 +4482,8 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-10.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/5432431cc09039ad5672f86f17e1fb6dddf44075581197caa24cd70f1448da4a/page-9.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/82d8db2e7db11e843e0d32f791865b23dceb7ae2ca6835c15b725abf1169fc65/page-9.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/c9f34554598abe9c9ae9d577110d372940bd0af4c0d820a755225f96316aa79f/page-14.txt; skipped",
+        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/astra-source-retention/output/pages/dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665/page-12.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10010-8486556001.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10015-144846d6cd.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10029-8ac8280e03.txt; skipped",
@@ -4504,11 +4513,9 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10157-12793b8c9d.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10161-51e6eca382.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10165-d93771f6fd.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10168-b5ccb49510.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10169-8ae1fced92.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10203-8e6f0495b0.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10223-580a64b465.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10249-41cef3c20a.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10283-c88b12d106.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10285-c9b94289b6.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10303-c04cc3d6d4.txt; skipped",
@@ -4530,7 +4537,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10415-1cad3b10a4.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10433-db89443b29.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10469-b48ea3a7cd.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10477-8630ad4aa7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10507-9e1cfb97c0.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10509-beb73967e0.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10511-42b9f8aeb2.txt; skipped",
@@ -4543,11 +4549,9 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10587-47e31602ee.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10593-1dffbd4c65.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10601-dc859df841.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10605-302f02db99.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10615-d187043dc7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10630-f53be31438.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10644-7bac6de4a8.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10681-d674c4b5a8.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10685-78e942b819.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10691-6f78df6bc7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10693-3a5794f2b8.txt; skipped",
@@ -4556,7 +4560,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10723-2c30b9a11d.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10734-a5fb0bcf49.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10738-857678bcf5.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10739-857678bcf5.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10749-e10d96d6e4.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10750-7f7eaf0e66.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10757-cf6a2b3144.txt; skipped",
@@ -4568,8 +4571,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10874-28257a99f7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10877-d8dfc43380.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10878-4be0511ba6.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10892-de0ebf1317.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10897-365c483129.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10900-3bb002d01c.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10904-52b1d23cb4.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10906-cc52050686.txt; skipped",
@@ -4588,7 +4589,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10975-54c4d421ca.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10976-8bd0e1748b.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10984-8f11b42ec1.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10989-e7d5776f7e.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10997-c0f44cb1da.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10998-c0f44cb1da.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-10999-c0f44cb1da.txt; skipped",
@@ -4620,7 +4620,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11115-d0c1179450.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11116-040e985188.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11119-d8d5838585.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11120-b3ed57a14e.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11121-7c2a598271.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11127-1d3fd97430.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11135-ab302de91c.txt; skipped",
@@ -4660,7 +4659,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11371-ec846d273e.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11431-b318314f7f.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11433-651ebc8eed.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11434-5e7daa00b7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11436-bb0b492434.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11444-b59fa935f2.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-11445-b59fa935f2.txt; skipped",
@@ -4695,7 +4693,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12121-d66ea9827e.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12129-bbe25f0798.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12130-33c3c49600.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12145-1f18237c86.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12150-b89b04e9ca.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12155-1e06bae572.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-12157-cfd1c97f16.txt; skipped",
@@ -4845,7 +4842,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9360-1828bf0227.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9394-e34341b30f.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9405-0169774ae5.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9452-004032553b.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9503-b0bac5c860.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9514-1964472bf5.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9538-505bf20959.txt; skipped",
@@ -4867,10 +4863,8 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9778-237fbc6fcd.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9782-2f08f427a9.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9798-9a7eac7d8e.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9799-3d19704434.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9803-a21f1e78f7.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9815-f988491983.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9837-d627daabcd.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9838-8c05fc7dd9.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9878-c267e3f007.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9880-9cde7bbbab.txt; skipped",
@@ -4880,7 +4874,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9922-95d61d2cf4.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9923-95d61d2cf4.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9929-264562d6eb.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9932-393219a87c.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9936-f8b8d189f0.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9940-a507303d9c.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-job-fr-originals-9942-ba1f80c687.txt; skipped",
@@ -4896,7 +4889,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-12408-6102813cbc.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-12534-505f9b4060.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-12610-a90bab05e5.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-13286-1cc5a2464d.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-8973-2ccb855fd6.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-9760-fa90cfdbb9.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/clause-drafts/output/texts/cd-opus_zip-9934-b8a08b6d00.txt; skipped",
@@ -4911,7 +4903,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10105.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10109.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10116.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10118.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10125.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10150.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10167.txt; skipped",
@@ -4947,7 +4938,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10799.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10808.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10810.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10821.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10837.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10842.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_10872.txt; skipped",
@@ -4981,7 +4971,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12025.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12035.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12054.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12066.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12069.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12090.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_12100.txt; skipped",
@@ -5042,7 +5031,6 @@
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/fr-originals/data/full_run/texts/EO_9996.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/hathi-gpo-orders/output/discovery/nara_executive-orders-02.html; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/hathi-gpo-orders/output/texts/EO_5490.txt; skipped",
-        "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-codification-1989/output/texts/EO_11157.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/ofr-compilations/output/texts/EO_5918.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/71638bd317a490d623b778ab1dc9539382d1941a81439abbfd230ee453be6b5a.txt; skipped",
         "jobs/family-rules/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/opus-media-match/output/text/c11e871f5aba9fee5757727795c17b21df27f60c317196b89739c2ef6d15d0b7.txt; skipped",
@@ -5843,7 +5831,7 @@
       },
       "clauses_total": 35750,
       "fragments_written": 4747,
-      "generated_utc": "2026-10-19T01:02:06Z",
+      "generated_utc": "2026-10-19T01:32:14Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 95,
         "identity_doubt_document_dated": 17,
@@ -5856,7 +5844,7 @@
           "stage21_custody": "ok",
           "universe": "ok"
         },
-        "input_problems": 470,
+        "input_problems": 479,
         "opus_zip": {
           "member_text_hash_check": {
             "match": 2335,
@@ -5878,7 +5866,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "633 order-text candidates"
+          "source-ladder": "668 order-text candidates"
         },
         "stage21_pdfs_usable": 160
       },
@@ -5892,7 +5880,7 @@
       "orders_not_segmented": 1678,
       "orders_processed": 6569,
       "orders_with_candidate_text": 6569,
-      "seconds": 86.3,
+      "seconds": 86.4,
       "segmentation_quality": {
         "good": 1889,
         "partial": 2858
@@ -7761,8 +7749,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 30236,
-      "sweep_manifest_sha256": "f5ac2dcb1865c72830fb08bf12018ffaa38ade104251f0926e3af9e376dcd2d1",
+      "saved_texts_scanned": 30334,
+      "sweep_manifest_sha256": "ba0e5e0793b0676f8e5981c305c7554ba1d65335dffd6ddce59226ccd9bcea55",
       "targets": 748
     },
     "fr-originals": {
@@ -8389,19 +8377,19 @@
       "texts_saved": 197
     },
     "official-fixity": {
-      "carried_forward": 4999,
-      "checked_this_run": 39,
+      "carried_forward": 5038,
+      "checked_this_run": 8,
       "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
-      "files": 5038,
+      "files": 5046,
       "job": "official-fixity",
       "orders_with_a_gpo_matched_file": 5067,
-      "premis_bytes_read_this_run": 2359296,
+      "premis_bytes_read_this_run": 131072,
       "results": {
-        "match": 3422,
-        "not_listed": 1611,
+        "match": 3424,
+        "not_listed": 1617,
         "partial_match": 5
       },
-      "seconds": 0.6
+      "seconds": 0.2
     },
     "ofr-codification-1989": {
       "body": {
@@ -9919,13 +9907,13 @@
         "2/7": 81,
         "2/8": 6,
         "3/6": 1202,
-        "3/7": 442,
+        "3/7": 437,
         "3/8": 35,
         "4/6": 24,
-        "4/7": 70,
-        "4/8": 177,
+        "4/7": 75,
+        "4/8": 172,
         "5/6": 25,
-        "5/8": 16,
+        "5/8": 21,
         "6/6": 131,
         "7/7": 1
       },
@@ -9944,7 +9932,7 @@
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 440,
+        "OPUS_MEDIA_REFETCH_NEEDED": 430,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
@@ -9995,7 +9983,7 @@
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 178
+          "source-ladder": 187
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -10017,7 +10005,7 @@
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 19,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 440,
+        "OPUS_MEDIA_REFETCH_NEEDED": 430,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3142,
@@ -10034,7 +10022,7 @@
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
           "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
           "kind": "machine_job",
-          "orders_unblocked": 440
+          "orders_unblocked": 430
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
@@ -10100,7 +10088,7 @@
         },
         "opus_media": {
           "applicable": 844,
-          "done": 115
+          "done": 125
         },
         "original_text": {
           "applicable": 3359,
@@ -10855,16 +10843,16 @@
       "wpa_entries_parsed": 155
     },
     "source-ladder": {
-      "attempts_logged": 12,
-      "bytes_downloaded": 210466245,
+      "attempts_logged": 17,
+      "bytes_downloaded": 92003624,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "distinct_new_source_hashes": 10,
+      "distinct_new_source_hashes": 9,
       "exhausted_proposed_items": 2,
       "exhausted_proposed_lines": 16,
       "fetch_queue_problems": [],
-      "found": 178,
+      "found": 187,
       "found_by_route": {
-        "given/given": 85,
+        "given/given": 94,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 5,
         "official/govinfo_link_fr": 2,
@@ -10873,44 +10861,44 @@
         "official/ofr_index_pdf_url": 9,
         "wayback_given/wayback_id_": 5
       },
-      "found_carried_forward": 168,
-      "from_fetch_queue": 103,
+      "found_carried_forward": 178,
+      "from_fetch_queue": 113,
       "from_stage20_shared_sources": 90,
-      "http_requests": 17,
-      "items_in_queue": 193,
+      "http_requests": 27,
+      "items_in_queue": 203,
       "items_worked": 12,
       "job": "source-ladder",
-      "new_sources_found": 10,
+      "new_sources_found": 9,
       "no_route": 0,
       "not_attempted_budget": 0,
       "offline": false,
-      "orders_covered_by_found_sources": 388,
-      "pool_cache_hits": 0,
-      "pool_network_requests": 21,
+      "orders_covered_by_found_sources": 406,
+      "pool_cache_hits": 3,
+      "pool_network_requests": 30,
       "prefetched_urls": 0,
-      "retry_later": 0,
+      "retry_later": 1,
       "run_date": "2026-10-19",
-      "seconds": 63.7,
+      "seconds": 359.8,
       "source_plan": {
         "legal_cutoff": "2026-10-14",
         "max_requests": 80,
         "method": "readiness proximity, step opportunity, downstream work, stable ID",
-        "queue_fingerprint": "7463d99597298fa1318a755fb390a55504d04fa64b0e22848ad1d91fad53b292",
+        "queue_fingerprint": "5c0d312939593fead3b7744c5376227b96db4e988e634c24edd0491f707145d3",
         "schema": "eo-source-plan/v1",
-        "tracker_sha256": "cdc05ef94469445c4809163d5eb71fc85d561cdbaf61abd0a34d58e7d8b6d8f1",
+        "tracker_sha256": "842ad08f1020ff0b4c55360e39ea2c444eb8e99a31f45c9097286c86620b6b73",
         "wanted_ids": [
           "EO::4314",
           "EO::6868",
-          "opus-refetch:e124b81ef2e8ab76fe92f8cdbf848272290f682a871437e2ea801232921d6c3b",
-          "opus-refetch:008e6b7585335a78b228ef1c4657ad75221cad40c82197c7d7be074e75db83e8",
-          "opus-refetch:42ca94f5f2b920f8b1deb89691ed35af6ff8181321cf9a6e12bccd9d22c16680",
-          "opus-refetch:5e96f44e72103743fe3ec4c9aa294f02594968654b2b22ce2b9e8c73f19512a9",
-          "opus-refetch:9fb236d5d9317d3a5a6abd4422ca702af83c9e89a9c0d162f4a6305b2b452efe",
-          "opus-refetch:debea47efdfbd575bde7aa3e194c85b6465e1758b4dacab499d6d2c745d681de",
-          "opus-refetch:https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf#page=148",
-          "opus-refetch:https://www.govinfo.gov/link/uscode/26/7851?year=2024&link-type=html",
-          "opus-refetch:aea3833bb2b39688fce6c33ec34f43248c0988ca2c7567d67ccd364abaf92280",
-          "opus-refetch:ab64c96b48cbb719c8846af963c0ec88a53dd633681934148d46adc0b5b7f366"
+          "opus-refetch:0d2d792ab2aef4a7066b217f7d432b008d956123fc2aed82549a2d9c38ca4693",
+          "opus-refetch:2d9ff1faf4a004cdac6f4621301e0231a81098d140be3547cd1106601e839cf7",
+          "opus-refetch:645f83a17166e026a33de70cb5f22b983bdf8c117cc5b61cc51788dea29e4346",
+          "opus-refetch:7034c12caa3753fde60fc56599be7c689eea17e084a37acccb3111ba007fd6cb",
+          "opus-refetch:858e59926de71df8b5f662eccd3338d724450e483d97e5cd63f1220ea5d534ef",
+          "opus-refetch:bdb25c88838238e33d04ebbfbe751852249bd075ebb3c08c307f18239fc19720",
+          "opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c",
+          "opus-refetch:cf38ce426859e62482c9ccf467951d94911a030259b86129ac21d05d0a94002c",
+          "opus-refetch:d3cd700660b3142d7f3c9a5ba4953015f96973fe5ae08824f8b2ecccc5262a68",
+          "opus-refetch:d77b16f45e17f0f592ee3539b5303a235be6dffdfc404d991112177b484ae9d0"
         ]
       },
       "stopped_early": ""
