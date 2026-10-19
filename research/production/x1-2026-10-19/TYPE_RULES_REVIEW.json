@@ -1,13 +1,14 @@
 {
   "schema": "eo-independent-agent-type-rule-review/v1",
-  "round": 3,
-  "reviewer": "x1_type_rule_reviewer_r3",
+  "round": 4,
+  "reviewer": "x1_type_rule_reviewer_r4",
   "reviewer_role": "independent_agent",
   "not_human_certification": true,
-  "reviewed_on": "2026-10-19T17:02:32Z",
+  "reviewed_on": "2026-10-19T17:04:01Z",
   "previous_rounds": [
     "TYPE_RULES_REVIEW_R1.json",
-    "TYPE_RULES_REVIEW_R2.json"
+    "TYPE_RULES_REVIEW_R2.json",
+    "TYPE_RULES_REVIEW_R3.json"
   ],
   "rule_count": 22,
   "withdrawn": [
@@ -15,11 +16,9 @@
   ],
   "method_notes": [
     "rule_file_sha256 is SHA-256 over the exact bytes of each research/readiness/type-rules/TR-*.json at review time.",
-    "For the 5 review_round 3 files, each quoted_parts string was checked as an exact, unique substring of the UTF-8 text at source.text_path, at the recorded char offsets or spans; quoted_clause equals the part; SHA-256 of the text file equals source.text_sha256. All passed. quote_exact/text_hash_verified for carried rules were recomputed the same way.",
-    "Each round-2 required change and new problem was compared with the revised file and with REVISIONS in jobs/x1-class-engine/type_rules_spec.py. Git was not used.",
-    "For the 17 rules approved in round 2, the file hash was recomputed and compared with the round-2 approved hash; all 17 match, so approvals are carried (carried_from_round 1 for TR-CLOSING-MOURNING and TR-WATER-RESERVE, which round 2 itself carried from round 1).",
-    "Treaty dates checked by web search: https://history.state.gov/historicaldocuments/frus1919Parisv13/ch3subch1 ; https://history.state.gov/historicaldocuments/frus1921v02/ch29 ; https://mocat.library.unt.edu/catalog/335-ch830 .",
-    "This is an independent AI review of research PATTERNS, not human certification. It decides no order, fills no claim field, changes no status, and leaves the count of human-certified whole-lifecycle dossiers at 0. TR-PROPERTY-TRANSFER is not frozen until revised and reviewed again (new file hash)."
+    "Round 4 re-reviewed only TR-PROPERTY-TRANSFER (review_round 4): both quoted_parts are exact, unique substrings of the UTF-8 text at source.text_path at the recorded spans; quoted_clause equals part 1; SHA-256 of the text file equals source.text_sha256. Each round-3 required change was compared with the revised file and with REVISIONS in jobs/x1-class-engine/type_rules_spec.py. Git was not used.",
+    "For the 21 other rules, the file hash was recomputed and compared with the round-3 hash; matching rules are carried (carried_from_round = the round that last actually reviewed or carried them).",
+    "This is an independent AI review of research PATTERNS, not human certification. It decides no order, fills no claim field, changes no status, and leaves the count of human-certified whole-lifecycle dossiers at 0."
   ],
   "items": [
     {
@@ -30,7 +29,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-BIRD-REFUGE",
@@ -40,17 +39,17 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-CANAL-ZONE",
       "rule_file_sha256": "13d7930c7b1ef3931ba0bb56a78537773bbfd0a7df1cc5f234915e594ba1fc07",
       "decision": "approve_pattern_lead_only",
-      "review_round_of_file": 3,
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "Round-2 required change made: the '1933 Prohibition repeal' end is replaced by the statutory repeal of the Canal Zone proviso on June 19, 1934 (48 Stat. 1116, s.3), with the 1932 source (47 Stat. 579; 27 U.S.C. 63) and the instruction to check for a successor order under the same Act's new liquor authority (s.1). No new error found. Recommended only: add the clause that the 21st Amendment (Dec. 5, 1933) did not itself end federal law in the Canal Zone. Quote (EO 5888, chars 1204-1575) unchanged, exact and unique; text hash verified."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 3) without re-review.",
+      "carried_from_round": 3
     },
     {
       "rule_id": "TR-CLOSING-MOURNING",
@@ -60,7 +59,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2 (itself carried from round 1); approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 1) without re-review."
     },
     {
       "rule_id": "TR-CS-WAIVER",
@@ -70,7 +69,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-EIGHT-HOUR-SUSPENSION",
@@ -80,7 +79,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-FUND-ALLOTMENT",
@@ -90,7 +89,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-INDIAN-RESERVATION",
@@ -100,7 +99,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-LAND-WITHDRAWAL",
@@ -110,7 +109,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-LIGHTHOUSE",
@@ -120,7 +119,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-MILITARY-RESERVATION",
@@ -130,7 +129,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-MINERAL-WITHDRAWAL",
@@ -140,7 +139,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-NATIONAL-FOREST",
@@ -150,7 +149,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-NRA-CODE",
@@ -160,17 +159,17 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-OWN-TERMS-EXPIRY",
       "rule_file_sha256": "e56fd6f508764521136b0f9427392ac5bccf9fd6907af2c8187dae9f96bc01d9",
       "decision": "approve_pattern_lead_only",
-      "review_round_of_file": 3,
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "Round-2 changes addressed: effective_date_basis no longer treats the issue date of a later extension as an end; it now says a pre-expiry extension amends the date and that the issue date of an extension is never by itself this order's end, consistent with ending_pattern. The duplicate 'Until further order' outlier is removed. No new error. Recommended only: state the revoked/replaced case directly ('if a later order replaced or revoked it before expiry, that order's effective date'); 'or the later order carries the subject forward' is vaguer, though the generic 'revokes ... before the candidate end' outlier covers it. Round 2's recommendation to start the quote at 'the effective date of Section 18' (it still opens mid-citation at '6166, relating') was not taken, and the quote still includes the signature block and OCR page furniture ('Tue Waits Hovsz', '[No. 6221]'). For reference: the 2d session of the 73d Congress convened Jan. 3, 1934 (verify), so the computed date would be about March 4, 1934. Quote (chars 630-1307) exact and unique; text hash verified."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 3) without re-review.",
+      "carried_from_round": 3
     },
     {
       "rule_id": "TR-PHILIPPINES",
@@ -180,31 +179,27 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-POWER-SITE",
       "rule_file_sha256": "7a5a92b5c1802e7731d5d52380b56d562e2e77289e49386c9deee4ab741e205e",
       "decision": "approve_pattern_lead_only",
-      "review_round_of_file": 3,
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "Round-2 changes addressed: (1) FPA s.24 rewritten: the 'until otherwise directed by the Commission or by Congress' wording is now limited to lands in a filed project application, and lands reserved for power purposes may be opened only on a Commission determination with a reserved right of re-entry (consistent with 16 U.S.C. 818); (2) ending_pattern now says expressly that the exemplar is a reservoir site reserve under the 1910 Act and that no numbered Power Site Reserve creating order has a held text; (3) the duplicate restoration outlier is gone (the remaining 'Restoration subject to s.24 conditions' and 'order itself is a restoration' entries are distinct). EO 6205's held text is headed 'Reservoir Site Reserve No. 19, East Fork Deschutes River, Oregon' (OCR year '1988' = 1933). Recommended only, not blocking: say 'reserved or classified as power sites' (s.24's wording) instead of 'reserved for power purposes'; add round 2's sentence that whether s.24 reaches a given reserve (e.g. an irrigation reservoir reserve) must be shown from the order and FPC/FERC records; name FERC as the Commission's successor from 1977. Quote (chars 361-832) exact and unique; text hash verified."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 3) without re-review.",
+      "carried_from_round": 3
     },
     {
       "rule_id": "TR-PROPERTY-TRANSFER",
-      "rule_file_sha256": "3510dd4a31345b6943ef43b99b7eb97033889201bd10561c5e96303830ba43c0",
-      "decision": "approve_with_required_changes",
-      "review_round_of_file": 3,
+      "rule_file_sha256": "9cfc109fd52dc29060c697d72a59e5a1e75012b664fde8709acb9e392f7558bb",
+      "decision": "approve_pattern_lead_only",
+      "review_round_of_file": 4,
       "quote_exact": true,
       "text_hash_verified": true,
-      "required_changes": [
-        "Add the outlier required in round 2 (not added): a stated transfer date qualified by 'or as promptly thereafter as practicable' (as in the exemplar), or a partial transfer at an official's discretion (the exemplar's 'exceptions and reservations ... in the discretion of the Secretary of State'), is not a delivery date; the delivery or accession record is the end, otherwise a stated gap. Without it, effective_date_basis ('a stated effective date in the order ... over the signature date') would read July 1, 1903 as the exemplar's own end date.",
-        "Make the transfer-date sentence a second quoted_parts entry (round 2 asked for a second part; it is now joined to the first with a blank line in one part and one span), and end it at the sentence's end: '... conveniently practicable to the Department of State and the Library of Congress.' The current quote stops mid-sentence after 'conveniently practicable'. Record two spans.",
-        "Add to required_evidence: the delivery or accession record (agency or Library of Congress report) or an explicit gap."
-      ],
-      "notes": "Round-2 change 1 (extend the first sentence through 'by the Librarian of Congress.') is done; change 3 (merge the two organization outliers) is done, one entry remains. Change 2 (the qualified-date / discretionary-partial-transfer outlier) is not in outlier_conditions or REVISIONS. The quote text is exact and unique in the held Wikisource text (chars 554-1861) and the text hash is verified, but the second sentence is truncated mid-sentence and is not a separate part. Exemplar remains a true records transfer (EO 206, March 9, 1903)."
+      "required_changes": [],
+      "notes": "All three round-3 required changes are made. (1) The qualified-date / discretionary-partial-transfer outlier is added to outlier_conditions, and effective_date_basis now says a date qualified by 'or as promptly thereafter as practicable', or a partial transfer at an official's discretion, is not a delivery date: the end is the delivery or accession record, otherwise a stated gap. (2) The transfer-date sentence is a separate second quoted_parts entry, running to '... the Department of State and the Library of Congress.'; two spans [554,1720] and [1722,1917]; each part is exact and unique in EO_206.txt at those spans, and quoted_clause equals part 1. (3) required_evidence adds the delivery or accession record (agency or receiving-institution record) with its date, or an explicit gap. Text file sha256 equals source.text_sha256. No new errors found; the generalized 'receiving-institution' wording is acceptable. Approval is of a research pattern lead only; the exemplar text is a mirror transcription, not an authenticated original."
     },
     {
       "rule_id": "TR-RETIREMENT-EXEMPTION",
@@ -214,7 +209,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-TAX-RETURN-INSPECTION",
@@ -224,7 +219,7 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2; approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 2) without re-review."
     },
     {
       "rule_id": "TR-WATER-RESERVE",
@@ -234,23 +229,23 @@
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "File sha256 recomputed and equal to the hash approved in round 2 (itself carried from round 1); approval carried without re-review."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 1) without re-review."
     },
     {
       "rule_id": "TR-WWI-EMERGENCY",
       "rule_file_sha256": "cb259b6f16c8775429605ce01c1bc1fe0d562108962074c0eaea7291bc1102ff",
       "decision": "approve_pattern_lead_only",
-      "review_round_of_file": 3,
       "quote_exact": true,
       "text_hash_verified": true,
       "required_changes": [],
-      "notes": "Round-2 changes addressed: the wrong outlier 'Orders under statutes not named in the resolution.' is deleted; the outlier for authority not contingent on the war or existing emergency is added; the two TWEA outliers are merged into one 'excepted statutes' outlier; treaty dates are now 'Germany and Austria (proclaimed November 1921) and Hungary (proclaimed December 20, 1921)'. Web check: US-Germany treaty (Berlin, Aug. 25, 1921) ratifications exchanged Nov. 11, proclaimed Nov. 14, 1921 (history.state.gov FRUS 1919 Paris v.13); US-Hungary treaty (Budapest, Aug. 29, 1921) ratifications exchanged Dec. 17, proclaimed Dec. 20, 1921 (history.state.gov FRUS 1921 v.2 ch.29; Monthly Catalog entry). Austria proclaimed Nov. 17, 1921 from memory, not confirmed by search (verify). Recommended only: give the exact proclamation dates; describe the Overman Act end precisely ('six months after the termination of the war by proclamation of the treaty of peace'). Quote (EO 2985A, chars 1252-2494; OCR 'June IS' = June 18) exact and unique; text hash verified."
+      "notes": "File sha256 recomputed in round 4 and equal to the round-3 hash; approval carried (approved in round 3) without re-review.",
+      "carried_from_round": 3
     }
   ],
-  "approved": 21,
-  "approved_with_changes": 1,
+  "approved": 22,
+  "approved_with_changes": 0,
   "rejected": 0,
   "changed_after_review": 0,
-  "start_utc": "2026-10-19T17:00:29Z",
-  "end_utc": "2026-10-19T17:02:32Z"
+  "start_utc": "2026-10-19T17:04:01Z",
+  "end_utc": "2026-10-19T17:04:01Z"
 }

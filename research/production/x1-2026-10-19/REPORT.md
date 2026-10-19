@@ -10,7 +10,7 @@ human reviews; the human-certified whole-lifecycle count stays **0**.
 | Step | What it produces | Result |
 |---|---|---|
 | Type classifier | a type, class, evidence and confidence for every pre-1937 order | 8,014 orders typed; 198 left `unknown` |
-| Type rule book | one reviewed rule per repetitive type (`research/readiness/type-rules/`) | 22 rules; independent review in two rounds (section 3) |
+| Type rule book | one reviewed rule per repetitive type (`research/readiness/type-rules/`) | 22 rules, all approved as lead patterns after four rounds of independent AI review; hashes frozen |
 | Extinction-event register | 5 mass-ending events, primary sources queued, candidate orders mapped | 8 sources queued; 0 held yet; mapping in `EVENT_CANDIDATES.csv` |
 | Look-alike clusterer | near-duplicate clusters, exemplar, per-order diff, cloned clauses | 656 texts in 132 clusters; 187 clean clones, 337 dropped out |
 | Batch review sheets | ≤50-row sheets per type, routed to the existing claim-kit path | 128 sheets; 26 rows can go straight to the assembler |
@@ -46,9 +46,15 @@ the Indian Reorganization Act (s.13 Oklahoma, s.18 opt-outs, Act of June 15, 193
 savings for every land rule; Federal Power Act s.24; Panama Refining; seven wrong or
 badly cut exemplars. Round 2 rewrote 20 rules with hand-picked exemplars and exact
 quotes, withdrew the stock-driveway rule (no held text; those 4 orders use the land rule),
-and left the two approved files byte-for-byte unchanged (hashes re-verified). Round-2
-result: see `TYPE_RULES_REVIEW.json` (section 9). The job marks a rule `reviewed_frozen`
-only when its file hash equals the reviewed hash.
+and left the two approved files byte-for-byte unchanged (hashes re-verified). Round 2:
+17 approved, 5 with changes (a new error caught: the Canal Zone liquor provision was repealed
+June 19, 1934, not with Prohibition in 1933; Federal Power Act s.24 wording). Round 3: 21
+approved. Round 4: the last rule (property transfer: a "or as promptly thereafter" date is
+not a delivery date) approved. **Final: 22 of 22 approved as lead patterns**, each pinned by
+its file hash in `TYPE_RULES_REVIEW.json`; only changed files were rebuilt between rounds, and
+every carried approval was re-hashed. The job marks a rule `reviewed_frozen` only when its
+file hash equals the reviewed hash (all 22 do). Review cost: 7.9 + 7.2 + 2.4 + 0.7 minutes.
+Non-blocking recommendations from round 3 remain open (`TYPE_RULES_REVIEW.md`).
 
 ## 4. How much of the 7,065 "type unknown" hours moved (estimated with the effort model)
 
@@ -171,6 +177,12 @@ deciding what kind of order it is. X1's leverage depends on those inputs arrivin
 - P1 reviewer: the three upheld P1 claims should, in a correction version, list the pre-1937
   WPA/Hoover-text search as its own structured search entry.
 
-## 9. Type rule review, round 2
+## 9. Files
 
-(Filled in from `TYPE_RULES_REVIEW.json` when the round-2 reviewer finishes.)
+- Job and outputs: `jobs/x1-class-engine/` (`output/` is written by the GitHub run).
+- Rules: `research/readiness/type-rules/`; reviews `TYPE_RULES_REVIEW_R1..R3.json` and the
+  current `TYPE_RULES_REVIEW.json` (round 4).
+- Precision: `precision/` (blind samples, labels, scores).
+- Pilot: `research/excavator/x1-pilot-2026-10-19/P1`, `P2` (packets, decisions, applied
+  versions, `review/AI_REVIEW.json`); claims `research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl`.
+- Telemetry: `AGENT_TELEMETRY.jsonl`; measured values `MEASURED.json`.
