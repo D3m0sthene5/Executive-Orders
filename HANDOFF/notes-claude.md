@@ -2,6 +2,24 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19: gap orders routed to public sources; csc-annual-reports job started (branch `csc-annual-reports`)
+
+- **Done:** ProQuest Congressional (owner's NYU login) surveyed: Presidential Materials 1789-1936 hold
+  53,671 records, 9,503 tagged Numbered Executive Orders, each with a PDF scan ("Replica of Original").
+  Details in `research/pre-1937-sources/PROQUEST_CONGRESSIONAL.md`. The 3,593 `PRIORITY.txt` ids minus 30
+  in HathiTrust public volumes = 3,563 (`PROQUEST_RESIDUE.txt`). Routed each by the full WPA/Lord list
+  (`wpa-lists` branch): `GAP_ROUTES.md/.csv`. Results: 840 cite a Civil Service Commission annual report;
+  about 90 are candidates in other compilations; 2,635 have no known printing (NARA RG 11 or ProQuest only).
+- **Running:** `jobs/csc-annual-reports/` fetches the CSC annual reports from the GovInfo Serial Set
+  (public PDFs) and cuts each WPA-cited order from its date line. An offline trial on FY 1917 located 67 of
+  68 orders. Check `output/SUMMARY.json` (orders_located, by confidence) and `CITATION_RESULTS.csv` for
+  misses. Outputs are `compiled_transcription_lead` fragments with `acceptable_as_original: false`.
+- **Next:** extract the Panama Canal 1922 and Kappler IV candidates (archive.org texts are free);
+  HathiTrust vol. 2 of the Indian reservations orders needs a person in a browser (Cloudflare).
+- **Asks:** `@Owner`: `ACCESS_REQUESTS.md` has drafts for NYU (bulk ProQuest access) and NARA (API key), not
+  sent. `@Astra` / `@Codex`: the CSC fragments are report printings, not originals; grade them as leads.
+- **Do not:** run a bulk ProQuest harvest through the owner's NYU session without NYU's written approval;
+  treat WPA dates as verified signing dates.
 ## 2026-10-19 13:15 ET: X1 lifecycle class engine built, piloted on all 52 eligible old orders, recalibrated
 
 - **Done (branch `claude/x1-class-engine`, PR to main):** `jobs/x1-class-engine/` (zero-token job): type
