@@ -385,6 +385,48 @@ class PartialEvidenceConflicts(unittest.TestCase):
         finally:
             shutil.rmtree(tmp)
 
+    def test_transcription_partial_wording_never_withholds_an_ofr_full_end(self):
+        tmp = tempfile.mkdtemp()
+        try:
+            recs = [record("10480", "1953-08-14", "Revoked by: EO 10773, July 1, 1958"),
+                    record("10773", "1958-07-01", "")]
+            text = "Section 3 of Executive Order No. 10480 of August 14, 1953, is hereby revoked."
+            src = {"source_id": "app-1", "url": "https://www.presidency.ucsb.edu/documents/x", "sha256": "0" * 64,
+                   "bytes": 1, "content_type": "text/html", "retrieved_utc": "2026-10-18T00:00:00Z",
+                   "route": "test", "page_or_item": "APP page", "cache_path": None}
+            app = {"acting_id": "EO:10773", "text": text, "source": src,
+                   "evidence_type": "order_text_app_transcriptions"}
+            summary, edges, frags, _ = build_records(tmp, recs, text_docs=[app], decided={"EO:10480": "yes"})
+            ends = [f for f in frags if f["kind"] == "whole_order_end_candidates" and f["instrument_id"] == "EO:10480"]
+            self.assertEqual(len(ends), 1)
+            self.assertIn("transcription_text_says_partial_end_kept", ends[0]["data"][0]["flags"])
+            with (Path(tmp) / "COUNTEREVIDENCE_LEADS.csv").open(encoding="utf-8") as fh:
+                self.assertIn("EO:10480", {r["instrument_id"] for r in csv.DictReader(fh)})
+            # The same wording in an official text still withholds it, as before.
+            official = dict(app, evidence_type="order_text_fr_originals")
+            _, _, frags, _ = build_records(tmp, recs, text_docs=[official], decided={"EO:10480": "yes"})
+            self.assertFalse([f for f in frags if f["kind"] == "whole_order_end_candidates"
+                              and f["instrument_id"] == "EO:10480"])
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_app_transcriptions_sources_are_read_through_their_relative_text_path(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            texts = tmp / "jobs" / "app-executive-orders" / "output" / "texts"
+            texts.mkdir(parents=True)
+            (texts / "eo-1.txt").write_text("Executive Order No. 2 is hereby revoked.", encoding="utf-8")
+            out = tmp / "jobs" / "app-transcriptions" / "output"
+            out.mkdir(parents=True)
+            rec = {"source_id": "s1", "instrument_ids": ["EO:3"], "url": "https://www.presidency.ucsb.edu/documents/x",
+                   "sha256": "0" * 64, "text_path": "../../app-executive-orders/output/texts/eo-1.txt"}
+            (out / "SOURCES.jsonl").write_text(json.dumps(rec) + "\n", encoding="utf-8")
+            docs = le.text_docs_from_job_sources(tmp, le.DEFAULT_TEXT_JOBS.split(","), log=lambda *a: None)
+            self.assertEqual([(d["acting_id"], d["evidence_type"]) for d in docs],
+                             [("EO:3", "order_text_app_transcriptions")])
+        finally:
+            shutil.rmtree(tmp)
+
     def test_whole_end_items_carry_dates_flags_edges_and_only_their_sources(self):
         tmp = tempfile.mkdtemp()
         try:
