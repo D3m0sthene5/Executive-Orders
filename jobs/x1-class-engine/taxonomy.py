@@ -24,8 +24,6 @@ TYPES = [
     ("nra_code_approval", "swept", "TR-NRA-CODE", "strong",
      [r"codeoffaircompetition", r"codesoffaircompetition", r"nationalindustrialrecovery", r"nationalrecoveryadministration",
       r"\bnra\b", r"supplementarycode", r"codeauthority", r"divisionoftheconstructionindustry", r"constructionindustry", r"presidentsreemploymentagreement", r"retailcode"]),
-    ("canal_zone", "swept", "TR-CANAL-ZONE", "strong",
-     [r"canalzone", r"panamacanal", r"isthmiancanal", r"isthmusofpanama"]),
     # --- spent on issue --------------------------------------------------------
     ("retirement_exemption", "spent", "TR-RETIREMENT-EXEMPTION", "strong",
      [r"compulsoryretire", r"exempt\w{0,20}retire", r"retirementprovisions", r"retirementact", r"retirementage",
@@ -43,17 +41,17 @@ TYPES = [
      [r"inspectionof\w{0,40}returns", r"open(ed)?toinspection",
       r"taxreturns\w{0,40}(inspect|examin)", r"inspect\w{0,40}taxreturns"]),
     ("alien_property_sale", "spent", "TR-ALIEN-PROPERTY-SALE", "strong",
-     [r"alienpropertycustodian"]),
+     [r"alienpropertycustodian\w{0,80}(sell|sale|resell|bids|dispose|auction)", r"(sell|sale)\w{0,60}alienproperty"]),
     ("labor_hours_suspension", "spent", "TR-EIGHT-HOUR-SUSPENSION", "strong",
      [r"eighthour(day|law|workday)?\w{0,60}(suspend|waiv)", r"(suspend|waiv)\w{0,60}eighthour"]),
     ("fund_allotment", "spent", "TR-FUND-ALLOTMENT", "strong",
      [r"allot(ment|ted|ting)?(of|offunds|funds|from)", r"allocat(ion|ing|ed)?(of)?funds", r"fundsallocated",
-      r"emergencyreliefappropriation", r"transfer(of|ring)?funds", r"fundsavailable", r"fundstransferred",
+      r"(allocated|allotted|transferred)\w{0,30}from\w{0,40}emergencyrelief", r"transfer(of|ring)?funds", r"fundsavailable", r"fundstransferred",
       r"publicworksfund", r"advance\w{0,6}funds", r"allocatedto", r"allottedto", r"madeavailablefrom", r"(sum|amount)of\d+\w{0,40}(allocated|allotted|madeavailable|transferred)", r"appropriation\w{0,40}(allot|allocat|transfer|apportion)", r"(allot|allocat)\w{0,40}appropriation"]),
     ("closing_mourning", "spent", "TR-CLOSING-MOURNING", "strong",
      [r"(departments?|offices|executivedepartments|governmentoffices|federaloffices|navyyards?|stations)\w{0,60}closed",
       r"closed\w{0,30}(onaccount|inrespect|asamark|tomorrow|onthe(day|afternoon))", r"halfholiday", r"mourning",
-      r"halfstaff", r"halfmast", r"holiday", r"(fourhour|halfday|hour)workday", r"closingof\w{0,40}(departments|offices)", r"(excused|dismissed)\w{0,40}(employees|duty)",
+      r"halfstaff", r"halfmast", r"holiday", r"employees\w{0,40}excused", r"laborday", r"closingof\w{0,40}(departments|offices)", r"(excused|dismissed)\w{0,40}(employees|duty)",
       r"funeral", r"inrespecttothememory", r"asamarkofrespect"]),
     # --- land ----------------------------------------------------------------
     ("public_water_reserve", "land", "TR-WATER-RESERVE", "strong",
@@ -97,6 +95,8 @@ TYPES = [
     ("own_terms_expiry", "spent", "TR-OWN-TERMS-EXPIRY", "strong",
      [r"timelimit\w{0,80}extended", r"(continued|extended|deferred|postponed)(further)?until", r"furtherdeferred",
       r"(furthercontinued|furtherextended)until"]),
+    ("canal_zone", "swept", "TR-CANAL-ZONE", "strong",
+     [r"canalzone", r"panamacanal", r"isthmiancanal", r"isthmusofpanama"]),
     ("patent_signing_designation", "standing", "", "strong",
      [r"signthepresidentsname", r"sign\w{0,30}landpatents"]),
     ("defensive_sea_area", "standing", "", "strong",
@@ -107,7 +107,9 @@ TYPES = [
      [r"civilservicerules?", r"schedulea", r"scheduleb", r"schedulec", r"rule[ivxl]+\w{0,30}(amended|revised)",
       r"civilserviceregulations", r"classifiedservice", r"\d{4}csr\d", r"civilservice", r"civilservicecommission", r"(examination|eligible)s?register"]),
     ("philippines", "swept", "TR-PHILIPPINES", "strong",
-     [r"philippine"]),
+     [r"philippineislands", r"philippinegovernment", r"governmentofthephilippine", r"governorgeneral\w{0,20}philippine",
+      r"commonwealthofthephilippines", r"philippinescouts", r"philippinecommission", r"philippineconstabulary",
+      r"philippinelegislature", r"philippinecivilservice", r"\bp\s?i\b"]),
     # --- swept (date-gated): First World War emergency measures ---------------
     ("wwi_emergency", "swept", "TR-WWI-EMERGENCY", "strong",
      [r"warindustriesboard", r"wartradeboard", r"warfinancecorporation", r"warlabor", r"warrisk", r"tradingwiththeenemy",
@@ -117,23 +119,32 @@ TYPES = [
       r"councilofnationaldefense", r"overmanact", r"libertyloan", r"warsavings", r"directorgeneralofrailroads",
       r"federalcontrol", r"waremergency", r"publicinformation", r"warcollege\b", r"stateofwar", r"thewarwith(germany|austria)",
       r"forthedurationofthewar", r"warpurposes", r"wartime", r"warmaterials", r"warcontracts", r"warneeds"]),
-    ("tariff_customs", "standing", "", "strong",
-     [r"customs", r"tariff", r"portsofentry", r"portofentry", r"collectiondistrict", r"customsdistrict",
-      r"consularfees", r"tonnage", r"duties"]),
     ("consular_foreign_service", "standing", "", "strong",
      [r"consular", r"diplomatic", r"foreignservice", r"legation", r"consul\w{0,10}general", r"ambassador"]),
+    ("tariff_customs", "standing", "", "strong",
+     [r"customs", r"tariff(?!ofconsularfees)", r"portsofentry", r"portofentry", r"collectiondistrict", r"customsdistrict",
+      r"tonnage"]),
     ("territories", "standing", "", "weak",
      [r"alaska", r"hawaii", r"puertorico", r"portorico", r"virginislands", r"guam", r"samoa", r"tutuila", r"cuba"]),
     ("pay_allowances", "standing", "", "weak",
      [r"compensation", r"salar(y|ies)", r"allowance", r"perdiem", r"travel(ing|ling)?expenses", r"\bpay\b", r"wages", r"rentalallowance"]),
+    ("personnel_designation", "standing", "", "weak",
+     [r"appointed", r"designated", r"detailed", r"assigned", r"actingas", r"tosucceed"]),
     ("organization_agency", "standing", "", "weak",
      [r"landdistrict", r"landoffice", r"surveyorgeneral", r"established", r"created", r"abolished", r"transferred", r"consolidated", r"reorganiz", r"board", r"commission",
       r"council", r"committee", r"bureau"]),
     ("regulations_issuance", "standing", "", "weak",
      [r"regulations?", r"rules(and|governing|for)", r"prescribed", r"amended"]),
-    ("personnel_designation", "standing", "", "weak",
-     [r"appointed", r"designated", r"detailed", r"assigned", r"actingas", r"tosucceed"]),
 ]
+
+# A type is skipped for a source when one of its negative patterns matches.
+NEGATIVE = {
+    "closing_mourning": [r"saturday\w{0,80}(summer|julyaugust|junejuly|duringthemonths|eachweek|fourhour)",
+                         r"(summer|duringthemonths)\w{0,80}saturday"],
+    "property_transfer": [r"functions", r"duties", r"division", r"bureau\w{0,30}transferred", r"abolish"],
+    "fund_allotment": [r"regulations\w{0,40}(governing|for|prescribed)"],
+}
+_NEG = {k: [re.compile(p) for p in v] for k, v in NEGATIVE.items()}
 
 TYPE_CLASS = {t[0]: t[1] for t in TYPES}
 TYPE_RULE = {t[0]: t[2] for t in TYPES}
@@ -164,6 +175,8 @@ def matches(text, year=None):
     out = []
     for type_id, pats in _COMPILED:
         if type_id == "wwi_emergency" and not (year and WWI_FROM <= year <= WWI_TO):
+            continue
+        if any(n.search(c) for n in _NEG.get(type_id, [])):
             continue
         for p in pats:
             hay = s if "\\b" in p.pattern else c

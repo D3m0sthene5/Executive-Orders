@@ -10,7 +10,8 @@ then the review change), so savings are never counted twice.
 
 Writes EXCAVATOR_SCENARIOS.json and EXCAVATOR_SCENARIOS.csv next to this file.
 """
-import collections, csv, json, random, re
+import collections, csv, json, os, random, re
+from pathlib import Path
 
 import build_effort as be
 import build_remaining_work as brw
@@ -62,6 +63,30 @@ def cls(typ):
     return "spent" if typ in SPENT else "land" if typ in LAND else "swept" if typ in SWEPT else "other"
 
 
+# X1's own classes, once its job has run (jobs/x1-class-engine/output/TYPES.csv).
+# X1_TYPES can point at another copy (for a local run before the job commits).
+X1_DIR = JOBS / "x1-class-engine/output"
+MEASURED = HERE.parents[2] / "research/production/x1-2026-10-19/MEASURED.json"
+
+
+def x1_classes():
+    p = Path(os.environ.get("X1_TYPES", X1_DIR / "TYPES.csv"))
+    if not p.exists():
+        return None, None
+    c = {r["instrument_id"]: (r["class"] if r["class"] in ("spent", "land", "swept") else "other")
+         for r in csv.DictReader(open(p))}
+    # Census-gap rows name no identity: split them by the class mix of Lord's 1943
+    # unnumbered list (the orders APP counts and the project lacks are mostly unnumbered).
+    g = p.parent / "GAP_TYPES.csv"
+    mix = collections.Counter()
+    if g.exists():
+        for r in csv.DictReader(open(g)):
+            if r["gap_source"] == "lord_1943_unnumbered":
+                mix[r["class"] if r["class"] in ("spent", "land", "swept") else "other"] += 1
+    total = sum(mix.values())
+    return c, ({k: v / total for k, v in mix.items()} if total else None)
+
+
 # Each idea: (name, applies(record, class) -> bool, hit rate, {step: new minutes}).
 # A step not listed keeps its minutes. New minutes are per step before the
 # claim-draft multiplier. Old orders = before 1937.
@@ -103,9 +128,32 @@ SERIES = {
 }
 
 
+def apply_measured(m):
+    """Replace X1's assumed hit rates and minutes with the pilot's measured ones."""
+    for k, (name, applies, hit, new) in enumerate(IDEAS):
+        v = m.get("ideas", {}).get(name)
+        if v:
+            IDEAS[k] = (name, applies, v.get("hit_rate", hit), v.get("new_minutes", new))
+    global TEMPLATE_LEGAL
+    TEMPLATE_LEGAL = m.get("template_legal", TEMPLATE_LEGAL)
+
+
 def main():
     records, model = be.assign()
     types = order_types()
+    x1, gap_mix = x1_classes()
+    measured = json.load(open(MEASURED)) if MEASURED.exists() else None
+    if measured:
+        apply_measured(measured)
+    if gap_mix:
+        split = []
+        for x in records:
+            if x["instrument_id"] is None:
+                for c, share in gap_mix.items():
+                    split.append(dict(x, count=x["count"] * share, gap_cls=c))
+            else:
+                split.append(x)
+        records = split
     # Look-alike clusters: modern orders sharing one acting or parent order in a
     # claim-kit family of 5+, or old orders of a templated type (spent, land, swept).
     in_family = {i for f in json.load(open(JOBS / "claim-kit/output/FAMILIES.json"))
@@ -114,7 +162,13 @@ def main():
     for x in records:
         iid = x["instrument_id"]
         x["number"] = brw.num(iid) if iid else None
-        x["cls"] = cls(types.get(iid, "land" if iid is None else "other"))
+        if x1 is not None:
+            x["cls"] = x.get("gap_cls") or x1.get(iid, "other")
+        else:
+            # Before X1: the WPA hint or APP title. (A census-gap row was meant to
+            # count as land, but cls("land") is "other": that is how the 7,065 h
+            # of "type not known" in the plan were counted.)
+            x["cls"] = cls(types.get(iid, "land" if iid is None else "other"))
         x["in_cluster"] = bool(iid) and (iid in in_family or (old(x) and x["cls"] in ("spent", "land", "swept")))
         x["base"] = float(model[x["tier"]]["minutes"]) * x["mult"] * x["count"]
     base = sum(x["base"] for x in records)
@@ -155,6 +209,12 @@ def main():
                               "hours_left_after": round(after / 60)})
         prev = after
     out["series_total_saved"] = round((base - prev) / 60)
+    # Without risk-tiered review, which the owner has not approved.
+    no_rt = set().union(*SERIES.values()) - {"7 Risk-tiered review"}
+    out["series_hours_left_without_risk_tiered_review"] = round(run(no_rt) / 60)
+    out["x1_hours_saved_without_risk_tiered_review"] = round((base - run(set(SERIES["X1 Lifecycle class engine"]) - {"7 Risk-tiered review"})) / 60)
+    out["types_from"] = "x1-class-engine TYPES.csv" if x1 is not None else "WPA hint / APP title (pre-X1)"
+    out["x1_parameters"] = "measured (" + str(MEASURED.relative_to(HERE.parents[2])) + ")" if measured else "assumed"
     out["series_share_saved"] = round((base - prev) / base, 3)
     # Context for the plan: where the hours sit, by era and class.
     by = collections.defaultdict(float)
