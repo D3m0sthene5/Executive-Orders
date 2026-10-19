@@ -97,18 +97,9 @@ def wpa_date(year, month_day):
         return None
     return f"{year}-{MONTHS[m.group(1)[:3].lower()]:02d}-{int(m.group(2)):02d}"
 
-def main():
-    tracker = list(csv.DictReader(open(TRACKER)))
-    stats = [r for r in csv.DictReader(open(STATS)) if r["term"] == "Total"]
-    app = collections.Counter()
-    order = []
-    for r in stats:
-        k = pkey(r["president"])
-        if k not in app:
-            order.append(k)
-        app[k] += int(r["total_orders"].replace(",", ""))
-
-    # President per project order, best evidence first: APP's own attribution;
+def attribute(tracker):
+    """President for each project order and how it was decided."""
+    # Best evidence first: APP's own attribution;
     # an exact date (WPA 1944 list, NARA codification row, Lord row id); the
     # nearest numbered neighbours when both sides agree (numbers run in date
     # order); the year alone.
@@ -154,6 +145,21 @@ def main():
     for r in tracker:
         if r["instrument_id"] not in pres:
             pres[r["instrument_id"]] = "Unattributed"; how[r["instrument_id"]] = "none"
+    return pres, how
+
+
+def main():
+    tracker = list(csv.DictReader(open(TRACKER)))
+    stats = [r for r in csv.DictReader(open(STATS)) if r["term"] == "Total"]
+    app = collections.Counter()
+    order = []
+    for r in stats:
+        k = pkey(r["president"])
+        if k not in app:
+            order.append(k)
+        app[k] += int(r["total_orders"].replace(",", ""))
+
+    pres, how = attribute(tracker)
     source = collections.Counter(how[r["instrument_id"]] for r in tracker)
 
     work = collections.defaultdict(collections.Counter)   # president -> step -> open count

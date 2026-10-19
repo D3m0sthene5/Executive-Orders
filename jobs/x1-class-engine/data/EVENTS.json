@@ -1,0 +1,175 @@
+{
+ "schema": "eo-x1-extinction-event-register/v1",
+ "notice": "Candidate mass-ending events. Nothing here is a finding until the cited primary source is held through research/readiness/FETCH_QUEUE.jsonl and the source-ladder job, and the verification phrases are found in its text. Even then an event is a candidate end for an order: the order's own scope, an earlier end and savings must still be checked by an agent. The 'what_to_verify' lines are questions written by Claude on 2026-10-19 from the plan, not facts.",
+ "events": [
+  {
+   "event_id": "X1-E1-WWI-1921",
+   "name": "Joint resolution of March 3, 1921 (ch. 136): certain war Acts, joint resolutions and proclamations construed as though the war had ended",
+   "candidate_date": "1921-03-03",
+   "role": "candidate_end",
+   "sources": [
+    {
+     "citation": "41 Stat. 1359",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-41/pdf/STATUTE-41-Pg1359.pdf",
+     "verify_phrases": [
+      "as though the present war had",
+      "Trading with the enemy"
+     ]
+    }
+   ],
+   "map": {
+    "types": [
+     "wwi_emergency"
+    ],
+    "date_from": "1917-04-06",
+    "date_to": "1921-03-03"
+   },
+   "what_to_verify": [
+    "Which Acts and proclamations the resolution names; an order made under a statute it does not name is not reached.",
+    "The resolution's exceptions (the Trading with the Enemy Act is reported to be excepted, so Alien Property Custodian orders are not mapped).",
+    "Whether the order ended earlier on its own terms (armistice, completion, revocation)."
+   ]
+  },
+  {
+   "event_id": "X1-E2-NIRA-1935",
+   "name": "End of the NRA codes: Schechter (May 27, 1935) and the expiry of NIRA Title I",
+   "candidate_date": "1935-06-16",
+   "role": "candidate_end",
+   "sources": [
+    {
+     "citation": "48 Stat. 195",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-48/pdf/STATUTE-48-Pg195.pdf",
+     "verify_phrases": [
+      "code of fair competition",
+      "two years"
+     ]
+    },
+    {
+     "citation": "295 U.S. 495",
+     "url": "https://www.govinfo.gov/content/pkg/USREPORTS-295/pdf/USREPORTS-295-495.pdf",
+     "verify_phrases": [
+      "code of fair competition"
+     ]
+    },
+    {
+     "citation": "49 Stat. 375",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-49/pdf/STATUTE-49-Pg375.pdf",
+     "verify_phrases": [
+      "April 1, 1936"
+     ]
+    }
+   ],
+   "map": {
+    "types": [
+     "nra_code_approval"
+    ],
+    "date_from": "1933-06-16",
+    "date_to": "1936-04-01"
+   },
+   "what_to_verify": [
+    "Schechter held the code-making delegation invalid; whether that ends an approval order on May 27, 1935, or the statutory expiry ends it, is an agent's judgment per order.",
+    "The text and date of NIRA section 2(c) expiry and of the June 14, 1935 joint resolution (49 Stat. 375).",
+    "Orders that are not code approvals (labor boards, agreements, administrative orders) need their own basis."
+   ]
+  },
+  {
+   "event_id": "X1-E3-CANAL-ZONE-1979",
+   "name": "End of the Canal Zone government (Panama Canal Treaty in force October 1, 1979; Panama Canal Act of 1979)",
+   "candidate_date": "1979-10-01",
+   "role": "candidate_end",
+   "sources": [
+    {
+     "citation": "93 Stat. 452",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg452.pdf",
+     "verify_phrases": [
+      "Panama Canal Act of 1979"
+     ]
+    }
+   ],
+   "map": {
+    "types": [
+     "canal_zone"
+    ],
+    "date_from": "1904-01-01",
+    "date_to": "1979-10-01",
+    "keywords": [
+     "canalzone",
+     "panamacanal",
+     "isthmiancanal"
+    ],
+    "keyword_types_any_land": true
+   },
+   "what_to_verify": [
+    "Many Canal Zone orders ended earlier: superseded by later orders, by the Canal Zone Code, or on their own terms.",
+    "Which functions the 1979 Act continued (the Panama Canal Commission), which would be savings, not an end."
+   ]
+  },
+  {
+   "event_id": "X1-E4-PHILIPPINES-1946",
+   "name": "Philippine independence, July 4, 1946 (Tydings-McDuffie Act of 1934; Proclamation 2695)",
+   "candidate_date": "1946-07-04",
+   "role": "candidate_end",
+   "sources": [
+    {
+     "citation": "48 Stat. 456",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-48/pdf/STATUTE-48-Pg456.pdf",
+     "verify_phrases": [
+      "Philippine"
+     ]
+    },
+    {
+     "citation": "60 Stat. 1352",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-60/pdf/STATUTE-60-Pg1352.pdf",
+     "verify_phrases": [
+      "Philippine"
+     ]
+    }
+   ],
+   "map": {
+    "types": [
+     "philippines"
+    ],
+    "keywords": [
+     "philippine",
+     "manila",
+     "luzon",
+     "mindanao",
+     "corregidor"
+    ],
+    "keyword_types_any_land": true,
+    "date_from": "1898-01-01",
+    "date_to": "1946-07-04"
+   },
+   "what_to_verify": [
+    "Military and naval reservations retained under the 1947 bases agreement did not end on independence.",
+    "Philippine civil-service and administrative orders may have ended with the 1935 Commonwealth."
+   ]
+  },
+  {
+   "event_id": "X1-E5-FLPMA-1976",
+   "name": "Federal Land Policy and Management Act, October 21, 1976: repeal of implied and listed withdrawal authority",
+   "candidate_date": "1976-10-21",
+   "role": "not_an_end_authority_repeal",
+   "sources": [
+    {
+     "citation": "90 Stat. 2743",
+     "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg2743.pdf",
+     "verify_phrases": [
+      "withdrawal",
+      "valid existing rights"
+     ]
+    }
+   ],
+   "map": {
+    "classes": [
+     "land"
+    ],
+    "date_from": "1862-01-01",
+    "date_to": "1936-12-31"
+   },
+   "what_to_verify": [
+    "FLPMA repealed the authority to make new withdrawals; existing withdrawals are reported to continue until revoked (savings in section 701, review in section 204(l)). It is mapped so that agents look for a later Public Land Order revocation (X2), never as an end by itself."
+   ]
+  }
+ ]
+}
