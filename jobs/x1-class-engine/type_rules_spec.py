@@ -263,3 +263,13 @@ for _k, _v in ROUND3.items():
     REVISIONS[_k] = {**REVISIONS[_k], **_v, "round": 3}
     if "outliers_replace" in _v:
         REVISIONS[_k].pop("outliers_add", None)
+
+# Round 4: TR-PROPERTY-TRANSFER only (round 3 approved the other 21 as they stand).
+REVISIONS["TR-PROPERTY-TRANSFER"] = {**REVISIONS["TR-PROPERTY-TRANSFER"], "round": 4,
+    "effective_date_basis": "A stated effective date in the order, if any, over the signature date. A transfer date qualified by 'or as promptly thereafter as practicable' (the exemplar), or a partial transfer left to an official's discretion, is not a delivery date: the end is the delivery or accession record, otherwise a stated gap.",
+    "required_evidence_add": ["The delivery or accession record (agency or receiving-institution record) with its date, or an explicit gap."],
+    "outliers_replace": REVISIONS["TR-PROPERTY-TRANSFER"]["outliers_replace"] + [
+        "The transfer date is qualified ('or as promptly thereafter as practicable') or the extent of the transfer is left to an official's discretion: the stated date is not the delivery date."],
+    "exemplar": {"id": "EO:206", "parts": [
+        ("The historical archives in the Department of State, known as the Revolutionary archives", "prescribed by the Librarian of Congress."),
+        ("The transfer here directed shall be made", "to the Department of State and the Library of Congress.")]}}
