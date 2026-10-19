@@ -10,6 +10,10 @@ Three kinds of input, all read-only:
 * SOURCE RECORDS (SOURCES.jsonl) written by other jobs, e.g.
   jobs/fr-originals/output/ and jobs/source-ladder/output/, whose
   ``text_path`` points at extracted text inside that job's output folder.
+* American Presidency Project pages harvested by jobs/app-executive-orders/
+  (DOCUMENTS.jsonl live, MIRROR_DOCUMENTS.jsonl web-archive captures). These are
+  TRANSCRIPTIONS, never originals: a fallback draft input used only when no other
+  copy of the order gives a usable draft (see app_job_candidates).
 
 Every candidate keeps: url (https), sha256 + bytes of the ORIGINAL bytes,
 retrieval time, content type, route (how it was found) and a grade.
@@ -48,6 +52,11 @@ APP_SUFFIX = " | The American Presidency Project"
 APP_TITLE_EO = re.compile(r"^\s*Executive\s+Order\s+(?:No\.\s*)?(\d{1,5})(?:\s*[-‐–]\s*([A-Z])\b|([A-Z])\b)?")
 APP_CHROME = re.compile(r"(?m)^\s*(?:Skip to main content|Toggle navigation)\s*$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
+FALLBACK_RANK = 20
+APP_JOB = "app-executive-orders"
+APP_RECORDS = (("DOCUMENTS.jsonl", "live"), ("MIRROR_DOCUMENTS.jsonl", "archive"))
+APP_HEADING_EO = re.compile(r"\s*Executive\s+Order\s+(?:No\.\s*)?\d+(?:\s*[-‐–]\s*[A-Z]\b|[A-Z]\b)?\s*(?:[—–:-]|$)")
+APP_TEXT_PATH = re.compile(r"texts/[A-Za-z0-9._-]+\.txt")
 OPUS_ZIP = "releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip"
 STAGE21_DIR = "research/stage21/original_sources"
 CROSSWALK = "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv"
@@ -75,7 +84,8 @@ class Candidate:
 
     @property
     def rank(self):
-        return GRADE_RANK.get(self.grade, 9)
+        # Fallback-only inputs (APP transcriptions from app-executive-orders) are tried after every other copy.
+        return GRADE_RANK.get(self.grade, 9) + (FALLBACK_RANK if self.extra.get("fallback_only") else 0)
 
 
 def sha256_bytes(b: bytes) -> str:
@@ -608,6 +618,107 @@ def job_candidates(repo: Path, job_names, universe: set, log):
 
 
 # ---------------------------------------------------------------------------
+# American Presidency Project pages harvested by app-executive-orders
+# ---------------------------------------------------------------------------
+
+
+def app_job_candidates(repo: Path, universe: set, dates: dict | None = None, log=print):
+    """APP order pages (live and web-archive captures) as FALLBACK, transcription-based draft inputs.
+
+    The held APP text is the page body only; the page heading is kept in the record. The draft text is
+    the heading line followed by the body, so the order is located by its own heading as for any page.
+    Wrong-order protection, as for APP pages in the Opus zip: a page counts only for the order in its
+    own heading, never for a number in its body or address. A heading that is not a numbered executive
+    order, or names another order than the record, is refused; an address naming another order, or a page
+    date more than a year from the census date, gets an identity marker, so the draft is quarantined.
+    A record whose text file does not hash to its text_sha256 (the file holds another capture) is refused.
+    """
+    out, problems, seen = [], [], {}
+    out_dir = repo / "jobs" / APP_JOB / "output"
+    kept = set()
+    for name, lane in APP_RECORDS:
+        path = out_dir / name
+        if not path.exists():
+            seen[name] = "not present"
+            continue
+        n = 0
+        with open(path, encoding="utf-8") as fh:
+            for line_no, line in enumerate(fh, 1):
+                if not line.strip():
+                    continue
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError:
+                    problems.append((f"job:{APP_JOB}", "bad_json_line", f"{name}:{line_no}"))
+                    continue
+                iid = rec.get("instrument_id")
+                if not isinstance(iid, str) or (universe and iid not in universe):
+                    continue  # unnumbered page or not a census identity: no order to draft
+                where = f"{name}:{line_no}"
+                url = rec.get("final_url") or rec.get("url") or ""
+                sha = str(rec.get("sha256") or "").lower()
+                tp, tsha = str(rec.get("text_path") or ""), str(rec.get("text_sha256") or "").lower()
+                heading = " ".join(str(rec.get("heading") or "").split())
+                if grade_for_url(url) != "mirror_transcription_app" or not HEX64.match(sha):
+                    problems.append((iid, "app_record_unusable_no_app_url_or_page_sha256", where))
+                    continue
+                m = APP_TITLE_EO.match(heading)
+                if not m or not APP_HEADING_EO.match(heading):
+                    problems.append((iid, "app_heading_is_not_a_numbered_executive_order", f"{where}: {heading[:80]}"))
+                    continue
+                suf = m.group(2) or m.group(3) or ""
+                own = m.group(1) + ("-" + suf if suf else "")
+                if to_instrument_id(own, universe) != iid:
+                    problems.append((iid, f"app_heading_names_another_order_{own}", where))
+                    continue
+                text_file = out_dir / tp
+                if not APP_TEXT_PATH.fullmatch(tp) or not text_file.is_file():
+                    problems.append((iid, "text_path_missing", f"{where}: {tp}"))
+                    continue
+                if not HEX64.match(tsha) or sha256_file(text_file) != tsha:
+                    problems.append((iid, "app_text_file_holds_another_capture", f"{where}: {tp}"))
+                    continue
+                if (iid, tsha) in kept:
+                    continue  # the same text from the other lane
+                with open(text_file, encoding="utf-8", errors="replace") as tf:
+                    head = tf.read(2500)
+                if ERROR_PAGE.search(head.lstrip()):
+                    problems.append((iid, "error_or_block_page_text", where))
+                    continue
+                flags = []
+                url_number = app_number_from_url(url, universe)
+                if url_number and number_digits(url_number) != number_digits(own):
+                    flags.append(f"app_page_title_number_{own}_differs_from_url_number_{url_number}")
+                page_year, census_year = str(rec.get("date") or "")[:4], str((dates or {}).get(iid) or "")[:4]
+                if page_year.isdigit() and census_year.isdigit() and abs(int(page_year) - int(census_year)) > 1:
+                    flags.append(f"identity_doubt_app_page_date_{page_year}_vs_census_year_{census_year}")
+                cap = rec.get("capture") if isinstance(rec.get("capture"), dict) else {}
+                when = (f"{cap.get('archive')} capture {cap.get('captured_utc')}" if cap
+                        else f"live page retrieved {str(rec.get('retrieved_utc') or '')[:10]}")
+                kept.add((iid, tsha))
+                out.append(Candidate(
+                    instrument_id=iid, number=iid.split(":", 1)[1], origin=f"job:{APP_JOB}",
+                    route=f"job:{APP_JOB}:{lane}:" + str(rec.get("route") or "live"),
+                    url=url, sha256=sha, bytes=rec.get("bytes"), content_type="text/html",
+                    retrieved_utc=(cap.get("captured_utc") or rec.get("retrieved_utc") or ""),
+                    grade="mirror_transcription_app",
+                    page_or_item=(f"American Presidency Project web page (transcription; not an official edition); "
+                                  f"APP node {rec.get('app_node')}; {when}"),
+                    locator=str(text_file),
+                    notes=(f"APP {lane} record {where} in jobs/{APP_JOB}/output; draft text is the APP page heading "
+                           f"line, a blank line, then the held body text {tp} (sha256 {tsha[:12]}); "
+                           "TRANSCRIPTION-BASED, not an original; the page sha256 is of the page bytes as captured"),
+                    extra={"heading_prefix": heading, "fallback_only": True, "transcription_based": True,
+                           "identity_basis": "app_page_heading", "identity_flags": flags,
+                           "variant_rank": 0 if lane == "live" else 1, "url_number": url_number,
+                           "app_text_sha256": tsha},
+                ))
+                n += 1
+        seen[name] = f"{n} order-text candidates"
+    return out, problems, seen
+
+
+# ---------------------------------------------------------------------------
 # Loading text for a candidate
 # ---------------------------------------------------------------------------
 
@@ -634,7 +745,11 @@ class TextLoader:
                 self._zip = zipfile.ZipFile(self.zpath)
             return self._zip.read(cand.locator).decode("utf-8", "replace"), None
         with open(cand.locator, encoding="utf-8", errors="replace", newline="") as fh:
-            return fh.read(), None
+            text = fh.read()
+        if cand.extra.get("heading_prefix"):
+            # APP body texts hold no heading; the page's own heading line identifies the order.
+            text = cand.extra["heading_prefix"] + "\n\n" + text
+        return text, None
 
     def close(self):
         if self._zip is not None:
