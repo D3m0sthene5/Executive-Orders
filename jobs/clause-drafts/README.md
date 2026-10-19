@@ -74,6 +74,13 @@ does not let those into `FRAGMENTS.jsonl` or `SOURCES.jsonl`:
   the identity would come from the web address only, the page title and the
   web address name different orders, or the printed date / the signing
   president do not fit the order's year (one year of tolerance).
+- American Presidency Project pages harvested by `app-executive-orders` (whose
+  held text is the page body; the heading is in the record) count only for the
+  order their **own heading** names: a heading that is not a numbered executive
+  order, or names another order than the record, is refused; an address naming
+  another order, or a page date more than a year from the census year, is
+  quarantined; a record whose text file does not hash to its `text_sha256` (the
+  file holds another capture of the page) is refused.
 
 ## What it does NOT establish
 
@@ -96,6 +103,7 @@ does not let those into `FRAGMENTS.jsonl` or `SOURCES.jsonl`:
 | `research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv` | The FR citation (e.g. `60 FR 309`) so each clause gets an FR page. |
 | `releases/opus_stage11_complete/OPUS_STAGE11_FINITE_STATUS_DELTA_COMPLETE.zip` | Text extractions saved by the Opus research, read one file at a time without unpacking. Only texts whose `.meta.json` records an https address, the SHA-256 of the original bytes and a 200 (OK) answer, from GovInfo, FederalRegister.gov or the American Presidency Project, are used. Column-layout texts are skipped; texts flattened onto one line (all paragraph and section breaks lost) are not split and are listed in `NOT_SEGMENTED.csv`. The SHA-256 of each text file in the zip is compared with the text hash in its meta file (reported in `SUMMARY.json`). |
 | `jobs/fr-originals/output/`, `jobs/source-ladder/output/` | SOURCES.jsonl records (shared SOURCE RECORD format) and their `texts/`. If their output is not there yet, the job simply notes it. Other job names can be added with `CLAUSE_INPUT_JOBS=a,b`. |
+| `jobs/app-executive-orders/output/` `DOCUMENTS.jsonl`, `MIRROR_DOCUMENTS.jsonl`, `texts/` | American Presidency Project pages, live and from web-archive captures: **transcriptions, a fallback input only**. The draft text is the page heading line, a blank line, then the held body text. Turn off with `CLAUSE_APP_INPUT=0`. |
 | `research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv` | Valid order ids, years and eras. |
 | `research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv` | Only to mark which orders are among the 3,359 provisional cases. |
 
@@ -105,6 +113,13 @@ document, FederalRegister.gov text, American Presidency Project transcription,
 and last the OCR text of old scanned FR issues. Among copies that can be used,
 one without identity doubt wins over one with doubt, and a "good" one over a
 "partial" one. The other copies are listed under `alternate_sources`.
+An APP page from `app-executive-orders` is used only when no other copy of the
+order gives a usable draft without identity doubt (a "partial" official copy
+still wins over a "good" APP page). Its draft goes to `FRAGMENTS_APP.jsonl`,
+labelled `transcription_based: true`, `acceptable_as_original: false`,
+`representation_type: secondary_compilation_transcription`, with a
+`confidence_note` that starts "TRANSCRIPTION-BASED". Every clause must be checked
+against the official original before it is used in a claim.
 
 **If the Opus zip or the universe list cannot be read** (for example because
 `git lfs pull` failed on GitHub), the job **stops with an error** and builds
@@ -117,13 +132,14 @@ small one. To build anyway from what is there, set
 | File | What it is |
 |---|---|
 | `FRAGMENTS.jsonl` | One line per order: `{"instrument_id", "kind": "operative_clauses", "data": [clauses], "sources", "confidence_note", "produced_by": "clause-drafts", ...}`. Extra keys: `non_operative` (title, recitals), `excluded` (signature block), `segmentation_quality` (`good` or `partial`, see above), `segmentation_warnings`, `identity_evidence` (how identity was found, signature line, printed year, expected year), `alternate_sources`, `era`. |
+| `FRAGMENTS_APP.jsonl` | The same shape, for drafts cut from American Presidency Project transcriptions (fallback input; see above). Kept separate so neither file passes GitHub's 95 MB limit; claim-kit and claim-drafts read both. |
 | `CLAUSES.csv` | The same clauses, one row each (opens in Excel), with the first 200 characters of each clause as `text_preview`. The full text is in `FRAGMENTS.jsonl` and `texts/`; it is not repeated here to keep the files small. |
 | `SOURCES.jsonl` | One SOURCE RECORD per saved text used (shared format). `bytes` is the size of the original file when Opus recorded it, otherwise `null` (the notes then say so). For Opus copies the original bytes are not in the repo, so the SHA-256 can only be checked by fetching the address again. |
 | `texts/` | The exact text of each order that the clauses were cut from (UTF-8). For web pages it runs from the order's own heading to the end of the order (no site menus or footers). |
 | `IDENTITY_QUARANTINE.csv` | Orders whose best text may be a different order, with the reasons, the signature line, printed year and expected year. Nothing from these is in `FRAGMENTS.jsonl` or `SOURCES.jsonl`. |
 | `NOT_SEGMENTED.csv` | Orders that had a saved text but could not be split usefully, and why (each copy tried). |
 | `INPUT_PROBLEMS.csv` | Inputs that could not be used (missing PDF, no SHA-256, wrong year, text hash differs from meta ...). |
-| `SUMMARY.json` | Counts by era, kind, structure, source grade and quality; which inputs were available; quarantine reasons; the self-check (every clause text must be an exact substring of its saved text; the job fails if not) and the zip-text-versus-meta hash comparison. |
+| `SUMMARY.json` | Counts by era, kind, structure, source grade and quality; which inputs were available; quarantine reasons; drafts from APP transcriptions; `segmentation_outcomes_by_input` (good / partial / unusable / identity doubt / not located, one count per candidate copy; with the `MEASURE_ALL` file in this folder every copy of every order is segmented, otherwise copies after the first good one are skipped); the self-check (every clause text must be an exact substring of its saved text; the job fails if not) and the zip-text-versus-meta hash comparison. |
 
 Each clause in `data` looks like:
 
@@ -173,6 +189,10 @@ Options (environment variables):
   are read.
 - `CLAUSE_ALLOW_PARTIAL_INPUTS=1` – build even if the Opus zip or the universe
   list is missing (not recommended on GitHub).
+- `CLAUSE_APP_INPUT=0` – do not read the American Presidency Project pages.
+- `CLAUSE_MEASURE_ALL=1` (or a `MEASURE_ALL` file in this folder) – segment
+  every candidate copy to measure each source's outcomes; the choice of copy is
+  unchanged. Adds about 40 seconds.
 
 The tests (`test_segment.py`, `test_build.py`, `test_regressions.py`) run first
 and use small excerpts from several eras, including the real texts that the

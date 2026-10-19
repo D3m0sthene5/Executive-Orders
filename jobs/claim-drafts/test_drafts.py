@@ -617,6 +617,40 @@ class BookSources(Fixture):
         self.assertNotIn("original_representation_provenance", d["gate"]["errors_if_proposals_accepted"])
         self.assertNotIn("original_text", [m["step"] for m in d["missing_evidence"]])
 
+    # --- American Presidency Project and other declared transcriptions
+
+    def app_original(self, iid, job, node):
+        url = f"https://www.presidency.ucsb.edu/documents/executive-order-{iid[3:]}-x"
+        data = {"url": url, "sha256": SHA["5"], "page_or_item": f"APP node {node}", "needs_page_check": False,
+                "location_confidence": "high", "acceptable_as_original": False, "grade": "mirror_transcription",
+                "representation_type": "secondary_compilation_transcription", "source_id": f"app:{iid}:{node}",
+                "text_path": "texts/x.txt"}
+        return frag(iid, "original_representation", data, job, grade="mirror_transcription",
+                    acceptable_as_original=False, sources=[{"url": url, "sha256": SHA["5"], "page_or_item": node}])
+
+    def test_app_and_declared_transcriptions_are_leads_never_the_original(self):
+        # Even with needs_page_check false and high location confidence, as the APP records carry.
+        self.write_job("app-executive-orders", [self.app_original("EO:400", "app-executive-orders", "1")])
+        self.write_job("some-new-mirror", [self.app_original("EO:400", "some-new-mirror", "2")])
+        self.reload()
+        line = self.draft("EO:400")
+        self.assertIsNone(line["claim"]["original_representation"])
+        cands = line["_draft"]["proposals"]["original_representation"]
+        self.assertEqual(len(cands), 2)
+        for c in cands:
+            self.assertEqual((c["grade"], c["strong"], c["acceptable_as_original"]),
+                             ("compiled_transcription_lead", False, False))
+        self.assertIn("web transcription", " ".join(c["why"] for c in cands))
+        self.assertEqual(line["_draft"]["readiness"]["by_step"]["original_text"], "research")
+
+    def test_split_fragment_files_are_read(self):
+        out = self.repo / "jobs" / "app-transcriptions" / "output"
+        self.write_job("app-transcriptions", [])
+        write_jsonl(out / "FRAGMENTS_APP.jsonl", [self.app_original("EO:400", "app-transcriptions", "3")])
+        self.reload()
+        cands = self.draft("EO:400")["_draft"]["proposals"]["original_representation"]
+        self.assertEqual([c["grade"] for c in cands], ["compiled_transcription_lead"])
+
     # --- the 1989 Codification: endings
 
     def test_codification_revocation_becomes_a_whole_order_end_proposal(self):
