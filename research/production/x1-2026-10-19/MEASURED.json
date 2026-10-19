@@ -1,0 +1,84 @@
+{
+ "schema": "eo-x1-measured/v1",
+ "measured_on": "2026-10-19",
+ "source": "research/production/x1-2026-10-19/REPORT.md; telemetry from the harness (subagent wall time and tokens), not self-reports",
+ "pilot": {
+  "orders": 52,
+  "batches": {
+   "P1": {
+    "orders": 20,
+    "submitted": 3,
+    "upheld": 3
+   },
+   "P2": {
+    "orders": 32,
+    "submitted": 3,
+    "upheld": 2
+   }
+  },
+  "submitted": 6,
+  "accepted": 5,
+  "reviewer_rejection_rate": 0.167,
+  "producer_minutes": 15.31,
+  "reviewer_minutes": 10.08,
+  "total_agent_minutes": 25.39,
+  "minutes_per_order_screened": 0.49,
+  "minutes_per_accepted_claim": 5.08,
+  "producer_tokens": 405765,
+  "reviewer_tokens": 358203,
+  "tokens_per_order": 14692,
+  "tokens_per_accepted_claim": 152794,
+  "by_class": {
+   "spent": {
+    "orders": 16,
+    "accepted": 3
+   },
+   "swept": {
+    "orders": 4,
+    "accepted": 0
+   },
+   "land": {
+    "orders": 9,
+    "accepted": 0
+   },
+   "standing_control": {
+    "orders": 23,
+    "accepted": 2
+   }
+  },
+  "not_counted": [
+   "the orchestrating agent's own time",
+   "building the classifier, rules, events and clusters (fixed cost)",
+   "precision checks (5.3 min) and type-rule reviews (7.9 min round 1)"
+  ]
+ },
+ "ideas": {
+  "1 Type tribunal": {
+   "hit_rate": 0.188,
+   "new_minutes": {
+    "clause_inventory": 0.51,
+    "ending_or_current_basis": 2.54,
+    "savings_residuals": 1.02,
+    "counterevidence": 1.02,
+    "provisional_status": 1
+   },
+   "basis": "hit = spent-class pilot orders reaching an accepted complete claim (3/16); minutes = measured producer+reviewer minutes per accepted claim, split across legal steps by the model's pre-1937 tier weights; provisional_status kept at the assumed 1 (the pilot used already-decided orders)"
+  },
+  "2 Extinction-event mapper": {
+   "hit_rate": 0.0,
+   "new_minutes": {
+    "provisional_status": 2,
+    "ending_or_current_basis": 6,
+    "savings_residuals": 4
+   },
+   "basis": "0 of 4 swept-class pilot orders accepted; every Canal Zone order had an earlier end; event sources not yet held"
+  },
+  "8 Look-alike template cloning": {
+   "hit_rate": 1.0,
+   "new_minutes": {},
+   "basis": "no saving demonstrated: no pilot order used a cloned clause, and one clone pairing hid different partial revocations"
+  }
+ },
+ "template_legal": 1.0,
+ "risk_tiered_review": "excluded: not approved by the owner"
+}

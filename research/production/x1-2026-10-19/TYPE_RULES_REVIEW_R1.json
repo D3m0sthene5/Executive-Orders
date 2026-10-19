@@ -1,0 +1,484 @@
+{
+  "schema": "eo-independent-agent-type-rule-review/v1",
+  "reviewer": "x1_type_rule_reviewer",
+  "reviewer_role": "independent_agent",
+  "not_human_certification": true,
+  "reviewed_on": "2026-10-19T16:47:37+00:00",
+  "rule_count": 23,
+  "method_notes": [
+    "rule_file_sha256 is SHA-256 over the exact bytes of each research/readiness/type-rules/TR-*.json at review time. A changed file is not covered by this review.",
+    "quote_exact: quoted_clause is an exact substring of source.text_path (UTF-8). text_hash_verified: SHA-256 of that file's UTF-8 text equals source.text_sha256. For all 21 rules with a source, both checks passed, quoted_parts equals [quoted_clause], and the quote sits at exemplar.char_start..char_end and occurs once.",
+    "Each exemplar text was read in full, to judge whether the quote is the exemplar's own operative text and whether the exemplar is a true member of the type (not a modification order, an outlier subtype or a neighbouring order).",
+    "Legal propositions were checked by web search; 41 Stat. 1359-1360 was read from govinfo. Points the reviewer gives from memory are marked 'verify'.",
+    "This is an independent AI review of research PATTERNS. It is not human certification, decides no order, fills no claim field, changes no status, and leaves the 0 human-certified whole-lifecycle count unchanged. Rules marked approve_with_required_changes are not frozen as reviewed until revised and re-reviewed (new file hash).",
+    "Common weakness across rules: exceptions_savings.reviewed is false everywhere. Several land rules lack the FLPMA s.701 savings note. Several exemplars are amending or modifying orders, whose lifecycle follows a parent order."
+  ],
+  "items": [
+    {
+      "rule_id": "TR-ALIEN-PROPERTY-SALE",
+      "rule_file_sha256": "c16ce317f2d24fef0dabaf5b53fcee1edab26e009171187a09a15c2ed3bfc22d",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Make effective_date_basis say the order's own date (Jan 22, 1930 in the exemplar) is its effective date and that the sale date is a separate end date; if no Custodian report is held, the end is an explicit gap, and the order date or a report year is only a not-earlier/not-later bound.",
+        "Rewrite exceptions_savings: the proceeds stayed subject to the Settlement of War Claims Act of 1928 (the exemplar itself says so in its reasons); they are not 'independent'. State transferred_or_accrued for title and proceeds, and treat the 1928-Act proceeds as a lead to check.",
+        "The title covers 'reject bids or resell', but ending_pattern describes only one completed sale. Add sub-patterns: a rejection order is spent when issued; a resale order is spent on the resale."
+      ],
+      "factual_problems": [
+        "'claims under later settlement acts are independent' is unsupported and runs against the exemplar's own reasons paragraph."
+      ],
+      "missing_outliers": [
+        "The authorized sale never took place, was cancelled, or was made at a different price or to a different buyer.",
+        "The property was returned to the claimant under the 1928 Act instead of being sold.",
+        "One order covers several properties, with sales on different dates (each needs its own end)."
+      ],
+      "notes": "The quote is exactly the operative paragraph of EO 5263, at the stated offsets, from a hash-verified machine-read GPO compilation. The 1921 statement is correct: Pub. Res. 64 of March 3, 1921 (41 Stat. 1359-1360) expressly excepts the Trading with the Enemy Act. 'Reported to be' can be changed to cite 41 Stat. 1360."
+    },
+    {
+      "rule_id": "TR-BIRD-REFUGE",
+      "rule_file_sha256": "cc051d06dee0d521ad1dfa4022022776b9c2de0be63637d9d4ad659414d8d131",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Re-cut the quote so it starts at 'it is ordered that' (or at 'By virtue of') and does not open mid-citation with '1222), it'. Stop it before the township description, or say the quote includes land-description lines.",
+        "Replace the outlier 'Withdrawal for classification pending a refuge decision', which belongs to the land-withdrawal type, with refuge-specific outliers (below).",
+        "Add to exceptions_savings: transfer of the administering bureau (Biological Survey from Agriculture to Interior, Reorganization Plan No. II of 1939) and renaming (refuges were redesignated National Wildlife Refuges in 1940) are continuities, not ends. The reviewer recalls these from memory; verify before use."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Lands acquired by purchase under the Migratory Bird Conservation Act (as in the exemplar: 'acquired or to be acquired') are not public-domain withdrawals. Their federal status rests on title, not on the order, and revoking the order does not divest title.",
+        "The refuge was later re-established, consolidated or absorbed under another name or a statute (the order is superseded, but the area continues).",
+        "The area was transferred to a state or another agency by statute or exchange."
+      ],
+      "notes": "The quote is exact and the hash is verified. The exemplar is EO 7292 (Lake Andes refuge) operative text. The signature date reads '1986' in the OCR (it is 1936), which shows that dates must be read from the scan. The 1966 Refuge Administration Act is a real statute, and citing it as a possible independent basis is fair."
+    },
+    {
+      "rule_id": "TR-CANAL-ZONE",
+      "rule_file_sha256": "1e6892216c21fd6294a7e6653d9eef26b4d25ac84a0a93179b19e132db554d0a",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Add to ending_pattern and effective_date_basis: 'lapse or repeal of the specific statutory authority' as an earlier end. The exemplar EO 5888 rests on a proviso to section 20 of the National Prohibition Act, so it is a candidate to have ended with Prohibition's repeal (21st Amendment, Dec. 5, 1933, and later repeal legislation), long before 1979.",
+        "Qualify 'by the Canal Zone Code': a codification ends an executive order only where the Code or its enacting act expressly repeals or replaces it. Otherwise the Code is a lead, not an end.",
+        "Add the 30-month treaty transition (Panama Canal Treaty art. XI; Panama Canal Act of 1979, Pub. L. 96-70) as an outlier. Some U.S. jurisdiction and transitional courts continued past Oct. 1, 1979 (to about March 31, 1982), so an order on courts, police or criminal law may have a later end."
+      ],
+      "factual_problems": [
+        "'Canal Zone Code' as an end mechanism is overstated without an express repeal (see required change)."
+      ],
+      "missing_outliers": [
+        "The order's statutory authority lapsed or was repealed before 1979 (exemplar: Prohibition).",
+        "Treaty-transition carry-over of laws and courts for 30 months after Oct. 1, 1979.",
+        "Panama Railroad / Panama Canal Company corporate matters that rest on corporate statutes."
+      ],
+      "notes": "The quote is exact and the hash is verified. It is EO 5888's own enacting paragraph, which follows the statute it recites. Oct. 1, 1979 is correct: the Panama Canal Treaty entered into force that day and the Canal Zone government ceased."
+    },
+    {
+      "rule_id": "TR-CLOSING-MOURNING",
+      "rule_file_sha256": "c825b13728c4583e1bf817953da1b1edeb3cbbe3516d0e7fdeea4a65abb74a90",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_pattern_lead_only",
+      "exemplar_shows_type": true,
+      "required_changes": [],
+      "factual_problems": [],
+      "missing_outliers": [
+        "The mourning period is tied to an event ('until after the funeral', 'thirty days from the date of death'), so its end must be computed from a source for that event.",
+        "The order excuses employees retroactively, or affects pay or leave accounting (accrued effect)."
+      ],
+      "notes": "The quote is exact and the hash is verified. It is EO 5763's full operative text from the OFR 1974 compilation, and the quote includes the date and title headings (harmless). The pattern is sound and does not overclaim; the outlier list covers recurring holidays and missing dates. Approved as a lead pattern; the two missing outliers above are recommended, not required."
+    },
+    {
+      "rule_id": "TR-CS-WAIVER",
+      "rule_file_sha256": "c5412d7eec7860e85d43ada444c3b8793a19571b6133c8948df6daf84087ef71",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Re-cut the quote. It currently starts mid-name ('J., may be appointed') and leaves out the named person ('Mr. Paul F. Myers, of Princeton, N.'), although required_evidence demands the person's name. It also ends with the next order's date line ('March 30, 1914.'). Start the quote at 'Mr. Paul F. Myers' (or at 'March 23, 1914.') and end it at 'Washington, D. C.'",
+        "Remove or qualify 'or lapses if never used'. An authority like the exemplar's ('may be appointed ... without examination') states no time limit, so an unused authority has no source-backed lapse date. Write: 'if no use is recorded and no time limit is stated, the end is unresolved (gap)'.",
+        "Add an outlier for later general revocations or replacements of the Civil Service Rules and the orders under them, which must be checked as candidate express ends."
+      ],
+      "factual_problems": [
+        "'lapses if never used' is presented as fact, with no statutory or rule basis cited."
+      ],
+      "missing_outliers": [
+        "The waiver is conditional (for example on a noncompetitive examination or probation) or limited to a stated position or period.",
+        "The person was named again in a later waiver order (serial orders).",
+        "The text is printed in a CSC annual report, so the report's own commentary or neighbouring orders can bleed into the slice (as here)."
+      ],
+      "notes": "The hashes are verified and the quote is exact, but its boundaries are wrong (see required changes). The exemplar does show the type: a one-person appointment without examination, printed in the 1914 CSC report."
+    },
+    {
+      "rule_id": "TR-EIGHT-HOUR-SUSPENSION",
+      "rule_file_sha256": "78f4426cc73e7fbce2251504a0506d348a5bd5434c99df0edc3a1ff2f775f664",
+      "quote_exact": false,
+      "text_hash_verified": false,
+      "decision": "reject",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Supply a held exemplar text with an exact operative quote, its offsets and text hash, then resubmit for review.",
+        "Name the suspension authority (for example the national-emergency suspension proviso in the Naval Appropriation Act of March 4, 1917, and later acts). Say whether its terms depend on the war or emergency, which is the test of the 1921 resolution (41 Stat. 1359), rather than assuming coverage."
+      ],
+      "factual_problems": [
+        "Pointing to the 1921 resolution as a candidate is untested: the resolution reaches only provisions contingent on the war's or emergency's duration. Whether each suspension authority is such a provision must be shown."
+      ],
+      "missing_outliers": [
+        "Peacetime suspensions (for example public-works, Panama Canal or 1930s emergency orders) that the 1921 resolution cannot reach.",
+        "The work or contract was never completed, or the contract was modified or extended."
+      ],
+      "notes": "There is no exemplar, no quote and no source (no_quote). The rule cannot be checked against the corpus, so it is rejected until an exemplar is supplied."
+    },
+    {
+      "rule_id": "TR-FUND-ALLOTMENT",
+      "rule_file_sha256": "a4003ee232687bf31f7ca49f2bba48c47470484abba62d07fc82f26c965aa21a",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "The exemplar is itself an order that amends/modifies an earlier order; add an outlier: 'The order only amends or modifies another order: its own operative effect merges into, and normally ends with, the parent order; read the parent's text and lifecycle.' (EO 6265 amends EO 6208, and the sum is 'hereby allocated' by EO 6208.)",
+        "Make effective_date_basis say that the expenditure date is normally unavailable, and that the end of the period of availability is only a not-later-than bound for the operative command, not an exact first end. Obligated balances can still be paid after that date (an accrued effect).",
+        "Name the ECW act of March 31, 1933 (48 Stat. 22) only as the exemplar's authority. Each order's own appropriation must be fetched."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "The order amends another allocation order (the exemplar).",
+        "A later statute or order rescinds, impounds or re-appropriates the unobligated balance."
+      ],
+      "notes": "The quote is exact and the hash is verified. It is EO 6265's own amending clause, so it shows a fund allotment, but as an amendment."
+    },
+    {
+      "rule_id": "TR-INDIAN-RESERVATION",
+      "rule_file_sha256": "2b20ab27ec371a03b1f080669000f4de8781e0d2ec54b1899c96b0b31733624f",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Split the rule into two sub-patterns with separate mechanisms: (a) trust-period extensions (own_terms_expiry) and (b) reservation/boundary orders (standing_until_revoked). The exemplar EO 2550 is only (b). Supply a separate trust-extension exemplar, or say none is quoted.",
+        "Correct the IRA statement. Section 2 (48 Stat. 984) provides that existing trust periods 'are hereby extended and continued until otherwise directed by Congress', but s.13 excludes listed Oklahoma tribes from s.2, and s.18 makes the Act inapplicable to reservations that voted to exclude themselves. For excluded reservations, the Act of June 15, 1935 (s.3) extended trust periods to Dec. 31, 1936, and later extensions followed. So s.2 is not a uniform end for extension orders.",
+        "Replace 'each extension order is superseded by the next': a later extension usually runs from the earlier order's expiration date. The earlier order ends on its own stated date and is not superseded.",
+        "Re-cut the quote. It ends mid-word ('subjec'); extend it to 'existing valid rights in and to the same.'"
+      ],
+      "factual_problems": [
+        "'superseded by the next or by that Act' and 'for reservations covered by it' together overstate the IRA's reach (s.13 Oklahoma exclusion; s.18 opt-outs; 1935 Act extension)."
+      ],
+      "missing_outliers": [
+        "Post-1919 orders creating or enlarging reservations: the Act of June 30, 1919 (s.27) barred new executive-order Indian reservations without Congress. The Act of March 3, 1927 barred boundary changes to executive-order reservations except by Congress. These are authority questions, not ends.",
+        "Termination acts (1950s), or later statutes confirming reservation boundaries or restoring lands to the tribe, as independent bases.",
+        "Reservations in Alaska or Oklahoma (IRA s.13).",
+        "Allotments made inside the reservation, which have separate trust lifecycles."
+      ],
+      "notes": "The quote is exact and the hash is verified, and it is EO 2550's own text from Kappler IV, p.1023. The neighbouring Harding order (1921) sits just before the quote but is not in it. The exemplar shows only the boundary half of the type."
+    },
+    {
+      "rule_id": "TR-LAND-WITHDRAWAL",
+      "rule_file_sha256": "12f59b5f7d84bb8afce01842a1ad447ad465279c939ecfb884f27eb2fde33f2a",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Replace the exemplar. EO 5723 only modifies EO 5327 to allow one railroad right-of-way, which is the rule's own outlier ('the order itself revokes or modifies another order'). EO 5327 is the 1930 oil-shale withdrawal, which belongs under TR-MINERAL-WITHDRAWAL. Choose an order that itself withdraws land (resurvey, classification, townsite or administrative site) and quote its withdrawing clause from 'Executive Order No.'",
+        "Add the FLPMA savings to exceptions_savings: FLPMA (Pub. L. 94-579, Oct. 21, 1976) s.704(a) repealed the Pickett Act and implied withdrawal authority prospectively; s.701 saves existing withdrawals until modified under FLPMA or other law (IBLA, Grant L. Hacking, 1980, applied this to pre-1976 water-hole reserves). State this as a savings/continuity point, not an end.",
+        "Add disposal as an end: townsite and cemetery withdrawals can end for a tract when it is patented or sold, not only by revocation."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Overlapping later blanket withdrawals (for example the 1934-35 general withdrawals pending Taylor Grazing Act classification, EO 6910 and EO 6964). A revocation of the earlier order may then leave the land still withdrawn by the later one.",
+        "Alaska lands affected by ANCSA, statehood selections and the Alaska Lands Act.",
+        "The FLPMA s.204(l) review of withdrawals (a review lead, not an end)."
+      ],
+      "notes": "The quote is exact (a clean operative clause) and the hash is verified, but the exemplar is the wrong type: it is a modification order of a mineral withdrawal."
+    },
+    {
+      "rule_id": "TR-LIGHTHOUSE",
+      "rule_file_sha256": "53719462ce47ea269f8946c0573c6a797b214051f0a61099937403f4e2480ee5",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "The exemplar is itself an order that amends/modifies an earlier order; add an outlier: 'The order only amends or modifies another order: its own operative effect merges into, and normally ends with, the parent order; read the parent's text and lifecycle.' (EO 5458 amends the description in EO 4410.)",
+        "Name the 1939 transfer: Reorganization Plan No. II of 1939, s.2(a) (Bureau of Lighthouses consolidated into the Coast Guard, effective July 1, 1939). Say it is a continuity, not an end, which matches exceptions_savings.",
+        "Add the FLPMA savings note: FLPMA (Pub. L. 94-579, Oct. 21, 1976) s.704(a) repealed the Pickett Act and implied withdrawal authority prospectively; s.701 saves existing withdrawals until modified under FLPMA or other law (IBLA, Grant L. Hacking, 1980, applied this to pre-1976 water-hole reserves). State this as a savings/continuity point, not an end."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "The station was disposed of under surplus-property or lighthouse-preservation statutes, or conveyed to a state or nonprofit. The deed date is the end, with reversionary clauses as residuals.",
+        "Alaska statehood or other statutory transfers of the site."
+      ],
+      "notes": "The quote is exact and the hash is verified; the quote includes the date and title headings. The exemplar is a lighthouse withdrawal amendment for Alaska. The Coast Guard 1939 fact is correct."
+    },
+    {
+      "rule_id": "TR-MILITARY-RESERVATION",
+      "rule_file_sha256": "096458b95d833e1a91aa32176eb65ed84e5aa3586527b3cc22edb67f18a199e6",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Re-quote the operative restoration clause ('... is, subject to the exception, reversion, and service of water supply set forth below, hereby restored to its previous status for the use of the Territory of Hawaii'). The current quote is paragraph 3 (a reserved water right) and ends with page furniture ('865 / EO 5638 Executive Orders').",
+        "Add an outlier: the order keeps reversions, water rights or rights-of-way, as the exemplar does in paras 2-3. These residual interests outlive the restoration and need their own state.",
+        "For Hawaii lands, add the Hawaii Admission Act of 1959 (s.5) as a lead on the status of lands set aside for federal use and their return. Treat it as a lead, not an assumed end."
+      ],
+      "factual_problems": [
+        "The quoted clause is not the order's main operative act, and it contains printer's running heads."
+      ],
+      "missing_outliers": [
+        "Retained reversions or water rights (the exemplar itself).",
+        "Territorial lands (Hawaii, Alaska, Puerto Rico) subject to admission or organic acts.",
+        "Disposal under the Surplus Property Act of 1944 or the Federal Property and Administrative Services Act of 1949, with the deed date as the end."
+      ],
+      "notes": "The hash is verified and the quote is exact, but it is a secondary clause. The exemplar (a diminution of the Keaahala Military Reservation) is a correct member of the type."
+    },
+    {
+      "rule_id": "TR-MINERAL-WITHDRAWAL",
+      "rule_file_sha256": "a8eeacc253d16fd8b4fe8a6b6d31b1af86039a11457c0cde9ece301e0d353456",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "The exemplar is itself an order that amends/modifies an earlier order; add an outlier: 'The order only amends or modifies another order: its own operative effect merges into, and normally ends with, the parent order; read the parent's text and lifecycle.' (EO 6016 modifies the 1930 oil-shale withdrawal EO 5327 to allow oil and gas leasing.)",
+        "Start the quote at 'Executive Order No. 5327', not at '5327 of'.",
+        "Add the FLPMA savings note: FLPMA (Pub. L. 94-579, Oct. 21, 1976) s.704(a) repealed the Pickett Act and implied withdrawal authority prospectively; s.701 saves existing withdrawals until modified under FLPMA or other law (IBLA, Grant L. Hacking, 1980, applied this to pre-1976 water-hole reserves). State this as a savings/continuity point, not an end.",
+        "Note that a modification that opens withdrawn lands to leasing does not end the withdrawal. It changes the disposal regime. Leases are accrued rights."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Coal, phosphate or potash lands later classified and restored subject to a mineral reservation (surface-entry acts of 1909/1910/1914). The restoration ends the withdrawal but leaves a reserved mineral estate.",
+        "Helium reserves governed by the Helium Act.",
+        "Oil-shale reserves later placed under statutory naval-reserve management."
+      ],
+      "notes": "The quote is exact and the hash is verified. The Mineral Leasing Act of Feb. 25, 1920 (41 Stat. 437) citation is correct, and the statement that it did not itself revoke withdrawals is properly hedged."
+    },
+    {
+      "rule_id": "TR-NATIONAL-FOREST",
+      "rule_file_sha256": "eadb9f30b82819c04d12a4835f208820a982a57c1be3d08e933152ae8caaf6a9",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Re-cut the quote. It runs past EO 1914's signature into the next order in Kappler ('VARIOUS BANDS. It is hereby ordered, under authority contained in the act of March 2'). End it at 'Tue Wuite House, April 13, 1914.' or at '...any person.'",
+        "Note that the exemplar also adds the lands to the Los Coyotes Indian Reservation, so it triggers the rule's own outlier 'also creates a reservation for another agency'. Either pick a pure boundary exemplar or flag it as a two-lifecycle example.",
+        "Add an outlier: eliminations or additions in Oregon, Washington, Idaho, Montana, Colorado and Wyoming after March 4, 1907 (34 Stat. 1271, which bars creating or enlarging national forests there except by Act of Congress). This is an authority question to flag."
+      ],
+      "factual_problems": [
+        "The quoted text contains the opening of a neighbouring order, so it is not solely the exemplar's own operative text."
+      ],
+      "missing_outliers": [
+        "Forest renamed or consolidated (San Jacinto became Cleveland in the exemplar). The boundary continues under another name.",
+        "Eliminated lands later re-added by a later proclamation."
+      ],
+      "notes": "The hash is verified and the quote is present exactly, but its end boundary is wrong."
+    },
+    {
+      "rule_id": "TR-NRA-CODE",
+      "rule_file_sha256": "df95919b716462f2866c65e7155907f3ce098d0005ff4d44608eb3d50f00d128",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Cite the extension: S.J. Res. 113, approved June 14, 1935 (49 Stat. 375), extended Title I to April 1, 1936 without code-making or code-enforcement. The President said the code provisions were inoperative for the old codes. Say that the candidate end date for a code approval is a legal judgment between May 27, 1935 (Schechter) and June 16, 1935 (the original expiry under s.2(c)), and that the agent records the basis chosen.",
+        "Add outliers: (1) petroleum-code provisions under s.9(c), held invalid earlier in Panama Refining Co. v. Ryan (Jan. 7, 1935); (2) the President's Reemployment Agreement and other s.4(a) agreements with their own terms; (3) code approvals with conditions, exemptions or stays that were later modified by administrative order; (4) codes later given statutory life (bituminous coal under the 1935 Guffey Act, itself struck down in Carter v. Carter Coal, 1936)."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Panama Refining (Jan. 1935) as an earlier end for petroleum-code provisions.",
+        "PRA and s.4(a) agreements expiring on their own terms."
+      ],
+      "notes": "The quote is exact and the hash is verified; it is EO 6535's approving clause plus its signature block. The OCR date reads '1983' (it is 1933). Schechter, 295 U.S. 495 (May 27, 1935), the June 16, 1935 two-year expiry under s.2(c), and the skeleton extension to April 1, 1936 are correctly stated."
+    },
+    {
+      "rule_id": "TR-OWN-TERMS-EXPIRY",
+      "rule_file_sha256": "313ca0d8bd065fb739879eac5d0a06b0ed7aebbd3a605a4ceabc6fc0050f7bf0",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Make effective_date_basis cover event-relative dates. The exemplar's date is 'sixty days after the convening of the second session of the 73rd Congress', which is not a calendar date in the text. The agent must compute it from a cited source for the convening date and state the computation.",
+        "Separate the deferral order's end from the deferred measure. When a deferral expires, the deferred provision (here EO 6166 s.18 and the FESB abolition) takes effect or is deferred again. That is the other order's event, not an end of this order's 'continuing body'.",
+        "Replace 'superseded by the next' with 'extended or replaced by the next'. A later extension issued before expiry amends the date and is not a revocation."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Event-relative or contingent dates (the exemplar itself).",
+        "The deferred measure was later rescinded, so the deferral never matured."
+      ],
+      "notes": "The quote is exact and the hash is verified; it is EO 6221's own operative text. The exemplar is a deferral of effective dates, which fits the type, but only under the event-relative reading."
+    },
+    {
+      "rule_id": "TR-PHILIPPINES",
+      "rule_file_sha256": "b20a8697a6420e8bf5c735d2b966577a7fe06bf1b3e1a287b4a18d69e17b04c7",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Re-quote the operative sentence. The current quote is mostly the Jones Act s.21 text that the order recites, and it is cut mid-word ('Philippine Islan'). Quote from 'Under this provision hereafter all official reports' through 'Bureau of Insular Affairs.'",
+        "Resolve the date conflict. source.page says September 16, 1916; the held APP text is signed 'September 19, 1916'. Record both, and settle the date from an official printing.",
+        "Rewrite the base-reservations clause. Sovereignty passed on July 4, 1946 (Proclamation 2695; Treaty of General Relations). After that date, U.S. use of bases rested on the 1946 treaty reservation and the Military Bases Agreement of March 14, 1947, not on the old executive-order reservations continuing as U.S. reservations. Write: 'the EO reservation's U.S.-sovereign status is a candidate end on July 4, 1946; any continued use is a separate treaty basis (residual lead).'",
+        "Add the Commonwealth event (Tydings-McDuffie Act, 48 Stat. 456; Commonwealth inaugurated Nov. 15, 1935) and the transfer of the Bureau of Insular Affairs to Interior (Reorganization Plan No. II of 1939) as dated candidate earlier ends. Orders about the Governor General's reporting (the exemplar) are candidates to have ended in 1935."
+      ],
+      "factual_problems": [
+        "'reservations retained under the 1947 bases agreement did not end in 1946' is overstated: the 1947 agreement was a new treaty basis, not a continuation of the reservations under U.S. sovereignty.",
+        "The order's date is inconsistent between the rule's source.page and the held text."
+      ],
+      "missing_outliers": [
+        "Wartime occupation 1942-45 (government in exile), which is not an end.",
+        "Orders on property the United States retained after 1946 (embassy, cemeteries, veterans' facilities) under later agreements."
+      ],
+      "notes": "The hash is verified and the quote is present exactly. The exemplar is a mirror transcription (APP) and keeps its authenticity gap. Philippine independence on July 4, 1946 is correct."
+    },
+    {
+      "rule_id": "TR-POWER-SITE",
+      "rule_file_sha256": "697eb6179ba30e402c703a5c8c0b76e2b7713a38868027cdd66c55d98fb0e79e",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Replace the exemplar. EO 6002 is a withdrawal of an administrative site for the Geological Survey 'in aid of existing power-site reservations' and gauging stations, not itself a power-site reserve. Its own title is 'Withdrawal of Land for Administrative Site'. Choose a numbered Power Site Reserve order.",
+        "Re-cut the quote: it contains page furniture ('1402 / Herbert Hoover, 1929-1933 EO 6003') and ends mid-description ('all land').",
+        "Add Federal Power Act s.24 (16 U.S.C. 818): power-purpose reservations remain reserved until otherwise directed by the Commission or Congress, and restoration requires a Commission determination. This is an independent statutory basis and a constraint on what counts as an end.",
+        "Add the FLPMA savings note: FLPMA (Pub. L. 94-579, Oct. 21, 1976) s.704(a) repealed the Pickett Act and implied withdrawal authority prospectively; s.701 saves existing withdrawals until modified under FLPMA or other law (IBLA, Grant L. Hacking, 1980, applied this to pre-1976 water-hole reserves). State this as a savings/continuity point, not an end."
+      ],
+      "factual_problems": [
+        "The exemplar is presented as the type's illustration but belongs to a different (administrative-site) type."
+      ],
+      "missing_outliers": [
+        "Lands reserved automatically under FPA s.24 by a filed application, with no executive order.",
+        "Restoration subject to FPA s.24 conditions (the Commission may reserve a right to re-enter for power purposes)."
+      ],
+      "notes": "The hash is verified and the quote is exact, but the exemplar is the wrong type."
+    },
+    {
+      "rule_id": "TR-PROPERTY-TRANSFER",
+      "rule_file_sha256": "1214f0de4823ef2f2230525662c686392e4bddbed6865e3841e56a32c4907661",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Replace the exemplar. EO 6001 discontinues four land offices and consolidates their business with the General Land Office. That is an organizational order (the rule's own outlier 'transfers functions'), and it is standing rather than spent on delivery. Choose an order transferring a vessel, equipment or records only.",
+        "Make effective_date_basis prefer a stated effective date in the order (EO 6001 has one: 'effective at the close of business January 31, 1933') over the signature date."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Transfers with reversion, loan, or 'for the duration' terms (property returns, so the order is not spent on delivery).",
+        "Transfers of vessels later re-transferred or sold, which need a chain of instruments."
+      ],
+      "notes": "The quote is exact and the hash is verified. The exemplar mixes records transfer with office abolition."
+    },
+    {
+      "rule_id": "TR-RETIREMENT-EXEMPTION",
+      "rule_file_sha256": "ef2344384fffcf42ad2ecb44e09c750a3527adde102c55649267b1054f87dc9f",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Qualify 'usually until a stated date'. The exemplar EO 5912 (under s.204 of the Economy Act of June 30, 1932) states no period. Say that many exemptions are open-ended, and that the end then depends on separation, death or a change in the governing statute.",
+        "Re-cut the quote to remove page furniture ('1299 / EO 5913 Executive Orders').",
+        "Add an outlier: amendment or repeal of the compulsory-retirement statute (later Civil Service Retirement Act amendments; abolition of mandatory federal retirement by statute in 1978). The order's authority may lapse before separation.",
+        "Put 'death' and 'separation' in required_evidence, as an agency or CSC record or an explicit gap."
+      ],
+      "factual_problems": [
+        "'usually until a stated date' is contradicted by the type's own exemplar."
+      ],
+      "missing_outliers": [
+        "The exemplar's own open-ended exemption.",
+        "The governing retirement statute changed."
+      ],
+      "notes": "The quote is exact and the hash is verified. The exemplar shows the type."
+    },
+    {
+      "rule_id": "TR-STOCK-DRIVEWAY",
+      "rule_file_sha256": "66238b232241945f0bf3030634ede373c389c9fcb80fc121d335f3c1d04b909d",
+      "quote_exact": false,
+      "text_hash_verified": false,
+      "decision": "reject",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Supply a held exemplar with an exact operative quote, its offsets and text hash.",
+        "Name the authority (stock driveways were withdrawn under s.10 of the Stock-Raising Homestead Act of Dec. 29, 1916, 39 Stat. 862) and add the FLPMA savings note: FLPMA (Pub. L. 94-579, Oct. 21, 1976) s.704(a) repealed the Pickett Act and implied withdrawal authority prospectively; s.701 saves existing withdrawals until modified under FLPMA or other law (IBLA, Grant L. Hacking, 1980, applied this to pre-1976 water-hole reserves). State this as a savings/continuity point, not an end."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Driveways partly revoked, so each tract needs its own state.",
+        "Overlap with Taylor Grazing districts or the 1934-35 general withdrawals."
+      ],
+      "notes": "There is no exemplar, no quote and no source (no_quote). The rule cannot be plainly approved, and it is rejected until it can be checked against a held text."
+    },
+    {
+      "rule_id": "TR-TAX-RETURN-INSPECTION",
+      "rule_file_sha256": "cce406c8af8631e6b418c91a1d76dce8b8a7ca5cbce693de88b79d4650638c28",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": false,
+      "required_changes": [
+        "Replace or re-scope the exemplar. EO 5824 opens returns to State officers, for State intangible-property-tax purposes, under Treasury regulations. It has no committee, no investigation and no end date, so it is the rule's own outlier ('prescribes general regulations rather than a single grant'). Choose a committee-inspection order (for example one opening returns to a named congressional committee), or split the rule into 'committee or official, single investigation' and 'standing class regulation'.",
+        "Add the chain of authority: each order rests on a specific Revenue Act section (here 1926 s.257(a) and 1928 s.55). Add outliers for later Revenue Acts or Code sections (IRC 1939 s.55; IRC 1954 s.6103) and the Tax Reform Act of 1976 rewrite of s.6103, which replaced executive-order access with statutory rules. These are candidate authority-lapse ends, not presumed ends."
+      ],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Standing class orders (state officers, all years), such as the exemplar.",
+        "Committee authority renewed in a later Congress, which extends the inspection.",
+        "Statutory replacement of the inspection authority (1976)."
+      ],
+      "notes": "The quote is exact and the hash is verified. The quote is the order's own operative text, but it shows the outlier subtype, not the committee pattern."
+    },
+    {
+      "rule_id": "TR-WATER-RESERVE",
+      "rule_file_sha256": "85083f86d4f49022f91fb4b95377792112684950f7cb03b075152172c6b6944a",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_pattern_lead_only",
+      "exemplar_shows_type": true,
+      "required_changes": [],
+      "factual_problems": [],
+      "missing_outliers": [
+        "Implied federal reserved water rights claimed for the reserve, adjudicated in state general-stream adjudications, which are residual effects independent of the land withdrawal.",
+        "The FLPMA s.204(l) review of withdrawals (a review lead)."
+      ],
+      "notes": "The quote is exact and the hash is verified; it is EO 6618 (Public Water Reserve No. 154, Oregon). The quote opens mid-citation ('497),'), which is cosmetic. The OCR date reads '1984' (it is 1934). The pattern, the April 17, 1926 order (PWR 107, hedged), and the FLPMA prospective-repeal point all agree with IBLA's Grant L. Hacking decision. Approved as a lead pattern; the outliers above are recommended."
+    },
+    {
+      "rule_id": "TR-WWI-EMERGENCY",
+      "rule_file_sha256": "7c929d81dc16ff9f35c4fc2d1d713f8740441d9f694991ba6401e098603f983f",
+      "quote_exact": true,
+      "text_hash_verified": true,
+      "decision": "approve_with_required_changes",
+      "exemplar_shows_type": true,
+      "required_changes": [
+        "Correct the description of the 1921 resolution. Pub. Res. 64 of March 3, 1921 (41 Stat. 1359-1360) does not apply to 'Acts it names'. It operates generally on any provision contingent on the duration or termination of the war or the 'present or existing emergency', and on any Act in force only during the war (or the war plus a limited period). It names exceptions: Title 2 of the Food Control and District of Columbia Rents Act, the Trading with the Enemy Act and amendments, the Liberty Bond Acts and Victory Liberty Loan Act, Titles 1 and 3 of the War Finance Corporation Act, Pub. Res. 55, and proclamations under the excepted Acts. Rewrite ending_pattern and outlier_conditions to match: 'orders whose authority is not war- or emergency-contingent by its terms' and 'orders under the excepted Acts'.",
+        "State that the resolution ends the war-contingent statutory authority, not each order automatically. Orders whose effects were performed or vested (for example, corporations created) survive as accrued effects.",
+        "Add the Knox-Porter Resolution (July 2, 1921, 42 Stat. 105) and the peace treaties proclaimed in Nov. 1921 as other candidate 'termination of the war' dates for statutes keyed to them. Flag Wilson-era acts with their own termination clauses (for example the Overman Act, six months after the war).",
+        "Re-cut the quote: it stops mid-word ('un- d'). Extend it through 'Executive order dated June 18, 1918.'"
+      ],
+      "factual_problems": [
+        "'for orders under the Acts it names' is wrong: the resolution is a general rule with named exceptions (verified against 41 Stat. 1359-1360)."
+      ],
+      "missing_outliers": [
+        "Corporations or agencies created under wartime orders that continued under later liquidation statutes. The exemplar's United States Housing Corporation was a New York corporation that outlived the war and needs its own lifecycle.",
+        "The Knox-Porter / treaty dates."
+      ],
+      "notes": "The hash is verified and the quote is exact. The exemplar is EO 2985A as printed in the Official U.S. Bulletin (newspaper context around the slice; OCR poor). It shows the type."
+    }
+  ],
+  "approved": 2,
+  "approved_with_changes": 19,
+  "rejected": 2
+}

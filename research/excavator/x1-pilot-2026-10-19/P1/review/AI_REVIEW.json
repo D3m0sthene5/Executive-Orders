@@ -1,0 +1,253 @@
+{
+ "schema": "eo-x1-independent-ai-batch-review/v1",
+ "reviewer": "claude-x1-reviewer-P1",
+ "reviewer_role": "independent_agent",
+ "not_human_certification": true,
+ "reviewed_on": "2026-10-19T16:54:23Z",
+ "claims_file": "applied-v3/CLAIMS.proposed.jsonl",
+ "items": [
+  {
+   "instrument_id": "EO:6694",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Held original ORIGINAL:EO:6694 is graded derivative_lead (acceptable_as_original false), so the order cannot be submitted on the codebook's terms; EO 9142/9095 transfer-of-functions question is a real open legal issue (target provision in EO 9095 not located per dossier). The X1 type correction (not an alien-property sale) is right. Missing items are the right ones.",
+   "sources_read": [
+    "PACKET.json dossier EO:6694",
+    "X1_LEADS.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:5",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Only held text is Richardson vol. VI (compiled_transcription_lead_needs_page_check, not acceptable as original); I read it. The substance (closing public offices on Apr. 14, 1866) is a spent one-day command, but the original-source bar is a codebook requirement, not a false blocker. Rejection of the ACT:EO:5>EO:9569 OCR artefact is correct.",
+   "sources_read": [
+    "jobs/richardson-volumes/output/texts/RICH_VI/EO_5.txt",
+    "PACKET.json dossier EO:5"
+   ]
+  },
+  {
+   "instrument_id": "EO:5763",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5763.txt: single-day closing/excusal for Sat. Dec. 26, 1931; legal reading in the gap note is correct. The blocker is a genuine tooling limitation, which I verified: the dossier has no own_terms record, jobs/claim-kit/assemble.py event() takes actor from the end record's actor_id/instrument_id and mechanism from the CSV row's 'mechanism' or the record's mechanism/verb/kind, and batch.py CLAUSE_FIELDS has no mechanism column; CLAUSES:EO:5763#whole has no actor and kind 'whole', ORIGINAL:EO:5763 has no mechanism. So no honest claim can be assembled. Note: this is a tool blocker, not an evidence blocker; the row is otherwise close to submittable once a TERM record or mechanism column exists.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5763.txt",
+    "jobs/claim-kit/assemble.py",
+    "jobs/claim-kit/batch.py"
+   ]
+  },
+  {
+   "instrument_id": "EO:5930",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5930.txt: paragraph 6 runs 'from this date to February 1, 1933'. Same verified tooling limitation as EO 5763 (no TERM record). The substantive gap is also real and should be made more specific: WPA shows EO 5731 (Oct. 13, 1931) first added a Paragraph 6 to Subdivision VII, and EO 6352 (Oct. 23, 1933) and EO 6874 (Oct. 16, 1934) later amended Paragraph 6; whether EO 5930 replaced the 1931 paragraph and whether the 1933 order revived/restated it must be decided. Add EO 5731 and EO 6352 to the missing items.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5930.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:5620",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5620.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for Mrs. Dorothy I. Sinnott, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5620.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:5893",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5893.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for Lamar Costello, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5893.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:6028",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6028.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for fourteen named special investigators, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6028.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:6061",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6061.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for Joseph Gambaro and Solomon Israel, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6061.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:6063",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6063.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for Ellen T. Purcell and J. Elizabeth Williams, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6063.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:6067",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6067.txt: a permissive 'may be appointed ... without regard to the requirements of the civil-service rules' for Thomas H. Allen, with no stated term. Its first end is the use (appointment) or a lapse, and no held source dates it; WPA has no further entry naming the person(s). Blocking is justified and the missing item (dated appointment record, e.g. Official Register or CSC report) is the right one.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6067.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:7180",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "ORIGINAL:EO:7180 is derivative_lead; six-section loan rules with many candidate later actors and three target provisions (EO 7553, 7555, 8294) not located; per-section ends undecided. Blocking justified.",
+   "sources_read": [
+    "PACKET.json dossier EO:7180"
+   ]
+  },
+  {
+   "instrument_id": "EO:5881",
+   "producer_outcome": "submit",
+   "claim_sha256": "60c73895e2e63851aaeff5f8c940e80eb5fb63d45c464171af276521a34d22eb",
+   "decision": "uphold",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5881.txt in full. Inventory: one operative sentence (further exemption of William L. Hill, John Lewis May, Leonard Magruder 'and continued in the service until August 1, 1932') plus a purpose statement that is not an independent command; one-clause inventory is complete. End date 1932-08-01 is the order's own stated term; the 'July 10, 1932' in the same sentence is the recited term of EO 5874 (June 30, 1932), which I confirmed in jobs/ofr-compilations/output/texts/EO_5874.txt (lines 3233-3238 list Magruder, Hill, John L. May under Treasury; term 'until July 10, 1932'). The producer correctly overrode the machine TERM record, whose stated_end_date/effective_date 1932-07-10 is wrong; the claim's first_end date (1932-08-01) is right and its quoted span contains 'until August 1, 1932'. Caveat for the human reviewer: the cited TERM evidence record still carries the wrong machine date. The purpose sentence ('for such period only as is absolutely necessary to afford time in which to appoint successors') states the reason for the fixed term; it is not a condition that ends the grant earlier on a successor's appointment. Producer's statement that EO 5874 is outside the identity universe is accurate (jobs/ofr-compilations/output/CENSUS_LEADS.csv marks EO:5874 NOT_IN_CENSUS). No later order naming any of the three persons in WPA, Hoover texts (only EO 5874 and EO 5881 contain the names) or APP index. Savings: accrued service/pay only; acceptable. Search re-run by reviewer: whitespace-insensitive surname/full-name search of every entry of jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv (numbered EOs through the WPA 1944 list, so covering the 1932-1937 gap before the OFR catalog), grep of all 526 held Hoover OFR 1974 texts (EO 5550-6070) and of the APP title index (jobs/app-executive-orders/output/INDEX.csv, which also lists FDR 1933 orders). Context found: EO 6142 (May 23, 1933) shows that early termination of a section-204 exemption by a later order did occur in this family (Pickens Neagle, EO 5872), so the earlier-end question is real; no such order names this order's person(s). EO 6142 and EO 6146 (May 23/26, 1933) also show section 204 still being administered through May 31, 1933, which is stronger corroboration of the statute's continuity than the producer's 1934-35 examples. Residual, not a defect: unnumbered orders and orders whose WPA summary omits names are not fully excluded. Observation for a correction version: the claim's structured later_source_search lists only the USC, eCFR and OFR catalog (1937 onward) searches; the decisive pre-1937 WPA/Hoover-text search is recorded only in research_rationale prose and should be added as its own later_source_search entry. original_pages_confirmed is false: the page images were not checked (the OFR 1974 PDF is an LFS pointer in this checkout), so the date rests on the OCR layer, which reads cleanly.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5881.txt",
+    "jobs/ofr-compilations/output/texts/EO_5874.txt",
+    "jobs/ofr-compilations/output/texts/EO_5896.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+    "jobs/app-executive-orders/output/INDEX.csv",
+    "jobs/ofr-compilations/output/CENSUS_LEADS.csv",
+    "applied-v3/CLAIMS.proposed.jsonl",
+    "applied-v3/CHECK_AUDIT.json"
+   ]
+  },
+  {
+   "instrument_id": "EO:5981",
+   "producer_outcome": "submit",
+   "claim_sha256": "017c1c2ae085852ca6d7b370c1dabf5392a23db0ad4e51586386e8c4f40afd62",
+   "decision": "uphold",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5981.txt in full (printed p. 1387). Single operative clause: John T. Crowley, Vocational Advisor, Veterans' Administration, 'is hereby exempted from the provisions of that section until May 31, 1933'. No recital of another order's date; 1933-05-31 is the order's own term and matches the TERM record. Inventory complete; no independent command; savings accrued only. Only held texts containing 'Crowley' + retirement are EO 5981 itself (WPA EO 2644 is a different John J. Crowley, 1917). The held OCR also lacks the 'HERBERT HOOVER' signature line (the producer noted this only for EO 5982); immaterial to the operative text. Search re-run by reviewer: whitespace-insensitive surname/full-name search of every entry of jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv (numbered EOs through the WPA 1944 list, so covering the 1932-1937 gap before the OFR catalog), grep of all 526 held Hoover OFR 1974 texts (EO 5550-6070) and of the APP title index (jobs/app-executive-orders/output/INDEX.csv, which also lists FDR 1933 orders). Context found: EO 6142 (May 23, 1933) shows that early termination of a section-204 exemption by a later order did occur in this family (Pickens Neagle, EO 5872), so the earlier-end question is real; no such order names this order's person(s). EO 6142 and EO 6146 (May 23/26, 1933) also show section 204 still being administered through May 31, 1933, which is stronger corroboration of the statute's continuity than the producer's 1934-35 examples. Residual, not a defect: unnumbered orders and orders whose WPA summary omits names are not fully excluded. Observation for a correction version: the claim's structured later_source_search lists only the USC, eCFR and OFR catalog (1937 onward) searches; the decisive pre-1937 WPA/Hoover-text search is recorded only in research_rationale prose and should be added as its own later_source_search entry. original_pages_confirmed is false: the page images were not checked (the OFR 1974 PDF is an LFS pointer in this checkout), so the date rests on the OCR layer, which reads cleanly.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5981.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+    "jobs/app-executive-orders/output/INDEX.csv",
+    "applied-v3/CLAIMS.proposed.jsonl",
+    "applied-v3/CHECK_AUDIT.json"
+   ]
+  },
+  {
+   "instrument_id": "EO:5982",
+   "producer_outcome": "submit",
+   "claim_sha256": "312eb1177475f3a2165fe06f9b63cd93c65e4f8cd3e2ed66b5c13f2f14aa8302",
+   "decision": "uphold",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5982.txt in full (printed pp. 1387-1388). Single operative clause: Charles J. Harlow, plate printer, Coast and Geodetic Survey, 'is hereby exempted from the provisions of that section until March 31, 1933'. The date is the order's own term and matches the TERM record. Inventory complete; savings accrued only. The term ran past the change of administration (Mar. 4, 1933): I checked FDR's March 1933 orders in WPA and APP (e.g. EO 6088, Mar. 29, 1933, Harry O. Bailey); none names Harlow. Search re-run by reviewer: whitespace-insensitive surname/full-name search of every entry of jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv (numbered EOs through the WPA 1944 list, so covering the 1932-1937 gap before the OFR catalog), grep of all 526 held Hoover OFR 1974 texts (EO 5550-6070) and of the APP title index (jobs/app-executive-orders/output/INDEX.csv, which also lists FDR 1933 orders). Context found: EO 6142 (May 23, 1933) shows that early termination of a section-204 exemption by a later order did occur in this family (Pickens Neagle, EO 5872), so the earlier-end question is real; no such order names this order's person(s). EO 6142 and EO 6146 (May 23/26, 1933) also show section 204 still being administered through May 31, 1933, which is stronger corroboration of the statute's continuity than the producer's 1934-35 examples. Residual, not a defect: unnumbered orders and orders whose WPA summary omits names are not fully excluded. Observation for a correction version: the claim's structured later_source_search lists only the USC, eCFR and OFR catalog (1937 onward) searches; the decisive pre-1937 WPA/Hoover-text search is recorded only in research_rationale prose and should be added as its own later_source_search entry. original_pages_confirmed is false: the page images were not checked (the OFR 1974 PDF is an LFS pointer in this checkout), so the date rests on the OCR layer, which reads cleanly.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5982.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+    "jobs/app-executive-orders/output/INDEX.csv",
+    "applied-v3/CLAIMS.proposed.jsonl",
+    "applied-v3/CHECK_AUDIT.json"
+   ]
+  },
+  {
+   "instrument_id": "EO:6013",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6013.txt: Pearson and Nuber exempted until Feb. 28, 1934. WPA EO 6615 (Feb. 26, 1934) exempts Nuber until Feb. 28, 1935, issued before EO 6013's term ran out; whether it extends EO 6013's grant or is a new grant decides the Nuber part's first end (and so the whole-order end). EO 6615's text is not held. Blocking justified; missing item correct.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6013.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:6030",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_6030.txt: James exempted until Feb. 28, 1935. WPA EO 6975 (Feb. 26, 1935) exempts him until Mar. 1, 1936, before EO 6030's term ended; text not held. Same open question as EO 6013. Blocking justified; missing item correct.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_6030.txt",
+    "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+   ]
+  },
+  {
+   "instrument_id": "EO:283",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/isthmian-canal-1911/output/texts/EO_283.txt (official 1911 compilation, acceptable). One sentence authorising waiver of the citizenship requirement under CSC regulations; no term. No located ending provision (EO 9830 target provision not located; CSC annual report references not held). Rejecting the 1979 Canal Zone swept event as the first end is correct. Blocking justified.",
+   "sources_read": [
+    "jobs/isthmian-canal-1911/output/texts/EO_283.txt",
+    "PACKET.json dossier EO:283"
+   ]
+  },
+  {
+   "instrument_id": "EO:5704",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Read jobs/ofr-compilations/output/texts/EO_5704.txt and jobs/fr-originals/data/full_run/texts/EO_7676.txt (sec. 13 at line 256-261 supersedes '(No. 5704)' and '(No. 6390)'; effective 'on the thirtieth day after the date hereof'). The ACT record for EO 7676 is missing, so the end cannot be cited through the assembler, and EO 6390 (1933) and the Canal Zone Code (1934) could have replaced the amended section 1 of EO 1898 earlier. Blocking justified; missing items correct.",
+   "sources_read": [
+    "jobs/ofr-compilations/output/texts/EO_5704.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_7676.txt"
+   ]
+  },
+  {
+   "instrument_id": "EO:6128",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "ORIGINAL:EO:6128 is derivative_lead (not acceptable as original), and which navigation rule it amended and when that rule was next replaced is undecided; the 1979 swept event is not an established first end. Blocking justified.",
+   "sources_read": [
+    "PACKET.json dossier EO:6128"
+   ]
+  },
+  {
+   "instrument_id": "EO:2834",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "ORIGINAL:EO:2834 is held_text_lead (not acceptable as original); the order has two operative acts and the later replacement of Schedule A para. 15 is not held. Blocking justified.",
+   "sources_read": [
+    "PACKET.json dossier EO:2834"
+   ]
+  }
+ ],
+ "counts": {
+  "members": 20,
+  "submitted": 3,
+  "blocked": 17,
+  "uphold": 3,
+  "reject": 0,
+  "block_justified": 17,
+  "block_not_justified": 0,
+  "independent_human_certifications": 0
+ },
+ "start_utc": "2026-10-19T16:49:42Z",
+ "end_utc": "2026-10-19T16:54:23Z",
+ "wall_minutes": 4.7
+}
