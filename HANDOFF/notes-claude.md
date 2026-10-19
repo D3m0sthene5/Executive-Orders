@@ -20,6 +20,66 @@ Newest entry first. See `README.md` in this folder for the format.
   sent. `@Astra` / `@Codex`: the CSC fragments are report printings, not originals; grade them as leads.
 - **Do not:** run a bulk ProQuest harvest through the owner's NYU session without NYU's written approval;
   treat WPA dates as verified signing dates.
+## 2026-10-19 13:15 ET: X1 lifecycle class engine built, piloted on all 52 eligible old orders, recalibrated
+
+- **Done (branch `claude/x1-class-engine`, PR to main):** `jobs/x1-class-engine/` (zero-token job): type
+  classifier for all 8,014 pre-1937 orders (`TYPES.csv`; 198 unknown), 22 type rules in
+  `research/readiness/type-rules/` (`eo-type-rule/v1`, three rounds of independent AI review, frozen hashes),
+  5-event extinction register (`data/EVENTS.json`; 8 primary sources queued, none held yet), look-alike clusterer
+  (656 texts, 132 clusters, 187 clean clones), 128 batch sheets. Report: `research/production/x1-2026-10-19/REPORT.md`.
+- **Measured:** classifier on a fresh blind holdout of 80: exact type 90% (CI 82-95%), class 95%. Pilot: all 52
+  pre-1937 orders that have both a provisional status and a held text (the canonical path's ceiling), in two batches;
+  6 submitted, 5 upheld by an independent AI reviewer, 1 rejected (17%, above the 11% target); 46 blocked, all
+  blocks confirmed. 25.4 agent-minutes in all: 0.49 min per order screened, 5.1 min and 153k tokens per accepted
+  claim (harness telemetry, `AGENT_TELEMETRY.jsonl`). Claims: `research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl`
+  (EO 5614, 5707, 5881, 5981, 5982); actual claim-checker passes all 5 on every step, and the tracker on the branch now counts them ready for human review (130 → 135). PR #36.
+- **Recalibrated** (`MEASURED.json`, `excavator_scenarios.py` now reads X1 types and measured values): X1 saves about
+  463 h (assumed 4,134 incl. the unapproved review change); about 16,681 h left after X1; series without risk-tiered
+  review about 11,256 h. Bug found and documented: census-gap rows were counted as "other", not land.
+- **Finding:** typing is not the bottleneck for old orders; originals, end instruments and provisional statuses are.
+- **Asks:** `@Owner`: (1) risk-tiered review stays off (flag `X1_RISK_TIERED_REVIEW`, default off) until you decide;
+  (2) a route to CSC annual reports / Official Register would date the 1,490 one-person waivers. `@Codex` / `@Sol`
+  (claim-kit): an own-terms end mechanism (EO 5763, 5930 blocked only by this) and locating the EO 7968 and EO 5707
+  provisions in dossiers (6 rows). `@Astra`: EO 5874 is recited by EO 5881 but is not in the identity universe;
+  check as a census gap. Anyone: the 5,297 `status_first` rows need a provisional-status path before X1 sheets help.
+- **Do not:** treat X1 types, rules, events or clones as findings; enable risk-tiered review without the owner;
+  reuse the round-1/2 rule files (superseded; only hashes in `TYPE_RULES_REVIEW.json` are frozen).
+
+## 2026-10-19 13:30 ET: excavator series plan to cut the remaining agent-hours
+
+- **Done (branch `claude/great-ptolemy-9r6zah`):** `research/plans/EXCAVATOR_SERIES_2026-10-19.md`, a funnel of ten
+  ideas and a selected series of five excavators (X1 lifecycle class engine, X2 Public Land Order ledger, X3
+  reel-to-text acquisition with a negative-search automaton, X4 living-law counter-search, X5 census gap admission
+  line). `research/progress/remaining-work/excavator_scenarios.py` scores each idea alone and the series without
+  double counting: 17,144 to about 9,100 agent-hours (47% less). Coverage sets come from committed data; hit rates and
+  new minutes are assumptions in the script. `build_effort.py` now exposes `assign()`; outputs unchanged.
+- **Finding:** 83% of the hours are pre-1937 orders; 7,065 h are pre-1937 orders of unknown type, so a type classifier
+  is the first build.
+- **Asks:** `@Owner`: (1) a route to a full-text source for EO 1-7403 (microfilm Film S 1130 at Harvard Lamont, or
+  HeinOnline via a law library); (2) yes/no on risk-tiered review (20% independent-AI audit for rows matching a
+  reviewed exemplar). `@Astra` / `@Codex`: pick up X1 step 1 (type classifier) or X2 (PLO harvester) as jobs; pilot
+  50 orders and record minutes per step and tier.
+- **Do not:** treat the scenario savings as measured, or let any excavator fill judgment fields or admit orders.
+
+## 2026-10-19 12:30 ET: remaining work weighted by AI effort (second treemap tab)
+
+- **Done (branch `claude/great-ptolemy-9r6zah`):** `research/progress/remaining-work/build_effort.py` gives every
+  open step (same 86,607 as the count view) an AI agent-minute weight from `EFFORT_MODEL.csv`, by tier: what the
+  jobs already hold for that order (clause-drafts, status-history, later-events, family-rules certificates,
+  fr-originals, numbered-early-orders, claim-drafts `only_judgment_left` and `estimated_effort`). Method and the
+  basis of each weight: `EFFORT_NOTES.md`. Outputs `EFFORT_LONG.csv`, `EFFORT_BY_TIER.csv`, `EFFORT.json`. Shown as
+  the "AI effort" tab of https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#effort. `build_remaining_work.py`
+  now exposes `attribute()`; its outputs are unchanged.
+- **Result:** about 17,144 agent-hours (range 8.6k-34k), about 63 min per APP order. Ending/current basis 5,625 h,
+  original text 3,025 h, savings 2,612 h, counterevidence 2,297 h, clauses 1,889 h, first yes/no 1,337 h, admit
+  328 h, sources/images 18 h. Pre-1937 orders about 90-108 min each, modern about 25 min. FDR, Wilson and Coolidge
+  together 47%.
+- **Calibration:** only CI1+EB2+SR2+CE2 (25 min) are calibrated, from Codex's batch pilot (about 26 agent-min per
+  upheld modern dossier, `research/excavator/2026-10-18/batch-pilot/COST_COMPARISON.json`); OT1 uses Astra's
+  measured source-read time; all other weights are assumptions.
+- **Asks:** `@Astra` / `@Codex`: when the instrumented 40-80 order pilot runs, record agent-minutes per step and
+  tier so `EFFORT_MODEL.csv` can be replaced with measured values; the build reruns in seconds.
+- **Do not:** quote the agent-hour total as a measurement or a schedule.
 
 ## 2026-10-19 11:45 ET: remaining-work treemap against the APP count
 
