@@ -1,0 +1,61 @@
+{
+  "instrument_id": "EO:12145",
+  "status": "stopped_at_user_checkpoint_request",
+  "started_utc": "2026-10-19T02:02:15+00:00",
+  "stopped_utc": "2026-10-19T02:03:46.355557+00:00",
+  "elapsed_wall_seconds": 91.355557,
+  "actual_model_usage": null,
+  "actual_token_usage": null,
+  "claim_frozen": false,
+  "candidate_claim_exists": false,
+  "actual_reads_this_dossier": [
+    "Complete official EO12145 extract, including sections 1-101 through 1-113 and Annexes I-IV, printed 44 FR 42653-42656, PDF pages 11-14.",
+    "Assigned draft claim was displayed but tool truncation prevents claiming a full draft read; no claim was copied or written.",
+    "Two EO12292 revocation edge rows, six current-law historical mentions, and zero exact eCFR hits in assigned outputs.",
+    "Source-retention entries and inventory for actual 1946/1980 Foreign Service Act PDFs; MATCHED_BY_SHA256 lookups.",
+    "PDF SKILL.md read for local retained-PDF extraction."
+  ],
+  "prior_read_context": "Complete EO12292 was read in earlier dossiers in this producer context; no new full current-dossier reread after EO12145 assignment.",
+  "sources": [
+    {
+      "identity": "EO12145 original",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1979-07-20/pdf/FR-1979-07-20.pdf",
+      "pdf_sha256": "1f18237c8654acc2d9ddb96e7d9014a925d5da0e6bd8f926e511c74e33258a27",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12145.txt",
+      "read_scope": "Complete official extract with Annexes I-IV; no image read",
+      "official_fixity": "match in jobs/official-fixity/output/MATCHED_BY_SHA256.json"
+    },
+    {
+      "identity": "Foreign Service Act 1946",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-60/pdf/STATUTE-60-Pg999.pdf",
+      "pdf_sha256": "9389aeaf154cd4305e43881ec610851939e707c2ecaa1539798c36c31cda215f",
+      "retained_pdf_path": "jobs/astra-source-retention/output/pdf/9389aeaf154cd4305e43881ec610851939e707c2ecaa1539798c36c31cda215f.pdf",
+      "extraction": "All 42 pages locally extracted with pypdf into act1946/page-N.txt and act1946/full.txt; page/header regex leads printed only",
+      "substantive_pages_read": [],
+      "official_fixity": "No MATCHED_BY_SHA256 entry observed; retained PDF rehash equals source catalog"
+    },
+    {
+      "identity": "Foreign Service Act 1980",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-94/pdf/STATUTE-94-Pg2071.pdf",
+      "pdf_sha256": "227fc5c11524269f2213c09a9cf513db30c4e4afb753f35017a65acb2aefb92d",
+      "retained_pdf_path": "jobs/astra-source-retention/output/pdf/227fc5c11524269f2213c09a9cf513db30c4e4afb753f35017a65acb2aefb92d.pdf",
+      "extraction": "All 100 pages locally extracted with pypdf into act1980/page-N.txt and act1980/full.txt; page/header regex leads printed only",
+      "substantive_pages_read": [],
+      "official_fixity": "No MATCHED_BY_SHA256 entry observed; retained PDF rehash equals source catalog"
+    }
+  ],
+  "preliminary_notes_not_findings": [
+    "Original extends specified civil-service pension changes under 1946 Act section 805, added by PL94-350; sections/annexes include survivor eligibility, contribution exemption, minimum annuities, increases, remarriage/recomputation, annual notice, internment credit/information assistance, assignments/divorce orders, and revocation of EO11952.",
+    "Individual retroactive applicability dates and election windows must be separated from original implementation and first cessation; no cleanup-date assumption.",
+    "1980 statutory text is held but not yet substantively read; do not carry forward earlier missing-PDF gaps. Official fixity acceptance remains unconfirmed for those statutes.",
+    "No bounded named/body/subject search was run yet for EO12145; earlier dossier search manifests do not cover this task."
+  ],
+  "exact_next_step_on_explicit_resume": "Read the extracted actual 1980 Act relevant retirement provisions and transition/savings/effective/repeal pages, beginning with PDF pages 98-99 (94 Stat. 2168-2169), then relevant chapter 8 pages 32-50 and transition pages 79-82. Verify actual wording, not regex headings; inspect held PDF pages if extraction ambiguity requires it. Check official fixity/custody through coordinator, not hand fetch. Then map each EO12145 annex duty and temporal condition, read actual EO11952 antecedent plus all material statutory leads (including PL94-350 and six Annex I laws as available), perform and pin explicit named/system/benefit/office searches over actually held roots (source-ladder removed), reread EO12292 actual effective wording, and produce only an honestly supported candidate with real unresolved gaps.",
+  "protected_writes": false,
+  "external_fetch": false,
+  "commits": false,
+  "canonical_publication": false,
+  "page_images_read": false,
+  "file_hash_manifest": "in-progress-file-hashes.json",
+  "file_hash_manifest_sha256": "cde28f419eab8b225631a4df6e999a1508af7fa71e01588b54dd8d73528ae042"
+}
