@@ -28,13 +28,14 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 Comparison snapshot: 2026-10-18; intervening runs may be absent.
 - app-footnote-leads: distinct_footnotes: unavailable → 1994; fr_citations_with_volume_and_page: unavailable → 1; fr_publication_dates_inferred: unavailable → 1196; later_order_edges: unavailable → 4
 - app-transcriptions: orders_with_archive_fragment: unavailable → 9386; orders_with_source_record: unavailable → 9902; orders_with_source_record_in_census: unavailable → 9871; pages_tabulated: unavailable → 10793
-- claim-checker: held_distinct_sha256: 33421 → 43299
+- astra-source-retention: attempted: unavailable → 28; download_bytes: unavailable → 656737188; http_requests: unavailable → 29; requested: unavailable → 28
+- claim-checker: held_distinct_sha256: 33421 → 43307
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 780 → 1114; fragment_orders_not_in_universe: 34 → 66; of_which_decided: 780 → 1114; orders_with_any_conflict: 417 → 421
 - clause-drafts: clauses_total: 35750 → 70539; fragments_from_app_transcription: unavailable → 5013; fragments_written: 4747 → 9760; orders_identity_quarantined: 144 → 9
-- family-rules: saved_texts_scanned: 30161 → 46130
+- family-rules: saved_texts_scanned: 30161 → 46611
 - later-events: cache_hits: 7 → 0; decided_orders_with_any_candidate: 1839 → 1842; decided_orders_with_event_candidate_excluding_see: 1560 → 1563; edges: 19994 → 23858
-- official-fixity: carried_forward: 4999 → 5038; checked_this_run: 39 → 2; files: 5038 → 5040; premis_bytes_read_this_run: 2359296 → 131072
-- source-ladder: attempts_logged: 12 → 17; bytes_downloaded: 210466245 → 92003624; distinct_new_source_hashes: 10 → 9; found: 178 → 187
+- official-fixity: carried_forward: 4999 → 5040; checked_this_run: 39 → 13; files: 5038 → 5053; premis_bytes_read_this_run: 2359296 → 0
+- source-ladder: attempts_logged: 12 → 20; bytes_downloaded: 210466245 → 105565188; distinct_new_source_hashes: 10 → 6; exhausted_proposed_items: 2 → 3
 
 ## Top shared unlocks
 
@@ -48,7 +49,7 @@ Comparison snapshot: 2026-10-18; intervening runs may be absent.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: No open ask recorded in newest entry.
+- notes-astra.md: - **Asks:** @Claude: source-ladder SUMMARY203 still excludes774Opus entries despite actual reader/log pickup; read T2 caveats. @Codex: actor attribution/named-body defects remain; checker also mistakes EO11157-14 image filename for an order, now avoided in versioned packaging. @Owner: no status change or OPUS exception requested; remaining scheduled reviews are not yet done.
 - notes-claude.md: - **Asks:** `@Owner`: share the dashboard from its Share menu if others should see it.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.

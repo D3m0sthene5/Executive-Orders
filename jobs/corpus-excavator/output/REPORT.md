@@ -1,6 +1,6 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `beb5e6010d738a2c920faa50c245d44f7f5c1836187366b3c4661eaa7f6dd8ca`.
+Legal cutoff: 2026-10-14. Inputs: `bf38850c4134b840199f3b0e374d73a3d9cf2e501745e5d4335aa14e80a6145f`.
 
 Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for human review.
 
@@ -11,15 +11,15 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 130 ready for h
 | 1 | EO::4314 | 10 | 43 |
 | 2 | EO::6868 | 6 | 25 |
 | 3 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
-| 4 | opus-refetch:https://www.govinfo.gov/content/pkg/USCODE-2024-title22/html/USCODE-2024-title22-chap51-sec3601.htm | 3 | 9 |
-| 5 | opus-refetch:https://www.govinfo.gov/link/statute/90/1667 | 3 | 9 |
-| 6 | opus-refetch:https://www.govinfo.gov/link/uscode/22/3601?link-type=html | 3 | 9 |
-| 7 | opus-refetch:644691d06bf8d3dd1fed55cb18b8d22384aa0defab0a4834afcd4059e62a6b73 | 3 | 10 |
-| 8 | opus-refetch:fa518fc884e40b5d9d677cc1ddc6cca0ca6c735fb7e5e034f2d93f53939de194 | 3 | 10 |
-| 9 | opus-refetch:002ae7c2bf972c3cef0e67b40d5623f228c107799f934df2a8aaa3c223026bdc | 3 | 11 |
-| 10 | opus-refetch:feaeab3a8219452baf9f2915032e7e42cac7879ea6c76a941c72f7ae0e8aaf2a | 3 | 11 |
-| 11 | opus-refetch:https://www.govinfo.gov/link/uscode/5/1013 | 3 | 11 |
-| 12 | EO::6910 | 3 | 12 |
+| 4 | opus-refetch:fa518fc884e40b5d9d677cc1ddc6cca0ca6c735fb7e5e034f2d93f53939de194 | 3 | 10 |
+| 5 | EO::6910 | 3 | 12 |
+| 6 | EO::6964 | 3 | 12 |
+| 7 | opus-refetch:0bcaaa70a2b7ec9e1100be0f3b457e9817586607ba9276c12acfb67cc9429a40 | 3 | 12 |
+| 8 | opus-refetch:412baf60f5e3176157a6580d5f660e98f7f41b0e7b4c6c2ed9cc09917460342d | 3 | 12 |
+| 9 | opus-refetch:1899d3315ca2d188d4f728ff40ccff905d28bb4b40a830f9b9857b3dda1555d7 | 2 | 6 |
+| 10 | opus-refetch:27223026486919d8a91fef6dee4e8deaf225835148c6a75629fc21e4264f8cb7 | 2 | 6 |
+| 11 | opus-refetch:28c731eac574fbd684f7ed7d0218339b7925b1debdfd1b463b007f8dceb42a6f | 2 | 6 |
+| 12 | opus-refetch:2b054bb27831e4a9f375ccc9e450ce23b4b2a4fb52eceaf0198c50baf5ec8a0d | 2 | 6 |
 
 Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 
