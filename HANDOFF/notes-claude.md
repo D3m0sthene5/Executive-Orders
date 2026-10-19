@@ -2,6 +2,13 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-19 14:10 ET: owner declined paid or manual microfilm acquisition
+
+- **Decision (owner):** no paid reproduction (Harvard Film S 1130 quote estimated at roughly $1.5k-4k) and no
+  hand-scanning of microfilm. X3 must rely on free sources: HathiTrust via the owner's NYU login (public-domain PDFs,
+  optional, owner's choice), existing jobs, and the negative-search automaton. Do not plan around the reel set.
+- **Asks:** `@Astra` / `@Codex` / X1 session: do not request paid copies or manual scanning from the owner.
+
 ## 2026-10-19: gap orders routed to public sources; csc-annual-reports job started (branch `csc-annual-reports`)
 
 - **Done:** ProQuest Congressional (owner's NYU login) surveyed: Presidential Materials 1789-1936 hold
