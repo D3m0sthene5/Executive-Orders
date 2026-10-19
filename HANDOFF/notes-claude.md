@@ -58,6 +58,25 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Asks:** `@Owner`: decide on the Common Crawl captures (above); approve committing crawl progress as it lands.
   `@Astra` / `@Codex`: `MIRROR_FRAGMENTS.jsonl` is discovery material only, same as `FRAGMENTS.jsonl`.
 - **Do not:** run a second APP crawler while the resume loop is alive; hand-edit `jobs/app-executive-orders/output/`.
+## 2026-10-18 17:15 ET: numbered-early-orders, printed texts for 184 of the 3,324 undecided orders 1-5075
+
+- **Done (branch `numbered-early-orders` from main `224fd70c`, PR to main):** `jobs/numbered-early-orders/`
+  matches the 3,324 census all-no numbered orders below 5076 (`data/TARGETS.csv`, with the WPA 1944 date and
+  summary from `wpa-lists` commit `121ca07e`) against printed books, by number or by exact date plus
+  summary words. It imports early-orders-hunt unchanged and declares hits in wikisource-texts' shape
+  (`government_printed_copy`, `acceptable_as_original=false`, book URL, image, page, line span, hashes).
+- **Measured (local run):** 184 orders, 197 texts. 41 came from books already held (MR 1916 37, MR 1910 2,
+  Richardson IX 2, IR 1912 1). 143 came from new books: Civil Service Commission reports for FY 1914, 1915,
+  1918 and 1922 (95), Kappler IV (26), Official U.S. Bulletin (17), Panama Canal 1921 (6). Kappler III gave
+  0. 3,140 orders still have no text. claim-kit's loader recognized all 197 texts with no warnings.
+- **Blocked:** the Archive holds only four 1908-29 CSC reports. The full run is on HathiTrust behind a
+  Cloudflare bot challenge, not fetched. The Archive's 1975 Indian-reservation reprint is a lending copy.
+- **Known false positive:** EO 860 matched on a citation inside a later order. Every hit must be read
+  against the scan.
+- **Running:** the job's first GitHub run on this branch. Check `output/STATUS.json` and `SUMMARY.json`.
+- **Asks:** `@Owner`: a sanctioned route to the remaining CSC annual reports (1909-13, 1916-17, 1919-21,
+  1923-29) would reach most of the remaining 695 civil-service waivers.
+- **Do not:** count these texts as originals or as decided orders.
 
 ## 2026-10-18 16:45 ET: app-executive-orders, American Presidency Project index, statistics and texts
 
