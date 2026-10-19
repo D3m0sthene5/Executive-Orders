@@ -35,7 +35,7 @@
   "yes_orders_with_partial_end_candidate": 43,
   "filled": {
     "original_representation": 2312,
-    "original_candidate_needing_check_only": 88,
+    "original_candidate_needing_check_only": 90,
     "operative_clauses": 1806,
     "clauses_total": 13228,
     "later_source_search": 0,
@@ -59,10 +59,10 @@
     "in_force_1989_lead": 273
   },
   "orders_by_remaining_gate_error": {
-    "bounded_later_search": 3359,
-    "research_rationale": 3359,
     "clause_*_state": 3359,
+    "research_rationale": 3359,
     "unresolved_material_gaps": 3359,
+    "bounded_later_search": 3359,
     "savings_residuals_evidence": 3359,
     "whole_order_end_evidence": 2954,
     "clause_*_original_text_or_source": 1553,
@@ -73,8 +73,8 @@
     "whole_order_end_evidence": 1983,
     "clause_*_original_text_or_source": 1553,
     "clause_*_state": 1463,
-    "original_representation_provenance": 959,
-    "savings_residuals_evidence": 912,
+    "original_representation_provenance": 957,
+    "savings_residuals_evidence": 911,
     "clause_*_state x2": 149,
     "clause_*_state x3": 74,
     "yes_without_continuing_clause": 60,
@@ -144,9 +144,9 @@
   },
   "readiness_by_step": {
     "original_text": {
-      "confirm": 2226,
+      "confirm": 2228,
       "done_now_by_custody": 174,
-      "research": 959
+      "research": 957
     },
     "clause_inventory": {
       "confirm": 887,
@@ -158,8 +158,8 @@
       "research": 2577
     },
     "savings_residuals": {
-      "agent_judgment": 2447,
-      "research": 912
+      "agent_judgment": 2448,
+      "research": 911
     },
     "counterevidence": {
       "confirm": 1523,
@@ -179,12 +179,12 @@
     }
   },
   "estimated_effort": {
-    "large": 1243,
-    "medium": 1377,
+    "large": 1242,
+    "medium": 1378,
     "small": 739
   },
   "claim_checker": {
-    "note": "jobs/claim-checker imported; 57670 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)",
+    "note": "jobs/claim-checker imported; 61098 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)",
     "drafts_by_mechanical_result": {
       "fail": 10,
       "pass": 2792,
@@ -203,6 +203,10 @@
     }
   },
   "inputs": [
+    {
+      "job": "app-executive-orders",
+      "path": "jobs/app-executive-orders/output"
+    },
     {
       "job": "clause-drafts",
       "path": "jobs/clause-drafts/output"
@@ -228,6 +232,10 @@
       "path": "jobs/fr-originals/output"
     },
     {
+      "job": "hathi-gpo-orders",
+      "path": "jobs/hathi-gpo-orders/output"
+    },
+    {
       "job": "indian-reservations-1912",
       "path": "jobs/indian-reservations-1912/output"
     },
@@ -238,6 +246,10 @@
     {
       "job": "later-events",
       "path": "jobs/later-events/output"
+    },
+    {
+      "job": "numbered-early-orders",
+      "path": "jobs/numbered-early-orders/output"
     },
     {
       "job": "ofr-codification-1989",
@@ -262,41 +274,53 @@
     {
       "job": "status-history",
       "path": "jobs/status-history/output"
+    },
+    {
+      "job": "wikisource-texts",
+      "path": "jobs/wikisource-texts/output"
     }
   ],
   "input_counts": {
     "codified_1989_rows_read:ofr-codification-1989": 555,
+    "fragments_read:app-executive-orders": 51,
     "fragments_read:clause-drafts": 4747,
     "fragments_read:current-law": 3476,
     "fragments_read:family-rule-sources": 0,
     "fragments_read:family-rule-tail": 0,
     "fragments_read:family-rules": 748,
     "fragments_read:fr-originals": 6497,
+    "fragments_read:hathi-gpo-orders": 1531,
     "fragments_read:indian-reservations-1912": 55,
     "fragments_read:isthmian-canal-1911": 105,
     "fragments_read:later-events": 6513,
+    "fragments_read:numbered-early-orders": 197,
     "fragments_read:ofr-codification-1989": 1924,
     "fragments_read:ofr-compilations": 500,
     "fragments_read:opus-media-match": 143,
     "fragments_read:richardson-volumes": 68,
     "fragments_read:source-ladder": 0,
     "fragments_read:status-history": 7650,
+    "fragments_read:wikisource-texts": 1639,
     "fragments_unusable": 7656,
+    "sources_read:app-executive-orders": 51,
     "sources_read:clause-drafts": 4747,
     "sources_read:current-law": 110,
     "sources_read:family-rule-sources": 2,
     "sources_read:family-rule-tail": 1,
     "sources_read:family-rules": 0,
     "sources_read:fr-originals": 6497,
+    "sources_read:hathi-gpo-orders": 1531,
     "sources_read:indian-reservations-1912": 0,
     "sources_read:isthmian-canal-1911": 0,
     "sources_read:later-events": 7626,
+    "sources_read:numbered-early-orders": 197,
     "sources_read:ofr-codification-1989": 0,
     "sources_read:ofr-compilations": 0,
     "sources_read:opus-media-match": 496,
     "sources_read:richardson-volumes": 0,
-    "sources_read:source-ladder": 168,
-    "sources_read:status-history": 0
+    "sources_read:source-ladder": 178,
+    "sources_read:status-history": 0,
+    "sources_read:wikisource-texts": 1639
   },
   "input_notes": [],
   "input_problems": [],
@@ -379,5 +403,5 @@
     "flags ofr_codification_1989_editorial": "a later event or whole-order end read from the OFR 1989 Codification's disposition table (status as of 1989-01-20, OCR cell); whole_end_from_1989_disposition_table marks unqualified revocations offered as whole-order ends under later-events' rule. That table and the later-events OFR catalog notes are the same OFR data, so their agreement is not counted as corroboration by two jobs"
   },
   "network_requests": 0,
-  "elapsed_seconds": 318.5
+  "elapsed_seconds": 42.8
 }
