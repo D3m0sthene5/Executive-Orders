@@ -145,6 +145,20 @@
     "original_text_held",
     "ending_or_current_lead2"
    ]
+  },
+  "SINCLAIR": {
+   "title": "Sinclair: Y1 no-status modern orders after exclusions",
+   "describe": "Y1 (numeric EO >= 7532, no provisional status, not ready) under the Bowditch Y1 rule on the current tracker (no claim; not in any claim file, excavator decisions/claims/overlays, claim-kit pilot freeze, lock or reservation), minus Bowditch's 50 Y1 orders and every order named in the running Lambertini III and Lamm II batches/pools and in Llull pool_ids lists. 4,137 orders (scratch sinclair/pool.py)",
+   "from": "Y1",
+   "ids_file": "jobs/llull/ledger/pool_ids/SINCLAIR.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "SINCLAIRS": {
+   "title": "Sinclair sample: seeded 150 of SINCLAIR",
+   "describe": "random.Random('sinclair-2026-10-20:y1').shuffle(SINCLAIR sorted by EO number), first 150; 6 batches of 25 (batch 01 is the probe)",
+   "from": "SINCLAIR",
+   "ids_file": "jobs/llull/ledger/pool_ids/SINCLAIRS.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
   }
  }
 }
