@@ -55,8 +55,18 @@ representations and automatic assembly. Changed inputs or failed runs refuse ing
 case-bundles retain the attributed generic fragments. Claim-checker/tracker continue their own
 rules. Run consumers explicitly; output-only result commits do not trigger them.
 
+The own-term census reads claim-kit's previous generation. Its exact hashes stay in
+`lagged_census_sha256`; claim-kit necessarily clears those files before rebuilding. The consumer
+validates `consumer_sha256` instead: the live registry, source manifests, primary text and compiler
+must still match. This removes the circular live-file dependency without relaxing factual evidence
+or review checks. The census snapshot remains attributable to its input commit.
+
 The Junto finder accepts `NORTON_CENSUS.json` in the existing external `--data` directory and runs
 through `junto.py run --finder norton`. It registers observed intersections under
 `norton_shared_factual_obligations`, retaining owner-seeded origin and unverified status. Use
 `add-test` only with actual full-arm session bills and independently reviewed integrated units.
 No candidate count, hypothetical reuse, text bytes or extraction timing counts as savings.
+
+The focused verification branch is `sol/norton-20261020-verified` (PR #45). The earlier branch
+keeps its independent shared source-acquisition run and frozen pilot history. This run selects
+NORTON and its existing consumers without enlarging the seven-order factual pilot.
