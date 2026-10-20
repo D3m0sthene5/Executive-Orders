@@ -1,0 +1,167 @@
+{
+ "schema": "lamm-ai-review/v1 (AI review record; not eo-lifecycle-review/v1)",
+ "batch": "batch_05",
+ "reviewer": "claude-lamm-05-reviewer (Opus, independent, held sources)",
+ "reviewed_dir": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/lamm2/review_copy/batch_05",
+ "planted_defect_suspected": {
+  "file": "CLAIMS.proposed.jsonl",
+  "location": "operative_clauses[0].first_end.date (EO:13147#sec1)",
+  "value": "2002-09-07",
+  "expected": "2002-03-07",
+  "code": "DATE"
+ },
+ "counts": {
+  "records": 14,
+  "upheld_ends": 2,
+  "upheld_whole": 1,
+  "upheld_partial": 1,
+  "negative_confirmed": 12,
+  "refuted_records": 0,
+  "refuted_claim_lines": 1,
+  "claims_enabled_yes": 1
+ },
+ "pregate": "check_ote.py: ok 14 records; all 26 evidence quotes in earlier_end/later_change re-sliced exact",
+ "verdicts": [
+  {
+   "instrument_id": "EO:13147",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review": "upheld",
+   "claims_enabled": "yes",
+   "checks": {
+    "span": "check_ote ok; span 4013-4136 matches held FR text, sha256 matches",
+    "scope": "Secs. 1-3(d) are all incidents of the one Commission; no independent clause survives; whole accepted",
+    "date": "2000-03-07 + 2 years = 2002-03-07 accepted (computed_from_signing; FR heading and signature say March 7, 2000)",
+    "savings": "none in text; 'unless extended by the President prior to such date' recorded as exception",
+    "d5_d6": "Was any later event that ended or changed this clause removed or ignored? Searched: EO 13167 (FR text: amends sec. 1 membership only), EO 13316 sec. 3(i) and sec. 6 (revokes as terminated/completed, effective 2003-09-30, after the term), held continuance orders 13225 and 13316 lists, and corpus grep for '13147' and the Commission name: no extension, continuance or earlier revocation held. Residual risk: extension by a non-held instrument cannot be excluded, as the producer notes."
+   },
+   "note": "Record upheld. See separate verdict on CLAIMS.proposed.jsonl: the batch-level claim line carries a wrong date for sec1 and must not be copied; only a claim whose every clause first_end.date is 2002-03-07 (as in kit/packet/applied-v1/CLAIMS.proposed.jsonl, the checker-passed copy) is consistent with this record."
+  },
+  {
+   "instrument_id": "EO:13147",
+   "item": "CLAIMS.proposed.jsonl (batch-level)",
+   "review": "refuted",
+   "code": "DATE",
+   "finding": "operative_clauses[0] (scope EO:13147#sec1) first_end.date = '2002-09-07', six months after the term computed from signing (2000-03-07 + 2 years = 2002-03-07). All 10 other clauses and whole_order_end say 2002-03-07, and the producer record and the kit's checker-passed copy (kit/packet/applied-v1/CLAIMS.proposed.jsonl) say 2002-03-07 for sec1. The batch-level line therefore differs from what the claim-checker passed and states an unsupported end date for sec1.",
+   "action": "Do not copy the batch-level line into research/readiness/claims/. If a claim is adopted, use one with sec1 first_end.date 2002-03-07 and re-run the checker on that exact line."
+  },
+  {
+   "instrument_id": "EO:13339",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ends_by_own_term_partial",
+   "review": "upheld",
+   "claims_enabled": "no",
+   "checks": {
+    "span": "ok (sec. 9 at 8172)",
+    "scope": "Sec. 9 names only the Commission; Office/Working Group/plans/Federal Plan (secs. 3-6, 8 in part, 10-12) unbounded; partial correct",
+    "date": "EO 13403 sec. 3 (signed 2006-05-12, verified in FR text) substitutes 'May 13, 2007, unless extended beyond that date by the President' one day before the original 2006-05-13 term; stated_date 2007-05-13 as extended accepted",
+    "d5_d6": "Searched: EO 13403; EO 13515 sec. 4(a) and EO 14031 sec. 4(a) (supersede EO 13339 in 2009 and 2021, after 2007-05-13); continuance orders 13446 (2007) and 13511 (2009) carry no AAPI Commission entry; corpus grep for '13339' finds only 13403, 13515, 14031 and OCR noise. No further extension held; the producer's FETCH line for a FACA record is appropriate."
+   },
+   "note": "Partial end, so not claims-enabled."
+  },
+  {
+   "instrument_id": "EO:13260",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "EO 13286 sec. 4 (2003-02-28) revokes EO 13260 'effective as of March 31, 2003' (text verified at EO_13286.txt 3283-3374), before the 2004-03-19 own term; no extension found.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:13515",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "Continuances verified in held APP texts: 13585 to 2013-09-30, 13652 to 2015-09-30, 13708 to 2017-09-30, 13811 to 2019-09-30; EO 13872 (2019-05-13) sec. 4(a) supersedes EO 13515. 13889 lists the Commission under EO 13872, not 13515.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:14007",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "14048 (to 2023-09-30) and 14109 (to 2025-09-30) list PCAST under EO 14007; EO 14148 sec. 2(r) revokes 2025-01-20 (also 14154, 14177). Quotes verified.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:14031",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "14048 and 14109 list the Commission under EO 14031; EO 14148 (ii) revokes 2025-01-20. Quotes verified.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:14045",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "14048 and 14109 list it; EO 14148 (mm) revokes 2025-01-20. Quotes verified.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:14050",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "Signed 2021-10-19, after 14048; 14109 (aa) continues to 2025-09-30 before the 2023-10-19 own term; EO 14148 (oo) revokes 2025-01-20. Quotes verified.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:14084",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "ended_earlier_by_other",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "14109 (bb) continues to 2025-09-30 before the 2024-09-30 own term; EO 14148 (yy) revokes 2025-01-20. Quotes verified.",
+   "note": "Span and all cited evidence quotes verified exact against held texts; end_date is correctly labelled an upper bound only (body-only term; non-body clauses unbounded)."
+  },
+  {
+   "instrument_id": "EO:13267",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "end_date_needs_source",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "No EDGES or chain events; no held text gives the DHS Act enactment date; outer bound 2003-06-20 correct.",
+   "note": "Minor: sec. 4 'This order does not alter the existing authorities of United States Government departments and agencies' could be listed in savings_phrases; does not change the verdict."
+  },
+  {
+   "instrument_id": "EO:11412",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "end_date_needs_source",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "EO 11469 (1969-05-23, held FR text) substitutes outer bound December 10, 1969; event limb (30 days after final report) needs the report date; report deadline correctly not treated as an end."
+  },
+  {
+   "instrument_id": "EO:12184",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "end_date_needs_source",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "d5_d6": "Event limb (appropriations for the Pub. L. 95-622 Commission) undated in held texts; 1981-12-17 outer bound only; EO 12553 (1986) is after the bound."
+  },
+  {
+   "instrument_id": "EO:7680",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "not_an_end",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "note": "Held text of EO 7680 (Elk Refuge, 1937-07-30) contains no term; the dossier TERM texts (1950 Grand Teton Act wording) do not occur at the TERM offsets in this file. YES order."
+  },
+  {
+   "instrument_id": "EO:9579",
+   "item": "OWN_TERM_END_RECORDS line",
+   "producer_verdict": "not_an_end",
+   "review": "negative_confirmed",
+   "claims_enabled": "no",
+   "note": "Held 'original' (10 FR 9186-9187) is OPA price-order material; EO 9579 itself appears in EO_9578.txt (10 FR 8196) and states no term. Original remains unconfirmed for this dossier source."
+  }
+ ]
+}

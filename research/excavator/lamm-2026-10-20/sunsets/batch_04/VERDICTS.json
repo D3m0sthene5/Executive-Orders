@@ -1,0 +1,371 @@
+{
+ "schema": "lamm-ai-review/v1 (AI review record, not eo-lifecycle-review/v1)",
+ "batch": "batch_04",
+ "reviewer": "claude-lamm-04-reviewer (Opus, independent, held sources)",
+ "reviewed_path": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/lamm2/review_copy/batch_04",
+ "did_not_read": [
+  "lamm2/work",
+  "plant_keys"
+ ],
+ "suspected_plant": {
+  "file": "CLAIMS.proposed.jsonl (and kit/packet/applied-v2/CLAIMS.proposed.jsonl)",
+  "instrument_id": "EO:12660",
+  "scope_id": "EO:12660#lead",
+  "defect": "first_end.date 1992-12-16, computed date off by one year (correct 1993-12-16)",
+  "code": "DATE"
+ },
+ "other_claim_defects": [
+  "EO:12358 and EO:12528 claim lines give the as-extended date but quote only the original term clause and list no later_events; must cite EO 12415 / EO 12604"
+ ],
+ "counts": {
+  "records": 20,
+  "upheld_whole": 8,
+  "upheld_partial": 2,
+  "negative_confirmed": 10,
+  "records_refuted": 0,
+  "claim_lines_refuted": 3,
+  "claims_enabled_yes": 5
+ },
+ "verdicts": [
+  {
+   "instrument_id": "EO:11688",
+   "record_id": "OTE:EO:11688@lamm",
+   "producer_verdict": "not_an_end",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Sec. 1 of EO 11399 amended to stagger member terms; two-year sentence is a member term. Not an end.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:11770",
+   "record_id": "OTE:EO:11770@lamm",
+   "producer_verdict": "not_an_end",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Sixty-day congressional layover delays the delegation's effective date; not an end.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12061",
+   "record_id": "OTE:EO:12061@lamm",
+   "producer_verdict": "extended_or_renewed",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Original 1-402 (1979-12-31 or 60 days after conference) replaced by EO 12091 (held, 1978-11-01: April 30, 1980 or 60 days after conference). End not settled from held texts; verdict extended_or_renewed correct. EO 12258 revocation 1980-12-31 is after the outer bound.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12071",
+   "record_id": "OTE:EO:12071@lamm",
+   "producer_verdict": "extended_or_renewed",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "1-402 one year after effective date; EO 12100 (held) fixes effective date 1978-09-21; EDGES LE-c61048ddbbe4 Pub. L. 96-14 (1979-05-24) extended the Commission before 1979-09-21; statute not held. extended_or_renewed correct.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12091",
+   "record_id": "OTE:EO:12091@lamm",
+   "producer_verdict": "end_date_needs_source",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Amended 1-402 text verified ('April 30, 1980, or 60 days after the conclusion of the White House Conference'); event alternative needs conference date. end_date_needs_source correct.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12219",
+   "record_id": "OTE:EO:12219@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1980-08-31",
+   "claims_enabled": "yes",
+   "reason": "Held text: 1-402 of EO 12078 amended to 'terminate on August 31,1980' (original June 30, 1980). EO 12258 sec. 1-103(e) revokes EO 12078 as amended after the end. No further extension in held corpus or EDGES. Scope caveat: amending order whose sole content is the term; accepted as whole on that basis.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12229",
+   "record_id": "OTE:EO:12229@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1981-07-29",
+   "claims_enabled": "yes",
+   "reason": "1-402 'one year from the date of this Order', signed 1980-07-29 -> 1981-07-29. All clauses concern the Council. Not in EO 12258 continuance; EO 12399 sec. 4(d) revokes it as terminated (1982-12-31, after end). D5/D6 clean.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12323",
+   "record_id": "OTE:EO:12323@lamm",
+   "producer_verdict": "end_date_needs_source",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Sec. 4(b) 'October 1, 1982, or 60 days after submitting its final report, whichever is earlier' verified; 1982-08-02 threshold arithmetic correct; report deadline not used as end. EO 12366 touches 1(b) only.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12358",
+   "record_id": "OTE:EO:12358@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1983-12-31",
+   "claims_enabled": "no: proposed claim line cites only the original 4(b) quote ('one year from this date') with date 1983-12-31 and empty later_events; it must cite EO 12415 as the source of the date before it can be a claim",
+   "reason": "Original 4(b) 'one year from this date' (1983-04-14); EO 12415 (held, 1983-04-05) amends 4(b) to 'terminate on December 31, 1983'. No further extension (EO 12553 table lists 12358/12376/12415 only). All clauses concern the Commission. Record upheld as-extended.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12427",
+   "record_id": "OTE:EO:12427@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1985-06-27",
+   "claims_enabled": "yes",
+   "reason": "Sec. 4 'two years from the date of this Order, unless sooner extended', signed 1983-06-27 -> 1985-06-27. No extension in EDGES or held corpus; EO 12553 (1986) and EO 12610 sec. 3(b) (1987) revoke later as terminated. All clauses concern the Council.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12503",
+   "record_id": "OTE:EO:12503@lamm",
+   "producer_verdict": "extended_or_renewed",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "EO 12529 (held) replaced 4(b): report by 1986-12-31 and terminate 30 days after report. End event-relative; outer 1987-01-30 arithmetic correct. extended_or_renewed acceptable (could equally be end_date_needs_source).",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12507",
+   "record_id": "OTE:EO:12507@lamm",
+   "producer_verdict": "end_date_needs_source",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Amending order text verified (EO 12435 4(b): April 1, 1986 or thirty days after final report). EDGES for EO:12435 show no further amendment. end_date_needs_source correct.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12511",
+   "record_id": "OTE:EO:12511@lamm",
+   "producer_verdict": "end_date_needs_source",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "Sec. 4(c) 'April 29, 1987, or 60 days after submitting its final report, whichever is earlier' verified; 2(c) report deadline not used as end.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12528",
+   "record_id": "OTE:EO:12528@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1989-07-01",
+   "claims_enabled": "no: proposed claim line cites only the original 4(a) quote ('two years from the date of this Order') with date 1989-07-01 and empty later_events; it must cite EO 12604",
+   "reason": "Original 4(a) two years (1987-08-08); EO 12604 (held, 1987-08-05) 'shall terminate on July 1, 1989, unless sooner extended'. EO 12692 sec. 3(f) revokes as terminated 1989-09-29. No second extension held. Record upheld as-extended.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12660",
+   "record_id": "OTE:EO:12660@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1993-12-16",
+   "claims_enabled": "no: claim line carries a wrong first_end date 1992-12-16 for EO:12660#lead (DATE); fix to 1993-12-16 and re-run the checker",
+   "reason": "Record: sec. 3 'Unless extended by the President, the Board shall terminate 5 years after the date of this Order'; signed 1988-12-16 (FR header) -> 1993-12-16 correct. EO 12675 touches 1(c) only. CLAIM REFUTED (DATE): in CLAIMS.proposed.jsonl (and kit/packet/applied-v2/CLAIMS.proposed.jsonl) operative clause EO:12660#lead has first_end.date 1992-12-16 (off by one year) while its own quote and judgment_reason give 5 years / 1993-12-16; other 24 clauses say 1993-12-16.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12696",
+   "record_id": "OTE:EO:12696@lamm",
+   "producer_verdict": "ended_earlier_by_other",
+   "review_verdict": "negative_confirmed",
+   "refutation_code": null,
+   "end_date_accepted": null,
+   "claims_enabled": null,
+   "reason": "24 months -> 1991-11-13; EO 12756 (held) continues to 1993-11-13; EO 12869 sec. 4 revokes 12696 as amended, sec. 6 effective 1993-09-30, before the as-extended end. ended_earlier_by_other correct.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12720",
+   "record_id": "OTE:EO:12720@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1993-01-16",
+   "claims_enabled": "yes (kit routes to existing claim owner; no new claim line in this batch)",
+   "reason": "Original 3(e) 2 years (1992-07-16); EO 12783 (held, 1991-12-17) replaces 3(e) with 'terminate on January 16, 1993'. EO 12869 revokes as amended on 1993-09-30, after end. All clauses concern the Council.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12970",
+   "record_id": "OTE:EO:12970@lamm",
+   "producer_verdict": "ends_by_own_term_whole",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "1996-06-01",
+   "claims_enabled": "yes (weak; human certifier should confirm no charter renewal past 1996-06-01)",
+   "reason": "Held text replaces EO 12864 4(b) term with 'until June 1, 1996, unless otherwise extended'. EO 12890/12921 cap changes only; EDGES row LE-5848ebcdb129 names 'EO 12960, September 14, 1995' amending EO 12864 - date matches EO 12970, a likely OFR misnumbering, not a separate extension. EO 13062 sec. 3(d) revokes as terminated 1997-09-29. Weakest whole: charter extension possible but none held. Same amending-order scope caveat as 12219.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:12975",
+   "record_id": "OTE:EO:12975@lamm",
+   "producer_verdict": "ends_by_own_term_partial",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "2001-10-03",
+   "claims_enabled": null,
+   "reason": "Partial correct: NBAC 7(b) two years; EO 13046 (held) -> 1999-10-03; EO 13137 (held) renumbers to 8(b) and -> 2001-10-03. Secs. 1-2 agency directions are independent and unbounded. EO 13316 revocation 2003 after end.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  },
+  {
+   "instrument_id": "EO:13138",
+   "record_id": "OTE:EO:13138@lamm",
+   "producer_verdict": "ends_by_own_term_partial",
+   "review_verdict": "upheld",
+   "refutation_code": null,
+   "end_date_accepted": "2001-09-30",
+   "claims_enabled": null,
+   "reason": "Partial correct: sec. 1 'continued until September 30, 2001' bounds sec. 1 list and sec. 2 FACA functions; secs. 3-8 revocations/amendments are independent. EO 13225 (signed 2001-09-28, effective 2001-09-30) supersedes secs. 1-4 on the end date; EO 13226 revokes 1(h) same day. Not earlier than the end.",
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored? Answer: no for the record (see reason).",
+   "searched": [
+    "check_ote.py re-run: ok 20 records",
+    "held original read in context",
+    "jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv grepped directly for target",
+    "held corpus (fr-originals full_run texts, app-executive-orders texts) searched for the body name"
+   ]
+  }
+ ]
+}

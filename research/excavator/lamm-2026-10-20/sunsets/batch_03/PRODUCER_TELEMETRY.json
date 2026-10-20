@@ -1,0 +1,29 @@
+{
+ "batch": "batch_03",
+ "producer": "claude-lamm-03-producer",
+ "model": "claude-sonnet-5-5",
+ "orders": 20,
+ "records_written": 20,
+ "tool_calls_approx": 80,
+ "wall_time_minutes_approx": 75,
+ "usage": "token usage not exposed to the subagent; context used roughly 290k tokens of 15M budget",
+ "network_used": false,
+ "pregate": "check_ote.py: ok 20 records",
+ "fetch_lines_appended": 4,
+ "kit_sheets": 7,
+ "kit_sheets_note": "decision sheets for the 7 whole-end NO orders (9886, 10110, 10145, 10164, 10270, 10345, 10957) via kit.py prepare/apply/batch-check; 6 pass the actual claim-checker fully, EO 9886 passes with unverified custody-only checks (all_checks_passed false). Claims not committed.",
+ "claim_kit_change": "none",
+ "verdict_counts": {
+  "end_date_needs_source": 3,
+  "not_an_end": 8,
+  "ended_earlier_by_other": 1,
+  "ends_by_own_term_whole": 7,
+  "ends_by_own_term_partial": 1
+ },
+ "caveats": [
+  "Six whole ends (10145, 10164, 10270, 10345, 10957 and 9886) rest on dated windows or an amending-order term: the SCOPE call (operating end of the order versus persistence of the extensions it granted; amending order ending when the amended order ends) is the main refutation risk.",
+  "Dossier TERM records for EO 9082, 9142, 9915, 10934, 11467 and 9352 do not slice the held original (they come from other representations or neighbouring orders); EO 9082's TERM is the tail of the preceding order No. 9078 on the same FR page.",
+  "EO 11058 is partial because the sec. 2 proviso has no cutoff of its own.",
+  "No planted or example text was written by the producer; blinding kept: all outputs under the work dir; kit steps ran in a temporary in-repo folder (batch_03_kitwork) that was moved to the work dir and deleted from research/."
+ ]
+}
