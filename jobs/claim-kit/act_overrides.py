@@ -153,6 +153,18 @@ def _review_ledger(repo, rec, review, cache):
     return errors
 
 
+def names_number(number, text):
+    """True when `text` names the order number `number` as a whole token. A lettered number
+    ("7975A") also matches its hyphenated, spaced or lowercase forms ("7975-A", "7975 A",
+    "7975a"); an unlettered number ("7975") never matches a lettered one ("7975A", "7975-A")."""
+    m = re.fullmatch(r'(\d+)([A-Za-z]+)', number)
+    if m:
+        pattern = r'(?<!\d)' + m.group(1) + r'[-\s]?(?i:' + re.escape(m.group(2)) + r')(?![A-Za-z\d])'
+    else:
+        pattern = r'(?<!\d)' + re.escape(number) + r'(?!\d)(?!-?[A-Za-z](?![A-Za-z]))'
+    return re.search(pattern, str(text)) is not None
+
+
 def verify(rec, selected, universe, missing_pairs, repo=None, _ledgers=None):
     """Return (accepted_record_or_None, [refusal codes]). `selected` maps instrument id to
     the held representation (with 'text' and 'source'); `missing_pairs` is the set of
@@ -230,7 +242,7 @@ def verify(rec, selected, universe, missing_pairs, repo=None, _ledgers=None):
     _span(errors, 'target_naming', text, naming.get('char_start'), naming.get('char_end'), naming.get('text'), naming.get('sha256'))
     number = target.split(':', 1)[-1]
     if rec['names_target'] is True:
-        if not re.search(r'(?<!\d)' + re.escape(number) + r'(?!\d)', str(naming.get('text'))):
+        if not names_number(number, naming.get('text')):
             errors.append('target_number_not_in_naming_span')
     elif not str(rec.get('reaches_target_via') or '').strip() or rec['scope'] == 'whole':
         errors.append('indirect_record_needs_reaches_target_via_and_non_whole_scope')
