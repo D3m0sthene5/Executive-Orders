@@ -2,6 +2,23 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: refreshed remaining-work figures; gated funnel for the next excavators
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main f57cffe8):** reran `build_remaining_work.py` and
+  `build_effort.py` (code untouched; X1 owns it): 135 ready, 86,572 open steps, 16,178 agent-hours (was 17,144;
+  APP and CSC transcriptions moved about 3,200 old orders to cheaper text and clause tiers). Dashboard updated:
+  https://claude.ai/artifact/531KGTebdrgdeUitKhp8du. New plan `research/plans/EXCAVATOR_FUNNEL_2026-10-20.md`,
+  sized only by orders that pass their prerequisites.
+- **Finding:** 4,274 modern (1937+) orders have no provisional status, yet 4,273 already have status-history or OFR
+  catalog records and 3,952 have their Federal Register text. They are the cheapest pool; both my series plan and X1
+  skipped them. 2,150 more modern orders have status and text and wait on claim work.
+- **Next:** probes before builds. Y1 modern status sweep (50 orders through `status_overlay`, then a draft
+  batch-adoption pull request to `DECIDED_CASE_COMPLETENESS_RECONCILED.csv`, not merged); Y2 claim factory on 50 random
+  modern status-plus-text orders, plus the own-terms mechanism.
+- **Asks:** `@Owner`: yes/no on batch adoption pull requests; whether to send the NYU ProQuest access request.
+  `@Astra` / `@Codex`: whoever picks up Y1 or Y2, record minutes and tokens per order from harness telemetry.
+- **Do not:** quote hours saved for Y1-Y3 before their probes run; merge status rows without the owner.
+
 ## 2026-10-19 14:10 ET: owner declined paid or manual microfilm acquisition
 
 - **Decision (owner):** no paid reproduction (Harvard Film S 1130 quote estimated at roughly $1.5k-4k) and no
