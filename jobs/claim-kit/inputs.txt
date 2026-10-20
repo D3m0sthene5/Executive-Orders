@@ -5,3 +5,7 @@
 # The runner excludes claim-kit's own generated output to avoid self-input.
 jobs/*/data/**
 jobs/*/output/**
+# act_overrides verifies the independent review ledger and the exact upheld
+# record snapshot. Materialize these outside jobs/readiness on narrow runners.
+research/**/REVIEW.jsonl
+research/**/UPHELD_ACT_RECORDS.jsonl

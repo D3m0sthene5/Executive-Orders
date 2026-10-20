@@ -55,6 +55,33 @@ class CorpusTests(unittest.TestCase):
         with self.assertRaisesRegex(FileNotFoundError, "authoritative census"):
             inputs.load_corpus(self.repo)
 
+    def test_shared_facts_stay_out_of_originals_events_and_predicates(self):
+        p=self.write('research/readiness/factual/producer/questions.jsonl','held registry\n')
+        self.write('jobs/norton/output/INPUTS.json',json.dumps({'sha256':{p.relative_to(self.repo).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()}}))
+        data={'legal_effect':'unresolved','factual_review_status':'ai_reviewed',
+              'reviewed_answer':{'text_path':'research/primary.txt','text':'An outside institution completed its report.'}}
+        self.jsonl('jobs/norton/output/FRAGMENTS.jsonl',[{'instrument_id':'EO:1','kind':'shared_factual_obligations','data':data}])
+        c=inputs.load_corpus(self.repo)
+        self.assertEqual(1,len(c['factual_obligations']['EO:1']))
+        self.assertEqual([],c['texts']);self.assertEqual([],c['pairs']);self.assertEqual({},c['current_law'])
+        p.write_text('changed registry\n')
+        c=inputs.load_corpus(self.repo);self.assertEqual({},c['factual_obligations'])
+        self.assertTrue(any('NORTON input changed' in w for w in c['warnings']))
+
+    def test_rebuilding_own_terms_does_not_destroy_independently_pinned_facts(self):
+        registry=self.write('research/readiness/factual/producer/questions.jsonl','bound question\n')
+        old_terms=self.write('jobs/claim-kit/output/OWN_TERMS.jsonl','prior census generation\n')
+        key=registry.relative_to(self.repo).as_posix();digest=hashlib.sha256(registry.read_bytes()).hexdigest()
+        prior={old_terms.relative_to(self.repo).as_posix():hashlib.sha256(old_terms.read_bytes()).hexdigest()}
+        self.write('jobs/norton/output/INPUTS.json',json.dumps({'sha256':{key:digest,**prior},
+                    'consumer_sha256':{key:digest},'lagged_census_sha256':prior}))
+        self.jsonl('jobs/norton/output/FRAGMENTS.jsonl',[{'instrument_id':'EO:1','kind':'shared_factual_obligations',
+                    'data':{'legal_effect':'unresolved','factual_review_status':'candidate'}}])
+        old_terms.unlink()  # Real build.py removes this before load_corpus.
+        self.assertEqual(1,len(inputs.load_corpus(self.repo)['factual_obligations']['EO:1']))
+        registry.write_text('changed question\n')
+        self.assertEqual({},inputs.load_corpus(self.repo)['factual_obligations'])
+
     def test_empty_census_and_duplicate_identity_fail(self):
         self.write_csv(inputs.UNIVERSE, [{"id": "EO:1", "included_in_bibliography": "0"}])
         with self.assertRaisesRegex(ValueError, "empty authoritative"):

@@ -152,6 +152,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
     if iid in corpus.get('status_histories',{}):
         dossier['status_history']=corpus['status_histories'][iid]
+    if corpus.get('factual_obligations',{}).get(iid):
+        dossier['factual_obligations']=corpus['factual_obligations'][iid]
     dossier['fingerprint']=canonical_sha(dossier)
     return dossier
 
@@ -336,7 +338,7 @@ def build(repo, out, cache=None):
                          'selected':{k:v for k,v in selected[iid].items() if k!='text'} if iid in selected else None,
                          'draft':draft,'machine_searches':{k:v for k,v in corpus['machine_searches'].items() if k in search_ids},
                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
-                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
+                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
             dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
             name=filename(iid)
