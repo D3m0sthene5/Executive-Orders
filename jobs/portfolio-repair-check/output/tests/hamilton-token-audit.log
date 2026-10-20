@@ -1,29 +1,5 @@
-FF..........
-======================================================================
-FAIL: test_complete_manifest_cannot_override_missing_counts (test_profile.FinderIntegration.test_complete_manifest_cannot_override_missing_counts)
+............
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/hamilton-token-audit/test_profile.py", line 117, in test_complete_manifest_cannot_override_missing_counts
-    check = self.run_finder(False)
-            ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/hamilton-token-audit/test_profile.py", line 113, in run_finder
-    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-AssertionError: 3 != 0 : refused: --data is inside the repository
+Ran 12 tests in 0.123s
 
-
-======================================================================
-FAIL: test_complete_manifest_with_partial_output_remains_partial (test_profile.FinderIntegration.test_complete_manifest_with_partial_output_remains_partial)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/hamilton-token-audit/test_profile.py", line 123, in test_complete_manifest_with_partial_output_remains_partial
-    check = self.run_finder(True)
-            ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/hamilton-token-audit/test_profile.py", line 113, in run_finder
-    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-AssertionError: 3 != 0 : refused: --data is inside the repository
-
-
-----------------------------------------------------------------------
-Ran 12 tests in 0.084s
-
-FAILED (failures=2)
+OK

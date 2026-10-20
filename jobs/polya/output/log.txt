@@ -1,4 +1,4 @@
-# POLYA compare (generated; repo_head 7247771207c619b88121b7ad8d7cd87fde9166c0)
+# POLYA compare (generated; repo_head d0527136caa14cbde2455737dbf86eee37f868c3)
 
 Pool: 14972 orders, 225 ready, 14747 not ready (3134 decided, 11613 undecided). Reach is not yield.
 
