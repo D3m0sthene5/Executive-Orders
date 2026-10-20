@@ -132,8 +132,11 @@ A source recorded before or with its forecast is retrospective. `n_scored` count
 `n_experiments_scored` groups quantities sharing an experiment/source. These counts are not interchangeable.
 The scores are descriptive; multiple metrics from the same experiment do not become independent studies.
 
-The October 20 repair appends O-20261020-44 (MW-C2 Opus with sources, adjudicated 7/10),
-O-20261020-45 (Lambertini III plant gate untested), and O-20261020-46 (Rastell R12553 plant gate untested).
+The October 20 repair appends O-20261020-49 (MW-C2 Opus with sources, adjudicated 7/10),
+O-20261020-50 (Lambertini III plant gate untested), and O-20261020-51 (Rastell R12553 plant gate untested).
+These were written as O-20261020-44..46 on the repair branch and renumbered when the parallel branches merged;
+NORTON's forecast and outcome likewise became L-20261020-65 and O-20261020-52. A forecast with `renumbered_from`
+is proved by the commit that first registered its original record under the old id.
 It retains the mechanical 8/10 and false passes in
 history. The corresponding base-rate correction is a new pinned revision, leaving the original row intact.
 `research/production/astra-portfolio-repair-2026-10-20/mountweazel-llull/HISTORICAL_CORRECTIONS.json`
