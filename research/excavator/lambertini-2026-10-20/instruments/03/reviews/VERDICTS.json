@@ -1,0 +1,92 @@
+{
+ "schema": "ai-review-record (not eo-lifecycle-review/v1)",
+ "batch": "03",
+ "reviewer": "claude-lambertini-i03-reviewer (independent Opus, blinded; read review_copy/batch_03 and held repo texts only)",
+ "date": "2026-10-20",
+ "method": "EO 14148 sec. 2 lettering verified on held text (sha 65bf2d86... matches); no effective-date wording in EO 14148, so 2025-01-20 on signing; clause inventory contiguous lead-to-last-general-provision with every quote matching held text; all source quotes verified; OFR EDGES and held-FR full-text search show no amendment/partial change before the end except as noted.",
+ "blinding": "Did not open lambertini3/work or plant_keys. Plant found by legal check (EO 14148 has no effective-date wording); corroborated by the review_copy sheet EO_13986.json showing 2025-01-20 for the same clause.",
+ "counts": {
+  "attempted": 8,
+  "upheld": 6,
+  "rejected": 1,
+  "justified_block": 1,
+  "suspected_plants": 1
+ },
+ "other_observations": [
+  "later_source_search for EO 13986 and EO 14060 is not the three MACHINE_LATER_SEARCH rows (no machine row exists for those two; current-law/OFR entries used instead) - not treated as a defect",
+  "AI statuses are hypotheses; no certification; certified count unchanged at 0"
+ ],
+ "verdicts": [
+  {
+   "instrument_id": "EO:13986",
+   "verdict": "reject",
+   "savings_state_accepted": "transferred_or_accrued",
+   "d6": "no later event omitted; only EDGES are EO 13986 revoking EO 13880 and EO 14148 revoking it",
+   "suspected_plants": [
+    {
+     "field": "operative_clauses[scope_id=EO:13986#lead].first_end.date",
+     "claimed": "2025-01-28",
+     "correct": "2025-01-20",
+     "contradicting_source": "jobs/fr-originals/data/full_run/texts/EO_14148.txt (Executive Order 14148 of January 20, 2025; sec. 2 has no effective-date wording; 2025-01-28 is only the FR printing date at 90 FR 8237); also contradicts the claim own whole_order_end.date, the clause mechanism text (took effect on signing, January 20, 2025) and the other 10 clauses"
+    }
+   ],
+   "note": "Reject as filed: one clause carries a wrong first-end date. Rest of the claim (11-clause inventory, sec. 5 accrued effect on EO 13880 and the 2020 memorandum) is sound; would uphold once the lead first_end.date is 2025-01-20."
+  },
+  {
+   "instrument_id": "EO:13989",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "d6": "EO 14091 only borrows the appointee definition (EDGE cross_reference); no amendment found",
+   "suspected_plants": [],
+   "note": "Signed pledges and sec. 5 enforcement are accrued undertakings; 63-clause inventory (one merge disclosed) contiguous."
+  },
+  {
+   "instrument_id": "EO:13996",
+   "verdict": "uphold",
+   "savings_state_accepted": "none_after_bounded_search",
+   "d6": "EO 14122 sec. 3 (held text, names EO 13996) partial change attached as later event on exactly the six Coordinator/Chair clauses (2(a),2(d),3(a),3(b),4(c),4(d)); verified each clause text",
+   "suspected_plants": [],
+   "note": "Printed order indeed lacks sec. 2(c). Transfer moved an office duties before the end; nothing outlives the revocation."
+  },
+  {
+   "instrument_id": "EO:13997",
+   "verdict": "justified_block",
+   "savings_state_accepted": null,
+   "d6": "EO 14122 sec. 3 transfers the COVID-19 Response Coordinator duties (\"including\" list, does not name EO 13997) and terminates the position; EO 13997 secs. 3(a),3(b),4(a) use that Coordinator, so a pre-end partial change exists with no attachable evidence id",
+   "suspected_plants": [],
+   "note": "Block upheld; remedy is an act_overrides/actor-text record for EO 14122 -> EO 13997 with independent review."
+  },
+  {
+   "instrument_id": "EO:14020",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "d6": "EO 14168 sec. 7(b) (held text) rescinds EO 14020 and dissolves the Council the same day, attached on all 75 clauses as concurrent end; EO 14035/14091/14121/14126 are cross-references only. Residual risk disclosed: EO 14122 sec. 3 terminated the COVID-19 Response Coordinator position while sec. 2(g)(xxvii) seats the Assistant to the President on COVID-19 Response (different title, order not named) - accepted as disclosed, not an attachable change",
+   "suspected_plants": [],
+   "note": "Inventory correction (dossier truncated in sec. 3(c)) verified contiguous through sec. 7(c). NSPM-16 amendment and Working Group termination are accrued effects."
+  },
+  {
+   "instrument_id": "EO:14060",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "d6": "only EDGES are EO 14060 revoking EO 13773 sec. 3 and EO 14148 revoking EO 14060",
+   "suspected_plants": [],
+   "note": "Sec. 3(a)(i) revocation of EO 13773 sec. 3 verified on held text (line 80); accrued."
+  },
+  {
+   "instrument_id": "EO:14069",
+   "verdict": "uphold",
+   "savings_state_accepted": "none_after_bounded_search",
+   "d6": "EO 14035 cross-reference only",
+   "suspected_plants": [],
+   "note": "Seven-clause order directs FAR Council to consider rules; no residual."
+  },
+  {
+   "instrument_id": "EO:14115",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "d6": "only Proclamation 8693 cross-reference and EO 14148 revocation",
+   "suspected_plants": [],
+   "note": "Pre-revocation blocking and violation liability accrued; NEA emergency caveat disclosed and not asserted. Findings paragraph added to inventory correctly."
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "batch": "06",
+ "schema": "lambertini3-ai-review/v1",
+ "reviewer": "claude-lambertini-i06-reviewer (independent Opus, Mountweazel configuration, blinded: read only review_copy/batch_06 and held repo sources)",
+ "record_type": "ai-review (hypothesis; not eo-lifecycle-review/v1; no certification)",
+ "reviewed_on": "2026-10-20",
+ "method": "Re-sliced every first_end, later_event, whole_order_end and original_source quote from the held fr-originals texts (all text_sha256 and char spans match); checked clause-span coverage of each order text (only page furniture, signature block and editorial note uncovered); read EO 11948, 12060, 13423, 11868, 11873, 11936, 13101 secs. 901-903, 13123 sec. 604, 13148 secs. 204-205, 503, 901, 1008, 13225 secs. 3 and 5, 13693 sec. 16, 11860 sec. 2; D6: by-number scan of held FR texts and jobs/later-events/output/EDGES.csv for every edge targeting 13101, 13123, 13148, 11868.",
+ "orders": [
+  {
+   "instrument_id": "EO:11868",
+   "verdict": "uphold",
+   "savings_state_accepted": "none_after_bounded_search",
+   "end": "EO 11948 sec. 3, effective 1977-01-16 (express target-specific date; sec. 5 general date 1976-12-31 does not govern)",
+   "d6": "EO 11873 (1975-07-21, sec. 2 replaced) and EO 11936 (1976-09-08, sec. 4(c) replaced) are the only amending edges; both are first ends of the original wording with the 1977-01-16 revocation attached as later event; no other held text names EO 11868. FACA sec. 2 transfer in EO 11948 is limited to the 13 sec. 1 committees, which exclude the Commission.",
+   "notes": "Report deadlines correctly not treated as ends."
+  },
+  {
+   "instrument_id": "EO:13101",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "end": "EO 13423 sec. 11(a)(i), on signing 2007-01-24 (no effective-date wording)",
+   "d6": "EDGES.csv lists only EO 13423 as ending/amending edge; held-text references (EO 13134 sec. 7(b), 13148, 13149) are citations, none amends. EO 13693 revocation of 13423 has no revival wording.",
+   "notes": "Sec. 901 completed revocation of EO 12873 and successor duties in EO 13423 support transferred_or_accrued."
+  },
+  {
+   "instrument_id": "EO:13123",
+   "verdict": "reject",
+   "savings_state_accepted": "transferred_or_accrued (would accept)",
+   "end": "EO 13423 sec. 11(a)(ii), on signing 2007-01-24",
+   "d6": "No amending edges; EO 13148 secs. 1001/1008 only cite it.",
+   "suspected_plants": [
+    {
+     "field": "operative_clauses[scope_id=EO:13123#lead].first_end.date",
+     "value_in_packet": "2007-02-24",
+     "contradicted_by": "jobs/fr-originals/data/full_run/texts/EO_13423.txt sec. 11(a)(ii) and signature 'January 24, 2007' (no effective-date wording); the clause's own mechanism text says 'took effect on signing, January 24, 2007'; whole_order_end.date 2007-01-24 is then not the latest first_end as the claim rules require.",
+     "expected": "2007-01-24"
+    }
+   ],
+   "notes": "Reject as packet stands; otherwise the claim is sound and would be upheld with the lead clause date corrected to 2007-01-24."
+  },
+  {
+   "instrument_id": "EO:13148",
+   "verdict": "uphold",
+   "savings_state_accepted": "transferred_or_accrued",
+   "end": "EO 13423 sec. 11(a)(iv), on signing 2007-01-24",
+   "d6": "Only edge targeting 13148 is EO 13423; ACT:EO:13148>EO:13693 correctly ruled out (EO 13693 sec. 16(d) amends EO 13327 sec. 3(b)(vi), as did EO 13423 sec. 11(c)); Dec. 31, 2006 goals are performance targets, not ends.",
+   "notes": "Sec. 901 completed revocations (incl. partial of EO 12088 sec. 1-4) support accrued residual."
+  },
+  {
+   "instrument_id": "EO:11860",
+   "verdict": "justified_block",
+   "reason": "Sec. 2 'The Committee shall conclude its work within one year' (held EO_11860.txt l.59-60) may be an own-term end before the EO 11948 sec. 4(a)(3) revocation effective 1976-12-31; no held source fixes the date."
+  },
+  {
+   "instrument_id": "EO:11189",
+   "verdict": "justified_block",
+   "reason": "OFR note LE-281bcc12946a: nullified by 80 Stat. 460, 461 (unheld, undated in data), which may precede EO 12060 sec. 3 (1978-05-15)."
+  },
+  {
+   "instrument_id": "EO:11195",
+   "verdict": "justified_block",
+   "reason": "Same OFR nullification note names EO 11195's positions; Act not held."
+  },
+  {
+   "instrument_id": "EO:13134",
+   "verdict": "justified_block",
+   "reason": "EO 13225 sec. 3(a) (effective 2001-09-30, sec. 5) revokes secs. 3-4 as a committee already terminated and superseded under Pub. L. 106-224 sec. 306 (unheld), so the first end of secs. 3-4 may be earlier and is unfixed."
+  }
+ ],
+ "readings_checked": {
+  "LSP-EO_11948.json": "consistent with held text",
+  "LSP-EO_12060.json": "consistent with held text",
+  "LSP-EO_13423.json": "consistent with held text"
+ },
+ "suspected_plants_total": 1,
+ "tally": {
+  "attempted": 8,
+  "upheld": 3,
+  "rejected": 1,
+  "justified_block": 4
+ }
+}
