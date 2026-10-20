@@ -25,7 +25,7 @@ INPUT_SCHEMA = "eo-claim-kit-overlay-input/v1"
 EVIDENCE_SCHEMA = "eo-status-overlay-evidence/v1"
 REVIEW_SCHEMA = "eo-status-overlay-review/v1"
 PROPOSAL_SCHEMA = "eo-status-promotion-proposal/v1"
-CODE_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py", "assemble.py")
+CODE_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py", "assemble.py", "act_overrides.py")
 COMPILED_STEMS = ("OVERLAY_INPUTS", "CLAUSES", "OWN_TERMS", "ACTING_PROVISIONS",
                   "CHAINS", "STATUS_LEADS", "TEXT_REPRESENTATIONS")
 SHA = re.compile(r"[0-9a-f]{64}\Z")
