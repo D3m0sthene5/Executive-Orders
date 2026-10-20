@@ -575,6 +575,20 @@ class TestOutcomeBaseRates(Base):
         self.assertEqual(code, 4)
         self.assertIn("outcome %s measured 0.06" % oid, out)
 
+    def test_check_rejects_old_identifiers_left_inside_derived_from(self):
+        oid = self.outcome(0.06)
+        self.assertEqual(self.baserate(oid, "--num", "3", "--den", "50")[0], 0)
+        d = json.loads((self.led / "base_rates.json").read_text())
+        row = next(r for r in d["rows"] if r["key"] == "upheld_per_attempt.llull_t")
+        self.assertEqual(llull.outcome_rate_problems(row["key"], row, llull.Ledger(self.led)), [])
+        correct = dict(row["derived_from"])
+        for field, value in (("outcome_id", "O-20260101-999"), ("forecast_id", "L-20260101-999")):
+            row["derived_from"] = {**correct, field: value}
+            (self.led / "base_rates.json").write_text(json.dumps(d))
+            code, out, _ = run(*self.args, "check")
+            self.assertEqual(code, 4)
+            self.assertIn("derived_from identifiers disagree", out)
+
     def test_binary_outcomes_are_not_rates(self):
         run(*self.args, "forecast", "--plan-id", "B", "--planner", "claude:t", "--quantity", "upheld_per_attempt", "--event",
             "e", "--prob", "0.3", "--reference-class", "upheld_per_attempt.modern_claim_no_held_end")

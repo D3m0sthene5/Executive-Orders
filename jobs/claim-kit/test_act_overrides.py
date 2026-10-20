@@ -247,5 +247,26 @@ class ActOverrideTests(unittest.TestCase):
         self.assertEqual([r["status"] for r in report], ["refused", "ingested"])
 
 
+class NamesNumberTests(unittest.TestCase):
+    """Lettered order numbers match their hyphenated, spaced and lowercase forms only."""
+
+    def test_lettered_number_matches_its_written_forms(self):
+        for text in ("No. 7975-A of September 16, 1938.", "No. 7975A of", "Order 7975 A,", "order 7975a",
+                     "No. 7975-a.", "(7975A)"):
+            self.assertTrue(AO.names_number("7975A", text), text)
+
+    def test_lettered_number_rejects_other_numbers_and_letters(self):
+        for text in ("No. 7975 of September 16, 1938.", "No. 7975-B", "No. 17975-A", "No. 7975-AB",
+                     "No. 79751A", "No. 7975AA", "No. 7975--A", "No. 7975.A"):
+            self.assertFalse(AO.names_number("7975A", text), text)
+
+    def test_plain_number_unchanged_but_not_lettered(self):
+        for text in ("No. 7975 of September 16, 1938.", "Order 7975,", "Order 7975.", "Order 7975 and later orders"):
+            self.assertTrue(AO.names_number("7975", text), text)
+        for text in ("No. 7975A of", "No. 7975-A of", "No. 79750", "No. 17975", "No. 7975a,",
+                     "No. 7975 A,", "No. 7975  A,", "No. 7975 - A,", "No. 7975AB"):
+            self.assertFalse(AO.names_number("7975", text), text)
+
+
 if __name__ == "__main__":
     unittest.main()

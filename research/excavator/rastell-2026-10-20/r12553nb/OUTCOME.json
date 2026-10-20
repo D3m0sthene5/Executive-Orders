@@ -1,0 +1,57 @@
+{
+ "workflow": "rastell-r12553nb-probe",
+ "date": "2026-10-20",
+ "plan_id": "R12553NBP",
+ "status": "AI review hypotheses, not human certification; certified whole-lifecycle count stays 0; no codebook or status change",
+ "pool": {
+  "pool": "R12553NBP",
+  "size": 10,
+  "ids_from": "research/production/day-review-2026-10-20/next-lines/R12553NB_ids.txt (52 ids; probe of 10)"
+ },
+ "act": {
+  "attempts": 10,
+  "located": 9,
+  "blocked": 1,
+  "blocked_ids": ["EO:11284"],
+  "blocked_reason": "EO 11284: D6 earlier-end lead (Pub. L. 96-513, DOPMA) not held; fetch requested",
+  "upheld": 8,
+  "rejected": 1,
+  "act_records_upheld_per_attempt": 0.8,
+  "note": "The one rejection (EO 11327, effective_date) was of the planted copy; the genuine EO 11327 record was not independently reviewed, so it is not upheld and not ingested.",
+  "upheld_ids": ["EO:8427", "EO:10601", "EO:11493", "EO:12040", "EO:12186", "EO:12244", "EO:12269", "EO:12351"],
+  "d6_earlier_end_upper_bound_only": ["EO:10601 (sec. 3, EO 12148 1979-07-15)", "EO:11493 (EO 11541, 1970-07-01)", "EO:12186 (EO 12189 / EO 12287, method open)", "EO:12244 (own term, 1981-10-01)", "EO:12269 (own term, 1982-12-31)", "EO:12351 (own term, 1983-03-10)"],
+  "ingest": "8 records in research/readiness/act_overrides/rastell-r12553nb-2026-10-20.jsonl; review ledger research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl with UPHELD_ACT_RECORDS.jsonl; act_overrides.verify accepted 8/8 with the ledger check"
+ },
+ "claims": {
+  "produced": 6,
+  "upheld": 6,
+  "blocked": ["EO:10601", "EO:12186"],
+  "file": "research/readiness/claims/claude-r12553nb-01-2026-10-20.jsonl",
+  "checker": {"claims_checked": 6, "all_checks_passed": 6, "mechanical_fail": 0, "gate_passed": 6},
+  "kit_check_note": "kit.py check reports stale_dossier_fingerprint / not_dossier_evidence until the claim-kit build re-runs with the new act_overrides (claims were assembled against simulated ingested dossiers)"
+ },
+ "claims_enabled": 6,
+ "claims_enabled_ids": ["EO:8427", "EO:11493", "EO:12040", "EO:12244", "EO:12269", "EO:12351"],
+ "probe_gate": {
+  "rule": "at least 7 of 10 R12553NBP ACT records upheld and at least 5 of 10 orders enable an upheld claim",
+  "measured": "8 of 10 upheld; 6 of 10 enabled"
+ },
+ "probe_gate_passed": true,
+ "plants": {
+  "planted": 1,
+  "caught": 1,
+  "plant": "ACT:EO:11327>EO:12553 effective_date",
+  "key": "scratch only"
+ },
+ "plants_caught_share": 1.0,
+ "blocked_pending_rulings": {
+  "report-deadline": 0,
+  "transcription-as-copy": 0,
+  "note": "no item was decided on a pending ruling; fixed terms (EO 12244, 12269, 12351) were read as own sunsets, not report deadlines"
+ },
+ "caveats": [
+  "EO 10601 claim blocked: sec. 3 later events (EO 11051, 11725, possibly 10773/10782) not located; inventory omits sec. 1(a) and 2",
+  "EO 12186 claim blocked pending a method ruling on whole-text restatement and non-express decontrol",
+  "EO 8427: Postal Reorganization Act 1970 lead (unheld, non-express) noted; EO 12553 is the first express end"
+ ]
+}

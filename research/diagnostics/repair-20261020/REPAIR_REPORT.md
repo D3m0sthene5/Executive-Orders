@@ -22,6 +22,8 @@ from different branches.
 | Operational digest | A healthy retained generation could be mistaken for a successful latest attempt. | Label published output status explicitly, link the current workflow and retained failure receipts, and order NEYMAN consumers before the final digest. |
 | Valla current pilot | Historical attestations correctly refused reuse after a protocol change; the pilot assumed five reusable components. | Keep refusals explicit, validate current exact-claim holds and review bytes, and verify that all five cases remain blocked in the actual tracker. Frozen experiments are unchanged. |
 
+The full first run completed without cancellation. Claim drafting took 52m02s and succeeded; 25 of 27 jobs succeeded, portfolio validation failed and daily-digest was correctly blocked. Successful outputs and failed receipts were published in `1ebe65b501a886ba959c6c38d214da0cc1e3e9e2`. See `PRIMARY_RUN_RESULT.json` and `SAFE_STALL_DIAGNOSTIC.md`. The two validation integration defects were repaired separately: validated runner inventory annotations now retain their meaning in backups/attempts, and the historical gate replays its exact ledger snapshot while preserving the merged current ledger.
+
 ## Reconciliation
 
 Original PRs: #38 (ProQuest handoff), #40 (Claude production), #42 (NEYMAN),
@@ -49,6 +51,12 @@ validation (16), Junto (40), Valla current validation (25), and the four affecte
 producers (8/23/42/33, with four sparse-data skips across those producer suites).
 The road suite passed on GitHub Ubuntu and Windows, including failure retention,
 blocked consumers, independent publication and freshness races.
+
+## Late production head
+
+A final head refresh found 20 additional commits in PR #40, published in `874f970f5564b81135e6ff939ff77b56f8972a5a` while validation was running. The preceding repair had already passed all ten downstream jobs in run 39503891853, including 445 portfolio tests and seven integration stages, and published output commit e643172c.
+
+The new integration retains those results and incorporates the new source-page coverage and lettered-identity fixes, 27 authored provisional claims, ACT reviews, pending owner-method questions and original experiment bytes. It preserves the ledger prefixes and registration commits, projects incoming L-78 to L-88 and O-59 through O-62 to O-76 through O-79, and retains original identifiers as provenance. The ledgers contain 88 forecasts and 79 outcomes. Nested derived-rate pointers now agree with their actual source outcomes; the existing 7/10 corrected plant rate remains controlling. New source acquisition and downstream validation are pending for this later head; 251 remains the earlier measured snapshot, not a new combined claim. See `LATE_PRODUCTION_RECONCILIATION.json`.
 
 ## Research boundaries
 

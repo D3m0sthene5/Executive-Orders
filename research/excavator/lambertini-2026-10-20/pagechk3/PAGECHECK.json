@@ -1,0 +1,221 @@
+{
+ "schema": "pagechk3.pagecheck/1",
+ "plan_id": "PAGECHK3",
+ "date": "2026-10-20",
+ "checker": {
+  "agent": "claude",
+  "model": "claude-opus-5-5",
+  "kind": "AI page inspection (producer-side), not an independent human review"
+ },
+ "method": "Official govinfo FR issue PDF re-downloaded once to scratch (not committed) from the URL recorded in jobs/source-ladder/output/SOURCES.jsonl; its sha256 equals the held witness hash recorded in the source records and dossiers; the named PDF pages were rendered with pdftoppm and inspected as images with the Read tool; the operative sentences and dates were compared by eye with the extracted text spans the dossiers use.",
+ "page_checks_attempted": 3,
+ "page_checks_passed": 3,
+ "page_checks_failed": 0,
+ "original_pages_confirmed_scope": "The official pages/images named in pdf_pages_checked were inspected; this supports original_pages_confirmed: true for these sources only for the verified sentences listed. It decides no legal status.",
+ "guardrails": "No codebook, status, census or certified-count change (certified stays 0). AI statuses remain hypotheses. Pending owner rulings (report-deadline, transcription-as-copy, EO 14052 strike-and-reinsert) are not decided here; any target needing one stays BLOCKED.",
+ "llull": {
+  "forecast_ids": [
+   "L-20261020-82",
+   "L-20261020-83",
+   "L-20261020-84"
+  ],
+  "census_id": "D-20261020-81",
+  "preregister_commit": "7e9ee1ec0"
+ },
+ "texts": [
+  {
+   "ending_instrument": "EO:12319",
+   "title": "River Basin Commissions",
+   "citation": "46 FR 45591",
+   "fr_issue": "FR-1981-09-14 (Vol. 46, No. 177)",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1981-09-14/pdf/FR-1981-09-14.pdf",
+   "pdf": "FR-1981-09-14.pdf",
+   "pdf_pages_checked": [
+    7,
+    8
+   ],
+   "printed_fr_pages": [
+    "45591",
+    "45592"
+   ],
+   "dossier_source_location": "46 FR 45591, PDF pages 1-8 (location confidence low)",
+   "extracted_texts_compared": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12319.txt",
+     "text_sha256": "f9aad9616d7389b39212358838723b3217bcd051815c9049dbb542b185314953",
+     "role": "official FR OCR text layer (requires_page_check true), dossier span 0-22626"
+    },
+    {
+     "path": "jobs/app-executive-orders/output/texts/executive-order-12319-river-basin-commissions.txt",
+     "text_sha256": "06b19d01f280630f85ee77c57b1bcc8448d3d8925f40112f9a57bbd7de0cb545",
+     "role": "APP transcription span used for revoke events (chars 2068-2816)"
+    },
+    {
+     "path": "jobs/clause-drafts/output/texts/cd-opus_zip-12319-29f9e71881.txt",
+     "text_sha256": "0feebaed1a2da42220477b47e5a2a99ff1a21e1f10a62e366accbfd21f32a2d5",
+     "role": "APP transcription copy span used for revoke events (chars 2135-2883)"
+    }
+   ],
+   "verified_sentences": [
+    "Sec. 5. (a) Effective October 1, 1981, the following Executive Orders are revoked: (1) Executive Order No. 11331, as amended, which established the Pacific Northwest River Basins Commission. (2) Executive Order No. 11345, as amended, which established the Great Lakes Basin Commission. (3) Executive Order No. 11371, as amended, which established the New England River Basins Commission. (4) Executive Order No. 11578, as amended, which established the Ohio River Basin Commission. (5) Executive Order No. 11658, as amended, which established the Missouri River Basin Commission.",
+    "(b) Effective January 1, 1982, Executive Order No. 11659, as amended, which established the Upper Mississippi River Basin Commission, is revoked."
+   ],
+   "verified_dates": {
+    "signed": "1981-09-09 (heading 'Executive Order 12319 of September 9, 1981' and 'THE WHITE HOUSE, September 9, 1981.')",
+    "published": "1981-09-14",
+    "filed": "9-10-81; 2:30 pm (FR Doc. 81-28767)",
+    "revocation_effective_sec5a": "1981-10-01 (EO 11345, EO 11658 and the other listed orders)",
+    "revocation_effective_sec5b": "1982-01-01 (EO 11659)",
+    "commission_termination_sec1": "Great Lakes and Missouri River commissions terminated September 30, 1981; Upper Mississippi December 31, 1981"
+   },
+   "pool_targets": [
+    "EO:11345",
+    "EO:11658",
+    "EO:11659 (named directly)",
+    "EO:11646",
+    "EO:11737 (amending orders; not named, ended only via the parent 'as amended')"
+   ],
+   "result": "pass",
+   "discrepancies": [
+    "None in operative wording or dates: page images match the OCR text layer and both APP transcription spans for Sec. 5(a)(2), (a)(5) and (b).",
+    "Location metadata: the source records cite 'PDF pages 1-8' with confidence low and note 'order number 12319 not seen in the text layer'; the order actually occupies only PDF pages 7-8 (FR 45591-45592), and the number is present in the OCR as 'E xecu tive O rder 12319' (spaced letters). Pages 1-6 are the issue's front matter (highlights, contents, CFR parts list).",
+    "OCR text layer has letter-spacing artifacts throughout (e.g. 'Execu tive O rder No. 11345, as am ended'); the words and numerals are correct.",
+    "Not a page-check defect but a producer/D6 note: EO 11646 and EO 11737 are not named in EO 12319; their end runs only through the revoked parent orders 'as amended'. Sec. 1 commission termination dates (Sept 30 / Dec 31, 1981) precede the Sec. 5 revocation dates and producers must state which controls."
+   ],
+   "pdf_sha256": "2ef1938d78e39bfebe42bfe8db85ac6a1acd1e7df294ce1212a6eb952913c001",
+   "pdf_bytes": 26192551,
+   "pdf_local_path": "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/dl/FR-1981-09-14.pdf (scratch only; not committed)",
+   "sha256_matches_held_witness": true,
+   "page_images": [
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12319-007.png",
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12319-008.png"
+   ]
+  },
+  {
+   "ending_instrument": "EO:12919",
+   "title": "National Defense Industrial Resources Preparedness",
+   "citation": "59 FR 29525",
+   "fr_issue": "FR-1994-06-07 (Vol. 59, No. 108)",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1994-06-07/pdf/FR-1994-06-07.pdf",
+   "pdf": "FR-1994-06-07.pdf",
+   "pdf_pages_checked": [
+    185,
+    193,
+    194
+   ],
+   "printed_fr_pages": [
+    "29525",
+    "29533",
+    "29534"
+   ],
+   "dossier_source_location": "59 FR 29525, PDF pages 185-194",
+   "extracted_texts_compared": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12919.txt",
+     "text_sha256": "4136b7810d42ba86087ec48ac0b2edda3f8b313cce625fbab92b62ddbf5c16e6",
+     "role": "official FR OCR text layer (requires_page_check true), dossier spans 35076-35305/35433/35560/35797/35862 (identical copy at jobs/fr-originals/output/texts/EO_12919.txt)"
+    },
+    {
+     "path": "jobs/app-executive-orders/output/texts/executive-order-12919-national-defense-industrial-resources-preparedness.txt",
+     "text_sha256": "605f265690c2c6053df9c12241275205a3259308f208aa48bb4a35759c4dc1e3",
+     "role": "APP transcription"
+    }
+   ],
+   "verified_sentences": [
+    "Sec. 904. Effect on other Orders. (a) The following are superseded or revoked:",
+    "(2) Executive Order No. 10222 of March 8, 1951 (16 FR 2247).",
+    "(4) Executive Order No. 10647 of November 28, 1955 (20 FR 8769).",
+    "(6) Executive Order No. 11355 of May 26, 1967 (32 FR 7803).",
+    "(9) Executive Order No. 12521 of June 24, 1985 (50 FR 26335).",
+    "(10) Executive Order No. 12649 of August 11, 1988 (53 FR 30639)."
+   ],
+   "verified_dates": {
+    "signed": "1994-06-03 (heading 'Executive Order 12919 of June 3, 1994' and 'THE WHITE HOUSE, June 3, 1994.')",
+    "published": "1994-06-07",
+    "filed": "6-6-94; 10:45 am (FR Doc. 94-14027)",
+    "effective": "no effective-date clause on the pages; the order states none, so effectiveness on signing (1994-06-03) is an inference, not a printed sentence"
+   },
+   "pool_targets": [
+    "EO:10222",
+    "EO:10647",
+    "EO:11355",
+    "EO:12521",
+    "EO:12649"
+   ],
+   "result": "pass",
+   "discrepancies": [
+    "None in operative wording, target numbers, target dates or FR citations for items (2), (4), (6), (9), (10): page 193 (FR 29533) matches the OCR span.",
+    "OCR artifacts only: 'S e c . 9 0 4 . E ffe c t on  o t h e r  O rders,' (comma for period; spaced letters), 'Executive.Order' in item (5), stray '. .' after item (7).",
+    "The printed verb is 'superseded or revoked' (one list, no per-item verb); the dossier labels each event 'supersede'. Producers should quote the disjunctive verb, not choose one.",
+    "No printed effective date: Sec. 904 has no effective clause and the order ends with Sec. 905 and the signature. Sec. 903 is a savings clause (prior orders, regulations and actions remain in effect except as inconsistent; nothing affects anything done under previous delegations) that producers must address."
+   ],
+   "pdf_sha256": "1035fc173d4e4d71bc4e2e140fa037e8c59be84185b6eba09b7f522198d79bbc",
+   "pdf_bytes": 219867801,
+   "pdf_local_path": "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/dl/FR-1994-06-07.pdf (scratch only; not committed)",
+   "sha256_matches_held_witness": true,
+   "page_images": [
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12919-185.png",
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12919-193.png",
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12919-194.png"
+   ]
+  },
+  {
+   "ending_instrument": "EO:12692",
+   "title": "Continuance of Certain Federal Advisory Committees",
+   "citation": "54 FR 40627",
+   "fr_issue": "FR-1989-10-03 (Vol. 54, No. 190)",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1989-10-03/pdf/FR-1989-10-03.pdf",
+   "pdf": "FR-1989-10-03.pdf",
+   "pdf_pages_checked": [
+    11,
+    12
+   ],
+   "printed_fr_pages": [
+    "40627",
+    "40628"
+   ],
+   "dossier_source_location": "54 FR 40627, PDF pages 11-12",
+   "extracted_texts_compared": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12692.txt",
+     "text_sha256": "65357a92a15b30af7fb366c5d58f4b25dc05f3c1b88f87161058a505f95dbc94",
+     "role": "official FR OCR text layer (requires_page_check true), dossier span 2946-3238 (identical copy at jobs/fr-originals/output/texts/EO_12692.txt)"
+    },
+    {
+     "path": "jobs/app-executive-orders/output/texts/executive-order-12692-continuance-certain-federal-advisory-committees.txt",
+     "text_sha256": "6db621a00f904d7153085657a3edc096fde2854b82852fd39078bad0a4bcfb79",
+     "role": "APP transcription span 2161-2562"
+    }
+   ],
+   "verified_sentences": [
+    "Sec. 3. The following Executive orders, which established committees that have terminated or whose work is completed, are revoked: (a) Executive Order No. 12462, as amended by Executive Order No. 12533, establishing the President's Advisory Committee on Mediation and Conciliation.",
+    "Sec. 5. This order shall be effective September 30, 1989."
+   ],
+   "verified_dates": {
+    "signed": "1989-09-29 (heading 'Executive Order 12692 of September 29, 1989' and 'THE WHITE HOUSE, September 29, 1989.')",
+    "published": "1989-10-03",
+    "filed": "10-02-89; 11:08 am (FR Doc. 89-23579)",
+    "effective": "1989-09-30 (Sec. 5, printed on PDF page 12 / FR 40628)"
+   },
+   "pool_targets": [
+    "EO:12462"
+   ],
+   "result": "pass",
+   "discrepancies": [
+    "None in operative wording or dates: Sec. 3(a) on PDF page 11 (FR 40627) and Sec. 5 on PDF page 12 (FR 40628) match the OCR span; numerals in the OCR are split by spaces ('1 2462', '1 25 33').",
+    "The dossier span 2946-3238 ends at Sec. 3(a); the effective date sits in Sec. 5 on the next page and must be cited separately (it is not inside the span).",
+    "The official page 12 running head prints 'Tuesday, October 3, 2989' (a printing error in the original, faithfully OCR'd); the issue date on page 11 and the signature date read 1989.",
+    "APP transcription has the typo 'establishign'; the official page reads 'establishing'."
+   ],
+   "pdf_sha256": "4fed43c8ec3525e806ca8c16834089265bf3c95a0e8987b506444d45fcafe80c",
+   "pdf_bytes": 62027811,
+   "pdf_local_path": "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/dl/FR-1989-10-03.pdf (scratch only; not committed)",
+   "sha256_matches_held_witness": true,
+   "page_images": [
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12692-011.png",
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12692-012.png",
+    "/tmp/claude-0/-home-user-Executive-Orders/357394c8-997b-5c91-82db-c4517632e70c/scratchpad/pagechk3/img/eo12692-012zoom-012.png"
+   ]
+  }
+ ]
+}

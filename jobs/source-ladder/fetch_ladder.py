@@ -1412,15 +1412,25 @@ def carried_defect(wanted, src, text=None) -> str:
         if mismatch:
             return "rd_not_the_report_record: " + mismatch
     spans, total = _spans_of(src.get("page_or_item", ""))
-    if total and re.search(r"/(?:STATUTE|PLAW)-", url):
-        wanted_ranges = ranges_from_text(question_text(wanted)) or ([(1, total)] if total <= 500 else [])
+    statute = bool(re.search(r"/(?:STATUTE|PLAW)-", url))
+    if total:
+        # 'PDF pages a-b' named in the request (question or citation, as pdf_target_pages reads them).
+        asked = merge_ranges(ranges_from_text(question_text(wanted)) + ranges_from_text(wanted.citation or ""))
+        wanted_ranges = asked or ([(1, total)] if statute and total <= 500 else [])
         covered = set()
         for a, b in spans:
             covered.update(range(a, b + 1))
-        missing = [(a, b) for a, b in wanted_ranges if any(p not in covered for p in range(a, min(b, total) + 1))]
-        if missing:
+        missing = [(a, b) for a, b in wanted_ranges if a <= total
+                   and any(p not in covered for p in range(a, min(b, total) + 1))]
+        if missing and statute:
             return (f"partial_extraction: a statute PDF of {total} pages was kept as pages "
                     f"{','.join(f'{a}-{b}' for a, b in spans)}; today's ladder reads it in full")
+        if missing:
+            # MABILLON (2026-10-20): an older run kept the first 40 pages of an FR issue although the request named
+            # the pages (EO 11490: 'PDF pages 63-95', kept 1-40 of 96). Today's ladder reads the named pages.
+            return (f"partial_extraction: a PDF of {total} pages was kept as pages "
+                    f"{','.join(f'{a}-{b}' for a, b in spans)}; the request names PDF pages "
+                    f"{','.join(f'{a}-{b}' for a, b in missing)}, which today's ladder reads")
     return ""
 
 

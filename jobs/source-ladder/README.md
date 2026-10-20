@@ -154,6 +154,16 @@ be used", not "the document is not there", so they never feed an exhausted propo
 - Upper-case title-page dates ("FEBRUARY 9, 1979") are leads; a report PDF with no text layer ends
   `rd_no_meaningful_text` (PEBs 205/206, 1984, are scans without OCR).
 
+**Named pages kept in part (Mabillon, 2026-10-20).** The EO 11490 line asks for `PDF pages 63-95` of
+FR-1969-10-30.pdf (96 pages), but the record found on 2026-10-18, before pages named in a request were honoured, holds
+pages 1-40, and carry-forward kept it. `carried_defect` now applies the `partial_extraction` re-check to **any** PDF
+(not only statutes) when the request (its line, its parent line or its citation) names `PDF pages a-b` that lie in the
+document and are not all among the kept spans. Pages beyond the document's last page never trigger it, so a bad request
+cannot loop. No new cap or fetch: the walk reads the named pages through the existing `page_ranges` path, within the
+existing 300-request / 800 MB budget (the issue PDF is 15.2 MB, sha256 `0e1eda31...95ea`), and the new record names the
+old one in `supersedes_defective_source`. Against the committed output this flags 2 records: EO 11490 (pages 63-95) and
+EO 11022/12107 (44 FR, pages 319-330 of 336). To force them in one run: `JOB_ONLY="queue:EO:11490:,queue:EO:11022:44 FR 1053"`.
+
 **What it does, in plain words.** Research agents used to spend a lot of time
 hunting for a copy of a document by hand: try the link, try another form of
 the link, try the Wayback Machine, try another official site, try a mirror.

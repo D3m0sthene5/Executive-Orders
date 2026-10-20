@@ -1,0 +1,33 @@
+{
+ "schema": "lambertini-iii-ai-review/v1",
+ "record_kind": "AI review record (hypothesis; not eo-lifecycle-review/v1; not certification)",
+ "batch": "viapar/p",
+ "reviewed_on": "2026-10-20",
+ "reviewer": "independent Opus reviewer (scratch review_copy; held repo sources; explicit D6 step)",
+ "verdicts": [
+  {
+   "order": "EO:11885",
+   "verdict": "rejected",
+   "savings_overturned": false,
+   "reason": "Defects: (1) The first_end.date for EO:11885#insert is 1977-03-15. That is the Federal Register publication date (FR Vol. 42 No. 50, Tuesday, March 15, 1977), not the signing date. EO 11976 was signed 1977-03-11, which its source signing_date, the clause's own mechanism ('signed 1977-03-11 ... effective on signing'), judgment_reason ('First end 1977-03-11'), the inventory_override reason and research_rationale ('The insertion ended 1977-03-11') all state. The date contradicts the claim's own record and the held EO_11976.txt ('March 11, 1977'; '[FR Doc.77-7762 Filed 3-11-77]'). (2) Minor: the same first_end source quotes the whole EO_11976.txt file (chars 0-1677), machine header included, instead of the operative sec. 2 deletion span. Everything else checks out against the held texts. All spans and hashes match. The EO 12076 sec. 1-202 quote is verbatim at 4380-4437, and the 'as amended' reach and the 1978-08-18 signing-date end for the #delete item are correct. D6: no later order (11893, 11908, 11976, 11986, 11995, 11999, 12060, 12076 1-102) restores the Comptroller deputy, so there is no strike-and-reinsert. Savings none_after_bounded_search is correct, since EO 12076 1-102 lists neither position."
+  },
+  {
+   "order": "EO:11927",
+   "verdict": "rejected",
+   "savings_overturned": false,
+   "reason": "Defects: (1) D6 per-item first ends are not given as first ends. The single clause EO:11927#whole covers two items with different ends: sec. 2 item 2(9) Housing was deleted by EO 11976 sec. 2 on 1977-03-11, and sec. 1 'Counselor' in 1(10) was replaced by EO 12060 sec. 1 on 1978-05-15. The claim records first_end as 1978-05-15, which its own judgment calls 'the later of the two item ends'. It puts the earlier 1977-03-11 end in later_events, so a later event predates the first end. The clause first ended in part on 1977-03-11. It should be split by inventory_overrides, as this batch did for EO 11885, with one first end per item. (2) The first_end and whole_order_end sources quote the whole EO_12060.txt file (chars 0-1871), machine header included, rather than the operative sec. 1 span. (3) research_rationale relies on an 'upheld EO 11861 claim (item 1(10) ends 1978-05-15)'. The held texts do not support that reliance: EO 11861 item (10) read 'Assistant to the Secretary for Congressional Affairs', and EO 11927 sec. 1 itself first changed it on 1976-07-22. A cross-reference that cannot be checked is not evidence. What checks out: the EO 12060 mechanism wording is verbatim, the actor and date (signed 1978-05-15, no effective-date wording) are correct, and the end correctly precedes the EO 12076 'as amended' revocation, which is properly attached as a later event. Nothing was struck and reinserted. Savings none_after_bounded_search is correct, since EO 12076 re-lists neither office."
+  },
+  {
+   "order": "EO:11976",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Checked against the held FR texts and found sound. Spans and hashes match. Sec. 1 adds level IV (17) and (18), and sec. 2 deletes level V (1) and (9), as quoted verbatim. The EO 12076 sec. 1-202 quote 'Executive Order No. 11861, as amended, is hereby revoked.' is exact, it reaches this amending order through the parent 'as amended', and the date is 1978-08-18 on signing. D6: I read EO 11983, 11986, 11995, 11999, 12025, 12035, 12060 and 12069. None touches level IV (17) or (18) or restores level V (1) Iran or (9) Housing. EO 11986's (9) Director of Policy Review is a different office, so there is no strike-and-reinsert. Per-item ends are correct: each section ends on 1978-08-18. Savings transferred_or_accrued is supported: EO 12076 1-101(e) and (g) re-list both sec. 1 positions, and 1-201 protects incumbents. kit.py check passes."
+  },
+  {
+   "order": "EO:11986",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Checked against the held FR texts and found sound. Spans and hashes match. Sec. 1 deletes level IV (6) and (7), and sec. 2 adds the C3I principal deputy (OCR '( J)') and (9) Director of Policy Review, as quoted verbatim. The ending actor, EO 12076 sec. 1-202 revoking EO 11861 'as amended', is quoted exactly, with the date 1978-08-18 on signing. D6: EO 12060 inserts a different office as item (6) (Assistant Attorney General, U.S. Attorneys and Trial Advocacy), so that is not a reinsertion. EO 12076 1-101 lists neither deleted position. No order among 11995, 11999, 12025, 12035, 12060 and 12069 touches the added level V items. Per-item ends are 1978-08-18 for both sections. Savings transferred_or_accrued is supported: EO 12076 1-102(c) and (e) re-list both added positions, and 1-201 protects incumbents. kit.py check passes."
+  }
+ ]
+}

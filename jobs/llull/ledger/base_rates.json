@@ -569,8 +569,8 @@
     {
       "den": 10,
       "derived_from": {
-        "forecast_id": "L-20261020-65",
-        "outcome_id": "O-20261020-50",
+        "forecast_id": "L-20261020-78",
+        "outcome_id": "O-20261020-60",
         "outcome_source": "research/excavator/rastell-2026-10-20/r9830/OUTCOME.json"
       },
       "key": "upheld_per_attempt.rastell_r9830_probe",
@@ -586,7 +586,7 @@
     {
       "derived_from": {
         "forecast_id": "L-20261020-66",
-        "outcome_id": "O-20261020-51",
+        "outcome_id": "O-20261020-61",
         "outcome_source": "research/excavator/rastell-2026-10-20/r9830/OUTCOME.json"
       },
       "key": "items_reached.r9830_claims_enabled_probe",
@@ -614,6 +614,55 @@
       "source": "O-20261020-53",
       "unit": "share",
       "value": 1.0
+    },
+    {
+      "key": "upheld_per_attempt.r12553nb_probe",
+      "pool": "R12553NB probe: 10 non-board EO 12553 targets (every 5th line of R12553NB_ids.txt), one Rastell ACT record per order, D6 earlier-end test, independent Opus review with held sources",
+      "unit": "share",
+      "value": 0.8,
+      "source": "O-20261020-66",
+      "population": "R12553NBP",
+      "n_studies": 1,
+      "derived_from": {
+        "outcome_id": "O-20261020-66",
+        "forecast_id": "L-20261020-88",
+        "outcome_source": "research/excavator/rastell-2026-10-20/r12553nb/OUTCOME.json"
+      },
+      "note": "",
+      "num": 8,
+      "den": 10
+    },
+    {
+      "key": "hit_rate.plant_catch_r12553nb_probe",
+      "pool": "R12553NB probe: one planted ACT effective_date defect in a scratch review copy, key in scratch",
+      "unit": "share",
+      "value": 1.0,
+      "source": "O-20261020-69",
+      "population": "R12553NBP",
+      "n_studies": 1,
+      "derived_from": {
+        "outcome_id": "O-20261020-69",
+        "forecast_id": "L-20261020-81",
+        "outcome_source": "research/excavator/rastell-2026-10-20/r12553nb/OUTCOME.json"
+      },
+      "note": "",
+      "num": 1,
+      "den": 1
+    },
+    {
+      "key": "items_reached.r12553nb_claims_enabled_probe",
+      "pool": "R12553NB probe: orders (of 10) enabling an upheld Lambertini claim via an upheld EO 12553 ACT record",
+      "unit": "count",
+      "value": 6.0,
+      "source": "O-20261020-67",
+      "population": "R12553NBP",
+      "n_studies": 1,
+      "derived_from": {
+        "outcome_id": "O-20261020-67",
+        "forecast_id": "L-20261020-79",
+        "outcome_source": "research/excavator/rastell-2026-10-20/r12553nb/OUTCOME.json"
+      },
+      "note": ""
     }
   ],
   "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`. Each row carries `evidence`: verbatim quotes that `check` finds in the cited files (whitespace ignored). A row may also have source = a Llull outcome id (O-...): `baserate` writes it and `check` verifies the value against that outcome. `population` names the pool the rate was measured on (random draws); `rank` applies a census share only when the action's pool differs from it.",

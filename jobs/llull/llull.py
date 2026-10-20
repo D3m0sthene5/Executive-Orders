@@ -1515,6 +1515,11 @@ def outcome_rate_problems(k, r, L):
     if o is None:
         return ["base rate %s: source outcome %s is not in outcomes.jsonl" % (k, r["source"])]
     out = []
+    derived = r.get("derived_from")
+    if derived is not None and (not isinstance(derived, dict)
+            or derived.get("outcome_id") != o["outcome_id"]
+            or derived.get("forecast_id") != o["forecast_id"]):
+        out.append("base rate %s: derived_from identifiers disagree with source outcome %s" % (k, o["outcome_id"]))
     current = current_outcomes(L).get(o["forecast_id"])
     if current and current["outcome_id"] != o["outcome_id"]:
         return ["base rate %s cites superseded outcome %s; current is %s" % (k, o["outcome_id"], current["outcome_id"])]
