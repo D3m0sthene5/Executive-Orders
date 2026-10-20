@@ -171,11 +171,34 @@ class CheckTests(Base):
     def test_planted_text_is_found_even_without_markers(self):
         out, fx = self.seed("a", n=24)
         repo = self.make_repo(fx)
-        texts = [json.loads(p.read_text())["mutation"]["after"] for p in fx.glob("*.seeded.json")]
-        long = [t for t in texts if isinstance(t, str) and len(t) >= 40]
-        if not long:
-            self.skipTest("this seed produced no long mutation text")
-        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + long[0])
+        needles = [n for p in fx.glob("*.seeded.json") for n in json.loads(p.read_text())["leak_needles"]]
+        if not needles:
+            self.skipTest("this seed produced no novel plant text")
+        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + needles[0])
+        self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_real_text_shared_with_a_plant_is_not_a_leak(self):
+        """Regression for the MW-C1 false positives: a D3 cut is a prefix of the real quote, so every real copy
+        of the order contained the old raw needle.  Real base items placed in the repo must pass."""
+        out, fx = self.seed("a", n=24)
+        repo = self.make_repo(fx)
+        lines = []
+        for p in fx.glob("*.seeded.json"):
+            d = json.loads(p.read_text())
+            lines.append(Path(REPO, d["base"]["path"]).read_text().splitlines()[d["base"]["line"] - 1])
+            for n in d["leak_needles"]:
+                self.assertNotIn(n, lines[-1])
+        (repo / "research/readiness/claims/real-bases.jsonl").write_text("\n".join(lines) + "\n")
+        res = mw.check(repo, fx.parent)
+        self.assertTrue(res["ok"], res["problems"][:3])
+
+    def test_scan_covers_job_inputs_beyond_output_and_data(self):
+        out, fx = self.seed("a", n=12)
+        repo = self.make_repo(fx)
+        (repo / "jobs/other/inputs").mkdir(parents=True)
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d = json.loads(f.read_text())
+        (repo / "jobs/other/inputs/claims.jsonl").write_text(json.dumps(mw._deflag(d["seeded_payload"])) + "\n")
         self.assertFalse(mw.check(repo, fx.parent)["ok"])
 
     def test_check_flags_fixture_without_flag(self):
@@ -275,6 +298,37 @@ class ScoreTests(Base):
         self.assertIn(plants[-1], res["unreviewed"])
         self.assertEqual(res["pooled"]["strict"]["n"], len(plants) - 2)
 
+    def test_generic_field_name_is_not_a_strict_catch(self):
+        key = self.setup_batch()
+        plants = [i for i in key["items"] if i["is_seeded"]]
+        rows = [{"item_id": i["item_id"], "decision": "reject" if i["is_seeded"] else "accept",
+                 "locus": "first_end whole_order_end quote later_events", "reason": "looks off"} for i in key["items"]]
+        res = mw.score(key, rows)
+        self.assertEqual(res["pooled"]["strict"]["k"], 0)
+        self.assertEqual(res["pooled"]["lenient"]["k"], len(plants))
+
+    def test_relabel_tells_noticed_and_verdict_alias(self):
+        key = self.setup_batch()
+        plants = [i for i in key["items"] if i["is_seeded"]]
+        a, b = plants[0], plants[1]
+        rows = []
+        for i in key["items"]:
+            if i["item_id"] == a["item_id"]:
+                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": "x"})
+            elif i["item_id"] == b["item_id"]:
+                rows.append({"item_id": i["item_id"], "verdict": "accept", "reason": "odd but fine: " + " ".join(mw.specific_terms(i))})
+            else:
+                rows.append({"item_id": i["item_id"], "verdict": "accept"})
+        res = mw.score(key, rows, relabel={a["item_id"]: "D11"}, tells=[a["item_id"]], production=(0, 15))
+        self.assertIn("D11", res["by_defect_type"])
+        self.assertEqual(res["pooled"]["tell_free"]["strict"]["n"], len(plants) - 1)
+        self.assertEqual(res["pooled"]["tell_free"]["strict"]["k"], 0)
+        if mw.specific_terms(b):
+            self.assertEqual([x["item_id"] for x in res["pooled"]["noticed_but_accepted"]], [b["item_id"]])
+        self.assertIn("tell_free", res["implied_for_production"])
+        with self.assertRaises(SystemExit):
+            mw.score(key, rows, relabel={a["item_id"]: "D99"})
+
     def test_edited_key_is_refused(self):
         key = self.setup_batch()
         key["items"][0]["is_seeded"] = not key["items"][0]["is_seeded"]
@@ -305,7 +359,38 @@ class ScoreTests(Base):
         self.assertFalse((REPO / "research" / "mw-score.json").exists())
 
 
+class PlantQualityTests(Base):
+    def test_rewrites_never_touch_another_clause(self):
+        """MW-C1 tell: global date/actor swaps rewrote sentences about sibling clauses.  Every date/actor plant
+        must have an old end that no other clause or later event shares."""
+        out, fx = self.seed("a", n=40, extra=("--share", "0.5", "--codes", "D2,D4,D5,D7"))
+        pool = mw.load_claim_pool(REPO)
+        files = list(fx.glob("*.seeded.json"))
+        self.assertTrue(files)
+        for f in files:
+            d = json.loads(f.read_text())
+            base = pool[d["instrument_id"][len("SEEDED:"):]]["claim"]
+            i = int(d["mutation"]["field"].split("[")[1].split("]")[0])
+            fe = base["operative_clauses"][i]["first_end"]
+            self.assertTrue(mw._swap_safe(base, i, fe["date"], fe.get("actor")), f.name)
+
+    def test_recurring_duties_are_not_one_time(self):
+        self.assertTrue(mw.RECURRING_RE.search("shall submit an annual report to the President"))
+        for rec in mw.load_claim_pool(REPO).values():
+            for spec, apply in mw.ops_c("D2", rec["claim"], {}, "x"):
+                i = int(spec.split(":")[0])
+                self.assertFalse(mw.RECURRING_RE.search(rec["claim"]["operative_clauses"][i]["original_operative_text"]))
+
+
 class StatsTests(unittest.TestCase):
+    def test_implied_prevalence(self):
+        catch = mw.rate(3, 6)
+        r = mw.implied_prevalence(0, 15, catch)
+        self.assertAlmostEqual(r["flag_rate_upper95"], 0.218, places=3)
+        self.assertAlmostEqual(r["prevalence_upper95_at_point_catch"], 0.436, places=2)
+        self.assertEqual(r["prevalence_upper95_at_catch_lower95"], 1.0)
+        self.assertEqual(mw.implied_prevalence(0, 15, mw.rate(0, 3))["prevalence_upper95_at_point_catch"], 1.0)
+
     def test_known_intervals(self):
         lo, hi = mw.wilson(9, 10)
         self.assertAlmostEqual(lo, 0.60, places=2)

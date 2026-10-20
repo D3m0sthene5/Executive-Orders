@@ -9,7 +9,7 @@ Core claims proved here:
   plus: proxy units are refused, outcomes need a committed source, the shipped census reproduces the
   postmortem pool sizes, and the premortem fails a structured plan whose number exceeds the ceiling.
 """
-import contextlib, io, json, math, shutil, sys, tempfile, unittest
+import contextlib, io, json, math, shutil, subprocess, sys, tempfile, unittest
 sys.dont_write_bytecode = True
 from pathlib import Path
 
@@ -148,6 +148,38 @@ class TestCeiling(Base):
         self.assertIn("deviation", err)
 
 
+class TestReviewFixes(Base):
+    def test_rate_interval_must_be_a_share(self):
+        code, _, err = self.fc("--quantity", "hit_rate", "--p10", "0.085", "--p50", "0.85", "--p90", "1.7",
+                               "--reference-class", "new:x", "--reason", "r")
+        self.assertEqual(code, 2)
+        self.assertIn("must lie in [0, 1]", err)
+        # the widening rule stops at 1 for shares: [0.085, 1.0] is wide enough for p50 0.85
+        code, _, _ = self.fc("--quantity", "hit_rate", "--p10", "0.085", "--p50", "0.85", "--p90", "1.0",
+                             "--reference-class", "new:x", "--reason", "r", "--accept-flag", "no census")
+        self.assertEqual(code, 0)
+
+    def test_wrong_binaries_are_not_calibrated(self):
+        for i in range(5):
+            run(*self.args, "forecast", "--plan-id", "T%d" % i, "--planner", "claude:b", "--quantity", "upheld_per_attempt",
+                "--event", "upheld >= 0.5", "--prob", "0.9", "--reference-class", "upheld_per_attempt.modern_claim_no_held_end")
+        for f in jl(self.led / "forecasts.jsonl"):
+            run(*self.args, "outcome", "--forecast", f["forecast_id"], "--measured", "0", "--source", "research/plans/LLULL_DESIGN.md")
+        run(*self.args, "score")
+        e = json.loads((self.tmp / "output" / "CALIBRATION.json").read_text())["planners"]["claude:b"]
+        self.assertAlmostEqual(e["brier"], 0.81)
+        self.assertEqual(e["trust"], "miscalibrated")
+
+    def test_check_fails_a_quote_missing_from_its_source(self):
+        d = json.loads((self.led / "base_rates.json").read_text())
+        row = next(r for r in d["rows"] if r["key"] == "hit_rate.type_tribunal")
+        row["evidence"] = [{"source": row["source"], "quote": "hit rate 0.85 (an invented number)"}]
+        (self.led / "base_rates.json").write_text(json.dumps(d))
+        code, out, _ = run(*self.args, "check")
+        self.assertEqual(code, 4)
+        self.assertIn("not found in", out)
+
+
 class TestOutcomeAndScore(Base):
     def register(self, **kw):
         a = ["--quantity", "accepted_items", "--p10", "2", "--p50", "20", "--p90", "50", "--reference-class", "new:t",
@@ -216,18 +248,66 @@ class TestMath(unittest.TestCase):
 
 
 class TestCensusAndWheel(unittest.TestCase):
-    def test_pools_reproduce_postmortem_counts(self):
-        if not (llull.REPO / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv").exists():
-            self.skipTest("repository outputs not present")
-        D = llull.Data()
-        y2 = llull.run_census("Y2", D=D)
-        self.assertEqual(y2["pool_size"], 2063)                                      # y2_predictor pool
-        self.assertLess(y2["ceiling_strict"] / y2["pool_size"], 0.05)                # ~3%, against a 50% target
-        self.assertLess(y2["ceiling_leads"] / y2["pool_size"], 0.25)                 # ~19% even counting leads
-        self.assertGreater(y2["ceiling_leads"], y2["ceiling_strict"])
-        self.assertEqual(llull.run_census("X1", D=D)["ceiling_strict"], 32)          # the postmortem's "32 by EO<7532 today"
-        y1 = llull.run_census("Y1", D=D)
+    INPUTS = ["jobs/readiness-tracker/output/READINESS_BY_ORDER.csv", "jobs/claim-kit/output",
+              "jobs/current-law/output/ORDERS_CURRENT_LAW.csv", "jobs/status-history/output/INDEX.json",
+              "jobs/later-events/output/CATALOG_INDEX.csv"]
+    KEEP = ("READINESS_BY_ORDER.csv", "ACTING_PROVISIONS", "OWN_TERMS", "ORDERS_CURRENT_LAW.csv", "INDEX.json",
+            "CATALOG_INDEX.csv")
+
+    def materialise(self, commit, d):
+        """The census inputs exactly as committed at `commit` (git show), so the test does not drift with the data."""
+        names = (llull.git("ls-tree", "-r", "--name-only", commit, "--", *self.INPUTS) or "").split()
+        for n in names:
+            if Path(n).name.startswith(self.KEEP):
+                blob = subprocess.run(["git", "-C", str(llull.REPO), "show", "%s:%s" % (commit, n)], capture_output=True).stdout
+                (d / n).parent.mkdir(parents=True, exist_ok=True)
+                (d / n).write_bytes(blob)
+        return llull.Data(repo=d)
+
+    def test_recorded_censuses_reproduce_at_their_commit(self):
+        recs = [c for c in jl(SEED / "censuses.jsonl") if c.get("gates_rev") == llull.GATES_REV]
+        latest = {c["pool"]: c for c in recs}
+        self.assertEqual(set(latest), {"Y1", "Y2", "X1"})
+        commit = {c["commit"] for c in latest.values()}
+        if len(commit) != 1 or llull.git("cat-file", "-t", next(iter(commit))) != "commit":
+            self.skipTest("census commit not available in this clone")
+        d = Path(tempfile.mkdtemp())
+        try:
+            D = self.materialise(next(iter(commit)), d)
+            for pool, rec in latest.items():
+                c = llull.run_census(pool, rec["requires"], D)
+                self.assertEqual((c["pool_size"], c["ceiling_strict"], c["ceiling_leads"]),
+                                 (rec["pool_size"], rec["ceiling_strict"], rec["ceiling_leads"]), pool)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+        y1, y2, x1 = latest["Y1"], latest["Y2"], latest["X1"]
         self.assertEqual((y1["pool_size"], y1["ceiling_strict"]), (4274, 3952))      # funnel plan: 4,274; 3,952 with text
+        self.assertEqual(x1["ceiling_strict"], 32)                                   # the postmortem's "32 by EO<7532 today"
+        self.assertLess(y2["ceiling_strict"] / y2["pool_size"], 0.05)                # ~2%, against a 50% target
+        self.assertLess(y2["ceiling_leads"] / y2["pool_size"], 0.25)                 # ~18% even counting leads
+
+    def test_ending_gate_needs_an_ending_verb_and_whole_scope(self):
+        D = llull.Data()
+        D._c["acting"] = ({"EO:9001"}, {"EO:9001", "EO:9002"})
+        D._c["term"] = {"EO:9003"}
+        row = lambda i: {"instrument_id": i, "provisional_status": "no"}
+        self.assertEqual([llull.g_ending_instrument(row(i), D) for i in ("EO:9001", "EO:9002", "EO:9003", "EO:9004")],
+                         ["held", "no", "held", "no"])
+        d = Path(tempfile.mkdtemp())
+        try:
+            (d / "jobs/claim-kit/output").mkdir(parents=True)
+            acts = [{"names_target": True, "target_id": "EO:1", "scope": "whole", "effective_date": "1950-01-01", "verb": "revoke"},
+                    {"names_target": True, "target_id": "EO:2", "scope": "whole", "effective_date": "1950-01-01", "verb": "transfer"},
+                    {"names_target": True, "target_id": "EO:3", "scope": "partial", "effective_date": "1950-01-01", "verb": "revoke"}]
+            terms = [{"instrument_id": "EO:4", "scope_id": "EO:4#whole", "computed_end_candidate": "1950-01-01"},
+                     {"instrument_id": "EO:5", "scope_id": "EO:5#sec4-b", "computed_end_candidate": "1950-01-01"}]
+            (d / "jobs/claim-kit/output/ACTING_PROVISIONS.jsonl").write_text("".join(json.dumps(a) + "\n" for a in acts))
+            (d / "jobs/claim-kit/output/OWN_TERMS.jsonl").write_text("".join(json.dumps(t) + "\n" for t in terms))
+            D2 = llull.Data(repo=d)
+            self.assertEqual(D2.acting()[0], {"EO:1"})
+            self.assertEqual(D2.term_end(), {"EO:4"})
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
 
     def test_joint_is_not_the_product(self):
         D = llull.Data()

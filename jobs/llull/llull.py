@@ -34,7 +34,10 @@ QUANTITIES = {
     "items_reached": ("count", "count"), "usd_total": ("cost", None),
     "usd_per_ready_order": ("cost", None), "minutes_per_accepted": ("cost", None),
     "upheld_per_attempt": ("rate", "share"), "accepted_per_attempt": ("rate", "share"),
-    "accepted_per_target": ("rate", "share"), "hit_rate": ("rate", "share"),
+    "accepted_per_target": ("rate", "share"),
+    # hit_rate is conditional on a finder's own selection (X1 ran only its 52 eligible orders), so a pool share
+    # does not bound it: the review found the X1 tribunal's measured 0.19 at 47x the 0.004 pool share
+    "hit_rate": ("rate", None),
     "eligible_share": ("rate", "share"), "cleared_per_queued": ("rate", "share"),
     "items_per_planned": ("rate", "share"), "rejected_per_submitted": ("rate", None),
     "complete_per_accepted": ("rate", None),
@@ -244,15 +247,19 @@ def validate_forecast(spec, rates, census=None):
         if None in (p10, p50, p90) or not (p10 <= p50 <= p90):
             raise Refusal("interval needs p10 <= p50 <= p90 (an 80% central interval)")
         rec.update(p10=p10, p50=p50, p90=p90)
+        if cat == "rate" and not (0.0 <= p10 and p90 <= 1.0):
+            raise Refusal("%s is a share: p10..p90 must lie in [0, 1]" % q)
         few = rc.startswith("new:") or rec["n_studies_in_class"] < 3
-        if few and p50 > 0 and not (p10 <= 0.1 * p50 and p90 >= 2 * p50):
+        hi = min(2 * p50, 1.0) if cat == "rate" else 2 * p50
+        if few and p50 > 0 and not (p10 <= 0.1 * p50 and p90 >= hi):
             raise Refusal("class has fewer than 3 studies: the interval must be at least [0.1 x p50, 2 x p50] = "
-                          "[%g, %g]" % (0.1 * p50, 2 * p50))
+                          "[%g, %g]" % (0.1 * p50, hi))
         if outside is not None and outside > 0 and not (0.5 <= p50 / outside <= 2.0) \
                 and not (spec.get("deviation") or "").strip():
             raise Refusal("p50 %g departs from the measured outside view %g by more than 2x: give --deviation"
                           % (p50, outside))
-        if rc.startswith("new:") or outside is None:
+        if (rc.startswith("new:") or outside is None) and cat != "cost":
+            # the all-misses ratio measures outputs that fell short; applied to a cost it would cut the cost
             shrink = rates.get(CLASS_FALLBACK)
             if shrink and not measured_problem(shrink):
                 fallback = round(shrink["value"] * p50, 6)
@@ -297,6 +304,11 @@ POOL_DEFS = {
 }
 
 
+ENDING_VERBS = ("revoke", "supersede", "terminate", "abolish")
+GATES_REV = 2   # rev 2 (2026-10-20 review): ending verbs only and whole-scope TERMs only; rev 1 counted any
+                # whole-scope ACT verb (transfer, other) and section-level TERM end dates
+
+
 def eo_num(iid):
     m = re.match(r"EO:(\d+)", iid)  # prefix match, as the Y2 predictor: EO:7600-2 counts as 7600
     return int(m.group(1)) if m else None
@@ -337,14 +349,17 @@ class Data:
             for a in self._jsonl_parts("jobs/claim-kit/output/ACTING_PROVISIONS.jsonl"):
                 if a.get("names_target"):
                     named.add(a["target_id"])
-                    if a.get("scope") == "whole" and a.get("effective_date"):
+                    # an ending verb only: a whole-scope amend, transfer or "other" does not end the order
+                    if a.get("scope") == "whole" and a.get("effective_date") and a.get("verb") in ENDING_VERBS:
                         whole.add(a["target_id"])
             return whole, named
         return self._memo("acting", build)
 
     def term_end(self):
+        # whole-order terms only: a section's own end date (scope_id "...#sec4-b") does not end the order
         return self._memo("term", lambda: {t["instrument_id"] for t in self._jsonl_parts(
-            "jobs/claim-kit/output/OWN_TERMS.jsonl") if t.get("computed_end_candidate")})
+            "jobs/claim-kit/output/OWN_TERMS.jsonl") if t.get("computed_end_candidate")
+            and str(t.get("scope_id", "")).endswith("#whole")})
 
     def current_leads(self):
         def build():
@@ -413,7 +428,8 @@ GATES = {
                            lambda r, D: _held(r["step_original_text"] == "done")),
     "status_evidence_held": ("a status-history observation/event or an OFR catalog disposition note",
                              lambda r, D: _held(r["instrument_id"] in D.status_evidence())),
-    "ending_instrument_held": ("NO orders: whole-scope ACT with effective date, or TERM with computed end (claim-kit)",
+    "ending_instrument_held": ("NO orders: whole-scope revoke/supersede/terminate/abolish ACT with effective date, "
+                               "or whole-scope TERM with computed end (claim-kit)",
                                g_ending_instrument),
     "current_predicate_held": ("YES orders: a CURRENT predicate; leads are not held (current-law)", g_current_predicate),
     "ending_or_current_held": ("ending_instrument_held for NO orders, current_predicate_held for YES orders",
@@ -471,13 +487,14 @@ def run_census(pool, requires=None, D=None, rows=None):
         expected *= (alone[g]["held"] + alone[g]["na"]) / n if n else 0
     flags = []
     if expected >= 1.5 * max(strict, 1) and expected >= 1.5:
-        flags.append("ASSUMED_INDEPENDENCE")  # gates are positively dependent: product of marginals overstates
+        flags.append("ASSUMED_INDEPENDENCE")  # fewer items hold every gate than independence predicts: multiplying marginal rates overstates
     return {"schema": "llull.census/1", "pool": pool, "pool_title": POOL_DEFS.get(pool, {}).get("title", pool),
             "pool_size": n, "requires": requires, "alone": alone, "cumulative_strict": cum,
             "ceiling_strict": strict, "ceiling_leads": leads,
             "share_strict": round(strict / n, 4) if n else 0.0, "share_leads": round(leads / n, 4) if n else 0.0,
             "product_of_marginals": round(expected, 2), "flags": flags,
-            "reference": POOL_DEFS.get(pool, {}).get("reference"), "commit": head(), "written_at": now()}
+            "reference": POOL_DEFS.get(pool, {}).get("reference"), "gates_rev": GATES_REV,
+            "commit": head(), "written_at": now()}
 
 
 def census_table(c):
@@ -565,7 +582,7 @@ def run_wheel(path, census=None, max_q=12):
                 evidence = ("proxy unit %r named as a result" if structured else
                             "text match %r (prose plans are never auto_fail; register the number as a forecast)") % hit.group(0)
             if k == "ASSUMED_INDEPENDENCE" and census and "ASSUMED_INDEPENDENCE" in census.get("flags", []) and state != "auto_fail":
-                state, evidence = "needs_answer", "census gates are positively dependent (product %.1f vs joint %d)" % (
+                state, evidence = "needs_answer", "census: multiplying marginal rates overstates (product %.1f vs joint %d)" % (
                     census["product_of_marginals"], census["ceiling_strict"])
             cells.append({"step_index": si, "step": s["step"], "mode": k, "state": state, "evidence": evidence,
                           "question": m["question"], "past_misses": m["misses"]})
@@ -846,8 +863,10 @@ def score_all(L):
             if len(ps) >= 10:
                 e["murphy"] = murphy(ps, os_)
         n = e["n_interval"] + e["n_binary"]
+        # binaries must beat always saying 0.5 (Brier 0.25); before this check 5 wrong binaries read "calibrated"
         e["trust"] = "unproven" if n < 5 else ("calibrated" if e.get("coverage_p10_p90", 0.8) >= 0.6
-                                              and abs(e.get("median_log_ratio", 0)) <= math.log(2) else "miscalibrated")
+                                              and abs(e.get("median_log_ratio", 0)) <= math.log(2)
+                                              and e.get("brier", 0.0) < 0.25 else "miscalibrated")
         res["planners"][pk] = e
     return res
 
@@ -933,6 +952,7 @@ def run_check(L):
         for pid in str(r.get("postmortem_id", "")).split(","):
             if pm_ids and pid not in pm_ids:
                 errs.append("base rate %s cites unknown postmortem %s" % (k, pid))
+        errs += evidence_problems(k, r, L)
     fcs_all = read_jsonl(L.forecasts)
     ids = [f["forecast_id"] for f in fcs_all if f.get("rev", 1) == 1]
     if len(ids) != len(set(ids)):
@@ -981,6 +1001,37 @@ def run_check(L):
             errs.append("outcome %s: %s" % (o["outcome_id"], e))
     # Llull writes only under its own directory: nothing else in the repo may carry its marks
     return errs, warns
+
+
+def _squash(t):
+    return re.sub(r"\s+", "", t)
+
+
+def evidence_problems(k, r, L):
+    """Traceability: every row quotes its measurement verbatim (whitespace ignored) from a repository file.
+    The all-misses fallback is instead recomputed from postmortems.json."""
+    if k == CLASS_FALLBACK:
+        if not L.postmortems.exists():
+            return ["base rate %s: postmortems.json missing, cannot recompute" % k]
+        pm = {p["id"]: p for p in json.loads(L.postmortems.read_text())["plans"]}
+        ratios = sorted(pm[p]["miss_ratio"] for p in str(r.get("postmortem_id", "")).split(",")
+                        if p in pm and pm[p].get("miss_ratio") is not None)
+        if not ratios:
+            return ["base rate %s: no miss ratios to recompute" % k]
+        m = len(ratios) // 2
+        med = ratios[m] if len(ratios) % 2 else (ratios[m - 1] + ratios[m]) / 2
+        return [] if abs(med - r["value"]) < 0.0006 else ["base rate %s: value %g but the postmortem median is %g"
+                                                          % (k, r["value"], med)]
+    ev = r.get("evidence") or []
+    if not ev:
+        return ["base rate %s has no evidence quote" % k]
+    out = []
+    for e in ev:
+        if repo_path_ok(e.get("source", "")):
+            out.append("base rate %s evidence: %s" % (k, repo_path_ok(e.get("source", ""))))
+        elif _squash(e.get("quote", "")) not in _squash((REPO / e["source"]).read_text(errors="replace")):
+            out.append("base rate %s: quote %r not found in %s" % (k, e.get("quote", "")[:60], e["source"]))
+    return out
 
 
 def cmd_check(a, L):

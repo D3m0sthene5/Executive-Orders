@@ -57,26 +57,41 @@ another ledger (used by the tests).
 - `ledger/postmortems.json`: the 23-plan pass-1 mining (history, **not registered**, so it feeds base
   rates but not calibration).
 - `ledger/base_rates.json`: 19 rows copied only from measured values in the postmortems, each with
-  `source` and `postmortem_id`. Examples: Y2 upheld 3/50 = 0.06, Y1 accepted 15/50, X1 eligible 52/8,014,
+  `source`, `postmortem_id` and `evidence` (verbatim quotes that `check` finds in the cited files, whitespace
+  ignored; the 0.036 fallback is instead recomputed from `postmortems.json`). Examples: Y2 upheld 3/50 = 0.06, Y1 accepted 15/50, X1 eligible 52/8,014,
   Opus refetch 17/472, HathiTrust 0/1,712, median measured/forecast over 9 unfavourable misses = 0.036.
 - `failure_modes.json`: the 10 modes with past miss counts (8, 5, 3, 2, 2, 2, 1, 1, 0, 0 over 12 misses).
   Derived from the same 23 plans, so a score on them is in-sample; only future plans earn trust.
-- `ledger/censuses.jsonl`: the three shipped pools run at build time.
+- `ledger/censuses.jsonl`: the three shipped pools. D-1 to D-3 (gates rev 1, commit 46f91fdac) are superseded by
+  D-4 to D-6 (gates rev 2, commit 15b4b4d85); `test_llull.py` re-runs the latest rev on inputs taken with `git show`
+  at the recorded commit, so later data commits do not break it.
 - `examples/`: a structured plan for `premortem` and a candidate-actions file for `rank`.
 
-## Census pools (counted on the committed outputs today)
+## Census pools (gates rev 2, commit 15b4b4d85)
 
 | Pool | Definition | Required inputs | Pool | Strict | Leads |
 |---|---|---|---|---|---|
 | Y1 | numeric EO >= 7532, no provisional status, not ready | `original_text_held`, `status_evidence_held` | 4,274 | 3,952 | 3,952 |
-| Y2 | EO >= 7532, status yes/no, text held, not ready, no claim | `status_present`, `original_text_held`, `ending_or_current_held` | 2,063 | 67 (3.2%) | 392 (19.0%) |
+| Y2 | EO >= 7532, status yes/no, text held, not ready, no claim | `status_present`, `original_text_held`, `ending_or_current_held` | 2,060 | 38 (1.8%) | 363 (17.6%) |
 | X1 | not numeric EO >= 7532 (pre-1937 and unnumbered) | `status_present`, `original_text_held` | 8,032 | 32 (0.4%) | 32 |
 
 Y1 reproduces the funnel plan's 4,274 and 3,952; X1 reproduces the postmortem's "32 by EO<7532 today"
-(the pilot's 52 of 8,014 counted by signing date at an earlier commit). Y2's pool matches the scratch
-`y2_predictor.py` (2,063) but the ceiling is 67 and 392, not 64 and 389: the predictor read only
-`ACTING_PROVISIONS.jsonl`, and Llull also reads its `.partNNNN.jsonl` continuation files (3 more orders).
-Either way the Y2 target of 50% upheld was 15 times the strict ceiling. No repository source holds a
+(the pilot's 52 of 8,014 counted by signing date at an earlier commit). Y2's pool was 2,063 at 46f91fdac
+(the scratch `y2_predictor.py` count) and is 2,060 at 15b4b4d85.
+
+**Gates rev 2 (adversarial review, 2026-10-20).** Rev 1 counted any whole-scope ACT verb (transfer, other) and
+any TERM end date, including a single section's (`#sec4-b`), as an ending instrument: 67 strict. Rev 2 counts
+only revoke/supersede/terminate/abolish ACTs with an effective date and whole-scope TERMs: 38 strict. 10 items per
+pool were checked by hand against the raw files.
+
+**The strict count is not a ceiling for rates.** Bowditch Y2 drew its 50 orders at random from this pool and
+upheld 3 (6%), above the strict share (3.2% in rev 1, 1.8% in rev 2). None of the 3 upheld orders passed the gate
+in either rev (one partial revocation without a date, one whole TERM with a stated but not computed end, one
+amended), and 0 of the 50 pass it in rev 2. So the gate misses routes; `outcome` logs `ceiling_violated` in that
+case. The strict share is a gate-held share, useful for the order of magnitude, and caps a share only when the
+attempts are an unselected draw from the pool. `hit_rate` is not capped at all (it is conditional on the
+finder's own selection). Widening the gate to catch these three would be fitting the test cases, so it is not done.
+Either way the Y2 target of 50% upheld was far above both counts. No repository source holds a
 CURRENT predicate yet, so `current_predicate_held` yields leads only (325 YES orders), never "held".
 Also registered: `claim_draft_present`, `no_evidence_conflict`, `only_judgment_left` (claim-drafts).
 
