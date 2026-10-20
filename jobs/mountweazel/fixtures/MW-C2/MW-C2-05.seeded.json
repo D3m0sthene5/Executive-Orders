@@ -1,0 +1,198 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 1,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl",
+  "sha256": "a8178399837dd517c150a85df688b959d8a3e42fb623941727163120504a834f"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D3",
+ "instrument_id": "SEEDED:EO:9172",
+ "item_id": "MW-C2-05",
+ "leak_needles": [
+  ". 9172 be, and it is hereby,\""
+ ],
+ "mutation": {
+  "after": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby,",
+  "before": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+  "field": "operative_clauses[0].first_end.source.quote",
+  "operator": "D3.0",
+  "refuting_span": {
+   "quote": " \nrevoked."
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:9172",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition row for EO 9172 ('Revokedby EO 9883', table page 1035); every acting order it names was then read in its Federal Register original, together with the amending and continuing orders named in this claim",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), Executive Orders disposition table, as transcribed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv); a status lead as of 1989-01-20 only",
+    "searched_by": "Claude (batch 7), reading the held fr-originals Federal Register scans"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "EO 9172 read in full (7 FR 3913-3914) for its own duration, expiry or condition terms; EO 9883 (12 FR 5481) read for its revoking provision, effective date and any savings language; no amendment of EO 9172 is listed in the OFR catalog or the 1989 disposition table",
+    "repository": "Held official Federal Register scans (jobs/fr-originals full_run texts and SOURCES.jsonl) and Statutes at Large PDFs held in research/stage20",
+    "searched_by": "Claude (batch 7)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:9883",
+     "date": "1947-08-11",
+     "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+     "source": {
+      "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+      "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby,",
+      "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:9883",
+      "effective_date": "1947-08-11",
+      "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+      "source": {
+       "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+       "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+       "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "1. There is hereby created, for the du­\nration of the war and six months there­\nafter, a National Railway Labor Panel  \nof nine members, hereinafter referred to\nas the Panel, to be appointed by the Pres­\nident, and to be qualified as to member­\nship thereon in the same manner as pro­\nvided in Section 10 of the Railway Labor  \nAct for membership on emergency boards. \nThe President shall designate a chairman \nfrom the members of the Panel and shall  \nfill vacancies thereon as they may occur.  \nThe Chairman of the Panel shall receive  \nsuch compensation, together with neces­\nsary travelling expenses, as the President  \nmay prescribe. The members of the  \nPanel shall receive necessary travel ex­\npenses and subsistence expenses or per  \ndiem allowances in lieu thereof on such  \ndays as they are actually engaged in per­\nformance of duties pursuant to this Or­\nder.",
+    "original_source": {
+     "page_or_item": "7 FR 3913, PDF pages 1-2; para. 1 (Panel created for the duration of the war and six months thereafter; membership, chairman, compensation) (quotation from PDF page 1)",
+     "sha256": "089daa0b319864227f0f5f0f1ecd8c1c68e0e087b2602b157e1eca31cfdb78d2",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1942-05-27/pdf/FR-1942-05-27.pdf"
+    },
+    "scope_id": "EO:9172#para1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:9883",
+     "date": "1947-08-11",
+     "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+     "source": {
+      "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+      "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+      "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:9883",
+      "effective_date": "1947-08-11",
+      "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+      "source": {
+       "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+       "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+       "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "2. Whenever a dispute between a car­\nrier or carriers and its or their employees  \nconcerning changes in rates of pay, rules,  \nor working conditions, or whenever any  \nother dispute not referable to the Na­\ntional Railroad Adjustment Board, is not  \nadjusted or settled under the provisions  \nof Sections 5, 6, 7, 8, and 9 of the Railway  \nLabor Act, the duly designated and au­\nthorized representatives of employees in­\nvolved in such dispute may, prior to no­\ntice by the National Mediation Board to  \nthe President, of a threatened interrup­\ntion to commerce, notify the Chairman  \nof the Panel of the failure of the parties  \nto adjust the dispute and of their desire  \nto avoid the taking of a strike vote and  \nthe setting of a strike date. If, in the  \njudgment of the Chairman of the Panel,  \nthe dispute is such that if unadjusted,  \neven in the absence of a strike vote, it  \nmay interfere with the prosecution of  \nthe war, he may thereupon select three  \nmembers of the Panel to serve as an  \nemergency board to investigate such dis­\npute and to report thereon to the Presi­\ndent. Subject to the provisions of Sec­\ntion 10, such board shall have exclusive  \nand final jurisdiction of the dispute and  \nshall make every reasonable effort to  \nsettle such dispute.",
+    "original_source": {
+     "page_or_item": "7 FR 3913, PDF pages 1-2; para. 2 (notice to the Panel chairman; three-member emergency boards with exclusive and final jurisdiction) (quotation from PDF page 1)",
+     "sha256": "089daa0b319864227f0f5f0f1ecd8c1c68e0e087b2602b157e1eca31cfdb78d2",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1942-05-27/pdf/FR-1942-05-27.pdf"
+    },
+    "scope_id": "EO:9172#para2",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:9883",
+     "date": "1947-08-11",
+     "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+     "source": {
+      "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+      "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+      "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:9883",
+      "effective_date": "1947-08-11",
+      "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+      "source": {
+       "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+       "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby, \nrevoked.",
+       "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "3. The National Mediation Board shall  \nfurnish the Panel stenographic, investi­\ngative, and such other facilities as may  \nbe necessary; and within the limits of  \nthe funds provided, and upon the certifi­\ncation of the Chairman of the Panel,",
+    "original_source": {
+     "page_or_item": "7 FR 3913, PDF pages 1-2; para. 3 (National Mediation Board support and disbursements) (quotation from PDF page 1); the provision continues on PDF page 2, whose words are quoted in this source's 'quote' field",
+     "quote": "shall make such other disbursements as  \nare necessary to effectuate this Order.",
+     "sha256": "089daa0b319864227f0f5f0f1ecd8c1c68e0e087b2602b157e1eca31cfdb78d2",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1942-05-27/pdf/FR-1942-05-27.pdf"
+    },
+    "scope_id": "EO:9172#para3",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "7 FR 3913, PDF pages 1-2",
+   "sha256": "089daa0b319864227f0f5f0f1ecd8c1c68e0e087b2602b157e1eca31cfdb78d2",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1942-05-27/pdf/FR-1942-05-27.pdf"
+  },
+  "research_rationale": "EO 9172 (May 22, 1942) created a National Railway Labor Panel 'for the duration of the war and six months thereafter' and let its chairman form three-member emergency boards (paras. 1-3; 7 FR 3913-3914, read in the held govinfo scan). Before taking the revocation as the first end I checked the order's own term: the state of war with Germany and Japan had not been terminated in August 1947 (the President's proclamation of December 31, 1946 ended only hostilities), so the Panel's own term had not run, and EO 9883's recital confirms the Panel still existed. No amendment or partial revocation is recorded (OFR catalog; 1989 Codification disposition table, a lead only). EO 9883 (12 FR 5481) revokes the order outright, states no effective date and has no savings clause, so every paragraph ended on its signing date, August 11, 1947. The U.S. Code and eCFR machine searches found no current citation.",
+  "savings_residuals": {
+   "reason": "EO 9883 is a bare revocation with no savings, transition or winding-up clause. EO 9172 itself contains none: it created the National Railway Labor Panel and its emergency boards, which existed only to investigate and report on disputes; reports already made were completed acts, and nothing in either order preserves pending board proceedings, pay or any right. Rail disputes reverted to the Railway Labor Act procedures that EO 9883's recital names as adequate.",
+   "source": {
+    "page_or_item": "12 FR 5481, PDF pages 1-1; whole text of EO 9883 (PDF page 1)",
+    "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:9883",
+   "date": "1947-08-11",
+   "mechanism": "revocation: EO 9883 revokes EO 9172 outright; the order states no effective date, so it took effect when signed on August 11, 1947 (filed the same day, printed 12 FR 5481 on August 13, 1947); no savings clause",
+   "source": {
+    "page_or_item": "12 FR 5481, PDF pages 1-1; operative sentence of EO 9883 (PDF page 1)",
+    "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the statutes of the United \nStates, it is ordered that the said Exec­\nutive Order No. 9172 be, and it is hereby,",
+    "sha256": "b14d08d6da4fe73a4afe477df36756691a748d0b976d11ad9e721e7f30bc3092",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1947-08-13/pdf/FR-1947-08-13.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}
