@@ -33,3 +33,14 @@ In batch 04 the independent reviewer (`claude-lambertini-i04-reviewer`, Opus, Mo
 - **EO 10324 and EO 10467 (upheld; checker unverified).** The ending source is the same EO 10480 text. The official text is held and GPO-hash-matched, but the ACT record is APP-sourced.
 - **EO 12977 (upheld; checker unverified).** EO 13286 sec. 23 is held in official text, but the later events cite the APP ACT record.
 - **Why no act_overrides records for these three.** `jobs/claim-kit/act_overrides.py` accepts only pairs the scanner reports as "target provision not located", and it requires a committed independent `REVIEW.jsonl`. These pairs are already located from APP text, so a record would be refused with `pair_not_unlocated`. Three precise `FETCH_QUEUE.jsonl` lines were appended instead, marked "Dossier gap, not a missing source".
+
+## Re-sourced (2026-10-20)
+
+EO 10324, EO 10467 and EO 12977 were refiled against official held texts: `EO_10480.txt` (GPO hash match; sec. 607 items (7) and (13)) and `EO_13286.txt` (sec. 23). An independent reviewer then checked them, including the D6 step.
+
+- **Plant score: 1 of 1 caught.** The plant changed "February 6, 1952" to "February 8, 1952" in the EO 10324 sec1 first_end quote. The reviewer rejected EO 10324 for that defect alone and raised nothing else.
+- **EO 10324:** rejected because of the plant only. Every other check held, including the end at EO 10480 sec. 607(7) on 1953-08-14, savings under sec. 606, and the D6 by-number scan. The genuine line is now filed in `claims/claude-lambertini-i04-2026-10-20.jsonl`, line 1.
+- **EO 10467:** upheld. Item (13), sec. 606 savings, and D6 are clean. Filed in i04, line 2.
+- **EO 12977:** upheld. Seven clauses carry the EO 13286 sec. 23 event dated 2003-03-01 (sec. 92). The order was revoked by EO 14111 on 2023-11-27, and D6 is clean. Filed in i08, line 11. The later events still cite the APP ACT record (custody only), as the claim discloses.
+- **Claim checker** on i04 and i08 (21 claims): 21 mechanical pass, 0 unverified, 0 fail, 21 gate passed. This replaces the "checker unverified" note under Related.
+- AI status hypotheses only. Nothing is adopted. The certified whole-lifecycle count stays 0.
