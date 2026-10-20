@@ -19,14 +19,14 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Savings clauses and surviving effects closed | 174 | 3,359 | 5.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,475 | 3,359 | 73.7% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
-| Opus evidence images matched to this order (Opus cases only) | 132 | 844 | 15.6% |
+| Opus evidence images matched to this order (Opus cases only) | 137 | 844 | 16.2% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 3,216 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 425 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 420 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
@@ -47,7 +47,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,134 | 3,134 |
 | `FIRST_END_UNPROVED` | 2,734 | 2,734 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 688 | 688 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 425 | 425 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 420 | 420 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
@@ -81,7 +81,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - opus-media-match status: 1,155
-- source-ladder: 206
+- source-ladder: 212
 - claim-checker: 225
 - machine later-source search: 6,938
 
