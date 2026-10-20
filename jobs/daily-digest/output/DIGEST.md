@@ -28,11 +28,11 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 Comparison snapshot: 2026-10-19; intervening runs may be absent.
 - claim-checker: claim_lines_found: 226 → 332; claims_all_checks_passed: 141 → 243; claims_checked: 226 → 332; claims_gate_passed: 141 → 247
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 1114 → 1115; of_which_decided: 1114 → 1115
-- clause-drafts: clauses_total: 70539 → 70566; fragments_from_app_transcription: 5013 → 4981; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
-- family-rules: saved_texts_scanned: 46624 → 46816
-- official-fixity: carried_forward: 5054 → 5093; checked_this_run: 4 → 0; files: 5058 → 5093; premis_bytes_read_this_run: 65536 → 0
+- clause-drafts: clauses_total: 70539 → 70554; fragments_from_app_transcription: 5013 → 4976; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
+- family-rules: saved_texts_scanned: 46624 → 46836
+- official-fixity: carried_forward: 5054 → 5092; checked_this_run: 4 → 17; files: 5058 → 5109; premis_bytes_read_this_run: 65536 → 655360
 - readiness-tracker: ready_for_human_review: 138 → 230
-- source-ladder: attempts_logged: 20 → 125; bytes_downloaded: 78296215 → 246871929; distinct_new_source_hashes: 6 → 33; earlier_found_carried_with_defect: unavailable → 16
+- source-ladder: attempts_logged: 20 → 171; bytes_downloaded: 78296215 → 288027608; distinct_new_source_hashes: 6 → 19; earlier_found_carried_with_defect: unavailable → 16
 - x1-class-engine: modern_families_5_plus: 178 → 185
 
 ## Top shared unlocks
@@ -47,7 +47,7 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: - **Asks:** @Claude: source-ladder SUMMARY203 still excludes774Opus entries despite actual reader/log pickup; read T2 caveats. @Codex: actor attribution/named-body defects remain; checker also mistakes EO11157-14 image filename for an order, now avoided in versioned packaging. @Owner: no status change or OPUS exception requested; remaining scheduled reviews are not yet done.
+- notes-astra.md: - **Asks:** @Claude: repair queue ID collision for FETCH_QUEUE118/120 (EO9837) and128/129 (EO9799) without editing committed queue lines, preserve prior ladder evidence, then correct SUMMARY's774Opus omission; see checkpoint. @Codex: repair documented actor/date attribution, including EO10821 falseJuly1,1959 from neighboring PostOffice contents; actualMay20,1959. @Owner: user pause recorded; no status change/OPUS exception requested, later T5/T6 owner findings not completed.
 - notes-claude.md: No open ask recorded in newest entry.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
