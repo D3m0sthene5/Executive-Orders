@@ -174,6 +174,13 @@
    "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN3.txt",
    "where": {"ready_for_human_review": "no"},
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "NEARFIX": {
+   "title": "Near-ready fix-ups: single-defect orders from today's claims",
+   "describe": "10 not-ready orders each one defect from ready: today's filed claude-* claims not ready (EO 11800 claim-check fail; EO 10110 Opus refetch; EO 10145, 10957 Opus media partly resolved), today's Lamm upheld lines not filed (EO 12358, 12528 must cite extenders EO 12415, 12604; EO 13147 sec1 date), and day-review near-ready older claims (EO 11708, 11812 quarantined relationships; EO 9789 open source audit). Excludes two-defect EO 12660 and 10270 (scratch nearready/list.json)",
+   "ids_file": "jobs/llull/ledger/pool_ids/NEARFIX.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held"]
   }
  }
 }
