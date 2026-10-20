@@ -2,7 +2,8 @@
 
 Valla recovered the five motivating examples, traced five specific unsupported
 first-end assertions to the shared inference, and retained five explicitly reviewed
-quotations for focused correction. It published no replacement claim or legal
+quotations for focused correction. Five independently examined exact-claim holds use the existing source-audit process
+and reduce the ready count from 230 to 225. It published no replacement claim or legal
 status. The machine preparation comparison showed additional work, with no measured
 net rework saving. Independent whole-case review of replacements remains outstanding.
 
@@ -123,12 +124,18 @@ existing claims: five structural passes, zero all-checks-passed, two mechanical
 quotation failures and three mechanically unverified claims in the sparse custody
 context. Full per-claim failure logs were retained; Valla neither repaired another
 producer's claim nor inferred that an existing mechanical pass would settle the
-methodology. The actual tracker ran against unchanged canonical inputs and reported
-230 ready. Valla's context is advisory preparation and does not change that count.
+methodology. The actual tracker first reported 230 ready. After the five independently examined
+claims were entered into the existing exact-hash source-audit hold file, the actual
+tracker reported 225 ready and an OPEN_SOURCE_AUDIT blocker for each case. Claim
+content and legal status remain unchanged; all preparation steps remain recorded.
+The matcher creates no hold automatically. This measured readiness correction is
+a quality benefit, not a saving or an assertion of an earlier ending date.
 The bounded GitHub workflow repeats both consumers using its fuller held inputs;
-its receipt, rather than this local subset, records the final CI results.
+its receipt, rather than this local subset, records the final CI results. The local
+cost comparison predates the final input guards and audit holds; its exact code pins
+and historical measurements are preserved, with no savings extrapolation.
 
-Local suites pass: 19 Valla tests, 176 claim-kit tests (three skips), 32 existing
+Local suites pass: 22 Valla tests, 176 claim-kit tests (three skips), 32 existing
 Mountweazel tests, two paired-fixture tests, 19 Junto tests, 28 checker tests and 22
 tracker tests. Isolation check: zero problems. The two fixed Junto allocation tests
 now use their named three-finder fixture, so adding a finder does not silently change

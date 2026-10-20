@@ -120,6 +120,7 @@ def run(repo, out, run_id):
     if before_claims != V.pins(repo, before_claims):
         raise ValueError('canonical claims changed during pilot')
     checker = json.loads((out / 'checker/SUMMARY.json').read_bytes())
+    tracker = json.loads((out / 'tracker/SUMMARY.json').read_bytes())
     proof = {'schema': 'valla-integrated-pilot/v1', 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
              'code_pins': V.pins(repo, ['jobs/valla/valla.py', 'jobs/valla/pilot.py', 'jobs/claim-kit/batch.py', 'jobs/mountweazel/paired.py']),
              'github_run_id': os.environ.get('GITHUB_RUN_ID'), 'valla_summary': index['summary'],
@@ -127,7 +128,8 @@ def run(repo, out, run_id):
              'independent_whole_case_replacement_reviews': 0, 'replacement_claims_published': 0,
              'checker_existing_claims': {k: checker.get(k) for k in ('claims_checked', 'claims_all_checks_passed', 'claims_gate_passed')},
              'correction_packet_path': correction.relative_to(repo).as_posix(), 'correction_packet_sha256': V.file_sha(correction / 'PACKET.json'),
-             'comparison_arms_retained': len(comparison), 'wall_seconds': time.monotonic() - started,
+             'comparison_arms_retained': len(comparison),
+             'ready_for_human_review': tracker['ready_for_human_review'], 'wall_seconds': time.monotonic() - started,
              'verified_rework_saving': False}
     V.dump(out / 'INTEGRATED.json', proof)
     print(V.canon(proof))

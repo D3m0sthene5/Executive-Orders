@@ -76,6 +76,17 @@ class VallaTests(unittest.TestCase):
         self.assertTrue(V.spans('It is wrong to say no clause\'s first end needs a report date.', patterns))
         self.assertFalse(V.spans('The successor does not inherit duties without a transfer provision.', patterns))
 
+    def test_all_premise_families_have_positive_and_unmatched_controls(self):
+        patterns=json.loads((V.HERE/'premises.json').read_bytes())['patterns']
+        examples={'performance_irrelevant_until_revocation':"No clause's first end needs a report date.",
+                  'deadline_as_completion':'The report was completed on the deadline.',
+                  'silence_as_continuation':'No later revocation was found, so it continues in effect.',
+                  'automatic_duty_succession':'The successor automatically inherited all duties.'}
+        for expected,text in examples.items():
+            with self.subTest(expected=expected):
+                self.assertIn(expected,{m['pattern_id'] for m in V.spans(text,patterns)})
+        self.assertFalse(V.spans('A receipt records delivery on June 1. The transfer instrument preserves only the named records.',patterns))
+
     def test_whole_uphold_or_reviewer_silence_cannot_attest_field(self):
         self.commit_review({'schema': 'eo-lifecycle-review/v1', 'verdict': 'upheld'})
         self.assertFalse(self.valid()['valid'])
@@ -121,6 +132,15 @@ class VallaTests(unittest.TestCase):
 
     def test_changed_reviewed_claim_is_not_approved(self):
         self.path.write_text(V.canon({**self.claim, 'research_rationale': 'different frozen object'}) + '\n')
+        self.assertFalse(self.valid()['valid'])
+
+    def test_zero_or_boolean_reviewed_claim_line_is_not_a_version_reference(self):
+        for line in (0,True,-1):
+            self.a['reviewed_claim_ref']['line']=line;self.commit_review()
+            self.assertFalse(self.valid()['valid'])
+
+    def test_boolean_method_cannot_count_as_an_explicit_method_attestation(self):
+        self.a['method']=True;self.commit_review()
         self.assertFalse(self.valid()['valid'])
 
     def test_version_precedence_and_synthetic_boundary(self):

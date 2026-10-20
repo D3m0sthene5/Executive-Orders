@@ -87,6 +87,10 @@ from the existing Lambertini overall reviews. Component values do not confer
 permissions: decision sheets still start unapproved, existing reservations remain
 controlling, and existing claims require explicit replacement proposals and owner
 acceptance. Every proposed correction still requires independent whole-case review.
+After independent source-backed examination, the pilot adds five exact-claim
+records to the existing SOURCE_AUDIT_HOLDS workflow. The matcher cannot create
+these holds. The existing tracker withholds those cases pending correction and
+ordinary whole-case review, retaining completed preparation steps.
 The packet's invalidation list is a review aid; it is not another legal-status
 or certification authority.
 

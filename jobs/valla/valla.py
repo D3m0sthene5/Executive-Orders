@@ -260,6 +260,8 @@ def validate_attestation(repo, a, c, invalidated=()):
         if a['instrument_id'] != c['instrument_id']:
             raise ValueError('wrong instrument')
         old_ref = a['reviewed_claim_ref']
+        if type(old_ref.get('line')) is not int or old_ref['line'] < 1:
+            raise ValueError('reviewed claim needs a positive exact JSONL line')
         old_path = safe(repo, old_ref['path'])
         if not old_path.relative_to(Path(repo).resolve()).as_posix().startswith('research/'):
             raise ValueError('reviewed claim must be held in research')
@@ -282,7 +284,7 @@ def validate_attestation(repo, a, c, invalidated=()):
             raise ValueError('attestation differs from explicit component review')
         if a.get('verdict') != 'upheld' or not isinstance(r.get('rationale'), str) or len(r['rationale']) < 40:
             raise ValueError('no substantive field-level approval')
-        if not a.get('method') or not a.get('reviewed_on') or not a.get('reviewed_claim_sha256'):
+        if not isinstance(a.get('method'), str) or len(a['method'].strip()) < 12 or not a.get('reviewed_on') or not a.get('reviewed_claim_sha256'):
             raise ValueError('missing scope/method/version')
         value = component(c, a['component_selector'])
         if sha(value) != a['component_sha256'] or sha(component(old, a['component_selector'])) != a['component_sha256']:
