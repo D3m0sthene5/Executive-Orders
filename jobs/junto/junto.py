@@ -57,6 +57,10 @@ ASSIGN_RE = re.compile(r"(?<![\w.:/-])(?:export\s+)?[A-Za-z_][A-Za-z0-9_]*=(?!=)
 CAUSE_KEY_RE = re.compile(r"^[a-z][a-z0-9_]{1,60}$")
 
 
+sys.path.insert(0, str(ROOT))  # sibling import also works under python -I
+from contracts import validate_contract
+
+
 class Refusal(Exception):
     def __init__(self, msg, code=2):
         super().__init__(msg)
@@ -238,6 +242,8 @@ def verdict_of(test):
             return None
         if b["usd"] <= 0 or b["units"] <= 0 or a["units"] <= 0:
             return "inconclusive"
+        if not all(math.isfinite(float(v)) for v in (b["usd"], b["units"], a["usd"], a["units"])):
+            return None
         bp, ap = arm_ppu(b), arm_ppu(a)
     except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return None
@@ -260,15 +266,23 @@ def delta_usd_saved(test):
     return (arm_ppu(test["before"]) - arm_ppu(test["after"])) * float(test["after"]["units"])
 
 
+def origin_kind(c):
+    """Seeds written by seed-candidate carry an origin object; NEYMAN's ledger rows carry an 'owner-seeded' string."""
+    o = c.get("origin")
+    if isinstance(o, dict):
+        return o.get("kind", "finder")
+    return "owner" if o == "owner-seeded" else "finder"
+
+
 def test_finders(ctx, test, cands=None):
     cands = cands if cands is not None else ctx.current("candidates.jsonl", "candidate_id")
-    if any((cands.get(cid) or {}).get("origin", {}).get("kind") in ("owner", "agent")
+    if any(origin_kind(cands.get(cid) or {}) in ("owner", "agent")
            for cid in test.get("candidate_ids", [])):
         return []  # supplied ideas are not inventions credited to a mining finder
     seen = []
     for cid in test.get("candidate_ids", []):
         c = cands.get(cid) or {}
-        f = c.get("finder_id") if c.get("origin", {}).get("kind", "finder") == "finder" else None
+        f = c.get("finder_id") if origin_kind(c) == "finder" else None
         if f and f not in seen:
             seen.append(f)
     return seen
@@ -520,6 +534,10 @@ def cmd_run(ctx, a):
         ids, new = [], []
         for r in recs:
             r = dict(r)
+            try:
+                validate_contract(r)
+            except ValueError as e:
+                raise Refusal(str(e))
             cid = cand_new()
             ids.append(cid)
             r.update({"schema": "junto.candidate/1", "candidate_id": cid, "rev": 0, "finder_id": f["finder_id"],
@@ -753,6 +771,14 @@ def cmd_add_test(ctx, a):
             raise Refusal("unknown candidate " + i)
         if cands[i].get("status") not in ("unverified", "test_proposed"):
             raise Refusal("%s is %s; only unverified or test_proposed candidates are tested" % (i, cands[i].get("status")))
+    for i in ids:
+        try:
+            validate_contract(cands[i])
+        except ValueError as e:
+            raise Refusal(str(e))
+        contract = cands[i].get("test_contract")
+        if contract and contract["unit_of_work"] != a.unit_of_work:
+            raise Refusal("test unit does not match prospective contract")
     keys = {cands[i]["saver_key"] for i in ids}
     if len(keys) != 1:
         raise Refusal("one test covers one saver_key; got %s" % sorted(keys))
@@ -929,7 +955,12 @@ def cmd_check(ctx, a):
             errs += ["%s:%d %s" % (name, i, b) for b in privacy_problems(r)]
             if name == "candidates.jsonl" and r.get("rev") == 0 and r.get("status") != "unverified":
                 errs.append("%s:%d first line must be unverified" % (name, i))
-            if name == "candidates.jsonl" and r.get("finder_id") not in fins and r.get("origin", {}).get("kind") not in ("owner", "agent"):
+            if name == "candidates.jsonl":
+                try:
+                    validate_contract(r)
+                except ValueError as e:
+                    errs.append(str(e))
+            if name == "candidates.jsonl" and r.get("finder_id") not in fins and origin_kind(r) not in ("owner", "agent"):
                 errs.append("%s:%d unregistered finder" % (name, i))
             if name == "contracts.jsonl":
                 errs += ["%s:%d %s" % (name, i, problem) for problem in contract_problems(r)]

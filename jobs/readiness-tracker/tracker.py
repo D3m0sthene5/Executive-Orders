@@ -299,7 +299,12 @@ def machine_search_record(i, search):
     ]
 
 
-def build(root):
+def build(root, *, planning_closures=None):
+    # In-memory counterfactuals only; ordinary jobs never supply this argument.
+    if planning_closures is not None:
+        allowed = set(STEP_NAMES)-{"provisional_status"}
+        if any(not set(v) <= allowed for v in planning_closures.values()):
+            raise ValueError("invalid planning closure; status cannot be assumed")
     sys.path.insert(0, os.path.join(root, P["claim_gate_dir"]))
     import claim_gate  # the project's own structural gate
 
@@ -462,6 +467,14 @@ def build(root):
                 blockers.pop(step, None)
                 exhausted_steps.append(step)
 
+        # Research planning assumptions do not create receipts, claims or exhaustion.
+        # Retain claim-level gates and source-audit holds in the real readiness logic.
+        if planning_closures is not None:
+            for step in planning_closures.get(i, ()):
+                if step in steps:
+                    steps[step] = True
+                    blockers.pop(step, None)
+
         claim_level = [e for e in gate_errors or [] if step_for_gate_error(e) is None]
         complete_claim = claim is not None and not gate_errors
         # An exhausted step may leave its gap listed in the claim; nothing else may fail.
@@ -476,6 +489,7 @@ def build(root):
             blockers['counterevidence'].append('OPEN_SOURCE_AUDIT:'+holds[i]['claim_sha256'][:12])
         orders.append({
             "instrument_id": i,
+            **({"planning_only": True, "assumed_steps": "|".join(sorted(planning_closures.get(i, ())))} if planning_closures is not None else {}),
             "provisional_status": status or "",
             "decision_origin": d["decision_origin"] if d else "",
             "steps_applicable": len(steps),
@@ -695,3 +709,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

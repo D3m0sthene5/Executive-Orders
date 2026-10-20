@@ -100,6 +100,7 @@ D11 and D12 are in the taxonomy but have no operator yet.
   and no `data/`, because other jobs read those paths.
 
 ## Controlled reasoning pairs
+
 `python3 -I jobs/mountweazel/mountweazel.py pairs prepare --out <new external directory>`
 creates six pairs (twelve hypothetical items): layout, deadline, demonstrated
 performance, recurring duties, omitted earlier events and savings exceptions.
@@ -110,17 +111,21 @@ substantive reasons. Generated items, answer keys and item-level results stay
 outside the repository and are rejected by the production claim gate. Read the
 limitations: **reviewer blinding is not technically enforced** by file permissions
 under the same account. A harness/key roundtrip is not a reviewer sensitivity test.
+
 ## Strict scoring and blinding corrections (2026-10-20)
+
 `score` preserves a conservative mechanical correspondence record for every plant: affected locus,
 material issue, and (for omitted events) event identity. A D6 rejection about a cut quote in another
 clause gets no strict credit just because it mentions the same EO number. Ambiguous wording needs
 adjudication. `--strict-overrides` accepts an object per item with `caught` (boolean), `adjudicator`,
 `reason`, `source`, `affected_locus`, and `material_issue`; bare boolean overrides are refused.
 The original mechanical result and the sourced adjudication remain separately visible.
+
 A generated key states **instructed** blinding: a separate directory and mode 0600 do not exclude a
 reviewer running under the same account. Old keys without a record report **unknown**, never technical
 blinding by assumption. Planned-but-unplanted and unreviewed controls are explicitly unscored; their
 absence cannot satisfy an execution gate. Flags on genuine claims remain unadjudicated until reviewed.
+
 Controlled regression pairs cover earlier cessation, performance, partial scope, savings, and coherent
 wrong premises. They test correspondence to the approved method and require investigation; they do not
 encode an automatic performance-ends-everything rule. Existing isolated fixture protections remain in force.
