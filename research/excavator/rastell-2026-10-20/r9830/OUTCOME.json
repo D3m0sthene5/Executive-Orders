@@ -1,0 +1,81 @@
+{
+ "workflow": "rastell-r9830-probe",
+ "date": "2026-10-20",
+ "plan_id": "R9830P",
+ "status": "AI review hypotheses, not human certification; certified whole-lifecycle count stays 0; no codebook or status change",
+ "pool": {
+  "pool": "R9830P",
+  "size": 10,
+  "ids_from": "research/production/day-review-2026-10-20/R9830_ids.txt lines 1,4,...,28"
+ },
+ "act": {
+  "attempts": 10,
+  "located": 10,
+  "upheld": 9,
+  "rejected": 1,
+  "act_records_upheld_per_attempt": 0.9,
+  "note": "The one rejection (EO 8283) was of the planted copy; the genuine EO 8283 record was not independently reviewed, so it is not upheld and not ingested. 9 of 9 genuinely reviewed records upheld.",
+  "upheld_ids": [
+   "EO:1153",
+   "EO:8083",
+   "EO:8467",
+   "EO:8760",
+   "EO:9052",
+   "EO:9298",
+   "EO:9503",
+   "EO:9619",
+   "EO:9668"
+  ],
+  "reviewer_claims_enabled": {
+   "yes": 5,
+   "conditional": 3,
+   "no": 1
+  },
+  "ingest": "9 records in research/readiness/act_overrides/rastell-r9830-2026-10-20.jsonl; review ledger research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl; act_overrides.verify accepted 9/9 with the ledger check"
+ },
+ "claims": {
+  "produced": 7,
+  "upheld": 6,
+  "not_upheld": [
+   "EO:9052"
+  ],
+  "file": "research/readiness/claims/claude-r9830-01-2026-10-20.jsonl",
+  "checker": {
+   "claims_checked": 6,
+   "all_checks_passed": 6,
+   "mechanical_fail": 0,
+   "gate_passed": 6
+  }
+ },
+ "claims_enabled": 6,
+ "claims_enabled_ids": [
+  "EO:8467",
+  "EO:8760",
+  "EO:9298",
+  "EO:9503",
+  "EO:9619",
+  "EO:9668"
+ ],
+ "probe_gate": {
+  "rule": "at least 4 of 10 R9830P orders enable a claim",
+  "measured": "6 of 10"
+ },
+ "probe_gate_passed": true,
+ "plants": {
+  "planted": 1,
+  "caught": 1,
+  "plant": "ACT:EO:8283>EO:9830@rastell effective_date",
+  "key": "scratch only"
+ },
+ "plants_caught_share": 1.0,
+ "blocked_pending_rulings": {
+  "report-deadline": 0,
+  "transcription-as-copy": 0,
+  "note": "no item was decided on a pending ruling; EO 8467 sec. 7(c) report duty not treated as an end"
+ },
+ "caveats": [
+  "EO 1153 D6 incomplete (1910-1935 instruments and the 1908-02-20 parent not held); claims_enabled=no",
+  "EO 8083, 8467, 9052 conditional: dossier inventory correction needed before claims (EO 8467 claim upheld with inventory override clauses)",
+  "EO 8760 claim has original_pages_confirmed false"
+ ]
+}
