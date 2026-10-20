@@ -1,0 +1,233 @@
+{
+ "agent": "claude-bowditch-y2-01-producer",
+ "start_utc": "2026-10-20T02:13:44Z",
+ "end_utc": "2026-10-20T02:31:00Z",
+ "wall_minutes_total": 17.3,
+ "note": "Wall times from date -u; the per-order split is my estimate. Token figure is an estimate from the harness context counter (about 400k tokens consumed in this session, including reading packet views and held texts); the harness did not print per-call usage.",
+ "tool_calls": 96,
+ "approx_tokens_total": 400000,
+ "minutes_split": {
+  "reading_sources_and_deciding": 13.5,
+  "mechanical_apply_batch_check_fixing": 2.0,
+  "fetch_queue_and_telemetry": 1.8
+ },
+ "apply_versions": [
+  "applied-v1 (3 assembled; batch-check offline mode reports EO 13792 'unverified: custody_record_only' because the 2017 PDF bytes are not in the offline validation cache; the brief's claim-checker command shows 3/3 all checks passed)",
+  "applied-v2 (experiment, rejected: used ACTOR_TEXT:EO:10236 as first_end for EO 10192 clause 1 to put the 'cease to exist' sentence in the quote; assembler rejected clause_0_first_end: an ACTOR_TEXT record has no mechanism)",
+  "applied-v3 (final: identical claim bytes to v1; 3 assembled, 21 blocked, 1 unresolved; claim-checker 3/3 all checks passed)"
+ ],
+ "outcome_counts": {
+  "submit": 3,
+  "blocked": 21,
+  "unresolved": 1,
+  "route_owner": 0
+ },
+ "fetch_queue_lines_appended": 19,
+ "tooling_gaps_found": [
+  "ACTOR_TEXT and ORIGINAL/CLAUSES records carry no mechanism, so a clean revocation named only in a held actor text cannot be assembled (EO 12553 list for EO 11049, 11343, 11387, 11797, 10635; EO 9830 for EO 8300; EO 10128 for EO 9916).",
+  "No TERM record for single-day, period or Congress-bound own-terms ends (EO 11065, 10856, 11923, 12574).",
+  "Draft clause inventories built from neighbouring documents on the same FR page (EO 8072, 8085, 10635, 10999, 10856)."
+ ],
+ "orders": [
+  {
+   "instrument_id": "EO:9293",
+   "outcome": "blocked",
+   "minutes_estimate": 0.5,
+   "approx_tokens": 12000,
+   "family_or_shared_source": "none",
+   "blocker": "no ending instrument held (Canal Zone cessation); fetch queued"
+  },
+  {
+   "instrument_id": "EO:9704",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 10000,
+   "family_or_shared_source": "none",
+   "blocker": "no ending evidence; ledger NO unsupported; fetch queued"
+  },
+  {
+   "instrument_id": "EO:10977",
+   "outcome": "blocked",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 14000,
+   "family_or_shared_source": "EO 13286 / EO 11382 amendments",
+   "blocker": "YES without current legal predicate; fetch queued"
+  },
+  {
+   "instrument_id": "EO:13792",
+   "outcome": "submit",
+   "minutes_estimate": 1.8,
+   "approx_tokens": 40000,
+   "family_or_shared_source": "EO 13990 Sec. 7(a) revocation",
+   "blocker": "none; checker 3/3 (batch-check offline mode: unverified custody for this order's PDF bytes)"
+  },
+  {
+   "instrument_id": "EO:11049",
+   "outcome": "blocked",
+   "minutes_estimate": 0.5,
+   "approx_tokens": 11000,
+   "family_or_shared_source": "EO 12553 revocation (ACTOR_TEXT only)",
+   "blocker": "ACTOR_TEXT cannot be first_end (verified in applied-v2 for the same record type); statute not held"
+  },
+  {
+   "instrument_id": "EO:9916",
+   "outcome": "blocked",
+   "minutes_estimate": 0.7,
+   "approx_tokens": 14000,
+   "family_or_shared_source": "EO 6868 / EO 10128 / EO 11401 family",
+   "blocker": "probable first end EO 10128 has no ACT record; ACTOR_TEXT only"
+  },
+  {
+   "instrument_id": "EO:11065",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 8000,
+   "family_or_shared_source": "none",
+   "blocker": "no TERM record for own-terms Congress-bound end; dates source fetch queued"
+  },
+  {
+   "instrument_id": "EO:8072",
+   "outcome": "blocked",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 13000,
+   "family_or_shared_source": "land-withdrawal family",
+   "blocker": "wrong clause inventory (EO 8071); original truncated; ending not held"
+  },
+  {
+   "instrument_id": "EO:8300",
+   "outcome": "blocked",
+   "minutes_estimate": 0.7,
+   "approx_tokens": 13000,
+   "family_or_shared_source": "EO 9830 civil service rules revocation",
+   "blocker": "EO 9830 has no ACT record (OCR 'No, 8300')"
+  },
+  {
+   "instrument_id": "EO:11387",
+   "outcome": "blocked",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 14000,
+   "family_or_shared_source": "EO 12553 / EO 11490",
+   "blocker": "ACTOR_TEXT only; statutory/earlier end not examined"
+  },
+  {
+   "instrument_id": "EO:10568",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 9000,
+   "family_or_shared_source": "Canal Zone suspension pair (10394)",
+   "blocker": "appropriation-act text not held"
+  },
+  {
+   "instrument_id": "EO:10856",
+   "outcome": "blocked",
+   "minutes_estimate": 0.5,
+   "approx_tokens": 10000,
+   "family_or_shared_source": "single-day excusal",
+   "blocker": "continuation page not held; no TERM record"
+  },
+  {
+   "instrument_id": "EO:10192",
+   "outcome": "submit",
+   "minutes_estimate": 1.6,
+   "approx_tokens": 36000,
+   "family_or_shared_source": "EO 10129/10236 Migratory Labor Commission",
+   "blocker": "none; checker 3/3 (first_end quote for clause 1 stops before the 'cease to exist' words)"
+  },
+  {
+   "instrument_id": "EO:14125",
+   "outcome": "unresolved",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 12000,
+   "family_or_shared_source": "emergency boards",
+   "blocker": "Sec. 4 records-custody clause with no end contradicts NO"
+  },
+  {
+   "instrument_id": "EO:10394",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 9000,
+   "family_or_shared_source": "Canal Zone suspension pair (10568)",
+   "blocker": "appropriation-act text not held"
+  },
+  {
+   "instrument_id": "EO:8085",
+   "outcome": "blocked",
+   "minutes_estimate": 0.5,
+   "approx_tokens": 11000,
+   "family_or_shared_source": "land-withdrawal family",
+   "blocker": "wrong clause inventory (Foreign Service Regulations); ending not held"
+  },
+  {
+   "instrument_id": "EO:11343",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 9000,
+   "family_or_shared_source": "emergency boards; EO 12553",
+   "blocker": "board report date not held"
+  },
+  {
+   "instrument_id": "EO:11923",
+   "outcome": "blocked",
+   "minutes_estimate": 0.3,
+   "approx_tokens": 6000,
+   "family_or_shared_source": "single-day flag order",
+   "blocker": "no TERM record for own-terms end"
+  },
+  {
+   "instrument_id": "EO:9643",
+   "outcome": "blocked",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 11000,
+   "family_or_shared_source": "none",
+   "blocker": "implementation direction has no dated end"
+  },
+  {
+   "instrument_id": "EO:11797",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 8000,
+   "family_or_shared_source": "EO 12553",
+   "blocker": "no clause inventory; ACTOR_TEXT only; statute history not held"
+  },
+  {
+   "instrument_id": "EO:11210",
+   "outcome": "blocked",
+   "minutes_estimate": 0.7,
+   "approx_tokens": 14000,
+   "family_or_shared_source": "EO 11347 amendment",
+   "blocker": "no ending held; inventory unreconciled"
+  },
+  {
+   "instrument_id": "EO:12574",
+   "outcome": "blocked",
+   "minutes_estimate": 0.4,
+   "approx_tokens": 8000,
+   "family_or_shared_source": "none",
+   "blocker": "no TERM record; statute extension not held"
+  },
+  {
+   "instrument_id": "EO:10635",
+   "outcome": "blocked",
+   "minutes_estimate": 0.5,
+   "approx_tokens": 11000,
+   "family_or_shared_source": "emergency boards; EO 12553",
+   "blocker": "mis-segmented clause; board report date not held"
+  },
+  {
+   "instrument_id": "EO:12978",
+   "outcome": "blocked",
+   "minutes_estimate": 0.6,
+   "approx_tokens": 12000,
+   "family_or_shared_source": "IEEPA continuation family",
+   "blocker": "no current predicate source held"
+  },
+  {
+   "instrument_id": "EO:10999",
+   "outcome": "submit",
+   "minutes_estimate": 2.6,
+   "approx_tokens": 52000,
+   "family_or_shared_source": "EO 11490 Sec. 3015 revocation family (10997-11005)",
+   "blocker": "none; checker 3/3 after replacing the 46-record inventory with 13 sections"
+  }
+ ]
+}

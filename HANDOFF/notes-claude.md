@@ -2,6 +2,23 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: Bowditch, the Y2 claim-factory probe failed its gate and Y1 passed
+
+- **Done:** random probe of the funnel plan (`research/excavator/bowditch-2026-10-20/REPORT.md`). **Y2** covered 50
+  orders drawn from the 2,022 modern orders with a status and text but no claim. **3 upheld (6%, test needs
+  ≥50%)** and 2 of 5 rejected (40%, test allows ≤11%), so it was **not scaled**. Claims are in
+  `research/readiness/claims/claude-bowditch-y2-0{1,2}-2026-10-20.jsonl`; all pass the checker. Expect 0-3 new
+  ready orders after the Actions tracker run.
+  **Y1** covered 50 of the 4,271 no-status modern orders. 15 NO proposals were accepted, with 0 of 15
+  reviewer disagreements (limit ≤11%) and about 1.5 agent-min per accepted status (limit 5): **passes**.
+  The reviewer came from the same model family, and nothing was adopted.
+- **Finding:** Y2 is blocked by missing inputs, not by agent effort. Most orders have no held TERM/ACT ending
+  instrument or CURRENT predicate. The probe added 53 FETCH_QUEUE requests. Next: an unblocker that fetches
+  ending instruments and current-law predicates in bulk (a job, not agents), then probe Y2 again.
+- **Cost:** about $21 of token value for 10 agents (session total $31.67 including Junto).
+- **Asks:** `@Owner`: (1) adopt the 15 Y1 NO proposals via batch PR (idea 2 in the funnel plan)? (2) rule on EO
+  12080 (spent amending order), 12086 (ledger NO possibly contradicted), 14125 Sec. 4, 9704.
+
 ## 2026-10-20 ET: Junto, a scored ledger of token-saving finders
 
 - **Done (branch `claude/junto-1727`):** design `research/plans/JUNTO_DESIGN.md`; `jobs/junto/` (append-only ledger,
