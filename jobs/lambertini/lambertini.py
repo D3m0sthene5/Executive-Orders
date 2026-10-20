@@ -513,19 +513,51 @@ def main(argv=None):
     ap.add_argument("--output", default=None, help="default <repo>/jobs/lambertini/output")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("build")
-    s = sub.add_parser("probe")
-    s.add_argument("--pool", choices=["LAMBS", "LAMBC"], required=True)
-    s.add_argument("--n", type=int, default=20)
-    s.add_argument("--seed", required=True)
-    s.add_argument("--out", required=True)
-    s.add_argument("--exclude", action="append", help="file whose EO ids are left out (other workflows' batches)")
+    for name in ("probe", "continue"):
+        s = sub.add_parser(name)
+        s.add_argument("--pool", choices=["LAMBS", "LAMBC"], required=True)
+        s.add_argument("--n", type=int, default=20)
+        s.add_argument("--seed", required=True)
+        s.add_argument("--out", required=True)
+        s.add_argument("--exclude", action="append", help="file whose EO ids are left out (other workflows' batches)")
+        if name == "continue":
+            s.add_argument("--gate-contract", required=True)
+            s.add_argument("--gate-observation", required=True)
     a = ap.parse_args(argv)
     if a.cmd == "build":
         out = a.output or os.path.join(a.repo, "jobs", "lambertini", "output")
         print(json.dumps(build(a.repo, out), indent=1))
+    elif a.cmd == "continue":
+        # Scale/continuation must use the frozen probe contract, including every
+        # planted test. An incomplete test never becomes a pass by omission.
+        import importlib.util
+        from pathlib import Path
+        module_path = Path(__file__).resolve().parents[1] / "llull" / "gates.py"
+        spec = importlib.util.spec_from_file_location("lambertini_gates", module_path)
+        gates = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gates)
+        try:
+            contract = json.loads(Path(a.gate_contract).read_text())
+            observation = json.loads(Path(a.gate_observation).read_text())
+            receipt = gates.evaluate_gate(contract, observation)
+            errors = gates.verify_evidence(observation, a.repo)
+            if errors:
+                receipt.update(status="untested", may_continue=False, evidence_errors=errors)
+        except (OSError, ValueError, TypeError) as exc:
+            receipt = {"status":"untested", "may_continue":False, "error":str(exc)}
+        os.makedirs(a.out, exist_ok=True)
+        receipt_path = Path(a.out) / "CONTINUATION_GATE.json"
+        if receipt_path.exists():
+            raise ValueError("continuation output already contains a gate receipt; use a new output directory")
+        receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+        if not receipt["may_continue"]:
+            print(json.dumps(receipt, sort_keys=True))
+            return 5
+        cmd_probe(a)
     else:
         cmd_probe(a)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -34,13 +34,20 @@ def compare(before, after):
             'independently_human_certified_added':0,'changes':changes}
 
 
-def run(root, receipts, out):
+def run(root, receipts, out, baseline_receipts=None):
     root=root.resolve();receipts=receipts.resolve();out=out.resolve()
     rel=receipts.relative_to(root).as_posix()
     if not out.is_relative_to(root/'research/excavator'):
         raise ValueError('measurement output must be under research/excavator')
     spec=importlib.util.spec_from_file_location('excavator_actual_tracker',root/'jobs/readiness-tracker/tracker.py')
     tracker=importlib.util.module_from_spec(spec);spec.loader.exec_module(tracker)
+    baseline_rel=None
+    if baseline_receipts is not None:
+        # A frozen catalogue before this acquisition permits replay after the
+        # canonical source output has advanced. It changes no file on disk.
+        baseline_receipts=baseline_receipts.resolve()
+        baseline_rel=baseline_receipts.relative_to(root).as_posix()
+        tracker.J['ladder_sources']=[baseline_rel]
     start=time.monotonic()
     before,pb=tracker.build(str(root));bs=tracker.summarise(before,pb)
     tracker.J['ladder_sources']=list(tracker.J['ladder_sources'])+[rel]
@@ -49,9 +56,11 @@ def run(root, receipts, out):
     hashes={}
     for p in [root/CENSUS,root/'research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv',
               root/'jobs/claim-checker/output/PER_CLAIM.json',root/'jobs/readiness-tracker/tracker.py',receipts,
+              *([baseline_receipts] if baseline_receipts is not None else []),
               *sorted((root/'research/readiness/claims').glob('*.jsonl'))]:
         hashes[p.relative_to(root).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
     delta.update(input_hashes=hashes,measurement_seconds=round(time.monotonic()-start,4),
+                 baseline_receipts=baseline_rel,added_receipts=rel,
                  legal_cutoff='2026-10-14',audited_correctly_new_ready=None,
                  caution='Mechanical readiness is an existing tracker result; independent source/legal audit is separate.')
     write_json(out/'SUMMARY.json',delta);write_json(out/'BEFORE.json',bs);write_json(out/'AFTER.json',ass)
@@ -63,4 +72,5 @@ def run(root, receipts, out):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--repo',type=Path,default=ROOT)
     p.add_argument('--receipts',type=Path,required=True);p.add_argument('--out',type=Path,required=True)
-    a=p.parse_args();run(a.repo,a.receipts,a.out)
+    p.add_argument('--baseline-receipts',type=Path,help='frozen prior ladder catalogue; default is current canonical output')
+    a=p.parse_args();run(a.repo,a.receipts,a.out,a.baseline_receipts)

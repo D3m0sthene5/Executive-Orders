@@ -18,6 +18,7 @@ import time
 
 from assemble import blank_sheet,assemble,check_claim,canonical_sha
 from build import filename
+from lifecycle_obligations import obligations
 
 SCHEMA='eo-claim-kit-work-package/v1'
 ROW_FIELDS=['instrument_id','dossier_sha256','agent','outcome','approved','original_confirmed',
@@ -186,6 +187,9 @@ def preflight(d,repo):
             add('actual_event_fact',iid+':'+eid,'Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened')
     if not d.get('clauses'):add('complete_inventory',iid,'No complete operative inventory located','absent_from_packet')
     return {'instrument_id':iid,'mechanical_tasks':tasks,'evidence_preflight':'blocked_or_research' if tasks else 'no_known_mechanical_gap',
+        'lifecycle_obligations':obligations(iid,d.get('clauses',[]),
+             [d.get('evidence',{}).get(eid,{}) for eid in d.get('own_terms',[])],
+             [d.get('evidence',{}).get(eid,{}) for eid in d.get('actor_provisions',[])]),
         'decisions_still_required':['complete original/inventory','earlier ending','partial scope and effective date',
              'independent commands','savings/residuals','contrary evidence and cutoff predicate'],
         'notice':'No known gap is not a legal-readiness finding. Review may expose new facts.'}
@@ -322,7 +326,7 @@ def view(repo,folder,order=None,source=None):
         for eid,e in d['evidence'].items():
             meta={k:v for k,v in e.items() if k not in ('text','provision_text','alternative_provisions')}
             lines.append(eid+' '+canon(meta))
-        for key in ('clauses','own_terms','actor_contexts','actor_provisions','chain','current_law_leads',
+        for key in ('clauses','own_terms','lifecycle_obligations','actor_contexts','actor_provisions','chain','current_law_leads',
                     'machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.append(key+' '+canon(d[key]))
         lines.append('Preflight '+canon(packet['preflight'][order]))

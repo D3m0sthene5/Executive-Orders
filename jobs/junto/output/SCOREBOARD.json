@@ -1,7 +1,7 @@
 {
- "schema": "junto.scoreboard/1",
- "written_at": "2026-10-20T15:54:50Z",
- "written_by": "claude",
+ "schema": "junto.scoreboard/2",
+ "written_at": "2026-10-20T16:24:39Z",
+ "written_by": "astra",
  "note": "Derived by junto.py; never hand-edited. Only verified savings enter a score; estimates never do.",
  "formula": "score = verified_usd / (spent_usd + prior_s0_usd)",
  "prior_s0_usd": 2.0,
@@ -10,6 +10,8 @@
    "finder_id": "F-friction",
    "state": "exploring",
    "spent_usd": 0.0,
+   "known_spent_usd": 0.0,
+   "unknown_cost_records": 0,
    "verified_usd": 0.0,
    "score": 0.0,
    "resolved_tests": 0,
@@ -21,6 +23,8 @@
    "finder_id": "F-hamilton",
    "state": "exploring",
    "spent_usd": 0.0,
+   "known_spent_usd": 0.0,
+   "unknown_cost_records": 0,
    "verified_usd": 0.0,
    "score": 0.0,
    "resolved_tests": 0,
@@ -29,20 +33,11 @@
    }
   },
   {
-   "finder_id": "F-valla",
-   "state": "exploring",
-   "spent_usd": 0.0,
-   "verified_usd": 0.0,
-   "score": 0.0,
-   "resolved_tests": 0,
-   "candidates": {
-    "unverified": 1
-   }
-  },
-  {
    "finder_id": "F-wasted_work",
    "state": "exploring",
    "spent_usd": 0.0,
+   "known_spent_usd": 0.0,
+   "unknown_cost_records": 0,
    "verified_usd": 0.0,
    "score": 0.0,
    "resolved_tests": 0,
@@ -52,9 +47,17 @@
   }
  ],
  "junto_total": {
+  "valuation_basis": "api_token_value",
   "verified_usd": 0.0,
-  "spent_usd": 0.0,
-  "junto_overhead_usd": 0.0,
-  "verified_per_spent": 0.0
+  "finder_credited_usd": 0.0,
+  "known_spent_usd": 10.18,
+  "spent_usd": null,
+  "junto_overhead_usd": 10.18,
+  "unknown_cost_records": 1,
+  "known_cash_charges_usd": 0.0,
+  "cash_charge_total_usd": null,
+  "net_after_known_expenses_usd": -10.18,
+  "verified_per_spent": null,
+  "deployment_evidence": "pilot_results_only; broad deployment not established"
  }
 }

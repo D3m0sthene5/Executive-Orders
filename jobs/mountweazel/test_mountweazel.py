@@ -7,7 +7,7 @@ Core claims proved here:
   4. every flagged fixture is rejected by the production claim gate, while the de-flagged copy passes it;
   5. scoring gives catch rate per defect type, false-alarm bounds and Wilson intervals, and refuses an edited key.
 """
-import contextlib, io, json, shutil, sys, tempfile, unittest
+import contextlib, hashlib, io, json, shutil, sys, tempfile, unittest
 sys.dont_write_bytecode = True
 from pathlib import Path
 
@@ -260,6 +260,95 @@ class CheckTests(Base):
         self.assertFalse(res["ok"])
         self.assertTrue(any("claim gate does not reject" in p["problem"] for p in res["problems"]))
 
+    def runner_manifest(self, inputs=None):
+        inputs = inputs or {"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "100644:" + "a" * 40}
+        return {"schema": 1, "job": "portfolio-repair-check", "base_commit": "b" * 40,
+                "run_url": "https://github.com/example/repository/actions/runs/1",
+                "scope": {"roots": ["jobs/mountweazel/fixtures"], "patterns": [],
+                          "exclude": "jobs/portfolio-repair-check/output"},
+                "inputs": inputs,
+                "inputs_sha256": hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+                "base_output_sha256": hashlib.sha256(b"{}").hexdigest()}
+
+    def test_runner_manifest_fixture_inventory_is_not_a_leak(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/runner-freshness/portfolio-repair-check-inputs.json",
+                    "jobs/portfolio-repair-check/output/RUNNER_INPUTS.json"):
+            p = repo / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(json.dumps(self.runner_manifest(), indent=2))
+        result = mw.check(repo, self.tmp / "none")
+        self.assertTrue(result["ok"], result["problems"])
+        self.assertEqual(result["files_scanned"], 5)  # manifests are scanned, not skipped
+
+    def test_runner_manifest_exception_rejects_invalid_or_duplicate_structure(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        for field, value in (("job", "other"), ("schema", True), ("inputs_sha256", "0" * 64),
+                             ("base_output_sha256", "bad"), ("extra_payload", {"item_id": "MW-C1-01"})):
+            m = self.runner_manifest()
+            m[field] = value
+            variants.append((field, json.dumps(m)))
+        m = self.runner_manifest({"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "actual payload"})
+        variants.append(("non-hash inventory value", json.dumps(m)))
+        variants.append(("duplicate field", json.dumps(self.runner_manifest()).replace('"schema": 1', '"schema": 0, "schema": 1')))
+        for name, raw in variants:
+            with self.subTest(name=name):
+                p.write_text(raw)
+                self.assertIsNone(mw._runner_inventory_for_item_scan(p, repo))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def test_runner_manifest_exception_is_limited_to_exact_locations(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/arbitrary-inputs.json", "oversized/runner-freshness/other-inputs.json",
+                    "jobs/other/output/RUNNER_INPUTS.json", "jobs/portfolio-repair-check/output/notes.json"):
+            with self.subTest(path=rel):
+                p = repo / rel
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text(json.dumps(self.runner_manifest()))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+                p.unlink()
+
+    def test_runner_manifest_other_ids_and_payloads_still_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        m = self.runner_manifest()
+        m["run_url"] += "/MW-C1-01"
+        variants.append(m)
+        m = self.runner_manifest()
+        m["scope"]["roots"].append("jobs/other/MW-C1-01")
+        variants.append(m)
+        inputs = dict(self.runner_manifest()["inputs"])
+        inputs["research/readiness/claims/MW-C1-01.json"] = "100644:" + "c" * 40
+        variants.append(self.runner_manifest(inputs))  # recomputed digest does not exempt other paths
+        m = self.runner_manifest()
+        m["run_url"] += "/SEEDED:EO:1"
+        variants.append(m)
+        for m in variants:
+            p.write_text(json.dumps(m))
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        out, fx = self.seed("a", n=12)
+        payload = json.loads(sorted(fx.glob("*.seeded.json"))[0].read_text())["seeded_payload"]
+        for obj in (payload, mw._deflag(payload)):
+            p.write_text(json.dumps(obj))
+            self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_valid_runner_inventory_still_scans_raw_planted_text(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        m = self.runner_manifest()
+        m["run_url"] = "Novel planted wording must remain detectable inside an otherwise valid inventory."
+        p.write_text(json.dumps(m))
+        view = mw._runner_inventory_for_item_scan(p, repo)
+        self.assertIsNotNone(view)
+        hits = mw.scan_file(p, [json.dumps(m["run_url"]).encode()], set(), item_id_data=view)
+        self.assertTrue(any(h.startswith("planted text ") for h in hits), hits)
+
     def test_real_repository_has_no_seeded_item(self):
         res = mw.check(REPO, HERE_FIXTURES)
         self.assertTrue(res["ok"], res["problems"][:5])
@@ -282,12 +371,20 @@ HERE_FIXTURES = Path(mw.HERE) / "fixtures"
 
 
 class ScoreTests(Base):
+    def correct_reason(self, it):
+        issue = {"D1": "deadline is not demonstrated performance", "D2": "one-time performance already completed",
+                 "D3": "quote truncated before the operative verb", "D4": "partial scope is not the whole order",
+                 "D5": "earlier end was missed in favor of later revocation", "D6": "omitted later event",
+                 "D7": "wrong effective date", "D8": "wrong order text from a neighbour", "D9": "coverage overstated",
+                 "D10": "wrong target does not revoke this order", "D13": "source is already held"}
+        return issue[it["defect_code"]] + ": " + " ".join(it.get("locus_terms", []))
+
     def verdicts(self, key, catch=(), wrong_reason=(), flag_real=(), voids=()):
         rows = []
         for it in key["items"]:
             if it["is_seeded"]:
                 if it["item_id"] in catch:
-                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": "defect", "confidence": 0.9})
+                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": self.correct_reason(it), "confidence": 0.9})
                 elif it["item_id"] in wrong_reason:
                     rows.append({"item_id": it["item_id"], "decision": "reject", "locus": "nothing relevant", "reason": "gut feeling", "confidence": 0.4})
                 else:
@@ -361,9 +458,9 @@ class ScoreTests(Base):
         rows = []
         for i in key["items"]:
             if i["item_id"] == a["item_id"]:
-                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": "x"})
+                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": self.correct_reason(i)})
             elif i["item_id"] == b["item_id"]:
-                rows.append({"item_id": i["item_id"], "verdict": "accept", "reason": "odd but fine: " + " ".join(mw.specific_terms(i))})
+                rows.append({"item_id": i["item_id"], "verdict": "accept", "locus": i["field"], "reason": self.correct_reason(i)})
             else:
                 rows.append({"item_id": i["item_id"], "verdict": "accept"})
         res = mw.score(key, rows, relabel={a["item_id"]: "D11"}, tells=[a["item_id"]], production=(0, 15))
@@ -428,6 +525,70 @@ class PlantQualityTests(Base):
             for spec, apply in mw.ops_c("D2", rec["claim"], {}, "x"):
                 i = int(spec.split(":")[0])
                 self.assertFalse(mw.RECURRING_RE.search(rec["claim"]["operative_clauses"][i]["original_operative_text"]))
+
+
+class MaterialCorrespondenceTests(unittest.TestCase):
+    """Controlled scoring pairs, not new legal adjudications or production claims."""
+    def key(self, code, field="operative_clauses[0].first_end"):
+        body = {"schema": mw.SCHEMA_KEY, "batch_id": "scoring-control", "track": "C", "n_items": 1,
+                "n_seeded": 1, "planned_n_seeded": 3,
+                "items": [{"item_id": "control-item", "is_seeded": True, "defect_code": code,
+                           "field": field, "affected_scope_id": "control-clause-a",
+                           "locus_terms": ["EO:12345", "2001-01-01"],
+                           "refuting_quote": "The approved test method requires investigation of this evidence."}]}
+        return {**body, "key_seal_sha256": mw.sha(body)}
+
+    def result(self, code, reason, locus="operative_clauses[0]", **kw):
+        return mw.score(self.key(code), [{"item_id": "control-item", "decision": "reject",
+                                        "reason": reason, "locus": locus}], **kw)
+
+    def test_wrong_issue_in_same_order_gets_no_d6_credit(self):
+        r = self.result("D6", "EO 12345 has a cut quote in a different clause.", "operative_clauses[9]")
+        self.assertEqual(r["pooled"]["strict"]["k"], 0)
+        self.assertEqual(r["pooled"]["lenient"]["k"], 1)
+
+    def test_locator_alone_does_not_establish_material_issue(self):
+        for reason in ("EO 12345", "2001-01-01", "Something looks questionable."):
+            self.assertEqual(self.result("D6", reason)["pooled"]["strict"]["k"], 0)
+
+    def test_missing_event_needs_matching_clause_and_event(self):
+        good = "The omitted event from EO 12345 on 2001-01-01 must be investigated."
+        self.assertEqual(self.result("D6", good)["pooled"]["strict"]["k"], 1)
+        self.assertEqual(self.result("D6", good, "operative_clauses[7]")["pooled"]["strict"]["k"], 0)
+        self.assertEqual(self.result("D6", "An omitted event needs investigation.")["pooled"]["strict"]["k"], 0)
+
+    def test_earlier_event_performance_partial_scope_and_savings_pairs(self):
+        cases = {
+            "D5": "An earlier end requires investigation before selecting later revocation.",
+            "D2": "Demonstrated performance of this one-time command requires clause-specific analysis.",
+            "D4": "The partial scope does not establish the whole order's end.",
+            "D12": "The savings provision preserves effects that this conclusion omits.",
+        }
+        for code, reason in cases.items():
+            with self.subTest(code=code):
+                self.assertEqual(self.result(code, reason)["pooled"]["strict"]["k"], 1)
+                self.assertEqual(self.result(code, reason, "operative_clauses[8]")["pooled"]["strict"]["k"], 0)
+        # A coherent but disputed premise does not itself make performance the end.
+        self.assertEqual(self.result("D2", "The date typography is wrong.")["pooled"]["strict"]["k"], 0)
+
+    def test_manual_correspondence_requires_provenance_and_preserves_mechanical_result(self):
+        with self.assertRaises(SystemExit):
+            self.result("D6", "unclear", strict_overrides={"control-item": True})
+        override = {"caught": True, "adjudicator": "test-reviewer", "source": "review-decision.json",
+                    "reason": "Verified the synonym against the exact omitted event.",
+                    "affected_locus": "control-clause-a", "material_issue": "omitted amendment event"}
+        r = self.result("D6", "The history elides the amendment.", strict_overrides={"control-item": override})
+        self.assertEqual(r["pooled"]["strict"]["k"], 1)
+        item = r["by_defect_type"]["D6"]["items"][0]
+        self.assertFalse(item["correspondence"]["mechanical_candidate"])
+        self.assertEqual(item["adjudication"], override)
+
+    def test_missing_plants_and_blinding_are_explicit(self):
+        r = mw.score(self.key("D6"), [])
+        self.assertEqual(r["plants_missing_unscored"], 2)
+        self.assertEqual(r["plants_unreviewed_unscored"], 1)
+        self.assertIsNone(r["pooled"]["strict"]["rate"])
+        self.assertFalse(r["blinding"]["technical_separation_verified"])
 
 
 class StatsTests(unittest.TestCase):

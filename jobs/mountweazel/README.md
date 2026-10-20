@@ -31,9 +31,9 @@ python3 -I jobs/mountweazel/test_mountweazel.py
   real in one batch and a plant in another.
 - **score** reads reviewer verdicts (a JSON list or JSONL of `item_id`, `decision`, `locus`, `reason`,
   `confidence`; decision is `accept`, `reject`, `block_justified` or `block_not_justified`). It reports, per
-  defect type and pooled: strict catch (a flag that names the changed field, value or actor), lenient catch
-  (any flag; strict needs a specific value, actor, clause path or cut-off word, never a bare field name like
-  `first_end`), Wilson and Clopper-Pearson 95% intervals, and `indicative_only` when n is under 5. A flag on a real
+  defect type and pooled: strict catch (a flag that matches the material issue and affected clause), lenient catch
+  (any flag; strict needs the affected clause/scope plus the matching kind of defect; a number, date, field path
+  or unrelated criticism alone receives no strict credit), Wilson and Clopper-Pearson 95% intervals, and `indicative_only` when n is under 5. A flag on a real
   item is not a false alarm until adjudicated (`--adjudication`: `{"item": "false_alarm" | "contestable" |
   "confirmed_real_defect"}`); the false-alarm rate is given as a lower and an upper bound. `--voids` removes plants
   a reviewer convincingly argued were correct. `--relabel` records the adjudicated true defect type when an
@@ -47,7 +47,12 @@ python3 -I jobs/mountweazel/test_mountweazel.py
   exact copies of any plant (flagged or de-flagged), and `leak_needles`: JSON-quoted windows of plant text that
   occur nowhere in the real base (so real text a plant shares, such as a D3 quote prefix, is never a hit); it also fails if a fixture is not rejected by `claim_gate.validate_claim`, or if
   `jobs/mountweazel/output` holds anything but `STATUS.json` and `SENSITIVITY.json`, or if `jobs/mountweazel/data`
-  exists. Exit code 1 on any problem. The one allowed mention of the markers is the design document.
+  exists. Exit code 1 on any problem. Runner input manifests at
+  `oversized/runner-freshness/<job>-inputs.json` and `jobs/<job>/output/RUNNER_INPUTS.json` may index fixture
+  filenames. Only those filename keys in a matching, structurally valid, digest-checked input inventory are
+  omitted from the batch-item-ID scan. The manifest is still scanned for seeded markers, planted text and
+  exact payload copies. IDs in other fields or paths still fail; malformed manifests and duplicate JSON keys
+  receive no exception. This narrow recognition of metadata does not authenticate a runner manifest.
 
 ## The flag the claim checker rejects
 
@@ -95,7 +100,6 @@ D11 and D12 are in the taxonomy but have no operator yet.
   and no `data/`, because other jobs read those paths.
 
 ## Controlled reasoning pairs
-
 `python3 -I jobs/mountweazel/mountweazel.py pairs prepare --out <new external directory>`
 creates six pairs (twelve hypothetical items): layout, deadline, demonstrated
 performance, recurring duties, omitted earlier events and savings exceptions.
@@ -106,3 +110,19 @@ substantive reasons. Generated items, answer keys and item-level results stay
 outside the repository and are rejected by the production claim gate. Read the
 limitations: **reviewer blinding is not technically enforced** by file permissions
 under the same account. A harness/key roundtrip is not a reviewer sensitivity test.
+## Strict scoring and blinding corrections (2026-10-20)
+`score` preserves a conservative mechanical correspondence record for every plant: affected locus,
+material issue, and (for omitted events) event identity. A D6 rejection about a cut quote in another
+clause gets no strict credit just because it mentions the same EO number. Ambiguous wording needs
+adjudication. `--strict-overrides` accepts an object per item with `caught` (boolean), `adjudicator`,
+`reason`, `source`, `affected_locus`, and `material_issue`; bare boolean overrides are refused.
+The original mechanical result and the sourced adjudication remain separately visible.
+A generated key states **instructed** blinding: a separate directory and mode 0600 do not exclude a
+reviewer running under the same account. Old keys without a record report **unknown**, never technical
+blinding by assumption. Planned-but-unplanted and unreviewed controls are explicitly unscored; their
+absence cannot satisfy an execution gate. Flags on genuine claims remain unadjudicated until reviewed.
+Controlled regression pairs cover earlier cessation, performance, partial scope, savings, and coherent
+wrong premises. They test correspondence to the approved method and require investigation; they do not
+encode an automatic performance-ends-everything rule. Existing isolated fixture protections remain in force.
+The historical MW-C2 manual correction (Opus with sources 7/10, D6 0/3) is appended downstream in Llull,
+with source hashes and the earlier mechanical 8/10 preserved. It is not a new reviewer experiment.

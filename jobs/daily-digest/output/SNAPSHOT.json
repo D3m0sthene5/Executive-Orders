@@ -8460,6 +8460,106 @@
         "yes": 104
       }
     },
+    "lambertini": {
+      "calibration_on_ready_claims": {
+        "S0_none_candidate -> continuing_independent": 1,
+        "S0_none_candidate -> none_after_bounded_search": 25,
+        "S0_none_candidate -> transferred_or_accrued": 9,
+        "S1_transfer_wording -> continuing_independent": 1,
+        "S1_transfer_wording -> none_after_bounded_search": 41,
+        "S1_transfer_wording -> transferred_or_accrued": 25,
+        "S2b_savings_phrase_elsewhere_in_acting -> none_after_bounded_search": 1,
+        "S3_own_savings_lead -> none_after_bounded_search": 1,
+        "S4_conflict -> continuing_independent": 3,
+        "S4_conflict -> none_after_bounded_search": 10,
+        "S4_conflict -> transferred_or_accrued": 6,
+        "S8_acting_text_does_not_name_order -> none_after_bounded_search": 29,
+        "S8_acting_text_not_held -> none_after_bounded_search": 3,
+        "S8_acting_text_not_held -> transferred_or_accrued": 1,
+        "S9_multiple_acting -> none_after_bounded_search": 1,
+        "S9_no_end_candidate -> none_after_bounded_search": 42,
+        "S9_no_end_candidate -> transferred_or_accrued": 24,
+        "Y0_no_later_events -> none_after_bounded_search": 1,
+        "Y1_later_events -> none_after_bounded_search": 1
+      },
+      "counterevidence_by_class": {
+        "C0_no_lead_found": 18,
+        "C1_contrary_or_wpa_lead": 112,
+        "C2_original_text_open": 558
+      },
+      "counterevidence_records": 688,
+      "decided_orders_with_draft": 3359,
+      "packet_targets": 807,
+      "packet_top": [
+        [
+          "EO:12553",
+          332
+        ],
+        [
+          "EO:9830",
+          54
+        ],
+        [
+          "EO:14148",
+          44
+        ],
+        [
+          "EO:12379",
+          29
+        ],
+        [
+          "EO:11708",
+          28
+        ],
+        [
+          "EO:12258",
+          15
+        ],
+        [
+          "EO:12076",
+          14
+        ],
+        [
+          "EO:11157",
+          13
+        ],
+        [
+          "EO:12610",
+          13
+        ],
+        [
+          "EO:10480",
+          12
+        ]
+      ],
+      "packets": 84,
+      "packets_covering_half_of_targets": 3,
+      "pool_LAMBC": 18,
+      "pool_LAMBS": 91,
+      "repo_head": "d0527136c",
+      "rules": [
+        "prefills and draft search records are leads a reader confirms; nothing here closes a step",
+        "writes no claim, EXHAUSTED line, status or tier; codebook unchanged; certified stays 0",
+        "AI statuses are hypotheses"
+      ],
+      "savings_open_by_class": {
+        "S0_none_candidate": 127,
+        "S1_transfer_wording": 356,
+        "S2_savings_phrase_near": 21,
+        "S3_own_savings_lead": 13,
+        "S4_conflict": 58,
+        "S8_acting_not_EO": 82,
+        "S8_acting_text_does_not_name_order": 49,
+        "S8_acting_text_not_held": 91,
+        "S9_multiple_acting": 34,
+        "S9_no_end_candidate": 1853,
+        "Y0_no_later_events": 184,
+        "Y1_later_events": 126,
+        "Y3_own_savings_lead": 36,
+        "Y4_conflict": 51
+      },
+      "schema": "lambertini/1"
+    },
     "later-events": {
       "cache_hits": 0,
       "catalog_complete": true,
@@ -10153,22 +10253,22 @@
     "readiness-tracker": {
       "decided_by_steps_done": {
         "1/6": 632,
-        "1/7": 13,
+        "1/7": 14,
         "1/8": 2,
         "2/6": 481,
-        "2/7": 81,
+        "2/7": 82,
         "2/8": 6,
         "3/6": 1121,
-        "3/7": 429,
-        "3/8": 35,
+        "3/7": 430,
+        "3/8": 54,
         "4/6": 26,
-        "4/7": 74,
-        "4/8": 165,
-        "5/6": 27,
-        "5/8": 26,
-        "6/6": 228,
-        "6/7": 8,
-        "7/7": 3,
+        "4/7": 71,
+        "4/8": 151,
+        "5/6": 32,
+        "5/8": 21,
+        "6/6": 223,
+        "6/7": 9,
+        "7/7": 2,
         "7/8": 1,
         "8/8": 1
       },
@@ -10186,13 +10286,13 @@
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 17,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 425,
+        "OPUS_MEDIA_REFETCH_NEEDED": 435,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3028,
-        "SHARED_SOURCE_NOT_RETRIEVED": 27
+        "SHARED_SOURCE_NOT_RETRIEVED": 46
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
@@ -10240,7 +10340,7 @@
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 380
+          "source-ladder": 364
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -10261,13 +10361,13 @@
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
-        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 17,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 425,
+        "OPUS_MEDIA_REFETCH_NEEDED": 435,
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 3028,
-        "SHARED_SOURCE_NOT_RETRIEVED": 27
+        "SHARED_SOURCE_NOT_RETRIEVED": 46
       },
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
@@ -10286,13 +10386,19 @@
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
           "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
           "kind": "machine_job",
-          "orders_unblocked": 425
+          "orders_unblocked": 435
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
           "orders_unblocked": 286
+        },
+        {
+          "action": "Retrieve shared source STAT::66 Stat. 259",
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259",
+          "kind": "one_source",
+          "orders_unblocked": 19
         },
         {
           "action": "Retrieve shared source EO::4314",
@@ -10344,7 +10450,7 @@
         },
         "counterevidence": {
           "applicable": 3359,
-          "done": 2490
+          "done": 2484
         },
         "ending_or_current_basis": {
           "applicable": 3359,
@@ -10352,7 +10458,7 @@
         },
         "opus_media": {
           "applicable": 844,
-          "done": 132
+          "done": 121
         },
         "original_text": {
           "applicable": 3359,
@@ -10368,7 +10474,7 @@
         },
         "shared_sources": {
           "applicable": 236,
-          "done": 209
+          "done": 190
         }
       }
     },
@@ -11107,135 +11213,75 @@
       "wpa_entries_parsed": 155
     },
     "source-ladder": {
-      "attempts_logged": 125,
-      "bytes_downloaded": 246871929,
+      "attempts_logged": 3,
+      "bytes_downloaded": 0,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "distinct_new_source_hashes": 33,
-      "earlier_found_carried_with_defect": 16,
-      "earlier_found_failing_todays_checks": 16,
-      "embedded_cite_items": 6,
+      "distinct_new_source_hashes": 3,
+      "earlier_found_carried_with_defect": 0,
+      "earlier_found_failing_todays_checks": 19,
+      "embedded_cite_items": 0,
       "exhausted_proposed_items": 0,
       "exhausted_proposed_lines": 0,
       "fetch_queue_problems": [
-        "FETCH_QUEUE.jsonl line 306: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 434: unknown step 'original_and_ending_basis'",
-        "FETCH_QUEUE.jsonl line 444: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 445: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 446: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 447: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 448: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 449: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 451: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 452: unknown step 'original_page_check'",
-        "FETCH_QUEUE.jsonl line 453: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 455: unknown step 'current_basis'",
-        "FETCH_QUEUE.jsonl line 457: needs urls or a citation",
-        "FETCH_QUEUE.jsonl line 470: needs urls or a citation",
-        "FETCH_QUEUE.jsonl line 515: unknown step 'original_and_ending_basis'",
-        "FETCH_QUEUE.jsonl line 519: unknown step 'original_page_check'",
-        "FETCH_QUEUE.jsonl line 523: unknown step 'original_and_ending_basis'"
+        "FETCH_QUEUE.jsonl line 515: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence",
+        "FETCH_QUEUE.jsonl line 523: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence"
       ],
-      "found": 380,
+      "found": 364,
       "found_by_route": {
-        "given/given": 159,
+        "given/given": 152,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 7,
         "official/govinfo_link_fr": 3,
-        "official/govinfo_link_statute": 20,
+        "official/govinfo_link_statute": 19,
         "official/govinfo_link_statute_from_rp_index": 5,
         "official/govinfo_link_statute_publaw": 9,
         "official/govinfo_link_uscode": 11,
         "official/govinfo_link_uscode_edition": 2,
         "official/nmb_peb_report": 82,
         "official/ofr_index_pdf_url": 9,
-        "official/ppp_range_read": 5,
-        "wayback_given/wayback_id_": 8
+        "official/ppp_range_read": 2,
+        "wayback_given/wayback_id_": 3
       },
-      "found_carried_forward": 345,
-      "from_fetch_queue": 549,
+      "found_carried_forward": 361,
+      "from_fetch_queue": 590,
       "from_opus_refetch": 774,
       "from_stage20_shared_sources": 90,
-      "http_requests": 79,
-      "items_in_queue": 1413,
-      "items_worked": 171,
+      "http_requests": 0,
+      "items_in_queue": 1454,
+      "items_worked": 3,
       "job": "source-ladder",
-      "max_download_mb": 800,
-      "new_sources_found": 35,
-      "no_route": 121,
+      "max_download_mb": 50,
+      "needs_revalidation": 19,
+      "new_sources_found": 3,
+      "no_route": 0,
       "not_attempted_budget": 0,
-      "offline": false,
-      "orders_covered_by_found_sources": 560,
+      "offline": true,
+      "orders_covered_by_found_sources": 490,
       "pool_cache_hits": 0,
-      "pool_network_requests": 83,
+      "pool_network_requests": 0,
       "prefetched_urls": 0,
-      "range_bytes": 60275912,
-      "range_requests": 931,
-      "report_date_items": 83,
-      "report_date_records_found": 33,
-      "retry_later": 15,
-      "run_date": "2026-10-20",
-      "seconds": 800.4,
-      "source_plan": {
-        "legal_cutoff": "2026-10-14",
-        "max_requests": 300,
-        "method": "FETCH_QUEUE requests first (untried before tried), then readiness proximity, step opportunity, downstream work, stable ID",
-        "queue_fingerprint": "2c2d4cb5035c21b80038edcc1b3ecafb1844723fb93e0381e1c8f9745d10b134",
-        "schema": "eo-source-plan/v1",
-        "tracker_sha256": "ee9f194b3a53d27e6b43e809930a2ee72c0d542a59991c4d4a5e916b05758256",
-        "wanted_ids": [
-          "queue:EO:10622:Actual report date of the board created by EO 10622 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10630:Actual report date of the board created by EO 10630 (Presidential Emergency Board (Railway Labor Act sec. 10): the New York Central System , Lines East, and Certain of Its Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10643:Actual report date of the board created by EO 10643 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10689:Actual report date of the board created by EO 10689 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10691:Actual report date of the board created by EO 10691 (Presidential Emergency Board (Railway Labor Act sec. 10): the Spokane , Portland & Seattle Railway Company and Certain of Its Employees Represented by the Brotherhood of Locomotive Engineers): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10693:Actual report date of the board created by EO 10693 (Presidential Emergency Board (Railway Labor Act sec. 10): the Akron & Barberton Belt Railroad and Other Carriers and Certain of Their Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10709:Actual report date of the board created by EO 10709 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10710:Actual report date of the board created by EO 10710 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10749:Actual report date of the board created by EO 10749 (Presidential Emergency Board (Railway Labor Act sec. 10): the Eastern Air Lines , Inc ., and Certain . of its Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10750:Actual report date of the board created by EO 10750 (Presidential Emergency Board (Railway Labor Act sec. 10): the Eastern Air Lines, Inc., acarrier, and certain of its employees represented by the Air Line Pilots Association, International, alabor organization; and): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10757:Actual report date of the board created by EO 10757 (Presidential Emergency Board (Railway Labor Act sec. 10): Eastern Air Lines , Inc., Trans World Airlines , Inc., United Air Lines , Inc ., Northwest Airlines , Inc., Northeast Airlines , Inc., Capital Airlines , Inc ., and National Airlines , Inc ., and Certain of Their Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10760:Actual report date of the board created by EO 10760 (Presidential Emergency Board (Railway Labor Act sec. 10): the Trans World Airlines, Inc., acarrier, and certain of its employees represented by the Plight Engineers\u2019 International Association, alabor organization; and): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10811:Actual report date of the board created by EO 10811 (Presidential Emergency Board (Railway Labor Act sec. 10): the Pan American World Airways, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10842:Actual report date of the board created by EO 10842 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10848:Actual report date of the board created by EO 10848 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10862:Actual report date of the board created by EO 10862 (Presidential Emergency Board (Railway Labor Act sec. 10): the Atchison, Topeka and Santa Fe Railway Company\u2014 Coast Lines): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10868:Actual report date of the board created by EO 10868 (Presidential Emergency Board (Railway Labor Act sec. 10): the New York Central System): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10872:Actual report date of the board created by EO 10872 (Presidential Emergency Board (Railway Labor Act sec. 10): the Pan American World Airways, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10874:Actual report date of the board created by EO 10874 (Presidential Emergency Board (Railway Labor Act sec. 10): The Long Island Railroad Company): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10875:Actual report date of the board created by EO 10875 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10888:Actual report date of the board created by EO 10888 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10904:Actual report date of the board created by EO 10904 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10919:Actual report date of the board created by EO 10919 (Presidential Emergency Board (Railway Labor Act sec. 10): the Pan American World Airways, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10923:Actual report date of the board created by EO 10923 (Presidential Emergency Board (Railway Labor Act sec. 10): the Northwest Airlines, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10926:Actual report date of the emergency board created by EO 10919 (time extended by EO 10926) (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10944:Actual report date of the board created by EO 10944 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10953:Actual report date of the board created by EO 10953 (Presidential Emergency Board (Railway Labor Act sec. 10): the Southern Pacific Company (Pacific Lines)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10963:Actual report date of the board created by EO 10963 (Presidential Emergency Board (Railway Labor Act sec. 10): the Pullman Company and the Chicago, Milwaukee, St): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10969:Actual report date of the board created by EO 10969 (Presidential Emergency Board (Railway Labor Act sec. 10): the Reading Company): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10971:Actual report date of the board created by EO 10971 (Presidential Emergency Board (Railway Labor Act sec. 10): Trans World Airlines, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:10975:Actual report date of the board created by EO 10975 (Presidential Emergency Board (Railway Labor Act sec. 10): Pan American World Airways, Inc): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11006:Actual report date of the board created by EO 11006 (Presidential Emergency Board (Railway Labor Act sec. 10): the Eastern Air Lines, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11008:Actual report date of the board created by EO 11008 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11013:Actual report date of the board created by EO 11013 (Taft-Hartley board of inquiry): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11027:Actual report date of the board created by EO 11027 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11029:Actual report date of the board created by EO 11025 (amended by EO 11029) (Taft-Hartley board of inquiry): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11033:Actual report date of the board created by EO 11033 (Presidential Emergency Board (Railway Labor Act sec. 10): the American Airlines, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11040:Actual report date of the board created by EO 11040 (Presidential Emergency Board (Railway Labor Act sec. 10): The Belt Railway Company of Chicago): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11042:Actual report date of the board created by EO 11042 (Presidential Emergency Board (Railway Labor Act sec. 10): the Southern Pacific Company (Pacific Lines)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11078:Actual report date of the board created by EO 11078 (Taft-Hartley board of inquiry): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11101:Actual report date of the board created by EO 11101 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11115:Actual report date of the board created by EO 11115 (Presidential Emergency Board (Railway Labor Act sec. 10)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11121:Actual report date of the board created by EO 11121 (Presidential Emergency Board (Railway Labor Act sec. 10): the United Air Lines, Inc.): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
-          "queue:EO:11189:Pub. L. 89-554 (Sept. 6, 1966), 80 Stat. 378 et seq., including 5 U.S.C. 5315 and 5316 as enacted at 80 Stat. 460-461, with the Act's effective-date and repealer provisions (the statute that the OFR note says nullified EO 11189 and EO 11195).",
-          "queue:EO:11195:Pub. L. 89-554 (Sept. 6, 1966), 80 Stat. 378 et seq., including 5 U.S.C. 5315 and 5316 as enacted at 80 Stat. 460-461, with the Act's effective-date and repealer provisions.",
-          "queue:EO:11256:National Advisory Commission on Food and Fiber: actual final report submission/transmittal evidence, not report deadline",
-          "queue:EO:11622:Actual date of the Taft-Hartley Board of Inquiry (maritime; International Longshoremen's Association and others) created by EO 11621 and amended by EO 11622: report of the Board of Inquiry to the President, with its transmittal date; not the order's report deadline, and the later revocation is only an upper bound.",
-          "queue:EO:11829:Hopi-Navajo Land Settlement Mediator completion determination/notice and Interagency Committee records-transfer documentation",
-          "queue:EO:12042:Board of Inquiry created by Executive Order12042 (bituminous coal industry), report and all continuation/termination records; EO expressly continues Board after report for statutory functions",
-          "queue:EO:12075:P.L.97-35,95Stat357; Community Services Block Grant provisions around95Stat516-519, repeal/abolition, transfer, savings and effective dates"
-        ]
+      "quarantined_prior_sources": 19,
+      "range_bytes": 0,
+      "range_requests": 0,
+      "report_date_items": 0,
+      "report_date_records_found": 0,
+      "request_validation": {
+        "corrected": 15,
+        "unresolved": 2,
+        "valid": 534
       },
-      "stopped_early": ""
+      "retained_prior_attempt_records": 125,
+      "retained_prior_failure_records": 152,
+      "retry_later": 0,
+      "run_date": "2026-10-20",
+      "seconds": 3.2,
+      "source_evidence_tiers": {
+        "document_text": 280,
+        "report_record": 84
+      },
+      "source_plan": null,
+      "stopped_early": "",
+      "unresolved_request_tasks": 2
     },
     "status-history": {
       "census_admissions": 0,

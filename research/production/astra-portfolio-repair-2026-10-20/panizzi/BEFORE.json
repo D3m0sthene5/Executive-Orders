@@ -1,0 +1,88 @@
+{
+  "base_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "queue_sha256": "b8ac45522f5ec51e73baadb68f6114a3b814fe3cd918ef240db25e74ca5d4187",
+  "raw_lines": 548,
+  "baseline_wanted_without_ofr_index": 565,
+  "queue_problems": [
+    "FETCH_QUEUE.jsonl line 306: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 434: unknown step 'original_and_ending_basis'",
+    "FETCH_QUEUE.jsonl line 444: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 445: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 446: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 447: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 448: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 449: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 451: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 452: unknown step 'original_page_check'",
+    "FETCH_QUEUE.jsonl line 453: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 455: unknown step 'current_basis'",
+    "FETCH_QUEUE.jsonl line 457: needs urls or a citation",
+    "FETCH_QUEUE.jsonl line 470: needs urls or a citation",
+    "FETCH_QUEUE.jsonl line 515: unknown step 'original_and_ending_basis'",
+    "FETCH_QUEUE.jsonl line 519: unknown step 'original_page_check'",
+    "FETCH_QUEUE.jsonl line 523: unknown step 'original_and_ending_basis'"
+  ],
+  "baseline_unit_tests": {
+    "passed": 148,
+    "failed": 0
+  },
+  "reproduced_defects": {
+    "metadata_accepted_as_carried": "",
+    "report_record_exempt_even_when_wrong_identity": "",
+    "wrong_citation_volume_accepted_as_carried": "",
+    "future_day_within_requested_year_accepted": ""
+  },
+  "empty_string_means_accepted": true,
+  "inspection_defects": [
+    "job.py skips carried checks when offline",
+    "retain_unselected retains stale rows as result=found"
+  ],
+  "reproduced_expected_hash_defect": {
+    "outcome": "found",
+    "matches_expected_sha256": false
+  },
+  "report_context_reproductions": [
+    {
+      "wanted_id": "queue:EO:12502:Date the Chemical Warfare Review Commission (EO 12502) transmitted its final report to the President (sequential reports due 1985-02-15, 1985-03-01 and 1985-03-15 under sec. 2(b)); Public Papers of the Presidents 1985 / Weekly Compilation or the report itself, to date the sec. 4(b) termination 30 days later (outer limit 1985-09-30)",
+      "source_sha256": "d6b38a46901935d509ca73ed8ce490ea685ac781abd76e150119e8301f128415",
+      "held_text_sha256": "a90bc31be1debdfea7142a1df59269ad4455c21319de0e145f3ca15f5db7f511",
+      "text_path": "texts/queue_EO_12502_Date_the_Chemical_Warfare_Review_Commission_EO_12502_transmitted_its_final_report_to__292e904242.txt",
+      "before": [
+        true,
+        ""
+      ],
+      "after": [
+        false,
+        "report_not_local_to_named_body"
+      ]
+    },
+    {
+      "wanted_id": "queue:EO:12526:Actual date of the President's Blue Ribbon Commission on Defense Management (Packard Commission), created by EO 12526: submission of the Commission's final report (terminates 30 days after it; final report due 1986-06-30); not the order's report deadline, and the later revocation is only an upper bound.",
+      "source_sha256": "6c98e9ca19797def77efed2a36aa40abd01bcbd5f1b01473a2c61ebc7a971369",
+      "held_text_sha256": "063257484c154c27861476e9fb5f64d75826222165f8ecdd4f3cb24faa92ae16",
+      "text_path": "texts/queue_EO_12526_Actual_date_of_the_President_s_Blue_Ribbon_Commission_on_Defense_Management_Packard_C_0b893e1de5.txt",
+      "before": [
+        true,
+        ""
+      ],
+      "after": [
+        false,
+        "report_not_local_to_named_body"
+      ]
+    },
+    {
+      "wanted_id": "queue:EO:12607:Actual date of the President's Commission on Privatization, created by EO 12607: submission of the Commission's findings and recommendations (due 1988-03-01); the record of its termination; not the order's report deadline, and the later revocation is only an upper bound.",
+      "source_sha256": "4e2ca157c3a6d07f394c79321dd5859a79cc36d10bb880d428c0cb7f8c6dc682",
+      "held_text_sha256": "4ddb2cc3c7fb04a326b34591f81dea6fa08ec744bcd5039b316e3362c1503a85",
+      "text_path": "texts/queue_EO_12607_Actual_date_of_the_President_s_Commission_on_Privatization_created_by_EO_12607_submis_bb387b4139.txt",
+      "before": [
+        true,
+        ""
+      ],
+      "after": [
+        false,
+        "report_not_local_to_named_body"
+      ]
+    }
+  ]
+}

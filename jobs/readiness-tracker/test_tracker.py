@@ -352,6 +352,8 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders['EO:2']['ready_for_human_review'],'no')
         self.assertEqual(orders['EO:2']['step_ending_or_current_basis'],'done')
         self.assertIn('OPEN_SOURCE_AUDIT',orders['EO:2']['blockers'])
+        self.assertEqual(orders['EO:2']['step_counterevidence'],'open')
+        self.assertNotIn('counterevidence',orders['EO:2']['exhausted_steps'])
         changed=copy.deepcopy(COMPLETE_NO_CLAIM);changed['research_rationale']+=' Corrected.'
         orders,s=self.run_tracker([changed],files=files)
         self.assertEqual(orders['EO:2']['ready_for_human_review'],'yes')

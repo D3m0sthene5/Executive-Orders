@@ -255,6 +255,9 @@ def verify(rec, selected, universe, missing_pairs, repo=None, _ledgers=None):
                signing_date=ar.get('signing_date'), filing_date=ar.get('filing_date'),
                confidence='agent_located_independently_upheld',
                actor_source=dict(src, text_path=ar['text_path']),
+               earlier_cessation_obligation={'state':'unresolved',
+                   'reason':'Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.'},
+               evidence_tier='AI_reviewed_acting_provision', lifecycle_complete=False,
                notes=(str(rec.get('notes') or '') + ' Agent-located record (act_overrides); an independent AI review upheld it. '
                       'Hypothesis only: not human certification and not a status.').strip())
     return out, []

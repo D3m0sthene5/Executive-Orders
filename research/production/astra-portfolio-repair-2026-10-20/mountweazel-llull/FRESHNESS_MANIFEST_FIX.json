@@ -1,0 +1,94 @@
+{
+  "change": {
+    "authenticity_claim": false,
+    "broad_artifact_exclusion": false,
+    "omitted_from_batch_id_scan": "Only fixture filename keys in the validated inputs map.",
+    "preserved_checks": [
+      "raw seeded markers",
+      "raw planted-text needles",
+      "exact planted payload copies",
+      "batch item identifiers in every other field or path",
+      "all scans for malformed or unrecognized manifests",
+      "unchanged real-repository isolation test"
+    ],
+    "recognized_locations": [
+      "oversized/runner-freshness/<job>-inputs.json",
+      "jobs/<job>/output/RUNNER_INPUTS.json"
+    ],
+    "required_checks": [
+      "exact schema and keys",
+      "job matches location",
+      "safe relative inventory paths",
+      "Git mode and object-ID values",
+      "matching input-map SHA256",
+      "valid scope and baseline hash shapes",
+      "no duplicate JSON keys"
+    ]
+  },
+  "changed_source_sha256": {
+    "jobs/mountweazel/README.md": "c3ee8f70fe265e7ded10e8829a7b5a4ac74eb6f905647431c248284dce0a6103",
+    "jobs/mountweazel/mountweazel.py": "0e48bca02920029a535b8a92ff45e641ed0da2c94a257dd9d47c1ea446ff123c",
+    "jobs/mountweazel/test_mountweazel.py": "f38ad8d622c2e831100356d17b61087796115515205dbeed28adde2c45f08938"
+  },
+  "complete_suite_rerun_after_receipt_correction": false,
+  "date": "2026-10-20",
+  "expected_next_portfolio_test_count": 434,
+  "next_ci_result": "pending; the expected count is not a claim of success",
+  "reproduction": {
+    "before_ok": false,
+    "before_problem_class": "batch item identifier in a fixture filename metadata reference",
+    "before_problem_count": 1,
+    "method": "A one-file temporary repository containing a structurally valid runner input manifest with a fixture filename in its path-to-Git-object inventory."
+  },
+  "schema": "mountweazel-runner-inventory-fix/v1",
+  "scope_limits": {
+    "canonical_claims_or_sources_modified": false,
+    "git_operations_performed": false,
+    "job_outputs_modified": false,
+    "runner_or_harness_modified": false
+  },
+  "triggering_ci_result": {
+    "failed": 1,
+    "failed_check": "test_real_repository_has_no_seeded_item",
+    "passed": 428,
+    "tests": 429
+  },
+  "triggering_ci_run": 39458800358,
+  "validation": [
+    {
+      "command": "python -B -m unittest -v test_mountweazel.CheckTests.test_runner_manifest_fixture_inventory_is_not_a_leak test_mountweazel.CheckTests.test_runner_manifest_exception_rejects_invalid_or_duplicate_structure test_mountweazel.CheckTests.test_runner_manifest_exception_is_limited_to_exact_locations test_mountweazel.CheckTests.test_runner_manifest_other_ids_and_payloads_still_fail test_mountweazel.CheckTests.test_valid_runner_inventory_still_scans_raw_planted_text",
+      "cwd": "jobs/mountweazel",
+      "elapsed_seconds": 0.289,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0,
+      "tests": 5
+    },
+    {
+      "command": "python -B -m unittest -v test_mountweazel",
+      "cwd": "jobs/mountweazel",
+      "elapsed_seconds": 19.709,
+      "errors": 0,
+      "exit_code": 1,
+      "failed": 1,
+      "failure": "The real-repository scan found the copied fixture item identifier inside GITHUB_RUN_2.json.failed_test_log. The integration owner replaced that copied diagnostic with a plain summary and an immutable original-log reference; no scanner exception was added for the report.",
+      "passed": 42,
+      "skipped": 0,
+      "tests": 43
+    },
+    {
+      "command": "python -B -m unittest -v test_mountweazel.CheckTests.test_real_repository_has_no_seeded_item",
+      "cwd": "jobs/mountweazel",
+      "elapsed_seconds": 12.167,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 1,
+      "scope": "Only the previously failing real-repository check rerun after the owner corrected the diagnostic receipt.",
+      "skipped": 0,
+      "tests": 1
+    }
+  ]
+}
