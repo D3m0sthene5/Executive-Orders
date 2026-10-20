@@ -3,6 +3,7 @@ import copy
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 import valla as V
 
@@ -134,6 +135,21 @@ class VallaTests(unittest.TestCase):
         (p / 'decisions.csv').write_text('instrument_id,research_rationale\nEO:1,@rationale:rule\n')
         rs = V.shared_lineage(self.repo, [p]); self.assertEqual(rs[0]['resolved_text'], 'Shared reasoning.')
         self.assertFalse(rs[0]['causal_derivation_established'])
+
+    def test_tracked_package_discovery_excludes_runtime_and_reports_sparse_gaps(self):
+        subprocess.run(['git','init','-q'],cwd=self.repo,check=True)
+        p=self.repo/'research/excavator/real';p.mkdir(parents=True)
+        V.dump(p/'RATIONALES.json',{'x':'A shared premise.'})
+        (p/'decisions.csv').write_text('instrument_id,research_rationale\nEO:1,@rationale:x\n')
+        runtime=self.repo/'research/valla/pilot-runtime/test';runtime.mkdir(parents=True)
+        V.dump(runtime/'RATIONALES.json',{'x':'Runtime must not feed itself.'})
+        subprocess.run(['git','add','.'],cwd=self.repo,check=True)
+        loaded,missing=V.package_paths(self.repo)
+        self.assertEqual(loaded,[p]);self.assertFalse(missing)
+        self.assertEqual(V.build(self.repo)['summary']['shared_rationale_references'],1)
+        (p/'RATIONALES.json').unlink()
+        loaded,missing=V.package_paths(self.repo)
+        self.assertFalse(loaded);self.assertEqual(len(missing),1)
 
     def test_empty_or_stale_method_review_cannot_invalidate(self):
         p = self.repo / 'research/readiness/method_reviews'; p.mkdir()

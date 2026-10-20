@@ -121,6 +121,7 @@ def run(repo, out, run_id):
         raise ValueError('canonical claims changed during pilot')
     checker = json.loads((out / 'checker/SUMMARY.json').read_bytes())
     proof = {'schema': 'valla-integrated-pilot/v1', 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
+             'code_pins': V.pins(repo, ['jobs/valla/valla.py', 'jobs/valla/pilot.py', 'jobs/claim-kit/batch.py', 'jobs/mountweazel/paired.py']),
              'github_run_id': os.environ.get('GITHUB_RUN_ID'), 'valla_summary': index['summary'],
              'index_fingerprint': index['fingerprint'], 'canonical_claims_unchanged': True,
              'independent_whole_case_replacement_reviews': 0, 'replacement_claims_published': 0,

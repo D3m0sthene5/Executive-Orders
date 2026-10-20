@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import subprocess
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -135,10 +136,31 @@ def pins(repo, paths):
     return {p: file_sha(safe(repo, p)) if safe(repo, p).is_file() else None for p in sorted(set(paths))}
 
 
+def package_paths(repo):
+    # The tracked registry is stable across sparse checkouts. Runtime correction
+    # packets are deliberately excluded, preventing self-input and output cycles.
+    result=subprocess.run(['git','ls-files','--','research/excavator/**/RATIONALES.json',
+                           'research/production/**/RATIONALES.json'],cwd=repo,capture_output=True,text=True)
+    if result.returncode:
+        return [], ['tracked package inventory unavailable']
+    paths=sorted(set(result.stdout.splitlines()))
+    if len(paths)>100:
+        raise ValueError('package inventory exceeds bounded 100-package limit')
+    loaded=[];missing=[]
+    for rel in paths:
+        folder=Path(repo)/Path(rel).parent
+        if not (folder/'RATIONALES.json').is_file():missing.append(rel)
+        else:loaded.append(folder)
+    return loaded, missing
+
+
 def shared_lineage(repo, packages):
     """Observed references only; a package reference never proves claim derivation."""
     result = []
-    for folder in sorted(set(Path(p).resolve() for p in packages)):
+    folders=sorted(set(Path(p).resolve() for p in packages))
+    if len(folders)>100:
+        raise ValueError('at most 100 packages per index')
+    for folder in folders:
         if not folder.is_relative_to(Path(repo).resolve() / 'research'):
             raise ValueError('packages must be under research')
         rp = folder / 'RATIONALES.json'
@@ -332,7 +354,8 @@ def build(repo, packages=(), ids=None):
     if ids is not None:
         active = {i: v for i, v in active.items() if i in ids}
     library = json.loads((HERE / 'premises.json').read_bytes()); protocol_pins = pins(repo, PROTOCOLS)
-    shared = shared_lineage(repo, packages)
+    discovered, missing_packages = package_paths(repo)
+    shared = shared_lineage(repo, [*discovered, *packages])
     # Findings for other IDs are filtered without treating them as bad records.
     findings, refused = confirmed_findings(repo, all_active)
     attestations = [a for p in sorted((repo / 'research/readiness/component_attestations').glob('*.jsonl')) for a in rows(p)]
@@ -368,11 +391,15 @@ def build(repo, packages=(), ids=None):
                        'shared_rationale_references': [x for x in shared if x['instrument_id'] == iid],
                        'invalidated_conclusion_pointers': sorted(invalidated), 'component_reviews': salvage}
     doc = {'schema': SCHEMA, 'notice': NOTICE, 'claim_versions': history, 'claims': claims,
+           'shared_rationale_references': shared,
            'protocol_pins': protocol_pins, 'controlling_codebook_version': 'not separately located; protocol pins do not amend the codebook',
            'premise_library_sha256': file_sha(HERE / 'premises.json'),
+           'package_scan': {'tracked_packages_loaded': len(discovered), 'unmaterialized_packages': missing_packages,
+                            'causal_derivation_inferred': False},
            'textual_groups': [v for v in groups.values() if len({x['instrument_id'] for x in v}) > 1],
            'review_queue': queue, 'refused_method_reviews': refused,
            'summary': {'active_claims': len(claims), 'textual_leads': sum(x['state'] == 'textual_review_lead' for x in queue),
+                       'shared_rationale_references': len(shared),
                        'examined_dependencies': sum(f['instrument_id'] in active for f in findings),
                        'valid_components': sum(r['valid'] for c in claims.values() for r in c['component_reviews']),
                        'legal_promotions': 0, 'model_calls': 0}}
@@ -385,6 +412,7 @@ def attach(repo, ids):
     index = build(repo, ids=ids)
     return {'schema': 'eo-valla-packet-context/v1', 'notice': NOTICE,
             'valla_code_sha256': file_sha(HERE / 'valla.py'),
+            'package_scan': index['package_scan'],
             'protocol_pins': index['protocol_pins'], 'premise_library_sha256': index['premise_library_sha256'],
             'claims': index['claims'], 'review_queue': index['review_queue'],
             'whole_case_review_required': True, 'automatic_approvals': 0}

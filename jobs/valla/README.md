@@ -40,9 +40,12 @@ held-text/artifact references. Producer and explicit template metadata are index
 missing template lineage is reported as unknown, never inferred from a filename.
 `--package` indexes exact `@rationale:KEY` references in existing CSVs and
 `RATIONALES.json`. Those observed references do not establish that a published
-claim was derived from that package. The scheduled compiler currently indexes
-canonical claims; package indexing is explicitly bounded by operator selection.
-Protocol files and the available operational draft are hashed. The controlling
+claim was derived from that package. The compiler also indexes up to 100 tracked packages under research/excavator
+and research/production, reporting any unmaterialized paths. Runtime correction
+packets are excluded; --package permits additional explicit bounded selection.
+Protocol files and the available operational draft are hashed. These pins describe
+the current revalidation contract; producer-time protocol versions absent from
+claims remain unknown. The controlling
 frozen codebook was not separately located; the draft is not substituted for it.
 
 ## Explicit revalidation and component reviews
