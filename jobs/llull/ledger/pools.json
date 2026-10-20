@@ -111,6 +111,13 @@
    "from": "LAMM",
    "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN.txt",
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "CRAIG2": {
+   "title": "Craigellachie II: blocker source now held",
+   "describe": "not-ready orders blocked in Bowditch Y2 or Craigellachie on ending_or_current_basis whose FETCH_QUEUE request was found by the source-ladder run of 2026-10-20 05:35Z (45 new sources) and whose held text was verified as the requested document; excludes orders in Rastell/Lambertini batch files (EO 10976, 11049), orders whose end also needs an EO 12553 ACT record from the Rastell 12553 lane (EO 11387, 11797), and finds that were the wrong document, truncated before the needed section, or gzip-garbled (EO 10440, 11468, 12499, 12502, 11941, 12335, 11065, 11145) (research/excavator/craigellachie-ii-2026-10-20)",
+   "ids_file": "jobs/llull/ledger/pool_ids/CRAIG2.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
