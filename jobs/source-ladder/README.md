@@ -118,6 +118,14 @@ existing 300-request / 800 MB budget (the issue PDF is 15.2 MB, sha256 `0e1eda31
 old one in `supersedes_defective_source`. Against the committed output this flags 2 records: EO 11490 (pages 63-95) and
 EO 11022/12107 (44 FR, pages 319-330 of 336). To force them in one run: `JOB_ONLY="queue:EO:11490:,queue:EO:11022:44 FR 1053"`.
 
+**Defective records re-walked first (2026-10-20).** The 21:48Z run (commit 874f970f5) flagged EO 11490 but did not
+re-walk it: the queue-first plan ranked it below other untried requests, and `JOB_ONLY` cannot be set from Actions.
+The default plan now puts up to 10 (`plan.MAX_DEFECTIVE_FIRST`) records flagged by `carried_defect` ahead of
+everything else, FETCH_QUEUE requests first, then by wanted_id; they stay within the same 50-item / 300-request /
+800 MB limits, and the rest of the ranking is unchanged. A flagged record that is itself the result of a re-walk
+(`supersedes_defective_source`) ranks normally instead, so it cannot hold a front place run after run. Against the
+committed output at this change, 17 records are flagged (EO 11022/12107 no longer is); EO 11490 is first.
+
 **What it does, in plain words.** Research agents used to spend a lot of time
 hunting for a copy of a document by hand: try the link, try another form of
 the link, try the Wayback Machine, try another official site, try a mirror.

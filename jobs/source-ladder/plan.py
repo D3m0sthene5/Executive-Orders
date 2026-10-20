@@ -128,7 +128,10 @@ QUEUE_PREFIX = 'queue:'
 UNSUCCESSFUL = ('retry_later', 'exhausted_proposed', 'no_route')
 
 
-def make_queue_first_plan(items, found, tried, tracker_path, limit=50, budget=300):
+MAX_DEFECTIVE_FIRST = 10
+
+
+def make_queue_first_plan(items, found, tried, tracker_path, limit=50, budget=300, defective=()):
     """Plan that serves what agents asked for before anything else (PANIZZI).
 
     The readiness plan only picked items that could close a tracker step, which never selected 17 explicit
@@ -138,6 +141,11 @@ def make_queue_first_plan(items, found, tried, tracker_path, limit=50, budget=30
     step opportunity, downstream work and the stable ID. Shared-source and Opus re-fetch items follow in the
     readiness order, and only when they could complete a step. Up to `limit` (1..50) items, `budget` (1..300) requests.
     Deterministic for the same inputs; the plan carries the queue fingerprint like the readiness plan.
+
+    `defective` names earlier found records that fail today's checks (fetch_ladder.carried_defect, e.g. a
+    partial_extraction that misses the pages a request names). Up to MAX_DEFECTIVE_FIRST of them go ahead of
+    everything else, FETCH_QUEUE requests before other items, then by wanted_id, so a re-walk is not ranked
+    away behind untried requests for ever. They stay within the same limit and request budget.
     """
     import csv
     raw = Path(tracker_path).read_bytes()
@@ -150,9 +158,13 @@ def make_queue_first_plan(items, found, tried, tracker_path, limit=50, budget=30
     other = [a for a in actions if not a['wanted_id'].startswith(QUEUE_PREFIX) and a['potential_step_completions']]
     requested.sort(key=lambda a: (a['wanted_id'] in tried, -len(a['near_ready_order_ids']),
                                   -a['potential_step_completions'], a['remaining_step_tasks'], a['wanted_id']))
-    chosen = [a['wanted_id'] for a in requested + rank_actions(other)][:limit]
+    present = {a['wanted_id'] for a in actions}
+    first = sorted((d for d in set(defective) if d in present),
+                   key=lambda d: (not d.startswith(QUEUE_PREFIX), d))[:MAX_DEFECTIVE_FIRST]
+    rest = [a['wanted_id'] for a in requested + rank_actions(other) if a['wanted_id'] not in first]
+    chosen = (first + rest)[:limit]
     return {'schema': 'eo-source-plan/v1', 'queue_fingerprint': queue_fingerprint(items),
             'tracker_sha256': hashlib.sha256(raw).hexdigest(), 'wanted_ids': chosen,
             'max_requests': budget, 'legal_cutoff': '2026-10-14',
-            'method': 'FETCH_QUEUE requests first (untried before tried), then readiness proximity, step opportunity, '
+            'method': f'up to {MAX_DEFECTIVE_FIRST} carried-defect re-walks first (queue requests, then ID), then FETCH_QUEUE requests (untried before tried), then readiness proximity, step opportunity, '
                       'downstream work, stable ID'}
