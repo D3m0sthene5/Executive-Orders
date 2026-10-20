@@ -25,6 +25,11 @@ class QualityRegression(unittest.TestCase):
         t['after']['quality']={'accepted':1,'rejected':1}
         self.assertEqual(junto.verdict_of(t),'quality_fell')
 
+    def test_isolated_cli_can_load_sibling_contract_module(self):
+        import subprocess
+        p=subprocess.run([sys.executable,'-I',str(Path(junto.__file__)),'check'],capture_output=True,text=True)
+        self.assertEqual(p.returncode,0,p.stderr)
+
     def test_owner_origin_and_contract_immutable_unit(self):
         a={'schema':'neyman.aggregate/1','manifest_sha256':'a'*64,'frame_population':100,'attempts':24,
            'outcomes':{'blocked_prerequisite':24},'blocker_counts':{},'shared_events':1,'active_phase_coverage':0,

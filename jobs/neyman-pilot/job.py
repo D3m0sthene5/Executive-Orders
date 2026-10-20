@@ -18,6 +18,7 @@ from pilot import run
 from opportunities import aggregate
 from combinations import load_tracker,replay,validate_predictions,historical_batches
 
+subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',str(root/'jobs/junto'),'-p','test_*.py'],check=True)
 manifest=json.loads((root/'research/neyman/pilot-20261020/MANIFEST.json').read_text())
 verify_manifest(manifest)
 check_pins(root,manifest['input_hashes'])
