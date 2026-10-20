@@ -12,6 +12,14 @@ import random
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
+LABELS = {
+    'delivery_supported': 'Dated evidence supports delivery of the specified report.',
+    'performance_gap': 'Actual performance or delivery is not demonstrated.',
+    'recurring_duty_unresolved': 'A first report does not finish the stipulated recurring duty; rescission evidence is absent.',
+    'earlier_event_day_8': 'The supplied operative rescission first ends the stipulated duty on day 8.',
+    'earlier_event_gap': 'A material earlier rescission is referenced but its date or scope cannot be established.',
+    'saved_b_continues': 'The supplied savings provision expressly continues duty B.',
+    'savings_scope_gap': 'Missing material savings terms prevent a complete scope conclusion.'}
 
 
 def sha(v):
@@ -52,7 +60,8 @@ def prepare(dest, seed='valla-pairs-1'):
             ident = hashlib.sha256((seed + name + text).encode()).hexdigest()[:20]
             item = {'schema': 'SEEDED-reasoning-practice/v1', 'instrument_id': 'SEEDED:' + ident,
                     'SEEDED': True, 'item_id': ident, 'hypothetical': text,
-                    'instruction': 'Apply only the stipulated fictional rule. Return item_id, findings (a list of evidence labels), and reason. Missing material must be acknowledged.'}
+                    'instruction': 'Apply only the stipulated fictional rule. Return item_id, findings (a list selected from the common answer_labels), and reason. Missing material must be acknowledged.',
+                    'answer_labels': LABELS}
             batch.append(item); pair.append(ident)
             keys.append({'item_id': ident, 'expected': expected, 'pair': name, 'relation': relation})
     rng.shuffle(batch)
@@ -71,6 +80,8 @@ def score(key_path, batch_path, verdicts):
     key = json.loads(Path(key_path).read_bytes()); seal = key.pop('seal')
     if sha(key) != seal or sha(json.loads(Path(batch_path).read_bytes())) != key['batch_sha256']:
         raise ValueError('key or batch changed')
+    if key['method_sha256'] != hashlib.sha256((REPO / 'jobs/claim-kit/BATCH.md').read_bytes()).hexdigest():
+        raise ValueError('method changed; prepare a new reviewed pair version')
     rows = json.loads(Path(verdicts).read_bytes()); by_id = {r['item_id']: r for r in rows}
     expected_ids = {k['item_id'] for k in key['items']}
     if len(rows) != len(by_id) or set(by_id) != expected_ids:
