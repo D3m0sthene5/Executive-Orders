@@ -147,6 +147,7 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
         'conflicts':d.get('conflicts',[]),
         'draft_material_gaps':draft.get('claim',{}).get('unresolved_material_gaps',[]),
         'missing':sorted(set(missing)),
+        'factual_obligations':corpus.get('factual_obligations',{}).get(iid,[]),
         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
     if iid in corpus.get('status_histories',{}):
         dossier['status_history']=corpus['status_histories'][iid]
