@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 6
           lfs: false
           sparse-checkout: |
             .github
@@ -31,6 +31,7 @@ jobs:
             research/stage21/sources_index
             research/stage21/original_sources
             research/valla
+            research/plans/claim_kit_contract
             research/excavator/2026-10-18/review/INDEPENDENT_AI_REVIEW.json
             research/excavator/bowditch-2026-10-20
       - uses: actions/setup-python@v5
