@@ -97,6 +97,20 @@
    "ids_file": "jobs/llull/ledger/pool_ids/LAMBC.txt",
    "where": {"ready_for_human_review": "no"},
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMM": {
+   "title": "own fixed term, not ready (Lamm)",
+   "describe": "not-ready orders in claim-kit family own_term:fixed_term whose dossier holds a text (original_source_id set), excluding orders in Rastell batches, Lambertini pools LAMBS/LAMBC and any order with a claim filed (research/excavator/lamm-2026-10-20; Polya reach 650)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMM.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMMSUN": {
+   "title": "Lamm sub-pool: body/order sunset wording",
+   "describe": "LAMM orders whose best fixed_term sentence (zero-agent screen) is a sunset of a body or the order (shall terminate/expire/remain in effect), an event-relative sunset, a dated period or a member-term clause; excludes retirement-age exemptions and deadline noise",
+   "from": "LAMM",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN.txt",
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
