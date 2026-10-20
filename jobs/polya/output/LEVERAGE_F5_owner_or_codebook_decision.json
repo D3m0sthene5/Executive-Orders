@@ -1,0 +1,89 @@
+{
+ "schema": "polya/1",
+ "repo_head": "46f91fdac2943f27dca5940ca874132738199104",
+ "frame": "F5_owner_or_codebook_decision",
+ "unit": "one owner decision or codebook reading question",
+ "polya_move": "work backwards to the precondition nobody can compute: a human ruling",
+ "pool": {
+  "orders": 14972,
+  "ready": 135,
+  "not_ready": 14837,
+  "decided_not_ready": 3224,
+  "undecided": 11613
+ },
+ "rules": [
+  "counts are measured from committed job outputs at repo_head",
+  "reach is not yield: orders a unit could advance one step, not orders made ready",
+  "AI statuses are hypotheses; no codebook change; no tier promotion; certified stays 0"
+ ],
+ "views": [
+  {
+   "view": "owner_or_codebook_question",
+   "advances_step": "n/a (see note)",
+   "what": "a ruling gates the blocker behind it (never a codebook change)",
+   "note": "reach is a ceiling: a decision unlocks work, the answer may be no; per-order work remains",
+   "pool_size": 14837,
+   "dropped_orders_step_not_open": 0,
+   "pool_already_ready": 0,
+   "units": 6,
+   "distinct_orders_reached": 13265,
+   "sum_leverage": 22675,
+   "overlap_factor": 1.709,
+   "max": 11613,
+   "median": 562,
+   "p90": 11613,
+   "units_ge_10": 6,
+   "units_ge_50": 6,
+   "gini": 0.585,
+   "top10_share_of_sum": 1.0,
+   "pct_of_pool_reached": 0.894,
+   "coverage": {
+    "top10": 0.894,
+    "top100": 0.894,
+    "greedy10": 0.894,
+    "greedy100": 0.894
+   },
+   "reached_with_le2_open_steps": 14,
+   "median_open_steps_of_reached": 6,
+   "reached_with_no_other_open_step_upper_bound": null,
+   "top": [
+    {
+     "unit": "Q_batch_adoption_of_reviewed_status_overlays (owner yes/no)",
+     "orders": 11613,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "Q_send_ProQuest_NYU_access_request (owner; ceiling)",
+     "orders": 6839,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "Q_compiled_transcription_as_acceptable_copy (codebook reading only)",
+     "orders": 3216,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "Q_report_deadline_own_term_end_reading",
+     "orders": 562,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "Q_medium_low_confidence_page_location_rule",
+     "orders": 286,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "Q_contrary_machine_lead_disposition_rule",
+     "orders": 159,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    }
+   ]
+  }
+ ]
+}
