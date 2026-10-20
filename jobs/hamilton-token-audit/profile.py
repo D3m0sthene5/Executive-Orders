@@ -61,6 +61,9 @@ def tool_label(name, inp):
         w = c.split()
         if not w:
             return "Bash"
+        if "=" in w[0] or w[0] in ("export", "env"):
+            # Never echo assignments: they can carry tokens or passwords.
+            return "Bash (sets variables, then runs a script)"
         if w[0] == "git":
             return "Bash git " + (w[1] if len(w) > 1 else "")
         if w[0] in ("python", "python3"):

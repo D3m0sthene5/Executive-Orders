@@ -34,6 +34,13 @@
    "reread": 0.04
   },
   {
+   "cause": "Bash (sets variables, then runs a script)",
+   "cost": 0.23,
+   "share": 0.0462,
+   "fresh": 0.0,
+   "reread": 0.23
+  },
+  {
    "cause": "Bash head",
    "cost": 0.18,
    "share": 0.0372,
@@ -46,13 +53,6 @@
    "share": 0.0366,
    "fresh": 0.0,
    "reread": 0.18
-  },
-  {
-   "cause": "Bash B=origin/astra/side-2026-10-18;",
-   "cost": 0.17,
-   "share": 0.0346,
-   "fresh": 0.0,
-   "reread": 0.17
   },
   {
    "cause": "Bash cat",
@@ -90,6 +90,13 @@
    "reread": 0.11
   },
   {
+   "cause": "model wrote: Bash (sets variables, then runs a script)",
+   "cost": 0.11,
+   "share": 0.0229,
+   "fresh": 0.07,
+   "reread": 0.04
+  },
+  {
    "cause": "MCP github pull_request_read get",
    "cost": 0.08,
    "share": 0.0168,
@@ -102,13 +109,6 @@
    "share": 0.0128,
    "fresh": 0.06,
    "reread": 0.0
-  },
-  {
-   "cause": "model wrote: Bash B=origin/astra/side-2026-10-18;",
-   "cost": 0.06,
-   "share": 0.0128,
-   "fresh": 0.05,
-   "reread": 0.02
   },
   {
    "cause": "Bash until",
@@ -153,23 +153,9 @@
    "reread": 0.02
   },
   {
-   "cause": "model wrote: Bash export",
-   "cost": 0.04,
-   "share": 0.0079,
-   "fresh": 0.03,
-   "reread": 0.01
-  },
-  {
    "cause": "Bash grep",
    "cost": 0.04,
    "share": 0.0074,
-   "fresh": 0.0,
-   "reread": 0.04
-  },
-  {
-   "cause": "Bash export",
-   "cost": 0.04,
-   "share": 0.0073,
    "fresh": 0.0,
    "reread": 0.04
   },
@@ -186,6 +172,20 @@
    "share": 0.0072,
    "fresh": 0.02,
    "reread": 0.02
+  },
+  {
+   "cause": "model wrote: Bash git add",
+   "cost": 0.03,
+   "share": 0.0069,
+   "fresh": 0.02,
+   "reread": 0.01
+  },
+  {
+   "cause": "model wrote: Bash cat",
+   "cost": 0.03,
+   "share": 0.0067,
+   "fresh": 0.02,
+   "reread": 0.01
   }
  ],
  "cache_rebuilds": {
