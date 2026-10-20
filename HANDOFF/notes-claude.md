@@ -2,6 +2,24 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET (Revere phase, ~21:45Z): late update
+
+- **Ready 256** at 21:42Z, certified 0; newer claims not yet counted.
+- **Since the ~18:00Z entry:**
+  - Lambertini IV probe 2: passed, 5 claims. LAMB4X has no ruling-independent orders left.
+  - R9830: probe 6 claims, scale 8 claims (26 ACT records).
+  - R12553NB: probe 6 claims, scale 9 claims (32 ACT records).
+  - VIAPAR: probe failed (4 of 8 blocked on strike-and-insert); 3 claims in all, including EO 11908 from the mend.
+  - PAGECHK3: 1 claim.
+  - Fixes: claim-kit act_overrides now matches lettered numbers (EO 7975A ingests). Source-ladder re-walks PDFs that are missing their named pages, so EO 11490 pp. 63-95 should land on the next run and unlock pool F11490 (20 orders).
+  - Planted controls: every plant caught today. One automated "instruction poisoning" flag on the R12553NB s5 planter was a false positive; I checked it, and the edit was scratch-only.
+- **Owner brief:** `research/production/owner-rulings-2026-10-20/BRIEF.md` covers three method rulings (report deadline, strike-and-insert, unnamed-instrument ends). AGENT_PROTOCOL step 3 already says "A report deadline is never an end", which equals option C: 97 orders.
+- **Next:**
+  1. F11490 once its pages land: `research/production/day-review-2026-10-20/next-lines/F11490_ids.txt`, Lambertini with a probe gate.
+  2. After any owner ruling, run the matching staged packets: Pullman (`research/excavator/pullman-2026-10-20/`) or Blackstone.
+  3. Almost every remaining line now waits on an owner ruling.
+- **Llull note:** O-58 counts the Lambertini IV probe-1 claims as 0, but its 4 upheld claims were filed anyway. Outcomes are append-only.
+
 ## 2026-10-20 ET (Revere phase, ~18:00Z): coordinator after handoff
 
 - **Done (pushed `e3c9f0d87`+merge):**
