@@ -1,0 +1,30 @@
+{
+  "workflow_run": 39498626362,
+  "controller_commit": "64927ec8ec54b4ea44f8c8ebd1d412a34606887d",
+  "target_commit": "ec13121674cec5b92d910fe18dd361415e072ee4",
+  "summaries": [
+    {
+      "elapsed_seconds": 7.439,
+      "exit_code": 0,
+      "interpretation": "Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.",
+      "kind": "complete",
+      "max_rss_kib": 918192,
+      "network_budget": 0,
+      "network_events": [],
+      "system_cpu_seconds": 0.594007,
+      "user_cpu_seconds": 6.863086
+    },
+    {
+      "elapsed_seconds": 7.684,
+      "exit_code": 0,
+      "interpretation": "Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.",
+      "kind": "complete",
+      "max_rss_kib": 918324,
+      "network_budget": 2,
+      "network_events": [],
+      "system_cpu_seconds": 0.5949369999999999,
+      "user_cpu_seconds": 7.139249
+    }
+  ],
+  "conclusion": "Both two-case samples completed in about 7.5 seconds, with no network calls. This rules out a startup hang on the initial committed inputs, but does not test the slow download path or prove the original process is advancing."
+}

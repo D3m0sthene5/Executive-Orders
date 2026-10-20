@@ -2,7 +2,24 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
-<!-- Codex: add your first entry here. -->
+## 2026-10-20: authorized pipeline repair and integration in progress
+
+- **Done:** User authorized ordered repairs, conflict resolution and GitHub integration. Repair PR #46, code ec131216, incorporates every #38/#40/#42–#45 head with original histories preserved. Compiler inventory, transactional runner, producer hashes, lead-only tracker feeds, source-generation import and current portfolio/NEYMAN validation repaired. Import contract: `research/repair-20261020/`; final report/evidence: `research/diagnostics/repair-20261020/`.
+- **Verified:** Local regression suites and GitHub Ubuntu/Windows road tests pass. All four authoritative status/census/codebook files match pre-repair main exactly. Valla's old pilot exposed correctly refused attestations after BATCH.md changed; current blocker-retention smoke is in PR #47 (4275ac2e), 25 local tests pass. Historical experiments and every legal hold retained.
+- **Running:** Full 27-job workflow 39490062770 on repair branch; inspect all STATUS.json receipts and bot output commit. Valla current bounded pilot 39492197443 on #47 succeeded. No final ready count claimed yet. Owner asked whether the long workflow is stuck without losing progress: primary run and branch deliberately unchanged; independent read-only probes are on `codex/stall-probe-20261020`. Probe 39499817449 completed all 3,359 draft cases with new downloads disabled in 90.519s and verified two exact GovInfo PDFs in 1.309s. Full online replay 39501126791 has an eight-minute diagnostic cap. These use initial committed inputs, not the inaccessible live runner filesystem; no hang or specific slow URL is proved yet. Unfinished live output has no mid-job remote checkpoint, so do not cancel casually.
+- **Next:** Inspect actual output and repair any failures, integrate #47, publish final evidence/handoff, mark drafts ready, attempt formal approval where GitHub permits and merge the authorized PRs while preserving history. GitHub identity is PR author, so self-approval may be prohibited; do not impersonate a reviewer. Main last rechecked ed19a060.
+- **Asks:** None requiring owner confirmation; user already authorized software integration.
+- **Do not:** Adopt the 56 pending NO proposals, remove the five disputed-claim holds or EO9789 hold, rewrite historical experiments, weaken source/provenance checks, or call a mechanical validation human certification/savings. No per-order research performed; token/cash/active effort totals unavailable.
+
+## 2026-10-20 ET: interrupted Claude diagnostic recovered; integration remains unfinished
+
+- **Done:** Inspected main ed19a060, junto bd4450ab and integration da75ca1d, current open PRs and actual run 39475524967. Report: `research/diagnostics/CLAUDE_DIAGNOSTIC_2026-10-20.md`; machine observations: `DIAGNOSTIC_EVIDENCE_2026-10-20.json`. Documentation only; no runtime, claim, source or canonical output edits.
+- **Correction:** Claude's integration note says merged into main; GitHub still has #38/#40/#42–#45 open and main is ed19a060. Integration misses 17 later junto commits. Ready counts are snapshot-specific: main 138, junto 256, integration 238. The latter has five new disputed-claim holds and six failed jobs; do not sum or publish these as a combined result.
+- **Verified:** Integration executed 22 jobs, 16 succeeded and six failed. Source-ladder's online run worked 177/1,448 items and reached 394 found receipts. All 173 source-ladder tests pass locally. Claim-kit reproduces 35 overlay errors in 185 tests (four corpus-dependent sparse-checkout skips). Writer hashes seven code files; reader hashes six, omitting lifecycle_obligations.py. Adding that entry only in memory makes all 35 overlay tests pass; no repair was applied.
+- **Next:** Align fingerprint inventories; stage successful generations rather than delete/publish outputs after failure; reconcile 17 later commits preserving holds and ledgers; separately version current portfolio/NEYMAN validation inputs without rewriting frozen experiments; then execute the combined pipeline and measure the count. The report also identifies 1,266 skipped stale-hash declarations and fixed-list tracker feed omissions.
+- **Running:** None. No full-corpus rebuild, new per-order research, legal adjudication or savings experiment performed; model/cash/per-order costs unavailable.
+- **Asks:** None requiring owner action for this diagnostic.
+- **Do not:** Treat a rebuild alone as the fingerprint repair; disable provenance checks; overwrite frozen pilot results; promote derivative texts; remove disputed-claim holds; merge the incomplete integration branch as-is.
 
 ## 2026-10-18: Alternate sources saved 1,531 texts for the 1,712-order gap
 
