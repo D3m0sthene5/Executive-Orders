@@ -1,0 +1,94 @@
+{
+  "additional_regression": "A forecast revised after its run cannot borrow its first registration date; exact first-record comparison leaves it unchecked and unscored.",
+  "base_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "calibration": {
+    "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count",
+    "n_current_outcomes": 43,
+    "n_experiments_scored": 11,
+    "n_forecasts": 55,
+    "n_outcome_records": 46,
+    "n_resolved": 41,
+    "n_scored": 37,
+    "not_preregistered_excluded": {
+      "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
+      "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
+    },
+    "unchecked_excluded": {
+      "L-20261020-13": "no run directory declared",
+      "L-20261020-14": "no run directory declared"
+    },
+    "unresolved_outcomes": {
+      "L-20261020-33": "untested",
+      "L-20261020-37": "untested"
+    }
+  },
+  "cost_measured": null,
+  "date": "2026-10-20",
+  "limits": [
+    "Mechanical correspondence identifies a material issue at its affected clause; it is not legal adjudication.",
+    "Historical MW-C2 correction relies on the recorded manual adjudication; original sealed item-level material was not recreated.",
+    "Instructed blinding is explicitly distinct from verified technical isolation.",
+    "Historical first-cessation proposals require independent source review and are not certified by passing these tests.",
+    "The selfscore has three misses from two experiments; a 100 percent recall on those three misses is not evidence of general reliability.",
+    "Forecast history is preserved. Two resolved records lack declared run directories and remain unchecked; two are retrospective; two corrected gates remain untested."
+  ],
+  "measured_productivity_savings": null,
+  "schema": "astra.module-validation/v1",
+  "selfscore": {
+    "n_experiments_out_of_sample": 11,
+    "n_flagged_misses": 3,
+    "n_flagged_out_of_sample": 14,
+    "n_in_sample": 0,
+    "n_miss_experiments": 2,
+    "n_misses_out_of_sample": 3,
+    "n_not_preregistered": 2,
+    "n_out_of_sample": 37,
+    "n_resolved": 41,
+    "n_unchecked": 2,
+    "n_unresolved": 2,
+    "precision": 0.21428571428571427,
+    "share_flagged": 1.0,
+    "trust": "unproven"
+  },
+  "source_and_output_sha256": {
+    "jobs/llull/output/CALIBRATION.json": "c8be8b1e688d41b2b6ec14e6bb00873c6696706a218b5319734678c71b801acc",
+    "jobs/llull/output/CHECK.json": "0d67c86f6ed49f18da73dda21e992fa1592345abed90ddcdc9654e7b76250955",
+    "jobs/llull/output/SELFSCORE.json": "fa589432452b35c11967f526f94bfe69e2ad5e7bbe658f304b0e91af367dafea",
+    "research/production/astra-portfolio-repair-2026-10-20/mountweazel-llull/HISTORICAL_CORRECTIONS.json": "a5a8bf32082da699e2e855550204227d2235551b03b7337e34ecb7a269d9403c",
+    "research/production/astra-portfolio-repair-2026-10-20/mountweazel-llull/RASTELL_GATE_CORRECTION.json": "0a0038ad7d7a5192f6a02961d081c6d6804ab83dabe992925562cff25048f443",
+    "research/production/astra-portfolio-repair-2026-10-20/mountweazel-llull/REPRODUCTION.json": "6df9898f390a72c468613cd1bd2f8dee695d93e1fae3e3f14c0b0712682891ce"
+  },
+  "tokens_measured": null,
+  "validation": [
+    {
+      "command": "python3 -I jobs/mountweazel/test_mountweazel.py",
+      "elapsed_seconds": 19.276,
+      "exit_code": 0,
+      "passed": 38,
+      "skipped": 0,
+      "tests": 38
+    },
+    {
+      "command": "python3 -I jobs/llull/test_llull.py",
+      "elapsed_seconds": 9.423,
+      "exit_code": 0,
+      "passed": 66,
+      "skip_reason": "Historical census replay requires source blobs unavailable in the local filtered clone; synthetic gate and census regressions and current shipped-ledger check passed.",
+      "skipped": 1,
+      "tests": 67
+    },
+    {
+      "command": "python3 -I jobs/llull/test_gates.py",
+      "elapsed_seconds": 0.154,
+      "exit_code": 0,
+      "passed": 5,
+      "skipped": 0,
+      "tests": 5
+    },
+    {
+      "command": "OUTPUT_DIR=jobs/llull/output python3 -I jobs/llull/job.py",
+      "exit_code": 0,
+      "status": "succeeded"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "orders_total": 14972,
+  "orders_with_provisional_status": 3359,
+  "ready_for_human_review": 225,
+  "ready_by_tier": {
+    "complete_claim": 225
+  },
+  "human_verified": "not counted here; see the Stage 19 tracker",
+  "step_done_among_decided": {
+    "provisional_status": {
+      "done": 3359,
+      "applicable": 3359
+    },
+    "original_text": {
+      "done": 2312,
+      "applicable": 3359
+    },
+    "clause_inventory": {
+      "done": 290,
+      "applicable": 3359
+    },
+    "ending_or_current_basis": {
+      "done": 245,
+      "applicable": 3359
+    },
+    "savings_residuals": {
+      "done": 278,
+      "applicable": 3359
+    },
+    "counterevidence": {
+      "done": 2484,
+      "applicable": 3359
+    },
+    "shared_sources": {
+      "done": 190,
+      "applicable": 236
+    },
+    "opus_media": {
+      "done": 121,
+      "applicable": 844
+    }
+  },
+  "decided_by_steps_done": {
+    "1/6": 632,
+    "1/7": 14,
+    "1/8": 2,
+    "2/6": 481,
+    "2/7": 82,
+    "2/8": 6,
+    "3/6": 1121,
+    "3/7": 430,
+    "3/8": 54,
+    "4/6": 26,
+    "4/7": 71,
+    "4/8": 151,
+    "5/6": 32,
+    "5/8": 21,
+    "6/6": 223,
+    "6/7": 9,
+    "7/7": 2,
+    "7/8": 1,
+    "8/8": 1
+  },
+  "orders_blocked_by": {
+    "NO_PROVISIONAL_STATUS": 11613,
+    "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3216,
+    "NO_CLAUSE_INVENTORY": 3028,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3028,
+    "FIRST_END_UNPROVED": 2635,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 688,
+    "OPUS_MEDIA_REFETCH_NEEDED": 435,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 144,
+    "CLAIM_INCOMPLETE": 83,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "SHARED_SOURCE_NOT_RETRIEVED": 46,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+    "OPEN_SOURCE_AUDIT": 6,
+    "CLAIM_CHECK_FAILED": 4,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
+  },
+  "decided_orders_blocked_by": {
+    "NO_CLAUSE_INVENTORY": 3028,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3028,
+    "FIRST_END_UNPROVED": 2635,
+    "NO_OFFICIAL_SOURCE_LOCATED": 959,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 898,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 688,
+    "OPUS_MEDIA_REFETCH_NEEDED": 435,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "OPUS_MEDIA_NONE_CITED": 217,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 144,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
+    "CLAIM_INCOMPLETE": 83,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "SHARED_SOURCE_NOT_RETRIEVED": 46,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+    "OPEN_SOURCE_AUDIT": 6,
+    "CLAIM_CHECK_FAILED": 4,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+    "NO_PROVISIONAL_STATUS": 0
+  },
+  "shared_unlocks": [
+    {
+      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+      "kind": "machine_job",
+      "orders_unblocked": 3216,
+      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+    },
+    {
+      "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+      "kind": "machine_job",
+      "orders_unblocked": 435,
+      "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+    },
+    {
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 286,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+    },
+    {
+      "action": "Retrieve shared source STAT::66 Stat. 259",
+      "kind": "one_source",
+      "orders_unblocked": 19,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259"
+    },
+    {
+      "action": "Retrieve shared source EO::4314",
+      "kind": "one_source",
+      "orders_unblocked": 10,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+    },
+    {
+      "action": "Retrieve shared source EO::6868",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
+    },
+    {
+      "action": "Retrieve shared source USC::48 U.S.C. 863)",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+    },
+    {
+      "action": "Retrieve shared source EO::6964",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964"
+    },
+    {
+      "action": "Retrieve shared source EO::6910",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
+    },
+    {
+      "action": "Retrieve shared source CFR::26 CFR 458.324",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    },
+    {
+      "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+      "kind": "agent_check",
+      "orders_unblocked": 1,
+      "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
+    }
+  ],
+  "input_problems": [],
+  "inputs": {
+    "local_validation": true,
+    "not_a_GitHub_run": true
+  }
+}

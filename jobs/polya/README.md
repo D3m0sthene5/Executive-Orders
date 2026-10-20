@@ -48,19 +48,30 @@ Same commit gives the same output (no timestamps). A frame whose input file is m
 | F6 missing input type | ORIGINAL / ACT / CURRENT / INVENTORY | by type | `claim-kit/dossiers/*.json` |
 | F7 current-law table | a USC/CFR slice, for YES orders | ending/current basis | `current-law/MENTIONS.csv` |
 | F8 reviewer | a source URL the human reads; a near-ready step set | review cost; ready | `research/readiness/claims/*.jsonl` |
-| F9 single blocker | a blocker code that is the order's only blocker | ready (by blocker) | tracker blockers |
+| F9 single blocker | the only recorded blocker category; it can require many research actions | conditional step completion only | tracker blockers |
 
 Columns of `leverage` and `compare`: `units`, `distinct_orders_reached`, `sum_leverage` (double-counts
 overlap; `overlap_factor` = sum / distinct), `gini` (0 = flat, toward 1 = a few units hold the reach),
 `coverage.top10/top100` (union reached by the k highest-leverage units, share of the view's pool),
 `coverage.greedy10/100` (best k units by marginal gain), `reached_with_le2_open_steps`,
 `reached_with_no_other_open_step_upper_bound` (reached orders whose only open steps are the ones this view
-advances; an upper bound on readiness from this frame alone).
+advances; conditional completion potential if those steps really are completed,
+not measured yield or a generally established upper bound on legal readiness).
+
+Every view includes remaining open prerequisites, deduplicated beneficiary
+counts, and an explicitly null realized readiness change. The tracker supplies
+all step states; Polya creates no second readiness calculation. `input_snapshot`
+pins the bytes actually read as well as the repository head; changed inputs
+stop output publication. An incomplete dossier checkout marks F6 unavailable
+instead of quietly shrinking its universe. Use corpus-excavator's existing
+`measure.py` for a paired actual-tracker replay when a specific acquisition has
+receipts; hypothetical grouping cannot substitute for that measurement.
 
 ## The export format (for Llull)
 
-`jobs/llull/llull.py` does not exist yet, and the design (`research/plans/LLULL_DESIGN.md` section 5)
-names `voi --actions FILE` without fixing a schema. Polya writes `polya.actions/1`:
+Llull now exists. Polya retains its compatible `polya.actions/1` export and
+adds input pins and prerequisite accounting. Its reach fields are planning
+inputs; a measured pilot and verified registration are still separate:
 
 ```json
 {"schema": "polya.actions/1", "repo_head": "...", "pool": {...}, "actions": [
@@ -74,15 +85,16 @@ names `voi --actions FILE` without fixing a schema. Polya writes `polya.actions/
   "requires_unmeasured": ["..."], "status": "hypothesis", "caveat": "...", "repo_head": "..."}]}
 ```
 
-Mapping to Llull: `ceiling_orders` is the Domesday-style ceiling (not-ready reach, not a forecast;
+Mapping to Llull: `ceiling_orders` is the historical name for screened not-ready reach (not a forecast or proven population bound;
 F8 reviewer URLs also serve already-ready orders, counted in `reach_already_ready` and excluded).
 Never sum reach across actions: `same_unit_actions` names the same unit under another frame;
 `E_ready = ceiling x p(accepted) x p(ready | accepted)` and `cost_usd` are Llull's to fill from
-measured reference classes; `tier_hint` is a suggestion. If Llull settles on another schema, change
-`cmd_export` only. Check this section against `jobs/llull/` when that driver lands.
+measured reference classes; `tier_hint` is a suggestion. Keep compatible fields
+when improving the export; do not turn screened memberships into expected
+readiness or savings.
 
 ## Tests
 
-`python3 -I jobs/polya/test_polya.py` (14 tests: statistics by hand, exact reach on a fixture repo, a missing
+`python3 -I jobs/polya/test_polya.py` (17 tests: statistics by hand, exact reach on a fixture repo, a missing
 input degrades one frame, a unit counts only orders whose advanced step is open, cross-frame
 duplicate units are linked, aggregate-only outputs, null forecasts in the export, live-data bounds).

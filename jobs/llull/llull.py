@@ -127,7 +127,7 @@ def new_id(prefix, lines, key):
 class Ledger:
     def __init__(self, d):
         self.dir = Path(d)
-        self.out = self.dir.parent / "output"
+        self.out = Path(os.environ.get("OUTPUT_DIR") or self.dir.parent / "output")
         self.forecasts = self.dir / "forecasts.jsonl"
         self.outcomes = self.dir / "outcomes.jsonl"
         self.censuses = self.dir / "censuses.jsonl"
@@ -182,7 +182,17 @@ def log_ratio(y, p50, category):
 
 def load_base_rates(path):
     d = json.loads(Path(path).read_text())
-    return {r["key"]: r for r in d["rows"]}
+    current = {}
+    for row in d["rows"]:
+        previous = current.get(row["key"])
+        if previous:
+            prev_hash = hashlib.sha256(json.dumps(previous, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+            if (row.get("rev") != previous.get("rev", 1) + 1 or
+                    row.get("supersedes_rev") != previous.get("rev", 1) or
+                    row.get("supersedes_record_sha256") != prev_hash):
+                raise Refusal("base-rate correction %s must pin and supersede its prior revision" % row["key"])
+        current[row["key"]] = row
+    return current
 
 
 def measured_problem(row):
@@ -205,8 +215,11 @@ def class_quantity(key):
 
 
 def ceiling_flags(quantity, p90, census, unlock_p90=0.0):
-    """Flags for a forecast whose p90 may exceed the Domesday ceiling (design 2.3 rule 3).
-    census: {'pool_size', 'ceiling_strict', 'ceiling_leads'} in item counts."""
+    """Coverage warnings, not an upper bound on legal research outcomes.
+
+    The historic ceiling_* field names remain readable, but a screen can miss
+    legitimate routes. A bound needs an explicit proof, never an implicit rename.
+    """
     cap_kind = QUANTITIES[quantity][1]
     if not census or cap_kind is None:
         return []
@@ -216,9 +229,9 @@ def ceiling_flags(quantity, p90, census, unlock_p90=0.0):
         strict, leads = strict / size, leads / size
     flags = []
     if p90 > strict + unlock_p90 + 1e-12:
-        flags.append("CEILING_EXCEEDED")
+        flags.append("PREREQUISITE_COVERAGE_EXCEEDED")
         if p90 > leads + unlock_p90 + 1e-12:
-            flags.append("CEILING_EXCEEDED_EVEN_COUNTING_LEADS")
+            flags.append("PREREQUISITE_COVERAGE_EXCEEDED_EVEN_COUNTING_LEADS")
     return flags
 
 
@@ -577,8 +590,7 @@ def pool_rows(pool, D, pools=None, seen=()):
 
 
 def run_census(pool, requires=None, D=None, rows=None, pools=None):
-    """Joint, per-item prerequisite count. Strict ceiling: every gate 'held' (or 'na').
-    Leads ceiling: every gate held, na or lead."""
+    """Joint prerequisite coverage screen. A held input is not a proved legal result."""
     D = D or Data()
     df = POOL_DEFS.get(pool) or (pools or {}).get(pool) or {}
     requires = requires or df.get("default_requires")
@@ -615,6 +627,9 @@ def run_census(pool, requires=None, D=None, rows=None, pools=None):
             "describe": df.get("describe"), "pool_kind": "builtin" if pool in POOL_DEFS else "custom",
             "pool_size": n, "requires": requires, "alone": alone, "cumulative_strict": cum,
             "ceiling_strict": strict, "ceiling_leads": leads,
+            "screen_kind": "coverage_heuristic", "is_proven_bound": False,
+            "coverage_strict": strict, "coverage_with_leads": leads,
+            "interpretation": "legacy ceiling_* fields are coverage counts; omitted routes can exceed them",
             "share_strict": round(strict / n, 4) if n else 0.0, "share_leads": round(leads / n, 4) if n else 0.0,
             "product_of_marginals": round(expected, 2), "flags": flags,
             "reference": df.get("reference"), "gates_rev": GATES_REV,
@@ -633,8 +648,8 @@ def census_table(c):
     for g in c["requires"]:
         a = c["alone"][g]
         lines.append("%-26s %8d %8d %8d %12d" % (g, a["held"], a["lead"], a["na"], c["cumulative_strict"][g]))
-    lines.append("CEILING strict       %6d = %.1f%% of pool" % (c["ceiling_strict"], 100 * c["share_strict"]))
-    lines.append("CEILING leads counted%6d = %.1f%% of pool" % (c["ceiling_leads"], 100 * c["share_leads"]))
+    lines.append("COVERAGE held        %6d = %.1f%% of pool (heuristic, not a bound)" % (c["ceiling_strict"], 100 * c["share_strict"]))
+    lines.append("COVERAGE with leads  %6d = %.1f%% of pool" % (c["ceiling_leads"], 100 * c["share_leads"]))
     lines.append("product of marginals %.1f vs joint %d%s" % (c["product_of_marginals"], c["ceiling_strict"],
                  "  -> ASSUMED_INDEPENDENCE flag" if c["flags"] else ""))
     if c.get("reference"):
@@ -715,8 +730,8 @@ def mode_check(key, step, ctx):
         if census:
             for n in ready:
                 if n > census["ceiling_strict"]:
-                    return ("auto_fail" if structured else "fires"), (
-                        "%s is above the %s joint ceiling of %d (%d leads counted, pool %d)" % (
+                    return "fires", (
+                        "%s is above the %s observed joint prerequisite coverage of %d (%d leads counted, pool %d); this screen is not a bound" % (
                             format(n, ","), census["pool"], census["ceiling_strict"], census["ceiling_leads"],
                             census["pool_size"]))
             for n in orders:
@@ -727,7 +742,7 @@ def mode_check(key, step, ctx):
             for m in RATE_TARGET.finditer(text):
                 r = float(m.group(2)) if m.group(2) else float(m.group(3)) / 100
                 if share is not None and r > share:
-                    return ("auto_fail" if structured else "fires"), (
+                    return "fires", (
                         "stated %s rate %s is above pool %s's strict prerequisite share %.1f%% (%d of %d; %.1f%% "
                         "counting leads)" % (m.group(1).lower(), "%s (p50)" % m.group(2) if m.group(2) else m.group(3) + "%",
                                              census["pool"], 100 * share,
@@ -1084,7 +1099,7 @@ def cmd_forecast(a, L):
     if flags and not a.accept_flag:
         print("FLAGS: " + ", ".join(flags) + (" | census %s: strict %d of %d, leads %d" % (
             census["census_id"], census["ceiling_strict"], census["pool_size"], census["ceiling_leads"]) if census else ""))
-        print("not registered. Lower the forecast to the ceiling, or re-run with --accept-flag 'reason' to register it flagged.")
+        print("not registered. Explain the routes outside the coverage screen with --accept-flag 'reason'; this heuristic is not a bound.")
         return 3
     lines = read_jsonl(L.forecasts)
     rec.update({"schema": "llull.forecast/1", "forecast_id": new_id("L", lines, "forecast_id"), "rev": 1,
@@ -1107,27 +1122,75 @@ def cmd_forecast(a, L):
     return 0
 
 
+def current_outcomes(L):
+    """Resolve append-only correction chains, refusing ambiguous replacement histories."""
+    cur, ids = {}, set()
+    for o in read_jsonl(L.outcomes):
+        fid, oid = o.get("forecast_id"), o.get("outcome_id")
+        if not fid or not oid or oid in ids:
+            raise Refusal("outcome identifiers must be present and unique", 4)
+        prev = cur.get(fid)
+        if prev:
+            if o.get("supersedes_outcome_id") != prev["outcome_id"] or o.get("rev") != prev.get("rev", 1) + 1:
+                raise Refusal("outcome %s must explicitly supersede the current outcome for %s" % (oid, fid), 4)
+            if not o.get("correction_reason") or not o.get("source_sha256"):
+                raise Refusal("outcome correction %s needs reason and pinned source hash" % oid, 4)
+        elif o.get("supersedes_outcome_id") or o.get("rev", 1) != 1:
+            raise Refusal("outcome %s has no predecessor" % oid, 4)
+        state = o.get("resolution_status", "measured")
+        value = o.get("measured")
+        if state == "measured":
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+                raise Refusal("outcome %s needs a finite measured value" % oid, 4)
+        elif state not in ("untested", "unresolved") or value is not None:
+            raise Refusal("outcome %s: untested/unresolved measurements must be null" % oid, 4)
+        ids.add(oid)
+        cur[fid] = o
+    return cur
+
+
+def outcome_experiment(f, o):
+    """A shared outcome source is one experiment unless explicitly disambiguated."""
+    return o.get("experiment_id") or f.get("experiment_id") or "source:" + str(o.get("source") or f.get("plan_id") or f["forecast_id"])
+
+
 def cmd_outcome(a, L):
     fc = latest(read_jsonl(L.forecasts), "forecast_id").get(a.forecast)
     if not fc:
         raise Refusal("unknown forecast %s" % a.forecast)
-    if any(o["forecast_id"] == a.forecast for o in read_jsonl(L.outcomes)):
-        raise Refusal("%s already has an outcome (outcomes are append-only, one per forecast)" % a.forecast)
+    previous = current_outcomes(L).get(a.forecast)
+    correcting = getattr(a, "corrects", None)
+    if previous and correcting != previous["outcome_id"]:
+        raise Refusal("%s already has an outcome; append a correction with --corrects %s and --correction-reason" % (a.forecast, previous["outcome_id"]))
+    if correcting and (not previous or not getattr(a, "correction_reason", None)):
+        raise Refusal("correction requires the current outcome id and a reason")
     err = repo_path_ok(a.source)
     if err:
         raise Refusal(err)
-    if fc["kind"] == "binary" and a.measured not in (0, 1):
+    state = getattr(a, "resolution_status", "measured")
+    if state == "measured" and (a.measured is None or not math.isfinite(a.measured)):
+        raise Refusal("measured outcome needs a finite --measured value")
+    if state != "measured" and a.measured is not None:
+        raise Refusal("untested/unresolved outcomes must omit --measured")
+    if state == "measured" and fc["kind"] == "binary" and a.measured not in (0, 1):
         raise Refusal("a binary forecast resolves to 0 or 1")
     rec = {"schema": "llull.outcome/1", "outcome_id": new_id("O", read_jsonl(L.outcomes), "outcome_id"),
-           "forecast_id": a.forecast, "rev": 1, "measured": a.measured, "source": a.source, "note": a.note or "",
+           "forecast_id": a.forecast, "rev": previous.get("rev", 1) + 1 if previous else 1,
+           "measured": a.measured, "resolution_status": state, "source": a.source, "note": a.note or "",
+           "source_sha256": hashlib.sha256((REPO / a.source).read_bytes()).hexdigest(),
            "recorded_at": now(), "recorded_commit": head(), "written_by": WRITTEN_BY}
     cap = fc.get("census_ceiling")
     kind = QUANTITIES[fc["quantity"]][1]
-    if cap and kind:
+    if previous:
+        rec.update(supersedes_outcome_id=previous["outcome_id"], correction_reason=a.correction_reason,
+                   written_by="astra")
+    if getattr(a, "experiment_id", None):
+        rec["experiment_id"] = a.experiment_id
+    if cap and kind and state == "measured":
         lim = cap["ceiling_strict"] / (cap["pool_size"] or 1) if kind == "share" else cap["ceiling_strict"]
         if a.measured > lim + fc.get("unlock_p90", 0) + 1e-12:
-            rec["ceiling_violated"] = True
-            print("WARNING: measured %g exceeds the census ceiling %g: a gate missed a route, review it" % (a.measured, lim))
+            rec["coverage_screen_exceeded"] = True
+            print("measured %g exceeds prerequisite coverage %g: the heuristic missed a route" % (a.measured, lim))
     append_jsonl(L.outcomes, rec)
     print("recorded", rec["outcome_id"], "for", a.forecast)
     return 0
@@ -1142,51 +1205,81 @@ def registration_status(f, L):
     (status, reason): 'preregistered', 'not_preregistered' (committed together with, or after, the run) or
     'unchecked' (no run directory declared, or the lines are not committed yet)."""
     runs = f.get("run_dirs") or []
+    if git("rev-parse", "--is-shallow-repository") == "true":
+        return "unchecked", "shallow history cannot establish first registration"
     try:
         rel = str(L.forecasts.resolve().relative_to(REPO.resolve()))
     except ValueError:
         return "unchecked", "ledger is outside the repository"
-    fc_commit = first_commit("-S", f["forecast_id"], "--", rel) if (runs or L.outcomes.exists()) else ""
+    fc_commit = first_commit("-G", r'"forecast_id"[[:space:]]*:[[:space:]]*"' + re.escape(f["forecast_id"]) + r'"', "--", rel) if (runs or L.outcomes.exists()) else ""
     if fc_commit:
         # the file that resolves the forecast first appeared in the very commit that registered it
         for o in read_jsonl(L.outcomes):
-            if o["forecast_id"] == f["forecast_id"] and first_commit("--", o.get("source", "")) == fc_commit:
-                return "not_preregistered", "its outcome source %s was first committed together with the forecast (%s)" % (
-                    o["source"], fc_commit[:9])
+            if o["forecast_id"] == f["forecast_id"]:
+                source_commit = first_commit("--", o.get("source", ""))
+                if source_commit and (source_commit == fc_commit or git("merge-base", "--is-ancestor", fc_commit, source_commit) is None):
+                    return "not_preregistered", "its outcome source %s was first committed together with or before the forecast (%s)" % (
+                        o["source"], fc_commit[:9])
     if not runs:
         return "unchecked", "no run directory declared"
     if not fc_commit:
-        return "unchecked", "forecast line not committed yet (cannot yet prove it precedes the run)"
+        return "unchecked", "forecast commit unavailable (uncommitted record or incomplete/inaccessible history)"
+    committed_text = git("show", fc_commit + ":" + rel)
+    if committed_text is None:
+        return "unchecked", "first registered forecast record could not be read"
+    try:
+        first_records = [json.loads(line) for line in committed_text.splitlines() if line.strip()]
+    except (ValueError, TypeError):
+        return "unchecked", "first registered forecast record could not be parsed"
+    if not any(record == f for record in first_records if isinstance(record, dict)
+               and record.get("forecast_id") == f["forecast_id"]):
+        return "unchecked", "current forecast differs from its first registered record; revision timing is unverified"
     for d in runs:
         run_commit = first_commit("--", d)
+        if not run_commit:
+            return "unchecked", "run artifacts in %s are not committed; ordering is unverified" % d
         if run_commit and (run_commit == fc_commit or git("merge-base", "--is-ancestor", fc_commit, run_commit) is None):
             return "not_preregistered", "run artifacts in %s were committed %s the forecast (%s)" % (
                 d, "together with" if run_commit == fc_commit else "before", fc_commit[:9])
     return "preregistered", "forecast committed at %s, before the run" % fc_commit[:9]
 
 
+def registration_exclusions(L, fcs):
+    retrospective, unchecked = {}, {}
+    marks = latest(read_jsonl(L.registration), "forecast_id")
+    for fid, f in fcs.items():
+        st, why = registration_status(f, L)
+        if marks.get(fid, {}).get("status") == "not_preregistered":
+            st, why = "not_preregistered", marks[fid].get("reason", "marked")
+        if st == "not_preregistered":
+            retrospective[fid] = why
+        elif st != "preregistered":
+            unchecked[fid] = why
+    return retrospective, unchecked
+
+
 def not_preregistered_ids(L, fcs):
     """Forecast ids excluded from calibration: marked in registration.jsonl, or provably not first by git order."""
-    out = {m["forecast_id"]: m.get("reason", "marked") for m in read_jsonl(L.registration)
-           if m.get("status") == "not_preregistered"}
-    for fid, f in fcs.items():
-        if fid not in out:
-            st, why = registration_status(f, L)
-            if st == "not_preregistered":
-                out[fid] = why
-    return out
+    retrospective, unchecked = registration_exclusions(L, fcs)
+    return {**retrospective, **unchecked}
 
 
 def score_all(L):
     fcs = latest(read_jsonl(L.forecasts), "forecast_id")
-    outs = {o["forecast_id"]: o for o in read_jsonl(L.outcomes)}
-    npr = not_preregistered_ids(L, {k: f for k, f in fcs.items() if k in outs})
+    all_outs = current_outcomes(L)
+    outs = {k: o for k, o in all_outs.items() if o.get("resolution_status", "measured") == "measured"}
+    retrospective, unchecked = registration_exclusions(L, {k: f for k, f in fcs.items() if k in outs})
+    excluded = {**retrospective, **unchecked}
+    experiments = {}
     per = {}
     for fid, f in fcs.items():
         o = outs.get(fid)
-        if not o or fid in npr:
+        if not o or fid in excluded:
             continue
-        P = per.setdefault(planner_key(f["planner"]), {"intervals": [], "binary": []})
+        group = outcome_experiment(f, o)
+        experiments.setdefault(group, []).append(fid)
+        P = per.setdefault(planner_key(f["planner"]), {"intervals": [], "binary": [], "experiments": set()})
+        P["experiments"].add(group)
         if f["kind"] == "binary":
             P["binary"].append((f["prob"], o["measured"]))
         else:
@@ -1199,11 +1292,18 @@ def score_all(L):
                 ref = norm_interval_score(0.1 * ov, 2 * ov, y, cat)
                 item["skill_vs_outside"] = 1 - item["score"] / ref if ref > 0 else None
             P["intervals"].append(item)
-    res = {"schema": "llull.calibration/1", "written_at": now(), "commit": head(), "planners": {},
-           "n_forecasts": len(fcs), "n_resolved": len(outs), "n_scored": len(outs) - len(npr),
-           "not_preregistered_excluded": npr}
+    res = {"schema": "llull.calibration/2", "written_at": now(), "commit": head(), "planners": {},
+           "n_forecasts": len(fcs), "n_outcome_records": len(read_jsonl(L.outcomes)),
+           "n_current_outcomes": len(all_outs), "n_resolved": len(outs),
+           "n_scored": sum(len(v) for v in experiments.values()),
+           "not_preregistered_excluded": retrospective, "unchecked_excluded": unchecked,
+           "unresolved_outcomes": {k: o.get("resolution_status") for k, o in all_outs.items() if k not in outs},
+           "current_outcome_ids": {k: o["outcome_id"] for k, o in all_outs.items()},
+           "experiment_groups": experiments, "n_experiments_scored": len(experiments),
+           "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count"}
     for pk, P in sorted(per.items()):
-        e = {"n_interval": len(P["intervals"]), "n_binary": len(P["binary"])}
+        e = {"n_interval": len(P["intervals"]), "n_binary": len(P["binary"]),
+             "n_experiments": len(P["experiments"]), "experiment_ids": sorted(P["experiments"])}
         if P["intervals"]:
             iv = P["intervals"]
             lr = sorted(i["log_ratio"] for i in iv)
@@ -1223,7 +1323,7 @@ def score_all(L):
                 e["murphy"] = murphy(ps, os_)
         n = e["n_interval"] + e["n_binary"]
         # binaries must beat always saying 0.5 (Brier 0.25); before this check 5 wrong binaries read "calibrated"
-        e["trust"] = "unproven" if n < 5 else ("calibrated" if e.get("coverage_p10_p90", 0.8) >= 0.6
+        e["trust"] = "unproven" if n < 5 or e["n_experiments"] < 5 else ("calibrated" if e.get("coverage_p10_p90", 0.8) >= 0.6
                                               and abs(e.get("median_log_ratio", 0)) <= math.log(2)
                                               and e.get("brier", 0.0) < 0.25 else "miscalibrated")
         res["planners"][pk] = e
@@ -1237,6 +1337,8 @@ def cmd_score(a, L):
     print("forecasts %d, resolved %d, scored %d" % (res["n_forecasts"], res["n_resolved"], res["n_scored"]))
     for fid, why in sorted(res["not_preregistered_excluded"].items()):
         print("  excluded (not_preregistered) %s: %s" % (fid, why))
+    for fid, why in sorted(res["unchecked_excluded"].items()):
+        print("  excluded (unchecked) %s: %s" % (fid, why))
     for pk, e in res["planners"].items():
         bits = ["n=%d" % (e["n_interval"] + e["n_binary"]), "trust=%s" % e["trust"]]
         if "coverage_p10_p90" in e:
@@ -1249,7 +1351,8 @@ def cmd_score(a, L):
     return 0
 
 
-FLAGS_PREDICTING_A_MISS = ("CEILING_EXCEEDED", "CEILING_EXCEEDED_EVEN_COUNTING_LEADS")
+FLAGS_PREDICTING_A_MISS = ("CEILING_EXCEEDED", "CEILING_EXCEEDED_EVEN_COUNTING_LEADS",
+                          "PREREQUISITE_COVERAGE_EXCEEDED", "PREREQUISITE_COVERAGE_EXCEEDED_EVEN_COUNTING_LEADS")
 
 
 def is_miss(f, o):
@@ -1270,13 +1373,18 @@ def selfscore_all(L, rule_commit, is_after=None):
         is_after = lambda c: bool(rc_full) and bool(full(c)) and full(c) != rc_full and \
             git("merge-base", "--is-ancestor", rc_full, full(c)) is not None
     fcs = latest(read_jsonl(L.forecasts), "forecast_id")
-    outs = {o["forecast_id"]: o for o in read_jsonl(L.outcomes)}
-    npr = not_preregistered_ids(L, {k: f for k, f in fcs.items() if k in outs})
+    all_outs = current_outcomes(L)
+    outs = {k: o for k, o in all_outs.items() if o.get("resolution_status", "measured") == "measured"}
+    retrospective, unchecked = registration_exclusions(L, {k: f for k, f in fcs.items() if k in outs})
+    npr = {**retrospective, **unchecked}
+    experiments, miss_experiments = {}, set()
     res = {"schema": "llull.selfscore/1", "written_at": now(), "commit": head(), "rule_commit": rule_commit,
            "definition": "miss = measured outside the 80% interval (interval) or event expected at p >= 0.5 and not "
-                         "happening (binary); flagged = CEILING_EXCEEDED at registration; out-of-sample = registered_commit "
-                         "is a strict descendant of rule_commit and the forecast is not not_preregistered",
-           "n_resolved": len(outs), "n_not_preregistered": len(npr), "n_in_sample": 0, "n_out_of_sample": 0,
+                         "happening (binary); flagged = prerequisite-coverage flag at registration (legacy CEILING_EXCEEDED included); out-of-sample = registered_commit "
+                         "is a strict descendant of rule_commit and registration is verifiably prospective",
+           "n_resolved": len(outs), "n_not_preregistered": len(retrospective), "n_unchecked": len(unchecked),
+           "registration_excluded": npr, "n_unresolved": len(all_outs) - len(outs),
+           "n_in_sample": 0, "n_out_of_sample": 0,
            "misses_out_of_sample": [], "misses_in_sample": []}
     flagged_oos = flagged_hit = 0
     for fid, o in sorted(outs.items()):
@@ -1291,15 +1399,21 @@ def selfscore_all(L, rule_commit, is_after=None):
                 res["misses_in_sample"].append({"forecast_id": fid, "flagged": flagged})
             continue
         res["n_out_of_sample"] += 1
+        group = outcome_experiment(f, o)
+        experiments.setdefault(group, []).append(fid)
         flagged_oos += flagged
         flagged_hit += flagged and miss
         if miss:
+            miss_experiments.add(group)
             res["misses_out_of_sample"].append({"forecast_id": fid, "flagged": flagged})
     n = len(res["misses_out_of_sample"])
     k = sum(1 for m in res["misses_out_of_sample"] if m["flagged"])
     res.update(n_misses_out_of_sample=n, n_flagged_misses=k, share_flagged=(k / n if n else None),
                n_flagged_out_of_sample=flagged_oos, precision=(flagged_hit / flagged_oos if flagged_oos else None),
-               trust="unproven" if n < 5 else "measured")
+               experiment_groups=experiments, n_experiments_out_of_sample=len(experiments),
+               n_miss_experiments=len(miss_experiments),
+               dependence_note="multiple forecasts from one underlying experiment are correlated",
+               trust="unproven" if len(miss_experiments) < 5 else "measured")
     return res
 
 
@@ -1385,6 +1499,11 @@ def outcome_rate_problems(k, r, L):
     if o is None:
         return ["base rate %s: source outcome %s is not in outcomes.jsonl" % (k, r["source"])]
     out = []
+    current = current_outcomes(L).get(o["forecast_id"])
+    if current and current["outcome_id"] != o["outcome_id"]:
+        return ["base rate %s cites superseded outcome %s; current is %s" % (k, o["outcome_id"], current["outcome_id"])]
+    if o.get("resolution_status", "measured") != "measured":
+        return ["base rate %s cites an untested/unresolved outcome" % k]
     if abs(o["measured"] - r["value"]) > 0.0006:
         out.append("base rate %s: value %g but outcome %s measured %g" % (k, r["value"], o["outcome_id"], o["measured"]))
     fc = latest(read_jsonl(L.forecasts), "forecast_id").get(o["forecast_id"])
@@ -1398,6 +1517,10 @@ def run_check(L, marks=None):
     """Returns (errors, warnings). `marks`, if a list, receives one dict per forecast that git cannot prove was
     registered before its run (not_preregistered): these are excluded from scoring, not errors."""
     errs, warns = [], []
+    try:
+        current_outcomes(L)
+    except Refusal as exc:
+        return [str(exc)], warns
     pools_known = set(POOL_DEFS)
     try:
         pools_known |= set(load_pools(L.pools))
@@ -1454,18 +1577,16 @@ def run_check(L, marks=None):
         if st == "not_preregistered":
             if marks is not None:
                 marks.append({"forecast_id": fid, "reason": why})
-        elif st == "unchecked" and f.get("run_dirs") and "not committed" in why:
+        elif st == "unchecked":
             warns.append("%s: %s" % (fid, why))
-    seen = set()
     for o in read_jsonl(L.outcomes):
         if o["forecast_id"] not in fcs:
             errs.append("outcome %s resolves an unknown forecast" % o["outcome_id"])
-        if o["forecast_id"] in seen:
-            errs.append("two outcomes for %s" % o["forecast_id"])
-        seen.add(o["forecast_id"])
         e = repo_path_ok(o.get("source", ""))
         if e:
             errs.append("outcome %s: %s" % (o["outcome_id"], e))
+        elif o.get("source_sha256") and hashlib.sha256((REPO / o["source"]).read_bytes()).hexdigest() != o["source_sha256"]:
+            errs.append("outcome %s: pinned source hash mismatch" % o["outcome_id"])
     # Llull writes only under its own directory: nothing else in the repo may carry its marks
     return errs, warns
 
@@ -1527,6 +1648,10 @@ def cmd_baserate(a, L):
     o = next((x for x in read_jsonl(L.outcomes) if x["outcome_id"] == a.outcome), None)
     if o is None:
         raise Refusal("no outcome %s in %s" % (a.outcome, L.outcomes))
+    if current_outcomes(L)[o["forecast_id"]]["outcome_id"] != o["outcome_id"]:
+        raise Refusal("outcome has been superseded; use the current correction")
+    if o.get("resolution_status", "measured") != "measured":
+        raise Refusal("untested/unresolved outcomes cannot supply measured base rates")
     fc = latest(read_jsonl(L.forecasts), "forecast_id")[o["forecast_id"]]
     q = class_quantity(a.key)
     if q not in QUANTITIES or q != fc["quantity"]:
@@ -1579,9 +1704,13 @@ def build_parser():
     f.add_argument("--accept-flag", help="register a flagged forecast anyway; the reason stays on the record")
     f.add_argument("--resolve-file"); f.add_argument("--resolve-field"); f.add_argument("--resolve-by")
     o = sub.add_parser("outcome", help="record the measured value of a forecast")
-    o.add_argument("--forecast", required=True); o.add_argument("--measured", type=float, required=True)
+    o.add_argument("--forecast", required=True); o.add_argument("--measured", type=float)
     o.add_argument("--source", required=True, help="repository-relative committed file holding the measurement")
     o.add_argument("--note")
+    o.add_argument("--corrects", help="current outcome id replaced by this append-only correction")
+    o.add_argument("--correction-reason")
+    o.add_argument("--resolution-status", choices=("measured", "untested", "unresolved"), default="measured")
+    o.add_argument("--experiment-id", help="shared underlying experiment; multiple quantities are not independent studies")
     sub.add_parser("score", help="Brier / interval score / coverage per planner")
     c = sub.add_parser("census", help="Domesday prerequisite census for a pool")
     c.add_argument("--pool", help="Y1, Y2, X1 or a pool defined in the pools file"); c.add_argument("--requires")

@@ -58,11 +58,13 @@ from pathlib import Path
 try:
     import embedded_cites
     import report_dates
+    import request_contract
 except ImportError:  # loaded by file path from another job's folder
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import embedded_cites
     import report_dates
+    import request_contract
 
 # The contact part can be set by the owner (e.g. a public URL) with EO_USER_AGENT_CONTACT;
 # no personal address is put here by default.
@@ -235,7 +237,7 @@ def request_year(wanted: "Wanted"):
     Years inside citations ('50 U.S.C. 1801', 'Pub. L. 98-525', 'EO 12335') do not count. An explicit
     extra['as_of'] ('current' or a year) wins."""
     ex = wanted.extra or {}
-    as_of = ex.get("as_of")
+    as_of = ex.get("required_date") or ex.get("as_of") or ex.get("edition_year")
     if as_of == "current":
         return None
     if as_of:
@@ -274,6 +276,18 @@ def edition_conflict(wanted: "Wanted", final_url: str, route_url: str = ""):
     A numbered govinfo edition passes when it is no later than the year after the question (a CFR title is
     revised once a year, so the edition after the event is the one that shows its effect). A Wayback capture
     of a current page passes only when the capture itself is no later than that year."""
+    ex = wanted.extra or {}
+    required = ex.get("required_date") or ex.get("as_of")
+    if not required:
+        dates = re.findall(r"\b(?:as of|through)\s+(\d{4}-\d{2}-\d{2})\b", question_text(wanted), re.I)
+        required = dates[0] if len(set(dates)) == 1 else None
+    for u in (final_url or "", route_url or ""):
+        on = re.search(r"ecfr\.gov/on/(\d{4}-\d{2}-\d{2})", u)
+        if on and required and re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(required)) and on.group(1) != str(required):
+            return f"edition_date_mismatch: eCFR text of {on.group(1)} does not answer the required date {required}"
+        ed = re.search(r"(?:USCODE|CFR)-(\d{4})", u)
+        if ed and ex.get("edition_year") and ed.group(1) != str(ex["edition_year"])[:4]:
+            return f"edition_date_mismatch: edition {ed.group(1)} is not the requested edition {ex['edition_year']}"
     y = request_year(wanted)
     kind, _ = parse_citation(wanted.citation)
     if y is None or y >= int(LEGAL_CUTOFF[:4]) or kind not in ("USC", "CFR"):
@@ -1355,9 +1369,12 @@ def carried_defect(wanted, src, text=None) -> str:
     statutes, tables of contents, editions lists, listing pages, current editions for dated questions) would never
     reach the records that showed the defects. The old record is not deleted: the job keeps its hash in the new
     record or row (`supersedes_defective_source`)."""
-    if src.get("report_date_request"):
-        return ""
     url = src.get("url") or ""
+    expected = (wanted.extra or {}).get("expected_sha256") or src.get("expected_sha256")
+    if src.get("matches_expected_sha256") is False or (expected and src.get("sha256") != expected):
+        return "source_hash_mismatch: the held file does not match the expected source digest"
+    if re.search(r"govinfo\.gov/metadata/(?:pkg|granule)/", url):
+        return "metadata_not_document: PREMIS/MODS describes custody, not the requested instrument"
     if is_listing_url(url):
         return "index_page: the URL lists documents or describes a record group; it is not the instrument asked for"
     conflict = edition_conflict(wanted, url, url)
@@ -1376,6 +1393,24 @@ def carried_defect(wanted, src, text=None) -> str:
                 return "index_page: the uscode.house.gov editions list, not the section or note"
         if looks_toc_only(body):
             return "toc_only: the extracted pages are a table of contents, not the text"
+    mismatch = document_identity_defect(wanted, url, body)
+    if mismatch:
+        return mismatch
+    if src.get("extracted_text_sha256") and body and sha256_bytes(body.encode()) != src["extracted_text_sha256"]:
+        return "text_hash_mismatch: kept extracted text differs from its recorded digest"
+    if src.get("request_sha256") and (wanted.extra or {}).get("request_sha256") \
+            and src["request_sha256"] != wanted.extra["request_sha256"]:
+        return "request_changed: the source was validated for different request content"
+    if src.get("report_date_request"):
+        spec = report_spec(wanted) or src["report_date_request"]
+        if not body or len(body.strip()) < 200:
+            return "rd_no_meaningful_text: the carried report record has no substantive held text"
+        ok, why = report_dates.report_text_ok(body, spec)
+        if not ok:
+            return "rd_not_the_report_record: " + why
+        mismatch = report_dates.peb_order_mismatch(body, spec) if spec.get("kind") == "peb" or spec.get("lane") == "nmb" else ""
+        if mismatch:
+            return "rd_not_the_report_record: " + mismatch
     spans, total = _spans_of(src.get("page_or_item", ""))
     if total and re.search(r"/(?:STATUTE|PLAW)-", url):
         wanted_ranges = ranges_from_text(question_text(wanted)) or ([(1, total)] if total <= 500 else [])
@@ -1387,6 +1422,61 @@ def carried_defect(wanted, src, text=None) -> str:
             return (f"partial_extraction: a statute PDF of {total} pages was kept as pages "
                     f"{','.join(f'{a}-{b}' for a, b in spans)}; today's ladder reads it in full")
     return ""
+
+
+def document_identity_defect(wanted, url, body=""):
+    """Reject positive identity contradictions, not absence of a keyword.
+
+    URL identifiers and document headings are retrieval checks only. Passing
+    does not authenticate a transcription or establish the law on a date.
+    """
+    kind, p = parse_citation(wanted.citation)
+    u = strip_original_url(url)
+    if kind == "RP" and "USCODE-" in u:
+        return "identity_mismatch: a Code compilation is not the plan's original publication"
+    if re.search(r"<(?:\w+:)?(?:premis|mods)\b", body[:1000], re.I):
+        return "metadata_not_document: extracted material is fixity or descriptive metadata"
+    patterns = {
+        "STAT": (r"STATUTE-(\d+)", "volume"),
+        "USC": (r"(?:USCODE-\d+-title|USC-(?:prelim|\d+)-title|/uscode/text/)(\d+)", "title"),
+        "CFR": (r"(?:CFR-\d+-title|/title-|/cfr/text/)(\d+)", "title"),
+    }
+    if kind in patterns:
+        pattern, key = patterns[kind]
+        m = re.search(pattern, u, re.I)
+        if m and int(m.group(1)) != int(p[key]):
+            return f"identity_mismatch: requested {kind} {key} {p[key]}, received {m.group(1)}"
+    if kind == "USC":
+        m = re.search(r"(?:-sec|-section)(\d+[A-Za-z]*)\b", u)
+        if m and m.group(1).lower() != str(p["section"]).lower():
+            return f"identity_mismatch: requested U.S.C. section {p['section']}, received {m.group(1)}"
+    if kind == "CFR":
+        m = re.search(r"(?:-part|/part-)(\d+(?:-\d+)?)\b", u)
+        if m and m.group(1) != str(p["part"]):
+            return f"identity_mismatch: requested CFR part {p['part']}, received {m.group(1)}"
+    if kind == "PLAW":
+        m = re.search(r"PLAW-(\d+)publ(\d+)", u, re.I)
+        if m and (int(m.group(1)), int(m.group(2))) != (p["congress"], p["number"]):
+            return "identity_mismatch: the downloaded Public Law number differs from the request"
+        laws = {(int(c), int(n)) for c, n in re.findall(r"PUBLIC\s+LAW\s+(\d+)\s*[-–]\s*(\d+)", body, re.I)}
+        if laws and (p["congress"], p["number"]) not in laws:
+            return "identity_mismatch: text identifies different Public Law numbers"
+    return ""
+
+
+def evidence_tier(src, text):
+    """Explicit custody/content tier; never a legal or authentication finding."""
+    url = src.get("url") or ""
+    if re.search(r"govinfo\.gov/metadata/(?:pkg|granule)/", url):
+        return "metadata"
+    if is_listing_url(url):
+        return "finding_aid"
+    body = text.decode("utf-8", "replace") if isinstance(text, bytes) else str(text or "")
+    body = body.split(TEXT_HEADER_END, 1)[-1]
+    meaningful = re.sub(r"=== PDF page \d+ of \d+[^\n]*===", "", body).strip()
+    if len(meaningful) < 200:
+        return "custody_only"
+    return "report_record" if src.get("report_date_request") else "document_text"
 
 
 def report_extract(wanted, route, att):
@@ -1442,10 +1532,10 @@ def default_extract(wanted, route, att, fetcher):
     if re.search(r"govinfo\.gov/metadata/(?:pkg|granule)/", (att.get("final_url") or "") + " " + route.url) \
             and not (route.meta or {}).get("rd"):
         # PREMIS/MODS fixity metadata: keep the attempt (bytes, hash) but never count it as the document itself.
-        return {"ok": False, "reason": "govinfo metadata file (PREMIS/MODS) is not the requested document"}
+        return {"ok": False, "reason": "metadata_not_document: govinfo PREMIS/MODS is not the requested document"}
     if parse_citation(wanted.citation)[0] == "RP" and "USCODE-" in (att.get("final_url") or "") + route.url:
         # The U.S. Code Title 5 Appendix is a compilation: an index for the plan's cites, never its original.
-        return {"ok": False, "reason": "a U.S. Code compilation is not a Reorganization Plan's original publication"}
+        return {"ok": False, "reason": "identity_mismatch: a U.S. Code compilation is not a Reorganization Plan's original publication"}
     if (route.meta or {}).get("rd"):
         return report_extract(wanted, route, att) if att.get("path") else {"ok": False, "reason": "rd_no_body"}
     # A listing of laws or documents is a search request, not the instrument ("not found", never exhausted).
@@ -1459,6 +1549,9 @@ def default_extract(wanted, route, att, fetcher):
     ranges, statute_like, hint = pdf_target_pages(wanted, route, att)
     text, info = extract_text(att["path"], att.get("content_type", ""), route.expect, hint,
                               page_ranges=ranges or None, all_pages_max=500 if statute_like else 0)
+    mismatch = document_identity_defect(wanted, att.get("final_url") or route.url, text or "")
+    if mismatch:
+        return {"ok": False, "reason": mismatch}
     if info.get("undecodable"):
         return {"ok": False, "reason": "binary_or_undecodable_text: the body is not readable text (compressed or binary)"}
     url_host = strip_original_url(att.get("final_url") or route.url)
@@ -1519,7 +1612,8 @@ def default_extract(wanted, route, att, fetcher):
 # --------------------------------------------------------------------------
 
 NOT_PROOF_OF_ABSENCE = ("index_page", "toc_only", "partial_extraction", "binary_or_undecodable", "rd_",
-                        "current_edition_for_dated_request")
+                        "current_edition_for_dated_request", "edition_date_mismatch", "identity_mismatch",
+                        "metadata_not_document", "request_changed", "text_hash_mismatch", "source_hash_mismatch")
 TRANSIENT_HTTP = {401, 403, 408, 425, 429}   # 401/403: a login or bot wall, or a block of this machine
 
 
@@ -1590,6 +1684,10 @@ class Ladder:
         Returns {"source": dict|None, "text": str|None, "attempts": [...],
                  "exhausted": dict|None}.
         """
+        invalid = request_contract.execution_errors(wanted)
+        if invalid:
+            return {"source": None, "text": None, "attempts": [], "exhausted": None,
+                    "outcome": "invalid_request", "why": "; ".join(invalid)}
         queue = deque(routes if routes is not None else plan_routes(wanted, self.wayback_limit, self.tiers))
         seen, attempts = set(), []
         while queue:
@@ -1650,6 +1748,11 @@ class Ladder:
             if not result.get("ok"):
                 att["accepted"] = False
                 att["reject_reason"] = "content_check: " + result.get("reason", "")
+                continue
+            expected = (wanted.extra or {}).get("expected_sha256")
+            if expected and att.get("sha256") != expected:
+                att["accepted"] = False
+                att["reject_reason"] = "source_hash_mismatch: downloaded file differs from the expected source digest"
                 continue
             return {"source": self.source_record(wanted, r, att, result), "text": result.get("text"),
                     "attempts": attempts, "exhausted": None, "result": result, "outcome": "found", "why": ""}
@@ -1888,6 +1991,12 @@ class Ladder:
             "notes": result.get("notes", ""),
             "wanted_id": wanted.wanted_id,
             "citation": wanted.citation,
+            "evidence_tier": evidence_tier({"url": att["final_url"], **result}, result.get("text")),
+            "extracted_text_sha256": sha256_bytes(result["text"].encode()) if result.get("text") else None,
+            "validation_scope": "retrieval identity/content checks only; date applicability and legal effect require review",
+            **({k: wanted.extra[k] for k in ("request_id", "task_id", "request_sha256", "request_schema",
+                                           "request_corrections", "as_of", "required_date", "edition_year")
+                if k in wanted.extra}),
             **({"embedded_in_request": wanted.extra["parent_citation"][:300]}
                if wanted.extra.get("parent_citation") else {}),
             **({"raw_sha256": att["raw_sha256"], "raw_bytes": att["raw_bytes"],

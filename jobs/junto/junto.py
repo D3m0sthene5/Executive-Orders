@@ -18,13 +18,13 @@ the current state of an id is its line with the highest `rev`.
 
 Exit codes: 0 ok; 2 bad input or refused request; 3 privacy refusal.
 """
-import argparse, hashlib, json, os, re, subprocess, sys, tempfile, time
+import argparse, hashlib, json, math, os, re, subprocess, sys, tempfile, time
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
-WRITTEN_BY = "claude"
+WRITTEN_BY = "astra"
 SAVES_RATIO = 0.9  # a test "saves" only if after <= 0.9 * before per unit (design section 1)
 
 DEFAULT_CONFIG = {
@@ -44,6 +44,8 @@ DEFAULT_CONFIG = {
 }
 
 RESOLVED_VERDICTS = ("saves", "no_saving", "quality_fell")
+COST_PHASES = ("production", "build", "coordination", "monitoring", "review", "rework", "integration")
+VALUE_BASES = ("api_token_value", "get_session.cost_usd", "local_script")
 SECRET_RES = [re.compile(p) for p in (
     r"ghp_[A-Za-z0-9]{6,}", r"github_pat_", r"\bsk-[A-Za-z0-9_-]{8,}", r"\bxox[abprs]-", r"AKIA[0-9A-Z]{8,}",
     r"Bearer\s+\S", r"-----BEGIN", r"\b(token|key|sig|password|secret)=", r"@[A-Za-z0-9-]+\.[A-Za-z]{2,}",
@@ -177,27 +179,74 @@ def arm_ppu(arm):
 
 
 def quality_ok(test):
-    """No quality measure worse. True when not measured (recorded as such, not assumed good)."""
+    """True/False for comparable observed quality; None means quality is unverified."""
     b, a = test["before"].get("quality") or {}, test["after"].get("quality") or {}
 
     def rate(q):
-        n = (q.get("accepted") or 0) + (q.get("rejected") or 0)
-        return None if n <= 0 else (q.get("rejected") or 0) / n
+        if any(type(q.get(k)) is not int or q[k] < 0 for k in ("accepted", "rejected")):
+            return None
+        n = q["accepted"] + q["rejected"]
+        return None if n <= 0 else q["rejected"] / n
     rb, ra = rate(b), rate(a)
-    return True if rb is None or ra is None else ra <= rb + 1e-12
+    return None if rb is None or ra is None else ra <= rb + 1e-12
+
+
+def rejection_interval(q):
+    """Wilson 95% interval for the finite pilot; no independence claim across pilots."""
+    n = q.get("accepted", 0) + q.get("rejected", 0)
+    if n <= 0:
+        return None
+    p, z = q["rejected"] / n, 1.959963984540054
+    d = 1 + z * z / n
+    centre = (p + z * z / (2 * n)) / d
+    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return [max(0, centre - half), min(1, centre + half)]
+
+
+def finite_nonnegative(value):
+    return isinstance(value, (float, int)) and not isinstance(value, bool) and math.isfinite(value) and value >= 0
+
+
+def measurement_gaps(test):
+    """A numerical cost drop alone is insufficient for quality-preserving credit."""
+    gaps = []
+    if not test.get("unit_of_work") or not test.get("matched_on"):
+        gaps.append("workload_match_unverified")
+    for which in ("before", "after"):
+        arm = test.get(which) or {}
+        if arm.get("cost_coverage") != "complete" or set(arm.get("included_phases", [])) != set(COST_PHASES):
+            gaps.append(which + "_total_cost_incomplete")
+        if not arm.get("measurement_ref"):
+            gaps.append(which + "_measurement_reference_missing")
+        q = arm.get("quality") or {}
+        if quality_ok(test) is None or (q.get("accepted", 0) + q.get("rejected", 0)) < arm.get("units", 0):
+            gaps.append(which + "_quality_coverage_unverified")
+    if test.get("before", {}).get("usd_basis") != test.get("after", {}).get("usd_basis"):
+        gaps.append("cost_bases_differ")
+    if not finite_nonnegative(test.get("test_cost_usd")):
+        gaps.append("test_overhead_unknown")
+    if test.get("contract_id") and test.get("registration_status") != "preregistered":
+        gaps.append("contract_registration_unverified")
+    return sorted(set(gaps))
 
 
 def verdict_of(test):
     """Recomputed from the two measured arms; a stored verdict is never trusted."""
     try:
         b, a = test["before"], test["after"]
-        if float(b["usd"]) <= 0 or float(b["units"]) <= 0 or float(a["units"]) <= 0 or float(a["usd"]) < 0:
+        if any(not finite_nonnegative(v) for v in (b["usd"], b["units"], a["usd"], a["units"])):
+            return None
+        if b["usd"] <= 0 or b["units"] <= 0 or a["units"] <= 0:
             return "inconclusive"
         bp, ap = arm_ppu(b), arm_ppu(a)
     except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return None
     if ap <= SAVES_RATIO * bp + 1e-12:
-        return "saves" if quality_ok(test) else "quality_fell"
+        if quality_ok(test) is None:
+            return "cost_reduction_quality_unverified"
+        if not quality_ok(test):
+            return "quality_fell"
+        return "cost_reduction_measurement_incomplete" if measurement_gaps(test) else "saves"
     if ap >= bp:
         return "no_saving"
     return "inconclusive"
@@ -213,9 +262,13 @@ def delta_usd_saved(test):
 
 def test_finders(ctx, test, cands=None):
     cands = cands if cands is not None else ctx.current("candidates.jsonl", "candidate_id")
+    if any((cands.get(cid) or {}).get("origin", {}).get("kind") in ("owner", "agent")
+           for cid in test.get("candidate_ids", [])):
+        return []  # supplied ideas are not inventions credited to a mining finder
     seen = []
     for cid in test.get("candidate_ids", []):
-        f = (cands.get(cid) or {}).get("finder_id")
+        c = cands.get(cid) or {}
+        f = c.get("finder_id") if c.get("origin", {}).get("kind", "finder") == "finder" else None
         if f and f not in seen:
             seen.append(f)
     return seen
@@ -229,6 +282,10 @@ def valid_verified_lines(ctx):
     out, used, used_after = [], set(), set()
     for v in ctx.rows("verified_savings.jsonl"):
         t = tests.get(v.get("test_id"))
+        if t and t.get("contract_id"):
+            contract = ctx.current("contracts.jsonl", "contract_id").get(t["contract_id"])
+            if not contract or registration_status(ctx, contract, t.get("registration_commit"), t.get("measurement_started_at")) != "preregistered" or contract_gaps(ctx, contract, t):
+                continue
         if not test_valid(t) or verdict_of(t) != "saves" or v.get("kind") != "test_realized":
             continue
         if v["test_id"] in used:
@@ -237,7 +294,7 @@ def valid_verified_lines(ctx):
             usd = float(v["usd_saved"])
         except (KeyError, TypeError, ValueError):
             continue
-        if usd <= 0 or usd > delta_usd_saved(t) + 0.01:
+        if not finite_nonnegative(usd) or usd <= 0 or usd > delta_usd_saved(t) + 0.01:
             continue
         after_s = set(t["after"].get("session_ids") or [])
         if not after_s or after_s & used_after:   # no measured session, or the same saving counted twice
@@ -250,55 +307,101 @@ def valid_verified_lines(ctx):
 
 # ---------------------------------------------------------------- score
 def compute(ctx):
+    """Known token valuation and coverage, without turning missing expenses into zero.
+
+    Arm totals include production and all failed/rework attempts. Test cost is
+    additional overhead outside those totals. Identical session-set receipts are
+    counted once; conflicting/partially overlapping totals make coverage unknown.
+    """
     cfg = ctx.config
-    fins = ctx.finders()
     cands = ctx.current("candidates.jsonl", "candidate_id")
     tests = ctx.current("tests.jsonl", "test_id")
-    row = {f["finder_id"]: {"finder_id": f["finder_id"], "name": f.get("name"), "stored_state": f.get("state", "exploring"),
-                            "added_at": f.get("added_at", ""), "spent_runs_usd": 0.0, "spent_tests_usd": 0.0,
-                            "verified_usd": 0.0, "resolved_tests": 0, "candidates": {}} for f in fins}
-    overhead = 0.0
-    for r in ctx.rows("runs.jsonl"):
-        usd = float(r.get("usd_spent") or 0.0)
-        if r.get("finder_id") in row:
-            row[r["finder_id"]]["spent_runs_usd"] += usd
-        elif r.get("finder_id") == "F-junto":
-            overhead += usd
+    row = {f["finder_id"]: {"finder_id": f["finder_id"], "name": f.get("name"),
+            "stored_state": f.get("state", "exploring"), "added_at": f.get("added_at", ""),
+            "spent_runs_usd": 0.0, "spent_tests_usd": 0.0, "unknown_cost_records": 0,
+            "verified_usd": 0.0, "resolved_tests": 0, "candidates": {}} for f in ctx.finders()}
+    overhead, unknown, cash_known = 0.0, 0, 0.0
+    receipts, seen_sessions = {}, set()
+
+    def add_cost(value, basis, finders, field, complete=True, receipt=None, sessions=()):
+        nonlocal overhead, unknown, cash_known
+        if receipt and receipt in receipts:
+            if receipts[receipt] != (value, basis):
+                unknown += 1
+                for f in finders:
+                    row[f]["unknown_cost_records"] += 1
+            return
+        if receipt:
+            receipts[receipt] = (value, basis)
+        overlaps = bool(set(sessions) & seen_sessions)
+        seen_sessions.update(sessions)
+        known = finite_nonnegative(value) and basis in VALUE_BASES
+        if finite_nonnegative(value) and basis == "cash_charge":
+            cash_known += value
+        if not known or not complete or overlaps:
+            unknown += 1
+            for f in finders:
+                row[f]["unknown_cost_records"] += 1
+        if known and not overlaps:
+            if finders:
+                for f in finders:
+                    row[f][field] += value / len(finders)
+            else:
+                overhead += value
+
+    for r in ctx.current("runs.jsonl", "run_id").values():
+        fs = [r["finder_id"]] if r.get("finder_id") in row else []
+        add_cost(r.get("usd_spent"), r.get("usd_basis"), fs, "spent_runs_usd",
+                 r.get("cost_coverage", "complete") == "complete", "run:" + r["run_id"])
     for c in cands.values():
         if c.get("finder_id") in row:
-            d = row[c["finder_id"]]["candidates"]
-            d[c.get("status", "unverified")] = d.get(c.get("status", "unverified"), 0) + 1
+            counts = row[c["finder_id"]]["candidates"]
+            counts[c.get("status", "unverified")] = counts.get(c.get("status", "unverified"), 0) + 1
     for t in tests.values():
-        if not test_valid(t):
-            continue
         fs = [f for f in test_finders(ctx, t, cands) if f in row]
-        if not fs:
-            continue
+        # Failed/incomplete tests still incurred costs; do not filter on verdict.
+        add_cost(t.get("test_cost_usd"), t.get("usd_basis", "get_session.cost_usd"), fs,
+                 "spent_tests_usd", t.get("test_cost_usd") is not None, "test:" + t["test_id"])
+        for which in ("before", "after"):
+            arm = t.get(which) or {}
+            sessions = sorted(set(arm.get("session_ids") or []))
+            receipt = "sessions:" + json.dumps(sessions) if sessions else None
+            add_cost(arm.get("usd"), arm.get("usd_basis"), fs, "spent_tests_usd",
+                     arm.get("cost_coverage") == "complete", receipt, sessions)
         for f in fs:
-            row[f]["spent_tests_usd"] += float(t.get("test_cost_usd") or 0.0) / len(fs)
             if verdict_of(t) in RESOLVED_VERDICTS:
                 row[f]["resolved_tests"] += 1
+    credited_total = 0.0
     for v, t, fs in valid_verified_lines(ctx):
+        if t["before"].get("usd_basis") not in VALUE_BASES:
+            continue
+        credited_total += float(v["usd_saved"])
         fs = [f for f in fs if f in row]
         for f in fs:
             row[f]["verified_usd"] += float(v["usd_saved"]) / len(fs)
     s0 = float(cfg["prior_s0_usd"])
     for r in row.values():
-        r["spent_usd"] = r["spent_runs_usd"] + r["spent_tests_usd"]
-        r["score"] = r["verified_usd"] / (r["spent_usd"] + s0)
+        r["known_spent_usd"] = r["spent_runs_usd"] + r["spent_tests_usd"]
+        r["spent_usd"] = None if r["unknown_cost_records"] else r["known_spent_usd"]
+        r["score"] = None if r["spent_usd"] is None else r["verified_usd"] / (r["spent_usd"] + s0)
         if r["stored_state"] == "retired":
             r["state"] = "retired"
-        elif r["resolved_tests"] < cfg["exploring_below_resolved_tests"]:
+        elif r["score"] is None or r["resolved_tests"] < cfg["exploring_below_resolved_tests"]:
             r["state"] = "exploring"
-        elif r["score"] == 0 and r["resolved_tests"] >= cfg["dormant_min_resolved_tests"] \
-                and r["spent_usd"] >= cfg["dormant_min_spent_usd"]:
+        elif r["score"] == 0 and r["resolved_tests"] >= cfg["dormant_min_resolved_tests"] and r["spent_usd"] >= cfg["dormant_min_spent_usd"]:
             r["state"] = "dormant"
         else:
             r["state"] = "scored"
-    tot_ver = sum(r["verified_usd"] for r in row.values())
-    tot_spent = sum(r["spent_usd"] for r in row.values()) + overhead
-    return row, {"verified_usd": tot_ver, "spent_usd": tot_spent, "junto_overhead_usd": overhead,
-                 "verified_per_spent": tot_ver / tot_spent if tot_spent > 0 else 0.0}
+    known = sum(r["known_spent_usd"] for r in row.values()) + overhead
+    spent = None if unknown else known
+    return row, {"valuation_basis": "api_token_value", "verified_usd": credited_total,
+                 "finder_credited_usd": sum(r["verified_usd"] for r in row.values()),
+                 "known_spent_usd": known, "spent_usd": spent, "junto_overhead_usd": overhead,
+                 "unknown_cost_records": unknown, "known_cash_charges_usd": cash_known,
+                 "cash_charge_total_usd": None,
+                 "net_after_known_expenses_usd": credited_total - known,
+                 "verified_per_spent": credited_total / spent if spent else None,
+                 "deployment_evidence": "pilot_results_only; broad deployment not established"}
 
 
 def allocate_plan(ctx, row, budget, round_no):
@@ -309,7 +412,7 @@ def allocate_plan(ctx, row, budget, round_no):
         exploring += [r for r in row.values() if r["state"] == "dormant"]
     exploring.sort(key=lambda r: (r["added_at"], r["finder_id"]))
     exploring = exploring[:int(cfg["max_exploring_per_round"])]
-    pos = [r for r in row.values() if r["state"] == "scored" and r["score"] > 0]
+    pos = [r for r in row.values() if r["state"] == "scored" and r["score"] is not None and r["score"] > 0]
     explore_pool = budget * float(cfg["exploration_share"])
     exploit_pool = budget - explore_pool
     if not exploring:
@@ -335,16 +438,16 @@ def allocate_plan(ctx, row, budget, round_no):
 def write_scoreboard(ctx, row, total, alloc=None, extra=None):
     ctx.output.mkdir(parents=True, exist_ok=True)
     rows = []
-    for r in sorted(row.values(), key=lambda r: (-r["score"], r["finder_id"])):
+    for r in sorted(row.values(), key=lambda r: (-(r["score"] or 0), r["finder_id"])):
         o = {k: (round(r[k], 4) if isinstance(r[k], float) else r[k]) for k in
-             ("finder_id", "state", "spent_usd", "verified_usd", "score", "resolved_tests", "candidates")}
+             ("finder_id", "state", "spent_usd", "known_spent_usd", "unknown_cost_records", "verified_usd", "score", "resolved_tests", "candidates")}
         if alloc is not None:
             o["allowance_usd"] = round(alloc[r["finder_id"]], 2)
         rows.append(o)
-    doc = {"schema": "junto.scoreboard/1", "written_at": now(), "written_by": WRITTEN_BY,
+    doc = {"schema": "junto.scoreboard/2", "written_at": now(), "written_by": WRITTEN_BY,
            "note": "Derived by junto.py; never hand-edited. Only verified savings enter a score; estimates never do.",
            "formula": "score = verified_usd / (spent_usd + prior_s0_usd)", "prior_s0_usd": ctx.config["prior_s0_usd"],
-           "finders": rows, "junto_total": {k: round(v, 4) for k, v in total.items()}}
+           "finders": rows, "junto_total": {k: round(v, 4) if isinstance(v, float) else v for k, v in total.items()}}
     if extra:
         doc.update(extra)
     (ctx.output / "SCOREBOARD.json").write_text(json.dumps(doc, indent=1) + "\n")
@@ -377,8 +480,10 @@ def cmd_run(ctx, a):
             raise Refusal("no registered finder matches")
     if not fins:
         raise Refusal("no registered finders")
-    per_run = (a.usd_spent or 0.0) / len(fins)
-    basis = a.usd_basis or ("get_session.cost_usd" if a.usd_spent else "local_script")
+    per_run = a.usd_spent / len(fins) if a.usd_spent is not None else None
+    if a.usd_spent is not None and not finite_nonnegative(a.usd_spent):
+        raise Refusal("usd-spent must be finite and nonnegative")
+    basis = a.usd_basis or ("api_token_value" if a.usd_spent is not None else "unknown")
     known_runs = ctx.rows("runs.jsonl")
     run_new = ctx.next_id("R", "runs.jsonl", "run_id")
     cand_new = ctx.next_id("C", "candidates.jsonl", "candidate_id")
@@ -404,13 +509,13 @@ def cmd_run(ctx, a):
         if pr.returncode == 0 and digest and any(r.get("finder_id") == f["finder_id"] and r.get("data_digest") == digest
                                                 and r.get("finder_version") == f.get("version") and r.get("candidates_emitted")
                                                 for r in known_runs) and not a.force:
-            if per_run > 0:   # the finder still ran and cost money: log it, with no candidates
+            if True:   # even an unknown-cost duplicate attempt remains in the ledger
                 ctx.append("runs.jsonl", [{"schema": "junto.run/1", "run_id": run_id, "rev": 0, "finder_id": f["finder_id"],
                                            "finder_version": f.get("version"), "wall_seconds": wall, "data_digest": digest,
                                            "inputs": meta.get("inputs", {}), "candidates_emitted": [], "skipped_duplicate": True,
-                                           "usd_spent": round(per_run, 4), "usd_basis": basis, "exit_code": 0,
+                                           "usd_spent": round(per_run, 4) if per_run is not None else None, "usd_basis": basis, "exit_code": 0,
                                            "round_id": a.round_id, "written_at": now(), "written_by": WRITTEN_BY}])
-            summary.append("%s: skipped, same data and version already run (use --force); cost %.2f logged" % (f["name"], per_run))
+            summary.append("%s: skipped, same data and version already run (use --force); cost %s logged" % (f["name"], per_run))
             continue
         ids, new = [], []
         for r in recs:
@@ -423,7 +528,7 @@ def cmd_run(ctx, a):
             new.append(r)
         run = {"schema": "junto.run/1", "run_id": run_id, "rev": 0, "finder_id": f["finder_id"],
                "finder_version": f.get("version"), "wall_seconds": meta.get("wall_seconds", wall), "data_digest": digest,
-               "inputs": meta.get("inputs", {}), "candidates_emitted": ids, "usd_spent": round(per_run, 4),
+               "inputs": meta.get("inputs", {}), "candidates_emitted": ids, "usd_spent": round(per_run, 4) if per_run is not None else None,
                "usd_basis": basis, "exit_code": pr.returncode, "round_id": a.round_id,
                "written_at": now(), "written_by": WRITTEN_BY}
         try:
@@ -435,12 +540,168 @@ def cmd_run(ctx, a):
         if pr.returncode != 0:
             status = 2
         ctx.append("runs.jsonl", [run])
-        summary.append("%s: exit %d, %d candidates (all unverified), usd_spent %.2f" % (f["name"], pr.returncode, len(ids), per_run))
+        summary.append("%s: exit %d, %d candidates (all unverified), usd_spent %s" % (f["name"], pr.returncode, len(ids), per_run))
     print("\n".join(summary[:20]))
     return status
 
 
 # ---------------------------------------------------------------- add-test
+def read_record(path):
+    try:
+        record = json.loads(Path(path).read_text())
+    except (OSError, ValueError) as e:
+        raise Refusal("cannot read JSON record: " + str(e))
+    if not isinstance(record, dict):
+        raise Refusal("record must be a JSON object")
+    if privacy_problems(record):
+        raise Refusal("record failed ledger privacy checks", 3)
+    return record
+
+
+def cmd_seed_candidate(ctx, a):
+    rec = read_record(a.file)
+    origin = rec.get("origin") or {}
+    if not isinstance(origin, dict) or origin.get("kind") not in ("owner", "agent") or not origin.get("reference") or not origin.get("name"):
+        raise Refusal("origin needs kind owner|agent, name, and a source reference")
+    targets = rec.get("targets")
+    if not isinstance(rec.get("saver_key"), str) or not KEY_RE.fullmatch(rec["saver_key"]) or not isinstance(rec.get("title"), str) or not rec["title"] or not isinstance(targets, list) or not targets or any(not isinstance(t, str) or not CAUSE_KEY_RE.fullmatch(t) for t in targets):
+        raise Refusal("candidate needs a stable saver_key, title, and target cause keys")
+    existing = ctx.current("candidates.jsonl", "candidate_id")
+    if any(c.get("saver_key") == rec["saver_key"] and c.get("origin") == origin for c in existing.values()):
+        raise Refusal("this origin and saver_key are already registered")
+    cid = ctx.next_id("C", "candidates.jsonl", "candidate_id")()
+    rec.update(schema="junto.candidate/2", candidate_id=cid, rev=0, finder_id=None,
+               run_id=None, status="unverified", status_ref=None, written_at=now(), written_by=WRITTEN_BY)
+    ctx.append("candidates.jsonl", [rec])
+    print(cid + ": seeded, unverified; finder invention credit disabled")
+    return 0
+
+
+def contract_problems(c):
+    required = ("contract_id", "candidate_ids", "sample", "baseline", "unit_of_work", "matched_on",
+                "outcome_definition", "quality_condition", "budget_usd", "stop_rules", "result_paths")
+    bad = ["missing " + k for k in required if k not in c or c[k] in (None, "", [], {})]
+    sample = c.get("sample")
+    if not isinstance(sample, list) or not sample or any(not isinstance(x, dict) or not isinstance(x.get("id"), str) or not x["id"] or
+            not re.fullmatch(r"[0-9a-f]{64}", str(x.get("sha256", ""))) for x in sample):
+        bad.append("sample must pin every member by id and SHA-256")
+    elif len({x["id"] for x in sample}) != len(sample):
+        bad.append("sample ids must be unique")
+    if not isinstance(c.get("baseline"), dict) or not c.get("baseline", {}).get("measurement_ref"):
+        bad.append("baseline needs a measurement_ref")
+    ids = c.get("candidate_ids")
+    if not isinstance(ids, list) or not ids or any(not isinstance(i, str) for i in ids) or len(set(ids)) != len(ids):
+        bad.append("candidate_ids must contain distinct candidate ids")
+    if any(not isinstance(c.get(k), str) or not c[k] for k in ("contract_id", "unit_of_work", "matched_on", "outcome_definition")):
+        bad.append("contract_id, unit_of_work, matched_on, outcome_definition must be nonempty strings")
+    q = c.get("quality_condition") or {}
+    if not isinstance(q, dict) or q.get("metric") != "rejection_rate" or q.get("max_increase") != 0 or type(q.get("min_reviewed")) is not int or q.get("min_reviewed", 0) < 1:
+        bad.append("quality condition requires rejection_rate, max_increase 0, min_reviewed >= 1")
+    stop = c.get("stop_rules") or {}
+    if not isinstance(stop, dict) or type(stop.get("max_attempts")) is not int or stop.get("max_attempts", 0) < 1 or stop.get("stop_on_quality_drop") is not True:
+        bad.append("stop rules require positive max_attempts and stop_on_quality_drop true")
+    if not finite_nonnegative(c.get("budget_usd")):
+        bad.append("budget_usd must be finite and nonnegative")
+    paths = c.get("result_paths")
+    if not isinstance(paths, list) or not paths or any(not isinstance(p, str) or Path(p).is_absolute() or ".." in Path(p).parts for p in paths):
+        bad.append("result_paths must be nonempty repository-relative paths")
+    return bad
+
+
+def cmd_register_test(ctx, a):
+    rec = read_record(a.file)
+    bad = contract_problems(rec)
+    if bad:
+        raise Refusal("; ".join(bad))
+    if rec["contract_id"] in ctx.current("contracts.jsonl", "contract_id"):
+        raise Refusal("contracts are frozen; use a new contract_id and supersedes to revise")
+    candidates = ctx.current("candidates.jsonl", "candidate_id")
+    if any(cid not in candidates for cid in rec["candidate_ids"]):
+        raise Refusal("contract refers to an unknown candidate")
+    keys = {candidates[cid]["saver_key"] for cid in rec["candidate_ids"]}
+    if len(keys) != 1:
+        raise Refusal("one contract covers one intervention saver_key")
+    rec.update(schema="junto.contract/1", rev=0, saver_key=keys.pop(), written_at=now(), written_by=WRITTEN_BY)
+    ctx.append("contracts.jsonl", [rec])
+    print(rec["contract_id"] + ": frozen; commit before measuring; registration is not yet verified")
+    return 0
+
+
+def registration_status(ctx, contract, commit, started_at):
+    """Verify a frozen contract was committed before the declared measurement start.
+
+    Receipt times remain observed inputs, not cryptographic proof of execution.
+    Shallow/missing history is unchecked, never silently prospective.
+    """
+    if not commit or not re.fullmatch(r"[0-9a-f]{40}", commit) or not started_at:
+        return "unchecked"
+    try:
+        root = Path(subprocess.check_output(["git", "-C", str(ctx.ledger), "rev-parse", "--show-toplevel"], stderr=subprocess.DEVNULL, text=True).strip())
+        rel = ctx.p("contracts.jsonl").resolve().relative_to(root).as_posix()
+        raw = subprocess.check_output(["git", "-C", str(root), "show", commit + ":" + rel], stderr=subprocess.DEVNULL, text=True)
+        if contract not in [json.loads(line) for line in raw.splitlines() if line.strip()]:
+            return "contract_not_at_commit"
+        commit_time = subprocess.check_output(["git", "-C", str(root), "show", "-s", "--format=%cI", commit], text=True).strip()
+        if datetime.fromisoformat(started_at.replace("Z", "+00:00")) <= datetime.fromisoformat(commit_time):
+            return "not_preregistered"
+        for path in contract["result_paths"]:
+            if subprocess.run(["git", "-C", str(root), "cat-file", "-e", commit + ":" + path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0:
+                return "results_already_present"
+        return "preregistered"
+    except (OSError, ValueError, TypeError, subprocess.CalledProcessError):
+        return "unchecked"
+
+
+def contract_gaps(ctx, contract, test=None):
+    current = ctx.current("tests.jsonl", "test_id")
+    order = list(dict.fromkeys(t.get("test_id") for t in ctx.rows("tests.jsonl")))
+    if test and test.get("test_id") in order:
+        order = order[:order.index(test["test_id"])]
+    prior = [current[tid] for tid in order if current[tid].get("contract_id") == contract["contract_id"]]
+    bad = []
+    if len(prior) >= contract["stop_rules"]["max_attempts"]:
+        bad.append("attempt_limit_reached")
+    if any(verdict_of(t) == "quality_fell" for t in prior):
+        bad.append("quality_stop_triggered")
+    costs = [t.get("test_cost_usd") for t in prior]
+    costs += [t.get(w, {}).get("usd") for t in prior for w in ("before", "after")]
+    if any(not finite_nonnegative(v) for v in costs):
+        bad.append("prior_cost_unknown")
+    spent = sum(v for v in costs if finite_nonnegative(v))
+    if spent >= contract["budget_usd"]:
+        bad.append("budget_exhausted")
+    if test:
+        if test.get("sample") != sorted(contract["sample"], key=lambda item: item["id"]):
+            bad.append("executed_sample_not_matched_to_pins")
+        if test["candidate_ids"] != sorted(contract["candidate_ids"]) or test["unit_of_work"] != contract["unit_of_work"] or test["matched_on"] != contract["matched_on"]:
+            bad.append("workload_differs_from_contract")
+        for arm in (test["before"], test["after"]):
+            if sum(arm.get("quality", {}).values()) < contract["quality_condition"]["min_reviewed"]:
+                bad.append("quality_sample_incomplete")
+        if test["after"].get("measurement_ref") not in contract["result_paths"]:
+            bad.append("result_location_differs")
+        if test["before"].get("measurement_ref") != contract["baseline"]["measurement_ref"]:
+            bad.append("baseline_differs")
+        total = [test.get("test_cost_usd"), test["before"].get("usd"), test["after"].get("usd")]
+        if any(not finite_nonnegative(v) for v in total) or spent + sum(v for v in total if finite_nonnegative(v)) > contract["budget_usd"]:
+            bad.append("cost_unknown_or_budget_exceeded")
+    return sorted(set(bad))
+
+
+def cmd_test_gate(ctx, a):
+    contract = ctx.current("contracts.jsonl", "contract_id").get(a.contract)
+    if not contract:
+        raise Refusal("unknown contract " + a.contract)
+    gaps = contract_gaps(ctx, contract)
+    state = registration_status(ctx, contract, a.registration_commit, now())
+    if state != "preregistered":
+        gaps.append("registration_" + state)
+    if gaps:
+        raise Refusal("test stopped: " + ", ".join(gaps))
+    print("test gate passed: " + contract["contract_id"] + "; advisory budget is not spending authorization")
+    return 0
+
+
 def parse_kv(s, what):
     out = {}
     for part in (s or "").split(","):
@@ -464,14 +725,19 @@ def arm(a, which):
     if not getattr(a, which + "_session"):
         raise Refusal("a test needs the %s arm's measured session id(s) (--%s-session); typed-in totals are not accepted"
                       % (which, which))
-    if units <= 0 or usd < 0:
+    if not finite_nonnegative(units) or not finite_nonnegative(usd) or units <= 0:
         raise Refusal("%s: units must be > 0 and usd >= 0" % which)
     q = {}
     acc, rej = getattr(a, which + "_accepted"), getattr(a, which + "_rejected")
     if acc is not None or rej is not None:
-        q = {"accepted": acc or 0, "rejected": rej or 0}
-    return {"session_ids": getattr(a, which + "_session") or [], "usd": round(usd, 4), "usd_basis": "get_session.cost_usd",
-            "units": units, "usd_per_unit": round(usd / units, 6), "quality": q}
+        if acc is None or rej is None or min(acc, rej) < 0:
+            raise Refusal("both nonnegative accepted and rejected counts are required when quality is supplied")
+        q = {"accepted": acc, "rejected": rej}
+    return {"session_ids": getattr(a, which + "_session") or [], "usd": round(usd, 4), "usd_basis": a.usd_basis,
+            "units": units, "usd_per_unit": round(usd / units, 6), "quality": q,
+            "measurement_ref": getattr(a, which + "_measurement_ref"),
+            "cost_coverage": "complete" if a.complete_costs else "unknown",
+            "included_phases": list(COST_PHASES) if a.complete_costs else []}
 
 
 def cmd_add_test(ctx, a):
@@ -497,8 +763,8 @@ def cmd_add_test(ctx, a):
     reused = {s for t in ctx.rows("tests.jsonl") for s in (t.get("after") or {}).get("session_ids", [])} & set(after["session_ids"])
     if reused:
         raise Refusal("after-arm session(s) already used by another test; one measured saving counts once: %s" % sorted(reused))
-    if a.test_cost_usd is None or a.test_cost_usd < 0:
-        raise Refusal("--test-cost-usd is required (what the test cost Junto, 0 if nothing)")
+    if a.test_cost_usd is not None and not finite_nonnegative(a.test_cost_usd):
+        raise Refusal("--test-cost-usd must be finite and nonnegative, or omitted when unknown")
     waste = {}
     if a.waste_before or a.waste_after:
         waste = {"before": parse_kv(a.waste_before, "waste-before"), "after": parse_kv(a.waste_after, "waste-after")}
@@ -507,12 +773,41 @@ def cmd_add_test(ctx, a):
     test_id = ctx.next_id("T", "tests.jsonl", "test_id")()
     rec = {"schema": "junto.test/1", "test_id": test_id, "rev": 0, "candidate_ids": sorted(ids), "saver_key": saver_key,
            "phase": "measured", "unit_of_work": a.unit_of_work, "before": before, "after": after,
-           "matched_on": a.matched_on or "", "test_cost_usd": round(a.test_cost_usd, 2), "waste": waste,
+           "matched_on": a.matched_on or "", "test_cost_usd": round(a.test_cost_usd, 2) if a.test_cost_usd is not None else None, "waste": waste,
+           "usd_basis": a.usd_basis, "contract_id": a.contract,
+           "evidence_scope": "quality_checked_pilot", "deployment_supported": False,
+           "uncertainty": {"before_n": sum(before["quality"].values()) or None,
+                           "after_n": sum(after["quality"].values()) or None,
+                           "before_rejection_rate_95pct_interval": rejection_interval(before["quality"]),
+                           "after_rejection_rate_95pct_interval": rejection_interval(after["quality"]),
+                           "cost_replicates": 1, "cost_confidence_interval": None,
+                           "note": "One matched comparison cannot establish broad deployment effects."},
            "quality_measured": bool(before["quality"] and after["quality"]),
            "unpredicted_waste": None, "written_at": now(), "written_by": WRITTEN_BY}
+    if a.sample_manifest:
+        sample = read_record(a.sample_manifest).get("sample")
+        if not isinstance(sample, list) or any(not isinstance(x, dict) or not isinstance(x.get("id"), str) for x in sample):
+            raise Refusal("sample manifest must contain a sample list with member ids and hashes")
+        rec["sample"] = sorted(sample, key=lambda item: item["id"])
+        rec["sample_manifest_sha256"] = hashlib.sha256(Path(a.sample_manifest).read_bytes()).hexdigest()
+    if a.contract:
+        contract = ctx.current("contracts.jsonl", "contract_id").get(a.contract)
+        if not contract:
+            raise Refusal("unknown contract " + a.contract)
+        rec["registration_status"] = registration_status(ctx, contract, a.registration_commit, a.measurement_started_at)
+        rec["registration_commit"] = a.registration_commit
+        rec["measurement_started_at"] = a.measurement_started_at
+        rec["contract_violations"] = contract_gaps(ctx, contract, rec)
+        if rec["contract_violations"]:
+            rec["registration_status"] = "contract_conditions_unmet"
+    else:
+        rec["registration_status"] = "retrospective_pilot"
+    rec["measurement_gaps"] = measurement_gaps(rec)
     rec["verdict"] = verdict_of(rec)
+    rec["quality_measured"] = quality_ok(rec) is not None
+    rec["evidence_scope"] = "quality_checked_pilot" if rec["verdict"] == "saves" else "unverified_observation"
     rec["delta_usd_per_unit"] = round(arm_ppu(before) - arm_ppu(after), 6)
-    new_status = {"saves": "verified", "no_saving": "refuted", "quality_fell": "refuted"}.get(rec["verdict"])
+    new_status = {"saves": "verified", "no_saving": "refuted", "quality_fell": "refuted"}.get(rec["verdict"], "test_proposed")
     if rec["verdict"] == "inconclusive":  # one retest; a second inconclusive is refuted
         new_status = "refuted" if n_inconclusive >= 1 else "test_proposed"
     ctx.append("tests.jsonl", [rec])
@@ -523,7 +818,8 @@ def cmd_add_test(ctx, a):
         saved = round(delta_usd_saved(rec), 2)
         ctx.append("verified_savings.jsonl", [{
             "schema": "junto.verified/1", "verified_id": vid, "rev": 0, "test_id": test_id, "saver_key": saver_key,
-            "candidate_ids": sorted(ids), "kind": "test_realized", "usd_saved": saved, "usd_basis": "get_session.cost_usd",
+            "candidate_ids": sorted(ids), "kind": "test_realized", "usd_saved": saved, "usd_basis": a.usd_basis,
+            "evidence_scope": "quality_checked_pilot", "deployment_supported": False,
             "measurement": {"before_usd_per_unit": before["usd_per_unit"], "after_usd_per_unit": after["usd_per_unit"],
                             "units": after["units"], "session_ids": before["session_ids"] + after["session_ids"]},
             "credited_to": [{"finder_id": f, "share": round(1 / len(fs), 4)} for f in fs],
@@ -599,10 +895,11 @@ def cmd_propose(ctx, a):
 def cmd_score(ctx, a):
     row, total = compute(ctx)
     write_scoreboard(ctx, row, total)
-    for r in sorted(row.values(), key=lambda r: (-r["score"], r["finder_id"])):
-        print("%-20s %-9s spent $%6.2f verified $%6.2f score %.4f (tests resolved %d)" % (
-            r["finder_id"], r["state"], r["spent_usd"], r["verified_usd"], r["score"], r["resolved_tests"]))
-    print("junto total: verified $%.2f / spent $%.2f" % (total["verified_usd"], total["spent_usd"]))
+    for r in sorted(row.values(), key=lambda r: (-(r["score"] or 0), r["finder_id"])):
+        print("%s %s known token value %.2f; total %s; pilot savings %.2f; score %s" % (
+            r["finder_id"], r["state"], r["known_spent_usd"], r["spent_usd"], r["verified_usd"], r["score"]))
+    print("junto token value: verified pilot %.2f; known expense %.2f; total %s; unknown records %d" % (
+        total["verified_usd"], total["known_spent_usd"], total["spent_usd"], total["unknown_cost_records"]))
     return 0
 
 
@@ -623,7 +920,8 @@ def cmd_check(ctx, a):
     fins = {f["finder_id"] for f in ctx.finders()}
     cur_tests = ctx.current("tests.jsonl", "test_id")
     for name, idk in (("runs.jsonl", "run_id"), ("candidates.jsonl", "candidate_id"), ("tests.jsonl", "test_id"),
-                      ("verified_savings.jsonl", "verified_id"), ("finder_proposals.jsonl", "proposal_id")):
+                      ("verified_savings.jsonl", "verified_id"), ("finder_proposals.jsonl", "proposal_id"),
+                      ("contracts.jsonl", "contract_id")):
         for i, r in enumerate(ctx.rows(name), 1):
             for k in ("schema", idk, "rev", "written_at", "written_by"):
                 if k not in r:
@@ -631,8 +929,10 @@ def cmd_check(ctx, a):
             errs += ["%s:%d %s" % (name, i, b) for b in privacy_problems(r)]
             if name == "candidates.jsonl" and r.get("rev") == 0 and r.get("status") != "unverified":
                 errs.append("%s:%d first line must be unverified" % (name, i))
-            if name == "candidates.jsonl" and r.get("finder_id") not in fins:
+            if name == "candidates.jsonl" and r.get("finder_id") not in fins and r.get("origin", {}).get("kind") not in ("owner", "agent"):
                 errs.append("%s:%d unregistered finder" % (name, i))
+            if name == "contracts.jsonl":
+                errs += ["%s:%d %s" % (name, i, problem) for problem in contract_problems(r)]
             if name == "verified_savings.jsonl" and not test_valid(cur_tests.get(r.get("test_id"))):
                 errs.append("%s:%d verified saving without a measured test" % (name, i))
     good = {v["verified_id"] for v, _, _ in valid_verified_lines(ctx)}
@@ -663,13 +963,20 @@ def main(argv=None):
     t.add_argument("--saver-key")
     t.add_argument("--candidate", action="append", help="candidate id; repeatable (default: all open ones with the saver key)")
     t.add_argument("--unit-of-work", required=True, help="e.g. accepted_claim, merged_pr, completed_phase")
+    t.add_argument("--usd-basis", choices=("api_token_value", "cash_charge"), default="api_token_value")
+    t.add_argument("--complete-costs", action="store_true", help="receipt totals cover production, build, coordination, monitoring, review, rework, integration")
+    t.add_argument("--contract", help="frozen prospective contract id; omitted means retrospective pilot")
+    t.add_argument("--registration-commit", help="40-character commit containing the frozen contract before execution")
+    t.add_argument("--measurement-started-at", help="UTC ISO timestamp from the measurement receipt")
+    t.add_argument("--sample-manifest", help="aggregate JSON identifying the sample actually used; required for contract credit")
     for w in ("before", "after"):
         t.add_argument("--%s-usd" % w, type=float, help="MEASURED total cost of the %s arm" % w)
         t.add_argument("--%s-units" % w, type=float, help="units of work done in the %s arm" % w)
         t.add_argument("--%s-session" % w, action="append", help="session id; repeatable")
         t.add_argument("--%s-accepted" % w, type=int)
         t.add_argument("--%s-rejected" % w, type=int)
-    t.add_argument("--test-cost-usd", type=float, help="what the test cost Junto")
+        t.add_argument("--%s-measurement-ref" % w, help="aggregate measurement receipt location; never raw transcript text")
+    t.add_argument("--test-cost-usd", type=float, help="additional test overhead OUTSIDE arm totals; omitted means unknown")
     t.add_argument("--matched-on", help="what was held fixed")
     t.add_argument("--waste-before", help="measured cost by cause key, e.g. model_writes=2.1,tool_output=1.5")
     t.add_argument("--waste-after", help="same, for the after arm")
@@ -681,11 +988,19 @@ def main(argv=None):
     p.add_argument("--test")
     p.add_argument("--dry-run", action="store_true")
     sub.add_parser("check", help="validate the ledger")
+    seed = sub.add_parser("seed-candidate", help="append an owner/agent supplied candidate without finder invention credit")
+    seed.add_argument("--file", required=True, help="validated aggregate candidate JSON")
+    contract = sub.add_parser("register-test", help="freeze a prospective test contract before execution")
+    contract.add_argument("--file", required=True, help="contract JSON with sample pins, baseline, quality, budget, stops, results")
+    gate = sub.add_parser("test-gate", help="exit nonzero unless prospective registration, budget and stop rules permit another attempt")
+    gate.add_argument("--contract", required=True)
+    gate.add_argument("--registration-commit", required=True)
     a = ap.parse_args(argv)
     ctx = Ctx(a.ledger, a.output)
     try:
         return {"run": cmd_run, "add-test": cmd_add_test, "score": cmd_score, "allocate": cmd_allocate,
-                "propose": cmd_propose, "check": cmd_check}[a.cmd](ctx, a)
+                "propose": cmd_propose, "check": cmd_check, "seed-candidate": cmd_seed_candidate,
+                "register-test": cmd_register_test, "test-gate": cmd_test_gate}[a.cmd](ctx, a)
     except Refusal as e:
         print("junto: %s" % e, file=sys.stderr)
         return e.code

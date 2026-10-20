@@ -685,6 +685,9 @@ def seed_cmd(args):
             ki.update({"defect_code": e["code"], "operator": f"{e['code']}.{e['spec']}", "field": r["field"],
                        "locus_terms": [t for t in r["locus_terms"] if t], "refuting_quote": r["refuting_quote"],
                        "base_sha256": e["base_sha256"]})
+            clause = re.match(r"operative_clauses\[(\d+)\]", r["field"])
+            if clause and track == "C":
+                ki["affected_scope_id"] = e["payload"]["operative_clauses"][int(clause.group(1))].get("scope_id")
             seeded_payload = copy.deepcopy(e["payload"])
             if track == "C":
                 seeded_payload["schema"] = "SEEDED-eo-lifecycle-claim/v1"
@@ -709,6 +712,9 @@ def seed_cmd(args):
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
             "n_items": len(entries), "n_seeded": len(plants), "seeded_share": round(len(plants) / len(entries), 4),
+            "planned_n_seeded": n_plants,
+            "blinding": {"mode": "instructed", "technical_separation_verified": False,
+                         "basis": "key outside batch and mode 0600; a reviewer with the same account can still read it"},
             "items": key_items}
     key = {**body, "key_seal_sha256": sha(body)}
     kp = key_dir / "KEY.sealed.json"
@@ -764,6 +770,59 @@ def specific_terms(it):
     return sorted(out)
 
 
+# A matching order number or field path is only a locator. It does not establish that
+# the reviewer identified the material defect planted at that location.
+ISSUE_PATTERNS = {
+    "D1": r"deadline|not.later.than|due date|performance|actual (?:end|delivery)",
+    "D2": r"perform|one.time|completed|discharg|spent command|delivery",
+    "D3": r"(?:quote|quotation).{0,60}(?:cut|truncat|incomplete|omit|support|operative)|(?:cut|truncat).{0,30}(?:quote|quotation)",
+    "D4": r"partial|scope|whole.order|last clause|other clause|only (?:section|clause)",
+    "D5": r"earlier|first (?:end|cessation)|later revocation|already (?:ended|expired|terminated)",
+    "D6": r"(?:omit|miss|remov|absent|left out|exclude|unrecorded).{0,60}(?:event|amend|repeal|revok|revocation|order)|(?:event|amend|revocation|order).{0,60}(?:omit|miss|remov|absent|left out|unrecorded)",
+    "D7": r"(?:wrong|incorrect|different|effective|signing|publication).{0,35}date|date.{0,35}(?:wrong|incorrect|effective|signing|publication)",
+    "D8": r"wrong (?:order|identity|text)|neighbou?r|different order|belongs to|identity mismatch",
+    "D9": r"overstat|inflat|coverage|count.{0,30}(?:wrong|mismatch|incorrect)",
+    "D10": r"wrong (?:target|actor)|does not (?:revoke|end|name)|not the target",
+    "D11": r"infer|not express|no express|implied",
+    "D12": r"saving|residual|preserv|surviv",
+    "D13": r"held|available|already (?:in|present)|unjustified block",
+}
+
+
+def defect_correspondence(it, verdict):
+    """Conservative mechanical candidate, requiring the issue AND affected locus.
+
+    Natural-language synonyms that this screen cannot establish need a sourced
+    adjudication. Passing this screen is a scoring correspondence, not a legal ruling.
+    """
+    hay = " ".join(str(verdict.get(k, "")) for k in ("locus", "reason", "defect", "evidence")).lower()
+    field = it.get("field", "").lower()
+    scope = str(it.get("affected_scope_id") or "").lower()
+    clause = re.match(r"(operative_clauses\[\d+\]|later_source_search\[\d+\])", field)
+    locators = [x for x in (field, scope, clause.group(1) if clause else "") if x and x not in GENERIC_TERMS]
+    locus_hits = [x for x in locators if x in hay]
+    issue = bool(re.search(ISSUE_PATTERNS.get(it.get("defect_code"), r"(?!)"), hay, re.S))
+    hits = [t for t in specific_terms(it) if t in hay]
+    # An omitted event needs its actor/date as well as the affected clause; the clause
+    # can contain multiple later events and a different omission is not this plant.
+    event_hits = [t for t in hits if re.fullmatch(r"(?:eo:)?\d{3,}|\d{4}-\d{2}-\d{2}", t)]
+    identity = bool(event_hits) if it.get("defect_code") == "D6" else True
+    candidate = bool(locus_hits) and issue and identity
+    return {"mechanical_candidate": candidate, "affected_locus_matched": locus_hits,
+            "material_issue_matched": issue, "event_identity_matched": identity,
+            "matched_terms": hits, "needs_adjudication": not candidate}
+
+
+def validated_override(iid, value):
+    """A manual score is auditable; bare booleans cannot silently change a result."""
+    if not isinstance(value, dict) or not isinstance(value.get("caught"), bool):
+        fail(f"{iid}: strict override needs caught (boolean), adjudicator, reason, source, affected_locus and material_issue")
+    for name in ("adjudicator", "reason", "source", "affected_locus", "material_issue"):
+        if not isinstance(value.get(name), str) or not value[name].strip():
+            fail(f"{iid}: strict override missing {name}")
+    return value
+
+
 def implied_prevalence(flags, n, catch, false_alarm_rate=0.0):
     """Upper 95% bound on the defect rate of a production batch given its flag count and the reviewer's catch rate.
 
@@ -803,6 +862,10 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
             fail(f"{iid}: decision must be one of {VERDICTS}")
         seen[iid] = r
     adjudication, voids, strict_overrides = adjudication or {}, set(voids or []), strict_overrides or {}
+    for iid, value in strict_overrides.items():
+        if iid not in items or not items[iid]["is_seeded"]:
+            fail(f"strict override {iid}: not a plant in this key")
+        validated_override(iid, value)
     relabel, tells = relabel or {}, set(tells or [])
     for iid, code in relabel.items():
         if iid not in items or not items[iid]["is_seeded"] or code not in TAXONOMY:
@@ -820,11 +883,11 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         if it["is_seeded"]:
             if iid in voids:
                 continue
-            terms = specific_terms(it)
-            hay = " ".join(str(v.get(k, "")) for k in ("locus", "reason", "defect", "evidence")).lower()
-            hits = [t for t in terms if t in hay]
-            strict = bool(strict_overrides.get(iid, bool(hits))) and flagged
-            if hits and not flagged:
+            correspondence = defect_correspondence(it, v)
+            hits = correspondence["matched_terms"]
+            override = strict_overrides.get(iid)
+            strict = (override["caught"] if override else correspondence["mechanical_candidate"]) and flagged
+            if correspondence["mechanical_candidate"] and not flagged:
                 noticed.append({"item_id": iid, "defect_code": relabel.get(iid, it["defect_code"]), "matched": hits})
             if iid not in tells:
                 tf_n, tf_l, tf_s = tf_n + 1, tf_l + flagged, tf_s + strict
@@ -833,7 +896,9 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
             p["lenient"] += flagged
             p["strict"] += strict
             p["items"].append({"item_id": iid, "decision": v["decision"], "caught_lenient": flagged, "caught_strict": strict,
-                               "key_code": it["defect_code"], "seeding_tell": iid in tells, "matched_terms": hits})
+                               "key_code": it["defect_code"], "seeding_tell": iid in tells, "matched_terms": hits,
+                               "correspondence": correspondence, "adjudication": override,
+                               "strict_basis": "adjudicated" if override else "mechanical_correspondence"})
         else:
             adj = adjudication.get(iid)
             if flagged and adj == "confirmed_real_defect":
@@ -877,7 +942,14 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         fa_up = false_alarm["lower_bound"]["rate"] or 0.0
         implied = {basis: implied_prevalence(production[0], production[1], pooled[basis]["strict"] if basis == "tell_free" else pooled["strict"], fa_up)
                    for basis in ("all_plants", "tell_free")}
-    return {"schema": "mountweazel-score/v2", "batch_id": key["batch_id"], "track": key["track"],
+    actual_plants = sum(bool(i.get("is_seeded")) for i in items.values())
+    expected_plants = key.get("planned_n_seeded", key.get("n_seeded", actual_plants))
+    return {"schema": "mountweazel-score/v3", "batch_id": key["batch_id"], "track": key["track"],
+            "blinding": key.get("blinding", {"mode": "unknown", "technical_separation_verified": False}),
+            "plants_planned": expected_plants, "plants_present": actual_plants,
+            "plants_missing_unscored": max(0, expected_plants - actual_plants),
+            "plants_unreviewed_unscored": sum(items[i]["is_seeded"] for i in unreviewed),
+            "strict_rule": "material issue and affected locus must correspond; insufficient matches need sourced adjudication",
             "relabelled_by_adjudication": relabel, "implied_for_production": implied,
             "n_items": key["n_items"], "n_reviewed": len(seen), "unreviewed": unreviewed,
             "voided_plants": sorted(voids & {i for i, x in items.items() if x["is_seeded"]}),

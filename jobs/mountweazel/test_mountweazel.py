@@ -282,12 +282,20 @@ HERE_FIXTURES = Path(mw.HERE) / "fixtures"
 
 
 class ScoreTests(Base):
+    def correct_reason(self, it):
+        issue = {"D1": "deadline is not demonstrated performance", "D2": "one-time performance already completed",
+                 "D3": "quote truncated before the operative verb", "D4": "partial scope is not the whole order",
+                 "D5": "earlier end was missed in favor of later revocation", "D6": "omitted later event",
+                 "D7": "wrong effective date", "D8": "wrong order text from a neighbour", "D9": "coverage overstated",
+                 "D10": "wrong target does not revoke this order", "D13": "source is already held"}
+        return issue[it["defect_code"]] + ": " + " ".join(it.get("locus_terms", []))
+
     def verdicts(self, key, catch=(), wrong_reason=(), flag_real=(), voids=()):
         rows = []
         for it in key["items"]:
             if it["is_seeded"]:
                 if it["item_id"] in catch:
-                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": "defect", "confidence": 0.9})
+                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": self.correct_reason(it), "confidence": 0.9})
                 elif it["item_id"] in wrong_reason:
                     rows.append({"item_id": it["item_id"], "decision": "reject", "locus": "nothing relevant", "reason": "gut feeling", "confidence": 0.4})
                 else:
@@ -361,9 +369,9 @@ class ScoreTests(Base):
         rows = []
         for i in key["items"]:
             if i["item_id"] == a["item_id"]:
-                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": "x"})
+                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": self.correct_reason(i)})
             elif i["item_id"] == b["item_id"]:
-                rows.append({"item_id": i["item_id"], "verdict": "accept", "reason": "odd but fine: " + " ".join(mw.specific_terms(i))})
+                rows.append({"item_id": i["item_id"], "verdict": "accept", "locus": i["field"], "reason": self.correct_reason(i)})
             else:
                 rows.append({"item_id": i["item_id"], "verdict": "accept"})
         res = mw.score(key, rows, relabel={a["item_id"]: "D11"}, tells=[a["item_id"]], production=(0, 15))
@@ -428,6 +436,70 @@ class PlantQualityTests(Base):
             for spec, apply in mw.ops_c("D2", rec["claim"], {}, "x"):
                 i = int(spec.split(":")[0])
                 self.assertFalse(mw.RECURRING_RE.search(rec["claim"]["operative_clauses"][i]["original_operative_text"]))
+
+
+class MaterialCorrespondenceTests(unittest.TestCase):
+    """Controlled scoring pairs, not new legal adjudications or production claims."""
+    def key(self, code, field="operative_clauses[0].first_end"):
+        body = {"schema": mw.SCHEMA_KEY, "batch_id": "scoring-control", "track": "C", "n_items": 1,
+                "n_seeded": 1, "planned_n_seeded": 3,
+                "items": [{"item_id": "control-item", "is_seeded": True, "defect_code": code,
+                           "field": field, "affected_scope_id": "control-clause-a",
+                           "locus_terms": ["EO:12345", "2001-01-01"],
+                           "refuting_quote": "The approved test method requires investigation of this evidence."}]}
+        return {**body, "key_seal_sha256": mw.sha(body)}
+
+    def result(self, code, reason, locus="operative_clauses[0]", **kw):
+        return mw.score(self.key(code), [{"item_id": "control-item", "decision": "reject",
+                                        "reason": reason, "locus": locus}], **kw)
+
+    def test_wrong_issue_in_same_order_gets_no_d6_credit(self):
+        r = self.result("D6", "EO 12345 has a cut quote in a different clause.", "operative_clauses[9]")
+        self.assertEqual(r["pooled"]["strict"]["k"], 0)
+        self.assertEqual(r["pooled"]["lenient"]["k"], 1)
+
+    def test_locator_alone_does_not_establish_material_issue(self):
+        for reason in ("EO 12345", "2001-01-01", "Something looks questionable."):
+            self.assertEqual(self.result("D6", reason)["pooled"]["strict"]["k"], 0)
+
+    def test_missing_event_needs_matching_clause_and_event(self):
+        good = "The omitted event from EO 12345 on 2001-01-01 must be investigated."
+        self.assertEqual(self.result("D6", good)["pooled"]["strict"]["k"], 1)
+        self.assertEqual(self.result("D6", good, "operative_clauses[7]")["pooled"]["strict"]["k"], 0)
+        self.assertEqual(self.result("D6", "An omitted event needs investigation.")["pooled"]["strict"]["k"], 0)
+
+    def test_earlier_event_performance_partial_scope_and_savings_pairs(self):
+        cases = {
+            "D5": "An earlier end requires investigation before selecting later revocation.",
+            "D2": "Demonstrated performance of this one-time command requires clause-specific analysis.",
+            "D4": "The partial scope does not establish the whole order's end.",
+            "D12": "The savings provision preserves effects that this conclusion omits.",
+        }
+        for code, reason in cases.items():
+            with self.subTest(code=code):
+                self.assertEqual(self.result(code, reason)["pooled"]["strict"]["k"], 1)
+                self.assertEqual(self.result(code, reason, "operative_clauses[8]")["pooled"]["strict"]["k"], 0)
+        # A coherent but disputed premise does not itself make performance the end.
+        self.assertEqual(self.result("D2", "The date typography is wrong.")["pooled"]["strict"]["k"], 0)
+
+    def test_manual_correspondence_requires_provenance_and_preserves_mechanical_result(self):
+        with self.assertRaises(SystemExit):
+            self.result("D6", "unclear", strict_overrides={"control-item": True})
+        override = {"caught": True, "adjudicator": "test-reviewer", "source": "review-decision.json",
+                    "reason": "Verified the synonym against the exact omitted event.",
+                    "affected_locus": "control-clause-a", "material_issue": "omitted amendment event"}
+        r = self.result("D6", "The history elides the amendment.", strict_overrides={"control-item": override})
+        self.assertEqual(r["pooled"]["strict"]["k"], 1)
+        item = r["by_defect_type"]["D6"]["items"][0]
+        self.assertFalse(item["correspondence"]["mechanical_candidate"])
+        self.assertEqual(item["adjudication"], override)
+
+    def test_missing_plants_and_blinding_are_explicit(self):
+        r = mw.score(self.key("D6"), [])
+        self.assertEqual(r["plants_missing_unscored"], 2)
+        self.assertEqual(r["plants_unreviewed_unscored"], 1)
+        self.assertIsNone(r["pooled"]["strict"]["rate"])
+        self.assertFalse(r["blinding"]["technical_separation_verified"])
 
 
 class StatsTests(unittest.TestCase):

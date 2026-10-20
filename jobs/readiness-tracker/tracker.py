@@ -469,6 +469,10 @@ def build(root):
         ready = all(steps.values()) and (complete_claim or exhausted_ok)
         if i in holds:
             ready = False
+            steps['counterevidence'] = False
+            machine_searched.discard(i)
+            if 'counterevidence' in exhausted_steps:
+                exhausted_steps.remove('counterevidence')
             blockers['counterevidence'].append('OPEN_SOURCE_AUDIT:'+holds[i]['claim_sha256'][:12])
         orders.append({
             "instrument_id": i,

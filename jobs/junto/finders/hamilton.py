@@ -2,7 +2,7 @@
 """Junto finder `hamilton`: turns Hamilton's token audit into candidate savers.
 
 Wraps jobs/hamilton-token-audit/profile.py (`load`, `profile`, `tool_label`; that
-file and its CLI are untouched), runs it over saved transcript pages, and emits
+file supplies the shared usage parser), runs it over saved transcript pages, and emits
 one candidate per saver, all `status: "unverified"`. Candidates are triage
 material: every dollar figure is an estimate and never counts as a saving. A
 saving counts only after a before-and-after test (research/plans/JUNTO_DESIGN.md).
@@ -19,10 +19,10 @@ Extra numeric pass: profile.profile() returns only per-cause aggregates, so this
 file re-reads the same events for per-call usage numbers (tokens, timestamps,
 redacted tool labels from `tool_label`). It never keeps or emits any text.
 
-Dollar basis ("profile_scaled"): a complete session is scaled to its own
-get_session cost_usd, exactly as Hamilton does. A partial session (events missing)
-cannot be scaled that way, so it uses the median USD per cost unit of complete
-sessions of the same model; its figures cover only the saved window.
+Dollar basis: an observed window can be calibrated only against independently
+reported complete session token categories. A manifest claiming complete pages
+does not establish complete output usage. No rate is borrowed from another
+session. Unpriced sessions remain in the check sidecar; no saving is inferred.
 
 Exit codes: 0 ok; 2 bad or empty input, or a sanity-check failure; 3 privacy
 refusal (data inside the repo, or a record failed the redaction check).
@@ -32,7 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-FINDER_NAME, FINDER_VERSION = "hamilton", "1"
+FINDER_NAME, FINDER_VERSION = "hamilton", "2"
 FINDER_ID = "F-" + FINDER_NAME
 WRITTEN_BY = "claude"
 
@@ -86,7 +86,7 @@ def units_of(c):
     return sum(W[k] * c[k] for k in W)
 
 
-def scan_calls(events, tool_label):
+def scan_calls(events, tool_label, usage_reader=None):
     """Per-call numbers in transcript order, rebuilt the way profile.profile() does."""
     calls = collections.OrderedDict()
     last_ts = {}
@@ -109,10 +109,16 @@ def scan_calls(events, tool_label):
                           "output": u.get("output_tokens", 0), "tools": set(),
                           "gap": (t - last_ts[agent]) if (t is not None and agent in last_ts) else None,
                           "first": agent not in last_ts}
+            if usage_reader:
+                calls[mid].update({k: v or 0 for k, v in usage_reader(u).items()})
             if t is not None:
                 last_ts[agent] = t
             else:
                 last_ts.setdefault(agent, 0)
+        elif usage_reader:
+            for k, value in usage_reader(msg.get("usage") or {}).items():
+                if value is not None:
+                    calls[mid][k] = max(calls[mid][k], value)
         for b in msg.get("content") or []:
             if b.get("type") == "tool_use":
                 calls[mid]["tools"].add(tool_label(b.get("name", ""), b.get("input")))
@@ -145,7 +151,7 @@ def load_json(path):
 
 def analyze(ham, sid, events, complete, scale, scale_basis, base_fallback):
     """All per-session numbers. `scale` converts cost units to USD."""
-    calls = scan_calls(events, ham.tool_label)
+    calls = scan_calls(events, ham.tool_label, ham.usage_counts)
     prof = ham.profile(events, None, sid)              # units, not dollars
     total_units = prof["cost_units"]
     usd = lambda units: units * scale
@@ -411,18 +417,20 @@ def main():
     if not sessions:
         print("bad input: no events"); return 2
 
-    # USD per cost unit: complete sessions scale to their own cost; partial ones borrow the model median
-    probe = {sid: ham.profile(ev, None, sid)["cost_units"] for sid, ev in sessions.items()}
-    rate = collections.defaultdict(list)
-    for sid in sessions:
-        s = index.get(sid) or {}
-        if complete_of.get(sid) and s.get("cost_usd") and probe[sid]:
-            rate[s.get("model")].append(s["cost_usd"] / probe[sid])
-    model_rate = {m: statistics.median(v) for m, v in rate.items()}
+    # A manifest saying complete does not make streamed output complete. No
+    # cross-session borrowed rate, and no full bill assigned to a partial window.
+    def totals(s):
+        if isinstance(s.get("token_totals"), dict):
+            return s["token_totals"]
+        aliases = {"input":"input_tokens", "read":"cache_read_tokens", "write5m":"cache_write_5m_tokens",
+                   "write1h":"cache_write_1h_tokens", "output":"output_tokens"}
+        return {k:s.get(v) for k,v in aliases.items()}
+    probe = {sid: ham.profile(ev, (index.get(sid) or {}).get("cost_usd"), sid,
+                             session_totals=totals(index.get(sid) or {})) for sid, ev in sessions.items()}
     bases = []
     for sid, ev in sessions.items():
         if complete_of.get(sid):
-            first = next((c for c in scan_calls(ev, ham.tool_label) if c["agent"] == "main"), None)
+            first = next((c for c in scan_calls(ev, ham.tool_label, ham.usage_counts) if c["agent"] == "main"), None)
             if first:
                 bases.append(ctx_of(first))
     base_fallback = statistics.median(bases) if bases else None
@@ -430,17 +438,18 @@ def main():
     rows, skipped = [], []
     for sid in sorted(sessions):
         s = index.get(sid) or {}
-        complete = complete_of.get(sid, False)
-        if complete and s.get("cost_usd") and probe[sid]:
-            scale, basis = s["cost_usd"] / probe[sid], "scaled to the session's own cost_usd"
-        elif model_rate.get(s.get("model")):
-            scale, basis = model_rate[s["model"]], "model median rate, window only"
-        else:
+        complete = complete_of.get(sid, False) and all(probe[sid]["tokens"][k] == totals(s).get(k) for k in W)
+        scale = probe[sid]["usd_per_unit"]
+        basis = "observed window calibrated to independent full-session category totals; relative-price assumption"
+        if scale is None or scale <= 0:
             skipped.append(sid); continue
         rows.append(analyze(ham, sid, sessions[sid], complete, scale, basis, base_fallback))
 
     # sanity: attributed cost never exceeds a session's reported total
-    check = {"sessions": [], "skipped_no_rate": len(skipped)}
+    check = {"sessions": [], "skipped_no_rate": len(skipped),
+             "unpriced_sessions": [{"session_id": sid, "coverage": probe[sid]["coverage"],
+                                     "token_value_usd": probe[sid]["session_token_value_usd"],
+                                     "reason":"no complete category totals to calibrate observed usage"} for sid in skipped]}
     bad = False
     for r in rows:
         total = (index.get(r["session_id"]) or {}).get("cost_usd")

@@ -378,6 +378,14 @@ def report_text_ok(text, spec):
     if words:
         if not body_hit(text, words):
             return False, f"body_name_missing({' '.join(words)})"
+        # A multi-page range may contain the named commission in an amendment
+        # and an unrelated report in the next item. Require a local association;
+        # the old whole-range test accepted EO12627's deadline extension as the
+        # Privatization Commission's transmittal record (PPP1988 book1 p294).
+        # This remains a retrieval heuristic, never a finding of performance.
+        if not any(body_hit(text[max(0, m.start() - 500):m.end() + 500], words)
+                   for m in re.finditer(r"\breport\b", text or "", re.I)):
+            return False, "report_not_local_to_named_body"
     elif spec.get("kind") == "peb":
         if not re.search(r"emergency board|report to the president", low):
             return False, "not_an_emergency_board_report"

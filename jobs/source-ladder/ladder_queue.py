@@ -23,9 +23,9 @@ from pathlib import Path
 import embedded_cites
 import fetch_ladder
 import report_dates
+import request_contract
 
-STEPS = ("original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals",
-         "counterevidence", "shared_sources", "opus_media")
+STEPS = request_contract.STEPS
 FETCH_QUEUE = "research/readiness/FETCH_QUEUE.jsonl"
 SHARED = "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv"
 STATUTE = "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv"
@@ -43,8 +43,12 @@ def eo_key(number):
     return "EO:" + number
 
 
-def read_fetch_queue(path, eo_index=None):
-    """Wanted items from FETCH_QUEUE.jsonl, plus a list of problems with bad lines."""
+def read_fetch_queue(path, eo_index=None, audit=None):
+    """Validated wanted items plus unresolved problems; optional full audit list.
+
+    Historical lines stay byte-for-byte unchanged. Every correction, split,
+    duplicate and unresolved mapping remains in the audit, including originals.
+    """
     path = Path(path)
     wanted, problems, seen = [], [], {}
     if not path.exists():
@@ -53,59 +57,55 @@ def read_fetch_queue(path, eo_index=None):
         if not line.strip():
             continue
         try:
-            r = json.loads(line)
+            raw = json.loads(line)
         except ValueError as exc:
-            problems.append(f"FETCH_QUEUE.jsonl line {n}: not JSON ({exc})")
+            problem = f"FETCH_QUEUE.jsonl line {n}: not JSON ({exc})"
+            problems.append(problem)
+            if audit is not None:
+                audit.append({"schema": request_contract.VERSION, "line_number": n,
+                              "source": str(path), "status": "invalid", "original_text": line,
+                              "original_sha256": fetch_ladder.sha256_bytes(line.encode()),
+                              "errors": [problem], "tasks": [], "corrections": []})
             continue
-        iid = r.get("instrument_id")
-        urls = r.get("urls") or []
-        citation = r.get("citation") or ""
-        step = r.get("step") or "original_text"
-        if not isinstance(iid, str) or not iid.startswith("EO:"):
-            problems.append(f"FETCH_QUEUE.jsonl line {n}: instrument_id must look like EO:1234")
-            continue
-        if not isinstance(urls, list) or not all(isinstance(u, str) for u in urls):
-            problems.append(f"FETCH_QUEUE.jsonl line {n}: urls must be a list of strings")
-            continue
-        if step not in STEPS:
-            problems.append(f"FETCH_QUEUE.jsonl line {n}: unknown step {step!r}")
-            continue
-        if not urls and not citation:
-            problems.append(f"FETCH_QUEUE.jsonl line {n}: needs urls or a citation")
-            continue
-        urls = [u if not u.startswith("http://") else "https://" + u[7:] for u in urls]
-        # The queue is append-only, so a line's ID never depends on later lines: the
-        # first line keeps the plain ID, and a later line naming the same order and
-        # citation but other URLs is a different source and gets its URL (or, failing
-        # that, its line number) added. An exact repeat of an earlier line is dropped.
-        wanted_id = f"queue:{iid}:{citation or urls[0]}"
-        if wanted_id in seen:
-            if seen[wanted_id] == (urls, step):
+        rec = request_contract.normalize_request(raw, line_number=n, source=str(path))
+        if audit is not None:
+            audit.append(rec)
+        if rec["errors"]:
+            problems.append(f"FETCH_QUEUE.jsonl line {n}: " + "; ".join(rec["errors"]))
+        for task in rec["tasks"]:
+            if task["status"] != "valid":
+                problems.append(f"FETCH_QUEUE.jsonl line {n}: {task['step']}: {task['reason']}")
                 continue
-            wanted_id = f"{wanted_id} [{urls[0]}]" if urls else wanted_id
+            iid, urls, citation, step = (task[k] for k in ("instrument_id", "urls", "citation", "step"))
+            # Preserve every previously valid wanted ID. Newly split tasks have
+            # stable step suffixes, independent of line position or later appends.
+            wanted_id = f"queue:{iid}:{citation or urls[0]}"
+            if len(rec["tasks"]) > 1:
+                wanted_id += f" <task:{step}>"
             if wanted_id in seen:
-                wanted_id = f"{wanted_id} #{n}"
-        seen[wanted_id] = (urls, step)
-        note = str(r.get("note") or "")
-        w = fetch_ladder.Wanted(wanted_id=wanted_id, instrument_ids=[iid],
-                                urls=urls, citation=citation, step=step,
-                                requested_by=str(r.get("requested_by") or ""),
-                                extra={"queue_note": note[:600]})
-        attach_eo_record(w, eo_index)
-        # "Date the commission submitted its report": the report-date lane looks for the transmittal record
-        # (report_dates.py). Such a line is kept whole, not split into the cites it happens to mention.
-        spec = report_dates.build_spec(citation, [iid], eo_signing_dates(eo_index, [iid], citation), note)
-        if spec:
-            w.extra["report_date"] = spec
-        # A citation buried in prose (no URL, not a bare cite) used to end as no_route without one
-        # request. Scan it for embedded cites and queue one item per cite; if it holds none, the
-        # original item stays so the no_route failure is still recorded.
-        if not spec and not urls and fetch_ladder.parse_citation(citation)[0] is None:
-            kids = embedded_children(w, eo_index)
-            if kids:
-                wanted.extend(kids)
-                continue
-        wanted.append(w)
+                if seen[wanted_id] == (urls, step):
+                    task["duplicate_of"] = wanted_id
+                    continue
+                wanted_id = f"{wanted_id} [{urls[0]}]" if urls else wanted_id
+                if wanted_id in seen:
+                    wanted_id = f"{wanted_id} #{n}"
+            seen[wanted_id] = (urls, step)
+            task["wanted_id"] = wanted_id
+            w = fetch_ladder.Wanted(wanted_id=wanted_id, instrument_ids=[iid], urls=urls,
+                                    citation=citation, step=step, requested_by=task["requested_by"],
+                                    extra=dict(task["extra"]))
+            attach_eo_record(w, eo_index)
+            note = w.extra["queue_note"]
+            spec = report_dates.build_spec(citation, [iid], eo_signing_dates(eo_index, [iid], citation), note)
+            if spec:
+                w.extra["report_date"] = spec
+            if not spec and not urls and fetch_ladder.parse_citation(citation)[0] is None:
+                kids = embedded_children(w, eo_index)
+                if kids:
+                    task["embedded_wanted_ids"] = [k.wanted_id for k in kids]
+                    wanted.extend(kids)
+                    continue
+            wanted.append(w)
     return wanted, problems
 
 
@@ -146,7 +146,7 @@ def embedded_children(w, eo_index):
         out.append(fetch_ladder.Wanted(
             wanted_id=f"{w.wanted_id} <{c['cite']}>", instrument_ids=list(w.instrument_ids),
             urls=[], citation=c["cite"], step=w.step, requested_by=w.requested_by,
-            extra={"parent_wanted_id": w.wanted_id, "parent_citation": w.citation,
+            extra={**(w.extra or {}), "parent_wanted_id": w.wanted_id, "parent_citation": w.citation,
                    "queue_note": (w.extra or {}).get("queue_note", ""),
                    "embedded_cite_kind": c["kind"],
                    "embedded_cites_not_queued": [o["cite"] for o in overflow]}))

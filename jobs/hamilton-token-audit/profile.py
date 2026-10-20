@@ -15,17 +15,55 @@ counted as context too. Transcripts record output tokens only at the start of
 streaming, so output cost is understated here; session totals from
 get_session are the reference.
 
-Cost units use the API's relative prices (input 1, cache read 0.1, 5-minute
-cache write 1.25, 1-hour cache write 2, output 5) and are scaled to dollars
-with the session's own reported cost when it is given. Sizes of tool results
-are characters / 4, an estimate.
+Cost units retain explicit relative-price assumptions (input 1, cache read 0.1,
+5-minute cache write 1.25, 1-hour cache write 2, output 5). Optional full-session
+category totals calibrate only the observed window. A partial transcript never
+absorbs the complete session value. Cash charges and price schedules are separate
+observations. Sizes of tool results are characters / 4, an attribution estimate.
 
-usage: python profile.py PAGES_DIR [--cost-usd N] [--label NAME] --out OUT_DIR
+usage: python profile.py PAGES_DIR [--cost-usd N --session-totals TOTALS.json] --out OUT_DIR
 """
-import argparse, collections, json, re
+import argparse, collections, json, math, re
 from pathlib import Path
 
 W = {"input": 1.0, "read": 0.1, "write5m": 1.25, "write1h": 2.0, "output": 5.0}
+PHASES = ("production", "build", "coordination", "monitoring", "review", "rework", "integration")
+
+
+def finite_count(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value >= 0
+
+
+def usage_counts(usage):
+    """Unknown usage and unknown cache TTL stay unknown, rather than becoming free."""
+    cc = usage.get("cache_creation") or {}
+    writes = usage.get("cache_creation_input_tokens")
+    result = {"input": usage.get("input_tokens"), "read": usage.get("cache_read_input_tokens"),
+              "write5m": cc.get("ephemeral_5m_input_tokens"), "write1h": cc.get("ephemeral_1h_input_tokens"),
+              "output": usage.get("output_tokens")}
+    result = {k: v if finite_count(v) else None for k, v in result.items()}
+    if writes == 0:
+        result["write5m"] = result["write1h"] = 0
+    elif finite_count(writes):
+        known = sum(result[k] or 0 for k in ("write5m", "write1h"))
+        if known == writes:
+            result["write5m"] = result["write5m"] or 0
+            result["write1h"] = result["write1h"] or 0
+    return result
+
+
+def valuation_scale(observed, session_totals, cost_usd):
+    """Calibrate only with independently reported full-session category totals.
+
+    A complete-pages flag is insufficient: streamed output can still be partial.
+    The numerator is observed work and never expanded to fill a missing window.
+    """
+    if not finite_count(cost_usd) or not isinstance(session_totals, dict) or any(not finite_count(session_totals.get(k)) for k in W):
+        return None
+    if any(observed[k] > session_totals[k] for k in W):
+        return None
+    total = sum(W[k] * session_totals[k] for k in W)
+    return cost_usd / total if total > 0 else None
 
 
 def load(pages_dir):
@@ -79,10 +117,13 @@ def tool_label(name, inp):
     return name
 
 
-def profile(events, cost_usd=None, label=""):
+def profile(events, cost_usd=None, label="", session_totals=None, pricing=None, cash_charge_usd=None, effort=None):
+    if any(v is not None and not finite_count(v) for v in (cost_usd, cash_charge_usd)):
+        raise ValueError("monetary totals must be finite and nonnegative; missing totals are null")
     calls = collections.OrderedDict()   # message id -> call record
     tool_meta = {}                       # tool_use_id -> (label, path)
-    pending = []                         # items added since the last call
+    pending = collections.defaultdict(list)  # each agent retains its own pending context
+    seen_content = set()
     for ts, kind, body in events:
         msg = (body.get("internal_anthropic_catchall") or {}).get("message") or body.get("message")
         if not isinstance(msg, dict):
@@ -92,14 +133,24 @@ def profile(events, cost_usd=None, label=""):
             mid = msg.get("id")
             u = msg.get("usage") or {}
             if mid not in calls:
-                cc = u.get("cache_creation") or {}
-                w1h = cc.get("ephemeral_1h_input_tokens", 0)
-                w5m = cc.get("ephemeral_5m_input_tokens", u.get("cache_creation_input_tokens", 0) - w1h)
-                calls[mid] = {"ts": ts, "agent": agent, "read": u.get("cache_read_input_tokens", 0),
-                              "write5m": max(w5m, 0), "write1h": w1h, "input": u.get("input_tokens", 0),
-                              "output": u.get("output_tokens", 0), "tools": [], "trigger": list(pending)}
-                pending = []
+                counts = usage_counts(u)
+                calls[mid] = {"ts": ts, "agent": agent, **{k: v or 0 for k, v in counts.items()},
+                              "observed": counts, "output_final": False, "cache_creation_total": None,
+                              "tools": [], "trigger": list(pending[agent])}
+                pending[agent] = []
+            else:
+                for k, value in usage_counts(u).items():
+                    if value is not None:
+                        calls[mid]["observed"][k] = max(calls[mid]["observed"].get(k) or 0, value)
+                        calls[mid][k] = calls[mid]["observed"][k]
+            calls[mid]["output_final"] |= bool(msg.get("stop_reason"))
+            if finite_count(u.get("cache_creation_input_tokens")):
+                calls[mid]["cache_creation_total"] = u["cache_creation_input_tokens"]
             for b in msg.get("content") or []:
+                content_key = (mid, json.dumps(b, sort_keys=True))
+                if content_key in seen_content:
+                    continue
+                seen_content.add(content_key)
                 if b.get("type") == "tool_use":
                     lab = tool_label(b.get("name", ""), b.get("input"))
                     path = (b.get("input") or {}).get("file_path") or ""
@@ -107,10 +158,10 @@ def profile(events, cost_usd=None, label=""):
                     calls[mid]["tools"].append(lab)
                     # What the model writes (commands, scripts, file bodies) stays in
                     # context and is re-read like a tool result.
-                    pending.append({"label": "model wrote: " + lab, "path": "",
+                    pending[agent].append({"label": "model wrote: " + lab, "path": "",
                                     "tokens": len(json.dumps(b.get("input") or {})) / 4, "agent": agent})
                 elif b.get("type") == "text":
-                    pending.append({"label": "model wrote: reply or narration", "path": "",
+                    pending[agent].append({"label": "model wrote: reply or narration", "path": "",
                                     "tokens": len(b.get("text") or "") / 4, "agent": agent})
         elif kind == "user":
             for b in msg.get("content") or [] if isinstance(msg.get("content"), list) else []:
@@ -118,9 +169,9 @@ def profile(events, cost_usd=None, label=""):
                     c = b.get("content")
                     size = len(json.dumps(c)) if not isinstance(c, str) else len(c)
                     lab, path = tool_meta.get(b.get("tool_use_id"), ("unknown tool", ""))
-                    pending.append({"label": lab, "path": path, "tokens": size / 4, "agent": agent})
+                    pending[agent].append({"label": lab, "path": path, "tokens": size / 4, "agent": agent})
             if isinstance(msg.get("content"), str):
-                pending.append({"label": "user or system message", "path": "", "tokens": len(msg["content"]) / 4, "agent": agent})
+                pending[agent].append({"label": "user or system message", "path": "", "tokens": len(msg["content"]) / 4, "agent": agent})
 
     def units(c):
         return sum(W[k] * c[k] for k in W)
@@ -166,27 +217,57 @@ def profile(events, cost_usd=None, label=""):
             if it["path"]:
                 reads_by_path[it["path"]] += 1
         if c["write1h"] + c["write5m"] > 100_000:
-            rebuilds.append({"ts": c["ts"], "tokens_rewritten": c["write1h"] + c["write5m"]})
+            rebuilds.append({"ts": c["ts"], "tokens_rewritten": c["write1h"] + c["write5m"],
+                             "cost_units": W["write5m"] * c["write5m"] + W["write1h"] * c["write1h"]})
         if c["read"] > 300_000 and c["output"] < 400 and set(c["tools"]) & {
                 "ReadNotifications", "MCP github pull_request_read get", "MCP github pull_request_read get_check_runs",
                 "MCP github actions_list list_workflow_runs", "MCP claude-code-remote get_session", "TaskOutput"}:
             polls["status check in a large context"] += u
     total = sum(units(c) for c in calls.values())
-    scale = (cost_usd / total) if cost_usd and total else None
-    cost = lambda x: round(x * scale, 2) if scale else round(x)
+    observed = {k: sum(c[k] for c in calls.values()) for k in W}
+    missing = {k: sum(c["observed"][k] is None for c in calls.values()) for k in W}
+    unclassified_writes = sum(max(0, (c["cache_creation_total"] or 0) - c["write5m"] - c["write1h"]) for c in calls.values())
+    scale = valuation_scale(observed, session_totals, cost_usd)
+    cost = lambda x: round(x * scale, 6) if scale is not None else round(x, 6)
+    coverage = {k: {"observed_tokens": observed[k], "calls_missing_field": missing[k],
+                   "session_total": (session_totals or {}).get(k),
+                   "fraction": observed[k] / session_totals[k] if finite_count((session_totals or {}).get(k)) and session_totals[k] > 0 else None}
+                for k in W}
+    coverage["output"]["complete_final_usage_observed"] = bool(calls) and all(c["output_final"] and c["observed"]["output"] is not None for c in calls.values())
+    rates = (pricing or {}).get("usd_per_million_tokens") or {}
+    priced_observed = None
+    if pricing and pricing.get("source") and pricing.get("as_of") and all(finite_count(rates.get(k)) for k in W):
+        priced_observed = sum(observed[k] * rates[k] / 1_000_000 for k in W)
     combined = collections.Counter()
     for k, v in fresh.items():
         combined[k] += v
     for k, v in carry.items():
         combined[k] += v
     return {
+        "schema": "hamilton.profile/2",
         "label": label, "model_calls": len(calls), "cost_units": round(total),
-        "usd_per_unit": scale, "unit": "USD" if scale else "input-token equivalents",
-        "tokens": {k: sum(c[k] for c in calls.values()) for k in ("input", "read", "write5m", "write1h", "output")},
-        "cost_by_cause": [{"cause": k, "cost": cost(v), "share": round(v / total, 4),
+        "usd_per_unit": scale, "unit": "estimated API token value USD for observed window" if scale is not None else "input-token equivalents",
+        "tokens": observed, "coverage": coverage,
+        "cache_write_unclassified_tokens": unclassified_writes,
+        "unpriced_or_unclassified_usage": bool(unclassified_writes or any(missing.values()) or not coverage["output"]["complete_final_usage_observed"]),
+        "session_tokens": {k: (session_totals or {}).get(k) for k in W},
+        "session_token_value_usd": cost_usd, "cash_charge_usd": cash_charge_usd,
+        "observed_window_token_value_usd": total * scale if scale is not None else None,
+        "priced_observed_tokens_usd": priced_observed,
+        "pricing": pricing or {"basis": "relative price assumptions retained from the original Hamilton audit", "weights": W,
+                               "absolute_rates": None, "model": None, "as_of": None},
+        "valuation_note": "Session token value is separate from cash charges. Unknown or partial capture is never scaled to the full session. Output may be a streaming lower bound.",
+        "attribution": {"method": "characters/4 context-size estimate and first-call setup proxy",
+                        "scope": "observed usage only", "causal_identification": False,
+                        "diagnostic_views_overlap": ["cache_rebuilds", "status_checks_in_large_context", "subagents"],
+                        "add_diagnostic_views_to_cause_total": False},
+        "effort_accounting": {"phases": {phase: (effort or {}).get(phase) for phase in PHASES},
+                              "missing_phases": [phase for phase in PHASES if (effort or {}).get(phase) is None],
+                              "note": "Phase values annotate session totals; do not add them again. Complete campaign cost requires build, coordination, monitoring, review, rework and integration."},
+        "cost_by_cause": [{"cause": k, "cost": cost(v), "share": round(v / total, 4) if total else None,
                            "fresh": cost(fresh.get(k, 0)), "reread": cost(carry.get(k, 0))}
                           for k, v in combined.most_common(25)],
-        "cache_rebuilds": {"count": len(rebuilds), "cost": cost(sum(W["write1h"] * r["tokens_rewritten"] for r in rebuilds)),
+        "cache_rebuilds": {"count": len(rebuilds), "cost": cost(sum(r["cost_units"] for r in rebuilds)),
                            "examples": rebuilds[:5]},
         "status_checks_in_large_context": {k: cost(v) for k, v in polls.items()},
         "subagents": {"count": len(by_agent) - ("main" in by_agent),
@@ -199,14 +280,19 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("pages")
     ap.add_argument("--cost-usd", type=float)
+    ap.add_argument("--session-totals", help="aggregate JSON with full-session input/read/write5m/write1h/output token totals")
+    ap.add_argument("--pricing", help="JSON with source, as_of and usd_per_million_tokens by category")
+    ap.add_argument("--cash-charge-usd", type=float, help="actual invoice charge if observed; omitted stays unknown")
+    ap.add_argument("--effort", help="aggregate JSON annotating phase costs already included in session totals")
     ap.add_argument("--label", default="")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     ev = load(a.pages)
-    res = profile(ev, a.cost_usd, a.label)
+    read_json = lambda p: json.loads(Path(p).read_text()) if p else None
+    res = profile(ev, a.cost_usd, a.label, read_json(a.session_totals), read_json(a.pricing), a.cash_charge_usd, read_json(a.effort))
     res["events"] = len(ev)
     Path(a.out).mkdir(parents=True, exist_ok=True)
     (Path(a.out) / f"PROFILE_{a.label or 'session'}.json").write_text(json.dumps(res, indent=1) + "\n")
     print(json.dumps({k: res[k] for k in ("label", "events", "model_calls", "cost_units", "unit")}, indent=1))
     for r in res["cost_by_cause"][:12]:
-        print(f"{r['share']*100:5.1f}%  {r['cost']:>10}  {r['cause']}")
+        print(f"{(r['share'] or 0)*100:5.1f}%  {r['cost']:>10}  {r['cause']}")

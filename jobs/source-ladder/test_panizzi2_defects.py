@@ -433,7 +433,7 @@ class CarriedDefectTests(unittest.TestCase):
                   "https://www.archives.gov/research/guide-fed-records/groups/013.html"):
             self.assertTrue(fl.carried_defect(w, {"url": u, "page_or_item": "x"}, None).startswith("index_page"), u)
 
-    def test_report_date_records_are_not_rechecked(self):
+    def test_report_date_records_are_rechecked(self):
         src = {"url": "https://www.archives.gov/research/guide-fed-records/groups/013.html", "page_or_item": "x",
                "report_date_request": {"lane": "nmb"}}
-        self.assertEqual(fl.carried_defect(self.w("x"), src, None), "")
+        self.assertTrue(fl.carried_defect(self.w("x"), src, None).startswith("index_page"))

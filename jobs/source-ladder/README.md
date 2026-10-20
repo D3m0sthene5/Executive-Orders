@@ -1,5 +1,51 @@
 # Source ladder (job 1)
 
+## Request and carry-forward repair (Astra, 2026-10-20)
+
+Use the same request contract before appending and at execution. `request_contract.py`
+provides `normalize_request(raw)` and `enqueue_requests(queue_path, requests)`; the latter
+validates the entire batch before any append and skips exact duplicates:
+
+```sh
+python jobs/source-ladder/request_contract.py validate --input proposed-requests.jsonl
+python jobs/source-ladder/request_contract.py enqueue --input proposed-requests.jsonl --queue research/readiness/FETCH_QUEUE.jsonl
+```
+
+Historical queue lines remain unchanged. `current_basis` means `ending_or_current_basis`;
+`original_page_check` means an `original_text` source request with page review still required.
+`original_and_ending_basis` produces distinct tasks. A precisely named second EO can be routed
+as the acting instrument; an unidentified ending remains an unresolved task and does not
+cause another download of the original. An exact “Original text of EO N” note can supply a
+missing citation only for that same EO. Other missing or ambiguous mappings remain visible.
+The seventeen rejected rows at `91116f8` become fifteen corrected requests and two partly
+unresolved requests (EO8586 and EO9518 need their ending instruments identified).
+
+`QUEUE_AUDIT.jsonl` preserves every original, its SHA-256, stable request/task IDs, corrections,
+and unresolved tasks. `UNRESOLVED_REQUESTS.jsonl` exposes invalid and unresolved requests.
+`as_of`, `required_date`, and `edition_year` survive embedded-citation splitting. Invalid
+in-memory requests stop before network calls. Different tasks using the same URL reuse the
+existing download cache; task counts and distinct source hashes remain separate.
+
+Every retained receipt is revalidated, **including offline runs and requests outside the
+bounded selection**. `SOURCE_REVALIDATION.jsonl` records the results. Known invalid receipts
+and exact historical text move to `REJECTED_PRIOR_SOURCES.jsonl` and `rejected_texts/`; they
+remain reproducible but do not appear in usable `SOURCES.jsonl` or `found` counts. Records
+awaiting another attempt have `needs_revalidation` results. A replacement still identifies
+the previous URL, hash, and rejection reason. This retention applies to explicit `JOB_ONLY`
+and `JOB_LIMIT` selections as well as fingerprinted plans.
+
+Checks now include metadata, wrong document identifiers, expected-file and extracted-text
+hashes, changed request content, exact requested eCFR dates and explicit edition years.
+Report records receive the same checks; a report word elsewhere in a multi-page extraction
+does not establish that the named body's report was found. The local-association screen is
+a retrieval heuristic and can leave a relevant document for review. It establishes no
+delivery date or legal ending. A numbered annual edition likewise does not establish which
+provision was in force on a specific day.
+
+`source_evidence_tiers` separates `document_text`, `report_record`, and `custody_only`.
+Metadata and finding aids are preserved as failed attempts or rejected prior receipts, not
+document text. All tiers remain below authentication and substantive legal review.
+
 Bounded default (PANIZZI, 2026-10-20): absent `JOB_ONLY`/`JOB_LIMIT`, build a **queue-first plan** and work
 at most 50 items within 300 HTTP requests and 800 MB (`JOB_PLAN_LIMIT`, `JOB_MAX_REQUESTS`,
 `JOB_MAX_DOWNLOAD_MB`). Requests from `FETCH_QUEUE.jsonl` come first, never-tried before tried-and-failed (so a
@@ -94,9 +140,9 @@ be used", not "the document is not there", so they never feed an exhausted propo
   never reached the records that showed the defects (Pub. L. 98-525 pages 1-40, the gzip pages for EO 12335/11065, the
   2026 CFR for 1953, the congress.gov listing). `fetch_ladder.carried_defect` re-checks each carried record (listing or
   finding-aid URL, current edition for a dated question, undecodable text, editions list, table of contents, a statute
-  PDF kept in part). A failing record is walked again; until then it stays in `SOURCES.jsonl` with `carried_defect`,
+  PDF kept in part). A failing record is walked again; it is preserved outside usable `SOURCES.jsonl`,
   and a new record names the old one in `supersedes_defective_source` (URL, sha256, why). A failed re-walk names the
-  old URL and hash in its RESULTS row. Offline runs do not re-check. Against the committed output: 31 of 251 records.
+  old URL and hash in its RESULTS row. Offline runs also re-check. Historical Panizzi II audit: 31 of 251 records.
 - *A request that ended `no_route` is not "tried".* It now ranks with untried requests once it has a route, so the new
   report-date lines enter the 50-item plan (29 of them on the current queue, instead of 6).
 - *NARA Guide to Federal Records pages* (`archives.gov/research/guide-fed-records/`) describe a record group; they are
@@ -217,8 +263,12 @@ The job reads, in this order:
 | --- | --- |
 | `SOURCES.jsonl` | One SOURCE RECORD per document found: `source_id`, `instrument_ids`, `url` (where the bytes came from), `requested_url`, `sha256` of the exact bytes, `bytes`, `content_type`, `retrieved_utc`, `route` (which ladder step found it), `page_or_item`, `text_path`, `cache_path`, `notes`, plus `wanted_id` and `citation`. |
 | `ATTEMPTS.jsonl` | Every request the ladder made: url, ladder step, time, HTTP status or error, bytes, sha256, why a response was rejected. |
+| `PREVIOUS_ATTEMPTS.jsonl`, `PREVIOUS_UNRESOLVED.jsonl` | Deduplicated history retained across bounded runs. Earlier failures remain available to the scheduler even if outside the immediately preceding selection. |
+| `QUEUE_AUDIT.jsonl`, `UNRESOLVED_REQUESTS.jsonl` | Original request objects and fingerprints, stable identities, corrections and errors; unresolved mappings remain visible. The queue's original bytes are not rewritten. |
+| `SOURCE_REVALIDATION.jsonl` | The retrieval checks applied to every prior found receipt, including unselected and offline carries. |
+| `REJECTED_PRIOR_SOURCES.jsonl`, `rejected_texts/` | Rejected original receipts and exact held text, excluded from the usable catalog. Rejection applies to the request, not necessarily to every possible use of the document. |
 | `EXHAUSTED_PROPOSED.jsonl` | For items where every route failed definitively (see above): one line per order, in the exact format of `research/readiness/EXHAUSTED.jsonl` (`instrument_id`, `step`, `searched`, `recorded_by: "source-ladder job"`, `recorded_on`, `note`). These are **proposals**. Nothing is written into `research/`; a person decides whether to copy a line there, ideally after a general web search, NARA, LoC and presidential libraries. |
-| `RESULTS.csv` | One row per queue item. `result` is `found`, `exhausted_proposed`, `retry_later` (a passing failure; `why` says which), `no_route` (no route could be built for the citation) or `not_attempted_budget`. `carried_forward_from` is filled when the item was found by an earlier committed run and not downloaded again. |
+| `RESULTS.csv` | Selected and retained results. `result` is `found`, `exhausted_proposed`, `retry_later` (a passing failure; `why` says which), `no_route` (no route could be built for the citation), `invalid_request`, `needs_revalidation` or `not_attempted_budget`. `carried_forward_from` is filled for usable prior evidence retained without downloading it again. |
 | `texts/` | Plain text pulled from each document found (for scanned Federal Register issues, only the cited order's pages). File names end in a short hash of the item id, so two items never share a file. All text files use plain `
 ` line endings on every computer. |
 | `SUMMARY.json` | Counts. |
