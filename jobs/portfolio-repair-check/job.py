@@ -27,6 +27,10 @@ BASE = "research/excavator/astra-portfolio-repair-2026-10-20"
 DISPUTED = ("EO:13792", "EO:13101", "EO:13148", "EO:13783", "EO:13807")
 POSITIVE, BLOCKED = "EO:13037", "EO:11513"
 CHECKED = (*DISPUTED, POSITIVE)
+HISTORICAL_LEDGER = "jobs/llull/ledger/forecasts.jsonl"
+HISTORICAL_LEDGER_SHA256 = "4969c431a71f67bb3db9c5dafef63e4d9d4efeed7aa5a665a1f927a9d0902920"
+HISTORICAL_LEDGER_COPY = "jobs/portfolio-repair-check/historical-gate/forecasts.jsonl"
+HISTORICAL_LEDGER_COMMIT = "835f58d2ede7d93b80904bbd5ad1b876554f5201"
 SUITES = {
     "source-ladder": ["test_request_contract", "test_panizzi2_defects", "test_report_dates",
                       "test_fetch_ladder", "test_panizzi_resolvers"],
@@ -295,6 +299,29 @@ class Inputs:
             self.verify(rel, value)
 
 
+def historical_gate_evidence(inputs, observation, destination):
+    """Reconstruct exact historical evidence without changing the current ledger."""
+    records = []
+    for evidence in observation["evidence"]:
+        relative, expected = evidence["path"], evidence["sha256"]
+        current = inputs.read(relative)
+        raw, source, commit = current, relative, None
+        if sha(current) != expected:
+            if relative != HISTORICAL_LEDGER or expected != HISTORICAL_LEDGER_SHA256:
+                raise ValueError("historical evidence changed without a pinned snapshot: " + relative)
+            raw = inputs.read(HISTORICAL_LEDGER_COPY)
+            source, commit = HISTORICAL_LEDGER_COPY, HISTORICAL_LEDGER_COMMIT
+        if sha(raw) != expected:
+            raise ValueError("historical snapshot hash mismatch: " + relative)
+        target = destination / inputs.path(relative).relative_to(inputs.repo.resolve())
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+        records.append({"path": relative, "historical_sha256": expected,
+                        "current_sha256": sha(current), "current_matches_historical": sha(current) == expected,
+                        "snapshot_path": source, "snapshot_commit": commit})
+    return records
+
+
 def tracker_freshness(inputs, status, execution_commit, freshness):
     """Reuse a succeeded tracker only when its declared inputs equal current working bytes."""
     name = "readiness-tracker"
@@ -403,14 +430,14 @@ def integration(repo, out, inputs):
     inputs.obj(gate_base + "CONTRACT.json")
     observation = inputs.obj(gate_base + "OBSERVATION.json")
     historical_gate = inputs.obj(gate_base + "stopped-continuation/CONTINUATION_GATE.json")
-    for evidence in observation["evidence"]:
-        inputs.verify(evidence["path"], evidence["sha256"])
     continuation = out / "stopped-continuation"
-    with (out / "continuation.log").open("w", encoding="utf-8") as log, contextlib.redirect_stdout(log):
-        gate_exit = lambertini.main(["--repo", str(repo), "continue", "--pool", "LAMBS",
-            "--n", "1", "--seed", "astra-repair-offline-gate-replay", "--out", str(continuation),
-            "--gate-contract", str(inputs.path(gate_base + "CONTRACT.json")),
-            "--gate-observation", str(inputs.path(gate_base + "OBSERVATION.json"))])
+    with fixture_environment(repo) as historical_repo:
+        historical_evidence = historical_gate_evidence(inputs, observation, historical_repo)
+        with (out / "continuation.log").open("w", encoding="utf-8") as log, contextlib.redirect_stdout(log):
+            gate_exit = lambertini.main(["--repo", str(historical_repo), "continue", "--pool", "LAMBS",
+                "--n", "1", "--seed", "astra-repair-offline-gate-replay", "--out", str(continuation),
+                "--gate-contract", str(inputs.path(gate_base + "CONTRACT.json")),
+                "--gate-observation", str(inputs.path(gate_base + "OBSERVATION.json"))])
     gate_receipt = json.loads((continuation / "CONTINUATION_GATE.json").read_bytes())
     require(gate_exit == 5 and gate_receipt == historical_gate
             and gate_receipt.get("status") == "untested" and gate_receipt.get("may_continue") is False
@@ -535,6 +562,7 @@ def integration(repo, out, inputs):
             "tracker_input_freshness": tracker_provenance,
             "tracker_ready_total_observed": sum(r.get("ready_for_human_review") == "yes" for r in rows.values()),
             "continuation_gate_replay": {"exit_code": gate_exit, "receipt": gate_receipt,
+                "evidence": historical_evidence,
                 "new_work_selected": False, "prospective_experiment": False,
                 "basis": "Replay of a faithfully reconstructed historical contract; no new preregistration claimed."},
             "stages": stages}

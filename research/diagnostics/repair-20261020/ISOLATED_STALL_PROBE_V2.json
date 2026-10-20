@@ -1,0 +1,70 @@
+{
+  "schema": "eo-isolated-stall-probe/v2",
+  "run_id": 39499817449,
+  "job_id": 118894160133,
+  "target_commit": "ec13121674cec5b92d910fe18dd361415e072ee4",
+  "controller_commit": "858d0a6f88e0886668ca56da1e3514e8bb5c2cdd",
+  "conclusion": "success",
+  "summaries": [
+    {
+      "cases": 3359,
+      "elapsed_seconds": 90.519,
+      "exit_code": 0,
+      "interpretation": "Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.",
+      "kind": "complete",
+      "max_rss_kib": 1151680,
+      "mode": "drafts",
+      "network_budget": 0,
+      "network_events": [],
+      "system_cpu_seconds": 0.757925,
+      "user_cpu_seconds": 89.675333
+    },
+    {
+      "cases": 2,
+      "elapsed_seconds": 1.309,
+      "exit_code": 0,
+      "interpretation": "Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.",
+      "kind": "complete",
+      "max_rss_kib": 77032,
+      "mode": "sources",
+      "network_budget": 2,
+      "network_events": [
+        {
+          "elapsed_seconds": 0.109,
+          "kind": "network_start",
+          "timeout": 120,
+          "url": "https://www.govinfo.gov/content/pkg/FR-2017-05-01/pdf/2017-08908.pdf"
+        },
+        {
+          "elapsed_seconds": 0.265,
+          "kind": "network_headers",
+          "seconds": 0.15536291900002652,
+          "status": 200,
+          "url": "https://www.govinfo.gov/content/pkg/FR-2017-05-01/pdf/2017-08908.pdf"
+        },
+        {
+          "elapsed_seconds": 1.109,
+          "kind": "network_start",
+          "timeout": 120,
+          "url": "https://www.govinfo.gov/content/pkg/FR-2000-04-26/pdf/00-10550.pdf"
+        },
+        {
+          "elapsed_seconds": 1.22,
+          "kind": "network_headers",
+          "seconds": 0.1109665630000336,
+          "status": 200,
+          "url": "https://www.govinfo.gov/content/pkg/FR-2000-04-26/pdf/00-10550.pdf"
+        }
+      ],
+      "system_cpu_seconds": 0.026545,
+      "user_cpu_seconds": 0.139874
+    }
+  ],
+  "findings": [
+    "All 3359 draft cases completed locally in 90.519 seconds without new network downloads.",
+    "Two exact cited GovInfo PDF downloads verified successfully.",
+    "Original live runner CPU and filesystem are not observable through these isolated replays; regenerated inputs and other network requests may differ."
+  ],
+  "published_canonical_outputs": false,
+  "modified_primary_run": false
+}

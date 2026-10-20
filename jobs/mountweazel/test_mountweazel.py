@@ -273,13 +273,35 @@ class CheckTests(Base):
     def test_runner_manifest_fixture_inventory_is_not_a_leak(self):
         repo = self.make_repo(self.tmp / "none")
         for rel in ("oversized/runner-freshness/portfolio-repair-check-inputs.json",
-                    "jobs/portfolio-repair-check/output/RUNNER_INPUTS.json"):
+                    "jobs/portfolio-repair-check/output/RUNNER_INPUTS.json",
+                    ".job-cache/runner-prior/123-1/portfolio-repair-check/RUNNER_INPUTS.json",
+                    "jobs/_attempts/portfolio-repair-check/123-1/RUNNER_INPUTS.json"):
             p = repo / rel
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text(json.dumps(self.runner_manifest(), indent=2))
         result = mw.check(repo, self.tmp / "none")
         self.assertTrue(result["ok"], result["problems"])
-        self.assertEqual(result["files_scanned"], 5)  # manifests are scanned, not skipped
+        self.assertEqual(result["files_scanned"], 7)  # manifests are scanned, not skipped
+
+    def test_retained_inventory_diagnostic_is_annotation_but_other_ids_still_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        path = repo / "jobs/_attempts/portfolio-repair-check/123-1/tests/mountweazel.log"
+        path.parent.mkdir(parents=True)
+        report = [{"where": ".job-cache/runner-prior/123-1/portfolio-repair-check/RUNNER_INPUTS.json",
+                   "problem": "batch item id MW-C1-01"}]
+        text = "AssertionError: False is not true : " + repr(report) + "\n"
+        path.write_text(text)
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"])
+        for extra in ("actual item MW-C1-01\n", "SEEDED:EO:1\n"):
+            path.write_text(text + extra)
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        path.write_text(text)
+        view = mw._runner_diagnostic_for_item_scan(path, repo)
+        self.assertTrue(mw.scan_file(path, [b"AssertionError"], set(), item_id_data=view))
+        report[0]["where"] = "research/readiness/claims/real.jsonl"
+        path.write_text("AssertionError: False is not true : " + repr(report) + "\n")
+        self.assertIsNone(mw._runner_diagnostic_for_item_scan(path, repo))
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
 
     def test_runner_manifest_exception_rejects_invalid_or_duplicate_structure(self):
         repo = self.make_repo(self.tmp / "none")

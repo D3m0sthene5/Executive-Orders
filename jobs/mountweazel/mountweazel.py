@@ -17,6 +17,7 @@ live only in jobs/mountweazel/fixtures/ with SEEDED=true.  `check` proves the ru
 Standard library only.  Never edits claims, statuses, the codebook, ledgers or reviews.
 """
 import argparse
+import ast
 import copy
 import csv
 import hashlib
@@ -1064,6 +1065,18 @@ def _base_object(repo, base):
         return None
 
 
+def _runner_inventory_location(rel):
+    for pattern in (
+            r"oversized/runner-freshness/([A-Za-z0-9][A-Za-z0-9._-]*)-inputs\.json",
+            r"jobs/([A-Za-z0-9][A-Za-z0-9._-]*)/output/RUNNER_INPUTS\.json",
+            r"\.job-cache/runner-prior/[A-Za-z0-9._-]+/([A-Za-z0-9][A-Za-z0-9._-]*)/RUNNER_INPUTS\.json",
+            r"jobs/_attempts/([A-Za-z0-9][A-Za-z0-9._-]*)/[A-Za-z0-9._-]+/RUNNER_INPUTS\.json"):
+        match = re.fullmatch(pattern, rel)
+        if match:
+            return match
+    return None
+
+
 def _runner_inventory_for_item_scan(path, repo):
     """Remove only fixture filename keys from a validated runner input inventory.
 
@@ -1075,9 +1088,7 @@ def _runner_inventory_for_item_scan(path, repo):
         rel = path.relative_to(repo).as_posix()
     except ValueError:
         return None
-    artifact = re.fullmatch(r"oversized/runner-freshness/([A-Za-z0-9][A-Za-z0-9._-]*)-inputs\.json", rel)
-    published = re.fullmatch(r"jobs/([A-Za-z0-9][A-Za-z0-9._-]*)/output/RUNNER_INPUTS\.json", rel)
-    location = artifact or published
+    location = _runner_inventory_location(rel)
     if not location:
         return None
 
@@ -1124,6 +1135,42 @@ def _runner_inventory_for_item_scan(path, repo):
         manifest["inputs"] = {k: v for k, v in inputs.items() if not fixture_path.fullmatch(k)}
         return canonical(manifest).encode("utf-8")
     except (OSError, UnicodeError, ValueError, TypeError):
+        return None
+
+
+def _runner_diagnostic_for_item_scan(path, repo):
+    """Recognize an archived unittest report of an inventory false positive.
+
+    Only the exact scanner diagnostic is an annotation. Every raw byte still
+    undergoes planted-text, seeded-marker and exact-item checks.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+        if not re.fullmatch(
+                r"(?:jobs/_attempts/portfolio-repair-check/[A-Za-z0-9._-]+"
+                r"|jobs/portfolio-repair-check/output"
+                r"|\.job-cache/runner-prior/[A-Za-z0-9._-]+/portfolio-repair-check)"
+                r"/tests/mountweazel\.log", rel):
+            return None
+        lines, changed = [], False
+        prefix = "AssertionError: False is not true : "
+        for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+            if line.startswith(prefix):
+                report = ast.literal_eval(line[len(prefix):].strip())
+                if (not isinstance(report, list) or not report
+                        or not all(isinstance(row, dict) and set(row) == {"where", "problem"}
+                                   and isinstance(row["where"], str)
+                                   and _runner_inventory_location(row["where"])
+                                   and isinstance(row["problem"], str)
+                                   and re.fullmatch(r"batch item id MW-[A-Z]\d+-\d{2}", row["problem"])
+                                   for row in report)):
+                    return None
+                line = prefix + repr([{**row, "problem": "batch item id [inventory diagnostic]"}
+                                      for row in report]) + "\n"
+                changed = True
+            lines.append(line)
+        return "".join(lines).encode("utf-8") if changed else None
+    except (OSError, UnicodeError, ValueError, SyntaxError, TypeError):
         return None
 
 
@@ -1227,8 +1274,11 @@ def check(repo, fixtures_dir):
             scanned += 1
             rel = str(f.relative_to(repo)) if inside(f, repo) else str(f)
             allowed = rel in ALLOWED_DOCS or rel.startswith(ALLOWED_DOC_PREFIXES)
+            item_view = _runner_inventory_for_item_scan(f, repo)
+            if item_view is None:
+                item_view = _runner_diagnostic_for_item_scan(f, repo)
             hits = scan_file(f, needles, plant_hashes, markers=not allowed,
-                             item_id_data=_runner_inventory_for_item_scan(f, repo))
+                             item_id_data=item_view)
             for hit in hits:
                 problems.append({"where": str(f.relative_to(repo)) if inside(f, repo) else str(f), "problem": hit})
     mw_out = repo / "jobs" / "mountweazel" / "output"

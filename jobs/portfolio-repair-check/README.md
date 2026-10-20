@@ -53,6 +53,13 @@ historical one-plant observation. The command must exit 5 as `untested` before
 selecting a batch. This is an execution regression using a reconstructed
 historical contract, not a new prospective experiment.
 
+The old observation pins an earlier forecast-ledger generation. Its exact
+snapshot is retained under `historical-gate/`, with the original commit and
+SHA-256 documented. Replay copies the verified historical evidence to a
+temporary directory outside the checkout and records how it differs from the
+live ledger. The merged ledger and frozen observation remain unchanged; an
+unknown changed input or a damaged historical snapshot still fails validation.
+
 `VALIDATION.json` records source, packet, canonical claim, AI review/hold,
 mechanical checker and integrated tracker stages, with consumed-file hashes.
 It records no newly created claim, established legal ending or independent

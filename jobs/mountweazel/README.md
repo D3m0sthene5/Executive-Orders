@@ -131,3 +131,12 @@ wrong premises. They test correspondence to the approved method and require inve
 encode an automatic performance-ends-everything rule. Existing isolated fixture protections remain in force.
 The historical MW-C2 manual correction (Opus with sources 7/10, D6 0/3) is appended downstream in Llull,
 with source hashes and the earlier mechanical 8/10 preserved. It is not a new reviewer experiment.
+# Transactional runner archives
+
+The scanner recognizes validated runner input inventories in published output,
+retained failed attempts and temporary prior-generation backups. Only fixture
+filename keys in a structurally valid, digest-checked inventory are annotations.
+An archived portfolio unittest log may also quote the exact inventory scanner
+diagnostic; other item identifiers in that log still fail. Raw seeded markers,
+planted wording and exact payload copies continue to be checked in every file.
+

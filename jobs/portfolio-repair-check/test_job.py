@@ -74,6 +74,44 @@ class FixtureIsolation(unittest.TestCase):
             self.assertTrue(receipt["passed"])
 
 
+class HistoricalGateEvidence(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.repo = Path(self.tmp.name) / "checkout"
+        self.current = self.repo / job.HISTORICAL_LEDGER
+        self.current.parent.mkdir(parents=True)
+        self.current.write_text("new merged ledger; preserve this generation\n")
+        self.snapshot = self.repo / job.HISTORICAL_LEDGER_COPY
+        self.snapshot.parent.mkdir(parents=True)
+        self.historical = (job.HERE / "historical-gate/forecasts.jsonl").read_bytes()
+        self.snapshot.write_bytes(self.historical)
+        self.observation = {"evidence": [{"path": job.HISTORICAL_LEDGER,
+                                         "sha256": job.HISTORICAL_LEDGER_SHA256}]}
+        self.destination = Path(self.tmp.name) / "replay"
+
+    def test_merged_ledger_replays_exact_history_without_rewriting_current(self):
+        inputs = job.Inputs(self.repo)
+        before = self.current.read_bytes()
+        records = job.historical_gate_evidence(inputs, self.observation, self.destination)
+        self.assertEqual((self.destination / job.HISTORICAL_LEDGER).read_bytes(), self.historical)
+        self.assertEqual(self.current.read_bytes(), before)
+        self.assertFalse(records[0]["current_matches_historical"])
+        self.assertEqual(records[0]["snapshot_commit"], job.HISTORICAL_LEDGER_COMMIT)
+        self.assertEqual(set(inputs.pins), {job.HISTORICAL_LEDGER, job.HISTORICAL_LEDGER_COPY})
+        inputs.unchanged()
+
+    def test_tampered_snapshot_and_unregistered_changed_evidence_fail_closed(self):
+        self.snapshot.write_text("tampered")
+        with self.assertRaisesRegex(ValueError, "historical snapshot hash mismatch"):
+            job.historical_gate_evidence(job.Inputs(self.repo), self.observation, self.destination)
+        other = self.repo / "other.json"
+        other.write_text("changed")
+        with self.assertRaisesRegex(ValueError, "without a pinned snapshot"):
+            job.historical_gate_evidence(job.Inputs(self.repo),
+                {"evidence": [{"path": "other.json", "sha256": "0" * 64}]}, self.destination)
+
+
 class TrackerFreshness(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
