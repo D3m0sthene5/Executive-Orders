@@ -1,12 +1,17 @@
 # ProQuest Pre-1937 Orders
 
-**Resumption has reached the first Save on the other computer; the download destination still needs confirmation.** The owner said “go” at 2026-10-19 19:53 ET. The original EO 29 record initially displayed a login form, then opened successfully. Its matching two-page PDF rendered, and Save completed at 19:58:49 ET. The browser did not return a downloaded-file path, so that computer's folder and actual saved file remain unverified.
+**The final destination for the actual PDFs is `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in the GitHub repository `D3m0sthene5/Executive-Orders`. Zero actual PDFs have been committed so far.** The owner said “go” at 2026-10-19 19:53 ET. The original EO 29 record initially displayed a login form, then opened successfully. Its matching two-page PDF rendered, and Save completed at 19:58:49 ET. The browser did not return a downloaded-file path, so that Save remains unverified.
 
 Repository: `D3m0sthene5/Executive-Orders`  
 Handoff branch: `proquest-download-handoff-20261019`  
+Pull request: [#38](https://github.com/D3m0sthene5/Executive-Orders/pull/38)  
 Next untouched order: **EO 99**
 
-The owner should confirm Chrome saves into **Downloads / ProQuest Pre-1937 Orders** on this computer. A subsequent **ready** continues the already-authorized queue. ProQuest access is working; no new sign-in request is currently needed. See [`_resume/session_events.jsonl`](_resume/session_events.jsonl) for the resume observation and [`_resume/EO29_viewer.png`](_resume/EO29_viewer.png) for the rendered viewer. The screenshot establishes rendering, not file presence.
+Continuation is already authorized. A local Downloads folder is an optional intermediate; confirming or configuring it is not a prerequisite to continuing this task. ProQuest access is working; no new sign-in request is currently needed. See [`_resume/session_events.jsonl`](_resume/session_events.jsonl) for the resume observation and [`_resume/EO29_viewer.png`](_resume/EO29_viewer.png) for the rendered viewer. The screenshot establishes rendering, not file presence or GitHub upload.
+
+## Actual PDF transfer still pending
+
+The owner clarified that the PDFs must go to GitHub. The latest attempt could display EO 29 but did not return its file bytes: the browser asset exporter does not support PDFs, and the documented embedded-file download timed out after 45 seconds. Do not request Downloads configuration again. Use a supported file transfer or the repository upload page to acquire the actual bytes. **2,734 supplied linked orders still need repository PDFs**, with EO 28A recorded separately as unavailable. The smaller 2,722 figure is only the untouched browser-action queue; the 12 orders with Save or screenshot evidence still need GitHub transfer.
 
 ## Current checkpoint
 
@@ -23,13 +28,13 @@ The owner should confirm Chrome saves into **Downloads / ProQuest Pre-1937 Order
 
 The original computer is expected to hold **13 PDF files for 11 unique orders**, including two additional copies of EO 4. The new computer now has one additional completed Save request for EO29. Across both computers there are **14 expected filenames covering 12 orders**, with actual file evidence still required for the nine Save requests. These filenames and their different evidence levels are listed in [`_resume/expected_files.json`](_resume/expected_files.json). This is an expected-file manifest, not a completed upload inventory. The original-computer folder has not been exhaustively inventoried.
 
-The authorized upload was attempted through GitHub's file chooser. Chrome reported that the ChatGPT extension's **Allow access to file URLs** setting is disabled, so no PDF transfer was completed. After that setting is enabled, finish the upload and verify the repository filenames, sizes, and blob hashes before changing the upload count. Preserve the actual PDF files and existing copies; do not replace them with placeholder files.
+The authorized upload was attempted through GitHub's file chooser. Chrome reported that the ChatGPT extension's **Allow access to file URLs** setting is disabled, so no PDF transfer was completed. That setting is required for retrying this particular local-file chooser route. Complete PDF transfer through an available supported route and verify the repository filenames, sizes, and blob hashes before changing the upload count. Preserve the actual PDF files and existing copies; do not replace them with placeholder files.
 
 ## Continue on another computer
 
-Open the same ProQuest download conversation on the other computer and say **“go.”** The resuming assistant should follow [`RESUME.md`](RESUME.md), read the current audit, and continue the queue after checking the connected computer's browser and download destination.
+Open the same ProQuest download conversation on the other computer and say **“go.”** The owner has already done so for the current resumption. The resuming assistant should follow [`RESUME.md`](RESUME.md), read the current audit, and continue the supplied-link queue and actual PDF transfer to GitHub.
 
-The destination remains **Downloads / ProQuest Pre-1937 Orders** on the computer doing the downloading. Browser connection, ProQuest sign-in, and Chrome's download-folder setting belong to that computer. They are not carried in this repository. PDFs already confirmed in the repository can be restored to the new destination without downloading them again from ProQuest.
+The final destination is this repository folder on `proquest-download-handoff-20261019` / PR #38. Local storage, including Downloads, may be used as an intermediate if the available transfer method needs it. Browser connection and ProQuest sign-in belong to the connected computer and are not carried in the repository.
 
 If the original PDF transfer is still pending, preserve that as outstanding work. Reconcile any accessible copies before retrying the nine uncertain Save results. A future “go” applies to this ProQuest queue; it does not restart the separately paused lifecycle-research assignment documented in older handoff notes.
 
@@ -64,7 +69,7 @@ The source tool marks rows done when a PDF or record link is clicked. Its browse
 | `link_unavailable` | The supplied link was unavailable, or no link was supplied |
 | `error_unresolved` | An attempted step needs further attention; nonterminal errors remain retryable |
 
-The action queue excludes handled Save requests to avoid blindly saving the same order again. That exclusion does not make those files verified. `verified_repository` orders also remain excluded when the new Downloads folder is empty; restore their held PDFs from the repository. File checks do not establish archival acceptance or the historical correctness of document contents.
+The action queue excludes handled Save requests to avoid blindly saving the same order again. That exclusion does not make those files verified or complete their GitHub transfer. `verified_repository` orders remain excluded regardless of what is present in an optional local intermediate folder. File checks do not establish archival acceptance or the historical correctness of document contents.
 
 ## Offline helper
 
@@ -73,17 +78,17 @@ From this folder, run:
 ```sh
 python scripts/proquest_progress.py status
 python scripts/proquest_progress.py next --limit 10
-python scripts/proquest_progress.py inventory --folder "PATH_TO_DOWNLOADS/ProQuest Pre-1937 Orders"
+python scripts/proquest_progress.py inventory --folder "PATH_TO_LOCAL_PDF_FOLDER"
 ```
 
 Use `py` instead of `python` on Windows if needed. The helper uses only the Python standard library. Its defaults resolve from its own folder, so the working directory can differ.
 
 `inventory` reads only the explicit folder and changes no progress. It recognizes the observed optional `PT1-` prefix and Chrome's duplicate filename suffixes. It calculates SHA-256 and size, checks `%PDF-`, and matches the filename's year and order number against the original rows. These checks do not validate every PDF page.
 
-After reviewing actual local files, append their evidence with:
+If local files are used as an intermediate, append their evidence after reviewing them:
 
 ```sh
-python scripts/proquest_progress.py reconcile --folder "PATH_TO_DOWNLOADS/ProQuest Pre-1937 Orders"
+python scripts/proquest_progress.py reconcile --folder "PATH_TO_LOCAL_PDF_FOLDER"
 ```
 
 Repeated reconciliation of identical files does not duplicate audit entries. Do not run this against the assistant's scratch filesystem and interpret an empty result as proof about the user's computer.

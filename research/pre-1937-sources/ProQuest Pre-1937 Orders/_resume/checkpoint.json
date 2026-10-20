@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "ProQuest supplied-link PDF acquisition",
-  "status": "waiting_for_download_destination_confirmation",
+  "status": "pdf_transfer_pending_browser_file_access",
   "paused_at": "2026-10-19T22:56:46.979516+00:00",
   "prepared_at": "2026-10-19T23:12:59.736397+00:00",
   "browser_run_active": false,
@@ -51,9 +51,11 @@
   "interval_seconds": 12,
   "next_unattempted_id": "EO:99",
   "destination": {
-    "parent": "Downloads on the connected computer",
-    "folder_name": "ProQuest Pre-1937 Orders",
-    "resolve_absolute_path_on_each_computer": true
+    "service": "GitHub",
+    "repository": "D3m0sthene5/Executive-Orders",
+    "branch": "proquest-download-handoff-20261019",
+    "folder": "research/pre-1937-sources/ProQuest Pre-1937 Orders",
+    "local_downloads_role": "Optional intermediate only; no folder setup or confirmation prerequisite"
   },
   "original_computer_evidence": {
     "browser": "Chrome",
@@ -82,19 +84,21 @@
   "progress_log": "_resume/progress.jsonl",
   "expected_file_manifest": "_resume/expected_files.json",
   "pdf_transfer": {
-    "state": "blocked_browser_extension_setting",
+    "state": "pending_actual_pdf_bytes",
     "repository_pdf_files_confirmed": 0,
     "expected_pdf_files": 14,
     "expected_unique_orders": 12,
-    "reason": "Browser file chooser reported that Allow access to file URLs is disabled for the ChatGPT extension in Chrome. No PDF upload was completed.",
+    "reason": "GitHub is the final PDF destination. On the new computer, the browser displayed EO29 but the Save download event returned no path, pageAssets.bundle rejected the PDF kind, and embed.downloadMedia timed out after 45000ms. No PDF bytes were made available for a GitHub commit. The earlier original-computer file-chooser extension-setting error remains historical evidence only.",
     "original_computer_expected_files": 13,
     "new_computer_expected_files": 1
   },
   "resume_rules": [
-    "Wait for the owner to say go before new ProQuest navigation.",
-    "Read the current audit and reconcile held PDFs before retrying uncertain saves.",
+    "The owner's go already authorizes continued ProQuest acquisition and actual PDF upload to GitHub; no further ready or Downloads-folder confirmation is required.",
+    "The final destination is the repository folder. Use local storage only as an optional intermediate when a supported transfer needs it.",
+    "For repository completion, exclude only confirmed repository PDFs and latest terminal unavailable rows; Save requests and screenshot evidence still require transfer.",
+    "Read the current audit and reconcile any accessible PDFs before repeating uncertain saves.",
     "Use only exact links supplied in the original HTML and the visible PDF controls reached through those records.",
-    "New-computer browser connection, sign-in and download destination must be observed; they are not contained in this package.",
+    "Use the current connected browser and observe any real sign-in blocker; credentials are not stored in this package.",
     "Keep the separate October 18 lifecycle-research task paused."
   ],
   "scientific_status": {
@@ -123,5 +127,34 @@
     "next_queue_id": "EO:99",
     "viewer_screenshot": "_resume/EO29_viewer.png",
     "screenshot_meaning": "Shows the document rendered in the viewer; does not prove a saved PDF file."
+  },
+  "updated_at": "2026-10-20T00:45:21.888644+00:00",
+  "repository_target": {
+    "linked_orders_total": 2735,
+    "verified_repository_orders": 0,
+    "linked_unavailable_orders": 1,
+    "eligible_orders_pending_repository": 2734,
+    "unattempted_browser_action_rows": 2722,
+    "pending_includes_screenshot_and_save_only_orders": true
+  },
+  "latest_event": {
+    "schema_version": 1,
+    "event": "github_destination_correction",
+    "observed_at": "2026-10-20T00:45:21.888644+00:00",
+    "user_correction": "wait what?? i thought it was going to the github>>!!",
+    "final_destination": "research/pre-1937-sources/ProQuest Pre-1937 Orders",
+    "repository": "D3m0sthene5/Executive-Orders",
+    "branch": "proquest-download-handoff-20261019",
+    "downloads_confirmation_required": false,
+    "continuation_authorized": true,
+    "repository_pdf_files_confirmed": 0,
+    "eligible_orders_pending_repository": 2734,
+    "browser_transfer_observations": [
+      "EO29 PDF still rendered, two pages.",
+      "pageAssets identified the PDF but bundle returned unsupported asset kinds.",
+      "embed.downloadMedia timed out after 45000ms and returned no file path."
+    ],
+    "outcome": "pending_actual_pdf_bytes",
+    "next_step": "Transfer actual PDFs through the prepared GitHub upload page or an available supported file transfer. Keep zero repository PDFs until committed files are verified."
   }
 }

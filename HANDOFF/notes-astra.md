@@ -1,3 +1,11 @@
+## 2026-10-19 20:45 ET: GitHub is the final PDF destination; prior Downloads prerequisite withdrawn
+
+- **Correction:** The owner expected the actual PDFs in GitHub. The previous request to confirm a new Downloads folder was an assistant mistake and is superseded. Continue under the existing “go” authorization; no further “ready” or Downloads setup is required.
+- **Destination:** `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in `D3m0sthene5/Executive-Orders`, branch `proquest-download-handoff-20261019`, PR #38. Local storage is optional intermediate storage.
+- **Actual state:** Zero PDF files committed. The source links, audit, and resume package are committed. Of 2,735 linked orders, 2,734 still need repository PDF evidence; EO 28A is unavailable. The separate browser-action queue has 2,722 untouched rows beginning EO 99. All 12 orders with prior Save/screenshot evidence still need actual transfer.
+- **Transfer attempt:** EO 29 remains rendered. The documented page asset bundle rejected the PDF kind; the documented embedded-file download timed out after 45 seconds without returning a path. The original Windows file-chooser setting error is historical and must not be assumed to describe the new Mac. No additional PDF or Save success is claimed.
+- **Next:** Transfer actual PDF files through the GitHub upload page or another available supported file-transfer capability. Verify committed names, sizes, and blob hashes before recording verified_repository. Exclude only actual repository-confirmed or terminal unavailable orders from the repository target. Keep the older lifecycle task paused.
+
 ## 2026-10-19 20:34 ET: First new-computer ProQuest Save; destination confirmation needed
 
 - **Done:** After the owner's “go,” connected to the other computer's Chrome browser and followed the exact supplied EO 29 record. An initial login form later resolved. The matching two-page viewer rendered; Save completed at 2026-10-19T23:58:49.334Z. Appended saved_requested evidence to the order audit and saved a viewer screenshot. Actual downloaded file presence remains unverified because the browser's download-event report timed out.

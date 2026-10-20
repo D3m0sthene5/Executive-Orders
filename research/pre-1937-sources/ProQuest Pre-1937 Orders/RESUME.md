@@ -4,9 +4,13 @@
 
 The owner said **go** at 2026-10-19 19:53 ET. The new computer's Chrome browser connected. The exact supplied EO 29 record initially displayed a sign-in form, then became accessible. Its matching two-page PDF rendered and Save completed at 19:58:49 ET. The browser's download event timed out; this does not prove the Save failed. Preserve the saved_requested audit event and inspect actual file evidence before repeating Save.
 
-**The remaining prerequisite is confirmation of this computer's download destination:** Downloads/ProQuest Pre-1937 Orders, with a matching EO 29 PDF actually present if the Save succeeded. No tool for reading the user's local Downloads directory or Chrome download settings is exposed in this session. Native computer APIs are disabled. Ask the owner for this one configuration/file check; a subsequent **ready** resumes the already-authorized queue at **EO 99**, with **2,722** untouched linked rows. ProQuest access is already working.
+**The final destination for the actual PDFs is `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in `D3m0sthene5/Executive-Orders`, on branch `proquest-download-handoff-20261019` / PR #38. Zero actual PDFs have been committed so far.** A local Downloads folder is an optional intermediate. Do not require the owner to confirm or configure it before continuing. The owner's “go” already authorizes continuation at **EO 99**, with **2,722** untouched linked rows, and transfer of the actual PDFs to GitHub. ProQuest access is already working.
 
 There are no running background downloads. The earlier PDF upload remains pending. A future resume in this conversation concerns only this ProQuest task; keep the separate October 18 lifecycle-research task paused.
+
+## Actual PDF transfer still pending
+
+The owner clarified that the PDFs must go to GitHub. The latest attempt could display EO 29 but did not return its file bytes: the browser asset exporter does not support PDFs, and the documented embedded-file download timed out after 45 seconds. Do not request Downloads configuration again. Use a supported file transfer or the repository upload page to acquire the actual bytes. **2,734 supplied linked orders still need repository PDFs**, with EO 28A recorded separately as unavailable. The smaller 2,722 figure is only the untouched browser-action queue; the 12 orders with Save or screenshot evidence still need GitHub transfer.
 
 ## 1. Load the preserved state
 
@@ -18,21 +22,21 @@ Read `HANDOFF/README.md` and the newest agent notes before repository writes. Pr
 
 ## 2. Finish transferring the PDFs already held
 
-At this checkpoint, **zero PDFs have been confirmed in the new repository folder**. The expected 13 filenames covering 11 unique orders are in `_resume/expected_files.json`. Five filenames were visible in the original screenshot: three EO 4 copies, EO 7, and EO 12. Eight further filenames derive from matching rendered viewers whose Save commands completed.
+At this checkpoint, **zero PDFs have been confirmed in the repository destination**. The expected 14 filenames covering 12 unique orders are in `_resume/expected_files.json`. Five filenames were visible in the original screenshot: three EO 4 copies, EO 7, and EO 12. Nine further filenames derive from matching rendered viewers whose Save commands completed, including EO 29 on the new computer.
 
-The authorized GitHub upload stopped at `fileChooser.setFiles` because Chrome requires **Allow access to file URLs** for the ChatGPT extension. This is an observed browser setting requirement. Enable it on the computer holding the files before retrying the documented file chooser. The original upload page was opened at the handoff branch's `research/pre-1937-sources/ProQuest Pre-1937 Orders` folder.
+The authorized GitHub upload stopped at `fileChooser.setFiles` because Chrome requires **Allow access to file URLs** for the ChatGPT extension. This observed setting requirement applies to retrying that local-file chooser route. Use an available supported transfer route to place the actual PDF bytes in GitHub. The original upload page was opened at the handoff branch's `research/pre-1937-sources/ProQuest Pre-1937 Orders` folder.
 
-Use the GitHub connector for repository text, metadata, branches, and commits. Use the connected local browser's documented file chooser for actual PDFs that are on the user's computer. Scratch files do not exist on that computer. Inspect current UI state and the actual destination before acting; do not reuse old tab IDs or assume an upload succeeded.
+Use the GitHub connector for repository text, metadata, branches, and commits. If transferring PDFs held on the user's computer, the connected local browser's documented file chooser is one route. Scratch files do not exist on that computer. Inspect current UI state and the GitHub destination before acting; do not reuse old tab IDs or assume an upload succeeded.
 
 After uploading, verify GitHub's actual PDF names, byte sizes, and blob hashes; obtain SHA-256 and PDF-signature evidence when file bytes are available. Update the manifest, checkpoint, README counts, and audit from those observations. Use `verified_repository` events only for confirmed uploaded files. Preserve duplicate copies in the requested folder; count unique orders separately.
 
-If the original folder is inaccessible from the second computer, retain this transfer as unfinished. Reconcile any copied or restored files first, and preserve the uncertain eight Save results rather than calling them completed uploads. The untouched queue can continue after “go”; pending transfer does not alter the original source links or erase prior evidence.
+If the original folder is inaccessible from the second computer, retain this transfer as unfinished. Reconcile any accessible copies and preserve the nine uncertain Save results rather than calling them completed uploads. Continue the untouched queue and PDF transfer under the owner's existing “go” authorization; pending transfer does not alter the original source links or erase prior evidence.
 
-## 3. Establish the new computer's destination and browser
+## 3. Use the connected browser and GitHub destination
 
-The requested destination is the actual folder named **ProQuest Pre-1937 Orders** inside that computer's Downloads folder. Resolve its real path; do not reuse the original machine's username or tab IDs. Restore repository-confirmed PDFs there if they are missing locally, then inventory and reconcile any accessible files.
+The requested final destination is the GitHub folder named above. Local storage can serve as an intermediate when needed by the available transfer method. Resolve an actual local path only for a concrete operation that uses local files; do not reuse another computer's username or tab IDs.
 
-Use the Browser plugin's `control-browser` skill and its current documented API. Select the newly connected computer's browser. Confirm Chrome's download destination is the requested folder and that Save will not open a per-file prompt. The original owner had already set those preferences on the first computer; they must be checked again on the second.
+Use the Browser plugin's `control-browser` skill and its current documented API. Select the newly connected computer's browser. Continue the exact supplied record links and their visible PDF controls. A local Downloads-folder confirmation is not a prerequisite.
 
 ProQuest sign-in and any library session remain local to the browser. If an observed sign-in wall blocks the requested record, ask the owner to sign in there and continue when ready. Do not copy authentication data or assume that a repository checkout restores sign-in.
 
