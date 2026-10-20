@@ -1,0 +1,52 @@
+{
+  "schema": "eo-repair-session-checkpoint/v1",
+  "at": "2026-10-20T22:41:08.781Z",
+  "repository": "D3m0sthene5/Executive-Orders",
+  "repair_branch": "codex/repair-integration-20261020",
+  "code_commit": "9f405c462741e19a80d1adb4dfa8eb3dcc5519cc",
+  "draft_pr": 46,
+  "main_last_observed": "ed19a06039278c10e5a3ebddccf19d2bd02ac3a2",
+  "active_pipeline": {
+    "run_id": 39507868600,
+    "job_id": 118921243160,
+    "publication_pending": true
+  },
+  "passed_latest_code_checks": {
+    "push_roads": 39507868793,
+    "pr_roads": 39507890530,
+    "valla": 39507890696
+  },
+  "previous_complete_validated_output": {
+    "commit": "e643172cb7dc9dd7cd1c8c8eaef369ebb71894bd",
+    "run_id": 39503891853,
+    "portfolio_tests": 445,
+    "all_six_claims_mechanically_passed": true,
+    "ten_sources_verified": true,
+    "five_disputed_claims_still_blocked": true,
+    "ready_snapshot": 251
+  },
+  "late_production": {
+    "head": "874f970f5564b81135e6ff939ff77b56f8972a5a",
+    "commits": 20,
+    "claims": 27,
+    "all_existing_decided_cases": true,
+    "all_structural_gates_passed": true,
+    "parallel_run": 39502858373,
+    "parallel_job": 118904416578
+  },
+  "preserved_boundaries": [
+    "No provisional status, census or codebook edits.",
+    "All existing source-audit holds and frozen experiments preserved.",
+    "No owner legal-method ruling or independent human certification adopted.",
+    "Keep both new active runs intact; do not push changes to the active repair branch until publication."
+  ],
+  "next": [
+    "Wait for combined pipeline 39507868600 to finish and inspect every successful/failed receipt and its output commit.",
+    "Refresh all original PR heads; PR40 has a concurrent production run that may publish generated outputs later. Preserve any later head/history and inspect source differences before final integration.",
+    "Read LATE_PRODUCTION_RECONCILIATION.json; 88 forecast/79 outcome IDs are unique and previous ledger bytes remain prefixes.",
+    "Record final evidence/handoff, mark #46 ready, merge with complete Git history under existing owner authorization, and verify #38/#40/#42/#43/#44/#45/#46/#47 merged states.",
+    "GitHub rejected own-PR approval with HTTP422. Record validation; never impersonate an independent reviewer."
+  ],
+  "local_warning": "Local checkout HEAD ec131216 has many stale generated-output deletions. Never git add -A. Use explicit paths or GitHub trees based on the latest published head.",
+  "diagnostic_branch_is_not_a_repair_branch": true
+}
