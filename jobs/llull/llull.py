@@ -1211,7 +1211,23 @@ def registration_status(f, L):
         rel = str(L.forecasts.resolve().relative_to(REPO.resolve()))
     except ValueError:
         return "unchecked", "ledger is outside the repository"
-    fc_commit = first_commit("-G", r'"forecast_id"[[:space:]]*:[[:space:]]*"' + re.escape(f["forecast_id"]) + r'"', "--", rel) if (runs or L.outcomes.exists()) else ""
+    # A forecast renumbered after a merge collision is proved by the commit that first registered it
+    # under its old id, compared with that original record.
+    orig_id = f.get("renumbered_from")
+    want = {k: v for k, v in f.items() if k != "renumbered_from"}
+    if orig_id:
+        want["forecast_id"] = orig_id
+    pattern = r'"forecast_id"[[:space:]]*:[[:space:]]*"' + re.escape(want["forecast_id"]) + r'"'
+    fc_commit = ""
+    if runs or L.outcomes.exists():
+        if not orig_id:
+            fc_commit = first_commit("-G", pattern, "--", rel)
+        else:
+            for c in (git("log", "--reverse", "--format=%H", "-G", pattern, "--", rel) or "").split("\n"):
+                text = c and git("show", c + ":" + rel)
+                if text and any(line.strip() and json.loads(line) == want for line in text.splitlines()):
+                    fc_commit = c
+                    break
     if fc_commit:
         # the file that resolves the forecast first appeared in the very commit that registered it
         for o in read_jsonl(L.outcomes):
@@ -1231,8 +1247,8 @@ def registration_status(f, L):
         first_records = [json.loads(line) for line in committed_text.splitlines() if line.strip()]
     except (ValueError, TypeError):
         return "unchecked", "first registered forecast record could not be parsed"
-    if not any(record == f for record in first_records if isinstance(record, dict)
-               and record.get("forecast_id") == f["forecast_id"]):
+    if not any(record == want for record in first_records if isinstance(record, dict)
+               and record.get("forecast_id") == want["forecast_id"]):
         return "unchecked", "current forecast differs from its first registered record; revision timing is unverified"
     for d in runs:
         run_commit = first_commit("--", d)
