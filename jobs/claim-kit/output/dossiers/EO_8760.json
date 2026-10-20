@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8760>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 220,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8760#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 221,
     "id": "CHAIN:EO:8760",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8760"
@@ -56,6 +86,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8760>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8760>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8760 of May 27, 1941.': number and date match the target's signing date. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8760>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Own term: 'This order shall continue in effect until the Congress or the President declares that the present emergency has ceased to exist.' No held instrument declares the 1939/1941 emergencies ended before 1947-05-01 (the cessation-of-hostilities proclamation of 1946-12-31, Proc. 2714, is not such a declaration and is not held in the FR corpus); the national emergencies were terminated only in 1952. Searched held FR texts 1941-1947 for EO 8760: none other than EO 9830. Dossier chain empty. No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end in held sources; the own-term condition did not occur before 1947-05-01 (cessation-of-hostilities proclamation 1946-12-31 is not an emergency-ended declaration; emergencies ended 1952). No later instrument found superseding it.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number and for amendments of the specific rule/schedule paragraph the target set; dossier missing line (target provision not located) confirmed; EO 9830 searched for savings. Read held EO_8760.txt (own term: continues \"until the Congress or the President declares that the present emergency has ceased to exist\"). Searched 1941-1947 EOs for the target number and for its operative wording (written assent / refuse examination) and for emergency-ceased declarations: none.",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8760",
+      "target_naming": {
+        "char_end": 91367,
+        "char_start": 91342,
+        "sha256": "310b2df1bf5b3c774caf297a57ca63d0771457849c2405c1b5f967e04d47376c",
+        "text": "No. 8760 of May 27, 1941."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8760>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8760>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8760#whole": {
       "char_end": 4037,
       "char_start": 2908,
@@ -276,7 +402,7 @@
       "text": "By virtue of the authority vested in me \nby the Civil Service Act (22 Stat. 403), \nand by section 1753 of the Revised Stat­\nutes of the United States (U.S.C., title \n5, sec. 631), and in view of the present \nemergency conditions, the Civil Service \nCommission is hereby directed to refuse \nexamination to any person who is, or who \nhas been within three months of the date \nof the examination, employed in the \ncivilian executive branch of the Federal \nGovernment, or to certify any such per-, \nson who is on the eligible register of the \nCommission, unless such person submits, \nthe written assent of the department or \noffice in which he is or has been employed' \nto his taking such examination or to his \nbeing so certified."
     }
   },
-  "fingerprint": "f43d63e6e4eb20201a3dce132903325c8f6808dec78d6687e9c5172f1c57c7cd",
+  "fingerprint": "bb5a461306672900f9913502d048234b5496448a56e1347868c95594131ea047",
   "instrument_id": "EO:8760",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -318,8 +444,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8760",

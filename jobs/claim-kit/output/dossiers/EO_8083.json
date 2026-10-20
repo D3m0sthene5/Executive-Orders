@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8083>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 220,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8083#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 221,
     "id": "CHAIN:EO:8083",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8083"
@@ -56,6 +86,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8083>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8083>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8083 of April 10, 1939.': number and date match the target's signing date. Dossier clause inventory starts mid-sentence at offset 1634, omitting the opening Retirement Act extension sentence; the inventory needs correction before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8083>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Searched held FR texts 1939-1947 for EO 8083 and for later amendment of subdivision (d) of section 3 of Civil Service Rule II: none found (EO 8894 rewrote section 6, not section 3; EO 8533 and EO 9004 rewrote Schedules A and B, not Rule II sec. 3(d)). Dossier chain empty. Own terms: effective May 1, 1939, no end term. Unheld lead: the Civil Service Retirement Act amendments of January 24, 1942 (56 Stat. 13) broadened statutory coverage and may have overtaken the Retirement Act extension clause; not held, not decided. No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources. Unheld statutory lead (Retirement Act amendments of 1942-01-24, 56 Stat. 13) disclosed by producer; a statutory overtaking is not an express end and is not decided here. Dossier inventory defect (starts at 1634) must be corrected before any claim.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number and for amendments of the specific rule/schedule paragraph the target set; dossier missing line (target provision not located) confirmed; EO 9830 searched for savings. Read held EO_8083.txt (effective May 1, 1939; extends Retirement Act; amends Rule II sec. 3(d); supersedes EO 3375). Searched 1939-1947 EOs for \"section 3 of Civil Service Rule II\": EO 8358 and EO 8730 only cite sec. 3 (laborer appointments), no amendment; EO 8894 rewrote Rule II sec. 6 only (full text read).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8083",
+      "target_naming": {
+        "char_end": 91000,
+        "char_start": 90973,
+        "sha256": "c10afd02f41e164d7c131b782db5fa517bd142f1a37ca49ee0cb61ecc54022cd",
+        "text": "No. 8083 of April 10, 1939."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8083>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8083>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8083#whole": {
       "char_end": 2692,
       "char_start": 1634,
@@ -219,7 +345,7 @@
       "text": "The provisions of the Civil Service Retirement Act of May 29, 1930 (46 Stat. 470), are hereby extended to apply (1) to all Federal employees who have been or may be appointed to any position named in Schedule A or Schedule B of the Civil Service Rules, or to any position excepted by law or Executive order from the operation of the Civil Service Act and Rules, provided that such employees have been or shall be appointed pursuant to the provisions of subdivision (d) of section 3 of Civil Service Rule II, and (2) to all employees who have been or may be accorded a classified status while serving in such positions."
     }
   },
-  "fingerprint": "4d576e3393070211d5787df808b14ceb1e76d6e3b85252f350da138c8d329075",
+  "fingerprint": "d0f34e257a1e5c941b3fe8d7d910baa9466f302ac9ee5d8c4679066af431703f",
   "instrument_id": "EO:8083",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -261,8 +387,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8083",

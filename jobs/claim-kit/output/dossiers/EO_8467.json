@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8467>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 220,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8467#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 221,
     "id": "CHAIN:EO:8467",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8467"
@@ -166,6 +196,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8467>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8467>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8467 of July 1, 1940.': number and date match the target's signing date. DOSSIER DEFECT: the clause inventory for EO:8467 (offsets 2752-4628) is the neighbouring export-control proclamation on the same FR pages; EO 8467's own text (amending EO 7916 sec. 7: Council of Personnel Administration; revoking EO 5612) is earlier in the held file, ending at the '[No. 8467]' footer. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8467>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Searched held FR texts 1940-1947 for EO 8467, for section 7 of EO 7916 and for 'Council of Personnel Administration': no later amendment or end before EO 9830 (EO 8699-8701 cite EO 7916 sec. 1 coverage, not sec. 7). Dossier chain empty; no own-term end. EO 9830 sec. 01.5(a) itself continues the Council as the 'Federal Personnel Council' within the Commission (continuity of the body under the new order, not an earlier end). No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources. EO 7916 itself is revoked by the same EO 9830 list (same date, not earlier). EO 9830 sec. 01.5 continuing the body as Federal Personnel Council is not an earlier end. Dossier inventory defect (neighbouring proclamation) must be corrected before any claim.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number and for amendments of the specific rule/schedule paragraph the target set; dossier missing line (target provision not located) confirmed; EO 9830 searched for savings. Read held EO_8467.txt own text (rewrites EO 7916 sec. 7: Council of Personnel Administration; revokes EO 5612). Searched 1938-1947 EOs for \"section 7 of Executive Order No. 7916\" (only EO 8045, earlier, and EO 8467) and \"Council of Personnel\" (EO 7915/7916/8045/8467/9830 only).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8467",
+      "target_naming": {
+        "char_end": 91227,
+        "char_start": 91202,
+        "sha256": "31b70fc3bdacfe61ccd21e34556e962f0aef9bb77eafe9d110230d58e4d3ad11",
+        "text": "No. 8467 of July 1, 1940."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8467>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8467>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8467#1": {
       "char_end": 3191,
       "char_start": 3169,
@@ -324,7 +450,7 @@
       "text": "Instrument: EO:8467\nSource: https://www.govinfo.gov/content/pkg/FR-1940-07-04/pdf/FR-1940-07-04.pdf\nSHA-256 of the downloaded file: a3a8de2efef9d33ea0550ca1f441b2deb7a2db818e87e3f7e9855184b7031968\nLocation: 5 FR 2468, PDF pages 2-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 2 of 24 ===\n2468 FEDERAL REGISTER, Thursday , July 4, 1940\n: y % S î \\\nFEDERAL^REGISTER\nV  » 3 *O n r n o ^ .\nPublished daily, except Sundays, Mondays,  \nand days following legal holidays by the  \nDivision of the Federal Register, The National  \nArchives, pursuant to the authority con­\ntained in the Federal Register Act, approved  \nJuly 26, 1935 (49 Stat. 500), under regula­\ntions prescribed by the Administrative Com­\nmittee, approved by the President.\nThe Administrative Committee consists of  \nthe Archivist or Acting Archivist, an officer  \nof the Department of Justice designated by  \nthe Attorney General, and'the Public Printer  \nor Acting Public Printer.\nThe daily issue of the F ederal R egister \nwill be furnished by mail to subscribers, free  \nof postage, for $125 per month or $12.50 per  \nyear; single copies 10 cents each; payable in  \nadvance. Remit money order payable to the  \nSuperintendent of Documents directly to the  \nGovernment Printing Office, Washirgton, D. C.\nCONTENTS—Continued\nT itle 33—N avigation and N aviga­\nble W aters:\nCorps of Engineers, War Depart­\nment: Page\nDanger zone regulations,\nCharleston Harbor, S. C _ 2482\nT itle 36—P arks and F orests :\nNational Park Service :\nRocky Mountain National \nPark, amendment to sub­\nsidiary regulations _____ 2483\nT itle 47—T elecommunication :\nFederal Communications Com­\nmission:\nHigh frequency broadcast sta­\ntions, standards of good\nengineering practice ____ 2483\nT itle 49 —  Transportation  a n d \nR ailroads:\nInterstate Commerce Commis­\nsion:\nSteam Railways,  Class I,\nmonthly reports ________ 2487\nNOTICES\nDepartment of the Interior:\nBureau of Reclamation:\nColumbia Basin  Project,\nWash., first form recla­\nmation withdrawals (2\nnotices) ______________ 2487\nSecurities and Exchange Commis­\nsion:\nEffectiveness of declarations:\nOgden Corp _________   2488\nSoutheastern Investing Corp_ 2488\nHearings:\nCleveland Electric Illuminat­\ning Co. (date changed) _ 2489\nPines Winterfront Co. (listing\nand registration) _______ 2488\nStandard Power and Light \nCorp., et al. (time ex­\ntended) ______________ 2488\nUnited States Civil Service Com­\nmission:\nApportionment at close of busi­\nness, June 29,1940 ________ 2489\ni. Sodium acetate, anhydrous\nj. Strontium chemicals\nk. Sulphuric acid, fuming\n4. Products as follows:\na. Aircraft parts, equipment, and ac­\ncessories other than those listed in my \nproclamation of May 1, 1937.\nb. Armor plate, other than that listed \nin my proclamation of May 1, 1937.\nc. Glass, nonshatterable or bullet \nproof.\nd. Plastics, optically clear.\ne. Optical elements for fire control in­\nstruments, aircraft instruments, etc.\n5. Machine tools as follows:\nMetal-working machinery for—\n(1) Melting or casting\n(2) Pressing into forms\n(3) Cutting or grinding, power driven\n(4) Welding\nAND I do hereby empower the Secre­\ntary of State to issue licenses authorizing \nthe exportation of any of the said articles \nand materials the exportation of which is \nnot already subjected to the requirement \nthat a license be obtained from the Sec­\nretary of State authorizing their exporta­\ntion and I do hereby authorize and enjoin \nhim to issue or refuse to issue licenses \nauthorizing the exportation of any of the \narticles or materials listed above in ac­\ncordance with the aforesaid rules and \nregulations or such specific directives as \nmay be, from time to time, communicated \nto him by the Administrator of Export \nControl.\nAND I do hereby admonish all citizens \nof the United States and every person \nto abstain from every violation of the \nprovisions of section 6 of the act above \nset forth, of the provisions of this proc­\nlamation, and of the provisions of such \nregulations as may be issued thereunder, \nand I do hereby warn them that all viola­\ntions of such provision's will be rigorously \nprosecuted.\nAND I do hereby enjoin upon all offi­\ncers of the United States, charged with \nthe execution of the laws thereof, the ut­\nmost diligence in preventing violations of \nthe said act, of this my proclamation, and \nof any regulations which may be issued \npursuant hereto, and in bringing to trial \nand punishment any offenders against \nthe same.\nIN WITNESS WHEREOF, I have here­\nunto set my hand and caused the seal of \nthe United States of America to be affixed.\nDONE at the City of Washington this \n2nd day of July, in the year of our Lord \nnineteen hundred and forty, and \n[seal] of the Independence of the \nUnited States of America the one \nhundred and sixty-fourth, at 11 a. m. \nE. S. T.\nF ranklin  D  Roosevelt\nBy the President:\nCordell H ull,\nSecretary of State.\n[No. 24131\n[F. R. Doc. 40-2750; Filed, July 2, 1940;\n4:40 p. m.]\nEXECUTIVE ORDER\nAmending  S ection  7 of E xecutive  O rder \nNo. 7916 of J une  24, 1938, Extending \nthe C ompetitive  C lassified  C ivil \nS ervice\nBy virtue of the authority vested in \nme by the Constitution, by section 1753 \nof the Revised Statutes (U.S.C., title 5, \nsec. 631), by the Civil Service Act (22 \nStat. 403), and as President of the \nUnited States, section 7 of Executive \nOrder No. 7916 of June 24, 1938, extend­\ning the competitive classified civil serv­\nice, is hereby amended to read as \nfollows:\n“S ec. 7. (a) Effective July 1, 1940, the \nUnited States Civil Service Commission \nis directed to establish within the Com­\nmission a Council of Personnel Admin­\nistration and to designate as members \nthereof such of the personnel of the \nCommission as the Commission shall de­\ntermine. The Commission shall desig­\nnate one of such members as Chairman \nof the Council.\n“(b) In addition to the membership \nof the Council of Personnel Administra­\ntion above provided for, the directors of \npersonnel of the «several departments \nand independent establishments and a \nrepresentative of the Bureau of the \nBudget, to be designated by the Direc­\ntor thereof, shall be ex officio  members \nof the Council.\n;  “(c) The Council shall advise and as­\nsist the President and the Commission in \nthe protection and improvement of the \nmerit system, and recommend from time \nto time to the President and the Com­\nmission needed changes in procedure, \nrules, or regulations. When directed so \nto do by the President or the Commis­\nsion, the Council shall hold hearings \nand conduct investigations with respect \nto alleged abuses and proposed changes. \nThe Council shall carry on programs of \nstudy to coordinate and perfect the exe­\ncutive personnel service in all its \nbranches, and shall report upon the prog­\nress of personnel administration through­\nout the service.\n“ (d) Executive Order No. 5612 of April \n25, 1931, is hereby revoked.”\nF ranklin  D R oosevelt \nThe W hite  H ouse,\nJuly 1, 1940.\n[No. 8467]\n[F. R. Doc. 40-2746; Filed, July 2, 1940;\n2:28 p. m.]\nEXECUTIVE ORDER\nW ithdrawal of P ublic  L ands for C las­\nsification  and in  A id of L egislation\nLOUISIANA\nBy virtue of the authority vested in \nme by the act of June 25, 1910, ch. 421, \n36 Stat. 847, as amended by the act of \nAugust 24, 1912, ch. 369, 37 Stat. 497, \nand subject to the conditions therein \nexpressed and to all valid existing rights,\n"
     }
   },
-  "fingerprint": "4e6c2328e0bafd30b32b04315091c473811f6fd3b14e4d547bbb63979defe0e3",
+  "fingerprint": "c048b86bbbe36259516a01ed9d5e3e7760932c369b4665c20435a4072a34f803",
   "instrument_id": "EO:8467",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -366,8 +492,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8467",
