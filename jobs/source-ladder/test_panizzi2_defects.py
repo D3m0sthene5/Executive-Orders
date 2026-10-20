@@ -408,6 +408,33 @@ class CarriedDefectTests(unittest.TestCase):
                "page_or_item": "FR-1962-03-30.pdf PDF pages 1-40 of 80"}
         self.assertEqual(fl.carried_defect(w, src, None), "")
 
+    # MABILLON (2026-10-20): EO 11490's FR issue was kept as pages 1-40 of 96 although the line named pages 63-95.
+    EO11490_CITE = ("34 FR 17567 through 17599; full order PDF pages 63-95 including sections 3014-3015; "
+                    "full_run currently retains only pages63-65")
+    EO11490_URL = "https://www.govinfo.gov/content/pkg/FR-1969-10-30/pdf/FR-1969-10-30.pdf"
+
+    def test_fr_issue_missing_requested_pages_is_walked_again(self):
+        w = fl.Wanted(wanted_id="queue:EO:11490:" + self.EO11490_CITE, instrument_ids=["EO:11490"],
+                      citation=self.EO11490_CITE)
+        src = {"url": self.EO11490_URL, "page_or_item": self.EO11490_CITE + "; FR-1969-10-30.pdf PDF pages 1-40 of 96"}
+        why = fl.carried_defect(w, src, None)
+        self.assertTrue(why.startswith("partial_extraction"), why)
+        self.assertIn("63-95", why)
+        src["page_or_item"] = self.EO11490_CITE + "; FR-1969-10-30.pdf PDF pages 63-95 of 96"
+        self.assertEqual(fl.carried_defect(w, src, None), "")
+
+    def test_requested_pages_beyond_the_document_do_not_loop(self):
+        w = self.w("Notice, PDF pages 120-130")
+        src = {"url": "https://www.govinfo.gov/content/pkg/FR-1962-03-30/pdf/FR-1962-03-30.pdf",
+               "page_or_item": "FR-1962-03-30.pdf PDF pages 1-40 of 80"}
+        self.assertEqual(fl.carried_defect(w, src, None), "")
+
+    def test_requested_pages_in_parent_line_count(self):
+        w = fl.Wanted(wanted_id="queue:x <34 FR 17567>", instrument_ids=["EO:11490"], citation="34 FR 17567",
+                      extra={"parent_citation": "34 FR 17567, PDF pages 63-95"})
+        src = {"url": self.EO11490_URL, "page_or_item": "34 FR 17567; FR-1969-10-30.pdf PDF pages 63-65 of 96"}
+        self.assertTrue(fl.carried_defect(w, src, None).startswith("partial_extraction"))
+
     def test_gzip_garbage_text_is_walked_again(self):
         garbage = gzip.compress(GOOD_HTML).decode("utf-8", "replace")
         src = {"url": "https://web.archive.org/web/20261011070632id_/https://www.ssa.gov/history/reports/gspan.html",
