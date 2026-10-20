@@ -69,6 +69,20 @@
    "from": "X1",
    "where": {"step_original_text": "done", "provisional_status": ""},
    "default_requires": ["ending_held_if_no"]
+  },
+  "RASTELL": {
+   "title": "ACT provision missing, acting text held (Rastell)",
+   "describe": "decided not-ready orders whose claim-kit dossier lists 'target provision not located' for an actor whose mechanism is ending/changing (revocation, supersession, termination, amendment, continuation, ...) and whose held text is acceptable_as_original; excludes 'See:' cross_references and 'acting text absent' (research/excavator/rastell-2026-10-20)",
+   "ids_file": "jobs/llull/ledger/pool_ids/RASTELL.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "RASTELL12553": {
+   "title": "Rastell sub-pool: EO 12553 targets",
+   "describe": "RASTELL orders whose missing ACT provision is EO 12553 (1986 revocation table)",
+   "from": "RASTELL",
+   "ids_file": "jobs/llull/ledger/pool_ids/RASTELL12553.txt",
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
