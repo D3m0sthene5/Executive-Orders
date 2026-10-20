@@ -5,10 +5,40 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:11026>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:11026#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
     "generic_refs_excluded": 213,
     "id": "CHAIN:EO:11026",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
@@ -55,6 +85,75 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:11026>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11026>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The subject continues on a second printed line (\"the aircraft industry\"), included in the target_naming span. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:11026>EO:12553@rastell",
+      "producer": "claude-rastell-08-producer",
+      "producer_d6": "Searched: dossier chain (no events), own_terms (OWN_TERMS.jsonl), the target's held clause text, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:11026: EO:12553 revocation), and a number search of all 6,652 held Federal Register order texts for other orders naming EO 11026 (no relevant hit: every hit was a page number, Federal Register document number, index entry or hash string). EARLIER CHANGE OF THE CLAUSE, found in held sources: this order (signed 1962-06-08) amends only the first paragraph (the first WHEREAS recital) of EO 11025, which is itself a row in the EO 12553 table (offset 17527) and is revoked in the same sentence. EO 11029 (1962-06-13, held, itself a row in the same table) then amends EO 11025 again 'by substituting the following for the first and second paragraphs', so the paragraph that EO 11026 rewrote was replaced five days later; EO 11026 has had no continuing text effect since 1962-06-13. EO 12553 is therefore NOT the first end of the clause EO 11026 supplied; it is a clean-up of an already displaced amendment (upper bound only). No own_terms (the kit found none); the order contains no end date, no exception and no saving. No other earlier or later instrument found (EDGES, number search). The revoking sentence also reaches 'any amendments thereto' (not a separate target). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, no held order text amends or revokes it, and nothing in the dossier does.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER CHANGE FOUND: EO 11026 (1962-06-08) amended only the first paragraph of EO 11025; EO 11029 (1962-06-13, held text lines 20-22) substituted new first and second paragraphs of EO 11025, displacing EO 11026's text. EO 12553 is a clean-up / upper bound, not the first end. Record itself is correct and says so.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl (20 target rows, all 'target provision not located' for EO:12553), later-events and app-footnote-leads EDGES.csv for each target and for EO:12553, target held texts for own terms where relevant (EO 11026/11029/11025 amendment wording). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-08-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_08/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:11026",
+      "target_naming": {
+        "char_end": 17751,
+        "char_start": 17622,
+        "sha256": "c3303b8eb713cfd999635015001c52c5ecdab9d575e998d14221f354fde34d49",
+        "text": "11026 Amending Executive Order No. 11025 creating a board of inquiry to report on a labor dispute affecting\nthe aircraft industry"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -123,7 +222,7 @@
       "text": "Instrument: EO:11026\nSource: https://www.govinfo.gov/content/pkg/FR-1962-06-12/pdf/FR-1962-06-12.pdf\nSHA-256 of the downloaded file: d0eef9e177ce6fcc82784c16092569bc27bf8419870174461d11a1078c2b5e29\nLocation: 27 FR 5531, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 64 ===\nTuesday, June 12 , 1962 FEDERAL REGISTER 5531\nExecutive Order 11026\nAMENDMENT OF EXECUTIVE ORDER NO. 11025,1  CREATING A BOARD  \nOF INQUIRY TO REPORT ON A LABOR DISPUTE AFFECTING THE AIR­\nCRAFT INDUSTRY OF THE UNITED STATES\nBy virtue of the authority vested in me by Section 206 of the \nLabor Management Relations Act, 1947, 61 Stat. 155 (29 U.S.C. 176), \nI  hereby amend the first paragraph of Executive Order No. 11025 of \nJune 7, 1962, entitled “Creating a Board of Inquiry to Report on a \nLabor Dispute Affecting the Aircraft Industry of the United States,” \nto read as follows:\n.  “WHEREAS, there exists a labor dispute between Republic Avia­\ntion Corporation, Farmingdale, Long Island, New York, and certain \nof its employees represented by Republic Lodge 1987, International \nAssociation of Machinists, A FL-CIO ; Local Union 775, United As­\nsociation of Journeymen and Apprentices of the Plumbing and Pipe \nFitting Industry of the United States and Canada, A FL -C IO ; In ­\nternational Brotherhood of Electrical Workers, Local Union 25, \nA FL-CIO ; Local Union 1318, United Brotherhood of Carpenters \nand Joiners of America, A FL-CIO ; and International Union of \nOperating Engineers, Local Unions 30 and 30-A, A FL -C IO ; and \nbetween John G. Sharp, Cafeteria Concessionaire at this Republic \nAviation Corporation facility and certain employees represented by \nLocal 164, Hotel and Restaurant Employees and Bartenders Inter­\nnational Union, A FL -C IO ; and”\nJ ohn  F. K ennedy\nT h e W h ite H ouse,\nJune 8,1962.\n[F.R. Doc. 62-5801; Filed, June 11,1962; 10:50 a.m.]\n127 F.R. 5467.\n"
     }
   },
-  "fingerprint": "302c1232c1832de5927f0ccc6d898b5c55b99df121ad3b0b7a0b49b8d46f79f5",
+  "fingerprint": "841ef25e4d4769c57b1f510b0f5882bf11970adc156b2bde13640fcf552244bc",
   "instrument_id": "EO:11026",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -164,9 +263,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11026",
   "own_terms": [],
