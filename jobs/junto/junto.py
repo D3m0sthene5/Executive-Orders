@@ -55,6 +55,7 @@ ASSIGN_RE = re.compile(r"(?<![\w.:/-])(?:export\s+)?[A-Za-z_][A-Za-z0-9_]*=(?!=)
 CAUSE_KEY_RE = re.compile(r"^[a-z][a-z0-9_]{1,60}$")
 
 
+sys.path.insert(0, str(ROOT))  # sibling import also works under python -I
 from contracts import validate_contract
 import math
 
