@@ -230,6 +230,20 @@
    "ids_file": "jobs/llull/ledger/pool_ids/R9830S.txt",
    "where": {"ready_for_human_review": "no"},
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "VIAPAR": {
+   "title": "VIAPAR: amending orders ended via whole revocation of their parent \"as amended\"",
+   "describe": "22 orders of research/production/day-review-2026-10-20/next-lines/VIAPAR_ids.txt (NEXT_LINES.md line 1): amending orders whose ending is the whole revocation of the parent order \"as amended\", from claim-kit whole_via_parent ACT leads (EO 12076 x12 amending EO 11861; EO 12379 x5, 12220 x2, 12610 x2, 13062 x1). Lambertini per instrument; run in file order as probe (first 8), s1 (next 7), s2 (last 7). D6: later amendments may have replaced or deleted items, so producers give per-item first ends. Pending owner rulings (report-deadline, transcription-as-copy, EO 14052 strike-and-reinsert): any item that needs one, including any item struck and reinserted, is BLOCKED, not decided.",
+   "ids_file": "jobs/llull/ledger/pool_ids/VIAPAR.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "R12553NBP": {
+   "title": "R12553NB probe: 10 non-board EO 12553 targets (every 5th line of R12553NB)",
+   "describe": "Probe of the 52 R12553NB orders (research/production/day-review-2026-10-20/next-lines/R12553NB_ids.txt: EO 12553 targets that are not emergency boards, all named in the held 51 FR 7237 text), chosen mechanically as lines 1,6,11,...,46. Plan: Rastell ACT records for EO 12553 provisions under the D6 earlier-end test (did another instrument, e.g. EO 12287 oil decontrol in 1981, or the order's own dated sunset end the target or its clauses before 1986-02-25? if so EO 12553 is only an upper bound and the record says so; blocked if that earlier end is not held), independent Opus review with held sources, ingest via act_overrides.py, then Lambertini claims on orders the upheld records enable. Scale to the remaining 42 only if at least 7 of 10 ACT records are upheld and at least 5 orders enable upheld claims. Pending owner rulings report-deadline and transcription-as-copy: orders needing them are blocked, not decided.",
+   "ids_file": "jobs/llull/ledger/pool_ids/R12553NBP.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
