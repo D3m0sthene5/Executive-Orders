@@ -12,7 +12,7 @@ env:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,16 +47,22 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r target/jobs/claim-drafts/requirements.txt
-      - name: Local verification probe (two cases, no new downloads)
-        run: timeout --signal=TERM 240s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-local' --network-budget 0
-      - name: Bounded download probe (two cases, two requests maximum)
+      - name: Full local draft pass (four-minute diagnostic cap, no new downloads)
+        run: |
+          set -o pipefail
+          timeout --signal=TERM --kill-after=15s 240s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-local' --network-budget 0 --cases 3359 2>&1 | tee '${{ runner.temp }}/stall-local.log'
+      - name: Two exact cited GovInfo PDF checks (six-minute diagnostic cap)
         if: always()
-        run: timeout --signal=TERM 360s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-network' --network-budget 2
+        run: |
+          set -o pipefail
+          timeout --signal=TERM --kill-after=15s 360s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-network' --network-budget 2 --mode sources 2>&1 | tee '${{ runner.temp }}/stall-network.log'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: isolated-stall-probe-${{ github.run_id }}
           path: |
+            ${{ runner.temp }}/stall-local.log
+            ${{ runner.temp }}/stall-network.log
             ${{ runner.temp }}/stall-local/PROBE_SUMMARY.json
             ${{ runner.temp }}/stall-local/drafts/SUMMARY.json
             ${{ runner.temp }}/stall-network/PROBE_SUMMARY.json
