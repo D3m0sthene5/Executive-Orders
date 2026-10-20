@@ -2,6 +2,7 @@
 import argparse
 import faulthandler
 import json
+import importlib.util
 import os
 from pathlib import Path
 import resource
@@ -18,6 +19,7 @@ p.add_argument('--output', type=Path, required=True)
 p.add_argument('--network-budget', type=int, choices=(0, 2, 400), required=True)
 p.add_argument('--cases', type=int, choices=(2, 3359), default=2)
 p.add_argument('--mode', choices=('drafts', 'sources'), default='drafts')
+p.add_argument('--refresh-producers', action='store_true')
 a = p.parse_args()
 repo = a.repo.resolve()
 out = a.output.resolve()
@@ -90,6 +92,25 @@ try:
             result = checker.verify_by_download(ref['url'], ref['sha256'], out / 'cache')
             emit('source_check_result', instrument_id=iid, verified=result)
     else:
+        if a.refresh_producers:
+            # Rebuild deterministic text producers only in this disposable checkout.
+            # Keep its prior generations outside the checkout. Never write to GitHub.
+            for name, module_name in (('ofr-compilations', 'ofr'),
+                                      ('isthmian-canal-1911', 'canal'),
+                                      ('indian-reservations-1912', 'ir'),
+                                      ('richardson-volumes', 'richardson')):
+                emit('producer_start', job=name)
+                folder = repo / 'jobs' / name
+                old = out / 'prior-producers' / name
+                old.parent.mkdir(parents=True, exist_ok=True)
+                if (folder / 'output').exists():
+                    (folder / 'output').rename(old)
+                spec = importlib.util.spec_from_file_location(module_name, folder / (module_name + '.py'))
+                module = importlib.util.module_from_spec(spec)
+                sys.modules[module_name] = module
+                spec.loader.exec_module(module)
+                module.run(repo, folder, folder / 'output')
+                emit('producer_complete', job=name)
         # Import and instrument the unchanged target module. Only timing output is added.
         sys.path.insert(0, str(repo / 'jobs/claim-drafts'))
         import drafts
@@ -113,7 +134,7 @@ finally:
     usage = resource.getrusage(resource.RUSAGE_SELF)
     summary = emit('complete', exit_code=code, user_cpu_seconds=usage.ru_utime,
         system_cpu_seconds=usage.ru_stime, max_rss_kib=usage.ru_maxrss,
-        mode=a.mode, cases=a.cases, network_budget=a.network_budget, network_events=events,
+        mode=a.mode, cases=a.cases, refreshed_producers=a.refresh_producers, network_budget=a.network_budget, network_events=events,
         interpretation='Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.')
     (out / 'PROBE_SUMMARY.json').write_text(json.dumps(summary, indent=2) + '\n')
 raise SystemExit(code)
