@@ -1,4 +1,4 @@
-"""Where do an agent session's tokens go?
+"""Hamilton: an audit of where an agent session's tokens go.
 
 Reads transcript pages saved from the claude-code-remote `list_events` tool
 (one JSON page per file, `{"ccr": {"data": [...]}}`), rebuilds every model call
