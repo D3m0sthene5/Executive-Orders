@@ -20,6 +20,7 @@ import argparse
 import copy
 import csv
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -40,6 +41,7 @@ LEGAL_CUTOFF = "2026-10-14"
 SEEDED_MARKERS = (b"SEEDED:", b"mountweazel-seeded", b"SEEDED-eo-", b'"SEEDED": true', b'"SEEDED":true')
 # Documents that describe the marker strings may mention them; they are still checked for planted text.
 ALLOWED_DOCS = frozenset({"research/plans/MOUNTWEAZEL_DESIGN.md", "jobs/mountweazel/README.md",
+                          "jobs/mountweazel/paired.py", "jobs/mountweazel/test_paired.py",
                           "jobs/mountweazel/mountweazel.py", "jobs/mountweazel/test_mountweazel.py"})
 ALLOWED_DOC_PREFIXES = ("HANDOFF/",)  # notes may name batch ids and markers; planted text is still checked there
 PLANT_ID_RE = re.compile(rb"\bMW-[A-Z]\d+-\d{2}\b")
@@ -1116,6 +1118,11 @@ def pool_cmd(args):
 
 # ----------------------------------------------------------------------------- main
 def main(argv=None):
+    argv=list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0]=='pairs':
+        spec=importlib.util.spec_from_file_location('mountweazel_pairs',HERE/'paired.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        return module.main(argv[1:])
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--repo", default=str(REPO))
     sub = ap.add_subparsers(dest="cmd", required=True)

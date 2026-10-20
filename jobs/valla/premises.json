@@ -1,0 +1,35 @@
+{
+  "schema": "eo-valla-premise-patterns/v1",
+  "version": "1",
+  "review": {
+    "reviewer": "Sol",
+    "scope": "Retrieval wording checked against seed rationales and minimal false-grouping examples. No legal interpretation is approved by this library.",
+    "independent_legal_validation": false
+  },
+  "patterns": [
+    {
+      "id": "performance_irrelevant_until_revocation",
+      "expressions": ["every clause remains.{0,85}until revoked", "no clause s first end needs a report date", "no term sunset or termination on performance clause", "every clause first ends on signing", "performance.{0,40}irrelevant.{0,40}revocation"],
+      "rule_refs": ["jobs/claim-kit/BATCH.md", "jobs/claim-kit/AGENT_PROTOCOL.md"],
+      "question": "Does an identified completed command require an earlier first-cessation analysis? Check actual performance, continuing commands, scope and savings separately."
+    },
+    {
+      "id": "deadline_as_completion",
+      "expressions": ["(?:completed|completion|delivered|ended|terminated).{0,55}(?:on|at|by) the deadline", "deadline.{0,35}(?:establishes|proves|is the actual).{0,30}(?:completion|delivery|end)"],
+      "rule_refs": ["jobs/claim-kit/AGENT_PROTOCOL.md"],
+      "question": "What dated evidence demonstrates actual performance, and is this a due date rather than a completed act?"
+    },
+    {
+      "id": "silence_as_continuation",
+      "expressions": ["no (?:later )?(?:revocation|contrary evidence).{0,60}(?:therefore|so).{0,40}(?:continues|operative|in effect)", "silence.{0,25}(?:proves|establishes).{0,25}(?:continuation|continued effect)"],
+      "rule_refs": ["jobs/claim-kit/AGENT_PROTOCOL.md", "jobs/claim-drafts/AGENT_GUIDE.md"],
+      "question": "What affirmative legal predicate supports the specified function through the cutoff, and what is the search's actual coverage?"
+    },
+    {
+      "id": "automatic_duty_succession",
+      "expressions": ["successor.{0,45}automatically.{0,45}(?:duty|duties|obligation)", "(?:transfer|succession).{0,45}automatically.{0,45}(?:all duties|all obligations)"],
+      "rule_refs": ["research/stage19/CLAIM_SCHEMA.md"],
+      "question": "Which provision transfers this particular function or duty, with what exceptions and effective date?"
+    }
+  ]
+}

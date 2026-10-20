@@ -1,0 +1,59 @@
+name: Valla bounded pilot
+on:
+  pull_request:
+    paths: ['jobs/valla/**', 'jobs/claim-kit/batch.py', 'jobs/claim-kit/test_batch.py', 'jobs/mountweazel/**', 'research/readiness/method_reviews/**', 'research/readiness/component_attestations/**', 'research/valla/pilot-2026-10-20/METHOD.md', '.github/workflows/valla-pilot.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bounded-offline-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      CLAIM_CHECKER_VERIFY_DOWNLOADS: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+          sparse-checkout: |
+            .github
+            jobs
+            research/readiness
+            research/stage19
+            research/stage15/CENSUS
+            research/stage15/LEGAL
+            research/progress
+            research/stage20/output
+            research/stage21/sources_index
+            research/stage21/original_sources
+            research/valla
+            research/excavator/2026-10-18/review/INDEPENDENT_AI_REVIEW.json
+            research/excavator/bowditch-2026-10-20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r jobs/claim-checker/requirements.txt
+      - name: Unit and consumer tests
+        run: |
+          python -m unittest discover -s jobs/valla -p 'test_*.py'
+          python -m unittest discover -s jobs/claim-kit -p 'test_*.py'
+          python -I jobs/mountweazel/test_mountweazel.py
+          python -m unittest discover -s jobs/mountweazel -p 'test_paired.py'
+          python -I jobs/junto/test_junto.py
+          python -I jobs/junto/junto.py check
+          python -m unittest discover -s jobs/claim-checker -p 'test_checker.py'
+          python -m unittest discover -s jobs/readiness-tracker -p 'test_tracker.py'
+      - name: Synthetic isolation
+        run: python -I jobs/mountweazel/mountweazel.py check
+      - name: Real bounded pilot and actual consumers
+        run: python jobs/valla/pilot.py --output '${{ runner.temp }}/valla-pilot' --run-id 'github-${{ github.run_id }}-${{ github.run_attempt }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: valla-pilot-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/valla-pilot
+            research/valla/pilot-runtime

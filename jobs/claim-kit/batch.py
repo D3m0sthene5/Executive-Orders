@@ -7,6 +7,7 @@ from collections import Counter,defaultdict
 from copy import deepcopy
 import csv
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -224,7 +225,18 @@ def load_packet(folder,repo,check_sources=True):
     if check_sources:
         for rel,sha in packet['held_text_file_pins'].items():
             if file_sha(safe(repo,rel))!=sha:raise ValueError('changed held source: '+rel)
+        if packet.get('valla_context') is not None:
+            if valla_context(repo,list(dossiers))!=packet['valla_context']:
+                raise ValueError('changed Valla review context; prepare a new version')
     return packet,dossiers
+
+
+def valla_context(repo,ids):
+    path=repo/'jobs/valla/valla.py'
+    if not path.exists():raise ValueError('Valla context compiler missing')
+    spec=importlib.util.spec_from_file_location('claim_kit_valla',path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module.attach(repo,ids)
 
 
 def render(packet,dossiers):
@@ -280,6 +292,14 @@ def render(packet,dossiers):
             'missing','status_history','notice'}}
         if remaining:lines.extend(['','### Additional dossier metadata','',canon(remaining)])
         lines.extend(['','### Preflight','',canon(packet['preflight'][iid]),''])
+    if packet.get('valla_context') is not None:
+        ctx=packet['valla_context']
+        lines.extend(['## Valla review leads and component attestations','',ctx['notice'],
+            'Preparation attestations never approve legal conclusions or replace whole-case review.',''])
+        for q in ctx['review_queue']:lines.append(canon(q))
+        for iid,c in ctx['claims'].items():
+            lines.append(canon({'instrument_id':iid,'invalidated_conclusion_pointers':c['invalidated_conclusion_pointers'],
+                               'component_reviews':c['component_reviews']}))
     lines.extend(['## Shared tasks','',canon(packet['shared_tasks']),'','## Explicit overflow and codec warnings','',canon(packet['codec_issues'])])
     return '\n'.join(lines)+'\n'
 
@@ -306,6 +326,10 @@ def view(repo,folder,order=None,source=None):
                     'machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.append(key+' '+canon(d[key]))
         lines.append('Preflight '+canon(packet['preflight'][order]))
+        if packet.get('valla_context') is not None:
+            ctx=packet['valla_context']
+            lines.append('Valla '+canon({'notice':ctx['notice'],'claim':ctx['claims'].get(order),
+                'review_queue':[q for q in ctx['review_queue'] if q['instrument_id']==order]}))
         return '\n'.join(lines)
     return '\n'.join(['Packet '+packet['fingerprint'],'Orders: '+', '.join(dossiers),
         'Use view PACKET --source TEXT_ID for exact common text; --order ID for member metadata.',
@@ -334,9 +358,16 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
             entry=shared.setdefault(task['task_id'],{k:v for k,v in task.items() if k not in ('instrument_id','reason')})
             entry.setdefault('affected_orders',[]).append(iid);entry.setdefault('reasons',[]).append(task['reason'])
     encoded=encode(dossiers,repo)
+    # Optional, one-way preparation context. This reads claims/reviews directly,
+    # never claim-kit outputs; nothing here approves or copies a legal decision.
+    prepared_context=None
+    valla_path=repo/'jobs/valla/valla.py'
+    if valla_path.exists():
+        prepared_context=valla_context(repo,ids)
     packet={'schema':SCHEMA,'legal_cutoff':'2026-10-14','agent':agent,'input_pins':pins,
         'codec_code_sha256':file_sha(Path(__file__)),'assembler_code_sha256':file_sha(Path(__file__).with_name('assemble.py')),
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
+    if prepared_context is not None:packet['valla_context']=prepared_context
     if decode(packet)!=dossiers:raise ValueError('lossless reconstruction failed')
     packet['fingerprint']=digest(canon(packet).encode());dest.mkdir(parents=True)
     dump(dest/'PACKET.json',packet)

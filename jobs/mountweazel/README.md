@@ -93,3 +93,16 @@ D11 and D12 are in the taxonomy but have no operator yet.
 - Taxonomy counts and the Junto/Llull interface (`output/SENSITIVITY.json`) are described in the design, not built.
 - There is no `job.py` on purpose, so the GitHub runner never picks this up. It writes no CSV, no `SUMMARY.json`
   and no `data/`, because other jobs read those paths.
+
+## Controlled reasoning pairs
+
+`python3 -I jobs/mountweazel/mountweazel.py pairs prepare --out <new external directory>`
+creates six pairs (twelve hypothetical items): layout, deadline, demonstrated
+performance, recurring duties, omitted earlier events and savings exceptions.
+The packet stipulates fictional rules so expected evidence-gap behavior decides
+no contested law. `pairs score --key KEY.json --batch batch.json --verdicts FILE
+--out EXTERNAL_FILE` validates the sealed key, item coverage, evidence labels and
+substantive reasons. Generated items, answer keys and item-level results stay
+outside the repository and are rejected by the production claim gate. Read the
+limitations: **reviewer blinding is not technically enforced** by file permissions
+under the same account. A harness/key roundtrip is not a reviewer sensitivity test.

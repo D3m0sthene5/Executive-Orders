@@ -93,3 +93,9 @@ Every catalog dollar figure is an unverified estimate.
 
 `python3 -I jobs/junto/test_junto.py` proves that an unverified candidate never contributes to a
 score and that verified savings require a measured test record.
+
+Valla is an owner-seeded domain hypothesis registered as `F-valla`. Its finder
+reads `valla_rework_salvage.json` from an external data directory and proposes a
+matched total-cost correction experiment. Preparation timings alone leave it
+unverified; `add-test` still requires actual measured session totals. No pricing,
+scoring or review rule changes were made for Valla.
