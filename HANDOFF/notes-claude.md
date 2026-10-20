@@ -2,6 +2,27 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: Panizzi, source-ladder now resolves citations buried in prose and works the queue first
+
+- **Done:** `jobs/source-ladder/embedded_cites.py` (+ `ladder_queue.py`, `fetch_ladder.py`, `plan.py`, `job.py`, README,
+  `test_panizzi_resolvers.py`; 77 tests pass, and the tests of the jobs that import the ladder pass). Prose-only FETCH_QUEUE
+  lines are split into one item per embedded Stat./Pub. L./FR/U.S.C./CFR/Reorganization Plan cite. New routes: Public Law
+  by Congress and number (govinfo statute link service, checked back to 52 Stat.), and Reorganization Plan through the
+  Title 5 Appendix heading, then the plan's own Stat./FR page. Default plan: queue-first, 50 items, 300 requests, 800 MB.
+- **Review fixes (same day):** a Public Law or plan is no longer dropped because of an unrelated Stat. cite (only a cite in a
+  volume of that Congress drops it); `5USC3345etseq` gives section 3345; a prose line with a link falls back only to the
+  official copy of the SAME document as its link; no Wayback copy of the Title 5 Appendix, and a U.S. Code compilation is
+  rejected as a plan's source; the eCFR renderer-API route was removed (robots.txt disallows it); a govinfo PREMIS/MODS
+  metadata file is logged but never accepted as the document; no-route items are recorded before the plan.
+- **Preview (container, not committed):** the default plan worked 50 queue items: 44 found, 6 retry_later, 108 requests,
+  389 MB, 654 s. Of the 44, 5 are NARA finding-aid pages given by the requester and 1 was PREMIS metadata (now rejected).
+- **Running:** pushing a non-`output/` change under `jobs/source-ladder/` (or to `research/readiness/`) starts the Actions job.
+  Check `jobs/source-ladder/output/STATUS.json`, then `SUMMARY.json` (`found`, `embedded_cite_items`, `bytes_downloaded`).
+- **Not fixed:** 52 queue lines still have no route (report dates, land records, agency orders, pay calendars and others);
+  files over the shared 100 MB per-file pool bound (27 FR 2983 and 45 FR 44245 issues, 95 Stat. 357 granule).
+- **Do not:** treat a found statute or CFR page as authentication, or a current CFR/Code edition as the text in force at the
+  order's date (5 CFR 6 is served as the 2026 edition, which does not answer the 1953 question).
+
 ## 2026-10-20 ET: Bowditch, the Y2 claim-factory probe failed its gate and Y1 passed
 
 - **Done:** random probe of the funnel plan (`research/excavator/bowditch-2026-10-20/REPORT.md`). **Y2** covered 50

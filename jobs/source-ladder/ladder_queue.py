@@ -20,6 +20,7 @@ import json
 import re
 from pathlib import Path
 
+import embedded_cites
 import fetch_ladder
 
 STEPS = ("original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals",
@@ -88,8 +89,47 @@ def read_fetch_queue(path, eo_index=None):
                                 urls=urls, citation=citation, step=step,
                                 requested_by=str(r.get("requested_by") or ""))
         attach_eo_record(w, eo_index)
+        # A citation buried in prose (no URL, not a bare cite) used to end as no_route without one
+        # request. Scan it for embedded cites and queue one item per cite; if it holds none, the
+        # original item stays so the no_route failure is still recorded.
+        if not urls and fetch_ladder.parse_citation(citation)[0] is None:
+            kids = embedded_children(w, eo_index)
+            if kids:
+                wanted.extend(kids)
+                continue
         wanted.append(w)
     return wanted, problems
+
+
+def own_fr_pages(text, instrument_ids, eo_index):
+    """(volume, page) where the orders named in a request were themselves printed.
+
+    Those pages are the orders' own publication (already held); a request that mentions them is
+    asking about something else (the ending instrument, a report date), so they are not re-fetched."""
+    nums = list(embedded_cites.eo_numbers(text))
+    nums += [i.split(":", 1)[1] for i in instrument_ids if i.startswith("EO:")]
+    pages = set()
+    for n in nums:
+        hit = lookup_eo(eo_index, n)
+        kind, p = fetch_ladder.parse_citation(((hit or {}).get("primary") or {}).get("citation") or "")
+        if kind == "FR":
+            pages.add((p["volume"], p["page"]))
+    return pages
+
+
+def embedded_children(w, eo_index):
+    """One work item per citation embedded in w.citation (see embedded_cites), or [] if none."""
+    cites, overflow = embedded_cites.find_embedded_with_overflow(
+        w.citation, skip_fr=own_fr_pages(w.citation, w.instrument_ids, eo_index))
+    out = []
+    for c in cites:
+        out.append(fetch_ladder.Wanted(
+            wanted_id=f"{w.wanted_id} <{c['cite']}>", instrument_ids=list(w.instrument_ids),
+            urls=[], citation=c["cite"], step=w.step, requested_by=w.requested_by,
+            extra={"parent_wanted_id": w.wanted_id, "parent_citation": w.citation,
+                   "embedded_cite_kind": c["kind"],
+                   "embedded_cites_not_queued": [o["cite"] for o in overflow]}))
+    return out
 
 
 _LOWER_INDEX = {}

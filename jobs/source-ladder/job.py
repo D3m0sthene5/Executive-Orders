@@ -104,10 +104,17 @@ def main():
         budget = env_int('JOB_MAX_REQUESTS')
         os.environ['JOB_MAX_REQUESTS'] = str(min(budget, plan_used['max_requests']) if budget is not None else plan_used['max_requests'])
     elif os.environ.get('JOB_READINESS_PLAN','1') != '0' and not os.environ.get('JOB_ONLY') and limit is None:
-        from plan import make_readiness_plan, select_plan
-        plan_used = make_readiness_plan(items,set(carried),repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
-                                       limit=env_int('JOB_PLAN_LIMIT') or 12,budget=env_int('JOB_MAX_REQUESTS') or 80)
-        items = select_plan(items,plan_used)
+        from plan import make_queue_first_plan, select_plan, UNSUCCESSFUL
+        # Requests with no route at all cost no request: they are kept as recorded no_route failures
+        # outside the plan, so they never take one of its 50 places.
+        routable = [w for w in items if fetch_ladder.plan_routes(w)]
+        unroutable = [w for w in items if w.wanted_id.startswith('queue:') and w.wanted_id not in carried
+                      and not fetch_ladder.plan_routes(w)]
+        tried = {r['wanted_id'] for r in prior.csv_rows('RESULTS.csv') if r.get('result') in UNSUCCESSFUL} if prior else set()
+        plan_used = make_queue_first_plan(routable,set(carried),tried,repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
+                                         limit=env_int('JOB_PLAN_LIMIT') or 50,budget=env_int('JOB_MAX_REQUESTS') or 300)
+        # No-route items go first: they make no request, so a budget stop can never leave them unrecorded.
+        items = unroutable + select_plan(routable,plan_used)
         os.environ['JOB_MAX_REQUESTS'] = str(plan_used['max_requests'])
     # Even explicit legacy selections get a finite request budget by default.
     os.environ.setdefault('JOB_MAX_REQUESTS','80')
@@ -134,8 +141,10 @@ def main():
         def _wait(self, host):
             # Host spacing and robots crawl delay are shared by the pool.
             pass
+    # Bounded in requests (JOB_MAX_REQUESTS) and in total bytes (JOB_MAX_DOWNLOAD_MB, default 800).
+    max_mb = env_int("JOB_MAX_DOWNLOAD_MB") or 800
     fetcher = PooledFetcher(cache / "ladder", transport=pool.request,
-                            max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+                            max_requests=env_int("JOB_MAX_REQUESTS"), max_total_bytes=max_mb * 1_000_000, offline=offline)
     # Fetch one best route per item concurrently. The original ladder still validates
     # identity, expected hashes, document bytes, and every subsequent fallback.
     # A bounded request-budget run stays sequential so prefetch cannot overspend it.
@@ -275,6 +284,8 @@ def main():
         "found_by_route": dict(Counter(s["route"] for s in sources)),
         "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
+        "max_download_mb": max_mb,
+        "embedded_cite_items": sum(1 for w in items if w.extra.get("parent_wanted_id")),
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
         "source_plan": plan_used,
         "seconds": round(time.time() - t0, 1),

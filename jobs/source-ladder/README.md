@@ -1,15 +1,36 @@
 # Source ladder (job 1)
 
-Bounded default: absent `JOB_ONLY`/`JOB_LIMIT`, rank unresolved existing requests
-against the committed readiness tracker and work at most 12, within 80 ladder HTTP
-requests. `JOB_PLAN_FILE` accepts the excavator's fingerprinted plan (0–50 requests,
-1–300 HTTP requests); stale plans fail before network acquisition. Explicit legacy
-selections also default to an 80-request ceiling. `JOB_READINESS_PLAN=0` disables
-ranking, not the finite budget. This ranking is acquisition scheduling only.
+Bounded default (PANIZZI, 2026-10-20): absent `JOB_ONLY`/`JOB_LIMIT`, build a **queue-first plan** and work
+at most 50 items within 300 HTTP requests and 800 MB (`JOB_PLAN_LIMIT`, `JOB_MAX_REQUESTS`,
+`JOB_MAX_DOWNLOAD_MB`). Requests from `FETCH_QUEUE.jsonl` come first, never-tried before tried-and-failed (so a
+failing source cannot starve the rest), even when the readiness tracker shows their step closed; shared-source and
+Opus re-fetch items follow only if they could complete a step. Requests with no route at all are recorded as
+`no_route` ahead of the plan (they cost nothing, take no place in it, and a budget stop cannot skip them). `JOB_PLAN_FILE` accepts the excavator's
+fingerprinted plan (0-50 requests, 1-300 HTTP requests); stale plans fail before network acquisition. Explicit
+legacy selections also default to an 80-request ceiling. `JOB_READINESS_PLAN=0` disables ranking, not the finite
+budget. This ranking is acquisition scheduling only.
 Successful prior receipts and exact text bytes outside a bounded selection are
 retained, including when selected items are refetched. Preserve the prior committed
 output and failure records when diagnosing an unsuccessful job. Offline runs
 cannot establish exhaustion. New source counts exclude retained receipts.
+
+**Citations inside prose (`embedded_cites.py`).** A queue line whose citation is a sentence and which has no link
+(`Pub. L. 94-412, ... 90 Stat. 1255 (Sept. 14, 1976); status of Proclamation 2914`) used to end as `no_route`
+without a request. It is now split into one item per embedded Statutes at Large, Public Law, Federal Register,
+U.S. Code, CFR or Reorganization Plan cite (wanted id `<original id> <71 Stat. 78>`, `SOURCES.jsonl` carries
+`embedded_in_request`). Rules: a Public Law is dropped when the line gives a Stat. cite in a volume of that Congress (same enactment;
+an unrelated Stat. cite does not drop it); a plan is dropped when the line gives a Stat. cite in its Congress's volumes; the Federal Register page where a named order was itself
+printed is skipped (already held); title 3 CFR is skipped; at most 6 cites per line. A line that holds no cite
+stays as one `no_route` item, so the failure is still recorded. A prose line that already has a link keeps it, and
+gains the official route of an embedded Stat./Pub. L./U.S.C./CFR cite as a fallback only when that cite names the
+same document as the link (a different cite in the line is a different document; a dated Code/CFR edition link gets
+no current-edition fallback).
+New official routes: `govinfo.gov/link/statute/<congress>/public/<n>` (any Congress; slip law
+`link/plaw/...` from the 104th; checked back to 52 Stat., 75th Congress), and Reorganization Plans, which are read from the heading of the Title 5 Appendix on govinfo (index only: no Wayback copy of it is tried, and a
+compilation is rejected as the source) and then fetched by their own Statutes at Large / Federal Register cite.
+No eCFR API route: ecfr.gov/robots.txt disallows `/api/renderer/v1/content/`, `/api/versioner/v1/full/` and `/on/`,
+and the ladder obeys robots.txt, so CFR text comes from the govinfo annual edition (`year=mostrecent`, labelled with
+its edition). A govinfo PREMIS/MODS metadata file is hashed and logged but never accepted as the requested document.
 
 **What it does, in plain words.** Research agents used to spend a lot of time
 hunting for a copy of a document by hand: try the link, try another form of

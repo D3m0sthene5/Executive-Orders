@@ -46,6 +46,13 @@ from collections import deque
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+try:
+    import embedded_cites
+except ImportError:  # loaded by file path from another job's folder
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import embedded_cites
+
 # The contact part can be set by the owner (e.g. a public URL) with EO_USER_AGENT_CONTACT;
 # no personal address is put here by default.
 USER_AGENT = ("EO-afterlife-research/1.0 (owner-run research; "
@@ -275,16 +282,22 @@ def official_routes(wanted: Wanted):
             q["sectionnum"] = sec
         routes.append(Route("govinfo_link_cfr", f"https://www.govinfo.gov/link/cfr/{t}/{part}?" + urllib.parse.urlencode(q), "pdf", tier="official"))
         target = f"section-{part}.{sec}" if sec else f"part-{part}"
-        # The eCFR renderer API answers from GitHub's and this container's machines on the cutoff date,
-        # while the web pages below it end at a bot wall; keep both, API first.
-        rq = {"part": part}
-        if sec:
-            rq["section"] = f"{part}.{sec}"
-        routes.append(Route("ecfr_renderer_api_on_cutoff",
-                            f"https://www.ecfr.gov/api/renderer/v1/content/enhanced/{LEGAL_CUTOFF}/title-{t}?" + urllib.parse.urlencode(rq),
-                            "html", tier="official"))
+        # (No eCFR renderer-API route: ecfr.gov/robots.txt disallows /api/renderer/v1/content/ and
+        # /api/versioner/v1/full/, and the ladder obeys robots.txt. The /on/ page below is disallowed too and is
+        # recorded as blocked_by_robots_txt; CFR text comes from the govinfo annual edition above.)
         # eCFR point-in-time view on the legal cutoff date (eCFR history starts in 2017).
         routes.append(Route("ecfr_on_cutoff", f"https://www.ecfr.gov/on/{LEGAL_CUTOFF}/title-{t}/{target}", "html", tier="official"))
+    elif kind is None and wanted.urls and wanted.citation:
+        # Prose citation WITH a given link: if the link fails, fall back to the official route of an embedded
+        # statute / Code / CFR cite, but ONLY one that names the same document as a given link (e.g. the link is
+        # STATUTE-93-Pg668.pdf and the line cites 93 Stat. 668). Another cite in the line is a different
+        # document, and accepting it would mark the request found with something it did not ask for. A link to
+        # a dated Code/CFR edition (USCODE-1976-..., CFR-1990-...) gets no current-edition fallback either.
+        # (Federal Register cites are skipped: in prose they are usually the page where an order was printed.
+        # URL-less prose is split into items instead, see ladder_queue.embedded_children.)
+        for c in embedded_cites.find_embedded(wanted.citation, limit=3):
+            if c["kind"] in ("STAT", "PLAW", "USC", "CFR") and any(link_names_cite(u, c) for u in wanted.urls):
+                routes.extend(official_routes(Wanted(wanted_id="", instrument_ids=[], citation=c["cite"]))[0])
     elif kind == "PLAW":
         c, n = p["congress"], p["number"]
         # The slip-law collection starts with the 104th Congress; the Statutes at Large link service
@@ -300,6 +313,29 @@ def official_routes(wanted: Wanted):
                                 f"https://www.govinfo.gov/content/pkg/USCODE-{year}-title5/pdf/USCODE-{year}-title5-app.pdf",
                                 "pdf", kind="rp_index", tier="official"))
     return routes, kind, p
+
+
+def link_names_cite(url: str, cite: dict) -> bool:
+    """True when a given link is a copy of the document an embedded cite names (see official_routes)."""
+    u, k, p = urllib.parse.unquote(url or ""), cite["kind"], cite["parts"]
+    if k == "STAT":
+        return bool(re.search(rf"STATUTE-{p['volume']}(?:-Pg{p['page']}(?:-\d+)?)?\.pdf", u))
+    if k == "PLAW":
+        vols = embedded_cites.stat_volumes_of_congress(p["congress"])
+        m = re.search(r"STATUTE-(\d+)", u)
+        return bool(m and int(m.group(1)) in vols) or f"PLAW-{p['congress']}publ{p['number']}" in u
+    if k == "USC":
+        if re.search(r"USCODE-\d{4}", u):
+            return False
+        return f"title{p['title']}-section{p['section']}&" in u + "&" or f"/uscode/{p['title']}/{p['section']}" in u
+    if k == "CFR":
+        if re.search(r"CFR-\d{4}", u):
+            return False
+        if "ecfr.gov" not in u and "govinfo.gov/link/cfr" not in u:
+            return False
+        tail = f"section-{p['part']}.{p['section']}" if p["section"] else f"part-{p['part']}"
+        return f"title-{p['title']}/" in u and (u.endswith(tail) or f"/{tail}/" in u or f"/{tail}?" in u)
+    return False
 
 
 def mirror_routes(wanted: Wanted, kind, p):
@@ -332,7 +368,8 @@ def plan_routes(wanted: Wanted, wayback_limit: int = 3, tiers=TIER_ORDER):
         for r in rs:
             if len(out) >= wayback_limit:
                 break
-            if "/link/" in r.url or "/api/" in r.url:
+            if "/link/" in r.url or "/api/" in r.url or r.kind == "rp_index":
+                # (an index-only step: a Wayback copy of the Title 5 Appendix would be taken as the plan itself)
                 continue
             out.append(Route("wayback_cdx", cdx_url(r.url), "json", kind="cdx", tier=tier))
         return out
@@ -782,8 +819,37 @@ def edition_note(kind, final_url, retrieved_utc=""):
             f"(check the historical edition and its notes).{flag} ")
 
 
+def rp_index_cites(text: str, number: int, year: int):
+    """{'fr': (vol, page), 'stat': (vol, page)} printed in the Title 5 Appendix heading of a plan (may be empty)."""
+    flat = re.sub(r"\s+", " ", text)
+    head = re.compile(rf"REORGANIZATION PLAN NO\. {number} OF {year} (?=(.{{0,160}}))")
+    sent = re.compile(rf"Reorg(?:anization|\.) Plan No\. {number} of {year}, (?=(.{{0,100}}))", re.I)
+    starts = re.compile(r"(?:Eff\.|\d{1,3} ?F\.?R\.?|\d{1,3} Stat\.)")
+    for rx in (head, sent):
+        for m in rx.finditer(flat):
+            chunk = m.group(1)
+            if not starts.match(chunk):
+                continue
+            fr = re.search(r"(\d{1,3}) ?F\.? ?R\.? ?(\d{1,6})", chunk)
+            st = re.search(r"(\d{1,3}) Stat\. ?(\d{1,5})", chunk)
+            if fr or st:
+                out = {}
+                if fr:
+                    out["fr"] = (int(fr.group(1)), int(fr.group(2)))
+                if st:
+                    out["stat"] = (int(st.group(1)), int(st.group(2)))
+                return out
+    return {}
+
+
 def default_extract(wanted, route, att, fetcher):
     """Default content step: extract text; accept any real document."""
+    if re.search(r"govinfo\.gov/metadata/(?:pkg|granule)/", (att.get("final_url") or "") + " " + route.url):
+        # PREMIS/MODS fixity metadata: keep the attempt (bytes, hash) but never count it as the document itself.
+        return {"ok": False, "reason": "govinfo metadata file (PREMIS/MODS) is not the requested document"}
+    if parse_citation(wanted.citation)[0] == "RP" and "USCODE-" in (att.get("final_url") or "") + route.url:
+        # The U.S. Code Title 5 Appendix is a compilation: an index for the plan's cites, never its original.
+        return {"ok": False, "reason": "a U.S. Code compilation is not a Reorganization Plan's original publication"}
     if not att.get("path"):
         return {"ok": True, "text": None, "page_or_item": wanted.citation or route.url, "notes": "body not kept in cache"}
     text, info = extract_text(att["path"], att.get("content_type", ""), route.expect, att.get("page_hint"))
@@ -902,6 +968,17 @@ class Ladder:
                 att["note"] = f"{len(new)} Wayback captures listed"
                 queue.extendleft(reversed(new))
                 continue
+            if r.kind == "rp_index":
+                new, note = self._from_rp_index(att, wanted)
+                att["note"] = note
+                if not new:
+                    # Not listed (or unreadable): a passing failure, so it can never be proposed as exhausted.
+                    att["accepted"] = False
+                    att["error"] = "rp_not_found_in_title5_appendix"
+                    continue
+                queue = deque(x for x in queue if x.kind != "rp_index")   # the other edition is not needed
+                queue.extendleft(reversed(new))
+                continue
             if r.kind == "fr_api":
                 new = self._from_fr_api(att)
                 att["note"] = f"{len(new)} document links in API record"
@@ -939,6 +1016,30 @@ class Ladder:
                                  tier=att.get("tier", "wayback_given")))
         return out[:2]
 
+    def _from_rp_index(self, att, wanted):
+        """Original-publication routes for a Reorganization Plan, read from the Title 5 Appendix heading.
+
+        The Appendix is a current compilation: it is used ONLY to learn the plan's Federal Register and
+        Statutes at Large cites. It is never kept as the source (a compilation is not the original)."""
+        kind, p = parse_citation(wanted.citation)
+        if kind != "RP" or not att.get("path"):
+            return [], "not a Reorganization Plan citation"
+        try:
+            _, pages = pdf_pages_text(att["path"])
+        except Exception as exc:
+            return [], f"index unreadable: {type(exc).__name__}"
+        cites = rp_index_cites("\n".join(t for _, t in pages), p["number"], p["year"])
+        out = []
+        if cites.get("stat"):
+            v, pg = cites["stat"]
+            out.append(Route("govinfo_link_statute_from_rp_index", f"https://www.govinfo.gov/link/statute/{v}/{pg}", "pdf", tier="official"))
+        if cites.get("fr"):
+            v, pg = cites["fr"]
+            out.append(Route("govinfo_link_fr_from_rp_index", f"https://www.govinfo.gov/link/fr/{v}/{pg}", "pdf", tier="official"))
+        if not out:
+            return [], f"Reorganization Plan No. {p['number']} of {p['year']} has no Stat./FR cite in this Appendix edition"
+        return out, "index lists " + "; ".join(f"{k.upper()} {v[0]}/{v[1]}" for k, v in cites.items() if v)
+
     def _from_fr_api(self, att):
         if not att.get("path"):
             return []
@@ -971,6 +1072,8 @@ class Ladder:
             "notes": result.get("notes", ""),
             "wanted_id": wanted.wanted_id,
             "citation": wanted.citation,
+            **({"embedded_in_request": wanted.extra["parent_citation"][:300]}
+               if wanted.extra.get("parent_citation") else {}),
             **({"expected_sha256": wanted.extra["expected_sha256"],
                 "matches_expected_sha256": att["sha256"] == wanted.extra["expected_sha256"]}
                if wanted.extra.get("expected_sha256") else {}),

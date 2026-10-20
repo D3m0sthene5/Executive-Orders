@@ -32,7 +32,8 @@ PLAW_DASH_RE = re.compile(r"(?<![A-Za-z])(?:Pub(?:lic)?\.?\s*L(?:aw|\.)?|P\.\s*L
 # "Public Law 724, 79th Congress", "Pub. L. 453, 83d Cong."
 PLAW_CONG_RE = re.compile(r"(?<![A-Za-z])Pub(?:lic)?\.?\s*L(?:aw|\.)?\s*(?:No\.\s*)?(\d{1,4}),?\s*(\d{1,3})\s*(?:st|nd|rd|th|d)\s*Cong", re.I)
 FR_RE = re.compile(r"(?<![\d.])(\d{1,2})\s*F\.?\s*R\.?\s*(\d{1,6})(?![\d])", re.I)
-USC_RE = re.compile(r"(?<![\d.])(\d{1,2})\s*U\.?\s*S\.?\s*C\.?\s*(?:§+\s*)?(\d+[A-Za-z]*(?:-\d+[A-Za-z]*)?)", re.I)
+# Section suffix of at most 3 letters ("714b", "300aa"); "3345etseq" is read as section 3345.
+USC_RE = re.compile(r"(?<![\d.])(\d{1,2})\s*U\.?\s*S\.?\s*C\.?\s*(?:§+\s*)?(\d+(?:[A-Za-z]{1,3}(?![A-Za-z]))?(?:-\d+[A-Za-z]*)?)", re.I)
 CFR_RE = re.compile(r"(?<![\d.])(\d{1,2})\s*C\.?\s*F\.?\s*R\.?\s*(?:Parts?\s*|§+\s*)?(\d+(?:-\d+)?)(?:\.(\d+[A-Za-z0-9]*))?", re.I)
 RP_RE = re.compile(r"Reorg(?:anization|\.)\s*Plan\s+No\.?\s*(\d+)\s+of\s+(\d{4})", re.I)
 EO_MENTION_RE = re.compile(r"(?:\bEO|\bE\.\s*O\.|Executive\s+Order|Ex\.\s*Ord\.)\s*(?:No\.?\s*)?(\d{3,5})(?!\d)", re.I)
@@ -86,11 +87,11 @@ def find_embedded(text: str, skip_fr=(), limit=MAX_CITES_PER_LINE):
 
     Rules, all deterministic:
       * duplicates are dropped (first position wins);
-      * Public Law cites are dropped when the line has at least as many
-        Statutes at Large cites (they are the same enactments, and the Stat.
-        page is the more exact route);
-      * a Reorganization Plan is kept only when the line gives no Stat. cite
-        (otherwise the Stat. cite is the plan's own page);
+      * a Public Law cite is dropped when the line also gives a Statutes at
+        Large cite in a volume of that Congress (the same enactment; the Stat.
+        page is the more exact route); an unrelated Stat. cite does not drop it;
+      * a Reorganization Plan is dropped only when the line gives a Stat. cite
+        in a volume of the plan's Congress (the plan's own page);
       * at most `limit` cites are returned; the rest are reported by
         find_embedded_with_overflow.
     """
@@ -107,10 +108,28 @@ def find_embedded_with_overflow(text: str, skip_fr=(), limit=MAX_CITES_PER_LINE)
             continue
         seen.add(cite)
         hits.append({"kind": kind, "cite": cite, "parts": parts})
-    n_stat = sum(h["kind"] == "STAT" for h in hits)
-    n_plaw = sum(h["kind"] == "PLAW" for h in hits)
-    if n_stat and n_stat >= n_plaw:
-        hits = [h for h in hits if h["kind"] != "PLAW"]
-    if n_stat:
-        hits = [h for h in hits if h["kind"] != "RP"]
+    vols = [h["parts"]["volume"] for h in hits if h["kind"] == "STAT"]
+    hits = [h for h in hits if not _same_enactment_on_stat_page(h, vols)]
     return hits[:limit], hits[limit:]
+
+
+def stat_volumes_of_congress(congress: int):
+    """Statutes at Large volumes that can hold a Congress's laws (from the 75th on each Congress fills
+    about two volumes, 2c-99 and 2c-98; one volume of slack each side for the 1930s-40s irregularities)."""
+    return range(2 * congress - 100, 2 * congress - 96)
+
+
+def _same_enactment_on_stat_page(hit, stat_volumes):
+    """True when a Public Law or Reorganization Plan is already covered by a Stat. cite in the same line.
+
+    Only a Stat. cite in a volume of the right Congress counts: "Pub. L. 98-525 ... 90 Stat. 1255" keeps
+    the Public Law (98th Congress laws are in 97-98 Stat.), "Pub. L. 98-525 (98 Stat. 2492)" does not."""
+    if hit["kind"] == "PLAW":
+        rng = stat_volumes_of_congress(hit["parts"]["congress"])
+    elif hit["kind"] == "RP":
+        # A plan takes effect in its own year or the next; it is printed in that Congress's volumes.
+        r = stat_volumes_of_congress((hit["parts"]["year"] - 1789) // 2 + 1)
+        rng = range(r.start, r.stop + 1)
+    else:
+        return False
+    return any(v in rng for v in stat_volumes)
