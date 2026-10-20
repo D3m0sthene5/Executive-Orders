@@ -1,7 +1,7 @@
 {
  "schema": "llull.base_rates/1",
  "built": "2026-10-20",
- "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`.",
+ "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`. Each row carries `evidence`: verbatim quotes that `check` finds in the cited files (whitespace ignored).",
  "rows": [
   {
    "key": "upheld_per_attempt.modern_claim_no_held_end",
@@ -13,7 +13,13 @@
    "n_studies": 1,
    "note": "Y2 probe; the orders lacked held ending instruments and CURRENT predicates",
    "num": 3,
-   "den": 50
+   "den": 50,
+   "evidence": [
+    {
+     "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+     "quote": "Upheld per attempted:** 3 of 50, or 6%"
+    }
+   ]
   },
   {
    "key": "accepted_per_attempt.modern_status_sweep",
@@ -25,7 +31,13 @@
    "n_studies": 1,
    "note": "Y1 probe, producer plus independent review",
    "num": 15,
-   "den": 50
+   "den": 50,
+   "evidence": [
+    {
+     "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+     "quote": "15 NO proposals accepted"
+    }
+   ]
   },
   {
    "key": "minutes_per_accepted.modern_status",
@@ -35,7 +47,13 @@
    "postmortem_id": "P18",
    "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
    "n_studies": 1,
-   "note": "about 1.5 combined minutes per accepted status; 15 accepted"
+   "note": "about 1.5 combined minutes per accepted status; 15 accepted",
+   "evidence": [
+    {
+     "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+     "quote": "about 1.5 combined minutes per accepted proposal"
+    }
+   ]
   },
   {
    "key": "minutes_per_accepted.modern_claim_reviewer_only",
@@ -45,7 +63,13 @@
    "postmortem_id": "P19",
    "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
    "n_studies": 1,
-   "note": "46.1 reviewer minutes for 3 accepted claims; producer minutes not reported, so a LOWER BOUND"
+   "note": "46.1 reviewer minutes for 3 accepted claims; producer minutes not reported, so a LOWER BOUND",
+   "evidence": [
+    {
+     "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+     "quote": "about 15.4 reviewer-only minutes per accepted claim (46.1 minutes for 3)"
+    }
+   ]
   },
   {
    "key": "rejected_per_submitted.modern_claim_no_held_end",
@@ -57,7 +81,13 @@
    "n_studies": 1,
    "note": "",
    "num": 2,
-   "den": 5
+   "den": 5,
+   "evidence": [
+    {
+     "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+     "quote": "Rejected per submitted:** 2 of 5, or 40%"
+    }
+   ]
   },
   {
    "key": "rejected_per_submitted.codification_swarm",
@@ -67,29 +97,49 @@
    "postmortem_id": "P06",
    "source": "HANDOFF/notes-claude.md",
    "n_studies": 1,
-   "note": "10.7% overall; per batch 0% to 50% (12/24); denominator not recorded in the postmortem"
+   "note": "10.7% overall; per batch 0% to 50% (12/24); denominator not recorded in the postmortem",
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-claude.md",
+     "quote": "by the reviewers (10.7%)"
+    }
+   ]
   },
   {
    "key": "rejected_per_submitted.sol_claim_kit_pilot",
    "pool": "Sol 50-order claim-kit pilot",
    "unit": "share",
-   "value": 0.167,
+   "value": 0.1667,
    "postmortem_id": "P07",
    "source": "research/production/claim-kit-pilot-2026-10-18/short.md",
    "n_studies": 1,
-   "note": "first-pass rejection 16.7%"
+   "note": "2/12 after the second phase (1/10 in the initial phase)",
+   "num": 2,
+   "den": 12,
+   "evidence": [
+    {
+     "source": "research/production/claim-kit-pilot-2026-10-18/short.md",
+     "quote": "2/12=16.7%"
+    }
+   ]
   },
   {
    "key": "rejected_per_submitted.family_rule_targets_first_decisions",
    "pool": "Astra A2 family-rule targets",
    "unit": "share",
-   "value": 0.2222,
+   "value": 0.1053,
    "postmortem_id": "P12",
-   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "source": "HANDOFF/notes-astra.md",
    "n_studies": 1,
-   "note": "",
+   "note": "was 2/9 = 0.2222 citing the side brief, which does not hold it; notes-astra gives the historical first-decision rejection as 2/19 (2/9 was an earlier stop trigger)",
    "num": 2,
-   "den": 9
+   "den": 19,
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-astra.md",
+     "quote": "Historical first-decision rejection2/19"
+    }
+   ]
   },
   {
    "key": "rejected_per_submitted.x1_pilot",
@@ -101,7 +151,13 @@
    "n_studies": 1,
    "note": "",
    "num": 1,
-   "den": 6
+   "den": 6,
+   "evidence": [
+    {
+     "source": "research/production/x1-2026-10-19/REPORT.md",
+     "quote": "Rejection rate: 1 of 6 = 17%"
+    }
+   ]
   },
   {
    "key": "accepted_per_target.family_claims",
@@ -109,11 +165,17 @@
    "unit": "share",
    "value": 0.24,
    "postmortem_id": "P08",
-   "source": "research/plans/SOL_BRIEF_CLAIM_KIT.md",
+   "source": "research/production/claim-kit-pilot-2026-10-18/short.md",
    "n_studies": 1,
-   "note": "",
+   "note": "was cited to SOL_BRIEF_CLAIM_KIT.md, a plan that does not hold the measurement",
    "num": 12,
-   "den": 50
+   "den": 50,
+   "evidence": [
+    {
+     "source": "research/production/claim-kit-pilot-2026-10-18/short.md",
+     "quote": "12 accepted frozen candidates and 38 unable orders"
+    }
+   ]
   },
   {
    "key": "complete_per_accepted.family_rule_targets",
@@ -121,11 +183,17 @@
    "unit": "share",
    "value": 0.1053,
    "postmortem_id": "P12",
-   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "source": "HANDOFF/notes-astra.md",
    "n_studies": 1,
-   "note": "",
+   "note": "was cited to the side brief, which does not hold it",
    "num": 2,
-   "den": 19
+   "den": 19,
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-astra.md",
+     "quote": "19 independently accepted frozen candidates (17partial,2complete proposals)"
+    }
+   ]
   },
   {
    "key": "hit_rate.type_tribunal",
@@ -137,7 +205,13 @@
    "n_studies": 1,
    "note": "",
    "num": 3,
-   "den": 16
+   "den": 16,
+   "evidence": [
+    {
+     "source": "research/production/x1-2026-10-19/REPORT.md",
+     "quote": "hit rate 0.19 (3 of 16 spent orders reached an accepted claim"
+    }
+   ]
   },
   {
    "key": "hit_rate.extinction_event",
@@ -149,7 +223,13 @@
    "n_studies": 1,
    "note": "",
    "num": 0,
-   "den": 4
+   "den": 4,
+   "evidence": [
+    {
+     "source": "research/production/x1-2026-10-19/REPORT.md",
+     "quote": "hit rate 0 (0 of 4; assumed 0.8)"
+    }
+   ]
   },
   {
    "key": "eligible_share.pre1937_orders",
@@ -157,11 +237,17 @@
    "unit": "share",
    "value": 0.0065,
    "postmortem_id": "P17",
-   "source": "research/plans/EXCAVATOR_FUNNEL_2026-10-20.md",
+   "source": "research/production/x1-2026-10-19/REPORT.md",
    "n_studies": 1,
-   "note": "measured by the X1 pilot; the Llull census recounts it on today's tracker",
+   "note": "measured by the X1 pilot at main f57cffe8; the Llull census recounts it on today's tracker",
    "num": 52,
-   "den": 8014
+   "den": 8014,
+   "evidence": [
+    {
+     "source": "research/production/x1-2026-10-19/REPORT.md",
+     "quote": "Of 8,014 pre-1937 orders, only **52** have both a provisional status and a held text"
+    }
+   ]
   },
   {
    "key": "cleared_per_queued.opus_refetch",
@@ -169,11 +255,21 @@
    "unit": "share",
    "value": 0.036,
    "postmortem_id": "P13",
-   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "source": "HANDOFF/notes-astra.md",
    "n_studies": 1,
-   "note": "108 -> 125 (+17), then 82 after ladder output was lost",
+   "note": "+17 is the session change 108 -> 125 (only +10 from 115 after acquisition), then 82 after ladder output was lost; 472 queued from the side brief. Weak: numerator and denominator come from different files",
    "num": 17,
-   "den": 472
+   "den": 472,
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-astra.md",
+     "quote": "(session108to125)"
+    },
+    {
+     "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+     "quote": "Queue the Opus re-fetch list (472 orders"
+    }
+   ]
   },
   {
    "key": "items_per_planned.opus_media_match",
@@ -181,11 +277,17 @@
    "unit": "share",
    "value": 0.0972,
    "postmortem_id": "P05",
-   "source": "HANDOFF/notes-claude.md",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
    "n_studies": 1,
-   "note": "108 of 844 on 10-18; 82 orders with all cited media resolved later",
+   "note": "was cited to notes-claude.md, which does not hold 82; the side brief's tracker table holds 82 / 844",
    "num": 82,
-   "den": 844
+   "den": 844,
+   "evidence": [
+    {
+     "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+     "quote": "| 8 `opus_media` | 82 / 844 |"
+    }
+   ]
   },
   {
    "key": "items_per_planned.blocked_host",
@@ -197,7 +299,17 @@
    "n_studies": 1,
    "note": "",
    "num": 0,
-   "den": 1712
+   "den": 1712,
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-codex.md",
+     "quote": "Pinned all 1,712 all-no census targets"
+    },
+    {
+     "source": "HANDOFF/notes-codex.md",
+     "quote": "refused the first viewer with `blocked_by_robots_txt`"
+    }
+   ]
   },
   {
    "key": "usd_total.meta_tool_build",
@@ -207,7 +319,13 @@
    "postmortem_id": "P21",
    "source": "HANDOFF/notes-claude.md",
    "n_studies": 1,
-   "note": "forecast was $12-25"
+   "note": "forecast was $12-25",
+   "evidence": [
+    {
+     "source": "HANDOFF/notes-claude.md",
+     "quote": "Build cost:** $10.18 of token value"
+    }
+   ]
   },
   {
    "key": "measured_over_forecast.all_misses",
@@ -217,7 +335,7 @@
    "n_studies": 9,
    "postmortem_id": "P03,P04,P05,P08,P11,P12,P13,P17,P19",
    "source": "jobs/llull/ledger/postmortems.json",
-   "note": "median measured/forecast over 9 of 12 unfavourable misses; ratios [0.0, 0.0, 0.0033, 0.022, 0.036, 0.112, 0.12, 0.128, 0.24]"
+   "note": "median measured/forecast over 9 of 12 unfavourable misses; ratios [0.0, 0.0, 0.0033, 0.022, 0.036, 0.112, 0.12, 0.128, 0.24]; check recomputes this median from postmortems.json miss_ratio"
   }
  ]
 }
