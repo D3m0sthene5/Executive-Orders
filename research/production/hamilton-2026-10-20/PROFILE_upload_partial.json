@@ -1,0 +1,208 @@
+{
+ "label": "upload_partial",
+ "model_calls": 490,
+ "cost_units": 13277331,
+ "usd_per_unit": null,
+ "unit": "input-token equivalents",
+ "tokens": {
+  "input": 1004,
+  "read": 112081475,
+  "write5m": 1053771,
+  "write1h": 356078,
+  "output": 7762
+ },
+ "cost_by_cause": [
+  {
+   "cause": "fixed setup (system prompt, tools, rules)",
+   "cost": 6480987,
+   "share": 0.4881,
+   "fresh": 0,
+   "reread": 6480987
+  },
+  {
+   "cause": "Read",
+   "cost": 2081418,
+   "share": 0.1568,
+   "fresh": 0,
+   "reread": 2081418
+  },
+  {
+   "cause": "Bash (sets variables, then runs a script)",
+   "cost": 1613291,
+   "share": 0.1215,
+   "fresh": 60600,
+   "reread": 1552691
+  },
+  {
+   "cause": "model wrote: Bash (sets variables, then runs a script)",
+   "cost": 1146240,
+   "share": 0.0863,
+   "fresh": 764302,
+   "reread": 381938
+  },
+  {
+   "cause": "model wrote: reply or narration",
+   "cost": 646206,
+   "share": 0.0487,
+   "fresh": 629302,
+   "reread": 16903
+  },
+  {
+   "cause": "model continuing",
+   "cost": 217982,
+   "share": 0.0164,
+   "fresh": 217982,
+   "reread": 0
+  },
+  {
+   "cause": "Bash python -c/heredoc",
+   "cost": 109385,
+   "share": 0.0082,
+   "fresh": 0,
+   "reread": 109385
+  },
+  {
+   "cause": "Bash mkdir",
+   "cost": 82721,
+   "share": 0.0062,
+   "fresh": 0,
+   "reread": 82721
+  },
+  {
+   "cause": "model wrote: Write",
+   "cost": 74439,
+   "share": 0.0056,
+   "fresh": 20958,
+   "reread": 53481
+  },
+  {
+   "cause": "model wrote: Bash python -c/heredoc",
+   "cost": 62614,
+   "share": 0.0047,
+   "fresh": 46384,
+   "reread": 16230
+  },
+  {
+   "cause": "Bash cat",
+   "cost": 57553,
+   "share": 0.0043,
+   "fresh": 0,
+   "reread": 57553
+  },
+  {
+   "cause": "model wrote: Read",
+   "cost": 55275,
+   "share": 0.0042,
+   "fresh": 53606,
+   "reread": 1669
+  },
+  {
+   "cause": "Bash python show.py",
+   "cost": 49227,
+   "share": 0.0037,
+   "fresh": 0,
+   "reread": 49227
+  },
+  {
+   "cause": "model wrote: Agent",
+   "cost": 38607,
+   "share": 0.0029,
+   "fresh": 21768,
+   "reread": 16839
+  },
+  {
+   "cause": "MCP claude-code-remote list_sessions",
+   "cost": 36089,
+   "share": 0.0027,
+   "fresh": 0,
+   "reread": 36089
+  },
+  {
+   "cause": "model wrote: Bash python show.py",
+   "cost": 35953,
+   "share": 0.0027,
+   "fresh": 33719,
+   "reread": 2234
+  },
+  {
+   "cause": "model wrote: Bash cat",
+   "cost": 35798,
+   "share": 0.0027,
+   "fresh": 28297,
+   "reread": 7501
+  },
+  {
+   "cause": "Bash grep",
+   "cost": 33486,
+   "share": 0.0025,
+   "fresh": 0,
+   "reread": 33486
+  },
+  {
+   "cause": "Bash for",
+   "cost": 33126,
+   "share": 0.0025,
+   "fresh": 3990,
+   "reread": 29136
+  },
+  {
+   "cause": "model wrote: WebSearch",
+   "cost": 30124,
+   "share": 0.0023,
+   "fresh": 29733,
+   "reread": 391
+  },
+  {
+   "cause": "model wrote: Bash mkdir",
+   "cost": 29791,
+   "share": 0.0022,
+   "fresh": 23529,
+   "reread": 6262
+  },
+  {
+   "cause": "Bash ls",
+   "cost": 29200,
+   "share": 0.0022,
+   "fresh": 0,
+   "reread": 29200
+  },
+  {
+   "cause": "model wrote: SubagentHandback",
+   "cost": 28353,
+   "share": 0.0021,
+   "fresh": 15938,
+   "reread": 12415
+  },
+  {
+   "cause": "user or system message",
+   "cost": 27635,
+   "share": 0.0021,
+   "fresh": 2598,
+   "reread": 25037
+  },
+  {
+   "cause": "model wrote: Bash for",
+   "cost": 26715,
+   "share": 0.002,
+   "fresh": 18368,
+   "reread": 8347
+  }
+ ],
+ "cache_rebuilds": {
+  "count": 1,
+  "cost": 525298,
+  "examples": [
+   {
+    "ts": "2026-10-17T16:38:03.119179Z",
+    "tokens_rewritten": 262649
+   }
+  ]
+ },
+ "status_checks_in_large_context": {},
+ "subagents": {
+  "count": 6,
+  "cost": 10552420
+ },
+ "files_read_more_than_twice": [],
+ "events": 2281
+}

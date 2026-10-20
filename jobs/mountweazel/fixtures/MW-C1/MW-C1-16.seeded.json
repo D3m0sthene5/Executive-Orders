@@ -1,0 +1,124 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 4,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl",
+  "sha256": "b9451b4f5f0af6abaa7f540ffbefbc71819a2a06703b36a3d15df16ddfb95096"
+ },
+ "batch_id": "MW-C1",
+ "defect_code": "D6",
+ "instrument_id": "SEEDED:EO:9973",
+ "item_id": "MW-C1-16",
+ "mutation": {
+  "after": "(entry removed)",
+  "before": "EO:10577 1955-01-23",
+  "field": "operative_clauses[0].later_events[1]",
+  "operator": "D6.0.1",
+  "refuting_span": {
+   "quote": "Executive Orders No. 9973 of June 28, 1948,  \nNo. 10440 of March 31, 1953, and No. 10463 of  \nJune 25, 1953, amending Civil Service Rule  \nVI.\nExecutive Order No. 10180 of November 13,  \n1950, establishing special personnel proce­\ndures in the interest of national defense.\nP art IV\nS ec. 401. This order shall become effec­\ntive on the first Sunday after the sixtieth \nday after the date hereof."
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:9973",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition row for EO 9973 ('AmendedEO 9830. Revokedby EO 10577', table page 1047); every acting order it names was then read in its Federal Register original, together with the amending and continuing orders named in this claim",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), Executive Orders disposition table, as transcribed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv); a status lead as of 1989-01-20 only",
+    "searched_by": "Claude (batch 7), reading the held fr-originals Federal Register scans"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "EO 9973 (13 FR 3600) read in full; EO 10440 (18 FR 1823) and EO 10577 (19 FR 7521-7526, Parts III-IV) read for the provisions that replaced or revoked it, their effective dates and savings language",
+    "repository": "Held official Federal Register scans (jobs/fr-originals full_run texts and SOURCES.jsonl) and Statutes at Large PDFs held in research/stage20",
+    "searched_by": "Claude (batch 7)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10440",
+     "date": "1953-03-31",
+     "mechanism": "replacement: EO 10440 sec. 1 provides that Civil Service Rule VI, as established by EO 9830 and as amended by EO 9973, 'is hereby further amended to read as follows' and sets out a new Rule VI whose sec. 6.1 has only subsections (a) and (b); the subsection (f) inserted by EO 9973 ceased to exist. EO 10440 states no effective date, so it took effect when signed on March 31, 1953 (printed 18 FR 1823 on April 2, 1953)",
+     "source": {
+      "page_or_item": "18 FR 1823, PDF pages 1-2; EO 10440 sec. 1 lead-in (PDF page 1)",
+      "quote": "Se ctio n 1. Civil Service Rule VI, as \nestablished by Executive Order No. 9830 \nof February 24, 1947, and as amended \nby Executive Order No. 9973 of June 28, \n1 9 4 8 , is hereby further amended to read \nas follows:",
+      "sha256": "627598f369d47661abd3ade3e54af2eeb8d74161a9e90681c5c41d86cd01a8ba",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1953-04-02/pdf/FR-1953-04-02.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:10440",
+      "effective_date": "1953-03-31",
+      "mechanism": "replacement: EO 10440 sec. 1 provides that Civil Service Rule VI, as established by EO 9830 and as amended by EO 9973, 'is hereby further amended to read as follows' and sets out a new Rule VI whose sec. 6.1 has only subsections (a) and (b); the subsection (f) inserted by EO 9973 ceased to exist. EO 10440 states no effective date, so it took effect when signed on March 31, 1953 (printed 18 FR 1823 on April 2, 1953)",
+      "source": {
+       "page_or_item": "18 FR 1823, PDF pages 1-2; EO 10440 sec. 1 lead-in (PDF page 1)",
+       "quote": "Se ctio n 1. Civil Service Rule VI, as \nestablished by Executive Order No. 9830 \nof February 24, 1947, and as amended \nby Executive Order No. 9973 of June 28, \n1 9 4 8 , is hereby further amended to read \nas follows:",
+       "sha256": "627598f369d47661abd3ade3e54af2eeb8d74161a9e90681c5c41d86cd01a8ba",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1953-04-02/pdf/FR-1953-04-02.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(f) Whenever any position in Sched­\nule A or B (§6.4) or any position ex­\ncepted from the competitive service by \nstatute is occupied by a person having a \ncompetitive status, such person shall not \nbe entitled to the protection against sep­\naration provided by this order and the \nCivil Service Rules and Regulations: \nProvided, That the Commission shall des­\nignate such positions in Schedules A and \nB as are not of a primarily confidential \nor policy-determining character, and \nwhenever any position so ¿Tesignated is \noccupied by a person having a competi­\ntive status, however he may have been \nappointed to such position, he shall be \nseparated therefrom only in accordance \nwith the provisions of this order and the \nCivil Service Rules and Regulations.",
+    "original_source": {
+     "page_or_item": "13 FR 3600, PDF pages 4-4; subdivision (f) of sec. 6.1 of Civil Service Rule VI (EO 9830) as substituted by EO 9973 (quotation from PDF page 4)",
+     "sha256": "ca138a7624f9551c666a2fbc4e3e6d6bcc4e8f09569d1707961bd7d508840fb9",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1948-06-30/pdf/FR-1948-06-30.pdf"
+    },
+    "scope_id": "EO:9973#sec6.1f",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "13 FR 3600, PDF pages 4-4",
+   "sha256": "ca138a7624f9551c666a2fbc4e3e6d6bcc4e8f09569d1707961bd7d508840fb9",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1948-06-30/pdf/FR-1948-06-30.pdf"
+  },
+  "research_rationale": "EO 9973 (June 28, 1948; 13 FR 3600, read in the held govinfo scan) has one operative provision: it substitutes subdivision (f) of sec. 6.1 of Civil Service Rule VI of EO 9830 (no removal protection for competitive-status holders of Schedule A or B or statutorily excepted positions, except positions the Commission designates as not confidential or policy-determining). The 1989 Codification table (a lead) and the OFR catalog record its revocation by EO 10577 (1954), but an earlier event ended it: EO 10440 sec. 1 (March 31, 1953; 18 FR 1823) amended Rule VI 'as amended by Executive Order No. 9973' to read as a wholly new Rule VI whose sec. 6.1 has no subdivision (f). EO 10440 states no effective date, so the EO 9973 text ended on March 31, 1953. EO 10577 sec. 301 later revoked EO 9973 by name, effective January 23, 1955 (sec. 401), a formal clean-up of an already displaced amendment, recorded as a later event. No savings preserved the EO 9973 text.",
+  "savings_residuals": {
+   "reason": "EO 10440 replaced the whole of Rule VI without a savings clause for the text of EO 9973. Its sec. 2 kept positions in Schedules A and B 'as presently constituted' until reclassified; those listings were Commission actions, not provisions of EO 9973. The new sec. 6.4 of EO 10440 kept a similar rule (removal protection for competitive-status incumbents of Schedule A and B positions) by its own force, which is policy continuity, not a survival of EO 9973. The later formal revocation by EO 10577 (effective January 23, 1955) found nothing of EO 9973 still in force.",
+   "source": {
+    "page_or_item": "18 FR 1823, PDF pages 1-2; secs. 1-2 of EO 10440 (PDF page 1)",
+    "sha256": "627598f369d47661abd3ade3e54af2eeb8d74161a9e90681c5c41d86cd01a8ba",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1953-04-02/pdf/FR-1953-04-02.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:10440",
+   "date": "1953-03-31",
+   "mechanism": "replacement: EO 10440 sec. 1 provides that Civil Service Rule VI, as established by EO 9830 and as amended by EO 9973, 'is hereby further amended to read as follows' and sets out a new Rule VI whose sec. 6.1 has only subsections (a) and (b); the subsection (f) inserted by EO 9973 ceased to exist. EO 10440 states no effective date, so it took effect when signed on March 31, 1953 (printed 18 FR 1823 on April 2, 1953)",
+   "source": {
+    "page_or_item": "18 FR 1823, PDF pages 1-2; EO 10440 sec. 1 lead-in (PDF page 1)",
+    "quote": "Se ctio n 1. Civil Service Rule VI, as \nestablished by Executive Order No. 9830 \nof February 24, 1947, and as amended \nby Executive Order No. 9973 of June 28, \n1 9 4 8 , is hereby further amended to read \nas follows:",
+    "sha256": "627598f369d47661abd3ade3e54af2eeb8d74161a9e90681c5c41d86cd01a8ba",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1953-04-02/pdf/FR-1953-04-02.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

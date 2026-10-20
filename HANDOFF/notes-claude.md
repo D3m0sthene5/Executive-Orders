@@ -2,6 +2,74 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: Bowditch, the Y2 claim-factory probe failed its gate and Y1 passed
+
+- **Done:** random probe of the funnel plan (`research/excavator/bowditch-2026-10-20/REPORT.md`). **Y2** covered 50
+  orders drawn from the 2,022 modern orders with a status and text but no claim. **3 upheld (6%, test needs
+  ≥50%)** and 2 of 5 rejected (40%, test allows ≤11%), so it was **not scaled**. Claims are in
+  `research/readiness/claims/claude-bowditch-y2-0{1,2}-2026-10-20.jsonl`; all pass the checker. Expect 0-3 new
+  ready orders after the Actions tracker run.
+  **Y1** covered 50 of the 4,271 no-status modern orders. 15 NO proposals were accepted, with 0 of 15
+  reviewer disagreements (limit ≤11%) and about 1.5 agent-min per accepted status (limit 5): **passes**.
+  The reviewer came from the same model family, and nothing was adopted.
+- **Finding:** Y2 is blocked by missing inputs, not by agent effort. Most orders have no held TERM/ACT ending
+  instrument or CURRENT predicate. The probe added 53 FETCH_QUEUE requests. Next: an unblocker that fetches
+  ending instruments and current-law predicates in bulk (a job, not agents), then probe Y2 again.
+- **Cost:** about $21 of token value for 10 agents (session total $31.67 including Junto).
+- **Asks:** `@Owner`: (1) adopt the 15 Y1 NO proposals via batch PR (idea 2 in the funnel plan)? (2) rule on EO
+  12080 (spent amending order), 12086 (ledger NO possibly contradicted), 14125 Sec. 4, 9704.
+
+## 2026-10-20 ET: Junto, a scored ledger of token-saving finders
+
+- **Done (branch `claude/junto-1727`):** design `research/plans/JUNTO_DESIGN.md`; `jobs/junto/` (append-only ledger,
+  `junto.py run|score|allocate|propose|add-test|check`, 19 stdlib tests); three finders: Hamilton (fitted),
+  Clausewitz (friction) and Gallatin (wasted work); five more catalogued but not built. First run:
+  `research/production/junto-2026-10-20/REPORT.md`. It produced 13 candidates, **all unverified; every finder
+  scores 0 verified $**. Score = verified $ saved / ($ spent + $2 prior). Only `add-test`, with measured before
+  and after values, can verify a saving.
+- **Next tests:** Watchman (about $1 marginal), Revere (about $3 marginal, on a planned Y1 phase; fix X1's
+  phase count first), idle-cache avoidance (about $2).
+- **Build cost:** $10.18 of token value and 49 M cache reads in about 50 min, against an estimate of $12-25.
+  Hamilton on the coordinator thread: narration 27%, fixed setup 26%, system/user messages 17%.
+- **Gap:** session 017gGL is only about 9% read (page 52 copy was blocked by auto mode, and not worked around).
+- **Asks:** `@Astra` / `@Codex`: log any saver you try with `junto.py add-test`; never enter estimates as savings.
+
+## 2026-10-20 ET: Hamilton, a token audit of agent sessions
+
+- **Done:** `jobs/hamilton-token-audit/` (offline profiler of `list_events` transcripts) and its first audit,
+  `research/production/hamilton-2026-10-20/REPORT.md`. Findings: in X1 the coordinator thread was 72% of
+  input-side cost (median context 421 k) against 28% for the 11 helpers doing the research. Fixed setup is about
+  70 k tokens per call. Waiting (status checks, a cache rebuild after an idle hour) was about 15%.
+- **Proposed tools (probe before build):** Revere (phase handoff to fresh sessions), Watchman (monitoring outside
+  big sessions), a setup trim measured by first-call context, and a quiet protocol.
+- **Asks:** `@Astra` / `@Codex`: keep coordinators short-lived; start a fresh session per phase with a state file.
+- **Do not:** commit raw transcripts. Auto mode blocked one copy of the Oct 16-17 session's transcript as possible
+  exfiltration; it was not worked around.
+
+## 2026-10-20 ET: refreshed remaining-work figures; gated funnel for the next excavators
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main f57cffe8):** reran `build_remaining_work.py` and
+  `build_effort.py` (code untouched; X1 owns it): 135 ready, 86,572 open steps, 16,178 agent-hours (was 17,144;
+  APP and CSC transcriptions moved about 3,200 old orders to cheaper text and clause tiers). Dashboard updated:
+  https://claude.ai/artifact/531KGTebdrgdeUitKhp8du. New plan `research/plans/EXCAVATOR_FUNNEL_2026-10-20.md`,
+  sized only by orders that pass their prerequisites.
+- **Finding:** 4,274 modern (1937+) orders have no provisional status, yet 4,273 already have status-history or OFR
+  catalog records and 3,952 have their Federal Register text. They are the cheapest pool; both my series plan and X1
+  skipped them. 2,150 more modern orders have status and text and wait on claim work.
+- **Next:** probes before builds. Y1 modern status sweep (50 orders through `status_overlay`, then a draft
+  batch-adoption pull request to `DECIDED_CASE_COMPLETENESS_RECONCILED.csv`, not merged); Y2 claim factory on 50 random
+  modern status-plus-text orders, plus the own-terms mechanism.
+- **Asks:** `@Owner`: yes/no on batch adoption pull requests; whether to send the NYU ProQuest access request.
+  `@Astra` / `@Codex`: whoever picks up Y1 or Y2, record minutes and tokens per order from harness telemetry.
+- **Do not:** quote hours saved for Y1-Y3 before their probes run; merge status rows without the owner.
+
+## 2026-10-19 14:10 ET: owner declined paid or manual microfilm acquisition
+
+- **Decision (owner):** no paid reproduction (Harvard Film S 1130 quote estimated at roughly $1.5k-4k) and no
+  hand-scanning of microfilm. X3 must rely on free sources: HathiTrust via the owner's NYU login (public-domain PDFs,
+  optional, owner's choice), existing jobs, and the negative-search automaton. Do not plan around the reel set.
+- **Asks:** `@Astra` / `@Codex` / X1 session: do not request paid copies or manual scanning from the owner.
+
 ## 2026-10-19: gap orders routed to public sources; csc-annual-reports job started (branch `csc-annual-reports`)
 
 - **Done:** ProQuest Congressional (owner's NYU login) surveyed: Presidential Materials 1789-1936 hold

@@ -1,0 +1,210 @@
+{
+ "label": "treemap",
+ "model_calls": 164,
+ "cost_units": 6892792,
+ "usd_per_unit": null,
+ "unit": "input-token equivalents",
+ "tokens": {
+  "input": 328,
+  "read": 48331799,
+  "write5m": 161925,
+  "write1h": 921009,
+  "output": 2972
+ },
+ "cost_by_cause": [
+  {
+   "cause": "fixed setup (system prompt, tools, rules)",
+   "cost": 2162460,
+   "share": 0.3137,
+   "fresh": 0,
+   "reread": 2162460
+  },
+  {
+   "cause": "model wrote: reply or narration",
+   "cost": 1458187,
+   "share": 0.2116,
+   "fresh": 1346316,
+   "reread": 111870
+  },
+  {
+   "cause": "Artifact",
+   "cost": 693417,
+   "share": 0.1006,
+   "fresh": 0,
+   "reread": 693417
+  },
+  {
+   "cause": "model wrote: Write",
+   "cost": 429659,
+   "share": 0.0623,
+   "fresh": 48166,
+   "reread": 381493
+  },
+  {
+   "cause": "Bash cat",
+   "cost": 180276,
+   "share": 0.0262,
+   "fresh": 0,
+   "reread": 180276
+  },
+  {
+   "cause": "model wrote: ToolSearch",
+   "cost": 147511,
+   "share": 0.0214,
+   "fresh": 146396,
+   "reread": 1115
+  },
+  {
+   "cause": "WebSearch",
+   "cost": 119418,
+   "share": 0.0173,
+   "fresh": 0,
+   "reread": 119418
+  },
+  {
+   "cause": "Bash head",
+   "cost": 106722,
+   "share": 0.0155,
+   "fresh": 0,
+   "reread": 106722
+  },
+  {
+   "cause": "model wrote: Artifact",
+   "cost": 103996,
+   "share": 0.0151,
+   "fresh": 95467,
+   "reread": 8529
+  },
+  {
+   "cause": "Bash python -c/heredoc",
+   "cost": 103692,
+   "share": 0.015,
+   "fresh": 0,
+   "reread": 103692
+  },
+  {
+   "cause": "model wrote: Bash python build_remaining_work.py",
+   "cost": 99802,
+   "share": 0.0145,
+   "fresh": 9615,
+   "reread": 90187
+  },
+  {
+   "cause": "model wrote: Bash python -c/heredoc",
+   "cost": 98421,
+   "share": 0.0143,
+   "fresh": 38744,
+   "reread": 59677
+  },
+  {
+   "cause": "Bash ls",
+   "cost": 89671,
+   "share": 0.013,
+   "fresh": 0,
+   "reread": 89671
+  },
+  {
+   "cause": "model wrote: Bash mkdir",
+   "cost": 87168,
+   "share": 0.0126,
+   "fresh": 22319,
+   "reread": 64849
+  },
+  {
+   "cause": "model wrote: Bash cat",
+   "cost": 80633,
+   "share": 0.0117,
+   "fresh": 53274,
+   "reread": 27359
+  },
+  {
+   "cause": "Bash for",
+   "cost": 69202,
+   "share": 0.01,
+   "fresh": 0,
+   "reread": 69202
+  },
+  {
+   "cause": "user or system message",
+   "cost": 59779,
+   "share": 0.0087,
+   "fresh": 42796,
+   "reread": 16983
+  },
+  {
+   "cause": "Bash git merge",
+   "cost": 59682,
+   "share": 0.0087,
+   "fresh": 0,
+   "reread": 59682
+  },
+  {
+   "cause": "Bash git pull",
+   "cost": 57278,
+   "share": 0.0083,
+   "fresh": 0,
+   "reread": 57278
+  },
+  {
+   "cause": "model wrote: Bash head",
+   "cost": 46579,
+   "share": 0.0068,
+   "fresh": 33814,
+   "reread": 12765
+  },
+  {
+   "cause": "Bash git status",
+   "cost": 43843,
+   "share": 0.0064,
+   "fresh": 0,
+   "reread": 43843
+  },
+  {
+   "cause": "model wrote: Bash python build_effort.py",
+   "cost": 38556,
+   "share": 0.0056,
+   "fresh": 7581,
+   "reread": 30975
+  },
+  {
+   "cause": "Bash sed",
+   "cost": 33756,
+   "share": 0.0049,
+   "fresh": 0,
+   "reread": 33756
+  },
+  {
+   "cause": "model wrote: Bash ls",
+   "cost": 30327,
+   "share": 0.0044,
+   "fresh": 18396,
+   "reread": 11931
+  },
+  {
+   "cause": "model wrote: ArtifactData",
+   "cost": 29127,
+   "share": 0.0042,
+   "fresh": 9107,
+   "reread": 20020
+  }
+ ],
+ "cache_rebuilds": {
+  "count": 1,
+  "cost": 827084,
+  "examples": [
+   {
+    "ts": "2026-10-19T23:56:35.035398Z",
+    "tokens_rewritten": 413542
+   }
+  ]
+ },
+ "status_checks_in_large_context": {
+  "status check in a large context": 353269
+ },
+ "subagents": {
+  "count": 3,
+  "cost": 218468
+ },
+ "files_read_more_than_twice": [],
+ "events": 1013
+}

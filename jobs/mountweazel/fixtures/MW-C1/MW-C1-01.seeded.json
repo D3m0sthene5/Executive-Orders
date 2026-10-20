@@ -1,0 +1,465 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 17,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b2.jsonl",
+  "sha256": "01b6d73b84758c7a07626e484b5b4ee4802f812c7549d6d7e73ca6a0cf30d333"
+ },
+ "batch_id": "MW-C1",
+ "defect_code": "D9",
+ "instrument_id": "SEEDED:EO:10473",
+ "item_id": "MW-C1-01",
+ "mutation": {
+  "after": "61",
+  "before": "49",
+  "field": "later_source_search[1].repository",
+  "operator": "D9.1.repository.49",
+  "refuting_span": {
+   "quote": "of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:10473",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (61 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "regular-expression search of every saved text for the number 10473 (with OCR spacing and thousands-comma variants), each hit read in context; hits are EO 10697 (contents line and section 7) only",
+    "repository": "fr-originals full_run corpus at main (6497 saved official Federal Register order texts, OCR text layers of govinfo FR issue PDFs, 1936-2026)",
+    "searched_by": "Claude (batch 2 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition row for Executive Order 10473: amendments column and disposition column read; used only as a lead, the acting order's own text decides",
+    "repository": "Office of the Federal Register, Codification of Presidential Proclamations and Executive Orders (1989), disposition table as parsed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv, status as of 1989-01-20)",
+    "searched_by": "Claude (batch 2 agent)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "1 . Section V-14 of the Foreign Service \nRegulations of the United States, pre­\nscribed by Executive Order No. 7968 of \nSeptember 3, 1938 (3 CFR 1938 Supp., \npage 107), is hereby revoked.",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 1",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s1-revokes-section-V14",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "2. Paragraphs (a) and (b) of section \nV -15 of the Foreign Service Regulations \nof the United States (22 CFR 103.1), \nprescribed by the said Executive Order \nN o . 7968, are amended to read as follows:\n“(a) All officers of the Foreign Service \nshall charge and collect for official serv­\nices performed abroad such and only \nsuch fees as are prescribed by the Presi­\ndent in the following Tariff of United \nStates Foreign Service Fees, or as are \nprescribed by or pursuant to an act of \nCongress. All fees shall be collected in \nthe coin of the United States or at its \nrepresentative value in exchange. (R. S. \n1 7 4 5 , sec. 3, 34 Stat. 100, 22 U. S. C. 1201; \nS. 1746, 22 U. S. C. 1202.)\n“(b) No fees prescribed in the Tariff \nof United States Foreign Service Fees \nshall be charged or collected for official \nservices perfgrmed by officers of the For­\neign Service for American vessels and \nseamen. (Sec. 12, 23 Stat. 56, 22 U. S, C. \n1186). The term ‘ American vessels’  as \nused herein shall not include American \nundocumented vessels; and fees pre­\nscribed in the said Tariff shall be \ncharged and collected for official serv- \nces performed for such vessels.”",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 2",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s2-rewrites-section-V15-a-b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "3 - Paragraph (d) of section V-15 of \nT f® ..Poreien Service Regulations of the \nbv tK  StatQS (2 2 CFR 103.1), prescribed y the said Executive Order No. 7968, is\namended by substituting the citation \n‘‘(R. S. 1731; 22 U. S. C. 1197.)” for the \ncitation “(22 U. S. C. 101.)” appearing \nat the end of the paragraph.",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 3",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s3-V15-d-citation",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "4. The Tariff of United States For­\neign Service Fees, prescribed by section \nV-15 of the Foreign Service Regulations \nof the United States (Executive Order \nNo. 7968, as amended; 22 CFR 103.1), \nis amended as follows:",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4, opening words",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4-intro-amends-tariff",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10639",
+     "date": "1955-10-24",
+     "effective_date_basis": "EO 10639 takes effect 'ten days after the date of its publication in the Federal Register'; it was published in the issue of Friday, October 14, 1955 (masthead of the held issue), so it took effect October 24, 1955.",
+     "excerpt": "This order shall become effective ten  \ndays after the date of its publidafton in  \nthe F e d e r a l R e g is t e r.",
+     "mechanism": "revocation (deletion of tariff items 1-5)",
+     "quote": "The Tariff of United States Foreign  \nService Fees, prescribed by section V-15  \nof the Foreign Service Regulations of  \nthe United States (Executive Order No.  \n7968, as amended; 22 CFR 103.1), is  \namended by deleting therefrom Items  \nNo. 1, 2, 3, 4, and 5.",
+     "source": {
+      "page_or_item": "20 FR 7717, PDF pages 1-1; operative paragraph and effective-date paragraph",
+      "sha256": "8a69a85b7a9354e915002554a21819dd39c9dddf13f70d57ef50f97b0c180de4",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1955-10-14/pdf/FR-1955-10-14.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(a) The exception to Item No. 3 is \namended to read:\nException—\nCertificates fdr insecticides  \n(Forms DSP-31 and DSP-32) ___No fee",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(a)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4a-item3-exception-insecticide-certificates",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(b) Item No. 6 is amended as follows:\n(1) The following item is included im­\nmediately below the item “Issue of card \nor certificate of identity and registra­\ntion”:\nIssue of card of identification for use  \non the Mexican border (Form No.\n225— B ) --------------------------------------- i. oo",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(b)(1)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4b-1-item6-mexican-border-card",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(2) The following item is included im­\nmediately below the item “Execution of \naffidavit in regard to American birth in \nconnection with application for registra­\ntion or for passport”:\nFor a certified copy of executed form  \nfor repatriation of native-born*  \nAmerican women under the act of  \nJune 25, 1936, c. 801, 49 Stat. 1917,  \nas amended ____L____- ____________ i. o o",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(b)(2)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4b-2-item6-repatriation-1936-act",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(3) The last item is amended, effective \nas of December 24, 1952, to read as fol­\nlows:\nFor a certified copy of executed form  \nfor repatriation of native-born  \nAmerican women under section 324  \nof the Immigration and Nationality  \nAct (66 Stat. 247)________________ 5. 00",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(b)(3)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4b-3-item6-last-item-ina-repatriation",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(c) Item No. 7 is amended, effective as \nof December 24,1952, to read as follows:\n7. Visa services Fees prescribed by or pur-  \nfor aliens. suant to section 281 of  \nthe Immigration and Na­\ntionality Act (66 Stat.  \n230-231)",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(c)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4c-item7-visa-services",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(d) Item No. 24 is amended as follows:\n(1) The first item under the w ord \n“Exceptions—” is revoked, effective as o f \nDecember 24,1952.",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(d)(1)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4d-1-item24-first-exception-revoked",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(2) The following item is included im­\nmediately after the word “Exceptions”:\nFor administering the oath of alle­\ngiance under the act of June 25,\n1936, c. 801, 49 Stat. 1917, as  \namended, to a native-born Amer­\nican woman who lost her citizen­\nship solely by marriage to an alien. No fee",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(d)(2)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4d-2-item24-new-exception-1936-act",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(3) The last item appearing under the \nword “Exceptions” is amended, effective \nas of December 24, 1952, to read:\nFor administering the oath of alle­\ngiance under the Immigration and  \nNationality Act to a native-born  \nAmerican woman who lost her citi­\nzenship solely by marriage to an  \nalien and whose marriage is termi­\nnated (66 Stat. 247) ...........................No fee",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(d)(3)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4d-3-item24-last-exception-ina",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(e) Item No. 45 i&amended by substi­\ntuting the words “in quadruplicate” for \nthe, words “in duplicate” appearing \ntherein.",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 4(e)",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s4e-item45-quadruplicate",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "5. All prior Executive orders, incon­\nsistent herewith are amended accora- \ningly.",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 5",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s5-inconsistent-orders-amended",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:10697",
+     "date": "1957-03-01",
+     "effective_date_basis": "EO 10697 section 8: 'This Order shall become effective on March 1, 1957' (signed February 6, 1957); the revocation in section 7 therefore took effect on March 1, 1957, the day its new Tariff of Fees replaced the old one.",
+     "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+     "mechanism": "revocation",
+     "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+     "source": {
+      "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+      "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "6. Except as otherwise provided here­\nin, this order shall become effective as \nof the date of its publication in the \nF ederal R egister .",
+    "original_source": {
+     "page_or_item": "18 FR 4351, PDF pages 1-2; section 6",
+     "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+    },
+    "scope_id": "EO:10473#s6-effective-on-publication",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "18 FR 4351, PDF pages 1-2",
+   "sha256": "318d3c037b42cba8fd16884744a775da9d262f003e1446f57a2619a134c580f5",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1953-07-24/pdf/FR-1953-07-24.pdf"
+  },
+  "research_rationale": "EO 10473 of July 22, 1953 (official text 18 FR 4351-4352, saved OCR text layer read in full; the order continues from PDF page 1 to page 2 after the issue's contents, with no text lost between paragraph 4(c) and 4(d)) amends the Foreign Service Regulations (EO 7968): revokes section V-14 (s.1), rewrites paragraphs (a)-(b) of section V-15 (s.2), corrects the citation in V-15(d) (s.3) and amends Tariff Items 3, 6, 7, 24 and 45 (s.4), with an inconsistency clause (s.5) and effect on publication except where stated (s.6). EO 10639 of October 10, 1955 (20 FR 7717, read in full) deleted Tariff Items 1-5, effective ten days after publication (published October 14, 1955), which ended section 4(a)'s exception to Item 3 on 1955-10-24. Every other clause stayed in force until EO 10697 of February 6, 1957 (22 FR 777, read in full) prescribed a complete new Tariff of Fees and collection rules and in section 7 revoked EO 10473 'To the extent that they have not heretofore been revoked or superseded', effective March 1, 1957 (section 8). No other event was found in the OFR catalog, the saved-text corpus or the U.S. Code/eCFR searches. Whole-order end: 1957-03-01. OCR quotations (including garbled fee figures such as 'i. oo') are exact copies of the held text, not compared with page images.",
+  "savings_residuals": {
+   "reason": "EO 10697 contains no savings or transition clause. It prescribes a complete new Tariff of Fees and its own collection rules (sections 1-6), effective March 1, 1957, and revokes the earlier tariff orders to the extent not already revoked or superseded. Fees charged under the earlier tariff were completed transactions; the order created no fund, office, property or vested right that survived. EO 10697 sections 2-5 restate the collection rules this order had written into section V-15 as EO 10697's own provisions; section 1's revocation of section V-14 was a completed disposition that nothing reversed.",
+   "source": {
+    "page_or_item": "22 FR 777, PDF pages 1-4; sections 1-8",
+    "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:10697",
+   "date": "1957-03-01",
+   "excerpt": "Sec. 8. This Order shall become effec­\ntive on March 1, 1957.",
+   "mechanism": "revocation",
+   "quote": "Sec. 7. To the extent that they have \nnot heretofore been revolted or super­\nseded, Executive Orders No. 7968 of Sep­\ntember 3, 1938, No. 8297 of December 4, \n1939, No. 9303 of February 11, 1943, N o. \n9407 of December 17, 1943, No. 9507 of \nDecember 20, 1944, No. 9591 of July 21, \n1945, No. 9767 of August 9, 1946, N o. \n10,473 of July 22, 1953, and No. 10,639 of \nOctober 10,1955 are hereby revoked; and \nall other prior Executive Orders incon­\nsistent with this Order are hereby \namended accordingly.",
+   "source": {
+    "page_or_item": "22 FR 777, PDF pages 1-4; sections 7 and 8",
+    "sha256": "e75ce7b31c0a291c454cbbcd849ff99afdf93a6648a026f7c5bf4041352b938b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

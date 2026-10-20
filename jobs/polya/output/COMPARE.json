@@ -1,0 +1,1323 @@
+{
+ "schema": "polya/1",
+ "repo_head": "46f91fdac2943f27dca5940ca874132738199104",
+ "pool": {
+  "orders": 14972,
+  "ready": 135,
+  "not_ready": 14837,
+  "decided_not_ready": 3224,
+  "undecided": 11613
+ },
+ "rules": [
+  "counts are measured from committed job outputs at repo_head",
+  "reach is not yield: orders a unit could advance one step, not orders made ready",
+  "AI statuses are hypotheses; no codebook change; no tier promotion; certified stays 0"
+ ],
+ "stack": {
+  "decided_not_ready": 3224,
+  "all_open_steps_have_a_frame_unit": 25,
+  "uncovered_step_sets_top": [
+   {
+    "steps_no_frame_reaches": [
+     "clause_inventory",
+     "savings_residuals"
+    ],
+    "orders": 1469
+   },
+   {
+    "steps_no_frame_reaches": [
+     "clause_inventory",
+     "savings_residuals",
+     "opus_media"
+    ],
+    "orders": 546
+   },
+   {
+    "steps_no_frame_reaches": [
+     "clause_inventory",
+     "savings_residuals",
+     "counterevidence"
+    ],
+    "orders": 266
+   },
+   {
+    "steps_no_frame_reaches": [
+     "ending_or_current_basis",
+     "savings_residuals",
+     "counterevidence"
+    ],
+    "orders": 198
+   },
+   {
+    "steps_no_frame_reaches": [
+     "clause_inventory",
+     "ending_or_current_basis",
+     "savings_residuals"
+    ],
+    "orders": 180
+   },
+   {
+    "steps_no_frame_reaches": [
+     "savings_residuals",
+     "counterevidence"
+    ],
+    "orders": 152
+   }
+  ],
+  "reading": "an order can only be made ready by stacking units from several frames; steps no frame reaches stay per-order work"
+ },
+ "reading": "Reach counts are upper bounds on one-step advances.  Frames overlap, so reaches must not be added.  A frame beats the order baseline only if few units reach many orders (high Gini, top-10/100 coverage) AND the step they advance is the one that blocks readiness.  Yield is not estimated here.",
+ "step_matrix": {
+  "provisional_status": {
+   "open_in_not_ready": 11613,
+   "open_in_decided_not_ready": 0,
+   "views_that_reach_orders_with_this_step_open": {
+    "F1/NO_hypothesis_for_undecided": 1748
+   }
+  },
+  "original_text": {
+   "open_in_not_ready": 8100,
+   "open_in_decided_not_ready": 1047,
+   "views_that_reach_orders_with_this_step_open": {
+    "F3/claim_kit_source_family": 901
+   }
+  },
+  "clause_inventory": {
+   "open_in_not_ready": 14789,
+   "open_in_decided_not_ready": 3176,
+   "views_that_reach_orders_with_this_step_open": {
+    "F4/x1_text_cluster": 1233
+   }
+  },
+  "ending_or_current_basis": {
+   "open_in_not_ready": 14833,
+   "open_in_decided_not_ready": 3220,
+   "views_that_reach_orders_with_this_step_open": {
+    "F1/ending_of_decided_NO": 1095,
+    "F2/actor_provision_record": 1212,
+    "F4/claim_kit_family": 2353,
+    "F7/current_law_citation": 346
+   }
+  },
+  "savings_residuals": {
+   "open_in_not_ready": 14801,
+   "open_in_decided_not_ready": 3188,
+   "views_that_reach_orders_with_this_step_open": {}
+  },
+  "counterevidence": {
+   "open_in_not_ready": 12497,
+   "open_in_decided_not_ready": 884,
+   "views_that_reach_orders_with_this_step_open": {}
+  },
+  "shared_sources": {
+   "open_in_not_ready": 27,
+   "open_in_decided_not_ready": 27,
+   "views_that_reach_orders_with_this_step_open": {
+    "F3/tracker_shared_source": 27
+   }
+  },
+  "opus_media": {
+   "open_in_not_ready": 714,
+   "open_in_decided_not_ready": 714,
+   "views_that_reach_orders_with_this_step_open": {}
+  }
+ },
+ "step_matrix_reading": "steps with an empty views map have no frame that places a unit on them (a measured gap, not a judgement)",
+ "frames": [
+  {
+   "frame": "F0_order",
+   "status": "measured",
+   "unit": "one executive order",
+   "polya_move": "baseline: the formulation every prior plan used",
+   "advances_step": "all steps of that order",
+   "orders_reachable": 14837,
+   "pct_not_ready_reachable": 1.0,
+   "decided_not_ready_reachable": 3224,
+   "pct_decided_not_ready_reachable": 1.0,
+   "units": 14837,
+   "gini": 0.0,
+   "max_unit": 1,
+   "overlap_factor": 1.0,
+   "coverage_all_views": {
+    "top10": 0.0007,
+    "top100": 0.0067,
+    "greedy10": 0.0007,
+    "greedy100": 0.0067
+   },
+   "reached_with_le2_open_steps": 51,
+   "median_open_steps_of_reached": 5,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "orders",
+     null
+    ]
+   ],
+   "top20_units": "aggregate only (one order per unit)",
+   "views": [
+    {
+     "view": "orders",
+     "advances_step": "n/a (see note)",
+     "pool_size": 14837,
+     "units": 14837,
+     "distinct_orders_reached": 14837,
+     "gini": 0.0,
+     "max": 1,
+     "median": 1,
+     "coverage": {
+      "top10": 0.0007,
+      "top100": 0.0067,
+      "greedy10": 0.0007,
+      "greedy100": 0.0067
+     },
+     "reached_with_le2_open_steps": 51,
+     "reached_with_no_other_open_step_upper_bound": null
+    }
+   ]
+  },
+  {
+   "frame": "F1_ending_instrument",
+   "status": "measured",
+   "unit": "one acting instrument that revokes/supersedes/terminates others",
+   "polya_move": "change the unknown: solve the actor, not the target",
+   "advances_step": "ending_or_current_basis (decided NO) / provisional_status (undecided)",
+   "orders_reachable": 2843,
+   "pct_not_ready_reachable": 0.1916,
+   "decided_not_ready_reachable": 1095,
+   "pct_decided_not_ready_reachable": 0.3396,
+   "units": 1772,
+   "gini": 0.4401,
+   "max_unit": 335,
+   "overlap_factor": 1.225,
+   "coverage_all_views": {
+    "top10": 0.0458,
+    "top100": 0.0847,
+    "greedy10": 0.0458,
+    "greedy100": 0.0861
+   },
+   "reached_with_le2_open_steps": 43,
+   "median_open_steps_of_reached": 5,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "ending_of_decided_NO",
+     19
+    ],
+    [
+     "NO_hypothesis_for_undecided",
+     0
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "ending_of_decided_NO|EO:12553",
+     "orders": 335
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:14148",
+     "orders": 65
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:12553",
+     "orders": 54
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:9830",
+     "orders": 53
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:11408",
+     "orders": 50
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:9521",
+     "orders": 33
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:12379",
+     "orders": 30
+    },
+    {
+     "unit": "ending_of_decided_NO|PL:89-554",
+     "orders": 22
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:11490",
+     "orders": 21
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:13138",
+     "orders": 17
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:12258",
+     "orders": 16
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:10480",
+     "orders": 13
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:11157",
+     "orders": 13
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:7968",
+     "orders": 13
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:12076",
+     "orders": 12
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:10903",
+     "orders": 11
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:12220",
+     "orders": 11
+    },
+    {
+     "unit": "ending_of_decided_NO|EO:14154",
+     "orders": 11
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:11051",
+     "orders": 10
+    },
+    {
+     "unit": "NO_hypothesis_for_undecided|EO:12163",
+     "orders": 10
+    }
+   ],
+   "views": [
+    {
+     "view": "ending_of_decided_NO",
+     "advances_step": [
+      "ending_or_current_basis"
+     ],
+     "pool_size": 3224,
+     "units": 365,
+     "distinct_orders_reached": 1095,
+     "gini": 0.6549,
+     "max": 335,
+     "median": 1,
+     "coverage": {
+      "top10": 0.1802,
+      "top100": 0.286,
+      "greedy10": 0.1802,
+      "greedy100": 0.2913
+     },
+     "reached_with_le2_open_steps": 43,
+     "reached_with_no_other_open_step_upper_bound": 19
+    },
+    {
+     "view": "NO_hypothesis_for_undecided",
+     "advances_step": [
+      "provisional_status"
+     ],
+     "pool_size": 11613,
+     "units": 1407,
+     "distinct_orders_reached": 1748,
+     "gini": 0.3114,
+     "max": 54,
+     "median": 1,
+     "coverage": {
+      "top10": 0.0183,
+      "top100": 0.0464,
+      "greedy10": 0.0183,
+      "greedy100": 0.0498
+     },
+     "reached_with_le2_open_steps": 0,
+     "reached_with_no_other_open_step_upper_bound": 0
+    }
+   ]
+  },
+  {
+   "frame": "F2_actor_provision_record",
+   "status": "measured",
+   "unit": "one acting order whose target-naming provision is not located",
+   "polya_move": "auxiliary element: the missing link is the actor's located provision",
+   "advances_step": "ending_or_current_basis",
+   "orders_reachable": 1212,
+   "pct_not_ready_reachable": 0.0817,
+   "decided_not_ready_reachable": 1212,
+   "pct_decided_not_ready_reachable": 0.3759,
+   "units": 1050,
+   "gini": 0.5041,
+   "max_unit": 334,
+   "overlap_factor": 1.991,
+   "coverage_all_views": {
+    "top10": 0.0352,
+    "top100": 0.0534,
+    "greedy10": 0.0376,
+    "greedy100": 0.0602
+   },
+   "reached_with_le2_open_steps": 21,
+   "median_open_steps_of_reached": 3,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "actor_provision_record",
+     13
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "actor_provision_record|EO:12553",
+     "orders": 334
+    },
+    {
+     "unit": "actor_provision_record|EO:9830",
+     "orders": 54
+    },
+    {
+     "unit": "actor_provision_record|EO:3461",
+     "orders": 44
+    },
+    {
+     "unit": "actor_provision_record|EO:12107",
+     "orders": 38
+    },
+    {
+     "unit": "actor_provision_record|EO:9526",
+     "orders": 20
+    },
+    {
+     "unit": "actor_provision_record|EO:14109",
+     "orders": 19
+    },
+    {
+     "unit": "actor_provision_record|EO:12608",
+     "orders": 15
+    },
+    {
+     "unit": "actor_provision_record|EO:13708",
+     "orders": 15
+    },
+    {
+     "unit": "actor_provision_record|EO:13811",
+     "orders": 15
+    },
+    {
+     "unit": "actor_provision_record|EO:13889",
+     "orders": 15
+    },
+    {
+     "unit": "actor_provision_record|EO:14354",
+     "orders": 14
+    },
+    {
+     "unit": "actor_provision_record|EO:11582",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:12076",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:12399",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:12610",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:13062",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:7968",
+     "orders": 13
+    },
+    {
+     "unit": "actor_provision_record|EO:13652",
+     "orders": 12
+    },
+    {
+     "unit": "actor_provision_record|EO:14091",
+     "orders": 12
+    },
+    {
+     "unit": "actor_provision_record|EO:10773",
+     "orders": 10
+    }
+   ],
+   "views": [
+    {
+     "view": "actor_provision_record",
+     "advances_step": [
+      "ending_or_current_basis"
+     ],
+     "pool_size": 3224,
+     "units": 1050,
+     "distinct_orders_reached": 1212,
+     "gini": 0.5041,
+     "max": 334,
+     "median": 1,
+     "coverage": {
+      "top10": 0.1619,
+      "top100": 0.246,
+      "greedy10": 0.1731,
+      "greedy100": 0.277
+     },
+     "reached_with_le2_open_steps": 21,
+     "reached_with_no_other_open_step_upper_bound": 13
+    }
+   ]
+  },
+  {
+   "frame": "F3_source_document",
+   "status": "measured",
+   "unit": "one held source document",
+   "polya_move": "generalize: one document read serves every order it contains or cites",
+   "advances_step": "original_text / shared_sources",
+   "orders_reachable": 926,
+   "pct_not_ready_reachable": 0.0624,
+   "decided_not_ready_reachable": 926,
+   "pct_decided_not_ready_reachable": 0.2872,
+   "units": 905,
+   "gini": 0.0247,
+   "max_unit": 10,
+   "overlap_factor": 1.002,
+   "coverage_all_views": {
+    "top10": 0.0022,
+    "top100": 0.0083,
+    "greedy10": 0.0022,
+    "greedy100": 0.0083
+   },
+   "reached_with_le2_open_steps": 0,
+   "median_open_steps_of_reached": 5,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "claim_kit_source_family",
+     0
+    ],
+    [
+     "tracker_shared_source",
+     0
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "tracker_shared_source|EO::4314",
+     "orders": 10
+    },
+    {
+     "unit": "tracker_shared_source|EO::6868",
+     "orders": 6
+    },
+    {
+     "unit": "tracker_shared_source|EO::6910",
+     "orders": 3
+    },
+    {
+     "unit": "tracker_shared_source|EO::6964",
+     "orders": 3
+    },
+    {
+     "unit": "tracker_shared_source|USC::48 U.S.C. 863)",
+     "orders": 3
+    },
+    {
+     "unit": "claim_kit_source_family|source:64d0f0f6f850022cb25fa1d92be18f87d8c6b81aeeef1ee1c71a42db712ebbd5",
+     "orders": 2
+    },
+    {
+     "unit": "claim_kit_source_family|source:fe29d8e82a1c6adb35e55153d9386b38b00106bf85ff967c185ee02ce6bd72d0",
+     "orders": 2
+    },
+    {
+     "unit": "tracker_shared_source|CFR::26 CFR 458.324",
+     "orders": 2
+    },
+    {
+     "unit": "claim_kit_source_family|source:000eee821204e82a7b0461bc227af1a3efdddac36f25c3878d35e191b387d2ba",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:003747a653f39d3b5e85e087a13588205c90ab10168afe348c3e775a0b9a51b8",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:004b5836b23c580f8a8e4e1584151edb720487abccc086825309c785cb1e544b",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:00c3f395d2d7872ca65e4cddd917eeae203cad55d198f28c2c660fcc8b890610",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:014e6f7e89708ca0281596eb3b5bec8c3b62e8d8c8068d460122557f0b6efdc9",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:01809dd2946c990635d1bc10765bddadcf66094f2b0d3192356c4ee78db94f71",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:0214f5609faaffb4d59c0adb35b1c11a390981d9ac493b622e77406fa0ef4040",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:022b2ec68988a87aa55452a9ab3021854464369525eec456118bc91772cfbaa8",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:0291d5e04e4e5a92cc9edbe9627f1451331265fd1299237fa98e807a1609d614",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:02a8b7bd09042c4204f72025393a771a9b542c37d081ae13adc6af1de237abb6",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:030b7f43f4066d5a41482055b4d4a3c09aef5a95ad38e4be759179675945b10b",
+     "orders": 1
+    },
+    {
+     "unit": "claim_kit_source_family|source:0360be9a7104ab64e33dfc288b806311288447fbde840eaaaf3440535fddb2ed",
+     "orders": 1
+    }
+   ],
+   "views": [
+    {
+     "view": "claim_kit_source_family",
+     "advances_step": [
+      "original_text"
+     ],
+     "pool_size": 14837,
+     "units": 899,
+     "distinct_orders_reached": 901,
+     "gini": 0.0022,
+     "max": 2,
+     "median": 1,
+     "coverage": {
+      "top10": 0.0008,
+      "top100": 0.0069,
+      "greedy10": 0.0008,
+      "greedy100": 0.0069
+     },
+     "reached_with_le2_open_steps": 0,
+     "reached_with_no_other_open_step_upper_bound": 0
+    },
+    {
+     "view": "tracker_shared_source",
+     "advances_step": [
+      "shared_sources"
+     ],
+     "pool_size": 14837,
+     "units": 6,
+     "distinct_orders_reached": 27,
+     "gini": 0.3025,
+     "max": 10,
+     "median": 3,
+     "coverage": {
+      "top10": 0.0018,
+      "top100": 0.0018,
+      "greedy10": 0.0018,
+      "greedy100": 0.0018
+     },
+     "reached_with_le2_open_steps": 0,
+     "reached_with_no_other_open_step_upper_bound": 0
+    }
+   ]
+  },
+  {
+   "frame": "F4_legal_family_template",
+   "status": "measured",
+   "unit": "one legal family or X1 text cluster",
+   "polya_move": "analogy: prove the rule once, check each member briefly",
+   "advances_step": "ending_or_current_basis / clause_inventory",
+   "orders_reachable": 3431,
+   "pct_not_ready_reachable": 0.2312,
+   "decided_not_ready_reachable": 2551,
+   "pct_decided_not_ready_reachable": 0.7913,
+   "units": 1595,
+   "gini": 0.7111,
+   "max_unit": 1066,
+   "overlap_factor": 2.18,
+   "coverage_all_views": {
+    "top10": 0.1554,
+    "top100": 0.1871,
+    "greedy10": 0.158,
+    "greedy100": 0.2009
+   },
+   "reached_with_le2_open_steps": 47,
+   "median_open_steps_of_reached": 4,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "claim_kit_family",
+     23
+    ],
+    [
+     "x1_text_cluster",
+     0
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "claim_kit_family|own_term:condition",
+     "orders": 1066
+    },
+    {
+     "unit": "claim_kit_family|own_term:fixed_term",
+     "orders": 650
+    },
+    {
+     "unit": "claim_kit_family|own_term:until_event",
+     "orders": 572
+    },
+    {
+     "unit": "claim_kit_family|own_term:report_deadline",
+     "orders": 562
+    },
+    {
+     "unit": "claim_kit_family|own_term:sunset_date",
+     "orders": 164
+    },
+    {
+     "unit": "x1_text_cluster|X1C0001:nra_code_approval",
+     "orders": 150
+    },
+    {
+     "unit": "x1_text_cluster|X1C0002:retirement_exemption",
+     "orders": 118
+    },
+    {
+     "unit": "x1_text_cluster|X1C0003:land_withdrawal_general",
+     "orders": 99
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:14148",
+     "orders": 64
+    },
+    {
+     "unit": "x1_text_cluster|X1C0004:land_withdrawal_general",
+     "orders": 63
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:13286",
+     "orders": 48
+    },
+    {
+     "unit": "claim_kit_family|own_term:emergency_duration",
+     "orders": 39
+    },
+    {
+     "unit": "x1_text_cluster|X1C0005:land_withdrawal_general",
+     "orders": 33
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:12379",
+     "orders": 31
+    },
+    {
+     "unit": "claim_kit_family|own_term:temporary_body",
+     "orders": 29
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:12608",
+     "orders": 25
+    },
+    {
+     "unit": "x1_text_cluster|X1C0006:land_withdrawal_general",
+     "orders": 23
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:11490",
+     "orders": 22
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:12148",
+     "orders": 22
+    },
+    {
+     "unit": "claim_kit_family|actor:EO:13118",
+     "orders": 22
+    }
+   ],
+   "views": [
+    {
+     "view": "claim_kit_family",
+     "advances_step": [
+      "ending_or_current_basis"
+     ],
+     "pool_size": 3224,
+     "units": 1390,
+     "distinct_orders_reached": 2353,
+     "gini": 0.7205,
+     "max": 1066,
+     "median": 1,
+     "coverage": {
+      "top10": 0.6256,
+      "top100": 0.6768,
+      "greedy10": 0.6368,
+      "greedy100": 0.7078
+     },
+     "reached_with_le2_open_steps": 47,
+     "reached_with_no_other_open_step_upper_bound": 23
+    },
+    {
+     "view": "x1_text_cluster",
+     "advances_step": [
+      "clause_inventory"
+     ],
+     "pool_size": 14837,
+     "units": 205,
+     "distinct_orders_reached": 1233,
+     "gini": 0.5866,
+     "max": 150,
+     "median": 2,
+     "coverage": {
+      "top10": 0.0377,
+      "top100": 0.069,
+      "greedy10": 0.0377,
+      "greedy100": 0.069
+     },
+     "reached_with_le2_open_steps": 0,
+     "reached_with_no_other_open_step_upper_bound": 0
+    }
+   ]
+  },
+  {
+   "frame": "F5_owner_or_codebook_decision",
+   "status": "measured",
+   "unit": "one owner decision or codebook reading question",
+   "polya_move": "work backwards to the precondition nobody can compute: a human ruling",
+   "advances_step": "the gated blocker (reach is a ceiling)",
+   "orders_reachable": 13265,
+   "pct_not_ready_reachable": 0.894,
+   "decided_not_ready_reachable": 1652,
+   "pct_decided_not_ready_reachable": 0.5124,
+   "units": 6,
+   "gini": 0.585,
+   "max_unit": 11613,
+   "overlap_factor": 1.709,
+   "coverage_all_views": {
+    "top10": 0.894,
+    "top100": 0.894,
+    "greedy10": 0.894,
+    "greedy100": 0.894
+   },
+   "reached_with_le2_open_steps": 14,
+   "median_open_steps_of_reached": 6,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "owner_or_codebook_question",
+     null
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "owner_or_codebook_question|Q_batch_adoption_of_reviewed_status_overlays (owner yes/no)",
+     "orders": 11613
+    },
+    {
+     "unit": "owner_or_codebook_question|Q_send_ProQuest_NYU_access_request (owner; ceiling)",
+     "orders": 6839
+    },
+    {
+     "unit": "owner_or_codebook_question|Q_compiled_transcription_as_acceptable_copy (codebook reading only)",
+     "orders": 3216
+    },
+    {
+     "unit": "owner_or_codebook_question|Q_report_deadline_own_term_end_reading",
+     "orders": 562
+    },
+    {
+     "unit": "owner_or_codebook_question|Q_medium_low_confidence_page_location_rule",
+     "orders": 286
+    },
+    {
+     "unit": "owner_or_codebook_question|Q_contrary_machine_lead_disposition_rule",
+     "orders": 159
+    }
+   ],
+   "views": [
+    {
+     "view": "owner_or_codebook_question",
+     "advances_step": "n/a (see note)",
+     "pool_size": 14837,
+     "units": 6,
+     "distinct_orders_reached": 13265,
+     "gini": 0.585,
+     "max": 11613,
+     "median": 562,
+     "coverage": {
+      "top10": 0.894,
+      "top100": 0.894,
+      "greedy10": 0.894,
+      "greedy100": 0.894
+     },
+     "reached_with_le2_open_steps": 14,
+     "reached_with_no_other_open_step_upper_bound": null
+    }
+   ]
+  },
+  {
+   "frame": "F6_missing_input_type",
+   "status": "measured",
+   "unit": "one missing input type",
+   "polya_move": "decompose the unknown by data type; build each producer once",
+   "advances_step": "original_text / ending_or_current_basis / clause_inventory",
+   "orders_reachable": 3224,
+   "pct_not_ready_reachable": 0.2173,
+   "decided_not_ready_reachable": 3224,
+   "pct_decided_not_ready_reachable": 1.0,
+   "units": 10,
+   "gini": 0.3818,
+   "max_unit": 1213,
+   "overlap_factor": 1.786,
+   "coverage_all_views": {
+    "top10": 0.2173,
+    "top100": 0.2173,
+    "greedy10": 0.2173,
+    "greedy100": 0.2173
+   },
+   "reached_with_le2_open_steps": 51,
+   "median_open_steps_of_reached": 4,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "missing_input_type",
+     null
+    ],
+    [
+     "sole_missing_type",
+     null
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "missing_input_type|ACT_actor_provision",
+     "orders": 1213
+    },
+    {
+     "unit": "missing_input_type|ORIGINAL_text",
+     "orders": 1051
+    },
+    {
+     "unit": "sole_missing_type|NONE_listed_missing (judgment only)",
+     "orders": 841
+    },
+    {
+     "unit": "sole_missing_type|ONLY_ORIGINAL_text",
+     "orders": 738
+    },
+    {
+     "unit": "sole_missing_type|ONLY_ACT_actor_provision",
+     "orders": 685
+    },
+    {
+     "unit": "missing_input_type|CURRENT_predicate",
+     "orders": 614
+    },
+    {
+     "unit": "sole_missing_type|ONLY_CURRENT_predicate",
+     "orders": 301
+    },
+    {
+     "unit": "missing_input_type|LARGE_ACTOR_CONTEXT_read",
+     "orders": 167
+    },
+    {
+     "unit": "missing_input_type|INVENTORY",
+     "orders": 146
+    },
+    {
+     "unit": "sole_missing_type|ONLY_LARGE_ACTOR_CONTEXT_read",
+     "orders": 2
+    }
+   ],
+   "views": [
+    {
+     "view": "missing_input_type",
+     "advances_step": "n/a (see note)",
+     "pool_size": 3224,
+     "units": 5,
+     "distinct_orders_reached": 2383,
+     "gini": 0.3783,
+     "max": 1213,
+     "median": 614,
+     "coverage": {
+      "top10": 0.7391,
+      "top100": 0.7391,
+      "greedy10": 0.7391,
+      "greedy100": 0.7391
+     },
+     "reached_with_le2_open_steps": 23,
+     "reached_with_no_other_open_step_upper_bound": null
+    },
+    {
+     "view": "sole_missing_type",
+     "advances_step": "n/a (see note)",
+     "pool_size": 3224,
+     "units": 5,
+     "distinct_orders_reached": 2567,
+     "gini": 0.3296,
+     "max": 841,
+     "median": 685,
+     "coverage": {
+      "top10": 0.7962,
+      "top100": 0.7962,
+      "greedy10": 0.7962,
+      "greedy100": 0.7962
+     },
+     "reached_with_le2_open_steps": 47,
+     "reached_with_no_other_open_step_upper_bound": null
+    }
+   ]
+  },
+  {
+   "frame": "F7_aux_current_predicate_table",
+   "status": "measured",
+   "unit": "one USC/CFR provision slice",
+   "polya_move": "auxiliary problem: build the current-law predicate table once",
+   "advances_step": "ending_or_current_basis for YES orders",
+   "orders_reachable": 346,
+   "pct_not_ready_reachable": 0.0233,
+   "decided_not_ready_reachable": 346,
+   "pct_decided_not_ready_reachable": 0.1073,
+   "units": 2195,
+   "gini": 0.2307,
+   "max_unit": 20,
+   "overlap_factor": 8.682,
+   "coverage_all_views": {
+    "top10": 0.0055,
+    "top100": 0.0104,
+    "greedy10": 0.0061,
+    "greedy100": 0.0164
+   },
+   "reached_with_le2_open_steps": 0,
+   "median_open_steps_of_reached": 4,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "current_law_citation",
+     0
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "current_law_citation|10 U.S.C. subtitle A, pt. II, ch. 57 note",
+     "orders": 20
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 2381 note",
+     "orders": 14
+    },
+    {
+     "unit": "current_law_citation|50 U.S.C. 1701 note",
+     "orders": 13
+    },
+    {
+     "unit": "current_law_citation|3 U.S.C. 301 note",
+     "orders": 10
+    },
+    {
+     "unit": "current_law_citation|15 CFR 744.8",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 9202",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|31 CFR 560.537",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|31 CFR 591.106",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|31 CFR part 591",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|42 U.S.C. 4321 note",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|5 U.S.C. 4504 note",
+     "orders": 7
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 8909",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 8909 note",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 9522",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|22 U.S.C. 9522 note",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|31 CFR 510.106",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|31 CFR 510.802",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|31 CFR 591.802",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|31 CFR part 510",
+     "orders": 6
+    },
+    {
+     "unit": "current_law_citation|31 CFR part 560",
+     "orders": 6
+    }
+   ],
+   "views": [
+    {
+     "view": "current_law_citation",
+     "advances_step": [
+      "ending_or_current_basis"
+     ],
+     "pool_size": 404,
+     "units": 2195,
+     "distinct_orders_reached": 346,
+     "gini": 0.2307,
+     "max": 20,
+     "median": 1,
+     "coverage": {
+      "top10": 0.203,
+      "top100": 0.3837,
+      "greedy10": 0.2252,
+      "greedy100": 0.604
+     },
+     "reached_with_le2_open_steps": 0,
+     "reached_with_no_other_open_step_upper_bound": 0
+    }
+   ]
+  },
+  {
+   "frame": "F8_work_backwards_reviewer",
+   "status": "measured",
+   "unit": "one source URL the reviewer reads, or one near-ready step set",
+   "polya_move": "work backwards: start from what the independent human must check",
+   "advances_step": "reviewer cost / ready",
+   "orders_reachable": 90,
+   "pct_not_ready_reachable": 0.0061,
+   "decided_not_ready_reachable": 90,
+   "pct_decided_not_ready_reachable": 0.0279,
+   "units": 128,
+   "gini": 0.3727,
+   "max_unit": 23,
+   "overlap_factor": 2.4,
+   "coverage_all_views": {
+    "top10": 0.0034,
+    "top100": 0.0057,
+    "greedy10": 0.0037,
+    "greedy100": 0.0061
+   },
+   "reached_with_le2_open_steps": 51,
+   "median_open_steps_of_reached": 2,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "reviewer_source_url",
+     null
+    ],
+    [
+     "near_ready_open_step_set",
+     null
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "near_ready_open_step_set|ending_or_current_basis",
+     "orders": 23
+    },
+    {
+     "unit": "near_ready_open_step_set|ending_or_current_basis+savings_residuals",
+     "orders": 17
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf",
+     "orders": 7
+    },
+    {
+     "unit": "near_ready_open_step_set|clause_inventory+ending_or_current_basis",
+     "orders": 6
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1985-10-02/pdf/FR-1985-10-02.pdf",
+     "orders": 6
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf",
+     "orders": 6
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf",
+     "orders": 5
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1944-06-17/pdf/FR-1944-06-17.pdf",
+     "orders": 4
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1971-07-07/pdf/FR-1971-07-07.pdf",
+     "orders": 4
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf",
+     "orders": 4
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1957-02-08/pdf/FR-1957-02-08.pdf",
+     "orders": 3
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf",
+     "orders": 3
+    },
+    {
+     "unit": "near_ready_open_step_set|counterevidence",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1939-09-26/pdf/FR-1939-09-26.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1946-08-13/pdf/FR-1946-08-13.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1968-05-01/pdf/FR-1968-05-01.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1969-05-14/pdf/FR-1969-05-14.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1970-04-17/pdf/FR-1970-04-17.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1970-07-02/pdf/FR-1970-07-02.pdf",
+     "orders": 2
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1971-01-22/pdf/FR-1971-01-22.pdf",
+     "orders": 2
+    }
+   ],
+   "views": [
+    {
+     "view": "reviewer_source_url",
+     "advances_step": "n/a (see note)",
+     "pool_size": 225,
+     "units": 281,
+     "distinct_orders_reached": 225,
+     "gini": 0.3993,
+     "max": 32,
+     "median": 1,
+     "coverage": {
+      "top10": 0.4489,
+      "top100": 0.7778,
+      "greedy10": 0.4933,
+      "greedy100": 1.0
+     },
+     "reached_with_le2_open_steps": 186,
+     "reached_with_no_other_open_step_upper_bound": null
+    },
+    {
+     "view": "near_ready_open_step_set",
+     "advances_step": "n/a (see note)",
+     "pool_size": 3224,
+     "units": 5,
+     "distinct_orders_reached": 49,
+     "gini": 0.4816,
+     "max": 23,
+     "median": 6,
+     "coverage": {
+      "top10": 0.0152,
+      "top100": 0.0152,
+      "greedy10": 0.0152,
+      "greedy100": 0.0152
+     },
+     "reached_with_le2_open_steps": 49,
+     "reached_with_no_other_open_step_upper_bound": null
+    }
+   ]
+  },
+  {
+   "frame": "F9_single_blocker_frontier",
+   "status": "measured",
+   "unit": "one blocker code (as the only blocker)",
+   "polya_move": "specialize: solve the cases with exactly one obstacle first",
+   "advances_step": "ready_for_human_review directly",
+   "orders_reachable": 4586,
+   "pct_not_ready_reachable": 0.3091,
+   "decided_not_ready_reachable": 26,
+   "pct_decided_not_ready_reachable": 0.0081,
+   "units": 4,
+   "gini": 0.7467,
+   "max_unit": 4560,
+   "overlap_factor": 1.0,
+   "coverage_all_views": {
+    "top10": 0.3091,
+    "top100": 0.3091,
+    "greedy10": 0.3091,
+    "greedy100": 0.3091
+   },
+   "reached_with_le2_open_steps": 26,
+   "median_open_steps_of_reached": 5,
+   "reached_with_no_other_open_step_upper_bound": [
+    [
+     "sole_blocker",
+     null
+    ]
+   ],
+   "top20_units": [
+    {
+     "unit": "sole_blocker|NO_PROVISIONAL_STATUS",
+     "orders": 4560
+    },
+    {
+     "unit": "sole_blocker|CLAIM_INCOMPLETE:ending_or_current_basis",
+     "orders": 23
+    },
+    {
+     "unit": "sole_blocker|QUARANTINED_RELATIONSHIP_CONFLICT",
+     "orders": 2
+    },
+    {
+     "unit": "sole_blocker|OPEN_SOURCE_AUDIT:fcabadd3f793",
+     "orders": 1
+    }
+   ],
+   "views": [
+    {
+     "view": "sole_blocker",
+     "advances_step": "n/a (see note)",
+     "pool_size": 14837,
+     "units": 4,
+     "distinct_orders_reached": 4586,
+     "gini": 0.7467,
+     "max": 4560,
+     "median": 2,
+     "coverage": {
+      "top10": 0.3091,
+      "top100": 0.3091,
+      "greedy10": 0.3091,
+      "greedy100": 0.3091
+     },
+     "reached_with_le2_open_steps": 26,
+     "reached_with_no_other_open_step_upper_bound": null
+    }
+   ]
+  }
+ ]
+}

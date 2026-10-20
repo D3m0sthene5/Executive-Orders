@@ -1,0 +1,36 @@
+{
+ "schema": "junto.catalog/1",
+ "catalog_id": "K-washington_farewell",
+ "name": "washington_farewell",
+ "historical_name": "Washington Farewell",
+ "kind": "finder",
+ "status": "not_built",
+ "one_line": "Ask every agent one exit question before it ends: what cost you the most that you could not avoid?",
+ "problem": "Agents know which step wasted their effort but nothing records it; transcripts only show what happened, not what the agent found pointless.",
+ "design": [
+  "Add one closing line to agent briefs: 'Reply with at most 3 short lines: the step that cost you most for least value, and one thing that would have saved it.'",
+  "Store replies in the scratchpad (never the repo); a script counts and groups them by cause key using a fixed keyword list, and commits only counts and cause keys.",
+  "Cross-check each named step against Hamilton's profile for that session; only an answer that matches a priced cause becomes a candidate.",
+  "Unmatched answers with no priced cause feed the blind-spot step as proposal material."
+ ],
+ "inputs": [
+  "agent briefs",
+  "agent replies (scratchpad only)",
+  "Hamilton profile for the session"
+ ],
+ "targets": [
+  "unmapped"
+ ],
+ "cost_estimate": {
+  "build_usd": 1.0,
+  "run_usd_each": 0.01,
+  "basis": "about 100 extra output tokens per agent; a 100-agent run adds roughly $0.50-1.00 at list price",
+  "usd_basis": "estimate",
+  "verified": false,
+  "note": "Estimate only (unverified). Never counted as a saving."
+ },
+ "first_test": "Add the question to the next 20 agent briefs and count how many answers match a priced cause.",
+ "risks": "Self-reports can be wrong or flattering. They are leads only; the priced cause is what counts. The question itself adds tokens.",
+ "written_by": "claude",
+ "written_at": "2026-10-20"
+}

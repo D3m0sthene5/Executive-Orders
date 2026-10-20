@@ -1,0 +1,363 @@
+{
+ "schema": "eo-x1-independent-ai-batch-review/v1",
+ "reviewer": "claude-bowditch-y2-01-reviewer",
+ "reviewer_role": "independent_agent",
+ "not_human_certification": true,
+ "reviewed_on": "2026-10-20T02:40:01Z",
+ "claims_file": "applied-v3/CLAIMS.proposed.jsonl",
+ "wall_minutes_total": 36.6,
+ "approx_tokens_total": 178000,
+ "items": [
+  {
+   "instrument_id": "EO:9293",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: No ending instrument or own-terms end is held: I read the complete held Federal Register text (8 FR 222-223; one operative paragraph reserving the Quarry Heights Military Reservation, Canal Zone, under Canal Zone Code Title II sec. 5, and a closing sentence superseding EO 7407 of 1936). It has no sunset, the dossier chain and actor provisions are empty, and the six TERM records are machine condition leads, not endings. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_9293.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:9704",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: Provisional NO but no ending evidence is held. The dossier has an empty chain, no actor provisions and no own-terms record; the only current-law lead is the OFR 1989 Codification line printing EO 9704 (American Battle Monuments Commission functions) as in force on 1989-01-20 (conflict NO_ORDER_IN_FORCE_ON_1989_01_20; status-history flags POST_SNAPSHOT_END_BASIS_NOT_LOCATED and EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT), which is a 1989 snapshot, never a basis. Agree: ledger NO has no held end evidence (coordinator item). FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_9704.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10977",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: YES order without a current legal predicate. I read the complete held order (26 FR 11471, Armed Forces Expeditionary Medal, Secs. 1-4). The only current-law lead is a 1989 Codification line, which the guide says is never a legal basis. EO 11382 (1967, Treasury to Transportation) and EO 13286 (2003, Homeland Security) amend the order and prove it in force on those dates only; they do not show continuation through 2026-10-14. No source for present operation (for example the DoD Manual 1348.33 award rules or a Federal Register search showing no revocation) is held. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10977.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:13792",
+   "producer_outcome": "submit",
+   "claim_sha256": "84f6565a16bb4155ba9136fc65805019b4fd0c3a3467c464cc89ad6e23d24ebf",
+   "decision": "reject",
+   "reasons": "Revocation date and wording are right (EO 13990 Sec. 7(a), unqualified list, signed 2021-01-20; no saving clause). But the claim gives every Sec. 2 clause (2(a)-(c) review, 2(d) 45-day interim report, 2(e) 120-day final report) a first_end of 2021-01-20 by revocation. Read in full, Sec. 2 is a one-time review-and-report command; jobs/claim-kit/BATCH.md says 'A later revocation does not prove first cessation for a command already performed.' The review and reports were (per public record, not held) delivered in 2017, so the first cessation of the Sec. 2 clauses is the actual performance date, which no held source dates. The producer's earlier_end_check dismisses performance as 'not a legal ending'; that is contrary to the protocol. Correct outcome is blocked pending the report dates (reviewer added a FETCH_QUEUE request), or an applied-v4 that dates Sec. 2 by performance from a held source.",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_13792.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_13990.txt (Sec. 7)",
+    "jobs/claim-kit/BATCH.md"
+   ],
+   "minutes_estimate": 6.0,
+   "approx_tokens": 30000
+  },
+  {
+   "instrument_id": "EO:11049",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: Probable first end is EO 12553 (signed 1986-02-25, 51 FR 7237), whose held list revokes 'No. 11049 Providing for the carrying out of the Public Works Acceleration Act'; I read it. The dossier holds that text only as ACTOR_TEXT:EO:12553 (no mechanism, no ACT record: 'target provision not located: EO:12553'), and the assembler can cite as first_end only a record that carries a mechanism, so the ending cannot be assembled. Confirmed EO 12553 list names 11049; ACTOR_TEXT-only and Public Works Acceleration Act expiry unexamined. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11049.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:9916",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (13 FR 26; one operative sentence fixing the composition of the National Capital Housing Authority as three named officials plus 'two additional officials'). The extract also holds the tail of a Cuba trade proclamation and the head of EO 9917, which are not part of this order. FETCH_QUEUE line(s) match the gap (none needed for a pure tooling block)",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_9916.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11065",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (27 FR 11581, one operative sentence): tax returns for 1950-1962 'shall, during the Eighty-seventh Congress, be open to inspection' by the Senate Committee on Foreign Relations; effective on filing for publication. Legal reading (not submitted): spent by its own terms at the end of the 87th Congress, 1963-01-03 (U.S. Const. amend. XX sec. 1). Confirmed EO_11065.txt \"during the Eighty-seventh Congress\"; tooling block plus 87th Congress dates requested. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11065.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:8072",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: The dossier's clause inventory is wrong: EO:8072#1-#4 are paragraphs 1-4 of EO 8071 (Federal Interdepartmental Safety Council), printed on the same page (4 FR 1291). EO 8072 is the Washington State land withdrawal for the Navy (revokes EO 6964 as to three tracts, Sec. 1; temporarily withdraws them, Sec. 2). FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_8072.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:8300",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (4 FR 4847, amendment of Civil Service Rule VII sec. 2(b), one operative paragraph; the held page also contains EO 8301, which is not part of this order). The single-clause inventory is right. Confirmed EO_9830.txt line 2574 \"No, 8300 of December 12, 1939.\" (OCR comma defeats the locator): tooling block, not evidence. FETCH_QUEUE line(s) match the gap (none needed for a pure tooling block)",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_8300.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11387",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: First end not established. EO 12553 (1986-02-25) revokes EO 11387 (held list: 'Governing certain capital transfers abroad') but is an ACTOR_TEXT record only (no mechanism), and a later revocation does not prove first cessation: the order rested on sec. 5(b) of the Trading with the Enemy Act and the emergency declared by Proclamation 2914 (1950); the statutory termination of that emergency (National Emergencies Act, Pub. L. 94-412 sec. 101, 1978) and the end of the Commerce and Federal Reserve capital-transfer programs were not examined. The EO 11490 ACT records (1969) only reassign emergency-p Confirmed in EO 12553 list; emergency/program termination is the real first-cessation question. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11387.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10568",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (19 FR 6391): it suspends 'from and including the effective date of the said acts' compliance with sec. 103 of the Civil Functions Appropriations Act, 1955 (Pub. L. 453, 83d Cong.) and sec. 710 of the Department of Defense Appropriation Act, 1955 (Pub. L. 458). Neither Act is held, so whether those provisions (and so the suspension) lapsed with fiscal year 1955 or were permanent is unknown. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10568.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10856",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: The held Federal Register extract is incomplete: the order's text stops at 'adopt a liberal policy for the granting of annual leave to all employees (Continued on p. 9765)' and the continuation page is not held, so the second command and any time limit on it are not confirmed. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10856.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10192",
+   "producer_outcome": "submit",
+   "claim_sha256": "973b374fd4352b6f9177a86c0c37ee077e3c72c06ab8a7e0fb3b9e24fe2759be",
+   "decision": "reject",
+   "reasons": "Substance is plausible (clause 2 replaced 1951-04-26 when EO 10236 rewrote para 8 of EO 10129; the Commission then ceased at the end of 1951-05-31), but the claim as written is not defensible: (1) clause 1 and whole_order_end carry date 1951-05-31 with mechanism 'amend' and actor EO 10236, yet EO 10236 never amends paragraph 3 (the report date that clause 1 changed); clause 1 ended because the Commission ceased under the new para 8, which is a different mechanism; (2) the cited source quote (EO_10236.txt chars 1766-2336) stops at the opening quotation mark and does not contain 'The Commission shall cease to exist at the end of May 31,1951', so nothing quoted supports the 1951-05-31 date. The claim's own judgment_reason concedes this. A correction needs an end record whose span includes the cessation sentence (tooling gap: ACTOR_TEXT has no mechanism) and a fresh review.",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10192.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_10129.txt (paras 3, 8)",
+    "jobs/fr-originals/data/full_run/texts/EO_10236.txt"
+   ],
+   "minutes_estimate": 6.0,
+   "approx_tokens": 30000
+  },
+  {
+   "instrument_id": "EO:14125",
+   "producer_outcome": "unresolved",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: Evidence contradicts the provisional NO as a whole-order status. I read the complete held order (89 FR 60791-60792): Sec. 1 establishes the emergency board; Sec. 2 sets the 30-day report deadline; Sec. 3 imposes a 120-day status-quo duty; Sec. 5 terminates the Board on submission of its report (EO 14128 of 2024-11-21, held, recites that it did terminate, but not when). But Sec. 4 (Records Maintenance) says the Board's records 'are records of the Office of the President and upon the Board's termination shall be maintained in the physical custody of the National Mediation Board', a standing cust Agree unresolved: Sec. 4 custody direction has no stated end and the Board report date is not held. Producer queued no fetch line; reviewer added one. Ledger NO left unchanged (coordinator item). FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_14125.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10394",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (17 FR 8143): it suspends, 'from and including the effective date of the said acts', sec. 103 of the Civil Functions Appropriations Act, 1953 (Pub. L. 504, 82d Cong.) and sec. 618 of the Department of Defense Appropriation Act, 1953 (Pub. L. 488). Neither Act is held, so whether the suspended provisions lapsed with fiscal year 1953 or were permanent is unknown. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10394.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:8085",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: The dossier's clause inventory is wrong: its three clauses are paragraphs of Foreign Service Regulations (consular estates, Part XIII) and a War Department payment rule printed on 4 FR 1597, not EO 8085. EO 8085 is the Gunnison National Forest ranger-station withdrawal (T. 14 S., R. 86 W., sec. 1, SE1/4SW1/4, 40 acres, Colorado), a single operative paragraph that 'shall remain in force until revoked by the President or by act of Congress'. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_8085.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11343",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (32 FR 6085): a three-member emergency board to investigate the Long Island Rail Road disputes, reporting within 30 days, with a status-quo duty 'from this date and for thirty days after the board has made its report'. The 30-day report date is a deadline, never an end, and the status-quo period runs from the actual report date, which is not held. Confirmed in EO 12553 list; actual board report date is the deciding fact and is queued. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11343.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11923",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (41 FR 24689): a flag half-staff direction for Monday 1976-06-21 for two officials killed in Lebanon. Legal reading (not submitted): a single-day command, spent by its own terms at the end of 1976-06-21, no savings. Confirmed EO_11923.txt: single-day half-staff direction for 1976-06-21; tooling block (no TERM record). FETCH_QUEUE line(s) match the gap (none needed for a pure tooling block)",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11923.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:9643",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (10 FR 13039): one paragraph that terminates the Office of Surplus Property, Department of Commerce, and transfers its personnel, records, property, contracts, obligations and funds to the Reconstruction Finance Corporation 'effective as of the opening of business November 5, 1945' (TERM sunset_date records exist, but only for the APP transcription), and then directs that 'such measures and dispositions as may be determined by the Director of the Bureau of the Budget' be carried out. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_9643.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11797",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: The dossier has no clause inventory (clause-drafts could not segment the text). I read the complete held order (39 FR 27893): a single paragraph delegating to the Secretary of Agriculture the President's functions under sec. 901(b) of the Agricultural Act of 1970, as amended, for reporting criteria and annual reports to Congress on locating new Federal facilities in rural areas. Confirmed in EO 12553 list; statutory history queued. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11797.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:11210",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (30 FR 4051-4052): it establishes the Temporary Commission on Pennsylvania Avenue (Sec. 1), its functions (Sec. 2), staff (Sec. 3) and agency support (Sec. 4). It has no stated expiry; 'Temporary' in the name is not an end. EO 11347 (1967, ACT) replaces only Sec. 1(b) (membership). The three TERM records are 'temporary_body' wording leads. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11210.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:12574",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: I read the complete held order (51 FR 42199): an experimental program within the President's Commission on Executive Exchange, established effective 1986-10-01 and 'conducted during the fiscal years 1987 through 1989' (Sec. 2), with participant rules in Sec. 3. Legal reading (not submitted): the program ran by its own terms to the end of fiscal year 1989, 1989-09-30, consistent with the 1989-01-20 Codification line printing it as in force. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_12574.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10635",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: The dossier's single clause (chars 3149-12075) covers about 9,000 characters of an Ecuador trade-agreement proclamation, the Federal Register contents pages and EO 10635 together; the inventory needs correction. I read the order itself (20 FR 6485, signed in early September 1955; the OCR date reads 'September t'): a three-member emergency board for the Pennsylvania Railroad and Transport Workers Union dispute, a 30-day report deadline and a status-quo duty 'for thirty days after the board has made its report'. Confirmed in EO 12553 list; report date queued. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10635.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:12978",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified: YES order without a current legal predicate. I read the complete held order (60 FR 54579-54580): declares a national emergency regarding significant narcotics traffickers centered in Colombia and blocks property (Secs. 1-6; effective 1995-10-22). The current-law leads are statutory mentions (21 U.S.C. 1901 findings of 1999 etc.), which the dossier itself marks as without an attributed legal-text slice, and are not evidence of continuation through 2026-10-14. FETCH_QUEUE line(s) match the gap",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_12978.txt",
+    "research/excavator/bowditch-2026-10-20/y2_01/decisions.csv",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 0.8,
+   "approx_tokens": 4000
+  },
+  {
+   "instrument_id": "EO:10999",
+   "producer_outcome": "submit",
+   "claim_sha256": "4a18d71719d09838a8e6a5be6d36dd8512b0ba919824882002eb54a76ca1acd4",
+   "decision": "uphold",
+   "reasons": "Read the held EO 10999 (27 FR 1527) and EO 11490 Sec. 3011-3015: item (7) of Sec. 3015 revokes 'Executive Order No. 10999 of February 16,1962' outright, signed 1969-10-28, no delayed effective wording found; Sec. 3014's retention is expressly subject to Sec. 3015. The 13-section inventory override is correct (neighbouring EO 10998/11000 excluded). Tried to refute: OFR catalog record for EO 10999 shows only 'Revoked by: EO 11490' plus 'See' cross-references (EO 10952; FR Doc. 62-9459, 27 FR 9418; FR Doc. 63-3328, 28 FR 3125) which are non-Presidential FR documents and cannot end a Presidential order; no amending EO in the catalog or held texts (grep of all held texts finds only incidental hits). Sec. 13's revocation of EP Order No. 2 was self-executing in 1962, but the same section's precedence sentence continued, so a 1969 first_end for the section is right and the executed part is correctly recorded as accrued. Savings transferred_or_accrued is right (EO 11490 Part 9 restates Commerce assignments). Minor: the producer did not name the 'See' cross-references; not outcome-changing.",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_10999.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_11490.txt (Sec. 3011-3015)",
+    "jobs/later-events/output/EDGES.csv",
+    "jobs/later-events/output/CATALOG_INDEX.csv"
+   ],
+   "minutes_estimate": 7.0,
+   "approx_tokens": 30000
+  }
+ ]
+}

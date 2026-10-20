@@ -1,0 +1,38 @@
+{
+ "schema": "junto.catalog/1",
+ "catalog_id": "K-tocqueville_comparison",
+ "name": "tocqueville_comparison",
+ "historical_name": "Tocqueville Comparison",
+ "kind": "finder",
+ "status": "not_built",
+ "one_line": "Compare sessions of the same task class and ask why the dearest one cost more.",
+ "problem": "Waste hidden inside a single session looks normal; next to a cheaper peer of the same kind it stands out.",
+ "design": [
+  "Group Hamilton profiles by task class (build phase, PR babysit, evidence upload, review).",
+  "For each class compute dollars per accepted unit and per-cause shares, and rank sessions against the class median.",
+  "For the dearest sessions, list the causes whose dollars exceed the median peer's by more than 2x (numbers and cause keys only, no transcript text).",
+  "Emit one candidate per excess cause with the peer session as the suggested 'before/after' pair."
+ ],
+ "inputs": [
+  "committed PROFILE_*.json",
+  "session_index.json totals",
+  "task class tag per session"
+ ],
+ "targets": [
+  "coordinator_context",
+  "idle_wait",
+  "tool_output"
+ ],
+ "cost_estimate": {
+  "build_usd": 1.5,
+  "run_usd_each": 0.05,
+  "basis": "pure script over already-committed profiles; no model in the loop, so run cost is near zero; needs a task class tag, which is hand-added once per session",
+  "usd_basis": "estimate",
+  "verified": false,
+  "note": "Estimate only (unverified). Never counted as a saving."
+ },
+ "first_test": "Use the audited X1 and Y1 coordinators: if Y1 is cheaper per accepted unit, its difference is the candidate and Y1 is the after arm.",
+ "risks": "Only five sessions are audited today; with fewer than 3 per class the comparison says little. Class labels are judgement.",
+ "written_by": "claude",
+ "written_at": "2026-10-20"
+}

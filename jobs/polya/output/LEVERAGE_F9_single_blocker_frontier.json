@@ -1,0 +1,77 @@
+{
+ "schema": "polya/1",
+ "repo_head": "46f91fdac2943f27dca5940ca874132738199104",
+ "frame": "F9_single_blocker_frontier",
+ "unit": "one blocker code (as the only blocker)",
+ "polya_move": "specialize: solve the cases with exactly one obstacle first",
+ "pool": {
+  "orders": 14972,
+  "ready": 135,
+  "not_ready": 14837,
+  "decided_not_ready": 3224,
+  "undecided": 11613
+ },
+ "rules": [
+  "counts are measured from committed job outputs at repo_head",
+  "reach is not yield: orders a unit could advance one step, not orders made ready",
+  "AI statuses are hypotheses; no codebook change; no tier promotion; certified stays 0"
+ ],
+ "views": [
+  {
+   "view": "sole_blocker",
+   "advances_step": "n/a (see note)",
+   "what": "orders where this is the ONLY blocker",
+   "note": "blocker codes do not track every open step: clearing a sole blocker does NOT by itself make an order ready (NO_PROVISIONAL_STATUS orders still have 5 open steps); see reached_with_le2_open_steps",
+   "pool_size": 14837,
+   "dropped_orders_step_not_open": 0,
+   "pool_already_ready": 0,
+   "units": 4,
+   "distinct_orders_reached": 4586,
+   "sum_leverage": 4586,
+   "overlap_factor": 1.0,
+   "max": 4560,
+   "median": 2,
+   "p90": 4560,
+   "units_ge_10": 2,
+   "units_ge_50": 1,
+   "gini": 0.7467,
+   "top10_share_of_sum": 1.0,
+   "pct_of_pool_reached": 0.3091,
+   "coverage": {
+    "top10": 0.3091,
+    "top100": 0.3091,
+    "greedy10": 0.3091,
+    "greedy100": 0.3091
+   },
+   "reached_with_le2_open_steps": 26,
+   "median_open_steps_of_reached": 5,
+   "reached_with_no_other_open_step_upper_bound": null,
+   "top": [
+    {
+     "unit": "NO_PROVISIONAL_STATUS",
+     "orders": 4560,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "CLAIM_INCOMPLETE:ending_or_current_basis",
+     "orders": 23,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "QUARANTINED_RELATIONSHIP_CONFLICT",
+     "orders": 2,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    },
+    {
+     "unit": "OPEN_SOURCE_AUDIT:fcabadd3f793",
+     "orders": 1,
+     "step": null,
+     "steps_complete_if_done_upper_bound": null
+    }
+   ]
+  }
+ ]
+}
