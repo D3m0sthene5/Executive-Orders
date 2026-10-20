@@ -11,7 +11,8 @@
   ],
   "actor_provisions": [
     "ACT:EO:10010>EO:10015",
-    "ACT:EO:10010>EO:10015@66cf53eb42333e1a"
+    "ACT:EO:10010>EO:10015@66cf53eb42333e1a",
+    "ACT:EO:10010>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -41,6 +42,33 @@
           "url": "https://www.presidency.ucsb.edu/documents/executive-order-10015-amendment-executive-order-no-10010-creating-emergency-board"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10010#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
     "generic_refs_excluded": 213,
@@ -250,6 +278,75 @@
       "target_id": "EO:10010",
       "text": "By virtue of authority vested in me by section 10 of the Railway Labor Act, as amended (45 U.S.C. 160), Executive Order No. 10010 of October 18, 1948, entitled \"Creating an Emergency Board to Investigate Disputes between the Akron & Barberton Belt Railroad Company and Other Carriers, and Certain of Their Employees,\" is hereby amended as follows:",
       "verb": "amend"
+    },
+    "ACT:EO:10010>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10010>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10010>EO:12553@rastell",
+      "producer": "claude-rastell-03-producer",
+      "producer_d6": "Searched: dossier chain, own_terms (OWN_TERMS.jsonl), the target's clause text, and EDGES.csv (later-events, app-footnote-leads). Edges targeting EO:10010: only EO:12553 (revocation, both the 'Revoked by' footnote and the 12553 row). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, the status quo is frozen 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms about two months after 1948-10-18, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Searched for a later event that changed the acting provision: no edge in either EDGES file targets EO:12553, and nothing else in the dossier amends or revokes it. EARLIER PARTIAL CHANGE: EO 10015 (1948-11-05, effective as of 1948-10-18) amends this order by adding carriers to List A and renaming two List B organizations; it is a partial amendment, not an end, and EO 10015 is itself a row in the same EO 12553 table (revoked by the same sentence, same date). The dossier also holds the EO 10015 acting record (ACT:EO:10010>EO:10015), which is a partial amendment.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EO 10015 partial amendment of EO 10010 (not an end); both rows revoked by same sentence. Board report/status-quo terms are not express ends.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-03-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_03/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10010",
+      "target_naming": {
+        "char_end": 5954,
+        "char_start": 5882,
+        "sha256": "17e4d8258caa55c9a66ccb4be4a85f984225ff70e3c51afa9e564aba9a4936f8",
+        "text": "10010 Creating an emergency board to investigate railroad labor disputes"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
     },
     "ACTOR_TEXT:EO:10015": {
       "actor_id": "EO:10015",
@@ -511,7 +608,7 @@
       "text": "The board shall report its findings to \nthe President with respect to the said \ndisputes within thirty days from the date \nof this order."
     }
   },
-  "fingerprint": "eec9e600df8ffc06ee47909e7955ec06ce957e88cfcc9e156c8214d70f72a5c7",
+  "fingerprint": "59cc78c8af37e19ff7b6e5300a1c9cbc7d69f2ad0aa0ac272b1f2d7908aff3ee",
   "instrument_id": "EO:10010",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -552,9 +649,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10010",
   "own_terms": [

@@ -32,16 +32,17 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 - family-rules: saved_texts_scanned: 46624 → 46676
 - official-fixity: carried_forward: 5054 → 5058; checked_this_run: 4 → 14; files: 5058 → 5072; premis_bytes_read_this_run: 65536 → 0
 - source-ladder: attempts_logged: 20 → 86; bytes_downloaded: 78296215 → 460902337; distinct_new_source_hashes: 6 → 37; embedded_cite_items: unavailable → 14
+- x1-class-engine: modern_families_5_plus: 178 → 181
 
 ## Top shared unlocks
 
 - orders_unblocked: 3216; kind: machine_job; action: Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy; blocker: ONLY_COMPILED_TRANSCRIPTION_FOUND
 - orders_unblocked: 425; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
 - orders_unblocked: 286; kind: agent_check; action: Check the page location of fr-originals and official-compilation finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
+- orders_unblocked: 26; kind: machine_job; action: Run claim-checker on the newest claims (it reruns on every claims change and daily); blocker: CLAIM_NOT_YET_CHECKED
 - orders_unblocked: 10; kind: one_source; action: Retrieve shared source EO::4314; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::4314
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source USC::48 U.S.C. 863); blocker: SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)
-- orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6964; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6964
 
 ## Open asks from the newest handoff entries
 

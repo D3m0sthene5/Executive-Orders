@@ -5,10 +5,40 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10723>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10723#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
     "generic_refs_excluded": 213,
     "id": "CHAIN:EO:10723",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
@@ -56,6 +86,75 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10723>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in: the only hit is the word \"effectiveness\" inside the subject of EO 11836's row). The order is dated \"Executive Order 12553 of February 25, 1986\". on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 is not an effective date.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10723>EO:12553",
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence, ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" (PDF pages 9-15 of the held text; all seven pages belong to EO 12553, the signature block follows the last row at offset 33109, so no neighbouring document is mixed in). The sentence says \"the following Executive Orders, and any amendments thereto, are revoked\"; \"any amendments thereto\" is a general phrase and is not treated as a separate target. Target row: 10723 in the \"No.\" column (number-only column; subjects print in a separate column in the same order layout). Subject column cross-check by order (the 39th number of the page-11 column, which pairs with the 39th subject after joining wrapped lines): the subject printed for 10723 is \"Creating an emergency board to investigate a railroad labor dispute\", consistent with the target title.  Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10723>EO:12553@rastell",
+      "producer": "claude-rastell-01-producer",
+      "producer_d6": "Searched: dossier chain (no events), own_terms, EDGES.csv (later-events, app-footnote-leads) for edges targeting EO:10723: only EO 12553. Own terms: the board \"shall report its findings ... within thirty days from the date of this order\" and the status quo is frozen \"for thirty days after the board has made its report\". No express termination clause and no earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed in autumn 1957 by its own terms, so the reviewer should decide whether 12553 is the end or only a formal clean-up. No later event changed EO 12553 itself (no edge targets EO:12553).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "Searched: dossier chain (no events), own_terms, EDGES.csv (later-events, app-footnote-leads) for edges targeting EO:10723: only EO 12553. Own terms: the board \"shall report its findings ... within thirty days from the date of this order\" and the status quo is frozen \"for thirty days after the board has made its report\". No express termination clause and no earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed in autumn 1957 by its own terms, ",
+        "d6_searched": "Target dossier chain/own_terms/missing; jobs/later-events/output/EDGES.csv rows targeting EO:10723 and EO:12553; held texts of later amenders of the acting order where EDGES list any.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "rastell-batch_01-reviewer (claude-opus-5-5)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_01/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10723",
+      "target_naming": {
+        "char_end": 10618,
+        "char_start": 10613,
+        "sha256": "d8eb6448fe74812fc2e7a3e85f0a9b62641033fc228aeaa416ff710fbc9cb754",
+        "text": "10723"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -296,7 +395,7 @@
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by the General Managers’  Asso­\nciation of New York representing the  \nNew York Central Railroad, New York,  \nNew Haven &  Hartford Railroad Com­\npany, Brooklyn Eastern District Termi­\nnal, Jay Street Connecting Railroad;  \nNew York Dock Railway, Bush Terminal  \nRailroad, Baltimore &  Ohio Railroad  \nCompany, the Pennsylvania Railroad,  \nErie Railroad Company, Reading Com­\npany, Delaware, Lackawanna &  Western \nRailroad, and the Central Railroad Com­\npany of New Jersey, carriers, or by their  \nemployees, in the conditions out of which  \nthe said dispute arose. -"
     }
   },
-  "fingerprint": "73fff35a2a01dec9cc2c7b6d96f87484982681bf2ab5e19d31285641e4e11e77",
+  "fingerprint": "62368850911926df327b6230f16efefd9b57268534f5a2d1ac0a0bef83e248e1",
   "instrument_id": "EO:10723",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -337,9 +436,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10723",
   "own_terms": [

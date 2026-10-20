@@ -28,6 +28,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | 3,216 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 425 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 26 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -43,9 +44,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 3,216 |
-| `NO_CLAUSE_INVENTORY` | 3,134 | 3,134 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,134 | 3,134 |
-| `FIRST_END_UNPROVED` | 2,734 | 2,734 |
+| `NO_CLAUSE_INVENTORY` | 3,108 | 3,108 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,108 | 3,108 |
+| `FIRST_END_UNPROVED` | 2,708 | 2,708 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 688 | 688 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 425 | 425 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
@@ -56,6 +57,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
+| `CLAIM_NOT_YET_CHECKED` | 26 | 26 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 17 | 17 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 | `OPEN_SOURCE_AUDIT` | 1 | 1 |
