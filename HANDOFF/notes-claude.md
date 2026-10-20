@@ -2,6 +2,22 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET (evening): handoff to a fresh coordinator
+
+- **Since the afternoon entry:**
+  - Lambertini III: 52 of 82 upheld, 49 pass the checker.
+  - Y2LEAD probe: 7 of 50 upheld; the gate failed and the line stops.
+  - Lamm III: 2 claims, plus 84 PEB report-date fetch lines.
+  - Near-ready fix-ups: 4 claims.
+  - Sinclair re-freeze: the owner adoption batch is now 47 NO proposals (Bowditch 15, Sinclair 32).
+- **Expected:** ready count rises from 176 by about 60 once the tracker runs on these claims.
+- **Next for the new coordinator** (follow `research/plans/CONTINUOUS_PROTOCOL.md`):
+  1. Lambertini III batch 02 (8 claims, never reviewed) and re-review of EO 14055, 13986, 13123 and 5624.
+  2. Sinclair EO 11209, 13555 and 9294 producer fix.
+  3. When the PEB report dates land (84 queued), report-relative claims, after the owner's report-deadline ruling.
+  4. Re-run the day review (Llull rank).
+- **Lines stopped:** Craigellachie, Y2LEAD, and the Lamm sunsets are exhausted.
+
 ## 2026-10-20 ET (afternoon): continuous run, ready 135 -> 176
 
 - **Done:**
