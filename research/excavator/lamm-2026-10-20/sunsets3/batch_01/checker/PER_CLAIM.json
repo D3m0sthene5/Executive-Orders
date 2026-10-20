@@ -1,0 +1,108 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:13037": {
+   "claim_key": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/lamm3/work/batch_01/CLAIMS.proposed.jsonl:1",
+   "claim_sha256": "a166a8dee20cc652f25e6e70524b372148cff3e54b271ebda1b3da3f651b8e83",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": false,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/lamm3/work/batch_01/CLAIMS.proposed.jsonl:1",
+   "file": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/lamm3/work/batch_01/CLAIMS.proposed.jsonl",
+   "line": 1,
+   "instrument_id": "EO:13037",
+   "claim_sha256": "a166a8dee20cc652f25e6e70524b372148cff3e54b271ebda1b3da3f651b8e83",
+   "provisional_status": "no",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 12,
+     "skip": 11
+    },
+    "source_identity": {
+     "pass": 11
+    },
+    "quote_verbatim": {
+     "pass": 33
+    },
+    "date_valid": {
+     "pass": 37
+    },
+    "date_after_signing": {
+     "pass": 11
+    },
+    "order_exists": {
+     "pass": 4
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.source",
+    "source_held:custody_record_only@operative_clauses[1].first_end.source",
+    "source_held:custody_record_only@operative_clauses[2].first_end.source",
+    "source_held:custody_record_only@operative_clauses[3].first_end.source",
+    "source_held:custody_record_only@operative_clauses[4].first_end.source",
+    "source_held:custody_record_only@operative_clauses[5].first_end.source",
+    "source_held:custody_record_only@operative_clauses[6].first_end.source",
+    "source_held:custody_record_only@operative_clauses[7].first_end.source",
+    "source_held:custody_record_only@operative_clauses[8].first_end.source",
+    "source_held:custody_record_only@operative_clauses[9].first_end.source",
+    "source_held:custody_record_only@whole_order_end.source"
+   ],
+   "effective_for_tracker": true
+  }
+ ]
+}

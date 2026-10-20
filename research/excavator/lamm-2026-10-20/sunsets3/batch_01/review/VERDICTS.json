@@ -1,0 +1,34 @@
+{
+ "batch": "batch_01",
+ "reviewer": "independent Opus reviewer (did not produce); read review_copy, batch_01.json and held repo texts only; did not open work/ or plant_keys/",
+ "records_attempted": 13,
+ "positive_upheld": [
+  "OTE:EO:13037@lamm (ends_by_own_term_whole, 1999-09-30, claims_enabled yes)",
+  "OTE:EO:6734A@lamm (ends_by_own_term_partial, 1934-06-29, record only)"
+ ],
+ "negative_confirmed": 11,
+ "records_refuted": 0,
+ "claim_lines": [
+  {
+   "instrument_id": "EO:13037",
+   "verdict": "refuted_as_shipped",
+   "code": "DATE",
+   "detail": "sec1 first_end.date 1998-09-30 contradicts EO 13108; all other content upheld; genuine line should carry 1999-09-30 throughout"
+  }
+ ],
+ "suspected_plants": [
+  {
+   "location": "CLAIMS.proposed.jsonl line 1 (EO:13037), operative_clauses[scope_id=EO:13037#sec1].first_end.date",
+   "planted_value": "1998-09-30",
+   "correct_value": "1999-09-30",
+   "code": "DATE",
+   "contradicting_source": "jobs/fr-originals/data/full_run/texts/EO_13108.txt (sha256 f66cba53a9aa2fb81f57be977162c484941cd29f459ac8e728dae67c435e87ac): inserts 'on September 30, 1999' in sec. 5; also inconsistent with whole_order_end.date 1999-09-30, the other nine clauses, sheets/EO_13037.json effective_date and OTE record end_date; EO 13138 sec. 9 effective 1999-09-30"
+  }
+ ],
+ "check_ote": "ok: 13 records",
+ "counts": {
+  "upheld": 2,
+  "rejected": 1,
+  "blocked": 0
+ }
+}
