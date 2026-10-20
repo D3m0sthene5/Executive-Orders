@@ -113,6 +113,13 @@ and independent whole-case review requirement. It measures machine preparation,
 correction and integration; active producer/reviewer/coordination time and model
 costs are unavailable. These timings cannot establish total rework savings.
 
+The current smoke run records each component's actual validation result in
+`CURRENT_CORRECTION_SAFETY.json`. Later changes to a pinned protocol can refuse
+reuse of a historical attestation; this run does not renew it or alter the frozen
+experiment. Every selected claim must retain an unresolved exact-claim hold with
+its review artifact verified, start unapproved, and remain blocked in the actual
+tracker. Refused reviews remain explicit in the current packet and report.
+
 Junto receives only the concrete owner-seeded `valla_rework_salvage` hypothesis.
 It remains unverified until complete matched correction tasks have measured
 session totals and review outcomes. Failed work, review, correction, coordination,

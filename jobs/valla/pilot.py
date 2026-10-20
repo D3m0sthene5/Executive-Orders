@@ -25,6 +25,37 @@ def load_module(name, path):
     return module
 
 
+def correction_safety(repo, packet, expected_claims):
+    """Check today's blocked packet without renewing historical attestations."""
+    context = packet['valla_context']
+    if context['automatic_approvals'] != 0 or not context['whole_case_review_required']:
+        raise ValueError('correction must retain whole-case review and zero approvals')
+    if set(context['claims']) != set(expected_claims):
+        raise ValueError('correction must retain every selected frozen claim')
+    holds = {iid: [] for iid in expected_claims}
+    for row in V.rows(Path(repo) / 'research/readiness/SOURCE_AUDIT_HOLDS.jsonl'):
+        iid = row.get('instrument_id')
+        if iid not in holds:
+            continue
+        if (row.get('state') != 'unresolved' or
+                row.get('claim_sha256') != expected_claims[iid]['claim_sha256']):
+            raise ValueError('missing current exact-claim hold: ' + iid)
+        if V.file_sha(V.safe(repo, row['review_path'])) != row['review_sha256']:
+            raise ValueError('hold review artifact changed: ' + iid)
+        holds[iid].append(row['review_path'])
+    proof = {}
+    for iid, claim in context['claims'].items():
+        if claim['claim_ref'] != expected_claims[iid] or not holds[iid]:
+            raise ValueError('missing current exact-claim hold or changed claim: ' + iid)
+        reviews = claim['component_reviews']
+        if not reviews or any(not r['valid'] and not r.get('reason') for r in reviews):
+            raise ValueError('component review outcomes must remain explicit: ' + iid)
+        proof[iid] = {'hold_review_paths': holds[iid],
+                      'invalidated_conclusion_pointers': claim['invalidated_conclusion_pointers'],
+                      'component_reviews': reviews}
+    return proof
+
+
 def run(repo, out, run_id):
     repo = Path(repo).resolve(); out = Path(out).resolve()
     if out.exists():
@@ -88,10 +119,9 @@ def run(repo, out, run_id):
     correction = runtime / 'correction-v1'
     V.correction(repo, repo / 'jobs/claim-kit/output', sample['seed'], correction, 'sol-valla-pilot')
     packet, _ = batch.load_packet(correction, repo)
-    assert packet['valla_context']['automatic_approvals'] == 0
     assert all(r['approved'] == 'false' for r in batch.rows(correction / 'decisions.csv'))
-    assert sum(len([r for r in x['component_reviews'] if r['valid']]) for x in packet['valla_context']['claims'].values()) == 5
-    assert all(x['invalidated_conclusion_pointers'] for x in packet['valla_context']['claims'].values())
+    safety = correction_safety(repo, packet, {i: sample['claims'][i] for i in sample['seed']})
+    V.dump(out / 'CURRENT_CORRECTION_SAFETY.json', safety)
     V.dump(out / 'COMPARISON.json', {'schema': 'valla-correction-comparison/v1', 'tasks': comparison,
         'unit': 'one blocked real correction task with all member-specific research outstanding',
         'baseline_batch_code_sha256': __import__('hashlib').sha256(baseline).hexdigest(),
@@ -121,7 +151,14 @@ def run(repo, out, run_id):
         raise ValueError('canonical claims changed during pilot')
     checker = json.loads((out / 'checker/SUMMARY.json').read_bytes())
     tracker = json.loads((out / 'tracker/SUMMARY.json').read_bytes())
+    with (out / 'tracker/READINESS_BY_ORDER.csv').open() as fh:
+        readiness = {r['instrument_id']: r for r in csv.DictReader(fh)}
+    if any(readiness[i]['ready_for_human_review'] != 'no' or
+           'OPEN_SOURCE_AUDIT:' not in readiness[i]['blockers'] for i in sample['seed']):
+        raise ValueError('a held correction became ready for human review')
     proof = {'schema': 'valla-integrated-pilot/v1', 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
+             'validation_mode': 'current-blocker-retention; historical attestations are not renewed',
+             'correction_safety': safety,
              'code_pins': V.pins(repo, ['jobs/valla/valla.py', 'jobs/valla/pilot.py', 'jobs/claim-kit/batch.py', 'jobs/mountweazel/paired.py']),
              'github_run_id': os.environ.get('GITHUB_RUN_ID'), 'valla_summary': index['summary'],
              'index_fingerprint': index['fingerprint'], 'canonical_claims_unchanged': True,
