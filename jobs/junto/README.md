@@ -46,8 +46,7 @@ check     validate the ledger (schemas, privacy rules, every verified line tied 
   ids; an after-arm session already used by another test is refused, and `score` counts any one
   after-arm session at most once, so one measured saving can never be credited twice. Candidates of several finders with the same
   `saver_key` share one test: its cost and its credit are split equally. Totals must come from
-  `get_session`, not from Hamilton's per-cause shares. Quality counts are optional but you should
-  give them: without them "no worse quality" is not proven.
+  `get_session`, not from Hamilton's per-cause shares. Quality counts may be omitted to record an inconclusive test; missing quality cannot verify a saving.
 - `score` ignores everything but `verified_savings.jsonl` lines whose test exists, is measured,
   recomputes to `saves` and whose `usd_saved` is within the measured delta. A finder with no
   verified saving scores exactly 0. Junto's own totals (verified over spent, plus `F-junto` overhead
@@ -93,3 +92,11 @@ Every catalog dollar figure is an unverified estimate.
 
 `python3 -I jobs/junto/test_junto.py` proves that an unverified candidate never contributes to a
 score and that verified savings require a measured test record.
+
+## NEYMAN integration (2026-10-20)
+
+The registered `neyman` finder reads only sanitized survey aggregates, using the same finder CLI. `jobs/neyman-pilot` stages aggregates outside the repo and records its Junto ledger/scoreboard inside its own output. The three initial hypotheses are owner-seeded and unverified.
+
+Candidates may now carry an optional validated `junto.test-contract/1` with unit, baseline, quality requirement, stopping rule and result location. `add-test` enforces the contracted unit. This is new functionality; legacy candidates remain supported.
+
+The missing-quality-data defect is fixed: a cheaper arm with missing, partial, negative or zero-denominator quality counts is inconclusive and cannot earn verified savings. Both counts must be explicit when supplied. Old verified lines are recomputed under this rule. API-price value remains distinct from cash expenditure; NEYMAN's workload estimates do not enter savings.

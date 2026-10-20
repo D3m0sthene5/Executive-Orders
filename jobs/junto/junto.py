@@ -55,6 +55,10 @@ ASSIGN_RE = re.compile(r"(?<![\w.:/-])(?:export\s+)?[A-Za-z_][A-Za-z0-9_]*=(?!=)
 CAUSE_KEY_RE = re.compile(r"^[a-z][a-z0-9_]{1,60}$")
 
 
+from contracts import validate_contract
+import math
+
+
 class Refusal(Exception):
     def __init__(self, msg, code=2):
         super().__init__(msg)
@@ -177,14 +181,15 @@ def arm_ppu(arm):
 
 
 def quality_ok(test):
-    """No quality measure worse. True when not measured (recorded as such, not assumed good)."""
-    b, a = test["before"].get("quality") or {}, test["after"].get("quality") or {}
-
-    def rate(q):
-        n = (q.get("accepted") or 0) + (q.get("rejected") or 0)
-        return None if n <= 0 else (q.get("rejected") or 0) / n
-    rb, ra = rate(b), rate(a)
-    return True if rb is None or ra is None else ra <= rb + 1e-12
+    """None means unmeasured/invalid quality; it can never verify savings."""
+    rates=[]
+    for arm in (test.get("before",{}), test.get("after",{})):
+        q=arm.get("quality") or {}
+        values=[q.get("accepted"),q.get("rejected")]
+        if any(type(v) is not int or v<0 for v in values) or sum(values)<=0:
+            return None
+        rates.append(values[1]/sum(values))
+    return rates[1] <= rates[0]+1e-12
 
 
 def verdict_of(test):
@@ -193,11 +198,14 @@ def verdict_of(test):
         b, a = test["before"], test["after"]
         if float(b["usd"]) <= 0 or float(b["units"]) <= 0 or float(a["units"]) <= 0 or float(a["usd"]) < 0:
             return "inconclusive"
+        if not all(math.isfinite(float(v)) for v in (b["usd"], b["units"], a["usd"], a["units"])):
+            return None
         bp, ap = arm_ppu(b), arm_ppu(a)
     except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return None
     if ap <= SAVES_RATIO * bp + 1e-12:
-        return "saves" if quality_ok(test) else "quality_fell"
+        quality = quality_ok(test)
+        return "inconclusive" if quality is None else ("saves" if quality else "quality_fell")
     if ap >= bp:
         return "no_saving"
     return "inconclusive"
@@ -415,6 +423,10 @@ def cmd_run(ctx, a):
         ids, new = [], []
         for r in recs:
             r = dict(r)
+            try:
+                validate_contract(r)
+            except ValueError as e:
+                raise Refusal(str(e))
             cid = cand_new()
             ids.append(cid)
             r.update({"schema": "junto.candidate/1", "candidate_id": cid, "rev": 0, "finder_id": f["finder_id"],
@@ -464,12 +476,14 @@ def arm(a, which):
     if not getattr(a, which + "_session"):
         raise Refusal("a test needs the %s arm's measured session id(s) (--%s-session); typed-in totals are not accepted"
                       % (which, which))
-    if units <= 0 or usd < 0:
+    if not math.isfinite(units) or not math.isfinite(usd) or units <= 0 or usd < 0:
         raise Refusal("%s: units must be > 0 and usd >= 0" % which)
     q = {}
     acc, rej = getattr(a, which + "_accepted"), getattr(a, which + "_rejected")
     if acc is not None or rej is not None:
-        q = {"accepted": acc or 0, "rejected": rej or 0}
+        if acc is None or rej is None or acc < 0 or rej < 0:
+            raise Refusal("quality needs explicit nonnegative accepted and rejected counts in both arms")
+        q = {"accepted": acc, "rejected": rej}
     return {"session_ids": getattr(a, which + "_session") or [], "usd": round(usd, 4), "usd_basis": "get_session.cost_usd",
             "units": units, "usd_per_unit": round(usd / units, 6), "quality": q}
 
@@ -487,6 +501,14 @@ def cmd_add_test(ctx, a):
             raise Refusal("unknown candidate " + i)
         if cands[i].get("status") not in ("unverified", "test_proposed"):
             raise Refusal("%s is %s; only unverified or test_proposed candidates are tested" % (i, cands[i].get("status")))
+    for i in ids:
+        try:
+            validate_contract(cands[i])
+        except ValueError as e:
+            raise Refusal(str(e))
+        contract = cands[i].get("test_contract")
+        if contract and contract["unit_of_work"] != a.unit_of_work:
+            raise Refusal("test unit does not match prospective contract")
     keys = {cands[i]["saver_key"] for i in ids}
     if len(keys) != 1:
         raise Refusal("one test covers one saver_key; got %s" % sorted(keys))
@@ -631,6 +653,11 @@ def cmd_check(ctx, a):
             errs += ["%s:%d %s" % (name, i, b) for b in privacy_problems(r)]
             if name == "candidates.jsonl" and r.get("rev") == 0 and r.get("status") != "unverified":
                 errs.append("%s:%d first line must be unverified" % (name, i))
+            if name == "candidates.jsonl":
+                try:
+                    validate_contract(r)
+                except ValueError as e:
+                    errs.append(str(e))
             if name == "candidates.jsonl" and r.get("finder_id") not in fins:
                 errs.append("%s:%d unregistered finder" % (name, i))
             if name == "verified_savings.jsonl" and not test_valid(cur_tests.get(r.get("test_id"))):

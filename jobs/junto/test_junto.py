@@ -26,7 +26,9 @@ class Base(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.led, self.out = self.tmp / "ledger", self.tmp / "output"
         self.led.mkdir()
-        shutil.copy(SEED / "finders.json", self.led / "finders.json")
+        registry = json.loads((SEED / "finders.json").read_text())
+        registry["finders"] = [f for f in registry["finders"] if f["finder_id"] in ("F-hamilton", "F-friction", "F-wasted_work")]
+        (self.led / "finders.json").write_text(json.dumps(registry))
         for n in ("runs", "candidates", "tests", "verified_savings", "finder_proposals"):
             (self.led / (n + ".jsonl")).write_text("")
 
@@ -50,7 +52,8 @@ class Base(unittest.TestCase):
     def board(self):
         return {r["finder_id"]: r for r in json.loads((self.out / "SCOREBOARD.json").read_text())["finders"]}
 
-    TEST = ["add-test", "--unit-of-work", "completed_phase", "--test-cost-usd", "1.00", "--before-session", "session_before"]
+    TEST = ["add-test", "--unit-of-work", "completed_phase", "--test-cost-usd", "1.00", "--before-session", "session_before",
+            "--before-accepted", "2", "--before-rejected", "0", "--after-accepted", "2", "--after-rejected", "0"]
     _n = 0
 
     @property

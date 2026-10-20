@@ -60,7 +60,16 @@ def run(root, receipts, out):
     return delta
 
 
+def run_combinations(root, proposals, out):
+    from combinations import replay
+    before, results = replay(Path(root), proposals)
+    write_json(Path(out)/'COMBINATIONS.json', {'planning_only': True, 'canonical_changes': 0, 'combinations': results})
+    return before, results
+
+
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--repo',type=Path,default=ROOT)
-    p.add_argument('--receipts',type=Path,required=True);p.add_argument('--out',type=Path,required=True)
-    a=p.parse_args();run(a.repo,a.receipts,a.out)
+    g=p.add_mutually_exclusive_group(required=True);g.add_argument('--receipts',type=Path);g.add_argument('--closures',type=Path);p.add_argument('--out',type=Path,required=True)
+    a=p.parse_args()
+    if a.closures:run_combinations(a.repo,json.loads(a.closures.read_text()),a.out)
+    else:run(a.repo,a.receipts,a.out)

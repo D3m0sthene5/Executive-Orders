@@ -1,3 +1,12 @@
+## 2026-10-20: NEYMAN prospective survey implementation (Sol; owner explicitly requested this file)
+
+- **Done:** Isolated `sol/neyman-20261020` from main `ed19a06`; inspected open PR40 `91116f8` (Junto/Hamilton already on main; newer Llull work left separate). Added probability frame/sample, phase/shared-cost and missing-telemetry records, planning-only singles/pairs through actual tracker, thin registered Junto aggregate finder, optional validated test contracts, and missing-quality savings gate fix. No allocator/dashboard or canonical decisions changed.
+- **Frozen:** `research/neyman/pilot-20261020/MANIFEST.json`: seed1727, 24 cases, 30s/attempt, 14,834 unfinished of14,972, 3,053 actual joint cells. Llull prospective residual forecast is in the adjacent isolated Llull-format ledger. Outcome definitions and all consumed metadata/code are pinned before attempts.
+- **Validation:** NEYMAN11, Junto22, tracker22 and corpus/replay55 tests pass (the replay suite includes inherited tracker tests). Existing untouched Llull suite has one stale expected Y2 count2063 versus actual2060; its other21 checks pass after materializing its source reports. Pilot/runner results are pending at this checkpoint.
+- **Running:** Next explicit jobs are `neyman` then `neyman-pilot`; inspect their STATUS.json and final INTEGRATION.json. Committed output alone never triggers a consumer.
+- **Next:** Complete the bounded offline prerequisite investigation, inspect historical/prospective residual checks, resolve the Llull forecast, and publish final measured limitations.
+- **Do not:** Treat machine gap-probe timing as end-to-end legal effort, missing telemetry as zero, historical convenience arms as representative, hypothetical closures as evidence, or workload estimates as savings. No claims/statuses/admissions/codebook/exhaustion/human-certification records are edited. Owner/prompt saver ideas remain owner-seeded and unverified.
+
 ## 2026-10-18 22:05 ET: user requested checkpoint and stop
 
 - **Done:** T1 queue-reader audit and T2 estimator review committed; T1 SUMMARY condition remains open. T3 has19 independently accepted frozen candidates (17partial,2complete proposals) out of25 reserved; current offline checkpoint checker mechanically passes19/19,2allgates. No new canonical claim file published. In-progress10681/10739/12145 saved;10892/10989/11120 unproduced. T4-T9 and own39 remain. Resume details: `research/readiness/reviews/astra-2026-10-18/USER_REQUEST_CHECKPOINT.md`; exact selected hashes: `CHECKPOINT_BATCH1_AUDIT.json`.
