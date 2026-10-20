@@ -57,4 +57,3 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 
 - early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)
 - hathi-gpo-orders: unknown (no run link)
-- portfolio-repair-check: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39458800358)
