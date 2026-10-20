@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import time
 import unittest
 import urllib.parse
@@ -69,6 +70,31 @@ def load(name, path):
     return module
 
 
+@contextlib.contextmanager
+def fixture_environment(repo):
+    """Synthetic inputs must stay outside checkout; durable receipts stay in OUTPUT_DIR."""
+    repo = repo.resolve()
+    candidates = (os.environ.get("RUNNER_TEMP"), tempfile.gettempdir(), "/tmp", "/var/tmp")
+    base = next((p for value in candidates if value and (p := Path(value).resolve()).is_dir()
+                 and not p.is_relative_to(repo) and os.access(p, os.W_OK | os.X_OK)), None)
+    if base is None:
+        raise RuntimeError("no writable runner/OS temporary directory outside the checkout")
+    saved = {key: os.environ.get(key) for key in ("TMPDIR", "TEMP", "TMP")}
+    previous_tempdir = tempfile.tempdir
+    with tempfile.TemporaryDirectory(prefix="portfolio-fixtures-", dir=base) as directory:
+        try:
+            os.environ.update({key: directory for key in saved})
+            tempfile.tempdir = directory
+            yield Path(directory)
+        finally:
+            tempfile.tempdir = previous_tempdir
+            for key, value in saved.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+
 def test_worker(repo, out, job):
     # CLI fixture tests choose their own temporary output. A runner-level
     # OUTPUT_DIR would override that choice in Llull and invalidate the tests.
@@ -76,12 +102,15 @@ def test_worker(repo, out, job):
     sys.path.insert(0, str(repo / "jobs" / job))
     attempts = offline_guard()
     started = time.monotonic()
-    result = unittest.TextTestRunner(verbosity=1).run(
-        unittest.defaultTestLoader.loadTestsFromNames(SUITES[job]))
+    with fixture_environment(repo) as fixture_root:
+        result = unittest.TextTestRunner(verbosity=1).run(
+            unittest.defaultTestLoader.loadTestsFromNames(SUITES[job]))
     record = {"job": job, "modules": SUITES[job], "tests_run": result.testsRun,
               "failures": len(result.failures), "errors": len(result.errors),
               "skipped": [{"test": str(test), "reason": reason} for test, reason in result.skipped],
               "network_attempts_blocked": attempts, "elapsed_seconds": round(time.monotonic() - started, 3),
+              "fixtures_outside_repository": not fixture_root.is_relative_to(repo.resolve()),
+              "fixture_directory_removed_after_tests": not fixture_root.exists(),
               "passed": result.wasSuccessful() and not attempts}
     write(out / "tests" / (job + ".json"), record)
     return 0 if record["passed"] else 1

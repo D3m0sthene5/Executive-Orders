@@ -1,6 +1,7 @@
 """Regressions for false checker acceptance and the exact-source network bound."""
 import copy
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -39,6 +40,38 @@ class CheckerAcceptance(unittest.TestCase):
         summary, claims = passing()
         claims[-1] = copy.deepcopy(claims[0])
         self.assertTrue(job.checker_errors(summary, claims))
+
+
+class FixtureIsolation(unittest.TestCase):
+    def test_in_repo_output_and_inherited_tmpdir_do_not_put_fixtures_in_repo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo = Path(directory) / "checkout"
+            out = repo / "jobs/portfolio-repair-check/output"
+            inherited = out / "tmp"
+            inherited.mkdir(parents=True)
+            observed = []
+
+            class Probe(unittest.TestCase):
+                def runTest(self):
+                    with tempfile.TemporaryDirectory() as fixture:
+                        path = Path(fixture).resolve()
+                        observed.append(path.parent)
+                        self.assertFalse(path.is_relative_to(repo.resolve()), "synthetic fixture entered checkout")
+                        self.assertEqual(Path(os.environ["TMPDIR"]).resolve(), path.parent)
+
+            suite = unittest.TestSuite([Probe()])
+            with mock.patch.dict(os.environ, {"OUTPUT_DIR": str(out), "TMPDIR": str(inherited),
+                                              "TEMP": str(inherited), "TMP": str(inherited)}), \
+                    mock.patch.object(tempfile, "tempdir", str(inherited)), \
+                    mock.patch.object(unittest.defaultTestLoader, "loadTestsFromNames", return_value=suite):
+                code = job.test_worker(repo, out, "hamilton-token-audit")
+                self.assertEqual(os.environ["TMPDIR"], str(inherited))
+                self.assertEqual(tempfile.tempdir, str(inherited))
+            self.assertEqual(code, 0)
+            self.assertTrue(observed)
+            self.assertFalse(observed[0].exists(), "external fixture directory was not cleaned up")
+            receipt = json.loads((out / "tests/hamilton-token-audit.json").read_text())
+            self.assertTrue(receipt["passed"])
 
 
 class BoundedVerification(unittest.TestCase):

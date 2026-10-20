@@ -2,8 +2,11 @@
 
 This output-only job runs the concrete regression suites for Panizzi, Rastell,
 Lamm, Hamilton, Mountweazel, Polya, Llull, Junto and Lambertini. Rastell and Lamm
-share the existing claim-kit implementation. Tests use fixtures and temporary
-directories under `OUTPUT_DIR`; they do not run a paid research campaign.
+share the existing claim-kit implementation. Synthetic test fixtures use a
+cleaned-up runner/OS temporary directory outside the checkout, including when
+the inherited `TMPDIR` points into the job output. This preserves the production
+guards that reject synthetic data inside the repository. Durable test logs and
+receipts remain under `OUTPUT_DIR`; tests do not run a paid research campaign.
 
 It loads the seven-case repair packet through `claim-kit/batch.load_packet`,
 verifies its held source hashes and original isolated dossier hashes, and
