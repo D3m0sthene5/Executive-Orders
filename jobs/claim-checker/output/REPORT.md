@@ -4,22 +4,21 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 268 (parse errors: 0)
-- Orders with a claim (latest claim per order): 267
-- All checks passed: 182
-- Mechanical checks passed: 267; with unverifiable items: 1; failed: 0
-- Structural gate passed: 183
+- Claims checked: 273 (parse errors: 0)
+- Orders with a claim (latest claim per order): 272
+- All checks passed: 188
+- Mechanical checks passed: 273; with unverifiable items: 0; failed: 0
+- Structural gate passed: 188
 
 ## Source references
 
-- custody_record_only: 1
-- gpo_published_hash_match: 3146
+- gpo_published_hash_match: 3222
 - held_bytes_in_release_or_repo: 23
-- held_bytes_verified: 1007
+- held_bytes_verified: 1093
 
 ## Quotations
 
-- exact: 4781
+- exact: 5000
 
 ## Claims with problems (first 100)
 
@@ -110,10 +109,9 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:22` | EO:9057 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl:3` | EO:11800 | unverifiable items |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 1740
+- recorded_for_this_order: 1803
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.
