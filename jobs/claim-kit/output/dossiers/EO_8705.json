@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8705>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 221,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8705#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 222,
     "id": "CHAIN:EO:8705",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8705"
@@ -101,6 +131,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8705>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8705>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8705 of March 6, 1941.': number matches; the date 'March 6, 1941' is the FR filing date, while the held original is signed 'March 5,1941' (White House date line; filed March 6, 1941). The reviewer must accept or reject the identity on number + subject (EO 9830 Part III revokes Civil Service Rules orders; EO 8705 amends Civil Service Rules I, XII and XV). Target text: jobs/fr-originals/data/full_run/texts/EO_8705.txt (6 FR 1313, PDF pages 1-1). DOSSIER NOTE: clause inventory labels '#1' (Rule I sec. 1) and '#5' (Rule XII sec. 5) and merges the Rule XV rewrite and the effective-as-of clause into '#5'; an inventory correction may be needed before any claim. EO 9830 Rule IV sec. 4.1 re-enacts similar political-activity wording (re-enactment under the new rules, not continuation). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8705>EO:9830@rastell",
+      "producer": "claude-r9830s2-producer",
+      "producer_d6": "Searched held FR texts (jobs/fr-originals full_run, EO_8706..EO_9829 files, whitespace-normalised regex) for the target number in any naming context and for later amendment of the specific rule/schedule paragraph the target set. Number hits: only EO 9354 (FR page numbers '8705' in a contents table, coincidental). No held instrument amends Rule I sec. 1, Rule XII sec. 5 or Rule XV between 1941-03-05 and 1947-05-01 (searched 'Rule I', 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no hits other than the target). Dossier chain empty; no own-term end (order is 'effective as of November 7, 1940', a retroactive start, no end term). UNHELD LEADS (not decided): (1) Veterans' Preference Act of June 27, 1944 (58 Stat. 387), sec. 12, statutory retention preference in reductions in force, may have overtaken the Rule XII sec. 5 text before EO 9830 (EO 9830 Part 20 replaces it with retention preference regulations); (2) EO 9063 (1942-02-16, held) authorises War Service Regulations binding on positions under the Act and Rules; it does not name or amend Rules I, XII or XV, and the Regulations themselves are not held. No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources. Disclosed UNHELD lead not ignored: Veterans' Preference Act of 1944 (58 Stat. 387) sec. 12 retention preference may have displaced the Rule XII sec. 5 text before 1947-05-01; statute text not held, so D6 for that clause is open. Conditional: also needs the dossier inventory correction (Rule XV rewrite and effective-as-of clause merged into '#5') before any claim.",
+        "d6_searched": "Searched every held FR text (jobs/fr-originals full_run) numbered after the target up to EO 9852 (inclusive of EO 9831-9852, i.e. through 1947-05-01, beyond the producer's EO 9829 bound) for the target number (word-bounded) and, whitespace-normalised, for amendments of the rule/schedule paragraph the target set; EO 9830 searched for savings. Number hits: EO 9354 only (coincidental). Subject: 'Rule I' section 1, 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no later held hits. Held target read: three rule texts plus 'This order shall be effective as of November 7, 1940' (retroactive start, no end term).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830s2-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8705",
+      "target_naming": {
+        "char_end": 91313,
+        "char_start": 91287,
+        "sha256": "eb9f057e96f7c4e047aa5d2069fa3fc44a7c073c3ec0f909876fb0107bfe1456",
+        "text": "No. 8705 of March 6, 1941."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8705>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8705>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8705#1": {
       "char_end": 1501,
       "char_start": 969,
@@ -445,7 +571,7 @@
       "text": "In all examinations to determine the qualifications of appli-\ncants for entrance into the service ten points shall be added to the \nearned ratings of those persons included under section 2 (1), (2), \nand (3), and five points shall be added to the earned ratings of those \npersons included under section 2 (4) of this Act: Provided, That in \nexaminations for the positions of guards, elevator operators, mes-\nsengers, and custodians competition shall be restricted to persons \nentitled to preference under this Act as long as persons entitled to \npreference are available and during the present war and for a period \nof five years following the termination of the present war as pro-\nclaimed by the President or by a concurrent resolution of the Con-\ngress for such other positions as may from time to time be deter-\nmined by the President."
     }
   },
-  "fingerprint": "aa10a5987d2b9675be3449a93c3a38615a8f0f6ae3a441224f97542f69a52164",
+  "fingerprint": "d8f93017b9d85f52c8cb41d0dc579f0632b1c3659f4aa8182c1eb8bcaea3d476",
   "instrument_id": "EO:8705",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -487,8 +613,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8705",

@@ -10,7 +10,8 @@
     }
   ],
   "actor_provisions": [
-    "ACT:EO:12376>EO:12415"
+    "ACT:EO:12376>EO:12415",
+    "ACT:EO:12376>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -39,9 +40,36 @@
           "url": "https://www.presidency.ucsb.edu/documents/executive-order-12415-extension-the-presidential-commission-drunk-driving"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12376#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 222,
     "id": "CHAIN:EO:12376",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12376"
@@ -131,6 +159,75 @@
       "text": "By the authority vested in me as President by the Constitution and laws of the United States of America, and in order to ensure the continuation of efforts to assist the States in the fight against drunk driving, it is hereby ordered that Section 4(b) of Executive Order No. 12358, as amended, is amended to read as follows: \"The Commission shall terminate on December 31, 1983.\"",
       "verb": "amend"
     },
+    "ACT:EO:12376>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12376>EO:12553",
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12376 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12376 is the 45th number of the page-14 column and pairs with the 45th subject after joining wrapped lines, \"Increasing membership on the Presidential Commission on Drunk Driving\" (offset 30193), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12376.txt (47 FR 34349, PDF pages 9-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:12376>EO:12553@rastell-r12553nbs",
+      "producer": "claude-r12553nbs-s6-producer",
+      "producer_d6": "EARLIER END LEAD HELD (parent body's dated termination): EO 12376 is a pure amendment of EO 12358 (EO_12376.txt offset 916: the second sentence of Section 1 of EO 12358 is amended to read \"The Commission shall be composed of no more than 28 members appointed by the President.\"). Its content operates only on the Presidential Commission on Drunk Driving, which terminated on 1983-12-31 under EO 12358 Sec. 4(b) as amended by held EO 12415 (signed 1983-04-05; EO_12415.txt offset 1053: \"The Commission shall terminate on December 31,1983.\"); no held order extends the Commission further (the only held texts naming EO 12358 are EO 12376, 12415 and 12553). Whether an amending order ends when the body it amends terminates under the parent's dated term (an event that does not name EO 12376) is the open owner method question raised in the probe (end by an instrument that does not name the order); this record does not decide it. Either way EO 12553 is at most an upper bound for EO 12376. No earlier express end naming EO 12376 in held sources (number search: no other held order names EO 12376). No later event changed EO 12553 itself (no EDGES row targets EO:12553; no held order text amends or revokes it). Search base: target dossier (chain, own_terms, missing, actor_provisions), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv rows for the target, jobs/status-history/output/events, and a number search of all 6,652 held Federal Register order texts (jobs/fr-originals/data/full_run/texts) for other orders naming the target (page numbers, FR document numbers and index entries discarded). D6 RESULT: earlier end leads held but whether they end this amending order is the open owner method question (not decided); EO 12553 is at most an upper bound for this target (not claims-enabling as an end date; claims blocked pending the owner ruling).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER END LEAD HELD, not decided: EO 12376 only amends EO 12358 Sec. 1 membership ('no more than 28 members', offset 916); the Commission terminated 1983-12-31 under EO 12358 Sec. 4(b) as amended by EO 12415 (offset 1053), an instrument not naming EO 12376. Whether that ends the amending order is the open owner method question (end by an instrument that does not name the order); correctly left undecided. EO 12553 is at most an upper bound; claims blocked pending the owner ruling.",
+        "d6_searched": "Re-sliced provision 691-966 and target_naming from held EO_12553.txt (text sha256 matches; provision and naming sha256 match); target held-text sha256 checked; column-ordinal subject pairing recounted on the PDF page (62 numbers / 62 joined subjects on p.14); number search of all 6,652 held FR order texts for the target (non-order hits were FR doc numbers / page, index or file-hash digits); target held text read for own terms; quoted earlier/later instruments re-read in held official FR texts. Held EO_12376.txt, EO_12358.txt, EO_12415.txt; no other held order names 12376 (EO_10906-10913 hits are file-hash digits).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-r12553nbs-s6-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:12376",
+      "target_naming": {
+        "char_end": 26927,
+        "char_start": 26922,
+        "sha256": "b3ee10c634d0a6185ed7517f095e5111cc1e05dc7d766988d1ce5f5b8b343f5f",
+        "text": "12376"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12415": {
       "actor_id": "EO:12415",
       "char_end": 7567,
@@ -219,7 +316,7 @@
       "text": "Instrument: EO:12376\nSource: https://www.govinfo.gov/content/pkg/FR-1982-08-09/pdf/FR-1982-08-09.pdf\nSHA-256 of the downloaded file: 5bc2337114260069587471c15fe28c15067656774df41ef32c7aa72ab8a7750e\nLocation: 47 FR 34349, PDF pages 9-9 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 160 ===\nFederal Register \nVol. 47, No. 153 \nMonday, August 9, 1982\nPresidential Documents\n34349\nTitle 3— Executive Order 12376 of August 5, 1982\nPresidential Commission on Drunk DrivingThe President\nBy the authority vested in me as President by the Constitution of the United  \nStates of America, and in order to increase the membership of the Presidential  \nCommission on Drunk Driving by two, it is hereby ordered that the second  \nsentence of Section 1 of Executive Order No. 12358 of April 14, 1982, is  \namended to read as follows: “The Commission shall be composed of no more  \nthan 28 members appointed by the President.”.\nTHE WHITE HOUSE,  \nA u g u s t 5, 1982.\n[FR Doc. 82-21628  \nFiled 8-5-82; 4:12 pm]  \nBilling code 3195-01-M\n"
     }
   },
-  "fingerprint": "35c516ce762a30fb9634d13b94c36532f44fb3ef44bc77a6d7ce58f953fbbd83",
+  "fingerprint": "ed93554a1034dbc549aaadca4eb2bb527b4c43c06b0fbc1db28e2cfb8eb399bc",
   "instrument_id": "EO:12376",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -260,9 +357,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12376",
   "own_terms": [],
