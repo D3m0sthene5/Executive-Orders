@@ -11,3 +11,5 @@ Both historical accepted replay arms use EO12720. Their matches are a software r
 LOCAL_VALIDATION.json records three additional executions of the same 24 machine gap probes, including the initial post-attempt Junto integration failure. They are engineering checks, not 72 additional representative observations. Their measured work is preserved separately. GitHub reruns also remain separate run receipts; none should be pooled as independent cases.
 
 The untouched Llull test suite on this main snapshot has one stale Y2 pool-count assertion: expected2,063, actual2,060. Its other21 tests pass with source reports materialized. NEYMAN uses Llull's actual readers and forecast/scoring functions, with no changes to Llull or its scores.
+
+Junto records a pure-script run on its inherited `local_script` basis at zero instrumented model-call value. This does not measure coordinator cost or establish zero cash expenditure. The default-ledger registration is an explicit post-pilot consumer; output-scoped pilot ledgers remain snapshots of their recorded input generation.

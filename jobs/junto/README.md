@@ -6,7 +6,7 @@ worked in practice. Junto is a meta tool for token savings. Design: `research/pl
 | Level | What it is | Here |
 |---|---|---|
 | Saver | A change that cuts tokens (Revere, Watchman, Spare setup, Quiet protocol) | not built by Junto |
-| Finder | A script that reads audit data and proposes savers ("candidates") | `finders/hamilton.py`, `finders/friction.py` (Clausewitz), `finders/wasted_work.py` (Gallatin) |
+| Finder | A script that reads audit data and proposes savers ("candidates") | `finders/hamilton.py`, `finders/friction.py` (Clausewitz), `finders/wasted_work.py` (Gallatin), `finders/neyman.py` |
 | Junto | Runs finders, scores them, divides effort, proposes new finders | `junto.py` |
 
 ## The hard rule
@@ -66,7 +66,7 @@ check     validate the ledger (schemas, privacy rules, every verified line tied 
 ```
 junto.py  config.json  test_junto.py
 finders/            hamilton.py friction.py wasted_work.py   (stdlib only; interface in design section 2)
-ledger/             finders.json (registry, 3 finders)  runs.jsonl  candidates.jsonl  tests.jsonl
+ledger/             finders.json (registry, 4 finders)  runs.jsonl  candidates.jsonl  tests.jsonl
                     verified_savings.jsonl  finder_proposals.jsonl   (append-only; highest rev wins)
 output/             SCOREBOARD.json (derived, never hand-edited)
 catalog/            finders and savers not yet built (status not_built), each with a design and cost estimate
