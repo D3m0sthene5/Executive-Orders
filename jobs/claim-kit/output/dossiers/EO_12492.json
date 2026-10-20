@@ -10,7 +10,8 @@
     }
   ],
   "actor_provisions": [
-    "ACT:EO:12492>EO:12495"
+    "ACT:EO:12492>EO:12495",
+    "ACT:EO:12492>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -40,6 +41,33 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1984-12-27/pdf/FR-1984-12-27.pdf"
         },
         "verb": "transfer"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12492#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
     "generic_refs_excluded": 217,
@@ -1422,6 +1450,75 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1984-12-27/pdf/FR-1984-12-27.pdf"
       },
       "text": "Application for relief under this section \nmust be submitted to the Corporation in \nwriting.\n§  431.6 The contract\nThe insurance contract shall become \neffective upon the acceptance by the \nCorporation of a duly executed \napplication for insurance on a form \nprescribed by the Corporation."
+    },
+    "ACT:EO:12492>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12492>EO:12553",
+      "names_target": true,
+      "notes": "Table row for 12492 found at char 32775 (PDF page 15 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 15, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:12492>EO:12553@rastell",
+      "producer": "rastell-batch_02-producer",
+      "producer_d6": "Searched the dossier (the chain event attributed to EO 12495 quotes crop-insurance rule text from a 40-page Federal Register extract, a neighbouring document, not an act on this board), the held 12492 text and the MISSING lines. Own terms, sec 4 of EO 12492: 'The board shall terminate upon the submission of the report provided for in Section 2' (report due within 30 days after final offers, which are due within 30 days of creation). So the board ended on its report, before 12553 (1986-02-25), and 12553 is an upper bound on a spent order, not the first end. No later event changing the 12553 provision found. jobs/later-events EDGES.csv was also searched: it holds no edge ending this target before EO 12553 other than those named above.",
+      "provenance": "agent_located",
+      "provision_label": "unnumbered enacting sentence (single section) with No. table",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "Searched the dossier (the chain event attributed to EO 12495 quotes crop-insurance rule text from a 40-page Federal Register extract, a neighbouring document, not an act on this board), the held 12492 text and the MISSING lines. Own terms, sec 4 of EO 12492: 'The board shall terminate upon the submission of the report provided for in Section 2' (report due within 30 days after final offers, which are due within 30 days of creation). So the board ended on its report, before 12553 (1986-02-25), and 12553 is an upper bound on a spent order, not the first end. No later event changing the 12553 pro",
+        "d6_searched": "Target dossier chain and MISSING lines, jobs/later-events/output/EDGES.csv rows for EO:12492, held actor text (supersession/term clauses), held target text where held.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "rastell-batch_02-reviewer",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_02/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:12492",
+      "target_naming": {
+        "char_end": 32848,
+        "char_start": 32775,
+        "sha256": "ddd17eed37a1e784cbc187451d863d0e1a4ad1e4953b8f6dd1d6d9de8c867f51",
+        "text": "12492 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
     },
     "ACTOR_TEXT:EO:12495": {
       "actor_id": "EO:12495",
@@ -3372,7 +3469,7 @@
       "text": "ITB’s, \nwhich are not capable of separating \nfrom the barge and towing on a hawser, \nare subject to the regulations applicable \nto their aggregate tonnage."
     }
   },
-  "fingerprint": "0039b9c73162c0c28776e588bb33f050ea55326071f7f01b1f639ba5628cb19d",
+  "fingerprint": "1adf00e581386a34f994b7d52f838813d5705a4b5d63fb4400122a7348503dbd",
   "instrument_id": "EO:12492",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -3413,9 +3510,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12492",
   "own_terms": [
