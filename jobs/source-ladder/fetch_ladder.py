@@ -133,6 +133,7 @@ class Route:
     page_hint: int | None = None
 
 
+RP_INDEX_YEARS = (2024, 2023)   # latest Code editions on govinfo that carry the Title 5 Appendix
 TIER_ORDER = ("given", "alternate", "wayback_given", "official", "wayback_official", "mirror")
 
 
@@ -177,9 +178,16 @@ def parse_citation(citation: str):
     if m:
         section = m.group(2).split("-")[0]
         return "USC", {"title": int(m.group(1)), "section": section, "as_cited": text}
-    m = re.fullmatch(r"(\d{1,2})\s*C\.?\s*F\.?\s*R\.?\s*(?:Part\s*)?(\d+)(?:\.(\w+))?", text, re.I)
+    m = re.fullmatch(r"(\d{1,2})\s*C\.?\s*F\.?\s*R\.?\s*(?:Part\s*)?(\d+(?:-\d+)?)(?:\.(\w+))?", text, re.I)
     if m:
-        return "CFR", {"title": int(m.group(1)), "part": int(m.group(2)), "section": m.group(3) or ""}
+        part = int(m.group(2)) if m.group(2).isdigit() else m.group(2)   # "102-74" (41 CFR chapter 102) stays text
+        return "CFR", {"title": int(m.group(1)), "part": part, "section": m.group(3) or ""}
+    m = re.fullmatch(r"Pub(?:lic)?\.?\s*L(?:aw|\.)?\s*(\d{1,3})-(\d{1,4})", text, re.I)
+    if m:
+        return "PLAW", {"congress": int(m.group(1)), "number": int(m.group(2))}
+    m = re.fullmatch(r"Reorg(?:anization|\.)\s*Plan\s+No\.?\s*(\d+)\s+of\s+(\d{4})", text, re.I)
+    if m:
+        return "RP", {"number": int(m.group(1)), "year": int(m.group(2))}
     return None, {}
 
 
@@ -267,8 +275,30 @@ def official_routes(wanted: Wanted):
             q["sectionnum"] = sec
         routes.append(Route("govinfo_link_cfr", f"https://www.govinfo.gov/link/cfr/{t}/{part}?" + urllib.parse.urlencode(q), "pdf", tier="official"))
         target = f"section-{part}.{sec}" if sec else f"part-{part}"
+        # The eCFR renderer API answers from GitHub's and this container's machines on the cutoff date,
+        # while the web pages below it end at a bot wall; keep both, API first.
+        rq = {"part": part}
+        if sec:
+            rq["section"] = f"{part}.{sec}"
+        routes.append(Route("ecfr_renderer_api_on_cutoff",
+                            f"https://www.ecfr.gov/api/renderer/v1/content/enhanced/{LEGAL_CUTOFF}/title-{t}?" + urllib.parse.urlencode(rq),
+                            "html", tier="official"))
         # eCFR point-in-time view on the legal cutoff date (eCFR history starts in 2017).
         routes.append(Route("ecfr_on_cutoff", f"https://www.ecfr.gov/on/{LEGAL_CUTOFF}/title-{t}/{target}", "html", tier="official"))
+    elif kind == "PLAW":
+        c, n = p["congress"], p["number"]
+        # The slip-law collection starts with the 104th Congress; the Statutes at Large link service
+        # resolves any Congress's public law number to the page of its enrolled text.
+        if c >= 104:
+            routes.append(Route("govinfo_link_plaw", f"https://www.govinfo.gov/link/plaw/{c}/public/{n}?link-type=pdf", "pdf", tier="official"))
+        routes.append(Route("govinfo_link_statute_publaw", f"https://www.govinfo.gov/link/statute/{c}/public/{n}", "pdf", tier="official"))
+    elif kind == "RP":
+        # Index step, not a source: the Title 5 Appendix prints each plan's Federal Register and Statutes at
+        # Large cites in its heading. Ladder.walk reads them and queues the original-publication routes.
+        for year in RP_INDEX_YEARS:
+            routes.append(Route("uscode_title5_appendix_index",
+                                f"https://www.govinfo.gov/content/pkg/USCODE-{year}-title5/pdf/USCODE-{year}-title5-app.pdf",
+                                "pdf", kind="rp_index", tier="official"))
     return routes, kind, p
 
 
@@ -396,7 +426,7 @@ class Fetcher:
 
     def __init__(self, cache_dir, transport=None, sleep=time.sleep, clock=time.monotonic,
                  max_retries=3, timeout=120, max_bytes=1_500_000_000, max_requests=None,
-                 offline=False, user_agent=USER_AGENT, log=print):
+                 max_total_bytes=None, offline=False, user_agent=USER_AGENT, log=print):
         self.cache_dir = Path(cache_dir)
         self.http_dir = self.cache_dir / "http"
         self.http_dir.mkdir(parents=True, exist_ok=True)
@@ -404,6 +434,7 @@ class Fetcher:
         self.sleep, self.clock = sleep, clock
         self.max_retries, self.timeout, self.max_bytes = max_retries, timeout, max_bytes
         self.max_requests, self.offline = max_requests, offline
+        self.max_total_bytes = max_total_bytes          # whole-run download ceiling (None = unlimited)
         self.user_agent, self.log = user_agent, log
         self.requests = 0
         self.bytes_downloaded = 0
@@ -466,6 +497,8 @@ class Fetcher:
     def _count(self):
         if self.max_requests is not None and self.requests >= self.max_requests:
             raise BudgetExceeded(f"request budget of {self.max_requests} reached")
+        if self.max_total_bytes is not None and self.bytes_downloaded >= self.max_total_bytes:
+            raise BudgetExceeded(f"download budget of {self.max_total_bytes} bytes reached")
         self.requests += 1
 
     def allowed(self, url):
@@ -734,7 +767,7 @@ def edition_note(kind, final_url, retrieved_utc=""):
     """Say which edition a USC/CFR copy is, and flag one dated after the legal cutoff."""
     m = re.search(r"(?:USCODE|CFR)-(\d{4})", final_url)
     cutoff_year = int(LEGAL_CUTOFF[:4])
-    if "/on/" + LEGAL_CUTOFF in final_url:
+    if "/on/" + LEGAL_CUTOFF in final_url or "/enhanced/" + LEGAL_CUTOFF + "/" in final_url:
         edition = f"eCFR point-in-time text for {LEGAL_CUTOFF}"
         flag = ""
     elif m:
@@ -768,6 +801,10 @@ def default_extract(wanted, route, att, fetcher):
     kind, p = parse_citation(wanted.citation)
     if kind in ("USC", "CFR"):
         notes = edition_note(kind, att["final_url"], att.get("time_utc", ""))
+    if kind == "PLAW" and text is not None:
+        c, n = p["congress"], p["number"]
+        seen = re.search(rf"PUBLIC\s+LAW\s+(?:{c}\s*[-\u2013]\s*)?{n}\b", text, re.I)
+        notes = "public law %d-%d %s in the extracted pages (check the PDF)" % (c, n, "seen" if seen else "NOT seen")
     if kind == "STAT" and text is not None and att.get("page_hint"):
         hint_text = ""
         m = re.search(rf"=== PDF page {att['page_hint']} of \d+ ===\n(.*?)(?:\n=== PDF page|\Z)", text, re.S)
