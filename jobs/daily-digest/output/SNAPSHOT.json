@@ -4018,35 +4018,36 @@
       "check_results": {
         "checker_error": {},
         "date_after_signing": {
-          "pass": 1623
+          "pass": 2145
         },
         "date_valid": {
-          "pass": 2561
+          "pass": 4147
         },
         "order_exists": {
-          "pass": 1213
+          "pass": 2176
         },
         "parse": {},
         "quote_verbatim": {
-          "pass": 3260
+          "pass": 4632
         },
         "source_held": {
-          "pass": 3088
+          "pass": 4060,
+          "skip": 1
         },
         "source_identity": {
-          "pass": 1266
+          "pass": 1691
         },
         "structural_gate": {
           "fail": 696,
-          "pass": 141
+          "pass": 167
         }
       },
       "claim_checks_csv": {
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 13848,
-        "rows_written": 696
+        "rows_total": 19715,
+        "rows_written": 697
       },
       "claim_files": [
         "astra-2026-10-17-p12553a.jsonl",
@@ -4064,16 +4065,20 @@
         "claude-2026-10-18-codif-b7.jsonl",
         "claude-2026-10-19-x1-pilot.jsonl",
         "claude-bowditch-y2-01-2026-10-20.jsonl",
-        "claude-bowditch-y2-02-2026-10-20.jsonl"
+        "claude-bowditch-y2-02-2026-10-20.jsonl",
+        "claude-lambertini-p1-2026-10-20.jsonl",
+        "claude-lambertini-s01-2026-10-20.jsonl",
+        "claude-lambertini-s02-2026-10-20.jsonl",
+        "claude-lambertini-s03-2026-10-20.jsonl"
       ],
-      "claim_lines_found": 226,
-      "claims_all_checks_passed": 141,
-      "claims_checked": 226,
+      "claim_lines_found": 252,
+      "claims_all_checks_passed": 166,
+      "claims_checked": 252,
       "claims_checker_errors": 0,
-      "claims_gate_passed": 141,
+      "claims_gate_passed": 167,
       "claims_mechanical_fail": 0,
-      "claims_mechanical_pass": 226,
-      "claims_mechanical_unverified": 0,
+      "claims_mechanical_pass": 251,
+      "claims_mechanical_unverified": 1,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
       "fetch": null,
@@ -4100,7 +4105,7 @@
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
         "jobs/richardson-volumes/data/PROVENANCE.json": 3,
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-        "jobs/source-ladder/output/SOURCES.jsonl": 251,
+        "jobs/source-ladder/output/SOURCES.jsonl": 272,
         "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
@@ -4110,15 +4115,15 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 43326,
+      "held_distinct_sha256": 43340,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "opus_text_pack_texts": 0,
-      "orders_with_claim": 225,
+      "orders_with_claim": 251,
       "pypdf_available": true,
       "quote_status_counts": {
-        "exact": 3260
+        "exact": 4632
       },
       "schema": "eo-claim-check/v1",
       "signing_dates_loaded": {
@@ -4128,12 +4133,13 @@
         "stage21_crosswalk": 402
       },
       "source_identity_counts": {
-        "recorded_for_this_order": 1266
+        "recorded_for_this_order": 1691
       },
       "source_status_counts": {
-        "gpo_published_hash_match": 2835,
+        "custody_record_only": 1,
+        "gpo_published_hash_match": 3040,
         "held_bytes_in_release_or_repo": 23,
-        "held_bytes_verified": 230
+        "held_bytes_verified": 997
       },
       "source_status_policy": {
         "custody_record_only": "skip",
@@ -4142,11 +4148,11 @@
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 186,
-        "counterevidence": 176,
-        "ending_or_current_basis": 142,
-        "original_text": 195,
-        "savings_residuals": 174
+        "clause_inventory": 211,
+        "counterevidence": 202,
+        "ending_or_current_basis": 168,
+        "original_text": 221,
+        "savings_residuals": 200
       }
     },
     "claim-drafts": {
@@ -4168,27 +4174,27 @@
       },
       "claim_checker": {
         "check_rows_by_status": {
-          "order_exists:in_universe": 6014,
-          "order_exists:not_in_universe": 20,
-          "quote_verbatim:exact": 18854,
-          "quote_verbatim:too_short_to_verify": 330,
-          "source_held:custody_record_only": 10255,
+          "order_exists:in_universe": 6006,
+          "order_exists:not_in_universe": 24,
+          "quote_verbatim:exact": 18867,
+          "quote_verbatim:too_short_to_verify": 332,
+          "source_held:custody_record_only": 10259,
           "source_held:gpo_published_hash_match": 4932,
           "source_held:held_bytes_in_release_or_repo": 164,
-          "source_held:held_bytes_verified": 6145,
-          "source_identity:recorded_for_this_order": 21496
+          "source_held:held_bytes_verified": 6156,
+          "source_identity:recorded_for_this_order": 21511
         },
         "drafts_by_mechanical_result": {
-          "fail": 20,
+          "fail": 24,
           "pass": 1437,
-          "pass_with_unverified": 1902
+          "pass_with_unverified": 1898
         },
-        "note": "jobs/claim-checker imported; 86755 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 86776 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 1115,
-      "elapsed_seconds": 84.0,
+      "elapsed_seconds": 419.5,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 988,
@@ -4196,7 +4202,7 @@
         "small": 1059
       },
       "filled": {
-        "clauses_total": 19184,
+        "clauses_total": 19199,
         "later_source_search": 0,
         "later_source_search_machine_proposed": 3359,
         "later_source_search_note": "never machine-filled; complete machine searches are in _draft.proposals.later_source_search_machine",
@@ -4272,7 +4278,7 @@
         "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
         "sources_read:richardson-volumes": 0,
-        "sources_read:source-ladder": 251,
+        "sources_read:source-ladder": 272,
         "sources_read:status-history": 0,
         "sources_read:wikisource-texts": 1639
       },
@@ -4455,7 +4461,7 @@
         "clause_*_first_end": 1,
         "clause_*_original_text_or_source": 198,
         "clause_*_state": 977,
-        "clause_*_state x10": 23,
+        "clause_*_state x10": 24,
         "clause_*_state x11": 13,
         "clause_*_state x12": 22,
         "clause_*_state x13": 13,
@@ -4465,7 +4471,7 @@
         "clause_*_state x17": 6,
         "clause_*_state x18": 5,
         "clause_*_state x19": 4,
-        "clause_*_state x2": 394,
+        "clause_*_state x2": 393,
         "clause_*_state x20": 3,
         "clause_*_state x21": 1,
         "clause_*_state x22": 5,
@@ -4490,12 +4496,12 @@
         "clause_*_state x446": 1,
         "clause_*_state x5": 68,
         "clause_*_state x57": 1,
-        "clause_*_state x6": 96,
+        "clause_*_state x6": 98,
         "clause_*_state x7": 45,
         "clause_*_state x71": 1,
         "clause_*_state x77": 1,
-        "clause_*_state x8": 26,
-        "clause_*_state x9": 18,
+        "clause_*_state x8": 25,
+        "clause_*_state x9": 17,
         "clause_*_state x95": 1,
         "original_representation_provenance": 959,
         "savings_residuals_evidence": 912,
@@ -4594,35 +4600,35 @@
         "act_overrides_refused": 2,
         "assembled_claims": 0,
         "decided_orders": 3359,
-        "declared_text_representations": 137628,
-        "distinct_held_text_artifacts": 36933,
+        "declared_text_representations": 137669,
+        "distinct_held_text_artifacts": 36954,
         "dossiers": 3359,
         "families": 4312,
-        "generic_references_excluded": 213,
-        "held_texts_scanned": 36933,
-        "known_pairs": 16148,
-        "located_actor_pairs": 10512,
+        "generic_references_excluded": 216,
+        "held_texts_scanned": 36954,
+        "known_pairs": 16137,
+        "located_actor_pairs": 10504,
         "orders_with_held_text": 11507,
         "status_leads": 11613,
         "universe_orders": 14972
       },
-      "input_commit": "861e308e4f9b92ec408a62cc6bc85d9cc670e680",
+      "input_commit": "ec0072b5089aeeb17fada5918d0c0d2a6a4e38ff",
       "jsonl_shard_sha256": {
-        "ACTING_PROVISIONS.jsonl": "f6f76b61114db7ed2bd9547f1e532fad7339a3a2ea04625e4285b5b0a63fd4c3",
-        "ACTING_PROVISIONS.part0001.jsonl": "0e68318df35d77589eb902f672a09d222a225d7a8743adae1de454e0a5434dcd",
-        "ACTING_REPRESENTATIONS.jsonl": "d5579059250645f07a0196602161422f57fd6d687075e543a03b3d3021768173",
+        "ACTING_PROVISIONS.jsonl": "a0181be2d93995c923b61f71770e6c444ab868b8a421f9a03616a4a3dde59646",
+        "ACTING_PROVISIONS.part0001.jsonl": "74a008e31de83858bcee4c032c367fa432f8857442242ea42cff2c9e90e23e01",
+        "ACTING_REPRESENTATIONS.jsonl": "938e84182859d102797d8b705a5a59e848c101ff9ff5d513197838ce14f508ea",
         "ASSEMBLED_CLAIMS.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "CHAINS.jsonl": "d81a9237101ce921abbfe1994de9c77746fac0813201ca7d0820fa7217301233",
+        "CHAINS.jsonl": "bf8b77c1b7d1dc77f406be78b4917a9078153ae63796586fef71e3344361c87c",
         "CLAUSES.jsonl": "5bc6327c1a1860c48acbea315853a474ece949a06cc4f72dd1fce9409ca10f2b",
-        "MISSING_SOURCES.jsonl": "be97b2a292b96cc956b8ee9cd49bc5fc1551e1218caabbf9022d9ce580c91e73",
-        "OVERLAY_INPUTS.jsonl": "26be7af49255581eefe55d7a305a31fc1edeafa9b47075574513ef454bea2faf",
-        "OWN_TERMS.jsonl": "253b053b4d03f179c81229b0ff74cf61c07cf046ff0272ce70cca5958aa5033b",
-        "STATUS_LEADS.jsonl": "8f533022cb8b5c11e8916c8c6c978c67051c3516f3d47202140e8b0431eb7cff",
+        "MISSING_SOURCES.jsonl": "fc26bbc70e63c4dbbd755dc2fded0e94f79e6471c907077034a1f203270054f2",
+        "OVERLAY_INPUTS.jsonl": "323cd5e35bdfb166c3270116d5af0441981f1e1604b4f4af6dab35113bf5cb0e",
+        "OWN_TERMS.jsonl": "ce96675af5bb2f2721ef84f15aff585c0364d11da85d220959a38c55a1fbf489",
+        "STATUS_LEADS.jsonl": "390210d844a35c7ff91253ddfd464399498baebf87285df53ef34ccd84d19604",
         "TEXT_CLAUSES.jsonl": "c8618aec4025ba9db7cf9e053bc6180d2f5dda018f8ce0020e3c3c7915eb1580",
-        "TEXT_CLAUSES.part0001.jsonl": "43b510f98c77c0d653b5623155a07467cfd1bee7ed25dd2e5cecfeb6c330f119",
-        "TEXT_CLAUSES.part0002.jsonl": "3e7887bdc728a3bb37b50dea75c525004457b5ac1e2458518b31ba0caeedfdc5",
-        "TEXT_REPRESENTATIONS.jsonl": "51f8cb0a52ad1c1d9026b6e1e33d181d06d079f06e90554b42a999ccb43d0b71",
-        "TEXT_REPRESENTATIONS.part0001.jsonl": "ecfe1e05593a92fa013fc708d3c15d3d78a17cae99cd762d7faedc82f26e297b"
+        "TEXT_CLAUSES.part0001.jsonl": "17f4eb64641f3a059298ef7f68d4062d0b17445886015672e0a9b310549ab164",
+        "TEXT_CLAUSES.part0002.jsonl": "212dba44cca0028ddd79dfde86bfdf2f51a2cead265684b5a672853aeab720dc",
+        "TEXT_REPRESENTATIONS.jsonl": "81d593a893cf37f348983bfd3dae9c152517df9598051c93794401f87923b8d5",
+        "TEXT_REPRESENTATIONS.part0001.jsonl": "3dd351778d66e824d33586327e50e13649f441bc15e79d6b8334f75e336eb4d9"
       },
       "jsonl_shards": [
         "ACTING_PROVISIONS.jsonl",
@@ -5919,18 +5925,18 @@
     },
     "clause-drafts": {
       "app_transcription_quality": {
-        "good": 4806,
+        "good": 4802,
         "partial": 198
       },
       "by_clause_kind": {
-        "amends_other_order": 1481,
+        "amends_other_order": 1482,
         "annex_after_signature": 42,
         "definitions": 1611,
         "effective_date": 537,
         "general_provisions": 2779,
         "lead_in": 2389,
-        "operative": 55325,
-        "operative_in_preamble": 3425,
+        "operative": 55346,
+        "operative_in_preamble": 3418,
         "purpose_or_policy": 1413,
         "revokes_or_amends_unnumbered_order": 40,
         "revokes_or_supersedes_other_order": 1517
@@ -5949,10 +5955,10 @@
           "partial": 60
         },
         "1937-1989": {
-          "clauses": 29275,
-          "good": 2808,
+          "clauses": 29290,
+          "good": 2804,
           "orders": 5083,
-          "partial": 2275
+          "partial": 2279
         },
         "1990-2026": {
           "clauses": 22662,
@@ -5968,24 +5974,24 @@
         }
       },
       "by_source_grade": {
-        "mirror_transcription_app": 5783,
+        "mirror_transcription_app": 5779,
         "official_fr_html_text": 19,
         "official_fr_pdf_text_layer": 1492,
         "official_fr_scan_ocr_text": 2457,
-        "other_copy": 10
+        "other_copy": 14
       },
       "by_structure": {
-        "dash_numbered_sections": 169,
+        "dash_numbered_sections": 166,
         "numbered_paragraphs": 1058,
-        "sections": 2871,
+        "sections": 2870,
         "single_operative_paragraph": 2676,
-        "top_level_lettered_items": 210,
-        "unnumbered_paragraphs": 2777
+        "top_level_lettered_items": 211,
+        "unnumbered_paragraphs": 2780
       },
-      "clauses_total": 70559,
-      "fragments_from_app_transcription": 5004,
+      "clauses_total": 70574,
+      "fragments_from_app_transcription": 5000,
       "fragments_written": 9761,
-      "generated_utc": "2026-10-20T05:36:49Z",
+      "generated_utc": "2026-10-20T08:35:10Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 2,
         "identity_doubt_app_page_date": 1,
@@ -6002,7 +6008,7 @@
           "stage21_custody": "ok",
           "universe": "ok"
         },
-        "input_problems": 503,
+        "input_problems": 505,
         "opus_zip": {
           "member_text_hash_check": {
             "match": 2335,
@@ -6024,7 +6030,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "765 order-text candidates"
+          "source-ladder": "786 order-text candidates"
         },
         "stage21_pdfs_usable": 160
       },
@@ -6038,7 +6044,7 @@
       "orders_not_segmented": 150,
       "orders_processed": 9920,
       "orders_with_candidate_text": 9920,
-      "seconds": 96.2,
+      "seconds": 140.0,
       "segmentation_outcomes_by_input": {
         "by_input": {
           "app_transcription_job": {
@@ -6064,9 +6070,9 @@
             "unusable": 1773
           },
           "job:other_copy": {
-            "identity_doubt": 1,
+            "identity_doubt": 6,
             "not_located:order_not_located_in_text": 330,
-            "partial": 41
+            "partial": 55
           },
           "opus_zip:mirror_transcription_app": {
             "good": 1004,
@@ -6104,21 +6110,21 @@
         "note": "one count per candidate copy tried; with measured_every_candidate false, copies after the first good one are not tried, so fallback inputs are only measured where nothing better was good"
       },
       "segmentation_quality": {
-        "good": 6695,
-        "partial": 3066
+        "good": 6691,
+        "partial": 3070
       },
       "self_check": {
-        "clauses_checked": 70559,
+        "clauses_checked": 70574,
         "failures": 0,
         "opus_text_member_sha256_vs_meta_text_hash_for_sources_used": {
           "match": 860,
           "not_recorded": 7,
           "recorded_hash_is_for_another_text_variant": 9
         },
-        "original_operative_text_is_exact_substring_of_saved_text": 70559,
+        "original_operative_text_is_exact_substring_of_saved_text": 70574,
         "passed": true,
         "recheck_from_written_files_failed": 0,
-        "recheck_from_written_files_ok": 70559
+        "recheck_from_written_files_ok": 70574
       },
       "source_records_bytes_unknown": 689,
       "source_records_written": 9761,
@@ -7971,8 +7977,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 46676,
-      "sweep_manifest_sha256": "3456628b41d98fed8118e6d70872bf4d505f4fe08938211fe1f856dc974bbed9",
+      "saved_texts_scanned": 46701,
+      "sweep_manifest_sha256": "de20727433b8388ca00d6bc8cb2ea5ee8ae691898dbba723269100477c2e0b25",
       "targets": 748
     },
     "fr-originals": {
@@ -8603,19 +8609,19 @@
       "texts_saved": 197
     },
     "official-fixity": {
-      "carried_forward": 5058,
-      "checked_this_run": 14,
+      "carried_forward": 5070,
+      "checked_this_run": 8,
       "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
-      "files": 5072,
+      "files": 5078,
       "job": "official-fixity",
       "orders_with_a_gpo_matched_file": 5068,
-      "premis_bytes_read_this_run": 0,
+      "premis_bytes_read_this_run": 589824,
       "results": {
-        "match": 3425,
-        "not_listed": 1642,
+        "match": 3426,
+        "not_listed": 1647,
         "partial_match": 5
       },
-      "seconds": 0.0
+      "seconds": 0.2
     },
     "ofr-codification-1989": {
       "body": {
@@ -10132,20 +10138,20 @@
         "2/6": 496,
         "2/7": 82,
         "2/8": 6,
-        "3/6": 1199,
+        "3/6": 1173,
         "3/7": 436,
         "3/8": 35,
         "4/6": 24,
         "4/7": 76,
         "4/8": 167,
-        "5/6": 25,
+        "5/6": 26,
         "5/8": 26,
-        "6/6": 139,
+        "6/6": 164,
         "7/7": 1
       },
       "decided_orders_blocked_by": {
+        "CLAIM_CHECK_FAILED": 1,
         "CLAIM_INCOMPLETE": 83,
-        "CLAIM_NOT_YET_CHECKED": 26,
         "CURRENT_BASIS_UNPROVED": 400,
         "FIRST_END_UNPROVED": 2708,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
@@ -10202,7 +10208,7 @@
         },
         "job_outputs_used": {
           "app-executive-orders (lead only, never counted as the original)": 9902,
-          "claim-checker": 225,
+          "claim-checker": 251,
           "fr-originals": 6497,
           "indian-reservations-1912": 55,
           "isthmian-canal-1911": 105,
@@ -10211,7 +10217,7 @@
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 251
+          "source-ladder": 272
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
         "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
@@ -10219,8 +10225,8 @@
         "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
       },
       "orders_blocked_by": {
+        "CLAIM_CHECK_FAILED": 1,
         "CLAIM_INCOMPLETE": 83,
-        "CLAIM_NOT_YET_CHECKED": 26,
         "CURRENT_BASIS_UNPROVED": 400,
         "FIRST_END_UNPROVED": 2708,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 159,
@@ -10243,9 +10249,9 @@
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
       "ready_by_tier": {
-        "complete_claim": 138
+        "complete_claim": 163
       },
-      "ready_for_human_review": 138,
+      "ready_for_human_review": 163,
       "shared_unlocks": [
         {
           "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
@@ -10264,12 +10270,6 @@
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
           "orders_unblocked": 286
-        },
-        {
-          "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
-          "blocker": "CLAIM_NOT_YET_CHECKED",
-          "kind": "machine_job",
-          "orders_unblocked": 26
         },
         {
           "action": "Retrieve shared source EO::4314",
@@ -10317,7 +10317,7 @@
       "step_done_among_decided": {
         "clause_inventory": {
           "applicable": 3359,
-          "done": 186
+          "done": 211
         },
         "counterevidence": {
           "applicable": 3359,
@@ -10325,7 +10325,7 @@
         },
         "ending_or_current_basis": {
           "applicable": 3359,
-          "done": 142
+          "done": 168
         },
         "opus_media": {
           "applicable": 844,
@@ -10341,7 +10341,7 @@
         },
         "savings_residuals": {
           "applicable": 3359,
-          "done": 174
+          "done": 200
         },
         "shared_sources": {
           "applicable": 236,
@@ -11084,105 +11084,113 @@
       "wpa_entries_parsed": 155
     },
     "source-ladder": {
-      "attempts_logged": 86,
-      "bytes_downloaded": 460902337,
+      "attempts_logged": 152,
+      "bytes_downloaded": 149679575,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "distinct_new_source_hashes": 37,
-      "embedded_cite_items": 14,
+      "distinct_new_source_hashes": 31,
+      "earlier_found_carried_with_defect": 17,
+      "earlier_found_failing_todays_checks": 31,
+      "embedded_cite_items": 11,
       "exhausted_proposed_items": 0,
       "exhausted_proposed_lines": 0,
       "fetch_queue_problems": [],
-      "found": 251,
+      "found": 272,
       "found_by_route": {
         "given/given": 143,
         "official/govinfo_fr_issue_pdf": 60,
         "official/govinfo_link_cfr": 6,
-        "official/govinfo_link_fr": 2,
-        "official/govinfo_link_statute": 9,
-        "official/govinfo_link_statute_from_rp_index": 2,
+        "official/govinfo_link_fr": 3,
+        "official/govinfo_link_statute": 12,
+        "official/govinfo_link_statute_from_rp_index": 4,
         "official/govinfo_link_statute_publaw": 2,
-        "official/govinfo_link_uscode": 10,
+        "official/govinfo_link_uscode": 9,
+        "official/nmb_peb_report": 13,
         "official/ofr_index_pdf_url": 9,
+        "official/ppp_range_read": 3,
         "wayback_given/wayback_id_": 8
       },
-      "found_carried_forward": 206,
-      "from_fetch_queue": 268,
+      "found_carried_forward": 237,
+      "from_fetch_queue": 285,
       "from_opus_refetch": 774,
       "from_stage20_shared_sources": 90,
-      "http_requests": 127,
-      "items_in_queue": 1132,
-      "items_worked": 103,
+      "http_requests": 98,
+      "items_in_queue": 1149,
+      "items_worked": 87,
       "job": "source-ladder",
       "max_download_mb": 800,
-      "new_sources_found": 45,
-      "no_route": 53,
+      "new_sources_found": 35,
+      "no_route": 37,
       "not_attempted_budget": 0,
       "offline": false,
-      "orders_covered_by_found_sources": 451,
-      "pool_cache_hits": 3,
-      "pool_network_requests": 127,
+      "orders_covered_by_found_sources": 462,
+      "pool_cache_hits": 6,
+      "pool_network_requests": 95,
       "prefetched_urls": 0,
-      "retry_later": 5,
+      "range_bytes": 96921148,
+      "range_requests": 1500,
+      "report_date_items": 34,
+      "report_date_records_found": 16,
+      "retry_later": 15,
       "run_date": "2026-10-20",
-      "seconds": 1394.8,
+      "seconds": 867.5,
       "source_plan": {
         "legal_cutoff": "2026-10-14",
         "max_requests": 300,
         "method": "FETCH_QUEUE requests first (untried before tried), then readiness proximity, step opportunity, downstream work, stable ID",
-        "queue_fingerprint": "7c7d0e2e84c00c53eca0793796b1fbb62862e0241dae1ea00d34607674411ba9",
+        "queue_fingerprint": "674067c588afd4241b704576f9476beafd8cbb98a9d7f280df7c0542802597a0",
         "schema": "eo-source-plan/v1",
-        "tracker_sha256": "383f15816a288f8ddc85e35e4657f86086cc30ea072f4d462a6f9f211435d06b",
+        "tracker_sha256": "e64e93fddccb84d46b8575afaeb09c96edf327162a6df138d70e9c290eb0fd7d",
         "wanted_ids": [
-          "queue:EO:10440:Civil Service Commission action completing the sec. 2 reclassification of Schedule A and B positions into Schedules A, B and C under EO 10440 (1953): Federal Register notices amending 5 CFR Part 6 in 1953, and the Commission's Annual Report for fiscal year 1953 (which Rule VI sec. 6.1 requires to list exceptions), to give the completion date <5 CFR 6>",
-          "queue:EO:11293:Reorganization Plan No. 3 of 1970 (35 FR 15623; 84 Stat. 2086; Environmental Protection Agency): text and effective date (December 2, 1970), to decide whether the Interior Commissioner post of the Federal Water Quality (Pollution Control) Administration was abolished or carried into the EPA Water Quality Office until EO 11604 (1971-07-02)",
-          "queue:EO:11293:Water Quality Improvement Act of 1970, Pub. L. 91-224 (84 Stat. 91, April 3, 1970), provisions renaming the Federal Water Pollution Control Administration and its Commissioner, with effective date",
-          "queue:EO:11299:Reorganization Plan No. 2 of 1968 (urban mass transportation functions of HUD transferred to the Department of Transportation): text and effective date, and the HUD organization record creating and later ending the Urban Transportation Administration and its Director post (1966-1971), to decide whether the post ended before EO 11634 deleted the item on 1971-12-06 <Reorganization Plan No. 2 of 1968>",
-          "queue:EO:11367:Reorganization Plan No. 2 of 1970 (Bureau of the Budget redesignated Office of Management and Budget, effective 1970-07-01): text, and an OMB/Bureau of the Budget organization record (e.g. U.S. Government Organization Manual 1969-70 and 1970-71, or OMB organization notice) showing whether the Assistant Director for Executive Management post continued as an OMB Assistant Director until EO 11708 (1973-03-23) <Reorganization Plan No. 2 of 1970>",
+          "queue:EO:11293:An operative source for the effective date of Reorganization Plan No. 3 of 1970 (December 2, 1970) other than the Statutes at Large marginal note: e.g. the plan as printed at 35 FR 15623 with its effective-date line, the headnote of the plan in 5 U.S.C. Appendix (OLRC), or the Federal Register notice of the Environmental Protection Agency commencing operations <35 FR 15623>",
+          "queue:EO:11293:An operative source for the effective date of Reorganization Plan No. 3 of 1970 (December 2, 1970) other than the Statutes at Large marginal note: e.g. the plan as printed at 35 FR 15623 with its effective-date line, the headnote of the plan in 5 U.S.C. Appendix (OLRC), or the Federal Register notice of the Environmental Protection Agency commencing operations <Reorganization Plan No. 3 of 1970>",
+          "queue:EO:11293:Reorganization Plan No. 2 of 1966 (80 Stat. 1608; transfer of the Federal Water Pollution Control Administration to the Department of the Interior), and any statute establishing the office of Commissioner of the Administration: text showing whether the Commissioner is an office of the Administration or an appointment of the Secretary",
+          "queue:EO:11299:Department of Housing and Urban Development organization record, 1966-1971 (United States Government Organization Manual 1966-67 through 1970-71, HUD section, or HUD organization notices in the Federal Register): creation of the Urban Transportation Administration and its Director post, and whether the Administration and the Director post continued after Reorganization Plan No. 2 of 1968 took effect (June 30, 1968) or ended before EO 11634 deleted item (9) of EO 11248 sec. 2 on 1971-12-06 <Reorganization Plan No. 2 of 1968>",
+          "queue:EO:11367:31 U.S.C. 16a and 16c as in force 1967-1970 (statutes establishing the offices of Assistant Director of the Bureau of the Budget, e.g. 64 Stat. 832 and later acts), with any Bureau of the Budget order assigning the title 'Assistant Director for Executive Management' (1967): to decide whether that post was a statutory Assistant Director office redesignated by Reorganization Plan No. 2 of 1970 sec. 102(b), so that EO 11540's substitution was a retitle of the same office rather than an end of the EO 11367 placement on 1970-07-01",
+          "queue:EO:11468:84 Stat. 785",
           "queue:EO:11468:Postal Reorganization Act, Pub. L. 91-375 (84 Stat. 719, August 12, 1970): text of the sections abolishing the Post Office Department and fixing the commencement date of the Postal Service (July 1, 1971), and any provision continuing Post Office Department officer positions such as Deputy Assistant Postmaster General, Bureau of Operations, until EO 11634 (1971-12-06)",
-          "queue:EO:11941:Instrument and effective date that next set the Vice President, Executive Schedule (5 U.S.C. 5312-5316), congressional and judicial salaries after 1976-10-01 (EO 11941 sec. 3 and Schedules 5-7, Executive Salary Cost of Living Adjustment Act, Pub. L. 94-82): 1977 statute or presidential order, including any Federal Salary Act of 1967 quadrennial adjustment <5 U.S.C. 5312>",
-          "queue:EO:11941:Instrument and effective date that next set the Vice President, Executive Schedule (5 U.S.C. 5312-5316), congressional and judicial salaries after 1976-10-01 (EO 11941 sec. 3 and Schedules 5-7, Executive Salary Cost of Living Adjustment Act, Pub. L. 94-82): 1977 statute or presidential order, including any Federal Salary Act of 1967 quadrennial adjustment <Pub. L. 94-82>",
+          "queue:EO:11971:Date the Committee on Selection of the Director of the FBI submitted its report to the President and the Attorney General (EO 11971 sec. 3(a), due 1977-06-11 under EO 11982), and whether the President extended its duration under sec. 3(b): Weekly Compilation of Presidential Documents / Public Papers of the Presidents: Jimmy Carter 1977-1978, or Department of Justice records",
+          "queue:EO:11973:Date the final report of the President's Commission on Mental Health (EO 11973, due 1978-04-01) was transmitted to the President, to date the sec. 9 termination sixty days later: Public Papers of the Presidents: Jimmy Carter 1978, Weekly Compilation of Presidential Documents, or the Commission's published report (Report to the President from the President's Commission on Mental Health, 1978)",
+          "queue:EO:11998:Date the President's Commission on Military Compensation (EO 11998, report due 1978-03-15) submitted its report through the Secretary of Defense, to date the sec. 9 termination thirty days later: the Commission's published report (April 1978), Public Papers of the Presidents: Jimmy Carter 1978, or Department of Defense records",
           "queue:EO:12335:Date the National Commission on Social Security Reform (EO 12335) submitted its report to the President (report due by 1983-01-20 under EO 12402); Public Papers of the Presidents 1983 / Weekly Compilation of Presidential Documents or the report itself, to date the sec. 4(b) termination 30 days later",
+          "queue:EO:12401:Date the Presidential Commission on Indian Reservation Economies (EO 12401, sec. 4(b) as amended by EO 12442) transmitted its final report to the President (due 1984-11-30); Public Papers of the Presidents 1984 / Weekly Compilation or the report itself, to date the termination 30 days later",
+          "queue:EO:12433:Date the National Bipartisan Commission on Central America (EO 12433) submitted its final report to the President (due 1984-02-01 under EO 12449); Public Papers of the Presidents 1984 / Weekly Compilation or the report itself, to date the sec. 4(b) termination 60 days later",
+          "queue:EO:12439:Date of the first meeting and date the President's Task Force on Food Assistance (EO 12439) submitted its report to the President (sec. 2: within 90 days of first meeting; sec. 4(b): terminate 30 days after submission, no later than 1984-01-31); Public Papers of the Presidents 1983-84 / Weekly Compilation or the Task Force report",
+          "queue:EO:12499:Date the President's Blue Ribbon Task Group on Nuclear Weapons Program Management (EO 12499) submitted its report to the President and the Armed Services Committees (due by 1985-07-15 under sec. 2(b)); Public Papers of the Presidents 1985 / Weekly Compilation or the report itself, to date the spent sec. 2(b) reporting command",
           "queue:EO:12499:Text and effective date of sec. 1632 of Pub. L. 98-525 (98 Stat. 2492, Department of Defense Authorization Act, 1985) establishing the Blue Ribbon Task Group on Nuclear Weapons Program Management, to check for a statutory termination earlier than the EO 12499 sec. 4(b) date of 1985-09-30",
+          "queue:EO:12502:Date the Chemical Warfare Review Commission (EO 12502) transmitted its final report to the President (sequential reports due 1985-02-15, 1985-03-01 and 1985-03-15 under sec. 2(b)); Public Papers of the Presidents 1985 / Weekly Compilation or the report itself, to date the sec. 4(b) termination 30 days later (outer limit 1985-09-30)",
           "queue:EO:12502:Text and effective date of sec. 1511 of Pub. L. 98-525 (98 Stat. 2492, Department of Defense Authorization Act, 1985) establishing the Chemical Warfare Review Commission, for any statutory term and the reports it requires",
-          "queue:EO:8399:Reorganization Plan No. 2 of 1946 (60 Stat. 1095; abolition of the Social Security Board, effective 1946-07-16, transfer of its functions to the Federal Security Administrator): text and effective date, to decide whether the EO 8399 permissions (limited to Social Security Board officers and employees) ended with the Board or carried over until EO 11408 (1968-04-25)",
-          "queue:EO:9303:Department of State orders or regulations issued under EO 9452 and EO 9521 (1945-1957) that name and supersede EO 9303 (Foreign Service Regulations sec. V-15 item 30, secs. V-49 to V-52, sec. V-54(d)), e.g. 22 CFR part 105 history in the Federal Register and CFR supplements, 1945-1957; or proof that none did <22 CFR 105>",
-          "queue:EO:9591:Department of State order or regulation (1945-1957, under EO 9452 / EO 9521) that superseded section V-23 of the Foreign Service Regulations (22 CFR 105.23, disbursing agents) amended by EO 9591 paragraph 2, or a CFR edition showing V-23 still in force on 1957-03-01 <22 CFR 105.23>",
-          "queue:EO:10061:Career Compensation Act of 1949, Pub. L. 81-351, 63 Stat. 802; Pay Readjustment Act of 1942 secs. 10 and 12 (56 Stat. 363, 364) <56 Stat. 363>",
-          "queue:EO:10061:Career Compensation Act of 1949, Pub. L. 81-351, 63 Stat. 802; Pay Readjustment Act of 1942 secs. 10 and 12 (56 Stat. 363, 364) <63 Stat. 802>",
+          "queue:EO:8399:Reorganization Act of 1945, Pub. L. 79-263, 59 Stat. 613 (approved December 20, 1945): full text, in particular when a reorganization plan takes effect and any wording on references to abolished agencies, transferred personnel and existing orders",
+          "queue:EO:8399:Reorganization Plan No. 1 of 1953 (67 Stat. 631; creation of the Department of Health, Education, and Welfare and abolition of the Federal Security Agency and the office of Federal Security Administrator): text and effective date (April 11, 1953)",
+          "queue:EO:12486:Actual emergency-board report submitted under EO12486, including submission date; section4 termination and section3 independent standstill",
+          "queue:EO:12491:Actual emergency-board report submitted under EO12491, including submission date; section4 termination and section3 independent standstill",
+          "queue:EO:12492:Actual emergency-board report submitted under EO12492, including submission date; section4 termination and section3 independent standstill",
+          "queue:EO:12495:Actual emergency-board report submitted under EO12495, including submission date; section4 termination and section3 independent standstill",
+          "queue:EO:10061:60 Stat. 853, 858 (1946 amendments of secs. 10 and 12 of the Pay Readjustment Act of 1942, 37 U.S.C. 110, 112): the text of sec. 10 par. 1 as amended, to identify the 'travel status' part that Career Compensation Act secs. 531(b)(34) and 531(c)(12) except and then repeal <60 Stat. 853>",
+          "queue:EO:10061:Regulations issued by the Secretaries of the uniformed services under sec. 303(h) of the Career Compensation Act of 1949 (63 Stat. 814-815) prescribing travel and per diem allowances for enlisted members (the Joint Travel Regulations or each department's first travel-allowance regulations, 1949-1950): text with the date they were issued and took effect, e.g. Federal Register notices 1949-1950 or the first edition of the Joint Travel Regulations <63 Stat. 814>",
+          "queue:EO:10071:Emergency board created by EO 10071 (July 20, 1949; 14 FR 4587, Southern Pacific Co. (Pacific Lines) and Brotherhood of Railroad Trainmen): report to the President, date submitted",
           "queue:EO:10152:1962 Title37 positive-law recodification candidate actual continuity/savings; URL is acquisition route, not yet verified legal effect.",
-          "queue:EO:10152:29 FR 7973-7980; PDF pages 7-14",
-          "queue:EO:10152:Career Compensation Act of1949 actual original delegated hazardous-pay authority, sections102/204/501(d), savings and effective terms.",
-          "queue:EO:10152:Official original and ambiguous OCR page check for EO10152; actual read original/chain requires page confirmation.",
-          "queue:EO:10152:Official original and ambiguous OCR page check for EO10681; actual read original/chain requires page confirmation.",
-          "queue:EO:10152:Uniformed Services Pay Act1963 candidate primary statute governing changed hazardous-duty entitlements and effective/savings clauses; retrieve and verify before reliance.",
-          "queue:EO:10976:Pub. L. 94-412, National Emergencies Act, sec. 101(a), 90 Stat. 1255 (Sept. 14, 1976); status of Proclamation 2914 (Dec. 16, 1950) <90 Stat. 1255>",
-          "queue:EO:11022:32 FR 14545, PDF pages 5-5",
-          "queue:EO:11022:44 FR 1053, PDF pages 319-320; include EO12107, 44 FR 1055-1064, PDF pages 321-330",
-          "queue:EO:11022:47 FR 36099, PDF pages 9-10",
-          "queue:EO:11049:Public Works Acceleration Act of 1962, Pub. L. 87-658, 76 Stat. 541: text and any expiry of the allocation authority delegated by EO 11049 (27 FR 9203) <76 Stat. 541>",
+          "queue:EO:10635:Emergency Board report to the President, Pennsylvania Railroad and Transport Workers Union dispute (EO 10635, September 1955): date of submission",
+          "queue:EO:10746:24 FR 5233-5235 (June 27, 1959), the full text of EO 10827 (further amendment of EO 10560, sections 4 and 5 'to read as follows'): the held file ends at 5233 after section 4(a)(3) ('Continued on p. 5235'), confidence low, PDF page 1 only.",
+          "queue:EO:10878:Emergency board created by EO 10878 (May 23, 1960; 25 FR 4575, Chicago, Rock Island and Pacific R.R. / Western Carriers' Conference Committee and Switchmen's Union of North America): report to the President, date submitted",
           "queue:EO:11065:87th Congress term dates (1961-01-03 to 1963-01-03) and U.S. Const. amend. XX sec. 1, for the own-terms end of EO 11065 (27 FR 11581)",
-          "queue:EO:11145:3 U.S.C. 110 note ('Ex. Ord. No. 11145 ... as amended by Ex. Ord. No. 11565'); statute 3 U.S.C. 110 and 40 U.S.C. 8101 et seq. as applicable",
-          "queue:EO:11256:47 FR 36099-36100; EO12379; retain actual PDF pages 9-10",
           "queue:EO:11256:National Advisory Commission on Food and Fiber: actual final report submission/transmittal evidence, not report deadline",
-          "queue:EO:11387:Termination of the Proclamation 2914 emergency (National Emergencies Act, Pub. L. 94-412 sec. 101, 1978) and end of the Commerce Foreign Direct Investment Regulations and Federal Reserve Foreign Credit Restraint Program (1974), for EO 11387 (33 FR 47) <Pub. L. 94-412>",
-          "queue:EO:11782:Public Law 92-463, 86 Stat. 770-776; sections 3(2) and 14",
-          "queue:EO:11782:Public Law 93-224, Federal Financing Bank Act of 1973, 87 Stat. 937",
-          "queue:EO:11782:Public Law 96-88, Department of Education Organization Act, 93 Stat. 668; redesignation, transfers, savings and effective-date provisions",
-          "queue:EO:11797:Agricultural Act of 1970 sec. 901(b), 84 Stat. 1383, as amended by Rural Development Act of 1972 sec. 601, 86 Stat. 674: history of the annual report function delegated by EO 11797 (39 FR 27893) <84 Stat. 1383>",
-          "queue:EO:11797:Agricultural Act of 1970 sec. 901(b), 84 Stat. 1383, as amended by Rural Development Act of 1972 sec. 601, 86 Stat. 674: history of the annual report function delegated by EO 11797 (39 FR 27893) <86 Stat. 674>",
-          "queue:EO:11829:EO11853 40 FR17537 PDF page9; retain page images",
-          "queue:EO:11829:EO12379 47 FR36099-36100 PDF pages9-10; retain page images",
+          "queue:EO:11343:Emergency Board report to the President on the Long Island Rail Road disputes (EO 11343, April 1967): date of submission, to date the board's end and the status-quo period",
           "queue:EO:11829:Hopi-Navajo Land Settlement Mediator completion determination/notice and Interagency Committee records-transfer documentation",
-          "queue:EO:11829:Public Law93-531, Dec22,1974, 88 Stat1712, especially sections1(a),1(c)(2),3(a)",
-          "queue:EO:12075:P.L.96-88,93Stat668; actual reorganization,20USC3508(b), successor-reference, savings and effective-date provisions",
-          "queue:EO:12075:P.L.97-35,95Stat357; Community Services Block Grant provisions around95Stat516-519, repeal/abolition, transfer, savings and effective dates",
+          "queue:EO:12042:Board of Inquiry created by Executive Order12042 (bituminous coal industry), report and all continuation/termination records; EO expressly continues Board after report for statutory functions",
+          "queue:EO:12085:Emergency board report under Executive Order12085, Norfolk and Western Railway; actual submission date and any extension/settlement/termination",
           "queue:EO:12095:Airline Deregulation Act of1978, Public Law95-504, especially section44",
-          "queue:EO:12095:Railway Labor Act section10, 45 USC160, historical text governing the1978 board",
-          "queue:EO:12095:Railway Labor Act,44 Stat.577, actual section10 emergency-board powers/report and statutory restrictions; resolve exact effective/continuation rules",
           "queue:EO:12095:Wien Air Alaska/Air Line Pilots Association emergency board established November2,1978: report, actual submission/completion, termination record",
+          "queue:EO:12132:Emergency board report under Executive Order12132, National Railway Labor Conference; actual submission date and any extension/settlement/termination",
+          "queue:EO:12159:Emergency board report under Executive Order12159, Chicago Rock Island Pacific and Peoria Terminal dispute; actual submission and extension/settlement/termination records",
           "queue:EO:12159:National Mediation Board records: emergency board established September 20, 1979 by EO 12159 for Chicago, Rock Island, Pacific Railroad & Peoria Terminal Company disputes with Brotherhood of Railway, Airline & Steamship Clerks, Freight Handlers, Express and Station Employees, and United Transportation Union",
+          "queue:EO:12182:Emergency board report under Executive Order12182, Long Island Rail Road; actual submission and extension/settlement/termination records",
           "queue:EO:12182:Long Island Rail Road emergency board established Dec14,1979 under EO12182: report, actual submission date, completion and same-dispute agreement/settlement",
-          "queue:EO:12182:Railway Labor Act section10,45USC160, historical text governing1979 emergency board and no-change duty"
+          "queue:EO:12207:Emergency board report under Executive Order12207, Port Authority Trans-Hudson; actual submission and extension/settlement/termination records",
+          "queue:EO:12262:93 Stat. 29",
+          "queue:EO:12285:Commission public-hearing performance and State Department administrative/compensation/FACA closeout records under EO12285 sections1-301,1-303,1-304,1-401",
+          "queue:EO:12285:President Commission on Hostage Compensation final report, actual submission/transmittal to President in1981, Commission termination/closeout",
+          "queue:EO:12575:Date the President's Special Review Board (Tower Commission) submitted its report to the President, from the Public Papers of the Presidents (Reagan 1987, Book I) or the Weekly Compilation of Presidential Documents, week of 1987-02-23 to 1987-03-02; also any White House notice of the Board's termination (30 days after the report, sec. 4)",
+          "queue:EO:12978:Most recent continuation notice under 50 U.S.C. 1622(d) of the national emergency declared by EO 12978 (published before 2026-10-14) and 31 CFR part 536 (Narcotics Trafficking Sanctions Regulations)"
         ]
       },
       "stopped_early": ""
@@ -11519,7 +11527,7 @@
         ]
       },
       "lead_only": true,
-      "modern_families_5_plus": 181,
+      "modern_families_5_plus": 184,
       "pre1937_orders": 8014,
       "risk_tiered_review": "off (default; not approved by the owner)",
       "schema": "eo-x1-class-engine-summary/v1",

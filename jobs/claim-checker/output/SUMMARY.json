@@ -18,62 +18,68 @@
     "claude-2026-10-18-codif-b7.jsonl",
     "claude-2026-10-19-x1-pilot.jsonl",
     "claude-bowditch-y2-01-2026-10-20.jsonl",
-    "claude-bowditch-y2-02-2026-10-20.jsonl"
+    "claude-bowditch-y2-02-2026-10-20.jsonl",
+    "claude-lambertini-p1-2026-10-20.jsonl",
+    "claude-lambertini-s01-2026-10-20.jsonl",
+    "claude-lambertini-s02-2026-10-20.jsonl",
+    "claude-lambertini-s03-2026-10-20.jsonl"
   ],
-  "claim_lines_found": 226,
+  "claim_lines_found": 252,
   "job_limit": null,
-  "claims_checked": 226,
+  "claims_checked": 252,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
-  "orders_with_claim": 225,
-  "claims_all_checks_passed": 141,
-  "claims_mechanical_pass": 226,
-  "claims_mechanical_unverified": 0,
+  "orders_with_claim": 251,
+  "claims_all_checks_passed": 166,
+  "claims_mechanical_pass": 251,
+  "claims_mechanical_unverified": 1,
   "claims_mechanical_fail": 0,
-  "claims_gate_passed": 141,
+  "claims_gate_passed": 167,
   "steps_checker_passed_effective_claims": {
-    "original_text": 195,
-    "clause_inventory": 186,
-    "ending_or_current_basis": 142,
-    "savings_residuals": 174,
-    "counterevidence": 176
+    "original_text": 221,
+    "clause_inventory": 211,
+    "ending_or_current_basis": 168,
+    "savings_residuals": 200,
+    "counterevidence": 202
   },
   "check_results": {
     "source_held": {
-      "pass": 3088
+      "pass": 4060,
+      "skip": 1
     },
     "source_identity": {
-      "pass": 1266
+      "pass": 1691
     },
     "quote_verbatim": {
-      "pass": 3260
+      "pass": 4632
     },
     "date_valid": {
-      "pass": 2561
+      "pass": 4147
     },
     "date_after_signing": {
-      "pass": 1623
+      "pass": 2145
     },
     "order_exists": {
-      "pass": 1213
+      "pass": 2176
     },
     "structural_gate": {
       "fail": 696,
-      "pass": 141
+      "pass": 167
     },
     "parse": {},
     "checker_error": {}
   },
   "source_status_counts": {
-    "gpo_published_hash_match": 2835,
+    "custody_record_only": 1,
+    "gpo_published_hash_match": 3040,
     "held_bytes_in_release_or_repo": 23,
-    "held_bytes_verified": 230
+    "held_bytes_verified": 997
   },
   "source_identity_counts": {
-    "recorded_for_this_order": 1266
+    "recorded_for_this_order": 1691
   },
   "quote_status_counts": {
-    "exact": 3260
+    "exact": 4632
   },
   "source_status_policy": {
     "held_bytes_verified": "pass",
@@ -83,8 +89,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 696,
-    "rows_total": 13848,
+    "rows_written": 697,
+    "rows_total": 19715,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
@@ -110,7 +116,7 @@
     "jobs/opus-media-match/output/SOURCES.jsonl": 496,
     "jobs/richardson-volumes/data/PROVENANCE.json": 3,
     "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-    "jobs/source-ladder/output/SOURCES.jsonl": 251,
+    "jobs/source-ladder/output/SOURCES.jsonl": 272,
     "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
     "opus_media_member_map": 496,
     "opus_stage11_fetch_meta": 9203,
@@ -120,7 +126,7 @@
     "stage21_acquisition_log": 160,
     "stage21_custody": 160
   },
-  "held_distinct_sha256": 43326,
+  "held_distinct_sha256": 43340,
   "opus_text_pack_texts": 0,
   "signing_dates_loaded": {
     "identity_layer_year_only": 14854,

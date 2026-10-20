@@ -1,9 +1,9 @@
 {
   "orders_total": 14972,
   "orders_with_provisional_status": 3359,
-  "ready_for_human_review": 138,
+  "ready_for_human_review": 163,
   "ready_by_tier": {
-    "complete_claim": 138
+    "complete_claim": 163
   },
   "human_verified": "not counted here; see the Stage 19 tracker",
   "step_done_among_decided": {
@@ -16,15 +16,15 @@
       "applicable": 3359
     },
     "clause_inventory": {
-      "done": 186,
+      "done": 211,
       "applicable": 3359
     },
     "ending_or_current_basis": {
-      "done": 142,
+      "done": 168,
       "applicable": 3359
     },
     "savings_residuals": {
-      "done": 174,
+      "done": 200,
       "applicable": 3359
     },
     "counterevidence": {
@@ -47,15 +47,15 @@
     "2/6": 496,
     "2/7": 82,
     "2/8": 6,
-    "3/6": 1199,
+    "3/6": 1173,
     "3/7": 436,
     "3/8": 35,
     "4/6": 24,
     "4/7": 76,
     "4/8": 167,
-    "5/6": 25,
+    "5/6": 26,
     "5/8": 26,
-    "6/6": 139,
+    "6/6": 164,
     "7/7": 1
   },
   "orders_blocked_by": {
@@ -75,8 +75,8 @@
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
-    "CLAIM_NOT_YET_CHECKED": 26,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 17,
+    "CLAIM_CHECK_FAILED": 1,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "OPEN_SOURCE_AUDIT": 1
   },
@@ -96,8 +96,8 @@
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
-    "CLAIM_NOT_YET_CHECKED": 26,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 17,
+    "CLAIM_CHECK_FAILED": 1,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "OPEN_SOURCE_AUDIT": 1,
     "NO_PROVISIONAL_STATUS": 0
@@ -120,12 +120,6 @@
       "kind": "agent_check",
       "orders_unblocked": 286,
       "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-    },
-    {
-      "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
-      "kind": "machine_job",
-      "orders_unblocked": 26,
-      "blocker": "CLAIM_NOT_YET_CHECKED"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -217,8 +211,8 @@
       "richardson-volumes (lead only, never counted as the original)": 68,
       "app-executive-orders (lead only, never counted as the original)": 9902,
       "opus-media-match status": 1155,
-      "source-ladder": 251,
-      "claim-checker": 225,
+      "source-ladder": 272,
+      "claim-checker": 251,
       "machine later-source search": 6938
     }
   }
