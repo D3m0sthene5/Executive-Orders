@@ -27,6 +27,8 @@
     "claude-lambertini-i06-2026-10-20.jsonl",
     "claude-lambertini-i07-2026-10-20.jsonl",
     "claude-lambertini-i08-2026-10-20.jsonl",
+    "claude-lambertini-iv01-2026-10-20.jsonl",
+    "claude-lambertini-iv02b-2026-10-20.jsonl",
     "claude-lambertini-p1-2026-10-20.jsonl",
     "claude-lambertini-rr4-2026-10-20.jsonl",
     "claude-lambertini-s01-2026-10-20.jsonl",
@@ -37,67 +39,71 @@
     "claude-lamm-t01-2026-10-20.jsonl",
     "claude-lamm-t02-2026-10-20.jsonl",
     "claude-nearready-2026-10-20.jsonl",
+    "claude-r9830-01-2026-10-20.jsonl",
     "claude-rastell-c01-2026-10-20.jsonl",
     "claude-rastell-c02-2026-10-20.jsonl",
     "claude-y2lead-01-2026-10-20.jsonl",
     "claude-y2lead-02-2026-10-20.jsonl"
   ],
-  "claim_lines_found": 343,
+  "claim_lines_found": 358,
   "job_limit": null,
-  "claims_checked": 343,
+  "claims_checked": 358,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
-  "orders_with_claim": 342,
-  "claims_all_checks_passed": 257,
-  "claims_mechanical_pass": 342,
-  "claims_mechanical_unverified": 1,
-  "claims_mechanical_fail": 0,
-  "claims_gate_passed": 258,
+  "orders_with_claim": 357,
+  "claims_all_checks_passed": 270,
+  "claims_mechanical_pass": 355,
+  "claims_mechanical_unverified": 2,
+  "claims_mechanical_fail": 1,
+  "claims_gate_passed": 273,
   "steps_checker_passed_effective_claims": {
-    "original_text": 312,
-    "clause_inventory": 302,
-    "ending_or_current_basis": 258,
-    "savings_residuals": 291,
-    "counterevidence": 293
+    "original_text": 326,
+    "clause_inventory": 315,
+    "ending_or_current_basis": 273,
+    "savings_residuals": 306,
+    "counterevidence": 308
   },
   "check_results": {
     "source_held": {
-      "pass": 8374,
-      "skip": 2
+      "pass": 8636,
+      "skip": 3
     },
     "source_identity": {
-      "pass": 3640
+      "pass": 3742
     },
     "quote_verbatim": {
-      "pass": 10805
+      "fail": 7,
+      "pass": 11148
     },
     "date_valid": {
-      "pass": 11041
+      "pass": 11495
     },
     "date_after_signing": {
-      "pass": 4420
+      "pass": 4566
     },
     "order_exists": {
-      "pass": 4601
+      "pass": 4879
     },
     "structural_gate": {
       "fail": 696,
-      "pass": 258
+      "pass": 273
     },
     "parse": {},
     "checker_error": {}
   },
   "source_status_counts": {
-    "custody_record_only": 2,
-    "gpo_published_hash_match": 3804,
+    "custody_record_only": 3,
+    "gpo_published_hash_match": 3977,
     "held_bytes_in_release_or_repo": 67,
-    "held_bytes_verified": 4503
+    "held_bytes_verified": 4592
   },
   "source_identity_counts": {
-    "recorded_for_this_order": 3640
+    "recorded_for_this_order": 3742
   },
   "quote_status_counts": {
-    "exact": 10805
+    "exact": 11144,
+    "normalised": 4,
+    "not_found": 7
   },
   "source_status_policy": {
     "held_bytes_verified": "pass",
@@ -107,8 +113,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 698,
-    "rows_total": 43837,
+    "rows_written": 706,
+    "rows_total": 45445,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
@@ -134,7 +140,7 @@
     "jobs/opus-media-match/output/SOURCES.jsonl": 496,
     "jobs/richardson-volumes/data/PROVENANCE.json": 3,
     "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-    "jobs/source-ladder/output/SOURCES.jsonl": 400,
+    "jobs/source-ladder/output/SOURCES.jsonl": 430,
     "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
     "opus_media_member_map": 496,
     "opus_stage11_fetch_meta": 9203,
@@ -144,7 +150,7 @@
     "stage21_acquisition_log": 160,
     "stage21_custody": 160
   },
-  "held_distinct_sha256": 43438,
+  "held_distinct_sha256": 43447,
   "opus_text_pack_texts": 0,
   "signing_dates_loaded": {
     "identity_layer_year_only": 14854,
