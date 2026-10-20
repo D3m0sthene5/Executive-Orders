@@ -1019,6 +1019,25 @@ def scan_file(path, needles, plant_hashes, markers=True):
     return sorted(set(hits))
 
 
+def real_claim_blobs(repo, plant_hashes):
+    """JSON text (both encodings) of each real claim under research/readiness/claims, for telling a plant's
+    borrowed real wording (a D8 plant reuses a donor order's own text) from a leak.  A claim that is itself an
+    exact copy of a plant, or carries a seeded marker, is not real text and is left out."""
+    blobs = []
+    for f in sorted((Path(repo) / "research" / "readiness" / "claims").glob("*.jsonl")):
+        try:
+            objs = read_jsonl(f)
+        except (OSError, ValueError):
+            continue
+        for o in objs:
+            if not isinstance(o, dict) or sha(o) in plant_hashes:
+                continue
+            if any(isinstance(v, str) and (v.startswith("SEEDED") or "SEEDED:" in v) for v in (o.get("schema"), o.get("instrument_id"))):
+                continue
+            blobs.append((json.dumps(o, ensure_ascii=False) + json.dumps(o, ensure_ascii=True)).encode("utf-8"))
+    return blobs
+
+
 def check(repo, fixtures_dir):
     repo, fixtures_dir = Path(repo), Path(fixtures_dir)
     problems, plant_hashes, needles = [], set(), set()
@@ -1050,6 +1069,11 @@ def check(repo, fixtures_dir):
                     problems.append({"where": str(fp), "problem": "base item changed since seeding; leak needles cannot be derived"})
                 else:
                     needles.update(novel_needles(base, _deflag(payload)))
+    if needles:
+        # A plant may reuse a real donor order's wording verbatim (D8); that text legitimately exists in the
+        # repository.  Such a needle cannot show a leak: the plant's marker and exact-item-copy checks still do.
+        blobs = real_claim_blobs(repo, plant_hashes)
+        needles = {nd for nd in needles if not any(nd in b for b in blobs)}
     scanned = 0
     for root in scan_roots(repo, fixtures_dir):
         for f in iter_files(root):

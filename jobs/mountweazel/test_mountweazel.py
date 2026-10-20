@@ -192,6 +192,53 @@ class CheckTests(Base):
         res = mw.check(repo, fx.parent)
         self.assertTrue(res["ok"], res["problems"][:3])
 
+    def _d8_like(self):
+        """A fixture whose only leak needle is wording that a real donor claim in the repo also contains."""
+        out, fx = self.seed("a", n=12)
+        repo = self.make_repo(fx)
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d = json.loads(f.read_text())
+        donor_text = "Donor order wording: the Secretary shall furnish a detailed statement of expenditures \u2014 verbatim."
+        d["leak_needles"] = [json.dumps(donor_text, ensure_ascii=False)]
+        f.write_text(json.dumps(d))
+        donor = {"schema": "eo-lifecycle-claim/v1", "instrument_id": "EO:99999",
+                 "operative_clauses": [{"original_operative_text": donor_text}]}
+        (repo / "research/readiness/claims/donor.jsonl").write_text(json.dumps(donor) + "\n")
+        (repo / "jobs/other/output/copy.jsonl").write_text(json.dumps(donor, ensure_ascii=False) + "\n")
+        return fx, repo, d, donor_text
+
+    def test_plant_text_that_is_real_donor_wording_is_not_a_leak(self):
+        """Regression for the MW-C2 false positives: a D8 plant reuses a donor order's real wording, which
+        sits in the donor's own claim and in its downstream copies."""
+        fx, repo, d, _ = self._d8_like()
+        res = mw.check(repo, fx.parent)
+        self.assertTrue(res["ok"], res["problems"][:3])
+
+    def test_donor_wording_does_not_hide_a_real_leak(self):
+        fx, repo, d, donor_text = self._d8_like()
+        payload = d["seeded_payload"]
+        deflag = mw._deflag(payload)
+        leaks = {
+            "marker": ("jobs/other/output/m.json", json.dumps(payload)),
+            "exact copy without markers": ("jobs/other/output/q.jsonl", json.dumps(deflag) + "\n"),
+            "exact copy placed among the claims": ("research/readiness/claims/leak.jsonl", json.dumps(deflag) + "\n"),
+        }
+        for label, (rel, text) in leaks.items():
+            path = repo / rel
+            path.write_text(text)
+            self.assertFalse(mw.check(repo, fx.parent)["ok"], label)
+            path.unlink()
+            self.assertTrue(mw.check(repo, fx.parent)["ok"], "clean again after removing " + label)
+
+    def test_novel_needle_still_fails_when_another_needle_is_donor_wording(self):
+        fx, repo, d, _ = self._d8_like()
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d["leak_needles"].append(json.dumps("Wording that exists only in the plant and nowhere in the repository."))
+        f.write_text(json.dumps(d))
+        self.assertTrue(mw.check(repo, fx.parent)["ok"])
+        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + d["leak_needles"][1])
+        self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
     def test_scan_covers_job_inputs_beyond_output_and_data(self):
         out, fx = self.seed("a", n=12)
         repo = self.make_repo(fx)

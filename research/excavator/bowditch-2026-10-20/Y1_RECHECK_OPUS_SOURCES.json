@@ -1,0 +1,375 @@
+{
+ "schema": "bowditch-y1-recheck/v1",
+ "title": "Y1 recheck with calibrated reviewer (2026-10-20)",
+ "label": "Independent AI re-review of AI status hypotheses; not adopted; not a finding; not a certification",
+ "reviewer": {
+  "agent": "claude",
+  "model": "claude-opus-5-5",
+  "config": "Mountweazel MW-C2 recommendation: Opus with held source texts, explicit D6 step, try to refute",
+  "independence": "different session from producer and original reviewer; same model family (Claude)"
+ },
+ "verdict_rule": "rejected = the NO or its cited basis fails against held text (misquote, wrong instrument, operative savings, partial scope left alive, revival). A D6 or record error that does not change the NO is upheld and listed under non_fatal_defects.",
+ "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+ "llull_forecast": "L-20261020-14",
+ "summary": {
+  "reviewed": 15,
+  "upheld": 15,
+  "rejected": 0,
+  "upheld_with_non_fatal_defects": 3,
+  "strict_alt_upheld_if_any_d6_or_record_error_rejects": 12
+ },
+ "owner_acceptance": {
+  "accepted": false
+ },
+ "adopted": false,
+ "certified_count": 0,
+ "items": [
+  {
+   "instrument_id": "EO:11417",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_11417/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 12163 sec. 1-903(a)(1) revokes EO 10973 'as amended' (eff. Oct. 1, 1979, sec. 1-905); EO 11417's only act was inserting a member into EO 10973 sec. 305; sec. 1-904 saves actions only 'except to the extent inconsistent with this order'.",
+   "d6_step": "D6: later events named are EO 11579/11685/11816/11959/12118 (amend or partial supersede EO 10973) and EO 12163; none revives. Producer did not cite EO 12163 sec. 1-505, which re-establishes the Development Loan Committee with a different Commerce member; that replaces the clause and strengthens the NO.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_11417.txt",
+     "sha256": "61f31148a3841a9a244db25c45f91c46238c55eefee5bc960a739b89305c5713"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12163.txt",
+     "sha256": "9af7f349296d39c4a3df147e15b072371d736234f2c3c71875ccbc6fe61bd591"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11532",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_11532/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 11981 sec. 5: 'This Order supersedes Executive Order No. 11532 of June 2, 1970.' Whole-order, no savings; successor committee takes the same functions.",
+   "d6_step": "D6: only later event named is EO 11981; none omitted in held record.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_11532.txt",
+     "sha256": "b0ad25af13712349fb7cf0920c1bf265a826c36711cc4316583b6e7c17483d95"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_11981.txt",
+     "sha256": "b9c80d8c114799d70ce3293f165e98cf191f08c82dfe293a736e07f7ab759b50"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:12291",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_12291/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 12866 sec. 11 revokes 'Executive Orders Nos. 12291 and 12498; all amendments ...' unqualified.",
+   "d6_step": "D6: later events EO 12319/12371/12492/12495/12621/12637 are amendments; the 'terminate' event EO 12482 is a mis-match (it sets a committee's end date, not EO 12291's). None revives.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12291.txt",
+     "sha256": "fdcefab025a04a479e2165a05dbf3f0e340d0a798fad7001de837bc1f844cfe7"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12866.txt",
+     "sha256": "c53f4ff38e7a7442a55f6be95c30856f7a8286d781d715c971dce8a48d8c848e"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12482.txt",
+     "sha256": "a79c68e345e4cc6c4f4a098b35f34c4797183a6c79ef466bbe6f6451fad2327e"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:12686",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_12686/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 12774 sec. 3(b) revokes 'Executive Order No. 12686, as amended by Executive Order No. 12705'; sec. 5 effective Sept. 30, 1991. Own term (sec. 4, terminate 30 days after report) is an earlier possible end, correctly left as a lifecycle gap.",
+   "d6_step": "D6: EO 12705 (extension) and EO 12774 both named and handled.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12686.txt",
+     "sha256": "230d04965a771f4ae9d79167f8aafdce7f307f628fe6f4cf0b443f62982bf2da"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12774.txt",
+     "sha256": "23375852f840e11fb6a2a28af597f39c8b97b0d9d2d0ec01940fd4c276a6eabd"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:13137",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_13137/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 13316 sec. 3(b) revokes 'Executive Order 12975, as amended by Executive Orders 13018, 13046, and 13137'; sec. 6 effective Sept. 30, 2003. EO 13137 is a pure amendment of EO 12975.",
+   "d6_step": "D6: own-term lapse Oct. 3, 2001 (set by EO 13137 itself) recorded as earlier possible end; nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13137.txt",
+     "sha256": "c77ed9e90f631070a6efde3f832a5b42f8891dfaa973cb5fd75f9f859675d16c"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13316.txt",
+     "sha256": "9f53d3ec31cc6d48907ed6cf229d1e6909abf09e09fd04e98844a45cfe74df49"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:14228",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_14228/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 14389 sec. 1 ends all IEEPA ad valorem duties 'imposed ... in Executive Order 14195, as amended' (91 FR 9437); EO 14228's only command was the sec. 2(a) rate amendment, so nothing of it operates at the cutoff.",
+   "d6_step": "D6: held EO 14357 ended the 20 percent rate before EO 14389 (producer omission). Later held orders citing EO 14195 (EO 14388) or EO 14228 (EO 14256, 14324: de minimis, article-class cross-reference only) do not revive the rate. No held order after EO 14389 reimposes it.",
+   "non_fatal_defects": [
+    "D6 (producer): omitted EO 14357 (90 FR 50725), which reduced the 20 percent rate set by EO 14228 to 10 percent effective Nov. 10, 2025, i.e. the probable first end of EO 14228's only operative content; caught by the original reviewer, not by the producer; non-fatal to NO"
+   ],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14228.txt",
+     "sha256": "90f8180c060139100789302ab2277817ce74c8483bb8a1d3eb74db71d9391059"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14389.txt",
+     "sha256": "30cce64c6baf5c9569e11fab795bdfab32fa2556ff90d984f0404843709f35fe"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14357.txt",
+     "sha256": "fae48a1fd010d05da0cc19eb7f2bdb5f32b812b39f587e0df62650532a62043e"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14388.txt",
+     "sha256": "ff28d0a82e821cd4cc2938d57b52caa7cc42911c545c3b108b5bb6f4b374d146"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14256.txt",
+     "sha256": "027e9fd8efbd44d8ca60133c5673ef21585c4d41bef05d1186bf95b8ffed34ba"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_14324.txt",
+     "sha256": "45d80c3666736ae3f196a7a0ed8ba19f9955ebec4f25defcfc7d6fb6c75dd29e"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:9811",
+   "batch": "y1_01",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_9811/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "Single operative sentence extends trust periods expiring in calendar 1947 'for a further period of twenty-five years'; the order acts once on a closed class and its extension ran out by end of 1972; no continuing command.",
+   "d6_step": "D6: no chain events in packet. The 1989 codification lead points to EO 10250, which is held and only delegates future extension authority; any later extension of particular trusts is a new act under other authority. No held later source extends the EO 9811 periods by reference.",
+   "non_fatal_defects": [
+    "Record error: producer states 'EO 10250 is not held'; it is held (jobs/fr-originals/data/full_run/texts/EO_10250.txt). Read: sec. 1(e) only delegates the President's trust-extension authority to the Secretary of the Interior and does not touch the EO 9811 extensions; non-fatal",
+    "Basis is own-term expiry only (no express ending instrument); contestable class"
+   ],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9811.txt",
+     "sha256": "b4371dc345b1bb85b186914372330142db8178ae5caa71aaffd2f13df48ce36e"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_10250.txt",
+     "sha256": "152dc2031728d5d0490fd0c595984da1f8e2b1b6b780c9fb3ceb8c8cc8fac6c2"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10085",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_10085/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 10903 sec. 5(a) item 3 revokes 'Executive Order No. 10085 of October 28, 1949'; sec. 5(b) saves rules, regulations and actions taken, not the order. Parent EO 10011 revoked in the same list (item 2).",
+   "d6_step": "D6: EO 10187/10313/10391 restated sec. 1(d) earlier (earlier end, correctly a lifecycle gap); EO 10477/10853 amend other provisions; nothing revives.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_10085.txt",
+     "sha256": "0fc4db14f36064e17e2252a63008ee79edaa82db9e6c3e3e6e52c4f10fd3d197"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_10903.txt",
+     "sha256": "993d2f9d80cccdf13ba9a3f6684f1100f85465f2091cb1ed46eb3437d6e90351"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11841",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_11841/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "Pure amendment adding sec. 306 to EO 10973; EO 12163 sec. 1-903(a)(1) revokes EO 10973 'as amended' and sec. 1-506 establishes a new Development Coordination Committee with different membership.",
+   "d6_step": "D6: EO 11959/12118 amend other parts of EO 10973; EO 12163 sec. 1-506 replacement is cited. Nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_11841.txt",
+     "sha256": "83c7035f1dd17e79738733addbea50ea30c985d3d81bc3eaff618708529a923d"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12163.txt",
+     "sha256": "9af7f349296d39c4a3df147e15b072371d736234f2c3c71875ccbc6fe61bd591"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:12759",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_12759/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 13123 sec. 604: 'Executive Order 12902 ..., Executive Order 12759 of April 17, 1991, and Executive Order 12845 ... are revoked', unqualified; ends secs. 3, 9, 10 saved by EO 12902 sec. 701. No 'remain in effect' language in EO 13123.",
+   "d6_step": "D6: partial revocation by EO 12902 (secs. 3, 9, 10 saved) is named and handled; nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12759.txt",
+     "sha256": "737cab4d36d16af17455c9af301da77697de2f89ee543347c5a9a7fa23bdf565"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_12902.txt",
+     "sha256": "43488abed2b6edd5073c77204d56b14d1fa92e0d555d98be2dfa2f9136e98ab3"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13123.txt",
+     "sha256": "d286491a3055d8c66f9ea3b2d1256b6fa84893c4dbbe274dbc1b6ab547501852"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:13018",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_13018/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 13316 sec. 3(b) names EO 13018 as an amendment of the revoked EO 12975; EO 13137 sec. 1 had already rewritten sec. 3 of EO 12975, the text EO 13018 changed.",
+   "d6_step": "D6: EO 13137 replacement and EO 13316 revocation both named; nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13018.txt",
+     "sha256": "b1ee8b9a8c8b3747176c0ca21a1daeda0788d2302bb748a449d958ebada25001"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13137.txt",
+     "sha256": "c77ed9e90f631070a6efde3f832a5b42f8891dfaa973cb5fd75f9f859675d16c"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_13316.txt",
+     "sha256": "9f53d3ec31cc6d48907ed6cf229d1e6909abf09e09fd04e98844a45cfe74df49"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:8226",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_8226/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 8384 sec. 21 (before the [No. 8384] signature line, 5 FR 1253) 'shall supersede Executive Orders No. 7845 ..., No. 7879 ..., and No. 8226 of August 24, 1939', effective March 2, 1940; sec. 20 concerns departmental regulations only.",
+   "d6_step": "D6: only later event is EO 8384 (indexed as EO 8385 by page overlap); its base EO 7845 superseded by the same sentence. Nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_8226.txt",
+     "sha256": "672942a59abaf2a8ba4c599effa6aca66878a5f0ffbf3031690326fe04e1b1c2"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_8384.txt",
+     "sha256": "ef8f894b46b5e800c635cf6dd59a1edfabb29eedbff7fa4dda211b98452215b0"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:9067",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_9067/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 9243 para. 3 revokes 'Executive Order No. 9067 of February 20, 1942', effective the fifteenth day after Sept. 12, 1942; proviso saves acquired reemployment rights, not the order.",
+   "d6_step": "D6: EO 9695 (1946) revoked EO 9243 with the same rights proviso and no revival language; EO 9952/9994 terminate the saved rights with narrow exceptions. Nothing revives EO 9067.",
+   "non_fatal_defects": [
+    "Minor overstatement: producer says EO 9952/9994 state the remaining reemployment rights expire; EO 9994 sets expiry Oct. 22, 1948 but keeps exceptions (liquidating agencies, persons separated from the armed forces); none can plausibly operate at the 2026 cutoff; non-fatal"
+   ],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9067.txt",
+     "sha256": "9649f4ab5e68cb7b4ed700d3165482b7b2f6572ada440e2bb06aa5bfdc367772"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9243.txt",
+     "sha256": "d58823a7a3b08110444e8f1eb332c8a0c15b4d398ad8773c7d1fe519070d5c4b"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9695.txt",
+     "sha256": "6bac45c66516faeb3dc64bde4085bc81544c758f729efa88fcb72c79d100acca"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9994.txt",
+     "sha256": "bf89ac2da5c34b823e5e747a232a3377c222decf40d391b43abcef1551fe1442"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9952.txt",
+     "sha256": "2484c38c9a057444a7edf40f4546abc5a6b1b07b15fe0ef5168620970576da19"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:9204",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_9204/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 9649 (10 FR 13431): 'The Office of Fishery Coordination ..., established pursuant to Executive Order No. 9204 ..., together with the office of Fishery Coordinator, is terminated'; every EO 9204 provision runs through the Office or Coordinator. Not named as revoked (stated by producer).",
+   "d6_step": "D6: own war-powers term (sec. 4) is a second end, recorded; nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9204.txt",
+     "sha256": "16cf145fac04a43e577c0b49c65de2f1f95c5aacc55447efd44fd7b8abed8ceb"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9649.txt",
+     "sha256": "5cfd8648ddaa1e18b03f603d368d9a112af05f7e67de8dc51b50441e158795a3"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:9982",
+   "batch": "y1_02",
+   "proposal_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_9982/proposal-v1/PROMOTION_PROPOSAL.json",
+   "proposed_status": "no",
+   "verdict": "upheld",
+   "reason": "EO 10011 para. 3(b) revokes 'Executive Order No. 9870 ... and Executive Order No. 9982 of July 29, 1948'; proviso saves rules and regulations only. Own term ran to June 30, 1949 regardless.",
+   "d6_step": "D6: EO 10011 itself later revoked by EO 10903 (no revival). Nothing omitted.",
+   "non_fatal_defects": [],
+   "sources_checked": [
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_9982.txt",
+     "sha256": "166d60faac8618d3d0a06035b082b32e886952a66f3e898ded5052e0067e169f"
+    },
+    {
+     "path": "jobs/fr-originals/data/full_run/texts/EO_10011.txt",
+     "sha256": "6f51505f2c44a3898fc8f66018b09e493dacb6d220b119c33f64047b6e2e44d8"
+    }
+   ]
+  }
+ ]
+}
