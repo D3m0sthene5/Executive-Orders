@@ -6,7 +6,7 @@ import tempfile
 import unittest
 sys.path.insert(0,str(Path(__file__).parent))
 from model import (application_errors, evidence_errors, fingerprint, question_key, review_errors, sha, source_span)
-from norton import compile_reviews, possible_duplicates, search_sources
+from norton import compile_reviews, pin_registry_sources, possible_duplicates, search_sources
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -25,11 +25,11 @@ class FactualBoundaries(unittest.TestCase):
                 'scope':'final report to President','interval_start':'1981-01-01','interval_end':'1983-12-31',
                 'proposition':'Was this final report delivered to the President, and on what date?', 'event_kind':'report_delivery'}
         self.q['question_key']=question_key(self.q)
-        self.e={'id':'NE:1','question_key':self.q['question_key'],'event_kind':'report_delivery',
+        self.e={'schema':'norton-candidate-evidence/v1','id':'NE:1','question_key':self.q['question_key'],'event_kind':'report_delivery',
                 'entity_id':self.q['entity_id'],'source':self.src,'char_start':0,'char_end':len(self.text),
                 'text':self.text,'event_date':'1983-01-15'}
         self.e['instrument_id']='EO:1'
-        self.app={'id':'NA:1','question_key':self.q['question_key'],'instrument_id':'EO:1','scope_id':'EO:1#sec2',
+        self.app={'schema':'norton-application/v1','id':'NA:1','question_key':self.q['question_key'],'instrument_id':'EO:1','scope_id':'EO:1#sec2',
                   'legal_effect':'unresolved','state':'candidate','producer':'producer-a','clause_evidence':self.e}
 
     def test_exact_key_keeps_every_dimension(self):
@@ -65,6 +65,12 @@ class FactualBoundaries(unittest.TestCase):
         (self.repo/'text.txt').write_text('stale')
         self.assertIn('text_hash_mismatch',source_span(self.repo,self.e))
 
+    def test_exact_registry_source_files_are_pinned_for_consumers(self):
+        pins={};pin_registry_sources(self.repo,{'applications':[self.app],'evidence':[self.e]},pins)
+        self.assertEqual({'text.txt':sha(self.text),'raw.html':sha(self.text)},pins)
+        (self.repo/'raw.html').write_bytes(b'changed')
+        self.assertNotEqual(pins['raw.html'],sha((self.repo/'raw.html').read_bytes()))
+
     def test_review_does_not_allow_self_review_or_changed_answer(self):
         r={'producer':'producer-a','id':'NFA:1'}
         review={'schema':'norton-factual-review/v1','record_kind':'answer','record_sha256':fingerprint(r),
@@ -84,6 +90,26 @@ class FactualBoundaries(unittest.TestCase):
         data['applications']=[dict(self.app,state='ai_reviewed',_origin={})]
         answers,apps,rejected=compile_reviews(self.repo,data,[self.q])
         self.assertFalse(apps);self.assertIn('reviewed_answer_missing',rejected[0]['errors'])
+
+    def test_one_fact_requires_two_separate_application_reviews(self):
+        answer={'schema':'norton-factual-answer/v1','id':'NFA:1','question_key':self.q['question_key'],
+                'producer':'producer-a','answer':'The identified Harbor Commission report was delivered on January 15, 1983.','evidence_ids':['NE:1']}
+        apps=[dict(self.app,state='ai_reviewed',answer_id='NFA:1',checks={k:'This exact clause was separately examined against the named report, context and earlier events.' for k in ('scope','applicability','earlier_cessation','independent_commands','savings')})]
+        apps.append(dict(apps[0],id='NA:2',scope_id='EO:1#sec4'))
+        def review(r,kind):
+            return {'schema':'norton-factual-review/v1','record_kind':kind,'record_id':r['id'],
+                    'record_sha256':fingerprint(r),'reviewer':'reviewer-b','reviewer_type':'independent_ai',
+                    'independent':True,'decision':'uphold','reviewed_on':'2026-10-20','d6_searched':True,
+                    'checked_evidence_ids':r.get('evidence_ids',[]),'rationale':'Independently read the exact source and checked identity, date, scope and later events.'}
+        data={'evidence':[dict(self.e,_origin={})],'answers':[dict(answer,_origin={})],
+              'applications':[dict(a,_origin={}) for a in apps],
+              'reviews':[dict(review(answer,'answer'),_origin={})]+[dict(review(a,'application'),_origin={}) for a in apps]}
+        answers,applications,rejected=compile_reviews(self.repo,data,[self.q])
+        self.assertEqual((1,2,0),(len(answers),len(applications),len(rejected)))
+        self.assertTrue(all(a['legal_effect']=='unresolved' for a in applications))
+        data['reviews'].pop()
+        _,applications,rejected=compile_reviews(self.repo,data,[self.q])
+        self.assertEqual((1,1),(len(applications),len(rejected)))
 
     def test_wrong_clause_order_and_duplicate_application_are_rejected(self):
         self.assertIn('clause_evidence_wrong_order',application_errors(self.repo,self.q,dict(self.app,instrument_id='EO:2',scope_id='EO:2#sec2')))
@@ -110,5 +136,16 @@ class FactualBoundaries(unittest.TestCase):
         self.assertEqual(1,len(candidates));self.assertEqual('machine_candidate',candidates[0]['state'])
         self.assertIn('except',candidates[0]['qualifiers']);self.assertIsNone(candidates[0]['event_date'])
         self.assertNotIn('whole_order_status',candidates[0])
+
+    def test_transfer_receipt_is_not_automatically_a_dated_occurrence(self):
+        (self.repo/'jobs/source-ladder').mkdir(parents=True)
+        (self.repo/'jobs/source-ladder/report_dates.py').write_bytes((ROOT/'jobs/source-ladder/report_dates.py').read_bytes())
+        span={k:self.e[k] for k in ('source','text','char_start','char_end')}
+        q=dict(self.q,event_kind='transfer_event');q['question_key']=question_key(q)
+        q['aliases']=[{'kind':'institution','entity_id':q['entity_id'],'text':'Harbor Commission','evidence':span},
+                      {'kind':'function','entity_id':q['entity_id'],'text':'harbor survey function','evidence':span}]
+        records,_=search_sources(self.repo,[q],[(self.src,self.text)])
+        self.assertEqual('completion_receipt',records[0]['route'])
+        self.assertIsNone(records[0]['event_date']);self.assertEqual('machine_candidate',records[0]['state'])
 
 if __name__=='__main__':unittest.main()

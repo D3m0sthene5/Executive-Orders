@@ -1,5 +1,6 @@
 """Three deliberately narrow routes over held evidence; no network, no status writes."""
 import collections
+import csv
 import importlib.util
 import json
 import os
@@ -13,7 +14,7 @@ from model import (CUTOFF, application_errors, canonical, evidence_errors, finge
 
 REGISTRY = 'research/readiness/factual'
 EVENT = re.compile(r'\b(report|submit|deliver|transmit|appoint|transfer|retain|abolish|perform|function|completion)\w*\b', re.I)
-PERFORMANCE = re.compile(r'\b(submitted|delivered|transmitted|presented|published|issued|appointed|completed|performed)\b', re.I)
+PERFORMANCE = re.compile(r'\b(submitted|delivered|transmitted|presented|published|issued|appointed|completed|performed|transferred|retained|abolished|approved|established)\b', re.I)
 SUCCESSION = re.compile(r'\b(transferred|retained|abolished|modified|continued|except|excluding|remain)\b', re.I)
 
 def rows(path):
@@ -136,6 +137,21 @@ def load_registry(repo):
 def clean(r):
     return {k:v for k,v in r.items() if not k.startswith('_')}
 
+def pin_registry_sources(repo, value, pins):
+    """Live fact/application source bytes must survive the consumer boundary."""
+    if isinstance(value,dict):
+        src=value.get('source')
+        if isinstance(src,dict):
+            for key in ('text_path','raw_path'):
+                if src.get(key):
+                    try:
+                        p=safe_path(repo,src[key])
+                        if p.is_file():pins[p.relative_to(repo).as_posix()]=sha(p.read_bytes())
+                    except (OSError,ValueError):pass  # The record validator retains the source hold.
+        for item in value.values():pin_registry_sources(repo,item,pins)
+    elif isinstance(value,list):
+        for item in value:pin_registry_sources(repo,item,pins)
+
 def held_sources(repo, holds, pins, max_text_bytes=250_000_000):
     """Reuse source declarations. No raw-byte store or alternative acquisition path."""
     seen, total = set(), 0
@@ -144,6 +160,8 @@ def held_sources(repo, holds, pins, max_text_bytes=250_000_000):
             continue
         pins[path.relative_to(repo).as_posix()] = sha(path.read_bytes())
         status = path.parent / 'STATUS.json'
+        if status.exists():
+            pins[status.relative_to(repo).as_posix()] = sha(status.read_bytes())
         if status.exists() and json.loads(status.read_bytes()).get('result') != 'succeeded':
             holds.append({'source_manifest':path.relative_to(repo).as_posix(), 'reason':'upstream_run_not_succeeded'})
             continue
@@ -264,6 +282,9 @@ def compile_reviews(repo, data, questions):
         if errors:rejected.append({'record':v,'errors':errors,'origin':r['_origin']})
     for r in data['answers']:
         v=clean(r); q=qs.get(v.get('question_key')); errors=[]
+        if v.get('schema')!='norton-factual-answer/v1':errors.append('wrong_answer_schema')
+        if not isinstance(v.get('answer'),str) or len(v['answer'].strip())<40 or not v.get('producer'):
+            errors.append('factual_answer_missing')
         if not v.get('id') or v.get('id') in duplicates['answers']:errors.append('missing_or_duplicate_answer_id')
         if not q:errors.append('unknown_question')
         if not v.get('evidence_ids'):errors.append('answer_without_evidence')
@@ -301,6 +322,13 @@ def build(repo,out):
     if out==repo or not out.is_relative_to(repo):raise ValueError('OUTPUT_DIR must be inside repository')
     out.mkdir(parents=True,exist_ok=True)
     pins={};holds=[]; data=load_registry(repo)
+    pin_registry_sources(repo,data,pins)
+    for folder in ('claims','reviews'):
+        for p in (repo/'research/readiness'/folder).rglob('*.jsonl'):
+            pins[p.relative_to(repo).as_posix()]=sha(p.read_bytes())
+    for name in ('report_dates.py','ladder_queue.py','fetch_ladder.py','embedded_cites.py'):
+        p=repo/'jobs/source-ladder'/name
+        pins[p.relative_to(repo).as_posix()]=sha(p.read_bytes())
     for p in sorted((repo/REGISTRY).rglob('*.jsonl')):
         pins[p.relative_to(repo).as_posix()]=sha(p.read_bytes())
     leads,counts=extract_obligations(repo)
@@ -320,6 +348,14 @@ def build(repo,out):
     sources=list(held_sources(repo,holds,pins))
     candidates,route_holds=search_sources(repo,questions,sources);holds+=route_holds
     answers,applications,rejected=compile_reviews(repo,data,questions)
+    census=repo/'research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv'
+    pins[census.relative_to(repo).as_posix()]=sha(census.read_bytes())
+    with census.open(encoding='utf-8',newline='') as f:
+        known_ids={r.get('id') or r.get('instrument_id') for r in csv.DictReader(f)
+                   if r.get('included_in_bibliography','1')=='1'}
+    outside=[a for a in applications if a['instrument_id'] not in known_ids]
+    rejected.extend({'record':a,'errors':['outside_known_inventory']} for a in outside)
+    applications=[a for a in applications if a['instrument_id'] in known_ids]
     groups=collections.defaultdict(set)
     for a in applications:groups[a['question_key']].add((a['instrument_id'],a['scope_id']))
     reused={k:len(v) for k,v in groups.items() if len(v)>1}
@@ -354,10 +390,11 @@ def build(repo,out):
     requests=[]
     for q in questions:
         if not any(a['question_key']==q['question_key'] for a in answers.values()):
-            for iid in sorted({a['instrument_id'] for a in applications if a['question_key']==q['question_key']}):
-                requests.append({'instrument_id':iid,'citation':q.get('source_request') or q['proposition'],
+            dependent_orders=sorted({a['instrument_id'] for a in applications if a['question_key']==q['question_key']})
+            if dependent_orders:
+                requests.append({'instrument_id':dependent_orders[0],'citation':q.get('source_request') or q['proposition'],
                                  'step':'ending_or_current_basis','requested_by':'sol-norton',
-                                 'note':'Exact factual question '+q['question_key']+'; do not substitute deadline, agency name, or current edition.'})
+                                 'note':'Exact factual question '+q['question_key']+'; dependent orders '+', '.join(dependent_orders)+'; one request per question. Do not substitute deadline, agency name, or current edition.'})
     queue=out/'FETCH_QUEUE_PROPOSED.jsonl';write_rows(queue,requests)
     import sys
     ladder=str(repo/'jobs/source-ladder')
@@ -380,8 +417,14 @@ def build(repo,out):
         'reason':'No automatic expansion. Independently reviewed reuse and full matched integration cost evidence are required.'})
     if code_hashes != {p.name:sha(p.read_bytes()) for p in Path(__file__).parent.glob('*.py')}:
         raise ValueError('compiler_changed_during_run')
+    # claim-kit clears its old output before consuming factual fragments. Its
+    # previous own-term generation is a census input, not the source of a reviewed
+    # fact. Retain that snapshot's hashes without creating a circular live-file
+    # dependency; registry, primary text, source manifests and compiler remain live.
+    lagged={k:v for k,v in pins.items() if k.startswith('jobs/claim-kit/output/OWN_TERMS')}
     write_json(out/'INPUTS.json',{'input_commit':subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip(),
-                                'sha256':pins,'code_sha256':code_hashes})
+                                'sha256':pins,'lagged_census_sha256':lagged,
+                                'consumer_sha256':{k:v for k,v in pins.items() if k not in lagged},'code_sha256':code_hashes})
     write_json(out/'METRICS.json',{'wall_seconds':time.monotonic()-started,'model_tokens':None,'cost_usd':None,'independent_review_seconds':None})
     print(canonical(summary['counts']))
     return summary

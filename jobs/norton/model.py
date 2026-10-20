@@ -89,6 +89,8 @@ def source_span(repo, record, require_bytes=False):
 
 def evidence_errors(repo, q, evidence):
     errors = source_span(repo, evidence, require_bytes=True)
+    if evidence.get('schema') != 'norton-candidate-evidence/v1':
+        errors.append('wrong_evidence_schema')
     if evidence.get('question_key') != question_key(q):
         errors.append('wrong_question')
     if evidence.get('event_kind') != q['event_kind']:
@@ -125,10 +127,14 @@ def review_errors(repo, record, review, kind):
         errors.append('review_rationale_missing')
     if review.get('d6_searched') is not True:
         errors.append('later_event_review_missing')
+    if kind == 'answer' and sorted(review.get('checked_evidence_ids',[])) != sorted(record.get('evidence_ids',[])):
+        errors.append('unreviewed_answer_evidence')
     return errors
 
 def application_errors(repo, q, app):
     errors = []
+    if app.get('schema') != 'norton-application/v1':
+        errors.append('wrong_application_schema')
     if app.get('question_key') != question_key(q):
         errors.append('wrong_question')
     iid, scope = app.get('instrument_id', ''), app.get('scope_id', '')

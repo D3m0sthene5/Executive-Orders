@@ -334,7 +334,7 @@ class _Collector:
                     raise ValueError('NORTON run did not succeed')
                 if base not in self.factual_inputs_checked:
                     pins = json.loads((base / 'INPUTS.json').read_bytes())
-                    for name, digest in pins['sha256'].items():
+                    for name, digest in pins.get('consumer_sha256', pins['sha256']).items():
                         p = _path(self.repo, self.repo, name)
                         if p is None or hashlib.sha256(p.read_bytes()).hexdigest() != digest:
                             raise ValueError('NORTON input changed: ' + name)
