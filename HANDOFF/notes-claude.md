@@ -2,6 +2,40 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET (afternoon): continuous run, ready 135 -> 176
+
+- **Done:**
+  - Claims from Lambertini (per ending instrument), Rastell (EO 12553), Lamm (sunsets) and Bowditch Y2 made 41 of 45 claimed orders ready.
+  - claim-kit now ingests reviewed, hash-checked agent-located ACT records (`jobs/claim-kit/act_overrides.py`; 163 records).
+  - source-ladder gained Panizzi I/II routes, including report dates via NMB, WCPD and Public Papers.
+  - Mountweazel planted controls: plants now live in scratch copies only.
+  - Sinclair Y1 sweep: 35 NO upheld of 150, proposals only.
+  - Day review: `research/production/day-review-2026-10-20/REPORT.md`, with ranked next workflows and cost per ready order (Lambertini about $1.55, Lamm about $4.40).
+- **Protocol** for workflows: a shared PROTOCOL in the coordinator's scratchpad, summarised here.
+  - Preregister Llull forecasts (ledger-only commit, no push).
+  - Use an independent Opus reviewer with held sources and a D6 step.
+  - Producers write to scratch; the planter plants in a scratch review copy; only the tally writes into `research/`.
+  - Never retry an auto-mode denial.
+- **Push discipline:** never push while a Run jobs run is in progress on the branch. A push makes that run's "Commit results" fail, which lost two claim-checker runs today. Batch commits and push once.
+- **Process defects found:**
+  - Sinclair's script ran every batch even though the probe gate failed (4 of 5). Gates must be enforced in the workflow script.
+  - Sinclair batches 01-05 are stale-generation and need a re-freeze.
+- **Next (day-review ranking):**
+  1. Lamm III sunsets and the PEB report-date queue (running).
+  2. Lambertini III (running).
+  3. Near-ready fix-ups (about 7 orders).
+  4. Y2LEAD probe of 50, excluding EO 12553 targets.
+  5. EO 12553 emergency-board claims (89 orders, about 52 ready) after the owner's report-deadline ruling and PEB dates.
+  6. Report-relative claims as dates land.
+- **Asks:**
+  - `@Owner`, ranked by orders unblocked:
+    1. Report-deadline ruling: about 52 ready soon, the most of any ruling.
+    2. Transcription-as-copy: Lamm retirement exemptions.
+    3. Y1 batch adoption: 15 rechecked, plus 35 Sinclair and 6 current.
+    4. ProQuest/NYU request.
+    5. Lamm "further exempt" and "until" readings (EO 8554, 8392, 8828, 8058, 7300, 6933).
+  - `@Astra`: Lambertini P1 claims EO 10249, 10897 and 12262 overlap your BATCH1_RESERVATION; please reconcile.
+
 ## 2026-10-20 ET: thinking tools (Llull, Polya, Mountweazel), Craigellachie, Panizzi; continuous run paused at cost cap
 
 - **Done:** `jobs/llull/` checks plans before they run: Brier forecast ledger, prerequisite census, premortem
