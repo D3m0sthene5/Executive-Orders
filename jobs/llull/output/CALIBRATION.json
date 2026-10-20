@@ -1,8 +1,8 @@
 {
-  "commit": "724777120",
+  "commit": "37887dbd2",
   "current_outcome_ids": {
     "L-20261020-1": "O-20261020-1",
-    "L-20261020-13": "O-20261020-44",
+    "L-20261020-13": "O-20261020-49",
     "L-20261020-14": "O-20261020-4",
     "L-20261020-15": "O-20261020-5",
     "L-20261020-16": "O-20261020-6",
@@ -23,11 +23,11 @@
     "L-20261020-30": "O-20261020-19",
     "L-20261020-31": "O-20261020-20",
     "L-20261020-32": "O-20261020-35",
-    "L-20261020-33": "O-20261020-45",
+    "L-20261020-33": "O-20261020-50",
     "L-20261020-34": "O-20261020-37",
     "L-20261020-35": "O-20261020-38",
     "L-20261020-36": "O-20261020-21",
-    "L-20261020-37": "O-20261020-46",
+    "L-20261020-37": "O-20261020-51",
     "L-20261020-38": "O-20261020-23",
     "L-20261020-39": "O-20261020-24",
     "L-20261020-40": "O-20261020-26",
@@ -43,7 +43,13 @@
     "L-20261020-52": "O-20261020-40",
     "L-20261020-53": "O-20261020-41",
     "L-20261020-54": "O-20261020-42",
-    "L-20261020-55": "O-20261020-43"
+    "L-20261020-55": "O-20261020-43",
+    "L-20261020-56": "O-20261020-46",
+    "L-20261020-57": "O-20261020-47",
+    "L-20261020-58": "O-20261020-48",
+    "L-20261020-59": "O-20261020-44",
+    "L-20261020-60": "O-20261020-45",
+    "L-20261020-65": "O-20261020-52"
   },
   "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count",
   "experiment_groups": {
@@ -55,6 +61,11 @@
       "L-20261020-17",
       "L-20261020-18",
       "L-20261020-19"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json": [
+      "L-20261020-56",
+      "L-20261020-57",
+      "L-20261020-58"
     ],
     "source:research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json": [
       "L-20261020-32",
@@ -79,6 +90,9 @@
       "L-20261020-47",
       "L-20261020-48"
     ],
+    "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json": [
+      "L-20261020-65"
+    ],
     "source:research/excavator/rastell-2026-10-20/OUTCOME.json": [
       "L-20261020-15",
       "L-20261020-16"
@@ -95,6 +109,10 @@
       "L-20261020-43",
       "L-20261020-44"
     ],
+    "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json": [
+      "L-20261020-59",
+      "L-20261020-60"
+    ],
     "source:research/excavator/y2lead-2026-10-20/OUTCOME.json": [
       "L-20261020-51",
       "L-20261020-52",
@@ -107,12 +125,12 @@
       "L-20261020-25"
     ]
   },
-  "n_current_outcomes": 43,
-  "n_experiments_scored": 11,
-  "n_forecasts": 55,
-  "n_outcome_records": 46,
-  "n_resolved": 41,
-  "n_scored": 37,
+  "n_current_outcomes": 49,
+  "n_experiments_scored": 14,
+  "n_forecasts": 65,
+  "n_outcome_records": 52,
+  "n_resolved": 47,
+  "n_scored": 43,
   "not_preregistered_excluded": {
     "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
     "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
@@ -207,6 +225,21 @@
       "optimism_factor": 0.319,
       "trust": "unproven"
     },
+    "claude:claude-opus-5-5": {
+      "coverage_p10_p90": 0.8,
+      "experiment_ids": [
+        "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json",
+        "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 33.36792703479726,
+      "mean_skill_vs_outside_view": 0.47261995742987617,
+      "median_log_ratio": 0.0,
+      "n_binary": 0,
+      "n_experiments": 2,
+      "n_interval": 5,
+      "optimism_factor": 1.0,
+      "trust": "unproven"
+    },
     "claude:claude-sonnet-5-5": {
       "coverage_p10_p90": 1.0,
       "experiment_ids": [
@@ -276,6 +309,17 @@
       "n_interval": 2,
       "optimism_factor": 1.278,
       "trust": "unproven"
+    },
+    "sol:current": {
+      "brier": 0.0225,
+      "brier_reference_base_rate": 0.0,
+      "experiment_ids": [
+        "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json"
+      ],
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 0,
+      "trust": "unproven"
     }
   },
   "schema": "llull.calibration/2",
@@ -287,5 +331,5 @@
     "L-20261020-33": "untested",
     "L-20261020-37": "untested"
   },
-  "written_at": "2026-10-20T16:25:07Z"
+  "written_at": "2026-10-20T19:28:05Z"
 }

@@ -1,5 +1,5 @@
 {
-  "commit": "724777120",
+  "commit": "37887dbd2",
   "definition": "miss = measured outside the 80% interval (interval) or event expected at p >= 0.5 and not happening (binary); flagged = prerequisite-coverage flag at registration (legacy CEILING_EXCEEDED included); out-of-sample = registered_commit is a strict descendant of rule_commit and registration is verifiably prospective",
   "dependence_note": "multiple forecasts from one underlying experiment are correlated",
   "experiment_groups": {
@@ -11,6 +11,11 @@
       "L-20261020-17",
       "L-20261020-18",
       "L-20261020-19"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json": [
+      "L-20261020-56",
+      "L-20261020-57",
+      "L-20261020-58"
     ],
     "source:research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json": [
       "L-20261020-32",
@@ -35,6 +40,9 @@
       "L-20261020-47",
       "L-20261020-48"
     ],
+    "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json": [
+      "L-20261020-65"
+    ],
     "source:research/excavator/rastell-2026-10-20/OUTCOME.json": [
       "L-20261020-15",
       "L-20261020-16"
@@ -50,6 +58,10 @@
       "L-20261020-42",
       "L-20261020-43",
       "L-20261020-44"
+    ],
+    "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json": [
+      "L-20261020-59",
+      "L-20261020-60"
     ],
     "source:research/excavator/y2lead-2026-10-20/OUTCOME.json": [
       "L-20261020-51",
@@ -76,20 +88,24 @@
     {
       "flagged": true,
       "forecast_id": "L-20261020-52"
+    },
+    {
+      "flagged": true,
+      "forecast_id": "L-20261020-60"
     }
   ],
-  "n_experiments_out_of_sample": 11,
-  "n_flagged_misses": 3,
-  "n_flagged_out_of_sample": 14,
+  "n_experiments_out_of_sample": 14,
+  "n_flagged_misses": 4,
+  "n_flagged_out_of_sample": 17,
   "n_in_sample": 0,
-  "n_miss_experiments": 2,
-  "n_misses_out_of_sample": 3,
+  "n_miss_experiments": 3,
+  "n_misses_out_of_sample": 4,
   "n_not_preregistered": 2,
-  "n_out_of_sample": 37,
-  "n_resolved": 41,
+  "n_out_of_sample": 43,
+  "n_resolved": 47,
   "n_unchecked": 2,
   "n_unresolved": 2,
-  "precision": 0.21428571428571427,
+  "precision": 0.23529411764705882,
   "registration_excluded": {
     "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
     "L-20261020-13": "no run directory declared",
@@ -100,5 +116,5 @@
   "schema": "llull.selfscore/1",
   "share_flagged": 1.0,
   "trust": "unproven",
-  "written_at": "2026-10-20T16:25:08Z"
+  "written_at": "2026-10-20T19:28:07Z"
 }

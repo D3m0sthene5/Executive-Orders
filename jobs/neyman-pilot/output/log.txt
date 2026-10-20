@@ -1,13 +1,11 @@
-.......................
+........................................
 ----------------------------------------------------------------------
-Ran 23 tests in 0.255s
+Ran 40 tests in 0.520s
 
 OK
-neyman: exit 0, 3 candidates (all unverified), usd_spent 0.00
-F-friction           exploring spent $  0.00 verified $  0.00 score 0.0000 (tests resolved 0)
-F-hamilton           exploring spent $  0.00 verified $  0.00 score 0.0000 (tests resolved 0)
-F-neyman             exploring spent $  0.00 verified $  0.00 score 0.0000 (tests resolved 0)
-F-wasted_work        exploring spent $  0.00 verified $  0.00 score 0.0000 (tests resolved 0)
-junto total: verified $0.00 / spent $0.00
-ledger ok
-NEYMAN pilot integration complete; all new hypotheses unverified
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman-pilot/job.py", line 24, in <module>
+    check_pins(root,manifest['input_hashes'])
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman/survey.py", line 88, in check_pins
+    raise ValueError('stale sampling inputs: '+', '.join(changed[:12]))
+ValueError: stale sampling inputs: jobs/claim-checker/output/PER_CLAIM.json, jobs/claim-kit/act_overrides.py, jobs/claim-kit/batch.py, jobs/claim-kit/build.py, jobs/claim-kit/inputs.py, jobs/claim-kit/lifecycle_obligations.py, jobs/claim-kit/output/ACTING_PROVISIONS.jsonl, jobs/claim-kit/output/ACTING_PROVISIONS.part0001.jsonl, jobs/claim-kit/output/FAMILIES.json, jobs/claim-kit/output/INDEX.json, jobs/claim-kit/output/OWN_TERMS.jsonl, jobs/claim-kit/output/STATUS_LEADS.jsonl

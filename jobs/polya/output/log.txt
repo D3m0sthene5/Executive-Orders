@@ -1,41 +1,41 @@
-# POLYA compare (generated; repo_head d0527136caa14cbde2455737dbf86eee37f868c3)
+# POLYA compare (generated; repo_head 37887dbd2dd151321b6e4d23097a43cde3d85273)
 
-Pool: 14972 orders, 225 ready, 14747 not ready (3134 decided, 11613 undecided). Reach is not yield.
+Pool: 14972 orders, 238 ready, 14734 not ready (3121 decided, 11613 undecided). Reach is not yield.
 
 | frame | units | orders reachable | % not-ready | Gini | max unit | top10 covers | top100 covers | greedy top10 | reached with <=2 open steps | median open steps |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| F0_order | 14747 | 14747 | 100.0% | 0.00 | 1 | 0.1% | 0.7% | 0.1% | 69 | 5 |
-| F1_ending_instrument | 1762 | 2750 | 18.6% | 0.43 | 326 | 4.4% | 8.0% | 4.4% | 45 | 5 |
-| F2_actor_provision_record | 1002 | 1037 | 7.0% | 0.47 | 203 | 2.6% | 4.3% | 2.8% | 20 | 3 |
-| F3_source_document | 906 | 945 | 6.4% | 0.04 | 19 | 0.4% | 1.0% | 0.4% | 0 | 5 |
-| F4_legal_family_template | 1569 | 3339 | 22.6% | 0.72 | 1032 | 15.2% | 18.3% | 15.4% | 49 | 4 |
-| F5_owner_or_codebook_decision | 6 | 13260 | 89.9% | 0.59 | 11613 | 89.9% | 89.9% | 89.9% | 26 | 6 |
-| F6_missing_input_type | 10 | 3134 | 21.2% | 0.38 | 1051 | 21.2% | 21.2% | 21.2% | 69 | 4 |
+| F0_order | 14734 | 14734 | 100.0% | 0.00 | 1 | 0.1% | 0.7% | 0.1% | 67 | 5 |
+| F1_ending_instrument | 1762 | 2737 | 18.6% | 0.43 | 326 | 4.3% | 7.9% | 4.3% | 43 | 5 |
+| F2_actor_provision_record | unavailable: missing input jobs/claim-kit/output/MISSING_SOURCES.jsonl |  |  |  |  |  |  |  |  |  |
+| F3_source_document | unavailable: missing input jobs/claim-kit/output/FAMILIES.json |  |  |  |  |  |  |  |  |  |
+| F4_legal_family_template | unavailable: missing input jobs/claim-kit/output/FAMILIES.json |  |  |  |  |  |  |  |  |  |
+| F5_owner_or_codebook_decision | 5 | 12777 | 86.7% | 0.53 | 11613 | 86.7% | 86.7% | 86.7% | 0 | 6 |
+| F6_missing_input_type | unavailable: missing input jobs/claim-kit/output/dossiers/*.json |  |  |  |  |  |  |  |  |  |
 | F7_aux_current_predicate_table | 2178 | 340 | 2.3% | 0.23 | 20 | 0.6% | 1.1% | 0.6% | 0 | 4 |
-| F8_work_backwards_reviewer | 162 | 106 | 0.7% | 0.37 | 23 | 0.5% | 0.7% | 0.5% | 69 | 2 |
-| F9_single_blocker_frontier | 13 | 4602 | 31.2% | 0.92 | 4560 | 31.2% | 31.2% | 31.2% | 42 | 5 |
+| F8_work_backwards_reviewer | 157 | 104 | 0.7% | 0.38 | 23 | 0.5% | 0.7% | 0.5% | 67 | 2 |
+| F9_single_blocker_frontier | 12 | 4602 | 31.2% | 0.91 | 4560 | 31.2% | 31.2% | 31.2% | 42 | 5 |
 
-Distinct not-ready orders reached across nonbaseline frames: 14747 (deduplicated union).
+Distinct not-ready orders reached across nonbaseline frames: 13935 (deduplicated union).
 Potential is conditional on completing all affected clauses. Realized readiness change is unmeasured. A single blocker category can require several research actions.
-Input snapshot SHA-256: ccea6834b5960fbdd15613e42f5f93ece68874ed88b7025e568c8f9e099f0727
+Input snapshot SHA-256: baaf6acb3f16206c6651d1990c9f0d4df44f4617935dcbf6ca17a3f3f54955a7
 
 | step | open (not ready) | open (decided, not ready) | views reaching orders with it open |
 |---|---:|---:|---|
 | provisional_status | 11613 | 0 | F1/NO_hypothesis_for_undecided 1748 |
-| original_text | 8100 | 1047 | F3/claim_kit_source_family 901 |
-| clause_inventory | 14682 | 3069 | F4/x1_text_cluster 1231 |
-| ending_or_current_basis | 14727 | 3114 | F4/claim_kit_family 2263, F2/actor_provision_record 1037, F1/ending_of_decided_NO 1002, F7/current_law_citation 340 |
-| savings_residuals | 14694 | 3081 | NONE |
-| counterevidence | 12488 | 875 | NONE |
-| shared_sources | 46 | 46 | F3/tracker_shared_source 46 |
+| original_text | 8100 | 1047 | NONE |
+| clause_inventory | 14670 | 3057 | NONE |
+| ending_or_current_basis | 14714 | 3101 | F1/ending_of_decided_NO 989, F7/current_law_citation 340 |
+| savings_residuals | 14681 | 3068 | NONE |
+| counterevidence | 12482 | 869 | NONE |
+| shared_sources | 46 | 46 | NONE |
 | opus_media | 723 | 723 | NONE |
 
-Stack: 24 of 3134 decided not-ready orders have every open step reachable by some frame's unit; the rest need steps no frame covers.
-- 1380 orders: no frame reaches clause_inventory, savings_residuals
-- 543 orders: no frame reaches clause_inventory, savings_residuals, opus_media
-- 250 orders: no frame reaches clause_inventory, savings_residuals, counterevidence
-- 198 orders: no frame reaches ending_or_current_basis, savings_residuals, counterevidence
-- 179 orders: no frame reaches clause_inventory, ending_or_current_basis, savings_residuals
-- 152 orders: no frame reaches savings_residuals, counterevidence
+Stack: 20 of 3121 decided not-ready orders have every open step reachable by some frame's unit; the rest need steps no frame covers.
+- 760 orders: no frame reaches clause_inventory, savings_residuals
+- 580 orders: no frame reaches original_text, clause_inventory, ending_or_current_basis, savings_residuals, counterevidence
+- 443 orders: no frame reaches clause_inventory, ending_or_current_basis, savings_residuals
+- 312 orders: no frame reaches clause_inventory, ending_or_current_basis, savings_residuals, opus_media
+- 306 orders: no frame reaches original_text, clause_inventory, ending_or_current_basis, savings_residuals
+- 259 orders: no frame reaches clause_inventory, savings_residuals, opus_media
 wrote jobs/polya/output/COMPARE.json
-exported 106 candidate actions -> jobs/polya/output/CANDIDATE_ACTIONS.json
+exported 56 candidate actions -> jobs/polya/output/CANDIDATE_ACTIONS.json
