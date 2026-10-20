@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:9027>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 221,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:9027#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 222,
     "id": "CHAIN:EO:9027",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9027"
@@ -60,6 +90,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:9027>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:9027>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9027 of January 16, 1942.': number and date match the target's signing date. Target text: jobs/fr-originals/data/full_run/texts/EO_9027.txt (7 FR 363, PDF pages 1-1). DOSSIER DEFECT: the clause inventory for EO:9027 (offsets 713-2314) is EO 9026 (Alaska cantonment-site land withdrawal, footer '[No. 90261'); EO 9027's own text is the next order on the same page: Subdivision XL of Schedule A amended by adding paragraph '3. One general counsel.' (Board of Investigation and Research per the FR contents), ending at the '[No. 90271' footer. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:9027>EO:9830@rastell",
+      "producer": "claude-r9830s2-producer",
+      "producer_d6": "Searched held FR texts (jobs/fr-originals full_run, EO_8706..EO_9829 files, whitespace-normalised regex) for the target number in any naming context and for later amendment of the specific rule/schedule paragraph the target set. Number hits: none other than EO 9830. No held instrument amends Subdivision XL of Schedule A after 1942-01-16 and no held instrument after EO 9027 mentions the Board of Investigation and Research. Dossier chain empty. The dossier own-term (a 'condition') belongs to EO 9026 (Alaska land withdrawal), not EO 9027; EO 9027 has no own end term. UNHELD LEAD (not decided): the Board of Investigation and Research was a temporary statutory body (Transportation Act of 1940, title III; 54 Stat. 898) whose term and extensions are not held; if the Board ceased to exist before 1947-05-01 the paragraph lost its object before EO 9830 (whether that is an end is for the reviewer). EO 9830 Schedule A does not re-list the position. No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources, but D6 is INCOMPLETE on a material disclosed lead: the Board of Investigation and Research was a temporary body under the Transportation Act of 1940, title III; if its statutory term lapsed before 1947-05-01 the paragraph lost its object before EO 9830. That statute and any extensions are not held, so an earlier end (or obsolescence) cannot be excluded. Also the dossier inventory (713-2314) is EO 9026, not EO 9027. Not claims-enabling until the statute is held and the inventory corrected.",
+        "d6_searched": "Searched every held FR text (jobs/fr-originals full_run) numbered after the target up to EO 9852 (inclusive of EO 9831-9852, i.e. through 1947-05-01, beyond the producer's EO 9829 bound) for the target number (word-bounded) and, whitespace-normalised, for amendments of the rule/schedule paragraph the target set; EO 9830 searched for savings. Number hits: none other than EO 9830. Subject: 'Subdivision XL', 'Investigation and Research': no later held hits; EO 9830 Schedule A does not re-list the position. Held target read: the second order on 7 FR 363 adds paragraph '3. One general counsel.' to Subdivision XL of Schedule A (Board of Investigation and Research per FR contents); no own end term.",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830s2-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:9027",
+      "target_naming": {
+        "char_end": 91488,
+        "char_start": 91459,
+        "sha256": "0942b7f726a79095c95487cc9ef96156d3fc6a1935836f2a158fd4331e817a0d",
+        "text": "No. 9027 of January 16, 1942."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:9027>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:9027>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:9027#whole": {
       "char_end": 2314,
       "char_start": 713,
@@ -3553,7 +3679,7 @@
       "text": "Unlawful disclo-\nsures by carrier, etc.\nor his or its officer, agent, employee, or representative, knowingly and \nwillfully obtain transportation subject to this part at less than the \nrates, fares, or charges lawfully in effect, or shall knowingly and will-\nfully, directly or indirectly, by false claim, false billing, false repre-\nsentation, or other device or means, obtain or attempt to obtain any \nallowance, refund, or repayment in connection with or growing out of \nsuch transportation, whether with or without the consent or connivance \nof such carrier or his or its officer, agent, employee, or representative, \nwhereby the compensation of such carrier for such transportation or \nservice, either before or after payment, shall be less than the rates, \nfares, or charges lawfully in effect, shall be deemed guilty of a mis-\ndemeanor and upon conviction thereof in any court of the United \nStates of competent jurisdiction within the district in which such \noffense was in whole or in part committed, be subject for each offense \nto a fine of not more than $5,000.\n“(d) Any water carrier or other person, or any officer, agent, \nemployee, or representative thereof, who shall willfully fail or refuse \nto make a report to the Commission as required by this part, or to \nmake specific and full, true, and correct answer to any question \nwithin thirty days from the time it is lawfully required by the Com-\nmission so to do, or to keep accounts, records, and memoranda in \nthe form and manner prescribed by the Commission, or shall willfully \nfalsify, destroy, mutilate, or alter any report, account, record, \nmemorandum, book, correspondence, or other document, required \nunder this part to be kept, or who shall willfully neglect or fail to \nmake full, true, and correct entries in such accounts, records, or \nmemoranda of all facts and transactions as required under this part, \nor shall willfully keep any accounts, records, or memoranda contrary \nto the rules, regulations, or orders of the Commission with respect \nthereto, or shall knowingly and willfully file with the Commission \nany false report, account, record, or memorandum, shall be deemed \nguilty of a misdemeanor, and upon conviction thereof in any court of \nthe United States of competent jurisdiction within the district in \nwhich such offense was in whole or in part committed, be subject for \neach offense to a fine of not more than $5,000."
     }
   },
-  "fingerprint": "daa8dd7515c882b75d2477593d4c0748a089e808b7defdb0ab9216462988e834",
+  "fingerprint": "aece7e6da246d10d4bf0c0f8b33815029dfdab0614690b5989681d36749c359e",
   "instrument_id": "EO:9027",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -3595,8 +3721,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:9027",

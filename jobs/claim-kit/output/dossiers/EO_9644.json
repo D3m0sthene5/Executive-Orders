@@ -10,11 +10,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:9644>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 221,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:9644#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 222,
     "id": "CHAIN:EO:9644",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9644"
@@ -128,6 +158,102 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:9644>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:9644>EO:9830",
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9644 of October 19, 1945.': number and date match the target's signing date (1945-10-19). Not claims-enabling as a single dated end for sec. 2 until the conditional own term is resolved. Dossier clause inventory starts at sec. 1(a) (offset 1362); the sec. 1 lead sentence ('Section 1. The Civil Service Commission is authorized to confer ...') is not a separate clause and the reviewer should confirm the inventory. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:9644>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Searched held FR texts 1945-1947 for 9644 (OCR-tolerant): no instrument other than EO 9830 names it. CONDITIONAL OWN-TERM LEAD (not decided): sec. 2 operates only \"During the period the Civil Service Commission is operating under the War Service Regulations prescribed pursuant to Executive Order No. 9063 of February 16, 1942\"; EO 9691 (signed 1946-02-04; held EO_9691.txt, 11 FR 1381) sec. 9 revoked EO 9063 and sec. 3 required that not later than thirty days after that order all appointments and status changes be made under the Civil Service Rules and Regulations. Whether and when sec. 2's period ended (1946-02-04, about 1946-03-06, or later as the Commission wound down the War Service Regulations) is a reading for the reviewer; if it ended, sec. 2 ceased to operate before EO 9830. LEAD (overlap, not an end): EO 9691 sec. 8 separately authorizes classified or probational status for 10-per-cent disabled veterans serving under war-service indefinite or sec. 4 appointments; it does not name or revoke EO 9644 sec. 1. No express earlier end of EO 9644 found in held sources. COVERAGE NOTE: the held FR corpus (jobs/fr-originals full_run, 6,652 files) holds only FR issues that carry an executive order, so Civil Service Commission regulations or notices published in other issues of 1945-1947 cannot be searched. ",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No express earlier end found. CONDITIONAL OWN-TERM LEAD confirmed, not decided: EO 9691 (signed 1946-02-04) sec. 9 revoked EO 9063 and sec. 3 required all classified-service actions under the Civil Service Rules not later than thirty days after that order, so sec. 2's period may have ended 1946-02-04, about 1946-03-06, or later; disclosed by producer, not ignored. EO 9691 sec. 8 overlaps sec. 1 but does not name or end it. Sec. 2 is not claims-enabling as a single dated end until the own-term reading is decided; inventory start (sec. 1 lead sentence) must be confirmed.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number (all hits read) and for amendments of the clauses the target set; EO 9830 searched for savings. Read held EO_9644.txt (sec. 1 status for 10-per-cent disabled veterans on war-service indefinite appointments; sec. 2 probational appointment 'During the period the Civil Service Commission is operating under the War Service Regulations prescribed pursuant to Executive Order No. 9063'; sec. 3 regulations). Hits for 9644: EO_9513/9514/9515 (hash string), EO_10178.txt (F.R. Doc. 50-9644, coincidental), EO_9830.txt. Read held EO_9691.txt secs. 3, 8, 9.",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830s-s3-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:9644",
+      "target_naming": {
+        "char_end": 91873,
+        "char_start": 91844,
+        "sha256": "d4756448c143ed080e9d102cadfce9b1a22d03eb6b5d8d337d660e8907b46ab8",
+        "text": "No. 9644 of October 19, 1945."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:9644>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:9644>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "ACTOR_TEXT:EO:9063": {
       "actor_id": "EO:9063",
       "char_end": 5341,
@@ -463,7 +589,7 @@
       "text": "(b) If such veteran has not completed a trial period of one year he may be given a probational status upon certification to the Civil Service Commission by the head of the agency concerned that the employee was given an indefinite war-service appointment and has been serving satisfactorily during his trial period."
     }
   },
-  "fingerprint": "e6dc8a87b58c623221a7dd38eb7c155c083da8dfd1631669025a5258d58030e5",
+  "fingerprint": "d5617f411045e529863f08bb446a998e3a0e1832c0002b7a28046f6c76cdebb4",
   "instrument_id": "EO:9644",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -506,8 +632,7 @@
   ],
   "missing": [
     "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9063",
-    "target provision not located: EO:9830"
+    "target provision not located: EO:9063"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:9644",
