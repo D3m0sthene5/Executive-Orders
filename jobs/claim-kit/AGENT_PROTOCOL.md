@@ -99,3 +99,14 @@ An accepted record enters `ACTING_PROVISIONS` as `ACT:<target>><actor>` with pro
 A source marked `requires_page_check` also requires explicit
 `original_pages_confirmed: true` after the official pages/images were inspected;
 confirming an extracted OCR text alone does not satisfy that flag.
+
+VALLA adds exact reasoning review leads and explicitly reviewed preparation
+components to batch packets. Read the pinned `valla_context` and the readable
+review section. A wording match is never a confirmed error or legal equivalence.
+An independently examined dependency identifies only the specified conclusions
+for revalidation. Component attestations cover only their stated scope and method;
+an overall upheld review or silence approves no field. Reusing a quotation does
+not confirm its source identity, complete inventory or ending theory. Changed
+review dependencies require a new packet version. Every correction still needs
+all member-specific checks, independent whole-case review, and owner acceptance
+for replacement proposals. See `jobs/valla/README.md`.

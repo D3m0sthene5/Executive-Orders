@@ -26,7 +26,12 @@ class Base(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.led, self.out = self.tmp / "ledger", self.tmp / "output"
         self.led.mkdir()
-        shutil.copy(SEED / "finders.json", self.led / "finders.json")
+        # Allocation examples deliberately use their three-finder fixture, not
+        # whichever additional domain finders are currently registered.
+        fixture=json.loads((SEED / "finders.json").read_text())
+        fixture["finders"]=[f for f in fixture["finders"] if f["finder_id"] in
+                            {"F-hamilton", "F-friction", "F-wasted_work"}]
+        (self.led / "finders.json").write_text(json.dumps(fixture))
         for n in ("runs", "candidates", "tests", "verified_savings", "finder_proposals"):
             (self.led / (n + ".jsonl")).write_text("")
 

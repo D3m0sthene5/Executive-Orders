@@ -30,6 +30,24 @@ class BatchTests(T.BuildIntegrationTests):
         batch.csv_write(folder/'decisions.csv',batch.ROW_FIELDS,order)
         batch.csv_write(folder/'clauses.csv',batch.CLAUSE_FIELDS,clauses)
 
+    def test_valla_context_attaches_without_approval_and_refuses_stale_claim(self):
+        import shutil
+        source=Path(__file__).resolve().parents[1]/'valla'
+        target=self.repo/'jobs/valla';target.mkdir(parents=True)
+        for name in ('valla.py','premises.json'):shutil.copyfile(source/name,target/name)
+        self.run_build();folder=self.repo/'research/valla-test/packet'
+        result=batch.prepare(self.repo,self.out,folder,['EO:1'],'producer')
+        packet,ds=batch.load_packet(folder,self.repo)
+        self.assertEqual(packet['valla_context']['automatic_approvals'],0)
+        self.assertTrue(packet['valla_context']['whole_case_review_required'])
+        self.assertIn('Valla review leads',(folder/'READ.md').read_text())
+        # A new active version changes context, not the frozen packet or any approval.
+        p=self.repo/'research/readiness/claims/new.jsonl';p.parent.mkdir(parents=True,exist_ok=True)
+        p.write_text(json.dumps({'schema':'eo-lifecycle-claim/v1','instrument_id':'EO:1',
+            'research_rationale':'Every clause remains part of the order until revoked.'})+'\n')
+        with self.assertRaisesRegex(ValueError,'changed Valla review context'):
+            batch.load_packet(folder,self.repo)
+
     def test_lossless_roundtrip_shares_sources_and_full_text(self):
         p=self.packet();packet,dossiers=batch.load_packet(p,self.repo)
         self.assertEqual(dossiers,{iid:self.dossier(iid) for iid in ('EO:1','EO:2')})

@@ -6,7 +6,7 @@ New York date: 2026-10-20. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 230 of 14,972 orders (1.5%)**
+**Ready for human review: 225 of 14,972 orders (1.5%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -31,9 +31,10 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 - clause-drafts: clauses_total: 70539 → 70566; fragments_from_app_transcription: 5013 → 4981; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
 - family-rules: saved_texts_scanned: 46624 → 46816
 - official-fixity: carried_forward: 5054 → 5093; checked_this_run: 4 → 0; files: 5058 → 5093; premis_bytes_read_this_run: 65536 → 0
-- readiness-tracker: ready_for_human_review: 138 → 230
+- readiness-tracker: ready_for_human_review: 138 → 225
 - source-ladder: attempts_logged: 20 → 125; bytes_downloaded: 78296215 → 246871929; distinct_new_source_hashes: 6 → 33; earlier_found_carried_with_defect: unavailable → 16
-- x1-class-engine: modern_families_5_plus: 178 → 185
+- valla: active_claims: unavailable → 331; examined_dependencies: unavailable → 5; legal_promotions: unavailable → 0; model_calls: unavailable → 0
+- x1-class-engine: modern_families_5_plus: 178 → 182
 
 ## Top shared unlocks
 
@@ -47,7 +48,7 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: - **Asks:** @Claude: source-ladder SUMMARY203 still excludes774Opus entries despite actual reader/log pickup; read T2 caveats. @Codex: actor attribution/named-body defects remain; checker also mistakes EO11157-14 image filename for an order, now avoided in versioned packaging. @Owner: no status change or OPUS exception requested; remaining scheduled reviews are not yet done.
+- notes-astra.md: - **Asks:** @Claude: repair queue ID collision for FETCH_QUEUE118/120 (EO9837) and128/129 (EO9799) without editing committed queue lines, preserve prior ladder evidence, then correct SUMMARY's774Opus omission; see checkpoint. @Codex: repair documented actor/date attribution, including EO10821 falseJuly1,1959 from neighboring PostOffice contents; actualMay20,1959. @Owner: user pause recorded; no status change/OPUS exception requested, later T5/T6 owner findings not completed.
 - notes-claude.md: No open ask recorded in newest entry.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
