@@ -22,6 +22,7 @@ from pathlib import Path
 
 import embedded_cites
 import fetch_ladder
+import report_dates
 
 STEPS = ("original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals",
          "counterevidence", "shared_sources", "opus_media")
@@ -85,20 +86,39 @@ def read_fetch_queue(path, eo_index=None):
             if wanted_id in seen:
                 wanted_id = f"{wanted_id} #{n}"
         seen[wanted_id] = (urls, step)
+        note = str(r.get("note") or "")
         w = fetch_ladder.Wanted(wanted_id=wanted_id, instrument_ids=[iid],
                                 urls=urls, citation=citation, step=step,
-                                requested_by=str(r.get("requested_by") or ""))
+                                requested_by=str(r.get("requested_by") or ""),
+                                extra={"queue_note": note[:600]})
         attach_eo_record(w, eo_index)
+        # "Date the commission submitted its report": the report-date lane looks for the transmittal record
+        # (report_dates.py). Such a line is kept whole, not split into the cites it happens to mention.
+        spec = report_dates.build_spec(citation, [iid], eo_signing_dates(eo_index, [iid], citation), note)
+        if spec:
+            w.extra["report_date"] = spec
         # A citation buried in prose (no URL, not a bare cite) used to end as no_route without one
         # request. Scan it for embedded cites and queue one item per cite; if it holds none, the
         # original item stays so the no_route failure is still recorded.
-        if not urls and fetch_ladder.parse_citation(citation)[0] is None:
+        if not spec and not urls and fetch_ladder.parse_citation(citation)[0] is None:
             kids = embedded_children(w, eo_index)
             if kids:
                 wanted.extend(kids)
                 continue
         wanted.append(w)
     return wanted, problems
+
+
+def eo_signing_dates(eo_index, instrument_ids, text):
+    """{'12335': '1981-12-28'}: signing dates (OFR index) of the orders a request names. Empty without the index."""
+    out = {}
+    nums = [i.split(":", 1)[1] for i in instrument_ids if i.startswith("EO:")] + report_dates.eo_numbers(text)
+    for n in dict.fromkeys(nums):
+        hit = lookup_eo(eo_index, n)
+        d = ((hit or {}).get("primary") or {}).get("signing_date")
+        if d:
+            out[n] = d
+    return out
 
 
 def own_fr_pages(text, instrument_ids, eo_index):
@@ -127,6 +147,7 @@ def embedded_children(w, eo_index):
             wanted_id=f"{w.wanted_id} <{c['cite']}>", instrument_ids=list(w.instrument_ids),
             urls=[], citation=c["cite"], step=w.step, requested_by=w.requested_by,
             extra={"parent_wanted_id": w.wanted_id, "parent_citation": w.citation,
+                   "queue_note": (w.extra or {}).get("queue_note", ""),
                    "embedded_cite_kind": c["kind"],
                    "embedded_cites_not_queued": [o["cite"] for o in overflow]}))
     return out

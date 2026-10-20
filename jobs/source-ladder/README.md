@@ -32,6 +32,82 @@ No eCFR API route: ecfr.gov/robots.txt disallows `/api/renderer/v1/content/`, `/
 and the ladder obeys robots.txt, so CFR text comes from the govinfo annual edition (`year=mostrecent`, labelled with
 its edition). A govinfo PREMIS/MODS metadata file is hashed and logged but never accepted as the requested document.
 
+**Report dates (`report_dates.py`, PANIZZI-2, 2026-10-20).** Many endings are written "N days after the report is
+submitted" (emergency boards, commissions, task forces). A queue line that asks for the date a report was submitted
+(report + a submission word + "date" or "actual", or an emergency board that was created/established; the
+line's `note` counts too) is kept whole and gets a `report_date` spec (body name, order numbers and their OFR signing
+dates, a due date or `week of A to B` window, the lane) and these routes instead of a citation route:
+- **Emergency boards:** the National Mediation Board table (`nmb.gov/NMB_Application/index.php/peb/`) is read as an
+  index; boards whose *created* date is within 3 days of an order's signing date (or, for an amending order, whose life
+  contains the order date and whose carrier/union the request names) are ranked, and each report PDF (under 1 MB)
+  is saved with its first 8 pages. Two boards created the same day are both fetched.
+- **1993-01-25 to 2009-01-19, Weekly Compilation of Presidential Documents:** up to 20 Monday issues around the
+  due date (`govinfo.gov/metadata/pkg/WCPD-YYYY-MM-DD/mods.xml`, about 100 KB each); a title that says "report" and
+  names the body (words in order) is fetched; the issue's Digest is a fallback.
+- **Before 1993-01-25, Public Papers of the Presidents:** `PPP_YYYY_sitemap.xml` lists the year's books; each is a single
+  0.7-1.0 GB PDF read **by HTTP Range** (`Fetcher.open_range`, pypdf `strict=True`), never downloaded. The running heads
+  ("Feb. 26 / Administration of ...") are bisected to the target date, then pages are scanned (backward from a due date;
+  forward through a request window). pypdf loads a scanned page's image stream (~0.8 MB) whenever it resolves the page,
+  so `RangeFile` returns zeros, without fetching, for a long read that follows an `/Image` dictionary (text identical in
+  a side-by-side test; about 10x fewer bytes: 30 pages cost ~2.6 MB). Bounds per case: 40 MB and 600 Range requests; per run `JOB_MAX_RANGE_REQUESTS`
+  (default 1500) and the 800 MB download ceiling. Range reads are counted apart from the 300 page requests and are
+  spaced 0.25 s (they are blocks of one open file), or the host's robots crawl delay. The record kept is the
+  assembled page text (hashed) plus the file's Content-Length, Last-Modified and ETag; the whole volume is not hashed.
+- **Reports to an agency head, or with no named body, or after 2009-01-19** have no presidential-documents route and
+  end `no_route` with the reason.
+The job returns **custody, not a date**: the source record carries `report_date_request` (the spec),
+`report_date_basis` (the board row or issue/title or pages used; NMB table dates are marked "index, not proof") and
+`report_date_leads` (verbatim lines that carry a date, with page numbers, unlabelled). There is no `report_date` field;
+whether a dated line is the transmittal letter, the date received, or only "recommendations" (EO 12335 got a
+1983-01-15 "recommendations" record) is the claim producer's / reviewer's call. A found document is custody, not
+authentication. Index steps that match nothing are passing failures (`rd_*`), never "exhausted".
+
+**Five defects fixed (Craigellachie II, PANIZZI-2).**
+1. *Wayback pages saved as gzip bytes* (EO 12335, 11065, lines 50-54): a body that starts with the gzip magic (or says
+   `Content-Encoding: gzip`/`deflate`) is decoded, bounded, **before** it is hashed or read. `sha256`/`bytes` are the
+   decoded document; `raw_sha256`/`raw_bytes` and `content_encoding_decoded` are kept in the source record, and both
+   blobs stay in the cache. Old cache entries holding undecoded gzip are re-decoded offline on first use. A corrupt,
+   truncated or oversize stream, or any non-PDF body more than 5% U+FFFD, is rejected (`undecodable_gzip`,
+   `binary_or_undecodable_text`) and is a passing failure.
+2. *Only pages 1-40 of a Public Law:* statutes (`STATUTE-`/`PLAW-` PDFs) are read in full up to 500 pages; `PDF pages
+   a-b` in the request, a `#page=` fragment and the Stat. cite's page inside the granule choose pages for other PDFs;
+   `page_or_item` lists every span and says `PARTIAL` when pages were left out. A request for "sec. N of Pub. L. ..."
+   is rejected when the extraction is partial and the section is missing (`partial_extraction`) and notes "section N
+   seen/NOT seen".
+3. *Table of contents or editions list taken as the document:* extracted pages that are a table of contents with almost
+   no operative text are rejected (`toc_only`); the uscode.house.gov editions menu is stripped from the text, and a page
+   that is only the menu is rejected (`index_page`). A Wayback capture older than the legal cutoff is flagged in `notes`.
+   A live official Code/CFR page is tried before a Wayback copy of the same page.
+4. *A current edition for a question dated earlier* (5 CFR 6 for a 1953 question): `request_year` takes the latest year
+   the request names (cite numbers excluded; "current" or `extra['as_of']` overrides). For USC/CFR requests dated before
+   2026 the route is the govinfo edition of that year (`link/cfr/..?year=Y`, `link/uscode/..?year=Y`); the current
+   edition, eCFR, uscode.house.gov and Cornell are not tried; a numbered edition later than Y+1, or a current page,
+   is refused even if some other route returns it (`current_edition_for_dated_request`). Before the first govinfo
+   edition (CFR 1996, Code 1994) there is no route: `no_route` with `historical_cfr_not_on_govinfo`.
+5. *A listing of laws taken as the instrument* (`congress.gov/public-laws/119th-congress`, the Federal Register
+   executive-orders list): rejected as `index_page`; never proposed as exhausted.
+`index_page`, `toc_only`, `partial_extraction`, `current_edition_for_dated_request` and `rd_*` mean "this copy cannot
+be used", not "the document is not there", so they never feed an exhausted proposal.
+
+**Review fixes (Panizzi II, 2026-10-20).**
+- *Earlier found records are re-checked.* Carry-forward used to keep every found record for ever, so the fixes above
+  never reached the records that showed the defects (Pub. L. 98-525 pages 1-40, the gzip pages for EO 12335/11065, the
+  2026 CFR for 1953, the congress.gov listing). `fetch_ladder.carried_defect` re-checks each carried record (listing or
+  finding-aid URL, current edition for a dated question, undecodable text, editions list, table of contents, a statute
+  PDF kept in part). A failing record is walked again; until then it stays in `SOURCES.jsonl` with `carried_defect`,
+  and a new record names the old one in `supersedes_defective_source` (URL, sha256, why). A failed re-walk names the
+  old URL and hash in its RESULTS row. Offline runs do not re-check. Against the committed output: 31 of 251 records.
+- *A request that ended `no_route` is not "tried".* It now ranks with untried requests once it has a route, so the new
+  report-date lines enter the 50-item plan (29 of them on the current queue, instead of 6).
+- *NARA Guide to Federal Records pages* (`archives.gov/research/guide-fed-records/`) describe a record group; they are
+  `index_page`, not the record (EO 12095, 12159, 12182 had "found" the RG 13 guide page).
+- *Same-day emergency boards:* a board report whose front matter names a different order (by number, or "Executive
+  Order dated ...") is refused; equal NMB candidates are listed in `equal_candidates`.
+- *Range budget:* a spent `JOB_MAX_RANGE_REQUESTS` fails only the Range route (`rd_range_budget_reached`, a passing
+  failure); it no longer stops the whole run.
+- Upper-case title-page dates ("FEBRUARY 9, 1979") are leads; a report PDF with no text layer ends
+  `rd_no_meaningful_text` (PEBs 205/206, 1984, are scans without OCR).
+
 **What it does, in plain words.** Research agents used to spend a lot of time
 hunting for a copy of a document by hand: try the link, try another form of
 the link, try the Wayback Machine, try another official site, try a mirror.
