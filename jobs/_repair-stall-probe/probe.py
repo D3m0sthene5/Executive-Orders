@@ -2,6 +2,7 @@
 import argparse
 import faulthandler
 import json
+import hashlib
 import importlib.util
 import os
 from pathlib import Path
@@ -17,9 +18,10 @@ p = argparse.ArgumentParser()
 p.add_argument('--repo', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
 p.add_argument('--network-budget', type=int, choices=(0, 2, 400), required=True)
-p.add_argument('--cases', type=int, choices=(2, 3359), default=2)
+p.add_argument('--cases', type=int, choices=(2, 500, 3359), default=2)
 p.add_argument('--mode', choices=('drafts', 'sources'), default='drafts')
 p.add_argument('--refresh-producers', action='store_true')
+p.add_argument('--stack-method', choices=('watchdog', 'python'), default='python')
 a = p.parse_args()
 repo = a.repo.resolve()
 out = a.output.resolve()
@@ -46,7 +48,8 @@ def heartbeat():
     while not stop.wait(15):
         usage = resource.getrusage(resource.RUSAGE_SELF)
         emit('heartbeat', user_cpu_seconds=usage.ru_utime,
-             system_cpu_seconds=usage.ru_stime, max_rss_kib=usage.ru_maxrss)
+             system_cpu_seconds=usage.ru_stime, max_rss_kib=usage.ru_maxrss,
+             main_stack=traceback.format_stack(sys._current_frames()[threading.main_thread().ident], limit=14) if a.stack_method == 'python' else [])
 
 
 original_urlopen = urllib.request.urlopen
@@ -71,7 +74,8 @@ def traced_urlopen(request, *args, **kwargs):
 urllib.request.urlopen = traced_urlopen
 threading.Thread(target=heartbeat, daemon=True).start()
 faulthandler.enable()
-faulthandler.dump_traceback_later(45, repeat=True)
+if a.stack_method == 'watchdog':
+    faulthandler.dump_traceback_later(45, repeat=True)
 emit('start', target_commit=os.environ.get('TARGET_COMMIT'), cases=a.cases, mode=a.mode,
      network_budget=a.network_budget, pid=os.getpid())
 code = 0
@@ -114,6 +118,23 @@ try:
         # Import and instrument the unchanged target module. Only timing output is added.
         sys.path.insert(0, str(repo / 'jobs/claim-drafts'))
         import drafts
+        original_init = drafts.CheckerRunner.__init__
+
+        def traced_init(self, *args, **kwargs):
+            original_init(self, *args, **kwargs)
+            original_pdf = self.mod.S.pdf_pages
+
+            def traced_pdf(data):
+                t0 = time.monotonic()
+                digest = hashlib.sha256(data).hexdigest()
+                emit('pdf_start', sha256=digest, bytes=len(data))
+                result = original_pdf(data)
+                emit('pdf_complete', sha256=digest, pages=len(result), seconds=time.monotonic() - t0)
+                return result
+
+            self.mod.S.pdf_pages = traced_pdf
+
+        drafts.CheckerRunner.__init__ = traced_init
         original_build = drafts.build_draft
 
         def timed_build(iid, *args, **kwargs):
@@ -134,7 +155,7 @@ finally:
     usage = resource.getrusage(resource.RUSAGE_SELF)
     summary = emit('complete', exit_code=code, user_cpu_seconds=usage.ru_utime,
         system_cpu_seconds=usage.ru_stime, max_rss_kib=usage.ru_maxrss,
-        mode=a.mode, cases=a.cases, refreshed_producers=a.refresh_producers, network_budget=a.network_budget, network_events=events,
+        mode=a.mode, cases=a.cases, refreshed_producers=a.refresh_producers, stack_method=a.stack_method, network_budget=a.network_budget, network_events=events,
         interpretation='Diagnostic only; initial committed inputs, not the live runner filesystem. No canonical outputs or claims are published.')
     (out / 'PROBE_SUMMARY.json').write_text(json.dumps(summary, indent=2) + '\n')
 raise SystemExit(code)

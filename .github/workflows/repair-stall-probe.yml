@@ -47,15 +47,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r target/jobs/claim-drafts/requirements.txt
-      - name: Rebuilt deterministic producers and offline drafts (eight-minute cap)
+      - name: First 500 online drafts with Python stack sampling (eight-minute cap)
         run: |
           set -o pipefail
-          timeout --signal=TERM --kill-after=15s 480s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-regenerated' --network-budget 0 --cases 3359 --refresh-producers 2>&1 | tee '${{ runner.temp }}/stall-regenerated.log'
+          timeout --signal=TERM --kill-after=15s 480s python -u controller/jobs/_repair-stall-probe/probe.py --repo target --output '${{ runner.temp }}/stall-crash-control' --network-budget 400 --cases 500 --stack-method python 2>&1 | tee '${{ runner.temp }}/stall-crash-control.log'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: isolated-stall-probe-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/stall-regenerated.log
-            ${{ runner.temp }}/stall-regenerated/PROBE_SUMMARY.json
-            ${{ runner.temp }}/stall-regenerated/drafts/SUMMARY.json
+            ${{ runner.temp }}/stall-crash-control.log
+            ${{ runner.temp }}/stall-crash-control/PROBE_SUMMARY.json
+            ${{ runner.temp }}/stall-crash-control/drafts/SUMMARY.json
