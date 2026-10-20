@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `39f2ed76586dade843c122b2159b9bf5961af954b70a839bfd38e1e14ecbf677`.
+Legal cutoff: 2026-10-14. Inputs: `e002928dc0b2bf070eabfd5e985161d027b7f2a4ef33305ef13a8927b2dbe085`.
 
-Verified committed tracker: 14,972 identities; 11,613 undecided; 135 ready for human review.
+Verified committed tracker: 14,972 identities; 11,613 undecided; 138 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -14,12 +14,12 @@ Verified committed tracker: 14,972 identities; 11,613 undecided; 135 ready for h
 | 4 | opus-refetch:fa518fc884e40b5d9d677cc1ddc6cca0ca6c735fb7e5e034f2d93f53939de194 | 3 | 10 |
 | 5 | EO::6910 | 3 | 12 |
 | 6 | EO::6964 | 3 | 12 |
-| 7 | opus-refetch:38c5e8a44c5ddf431ea395108949134238fd3c7574fe323eef94f633e74c3023 | 2 | 6 |
-| 8 | opus-refetch:3d19704434fc3ee3a7c75e7625c2216c45cd4ea95321bbc6dd6c858b15b4017f | 2 | 6 |
-| 9 | opus-refetch:468a992f3c9b4cdb0ef59a0dcec305f5906b3443f6eb2c901eae48154be9c46a | 2 | 6 |
-| 10 | opus-refetch:470c4ff2b62f98399e2f7b7a197c2a3614eb7bf2b7606d8bed8f899c271669d1 | 2 | 6 |
-| 11 | opus-refetch:5b92e43cabd2f89ffb0b0a142a558e11ef187bf96feea0d085635f10be2fafb8 | 2 | 6 |
-| 12 | opus-refetch:5f53b413a539e48ce1570cf66cadce3af8d8d7ae899ef983f7a9fe5f60ab5f6c | 2 | 6 |
+| 7 | opus-refetch:5f9bf0f28734cf00bfeba6ecd8bbd923579e5e09a3812b9bc2922141453caa1c | 2 | 6 |
+| 8 | opus-refetch:6702625fd82f54b59a6465ecb63ae790e8b0edfb95850d7271e2ccb3f7422948 | 2 | 6 |
+| 9 | opus-refetch:717b6b0db279791e3263411fc762d4de11cf37ddb843a9c763e117f8d55932d8 | 2 | 6 |
+| 10 | opus-refetch:776b6c4c34081ce1d38e3256b8cebaeb4cedfbf1dedc65704ae5be3ec40eaf7a | 2 | 6 |
+| 11 | opus-refetch:7f947d1d08fb5e24f5bf44093a28a733a13c7be72d1b72bd628bf3eaafc20f51 | 2 | 6 |
+| 12 | opus-refetch:80c5ae5ba1cd2e22cb61ceee58a91452664452dc9c78d5b5e3260f8915896373 | 2 | 6 |
 
 Readiness ceiling if the entire pass succeeds: 0; demonstrated readiness gain before execution: 0.
 

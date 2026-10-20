@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 135 of 14,972 orders (0.9%)**
+**Ready for human review: 138 of 14,972 orders (0.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -14,19 +14,19 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 183 | 3,359 | 5.4% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 139 | 3,359 | 4.1% |
-| Savings clauses and surviving effects closed | 171 | 3,359 | 5.1% |
+| Complete inventory of the order's operative clauses | 186 | 3,359 | 5.5% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 142 | 3,359 | 4.2% |
+| Savings clauses and surviving effects closed | 174 | 3,359 | 5.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,475 | 3,359 | 73.7% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
-| Opus evidence images matched to this order (Opus cases only) | 130 | 844 | 15.4% |
+| Opus evidence images matched to this order (Opus cases only) | 132 | 844 | 15.6% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 3,216 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 427 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 425 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
@@ -43,11 +43,11 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 3,216 |
-| `NO_CLAUSE_INVENTORY` | 3,137 | 3,137 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,137 | 3,137 |
-| `FIRST_END_UNPROVED` | 2,737 | 2,737 |
+| `NO_CLAUSE_INVENTORY` | 3,134 | 3,134 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,134 | 3,134 |
+| `FIRST_END_UNPROVED` | 2,734 | 2,734 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 688 | 688 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 427 | 427 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 425 | 425 |
 | `CURRENT_BASIS_UNPROVED` | 400 | 400 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
@@ -81,8 +81,8 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - opus-media-match status: 1,155
-- source-ladder: 200
-- claim-checker: 222
+- source-ladder: 206
+- claim-checker: 225
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
