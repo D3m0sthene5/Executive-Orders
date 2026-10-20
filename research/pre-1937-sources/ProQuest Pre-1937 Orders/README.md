@@ -1,17 +1,14 @@
 # ProQuest Pre-1937 Orders
 
-**The final destination for the actual PDFs is `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in the GitHub repository `D3m0sthene5/Executive-Orders`. Zero actual PDFs have been committed so far.** The owner said “go” at 2026-10-19 19:53 ET. The original EO 29 record initially displayed a login form, then opened successfully. Its matching two-page PDF rendered, and Save completed at 19:58:49 ET. The browser did not return a downloaded-file path, so that Save remains unverified.
+**13 actual PDF files covering 11 unique orders are committed and byte-verified in GitHub.** The final destination is `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in `D3m0sthene5/Executive-Orders`. The uploaded files are preserved in [commit `22546670`](https://github.com/D3m0sthene5/Executive-Orders/commit/22546670bf669d51c38e48a399d394a277ff08dd).
 
 Repository: `D3m0sthene5/Executive-Orders`  
 Handoff branch: `proquest-download-handoff-20261019`  
 Pull request: [#38](https://github.com/D3m0sthene5/Executive-Orders/pull/38)  
-Next untouched order: **EO 99**
+Current PDF awaiting transfer: **EO 99**  
+Next untouched supplied record: **EO 100**
 
-Continuation is already authorized. A local Downloads folder is an optional intermediate; confirming or configuring it is not a prerequisite to continuing this task. ProQuest access is working; no new sign-in request is currently needed. See [`_resume/session_events.jsonl`](_resume/session_events.jsonl) for the resume observation and [`_resume/EO29_viewer.png`](_resume/EO29_viewer.png) for the rendered viewer. The screenshot establishes rendering, not file presence or GitHub upload.
-
-## Actual PDF transfer still pending
-
-The owner clarified that the PDFs must go to GitHub. The latest attempt could display EO 29 but did not return its file bytes: the browser asset exporter does not support PDFs, and the documented embedded-file download timed out after 45 seconds. Do not request Downloads configuration again. Use a supported file transfer or the repository upload page to acquire the actual bytes. **2,734 supplied linked orders still need repository PDFs**, with EO 28A recorded separately as unavailable. The smaller 2,722 figure is only the untouched browser-action queue; the 12 orders with Save or screenshot evidence still need GitHub transfer.
+The owner's latest **“ok go”** authorizes continued acquisition through the original supplied links and the browser's normal record, sign-in and PDF controls. EO 99's institutional sign-in renewed automatically through the normal NYU Library link. Its native Chrome PDF viewer displayed six pages and the Download control was clicked. The browser returned no file path; the actual EO 99 file path is needed for the next GitHub file-chooser upload. A local Downloads folder is an optional intermediate, with no folder-confirmation prerequisite.
 
 ## Current checkpoint
 
@@ -19,16 +16,19 @@ The owner clarified that the PDFs must go to GitHub. The latest attempt could di
 |---|---|
 | Original HTML rows | 2,765 |
 | Rows with supplied PDF links | 2,735 |
-| Original-computer screenshot evidence | EO 4, 7, 12 — 3 unique orders |
-| Viewer Save completed; file presence still unverified | EO 10, 13, 14, 15, 17, 23, 26, 28, 29 — 9 orders |
+| Actual PDFs verified in the repository | **13 files / 11 unique orders** |
+| Linked orders without a repository PDF | **2,724**, including unavailable EO 28A |
+| Pending repository acquisition, excluding EO 28A | **2,723** |
+| Browser-action queue | **2,721**, beginning EO 100 |
+| Save/Download requests still unverified and absent from GitHub | EO 29 and EO 99 |
 | Supplied record unavailable | EO 28A — library subscription response |
 | Rows with no supplied links | 30 |
-| Remaining untouched linked queue | 2,722 |
-| PDFs confirmed stored in this repository folder | **0 — upload pending** |
 
-The original computer is expected to hold **13 PDF files for 11 unique orders**, including two additional copies of EO 4. The new computer now has one additional completed Save request for EO29. Across both computers there are **14 expected filenames covering 12 orders**, with actual file evidence still required for the nine Save requests. These filenames and their different evidence levels are listed in [`_resume/expected_files.json`](_resume/expected_files.json). This is an expected-file manifest, not a completed upload inventory. The original-computer folder has not been exhaustively inventoried.
+The stored orders are **4, 7, 10, 12, 13, 14, 15, 17, 23, 26 and 28**. EO 4 has three byte-identical copies, which account for the two extra files. All 13 paths match original source rows; repository bytes, sizes, Git blob hashes, SHA-256, PDF signatures and strict PDF parsing passed verification. This verifies file integrity and structure, without establishing archival acceptance or reviewing each page's contents.
 
-The authorized upload was attempted through GitHub's file chooser. Chrome reported that the ChatGPT extension's **Allow access to file URLs** setting is disabled, so no PDF transfer was completed. That setting is required for retrying this particular local-file chooser route. Complete PDF transfer through an available supported route and verify the repository filenames, sizes, and blob hashes before changing the upload count. Preserve the actual PDF files and existing copies; do not replace them with placeholder files.
+Ten historical Save/Download actions remain in the audit. Eight now correspond to verified repository files; **EO 29 and EO 99 remain uncertain**, with no PDF in the uploaded commit. Their rendered viewers establish rendering only. The three earlier screenshot-confirmed orders (4, 7 and 12) are also now stored in GitHub. Preserve this action history when adding stronger file evidence.
+
+The browser-action queue omits EO 29 and EO 99 because Save/Download was already requested. Repository acquisition still includes them: **2,721 queued actions + EO 29 + EO 99 = 2,723 pending orders**. Keep the separately unavailable EO 28A in the exception record.
 
 ## Continue on another computer
 
@@ -36,7 +36,7 @@ Open the same ProQuest download conversation on the other computer and say **“
 
 The final destination is this repository folder on `proquest-download-handoff-20261019` / PR #38. Local storage, including Downloads, may be used as an intermediate if the available transfer method needs it. Browser connection and ProQuest sign-in belong to the connected computer and are not carried in the repository.
 
-If the original PDF transfer is still pending, preserve that as outstanding work. Reconcile any accessible copies before retrying the nine uncertain Save results. A future “go” applies to this ProQuest queue; it does not restart the separately paused lifecycle-research assignment documented in older handoff notes.
+Preserve the 13 uploaded files and avoid downloading those 11 orders again. Reconcile any accessible EO 29 or EO 99 copy before repeating a download. Use the actual EO 99 PDF path supplied by the owner for a concrete GitHub file-chooser upload; no folder setup is required. A future “go” applies to this ProQuest queue; it does not restart the separately paused lifecycle-research assignment documented in older handoff notes.
 
 ## Contents
 
@@ -47,7 +47,8 @@ If the original PDF transfer is still pending, preserve that as outstanding work
 | [`_resume/checkpoint.json`](_resume/checkpoint.json) | Portable pause state, source fingerprint, and prior screenshot evidence |
 | [`_resume/progress.jsonl`](_resume/progress.jsonl) | Preserved per-order action audit; append new evidence here |
 | [`_resume/status.json`](_resume/status.json) | Computed progress at this checkpoint |
-| [`_resume/expected_files.json`](_resume/expected_files.json) | Expected held PDF filenames, with upload explicitly pending |
+| [`_resume/repository_files.json`](_resume/repository_files.json) | Pinned repository paths, sizes, hashes and PDF page counts for all 13 verified files |
+| [`_resume/expected_files.json`](_resume/expected_files.json) | File manifest with per-file transfer and verification evidence |
 | [`_resume/exceptions.json`](_resume/exceptions.json) | Missing links and the observed EO 28A response |
 | [`scripts/proquest_progress.py`](scripts/proquest_progress.py) | Offline queue, audit, inventory, and reconciliation helper |
 | [`scripts/proquest_browser_worker.js`](scripts/proquest_browser_worker.js) | Paused-by-default single-order browser worker; no automatic loop |
@@ -62,7 +63,7 @@ The source tool marks rows done when a PDF or record link is clicked. Its browse
 
 | Status | Evidence |
 |---|---|
-| `saved_requested` | The rendered viewer's Save command completed; file presence is unverified |
+| `saved_requested` | The rendered viewer's Save/Download control was clicked; file presence is unverified |
 | `verified_screenshot` | An original-computer screenshot showed the named file |
 | `verified_local_pdf` | Explicit reconciliation found a matching filename, byte size, SHA-256, and `%PDF-` signature |
 | `verified_repository` | The actual uploaded repository file was confirmed at a recorded path and URL |

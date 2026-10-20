@@ -1,3 +1,11 @@
+## 2026-10-19 22:08 ET: 13 actual PDFs verified in GitHub; EO 99 download requested
+
+- **Done:** Verified all 13 PDF paths uploaded by the owner in commit `22546670bf669d51c38e48a399d394a277ff08dd`: 11 unique orders (4, 7, 10, 12, 13, 14, 15, 17, 23, 26, 28). All file bytes match repository sizes and Git blob hashes; SHA-256, %PDF- signatures and strict PDF parsing pass. Three EO 4 copies are identical and preserved. Added repository verification evidence without changing prior action history.
+- **Continued:** Followed the exact EO 99 record. Its institutional sign-in renewed automatically through the visible NYU Library route. The six-page native Chrome PDF rendered and its Download control was clicked at 2026-10-20T02:01:23.668Z. No local file path was returned; this remains a request, not a confirmed file or GitHub upload.
+- **Current state:** GitHub contains 13 verified files / 11 orders. EO 29 and EO 99 still need actual transfer. There are 2,723 eligible orders pending repository PDFs, plus unavailable EO 28A; 30 original rows have no links. The untouched action queue begins EO 100 with 2,721 rows. No background download loop is running.
+- **Next concrete input:** The actual path of PT1-1897-EO-99.pdf on the connected computer, so the documented GitHub file chooser can attempt the upload. This is a specific file-selection requirement, not a request to configure or confirm Downloads as the final destination. Existing go authorization continues; GitHub is the destination.
+- **Preserve:** Exact original source URLs, uploaded PDF bytes and duplicate copies, the separate older lifecycle-task pause, and the distinction between file integrity and archival acceptance.
+
 ## 2026-10-19 20:45 ET: GitHub is the final PDF destination; prior Downloads prerequisite withdrawn
 
 - **Correction:** The owner expected the actual PDFs in GitHub. The previous request to confirm a new Downloads folder was an assistant mistake and is superseded. Continue under the existing “go” authorization; no further “ready” or Downloads setup is required.
