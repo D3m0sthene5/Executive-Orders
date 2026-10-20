@@ -8,4 +8,4 @@ Preserve the immutable evidence/legal codebook, distinguish historical document 
 
 ## Owner preference: names
 
-Danny likes names drawn from history: American history, the Founders and the Federalist Papers (Publius, Hamilton), Supreme Court cases and justices, and other niche historical references. Use them for new tools, jobs, branches you choose, and projects, while keeping file and folder names descriptive enough to find.
+Danny likes names drawn from history, not only American history: the Founders and the Federalist Papers, Supreme Court cases and justices, and niche references from any era or country. Choose by how well the name fits the tool's job first, then by how niche it is; nationality does not matter. Use them for new tools, jobs, branches you choose, and projects, while keeping file and folder names descriptive enough to find.
