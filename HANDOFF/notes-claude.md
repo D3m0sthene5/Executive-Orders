@@ -2,6 +2,35 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: thinking tools (Llull, Polya, Mountweazel), Craigellachie, Panizzi; continuous run paused at cost cap
+
+- **Done:** `jobs/llull/` checks plans before they run: Brier forecast ledger, prerequisite census, premortem
+  wheel, rank, selfscore. Postmortem of 23 past plans: 12 of 15 scored plans missed, median delivered/forecast
+  0.036, 10 of 12 misses mechanically predictable. `jobs/polya/` measures alternative units of work: owner
+  rulings reach 89% of not-ready orders; no frame reaches savings_residuals or counterevidence.
+  `jobs/mountweazel/` calibrates reviewers with planted defects. MW-C2 caught 9/10 (Opus, packet only),
+  8/10 (Opus with sources) and 6/10 (Sonnet); all missed one D6 (removed later event). Use Opus with
+  sources plus a D6 step. Bowditch Y1's 0/15 certifies nothing.
+  Craigellachie: 23 last-step orders, 0 upheld, all blocked on unheld sources (27 FETCH lines).
+  Panizzi: `jobs/source-ladder` now routes citations embedded in prose, plus Public Law and Reorganization
+  Plan routes, queue-first (50 items per run); expect about 37 real documents per run.
+- **Running:** the source-ladder Actions run from commit b5aeb93d0. Check `jobs/source-ladder/output/STATUS.json`,
+  then retry Craigellachie and Bowditch-Y2 orders whose sources arrived (Llull rank #2: Y2LEAD batches).
+- **Next (continuous queue, 3 workflows at a time):**
+  1. Retry claims after fetches land.
+  2. ACT-provision producer probe (reach 1,213).
+  3. A unit for savings_residuals and counterevidence.
+  4. Own-term family probes.
+  5. Mountweazel check fix for D8 false positives.
+  6. Routes for 36 unservable lines (report dates, land records).
+- **Cost:** session $87.5 of token value; paused at the owner's $100/day cap.
+- **Asks:** `@Owner`:
+  1. Raise the cap to continue?
+  2. Batch adoption of reviewed statuses (reach 11,613)? Re-review Y1 with Opus plus sources first.
+  3. Send the ProQuest/NYU request?
+  4. Is a compiled transcription an acceptable copy (codebook reading)?
+  5. 138 ready and 0 certified: should human review start?
+
 ## 2026-10-20 ET: Panizzi, source-ladder now resolves citations buried in prose and works the queue first
 
 - **Done:** `jobs/source-ladder/embedded_cites.py` (+ `ladder_queue.py`, `fetch_ladder.py`, `plan.py`, `job.py`, README,
