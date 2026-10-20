@@ -10,6 +10,11 @@ with its usage, and attributes cost to what caused it:
   proportion to its size, so a large tool result pays for every later call
   that re-reads it until the context is compacted.
 
+The model's own writing (commands, scripts, file bodies, replies) is
+counted as context too. Transcripts record output tokens only at the start of
+streaming, so output cost is understated here; session totals from
+get_session are the reference.
+
 Cost units use the API's relative prices (input 1, cache read 0.1, 5-minute
 cache write 1.25, 1-hour cache write 2, output 5) and are scaled to dollars
 with the session's own reported cost when it is given. Sizes of tool results
@@ -97,6 +102,13 @@ def profile(events, cost_usd=None, label=""):
                     path = (b.get("input") or {}).get("file_path") or ""
                     tool_meta[b.get("id")] = (lab, path)
                     calls[mid]["tools"].append(lab)
+                    # What the model writes (commands, scripts, file bodies) stays in
+                    # context and is re-read like a tool result.
+                    pending.append({"label": "model wrote: " + lab, "path": "",
+                                    "tokens": len(json.dumps(b.get("input") or {})) / 4, "agent": agent})
+                elif b.get("type") == "text":
+                    pending.append({"label": "model wrote: reply or narration", "path": "",
+                                    "tokens": len(b.get("text") or "") / 4, "agent": agent})
         elif kind == "user":
             for b in msg.get("content") or [] if isinstance(msg.get("content"), list) else []:
                 if b.get("type") == "tool_result":
@@ -116,6 +128,7 @@ def profile(events, cost_usd=None, label=""):
     by_agent = collections.Counter()
     live = collections.defaultdict(list)   # agent -> items in context
     last_read = collections.defaultdict(int)
+    base_ctx = {}
     rebuilds, polls = [], collections.Counter()
     for mid, c in calls.items():
         a = c["agent"]
@@ -123,6 +136,7 @@ def profile(events, cost_usd=None, label=""):
         # agent started: forget what was in it.
         if c["read"] < 0.5 * last_read[a]:
             live[a] = []
+            base_ctx.pop(a, None)
         last_read[a] = c["read"]
         items = c["trigger"]
         live[a].extend(items)
@@ -131,11 +145,20 @@ def profile(events, cost_usd=None, label=""):
         new_u = u - W["read"] * c["read"]
         trig = items[0]["label"] if items else "model continuing"
         fresh[trig] += new_u
-        tot = sum(i["tokens"] for i in live[a]) or 1
-        base_share = max(c["read"] - tot, 0) / max(c["read"], 1)
-        carry["system prompt and instructions"] += W["read"] * c["read"] * base_share
-        for it in live[a]:
-            carry[it["label"]] += W["read"] * c["read"] * (1 - base_share) * it["tokens"] / tot
+        # The agent's fixed setup (system prompt, tool definitions, rules) is
+        # measured as the context of its first call; everything above that is
+        # history, shared out in proportion to the estimated size of each item.
+        ctx = c["read"] + c["write5m"] + c["write1h"] + c["input"]
+        base_ctx.setdefault(a, ctx)
+        base = min(base_ctx[a], c["read"])
+        carry["fixed setup (system prompt, tools, rules)"] += W["read"] * base
+        tot = sum(i["tokens"] for i in live[a])
+        hist = c["read"] - base
+        if tot:
+            for it in live[a]:
+                carry[it["label"]] += W["read"] * hist * it["tokens"] / tot
+        elif hist > 0:
+            carry["history before the transcript starts"] += W["read"] * hist
         for it in items:
             if it["path"]:
                 reads_by_path[it["path"]] += 1
