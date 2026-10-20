@@ -6,7 +6,7 @@ New York date: 2026-10-20. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 163 of 14,972 orders (1.1%)**
+**Ready for human review: 176 of 14,972 orders (1.2%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -20,19 +20,19 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 211 | 3,359 | 6.3% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 168 | 3,359 | 5.0% |
+| Complete inventory of the order's operative clauses | 227 | 3,359 | 6.8% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 184 | 3,359 | 5.5% |
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-19; intervening runs may be absent.
-- claim-checker: claim_lines_found: 226 → 252; claims_all_checks_passed: 141 → 166; claims_checked: 226 → 252; claims_gate_passed: 141 → 167
+- claim-checker: claim_lines_found: 226 → 268; claims_all_checks_passed: 141 → 182; claims_checked: 226 → 268; claims_gate_passed: 141 → 183
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 1114 → 1115; of_which_decided: 1114 → 1115
-- clause-drafts: clauses_total: 70539 → 70574; fragments_from_app_transcription: 5013 → 5000; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
-- family-rules: saved_texts_scanned: 46624 → 46701
-- official-fixity: carried_forward: 5054 → 5070; checked_this_run: 4 → 8; files: 5058 → 5078; premis_bytes_read_this_run: 65536 → 589824
-- readiness-tracker: ready_for_human_review: 138 → 163
-- source-ladder: attempts_logged: 20 → 152; bytes_downloaded: 78296215 → 149679575; distinct_new_source_hashes: 6 → 31; earlier_found_carried_with_defect: unavailable → 17
+- clause-drafts: clauses_total: 70539 → 70567; fragments_from_app_transcription: 5013 → 4995; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
+- family-rules: saved_texts_scanned: 46624 → 46742
+- official-fixity: carried_forward: 5054 → 5077; checked_this_run: 4 → 16; files: 5058 → 5093; premis_bytes_read_this_run: 65536 → 524288
+- readiness-tracker: ready_for_human_review: 138 → 176
+- source-ladder: attempts_logged: 20 → 109; bytes_downloaded: 78296215 → 464554440; distinct_new_source_hashes: 6 → 36; earlier_found_carried_with_defect: unavailable → 16
 - x1-class-engine: modern_families_5_plus: 178 → 184
 
 ## Top shared unlocks
