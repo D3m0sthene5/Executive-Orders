@@ -1,0 +1,89 @@
+{
+ "schema": "lambertini-iv-tally/v1",
+ "batch": "lamb4b",
+ "role": "probe batch 2 (LAMB4B, 8 screened LAMB4X orders in file order)",
+ "tallied_on": "2026-10-20",
+ "record_kind": "AI tally of AI review records (hypotheses; not certification; certified whole-lifecycle count unchanged at 0)",
+ "attempts": 8,
+ "orders": [
+  "EO:10177",
+  "EO:9778",
+  "EO:13088",
+  "EO:12063",
+  "EO:12145",
+  "EO:12168",
+  "EO:12308",
+  "EO:13050"
+ ],
+ "blocked_by_producer": {
+  "count": 3,
+  "ids": [
+   "EO:10177",
+   "EO:9778",
+   "EO:13088"
+  ],
+  "reasons": {
+   "EO:10177": "EO 11012 sec. 3 revocation effective date contingent and unsourced (BoB circular / GSA regulation not held)",
+   "EO:9778": "same as EO:10177",
+   "EO:13088": "per-clause ends turn on an unsettled method question ('revised to read' replacements by EO 13121/13192)"
+  },
+  "pending_owner_ruling_dependent": 0
+ },
+ "reviewed": 5,
+ "upheld_by_reviewer": 4,
+ "upheld_by_reviewer_ids": [
+  "EO:12063",
+  "EO:12145",
+  "EO:12168",
+  "EO:13050"
+ ],
+ "rejected": 1,
+ "rejected_ids": [
+  "EO:12308"
+ ],
+ "rejected_note": "The only rejection is the planted defect in the scratch review copy (EO:12308 sec1 first_end.date 1981-09-30 for 1981-10-31). The reviewer found exactly the plant, named the correct 1981-10-31 (EO 12325 sec. 2) and said the claim was otherwise upholdable. The genuine line carries 1981-10-31. Per the preregistered gate rule (L-20261020-70) the planted order counts as upheld because the plant was the reviewer's only defect.",
+ "upheld": 5,
+ "upheld_ids": [
+  "EO:12063",
+  "EO:12145",
+  "EO:12168",
+  "EO:12308",
+  "EO:13050"
+ ],
+ "upheld_per_attempt": 0.625,
+ "savings_overturned": 0,
+ "plants": {
+  "planted": 1,
+  "caught": 1,
+  "missed": 0,
+  "plants_caught_share": 1.0,
+  "key": "scratch plant_keys/p.json (kept in scratch only)"
+ },
+ "plant_caught": 1,
+ "gate": {
+  "rule": ">=5 of 8 upheld by the independent reviewer (planted order counted as upheld if its only defect was the plant) and <=1 savings state overturned; blocked orders count as not upheld (enforced in the workflow script)",
+  "passed": true
+ },
+ "gate_passed": 1,
+ "probe_gate_passed": 1,
+ "claims_copied": 5,
+ "claims_enabled": 5,
+ "claims_file": "research/readiness/claims/claude-lambertini-iv02b-2026-10-20.jsonl",
+ "claims_copied_note": "Genuine producer lines (not the planted review copy) for the 4 reviewer-upheld orders plus EO:12308. claim-checker run on that file: 5 checked, all mechanical checks passed, gate passed 5; 194 exact quotations (checker output kept in scratch, bot-owned output reverted).",
+ "combined_lamb4_probes_01_02b": {
+  "attempts": 16,
+  "upheld": 9,
+  "upheld_per_attempt": 0.5625,
+  "upheld_note": "lamb4/01 4/8 as tallied (its plant-only reject not counted) + lamb4/02b 5/8",
+  "plants_planted": 2,
+  "plants_caught": 2,
+  "plants_caught_share": 1.0,
+  "claims_enabled": 5,
+  "claims_enabled_note": "lamb4/01 copied 0 (gate failed) + lamb4/02b 5"
+ },
+ "pending_owner_rulings_not_decided": [
+  "report-deadline",
+  "transcription-as-copy"
+ ],
+ "pending_owner_rulings_note": "No claim depends on either ruling; report-deadline orders were screened out of the pool before production."
+}
