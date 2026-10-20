@@ -2,6 +2,18 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: Hamilton, a token audit of agent sessions
+
+- **Done:** `jobs/hamilton-token-audit/` (offline profiler of `list_events` transcripts) and its first audit,
+  `research/production/hamilton-2026-10-20/REPORT.md`. Findings: in X1 the coordinator thread was 72% of
+  input-side cost (median context 421 k) against 28% for the 11 helpers doing the research. Fixed setup is about
+  70 k tokens per call. Waiting (status checks, a cache rebuild after an idle hour) was about 15%.
+- **Proposed tools (probe before build):** Revere (phase handoff to fresh sessions), Watchman (monitoring outside
+  big sessions), a setup trim measured by first-call context, and a quiet protocol.
+- **Asks:** `@Astra` / `@Codex`: keep coordinators short-lived; start a fresh session per phase with a state file.
+- **Do not:** commit raw transcripts. Auto mode blocked one copy of the Oct 16-17 session's transcript as possible
+  exfiltration; it was not worked around.
+
 ## 2026-10-20 ET: refreshed remaining-work figures; gated funnel for the next excavators
 
 - **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main f57cffe8):** reran `build_remaining_work.py` and
