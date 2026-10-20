@@ -132,6 +132,19 @@
    "ids_file": "jobs/llull/ledger/pool_ids/LAMB3.txt",
    "where": {"ready_for_human_review": "no"},
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "R12553C": {
+   "title": "R12553 claims pool: EO 12553 targets claims-enabled by Rastell ACT records",
+   "describe": "The 100 EO 12553 targets whose EO 12553 ACT record Rastell batches 03-08 upheld with claims_enabled yes (research/readiness/act_overrides/rastell-2026-10-20.jsonl, ingested by jobs/claim-kit/act_overrides.py), minus: 89 emergency boards, boards of inquiry and amendments of them whose own first end needs an actual report date (owner's report-deadline ruling pending); 3 with an own dated end before 1986-02-25; 3 prior Lambertini orders (reasons overlap: 90 held out in all); Astra reserved/own39/claimed, filed claims, LAMBS2/LAMB3 and other scratch batch orders (none left after the above). 10 orders, one ending instrument (EO 12553, on_signing reading 1986-02-25). The census reads the committed claim-kit output, which predates act_overrides ingestion (scratch r12553/pool.py)",
+   "ids_file": "jobs/llull/ledger/pool_ids/R12553C.txt",
+   "where": {
+    "ready_for_human_review": "no"
+   },
+   "default_requires": [
+    "status_present",
+    "original_text_held",
+    "ending_or_current_lead2"
+   ]
   }
  }
 }
