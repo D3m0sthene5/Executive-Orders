@@ -9,10 +9,40 @@
       "evidence_id": "ACTOR_TEXT:EO:9721"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10415>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10415#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
     "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10415",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
@@ -59,6 +89,75 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10415>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10415>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is a bare number in the \"No.\" column; the subjects are printed as a separate block below the numbers on PDF page 11 (offsets 10267-15646), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once in the table region. Positional alignment (number #3 of 64 on this page to subject block entry #3, hand-checked against the target's own title): \"Amending provisions for transfer of personnel to certain public international organizations\" at offset 10938. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10415>EO:12553@rastell",
+      "producer": "claude-rastell-05-producer",
+      "producer_d6": "Searched: dossier chain (empty), own_terms, the target's held text (full order read), EDGES.csv (later-events, app-footnote-leads; edges targeting EO:10415: EO:12553 revocation, EO:9721 cross_reference; the EO:9721 edge is a 'See:' cross-reference) and the EO 12553 table. The target amends EO 9949 (which modified EO 9721) by replacing 'within five years from the date of his transfer to such Board' with 'on or before December 31, 1953'. Own deadline: the date it inserts, 1953-12-31, is a window for the amended right, not an end of the order. Both parent orders, EO 9949 (offset 5212) and EO 9721 (offset 1105), are rows in the same EO 12553 table, revoked by the same sentence and on the same date, so the amendment's subject matter is ended together with its parents. The amendment's practical effect lapsed by its own date (1953-12-31); EO 12553 is the first express end of the order in held sources and plausibly a clean-up. No edge targets EO:12553.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "none; inserted 'on or before December 31, 1953' is a window for the amended right, not an end of the order; parents EO 9949/9721 revoked by same sentence",
+        "d6_searched": "dossier chain (producer_d6), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for edges targeting this order and edges targeting EO:12553 (none), jobs/claim-kit/output/MISSING_SOURCES.jsonl rows; EO 12553 held text for effective/except/savings wording (only hit 'effectiveness' at 27579 inside a row subject)",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-05-reviewer-opus",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_05/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10415",
+      "target_naming": {
+        "char_end": 10395,
+        "char_start": 10390,
+        "sha256": "073a8f81f495d87e3ebf393c8db29d2f8bb0767a18aff2d3aa55ffd10e8787bf",
+        "text": "10415"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -147,7 +246,7 @@
       "text": "Instrument: EO:10415\nSource: https://www.govinfo.gov/content/pkg/FR-1952-12-03/pdf/FR-1952-12-03.pdf\nSHA-256 of the downloaded file: 1cad3b10a4e9c87d8160bef619adbec23cc06d6adab848c798860c7ed3c34201\nLocation: 17 FR 10899, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 22 ===\nS C R IP T A\nFEDERALREGISTER\nVOLUME 17 ^ < 4 jT E D ^  NUMBER 235\nWashington, Wednesday, December 3, 1952\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10415\nAmendment  of E xecutive  O rder N o.\n9949,1  Entitled  “ Modifying  E xecutive  \nOrder No. 9721, P roviding  for the \nTransfer, of P ersonnel  to C ertain \nPublic International  O rganizations ”\nBy virtue of the authority vested in me \nby the Civil Service Act (22 Stat. 403) \nand section 1753 of the Revised Statutes, \nand as President of the United States, I \nhereby amend Executive Order No. 9949, \nentitled “Modifying Executive Order' No. \n9721, Providing for the Transfer of \nPersonnel to Certain Public Interna­\ntional Organizations” , by striking out the \nwords “within five years from the date \nof his transfer to such Board” , occurring \nin the second paragraph of the said or­\nder, and inserting in lieu thereof the \nwords “on or before December 31, 1953”.\nH arry  S. T ruman\nThe W hite  H ouse,\nDecember 2, 1952.\nIP . R. Doc. 52-12872; Piled, Dec. 2, 1952;  \n12:09 p. in.]\nEXECUTIVE ORDER 10416\nAmendment of E xecutive  O rders N o. \n102512  and No. 10282,® Suspending  the \nEight-Hour Law  as to C ertain L abor­\ners and M echanics  E mployed  by  the \nDepartment of D efense and the D e­\npartment of the I nterior , R espec­\ntively\nBy virtue of the authority vested in me \nby section 1 of the act of August 1, 1892, \n2 7  Stat. 340, as amended by the act of \nMarch 3, 1913, 37 Stat. 726 (40 U. S. C.' \n321), and as President of the United \nStates, it is ordered that Executive Order \nN o. 10251 of June 7, 1951, and Executive\n113 F. R. 2089.\n*  16 F. R. 5465.\n816 F. R. 8813.\nOrder No. 10282 of August 29, 1951, sus­\npending the eight-hour law with respect \nto laborers and mechanics employed by \n. the Department of Defense and the De­\npartment of the Interior, respectively, on \npublic work essential to the national de­\nfense, be, and they are hereby, amended \nas follows:\nThe proviso in the penultimate para­\ngraph of each of the said orders fixing \nthe rate of pay for overtime thereunder \nis amended to read as follows:\n“Provided , that the wages of all laborers \nand mechanics so employed shall be \ncomputed on a basic day rate of eight \nhours of work with overtime to be paid, \nat a rate not less than time and one-half \nfor all hours of work in excess of eight \nhours in any one day.”\nHarry  S. T ruman  \nT he W hite  H ouse,\nDecember 2, 1952.  *\n[P. R. Doc. 52-12873; Filed, Dec. 2, 1952;\n12:09 p. m.]\nTITLE 7— AGRICULTURE\nChapter VII— Production and Mar­\nketing Administration (Agricultural  \nAdjustment), Department of Agri­\nculture\nP art 723— C igar-F iller  T obacco, and \nCigar-F iller  and B inder T obacco\nproclamation  of the  results  of m arket­\nin g QUOTA REFERENDA\nSec.\n723.404 Basis and purpose.\n723.405 Proclamation of the results of the\ncigar-filler tobacco marketing  \nquota referendum for the m ar­\nketing year beginning October 1,  \n1953, and for the three-year pe­\nriod beginning October 1, 1953.\n723.406 Proclamation of the results of the\nçigar-filler and cigar-binder to­\nbacco marketing quota referen­\ndum for the marketing year be­\nginning October 1, 1953, and for  \nthe three-year period beginning  \nOctober 1, 1953.\n(Continued on p. 10901)\nCo n t e n t s\nTHE PRESIDENT\nExecutive Orders Page\nAmendment of Executive Orders:\nNo. 9949, entitled “Modifying \nExecutive Order No. 9721, \nProviding for the Transfer of \nPersonnel to Certain Public \nInternational Organizations” .  10899 \nNo, 10251 and No. 10282, sus­\npending the eight-hour law as \nto certain laborers and me­\nchanics employed by the De­\npartment of Defense and the \nDepartment of the Interior, \nrespectively --------------------------- 10899\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee  Production and Marketing \nAdministration.\nAlien Property, Office of \nNotices:\nVesting orders, etc.:\nBrandt, Minna and Henrich _10918\nCertain unknown German na­\ntionals------------------------------- 10919\nHahn, Rosanna _______________10919\nHaisch, William C _____________10918\nKruger, Erna________________ 10920\nLanckoronska, Countess Ma­\nria--------------------------  10919\nMeyer, Mrs. George F „ et al__ 10917\nMusman, C lara _____________ 10920\nArmy Department \nSee  Engineers Corps.\nCivil Aeronautics Administra­\ntion\nRules and regulations:\nDanger areas; alterations ______ 10903\nCivil Aeronautics Board\nNotices:\nAir America, Inc.; enforcement \nproceeding; notice of reas­\nsignment of date of hearing _10911\nDelta Air Lines, Inc., and Chi­\ncago &  Southern Air Lines,\nInc.; merger case; notice of \noral argument .  _________10911\n10899\n"
     }
   },
-  "fingerprint": "029d383d47edc2d0046b1b8ca09fb5b8e5973ebcce7fff1278c648861be145f9",
+  "fingerprint": "af0a8149f3e849a0fb1c9c92bbce486732987984323c0aa929d312f4ad65be79",
   "instrument_id": "EO:10415",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -189,7 +288,6 @@
     }
   ],
   "missing": [
-    "target provision not located: EO:12553",
     "target provision not located: EO:9721"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",

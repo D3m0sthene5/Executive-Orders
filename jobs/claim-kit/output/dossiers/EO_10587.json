@@ -14,7 +14,8 @@
     "ACT:EO:10587>EO:11086@b771618ef2e2a6e7",
     "ACT:EO:10587>EO:11086@1b214f3b31ead54f",
     "ACT:EO:10587>EO:11086@dbbedf34c0ef7e50",
-    "ACT:EO:10587>EO:11086@ffe619bcc4c12eeb"
+    "ACT:EO:10587>EO:11086@ffe619bcc4c12eeb",
+    "ACT:EO:10587>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -46,6 +47,33 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1963-02-28/pdf/FR-1963-02-28.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10587#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
     "generic_refs_excluded": 217,
@@ -479,6 +507,75 @@
       "text": "App. 1 et seq. ), and by section 301 of title 3 of the United States Code (65 Stat. 713), and as President of the United States, it is ordered that sections 1, 2 and 3 of Executive Order No. 10587 of January 13, 1955 (20 F.R. 361) are amended to read as follows:",
       "verb": "amend"
     },
+    "ACT:EO:10587>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10587>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is a bare number in the \"No.\" column; the subjects are printed as a separate block below the numbers on PDF page 11 (offsets 10267-15646), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once in the table region. Positional alignment (number #19 of 64 on this page to subject block entry #19, hand-checked against the target's own title): \"Providing for the administration of the Trading with the Enemy Act\" at offset 12095. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10587>EO:12553@rastell",
+      "producer": "claude-rastell-05-producer",
+      "producer_d6": "Searched: dossier chain (one event: EO 11086), own_terms, the target's held clauses (sections 1-3), the held texts of EO 10587 and EO 11086, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:10587: EO:11086 amendment, EO:12553 revocation) and the EO 12553 table. EARLIER PARTIAL CHANGE: EO 11086 (1963-02-26) amends sections 1, 2 and 3 of EO 10587 to read as stated in its text (section 2 then delegates the section 32(h) functions to the Foreign Claims Settlement Commission instead of the Attorney General; section 3 leaves jurisdiction over earlier-filed claims with the Attorney General 'pending the discharge of such claims'). That is an amendment, not an end, but it rewrote all three sections, so what EO 12553 revokes is EO 10587 as amended; EO 11086 is itself a row in the EO 12553 table (offset 18620), and the sentence reaches 'any amendments thereto'. The held text of EO 10587 also contains neighbouring EO 10586 and EO 10588 on the same Federal Register page; the neighbouring revocation of EO 8714 is not part of EO 10587. No earlier whole-order end found; the 'pending the discharge' language in EO 11086 sec. 3 means a residual role may have continued after 1963, so the reviewer should decide whether 12553 is the end or a clean-up. No edge targets EO:12553.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "earlier PARTIAL change only: EO 11086 (1963-02-26) amended secs 1-3; not an end; EO 12553 reaches 'any amendments thereto' and lists EO 11086 itself",
+        "d6_searched": "dossier chain (producer_d6), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for edges targeting this order and edges targeting EO:12553 (none), jobs/claim-kit/output/MISSING_SOURCES.jsonl rows; EO 12553 held text for effective/except/savings wording (only hit 'effectiveness' at 27579 inside a row subject)",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-05-reviewer-opus",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_05/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10587",
+      "target_naming": {
+        "char_end": 10493,
+        "char_start": 10488,
+        "sha256": "f1882a541300de2917fc18e2dcbe1a330ce0740def3a2fd25cebb4f30d0edfd8",
+        "text": "10587"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:11086": {
       "actor_id": "EO:11086",
       "char_end": 2905,
@@ -589,7 +686,7 @@
       "text": "Instrument: EO:10587\nSource: https://www.govinfo.gov/content/pkg/FR-1955-01-15/pdf/FR-1955-01-15.pdf\nSHA-256 of the downloaded file: 47e31602eedbeaf9b9af41557086913025e35a316ec96c6c670f0320a038aefa\nLocation: 20 FR 361, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 24 ===\nDERAL\nVOLUME 20 1934 ^^A/ITEO r NUMBER 11\nWashington, Saturday, January 15, 1955\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10586\nD esignating  C ertain  O fficers  to A ct as \nSecretary  of the  T reasury\nBy virtue of the authority vested in me \nby section 179 of the Revised Statutes \n(5 U. S. C. 6), and section 301 of title 3 \nof the United States Code, it is ordered \nas follows:\nIn case of the death, resignation, ab­\nsence, or sickness of the Secretary of \nthe Treasury and the Under Secretary \nof the Treasury, the following-designated \nofficers of the Treasury Department \nshall, in the order of succession indi­\ncated, act as Secretary of the Treasury \nuntil a successor is appointed or until the \nabsence or sickness of the incumbent \nshall cease:\n1. Under Secretary for Monetary \nAffairs.\n2. Assistant Secretaries, in the order \nfixed from time to time by the Secretary \nof the Treasury.\n3. General Counsel.\nExecutive Order No. 8714 of March 18, \n1941, entitled “Designating Certain Offi- \n* cers To Act as Secretary of the Treasury \nin Case of Absence or Sickness of the \nSecretary”, is hereby revoked.\nD w igh t D. E isenhower\nT he W hite  H ouse ,\nJanuary 13,1955.\n[F. R. Doc. 55-408; Piled, Jan. 13, 1955;\n3:52 p. m.]\nEXECUTIVE ORDER 10587\nA dministration  of Section  32 (h ) of the \nT rading  W ith  the  E n e m y A ct\nBy virtue of the authority vested in me \nby the Trading with the Enemy Act, as \namended (50 U. S. C. App. 1  et seq.), and \nby section 301 of title 3 of the United \nStates Code (65 Stat. 713) , and as Pres­\nident of the United States, it is ordered \nas follows:\nSectio n 1 . The Jewish Restitution \nSuccessor Organization, a charitable \nmembership organization incorporated \nunder the laws of the State of New York,\nis hereby designated as successor in \ninterest to deceased persons in accord­\nance with and for the purposes of sub­\nsection (h) of section 32 of the Trading \nwith the Enemy Act, as added by Public \nLaw 626, approved August 23, 1954 (68 \nStat. 767) . ' .\nSec. 2. Exclusive of the function \nvested in the President by the first sen­\ntence of the said subsection (h) of sec­\ntion 32 of the Trading with the Enemy \nAct, the Attorney General shall carry \nout the functions provided for in that \nsubsection, including the powers, duties, \nauthority and discretion thereby vested \nin or conferred upon the President; and \nfunctions under the said subsection are \nhereby delegated to the Attorney Gen­\neral, and the Attorney General is hereby \ndesignated thereunder, accordingly.\nSec. 3. The Attorney General may del­\negate to any officer and agency of the \nDepartment of Justice such of his func­\ntions under this order as he may deem \nnecessary.\nD w ig h t D. E isenhower\nT he W hite  H ouse ,\nJanuary 13,1955.\n[P. R. Doc. 55-409; Filed, Jan. 13, 1955;\n3:52 p. m.]\nEXÉCUTIVE ORDER 10588\nEstablishing  the  P resident ’s C om m is­\nsio n on  V eterans ’ P ensions\nBy virtue of the authority vested in \nme as President of the United States, \nit is ordered as follows:\nS ection  1. Establishment and com­\nposition of Commission.  There is \nhereby established a Commission which \nshall be known as the President’s Com­\nmission on Veterans’ Pensions, and \nwhich shall be composed of a Chairman \nand six other members, all of whom shall \nbe designated by the President. The \nChairman and members shall receive \nsuch compensation as the Président \nshall hereafter fix.\nSec. 2. Functions of the Commission.  \nThe Commission is authorized and di- \n( Continued on next page)\nCONTENTS  \nTHE PRESIDENT\nExecutive Orders  \nAdministration of section 32 (h) \nof the Trading With the Enemy\nAct ____________________________\nDesignating certain officers to act\nas Secretary of the Treasury ___\nEstablishing the President’s Com­\nmission on Veterans’ Pensions __\nEXECUTIVE AGENCIES\nAgricultural Marketing Service  \nProposed rule making:\nMilk handling in North Texas __\nRules and regulations:\nCarrots, canned, U. S. standards \nfor g r a d e s ; recommended\nminimum drained weight ____\nLemons grown in California \nand Arizona; limitation of\nshipments___________________\nOranges, navel, grown in Ari­\nzona and designated part of \nCalifornia; limitation of han­\ndling _______________________\nAgriculture Depdrtment \nSee Agricultural Marketing Serv­\nice; Farmers Home Administra­\ntion.\nAlien Property Office  \nNotices:\nVested property, intention to \nreturn:\nCouelle, Jacques Hippolyte ___\nQuentin, Dr. Alberto ___:____\nSwetlowitz, Ida, et al ________\nArmy Department \nRules and regulations:\nArmy nurses, dietitians and \np h y s ic a l therapy aides; \nWomen’s Medical Specialist \nCorps_________ ______________\nCivil Aeronautics Board  \nNotices:\nHearings, etc.:\nAerovias Venezolanas, S. A ___\nWest Coast Airlines, Inc _____\nProposed rule making:\n1954 annual review and amend­\nments of the airworthiness \nregulations __________________\nPage\n361\n361\n361\n369\n363\n364\n364\n382\n382\n382\n365\n380\n380\n369\n361\n"
     }
   },
-  "fingerprint": "b633ac5b993ccf18872fbcb509dc25b96b93941ba980ad9ca2765f4dabd4cd69",
+  "fingerprint": "1b088bd5f77f34eacde946d2d6eb89c014724267cbcebdc0395295fc06ba6438",
   "instrument_id": "EO:10587",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -630,9 +727,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10587",
   "own_terms": [],

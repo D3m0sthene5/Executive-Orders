@@ -24,7 +24,8 @@
     "ACT:EO:10774>EO:12107@0530f44e336af7d2",
     "ACT:EO:10774>EO:12107@c7e034bd6647d67b",
     "ACT:EO:10774>EO:12107@1acd1400c66a0b68",
-    "ACT:EO:10774>EO:12107@d8e5da66b80218ed"
+    "ACT:EO:10774>EO:12107@d8e5da66b80218ed",
+    "ACT:EO:10774>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -83,6 +84,33 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10774#3",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
     "generic_refs_excluded": 217,
@@ -2587,6 +2615,75 @@
       "text": "The provisions o f Section 3(e) o f \nExecutive Order No. 10774 and Executive Order No. 11787, are hereby \namended and revised by substituting the words “ Merit Systems Protection \nBoard” for the words “ Civil Service Commision” or “ Commission” when used \nas a reference to the Civil Service Commission wherever such words appear.\n2-103.",
       "verb": "amend"
     },
+    "ACT:EO:10774>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10774>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 48 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 48 at offsets 14331-14465: 'Providing for the protection of the civil service rights of Federal personnel who transfer to the International Atomic Energy Agency'. That subject agrees with the target's own held title (civil service rights of personnel moving to the IAEA). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10774>EO:12553@rastell",
+      "producer": "claude-rastell-06-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's held text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10774: EO:10804 revocation, EO:12107 amendment, EO:12553 revocation. Also scanned all 6652 held EO texts for a reference to this order's number (hits outside EO 12553 itself: EO 12107, EO 10804). EARLIER PARTIAL CHANGES: (1) EO 10804 (signed 1959-02-12) section 2 revokes EO 10774 'insofar as it affects any employee covered by section 6(a) of the International Atomic Energy Agency Participation Act of 1957 prior to the repeal of that section by the Federal Employees International Organization Service Act', 'except that each shall be considered to remain in effect' for an employee serving with an international organization on the date of enactment who does not elect coverage under the later Act and 'for the purposes of any rights and benefits vested' under it. That is a qualified partial revocation and continues the order for the excepted group. (2) EO 12107 (signed 1978-12-28) section 2-102 amends 'Section 3(e) of Executive Order No. 10774' by substituting the Merit Systems Protection Board for the Civil Service Commission; the held EO 10774 text shows sections 1, 2, 4 and 5 and a paragraph that is probably section 3 without its heading, so 3(e) cannot be checked in the held text. The 1978 amendment shows the order was still treated as alive. Neither is a whole-order end, and both predate EO 12553; no other held instrument ends it. EO 12553 is the first whole-order end in held sources, but the 1959 qualified revocation and its saving mean the reviewer must decide what survived until 1986. Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and a scan of the held EO texts for '12553' finds only EO 12553 itself.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER PARTIAL END: EO 10804 sec. 2 (1959-02-12) revoked EO 10774 'insofar as it affects any employee covered by section 6(a)...' with an exception continuing it (verified held EO 10804 lines 31-39); EO 12107 (1978) amended sec. 3(e). Neither is whole.",
+        "d6_searched": "Searched: order dossier (chain, own_terms, missing lines; other instruments named), jobs/claim-kit/output/MISSING_SOURCES.jsonl, jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for the target and for EO:12553 as target, and held target text own terms. No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources, D6 step); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-rastell-06-reviewer (claude-opus-5-5, independent; plant_keys not opened)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_06/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10774",
+      "target_naming": {
+        "char_end": 10677,
+        "char_start": 10672,
+        "sha256": "e42ff69d9b81e0a1c5d7ee6fc1dcea61f25c86dbc17ae1b1b478d938878c4d7b",
+        "text": "10774"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:10804": {
       "actor_id": "EO:10804",
       "char_end": 5765,
@@ -3107,7 +3204,7 @@
       "text": "Subject to the restrictions and conditions set forth herein, the United States Civil Service Commission is designated and empowered to exercise the authority vested in the President by section 6 (c) of the International Atomic Energy Agency Participation Act of 1957 (hereinafter referred to as the Act) to prescribe such regulations as may be necessary to carry out the provisions of section 6 of the Act and to protect the retirement, insurance, and other civil-service rights and privileges of any Federal employee, Presidential appointee, or elected officer who enters the employ of the International Atomic Energy Agency (hereinafter referred to as the Agency) pursuant to the provisions of section 6 of the Act."
     }
   },
-  "fingerprint": "9729526d04db26faa81a5d32e9ee238620a04aa3521b529831b48e47c01d653e",
+  "fingerprint": "ae2aac023029ec01772e06aebd0cc1a2bfdee47fd978078da67877ee97be1767",
   "instrument_id": "EO:10774",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -3150,8 +3247,7 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "target provision not located: EO:12553"
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10774",

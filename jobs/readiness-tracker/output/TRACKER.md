@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 230 of 14,972 orders (1.5%)**
+**Ready for human review: 225 of 14,972 orders (1.5%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -57,9 +57,9 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 17 | 17 |
+| `OPEN_SOURCE_AUDIT` | 6 | 6 |
 | `CLAIM_CHECK_FAILED` | 4 | 4 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
-| `OPEN_SOURCE_AUDIT` | 1 | 1 |
 
 ## How to move an order forward
 
