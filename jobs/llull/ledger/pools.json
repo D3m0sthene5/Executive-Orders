@@ -181,6 +181,13 @@
    "ids_file": "jobs/llull/ledger/pool_ids/NEARFIX.txt",
    "where": {"ready_for_human_review": "no"},
    "default_requires": ["status_present", "original_text_held"]
+  },
+  "Y2LEADX": {
+   "title": "Y2LEAD minus exclusions (y2lead probe)",
+   "describe": "Y2LEAD (NO orders with a whole-scope ending ACT/TERM held, YES orders with a CURRENT predicate lead) minus EO 12553 targets (any EO 12553 ACT record, R12553 pools, day-review R12553ACT ids), filed claims, Astra reservations/claims, Lambertini III / Lamm III / Lamm I / R12553 / Craigellachie II scratch batch orders and their Llull pools, Bowditch exclusions and its two attempted Y2 batches, and orders in excavator ORDER_LOGs. Rastell ACT batch orders (non-12553) stay in. 331 orders: 308 YES current-lead, 23 NO whole-end held (scratch y2lead/pool.py)",
+   "from": "Y2LEAD",
+   "ids_file": "jobs/llull/ledger/pool_ids/Y2LEADX.txt",
+   "default_requires": ["ending_or_current_lead2"]
   }
  }
 }
