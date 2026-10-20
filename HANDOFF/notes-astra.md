@@ -98,6 +98,39 @@
 - **Telemetry:** This was a bounded status audit, not production: zero legal-status changes, census admissions, claim edits or human certifications. Model/token/cost counters unavailable; no per-order production rate asserted.
 - **Asks:** None. Audit note only, on a separate branch; no merge or production-branch push.
 
+## 2026-10-19 22:08 ET: 13 actual PDFs verified in GitHub; EO 99 download requested
+
+- **Done:** Verified all 13 PDF paths uploaded by the owner in commit `22546670bf669d51c38e48a399d394a277ff08dd`: 11 unique orders (4, 7, 10, 12, 13, 14, 15, 17, 23, 26, 28). All file bytes match repository sizes and Git blob hashes; SHA-256, %PDF- signatures and strict PDF parsing pass. Three EO 4 copies are identical and preserved. Added repository verification evidence without changing prior action history.
+- **Continued:** Followed the exact EO 99 record. Its institutional sign-in renewed automatically through the visible NYU Library route. The six-page native Chrome PDF rendered and its Download control was clicked at 2026-10-20T02:01:23.668Z. No local file path was returned; this remains a request, not a confirmed file or GitHub upload.
+- **Current state:** GitHub contains 13 verified files / 11 orders. EO 29 and EO 99 still need actual transfer. There are 2,723 eligible orders pending repository PDFs, plus unavailable EO 28A; 30 original rows have no links. The untouched action queue begins EO 100 with 2,721 rows. No background download loop is running.
+- **Next concrete input:** The actual path of PT1-1897-EO-99.pdf on the connected computer, so the documented GitHub file chooser can attempt the upload. This is a specific file-selection requirement, not a request to configure or confirm Downloads as the final destination. Existing go authorization continues; GitHub is the destination.
+- **Preserve:** Exact original source URLs, uploaded PDF bytes and duplicate copies, the separate older lifecycle-task pause, and the distinction between file integrity and archival acceptance.
+
+## 2026-10-19 20:45 ET: GitHub is the final PDF destination; prior Downloads prerequisite withdrawn
+
+- **Correction:** The owner expected the actual PDFs in GitHub. The previous request to confirm a new Downloads folder was an assistant mistake and is superseded. Continue under the existing “go” authorization; no further “ready” or Downloads setup is required.
+- **Destination:** `research/pre-1937-sources/ProQuest Pre-1937 Orders/` in `D3m0sthene5/Executive-Orders`, branch `proquest-download-handoff-20261019`, PR #38. Local storage is optional intermediate storage.
+- **Actual state:** Zero PDF files committed. The source links, audit, and resume package are committed. Of 2,735 linked orders, 2,734 still need repository PDF evidence; EO 28A is unavailable. The separate browser-action queue has 2,722 untouched rows beginning EO 99. All 12 orders with prior Save/screenshot evidence still need actual transfer.
+- **Transfer attempt:** EO 29 remains rendered. The documented page asset bundle rejected the PDF kind; the documented embedded-file download timed out after 45 seconds without returning a path. The original Windows file-chooser setting error is historical and must not be assumed to describe the new Mac. No additional PDF or Save success is claimed.
+- **Next:** Transfer actual PDF files through the GitHub upload page or another available supported file-transfer capability. Verify committed names, sizes, and blob hashes before recording verified_repository. Exclude only actual repository-confirmed or terminal unavailable orders from the repository target. Keep the older lifecycle task paused.
+
+## 2026-10-19 20:34 ET: First new-computer ProQuest Save; destination confirmation needed
+
+- **Done:** After the owner's “go,” connected to the other computer's Chrome browser and followed the exact supplied EO 29 record. An initial login form later resolved. The matching two-page viewer rendered; Save completed at 2026-10-19T23:58:49.334Z. Appended saved_requested evidence to the order audit and saved a viewer screenshot. Actual downloaded file presence remains unverified because the browser's download-event report timed out.
+- **Running:** No background downloads. Waiting to confirm this computer's Chrome destination as Downloads/ProQuest Pre-1937 Orders. The action queue now starts at EO 99 with 2,722 untouched linked rows. Total evidence: 3 original screenshot-confirmed orders, 9 Save requests, 1 linked subscription denial, 30 no-link rows; repository PDF count remains 0.
+- **Next:** After the owner confirms the destination/file check and says “ready,” continue the already-authorized queue at the 12-second cadence using exact supplied links and observed PDF controls. Reconcile EO 29 before repeating its Save. Finish actual PDF upload separately when its files are accessible.
+- **Asks:** Confirm Chrome's Downloads location on the new computer and whether PT1-1893-EO-29.pdf landed there. The Browser interface exposes no local-directory/download-settings read operation and did not return a downloaded-file path. ProQuest access is working; no additional authorization or sign-in is requested.
+- **Do not:** Count Save or viewer screenshot as a saved/uploaded PDF, invent ProQuest links, or restart the separately paused October 18 lifecycle-research task.
+
+## 2026-10-19 19:12 ET: ProQuest queue paused and preserved for another computer
+
+- **Done:** Added the original supplied HTML, exact per-order audit, portable queue/file-inventory helper and resume instructions under `research/pre-1937-sources/ProQuest Pre-1937 Orders/` on `proquest-download-handoff-20261019`. Source SHA-256: `4644b0e380356060d4098affad5bd3170ddae09ed06fef256e4fe975acf73f17`. The HTML contains 2,765 rows and 2,735 PDF links. Three orders (4, 7, 12) have original-computer screenshot evidence; eight (10, 13, 14, 15, 17, 23, 26, 28) have completed viewer Save commands awaiting file confirmation.
+- **Running:** No ProQuest download process. Paused at the owner's request. EO 29 is next; 2,723 linked rows remain in the action queue. EO 28A returned a library-subscription denial; 30 source rows contain no link. None of the expected 13 PDFs has yet been confirmed uploaded to GitHub.
+- **Next:** Finish uploading the held PDFs and record byte/hash evidence. On the owner's future “go” in this ProQuest thread, read this folder's `RESUME.md` and current audit, reconcile held files, check the newly connected browser and destination, then continue exact supplied links into `Downloads/ProQuest Pre-1937 Orders` at the established 12-second cadence. Existing Save requests do not establish uploaded files.
+- **Asks:** Chrome's file chooser rejected the PDF upload because the ChatGPT extension's “Allow access to file URLs” setting is disabled. The owner must enable that setting to permit the requested local-file upload. The folder transfer and later download resumption are already authorized.
+- **Do not:** Restart the separately paused October 18 lifecycle-research assignment when “go” is said in this download thread. Preserve its pause. Do not invent source links, transfer browser credentials, or change legal-status/census/review figures in this acquisition task.
+
+
 ## 2026-10-18 22:05 ET: user requested checkpoint and stop
 
 - **Done:** T1 queue-reader audit and T2 estimator review committed; T1 SUMMARY condition remains open. T3 has19 independently accepted frozen candidates (17partial,2complete proposals) out of25 reserved; current offline checkpoint checker mechanically passes19/19,2allgates. No new canonical claim file published. In-progress10681/10739/12145 saved;10892/10989/11120 unproduced. T4-T9 and own39 remain. Resume details: `research/readiness/reviews/astra-2026-10-18/USER_REQUEST_CHECKPOINT.md`; exact selected hashes: `CHECKPOINT_BATCH1_AUDIT.json`.
