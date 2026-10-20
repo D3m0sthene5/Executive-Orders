@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "ProQuest supplied-link PDF acquisition",
-  "status": "paused",
+  "status": "waiting_for_download_destination_confirmation",
   "paused_at": "2026-10-19T22:56:46.979516+00:00",
   "prepared_at": "2026-10-19T23:12:59.736397+00:00",
   "browser_run_active": false,
@@ -49,7 +49,7 @@
     "EO:10369A"
   ],
   "interval_seconds": 12,
-  "next_unattempted_id": "EO:29",
+  "next_unattempted_id": "EO:99",
   "destination": {
     "parent": "Downloads on the connected computer",
     "folder_name": "ProQuest Pre-1937 Orders",
@@ -84,9 +84,11 @@
   "pdf_transfer": {
     "state": "blocked_browser_extension_setting",
     "repository_pdf_files_confirmed": 0,
-    "expected_pdf_files": 13,
-    "expected_unique_orders": 11,
-    "reason": "Browser file chooser reported that Allow access to file URLs is disabled for the ChatGPT extension in Chrome. No PDF upload was completed."
+    "expected_pdf_files": 14,
+    "expected_unique_orders": 12,
+    "reason": "Browser file chooser reported that Allow access to file URLs is disabled for the ChatGPT extension in Chrome. No PDF upload was completed.",
+    "original_computer_expected_files": 13,
+    "new_computer_expected_files": 1
   },
   "resume_rules": [
     "Wait for the owner to say go before new ProQuest navigation.",
@@ -99,5 +101,27 @@
     "acceptable_as_original": false,
     "legal_status_or_census_updated": false,
     "scope": "File acquisition and transfer only"
+  },
+  "last_resume": {
+    "schema_version": 1,
+    "event": "resume_first_save",
+    "user_go_at": "2026-10-19T23:53:15Z",
+    "observed_at": "2026-10-20T00:34:24.834840+00:00",
+    "id": "EO:29",
+    "source_url": "https://congressional.proquest.com/congressional/docview/t67.d72.1893-eo-29",
+    "initial_login_form_observed": true,
+    "record_access_subsequently_confirmed": true,
+    "pages_rendered": 2,
+    "save_requested_at": "2026-10-19T23:58:49.334Z",
+    "expected_filename": "PT1-1893-EO-29.pdf",
+    "outcome": "waiting_for_download_destination_confirmation",
+    "download_event_report": "Timed out after15000ms",
+    "download_destination_confirmed_on_this_computer": false,
+    "new_save_commands": 1,
+    "new_pdf_files_verified": 0,
+    "repository_pdf_files_confirmed": 0,
+    "next_queue_id": "EO:99",
+    "viewer_screenshot": "_resume/EO29_viewer.png",
+    "screenshot_meaning": "Shows the document rendered in the viewer; does not prove a saved PDF file."
   }
 }

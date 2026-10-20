@@ -1,3 +1,11 @@
+## 2026-10-19 20:34 ET: First new-computer ProQuest Save; destination confirmation needed
+
+- **Done:** After the owner's “go,” connected to the other computer's Chrome browser and followed the exact supplied EO 29 record. An initial login form later resolved. The matching two-page viewer rendered; Save completed at 2026-10-19T23:58:49.334Z. Appended saved_requested evidence to the order audit and saved a viewer screenshot. Actual downloaded file presence remains unverified because the browser's download-event report timed out.
+- **Running:** No background downloads. Waiting to confirm this computer's Chrome destination as Downloads/ProQuest Pre-1937 Orders. The action queue now starts at EO 99 with 2,722 untouched linked rows. Total evidence: 3 original screenshot-confirmed orders, 9 Save requests, 1 linked subscription denial, 30 no-link rows; repository PDF count remains 0.
+- **Next:** After the owner confirms the destination/file check and says “ready,” continue the already-authorized queue at the 12-second cadence using exact supplied links and observed PDF controls. Reconcile EO 29 before repeating its Save. Finish actual PDF upload separately when its files are accessible.
+- **Asks:** Confirm Chrome's Downloads location on the new computer and whether PT1-1893-EO-29.pdf landed there. The Browser interface exposes no local-directory/download-settings read operation and did not return a downloaded-file path. ProQuest access is working; no additional authorization or sign-in is requested.
+- **Do not:** Count Save or viewer screenshot as a saved/uploaded PDF, invent ProQuest links, or restart the separately paused October 18 lifecycle-research task.
+
 ## 2026-10-19 19:12 ET: ProQuest queue paused and preserved for another computer
 
 - **Done:** Added the original supplied HTML, exact per-order audit, portable queue/file-inventory helper and resume instructions under `research/pre-1937-sources/ProQuest Pre-1937 Orders/` on `proquest-download-handoff-20261019`. Source SHA-256: `4644b0e380356060d4098affad5bd3170ddae09ed06fef256e4fe975acf73f17`. The HTML contains 2,765 rows and 2,735 PDF links. Three orders (4, 7, 12) have original-computer screenshot evidence; eight (10, 13, 14, 15, 17, 23, 26, 28) have completed viewer Save commands awaiting file confirmation.

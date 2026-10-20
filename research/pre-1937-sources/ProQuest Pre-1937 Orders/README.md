@@ -1,10 +1,12 @@
 # ProQuest Pre-1937 Orders
 
-**Downloads are paused at the owner's request.** This folder preserves the original link tool, the exact progress record, and the working download procedure so the ProQuest task can continue on another computer when the owner says **“go.”**
+**Resumption has reached the first Save on the other computer; the download destination still needs confirmation.** The owner said “go” at 2026-10-19 19:53 ET. The original EO 29 record initially displayed a login form, then opened successfully. Its matching two-page PDF rendered, and Save completed at 19:58:49 ET. The browser did not return a downloaded-file path, so that computer's folder and actual saved file remain unverified.
 
 Repository: `D3m0sthene5/Executive-Orders`  
 Handoff branch: `proquest-download-handoff-20261019`  
-Next untouched order: **EO 29**
+Next untouched order: **EO 99**
+
+The owner should confirm Chrome saves into **Downloads / ProQuest Pre-1937 Orders** on this computer. A subsequent **ready** continues the already-authorized queue. ProQuest access is working; no new sign-in request is currently needed. See [`_resume/session_events.jsonl`](_resume/session_events.jsonl) for the resume observation and [`_resume/EO29_viewer.png`](_resume/EO29_viewer.png) for the rendered viewer. The screenshot establishes rendering, not file presence.
 
 ## Current checkpoint
 
@@ -13,13 +15,13 @@ Next untouched order: **EO 29**
 | Original HTML rows | 2,765 |
 | Rows with supplied PDF links | 2,735 |
 | Original-computer screenshot evidence | EO 4, 7, 12 — 3 unique orders |
-| Viewer Save completed; file presence still unverified | EO 10, 13, 14, 15, 17, 23, 26, 28 — 8 orders |
+| Viewer Save completed; file presence still unverified | EO 10, 13, 14, 15, 17, 23, 26, 28, 29 — 9 orders |
 | Supplied record unavailable | EO 28A — library subscription response |
 | Rows with no supplied links | 30 |
-| Remaining untouched linked queue | 2,723 |
+| Remaining untouched linked queue | 2,722 |
 | PDFs confirmed stored in this repository folder | **0 — upload pending** |
 
-The original computer is expected to hold **13 PDF files for 11 unique orders**, including two additional copies of EO 4. These filenames and their different evidence levels are listed in [`_resume/expected_files.json`](_resume/expected_files.json). This is an expected-file manifest, not a completed upload inventory. The original-computer folder has not been exhaustively inventoried.
+The original computer is expected to hold **13 PDF files for 11 unique orders**, including two additional copies of EO 4. The new computer now has one additional completed Save request for EO29. Across both computers there are **14 expected filenames covering 12 orders**, with actual file evidence still required for the nine Save requests. These filenames and their different evidence levels are listed in [`_resume/expected_files.json`](_resume/expected_files.json). This is an expected-file manifest, not a completed upload inventory. The original-computer folder has not been exhaustively inventoried.
 
 The authorized upload was attempted through GitHub's file chooser. Chrome reported that the ChatGPT extension's **Allow access to file URLs** setting is disabled, so no PDF transfer was completed. After that setting is enabled, finish the upload and verify the repository filenames, sizes, and blob hashes before changing the upload count. Preserve the actual PDF files and existing copies; do not replace them with placeholder files.
 
@@ -29,7 +31,7 @@ Open the same ProQuest download conversation on the other computer and say **“
 
 The destination remains **Downloads / ProQuest Pre-1937 Orders** on the computer doing the downloading. Browser connection, ProQuest sign-in, and Chrome's download-folder setting belong to that computer. They are not carried in this repository. PDFs already confirmed in the repository can be restored to the new destination without downloading them again from ProQuest.
 
-If the original PDF transfer is still pending, preserve that as outstanding work. Reconcile any accessible copies before retrying the eight uncertain Save results. A future “go” applies to this ProQuest queue; it does not restart the separately paused lifecycle-research assignment documented in older handoff notes.
+If the original PDF transfer is still pending, preserve that as outstanding work. Reconcile any accessible copies before retrying the nine uncertain Save results. A future “go” applies to this ProQuest queue; it does not restart the separately paused lifecycle-research assignment documented in older handoff notes.
 
 ## Contents
 

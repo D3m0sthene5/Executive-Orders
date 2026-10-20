@@ -1,14 +1,18 @@
 # Resume this ProQuest queue
 
-The owner paused downloading to move the folder and working state to the Executive-Orders repository. **Do not start new ProQuest navigation until the owner says “go.”** Opening this file or the repository is not itself a resume command.
+## Latest resume observation
 
-In this conversation, “go” means continue the ProQuest PDF download task. It does not reactivate the separately paused October 18 lifecycle-research assignment in older Astra notes.
+The owner said **go** at 2026-10-19 19:53 ET. The new computer's Chrome browser connected. The exact supplied EO 29 record initially displayed a sign-in form, then became accessible. Its matching two-page PDF rendered and Save completed at 19:58:49 ET. The browser's download event timed out; this does not prove the Save failed. Preserve the saved_requested audit event and inspect actual file evidence before repeating Save.
+
+**The remaining prerequisite is confirmation of this computer's download destination:** Downloads/ProQuest Pre-1937 Orders, with a matching EO 29 PDF actually present if the Save succeeded. No tool for reading the user's local Downloads directory or Chrome download settings is exposed in this session. Native computer APIs are disabled. Ask the owner for this one configuration/file check; a subsequent **ready** resumes the already-authorized queue at **EO 99**, with **2,722** untouched linked rows. ProQuest access is already working.
+
+There are no running background downloads. The earlier PDF upload remains pending. A future resume in this conversation concerns only this ProQuest task; keep the separate October 18 lifecycle-research task paused.
 
 ## 1. Load the preserved state
 
 Read `README.md`, `_resume/checkpoint.json`, and the current `_resume/progress.jsonl`. Verify the original HTML's SHA-256 against the checkpoint. The complete queue comes from that HTML's `const ROWS=` JSON; do not reconstruct URLs from order numbers or search another site.
 
-Use `scripts/proquest_progress.py status` and `next --limit 10` to select exact original rows. At this handoff, EO 29 is first and 2,723 untouched linked rows remain. Current audit output controls if later work has advanced the queue.
+Use `scripts/proquest_progress.py status` and `next --limit 10` to select exact original rows. After the new-computer EO 29 Save request, EO 99 is first and 2,722 untouched linked rows remain. Current audit output controls if later work has advanced the queue.
 
 Read `HANDOFF/README.md` and the newest agent notes before repository writes. Prepend progress to this session model's designated notes file; preserve the previous history and other agents' work. Continue on the handoff branch while its pull request is open, or on the merged state if it has since landed. Check the current branch head before committing updates.
 
