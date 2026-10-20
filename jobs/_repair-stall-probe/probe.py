@@ -1,4 +1,4 @@
-"""Read-only, two-case timing probe; never writes a research generation to GitHub."""
+"""Read-only, bounded timing probe; never writes a research generation to GitHub."""
 import argparse
 import faulthandler
 import json
@@ -15,7 +15,7 @@ import urllib.request
 p = argparse.ArgumentParser()
 p.add_argument('--repo', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
-p.add_argument('--network-budget', type=int, choices=(0, 2), required=True)
+p.add_argument('--network-budget', type=int, choices=(0, 2, 400), required=True)
 p.add_argument('--cases', type=int, choices=(2, 3359), default=2)
 p.add_argument('--mode', choices=('drafts', 'sources'), default='drafts')
 a = p.parse_args()
