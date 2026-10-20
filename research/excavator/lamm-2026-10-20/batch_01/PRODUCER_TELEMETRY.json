@@ -1,0 +1,29 @@
+{
+  "batch": "batch_01",
+  "producer": "claude-lamm-01-producer",
+  "model": "claude-sonnet-5-5",
+  "orders": 20,
+  "records_written": 20,
+  "tool_calls_approx": 24,
+  "wall_time_minutes_approx": 20,
+  "usage": "token usage not exposed to the subagent; context used is roughly 190k tokens of 15M budget",
+  "network_used": false,
+  "pregate": "check_ote.py: ok 20 records",
+  "fetch_lines_appended": 1,
+  "kit_sheets": 0,
+  "kit_sheets_note": "No claims-enabled candidate in this batch is a whole end: EO 12468 is ended_earlier_by_other and EO 13125 is partial. EO 13872 and EO 11820 are in batch_02.",
+  "claim_kit_change": "none",
+  "verdict_counts": {
+    "ends_by_own_term_whole": 11,
+    "ends_by_own_term_partial": 1,
+    "ended_earlier_by_other": 1,
+    "not_an_end": 7,
+    "extended_or_renewed": 0,
+    "end_date_needs_source": 0
+  },
+  "caveats": [
+    "All 11 whole ends rest on derivative_lead or mirror_transcription text (retirement exemptions 9044, 8340, 8520, 7988, 7954, 8228, 8097, 8094, 8483, 7904, 7113); none can become a claim until the owner rules on compiled transcriptions.",
+    "Three whole ends (8228, 8094, 8483) have a held, dated further-exemption order; the verdict keeps the order's own date and the notes give the as-extended date for the reviewer.",
+    "OFR edge LE-c0403c3f3c02 (EO 8293 amends EO 8094) is contradicted by the held text of EO 8293 and was flagged, not relied on."
+  ]
+}
