@@ -394,6 +394,159 @@
    "note": "with P1's 6 of 6 claimable orders, 26 of 30 upheld across both Lambertini runs",
    "num": 20,
    "den": 24
+  },
+  {
+   "key": "upheld_per_attempt.y1_no_rereview_opus_sources",
+   "pool": "15 Bowditch Y1 NO status proposals already accepted by a same-family reviewer, re-reviewed by Opus with held sources and a D6 step",
+   "unit": "share",
+   "value": 1.0,
+   "source": "O-20261020-4",
+   "population": "BOWY1NO",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-4",
+    "forecast_id": "L-20261020-14",
+    "outcome_source": "research/excavator/bowditch-2026-10-20/Y1_RECHECK_OPUS_SOURCES.json"
+   },
+   "note": "conditional on prior acceptance (Y1 random draw: 15 of 50 accepted, so 0.30 end to end); 3 upheld with non-fatal defects, strict alternative 12 of 15; AI hypotheses, not adopted, certified 0",
+   "num": 15,
+   "den": 15
+  },
+  {
+   "key": "upheld_per_attempt.rastell_act_provision_record",
+   "pool": "Rastell probe batches 01-02: ACT provision records for missing actor provisions (40 orders, 69 records)",
+   "unit": "share",
+   "value": 0.826,
+   "source": "O-20261020-5",
+   "population": "RASTELL",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-5",
+    "forecast_id": "L-20261020-15",
+    "outcome_source": "research/excavator/rastell-2026-10-20/OUTCOME.json"
+   },
+   "note": "records upheld per record written, independent AI review; no plants inserted (unscored for plants); batches 03-08 (EO 12553 subline, 108 of 120 incl. 12 plants, 108 of 108 genuine) have no registered forecast so are not a ledger rate",
+   "num": 57,
+   "den": 69
+  },
+  {
+   "key": "upheld_per_attempt.lamm_own_term_end",
+   "pool": "Lamm probe batches 01-02: own fixed-term ends in claim-kit family own_term:fixed_term (40 orders)",
+   "unit": "share",
+   "value": 0.575,
+   "source": "O-20261020-7",
+   "population": "LAMM",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-7",
+    "forecast_id": "L-20261020-20",
+    "outcome_source": "research/excavator/lamm-2026-10-20/OUTCOME.json"
+   },
+   "note": "own-term end records upheld per order attempted, independent AI review; unscored for plants (no plants inserted); 0 claims enabled because every upheld end rests on derivative text. Lamm II sunsets (19 of 54 upheld, 3 of 3 plants) have no rate forecast",
+   "num": 23,
+   "den": 40
+  },
+  {
+   "key": "upheld_per_attempt.craigellachie_ii_after_fetch",
+   "pool": "Craigellachie II: 5 last-step orders retried after their blocker source was fetched",
+   "unit": "share",
+   "value": 0.0,
+   "source": "O-20261020-15",
+   "population": "CRAIG2",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-15",
+    "forecast_id": "L-20261020-26",
+    "outcome_source": "research/excavator/craigellachie-ii-2026-10-20/OUTCOME.json"
+   },
+   "note": "1 rejected on D6 (EO 11367), 4 justified blocks; planter denied, unscored for plants",
+   "num": 0,
+   "den": 5
+  },
+  {
+   "key": "upheld_per_attempt.r12553_claims",
+   "pool": "R12553 claims probe: 10 EO 12553 targets claims-enabled by Rastell ACT records (2 batches of 5)",
+   "unit": "share",
+   "value": 0.6,
+   "source": "O-20261020-21",
+   "population": "R12553C",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-21",
+    "forecast_id": "L-20261020-36",
+    "outcome_source": "research/excavator/rastell-2026-10-20/claims/OUTCOME.json"
+   },
+   "note": "denominator counts the 2 planted lines (both caught and rejected); genuine lines reviewed 6 of 8 upheld = 0.75; 2 justified blocks",
+   "num": 6,
+   "den": 10
+  },
+  {
+   "key": "hit_rate.plant_catch_scratch_planter_r12553",
+   "pool": "R12553 claims: planted wrong first_end dates, one per batch, planted in a scratch review copy with keys in scratch",
+   "unit": "share",
+   "value": 1.0,
+   "source": "O-20261020-23",
+   "population": "R12553C",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-23",
+    "forecast_id": "L-20261020-38",
+    "outcome_source": "research/excavator/rastell-2026-10-20/claims/OUTCOME.json"
+   },
+   "note": "blinding regime: scratch-copy planter, key not shown to reviewer, but producer lines in the repo so a diff could reveal the plant; n = 2",
+   "num": 2,
+   "den": 2
+  },
+  {
+   "key": "hit_rate.plant_catch_mountweazel_sealed_opus_sources",
+   "pool": "Mountweazel MW-C2: 40 real claims with 10 artifact-free plants (D3 x2, D4, D6 x3, D7 x2, D8 x2), Opus reviewer with held sources",
+   "unit": "share",
+   "value": 0.8,
+   "source": "O-20261020-3",
+   "population": "NR",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-3",
+    "forecast_id": "L-20261020-13",
+    "outcome_source": "research/production/mountweazel-2026-10-20/MW-C2_SCORES.json"
+   },
+   "note": "blinding regime: sealed key outside the batch folder, plants checkable inside the packet; scorer-adjusted 7 of 10; other configs: Opus packet-only 9 of 10, Sonnet with sources 6 of 10; D6 the weak type (1 of 3). Population NR is nominal (items are repo claims; ids sealed)",
+   "num": 8,
+   "den": 10
+  },
+  {
+   "key": "hit_rate.lambertini_s0_prefill_agreement",
+   "pool": "Lambertini P1: S0 'no savings' prefill confirmed by the reader on upheld claims",
+   "unit": "share",
+   "value": 0.667,
+   "source": "O-20261020-11",
+   "population": "LAMBS",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-11",
+    "forecast_id": "L-20261020-18",
+    "outcome_source": "research/excavator/lambertini-2026-10-20/OUTCOME.json"
+   },
+   "note": "prefill overruled on EO 10897, 11800",
+   "num": 4,
+   "den": 6
+  },
+  {
+   "key": "hit_rate.lambertini_s0_prefill_agreement_scale",
+   "pool": "Lambertini II: S0 'no savings' prefill confirmed by the reader on the 20 upheld LAMBS2 claims",
+   "unit": "share",
+   "value": 0.6,
+   "source": "O-20261020-20",
+   "population": "LAMBS2",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-20",
+    "forecast_id": "L-20261020-31",
+    "outcome_source": "research/excavator/lambertini-2026-10-20/scale/OUTCOME.json"
+   },
+   "note": "batch 01 4/7, 02 5/6, 03 3/7",
+   "num": 12,
+   "den": 20
   }
  ]
 }
