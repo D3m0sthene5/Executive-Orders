@@ -1,0 +1,56 @@
+{
+ "written_at": "2026-10-20T03:43:51Z",
+ "commit": "46f91fdac",
+ "planning": {
+  "cost_unit": "agent_minutes",
+  "max_cost_per_ready": 60
+ },
+ "ranked": [
+  {
+   "id": "tracker-rerun-on-y2-upheld-claims",
+   "tier": "zero_agent",
+   "informs": "y2-scale-500-current-gates",
+   "cost": 0,
+   "e_ready": 0.0,
+   "evsi": null,
+   "evpi": null,
+   "rank": null,
+   "note": "measures ready_per_success: runs first"
+  }
+ ],
+ "unranked": [
+  {
+   "id": "y2-scale-500-current-gates",
+   "tier": "run",
+   "reasons": [
+    "ready_per_success is unmeasured (needs a value and a source)"
+   ]
+  },
+  {
+   "id": "y2-probe-50-after-ending-fetch",
+   "tier": "probe",
+   "reasons": [
+    "ready_per_success is unmeasured (needs a value and a source)"
+   ]
+  },
+  {
+   "id": "y1-status-sweep-to-ready",
+   "tier": "run",
+   "reasons": [
+    "ready_per_success is unmeasured (needs a value and a source)"
+   ]
+  }
+ ],
+ "censuses": {
+  "Y1": {
+   "pool_size": 4274,
+   "ceiling_strict": 3952,
+   "ceiling_leads": 3952
+  },
+  "Y2": {
+   "pool_size": 2063,
+   "ceiling_strict": 67,
+   "ceiling_leads": 392
+  }
+ }
+}

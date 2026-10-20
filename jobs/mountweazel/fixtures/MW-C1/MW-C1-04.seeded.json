@@ -1,0 +1,210 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 27,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b0.jsonl",
+  "sha256": "883c127aba85733589723f0fee12cea95b73d674a9020360265eb4a7639c5c26"
+ },
+ "batch_id": "MW-C1",
+ "defect_code": "D4",
+ "instrument_id": "SEEDED:EO:11634",
+ "item_id": "MW-C1-04",
+ "mutation": {
+  "after": "1971-12-06",
+  "before": "1972-07-27",
+  "field": "operative_clauses[1].first_end",
+  "operator": "D4.1->2",
+  "refuting_span": {
+   "quote": "Sec. 3. Section 1  of Executive Order No. 11248 of October 10, 1965, \nas amended, is further amended by deleting “ (13) Chairman, Price"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:11634",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "every saved order text citing Executive Order No. 11248 (EO 11248 and its 40 amenders EO 11251 through EO 11699, plus EO 11708) read in full, with EO 11236, 11695, 11715, 11727, 11736 and 11768; each section 1 and section 2 item of EO 11248 traced through every addition, deletion, word substitution and renumbering to 1974, and checked for any act naming EO 11634 or the positions it placed",
+    "repository": "Saved official Federal Register text layers, jobs/fr-originals/data/full_run (6,652 order texts) at repository main",
+    "searched_by": "Claude (batch 0 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "statutory placement, renaming or abolition of the positions this order placed, in the 5315 and 5316 amendment notes for 1964-1973 and the current lists; 5317 conditions on presidential placements",
+    "repository": "U.S. Code release point 119-121, usc05.xml (cached OLRC download): 5 U.S.C. 5315, 5316 and 5317 text, historical and amendment notes",
+    "searched_by": "Claude (batch 0 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition rows for EO 11248 and each amending order, as status leads at January 20, 1989 (not used as an ending source)",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders 1945-1989, Executive Orders disposition table (jobs/ofr-codification-1989 output DISPOSITION_1989.csv, HathiTrust uiug.30112026470077)",
+    "searched_by": "Claude (batch 0 agent)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11641",
+     "date": "1972-01-28",
+     "mechanism": "EO 11641 sec. 3 deletes this item (12) 'Chairman, Pay Board' from EO 11248 sec. 1 and inserts 'Director, Office for Drug Abuse Law Enforcement' in its place (the quotation runs across the page break at 37 FR 2421-2422); effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "excerpt": "Board,”  and by inserting in lieu thereof w '(1 2 ) D irector, O ffice for Drug \nAbuse Law Enforcem ent.",
+      "page_or_item": "37 FR 2421, PDF pages 11-12",
+      "quote": "Section 1 o f Executive O rder N o. 11248 o f O ctober 10, 1965* \nas amended, is further amended by deleting “ (12) Chairman, Pay",
+      "sha256": "99468f21aca5614db63bf2d7ef4ae343c64fc19366c514ac2e5dbd9235bbf30f",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1972-02-01/pdf/FR-1972-02-01.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11708",
+      "effective_date": "1973-03-23",
+      "mechanism": "formal revocation of Executive Order No. 11248 as amended by EO 11708 sec. 3 (the OFR's 'Revoked by EO 11708'); this clause had already ended earlier (see first_end), so the revocation removed nothing still operating",
+      "source": {
+       "page_or_item": "38 FR 7979, PDF pages 11-12",
+       "quote": "Sec. 3. Except with respect to the positions enumerated in section 2 \no f this order, Executive Order No. 11248 of October 10, 1965, as \namended, is hereby revoked.",
+       "sha256": "cc47994b2f4054913b76f251ac8970a70190e7ac65586ed1c1637422c87d8f92",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "1. Section 1  of that order, placing certain positions in level IV of the \nFederal Executive Salary Schedule, is amended by adding thereto the \nfollowing:\n“(12)  Chairman, Pay Board.",
+    "original_source": {
+     "page_or_item": "36 FR 23287, PDF pages 7-7",
+     "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+    },
+    "scope_id": "EO:11634#item1-level-IV-item12",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11634",
+     "date": "1971-12-06",
+     "mechanism": "completed on taking effect: a one-time edit of the host text of EO 11248 (deletion of level V items (8) and (21)) with nothing further to operate; effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "page_or_item": "36 FR 23287, PDF pages 7-7",
+      "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11708",
+      "effective_date": "1973-03-23",
+      "mechanism": "formal revocation of Executive Order No. 11248 as amended by EO 11708 sec. 3 (the OFR's 'Revoked by EO 11708'); this clause had already ended earlier (see first_end), so the revocation removed nothing still operating",
+      "source": {
+       "page_or_item": "38 FR 7979, PDF pages 11-12",
+       "quote": "Sec. 3. Except with respect to the positions enumerated in section 2 \no f this order, Executive Order No. 11248 of October 10, 1965, as \namended, is hereby revoked.",
+       "sha256": "cc47994b2f4054913b76f251ac8970a70190e7ac65586ed1c1637422c87d8f92",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(13)  Chairman, Price Commission.",
+    "original_source": {
+     "page_or_item": "36 FR 23287, PDF pages 7-7",
+     "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+    },
+    "scope_id": "EO:11634#item1-level-IV-item13",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11634",
+     "date": "1971-12-06",
+     "mechanism": "completed on taking effect: a one-time edit of the host text of EO 11248 (deletion of level V items (8) and (21)) with nothing further to operate; effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "page_or_item": "36 FR 23287, PDF pages 7-7",
+      "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "2. Section 2 of that order, placing certain positions in level V of the \nFederal Executive Salary Schedule, is amended—\n(a) By deleting “(8)  Director, Urban Transportation Administra­\ntion, Department of Housing and Urban Development,” and “(21) \nDeputy Assistant Postmaster General, Bureau of Operations, Post Office",
+    "original_source": {
+     "page_or_item": "36 FR 23287, PDF pages 7-7",
+     "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+    },
+    "scope_id": "EO:11634#item2a-level-V-delete-items8-21",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11634",
+     "date": "1971-12-06",
+     "mechanism": "completed on taking effect: a one-time edit of the host text of EO 11248 (renumbering of level V items (9)-(20), (22) and (23)) with nothing further to operate; effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "page_or_item": "36 FR 23287, PDF pages 7-7",
+      "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(b) By renumbering items (9) through (20)  as (8)  through (19), \nrespectively, and items (22) and (23) as (20) and (21),  respectively.",
+    "original_source": {
+     "page_or_item": "36 FR 23287, PDF pages 7-7",
+     "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+    },
+    "scope_id": "EO:11634#item2b-level-V-renumber",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "36 FR 23287, PDF pages 7-7",
+   "sha256": "d7914fb6b0ac504a21215d2ec3a79e5db307d7437ac1016d3d7c47425e7bb86a",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1971-12-08/pdf/FR-1971-12-08.pdf"
+  },
+  "research_rationale": "EO 11634 adds level IV items (12), Chairman, Pay Board, and (13), Chairman, Price Commission; deletes level V items (8) and (21); and renumbers the remaining level V items. The deletion and renumbering were completed on December 6, 1971. EO 11641 sec. 3 (January 28, 1972; no other effective date) deletes item (12) and inserts the Director, Office for Drug Abuse Law Enforcement. EO 11676 sec. 3 (December 6, 1971; no other effective date) deletes item (13) and inserts the Director, Office of National Narcotics Intelligence. Both bodies still existed on those dates: EO 11695 (held, 38 FR 1473) abolished the Pay Board and Price Commission only in 1973. The last clause end, and so the whole-order end, is therefore 1971-12-06, eight months before the formal revocation of EO 11248 as amended by EO 11708 that the OFR records. That revocation is a post-end event. Family method: the researcher read the saved official Federal Register OCR text layers (heading to FR Doc line) of this order, of EO 11248 and of all 40 orders that the OFR disposition notes and the 1989 Codification list as amending it, plus EO 11708, 11715, 11736 and 11768, and traced every item of EO 11248 sections 1 and 2 through each addition, deletion, word substitution and renumbering. EO 11708 sec. 3 (signed and filed March 23, 1973; no other effective date) revokes EO 11248 as amended, except for the eight positions listed in its section 2; none of them is a position whose placement this order's text still supplied. Where a later amender deletes an item and inserts another in its place, the earlier item's placement ends on that amender's effective date; the series' separate 'substituting for the words' formula is treated as a retitling that continues the item. Pure deletions, renumberings and effective-date provisions are one-time edits completed when the order took effect. The 5 U.S.C. 5315-5316 amendment notes for 1964-1973 record no statutory placement of the positions concerned. Abolition of a position by unpublished departmental action is outside the held sources and is a limitation of this bounded search. Page images were not viewed; quotations are exact from the saved OCR, including its recognition errors. No human certification is asserted.",
+  "savings_residuals": {
+   "reason": "The order only placed, removed or renumbered positions in pay levels IV and V of the Executive Schedule under 5 U.S.C. 5317 (formerly sec. 303(f) of the 1964 Salary Reform Act). Removal of a placement operates prospectively; pay already received is a completed historical consequence, and no entitlement, transfer of functions or right is preserved. Neither the acting order nor EO 11708 contains a savings or incumbent-protection clause for this order's items. The only carve-out, EO 11708 sec. 3's exception for the positions listed in its sec. 2, does not cover them; EO 11768's incumbent clause (1974) concerns its own list.",
+   "source": {
+    "page_or_item": "37 FR 15125, PDF pages 11-12",
+    "sha256": "fb2cc5b56c759887432ff3a8e2f6d9df135036c277c915e1bb29803a1527028b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1972-07-28/pdf/FR-1972-07-28.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:11641",
+   "date": "1972-01-28",
+   "mechanism": "EO 11641 sec. 3 deletes this item (12) 'Chairman, Pay Board' from EO 11248 sec. 1 and inserts 'Director, Office for Drug Abuse Law Enforcement' in its place (the quotation runs across the page break at 37 FR 2421-2422); effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+   "source": {
+    "excerpt": "Board,”  and by inserting in lieu thereof w '(1 2 ) D irector, O ffice for Drug \nAbuse Law Enforcem ent.",
+    "page_or_item": "37 FR 2421, PDF pages 11-12",
+    "quote": "Section 1 o f Executive O rder N o. 11248 o f O ctober 10, 1965* \nas amended, is further amended by deleting “ (12) Chairman, Pay",
+    "sha256": "99468f21aca5614db63bf2d7ef4ae343c64fc19366c514ac2e5dbd9235bbf30f",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1972-02-01/pdf/FR-1972-02-01.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

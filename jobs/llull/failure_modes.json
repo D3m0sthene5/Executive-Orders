@@ -1,0 +1,175 @@
+{
+ "schema": "llull.failure_modes/1",
+ "derived_from": "ledger/postmortems.json (23 plans; 12 unfavourable misses). These modes were derived from the same history Llull is first run on, so scores on it are in-sample.",
+ "n_unfavourable_misses": 12,
+ "modes": [
+  {
+   "key": "UNMEASURED_PREREQUISITE",
+   "definition": "Plan sized a pool without checking the gates an order must pass first (status, held text, custody, citable ending instrument, current predicate).",
+   "question": "Which inputs must each item hold for this step to succeed, and how many items hold all of them today?",
+   "mechanical_check": "Domesday census: forecast p90 and any large number in the plan vs the joint ceiling; requires_unmeasured is auto_fail",
+   "keywords": "\\b(pool|scale|every|all)\\b|\\b\\d[\\d,]{2,}\\s+(modern\\s+)?orders\\b|\\bready\\b",
+   "misses": 8,
+   "miss_plans": [
+    "P03",
+    "P04",
+    "P05",
+    "P08",
+    "P12",
+    "P13",
+    "P17",
+    "P19"
+   ],
+   "all_scored_plans": [
+    "P03",
+    "P04",
+    "P05",
+    "P08",
+    "P12",
+    "P13",
+    "P17",
+    "P19"
+   ]
+  },
+  {
+   "key": "SELECTION_BIAS",
+   "definition": "Rates measured on the easiest family/pilot (Codification revocation swarm, X1's 10% eligible) were transferred to a harder population.",
+   "question": "Where was the rate this step uses measured, and is this pool the same class (not the easiest family or pilot)?",
+   "mechanical_check": "reference class pool vs plan pool; a class with n_studies < 3 or a per-batch spread over 3x is flagged",
+   "keywords": "\\b(pilot|sample|swarm|easiest|reuse[sd]?|transfer\\w*|same rate|anchor)\\b",
+   "misses": 5,
+   "miss_plans": [
+    "P07",
+    "P08",
+    "P12",
+    "P17",
+    "P19"
+   ],
+   "all_scored_plans": [
+    "P07",
+    "P08",
+    "P12",
+    "P17",
+    "P19"
+   ]
+  },
+  {
+   "key": "COST_SHIFT",
+   "definition": "Producer savings were eaten by review, correction or new contrary-source research.",
+   "question": "Who pays after the producer (review, correction, contrary-source research), and is the saving net of them?",
+   "mechanical_check": "a usd_*/minutes_* forecast must name producer AND reviewer cost",
+   "keywords": "\\b(sav(e|es|ing|ings)|cheaper|cut|reduc\\w+|fewer|faster|speed\\w*)\\b",
+   "misses": 3,
+   "miss_plans": [
+    "P02",
+    "P07",
+    "P10"
+   ],
+   "all_scored_plans": [
+    "P02",
+    "P07",
+    "P10"
+   ]
+  },
+  {
+   "key": "INVENTED_RATE",
+   "definition": "A hit rate, saving share or minutes figure was assumed, not measured.",
+   "question": "Which number in this step has no measured source?",
+   "mechanical_check": "every steering number must be a forecast with a measured reference class",
+   "keywords": "\\b(assum\\w+|expect\\w*|at least|hit rate|roughly|about|estimate\\w*)\\b|\\d+(\\.\\d+)?\\s?%",
+   "misses": 2,
+   "miss_plans": [
+    "P02",
+    "P17"
+   ],
+   "all_scored_plans": [
+    "P02",
+    "P17"
+   ]
+  },
+  {
+   "key": "PROXY_UNIT",
+   "definition": "Success counted in a proxy (payload tokens, bytes, packets, agent-minutes, certificates) instead of ready orders or billed $.",
+   "question": "Does success count ready orders, accepted items or billed dollars (not tokens, bytes, packets, certificates)?",
+   "mechanical_check": "quantity must be in the allowed outcome units; proxy words are flagged",
+   "keywords": "\\b(payload|tokens?|bytes|packets?|certificates?|agent-?hours?)\\b",
+   "misses": 2,
+   "miss_plans": [
+    "P02",
+    "P04"
+   ],
+   "all_scored_plans": [
+    "P02",
+    "P04"
+   ]
+  },
+  {
+   "key": "ASSUMED_INDEPENDENCE",
+   "definition": "Steps or source lists treated as independent when they are gated or dependent.",
+   "question": "Do the steps or source lists gate each other? Is a stated bound guaranteed or only a tendency?",
+   "mechanical_check": "census product-of-marginals vs joint count (1.5x rule)",
+   "keywords": "\\b(independent\\w*|upper bound|lower bound|guarantee\\w*|union|sum of)\\b",
+   "misses": 1,
+   "miss_plans": [
+    "P17"
+   ],
+   "all_scored_plans": [
+    "P17"
+   ]
+  },
+  {
+   "key": "ACCESS_ASSUMPTION",
+   "definition": "Source access assumed (robots, Cloudflare, permissions, host routes) before a one-request check.",
+   "question": "Has one request to each host succeeded this week (robots.txt, viewer, Cloudflare)?",
+   "mechanical_check": "not mechanical offline; the network gate is not shipped",
+   "keywords": "\\b(fetch\\w*|download\\w*|crawl\\w*|robots|scrap\\w+|hathitrust|govinfo|archive\\.org|https?://)",
+   "misses": 2,
+   "miss_plans": [
+    "P11",
+    "P13"
+   ],
+   "all_scored_plans": [
+    "P11",
+    "P13"
+   ]
+  },
+  {
+   "key": "REVIEW_LENIENCY",
+   "definition": "Pass rests on a reviewer from the same model family / single pass; quality rate not independently measured.",
+   "question": "Is the pass rate from a reviewer of the same model family in a single pass?",
+   "mechanical_check": "plan names reviewer and producer models; same family and single pass needs an answer",
+   "keywords": "\\b(review\\w*|pass rate|same model|single pass|agree\\w*)\\b",
+   "misses": 0,
+   "miss_plans": [],
+   "all_scored_plans": [
+    "P18"
+   ]
+  },
+  {
+   "key": "UNCONSIDERED_ROUTE",
+   "definition": "Pessimistic miss: a cheaper route (archive mirror, script) was not in the plan.",
+   "question": "Is there a cheaper route: an archive mirror, an index, a script instead of agents?",
+   "mechanical_check": "a zero-agent job that already produces the input; CDX/Common Crawl lookup (network)",
+   "keywords": "\\b(crawl\\w*|scrap\\w+|manual\\w*|by hand|build a|new job|download all)\\b",
+   "misses": 0,
+   "miss_plans": [],
+   "all_scored_plans": [
+    "P14"
+   ]
+  },
+  {
+   "key": "POLICY_COUNTED_UNAPPROVED",
+   "definition": "Saving counted from a policy change the owner had not approved.",
+   "question": "Does this step count a rule change or decision the owner has not approved?",
+   "mechanical_check": "an owner decision named in the step must cite an approval line in HANDOFF/",
+   "keywords": "\\b(owner|approv\\w+|policy|rule change|waive\\w*|decision)\\b",
+   "misses": 1,
+   "miss_plans": [
+    "P17"
+   ],
+   "all_scored_plans": [
+    "P17"
+   ]
+  }
+ ]
+}

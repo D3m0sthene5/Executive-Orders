@@ -1,0 +1,21 @@
+{
+ "note": "Candidate next actions for Raiffa. Every cost, conversion and share must carry a measured source; an action missing one is listed UNRANKED rather than ranked on a guess. max_cost_per_ready is a planning parameter chosen by the owner, not a measurement.",
+ "planning": {"cost_unit": "agent_minutes", "max_cost_per_ready": 60},
+ "actions": [
+  {"id": "tracker-rerun-on-y2-upheld-claims", "tier": "zero_agent", "informs": "y2-scale-500-current-gates",
+   "measures": "ready_per_success", "cost": 0,
+   "description": "Bowditch estimated 0 to 3 new ready orders from 3 upheld Y2 claims but did not measure it; the Actions tracker run does, with no agent."},
+  {"id": "y2-scale-500-current-gates", "tier": "run", "pool": "Y2", "reference_class": "upheld_per_attempt.modern_claim_no_held_end",
+   "n_attempts": 500, "ready_per_success": null, "ready_per_success_source": null,
+   "cost_per_attempt": 0.924, "cost_source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "description": "15.4 reviewer-only minutes per accepted x 0.06 accepted per attempt = 0.924 reviewer minutes per attempt; producer minutes were not reported, so cost is a lower bound."},
+  {"id": "y2-probe-50-after-ending-fetch", "tier": "probe", "informs": "y2-scale-500-current-gates", "pool": "Y2",
+   "reference_class": "upheld_per_attempt.modern_claim_no_held_end", "n_attempts": 50,
+   "ready_per_success": null, "ready_per_success_source": null,
+   "cost_per_attempt": 0.924, "cost_source": "research/excavator/bowditch-2026-10-20/REPORT.md"},
+  {"id": "y1-status-sweep-to-ready", "tier": "run", "pool": "Y1", "reference_class": "accepted_per_attempt.modern_status_sweep",
+   "n_attempts": 1000, "ready_per_success": null, "ready_per_success_source": null,
+   "cost_per_attempt": 0.45, "cost_source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "description": "1.5 minutes per accepted status x 0.30 accepted per attempt. An accepted status is not a ready order: the status-to-ready conversion has never been measured."}
+ ]
+}

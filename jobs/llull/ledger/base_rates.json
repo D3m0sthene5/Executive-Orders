@@ -1,0 +1,223 @@
+{
+ "schema": "llull.base_rates/1",
+ "built": "2026-10-20",
+ "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`.",
+ "rows": [
+  {
+   "key": "upheld_per_attempt.modern_claim_no_held_end",
+   "pool": "EO>=7532 status yes/no, original text held, not ready, no claim; no held TERM/ACT or CURRENT",
+   "unit": "share",
+   "value": 0.06,
+   "postmortem_id": "P19",
+   "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "n_studies": 1,
+   "note": "Y2 probe; the orders lacked held ending instruments and CURRENT predicates",
+   "num": 3,
+   "den": 50
+  },
+  {
+   "key": "accepted_per_attempt.modern_status_sweep",
+   "pool": "EO>=7532 with no provisional status; status-history/OFR records held",
+   "unit": "share",
+   "value": 0.3,
+   "postmortem_id": "P18",
+   "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "n_studies": 1,
+   "note": "Y1 probe, producer plus independent review",
+   "num": 15,
+   "den": 50
+  },
+  {
+   "key": "minutes_per_accepted.modern_status",
+   "pool": "same as Y1",
+   "unit": "minutes",
+   "value": 1.5,
+   "postmortem_id": "P18",
+   "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "n_studies": 1,
+   "note": "about 1.5 combined minutes per accepted status; 15 accepted"
+  },
+  {
+   "key": "minutes_per_accepted.modern_claim_reviewer_only",
+   "pool": "Y2 pool",
+   "unit": "minutes",
+   "value": 15.4,
+   "postmortem_id": "P19",
+   "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "n_studies": 1,
+   "note": "46.1 reviewer minutes for 3 accepted claims; producer minutes not reported, so a LOWER BOUND"
+  },
+  {
+   "key": "rejected_per_submitted.modern_claim_no_held_end",
+   "pool": "Y2 pool",
+   "unit": "share",
+   "value": 0.4,
+   "postmortem_id": "P19",
+   "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 2,
+   "den": 5
+  },
+  {
+   "key": "rejected_per_submitted.codification_swarm",
+   "pool": "Codification revocation claims (easy family)",
+   "unit": "share",
+   "value": 0.107,
+   "postmortem_id": "P06",
+   "source": "HANDOFF/notes-claude.md",
+   "n_studies": 1,
+   "note": "10.7% overall; per batch 0% to 50% (12/24); denominator not recorded in the postmortem"
+  },
+  {
+   "key": "rejected_per_submitted.sol_claim_kit_pilot",
+   "pool": "Sol 50-order claim-kit pilot",
+   "unit": "share",
+   "value": 0.167,
+   "postmortem_id": "P07",
+   "source": "research/production/claim-kit-pilot-2026-10-18/short.md",
+   "n_studies": 1,
+   "note": "first-pass rejection 16.7%"
+  },
+  {
+   "key": "rejected_per_submitted.family_rule_targets_first_decisions",
+   "pool": "Astra A2 family-rule targets",
+   "unit": "share",
+   "value": 0.2222,
+   "postmortem_id": "P12",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 2,
+   "den": 9
+  },
+  {
+   "key": "rejected_per_submitted.x1_pilot",
+   "pool": "X1 pre-1937 pilot",
+   "unit": "share",
+   "value": 0.1667,
+   "postmortem_id": "P17",
+   "source": "research/production/x1-2026-10-19/REPORT.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 1,
+   "den": 6
+  },
+  {
+   "key": "accepted_per_target.family_claims",
+   "pool": "Sol brief: 50 family candidates",
+   "unit": "share",
+   "value": 0.24,
+   "postmortem_id": "P08",
+   "source": "research/plans/SOL_BRIEF_CLAIM_KIT.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 12,
+   "den": 50
+  },
+  {
+   "key": "complete_per_accepted.family_rule_targets",
+   "pool": "Astra A2 T3",
+   "unit": "share",
+   "value": 0.1053,
+   "postmortem_id": "P12",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 2,
+   "den": 19
+  },
+  {
+   "key": "hit_rate.type_tribunal",
+   "pool": "X1 pilot",
+   "unit": "share",
+   "value": 0.1875,
+   "postmortem_id": "P17",
+   "source": "research/production/x1-2026-10-19/REPORT.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 3,
+   "den": 16
+  },
+  {
+   "key": "hit_rate.extinction_event",
+   "pool": "X1 pilot",
+   "unit": "share",
+   "value": 0.0,
+   "postmortem_id": "P17",
+   "source": "research/production/x1-2026-10-19/REPORT.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 0,
+   "den": 4
+  },
+  {
+   "key": "eligible_share.pre1937_orders",
+   "pool": "pre-1937 orders past status plus held-text prerequisites, at main f57cffe8",
+   "unit": "share",
+   "value": 0.0065,
+   "postmortem_id": "P17",
+   "source": "research/plans/EXCAVATOR_FUNNEL_2026-10-20.md",
+   "n_studies": 1,
+   "note": "measured by the X1 pilot; the Llull census recounts it on today's tracker",
+   "num": 52,
+   "den": 8014
+  },
+  {
+   "key": "cleared_per_queued.opus_refetch",
+   "pool": "Opus media refetch list",
+   "unit": "share",
+   "value": 0.036,
+   "postmortem_id": "P13",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "n_studies": 1,
+   "note": "108 -> 125 (+17), then 82 after ladder output was lost",
+   "num": 17,
+   "den": 472
+  },
+  {
+   "key": "items_per_planned.opus_media_match",
+   "pool": "orders needing Opus media matched",
+   "unit": "share",
+   "value": 0.0972,
+   "postmortem_id": "P05",
+   "source": "HANDOFF/notes-claude.md",
+   "n_studies": 1,
+   "note": "108 of 844 on 10-18; 82 orders with all cited media resolved later",
+   "num": 82,
+   "den": 844
+  },
+  {
+   "key": "items_per_planned.blocked_host",
+   "pool": "HathiTrust GPO volumes (robots.txt blocked)",
+   "unit": "share",
+   "value": 0.0,
+   "postmortem_id": "P11",
+   "source": "HANDOFF/notes-codex.md",
+   "n_studies": 1,
+   "note": "",
+   "num": 0,
+   "den": 1712
+  },
+  {
+   "key": "usd_total.meta_tool_build",
+   "pool": "building a meta-tool (Junto)",
+   "unit": "usd",
+   "value": 10.18,
+   "postmortem_id": "P21",
+   "source": "HANDOFF/notes-claude.md",
+   "n_studies": 1,
+   "note": "forecast was $12-25"
+  },
+  {
+   "key": "measured_over_forecast.all_misses",
+   "pool": "unfavourable misses with a numeric ratio",
+   "unit": "ratio",
+   "value": 0.036,
+   "n_studies": 9,
+   "postmortem_id": "P03,P04,P05,P08,P11,P12,P13,P17,P19",
+   "source": "jobs/llull/ledger/postmortems.json",
+   "note": "median measured/forecast over 9 of 12 unfavourable misses; ratios [0.0, 0.0, 0.0033, 0.022, 0.036, 0.112, 0.12, 0.128, 0.24]"
+  }
+ ]
+}

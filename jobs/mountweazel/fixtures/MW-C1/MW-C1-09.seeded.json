@@ -1,0 +1,113 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 9,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b1.jsonl",
+  "sha256": "2ff350f987c3df08a4c01495970ebd34c57bc62d6af4afb4d26320689c5f9f87"
+ },
+ "batch_id": "MW-C1",
+ "defect_code": "D3",
+ "instrument_id": "SEEDED:EO:12111",
+ "item_id": "MW-C1-09",
+ "mutation": {
+  "after": "1-202. Executive Order No. 12076, as amended, is hereby",
+  "before": "1-202. Executive Order No. 12076, as amended, is hereby revoked.",
+  "field": "operative_clauses[0].first_end.source.quote",
+  "operator": "D3.0",
+  "refuting_span": {
+   "quote": " revoked."
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:12111",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "regular-expression search for the number 12111 (with or without a thousands comma) next to 'Order', 'E.O.', 'Ord.' or 'No.' in every saved text other than this order's own; every hit read by hand. Hits: none: no saved later order text cites it by number (EO 12154 revokes 'Executive Order No. 12076, as amended' without naming the amending orders).",
+    "repository": "Saved official Federal Register order texts of jobs/fr-originals (jobs/fr-originals/output/texts: 6652 OCR texts of govinfo Federal Register issue PDFs), repository main as copied 2026-10-18",
+    "searched_by": "Claude (claims batch 1)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition table row for EO 12111 (amendments and disposition as of 1989-01-20; a lead only, never itself the source of the ending): amendments 'Amended EO 12076'; disposition 'Revoked by EO 12154'",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989; HathiTrust uiug.30112026470077), Executive Orders disposition table as parsed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv)",
+    "searched_by": "Claude (claims batch 1)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "President (EO:12154)",
+     "date": "1979-09-04",
+     "mechanism": "express revocation of 'Executive Order No. 12076, as amended' (EO 12154 sec. 1-202), which carried with it this amendment of EO 12076; no separate effective date is stated, so it took effect on issuance (sec. 1-201 speaks of 'the issuance of this Order')",
+     "source": {
+      "page_or_item": "44 FR 51965, PDF page 9",
+      "quote": "1-202. Executive Order No. 12076, as amended, is hereby",
+      "sha256": "48b1a5313f843bd1e429c13d202b0eb4b4aa0e3f5a318bc73bace465a3d27659",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1979-09-06/pdf/FR-1979-09-06.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "By the authority vested in me as President of the United States of America  \nby Section 5317 of Title 5 of the United States Code, and in order to place  \nthe position of Counselor on Labor Management Relations, Department of  \nCommerce, in level IV of the Executive Schedule, Executive Order No. 12076,  \nas amended, is further amended by deleting “Assistant to the Secretary and  \nLand Utilization Adviser, Department of the Interior.” from Section l-102(g)  \nand inserting “(s) Counselor on Labor Management Relations, Department of  \nCommerce.” in alphabetical order in Section 1-101 thereof.",
+    "original_source": {
+     "page_or_item": "44 FR 1071, PDF page 11",
+     "sha256": "a2471a0af88b15cbf11ba470e78a5d4f14c74f05de6c347052937a403c917c37",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-04/pdf/FR-1979-01-04.pdf"
+    },
+    "scope_id": "EO:12111#amendment",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "44 FR 1071, PDF page 11",
+   "sha256": "a2471a0af88b15cbf11ba470e78a5d4f14c74f05de6c347052937a403c917c37",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-04/pdf/FR-1979-01-04.pdf"
+  },
+  "research_rationale": "EO 12111 (Jan. 2, 1979; 44 FR 1071) has a single operative provision: it amends EO 12076 (Levels IV and V of the Executive Schedule) to place the position of Counselor on Labor Management Relations, Department of Commerce in level IV, by deleting or inserting entries in secs. 1-101/1-102 of EO 12076. It has no effect of its own apart from the text it put into EO 12076. The 1989 Codification shows EO 12076 amended only by EOs 12099, 12111 and 12119 and revoked by EO 12154, so no other order altered these entries before the revocation. EO 12154 sec. 1-202 (Sept. 4, 1979) revoked 'Executive Order No. 12076, as amended', ending the amendment on that date; EO 12154 states no other effective date. EO 12154 sec. 1-1 re-lists only twelve other positions and does not carry this position forward. The OFR catalog note on this order reads 'Revoked by: EO 12154, September 4, 1979'. EO 12076 is claimed by another agent and is not claimed here. No human certification is asserted.",
+  "savings_residuals": {
+   "reason": "EO 12154 has no savings clause for EO 12076 or its amendments. Its only protective provision, sec. 1-201, keeps in office the occupants of the positions listed in its own sec. 1-1, and the position placed by this order is not among them; pay already received at level IV is a completed transaction, not a continuing effect. Bounded search: this order, EO 12154 in full, and the 1989 Codification row for EO 12076 (amended only by EOs 12099, 12111, 12119; revoked by EO 12154).",
+   "source": {
+    "page_or_item": "44 FR 51965, PDF page 9",
+    "quote": "1-201. Nothing in this Order shall be deemed to terminate or otherwise affect  \nthe appointment, or to require the reappointment, of any occupant of any  \nposition listed in Section 1-1 of this Order who was the occupant of that  \nposition immediately prior to the issuance of this Order.",
+    "sha256": "48b1a5313f843bd1e429c13d202b0eb4b4aa0e3f5a318bc73bace465a3d27659",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1979-09-06/pdf/FR-1979-09-06.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "President (EO:12154)",
+   "date": "1979-09-04",
+   "mechanism": "express revocation of 'Executive Order No. 12076, as amended' (EO 12154 sec. 1-202), which carried with it this amendment of EO 12076; no separate effective date is stated, so it took effect on issuance (sec. 1-201 speaks of 'the issuance of this Order')",
+   "source": {
+    "page_or_item": "44 FR 51965, PDF page 9",
+    "quote": "1-202. Executive Order No. 12076, as amended, is hereby",
+    "sha256": "48b1a5313f843bd1e429c13d202b0eb4b4aa0e3f5a318bc73bace465a3d27659",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1979-09-06/pdf/FR-1979-09-06.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

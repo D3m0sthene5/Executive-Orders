@@ -1,0 +1,801 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 11,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl",
+  "sha256": "8d42fba65ea6964d365bf7472633f38432fb791d38797a64e6f309b6e12305f4"
+ },
+ "batch_id": "MW-C1",
+ "defect_code": "D2",
+ "instrument_id": "SEEDED:EO:11126",
+ "item_id": "MW-C1-07",
+ "mutation": {
+  "after": "1978-04-04",
+  "before": "1965-05-06",
+  "field": "operative_clauses[7].first_end",
+  "operator": "D2.7:EO:12050",
+  "refuting_span": {
+   "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:11126",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition row for EO 11126 ('Amended by EOS 11221, 12007. Continuedby EOS 11827, 11948. Revokedby EO 12050', table page 1066); every acting order it names was then read in its Federal Register original, together with the amending and continuing orders named in this claim",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), Executive Orders disposition table, as transcribed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv); a status lead as of 1989-01-20 only",
+    "searched_by": "Claude (batch 7), reading the held fr-originals Federal Register scans"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "EO 11126 (28 FR 11717-11718) read in full; amending EO 11221 (30 FR 6427) and EO 12007 (42 FR 42839-42840), continuing EO 11827 (40 FR 1217-1218) and EO 11948 (41 FR 55705-55706), and revoking EO 12050 (43 FR 14431-14432) read for their operative provisions, effective dates and savings language; Federal Advisory Committee Act sec. 14 read in the held 86 Stat. 776 PDF",
+    "repository": "Held official Federal Register scans (jobs/fr-originals full_run texts and SOURCES.jsonl) and Statutes at Large PDFs held in research/stage20",
+    "searched_by": "Claude (batch 7)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11221",
+     "date": "1965-05-06",
+     "mechanism": "amendment by substitution: EO 11221 amends EO 11126 by substituting new texts for sec. 101(a) (Committee membership enlarged), sec. 103 (annual report after consulting the Council) and sec. 201 (Council of 20 members); no effective date is stated, so it took effect when signed on May 6, 1965 (printed 30 FR 6427 on May 8, 1965)",
+     "source": {
+      "page_or_item": "30 FR 6427, PDF pages 7-7; EO 11221 operative sentence and paragraphs (1)-(3) (PDF page 7)",
+      "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:",
+      "sha256": "dfa61035f27f3ec0d252b34225a043ba21ff40bcec0cc9d25f6595fd154a48d3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-08/pdf/FR-1965-05-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11221",
+      "effective_date": "1965-05-06",
+      "mechanism": "amendment by substitution: EO 11221 amends EO 11126 by substituting new texts for sec. 101(a) (Committee membership enlarged), sec. 103 (annual report after consulting the Council) and sec. 201 (Council of 20 members); no effective date is stated, so it took effect when signed on May 6, 1965 (printed 30 FR 6427 on May 8, 1965)",
+      "source": {
+       "page_or_item": "30 FR 6427, PDF pages 7-7; EO 11221 operative sentence and paragraphs (1)-(3) (PDF page 7)",
+       "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:",
+       "sha256": "dfa61035f27f3ec0d252b34225a043ba21ff40bcec0cc9d25f6595fd154a48d3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-08/pdf/FR-1965-05-08.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "Section  101. (a ) There is hereby established the interdepartmental \nCommittee on the Status o f Women (hereinafter referred to as the \n“ Committee” ), which shall be composed o f the Secretary o f Labor, \nwho shall be the Chairman o f the Committee, the Secretary o f State, \nthe Secretary o f Defense, the Attorney General, the Secretary of \nAgriculture, the Secretary o f Commerce, the Secretary o f Health, \nEducation, and W elfare, and the Chairman of the Civil Service Com­\nmission, all ex officio. The Director o f the Women’s Bureau o f the \nDepartment o f Labor shall serve as Executive Vice-Chairman o f the \nCommittee, and shall be an ex officio member thereof.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 101(a) as originally issued (Interdepartmental Committee on the Status of Women; membership) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec101a",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(b ) When any matter especially related to the area of responsibility \nof any Federal department or agency, the head o f which is not a \nmember o f the Committee, is to be considered by the Committee, the \nChairman o f the Committee shall invite the head o f such department \nor agency to participate in the deliberations of the Committee with \nrespect to such matter and to be a temporary member o f the Commit­\ntee during such deliberations.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 101(b) (temporary members) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec101b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 102. The Committee shall—\n(1) Maintain a continuing review and evaluation of the progress \nof Federal departments and agencies in advancing the status of \nwomen.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 102 lead-in and (1) (continuing review of federal progress) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec102-1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(2) Serve as a clearing house for information as to the activities \nbeing directed toward, and the progress being made in, improving \nconditions o f special interest to women.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 102(2) (clearing house) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec102-2",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(3) Stimulate cooperation and the sharing o f data, views, and in­\nformation among Federal agencies, State and local governments, State \ncommissions on the status o f women, and public and private organiza­\ntions having responsibilities and interests in areas o f special concern \nto women-",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 102(3) (cooperation and data sharing) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec102-3",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(4) Encourage research on factors affecting the status o f women \nin the areas o f education, home and community activities, employment, \nsocial insurance, taxes, civil and political rights, labor legislation, and \nrelated matters.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 102(4) (research) (quotation from PDF page 3)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec102-4",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(5) Exchange information with the Citizens’ Advisory Council on \nthe Status o f Women, established by Part I I  of this order, on progress \ntoward advancing the status o f women and on new developments re­\nquiring consideration by the Council and the Committee.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 102(5) (exchange with the Council) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec102-5",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11221",
+      "effective_date": "1965-05-06",
+      "mechanism": "amendment by substitution: EO 11221 amends EO 11126 by substituting new texts for sec. 101(a) (Committee membership enlarged), sec. 103 (annual report after consulting the Council) and sec. 201 (Council of 20 members); no effective date is stated, so it took effect when signed on May 6, 1965 (printed 30 FR 6427 on May 8, 1965)",
+      "source": {
+       "page_or_item": "30 FR 6427, PDF pages 7-7; EO 11221 operative sentence and paragraphs (1)-(3) (PDF page 7)",
+       "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:",
+       "sha256": "dfa61035f27f3ec0d252b34225a043ba21ff40bcec0cc9d25f6595fd154a48d3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-08/pdf/FR-1965-05-08.pdf"
+      }
+     },
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 103. Annually the Committee shall transmit to the President \na consolidated report concerning the activities o f the Committee and \nthe Citizens’ Advisory Council.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 103 as originally issued (annual consolidated report) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec103",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11221",
+     "date": "1965-05-06",
+     "mechanism": "amendment by substitution: EO 11221 amends EO 11126 by substituting new texts for sec. 101(a) (Committee membership enlarged), sec. 103 (annual report after consulting the Council) and sec. 201 (Council of 20 members); no effective date is stated, so it took effect when signed on May 6, 1965 (printed 30 FR 6427 on May 8, 1965)",
+     "source": {
+      "page_or_item": "30 FR 6427, PDF pages 7-7; EO 11221 operative sentence and paragraphs (1)-(3) (PDF page 7)",
+      "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:",
+      "sha256": "dfa61035f27f3ec0d252b34225a043ba21ff40bcec0cc9d25f6595fd154a48d3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-08/pdf/FR-1965-05-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11221",
+      "effective_date": "1965-05-06",
+      "mechanism": "amendment by substitution: EO 11221 amends EO 11126 by substituting new texts for sec. 101(a) (Committee membership enlarged), sec. 103 (annual report after consulting the Council) and sec. 201 (Council of 20 members); no effective date is stated, so it took effect when signed on May 6, 1965 (printed 30 FR 6427 on May 8, 1965)",
+      "source": {
+       "page_or_item": "30 FR 6427, PDF pages 7-7; EO 11221 operative sentence and paragraphs (1)-(3) (PDF page 7)",
+       "quote": "States, it is ordered that Executive Order No. 11126 of November 2, \n1963, which established a Committee and a Council relating to the \nstatus of women, be amended as follows:",
+       "sha256": "dfa61035f27f3ec0d252b34225a043ba21ff40bcec0cc9d25f6595fd154a48d3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1965-05-08/pdf/FR-1965-05-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 201. There is hereby established the Citizens’ Advisory Coun­\ncil on the Status of Women (hereinafter referred to as the “ Council” ) , \nwhich shall be composed o f 17 members appointed by the President, \none o f whom he shall designate to serve as Chairman. The council \nshall meet at the call o f the Chairman o f the Committee, but not less \nthan twice a year. Members o f the Council shall serve without com­\npensation from the United States.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 201 as originally issued (Citizens' Advisory Council of 17 members) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec201",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11827",
+      "effective_date": "1975-01-04",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11827 sec. 1(7) continues the Citizens' Advisory Council on the Status of Women (EO 11126, as amended) until January 5, 1977, unless sooner terminated, before the Council's statutory expiry on January 5, 1975 (FACA sec. 14(a)(1)); signed January 4, 1975, no other effective date stated",
+      "source": {
+       "page_or_item": "40 FR 1217, PDF pages 9-10; sec. 1(7) of EO 11827 (PDF page 10)",
+       "quote": "(7 ) Citizens’ Advisory Council on the Status of Women— Executive  \nOrder No. 11126 of November 1, 1963, as amended (Department of  \nLabor).",
+       "sha256": "7f947d1d08fb5e24f5bf44093a28a733a13c7be72d1b72bd628bf3eaafc20f51",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-07/pdf/FR-1975-01-07.pdf"
+      }
+     },
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11948 sec. 1(a) continues the Citizens' Advisory Council on the Status of Women until December 31, 1978; by sec. 5 the order is effective December 31, 1976 (before the January 5, 1977 expiry set by EO 11827); later superseded as to the Council by EO 12007 sec. 6",
+      "source": {
+       "page_or_item": "41 FR 55705, PDF pages 13-14; sec. 1(a) of EO 11948 (PDF page 13); sec. 5 (effective date) on PDF page 14",
+       "quote": "(a) Citizens^ Advisory Council on the Status of Women— Executive Order No.  \n11126, as amended (Department of L abor).",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     },
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 202. The Council shall—\n(1 ) Serve as a primary means for suggesting and stimulating ac­\ntion with private institutions, organizations, and individuals working \nfo r improvement o f conditions o f special concern to women.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 202 lead-in and (1) (Council functions) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec202-1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11827",
+      "effective_date": "1975-01-04",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11827 sec. 1(7) continues the Citizens' Advisory Council on the Status of Women (EO 11126, as amended) until January 5, 1977, unless sooner terminated, before the Council's statutory expiry on January 5, 1975 (FACA sec. 14(a)(1)); signed January 4, 1975, no other effective date stated",
+      "source": {
+       "page_or_item": "40 FR 1217, PDF pages 9-10; sec. 1(7) of EO 11827 (PDF page 10)",
+       "quote": "(7 ) Citizens’ Advisory Council on the Status of Women— Executive  \nOrder No. 11126 of November 1, 1963, as amended (Department of  \nLabor).",
+       "sha256": "7f947d1d08fb5e24f5bf44093a28a733a13c7be72d1b72bd628bf3eaafc20f51",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-07/pdf/FR-1975-01-07.pdf"
+      }
+     },
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11948 sec. 1(a) continues the Citizens' Advisory Council on the Status of Women until December 31, 1978; by sec. 5 the order is effective December 31, 1976 (before the January 5, 1977 expiry set by EO 11827); later superseded as to the Council by EO 12007 sec. 6",
+      "source": {
+       "page_or_item": "41 FR 55705, PDF pages 13-14; sec. 1(a) of EO 11948 (PDF page 13); sec. 5 (effective date) on PDF page 14",
+       "quote": "(a) Citizens^ Advisory Council on the Status of Women— Executive Order No.  \n11126, as amended (Department of L abor).",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     },
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(2) Review and evaluate progress of organizations in furthering \nthe full participation o f women in American life.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 202(2) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec202-2",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11827",
+      "effective_date": "1975-01-04",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11827 sec. 1(7) continues the Citizens' Advisory Council on the Status of Women (EO 11126, as amended) until January 5, 1977, unless sooner terminated, before the Council's statutory expiry on January 5, 1975 (FACA sec. 14(a)(1)); signed January 4, 1975, no other effective date stated",
+      "source": {
+       "page_or_item": "40 FR 1217, PDF pages 9-10; sec. 1(7) of EO 11827 (PDF page 10)",
+       "quote": "(7 ) Citizens’ Advisory Council on the Status of Women— Executive  \nOrder No. 11126 of November 1, 1963, as amended (Department of  \nLabor).",
+       "sha256": "7f947d1d08fb5e24f5bf44093a28a733a13c7be72d1b72bd628bf3eaafc20f51",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-07/pdf/FR-1975-01-07.pdf"
+      }
+     },
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11948 sec. 1(a) continues the Citizens' Advisory Council on the Status of Women until December 31, 1978; by sec. 5 the order is effective December 31, 1976 (before the January 5, 1977 expiry set by EO 11827); later superseded as to the Council by EO 12007 sec. 6",
+      "source": {
+       "page_or_item": "41 FR 55705, PDF pages 13-14; sec. 1(a) of EO 11948 (PDF page 13); sec. 5 (effective date) on PDF page 14",
+       "quote": "(a) Citizens^ Advisory Council on the Status of Women— Executive Order No.  \n11126, as amended (Department of L abor).",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     },
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(3) Advise and assist the Committee in the evaluation o f total prog­\nress made and recommend to the Committee, as necessary, action to \naccelerate such progress.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 202(3) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec202-3",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11827",
+      "effective_date": "1975-01-04",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11827 sec. 1(7) continues the Citizens' Advisory Council on the Status of Women (EO 11126, as amended) until January 5, 1977, unless sooner terminated, before the Council's statutory expiry on January 5, 1975 (FACA sec. 14(a)(1)); signed January 4, 1975, no other effective date stated",
+      "source": {
+       "page_or_item": "40 FR 1217, PDF pages 9-10; sec. 1(7) of EO 11827 (PDF page 10)",
+       "quote": "(7 ) Citizens’ Advisory Council on the Status of Women— Executive  \nOrder No. 11126 of November 1, 1963, as amended (Department of  \nLabor).",
+       "sha256": "7f947d1d08fb5e24f5bf44093a28a733a13c7be72d1b72bd628bf3eaafc20f51",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-01-07/pdf/FR-1975-01-07.pdf"
+      }
+     },
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "continuance under the Federal Advisory Committee Act: EO 11948 sec. 1(a) continues the Citizens' Advisory Council on the Status of Women until December 31, 1978; by sec. 5 the order is effective December 31, 1976 (before the January 5, 1977 expiry set by EO 11827); later superseded as to the Council by EO 12007 sec. 6",
+      "source": {
+       "page_or_item": "41 FR 55705, PDF pages 13-14; sec. 1(a) of EO 11948 (PDF page 13); sec. 5 (effective date) on PDF page 14",
+       "quote": "(a) Citizens^ Advisory Council on the Status of Women— Executive Order No.  \n11126, as amended (Department of L abor).",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     },
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(4 ) Consider the effect o f new developments on methods o f ad­\nvancing the status o f women and recommend appropriate action to the \nCommittee.",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 202(4) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec202-4",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12050",
+     "date": "1978-04-04",
+     "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+     "source": {
+      "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+      "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+      "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 301. The departments the heads o f which are, under Section \n101(a) o f this order, members o f the Committee and the Civil Service \nCommission shall, as may be necessary, furnish assistance to the Com­\nmittee in accordance with Section 214 o f the A ct o f May 3, 1945, 59 \nStat. 134 (31 U.S.C. 691).",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 301, first sentence (assistance by member departments and the Civil Service Commission) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec301-1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12007",
+     "date": "1977-08-22",
+     "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+     "source": {
+      "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+      "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+      "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12007",
+      "effective_date": "1977-08-22",
+      "mechanism": "termination and amendment: EO 12007 sec. 1(a) terminates the Citizens' Advisory Council on the Status of Women and sec. 1(b) amends EO 11126 by revoking sec. 102(5), rewriting sec. 103, revoking Part II and rewriting the second sentence of sec. 301 to delete references to the Council; sec. 6 supersedes the continuance of the Council by EO 11948 sec. 1(a); EO 12007 states no effective date, so it took effect when signed on August 22, 1977 (printed 42 FR 42839 on August 25, 1977)",
+      "source": {
+       "page_or_item": "42 FR 42839, PDF pages 13-14; sec. 1 of EO 12007 (PDF page 13)",
+       "quote": "Se c t io n 1. (a) The Citizens’ Advisory Council on the Status of Women is \nterminated.\n(b) Executive Order No. 11126 of November 1, 1963, as amended by Executive \nOrder No. 11221 of M ay 6, 1965, is further amended as follows:\n(1) Subsection (5) of Section 102 is revoked.\n(2) Section 103, in order to delete a reference to the Council, is amended to read \nas follows:\nAnnually the Committee shall transmit a report to the President concerning the \nstatus of women.”\n(3) Part II  is revoked.",
+       "sha256": "84f3ee0b788591ae8afc3fd5252821a3443c55280e16aaada73bcd8ec7353747",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1977-08-25/pdf/FR-1977-08-25.pdf"
+      }
+     },
+     {
+      "actor": "EO:12050",
+      "effective_date": "1978-04-04",
+      "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+      "source": {
+       "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+       "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+       "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "T o the extent practical and not incon­\nsistent with law, (1) all Federal departments and agencies shall co­\noperate with the Committee and the Council and furnish them such \ninformation and assistance as may be necessary for the performance \no f their functions, and (2) the Secretary o f Labor shall furnish staff, \noffice space, office facilities and supplies and other necessary assistance, \nfacilities, and services for the Committee and Council (including \ntravel expenses and per diem in lieu o f subsistence for members o f the \nCouncil).",
+    "original_source": {
+     "page_or_item": "28 FR 11717, PDF pages 3-4; sec. 301, second sentence as originally issued (cooperation of agencies; Secretary of Labor support for Committee and Council) (quotation from PDF page 4)",
+     "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+    },
+    "scope_id": "EO:11126#sec301-2",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "28 FR 11717, PDF pages 3-4",
+   "sha256": "cdd2750aab1194e0d9044ccb8c1158cf6ae090d843c573859db20ebcfd63df2a",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1963-11-02/pdf/FR-1963-11-02.pdf"
+  },
+  "research_rationale": "EO 11126 (November 1, 1963; 28 FR 11717-11718, read in the held govinfo scan) set up an Interdepartmental Committee on the Status of Women of cabinet officers (Part I) and a Citizens' Advisory Council on the Status of Women (Part II), with support provisions (Part III). It has no term of its own. Clause-level history: EO 12050 (Apr. 4, 1978) substituted new texts for secs. 101(a), 103 and 201, so the original texts ended then. The Council was an advisory committee in existence on January 5, 1973 and would have expired under sec. 14(a)(1) of the Federal Advisory Committee Act on January 5, 1975, but EO 11827 (signed January 4, 1975) continued it to January 5, 1977 and EO 11948 (effective December 31, 1976) to December 31, 1978, so there was no statutory lapse. EO 12007 (August 22, 1977) terminated the Council and revoked sec. 102(5) and Part II and rewrote sec. 103 and the second sentence of sec. 301, so those clauses ended then. The Committee clauses (federal officials, outside the Act) continued until EO 12050 sec. 8 revoked EO 11126 as amended, signed April 4, 1978 with no other effective date stated: that is the whole-order end. None of these orders contains a savings clause.",
+  "savings_residuals": {
+   "reason": "EO 12050 sec. 8 revokes EO 11126 'as amended' with no savings, transition or winding-up clause, and EO 12007 had already terminated the Citizens' Advisory Council without one. EO 11126 created advisory and coordinating bodies only: no right, benefit, office or obligation of a person depended on it. The National Advisory Committee for Women and the Interdepartmental Task Force that EO 12050 created rest on EO 12050 itself (policy continuity, not a survival of EO 11126).",
+   "source": {
+    "page_or_item": "43 FR 14431, PDF pages 11-12; secs. 1-8 of EO 12050 (PDF pages 11-12)",
+    "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:12050",
+   "date": "1978-04-04",
+   "mechanism": "revocation: EO 12050 sec. 8 revokes 'Executive Order No. 11126, as amended, and Executive Order No. 11832, as amended'; EO 12050 states no effective date, so it took effect when signed on April 4, 1978 (printed 43 FR 14431-14432 on April 6, 1978); no savings clause",
+   "source": {
+    "page_or_item": "43 FR 14431, PDF pages 11-12; sec. 8 of EO 12050 (PDF page 12)",
+    "quote": "Sec . 8. Revocations. Executive Order No. 11126, as amended, and Execu­\ntive Order No. 11832, as amended, are revoked.",
+    "sha256": "13be37d000462d46bb1d65fba1dd0a7089f6492bef450a03f560b7415043b036",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1978-04-06/pdf/FR-1978-04-06.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

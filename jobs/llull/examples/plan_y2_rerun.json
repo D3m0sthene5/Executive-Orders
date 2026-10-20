@@ -1,0 +1,10 @@
+{
+ "plan_id": "example-Y2-rerun",
+ "note": "Spec for `llull.py premortem`. Steps list the gates they require; anything the plan needs that is not a registered gate goes in requires_unmeasured.",
+ "steps": [
+  {"step": "draft end claims for 500 modern NO orders", "requires": ["status_present", "original_text_held", "ending_or_current_held"],
+   "claims": "expect 250 upheld claims, about 50% of attempts"},
+  {"step": "fetch missing ending instruments from govinfo", "requires": [], "requires_unmeasured": ["host allows fetch"]},
+  {"step": "rerun tracker and report payload tokens saved", "requires": ["claim_draft_present"]}
+ ]
+}

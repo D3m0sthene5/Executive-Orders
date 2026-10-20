@@ -1,0 +1,869 @@
+{
+ "built": "2026-10-20",
+ "repo_commit": "46f91fdac",
+ "tool": "LLULL postmortem miner (manual pass 1)",
+ "evidence_rule": "Forecasts and outcomes quoted from named repo files; miss_ratio = measured/forecast in the forecast's own unit; null where sign flipped or no numeric forecast.",
+ "categories": {
+  "UNMEASURED_PREREQUISITE": "Plan sized a pool without checking the gates an order must pass first (status, held text, custody, citable ending instrument, current predicate).",
+  "INVENTED_RATE": "A hit rate, saving share or minutes figure was assumed, not measured.",
+  "SELECTION_BIAS": "Rates measured on the easiest family/pilot (Codification revocation swarm, X1's 10% eligible) were transferred to a harder population.",
+  "PROXY_UNIT": "Success counted in a proxy (payload tokens, bytes, packets, agent-minutes, certificates) instead of ready orders or billed $.",
+  "COST_SHIFT": "Producer savings were eaten by review, correction or new contrary-source research.",
+  "ASSUMED_INDEPENDENCE": "Steps or source lists treated as independent when they are gated or dependent.",
+  "ACCESS_ASSUMPTION": "Source access assumed (robots, Cloudflare, permissions, host routes) before a one-request check.",
+  "REVIEW_LENIENCY": "Pass rests on a reviewer from the same model family / single pass; quality rate not independently measured.",
+  "UNCONSIDERED_ROUTE": "Pessimistic miss: a cheaper route (archive mirror, script) was not in the plan.",
+  "POLICY_COUNTED_UNAPPROVED": "Saving counted from a policy change the owner had not approved."
+ },
+ "plans": [
+  {
+   "id": "P01",
+   "date": "2026-10-17",
+   "author": "Claude/Astra",
+   "plan": "Stage 19 funnel: lifecycle batch engine + readiness measure",
+   "source": "research/stage19/FUNNEL.md",
+   "forecasts": [
+    {
+     "what": "selected build 'scales immediately over the existing corpus'",
+     "value": "qualitative",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "tracker first run ready",
+     "value": "0/14,972; 0 clause inventories of 3,359 decided",
+     "source": "HANDOFF/notes-claude.md 2026-10-17"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [],
+   "predictable_mechanically": null,
+   "note": "No numeric forecast; it set the measure (ready for human review) later plans are scored on."
+  },
+  {
+   "id": "P02",
+   "date": "2026-10-17",
+   "author": "Astra",
+   "plan": "Eight-job automation ROI estimate",
+   "source": "research/progress/AUTOMATION_ROI_ESTIMATE_2026-10-17.md; HANDOFF/notes-astra.md 15:38",
+   "forecasts": [
+    {
+     "what": "future token saving",
+     "value": "35%/60%/75%; central 12.6M tokens saved per 844 results, 338 agent-h",
+     "explicit": true
+    },
+    {
+     "what": "case-bundle payload cut implies agent saving",
+     "value": "58.8% fewer payload tokens",
+     "explicit": false
+    }
+   ],
+   "measured": [
+    {
+     "what": "matched packaging A/B total input tokens",
+     "value": "+21.8% (B packaged arm), elapsed +5.4%",
+     "source": "research/excavator/2026-10-18/batch-pilot/COST_COMPARISON.json"
+    },
+    {
+     "what": "Junto verified savings",
+     "value": "$0 for every finder",
+     "source": "research/production/junto-2026-10-20/REPORT.md"
+    }
+   ],
+   "miss_ratio": null,
+   "miss_note": "sign wrong: forecast -60% tokens, measured +21.8% on the one matched test",
+   "scored": true,
+   "root_causes": [
+    "INVENTED_RATE",
+    "PROXY_UNIT",
+    "COST_SHIFT"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "count measured before/after pairs for any saver at plan time (= 0); every share in the table is labelled assumed"
+   }
+  },
+  {
+   "id": "P03",
+   "date": "2026-10-17",
+   "author": "Astra",
+   "plan": "Production sprint: 300 orders ready + 20 family rules",
+   "source": "HANDOFF/notes-astra.md 'production sprint result'",
+   "forecasts": [
+    {
+     "what": "orders ready for human review",
+     "value": 300,
+     "explicit": true
+    },
+    {
+     "what": "new family rules",
+     "value": 20,
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "ready",
+     "value": 1
+    },
+    {
+     "what": "rules",
+     "value": 20
+    },
+    {
+     "what": "first legal-review failure B/C",
+     "value": "20% / 83.3%"
+    }
+   ],
+   "miss_ratio": 0.0033,
+   "scored": true,
+   "root_causes": [
+    "UNMEASURED_PREREQUISITE"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "tracker baseline step_clause_inventory=done count (0 of 3,359) and claim-checker custody state on any cited source (all custody_record_only until official-fixity); ready needs every step, so ceiling ~0 without those unlocks"
+   }
+  },
+  {
+   "id": "P04",
+   "date": "2026-10-17",
+   "author": "Astra",
+   "plan": "Family rules (Road 1): shared acting texts to unlock family targets",
+   "source": "HANDOFF/notes-astra.md 19:46; jobs/family-rules/output/METRICS.json",
+   "forecasts": [
+    {
+     "what": "shared rules unlock claims for family targets",
+     "value": "implicit; 94.5% payload saving reported",
+     "explicit": false
+    }
+   ],
+   "measured": [
+    {
+     "what": "passing certificates",
+     "value": "0 of 571 (5 rules), later 0 of 748 (25 rules)"
+    },
+    {
+     "what": "targets lacking located original text",
+     "value": "552 of 571"
+    }
+   ],
+   "miss_ratio": 0.0,
+   "scored": true,
+   "root_causes": [
+    "PROXY_UNIT",
+    "UNMEASURED_PREREQUISITE"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "for rule targets, count with located original target text and custody verified (19 of 571) before building"
+   }
+  },
+  {
+   "id": "P05",
+   "date": "2026-10-17",
+   "author": "Claude",
+   "plan": "Tracker 'biggest unlocks': match 496 Opus images to 844 orders",
+   "source": "HANDOFF/notes-claude.md 2026-10-17 tracker entry",
+   "forecasts": [
+    {
+     "what": "orders unlocked on Opus media step",
+     "value": 844,
+     "explicit": false
+    }
+   ],
+   "measured": [
+    {
+     "what": "Opus step done",
+     "value": "108/844 (10-18), 125 after refetch, regressed to 82"
+    },
+    {
+     "what": "orders with all cited media resolved",
+     "value": 82
+    }
+   ],
+   "miss_ratio": 0.128,
+   "scored": true,
+   "root_causes": [
+    "UNMEASURED_PREREQUISITE"
+   ],
+   "predictable_mechanically": {
+    "yes": false,
+    "query": "needed the media-match output itself; a 20-order hand sample of hash-to-text matches would have shown it"
+   }
+  },
+  {
+   "id": "P06",
+   "date": "2026-10-18",
+   "author": "Claude",
+   "plan": "Codification claim swarm (wire-new-sources)",
+   "source": "HANDOFF/notes-claude.md 2026-10-18 02:00",
+   "forecasts": [],
+   "measured": [
+    {
+     "what": "claims accepted / ready",
+     "value": "176 / ready 1->130"
+    },
+    {
+     "what": "rejection",
+     "value": "10.7% overall; per batch 0%-50% (12/24)"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [],
+   "note": "The one success. It became the reference class (2 min/claim, 11% rejection) for P07, P08, P11, P15 although it was the easiest family (one named revoking EO, Codification tables)."
+  },
+  {
+   "id": "P07",
+   "date": "2026-10-18",
+   "author": "Claude",
+   "plan": "Excavator funnel 2026-10-18 (claim-kit) success test",
+   "source": "research/plans/EXCAVATOR_FUNNEL_2026-10-18.md",
+   "forecasts": [
+    {
+     "what": "tokens per accepted claim",
+     "value": "fall substantially vs 33k new / 2.1M cached",
+     "explicit": true
+    },
+    {
+     "what": "rejection",
+     "value": "<=11%",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "Sol 50-order pilot",
+     "value": "12/50 accepted; first-pass rejection 16.7%; no cost reduction established",
+     "source": "research/production/claim-kit-pilot-2026-10-18/short.md"
+    },
+    {
+     "what": "Codex matched A/B",
+     "value": "producer time -33%, total elapsed +5.4%, input tokens +21.8%",
+     "source": "batch-pilot/COST_COMPARISON.json"
+    }
+   ],
+   "miss_ratio": null,
+   "miss_note": "both test conditions failed",
+   "scored": true,
+   "root_causes": [
+    "SELECTION_BIAS",
+    "COST_SHIFT"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "per-batch rejection spread in the swarm (0/28 .. 12/24) shows family heterogeneity; reviewers were ~30% of agent time, so a producer-only cut caps total saving"
+   }
+  },
+  {
+   "id": "P08",
+   "date": "2026-10-18",
+   "author": "Claude->Sol",
+   "plan": "Sol brief: 50 accepted claims in families with cost reduction",
+   "source": "research/plans/SOL_BRIEF_CLAIM_KIT.md",
+   "forecasts": [
+    {
+     "what": "accepted claims",
+     "value": 50,
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "accepted",
+     "value": 12
+    },
+    {
+     "what": "unable",
+     "value": 38
+    }
+   ],
+   "miss_ratio": 0.24,
+   "scored": true,
+   "root_causes": [
+    "SELECTION_BIAS",
+    "UNMEASURED_PREREQUISITE"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "for the 50 candidates, count dossiers with a dated whole-scope ACT or computed TERM end and no open original/page check"
+   }
+  },
+  {
+   "id": "P09",
+   "date": "2026-10-18",
+   "author": "Codex",
+   "plan": "Status-history excavator (reuse of 1989/OFR evidence)",
+   "source": "research/excavator/2026-10-18/REPORT.md",
+   "forecasts": [
+    {
+     "what": "hours saved per use",
+     "value": "6.2-31 h (s=2-10 s), sensitivity only",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "readiness added",
+     "value": 0
+    },
+    {
+     "what": "later use",
+     "value": "Y1 status probe 1.5 min per accepted status (indirect)"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [
+    "PROXY_UNIT"
+   ],
+   "note": "Honest: claimed no saving. Paid off later as a prerequisite for Y1, the only probe that passed."
+  },
+  {
+   "id": "P10",
+   "date": "2026-10-18",
+   "author": "Codex",
+   "plan": "Packaging A/B: packets lower producer+reviewer cost",
+   "source": "research/excavator/2026-10-18/batch-pilot/REPORT.md",
+   "forecasts": [
+    {
+     "what": "total cost",
+     "value": "lower with packets",
+     "explicit": false
+    }
+   ],
+   "measured": [
+    {
+     "what": "B vs A",
+     "value": "+10% calls, +5.4% elapsed, +21.8% input tokens; 1 upheld each"
+    }
+   ],
+   "miss_ratio": null,
+   "miss_note": "sign wrong",
+   "scored": true,
+   "root_causes": [
+    "COST_SHIFT"
+   ],
+   "predictable_mechanically": {
+    "yes": false,
+    "query": "needed the A/B; a pre-registered review-share check would have bounded it"
+   }
+  },
+  {
+   "id": "P11",
+   "date": "2026-10-18",
+   "author": "Codex",
+   "plan": "HathiTrust GPO volumes for 1,712 orders 5076-7531",
+   "source": "HANDOFF/notes-codex.md",
+   "forecasts": [
+    {
+     "what": "texts from Hathi",
+     "value": 1712,
+     "explicit": false
+    }
+   ],
+   "measured": [
+    {
+     "what": "Hathi texts",
+     "value": 0,
+     "why": "robots/access gate"
+    },
+    {
+     "what": "alternate 18-route plan",
+     "value": "1,531 of 1,712"
+    }
+   ],
+   "miss_ratio": 0.0,
+   "scored": true,
+   "root_causes": [
+    "ACCESS_ASSUMPTION"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "one robots.txt + one viewer request before planning (the job's own first request failed)"
+   }
+  },
+  {
+   "id": "P12",
+   "date": "2026-10-18",
+   "author": "Claude->Astra",
+   "plan": "Astra side brief A2: family-rule targets to claims",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md; HANDOFF/notes-astra.md 22:05",
+   "forecasts": [
+    {
+     "what": "claims",
+     "value": "150-300, 60-75% complete",
+     "explicit": true
+    },
+    {
+     "what": "minutes per accepted",
+     "value": "2-4",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "T3",
+     "value": "25 reserved, 19 accepted, 2 complete (10.5%), ready +0, ~90 min overlapping wall"
+    },
+    {
+     "what": "first-decision rejection",
+     "value": "2/9 = 22% (stop rule)"
+    }
+   ],
+   "miss_ratio": 0.022,
+   "miss_note": "2 complete vs >=90 implied at the low bound (150 x 0.6)",
+   "scored": true,
+   "root_causes": [
+    "SELECTION_BIAS",
+    "UNMEASURED_PREREQUISITE"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "family-rules certificate blockers: 0 passing, 552/571 lack located original target text, TARGET_INDEPENDENT_CLAUSES_UNREVIEWED 748"
+   }
+  },
+  {
+   "id": "P13",
+   "date": "2026-10-18",
+   "author": "Claude->Astra",
+   "plan": "Astra side brief A1: queue Opus re-fetch list",
+   "source": "research/plans/ASTRA_SIDE_BRIEF_2026-10-18.md",
+   "forecasts": [
+    {
+     "what": "orders clearing Opus step",
+     "value": "up to 472",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "Opus step",
+     "value": "108 -> 125 (+17), then 82 after ladder output loss"
+    }
+   ],
+   "miss_ratio": 0.036,
+   "scored": true,
+   "root_causes": [
+    "UNMEASURED_PREREQUISITE",
+    "ACCESS_ASSUMPTION"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "prior source-ladder success rate by host for the refetch URLs and share whose expected_sha256 was ever matched"
+   }
+  },
+  {
+   "id": "P14",
+   "date": "2026-10-18",
+   "author": "Claude",
+   "plan": "APP documents crawl",
+   "source": "HANDOFF/notes-claude.md 16:45 and 19:15",
+   "forecasts": [
+    {
+     "what": "crawl time",
+     "value": "~7.5 h priority, ~30 h total",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "archive lane",
+     "value": "10,270 pages in ~55 min + 67-page live residue"
+    }
+   ],
+   "miss_ratio": 0.031,
+   "miss_note": "overestimate (favourable)",
+   "scored": true,
+   "root_causes": [
+    "UNCONSIDERED_ROUTE"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "CDX/Common Crawl index lookup for the APP URL list before scheduling"
+   }
+  },
+  {
+   "id": "P15",
+   "date": "2026-10-18",
+   "author": "Claude",
+   "plan": "Census-completeness estimators (Mt, Chapman, Chao1)",
+   "source": "HANDOFF/notes-claude.md 14:30; research/plans/ASTRA_REVIEW_CENSUS_ESTIMATORS_2026-10-18.md",
+   "forecasts": [
+    {
+     "what": "undiscovered 1862-1899",
+     "value": "295-555, 'all lower bounds'",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "independent review",
+     "value": "positive dependence is a tendency, not a guaranteed bound; Mt is a diagnostic, not a headline"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [
+    "ASSUMED_INDEPENDENCE"
+   ],
+   "note": "No archival audit yet; outcome unmeasured. Open forecast for BRIER once the random audit months are read."
+  },
+  {
+   "id": "P16",
+   "date": "2026-10-19",
+   "author": "Claude",
+   "plan": "Effort model: 17,144 agent-hours remaining",
+   "source": "HANDOFF/notes-claude.md 12:30; research/progress/remaining-work/EFFORT_NOTES.md",
+   "forecasts": [
+    {
+     "what": "agent-hours",
+     "value": "17,144 (8.6k-34k); only 25 min of weights calibrated",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "X1 + Y2",
+     "value": "90-94% of attempted orders blocked by missing inputs, not effort"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [
+    "PROXY_UNIT",
+    "INVENTED_RATE"
+   ],
+   "note": "Wrong unit: minutes per step, while the binding constraint is held inputs. Refreshed to 16,178 h."
+  },
+  {
+   "id": "P17",
+   "date": "2026-10-19",
+   "author": "Claude",
+   "plan": "Excavator series X1-X5 (EXCAVATOR_SERIES_2026-10-19)",
+   "source": "research/plans/EXCAVATOR_SERIES_2026-10-19.md; research/production/x1-2026-10-19/REPORT.md",
+   "forecasts": [
+    {
+     "what": "X1 hours saved",
+     "value": 4134,
+     "explicit": true
+    },
+    {
+     "what": "hours left after series",
+     "value": 9082,
+     "explicit": true
+    },
+    {
+     "what": "type-tribunal hit rate",
+     "value": 0.85,
+     "explicit": true
+    },
+    {
+     "what": "extinction-event hit rate",
+     "value": 0.8,
+     "explicit": true
+    },
+    {
+     "what": "look-alike cloning",
+     "value": "saving",
+     "explicit": true
+    },
+    {
+     "what": "X1 pilot rejection",
+     "value": "<=11%",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "X1 hours saved",
+     "value": 463
+    },
+    {
+     "what": "hours left after series",
+     "value": 11256
+    },
+    {
+     "what": "type tribunal",
+     "value": "0.19 (3/16)"
+    },
+    {
+     "what": "extinction event first end",
+     "value": "0/4"
+    },
+    {
+     "what": "cloning",
+     "value": "no saving; one clone hid a different partial revocation"
+    },
+    {
+     "what": "eligible old orders",
+     "value": "52 of 8,014"
+    },
+    {
+     "what": "pilot rejection",
+     "value": "1/6 = 17%"
+    }
+   ],
+   "miss_ratio": 0.112,
+   "scored": true,
+   "root_causes": [
+    "ASSUMED_INDEPENDENCE",
+    "UNMEASURED_PREREQUISITE",
+    "INVENTED_RATE",
+    "POLICY_COUNTED_UNAPPROVED",
+    "SELECTION_BIAS"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "READINESS_BY_ORDER.csv: pre-1937 rows with provisional_status in {yes,no} AND step_original_text=done (52 by date; 32 by EO<7532 today); later-events EDGES before each event date for event candidates; CSC/appointment records held for waiver type (0)"
+   }
+  },
+  {
+   "id": "P18",
+   "date": "2026-10-20",
+   "author": "Claude",
+   "plan": "Gated funnel Y1: modern status sweep",
+   "source": "research/plans/EXCAVATOR_FUNNEL_2026-10-20.md; research/excavator/bowditch-2026-10-20/REPORT.md",
+   "forecasts": [
+    {
+     "what": "reviewer disagreement",
+     "value": "<=11%",
+     "explicit": true
+    },
+    {
+     "what": "min per accepted status",
+     "value": "<5",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "disagreement",
+     "value": "0/15"
+    },
+    {
+     "what": "min per accepted",
+     "value": "~1.5"
+    },
+    {
+     "what": "yield",
+     "value": "15 of 50 (30%)"
+    }
+   ],
+   "miss_ratio": 1.0,
+   "miss_note": "hit",
+   "scored": true,
+   "root_causes": [
+    "REVIEW_LENIENCY"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "4,273 of 4,274 had status-history/OFR records; inputs already held"
+   },
+   "note": "Only probe that passed; caveat: single-pass reviewer from the producer's model family; nothing adopted by owner."
+  },
+  {
+   "id": "P19",
+   "date": "2026-10-20",
+   "author": "Claude",
+   "plan": "Gated funnel Y2: modern claim factory",
+   "source": "research/plans/EXCAVATOR_FUNNEL_2026-10-20.md; research/excavator/bowditch-2026-10-20/REPORT.md",
+   "forecasts": [
+    {
+     "what": "upheld per attempt",
+     "value": ">=50%",
+     "explicit": true
+    },
+    {
+     "what": "rejected per submitted",
+     "value": "<=11%",
+     "explicit": true
+    },
+    {
+     "what": "upper bound",
+     "value": "~6,800 modern ready for 500-1,000 agent-h",
+     "explicit": true
+    },
+    {
+     "what": "min per claim",
+     "value": "2-5 (swarm anchor)",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "upheld",
+     "value": "3/50 = 6%"
+    },
+    {
+     "what": "rejected",
+     "value": "2/5 = 40%"
+    },
+    {
+     "what": "reviewer min per accepted",
+     "value": "~15.4 (producer unreported)"
+    }
+   ],
+   "miss_ratio": 0.12,
+   "scored": true,
+   "root_causes": [
+    "UNMEASURED_PREREQUISITE",
+    "SELECTION_BIAS"
+   ],
+   "predictable_mechanically": {
+    "yes": true,
+    "query": "llull/y2_predictor.py over jobs/claim-kit/output (ACTING_PROVISIONS, OWN_TERMS) + jobs/current-law/output/ORDERS_CURRENT_LAW.csv on the Y2-shaped pool",
+    "result_now": {
+     "pool": 2063,
+     "no": 1683,
+     "yes": 380,
+     "no_with_dated_whole_scope_ACT_or_computed_TERM": 64,
+     "no_with_whole_scope_revoking_ACT_any_date": 258,
+     "yes_with_current_law_predicate_lead_only": 325
+    },
+    "implied_ceiling": "NO side 4-15%; YES side has leads, not held predicates; well below 50%"
+   },
+   "note": "Gate rule applied to status and text but not to the third prerequisite the plan itself named (a citable ending instrument)."
+  },
+  {
+   "id": "P20",
+   "date": "2026-10-20",
+   "author": "Claude",
+   "plan": "Hamilton savers (Revere, Watchman, Quiet, Spare setup)",
+   "source": "research/production/hamilton-2026-10-20/REPORT.md",
+   "forecasts": [
+    {
+     "what": "Revere",
+     "value": "~40% off X1-like session",
+     "explicit": true
+    },
+    {
+     "what": "Quiet protocol",
+     "value": "5-15%",
+     "explicit": true
+    },
+    {
+     "what": "Watchman",
+     "value": "most of 15% waiting cost",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "verified",
+     "value": "none yet; Junto scores 0"
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [],
+   "note": "Open forecasts: first BRIER targets once add-test runs."
+  },
+  {
+   "id": "P21",
+   "date": "2026-10-20",
+   "author": "Claude",
+   "plan": "Junto build cost",
+   "source": "HANDOFF/notes-claude.md Junto entry",
+   "forecasts": [
+    {
+     "what": "build cost",
+     "value": "$12-25",
+     "explicit": true
+    }
+   ],
+   "measured": [
+    {
+     "what": "build cost",
+     "value": "$10.18"
+    }
+   ],
+   "miss_ratio": 0.55,
+   "miss_note": "overestimate (favourable), ratio vs midpoint",
+   "scored": true,
+   "root_causes": [],
+   "predictable_mechanically": null
+  },
+  {
+   "id": "P22",
+   "date": "2026-10-17",
+   "author": "Astra->Opus",
+   "plan": "OPUS_NEXT execution brief after Stage 22",
+   "source": "research/plans/OPUS_NEXT_EXECUTION_AFTER_STAGE22.md",
+   "forecasts": [
+    {
+     "what": "continue while marginal source-backed yield favourable",
+     "value": "qualitative",
+     "explicit": true
+    }
+   ],
+   "measured": [],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [],
+   "note": "No quantitative forecast; outcome not separately reported."
+  },
+  {
+   "id": "P23",
+   "date": "2026-10-18",
+   "author": "Claude",
+   "plan": "Scan/reference request drafts (archival audit)",
+   "source": "research/plans/SCAN_REQUESTS_2026-10-18.md",
+   "forecasts": [],
+   "measured": [
+    {
+     "what": "sent",
+     "value": 0
+    }
+   ],
+   "miss_ratio": null,
+   "scored": false,
+   "root_causes": [],
+   "note": "Owner-gated; not a forecast."
+  }
+ ],
+ "summary": {
+  "plans_mined": 23,
+  "scored": 15,
+  "unfavourable_misses": 12,
+  "hits": [
+   "P18 (Y1, with review-leniency caveat)"
+  ],
+  "favourable_overestimates": [
+   "P14",
+   "P21"
+  ],
+  "root_cause_counts_unfavourable": {
+   "UNMEASURED_PREREQUISITE": 8,
+   "SELECTION_BIAS": 5,
+   "COST_SHIFT": 3,
+   "INVENTED_RATE": 2,
+   "PROXY_UNIT": 2,
+   "ACCESS_ASSUMPTION": 2,
+   "ASSUMED_INDEPENDENCE": 1,
+   "POLICY_COUNTED_UNAPPROVED": 1
+  },
+  "mechanically_predictable": [
+   "P02",
+   "P03",
+   "P04",
+   "P07",
+   "P08",
+   "P11",
+   "P12",
+   "P13",
+   "P17",
+   "P19"
+  ],
+  "mechanically_predictable_count": "10/12",
+  "median_miss_ratio_unfavourable_numeric": 0.036,
+  "open_forecasts_for_BRIER": [
+   "P15 census bounds",
+   "P20 Hamilton savers",
+   "CSC annual reports reach 'most of' 695 waivers (notes-claude 10-18 17:15)"
+  ]
+ }
+}
