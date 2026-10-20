@@ -26,7 +26,7 @@ import os
 import re
 import sys
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 sys.dont_write_bytecode = True
 
@@ -1056,7 +1056,70 @@ def _base_object(repo, base):
         return None
 
 
-def scan_file(path, needles, plant_hashes, markers=True):
+def _runner_inventory_for_item_scan(path, repo):
+    """Remove only fixture filename keys from a validated runner input inventory.
+
+    This is a scanning view, not a provenance/authenticity decision. Raw bytes
+    still undergo every seeded-marker, planted-text and exact-copy check.
+    Unknown locations, duplicate keys or malformed inventories get no exception.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+    artifact = re.fullmatch(r"oversized/runner-freshness/([A-Za-z0-9][A-Za-z0-9._-]*)-inputs\.json", rel)
+    published = re.fullmatch(r"jobs/([A-Za-z0-9][A-Za-z0-9._-]*)/output/RUNNER_INPUTS\.json", rel)
+    location = artifact or published
+    if not location:
+        return None
+
+    def unique_object(pairs):
+        obj = {}
+        for key, value in pairs:
+            if key in obj:
+                raise ValueError("duplicate inventory key")
+            obj[key] = value
+        return obj
+
+    def relative(value):
+        return (isinstance(value, str) and bool(value)
+                and not any(c in value for c in ("\\", ":", "\0", "\n", "\r"))
+                and not PurePosixPath(value).is_absolute()
+                and ".." not in PurePosixPath(value).parts
+                and PurePosixPath(value).as_posix() == value)
+
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        if (not isinstance(manifest, dict) or set(manifest) != {
+                "schema", "job", "base_commit", "run_url", "scope", "inputs_sha256", "inputs", "base_output_sha256"}
+                or type(manifest["schema"]) is not int or manifest["schema"] != 1
+                or manifest["job"] != location.group(1)
+                or not isinstance(manifest["run_url"], str)
+                or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", manifest["base_commit"])):
+            return None
+        scope, inputs = manifest["scope"], manifest["inputs"]
+        if (not isinstance(scope, dict) or set(scope) != {"roots", "patterns", "exclude"}
+                or scope["exclude"] != f"jobs/{manifest['job']}/output"
+                or not all(isinstance(scope[k], list) and all(relative(v) for v in scope[k])
+                           for k in ("roots", "patterns"))
+                or not isinstance(inputs, dict)
+                or not all(relative(k) and isinstance(v, str)
+                           and re.fullmatch(r"(?:100644|100755|120000|160000):(?:[0-9a-f]{40}|[0-9a-f]{64})", v)
+                           for k, v in inputs.items())
+                or not re.fullmatch(r"[0-9a-f]{64}", manifest["base_output_sha256"])
+                or hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+                   != manifest["inputs_sha256"]):
+            return None
+        # The only exempt content is a filename in the pinned input map. IDs
+        # elsewhere (including other input paths and scope/run_url) still fail.
+        fixture_path = re.compile(r"jobs/mountweazel/fixtures/(?:[A-Za-z0-9._-]+/)*MW-[A-Z]\d+-\d{2}\.seeded\.json")
+        manifest["inputs"] = {k: v for k, v in inputs.items() if not fixture_path.fullmatch(k)}
+        return canonical(manifest).encode("utf-8")
+    except (OSError, UnicodeError, ValueError, TypeError):
+        return None
+
+
+def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None):
     hits = []
     try:
         size = path.stat().st_size
@@ -1073,12 +1136,14 @@ def scan_file(path, needles, plant_hashes, markers=True):
             for m in SEEDED_MARKERS if markers else ():
                 if m in data:
                     hits.append("marker " + m.decode())
-            if markers and b"MW-" in data and PLANT_ID_RE.search(data):
+            if markers and item_id_data is None and b"MW-" in data and PLANT_ID_RE.search(data):
                 hits.append("batch item id " + PLANT_ID_RE.search(data).group(0).decode())
             for nd in needles:
                 if nd in data:
                     hits.append("planted text " + nd[:40].decode("utf-8", "replace"))
             tail = data[-overlap:]
+    if markers and item_id_data is not None and PLANT_ID_RE.search(item_id_data):
+        hits.append("batch item id " + PLANT_ID_RE.search(item_id_data).group(0).decode())
     if plant_hashes and path.suffix in (".jsonl", ".json"):
         try:
             text = path.read_text(encoding="utf-8")
@@ -1154,7 +1219,8 @@ def check(repo, fixtures_dir):
             scanned += 1
             rel = str(f.relative_to(repo)) if inside(f, repo) else str(f)
             allowed = rel in ALLOWED_DOCS or rel.startswith(ALLOWED_DOC_PREFIXES)
-            hits = scan_file(f, needles, plant_hashes, markers=not allowed)
+            hits = scan_file(f, needles, plant_hashes, markers=not allowed,
+                             item_id_data=_runner_inventory_for_item_scan(f, repo))
             for hit in hits:
                 problems.append({"where": str(f.relative_to(repo)) if inside(f, repo) else str(f), "problem": hit})
     mw_out = repo / "jobs" / "mountweazel" / "output"

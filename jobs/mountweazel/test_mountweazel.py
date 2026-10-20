@@ -7,7 +7,7 @@ Core claims proved here:
   4. every flagged fixture is rejected by the production claim gate, while the de-flagged copy passes it;
   5. scoring gives catch rate per defect type, false-alarm bounds and Wilson intervals, and refuses an edited key.
 """
-import contextlib, io, json, shutil, sys, tempfile, unittest
+import contextlib, hashlib, io, json, shutil, sys, tempfile, unittest
 sys.dont_write_bytecode = True
 from pathlib import Path
 
@@ -259,6 +259,95 @@ class CheckTests(Base):
         res = mw.check(repo, fx.parent)
         self.assertFalse(res["ok"])
         self.assertTrue(any("claim gate does not reject" in p["problem"] for p in res["problems"]))
+
+    def runner_manifest(self, inputs=None):
+        inputs = inputs or {"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "100644:" + "a" * 40}
+        return {"schema": 1, "job": "portfolio-repair-check", "base_commit": "b" * 40,
+                "run_url": "https://github.com/example/repository/actions/runs/1",
+                "scope": {"roots": ["jobs/mountweazel/fixtures"], "patterns": [],
+                          "exclude": "jobs/portfolio-repair-check/output"},
+                "inputs": inputs,
+                "inputs_sha256": hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+                "base_output_sha256": hashlib.sha256(b"{}").hexdigest()}
+
+    def test_runner_manifest_fixture_inventory_is_not_a_leak(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/runner-freshness/portfolio-repair-check-inputs.json",
+                    "jobs/portfolio-repair-check/output/RUNNER_INPUTS.json"):
+            p = repo / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(json.dumps(self.runner_manifest(), indent=2))
+        result = mw.check(repo, self.tmp / "none")
+        self.assertTrue(result["ok"], result["problems"])
+        self.assertEqual(result["files_scanned"], 5)  # manifests are scanned, not skipped
+
+    def test_runner_manifest_exception_rejects_invalid_or_duplicate_structure(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        for field, value in (("job", "other"), ("schema", True), ("inputs_sha256", "0" * 64),
+                             ("base_output_sha256", "bad"), ("extra_payload", {"item_id": "MW-C1-01"})):
+            m = self.runner_manifest()
+            m[field] = value
+            variants.append((field, json.dumps(m)))
+        m = self.runner_manifest({"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "actual payload"})
+        variants.append(("non-hash inventory value", json.dumps(m)))
+        variants.append(("duplicate field", json.dumps(self.runner_manifest()).replace('"schema": 1', '"schema": 0, "schema": 1')))
+        for name, raw in variants:
+            with self.subTest(name=name):
+                p.write_text(raw)
+                self.assertIsNone(mw._runner_inventory_for_item_scan(p, repo))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def test_runner_manifest_exception_is_limited_to_exact_locations(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/arbitrary-inputs.json", "oversized/runner-freshness/other-inputs.json",
+                    "jobs/other/output/RUNNER_INPUTS.json", "jobs/portfolio-repair-check/output/notes.json"):
+            with self.subTest(path=rel):
+                p = repo / rel
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text(json.dumps(self.runner_manifest()))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+                p.unlink()
+
+    def test_runner_manifest_other_ids_and_payloads_still_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        m = self.runner_manifest()
+        m["run_url"] += "/MW-C1-01"
+        variants.append(m)
+        m = self.runner_manifest()
+        m["scope"]["roots"].append("jobs/other/MW-C1-01")
+        variants.append(m)
+        inputs = dict(self.runner_manifest()["inputs"])
+        inputs["research/readiness/claims/MW-C1-01.json"] = "100644:" + "c" * 40
+        variants.append(self.runner_manifest(inputs))  # recomputed digest does not exempt other paths
+        m = self.runner_manifest()
+        m["run_url"] += "/SEEDED:EO:1"
+        variants.append(m)
+        for m in variants:
+            p.write_text(json.dumps(m))
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        out, fx = self.seed("a", n=12)
+        payload = json.loads(sorted(fx.glob("*.seeded.json"))[0].read_text())["seeded_payload"]
+        for obj in (payload, mw._deflag(payload)):
+            p.write_text(json.dumps(obj))
+            self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_valid_runner_inventory_still_scans_raw_planted_text(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        m = self.runner_manifest()
+        m["run_url"] = "Novel planted wording must remain detectable inside an otherwise valid inventory."
+        p.write_text(json.dumps(m))
+        view = mw._runner_inventory_for_item_scan(p, repo)
+        self.assertIsNotNone(view)
+        hits = mw.scan_file(p, [json.dumps(m["run_url"]).encode()], set(), item_id_data=view)
+        self.assertTrue(any(h.startswith("planted text ") for h in hits), hits)
 
     def test_real_repository_has_no_seeded_item(self):
         res = mw.check(REPO, HERE_FIXTURES)

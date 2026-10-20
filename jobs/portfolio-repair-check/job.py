@@ -12,6 +12,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -294,6 +295,51 @@ class Inputs:
             self.verify(rel, value)
 
 
+def tracker_freshness(inputs, status, execution_commit, freshness):
+    """Reuse a succeeded tracker only when its declared inputs equal current working bytes."""
+    name = "readiness-tracker"
+    manifest_path = f"jobs/{name}/output/RUNNER_INPUTS.json"
+    receipt = {"passed": False, "mode": "rejected", "manifest_path": manifest_path,
+               "tracker_execution_commit": status.get("commit_run") if isinstance(status, dict) else None,
+               "validation_execution_commit": execution_commit, "errors": []}
+    try:
+        if (not isinstance(execution_commit, str) or len(execution_commit) not in (40, 64)
+                or not re.fullmatch(r"[0-9a-f]+", execution_commit)):
+            raise ValueError("GitHub validation execution commit is missing or invalid")
+        if (not isinstance(status, dict) or status.get("job") != name
+                or status.get("result") != "succeeded" or status.get("exit_code") != 0):
+            raise ValueError("tracker STATUS is missing or does not report success")
+        manifest = inputs.obj(manifest_path)
+        inputs.read(f"jobs/{name}/output/READINESS_BY_ORDER.csv")
+        if (not isinstance(manifest, dict) or type(manifest.get("schema")) is not int
+                or manifest.get("schema") != 1 or manifest.get("job") != name
+                or not isinstance(manifest.get("inputs"), dict)):
+            raise ValueError("invalid tracker provenance schema, job or input inventory")
+        if freshness.digest(manifest["inputs"]) != manifest.get("inputs_sha256"):
+            raise ValueError("tracker provenance input self-digest does not match")
+        base = manifest.get("base_commit")
+        if (not isinstance(base, str) or len(base) not in (40, 64) or not re.fullmatch(r"[0-9a-f]+", base)
+                or base != status.get("commit_run")):
+            raise ValueError("tracker provenance base commit does not match its successful STATUS")
+        with contextlib.chdir(inputs.repo):
+            declared = freshness.scope(name)
+            if manifest.get("scope") != declared:
+                raise ValueError("tracker input declarations changed since its successful run")
+            current = freshness.working(declared)
+        receipt.update(captured_inputs_sha256=manifest["inputs_sha256"],
+                       current_inputs_sha256=freshness.digest(current), input_count=len(current))
+        changed = sorted(path for path in manifest["inputs"].keys() | current.keys()
+                         if manifest["inputs"].get(path) != current.get(path))
+        if changed:
+            receipt["changed_paths"] = changed
+            raise ValueError(f"tracker's declared working inputs changed at {len(changed)} path(s)")
+        receipt.update(passed=True, mode="same_execution" if base == execution_commit else "reused_identical_inputs")
+    except Exception as exc:
+        receipt["errors"].append(type(exc).__name__ + ": " + str(exc)
+            + "; rerun readiness-tracker on the current inputs before validating the portfolio")
+    return receipt
+
+
 def run_worker(repo, out, flag, job=None):
     label = job or "checker"
     cmd = [sys.executable, "-B", str(HERE / "job.py"), flag]
@@ -419,10 +465,11 @@ def integration(repo, out, inputs):
     rows = {row["instrument_id"]: row for row in csv.DictReader(csv_text.splitlines())}
     status_path = "jobs/readiness-tracker/output/STATUS.json"
     status = inputs.obj(status_path) if inputs.path(status_path).exists() else None
+    tracker_provenance = {"passed": None, "mode": "local_observation_only"}
     if os.environ.get("GITHUB_ACTIONS") == "true":
-        require(bool(status) and status.get("result") == "succeeded"
-                and status.get("commit_run") == os.environ.get("GITHUB_SHA"),
-                "tracker must have succeeded on this exact GitHub execution commit")
+        freshness = load("portfolio_runner_freshness", repo / ".github/scripts/result_freshness.py")
+        tracker_provenance = tracker_freshness(inputs, status, os.environ.get("GITHUB_SHA"), freshness)
+        errors.extend(tracker_provenance["errors"])
     stages = []
     for iid in (*CHECKED, BLOCKED):
         row, claim_check, hold = rows.get(iid), current.get(iid), holds.get(iid)
@@ -455,6 +502,7 @@ def integration(repo, out, inputs):
             "actual_checker_claims": len(current), "audit_hold_loader_warnings": hold_problems,
             "bounded_source_verification": verification, "bounded_checker_acceptance": acceptance,
             "tracker_status_observed": status, "tracker_orders_observed": len(rows),
+            "tracker_input_freshness": tracker_provenance,
             "tracker_ready_total_observed": sum(r.get("ready_for_human_review") == "yes" for r in rows.values()),
             "continuation_gate_replay": {"exit_code": gate_exit, "receipt": gate_receipt,
                 "new_work_selected": False, "prospective_experiment": False,

@@ -47,7 +47,12 @@ python3 -I jobs/mountweazel/test_mountweazel.py
   exact copies of any plant (flagged or de-flagged), and `leak_needles`: JSON-quoted windows of plant text that
   occur nowhere in the real base (so real text a plant shares, such as a D3 quote prefix, is never a hit); it also fails if a fixture is not rejected by `claim_gate.validate_claim`, or if
   `jobs/mountweazel/output` holds anything but `STATUS.json` and `SENSITIVITY.json`, or if `jobs/mountweazel/data`
-  exists. Exit code 1 on any problem. The one allowed mention of the markers is the design document.
+  exists. Exit code 1 on any problem. Runner input manifests at
+  `oversized/runner-freshness/<job>-inputs.json` and `jobs/<job>/output/RUNNER_INPUTS.json` may index fixture
+  filenames. Only those filename keys in a matching, structurally valid, digest-checked input inventory are
+  omitted from the batch-item-ID scan. The manifest is still scanned for seeded markers, planted text and
+  exact payload copies. IDs in other fields or paths still fail; malformed manifests and duplicate JSON keys
+  receive no exception. This narrow recognition of metadata does not authenticate a runner manifest.
 
 ## The flag the claim checker rejects
 

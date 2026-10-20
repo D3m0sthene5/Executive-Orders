@@ -66,10 +66,21 @@ deterministic test success is not evidence of token savings.
 
 Use the ordinary job runner. `after.txt` puts this check after its relevant
 producers when selected; the repository's consumer scheduling includes it
-when those producers run. For GitHub validation, the readiness tracker must
-have succeeded on the same execution commit. An isolated dispatch using a
-stale tracker intentionally fails this requirement. The runner alone owns
-`STATUS.json` and `RUNNER_INPUTS.json`.
+when those producers run. This ordering does not automatically select upstream
+jobs. For GitHub validation, the readiness tracker must have succeeded and its
+`RUNNER_INPUTS.json` must have a valid schema, job, self-digest, current scope,
+and base commit matching its successful status. The existing runner freshness
+functions compare every captured tracker input against the current working
+bytes, including generated or modified files not yet committed to Git. This
+check applies even when tracker and validation share an execution commit.
+
+An older successful tracker is reusable only with identical declared inputs;
+`VALIDATION.json` records `same_execution` or `reused_identical_inputs`, the two
+input digests and execution commits. Its manifest and tracker CSV are pinned.
+Missing or changed provenance fails with an explicit instruction to rerun the
+tracker. A validator-only invocation can therefore reuse unchanged evidence
+without forcing an unrelated tracker run. The runner alone owns `STATUS.json`
+and `RUNNER_INPUTS.json`.
 
 For a local validation after refreshing the tracker:
 

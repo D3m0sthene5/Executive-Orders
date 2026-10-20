@@ -74,6 +74,101 @@ class FixtureIsolation(unittest.TestCase):
             self.assertTrue(receipt["passed"])
 
 
+class TrackerFreshness(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.repo = Path(self.tmp.name)
+        self.source = self.repo / "held-input.txt"
+        self.source.write_text("held evidence at the successful run")
+        self.scope = {"roots": ["held-input.txt"], "patterns": [],
+                      "exclude": "jobs/readiness-tracker/output"}
+        self.freshness = job.load("fixture_runner_freshness",
+            job.HERE.parents[1] / ".github/scripts/result_freshness.py")
+        self.status = {"job": "readiness-tracker", "result": "succeeded", "exit_code": 0, "commit_run": "1" * 40}
+        self.manifest_path = self.repo / "jobs/readiness-tracker/output/RUNNER_INPUTS.json"
+        current = self.current(self.scope)
+        self.manifest = {"schema": 1, "job": "readiness-tracker", "base_commit": "1" * 40,
+                         "scope": self.scope, "inputs": current, "inputs_sha256": self.freshness.digest(current)}
+        job.write(self.manifest_path, self.manifest)
+        self.csv_path = self.manifest_path.with_name("READINESS_BY_ORDER.csv")
+        self.csv_path.write_text("instrument_id,ready_for_human_review\nEO:1,no\n")
+
+    def current(self, scope):
+        self.assertEqual(scope, self.scope)
+        return {"held-input.txt": "100644:" + job.sha(self.source.read_bytes())} if self.source.exists() else {}
+
+    def observe(self, commit="2" * 40, status=None):
+        inputs = job.Inputs(self.repo)
+        prior_cwd = Path.cwd()
+
+        def working(scope):
+            self.assertEqual(Path.cwd(), self.repo)
+            return self.current(scope)
+
+        with mock.patch.object(self.freshness, "scope", return_value=self.scope), \
+                mock.patch.object(self.freshness, "working", side_effect=working):
+            result = job.tracker_freshness(inputs, self.status if status is None else status, commit, self.freshness)
+        self.assertEqual(Path.cwd(), prior_cwd)
+        return result, inputs
+
+    def test_older_identical_inputs_are_reused_and_provenance_and_csv_pinned(self):
+        result, inputs = self.observe()
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["mode"], "reused_identical_inputs")
+        self.assertEqual(result["captured_inputs_sha256"], result["current_inputs_sha256"])
+        self.assertIn(self.manifest_path.relative_to(self.repo).as_posix(), inputs.pins)
+        self.assertIn(self.csv_path.relative_to(self.repo).as_posix(), inputs.pins)
+
+    def test_same_execution_checks_working_bytes(self):
+        result, _ = self.observe(commit=self.status["commit_run"])
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["mode"], "same_execution")
+        # Commit identities and saved provenance remain unchanged; only the working file changes.
+        self.source.write_text("different uncommitted evidence")
+        result, _ = self.observe(commit=self.status["commit_run"])
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["changed_paths"], ["held-input.txt"])
+        self.assertIn("rerun readiness-tracker", result["errors"][0])
+
+    def test_missing_current_input_is_not_equivalent(self):
+        self.source.unlink()
+        result, _ = self.observe()
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["changed_paths"], ["held-input.txt"])
+
+    def test_missing_manifest_fails_closed(self):
+        self.manifest_path.unlink()
+        result, _ = self.observe()
+        self.assertFalse(result["passed"])
+        self.assertIn("rerun readiness-tracker", result["errors"][0])
+
+    def test_malformed_or_mismatched_provenance_fails_closed(self):
+        for mutation in ({"schema": 2}, {"job": "different-job"}, {"inputs_sha256": "0" * 64},
+                         {"base_commit": "2" * 40}, {"base_commit": "x" * 40},
+                         {"scope": {**self.scope, "patterns": ["new-input"]}}):
+            with self.subTest(mutation=mutation):
+                job.write(self.manifest_path, {**self.manifest, **mutation})
+                result, _ = self.observe()
+                self.assertFalse(result["passed"])
+                self.assertIn("rerun readiness-tracker", result["errors"][0])
+
+    def test_failed_or_malformed_status_cannot_reuse_inputs(self):
+        for status in ({**self.status, "result": "failed"}, {**self.status, "exit_code": 1}, "invalid status"):
+            with self.subTest(status=status):
+                result, _ = self.observe(status=status)
+                self.assertFalse(result["passed"])
+                self.assertIn("rerun readiness-tracker", result["errors"][0])
+
+
+    def test_missing_or_invalid_validation_execution_is_rejected(self):
+        for commit in (None, "", "z" * 40, "1" * 41):
+            with self.subTest(commit=commit):
+                result, _ = self.observe(commit=commit)
+                self.assertFalse(result["passed"])
+                self.assertIn("validation execution commit is missing or invalid", result["errors"][0])
+
+
 class BoundedVerification(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
