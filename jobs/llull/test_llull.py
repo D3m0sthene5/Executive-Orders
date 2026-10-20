@@ -1,5 +1,4 @@
-"""Llull tests (standard library only).  Run:  python3 -I -m unittest jobs/llull/test_llull.py
-or:  python3 -I jobs/llull/test_llull.py
+"""Llull tests (standard library only).  Run:  python3 -I jobs/llull/test_llull.py
 
 Core claims proved here:
   1. a forecast whose reference class has no measured base rate is refused (and `check` fails on an
@@ -31,13 +30,22 @@ def jl(path):
     return llull.read_jsonl(path)
 
 
+def seed_ledger(led):
+    """Copy the shipped seeds. Base-rate rows sourced from the shipped ledger's own outcomes are dropped: the test
+    ledger has no such outcomes."""
+    for n in ("postmortems.json", "pools.json"):
+        shutil.copy(SEED / n, led / n)
+    d = json.loads((SEED / "base_rates.json").read_text())
+    d["rows"] = [r for r in d["rows"] if not llull.OUTCOME_ID_RE.match(r["source"])]
+    (led / "base_rates.json").write_text(json.dumps(d))
+
+
 class Base(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
         self.led = self.tmp / "ledger"
         self.led.mkdir()
-        for n in ("base_rates.json", "postmortems.json"):
-            shutil.copy(SEED / n, self.led / n)
+        seed_ledger(self.led)
         llull.append_jsonl(self.led / "censuses.jsonl", dict(CENSUS))
         self.args = ["--ledger", str(self.led)]
 
@@ -88,7 +96,7 @@ class TestUnmeasuredRefused(Base):
         self.assertGreaterEqual(len(rates), 15)
         for k, r in rates.items():
             self.assertIsNone(llull.measured_problem(r), k)
-            if not r["source"].startswith("jobs/llull/"):
+            if not r["source"].startswith("jobs/llull/") and not llull.OUTCOME_ID_RE.match(r["source"]):
                 self.assertIsNone(llull.repo_path_ok(r["source"]), k)
         self.assertAlmostEqual(rates["upheld_per_attempt.modern_claim_no_held_end"]["value"], 0.06)
         self.assertAlmostEqual(rates["measured_over_forecast.all_misses"]["value"], 0.036)
@@ -266,7 +274,7 @@ class TestCensusAndWheel(unittest.TestCase):
 
     def test_recorded_censuses_reproduce_at_their_commit(self):
         recs = [c for c in jl(SEED / "censuses.jsonl") if c.get("gates_rev") == llull.GATES_REV]
-        latest = {c["pool"]: c for c in recs}
+        latest = {c["pool"]: c for c in recs if c["pool"] in ("Y1", "Y2", "X1")}   # built-in pools; custom ones are recorded too
         self.assertEqual(set(latest), {"Y1", "Y2", "X1"})
         commit = {c["commit"] for c in latest.values()}
         if len(commit) != 1 or llull.git("cat-file", "-t", next(iter(commit))) != "commit":
@@ -348,6 +356,451 @@ class TestCensusAndWheel(unittest.TestCase):
         self.assertEqual([u["id"] for u in unranked], ["bad"])
         self.assertEqual(ranked[0]["id"], "measure")
         self.assertEqual({r["id"] for r in ranked}, {"measure", "run", "probe"})
+
+
+# ---------------------------------------------------------------- repairs found on first use (2026-10-20)
+
+def tracker_row(i, **kw):
+    row = {"instrument_id": "EO:%d" % i, "provisional_status": "", "ready_for_human_review": "no", "claim_present": "no",
+           "step_original_text": "done", "step_ending_or_current_basis": "open", "step_clause_inventory": "open"}
+    row.update(kw)
+    return row
+
+
+class TestCustomPools(Base):
+    def pools_file(self, pools):
+        p = self.tmp / "pools.json"
+        p.write_text(json.dumps({"pools": pools}))
+        return p
+
+    def data(self, rows):
+        D = llull.Data()
+        D._c["tracker"] = rows
+        return D
+
+    def test_custom_pool_filters_and_builtin_pools_survive(self):
+        rows = [tracker_row(8000 + i, provisional_status="no" if i < 6 else "yes", claim_present="yes" if i % 2 else "no")
+                for i in range(10)] + [tracker_row(100 + i) for i in range(4)]
+        pools = llull.load_pools(self.pools_file({
+            "CLM": {"title": "claims", "where": {"claim_present": "yes"}, "default_requires": ["status_present"]},
+            "CLM_NO": {"title": "claims, NO", "from": "CLM", "where": {"provisional_status": "no"},
+                       "default_requires": ["original_text_held"]},
+            "OLD": {"title": "old", "eo_lt": 7532, "default_requires": ["original_text_held"]},
+            "NOT_NO": {"title": "x", "where": {"provisional_status": {"not": "no"}}, "eo_gte": 7532,
+                       "default_requires": ["status_present"]}}))
+        D = self.data(rows)
+        c = llull.run_census("CLM", pools=pools, D=D)
+        self.assertEqual((c["pool_size"], c["ceiling_strict"], c["pool_kind"]), (5, 5, "custom"))
+        self.assertEqual(c["pool_def"]["where"], {"claim_present": "yes"})          # the definition travels with the record
+        self.assertEqual(llull.run_census("CLM_NO", pools=pools, D=D)["pool_size"], 3)    # from another pool
+        self.assertEqual(llull.run_census("OLD", pools=pools, D=D)["pool_size"], 4)
+        self.assertEqual(llull.run_census("NOT_NO", pools=pools, D=D)["pool_size"], 4)
+        self.assertEqual(llull.run_census("X1", D=D)["pool_size"], 4)               # built-ins still work
+        self.assertEqual(llull.run_census("Y2", D=D)["pool_size"], 5)               # status yes/no, text, no claim
+
+    def test_open_steps_and_gate_states_filters(self):
+        rows = [tracker_row(8000, step_ending_or_current_basis="open", step_clause_inventory="done"),
+                tracker_row(8001), tracker_row(8002, step_ending_or_current_basis="done", step_clause_inventory="done")]
+        pools = llull.load_pools(self.pools_file({
+            "LAST": {"title": "one open", "open_steps_max": 1, "default_requires": ["original_text_held"]},
+            "DONE": {"title": "ending done", "gate_states": {"ending_step_done": ["held"]},
+                     "default_requires": ["original_text_held"]}}))
+        D = self.data(rows)
+        self.assertEqual(llull.run_census("LAST", pools=pools, D=D)["pool_size"], 2)   # 8000 has 1 open, 8002 has 0
+        self.assertEqual(llull.run_census("DONE", pools=pools, D=D)["pool_size"], 1)
+
+    def test_pools_file_cannot_redefine_builtin_or_use_unknown_keys(self):
+        for bad in ({"Y2": {"title": "x", "default_requires": ["status_present"]}},
+                    {"Z": {"title": "x", "default_requires": ["status_present"], "sql": "select"}},
+                    {"Z": {"title": "x", "default_requires": ["no_such_gate"]}}, {"Z": {"title": "x"}}):
+            with self.assertRaises(llull.Refusal):
+                llull.load_pools(self.pools_file(bad))
+        with self.assertRaises(llull.Refusal):
+            llull.run_census("NOPE", ["status_present"], llull.Data(), pools={})
+
+    def test_cli_census_records_a_custom_pool(self):
+        pf = self.pools_file({"LAST": {"title": "one open", "where": {"claim_present": "yes", "ready_for_human_review": "no"},
+                                       "open_steps_max": 1, "default_requires": ["original_text_held"]}})
+        code, out, _ = run(*self.args, "--pools", str(pf), "census", "--pool", "LAST", "--record")
+        self.assertEqual(code, 0, out)
+        rec = jl(self.led / "censuses.jsonl")[-1]
+        self.assertEqual((rec["pool"], rec["pool_kind"]), ("LAST", "custom"))
+        self.assertIn("pool_def", rec)
+        code, out, _ = run(*self.args, "--pools", str(pf), "census", "--list")
+        self.assertIn("[custom]", out)
+        self.assertEqual(run(*self.args, "--pools", str(pf), "census", "--pool", "NOPE")[0], 2)
+
+    def test_shipped_pools_load_and_craigellachie_pool_is_23(self):
+        pools = llull.load_pools(SEED / "pools.json")
+        self.assertTrue({"CRAIG", "NEAR", "Y2LEAD", "X1S", "X1T"} <= set(pools))
+        self.assertEqual(llull.run_census("CRAIG", pools=pools)["pool_size"], 23)
+
+
+class TestRankUsesTheRatesOwnPopulation(unittest.TestCase):
+    def setUp(self):
+        self.rates = {"upheld_per_attempt.x": {"key": "upheld_per_attempt.x", "value": 0.06, "num": 3, "den": 50,
+                                               "source": "s", "population": "Y2"},
+                      "upheld_per_attempt.nopop": {"key": "upheld_per_attempt.nopop", "value": 0.06, "num": 3, "den": 50,
+                                                   "source": "s"}}
+        self.cen = {"Y2": {"pool_size": 2000, "ceiling_strict": 40, "ceiling_leads": 400},
+                    "Y2LEAD": {"pool_size": 400, "ceiling_strict": 40, "ceiling_leads": 400}}
+
+    def run_one(self, pool, rc="upheld_per_attempt.x"):
+        run_a = {"id": "run", "tier": "run", "pool": pool, "reference_class": rc, "n_attempts": 500, "ready_per_success": 1.0,
+                 "ready_per_success_source": "x", "cost_per_attempt": 1.0, "cost_source": "x"}
+        ranked, un = llull.rank_actions({"planning": {"max_cost_per_ready": 60}, "actions": [run_a]}, self.rates, self.cen)
+        self.assertEqual(un, [])
+        return ranked[0]
+
+    def test_same_pool_as_the_rate_takes_no_census_share(self):
+        r = self.run_one("Y2")
+        self.assertEqual(r["share"], 1.0)
+        self.assertAlmostEqual(r["e_ready"], 500 * 0.06, places=6)        # the rate already contains the gate failures
+        self.assertIn("already inside the rate", r["share_basis"])
+
+    def test_a_richer_sub_pool_is_not_discounted_below_the_rate(self):
+        # Y2LEAD holds its prerequisites 5x as often as Y2 (0.1 vs 0.02). Multiplying the Y2 rate by Y2LEAD's own
+        # share (the repair's first version) cut E_ready 10x for the BETTER pool; the ratio, capped at 1, keeps the rate
+        r = self.run_one("Y2LEAD")
+        self.assertEqual(r["share"], 1.0)
+        self.assertAlmostEqual(r["e_ready"], 500 * 0.06, places=6)
+        self.assertIn("capped at 1", r["share_basis"])
+
+    def test_a_poorer_pool_is_discounted_by_the_share_ratio(self):
+        self.cen["POOR"] = {"pool_size": 1000, "ceiling_strict": 4, "ceiling_leads": 10}
+        r = self.run_one("POOR")
+        self.assertAlmostEqual(r["share"], 0.004 / 0.02)
+        self.assertAlmostEqual(r["e_ready"], 500 * 0.2 * 0.06, places=6)
+        self.assertIn("rate's population Y2", r["share_basis"])
+
+    def test_zero_share_population_is_unranked(self):
+        self.cen["Y2"] = {"pool_size": 2000, "ceiling_strict": 0, "ceiling_leads": 400}
+        run_a = {"id": "run", "tier": "run", "pool": "Y2LEAD", "reference_class": "upheld_per_attempt.x", "n_attempts": 5,
+                 "ready_per_success": 1.0, "ready_per_success_source": "x", "cost_per_attempt": 1.0, "cost_source": "x"}
+        ranked, un = llull.rank_actions({"planning": {"max_cost_per_ready": 60}, "actions": [run_a]}, self.rates, self.cen)
+        self.assertEqual(ranked, [])
+        self.assertIn("undefined", un[0]["reasons"][0])
+
+    def test_hand_worked_example(self):
+        # Bowditch Y2: 3 of 50 upheld on random Y2 draws -> Beta(3, 47), q0 = 0.06. Run 500 attempts on Y2 at
+        # 0.924 min each, 1 ready per success: E_ready = 500 * 1.0 * 1 * 0.06 = 30; cost 462; rank 30/462.
+        # Probe 50 at the same cost: E_ready 3, cost 46.2. util(q) = 500 (q - 0.924/60) > 0 for every posterior mean
+        # (3 + x)/100 >= 0.03 > 0.0154, so no probe result changes the decision: EVSI = 0.
+        self.cen["Y2"] = {"pool_size": 2060, "ceiling_strict": 38, "ceiling_leads": 363}
+        run_a = {"id": "run", "tier": "run", "pool": "Y2", "reference_class": "upheld_per_attempt.x", "n_attempts": 500,
+                 "ready_per_success": 1.0, "ready_per_success_source": "x", "cost_per_attempt": 0.924, "cost_source": "x"}
+        probe = dict(run_a, id="probe", tier="probe", informs="run", n_attempts=50)
+        ranked, un = llull.rank_actions({"planning": {"max_cost_per_ready": 60}, "actions": [run_a, probe]}, self.rates, self.cen)
+        got = {r["id"]: r for r in ranked}
+        self.assertEqual(un, [])
+        self.assertAlmostEqual(got["run"]["e_ready"], 30.0, places=9)
+        self.assertAlmostEqual(got["run"]["rank"], 30 / 462, places=9)
+        self.assertAlmostEqual(got["probe"]["e_ready"], 3.0, places=9)
+        self.assertAlmostEqual(got["probe"]["evsi"], 0.0, places=9)
+        self.assertAlmostEqual(got["probe"]["rank"], 3 / 46.2, places=9)
+
+    def test_x1_pilot_rates_are_not_labelled_random_x1_draws(self):
+        # the X1 pilot ran only the 52 orders with status and held text: labelling its rates "X1" would give an X1
+        # action share 1.0, overstating E_ready ~250x (8,032 / 32), the inverse of the 55x defect
+        rows = llull.load_base_rates(SEED / "base_rates.json")
+        for k in ("rejected_per_submitted.x1_pilot", "hit_rate.type_tribunal", "hit_rate.extinction_event"):
+            self.assertNotEqual(rows[k].get("population"), "X1", k)
+        self.assertEqual(rows["eligible_share.pre1937_orders"]["population"], "X1")   # this one is a share OF X1
+
+    def test_unrecorded_population_falls_back_to_the_census_share(self):
+        r = self.run_one("Y2", "upheld_per_attempt.nopop")
+        self.assertAlmostEqual(r["share"], 0.02)
+        self.assertIn("unrecorded population", r["share_basis"])
+
+    def test_old_55x_undercount_is_gone(self):
+        # strict share 38/2060 = 1.8% applied to a rate measured on random Y2 draws cut E_ready ~55x
+        self.cen["Y2"] = {"pool_size": 2060, "ceiling_strict": 38, "ceiling_leads": 363}
+        self.assertAlmostEqual(self.run_one("Y2")["e_ready"] / (500 * 0.06), 1.0, places=6)
+
+
+class TestOutcomeBaseRates(Base):
+    def setUp(self):
+        super().setUp()
+        self.fc("--quantity", "upheld_per_attempt", "--p10", "0.0", "--p50", "0.03", "--p90", "0.1", "--deviation", "x",
+                "--reference-class", "upheld_per_attempt.modern_claim_no_held_end", "--census-id", "D-test-1",
+                "--accept-flag", "test")
+        self.fid = jl(self.led / "forecasts.jsonl")[0]["forecast_id"]
+        self.src = "research/plans/LLULL_DESIGN.md"
+
+    def outcome(self, v):
+        self.assertEqual(run(*self.args, "outcome", "--forecast", self.fid, "--measured", str(v), "--source", self.src)[0], 0)
+        return jl(self.led / "outcomes.jsonl")[-1]["outcome_id"]
+
+    def baserate(self, oid, *extra, key="upheld_per_attempt.llull_t"):
+        return run(*self.args, "baserate", "--outcome", oid, "--key", key, "--population", "Y2", "--pool-desc", "t", *extra)
+
+    def test_outcome_becomes_a_base_rate_with_the_outcome_id_as_source(self):
+        oid = self.outcome(0.0)
+        code, out, err = self.baserate(oid, "--num", "0", "--den", "23")
+        self.assertEqual(code, 0, err)
+        row = llull.load_base_rates(self.led / "base_rates.json")["upheld_per_attempt.llull_t"]
+        self.assertEqual((row["source"], row["value"], row["population"]), (oid, 0.0, "Y2"))
+        self.assertIsNone(llull.measured_problem(row))
+        self.assertEqual(run(*self.args, "check")[0], 0)
+        # and it is usable as a reference class (no postmortem, no quoted file needed)
+        code, _, err = self.fc("--quantity", "upheld_per_attempt", "--p10", "0", "--p50", "0.0", "--p90", "0.03",
+                               "--reference-class", "upheld_per_attempt.llull_t", "--census-id", "D-test-1")
+        self.assertEqual(code, 0, err)
+
+    def test_refusals(self):
+        oid = self.outcome(0.06)
+        self.assertEqual(self.baserate("O-20260101-9")[0], 2)                                   # unknown outcome
+        self.assertEqual(self.baserate(oid, "--num", "1", "--den", "50")[0], 2)                 # num/den != measured
+        self.assertEqual(self.baserate(oid, key="hit_rate.llull_t")[0], 2)                      # wrong quantity
+        self.assertEqual(self.baserate(oid, "--num", "3", "--den", "50")[0], 0)
+        self.assertEqual(self.baserate(oid, "--num", "3", "--den", "50")[0], 2)                 # duplicate key
+        self.assertEqual(run(*self.args, "baserate", "--outcome", oid, "--key", "upheld_per_attempt.z", "--population",
+                             "NOPE", "--pool-desc", "t")[0], 2)                                 # unknown population
+
+    def test_check_fails_when_the_row_disagrees_with_its_outcome(self):
+        oid = self.outcome(0.06)
+        self.assertEqual(self.baserate(oid, "--num", "3", "--den", "50")[0], 0)
+        d = json.loads((self.led / "base_rates.json").read_text())
+        row = next(r for r in d["rows"] if r["key"] == "upheld_per_attempt.llull_t")
+        row.update(value=0.5, num=1, den=2)
+        (self.led / "base_rates.json").write_text(json.dumps(d))
+        code, out, _ = run(*self.args, "check")
+        self.assertEqual(code, 4)
+        self.assertIn("outcome %s measured 0.06" % oid, out)
+
+    def test_binary_outcomes_are_not_rates(self):
+        run(*self.args, "forecast", "--plan-id", "B", "--planner", "claude:t", "--quantity", "upheld_per_attempt", "--event",
+            "e", "--prob", "0.3", "--reference-class", "upheld_per_attempt.modern_claim_no_held_end")
+        fid = jl(self.led / "forecasts.jsonl")[-1]["forecast_id"]
+        run(*self.args, "outcome", "--forecast", fid, "--measured", "0", "--source", self.src)
+        oid = jl(self.led / "outcomes.jsonl")[-1]["outcome_id"]
+        self.assertEqual(self.baserate(oid)[0], 2)
+
+
+def git_commit(root, files):
+    """Write {path: text} under root and commit them together in a throwaway git repository."""
+    root = Path(root)
+    if not (root / ".git").exists():
+        subprocess.run(["git", "init", "-q", str(root)], check=True)
+    for path, text in files.items():
+        (root / path).parent.mkdir(parents=True, exist_ok=True)
+        (root / path).write_text(text)
+    subprocess.run(["git", "-C", str(root), "add", "-A"], check=True)
+    subprocess.run(["git", "-C", str(root), "-c", "user.email=t@t.t", "-c", "user.name=t", "commit", "-q", "-m", "c"], check=True)
+
+
+class TestNotPreregistered(unittest.TestCase):
+    """The forecast and its run committed together (or the run first) cannot be proven forecast-first: the entry is
+    marked not_preregistered and left out of scoring, and `check` does not fail."""
+    FC = "jobs/llull/ledger/forecasts.jsonl"
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.old = llull.REPO
+        llull.REPO = self.tmp.resolve()
+        self.led = self.tmp / "jobs/llull/ledger"
+        self.led.mkdir(parents=True)
+        shutil.copy(SEED / "postmortems.json", self.led / "postmortems.json")
+        (self.led / "base_rates.json").write_text(json.dumps({"rows": []}))   # the seed rows cite files absent from this repo
+        self.args = ["--ledger", str(self.led)]
+
+    def tearDown(self):
+        llull.REPO = self.old
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def forecast(self, fid, run_dir):
+        return {"forecast_id": fid, "rev": 1, "kind": "interval", "quantity": "accepted_items", "p10": 1.0, "p50": 5.0,
+                "p90": 9.0, "reference_class": "new:t", "flags": [], "planner": {"agent": "a", "model": "m"},
+                "run_dirs": [run_dir] if run_dir else [], "registered_commit": "x"}
+
+    def outcome(self, fid, oid, v=7.0):
+        return {"outcome_id": oid, "forecast_id": fid, "measured": v, "source": "runs/%s/OUT.json" % fid}
+
+    def lines(self, *recs):
+        return "".join(json.dumps(r) + "\n" for r in recs)
+
+    def test_together_is_marked_not_failed_and_excluded_from_scoring(self):
+        f1, f2 = self.forecast("L-1", "runs/L-1"), self.forecast("L-2", "runs/L-2")
+        (self.led / "outcomes.jsonl").write_text(self.lines(self.outcome("L-1", "O-1"), self.outcome("L-2", "O-2")))
+        git_commit(self.tmp, {self.FC: self.lines(f1)})                                    # L-1 forecast first
+        git_commit(self.tmp, {"runs/L-1/OUT.json": "{}"})                                  # then its run
+        git_commit(self.tmp, {self.FC: self.lines(f1, f2), "runs/L-2/OUT.json": "{}"})     # L-2: together
+        led = llull.Ledger(self.led)
+        self.assertEqual(llull.registration_status(f1, led)[0], "preregistered")
+        st, why = llull.registration_status(f2, led)
+        self.assertEqual(st, "not_preregistered", why)
+        code, out, _ = run(*self.args, "check")
+        self.assertEqual(code, 0, out)                                  # not a failure
+        self.assertIn("not_preregistered: L-2", out)
+        self.assertNotIn("not_preregistered: L-1:", out)
+        self.assertEqual(run(*self.args, "check", "--mark")[0], 0)
+        self.assertEqual([m["forecast_id"] for m in jl(self.led / "registration.jsonl")], ["L-2"])
+        run(*self.args, "check", "--mark")
+        self.assertEqual(len(jl(self.led / "registration.jsonl")), 1)  # marking is idempotent
+        res = llull.score_all(led)
+        self.assertEqual((res["n_resolved"], res["n_scored"]), (2, 1))
+        self.assertIn("L-2", res["not_preregistered_excluded"])
+        self.assertEqual(res["planners"]["a:m"]["n_interval"], 1)       # only the preregistered forecast is scored
+
+    def test_run_committed_before_the_forecast_is_not_preregistered(self):
+        f = self.forecast("L-5", "runs/L-5")
+        git_commit(self.tmp, {"runs/L-5/OUT.json": "{}"})
+        git_commit(self.tmp, {self.FC: self.lines(f)})
+        self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "not_preregistered")
+        self.assertEqual(run(*self.args, "check")[0], 0)
+
+    def test_outcome_file_committed_with_the_forecast_is_not_preregistered(self):
+        f = self.forecast("L-3", "")
+        f["run_dirs"] = []
+        (self.led / "outcomes.jsonl").write_text(self.lines(self.outcome("L-3", "O-3")))
+        git_commit(self.tmp, {self.FC: self.lines(f), "runs/L-3/OUT.json": "{}"})
+        self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "not_preregistered")
+        self.assertEqual(run(*self.args, "check")[0], 0)
+
+    def test_uncommitted_forecast_is_unchecked_not_excluded(self):
+        git_commit(self.tmp, {"README": "x"})
+        f = self.forecast("L-4", "runs/L-4")
+        (self.led / "forecasts.jsonl").write_text(self.lines(f))
+        self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "unchecked")
+
+
+class TestSelfScore(Base):
+    def put(self, fid, flags, p10, p90, measured, commit):
+        f = {"forecast_id": fid, "rev": 1, "kind": "interval", "quantity": "accepted_items", "p10": p10, "p50": (p10 + p90) / 2,
+             "p90": p90, "reference_class": "new:t", "flags": flags, "planner": {"agent": "a", "model": "m"},
+             "registered_commit": commit}
+        llull.append_jsonl(self.led / "forecasts.jsonl", f)
+        llull.append_jsonl(self.led / "outcomes.jsonl", {"outcome_id": "O-" + fid, "forecast_id": fid, "measured": measured,
+                                                         "source": "research/plans/LLULL_DESIGN.md"})
+
+    def test_only_out_of_sample_misses_count(self):
+        self.put("L-1", ["CEILING_EXCEEDED"], 10, 20, 0, "old")          # miss, flagged, but registered before the rule
+        self.put("L-2", ["CEILING_EXCEEDED"], 10, 20, 1, "new")          # miss, flagged: counts
+        self.put("L-3", [], 10, 20, 2, "new")                            # miss, not flagged: counts against recall
+        self.put("L-4", [], 10, 20, 15, "new")                           # not a miss
+        self.put("L-5", ["NO_CENSUS_CAP"], 10, 20, 99, "new")            # miss, NO_CENSUS_CAP is not a miss warning
+        res = llull.selfscore_all(llull.Ledger(self.led), "rule", is_after=lambda c: c == "new")
+        self.assertEqual((res["n_in_sample"], res["n_out_of_sample"]), (1, 4))
+        self.assertEqual(res["n_misses_out_of_sample"], 3)
+        self.assertEqual(res["n_flagged_misses"], 1)
+        self.assertAlmostEqual(res["share_flagged"], 1 / 3)
+        self.assertEqual(res["trust"], "unproven")                        # fewer than 5 out-of-sample misses
+        self.assertEqual([m["forecast_id"] for m in res["misses_in_sample"]], ["L-1"])
+
+    def test_no_misses_gives_no_share_and_binary_miss_rule(self):
+        res = llull.selfscore_all(llull.Ledger(self.led), "rule", is_after=lambda c: True)
+        self.assertIsNone(res["share_flagged"])
+        self.assertTrue(llull.is_miss({"kind": "binary", "prob": 0.7}, {"measured": 0}))
+        self.assertFalse(llull.is_miss({"kind": "binary", "prob": 0.2}, {"measured": 0}))
+        self.assertFalse(llull.is_miss({"kind": "binary", "prob": 0.7}, {"measured": 1}))
+
+    def test_default_rule_compares_resolved_hashes(self):
+        # registered_commit is stored short, rule_commit full: a forecast registered AT the rule commit is in-sample
+        rc = llull.git("rev-parse", "HEAD")
+        self.put("L-1", ["CEILING_EXCEEDED"], 10, 20, 0, rc[:9])
+        self.put("L-2", [], 10, 20, 0, "not-a-commit")
+        res = llull.selfscore_all(llull.Ledger(self.led), rc)
+        self.assertEqual((res["n_in_sample"], res["n_out_of_sample"]), (2, 0))
+        parent = llull.git("rev-parse", "HEAD~1")
+        if parent:
+            res = llull.selfscore_all(llull.Ledger(self.led), parent)
+            self.assertEqual(res["n_out_of_sample"], 1)                   # HEAD is a strict descendant of HEAD~1
+
+    def test_cli_writes_selfscore(self):
+        self.put("L-1", [], 10, 20, 0, "x")
+        code, out, _ = run(*self.args, "selfscore", "--rule-commit", "deadbeef")
+        self.assertEqual(code, 0, out)
+        self.assertTrue((self.tmp / "output" / "SELFSCORE.json").exists())
+
+
+class TestPremortemDiscriminates(unittest.TestCase):
+    def wheel(self, steps, census=None, rates=None, suffix=".json"):
+        d = Path(tempfile.mkdtemp())
+        try:
+            p = d / ("plan" + suffix)
+            p.write_text(json.dumps({"steps": steps}) if suffix == ".json" else steps)
+            return llull.run_wheel(p, census, rates=rates if rates is not None else llull.load_base_rates(SEED / "base_rates.json"))
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+    def modes(self, w):
+        return {c["mode"] for c in w["questions"]}
+
+    def test_a_clean_plan_gets_no_questions(self):
+        w = self.wheel([{"step": "list the orders held in the tracker", "requires": ["status_present"]}], dict(CENSUS))
+        self.assertEqual(w["questions"], [])
+        self.assertEqual(w["quiet"], w["cells"])
+
+    def test_different_plans_get_different_questions(self):
+        a = self.wheel([{"step": "claim 250 upheld", "requires": ["status_present"]}], dict(CENSUS))
+        b = self.wheel([{"step": "fetch pages from govinfo and say it cuts review cost", "requires": []}], dict(CENSUS))
+        c = self.wheel([{"step": "report payload tokens saved", "requires": []}], dict(CENSUS))
+        self.assertEqual(self.modes(a), {"UNMEASURED_PREREQUISITE"})
+        self.assertIn("ACCESS_ASSUMPTION", self.modes(b))
+        self.assertEqual(self.modes(c), {"PROXY_UNIT"})
+        self.assertEqual(len({frozenset(self.modes(x)) for x in (a, b, c)}), 3)
+
+    def test_every_question_has_plan_specific_evidence_and_ranks_by_past_misses(self):
+        w = self.wheel([{"step": "scale to 900 upheld claims at a 50% rate, fetch govinfo", "requires": ["status_present", "original_text_held"]}],
+                       dict(CENSUS, flags=["ASSUMED_INDEPENDENCE"], product_of_marginals=90.0))
+        self.assertTrue(w["questions"])
+        for c in w["questions"]:
+            self.assertTrue(c["evidence"], c)
+            self.assertIn(c["state"], ("auto_fail", "fires", "cannot_run"))
+        rest = [c for c in w["questions"] if c["state"] != "auto_fail"]
+        self.assertEqual([c["past_misses"] for c in rest], sorted((c["past_misses"] for c in rest), reverse=True))
+        self.assertEqual(w["questions"][0]["state"], "auto_fail")
+
+    def test_cannot_run_when_the_check_has_no_census(self):
+        w = self.wheel([{"step": "draft 500 orders as claims", "requires": []}], census=None)
+        q = [c for c in w["questions"] if c["mode"] == "UNMEASURED_PREREQUISITE"]
+        self.assertEqual([c["state"] for c in q], ["cannot_run"])
+        self.assertIn("no census", q[0]["evidence"])
+
+    def test_selection_bias_fires_only_on_a_population_mismatch(self):
+        rates = {"upheld_per_attempt.x": {"key": "upheld_per_attempt.x", "value": 0.06, "source": "s", "population": "Y2"}}
+        fires = self.wheel([{"step": "run it", "reference_class": "upheld_per_attempt.x", "pool": "X1"}], rates=rates)
+        quiet = self.wheel([{"step": "run it", "reference_class": "upheld_per_attempt.x", "pool": "Y2"}], rates=rates)
+        self.assertIn("SELECTION_BIAS", self.modes(fires))
+        self.assertNotIn("SELECTION_BIAS", self.modes(quiet))
+
+    def test_review_leniency_and_cost_shift_and_policy(self):
+        w = self.wheel([{"step": "review claims, which saves effort", "producer_model": "claude-sonnet", "reviewer_model": "claude-opus"},
+                        {"step": "review claims", "producer_model": "claude-sonnet", "reviewer_model": "gpt-9"},
+                        {"step": "waive the rule if the owner approves"},
+                        {"step": "waive the rule per HANDOFF/notes.md line 4", "approval": "HANDOFF/notes.md"}])
+        got = {(c["mode"], c["step"]): c["state"] for c in w["questions"]}
+        self.assertEqual(got[("REVIEW_LENIENCY", "review claims, which saves effort")], "fires")
+        self.assertNotIn(("REVIEW_LENIENCY", "review claims"), got)       # different families: the check passes
+        self.assertEqual(got[("COST_SHIFT", "review claims, which saves effort")], "fires")
+        self.assertEqual(got[("POLICY_COUNTED_UNAPPROVED", "waive the rule if the owner approves")], "fires")
+        self.assertNotIn(("POLICY_COUNTED_UNAPPROVED", "waive the rule per HANDOFF/notes.md line 4"), got)
+
+    def test_prose_targets_under_a_heading_are_checked_against_the_census(self):
+        # Bowditch Y2's brief stated its pass test in a paragraph under a heading; the first wheel never read it
+        y2 = "## Probe pass test (funnel Y2)\nAccepted (upheld) claims per attempted order >= 50%, and rejections <= 11%.\n"
+        craig = "## The pool (why these 23)\nL-1 puts upheld per attempt at p10 0.015, p50 0.15 and p90 0.35.\n"
+        y1 = "## Probe measures\nReviewer disagreement <= 11% and median minutes per accepted status.\n"
+        cen = dict(CENSUS)                                                # strict share 60/2000 = 3%
+        for text, fires in ((y2, True), (craig, True), (y1, False)):
+            w = self.wheel(text, cen, suffix=".md")
+            q = [c for c in w["questions"] if c["mode"] == "UNMEASURED_PREREQUISITE"]
+            self.assertEqual(bool(q), fires, (text, q))
+            if q:
+                self.assertIn("strict prerequisite share 3.0%", q[0]["evidence"])
+        self.assertIn("0.15 (p50)", self.wheel(craig, cen, suffix=".md")["questions"][0]["evidence"])
+
+    def test_negated_fetch_is_not_an_access_question(self):
+        w = self.wheel("- Never fetch a source by hand, ever, in this plan.\n", None, suffix=".md")
+        self.assertNotIn("ACCESS_ASSUMPTION", self.modes(w))
+        self.assertNotIn("UNCONSIDERED_ROUTE", self.modes(w))
+
+    def test_shipped_examples_differ(self):
+        ex = Path(__file__).resolve().parent / "examples" / "plan_y2_rerun.json"
+        w1 = llull.run_wheel(ex, dict(CENSUS), rates=llull.load_base_rates(SEED / "base_rates.json"))
+        w2 = self.wheel([{"step": "count the orders already ready", "requires": ["status_present"]}], dict(CENSUS))
+        self.assertGreater(len(w1["questions"]), 0)
+        self.assertNotEqual([c["mode"] for c in w1["questions"]], [c["mode"] for c in w2["questions"]])
 
 
 if __name__ == "__main__":

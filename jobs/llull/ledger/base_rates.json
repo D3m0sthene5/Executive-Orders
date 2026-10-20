@@ -1,7 +1,7 @@
 {
  "schema": "llull.base_rates/1",
  "built": "2026-10-20",
- "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`. Each row carries `evidence`: verbatim quotes that `check` finds in the cited files (whitespace ignored).",
+ "rule": "Rows are copied from measured values in ledger/postmortems.json. A row without a numeric value and a source path is unmeasured and is refused by `forecast`. Each row carries `evidence`: verbatim quotes that `check` finds in the cited files (whitespace ignored). A row may also have source = a Llull outcome id (O-...): `baserate` writes it and `check` verifies the value against that outcome. `population` names the pool the rate was measured on (random draws); `rank` applies a census share only when the action's pool differs from it.",
  "rows": [
   {
    "key": "upheld_per_attempt.modern_claim_no_held_end",
@@ -19,7 +19,8 @@
      "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
      "quote": "Upheld per attempted:** 3 of 50, or 6%"
     }
-   ]
+   ],
+   "population": "Y2"
   },
   {
    "key": "accepted_per_attempt.modern_status_sweep",
@@ -37,7 +38,8 @@
      "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
      "quote": "15 NO proposals accepted"
     }
-   ]
+   ],
+   "population": "Y1"
   },
   {
    "key": "minutes_per_accepted.modern_status",
@@ -53,7 +55,8 @@
      "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
      "quote": "about 1.5 combined minutes per accepted proposal"
     }
-   ]
+   ],
+   "population": "Y1"
   },
   {
    "key": "minutes_per_accepted.modern_claim_reviewer_only",
@@ -69,7 +72,8 @@
      "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
      "quote": "about 15.4 reviewer-only minutes per accepted claim (46.1 minutes for 3)"
     }
-   ]
+   ],
+   "population": "Y2"
   },
   {
    "key": "rejected_per_submitted.modern_claim_no_held_end",
@@ -87,7 +91,8 @@
      "source": "research/excavator/bowditch-2026-10-20/REPORT.md",
      "quote": "Rejected per submitted:** 2 of 5, or 40%"
     }
-   ]
+   ],
+   "population": "Y2"
   },
   {
    "key": "rejected_per_submitted.codification_swarm",
@@ -149,7 +154,7 @@
    "postmortem_id": "P17",
    "source": "research/production/x1-2026-10-19/REPORT.md",
    "n_studies": 1,
-   "note": "",
+   "note": "measured on the 52 X1 orders with status and held text (the pilot ran all of them), not on random X1 draws: population X1PILOT",
    "num": 1,
    "den": 6,
    "evidence": [
@@ -157,7 +162,8 @@
      "source": "research/production/x1-2026-10-19/REPORT.md",
      "quote": "Rejection rate: 1 of 6 = 17%"
     }
-   ]
+   ],
+   "population": "X1PILOT"
   },
   {
    "key": "accepted_per_target.family_claims",
@@ -203,7 +209,7 @@
    "postmortem_id": "P17",
    "source": "research/production/x1-2026-10-19/REPORT.md",
    "n_studies": 1,
-   "note": "",
+   "note": "population not recorded: measured on 16 spent-type orders inside the X1 pilot's 52 eligible orders, not on random X1 draws",
    "num": 3,
    "den": 16,
    "evidence": [
@@ -221,7 +227,7 @@
    "postmortem_id": "P17",
    "source": "research/production/x1-2026-10-19/REPORT.md",
    "n_studies": 1,
-   "note": "",
+   "note": "population not recorded: measured on the 4 Canal Zone orders inside the X1 pilot's 52 eligible orders, not on random X1 draws",
    "num": 0,
    "den": 4,
    "evidence": [
@@ -247,7 +253,8 @@
      "source": "research/production/x1-2026-10-19/REPORT.md",
      "quote": "Of 8,014 pre-1937 orders, only **52** have both a provisional status and a held text"
     }
-   ]
+   ],
+   "population": "X1"
   },
   {
    "key": "cleared_per_queued.opus_refetch",
@@ -336,6 +343,23 @@
    "postmortem_id": "P03,P04,P05,P08,P11,P12,P13,P17,P19",
    "source": "jobs/llull/ledger/postmortems.json",
    "note": "median measured/forecast over 9 of 12 unfavourable misses; ratios [0.0, 0.0, 0.0033, 0.022, 0.036, 0.112, 0.12, 0.128, 0.24]; check recomputes this median from postmortems.json miss_ratio"
+  },
+  {
+   "key": "upheld_per_attempt.craigellachie_last_step",
+   "pool": "23 claim-present orders with only the ending/current basis step open (Craigellachie)",
+   "unit": "share",
+   "value": 0.0,
+   "source": "O-20261020-1",
+   "population": "CRAIG",
+   "n_studies": 1,
+   "derived_from": {
+    "outcome_id": "O-20261020-1",
+    "forecast_id": "L-20261020-1",
+    "outcome_source": "research/excavator/craigellachie-2026-10-20/OUTCOME.json"
+   },
+   "note": "0 of 23 upheld; all blocked on unheld report dates, statutes or regulations",
+   "num": 0,
+   "den": 23
   }
  ]
 }

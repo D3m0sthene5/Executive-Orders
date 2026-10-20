@@ -58,3 +58,19 @@ Files:
 - `/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/llull/use/` (`censuses.py`, `censuses.json`, `actions.json`, `plan_next_actions.json`)
 
 SUMMARY: Plans keep missing because they assume inputs nobody measured; on median they deliver 0.036 of the forecast. Llull caught Craigellachie counterfactually: its gate caps that pool at 1 of 23, against a forecast of 15% to 35%, and the result was 0. That is its first out-of-sample catch, n = 1. A measured fact now in hand: 3 of 3 upheld claims became ready orders. Rank: first drain the 159 ending fetch requests through source-ladder, at no agent cost. Then run Y2 claims on 500 lead-selected orders, in batches with a stop rule: about 18 ready orders (1 to 40), 767 agent-minutes. Y1, ProQuest and type-rule statuses need the owner; CSC dating and gap admission add 0. Five Llull defects are listed, including a 55x undercount in rank. My 10 forecasts are not committed yet.
+
+## Repairs (2026-10-20)
+
+An adversarial review of the first repair (`git diff jobs/llull`). Nothing is committed.
+
+- **Ledger.** `forecasts.jsonl`, `outcomes.jsonl` and `censuses.jsonl` only gained lines; no line was edited or removed (checked against every past commit). `registration.jsonl` is new: 2 lines.
+- **Rank, checked by hand.** Run 500 attempts on Y2 at 0.924 minutes each, with a rate of 3 of 50 on random Y2 draws (Beta(3, 47), mean 0.06) and 1 ready order per success. Expected ready orders: 500 × 0.06 = 30. Cost: 462 minutes. Rank: 0.065. A 50-attempt probe gives 3 expected ready orders and EVSI 0, because every possible result keeps the run above break-even (0.0154). The code reproduces these numbers. The old strict-share code gave 0.55.
+- **Rank defect left by the first repair: fixed.** On a different pool, `rank` multiplied the rate by that pool's own strict share. That is the 55x defect again for any sub-pool. Action B (lead-selected Y2 orders, Y2LEAD) got 0.06 × 38/363, which is 10x below Y2 itself, even though Y2LEAD holds its prerequisites 5.7x as often. `rank` now multiplies by the ratio of strict shares (action pool over the rate's population), capped at 1. A population with a strict share of 0 leaves the action unranked.
+- **Population labels: fixed.** The X1 pilot rates were labelled as random X1 draws. The pilot actually ran only the 52 orders with both status and text. With the X1 label, an X1 action would have got a share of 1.0, about 250x too high. `rejected_per_submitted.x1_pilot` now uses the new `X1PILOT` pool (32 today). The two `hit_rate` rows come from type-selected subsets, so they now have no population.
+- **Premortem on the 3 real briefs.** The repaired wheel did not read paragraph text, so it missed the actual failure in 2 of the 3 briefs. It now reads that text and compares any stated rate with the census:
+  - **Bowditch Y2** (`--pool Y2`): the first question flags the ">= 50%" target as above the 1.8% strict share. That was the real failure.
+  - **Craigellachie** (`--pool CRAIG`): the first question flags "p50 0.15" as above the 4.3% strict share. Measured: 0 of 23.
+  - **Y1** (`--pool Y1`): none of these. It gets policy and invented-rate questions, and it passed.
+  - **Remaining noise:** "savings" (a step name) triggers COST_SHIFT, and FETCH_QUEUE triggers ACCESS_ASSUMPTION.
+- **Selfscore: fixed.** `registered_commit` is stored as a short hash and the rule commit as a full one, so a forecast registered *at* the rule commit counted as out-of-sample. Both hashes are now resolved before comparing. Today: 2 resolved forecasts, both `not_preregistered`, 0 out-of-sample. Recall is unproven.
+- **Tests.** 60 pass (`python3 -I jobs/llull/test_llull.py`; the `-m unittest` path in the docstring never worked), and `check` passes. I overwrote `output/RANK.json` and restored it with `git show HEAD:` (no checkout).

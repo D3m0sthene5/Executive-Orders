@@ -273,6 +273,16 @@ Rules:
    seed set already covers X1 (52 eligible), the sprint (0 clause inventories), family rules
    (19 of 571 with located text and custody), Opus refetch (host success) and HathiTrust.
 
+*Repair (2026-10-20, after first use):* census pools can be declared in `ledger/pools.json` (sub-pool censuses are
+recorded with their definition); `rank` applies the census share only when the action's pool differs from the
+population a base rate was measured on; Llull's own outcomes become base rates through `baserate` (source = outcome id);
+`check` marks a forecast it cannot prove first as `not_preregistered` (excluded from scoring) instead of failing;
+`premortem` emits a question only when a mode's check fires or cannot run; `selfscore` is the first slice of Juvenal.
+*Review repairs (2026-10-20):* across pools `rank` uses the ratio of strict shares (action pool / the rate's
+population), capped at 1, so a richer sub-pool is not discounted below the measured rate; the X1 pilot rates are no
+longer labelled as random X1 draws (`X1PILOT` pool, or no population); prose premortems read paragraph lines and
+compare stated rates with the census share; `selfscore` compares resolved commit hashes.
+
 ## 4. The Wheel: premortem generator
 
 `python3 -I jobs/llull/llull.py wheel --plan jobs/llull/plans/<id>.json`
