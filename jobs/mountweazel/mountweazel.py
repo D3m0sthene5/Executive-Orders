@@ -308,6 +308,9 @@ def _resync_whole(claim):
             claim["whole_order_end"][k] = copy.deepcopy(fe[k])
 
 
+PROVENANCE_ONLY = ("claim_kit",)
+
+
 def _retitle(claim, old_date, new_date, old_actor=None, new_actor=None):
     olds = date_variants(old_date)
     news = date_variants(new_date)
@@ -672,6 +675,9 @@ def seed_cmd(args):
         else:
             body, order = e["payload"], e["base_order"]
         if track == "C":
+            # Assembly provenance (claim-kit's block) is not claim content, and only some real
+            # claims carry it, so showing it would let a reviewer tell plants from real items.
+            body = {k: v for k, v in body.items() if k not in PROVENANCE_ONLY}
             packet = {"item_id": item_id, "track": "C", "claim": body}
         else:
             packet = {"item_id": item_id, "track": "S", **body}

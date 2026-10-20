@@ -21,6 +21,12 @@ class QualityRegression(unittest.TestCase):
     def test_measured_quality_pass_and_quality_drop(self):
         t={'before':{'usd':20,'units':2,'quality':{'accepted':2,'rejected':0}},
            'after':{'usd':10,'units':2,'quality':{'accepted':2,'rejected':0}}}
+        # Measured quality alone is not complete evidence under the merged acceptance repair.
+        self.assertEqual(junto.verdict_of(t),'cost_reduction_measurement_incomplete')
+        complete={'cost_coverage':'complete','included_phases':list(junto.COST_PHASES),'usd_basis':'get_session.cost_usd'}
+        t['before'].update(complete,measurement_ref='measurements/before.json')
+        t['after'].update(complete,measurement_ref='measurements/after.json')
+        t.update(unit_of_work='completed_phase',matched_on='same frozen cases',test_cost_usd=1.0)
         self.assertEqual(junto.verdict_of(t),'saves')
         t['after']['quality']={'accepted':1,'rejected':1}
         self.assertEqual(junto.verdict_of(t),'quality_fell')
