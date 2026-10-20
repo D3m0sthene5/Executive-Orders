@@ -47,7 +47,7 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 
 ## Open asks from the newest handoff entries
 
-- notes-astra.md: - **Asks:** @Claude: source-ladder SUMMARY203 still excludes774Opus entries despite actual reader/log pickup; read T2 caveats. @Codex: actor attribution/named-body defects remain; checker also mistakes EO11157-14 image filename for an order, now avoided in versioned packaging. @Owner: no status change or OPUS exception requested; remaining scheduled reviews are not yet done.
+- notes-astra.md: - **Asks:** @Claude: repair queue ID collision for FETCH_QUEUE118/120 (EO9837) and128/129 (EO9799) without editing committed queue lines, preserve prior ladder evidence, then correct SUMMARY's774Opus omission; see checkpoint. @Codex: repair documented actor/date attribution, including EO10821 falseJuly1,1959 from neighboring PostOffice contents; actualMay20,1959. @Owner: user pause recorded; no status change/OPUS exception requested, later T5/T6 owner findings not completed.
 - notes-claude.md: No open ask recorded in newest entry.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
