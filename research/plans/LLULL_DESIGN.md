@@ -175,7 +175,7 @@ the spread (the swarm's per-batch rejection ran from 0% to 50%). Seed rows from 
 | `minutes_per_accepted.modern_status` | same | ~1.5 | 15 | Bowditch Y1 |
 | `minutes_per_accepted.reviewer.modern_claim` | Y2 | ~15.4 (reviewer only) | 3 | Bowditch Y2 |
 | `rejected_per_submitted.codification_easy` | Codification revocations | 0.107 overall (0-0.50 per batch) | 176 accepted | swarm 10-18 |
-| `rejected_per_submitted.harder_families` | Sol, A2, X1, Y2 pilots | 0.167, 0.22, 0.17, 0.40 | 4 pilots | P07, P12, P17, P19 |
+| `rejected_per_submitted.harder_families` | Sol, A2, X1, Y2 pilots | 0.167, 0.105 (2/19; built rows were first 2/9, a stop trigger), 0.17, 0.40 | 4 pilots | P07, P12, P17, P19 |
 | `accepted_per_target.family_claims` | Sol brief | 0.24 | 12/50 | P08 |
 | `complete_per_accepted.family_rule_targets` | A2 | 0.105 | 2/19 | P12 |
 | `hit_rate.type_tribunal` | X1 | 0.19 | 3/16 | P17 |
@@ -233,11 +233,16 @@ CEILING (leads counted)        389   = 18.9% of pool
 The rows above are the Y2 rerun on the current repository (scratch `y2_predictor.py`). Y2 forecast
 at least 50% upheld, and even counting every lead the ceiling is 18.9%.
 
+*Built (review, 2026-10-20):* gates rev 2 counts only ending verbs and whole-scope TERMs: 38 strict and 363 leads
+of 2,060 at 15b4b4d85. Bowditch Y2's measured 6% is above the strict share, and none of its 3 upheld orders
+passed the gate, so the strict count is a gate-held share, not a proven ceiling (`jobs/llull/README.md`).
+
 Rules:
 
 1. **Joint, not product.** The ceiling is the count of items that pass **every** gate, computed
    per item. Domesday also prints `alone` counts and the product of the marginal shares. When the
-   product exceeds the joint count by 1.5x or more, the gates are positively dependent, and the
+   product exceeds the joint count by 1.5x or more, fewer items hold every gate than independence predicts
+   (the gates are negatively associated, so multiplying marginal rates overstates the pool), and the
    plan is flagged `ASSUMED_INDEPENDENCE`.
 2. **Gate registry** (`gates/gates.json`). Each gate has a key, a reader script, the files it
    reads and what "held" means. Seed gates, each traced to a committed output:
@@ -267,6 +272,16 @@ Rules:
    in `postmortems.json` (`predictable_mechanically.query`) become gate readers first, so the
    seed set already covers X1 (52 eligible), the sprint (0 clause inventories), family rules
    (19 of 571 with located text and custody), Opus refetch (host success) and HathiTrust.
+
+*Repair (2026-10-20, after first use):* census pools can be declared in `ledger/pools.json` (sub-pool censuses are
+recorded with their definition); `rank` applies the census share only when the action's pool differs from the
+population a base rate was measured on; Llull's own outcomes become base rates through `baserate` (source = outcome id);
+`check` marks a forecast it cannot prove first as `not_preregistered` (excluded from scoring) instead of failing;
+`premortem` emits a question only when a mode's check fires or cannot run; `selfscore` is the first slice of Juvenal.
+*Review repairs (2026-10-20):* across pools `rank` uses the ratio of strict shares (action pool / the rate's
+population), capped at 1, so a richer sub-pool is not discounted below the measured rate; the X1 pilot rates are no
+longer labelled as random X1 draws (`X1PILOT` pool, or no population); prose premortems read paragraph lines and
+compare stated rates with the census share; `selfscore` compares resolved commit hashes.
 
 ## 4. The Wheel: premortem generator
 

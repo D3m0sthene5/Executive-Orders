@@ -1,0 +1,33 @@
+{
+ "batch": "batch_04",
+ "producer": "claude-lamm-04-producer",
+ "model": "claude-sonnet-5-5",
+ "orders": 20,
+ "records_written": 20,
+ "tool_calls_approx": 75,
+ "wall_time_minutes_approx": 45,
+ "usage": "token usage not exposed to the subagent; context used roughly 240k tokens of 15M budget",
+ "network_used": false,
+ "pregate": "check_ote.py: ok 20 records",
+ "fetch_lines_appended": 6,
+ "kit_sheets": 7,
+ "kit_sheets_note": "decision sheets for the whole-end NO orders 12219, 12229, 12358, 12427, 12528, 12660, 12970 via kit.py prepare/apply/batch-check (applied-v2: 7 assembled; actual checker gate passed 7, all-checks-passed 5, 2 with short-quote unverified items for 12358 and 12660). First apply (v1) rejected 12427 and 12660 for unresolved dossier conflicts, resolved with explicit conflict_resolutions in v2. EO 12720 is a whole end but the kit routes it to an existing claim owner (existing claim in a pilot proposal set), so no sheet. Claims not committed.",
+ "claim_kit_change": "none",
+ "verdict_counts": {
+  "ends_by_own_term_whole": 8,
+  "ends_by_own_term_partial": 2,
+  "not_an_end": 2,
+  "ended_earlier_by_other": 1,
+  "extended_or_renewed": 3,
+  "end_date_needs_source": 4,
+  "total": 20
+ },
+ "caveats": [
+  "Whole ends 12358, 12528, 12720, 12219 and 12970 depend on an amending order that replaced the term clause (as-extended stated date); the TERM cited as end_id is the original clause. The claim-checker accepted it, but the reviewer should test the as-extended reading.",
+  "EO 12970 is the weakest whole: 'unless otherwise extended' and a 16-month gap to the revocation EO 13062; no extension is held.",
+  "EO 12696: the batch's designated original EO_12696.recheck.txt is truncated before sec. 4; the term span is from jobs/fr-originals/data/full_run/texts/EO_12696.txt (same PDF sha256).",
+  "EO 12696 ended earlier by EO 12869 (1993-09-30, effective that day) than its as-extended end 1993-11-13.",
+  "Dossier TERM records for EO 11688, 11770 and 13138 are not the operative sentence (member terms, effective-date delay, member terms); EO 13138's operative term is sec. 1 continuance.",
+  "No planted or example text was written by the producer; all outputs are under the work dir; the in-repo kit work folder was removed after copying."
+ ]
+}

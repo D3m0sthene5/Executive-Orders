@@ -1,0 +1,362 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 1,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b5.jsonl",
+  "sha256": "4a5fbd2a8ca7973bc1aec4543b27a38e699b0ee8e092ae28721534da2124e1ef"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D6",
+ "instrument_id": "SEEDED:EO:11667",
+ "item_id": "MW-C2-24",
+ "leak_needles": [],
+ "mutation": {
+  "after": "(entry removed)",
+  "before": "EO:11827 1975-01-04",
+  "field": "operative_clauses[0].later_events[0]",
+  "operator": "D6.0.0",
+  "refuting_span": {
+   "quote": "(8) President’s Advisory Committee on the Environmental Merit  \nAwards Program— Executive Order No. 11667 of April 19, 1972 (Envi­"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:11667",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "every record whose own number is 11667 or whose disposition notes name 11667 as a whole word; each hit read and matched to the acting instrument's own text",
+    "repository": "Saved OFR executive-order catalog index (jobs/later-events/output/CATALOG_INDEX.csv and UNPARSED_NOTE_SEGMENTS.csv, read-only copy of main)",
+    "searched_by": "Claude (batch 5)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "the table row for EO 11667 (amendments and disposition columns) and every row naming 11667 among its acting documents",
+    "repository": "OFR Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), Executive Orders disposition table as parsed by jobs/ofr-codification-1989 (DISPOSITION_1989.csv); status lead as of 1989-01-20 only",
+    "searched_by": "Claude (batch 5)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "EO 11948 section 4(b) supersedes EO 11827 (the continuance order) effective December 31, 1976, the same day the committee order itself is revoked",
+      "source": {
+       "page_or_item": "41 FR 55706, PDF page 14, section 4(b)",
+       "quote": "(b ) Executive Order No. 11827, as amended, is superseded.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     },
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "Section 1. (a) There is hereby established the President’s Advisory \nCommittee on the Environmental Merit Awards Program. The Com­\nmittee shall be composed of a Chairman, to be designated by the Presi­\ndent, and such members as the President may, from time to time, \nappoint.",
+    "original_source": {
+     "page_or_item": "37 FR 7763, PDF page 7",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec1a-establishment",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(b) The Committee shall advise the President and the Administrator \nof the Environmental Protection Agency on ways in which the Environ­\nmental Merit Awards Program can be expanded and enhanced.",
+    "original_source": {
+     "page_or_item": "37 FR 7763, PDF page 7",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec1b-advise",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "Committee shall select individuals or groups of individuals who deserve \nspecial recognition for their local environmental accomplishments and \nconfer appropriate Environmental Merit Awards upon them on behalf \nof the President.",
+    "original_source": {
+     "page_or_item": "37 FR 7763, PDF page 7",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec1b-select-and-confer-awards",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "The Committee shall perform such other related \nfunctions as the President may, from time to time, specify.",
+    "original_source": {
+     "page_or_item": "37 FR 7763, PDF page 7",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec1b-other-functions",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 2. No member of the Committee shall receive compensation from \nthe United States by reason of service as a member of the Committee but",
+    "original_source": {
+     "page_or_item": "37 FR 7763, PDF page 7",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec2-no-compensation",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "such members may be allowed such travel expenses, including per diem \nin lieu of subsistence, as may be authorized by law.",
+    "original_source": {
+     "page_or_item": "37 FR 7764, PDF page 8",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec2-travel-expenses",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11948",
+     "date": "1976-12-31",
+     "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+     "source": {
+      "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+      "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+      "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+      "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11948",
+      "effective_date": "1976-12-31",
+      "mechanism": "express revocation of the whole order (EO 11948 sections 4(a)(1) and 5)",
+      "source": {
+       "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+       "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+       "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+       "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "S e c. 3. The Environmental Protection Agency shall provide, to the \nextent permitted by law, administrative support for the Committee and \nthe Environmental Merit Awards Program.",
+    "original_source": {
+     "page_or_item": "37 FR 7764, PDF page 8",
+     "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+    },
+    "scope_id": "EO:11667#sec3-epa-support",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "37 FR 7763, PDF pages 7-8",
+   "sha256": "1eff2102153b6c9ea91d26c78a5a1ca7e462d9b449985f66b5a9cf4af4408746",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1972-04-20/pdf/FR-1972-04-20.pdf"
+  },
+  "research_rationale": "EO 11667 (April 19, 1972; 37 FR 7763) was read in the held official Federal Register scan (fr-originals OCR of PDF pages 7-8: heading, preamble, sections 1-3, signature block and FR Doc. 72-6171 filing line, so the text is complete). Its operative content is the establishment and composition of the President's Advisory Committee on the Environmental Merit Awards Program (sec. 1(a)), three committee functions (sec. 1(b)), the no-compensation/travel-expense rule (sec. 2) and EPA administrative support (sec. 3); the preamble is narrative. The order has no expiry, sunset, report deadline or condition. Because the committee existed before the Federal Advisory Committee Act took effect (January 5, 1973), it would have terminated on January 5, 1975 unless renewed; EO 11827 section 1(8) (held, 40 FR 1218) renewed it until January 5, 1977. Before that date EO 11948 (held, 41 FR 55706) section 4(a)(1) revoked EO 11667, and section 5 makes EO 11948 effective December 31, 1976; section 3's separate January 16, 1977 date applies only to EO 11868. So the first and only end of every clause is the revocation effective December 31, 1976, and the whole-order end is that date. The OFR catalog (revoked by EO 11948; continued by EO 11827) and the 1989 OFR Codification disposition table (continued by EO 11827; revoked by EO 11948) agree, and no other amendment, revocation or statute affecting the order was found in the bounded searches listed (no U.S. Code or eCFR citation of the order). Quotations are the scan's OCR text, kept as printed (soft hyphens at line ends).",
+  "savings_residuals": {
+   "reason": "EO 11948 revokes EO 11667 without any saving or transition clause (its only other provisions continue a different list of committees, delegate FACA functions for those committees, revoke other orders and supersede EO 11827). EO 11667 created an advisory committee, its award-selection function, an uncompensated-service rule with travel expenses, and EPA administrative support; it conferred no vested rights or continuing obligations. Awards already conferred were completed honorary acts. The Environmental Merit Awards Program itself was announced by the President in 1971 (EO 11667 preamble) and was not created by this order; any later EPA award activity rests on EPA's own authority and is not attributed to EO 11667.",
+   "source": {
+    "page_or_item": "41 FR 55705-55706, PDF pages 13-14, sections 1-5",
+    "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+    "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:11948",
+   "date": "1976-12-31",
+   "mechanism": "express revocation: EO 11948 section 4(a)(1) revokes Executive Order No. 11667; EO 11948 section 5 makes the order effective December 31, 1976 (signed December 20, 1976)",
+   "source": {
+    "excerpt": "Sec . 5. This order shall be effective December 31, 1976.",
+    "page_or_item": "41 FR 55706, PDF page 14, sections 4(a)(1) and 5",
+    "quote": "(1) Executive Order No. 11667 of April 19, 1972, establishing the President’s  \nAdvisory Committee on the Environmental Awards Merit Program.",
+    "sha256": "77e3939e28ae028965ff806e46677e283aa35b14faf79c2810ac956a8a3944e9",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1976-12-22/pdf/FR-1976-12-22.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

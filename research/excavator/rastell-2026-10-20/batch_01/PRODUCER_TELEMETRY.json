@@ -1,0 +1,40 @@
+{
+ "batch": "batch_01",
+ "role": "producer",
+ "producer": "claude-rastell-01-producer",
+ "model": "claude-sonnet-5-5 (as run; plan named an Opus producer)",
+ "tool_calls_approx": 55,
+ "wall_time": "not instrumented inside the subagent",
+ "context_tokens_consumed_approx": 325000,
+ "token_basis": "total_tokens counter fell from 15,000,000 to about 14,674,000 over the run (includes re-read context; not a billing figure)",
+ "cost_usd": null,
+ "cost_note": "not measurable from inside the subagent; coordinator should price from session usage",
+ "pairs": 26,
+ "records": 26,
+ "located": 22,
+ "not_located": 4,
+ "not_located_reasons": {
+  "EO:13686>EO:13655": "lead reversed (actor predates target; real actor EO 13715)",
+  "EO:12294>EO:12379": "provision names EO 12285, not 12294",
+  "EO:7972>EO:8017": "provision belongs to neighbouring EO 8018",
+  "EO:7972>EO:8020": "provision belongs to neighbouring EO 8018"
+ },
+ "located_by_class": {
+  "EO12553_whole_revoke": 9,
+  "EO12107_partial_amend": 2,
+  "EO7968_supersede_whole": 2,
+  "continuance_partial_EO12296": 4,
+  "via_parent_whole": 2,
+  "EO9687_revoke_whole_date_agency_specific": 1,
+  "EO12038_12148_partial_amend": 2
+ },
+ "pre_gate": "check_act.py: 26 records, 22 located, 4 not located, 0 errors",
+ "fetch_queue_appended": [
+  "EO:7968 (page check for the supersession list)"
+ ],
+ "files": [
+  "ACT_RECORDS.jsonl",
+  "batch_01.json (copy)"
+ ],
+ "guardrails": "no codebook, status, tier or DECIDED_CASE_COMPLETENESS change; certified count untouched; no push; no claims written"
+}

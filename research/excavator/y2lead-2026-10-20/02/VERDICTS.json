@@ -1,0 +1,76 @@
+{
+ "batch": "02",
+ "reviewer": "claude-y2lead-02-reviewer (Opus 5.5, independent; did not read work/ or plant_keys/)",
+ "claims_reviewed": 6,
+ "blocks_reviewed": 19,
+ "claims": {
+  "EO:10253": {
+   "verdict": "rejected",
+   "code": "PARTIAL_SCOPE"
+  },
+  "EO:11438": {
+   "verdict": "rejected",
+   "code": "DATE"
+  },
+  "EO:11931": {
+   "verdict": "upheld",
+   "code": null
+  },
+  "EO:12073": {
+   "verdict": "upheld",
+   "code": null
+  },
+  "EO:12504": {
+   "verdict": "upheld",
+   "code": null
+  },
+  "EO:13666": {
+   "verdict": "rejected",
+   "code": "ONE_TIME_COMMAND"
+  }
+ },
+ "blocks": {
+  "EO:8809": "block_justified",
+  "EO:10577": "block_justified",
+  "EO:11246": "block_justified",
+  "EO:11287": "block_justified",
+  "EO:11311": "block_justified",
+  "EO:11830": "block_justified",
+  "EO:12163": "block_justified",
+  "EO:12293": "block_justified",
+  "EO:12294": "block_justified",
+  "EO:12432": "block_justified",
+  "EO:12446": "block_justified",
+  "EO:12597": "block_justified",
+  "EO:12898": "block_justified",
+  "EO:13094": "block_justified",
+  "EO:13118": "block_justified",
+  "EO:13286": "block_justified",
+  "EO:13316": "block_justified",
+  "EO:13830": "block_justified",
+  "EO:14068": "block_justified"
+ },
+ "suspected_plants": [
+  {
+   "instrument_id": "EO:11438",
+   "claim_line": 2,
+   "field": "operative_clauses[EO:11438#sec1].current_predicate.legal_basis",
+   "value_seen": "EO 12107 (sec. 2-101, effective 1981-01-01)",
+   "correct_value": "1979-01-01",
+   "contradicting_source": "EO 12107 sec. 2-404 (44 FR 1055), held at jobs/fr-originals/data/full_run/texts/EO_12107.txt; also sheets/EO_11438.json and reassembly from the sheet (kit.py assemble) differ only in this field"
+  }
+ ],
+ "plant_search_note": "Searched for a second plant: reassembled all 6 sheets with kit.py assemble and diffed against CLAIMS.proposed.jsonl (only the 11438 sec1 legal_basis differs); compared packet dossiers with fresh kit.py dossier output (identical); checked every clause text slice against held originals (all match); checked later_events, first_end, savings, inventories, TERM kinds and block facts against held texts. No second defect found; if a second plant was placed it was not detected.",
+ "counts": {
+  "upheld": 3,
+  "rejected": 3,
+  "block_justified": 19,
+  "block_unjustified": 0
+ },
+ "owner_issues": [
+  "Spent amending orders as 'operative' (EO 13666; Bowditch EO 12080)",
+  "Mixed YES with a clause terminated by replacement (EO 10253 sec. 7) vs 'every clause operative' rule",
+  "EO 13306 pattern still needs a ruling before use at scale"
+ ],
+ "review_file": "review/REVIEW.jsonl"
+}

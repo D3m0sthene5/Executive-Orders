@@ -1,0 +1,33 @@
+{
+ "batch": "batch_02",
+ "producer": "claude-lamm3-02-producer",
+ "model": "claude-sonnet-5-5",
+ "orders": 13,
+ "records_written": 13,
+ "tool_calls_approx": 60,
+ "wall_time_minutes_approx": 40,
+ "usage": "token usage not exposed to the subagent; roughly 250k tokens of context used",
+ "network_used": false,
+ "pregate": "check_ote.py: ok 13 records",
+ "fetch_lines_appended": 5,
+ "kit_sheets": 0,
+ "kit_sheets_note": "No claims-enabled whole end: the 8 C_event NO orders are 7 end_date_needs_source plus 1 extended_or_renewed (EO 12961), so no kit decision sheet, assemble or claim-checker run was possible; CLAIMS.proposed.jsonl is empty.",
+ "claim_kit_change": "none",
+ "verdict_counts": {
+  "end_date_needs_source": 7,
+  "extended_or_renewed": 1,
+  "not_an_end": 3,
+  "ends_by_own_term_partial": 2,
+  "ends_by_own_term_whole": 0
+ },
+ "own_term_ends_attempted": 13,
+ "own_term_ends_candidate_upheld_by_producer": 2,
+ "caveats": [
+  "Both candidate ends are YES-trap partials: EO 13933 sec. 5 (2020-12-26; extension 'unless extended by the President' not held, reinstatement by EO 14189 an open question) and EO 13111 Committee secs 5-7 (2003-01-11 as extended by EO 13188, which is dated the day the original term ran out).",
+  "EO 12961 is the only C_event order where a held text gives a report date (EO 13034 sec. 2(b)(2): final report submitted 1996-12-31, so the term as issued ended 1997-01-30), but EO 13034 extended the Committee the same day, so the verdict is extended_or_renewed.",
+  "Report dates for the other 7 event-relative orders are in no held text; stage20 AI-research leads (EO 11301, 12614, 11289) are named in the notes as unverified leads and not adopted.",
+  "EO 12130's dossier TERM does not slice the held original; the exact sec. 1-402 sentence is quoted instead.",
+  "EO 2834's held 'original' is a Statutes at Large page, not the order.",
+  "Blinding kept: all outputs under the work dir; no file written under research/ except 5 appended FETCH_QUEUE lines. Helper scripts kept outside the work dir."
+ ]
+}

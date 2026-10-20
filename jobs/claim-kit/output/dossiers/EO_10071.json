@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10071>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10071#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10071",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10071"
@@ -56,6 +86,75 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10071>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10071>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10071>EO:12553@rastell",
+      "producer": "claude-rastell-03-producer",
+      "producer_d6": "Searched: dossier chain, own_terms (OWN_TERMS.jsonl), the target's clause text, and EDGES.csv (later-events, app-footnote-leads). Edges targeting EO:10071: only EO:12553 (revocation, both the 'Revoked by' footnote and the 12553 row). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, the status quo is frozen 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms about two months after 1949-07-20, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Searched for a later event that changed the acting provision: no edge in either EDGES file targets EO:12553, and nothing else in the dossier amends or revokes it.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "no earlier express end; only EO:12553 revocation edge",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-03-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_03/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10071",
+      "target_naming": {
+        "char_end": 6960,
+        "char_start": 6887,
+        "sha256": "b7204135e82b1d237ff73b8babbbb86beaf28fd97566d7ee76a137fc2e1e5c27",
+        "text": "10071 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -123,6 +222,34 @@
       },
       "text": "Instrument: EO:10071\nSource: https://www.govinfo.gov/content/pkg/FR-1949-07-22/pdf/FR-1949-07-22.pdf\nSHA-256 of the downloaded file: 7a46ba1eef0a857841eabc542d711cc84b88c0ad20faa1299244b956fb8003a2\nLocation: 14 FR 4587, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 24 ===\n^ x oN a l^\nVOLUME 14 r \\ g «934 ¿¡f* Wanted  ^ NUMBER 140\nWashington, Friday, July 22, 1949\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10070\nAmending E xecutive  O rder N o. 9975 of \nJuly  7,1948, P rescribing R egulations \nGoverning the A llowance of T ravel \nExpenses  of C laimants and B ene ­\nficiaries of the Veterans’  Administra ­\ntion and T heir A ttendants\nBy virtue of and pursuant to the au­\nthority vested in me by section 1 of the  \nact of March 14, 1940, 54 Stat. 49, as  \namended by the act of June 16, 1948, 62  \nStat. 471 (38 U. S. C. 76), section 2 of  \nExecutive Order No. 9975 of July 7, 1948,  \nentitled “Regulations Governing the Al­\nlowance of Travel Expenses of Claimants  \nand Beneficiaries of the Veterans’  Ad­\nministration and Their Attendants,” is  \nhereby amended to read as follows:\n“2. The Administrator of Veterans’  \nAffairs may authorize in lieu of actual  \nexpenses of travel, including lodging and  \nsubsistence, payment of an allowance of  \n5 cents a mile to any claimant or bene­\nficiary of the Veterans’  Administration  \ntraveling under prior authorization to or  \nfrom a Veterans’  Administration facility, \nor other place, in connection with vo­\ncational rehabilitation or for the pur­\npose of examination, treatment, or care,  \nor, in his discretion, to the person who  \nor the organization which has actually  \npaid the expenses of such travel, includ­\ning lodging and subsistence: Provided,  \nthat payment of mileage in connection  \nwith vocational rehabilitation or upon  \ntermination of examination, treatment,  \nor care may be made prior to completion  \nof such travel.”\nThis order shall become effective on  \nAugust 1,1949.\nHarry S. T ruman \nThe W hite  H ouse ,\nJuly 20, 1949.\nIP. R. Doc. 49-6065; Piled, July 21, 1949;\n10:36 a. m.]\nEXECUTIVE ORDER 10071\nCreating an E mergency O rder to I nves ­\ntigate a D ispute  B etween  the S outh ­\nern P acific C ompany (P acific L ines ) \nand C ertain of its  E mployees\nWHEREAS a dispute exists between  \nthe Southern Pacific Company (Pacific  \nLines), a carrier, and certain of its em­\nployees represented by the Brotherhood\nof Railroad Trainmen, a labor organiza­\ntion; and\nWHEREAS this dispute has not here­\ntofore been adjusted under the provisions  \nof the Railway Labor Act, as amended;  \nand\nWHEREAS this dispute, in the judg­\nment of the National Mediation Board,  \nthreatens substantially to interrupt in­\nterstate commerce to a degree such as  \nto deprive a large section of the country  \nof essential transportation service:\nNOW, THEREFORE, by virtue of the  \nauthority vested in me by section 10 of  \nthe Railway Labor Act, as amended (45  \nU. S. C. 160), I hereby create a board of  \nthree members, to be appointed by me, to  \ninvestigate the said dispute. No mem­\nber of the said board shall be pecuniarily  \nor otherwise interested in any organiza­\ntion of railway employees or any carrier.\nThe board shall report its findings to  \nthe President with respect to the said  \ndispute within thirty days from the date  \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by the Southern Pacific Company  \n(Pacific Lines) or its employees in the  \nconditions out of which the said dispute  \narose.\nH arry S. T ruman\nT he W hite  H ouse ,\nJuly 20, 1949.\n[F. R. Doc. 49-6066; Filed, July 21, 1949;  \n10:36 a. m.]\nTITLE 6— AGRICULTURAL CREDIT\nChapter IV— Production and Market­\ning Administration and Commodity  \nCredit Corporation, Department of  \nAgriculture\nSubchapter C— Loans, Purchases, and Other  \nOperations\n[1949 C. C. C. Grain Sorghums Bulletin 1,  \nAmdt. 1]\nPart 621—Grain S orghums\nS ubpart—1949 G rain S orghums  L oan \nand P urchase A greement P rogram\n1949— CROP GRAIN SORGHUMS PRICE \nSUPPORT PROGRAM BULLETIN\nThe regulations issued by Commodity  \nCredit Corporation and the Production  \n(Continued on p. 4589)\nCONTENTS\nTHE PRESIDENT\nExecutive Orders Pa6e\nRegulations governing allowance  \nof travel expenses of claimants  \nand beneficiaries of Veterans’  \nAdministration and their at­\ntendants; amendment of E. O.\n9975________________________ 4587\nSouthern Pacific Co. (Pacific  \nLines) and certain employees;  \ncreation of emergency board  \nto investigate dispute _________ 4587\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee Animal Industry Bureau;  \nCommodity Credit Corporation;  \nProduction and Marketing Ad­\nministration.\nAlien Property, Office of  \nNotices :\nVesting orders, etc.:\nClaims, bar date for filing in\nrespect of certain debtors _ 4609\nGrau, Else_________________ 4609\nKrause, Ellen __________   4607\nNakahama, Goro ___________ 4607\nNakata, Kazuyoshi ____,_r .__ 4608\nSaiki, Jukichi ______________ 4608\nYamamoto, Torakichi ______ 4608\nYoshihara, Retsu _ _________ 4609\nAnimal Industry Bureau  \nRules and regulations;\nMiscellaneous amendments:  \nApplications for inspection or  \nexemption; retail butchers,  \nretail dealers, and farmers- 4590  \nExport stamps and certifi-\ncates____________________ 4591\nImported products _________ 4591\nLabeling ----------   4590\nReinspection and preparation  \nof product _______________ 4591\nCommodity Credit Corporation  \nRules and regulations:\nGrain sorghums, 1949 loan and  \npurchase agreement program- 4587  \nFederal Communications Com-\nmission\nNotices:\nHearings, etc.:\nHowe, Gene, et al___________ 4601\nMarion Broadcasting Co.\n(WMRN) et al ________  4600\nRCA Communications, Inc _ _ 4600\n4587\n"
     },
+    "TERM:EO:10071:144b3e988201dedd@1c0483db5ef40e1e": {
+      "actor_id": "EO:10071",
+      "char_end": 1058,
+      "char_start": 606,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10071:144b3e988201dedd@1c0483db5ef40e1e",
+      "instrument_id": "EO:10071",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10071#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-077-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "57bad505f4c4b339d00dca74910e33167d954013d32cc89f1b368bafc011309a",
+        "signing_date": "1949-07-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10071_Emergency_board_created_by_EO_10071_July_20_1949_14_FR_4587_Southern_Pacific_Co._Paci_07c8964300.txt",
+        "text_sha256": "1c0483db5ef40e1ef2f7f4ba8286c974d20b6afb4a645c19e9ae3267bac32bff",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-077-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "=== PDF page 1 of 12 ===\nReport \nTHE PRESIDENT \nBY THE \nEMERGENCY BOARD \nAPPOINTED JULY 20, 1949, BY EXECUTIVE \nORDER 10071 PURSUANT TO SECTION 10 \nOF THE RAILWAY LABOR ACT \nTo investigate a dispute between the Brother- \nhood of Railroad Trainmen and the Southern \nPacific Company (Pacific Lines) \n(NMB Cases A-3085, A-3086) \nSAN FRANCISCO, CALIFORNIA \nSEPTEMBER 1, 1949 \nI a \n(No. 77) \n=== PDF page 2 of 12 ===\nSAN FRANCISCO, CALIF., September 1,1949."
+    },
     "TERM:EO:10071:2f5b70432f38bee0@031b37bbd807a746": {
       "actor_id": "EO:10071",
       "char_end": 3533,
@@ -179,6 +306,34 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The board shall report its findings to  \nthe President with respect to the said  \ndispute within thirty days from the date  \nof this order."
+    },
+    "TERM:EO:10071:4b93c6b2c0b8ddf2@1c0483db5ef40e1e": {
+      "actor_id": "EO:10071",
+      "char_end": 553,
+      "char_start": 108,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10071:4b93c6b2c0b8ddf2@1c0483db5ef40e1e",
+      "instrument_id": "EO:10071",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10071#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-077-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "57bad505f4c4b339d00dca74910e33167d954013d32cc89f1b368bafc011309a",
+        "signing_date": "1949-07-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10071_Emergency_board_created_by_EO_10071_July_20_1949_14_FR_4587_Southern_Pacific_Co._Paci_07c8964300.txt",
+        "text_sha256": "1c0483db5ef40e1ef2f7f4ba8286c974d20b6afb4a645c19e9ae3267bac32bff",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-077-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(Pacific Lines) and Brotherhood of Railroad Trainmen): report to the President, date submitted\nCited by: EO:10071\nSource: https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-077-Report.pdf\nSHA-256 of the downloaded file: 57bad505f4c4b339d00dca74910e33167d954013d32cc89f1b368bafc011309a\nLocation: PEB-077-Report.pdf PDF pages 1-8 (front matter; transmittal letter)\nMachine-extracted text (from a scan's text layer for older documents)."
     },
     "TERM:EO:10071:62d31d5ad8c4a935@031b37bbd807a746": {
       "actor_id": "EO:10071",
@@ -296,7 +451,7 @@
       "text": "The Board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
     }
   },
-  "fingerprint": "6f32842d76a9ada470aaea78a65199f4dd79ad3cff7d4ce3eb59f29a289b626f",
+  "fingerprint": "a35a71858c48780618473d7c18fa8560df70a8fd0fba15e5befaf6efca380864",
   "instrument_id": "EO:10071",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -337,9 +492,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10071",
   "own_terms": [
@@ -347,6 +500,8 @@
     "TERM:EO:10071:62d31d5ad8c4a935@031b37bbd807a746",
     "TERM:EO:10071:2f5b70432f38bee0@727d70a704d78af0",
     "TERM:EO:10071:62d31d5ad8c4a935@727d70a704d78af0",
+    "TERM:EO:10071:4b93c6b2c0b8ddf2@1c0483db5ef40e1e",
+    "TERM:EO:10071:144b3e988201dedd@1c0483db5ef40e1e",
     "TERM:EO:10071:b79294a9ef896c0f@eb9d4ecdc50571f4",
     "TERM:EO:10071:a5afa44327db06a2@eb9d4ecdc50571f4"
   ],

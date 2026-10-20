@@ -1,0 +1,256 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 5,
+  "path": "research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl",
+  "sha256": "68320e32ba9086ad2c4eaf9c0bddbd7553c5aeb6292b56379e709f5c8c38da9a"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D8",
+ "instrument_id": "SEEDED:EO:5614",
+ "item_id": "MW-C2-29",
+ "leak_needles": [
+  "\"# EO:5982: Executive Order 5982. December 22, 1932\\n# Source: Proclamations and Executive Orders: Herbert Hoover, March 4, 1929 to March 4, 1933, Volume II (Executive Orders 5550-6070; Tables 1-3; Index) (Washington: U.S. Government Printing Office, 1974 (GPO stock no. 2203-00906)); Google, University of California copy (received Jan 6, 1975); HathiTrust handle 2027/uc1.c025504761\\n# PDF: releases/source_books/OFR_1974_Hoover_Proclamations_and_Executive_Orders_v2_uc1.c025504761.pdf sha256 3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5\\n# PDF pages 616-617; printed pages 1387-1388; closing tag match; confidence high\\n# Text: OCR text layer of the scan (pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR), running heads and page numbers removed. Not human-verified. Body sha256 308d1fda7e82a93cad4391f8103210c9fbc9bf465d89f12be443464520d69c4f\\n\\nExecutive Order 5982. December 22, 1932\\nExecutive Order\\nEXEMPTION OF CHARLES J. HARLOW FROM COMPULSORY RETIREMENT\\nFOR AGE\\nBy virtue of the authority vested in me by section 204 of Part II of the act\\nentitled \\\" AN ACT Making appropriations for the Legislative Branch of the Govern-\\nment for the fiscal year ending June 30 , 1933 , and for other purposes ,\\\" approved June\\n30 , 1932, Charles J. Harlow, plate printer in the Coast and Geodetic Survey of the\\nDepartment of Commerce , who, during the current month , reaches the retirement\\nage prescribed for automatic separation from the service , is hereby exempted from the\\nprovisions of that section until March 31 , 1933 .\""
+ ],
+ "mutation": {
+  "after": "# EO:5982: Executive Order 5982. December 22, 1932\n# Source: Proclamations and Executive Orders: Herbert Hoover, March 4, 1929 to March 4, 1933, Volume II (Executive Orders 5550-6070; Tables 1-3; Inde",
+  "before": "1. As soon as practicable after the close of each fiscal year, the Secretary of the\nTreasury shall furnish the Director of the Bureau of the Budget with a detailed\nstatement of the expenditures of the",
+  "field": "operative_clauses[0].original_operative_text",
+  "operator": "D8.0:EO:5982",
+  "refuting_span": {
+   "quote": "1. As soon as practicable after the close of each fiscal year, the Secretary of the\nTreasury shall furnish the Director of the Bureau of the Budget with a detailed\nstatement of the expenditures of the"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "claim_kit": {
+   "agent": "claude-x1",
+   "dossier_sha256": "c2963e91bc7a35dc839117484e6db2ed683f9d7d4729fdacec63bd3e69672b6a",
+   "inventory_overrides": [],
+   "original_pages_confirmed": false,
+   "producer_approved": true
+  },
+  "instrument_id": "SEEDED:EO:5614",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "first_end": {
+     "actor": "EO:8512",
+     "date": "1940-08-13",
+     "mechanism": "revoke",
+     "source": {
+      "char_end": 9889,
+      "char_start": 9639,
+      "evidence_id": "QUNUOkVPOjU2MTQ-RU86ODUxMg",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "5 FR 2849, PDF pages 1-2",
+      "quote": "Executive Orders No. 5614 \nof May 1, 1931, No. 6226 of July 27, 1933, \nNo. 6869 of October 10, 1934, No. 7126 of \nAugust 15, 1935, as amended, and all \nother orders or parts thereof inconsistent \nwith the provisions of this order are \nhereby revoked.",
+      "requires_page_check": false,
+      "sha256": "5748260b8051d4a5a1eaefbfcfa517ac993703959c0b022efce1d0948c0d58cb",
+      "signing_date": "1940-08-13",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8512.txt",
+      "text_sha256": "a7af3df8971d79b49716e2a679ad44fbff9bd4f0d39c9b4d74dcc8f8c8310951",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-15/pdf/FR-1940-08-15.pdf"
+     }
+    },
+    "judgment_reason": "Terminated in full by the express revocation in EO 8512 sec. 9, effective on signing 1940-08-13 (no other effective date stated); no earlier amendment or own-term end found.",
+    "later_events": [],
+    "original_operative_text": "# EO:5982: Executive Order 5982. December 22, 1932\n# Source: Proclamations and Executive Orders: Herbert Hoover, March 4, 1929 to March 4, 1933, Volume II (Executive Orders 5550-6070; Tables 1-3; Index) (Washington: U.S. Government Printing Office, 1974 (GPO stock no. 2203-00906)); Google, University of California copy (received Jan 6, 1975); HathiTrust handle 2027/uc1.c025504761\n# PDF: releases/source_books/OFR_1974_Hoover_Proclamations_and_Executive_Orders_v2_uc1.c025504761.pdf sha256 3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5\n# PDF pages 616-617; printed pages 1387-1388; closing tag match; confidence high\n# Text: OCR text layer of the scan (pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR), running heads and page numbers removed. Not human-verified. Body sha256 308d1fda7e82a93cad4391f8103210c9fbc9bf465d89f12be443464520d69c4f\n\nExecutive Order 5982. December 22, 1932\nExecutive Order\nEXEMPTION OF CHARLES J. HARLOW FROM COMPULSORY RETIREMENT\nFOR AGE\nBy virtue of the authority vested in me by section 204 of Part II of the act\nentitled \" AN ACT Making appropriations for the Legislative Branch of the Govern-\nment for the fiscal year ending June 30 , 1933 , and for other purposes ,\" approved June\n30 , 1932, Charles J. Harlow, plate printer in the Coast and Geodetic Survey of the\nDepartment of Commerce , who, during the current month , reaches the retirement\nage prescribed for automatic separation from the service , is hereby exempted from the\nprovisions of that section until March 31 , 1933 .",
+    "original_source": {
+     "char_end": 1726,
+     "char_start": 1189,
+     "evidence_id": "Q0xBVVNFUzpFTzo1NjE0IzE",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "page_or_item": "Hoover PEO vol. II (OFR 1974), printed pages 838-838, PDF pages 67-67",
+     "quote": "1. As soon as practicable after the close of each fiscal year, the Secretary of the\nTreasury shall furnish the Director of the Bureau of the Budget with a detailed\nstatement of the expenditures of the Government on the basis of checks issued by\ndisbursing officers and agents of the United States , under each separate head of\nappropriations as carried on the books of the Treasury Department ; and such\nexpenditures shall be classified separately under the captions \" General fund,\"\n\"Special funds ,\" and \" Trust funds ,\" respectively .",
+     "requires_page_check": false,
+     "sha256": "3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5",
+     "signing_date": "1931-05-01",
+     "text_path": "jobs/ofr-compilations/output/texts/EO_5614.txt",
+     "text_sha256": "27a05e6d356d97e08d6e86d3e56e1c4ba433415bc1208292912185a75592cdbf",
+     "url": "https://hdl.handle.net/2027/uc1.c025504761"
+    },
+    "scope_id": "EO:5614#1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "first_end": {
+     "actor": "EO:8512",
+     "date": "1940-08-13",
+     "mechanism": "revoke",
+     "source": {
+      "char_end": 9889,
+      "char_start": 9639,
+      "evidence_id": "QUNUOkVPOjU2MTQ-RU86ODUxMg",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "5 FR 2849, PDF pages 1-2",
+      "quote": "Executive Orders No. 5614 \nof May 1, 1931, No. 6226 of July 27, 1933, \nNo. 6869 of October 10, 1934, No. 7126 of \nAugust 15, 1935, as amended, and all \nother orders or parts thereof inconsistent \nwith the provisions of this order are \nhereby revoked.",
+      "requires_page_check": false,
+      "sha256": "5748260b8051d4a5a1eaefbfcfa517ac993703959c0b022efce1d0948c0d58cb",
+      "signing_date": "1940-08-13",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8512.txt",
+      "text_sha256": "a7af3df8971d79b49716e2a679ad44fbff9bd4f0d39c9b4d74dcc8f8c8310951",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-15/pdf/FR-1940-08-15.pdf"
+     }
+    },
+    "judgment_reason": "Terminated in full by the express revocation in EO 8512 sec. 9, effective on signing 1940-08-13 (no other effective date stated); no earlier amendment or own-term end found.",
+    "later_events": [],
+    "original_operative_text": "2. In order to enable the Secretary of the Treasury to comply with the provisions\nof this order , the head of each executive department and independent establishment\nshall furnish the Secretary of the Treasury as soon as practicable after the close of\neach fiscal year with a detailed statement of the unexpended balances in the hands of\ndisbursing officers and agents , or to their official credit, at the close of the fiscal year\nfor which such report is made , classified according to appropriations , special funds ,\ntrust funds , and special deposit accounts as carried on the books of the Treasury .",
+    "original_source": {
+     "char_end": 2332,
+     "char_start": 1727,
+     "evidence_id": "Q0xBVVNFUzpFTzo1NjE0IzI",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "page_or_item": "Hoover PEO vol. II (OFR 1974), printed pages 838-838, PDF pages 67-67",
+     "quote": "2. In order to enable the Secretary of the Treasury to comply with the provisions\nof this order , the head of each executive department and independent establishment\nshall furnish the Secretary of the Treasury as soon as practicable after the close of\neach fiscal year with a detailed statement of the unexpended balances in the hands of\ndisbursing officers and agents , or to their official credit, at the close of the fiscal year\nfor which such report is made , classified according to appropriations , special funds ,\ntrust funds , and special deposit accounts as carried on the books of the Treasury .",
+     "requires_page_check": false,
+     "sha256": "3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5",
+     "signing_date": "1931-05-01",
+     "text_path": "jobs/ofr-compilations/output/texts/EO_5614.txt",
+     "text_sha256": "27a05e6d356d97e08d6e86d3e56e1c4ba433415bc1208292912185a75592cdbf",
+     "url": "https://hdl.handle.net/2027/uc1.c025504761"
+    },
+    "scope_id": "EO:5614#2",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "first_end": {
+     "actor": "EO:8512",
+     "date": "1940-08-13",
+     "mechanism": "revoke",
+     "source": {
+      "char_end": 9889,
+      "char_start": 9639,
+      "evidence_id": "QUNUOkVPOjU2MTQ-RU86ODUxMg",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "5 FR 2849, PDF pages 1-2",
+      "quote": "Executive Orders No. 5614 \nof May 1, 1931, No. 6226 of July 27, 1933, \nNo. 6869 of October 10, 1934, No. 7126 of \nAugust 15, 1935, as amended, and all \nother orders or parts thereof inconsistent \nwith the provisions of this order are \nhereby revoked.",
+      "requires_page_check": false,
+      "sha256": "5748260b8051d4a5a1eaefbfcfa517ac993703959c0b022efce1d0948c0d58cb",
+      "signing_date": "1940-08-13",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8512.txt",
+      "text_sha256": "a7af3df8971d79b49716e2a679ad44fbff9bd4f0d39c9b4d74dcc8f8c8310951",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-15/pdf/FR-1940-08-15.pdf"
+     }
+    },
+    "judgment_reason": "Terminated in full by the express revocation in EO 8512 sec. 9, effective on signing 1940-08-13 (no other effective date stated); no earlier amendment or own-term end found.",
+    "later_events": [],
+    "original_operative_text": "3. The Secretary of the Treasury shall prescribe such forms as he may consider\nnecessary to carry out the provisions of this order .",
+    "original_source": {
+     "char_end": 2465,
+     "char_start": 2333,
+     "evidence_id": "Q0xBVVNFUzpFTzo1NjE0IzM",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "page_or_item": "Hoover PEO vol. II (OFR 1974), printed pages 838-838, PDF pages 67-67",
+     "quote": "3. The Secretary of the Treasury shall prescribe such forms as he may consider\nnecessary to carry out the provisions of this order .",
+     "requires_page_check": false,
+     "sha256": "3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5",
+     "signing_date": "1931-05-01",
+     "text_path": "jobs/ofr-compilations/output/texts/EO_5614.txt",
+     "text_sha256": "27a05e6d356d97e08d6e86d3e56e1c4ba433415bc1208292912185a75592cdbf",
+     "url": "https://hdl.handle.net/2027/uc1.c025504761"
+    },
+    "scope_id": "EO:5614#3",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "char_end": 2525,
+   "char_start": 0,
+   "evidence_id": "T1JJR0lOQUw6RU86NTYxNA",
+   "evidence_id_encoding": "base64url-utf8",
+   "filing_date": null,
+   "location_confidence": "high",
+   "page_or_item": "Hoover PEO vol. II (OFR 1974), printed pages 838-838, PDF pages 67-67",
+   "quote": "# EO:5614: Executive Order 5614. May 1 , 1931\n# Source: Proclamations and Executive Orders: Herbert Hoover, March 4, 1929 to March 4, 1933, Volume II (Executive Orders 5550-6070; Tables 1-3; Index) (Washington: U.S. Government Printing Office, 1974 (GPO stock no. 2203-00906)); Google, University of California copy (received Jan 6, 1975); HathiTrust handle 2027/uc1.c025504761\n# PDF: releases/source_books/OFR_1974_Hoover_Proclamations_and_Executive_Orders_v2_uc1.c025504761.pdf sha256 3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5\n# PDF pages 67-67; printed pages 838-838; closing tag match; confidence high\n# Text: OCR text layer of the scan (pypdf 6.20.1 extract_text(), NUL characters removed; the layer is Google's OCR), running heads and page numbers removed. Not human-verified. Body sha256 e1a5cb4b034784f496c17f46771dc80056454e1c5e50571ad83496d25fa045f7\n\nExecutive Order 5614. May 1 , 1931\nExecutive Order\nReporting of Expenditures for Use in the Budget\nIn pursuance of the provisions of the Budget and Accounting Act approved\nJune 10 , 1921 , I hereby prescribe the following rules and regulations with regard\nto the reporting of expenditures in the Budget :\n1. As soon as practicable after the close of each fiscal year, the Secretary of the\nTreasury shall furnish the Director of the Bureau of the Budget with a detailed\nstatement of the expenditures of the Government on the basis of checks issued by\ndisbursing officers and agents of the United States , under each separate head of\nappropriations as carried on the books of the Treasury Department ; and such\nexpenditures shall be classified separately under the captions \" General fund,\"\n\"Special funds ,\" and \" Trust funds ,\" respectively .\n2. In order to enable the Secretary of the Treasury to comply with the provisions\nof this order , the head of each executive department and independent establishment\nshall furnish the Secretary of the Treasury as soon as practicable after the close of\neach fiscal year with a detailed statement of the unexpended balances in the hands of\ndisbursing officers and agents , or to their official credit, at the close of the fiscal year\nfor which such report is made , classified according to appropriations , special funds ,\ntrust funds , and special deposit accounts as carried on the books of the Treasury .\n3. The Secretary of the Treasury shall prescribe such forms as he may consider\nnecessary to carry out the provisions of this order .\nTHE WHITE HOUSE ,\nMay 1 , 1931 .\nHERBERT HOOVER\n[No. 5614]\n",
+   "requires_page_check": false,
+   "sha256": "3bce4d490526a69516217faf43b66b62adf565a388b622f6d1e9225faffdcdf5",
+   "signing_date": "1931-05-01",
+   "text_path": "jobs/ofr-compilations/output/texts/EO_5614.txt",
+   "text_sha256": "27a05e6d356d97e08d6e86d3e56e1c4ba433415bc1208292912185a75592cdbf",
+   "url": "https://hdl.handle.net/2027/uc1.c025504761"
+  },
+  "research_rationale": "Original: EO 5614 of May 1, 1931 (Reporting of Expenditures for Use in the Budget), read in full in the official OFR 1974 Hoover PEO vol. II, printed p. 838 (PDF p. 67): enacting sentence under the Budget and Accounting Act, three numbered paragraphs, signature and number; the held OCR is complete. Ending: EO 8512 of August 13, 1940 (5 FR 2849, held govinfo FR PDF text), Section 9: 'Executive Orders No. 5614 of May 1, 1931, No. 6226 of July 27, 1933, No. 6869 ... and all other orders or parts thereof inconsistent with the provisions of this order are hereby revoked.' EO 8512 states no other effective date, so the revocation took effect on signing, August 13, 1940 (filed August 14, 1940). All three paragraphs end together on that date.\nMember checks: {\"earlier_end_check\":\"No earlier end found. The only related prior order held, EO 6226 of July 27, 1933 (encumbrance/apportionment reports; held APP text), governs a different subject (obligations and apportionments) and does not amend or revoke EO 5614; EO 8512 revoking both in the same list confirms EO 5614 was still extant in 1940. The 1933 consolidation of disbursing in Treasury changed which officers disburse but not the duty to report expenditures. The order has no own-term limit. Pre-1937 events are outside the OFR catalog search; this gap is covered by reading the revoking and related orders, not by the catalog alone.\",\"independent_command_check\":\"Paragraph 3 (Treasury forms) is a dependent implementing authority that falls with the order; no paragraph is an independent command surviving the revocation. EO 8512 replaces the subject with its own regulations, which are EO 8512's commands, not continuations of EO 5614.\",\"savings_check\":\"EO 8512 contains no savings clause for actions under EO 5614; reports already furnished were completed acts with no continuing EO-traceable condition.\",\"scope_check\":\"The revocation names EO 5614 by number and date and revokes it entirely; the general 'parts thereof inconsistent' wording is additional and does not narrow the express whole revocation. Each of paragraphs 1-3 ends on 1940-08-13.\"}",
+  "savings_residuals": {
+   "reason": "EO 8512 contains no savings clause for actions under EO 5614; reports already furnished were completed acts with no continuing EO-traceable condition.",
+   "source": {
+    "char_end": 9889,
+    "char_start": 9639,
+    "evidence_id": "QUNUOkVPOjU2MTQ-RU86ODUxMg",
+    "evidence_id_encoding": "base64url-utf8",
+    "filing_date": null,
+    "location_confidence": "high",
+    "location_verified": false,
+    "page_or_item": "5 FR 2849, PDF pages 1-2",
+    "quote": "Executive Orders No. 5614 \nof May 1, 1931, No. 6226 of July 27, 1933, \nNo. 6869 of October 10, 1934, No. 7126 of \nAugust 15, 1935, as amended, and all \nother orders or parts thereof inconsistent \nwith the provisions of this order are \nhereby revoked.",
+    "requires_page_check": false,
+    "sha256": "5748260b8051d4a5a1eaefbfcfa517ac993703959c0b022efce1d0948c0d58cb",
+    "signing_date": "1940-08-13",
+    "text_path": "jobs/fr-originals/data/full_run/texts/EO_8512.txt",
+    "text_sha256": "a7af3df8971d79b49716e2a679ad44fbff9bd4f0d39c9b4d74dcc8f8c8310951",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-15/pdf/FR-1940-08-15.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:8512",
+   "date": "1940-08-13",
+   "mechanism": "revoke",
+   "source": {
+    "char_end": 9889,
+    "char_start": 9639,
+    "evidence_id": "QUNUOkVPOjU2MTQ-RU86ODUxMg",
+    "evidence_id_encoding": "base64url-utf8",
+    "filing_date": null,
+    "location_confidence": "high",
+    "location_verified": false,
+    "page_or_item": "5 FR 2849, PDF pages 1-2",
+    "quote": "Executive Orders No. 5614 \nof May 1, 1931, No. 6226 of July 27, 1933, \nNo. 6869 of October 10, 1934, No. 7126 of \nAugust 15, 1935, as amended, and all \nother orders or parts thereof inconsistent \nwith the provisions of this order are \nhereby revoked.",
+    "requires_page_check": false,
+    "sha256": "5748260b8051d4a5a1eaefbfcfa517ac993703959c0b022efce1d0948c0d58cb",
+    "signing_date": "1940-08-13",
+    "text_path": "jobs/fr-originals/data/full_run/texts/EO_8512.txt",
+    "text_sha256": "a7af3df8971d79b49716e2a679ad44fbff9bd4f0d39c9b4d74dcc8f8c8310951",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-15/pdf/FR-1940-08-15.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

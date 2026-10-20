@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10963>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10963#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10963",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10963"
@@ -55,6 +85,75 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10963>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10963>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10963>EO:12553@rastell",
+      "producer": "claude-rastell-07-producer",
+      "producer_d6": "Searched: dossier chain, own_terms (OWN_TERMS.jsonl), the target's held clause text, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:10963: EO:12553 revocation), and a number search of all 6,652 held Federal Register order texts for other orders naming EO 10963 (result: none relevant (hits were page-contents, index, document-number or hash strings)). Emergency board, Pullman Company and the Chicago, Milwaukee, St. Paul & Pacific Railroad Company (disputes; signed 1961-09-01). Own terms: the board 'shall report its findings to the President ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, or earlier revoking, amending-away or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the board's operative effect plausibly lapsed by its own terms within about two months of signing (1961-09-01), so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, no held order text amends or revokes it, and nothing in the dossier does.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end; board report/status-quo terms and dated extensions are not express ends (EO 12553 may be a clean-up, upper bound).",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text own terms as reported. No edge targets EO:12553 except as actor of revocations (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-07-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_07/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10963",
+      "target_naming": {
+        "char_end": 16696,
+        "char_start": 16624,
+        "sha256": "5edb4c2d8c7b8675c4dd159e249e7254829a2c4ed334c2b5b6f2c773a6118657",
+        "text": "10963 Creating an emergency board to investigate railroad labor disputes"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -179,6 +278,34 @@
       "stated_end_date": null,
       "text": "The board shall report its findings to  \nthe President with respect to these dis­\nputes within thirty days from the date  \nof this order."
     },
+    "TERM:EO:10963:3a1181459cf60da8@8377d13e62631656": {
+      "actor_id": "EO:10963",
+      "char_end": 348,
+      "char_start": 0,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10963:3a1181459cf60da8@8377d13e62631656",
+      "instrument_id": "EO:10963",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10963#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-139-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "b6117709d6ddd5397840c261601dbdae752a881eb9a3fb36446a3d62c371f207",
+        "signing_date": "1961-09-01",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10963_Actual_report_date_of_the_board_created_by_EO_10963_Presidential_Emergency_Board_Rail_a3eb3dd50c.txt",
+        "text_sha256": "8377d13e626316566e676491dd10806d73cc55db544b2834de77c07b81c7fa2e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-139-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Wanted: queue:EO:10963:Actual report date of the board created by EO 10963 (Presidential Emergency Board (Railway Labor Act sec. 10): the Pullman Company and the Chicago, Milwaukee, St): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound."
+    },
     "TERM:EO:10963:684f006e78f5d9fa@390acf6d46d54dc4": {
       "actor_id": "EO:10963",
       "char_end": 1319,
@@ -293,9 +420,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by the Pullman Company and the  \nChicago, Milwaukee, St."
+    },
+    "TERM:EO:10963:f8cd36abe6a71f99@8377d13e62631656": {
+      "actor_id": "EO:10963",
+      "char_end": 1046,
+      "char_start": 752,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10963:f8cd36abe6a71f99@8377d13e62631656",
+      "instrument_id": "EO:10963",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10963#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-139-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "b6117709d6ddd5397840c261601dbdae752a881eb9a3fb36446a3d62c371f207",
+        "signing_date": "1961-09-01",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10963_Actual_report_date_of_the_board_created_by_EO_10963_Presidential_Emergency_Board_Rail_a3eb3dd50c.txt",
+        "text_sha256": "8377d13e626316566e676491dd10806d73cc55db544b2834de77c07b81c7fa2e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-139-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "=== PDF page 1 of 60 ===\nReport \nTO \nTHE PRESIDENT \nBY THE \nEMERGENCY BOARD \nAPPOINTED BY EXECUTIVE ORDER 10963 DATED \nSEPTEMBER 1, 1961, PURSUANT TO SECTION 10 OF \nTHE RAILWAY LABOR ACT, AS AMENDED \nTo Investigate and Report on Disputes Between the Pullman Co. \nand the Chicago, Milwaukee, St."
     }
   },
-  "fingerprint": "009eb419bbe6d977cd7e20dcff14411cfc32d0d0721a95140e9872cd7ab6e6f6",
+  "fingerprint": "068f5e41ef267b8580cdf19a32eff12a72a9accc86cefca0ccb5b6031d864a18",
   "instrument_id": "EO:10963",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -336,9 +491,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10963",
   "own_terms": [
@@ -346,6 +499,8 @@
     "TERM:EO:10963:e636290f0b40745e@6c7ce895453be2a4",
     "TERM:EO:10963:193273c732bcab8a@912e46075f9c01d6",
     "TERM:EO:10963:e636290f0b40745e@912e46075f9c01d6",
+    "TERM:EO:10963:3a1181459cf60da8@8377d13e62631656",
+    "TERM:EO:10963:f8cd36abe6a71f99@8377d13e62631656",
     "TERM:EO:10963:7ec1e81a8afb19d2@390acf6d46d54dc4",
     "TERM:EO:10963:684f006e78f5d9fa@390acf6d46d54dc4"
   ],

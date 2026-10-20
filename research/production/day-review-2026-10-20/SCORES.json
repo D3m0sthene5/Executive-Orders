@@ -1,0 +1,607 @@
+{
+ "schema": "day-review-scores/1",
+ "date": "2026-10-20",
+ "written_by": "claude day-review",
+ "status": "AI-review counts are hypotheses, not human certification; certified whole-lifecycle count stays 0; nothing adopted into DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+ "llull_runs": {
+  "commit": "ab88f6d138",
+  "check": "ok (0 warnings, 2 not_preregistered: L-20261020-1, -2)",
+  "score_output": "jobs/llull/output/CALIBRATION.json",
+  "selfscore_output": "jobs/llull/output/SELFSCORE.json"
+ },
+ "calibration": {
+  "forecasts_registered_today": 44,
+  "resolved": 25,
+  "scored": 23,
+  "excluded_not_preregistered": [
+   "L-20261020-1",
+   "L-20261020-2"
+  ],
+  "open": {
+   "llull_first_use_plans_not_run": "L-20261020-3..12",
+   "lambertini_III": "L-20261020-32..35",
+   "sinclair": "L-20261020-40..44"
+  },
+  "interval": {
+   "n": 19,
+   "inside_p10_p90": 17,
+   "coverage": 0.895,
+   "nominal": 0.8,
+   "misses": [
+    {
+     "id": "L-20261020-13",
+     "plan": "mountweazel-MW-C2",
+     "p90": 0.6,
+     "measured": 0.8,
+     "side": "above"
+    },
+    {
+     "id": "L-20261020-29",
+     "plan": "lambertini-II",
+     "p90": 14,
+     "measured": 20,
+     "side": "above",
+     "flagged_CEILING_EXCEEDED": true
+    }
+   ],
+   "measured_above_p50": 12,
+   "measured_below_p50": 7,
+   "rate_quantities": {
+    "n": 11,
+    "inside": 10,
+    "above_p50": 8
+   },
+   "reading": "coverage 0.89 is slightly above 0.80 (intervals wide: 9 of 19 have p90 = 1.0); both misses on the high side; planners under-forecast rates"
+  },
+  "binary": {
+   "n": 4,
+   "brier": 0.362,
+   "coin_flip_reference": 0.25,
+   "events_happened": 3,
+   "mean_prob": 0.388,
+   "items": [
+    [
+     "L-20261020-19",
+     "lambertini-P1",
+     0.2,
+     1
+    ],
+    [
+     "L-20261020-27",
+     "craigellachie-ii",
+     0.45,
+     0
+    ],
+    [
+     "L-20261020-30",
+     "lambertini-II",
+     0.45,
+     1
+    ],
+    [
+     "L-20261020-37",
+     "r12553-claims",
+     0.45,
+     1
+    ]
+   ],
+   "including_not_preregistered": {
+    "n": 5,
+    "brier": 0.35
+   },
+   "reading": "worse than a constant 0.5; probe gates passed more often than forecast (3 of 4 at mean p 0.39)"
+  },
+  "per_planner": {
+   "claude-lambertini2-scout:claude-opus-5-5": {
+    "n": 4,
+    "coverage": 0.67,
+    "optimism_factor_p50_over_measured": 0.54,
+    "brier": 0.303,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "claude-r12553-scout:claude-opus-5-5": {
+    "n": 4,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 0.8,
+    "brier": 0.303,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "claude:claude-sonnet-5-5": {
+    "n": 3,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 0.909,
+    "brier": null,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "craigellachie-ii-scout:claude-opus-5-5": {
+    "n": 2,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 20.0,
+    "brier": 0.203,
+    "bias": "optimistic",
+    "trust": "unproven"
+   },
+   "lambertini:claude-opus-5-5": {
+    "n": 3,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 0.774,
+    "brier": 0.64,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "lamm:claude-opus-5-5": {
+    "n": 4,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 0.913,
+    "brier": null,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "mw-c2-seed:unknown": {
+    "n": 1,
+    "coverage": 0.0,
+    "optimism_factor_p50_over_measured": 0.375,
+    "brier": null,
+    "bias": "pessimistic",
+    "trust": "unproven"
+   },
+   "rastell:claude-opus-5-5": {
+    "n": 2,
+    "coverage": 1.0,
+    "optimism_factor_p50_over_measured": 1.278,
+    "brier": null,
+    "bias": "optimistic",
+    "trust": "unproven"
+   }
+  },
+  "bias_summary": "6 of 8 planners pessimistic (measured above p50); optimistic only where the pool was source-blocked (craigellachie-ii x20, measured 0) or claims-enabled counts fell short (rastell x1.28). All planners unproven (<5 resolved each).",
+  "selfscore": {
+   "out_of_sample": 23,
+   "misses": 2,
+   "flagged_in_advance": 1,
+   "share_flagged": 0.5,
+   "flag_precision": 0.167,
+   "trust": "unproven"
+  }
+ },
+ "base_rates_added_today": {
+  "file": "jobs/llull/ledger/base_rates.json",
+  "added_now": [
+   {
+    "key": "upheld_per_attempt.y1_no_rereview_opus_sources",
+    "value": 1.0,
+    "num": 15,
+    "den": 15,
+    "population": "BOWY1NO (new pool, 15 ids)",
+    "source": "O-20261020-4",
+    "note": "conditional on prior acceptance; strict alt 12/15"
+   },
+   {
+    "key": "upheld_per_attempt.rastell_act_provision_record",
+    "value": 0.826,
+    "num": 57,
+    "den": 69,
+    "population": "RASTELL",
+    "source": "O-20261020-5",
+    "note": "unscored for plants"
+   },
+   {
+    "key": "upheld_per_attempt.lamm_own_term_end",
+    "value": 0.575,
+    "num": 23,
+    "den": 40,
+    "population": "LAMM",
+    "source": "O-20261020-7",
+    "note": "unscored for plants; 0 claims enabled"
+   },
+   {
+    "key": "upheld_per_attempt.craigellachie_ii_after_fetch",
+    "value": 0.0,
+    "num": 0,
+    "den": 5,
+    "population": "CRAIG2",
+    "source": "O-20261020-15"
+   },
+   {
+    "key": "upheld_per_attempt.r12553_claims",
+    "value": 0.6,
+    "num": 6,
+    "den": 10,
+    "population": "R12553C",
+    "source": "O-20261020-21",
+    "note": "den includes 2 plants; genuine 6/8"
+   },
+   {
+    "key": "hit_rate.plant_catch_scratch_planter_r12553",
+    "value": 1.0,
+    "num": 2,
+    "den": 2,
+    "population": "R12553C",
+    "source": "O-20261020-23"
+   },
+   {
+    "key": "hit_rate.plant_catch_mountweazel_sealed_opus_sources",
+    "value": 0.8,
+    "num": 8,
+    "den": 10,
+    "population": "NR (nominal)",
+    "source": "O-20261020-3"
+   },
+   {
+    "key": "hit_rate.lambertini_s0_prefill_agreement",
+    "value": 0.667,
+    "num": 4,
+    "den": 6,
+    "population": "LAMBS",
+    "source": "O-20261020-11"
+   },
+   {
+    "key": "hit_rate.lambertini_s0_prefill_agreement_scale",
+    "value": 0.6,
+    "num": 12,
+    "den": 20,
+    "population": "LAMBS2",
+    "source": "O-20261020-20"
+   }
+  ],
+  "already_present": [
+   "upheld_per_attempt.modern_claim_no_held_end (random Y2, 3/50)",
+   "accepted_per_attempt.modern_status_sweep (Y1 random, 15/50)",
+   "upheld_per_attempt.craigellachie_last_step (0/23)",
+   "upheld_per_attempt.lambertini_s0 (6/20)",
+   "upheld_per_attempt.lambertini_s0_scale (20/24)"
+  ],
+  "measured_but_not_ledgerable": [
+   {
+    "what": "Rastell EO 12553 subline batches 03-08 ACT records",
+    "upheld": 108,
+    "attempts": 120,
+    "genuine_upheld": "108/108",
+    "why": "no registered forecast, so no Llull outcome; post-hoc registration not allowed"
+   },
+   {
+    "what": "Lamm II sunsets batches 03-05",
+    "upheld": 19,
+    "attempts": 54,
+    "claims_enabled": 12,
+    "claim_lines_checker_passed": 10,
+    "why": "only a count forecast (L-23, items_reached 6) was registered; baserate needs a rate outcome"
+   },
+   {
+    "what": "Lambertini per-instrument",
+    "detail": "LAMBS2 batch 01 (EO 14148) 7/7, batch 02 (EO 13990) 6/6, batch 03 (8 instruments) 7/11",
+    "why": "per-instrument splits have no outcomes"
+   }
+  ]
+ },
+ "plant_catch_by_blinding_regime": [
+  {
+   "regime": "instruction-only blinding, key beside batch, same-family reviewer, packet only (MW-C1)",
+   "caught": 3,
+   "planted": 6,
+   "wilson95": [
+    0.188,
+    0.812
+   ],
+   "note": "all 3 catches had a seeding artifact; artifact-free 0/3"
+  },
+  {
+   "regime": "sealed key outside batch folder, artifact-free plants checkable inside packet (MW-C2)",
+   "configs": {
+    "opus_packet_only": [
+     9,
+     10
+    ],
+    "opus_with_sources": [
+     8,
+     10
+    ],
+    "opus_with_sources_scorer_adjusted": [
+     7,
+     10
+    ],
+    "sonnet_with_sources": [
+     6,
+     10
+    ]
+   },
+   "wilson95_opus_sources": [
+    0.49,
+    0.943
+   ],
+   "weak_type": "D6 omitted later event: 2/3, 1/3, 0/3"
+  },
+  {
+   "regime": "scratch-copy planter, keys in scratch, reviewer not shown key but producer files in repo (diffable)",
+   "batches": {
+    "lambertini_II": [
+     3,
+     3
+    ],
+    "lamm_II_sunsets": [
+     3,
+     3
+    ],
+    "rastell_b03_b08": [
+     12,
+     12
+    ],
+    "r12553_claims": [
+     2,
+     2
+    ]
+   },
+   "caught": 20,
+   "planted": 20,
+   "wilson95": [
+    0.839,
+    1.0
+   ],
+   "caveat": "Lambertini II reviewers found plants by diffing against repo producer files, so this regime does not measure reviewer sensitivity"
+  },
+  {
+   "regime": "no plants inserted or planter denied",
+   "batches": [
+    "rastell probe 01-02",
+    "lamm probe 01-02",
+    "craigellachie-ii 01-02",
+    "bowditch y1/y2"
+   ],
+   "status": "unscored for plants (not void)"
+  }
+ ],
+ "cost_per_upheld": {
+  "session_total_usd_at_0710Z": 155,
+  "usd_per_agent_est": 2.82,
+  "pricing_used_for_token_checks": "Opus 5.5 $4 in / $20 out / $0.20 cache read per MTok; Sonnet 5.5 $2 / $10 / $0.20",
+  "token_records_note": "producer/reviewer token figures in telemetry are drops in the harness remaining-token counter (context consumed, not billed usage); only Mountweazel MW-C2 has transcript-summed tokens with cache reads",
+  "lines": [
+   {
+    "line": "bowditch-y2-claims",
+    "agents": 4,
+    "cost_usd_est": 11.3,
+    "cost_range_usd_est": [
+     8,
+     16
+    ],
+    "upheld": 3,
+    "unit": "claims upheld (independent review)",
+    "usd_per_upheld_est": 3.77,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/bowditch-2026-10-20/REPORT.md",
+    "recorded_tokens": {
+     "producers": 750000,
+     "reviewers": 298000
+    }
+   },
+   {
+    "line": "bowditch-y1-statuses",
+    "agents": 4,
+    "cost_usd_est": 11.3,
+    "cost_range_usd_est": [
+     8,
+     16
+    ],
+    "upheld": 15,
+    "unit": "NO status proposals accepted",
+    "usd_per_upheld_est": 0.75,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/bowditch-2026-10-20/REPORT.md",
+    "recorded_tokens": {
+     "producers": 435000,
+     "reviewers": 151000
+    }
+   },
+   {
+    "line": "bowditch-y1-recheck",
+    "agents": 1,
+    "cost_usd_est": 2.8,
+    "cost_range_usd_est": [
+     2,
+     4
+    ],
+    "upheld": 15,
+    "unit": "accepted statuses upheld on Opus+sources re-review",
+    "usd_per_upheld_est": 0.19,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/bowditch-2026-10-20/Y1_RECHECK_OPUS_SOURCES.json"
+   },
+   {
+    "line": "craigellachie",
+    "agents": 4,
+    "cost_usd_est": 11.3,
+    "cost_range_usd_est": [
+     8,
+     16
+    ],
+    "upheld": 0,
+    "unit": "claims upheld",
+    "usd_per_upheld_est": null,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/craigellachie-2026-10-20/OUTCOME.json",
+    "recorded_tokens": {
+     "producers": 400000
+    }
+   },
+   {
+    "line": "craigellachie-ii",
+    "agents": 8,
+    "cost_usd_est": 22.5,
+    "cost_range_usd_est": [
+     16,
+     32
+    ],
+    "upheld": 0,
+    "unit": "claims upheld",
+    "usd_per_upheld_est": null,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/craigellachie-ii-2026-10-20/OUTCOME.json",
+    "recorded_tokens": {
+     "producers": 300000
+    }
+   },
+   {
+    "line": "rastell-probe",
+    "agents": 5,
+    "cost_usd_est": 14.1,
+    "cost_range_usd_est": [
+     10,
+     20
+    ],
+    "upheld": 57,
+    "unit": "ACT records upheld (2 claims enabled)",
+    "usd_per_upheld_est": 0.25,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/rastell-2026-10-20/OUTCOME.json",
+    "recorded_tokens": {
+     "producers": 587000,
+     "reviewer_b02": 160000
+    }
+   },
+   {
+    "line": "rastell-12553-subline-b03-b08",
+    "agents": 20,
+    "cost_usd_est": 56.4,
+    "cost_range_usd_est": [
+     40,
+     80
+    ],
+    "upheld": 108,
+    "unit": "ACT records upheld (100 claims-enabled)",
+    "usd_per_upheld_est": 0.52,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/rastell-2026-10-20/REPORT.md",
+    "recorded_tokens": {
+     "producers": 575000
+    }
+   },
+   {
+    "line": "rastell-act-ingest",
+    "agents": 1,
+    "cost_usd_est": 2.8,
+    "cost_range_usd_est": [
+     2,
+     4
+    ],
+    "upheld": 55,
+    "unit": "upheld records ingested (not new upholds)",
+    "usd_per_upheld_est": 0.05,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/readiness/act_overrides/OUTCOME_INGEST.json"
+   },
+   {
+    "line": "r12553-claims",
+    "agents": 8,
+    "cost_usd_est": 22.5,
+    "cost_range_usd_est": [
+     16,
+     32
+    ],
+    "upheld": 6,
+    "unit": "claims upheld, checker-passed",
+    "usd_per_upheld_est": 3.75,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/rastell-2026-10-20/claims/OUTCOME.json"
+   },
+   {
+    "line": "lambertini-P1",
+    "agents": 4,
+    "cost_usd_est": 11.3,
+    "cost_range_usd_est": [
+     8,
+     16
+    ],
+    "upheld": 6,
+    "unit": "claims upheld",
+    "usd_per_upheld_est": 1.88,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/lambertini-2026-10-20/OUTCOME.json"
+   },
+   {
+    "line": "lambertini-II",
+    "agents": 11,
+    "cost_usd_est": 31.0,
+    "cost_range_usd_est": [
+     22,
+     44
+    ],
+    "upheld": 20,
+    "unit": "claims upheld, checker-passed",
+    "usd_per_upheld_est": 1.55,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/lambertini-2026-10-20/scale/OUTCOME.json"
+   },
+   {
+    "line": "lamm-probe",
+    "agents": 5,
+    "cost_usd_est": 14.1,
+    "cost_range_usd_est": [
+     10,
+     20
+    ],
+    "upheld": 23,
+    "unit": "own-term ends upheld (0 claims enabled)",
+    "usd_per_upheld_est": 0.61,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/lamm-2026-10-20/OUTCOME.json"
+   },
+   {
+    "line": "lamm-II-sunsets",
+    "agents": 11,
+    "cost_usd_est": 31.0,
+    "cost_range_usd_est": [
+     22,
+     44
+    ],
+    "upheld": 19,
+    "unit": "own-term ends upheld (10 claim lines checker-passed)",
+    "usd_per_upheld_est": 1.63,
+    "cost_basis": "ESTIMATE: agent count x $2.82/agent (session $155 at 07:10Z / ~55 agents run by then, coordinator overhead included); range $2-$4/agent",
+    "count_basis": "research/excavator/lamm-2026-10-20/OUTCOME.json",
+    "usd_per_claim_line_est": 3.1
+   },
+   {
+    "line": "mountweazel-MW-C2",
+    "agents": 4,
+    "upheld": null,
+    "unit": "reviewer calibration (10 plants, 30 real)",
+    "cost_basis": "MEASURED tokens from reviewer transcripts, priced; excludes cache writes and the seeding agent; uncached in+out split unknown so priced at input..output rate",
+    "measured_tokens": {
+     "opus_packet_only": {
+      "cache_read": 5131581,
+      "uncached_in_out": 262215,
+      "usd": [
+       2.1,
+       6.3
+      ]
+     },
+     "opus_with_sources": {
+      "cache_read": 10972846,
+      "uncached_in_out": 264331,
+      "usd": [
+       3.3,
+       7.5
+      ]
+     },
+     "sonnet_with_sources": {
+      "tokens_processed": 10100000,
+      "uncached_in_out": 190000,
+      "usd": [
+       2.4,
+       3.9
+      ]
+     }
+    }
+   }
+  ],
+  "open_lines_no_outcome": [
+   "lambertini-III",
+   "sinclair"
+  ],
+  "day_total_usd_est": "~$155 by 07:10Z plus ~45 later agents x $2.8 = ~$280 (estimate; Lambertini III and Sinclair sizes unknown)",
+  "reading": "cheapest per upheld item: Rastell ACT records (~$0.25-0.5) and Y1 statuses (~$0.75-0.95), but neither is a claim; cheapest per upheld claim: Lambertini II (~$1.5) and Lambertini P1 (~$1.9); Lamm II ~$3.1 per claim line; R12553 ~$3.8 and Bowditch Y2 ~$3.8 per claim; Craigellachie I/II spent ~$34 for 0. Cost per ready or certified order is not measurable yet (certified 0)."
+ }
+}

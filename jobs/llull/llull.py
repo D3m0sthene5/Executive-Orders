@@ -11,7 +11,10 @@ Subcommands (standard library only; run with `python3 -I jobs/llull/llull.py ...
   census     Domesday: zero-agent count of items that hold every required input for a named pool
   premortem  Wheel: plan step x failure mode -> at most 12 questions, mechanical checks first
   rank       Raiffa: rank next actions by (expected ready orders + value of information) per cost
-  check      validate the ledger (schemas, measured base rates, registration order, privacy)
+  baserate   turn a resolved Llull outcome into a base-rate row (source = the outcome id)
+  selfscore  Juvenal (part): share of resolved misses that were flagged in advance, out-of-sample only
+  check      validate the ledger (schemas, measured base rates, registration order, privacy);
+             a forecast that cannot be proven first is marked not_preregistered, not failed
 
 Hard rule (as in Junto): Llull earns trust only from measured outcomes. A base rate must be a
 measured value with a source path, a forecast is scored only against a recorded measurement, and
@@ -19,8 +22,9 @@ Llull never changes the codebook, any claim status, any tier, or the certified c
 It reads committed outputs and writes only under jobs/llull/.
 
 Exit codes: 0 ok; 2 bad input or refused request; 3 flagged (needs --accept-flag); 4 check failed.
+Append-only ledgers: forecasts.jsonl, outcomes.jsonl, censuses.jsonl and registration.jsonl are never edited.
 """
-import argparse, csv, glob, json, math, os, re, subprocess, sys
+import argparse, csv, glob, hashlib, json, math, os, re, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -34,7 +38,10 @@ QUANTITIES = {
     "items_reached": ("count", "count"), "usd_total": ("cost", None),
     "usd_per_ready_order": ("cost", None), "minutes_per_accepted": ("cost", None),
     "upheld_per_attempt": ("rate", "share"), "accepted_per_attempt": ("rate", "share"),
-    "accepted_per_target": ("rate", "share"), "hit_rate": ("rate", "share"),
+    "accepted_per_target": ("rate", "share"),
+    # hit_rate is conditional on a finder's own selection (X1 ran only its 52 eligible orders), so a pool share
+    # does not bound it: the review found the X1 tribunal's measured 0.19 at 47x the 0.004 pool share
+    "hit_rate": ("rate", None),
     "eligible_share": ("rate", "share"), "cleared_per_queued": ("rate", "share"),
     "items_per_planned": ("rate", "share"), "rejected_per_submitted": ("rate", None),
     "complete_per_accepted": ("rate", None),
@@ -126,6 +133,8 @@ class Ledger:
         self.censuses = self.dir / "censuses.jsonl"
         self.base_rates = self.dir / "base_rates.json"
         self.postmortems = self.dir / "postmortems.json"
+        self.pools = self.dir / "pools.json"
+        self.registration = self.dir / "registration.jsonl"   # append-only marks written by `check --mark`
 
 
 # ---------------------------------------------------------------- scoring math (pure)
@@ -244,15 +253,19 @@ def validate_forecast(spec, rates, census=None):
         if None in (p10, p50, p90) or not (p10 <= p50 <= p90):
             raise Refusal("interval needs p10 <= p50 <= p90 (an 80% central interval)")
         rec.update(p10=p10, p50=p50, p90=p90)
+        if cat == "rate" and not (0.0 <= p10 and p90 <= 1.0):
+            raise Refusal("%s is a share: p10..p90 must lie in [0, 1]" % q)
         few = rc.startswith("new:") or rec["n_studies_in_class"] < 3
-        if few and p50 > 0 and not (p10 <= 0.1 * p50 and p90 >= 2 * p50):
+        hi = min(2 * p50, 1.0) if cat == "rate" else 2 * p50
+        if few and p50 > 0 and not (p10 <= 0.1 * p50 and p90 >= hi):
             raise Refusal("class has fewer than 3 studies: the interval must be at least [0.1 x p50, 2 x p50] = "
-                          "[%g, %g]" % (0.1 * p50, 2 * p50))
+                          "[%g, %g]" % (0.1 * p50, hi))
         if outside is not None and outside > 0 and not (0.5 <= p50 / outside <= 2.0) \
                 and not (spec.get("deviation") or "").strip():
             raise Refusal("p50 %g departs from the measured outside view %g by more than 2x: give --deviation"
                           % (p50, outside))
-        if rc.startswith("new:") or outside is None:
+        if (rc.startswith("new:") or outside is None) and cat != "cost":
+            # the all-misses ratio measures outputs that fell short; applied to a cost it would cut the cost
             shrink = rates.get(CLASS_FALLBACK)
             if shrink and not measured_problem(shrink):
                 fallback = round(shrink["value"] * p50, 6)
@@ -297,6 +310,11 @@ POOL_DEFS = {
 }
 
 
+ENDING_VERBS = ("revoke", "supersede", "terminate", "abolish")
+GATES_REV = 2   # rev 2 (2026-10-20 review): ending verbs only and whole-scope TERMs only; rev 1 counted any
+                # whole-scope ACT verb (transfer, other) and section-level TERM end dates
+
+
 def eo_num(iid):
     m = re.match(r"EO:(\d+)", iid)  # prefix match, as the Y2 predictor: EO:7600-2 counts as 7600
     return int(m.group(1)) if m else None
@@ -337,14 +355,21 @@ class Data:
             for a in self._jsonl_parts("jobs/claim-kit/output/ACTING_PROVISIONS.jsonl"):
                 if a.get("names_target"):
                     named.add(a["target_id"])
-                    if a.get("scope") == "whole" and a.get("effective_date"):
+                    # an ending verb only: a whole-scope amend, transfer or "other" does not end the order
+                    if a.get("scope") == "whole" and a.get("effective_date") and a.get("verb") in ENDING_VERBS:
                         whole.add(a["target_id"])
             return whole, named
         return self._memo("acting", build)
 
     def term_end(self):
+        # whole-order terms only: a section's own end date (scope_id "...#sec4-b") does not end the order
         return self._memo("term", lambda: {t["instrument_id"] for t in self._jsonl_parts(
-            "jobs/claim-kit/output/OWN_TERMS.jsonl") if t.get("computed_end_candidate")})
+            "jobs/claim-kit/output/OWN_TERMS.jsonl") if t.get("computed_end_candidate")
+            and str(t.get("scope_id", "")).endswith("#whole")})
+
+    def own_terms_any(self):
+        return self._memo("terms_any", lambda: {t["instrument_id"] for t in self._jsonl_parts(
+            "jobs/claim-kit/output/OWN_TERMS.jsonl")})
 
     def current_leads(self):
         def build():
@@ -406,6 +431,26 @@ def g_ending_or_current(row, D):
     return g_ending_instrument(row, D) if row["provisional_status"] == "no" else g_current_predicate(row, D)
 
 
+def g_ending_held_if_no(row, D):
+    """Status-free version for pools that have no status yet: held if a whole ending ACT/TERM exists, lead if any
+    ACT names the order or any OWN_TERMS row exists."""
+    whole, named = D.acting()
+    i = row["instrument_id"]
+    if i in whole or i in D.term_end():
+        return "held"
+    return "lead" if (i in named or i in D.own_terms_any()) else "no"
+
+
+def g_ending_or_current_lead2(row, D):
+    """NO: g_ending_held_if_no; YES: a CURRENT predicate lead; no status: na."""
+    st = row["provisional_status"]
+    if st == "no":
+        return g_ending_held_if_no(row, D)
+    if st == "yes":
+        return "lead" if row["instrument_id"] in D.current_leads() else "no"
+    return "na"
+
+
 GATES = {
     "status_present": ("provisional_status is yes or no (readiness tracker)",
                        lambda r, D: _held(r["provisional_status"] in ("yes", "no"))),
@@ -413,11 +458,17 @@ GATES = {
                            lambda r, D: _held(r["step_original_text"] == "done")),
     "status_evidence_held": ("a status-history observation/event or an OFR catalog disposition note",
                              lambda r, D: _held(r["instrument_id"] in D.status_evidence())),
-    "ending_instrument_held": ("NO orders: whole-scope ACT with effective date, or TERM with computed end (claim-kit)",
+    "ending_instrument_held": ("NO orders: whole-scope revoke/supersede/terminate/abolish ACT with effective date, "
+                               "or whole-scope TERM with computed end (claim-kit)",
                                g_ending_instrument),
     "current_predicate_held": ("YES orders: a CURRENT predicate; leads are not held (current-law)", g_current_predicate),
     "ending_or_current_held": ("ending_instrument_held for NO orders, current_predicate_held for YES orders",
                                g_ending_or_current),
+    "ending_held_if_no": ("ending ACT/TERM held whatever the status; lead if an ACT names the order or an OWN_TERMS row "
+                          "exists (for pools with no status yet)", g_ending_held_if_no),
+    "ending_or_current_lead2": ("NO: ending_held_if_no; YES: CURRENT lead; no status: na", g_ending_or_current_lead2),
+    "ending_step_done": ("tracker step_ending_or_current_basis = done",
+                         lambda r, D: _held(r["step_ending_or_current_basis"] == "done")),
     "claim_draft_present": ("a machine claim draft exists (claim-drafts)",
                             lambda r, D: _held(r["instrument_id"] in D.drafts())),
     "no_evidence_conflict": ("claim-drafts TODO row exists with an empty conflicts column",
@@ -428,8 +479,91 @@ GATES = {
 }
 
 
-def pool_rows(pool, D):
+POOL_KEYS = {"title", "describe", "from", "where", "eo_gte", "eo_lt", "open_steps_max", "open_steps_min",
+             "ids_file", "gate_states", "default_requires", "reference"}
+
+
+def load_pools(path):
+    """Custom pools from a pools file (JSON, declarative; no code runs). Y1, Y2 and X1 are built in and cannot be
+    redefined. Returns {name: definition}."""
+    p = Path(path) if path else None
+    if not p or not p.exists():
+        return {}
+    d = json.loads(p.read_text())
+    out = {}
+    for name, df in d.get("pools", {}).items():
+        if name in POOL_DEFS:
+            raise Refusal("pools file may not redefine the built-in pool %s" % name)
+        bad = set(df) - POOL_KEYS
+        if bad:
+            raise Refusal("pool %s: unknown keys %s (known: %s)" % (name, sorted(bad), sorted(POOL_KEYS)))
+        for g in df.get("default_requires", []) + list(df.get("gate_states", {})):
+            if g not in GATES:
+                raise Refusal("pool %s: unknown gate %r" % (name, g))
+        if not df.get("default_requires"):
+            raise Refusal("pool %s needs default_requires (the gates its census counts)" % name)
+        out[name] = df
+    return out
+
+
+def pool_def(pool, pools):
+    if pool in POOL_DEFS:
+        return POOL_DEFS[pool]
+    if pools and pool in pools:
+        return pools[pool]
+    raise Refusal("unknown pool %r (known: %s)" % (pool, ", ".join(list(POOL_DEFS) + sorted(pools or {}))))
+
+
+def ids_from_file(rel):
+    err = repo_path_ok(rel)
+    if err:
+        raise Refusal("ids_file: " + err)
+    text = (REPO / rel).read_text()
+    try:
+        v = json.loads(text)
+        return set(v if isinstance(v, list) else v["ids"]), hashlib.sha256(text.encode()).hexdigest()[:16]
+    except ValueError:
+        return {l.strip() for l in text.splitlines() if l.strip() and not l.startswith("#")}, \
+            hashlib.sha256(text.encode()).hexdigest()[:16]
+
+
+def _col_match(v, want):
+    if isinstance(want, dict):
+        return not _col_match(v, want["not"])
+    return v in want if isinstance(want, list) else v == want
+
+
+def custom_pool_rows(pool, df, D, pools, seen=()):
+    if pool in seen:
+        raise Refusal("pool %s: circular 'from'" % pool)
+    src = df.get("from", "all")
+    rows = D.tracker() if src == "all" else pool_rows(src, D, pools, seen + (pool,))
+    ids = ids_from_file(df["ids_file"])[0] if df.get("ids_file") else None
+    out = []
+    for r in rows:
+        if ids is not None and r["instrument_id"] not in ids:
+            continue
+        n = eo_num(r["instrument_id"]) or 0
+        if "eo_gte" in df and not n >= df["eo_gte"]:
+            continue
+        if "eo_lt" in df and not n < df["eo_lt"]:
+            continue
+        if any(not _col_match(r.get(c), w) for c, w in df.get("where", {}).items()):
+            continue
+        if "open_steps_max" in df or "open_steps_min" in df:
+            k = sum(1 for c, v in r.items() if c.startswith("step_") and v == "open")
+            if k > df.get("open_steps_max", 10 ** 6) or k < df.get("open_steps_min", 0):
+                continue
+        if any(GATES[g][1](r, D) not in st for g, st in df.get("gate_states", {}).items()):
+            continue
+        out.append(r)
+    return out
+
+
+def pool_rows(pool, D, pools=None, seen=()):
     rows = D.tracker()
+    if pool not in POOL_DEFS:
+        return custom_pool_rows(pool, pool_def(pool, pools), D, pools, seen)
     if pool == "Y1":
         return [r for r in rows if (eo_num(r["instrument_id"]) or 0) >= 7532 and r["provisional_status"] == ""
                 and r["ready_for_human_review"] == "no"]
@@ -442,15 +576,20 @@ def pool_rows(pool, D):
     raise Refusal("unknown pool %r (known: %s)" % (pool, ", ".join(POOL_DEFS)))
 
 
-def run_census(pool, requires=None, D=None, rows=None):
+def run_census(pool, requires=None, D=None, rows=None, pools=None):
     """Joint, per-item prerequisite count. Strict ceiling: every gate 'held' (or 'na').
     Leads ceiling: every gate held, na or lead."""
     D = D or Data()
-    requires = requires or POOL_DEFS[pool]["default_requires"]
+    df = POOL_DEFS.get(pool) or (pools or {}).get(pool) or {}
+    requires = requires or df.get("default_requires")
+    if not requires:
+        raise Refusal("pool %r has no default gates: pass --requires" % pool)
     for g in requires:
         if g not in GATES:
             raise Refusal("unknown gate %r (known: %s)" % (g, ", ".join(GATES)))
-    rows = rows if rows is not None else pool_rows(pool, D)
+    if rows is None:
+        pool_def(pool, pools)   # refuses an unknown pool by name
+        rows = pool_rows(pool, D, pools)
     n = len(rows)
     alone = {g: {"held": 0, "lead": 0, "na": 0, "no": 0} for g in requires}
     cum = {g: 0 for g in requires}
@@ -471,17 +610,25 @@ def run_census(pool, requires=None, D=None, rows=None):
         expected *= (alone[g]["held"] + alone[g]["na"]) / n if n else 0
     flags = []
     if expected >= 1.5 * max(strict, 1) and expected >= 1.5:
-        flags.append("ASSUMED_INDEPENDENCE")  # gates are positively dependent: product of marginals overstates
-    return {"schema": "llull.census/1", "pool": pool, "pool_title": POOL_DEFS.get(pool, {}).get("title", pool),
+        flags.append("ASSUMED_INDEPENDENCE")  # fewer items hold every gate than independence predicts: multiplying marginal rates overstates
+    rec = {"schema": "llull.census/1", "pool": pool, "pool_title": df.get("title", pool),
+            "describe": df.get("describe"), "pool_kind": "builtin" if pool in POOL_DEFS else "custom",
             "pool_size": n, "requires": requires, "alone": alone, "cumulative_strict": cum,
             "ceiling_strict": strict, "ceiling_leads": leads,
             "share_strict": round(strict / n, 4) if n else 0.0, "share_leads": round(leads / n, 4) if n else 0.0,
             "product_of_marginals": round(expected, 2), "flags": flags,
-            "reference": POOL_DEFS.get(pool, {}).get("reference"), "commit": head(), "written_at": now()}
+            "reference": df.get("reference"), "gates_rev": GATES_REV,
+            "commit": head(), "written_at": now()}
+    if pool not in POOL_DEFS and df:
+        rec["pool_def"] = df   # the definition used, so a sub-pool census can be reproduced from the record alone
+        if df.get("ids_file"):
+            rec["ids_sha256_16"] = ids_from_file(df["ids_file"])[1]
+    return rec
 
 
 def census_table(c):
-    lines = ["pool %s: %s items (%s)" % (c["pool"], format(c["pool_size"], ","), POOL_DEFS.get(c["pool"], {}).get("describe", "")),
+    lines = ["pool %s: %s items (%s)" % (c["pool"], format(c["pool_size"], ","),
+                                         c.get("describe") or POOL_DEFS.get(c["pool"], {}).get("describe", "")),
              "%-26s %8s %8s %8s %12s" % ("gate", "held", "lead", "na", "cumulative")]
     for g in c["requires"]:
         a = c["alone"][g]
@@ -507,7 +654,7 @@ def plan_steps(path):
     text = p.read_text()
     if p.suffix == ".json":
         spec = json.loads(text)
-        return spec, [{"step": s.get("step") or s.get("name", "?"), "text": json.dumps(s, sort_keys=True),
+        return spec, [{"step": s.get("step") or s.get("name", "?"), "text": json.dumps(s, sort_keys=True), "raw": s,
                        "requires_unmeasured": list(s.get("requires_unmeasured", [])) + [
                            "%s (not a registered gate)" % g for g in s.get("requires", []) if g not in GATES]}
                       for s in spec.get("steps", [])]
@@ -522,54 +669,199 @@ def plan_steps(path):
         elif re.match(r"^(#{1,4}\s|[-*]\s|\d+[.)]\s)", s):
             label = re.sub(r"^(#{1,4}\s|[-*]\s|\d+[.)]\s)", "", s)
         else:
+            # a paragraph line continues the step above it: targets and forecasts are often stated in
+            # plain prose under a heading ("## Probe pass test" / "upheld per attempted order >= 50%")
+            if s and steps and len(steps[-1]["text"]) < 1500:
+                steps[-1]["text"] += " " + s
             continue
         if len(label) >= 12:
-            steps.append({"step": label[:90], "text": s, "requires_unmeasured": []})
+            steps.append({"step": label[:90], "text": s, "raw": None, "requires_unmeasured": []})
     return {}, steps[:40]
 
 
 NUM_NEAR_READY = re.compile(r"(\d[\d,]{2,})\s+(?:[a-z-]+\s+){0,2}(?:ready|upheld|accepted|claims)", re.I)
+# a stated per-attempt rate for the outcome unit: "upheld ... >= 50%" or "upheld per attempt at p10 0.015, p50 0.15"
+RATE_TARGET = re.compile(r"\b(upheld|accepted|ready)\b[^\n%;]{0,60}?(?:\bp50\s+(0?\.\d+)|(\d+(?:\.\d+)?)\s?%)", re.I)
+NEGATED = re.compile(r"\b(never|not|no|don't|do not)\b[^.;]{0,25}$", re.I)
+NUM_ORDERS = re.compile(r"(\d[\d,]{2,})\s+(?:[a-z-]+\s+){0,2}orders", re.I)
+RATE_NUMBER = re.compile(r"\d+(?:\.\d+)?\s?%|\b(?:rate|share|probability|chance)\b[^.\n]{0,25}?\b0?\.\d+", re.I)
+SAVING = re.compile(r"\b(sav(?:e|es|ing|ings)|cheaper|cut|reduc\w+|fewer|faster|speed\w*)\b", re.I)
+REVIEWER_COST = re.compile(r"review\w*[^.;]{0,40}(cost|minute|\$|usd)|(cost|minute|\$|usd)[^.;]{0,40}review", re.I)
+SOURCE_CITE = re.compile(r"[\w/.-]+\.(?:md|csv|json|jsonl)\b|\b[a-z_]+\.[a-z_]+\b(?=.*(?:measured|base rate))", re.I)
+OWNER_WORDS = re.compile(r"\b(owner|approv\w+|waive\w*|rule change|policy)\b", re.I)
+HOST_RE = re.compile(r"https?://[^\s\"')]+|\b[\w-]+\.(?:gov|org|com|edu)\b|\b(?:govinfo|hathitrust|archive\.org|proquest)\b", re.I)
 
 
-def run_wheel(path, census=None, max_q=12):
+def _nums(rx, text):
+    return [int(x.replace(",", "")) for x in rx.findall(text)]
+
+
+def _model_family(m):
+    return str(m).lower().replace("_", "-").split("-")[0]
+
+
+def mode_check(key, step, ctx):
+    """Run one failure mode's mechanical check on one step. Returns (state, evidence) with state in
+    auto_fail (definite defect in a structured plan), fires (the check matched), cannot_run (the check needs
+    something the plan or the ledger does not supply) or quiet (check ran and passed, or does not apply)."""
+    text, raw, census, rates = step["text"], step.get("raw"), ctx["census"], ctx["rates"]
+    structured = raw is not None
+
+    if key == "UNMEASURED_PREREQUISITE":
+        if step["requires_unmeasured"]:
+            return "auto_fail", "requires_unmeasured: %s" % ", ".join(step["requires_unmeasured"])
+        ready = _nums(NUM_NEAR_READY, text)
+        orders = _nums(NUM_ORDERS, text)
+        if census:
+            for n in ready:
+                if n > census["ceiling_strict"]:
+                    return ("auto_fail" if structured else "fires"), (
+                        "%s is above the %s joint ceiling of %d (%d leads counted, pool %d)" % (
+                            format(n, ","), census["pool"], census["ceiling_strict"], census["ceiling_leads"],
+                            census["pool_size"]))
+            for n in orders:
+                if n > census["pool_size"]:
+                    return ("auto_fail" if structured else "fires"), "%s orders named but pool %s holds %d" % (
+                        format(n, ","), census["pool"], census["pool_size"])
+            share = census["ceiling_strict"] / census["pool_size"] if census.get("pool_size") else None
+            for m in RATE_TARGET.finditer(text):
+                r = float(m.group(2)) if m.group(2) else float(m.group(3)) / 100
+                if share is not None and r > share:
+                    return ("auto_fail" if structured else "fires"), (
+                        "stated %s rate %s is above pool %s's strict prerequisite share %.1f%% (%d of %d; %.1f%% "
+                        "counting leads)" % (m.group(1).lower(), "%s (p50)" % m.group(2) if m.group(2) else m.group(3) + "%",
+                                             census["pool"], 100 * share,
+                                             census["ceiling_strict"], census["pool_size"],
+                                             100 * census["ceiling_leads"] / census["pool_size"]))
+            return "quiet", ""
+        if ready or orders:
+            return "cannot_run", "step sizes %s but no census was given (pass --pool) to compare with the joint ceiling" % (
+                ", ".join(format(n, ",") for n in ready + orders))
+        return "quiet", ""
+
+    if key == "SELECTION_BIAS":
+        rc = (raw or {}).get("reference_class")
+        if rc:
+            row = rates.get(rc)
+            if measured_problem(row):
+                return "quiet", ""   # an unmeasured class is INVENTED_RATE's case
+            pop, pool = row.get("population"), (raw.get("pool") or (census or {}).get("pool"))
+            if not pop:
+                return "cannot_run", "class %s records no population, so it cannot be compared with this step's pool" % rc
+            if not pool:
+                return "cannot_run", "class %s was measured on %s but the step names no pool" % (rc, pop)
+            if pop != pool:
+                return "fires", "class %s was measured on pool %s (n=%s), this step runs on %s" % (
+                    rc, pop, row.get("n_studies", "?"), pool)
+            return "quiet", ""
+        hit = re.search(r"\b(pilot|sample|swarm|easiest|reuse[sd]?|transfer\w*|same rate|anchor)\b", text, re.I)
+        if hit and RATE_NUMBER.search(text):
+            return "cannot_run", "step carries a rate over from a %r but names no reference_class, so the populations cannot be compared" % hit.group(0)
+        return "quiet", ""
+
+    if key == "INVENTED_RATE":
+        m = RATE_NUMBER.search(text)
+        if not m:
+            return "quiet", ""
+        rc = (raw or {}).get("reference_class")
+        if structured:
+            if rc and not measured_problem(rates.get(rc)):
+                return "quiet", ""
+            return "fires", "rate %r has %s" % (m.group(0).strip(), "no measured reference_class" if not rc else
+                                                  "reference_class %r that is not a measured base rate" % rc)
+        if any(k in text for k in rates) or re.search(r"[\w/.-]+\.(?:md|csv|json|jsonl)\b", text):
+            return "quiet", ""
+        return "fires", "rate %r is stated with no base-rate key or source path" % m.group(0).strip()
+
+    if key == "COST_SHIFT":
+        m = SAVING.search(text)
+        if not m:
+            return "quiet", ""
+        if (raw or {}).get("reviewer_cost") is not None or REVIEWER_COST.search(text):
+            return "quiet", ""
+        return "fires", "step claims a saving (%r) and names no reviewer cost" % m.group(0)
+
+    if key == "PROXY_UNIT":
+        q = (raw or {}).get("quantity")
+        if q is not None and (q not in QUANTITIES or any(w in q.lower() for w in PROXY_WORDS)):
+            return "auto_fail", "quantity %r is not an allowed outcome unit" % q
+        m = re.search(r"\b(payload|tokens?|bytes|packets?|certificates?|agent-?hours?)\b", text, re.I)
+        if m:
+            return ("auto_fail", "proxy unit %r named as a result" % m.group(0)) if structured else (
+                "fires", "text match %r (prose plans are never auto_fail; register the number as a forecast)" % m.group(0))
+        return "quiet", ""
+
+    if key == "ASSUMED_INDEPENDENCE":
+        gates = (raw or {}).get("requires", [])
+        kw = re.search(r"\b(independent\w*|upper bound|lower bound|guarantee\w*|union|sum of)\b", text, re.I)
+        if census is not None:
+            if "ASSUMED_INDEPENDENCE" in census.get("flags", []) and (len(gates) >= 2 or kw):
+                return "fires", "census %s: multiplying marginal rates overstates (product %.1f vs joint %d)" % (
+                    census["pool"], census["product_of_marginals"], census["ceiling_strict"])
+            return "quiet", ""
+        if len(gates) >= 2 or kw:
+            return "cannot_run", "%s, but no census was given to compare the product of marginals with the joint count" % (
+                "requires %d gates (%s)" % (len(gates), ", ".join(gates)) if len(gates) >= 2 else "text says %r" % kw.group(0))
+        return "quiet", ""
+
+    if key == "ACCESS_ASSUMPTION":
+        m = next((x for x in re.finditer(r"\b(fetch\w*|download\w*|crawl\w*|robots|scrap\w+|hathitrust|govinfo|archive\.org)\b|https?://",
+                                         text, re.I) if not NEGATED.search(text[:x.start()])), None)
+        if not m:
+            return "quiet", ""
+        if (raw or {}).get("access_checked"):
+            return "quiet", ""
+        hosts = sorted({h.lower() for h in HOST_RE.findall(text)})[:3]
+        return "cannot_run", "step names %r%s; no one-request access check is recorded (no access_checked), and Llull runs offline" % (
+            m.group(0), " (hosts: %s)" % ", ".join(hosts) if hosts else "")
+
+    if key == "REVIEW_LENIENCY":
+        m = re.search(r"\b(review\w*|pass rate|same model|single pass|agree\w*)\b", text, re.I)
+        if not m:
+            return "quiet", ""
+        pm, rm = (raw or {}).get("producer_model"), (raw or {}).get("reviewer_model")
+        if pm and rm:
+            if _model_family(pm) == _model_family(rm) and (raw or {}).get("review_passes", 1) <= 1:
+                return "fires", "producer %s and reviewer %s are one family in a single pass" % (pm, rm)
+            return "quiet", ""
+        return "cannot_run", "step mentions %r but names no producer_model and reviewer_model to compare" % m.group(0)
+
+    if key == "UNCONSIDERED_ROUTE":
+        m = next((x for x in re.finditer(r"\b(crawl\w*|scrap\w+|manual\w*|by hand|build a|new job|download all)\b", text, re.I)
+                  if not NEGATED.search(text[:x.start()])), None)
+        if m and not (raw or {}).get("routes_considered"):
+            return "cannot_run", "step builds or crawls (%r); whether a zero-agent job already yields the input is not checked offline" % m.group(0)
+        return "quiet", ""
+
+    if key == "POLICY_COUNTED_UNAPPROVED":
+        m = OWNER_WORDS.search(text)
+        if not m:
+            return "quiet", ""
+        cite = (raw or {}).get("approval") if structured else (re.search(r"HANDOFF/\S+", text) or [None])[0]
+        if not cite:
+            return "fires", "step depends on an owner decision (%r) and cites no approval line in HANDOFF/" % m.group(0)
+        return "quiet", ""
+
+    return "quiet", ""
+
+
+def run_wheel(path, census=None, max_q=12, rates=None):
+    """Plan step x failure mode. A question is emitted only when the mode's mechanical check fires or cannot run on
+    that step; cells where it ran and passed are counted, not asked. Questions are ranked by how often the mode
+    caused a past miss (auto_fail first), and each carries the plan-specific evidence."""
     spec, steps = plan_steps(path)
     modes = load_modes()
-    structured = Path(path).suffix == ".json"   # only a structured spec can fail a cell mechanically
-    cells = []
+    ctx = {"census": census, "rates": rates or {}}
+    cells, quiet = [], 0
     for si, s in enumerate(steps):
         for m in modes:
-            state, evidence = "quiet", ""
-            hit = re.search(m["keywords"], s["text"], re.I)
-            if hit:
-                state, evidence = "needs_answer", "keyword %r in step" % hit.group(0)[:30]
-            k = m["key"]
-            if k == "UNMEASURED_PREREQUISITE":
-                if s["requires_unmeasured"]:
-                    state, evidence = "auto_fail", "requires_unmeasured: %s" % ", ".join(s["requires_unmeasured"])
-                elif census:
-                    for num in NUM_NEAR_READY.findall(s["text"]):
-                        n = int(num.replace(",", ""))
-                        if n > census["ceiling_strict"]:
-                            state = "auto_fail" if structured else "needs_answer"
-                            evidence = "%s is above the %s joint ceiling of %d (%d leads counted, pool %d)" % (
-                                format(n, ","), census["pool"], census["ceiling_strict"], census["ceiling_leads"],
-                                census["pool_size"])
-                            break
-                    else:
-                        if hit or state == "quiet":
-                            state = "needs_answer"
-                            evidence = "census %s: %d of %d items hold every input (%d with leads)" % (
-                                census["pool"], census["ceiling_strict"], census["pool_size"], census["ceiling_leads"])
-            if k == "PROXY_UNIT" and hit:
-                state = "auto_fail" if structured else "needs_answer"
-                evidence = ("proxy unit %r named as a result" if structured else
-                            "text match %r (prose plans are never auto_fail; register the number as a forecast)") % hit.group(0)
-            if k == "ASSUMED_INDEPENDENCE" and census and "ASSUMED_INDEPENDENCE" in census.get("flags", []) and state != "auto_fail":
-                state, evidence = "needs_answer", "census gates are positively dependent (product %.1f vs joint %d)" % (
-                    census["product_of_marginals"], census["ceiling_strict"])
-            cells.append({"step_index": si, "step": s["step"], "mode": k, "state": state, "evidence": evidence,
+            state, evidence = mode_check(m["key"], s, ctx)
+            if state == "quiet":
+                quiet += 1
+                continue
+            cells.append({"step_index": si, "step": s["step"], "mode": m["key"], "state": state, "evidence": evidence,
                           "question": m["question"], "past_misses": m["misses"]})
-    order = {"auto_fail": 0, "needs_answer": 1, "quiet": 2}
+    order = {"auto_fail": 0, "fires": 1, "cannot_run": 1}
     cells.sort(key=lambda c: (order[c["state"]], -c["past_misses"], c["step_index"]))
     # at most 12 questions, at most 2 per mode so the wheel does not collapse onto one failure mode
     chosen, per_mode = [], {}
@@ -580,8 +872,9 @@ def run_wheel(path, census=None, max_q=12):
         per_mode[c["mode"]] = per_mode.get(c["mode"], 0) + 1
         if len(chosen) >= max_q:
             break
-    return {"plan": str(path), "steps": len(steps), "cells": len(cells), "questions": chosen,
-            "auto_fail": sum(1 for c in chosen if c["state"] == "auto_fail")}
+    return {"plan": str(path), "steps": len(steps), "cells": len(steps) * len(modes), "quiet": quiet,
+            "questions": chosen, "auto_fail": sum(1 for c in chosen if c["state"] == "auto_fail"),
+            "modes_raised": sorted({c["mode"] for c in chosen})}
 
 
 # ---------------------------------------------------------------- Raiffa (value of information)
@@ -628,9 +921,38 @@ def rank_actions(spec, rates, censuses):
     ranked, unranked = [], []
     by_id = {a["id"]: a for a in spec["actions"]}
 
+    inherited = {}   # a run with no reference_class of its own uses the class of the probe that informs it
+
+    def rate_row(a):
+        return rates.get(a.get("reference_class", "")) or inherited.get(a["id"])
+
+    def share_info(a):
+        """(share, basis). A base rate measured on random draws from pool P already contains P's gate failures, so on
+        pool P the share is 1.0. The census strict share applies only when the action's pool differs from the
+        population the rate was measured on (or that population was not recorded)."""
+        pool, row = a.get("pool"), rate_row(a)
+        pop = (row or {}).get("population")
+        c, cp = censuses.get(pool), censuses.get(pop)
+        if pool and pop and pop == pool:
+            return 1.0, "rate measured on pool %s itself: gate failures are already inside the rate" % pool
+        if c and c["pool_size"] and pop and cp and cp["pool_size"]:
+            # the rate already contains its own population's gate failures: move it to the action's pool by the
+            # ratio of strict shares, never above 1 (the strict gate is not a true ceiling, so it must not inflate
+            # a measured rate; it may only discount it for a pool that holds its prerequisites less often)
+            s_act, s_pop = c["ceiling_strict"] / c["pool_size"], cp["ceiling_strict"] / cp["pool_size"]
+            if s_pop == 0:
+                return None, "rate's population %s has a strict share of 0: the share ratio is undefined" % pop
+            return min(1.0, s_act / s_pop), "strict share of pool %s / of the rate's population %s = %.4f / %.4f%s" % (
+                pool, pop, s_act, s_pop, ", capped at 1" if s_act > s_pop else "")
+        if c and c["pool_size"]:
+            return c["ceiling_strict"] / c["pool_size"], "census strict share of pool %s (rate measured on %s)" % (
+                pool, pop or "an unrecorded population")
+        if a.get("share") is not None:
+            return a["share"], "explicit share in the actions file"
+        return None, "no pool census and no share"
+
     def share_of(a):
-        c = censuses.get(a.get("pool"))
-        return (c["ceiling_strict"] / c["pool_size"]) if c and c["pool_size"] else a.get("share")
+        return share_info(a)[0]
 
     def util_for(run):
         sh, rps, cpa, n = share_of(run), run["ready_per_success"], run["cost_per_attempt"], run["n_attempts"]
@@ -645,17 +967,19 @@ def rank_actions(spec, rates, censuses):
                            "e_ready": 0.0, "evsi": None, "evpi": None, "rank": None,
                            "note": "measures %s: runs first" % a["measures"]})
             continue
-        row = rates.get(a.get("reference_class", ""))
+        row = rate_row(a)
         if measured_problem(row):
             why.append("reference class has no measured base rate")
         run = a if tier == "run" else by_id.get(a.get("informs", ""))
+        if run is not None and not measured_problem(row):
+            inherited.setdefault(run["id"], row)
         if tier in ("probe", "run", "zero_agent") and run:
             if run.get("ready_per_success") is None or not run.get("ready_per_success_source"):
                 why.append("ready_per_success is unmeasured (needs a value and a source)")
             if run.get("cost_per_attempt") is None or not run.get("cost_source"):
                 why.append("cost_per_attempt is unmeasured (needs a value and a source)")
             if share_of(run) is None:
-                why.append("no census share for pool")
+                why.append("no census share for pool: %s" % share_info(run)[1])
         else:
             why.append("action has no run it informs")
         if tier != "zero_agent" and a.get("cost") is None and a.get("n_attempts") and not why:
@@ -667,7 +991,7 @@ def rank_actions(spec, rates, censuses):
         util = util_for(run)
         sh = share_of(run)
         q0 = a_ / (a_ + b_)
-        out = {"id": a["id"], "tier": tier, "informs": run["id"]}
+        out = {"id": a["id"], "tier": tier, "informs": run["id"], "share": sh, "share_basis": share_info(run)[1]}
         if tier == "zero_agent":
             known = a.get("pool") in censuses and a.get("already_measured")
             lo, hi = a.get("share_range", [sh, sh])
@@ -700,16 +1024,22 @@ def rank_actions(spec, rates, censuses):
 
 # ---------------------------------------------------------------- commands
 
+def get_pools(a, L):
+    return load_pools(a.pools if getattr(a, "pools", None) else L.pools)
+
+
 def cmd_census(a, L):
     D = Data()
+    pools = get_pools(a, L)
     reqs = [x for x in a.requires.split(",") if x] if a.requires else None
     if a.list:
-        for k, v in POOL_DEFS.items():
-            print("pool %-3s %s | default requires: %s" % (k, v["describe"], ",".join(v["default_requires"])))
+        for k, v in list(POOL_DEFS.items()) + sorted(pools.items()):
+            print("pool %-8s %s | default requires: %s%s" % (k, v.get("describe") or v.get("title"),
+                  ",".join(v["default_requires"]), "" if k in POOL_DEFS else "  [custom]"))
         for k, (d, _) in GATES.items():
             print("gate %-24s %s" % (k, d))
         return 0
-    c = run_census(a.pool, reqs, D)
+    c = run_census(a.pool, reqs, D, pools=pools)
     print(census_table(c))
     if a.record:
         c["census_id"] = new_id("D", read_jsonl(L.censuses), "census_id")
@@ -728,7 +1058,7 @@ def find_census(L, a):
             raise Refusal("no census %s in %s" % (a.census_id, L.censuses))
         return rec
     if a.pool:
-        c = run_census(a.pool, [x for x in a.requires.split(",") if x] if a.requires else None)
+        c = run_census(a.pool, [x for x in a.requires.split(",") if x] if a.requires else None, pools=get_pools(a, L))
         c["census_id"] = new_id("D", read_jsonl(L.censuses), "census_id")
         c["written_by"] = WRITTEN_BY
         append_jsonl(L.censuses, c)
@@ -803,13 +1133,58 @@ def cmd_outcome(a, L):
     return 0
 
 
+def first_commit(*args):
+    return (git("log", "--reverse", "--format=%H", *args) or "").split("\n")[0]
+
+
+def registration_status(f, L):
+    """Can git prove the forecast was committed strictly before its run directories? Returns
+    (status, reason): 'preregistered', 'not_preregistered' (committed together with, or after, the run) or
+    'unchecked' (no run directory declared, or the lines are not committed yet)."""
+    runs = f.get("run_dirs") or []
+    try:
+        rel = str(L.forecasts.resolve().relative_to(REPO.resolve()))
+    except ValueError:
+        return "unchecked", "ledger is outside the repository"
+    fc_commit = first_commit("-S", f["forecast_id"], "--", rel) if (runs or L.outcomes.exists()) else ""
+    if fc_commit:
+        # the file that resolves the forecast first appeared in the very commit that registered it
+        for o in read_jsonl(L.outcomes):
+            if o["forecast_id"] == f["forecast_id"] and first_commit("--", o.get("source", "")) == fc_commit:
+                return "not_preregistered", "its outcome source %s was first committed together with the forecast (%s)" % (
+                    o["source"], fc_commit[:9])
+    if not runs:
+        return "unchecked", "no run directory declared"
+    if not fc_commit:
+        return "unchecked", "forecast line not committed yet (cannot yet prove it precedes the run)"
+    for d in runs:
+        run_commit = first_commit("--", d)
+        if run_commit and (run_commit == fc_commit or git("merge-base", "--is-ancestor", fc_commit, run_commit) is None):
+            return "not_preregistered", "run artifacts in %s were committed %s the forecast (%s)" % (
+                d, "together with" if run_commit == fc_commit else "before", fc_commit[:9])
+    return "preregistered", "forecast committed at %s, before the run" % fc_commit[:9]
+
+
+def not_preregistered_ids(L, fcs):
+    """Forecast ids excluded from calibration: marked in registration.jsonl, or provably not first by git order."""
+    out = {m["forecast_id"]: m.get("reason", "marked") for m in read_jsonl(L.registration)
+           if m.get("status") == "not_preregistered"}
+    for fid, f in fcs.items():
+        if fid not in out:
+            st, why = registration_status(f, L)
+            if st == "not_preregistered":
+                out[fid] = why
+    return out
+
+
 def score_all(L):
     fcs = latest(read_jsonl(L.forecasts), "forecast_id")
     outs = {o["forecast_id"]: o for o in read_jsonl(L.outcomes)}
+    npr = not_preregistered_ids(L, {k: f for k, f in fcs.items() if k in outs})
     per = {}
     for fid, f in fcs.items():
         o = outs.get(fid)
-        if not o:
+        if not o or fid in npr:
             continue
         P = per.setdefault(planner_key(f["planner"]), {"intervals": [], "binary": []})
         if f["kind"] == "binary":
@@ -825,7 +1200,8 @@ def score_all(L):
                 item["skill_vs_outside"] = 1 - item["score"] / ref if ref > 0 else None
             P["intervals"].append(item)
     res = {"schema": "llull.calibration/1", "written_at": now(), "commit": head(), "planners": {},
-           "n_forecasts": len(fcs), "n_resolved": len(outs)}
+           "n_forecasts": len(fcs), "n_resolved": len(outs), "n_scored": len(outs) - len(npr),
+           "not_preregistered_excluded": npr}
     for pk, P in sorted(per.items()):
         e = {"n_interval": len(P["intervals"]), "n_binary": len(P["binary"])}
         if P["intervals"]:
@@ -846,8 +1222,10 @@ def score_all(L):
             if len(ps) >= 10:
                 e["murphy"] = murphy(ps, os_)
         n = e["n_interval"] + e["n_binary"]
+        # binaries must beat always saying 0.5 (Brier 0.25); before this check 5 wrong binaries read "calibrated"
         e["trust"] = "unproven" if n < 5 else ("calibrated" if e.get("coverage_p10_p90", 0.8) >= 0.6
-                                              and abs(e.get("median_log_ratio", 0)) <= math.log(2) else "miscalibrated")
+                                              and abs(e.get("median_log_ratio", 0)) <= math.log(2)
+                                              and e.get("brier", 0.0) < 0.25 else "miscalibrated")
         res["planners"][pk] = e
     return res
 
@@ -856,7 +1234,9 @@ def cmd_score(a, L):
     res = score_all(L)
     L.out.mkdir(parents=True, exist_ok=True)
     (L.out / "CALIBRATION.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
-    print("forecasts %d, resolved %d" % (res["n_forecasts"], res["n_resolved"]))
+    print("forecasts %d, resolved %d, scored %d" % (res["n_forecasts"], res["n_resolved"], res["n_scored"]))
+    for fid, why in sorted(res["not_preregistered_excluded"].items()):
+        print("  excluded (not_preregistered) %s: %s" % (fid, why))
     for pk, e in res["planners"].items():
         bits = ["n=%d" % (e["n_interval"] + e["n_binary"]), "trust=%s" % e["trust"]]
         if "coverage_p10_p90" in e:
@@ -869,19 +1249,96 @@ def cmd_score(a, L):
     return 0
 
 
+FLAGS_PREDICTING_A_MISS = ("CEILING_EXCEEDED", "CEILING_EXCEEDED_EVEN_COUNTING_LEADS")
+
+
+def is_miss(f, o):
+    """Interval: measured outside [p10, p90]. Binary: the planner expected the event (p >= 0.5) and it did not happen."""
+    if f["kind"] == "interval":
+        return not (f["p10"] <= o["measured"] <= f["p90"])
+    return f["prob"] >= 0.5 and o["measured"] == 0
+
+
+def selfscore_all(L, rule_commit, is_after=None):
+    """Juvenal (part): of the resolved misses, how many did Llull flag in advance? Only forecasts registered strictly
+    after the rule's commit count; earlier ones were written knowing the outcome or the rule's own data (in-sample)."""
+    if is_after is None:
+        full = lambda c: git("rev-parse", "--verify", "--quiet", "%s^{commit}" % c) if c else None
+        rc_full = full(rule_commit)
+        # registered_commit is stored short and rule_commit full: compare resolved hashes, so a forecast registered AT
+        # the rule commit is in-sample, not counted as a strict descendant
+        is_after = lambda c: bool(rc_full) and bool(full(c)) and full(c) != rc_full and \
+            git("merge-base", "--is-ancestor", rc_full, full(c)) is not None
+    fcs = latest(read_jsonl(L.forecasts), "forecast_id")
+    outs = {o["forecast_id"]: o for o in read_jsonl(L.outcomes)}
+    npr = not_preregistered_ids(L, {k: f for k, f in fcs.items() if k in outs})
+    res = {"schema": "llull.selfscore/1", "written_at": now(), "commit": head(), "rule_commit": rule_commit,
+           "definition": "miss = measured outside the 80% interval (interval) or event expected at p >= 0.5 and not "
+                         "happening (binary); flagged = CEILING_EXCEEDED at registration; out-of-sample = registered_commit "
+                         "is a strict descendant of rule_commit and the forecast is not not_preregistered",
+           "n_resolved": len(outs), "n_not_preregistered": len(npr), "n_in_sample": 0, "n_out_of_sample": 0,
+           "misses_out_of_sample": [], "misses_in_sample": []}
+    flagged_oos = flagged_hit = 0
+    for fid, o in sorted(outs.items()):
+        f = fcs.get(fid)
+        if f is None or fid in npr:
+            continue
+        miss = is_miss(f, o)
+        flagged = any(x in FLAGS_PREDICTING_A_MISS for x in f.get("flags", []))
+        if not is_after(f.get("registered_commit")):
+            res["n_in_sample"] += 1
+            if miss:
+                res["misses_in_sample"].append({"forecast_id": fid, "flagged": flagged})
+            continue
+        res["n_out_of_sample"] += 1
+        flagged_oos += flagged
+        flagged_hit += flagged and miss
+        if miss:
+            res["misses_out_of_sample"].append({"forecast_id": fid, "flagged": flagged})
+    n = len(res["misses_out_of_sample"])
+    k = sum(1 for m in res["misses_out_of_sample"] if m["flagged"])
+    res.update(n_misses_out_of_sample=n, n_flagged_misses=k, share_flagged=(k / n if n else None),
+               n_flagged_out_of_sample=flagged_oos, precision=(flagged_hit / flagged_oos if flagged_oos else None),
+               trust="unproven" if n < 5 else "measured")
+    return res
+
+
+def cmd_selfscore(a, L):
+    rc = a.rule_commit or first_commit("-S", "CEILING_EXCEEDED", "--", "jobs/llull/llull.py")
+    if not rc:
+        raise Refusal("cannot find the commit that introduced the flag rule (give --rule-commit)")
+    res = selfscore_all(L, rc)
+    L.out.mkdir(parents=True, exist_ok=True)
+    (L.out / "SELFSCORE.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
+    print("rule commit %s; resolved %d (not_preregistered %d, in-sample %d, out-of-sample %d)" % (
+        rc[:9], res["n_resolved"], res["n_not_preregistered"], res["n_in_sample"], res["n_out_of_sample"]))
+    n = res["n_misses_out_of_sample"]
+    if n:
+        print("out-of-sample misses %d, flagged in advance %d = %.0f%%; flags that were right %s (trust: %s)" % (
+            n, res["n_flagged_misses"], 100 * res["share_flagged"],
+            "-" if res["precision"] is None else "%.0f%%" % (100 * res["precision"]), res["trust"]))
+    else:
+        print("no resolved out-of-sample misses yet: Llull's flag recall is unproven (in-sample misses %d are not counted)"
+              % len(res["misses_in_sample"]))
+    return 0
+
+
 def cmd_premortem(a, L):
     census = None
     if a.pool:
-        census = run_census(a.pool, [x for x in a.requires.split(",") if x] if a.requires else None)
-    w = run_wheel(a.plan, census, a.max)
-    print("Llull wheel for %s: %d steps x %d modes = %d cells; showing %d (auto_fail %d)" % (
-        a.plan, w["steps"], len(load_modes()), w["cells"], len(w["questions"]), w["auto_fail"]))
-    print("Frame: it is two weeks later and this step returned 1/28 of its forecast. Why?")
+        census = run_census(a.pool, [x for x in a.requires.split(",") if x] if a.requires else None,
+                            pools=get_pools(a, L))
+    w = run_wheel(a.plan, census, a.max, load_base_rates(L.base_rates) if L.base_rates.exists() else {})
+    print("Llull wheel for %s: %d steps x %d modes = %d cells; %d checks passed quietly; showing %d question(s) (auto_fail %d)" % (
+        a.plan, w["steps"], len(load_modes()), w["cells"], w["quiet"], len(w["questions"]), w["auto_fail"]))
+    if w["questions"]:
+        print("Frame: it is two weeks later and this step returned 1/28 of its forecast. Why?")
+    else:
+        print("No mechanical check fired or was unable to run on this plan: no questions. That is not proof it will succeed.")
     for i, c in enumerate(w["questions"], 1):
-        print("%2d. [%s] %s / step: %s" % (i, c["state"], c["mode"], c["step"]))
+        print("%2d. [%s] %s (%d of 12 past misses) / step: %s" % (i, c["state"], c["mode"], c["past_misses"], c["step"]))
         print("    %s" % c["question"])
-        if c["evidence"]:
-            print("    evidence: %s" % c["evidence"])
+        print("    evidence: %s" % c["evidence"])
     if census:
         print(census_table(census))
     if a.json:
@@ -893,8 +1350,12 @@ def cmd_rank(a, L):
     spec = json.loads(Path(a.actions).read_text())
     rates = load_base_rates(L.base_rates)
     censuses = {}
-    for p in {x.get("pool") for x in spec["actions"] if x.get("pool")}:
-        censuses[p] = run_census(p)
+    pools = get_pools(a, L)
+    # census the action pools and the populations their rates were measured on (for the share ratio)
+    need = {x.get("pool") for x in spec["actions"] if x.get("pool")}
+    need |= {(rates.get(x.get("reference_class", "")) or {}).get("population") for x in spec["actions"]}
+    for p in sorted(x for x in need if x):
+        censuses[p] = run_census(p, pools=pools)
     ranked, unranked = rank_actions(spec, rates, censuses)
     unit = spec["planning"].get("cost_unit", "usd")
     print("Raiffa ranking (cost unit: %s; max cost per ready order %s is a PLANNING parameter, not measured)" % (
@@ -903,6 +1364,8 @@ def cmd_rank(a, L):
         g = lambda v: "-" if v is None else "%.3g" % v
         print("  %-10s %-34s cost %-8s E_ready %-7s EVSI %-7s rank %-7s %s" % (
             r["tier"], r["id"], g(r["cost"]), g(r["e_ready"]), g(r["evsi"]), g(r["rank"]), r.get("note", "")))
+        if r.get("share_basis"):
+            print("             share %s: %s" % (g(r.get("share")), r["share_basis"]))
     for u in unranked:
         print("  UNRANKED %-34s %s" % (u["id"], "; ".join(u["reasons"])))
     L.out.mkdir(parents=True, exist_ok=True)
@@ -913,8 +1376,33 @@ def cmd_rank(a, L):
     return 0
 
 
-def run_check(L):
+OUTCOME_ID_RE = re.compile(r"^O-\d{8}-\d+$")
+
+
+def outcome_rate_problems(k, r, L):
+    """A base-rate row sourced from a Llull outcome must equal that outcome's measured value, for the same quantity."""
+    o = next((x for x in read_jsonl(L.outcomes) if x["outcome_id"] == r["source"]), None)
+    if o is None:
+        return ["base rate %s: source outcome %s is not in outcomes.jsonl" % (k, r["source"])]
+    out = []
+    if abs(o["measured"] - r["value"]) > 0.0006:
+        out.append("base rate %s: value %g but outcome %s measured %g" % (k, r["value"], o["outcome_id"], o["measured"]))
+    fc = latest(read_jsonl(L.forecasts), "forecast_id").get(o["forecast_id"])
+    if fc is None or fc["quantity"] != class_quantity(k):
+        out.append("base rate %s: outcome %s measures %s, not %s" % (
+            k, o["outcome_id"], fc and fc["quantity"], class_quantity(k)))
+    return out
+
+
+def run_check(L, marks=None):
+    """Returns (errors, warnings). `marks`, if a list, receives one dict per forecast that git cannot prove was
+    registered before its run (not_preregistered): these are excluded from scoring, not errors."""
     errs, warns = [], []
+    pools_known = set(POOL_DEFS)
+    try:
+        pools_known |= set(load_pools(L.pools))
+    except (Refusal, ValueError) as e:
+        errs.append("pools file unreadable: %s" % e)
     # base rates: measured with sources, consistent with the postmortems
     try:
         rates = load_base_rates(L.base_rates)
@@ -928,11 +1416,17 @@ def run_check(L):
         if why:
             errs.append("base rate %s is unmeasured: %s" % (k, why))
             continue
+        if r.get("population") and r["population"] not in pools_known:
+            errs.append("base rate %s: population %r is not a known pool" % (k, r["population"]))
+        if OUTCOME_ID_RE.match(str(r["source"])):
+            errs += outcome_rate_problems(k, r, L)   # source = a Llull outcome id: no postmortem, no quoted file
+            continue
         if repo_path_ok(r["source"]):
             errs.append("base rate %s: %s" % (k, repo_path_ok(r["source"])))
         for pid in str(r.get("postmortem_id", "")).split(","):
             if pm_ids and pid not in pm_ids:
                 errs.append("base rate %s cites unknown postmortem %s" % (k, pid))
+        errs += evidence_problems(k, r, L)
     fcs_all = read_jsonl(L.forecasts)
     ids = [f["forecast_id"] for f in fcs_all if f.get("rev", 1) == 1]
     if len(ids) != len(set(ids)):
@@ -954,21 +1448,14 @@ def run_check(L):
         msg = privacy_problem(json.dumps(f))
         if msg:
             errs.append("%s: privacy: %s" % (fid, msg))
-        # registered before any run artifact (git order)
-        rel = None
-        try:
-            rel = str(L.forecasts.resolve().relative_to(REPO))
-        except ValueError:
-            pass
-        for d in f.get("run_dirs", []):
-            if rel is None:
-                continue
-            fc_commit = (git("log", "--reverse", "--format=%H", "-S", fid, "--", rel) or "").split("\n")[0]
-            run_commit = (git("log", "--reverse", "--format=%H", "--", d) or "").split("\n")[0]
-            if not fc_commit:
-                warns.append("%s: forecast line not committed yet (cannot yet prove it precedes the run)" % fid)
-            elif run_commit and (run_commit == fc_commit or git("merge-base", "--is-ancestor", fc_commit, run_commit) is None):
-                errs.append("%s: run artifacts in %s were committed no later than the forecast" % (fid, d))
+        # registered before any run artifact (git order). Failing the order marks the entry not_preregistered
+        # (excluded from calibration scoring); it is not a ledger error, since the lines cannot be rewritten.
+        st, why = registration_status(f, L)
+        if st == "not_preregistered":
+            if marks is not None:
+                marks.append({"forecast_id": fid, "reason": why})
+        elif st == "unchecked" and f.get("run_dirs") and "not committed" in why:
+            warns.append("%s: %s" % (fid, why))
     seen = set()
     for o in read_jsonl(L.outcomes):
         if o["forecast_id"] not in fcs:
@@ -983,21 +1470,99 @@ def run_check(L):
     return errs, warns
 
 
+def _squash(t):
+    return re.sub(r"\s+", "", t)
+
+
+def evidence_problems(k, r, L):
+    """Traceability: every row quotes its measurement verbatim (whitespace ignored) from a repository file.
+    The all-misses fallback is instead recomputed from postmortems.json."""
+    if k == CLASS_FALLBACK:
+        if not L.postmortems.exists():
+            return ["base rate %s: postmortems.json missing, cannot recompute" % k]
+        pm = {p["id"]: p for p in json.loads(L.postmortems.read_text())["plans"]}
+        ratios = sorted(pm[p]["miss_ratio"] for p in str(r.get("postmortem_id", "")).split(",")
+                        if p in pm and pm[p].get("miss_ratio") is not None)
+        if not ratios:
+            return ["base rate %s: no miss ratios to recompute" % k]
+        m = len(ratios) // 2
+        med = ratios[m] if len(ratios) % 2 else (ratios[m - 1] + ratios[m]) / 2
+        return [] if abs(med - r["value"]) < 0.0006 else ["base rate %s: value %g but the postmortem median is %g"
+                                                          % (k, r["value"], med)]
+    ev = r.get("evidence") or []
+    if not ev:
+        return ["base rate %s has no evidence quote" % k]
+    out = []
+    for e in ev:
+        if repo_path_ok(e.get("source", "")):
+            out.append("base rate %s evidence: %s" % (k, repo_path_ok(e.get("source", ""))))
+        elif _squash(e.get("quote", "")) not in _squash((REPO / e["source"]).read_text(errors="replace")):
+            out.append("base rate %s: quote %r not found in %s" % (k, e.get("quote", "")[:60], e["source"]))
+    return out
+
+
 def cmd_check(a, L):
-    errs, warns = run_check(L)
+    marks = []
+    errs, warns = run_check(L, marks)
     for w in warns:
         print("warn:", w)
     for e in errs:
         print("FAIL:", e)
+    done = {m["forecast_id"] for m in read_jsonl(L.registration) if m.get("status") == "not_preregistered"}
+    for m in marks:
+        print("not_preregistered: %s: %s; excluded from calibration scoring%s" % (
+            m["forecast_id"], m["reason"], "" if m["forecast_id"] not in done else " (marked)"))
+        if a.mark and not errs and m["forecast_id"] not in done:
+            append_jsonl(L.registration, {"schema": "llull.registration/1", "forecast_id": m["forecast_id"],
+                                          "status": "not_preregistered", "reason": m["reason"],
+                                          "marked_at": now(), "marked_commit": head(), "written_by": WRITTEN_BY})
+            print("marked", m["forecast_id"], "in", L.registration.name)
     if errs:
         return 4
-    print("llull check ok (%d warnings)" % len(warns))
+    print("llull check ok (%d warnings, %d not_preregistered)" % (len(warns), len(marks)))
+    return 0
+
+
+def cmd_baserate(a, L):
+    o = next((x for x in read_jsonl(L.outcomes) if x["outcome_id"] == a.outcome), None)
+    if o is None:
+        raise Refusal("no outcome %s in %s" % (a.outcome, L.outcomes))
+    fc = latest(read_jsonl(L.forecasts), "forecast_id")[o["forecast_id"]]
+    q = class_quantity(a.key)
+    if q not in QUANTITIES or q != fc["quantity"]:
+        raise Refusal("key %r must start with the outcome's quantity %r" % (a.key, fc["quantity"]))
+    if fc["kind"] == "binary":
+        raise Refusal("%s is a binary forecast: its outcome is 0 or 1, not a rate. Resolve an interval forecast of the rate."
+                      % fc["forecast_id"])
+    cat, v = QUANTITIES[q][0], o["measured"]
+    if cat == "rate" and not 0.0 <= v <= 1.0:
+        raise Refusal("a rate must lie in [0, 1], outcome measured %g" % v)
+    if (a.num is None) != (a.den is None) or (a.den is not None and (a.den <= 0 or abs(a.num / a.den - v) > 0.0006)):
+        raise Refusal("--num/--den must be given together and equal the measured value %g" % v)
+    if a.population not in POOL_DEFS and a.population not in get_pools(a, L):
+        raise Refusal("population %r is not a known pool (Y1, Y2, X1 or the pools file)" % a.population)
+    d = json.loads(L.base_rates.read_text())
+    if any(r["key"] == a.key for r in d["rows"]):
+        raise Refusal("base rate %s already exists (rows are measurements; add a new key for a new measurement)" % a.key)
+    row = {"key": a.key, "pool": a.pool_desc, "unit": "share" if cat == "rate" else cat, "value": v,
+           "source": o["outcome_id"], "population": a.population, "n_studies": a.n_studies,
+           "derived_from": {"outcome_id": o["outcome_id"], "forecast_id": fc["forecast_id"], "outcome_source": o["source"]},
+           "note": a.note}
+    if a.den is not None:
+        row.update(num=a.num, den=a.den)
+    msg = privacy_problem(json.dumps(row))
+    if msg:
+        raise Refusal("privacy: " + msg, 3)
+    d["rows"].append(row)
+    L.base_rates.write_text(json.dumps(d, indent=1) + "\n")
+    print("added base rate %s = %g (source %s, population %s)" % (a.key, v, o["outcome_id"], a.population))
     return 0
 
 
 def build_parser():
     p = argparse.ArgumentParser(prog="llull.py", description=__doc__.split("\n")[0])
     p.add_argument("--ledger", default=str(ROOT / "ledger"), help="ledger directory (default jobs/llull/ledger)")
+    p.add_argument("--pools", help="pools file (default <ledger>/pools.json): custom census pools")
     sub = p.add_subparsers(dest="cmd", required=True)
     f = sub.add_parser("forecast", help="register a forecast before the run")
     f.add_argument("--plan-id", required=True)
@@ -1019,15 +1584,23 @@ def build_parser():
     o.add_argument("--note")
     sub.add_parser("score", help="Brier / interval score / coverage per planner")
     c = sub.add_parser("census", help="Domesday prerequisite census for a pool")
-    c.add_argument("--pool", choices=sorted(POOL_DEFS)); c.add_argument("--requires")
+    c.add_argument("--pool", help="Y1, Y2, X1 or a pool defined in the pools file"); c.add_argument("--requires")
     c.add_argument("--record", action="store_true"); c.add_argument("--json", action="store_true")
     c.add_argument("--list", action="store_true")
     m = sub.add_parser("premortem", help="question wheel for a plan file (.json spec, .md or .txt)")
-    m.add_argument("plan"); m.add_argument("--pool", choices=sorted(POOL_DEFS)); m.add_argument("--requires")
+    m.add_argument("plan"); m.add_argument("--pool"); m.add_argument("--requires")
     m.add_argument("--max", type=int, default=12); m.add_argument("--json", action="store_true")
     r = sub.add_parser("rank", help="value-of-information ranking of candidate actions")
     r.add_argument("--actions", required=True)
-    sub.add_parser("check", help="validate the ledger")
+    b = sub.add_parser("baserate", help="make a base-rate row from a resolved Llull outcome (source = outcome id)")
+    b.add_argument("--outcome", required=True); b.add_argument("--key", required=True)
+    b.add_argument("--population", required=True, help="the pool the rate was measured on (random draws)")
+    b.add_argument("--pool-desc", required=True); b.add_argument("--num", type=int); b.add_argument("--den", type=int)
+    b.add_argument("--n-studies", type=int, default=1); b.add_argument("--note", default="")
+    ss = sub.add_parser("selfscore", help="share of resolved misses flagged in advance (out-of-sample only)")
+    ss.add_argument("--rule-commit", help="commit that introduced the flag rule (default: first commit with CEILING_EXCEEDED)")
+    ck = sub.add_parser("check", help="validate the ledger")
+    ck.add_argument("--mark", action="store_true", help="append not_preregistered marks to ledger/registration.jsonl")
     return p
 
 
@@ -1038,7 +1611,8 @@ def main(argv=None):
         if a.cmd == "census" and not a.list and not a.pool:
             raise Refusal("census needs --pool (or --list)")
         return {"forecast": cmd_forecast, "outcome": cmd_outcome, "score": cmd_score, "census": cmd_census,
-                "premortem": cmd_premortem, "rank": cmd_rank, "check": cmd_check}[a.cmd](a, L)
+                "premortem": cmd_premortem, "rank": cmd_rank, "check": cmd_check,
+                "baserate": cmd_baserate, "selfscore": cmd_selfscore}[a.cmd](a, L)
     except Refusal as e:
         print("refused:", e, file=sys.stderr)
         return e.code

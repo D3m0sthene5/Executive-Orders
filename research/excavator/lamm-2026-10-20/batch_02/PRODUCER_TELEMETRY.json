@@ -1,0 +1,24 @@
+{
+ "batch": "batch_02",
+ "role": "producer",
+ "model": "claude-sonnet-5-5 (subagent)",
+ "tool_calls_approx": 28,
+ "wall_minutes_approx": 20,
+ "usage": "not exposed to the subagent",
+ "orders": 20,
+ "verdicts": {
+  "ends_by_own_term_whole": 11,
+  "extended_or_renewed": 1,
+  "ended_earlier_by_other": 1,
+  "end_date_needs_source": 1,
+  "not_an_end": 6
+ },
+ "kit_sheets_drafted": 0,
+ "kit_sheet_reason": "claims-enabled candidates EO:13872 (ended_earlier_by_other) and EO:11820 (not_an_end) have no whole own-term end; no sheet drafted",
+ "fetch_lines_appended": [
+  "EO:12575"
+ ],
+ "pregate": "check_ote.py ok: 20 records",
+ "network": "none",
+ "notes": "FETCH_QUEUE had an uncommitted append by another workflow; mine was appended after it."
+}

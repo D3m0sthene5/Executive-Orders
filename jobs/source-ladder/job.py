@@ -6,6 +6,7 @@ Environment: OUTPUT_DIR (required), REPO_ROOT (default "."), JOB_LIMIT (max
 items), JOB_CACHE_DIR (download cache, default <OUTPUT_DIR>/../source-ladder-cache),
 JOB_MAX_REQUESTS (stop after this many HTTP requests), JOB_ONLY (comma list of item ids
 or prefixes such as "USC::"), JOB_OFFLINE=1 (cache only, never proposes "exhausted"),
+JOB_MAX_RANGE_REQUESTS (HTTP Range reads of large files, report-date lane; default 1500),
 JOB_REFETCH=1 (walk items again even if the last committed output already found them),
 JOB_CARRY_FORWARD=0 (ignore the last committed output).
 """
@@ -93,8 +94,22 @@ def main():
         prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
                  else prior_output.PriorOutput.from_git_head(repo, f'jobs/{name}/output'))
     all_prior_found = previous_found(prior)
-    carried = {} if os.environ.get('JOB_REFETCH') == '1' else all_prior_found
+    carried = {} if os.environ.get('JOB_REFETCH') == '1' else dict(all_prior_found)
     items = queue_items + shared + opus
+    # An earlier found record that fails today's checks (gzip bytes, a partial statute, a listing page, a current
+    # edition for a dated question ...) is walked again instead of carried for ever. Until it is walked (outside a
+    # bounded plan, or not reached) the old record is kept and marked; its hash is never dropped.
+    stale = {}
+    by_id = {w.wanted_id: w for w in items}
+    for wid, (src, text) in list(carried.items()):
+        why = fetch_ladder.carried_defect(by_id[wid], src, text) if (wid in by_id and not offline) else ""
+        if why:
+            stale[wid] = why
+            del carried[wid]
+    if stale:
+        print(f"{len(stale)} earlier found record(s) fail today's checks and will be walked again:")
+        for wid, why in sorted(stale.items()):
+            print(f"  {wid[:100]}: {why[:120]}")
     plan_path = os.environ.get('JOB_PLAN_FILE')
     plan_used = None
     if plan_path:
@@ -104,10 +119,20 @@ def main():
         budget = env_int('JOB_MAX_REQUESTS')
         os.environ['JOB_MAX_REQUESTS'] = str(min(budget, plan_used['max_requests']) if budget is not None else plan_used['max_requests'])
     elif os.environ.get('JOB_READINESS_PLAN','1') != '0' and not os.environ.get('JOB_ONLY') and limit is None:
-        from plan import make_readiness_plan, select_plan
-        plan_used = make_readiness_plan(items,set(carried),repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
-                                       limit=env_int('JOB_PLAN_LIMIT') or 12,budget=env_int('JOB_MAX_REQUESTS') or 80)
-        items = select_plan(items,plan_used)
+        from plan import make_queue_first_plan, select_plan, UNSUCCESSFUL
+        # Requests with no route at all cost no request: they are kept as recorded no_route failures
+        # outside the plan, so they never take one of its 50 places.
+        routable = [w for w in items if fetch_ladder.plan_routes(w)]
+        unroutable = [w for w in items if w.wanted_id.startswith('queue:') and w.wanted_id not in carried
+                      and not fetch_ladder.plan_routes(w)]
+        # A request that ended no_route was never tried with a route: once a route exists (e.g. the report-date lane)
+        # it ranks with the untried requests, not behind every untried one.
+        tried = {r['wanted_id'] for r in prior.csv_rows('RESULTS.csv')
+                 if r.get('result') in UNSUCCESSFUL and r.get('result') != 'no_route'} if prior else set()
+        plan_used = make_queue_first_plan(routable,set(carried),tried,repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
+                                         limit=env_int('JOB_PLAN_LIMIT') or 50,budget=env_int('JOB_MAX_REQUESTS') or 300)
+        # No-route items go first: they make no request, so a budget stop can never leave them unrecorded.
+        items = unroutable + select_plan(routable,plan_used)
         os.environ['JOB_MAX_REQUESTS'] = str(plan_used['max_requests'])
     # Even explicit legacy selections get a finite request budget by default.
     os.environ.setdefault('JOB_MAX_REQUESTS','80')
@@ -134,8 +159,11 @@ def main():
         def _wait(self, host):
             # Host spacing and robots crawl delay are shared by the pool.
             pass
+    # Bounded in requests (JOB_MAX_REQUESTS) and in total bytes (JOB_MAX_DOWNLOAD_MB, default 800).
+    max_mb = env_int("JOB_MAX_DOWNLOAD_MB") or 800
     fetcher = PooledFetcher(cache / "ladder", transport=pool.request,
-                            max_requests=env_int("JOB_MAX_REQUESTS"), offline=offline)
+                            max_requests=env_int("JOB_MAX_REQUESTS"), max_total_bytes=max_mb * 1_000_000, offline=offline,
+                            max_range_requests=env_int("JOB_MAX_RANGE_REQUESTS") or 1500)
     # Fetch one best route per item concurrently. The original ladder still validates
     # identity, expected hashes, document bytes, and every subsequent fallback.
     # A bounded request-budget run stays sequential so prefetch cannot overspend it.
@@ -176,6 +204,10 @@ def main():
     if plan_used:
         from plan import retain_unselected
         old_sources, old_results = retain_unselected(prior, all_prior_found, {w.wanted_id for w in items}, out)
+        for src, row in zip(old_sources, old_results):
+            if src.get("wanted_id") in stale:
+                src["carried_defect"] = stale[src["wanted_id"]]
+                row["why"] = "carried with a defect, to be walked again: " + stale[src["wanted_id"]]
         sources.extend(old_sources)
         results.extend(old_results)
 
@@ -207,8 +239,15 @@ def main():
             break
         attempts.extend(res["attempts"])
         row["attempts"] = len(res["attempts"])
+        superseded = None
+        if w.wanted_id in stale:
+            old_src = all_prior_found[w.wanted_id][0]
+            superseded = {"url": old_src.get("url"), "sha256": old_src.get("sha256"),
+                          "page_or_item": old_src.get("page_or_item"), "from": prior.label, "why": stale[w.wanted_id]}
         if res["source"]:
             src = res["source"]
+            if superseded:
+                src["supersedes_defective_source"] = superseded
             att = next(a for a in reversed(res["attempts"]) if a.get("accepted"))
             src["cache_path"] = (Path(att["path"]).relative_to(cache).as_posix()) if att.get("path") else None
             if res["text"]:
@@ -227,6 +266,9 @@ def main():
             print(f"  every route ended definitively ({len(res['attempts'])} attempts); proposed as exhausted")
         else:
             row.update(result=res["outcome"], why=res["why"])
+            if superseded:
+                row["why"] = (f"{res['why']} | earlier record not carried ({superseded['why'][:160]}): "
+                              f"{superseded['url']} sha256 {superseded['sha256']}")
             print(f"  not found, {res['outcome']}: {res['why']}")
         results.append(row)
         prune(cache / "ladder", int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
@@ -236,6 +278,10 @@ def main():
         if w.wanted_id not in done:
             row = base_row(w, 0)
             row["result"] = "not_attempted_budget"
+            if w.wanted_id in stale:
+                old_src = all_prior_found[w.wanted_id][0]
+                row["why"] = (f"earlier record not carried ({stale[w.wanted_id][:160]}): "
+                              f"{old_src.get('url')} sha256 {old_src.get('sha256')}")
             results.append(row)
 
     def write_jsonl(fname, rows):
@@ -267,6 +313,8 @@ def main():
         "new_sources_found": sum(not s.get('carried_forward_from') for s in sources),
         "distinct_new_source_hashes": len({s['sha256'] for s in sources if not s.get('carried_forward_from')}),
         "found_carried_forward": sum(1 for r in results if r["carried_forward_from"]),
+        "earlier_found_failing_todays_checks": len(stale),
+        "earlier_found_carried_with_defect": sum(1 for s in sources if s.get("carried_defect")),
         "exhausted_proposed_items": counts.get("exhausted_proposed", 0),
         "exhausted_proposed_lines": len(exhausted),
         "retry_later": counts.get("retry_later", 0), "no_route": counts.get("no_route", 0),
@@ -275,6 +323,11 @@ def main():
         "found_by_route": dict(Counter(s["route"] for s in sources)),
         "pool_network_requests": pool.requests, "pool_cache_hits": pool.cache_hits, "prefetched_urls": len(prefetch_urls),
         "http_requests": fetcher.requests, "bytes_downloaded": fetcher.bytes_downloaded,
+        "range_requests": fetcher.range_requests, "range_bytes": fetcher.range_bytes,
+        "report_date_items": sum(1 for w in items if w.extra.get("report_date")),
+        "report_date_records_found": sum(1 for s in sources if s.get("report_date_request") and not s.get("carried_forward_from")),
+        "max_download_mb": max_mb,
+        "embedded_cite_items": sum(1 for w in items if w.extra.get("parent_wanted_id")),
         "attempts_logged": len(attempts), "fetch_queue_problems": problems, "stopped_early": stopped,
         "source_plan": plan_used,
         "seconds": round(time.time() - t0, 1),
@@ -288,7 +341,8 @@ def main():
           f"{len(exhausted)} order lines), {summary['retry_later']} to retry later (a passing failure such as "
           f"a timeout, a block or an offline run; NOT proposed as exhausted), {summary['no_route']} with no route, "
           f"{summary['not_attempted_budget']} not attempted.")
-    print(f"{fetcher.requests} HTTP requests, {fetcher.bytes_downloaded / 1e6:.1f} MB downloaded. Cache: {cache}")
+    print(f"{fetcher.requests} HTTP requests ({fetcher.range_requests} Range reads of large files), "
+          f"{fetcher.bytes_downloaded / 1e6:.1f} MB downloaded. Cache: {cache}")
     print("Nothing here changes a status or count; found files are source custody for human review.")
 
 

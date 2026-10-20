@@ -1,0 +1,22 @@
+{
+  "producer": "claude-lambertini-p1-producer",
+  "attempted": 20,
+  "claims_passing_kit_check": 6,
+  "claim_checker_all_checks_passed": 4,
+  "claim_checker_unverified": ["EO:11800", "EO:12852"],
+  "blocked_at_ending": 10,
+  "skipped_overlap": 4,
+  "prefill_kept": 4,
+  "prefill_overruled": 2,
+  "wall_minutes_session1_lower_bound": 10,
+  "wall_minutes_session2": 8,
+  "wall_minutes_total_approx": 18,
+  "tool_calls_session2": 36,
+  "tool_calls_session1": "not recorded (usage limit interrupted; decisions for 12262 and 12089 and the b_rest script were written then)",
+  "notes": [
+    "Decisions for EO 12262 and EO 12089 had a stale dossier fingerprint after the claim-kit output was refreshed in commit 2d97f8a9c; they were regenerated and re-assembled.",
+    "The refreshed dossiers carry extra ACT records naming EO 11022, 11256 and 11829 as the revoking actor for the same EO 12379 sentence; these are spurious (those orders predate 1982). The EO:12379 record was used.",
+    "later_source_search was replaced by the three MACHINE_LATER_SEARCH.jsonl entries per the brief; kit.check still passes.",
+    "Claims are unreviewed producer output. No git commit or push made. No CLAIM_KIT_LOCK.json exists, so no reservation was made."
+  ]
+}

@@ -18,7 +18,8 @@
     "ACT:EO:10080>EO:10103@ed39fdb900924f57",
     "ACT:EO:10080>EO:10103@7d1dbb10e2f052c0",
     "ACT:EO:10080>EO:10103@2b2bb03a081803d1",
-    "ACT:EO:10080>EO:10103@0236ccb9cef85db8"
+    "ACT:EO:10080>EO:10103@0236ccb9cef85db8",
+    "ACT:EO:10080>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -49,9 +50,36 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
         },
         "verb": "transfer"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10080#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 211,
+    "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10080",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10080"
@@ -595,6 +623,75 @@
       "text": "Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”",
       "verb": "transfer"
     },
+    "ACT:EO:10080>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10080>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10080>EO:12553@rastell",
+      "producer": "claude-rastell-03-producer",
+      "producer_d6": "Searched: dossier chain (EO:10103 chain event), own_terms, clause text, EDGES (later-events, app-footnote-leads) and the held texts of EO 10103 and EO 10535. Edges targeting EO:10080: EO:12553 (revocation) plus two cross-references (EO 10103, 1950-02-01; EO 10535, 1954-06-09). EARLIER SELF-LIMITATION: the order lets an incumbent acquire competitive status only 'upon recommendation made within the period of one year from the date of this order' (1949-09-30), so the acquisition window closed 1950-09-30 by its own terms; status already acquired is a residual effect that the revocation does not obviously undo. EO 10103 (1950-02-01, itself a row in the EO 12553 table) does not amend EO 10080; its sentence only says that, 'so far as Executive Order No. 10080 ... is concerned', certain transferred employees count as having been in active-duty status on 1949-09-30. EO 10535 (1954-06-09, NOT in the EO 12553 table) authorises the Civil Service Commission to confer competitive status on persons who met the EO 10080 requirements but were not recommended through administrative error; it relies on EO 10080 and is not an ending, and its own provision has an open 'target provision not located' line in the dossier. So EO 12553 is at most a formal clean-up of a spent window order; the reviewer should treat it as an upper bound and look at residual-status effects. No edge targets EO:12553.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER SELF-LIMITATION: operative clause allows status only \"upon recommendation made within the period of one year from the date of this order\" (window closed 1950-09-30); EO 10103/10535 are cross-references, not ends. EO 12553 is an upper bound/clean-up; record disclosed this, so record upheld but not claims-enabling.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-03-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_03/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10080",
+      "target_naming": {
+        "char_end": 7127,
+        "char_start": 7035,
+        "sha256": "946abb75dd41bb2f87161086121287afaad97d3b1a7f9342ff4db869b9d6e0c5",
+        "text": "10080 Authorizing certain Government employees to acquire a competitive civil service status"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:10103": {
       "actor_id": "EO:10103",
       "char_end": 8530,
@@ -789,7 +886,7 @@
       "text": "The incumbent in an active duty status of any office or position in the competitive serve of the Federal Government on the date of this order who is without competitive status shall, upon recommendation made within the period of one year from the date of this order by the head of the agency in which he is employed, acquire a competitive civil service status if all of the following conditions are satisfied: (1) That such incumbent was appointed to an office or position in the executive branch of the Federal Government prior to March 16, 1942 (the date on which the War Service Regulations became effective), and has had continuous service with the Federal Government since that date which is creditable for retirement purposes, inclusive of any intervening military service; (2) that if the employment of such incumbent is evaluated under an efficiency rating system his mot recent rating is \"Good\" or better, and if his employment is not evaluated under an efficiency rating system the head of the agency concerned has certified to the Civil Service Commission that the incumbent has served with merit for sic months or longer immediately prior to the date of such certification; (3) that such person successfully qualifies in such suitable noncompetitive examination as the Civil Service Commission may prescribe; and (4) that such incumbent shall be given only one such noncompetitive examination: Provided, that separation for one year or less due to reduction of force shall not prevent the acquisition of a competitive status hereunder by the present incumbent in an active duty status of an office or position in the competitive service."
     }
   },
-  "fingerprint": "1503db66617cfa109f9e369842548f5d23a1ffebda3d42caa5a7782679334e6d",
+  "fingerprint": "7048cd9413a853b9e4fdd1ed2c93de5ee0f4583219307db77a58e40cb5e6b6bf",
   "instrument_id": "EO:10080",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -831,8 +928,7 @@
     }
   ],
   "missing": [
-    "target provision not located: EO:10535",
-    "target provision not located: EO:12553"
+    "target provision not located: EO:10535"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10080",

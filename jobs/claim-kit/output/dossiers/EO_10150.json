@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10150>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10150#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10150",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10150"
@@ -43,20 +73,6 @@
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
-    "clause_2_state",
-    "clause_3_state",
-    "clause_4_state",
-    "clause_5_state",
-    "clause_6_state",
-    "clause_7_state",
-    "clause_8_state",
-    "clause_9_state",
-    "clause_10_state",
-    "clause_11_state",
-    "clause_12_state",
-    "clause_13_state",
-    "clause_14_state",
-    "clause_15_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -64,12 +80,81 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 16 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10150>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10150>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10150>EO:12553@rastell",
+      "producer": "claude-rastell-04-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's clause text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10150: EO:12553 revocation. Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, the status quo is frozen 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms roughly two months after 1950-08-11, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and no held text amends or revokes it (a text search of the held EO texts for '12553' finds only EO 12553 itself). The order covers disputes of the Atlantic & East Carolina Railway Company and other carriers (lists A and B); it adds that the board may make separate findings for each carrier; the held file continues past the Federal Register contents pages, and the report-deadline sentence is held.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end; board report/status-quo terms are not express ends.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-04-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_04/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10150",
+      "target_naming": {
+        "char_end": 8396,
+        "char_start": 8324,
+        "sha256": "c8dd3363bc12e6bbb7e18d5ee416362f637b92f543a9bf6847f56f0f72c07cef",
+        "text": "10150 Creating an emergency board to investigate railroad labor disputes"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -195,34 +280,6 @@
       "stated_end_date": null,
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by any of the carriers involved or their employees in the conditions out of which the said disputes arose."
     },
-    "TERM:EO:10150:3481ac24e9ad163b@863469952d6aeb8a": {
-      "actor_id": "EO:10150",
-      "char_end": 1990,
-      "char_start": 1685,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10150:3481ac24e9ad163b@863469952d6aeb8a",
-      "instrument_id": "EO:10150",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10150#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 278987; common-crawl capture 2025-10-06T08:01:02Z",
-        "requires_page_check": false,
-        "sha256": "5ca9aeb2ff02435633b9cda5ca3b3ee691cd16f59d05a13c304bba9fb46e1718",
-        "signing_date": "1950-08-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10150-5ca9aeb2ff.txt",
-        "text_sha256": "863469952d6aeb8ae1d170561976cd47790ed16d65deef96d8e3b1aa5f38582b",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10150-creating-emergency-board-investigate-disputes-between-the-atlantic"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by any of the carriers involved or their employees in the conditions out of which the said disputes arose."
-    },
     "TERM:EO:10150:548e516d74d1eddf@3dc4904b0354acf3": {
       "actor_id": "EO:10150",
       "char_end": 12157,
@@ -281,14 +338,14 @@
       "stated_end_date": null,
       "text": "The board shall report its findings to the President with respect to the said disputes within thirty days from the date of this order."
     },
-    "TERM:EO:10150:884f0291e7a5ba62@863469952d6aeb8a": {
+    "TERM:EO:10150:8cbabacecb43c8b3@01dddc7e11469972": {
       "actor_id": "EO:10150",
-      "char_end": 1535,
-      "char_start": 1401,
+      "char_end": 393,
+      "char_start": 0,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:10150:884f0291e7a5ba62@863469952d6aeb8a",
+      "id": "TERM:EO:10150:8cbabacecb43c8b3@01dddc7e11469972",
       "instrument_id": "EO:10150",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
@@ -297,20 +354,104 @@
       "scope_id": "EO:10150#whole",
       "source": {
         "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 278987; common-crawl capture 2025-10-06T08:01:02Z",
+        "page_or_item": "PEB-092-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
         "requires_page_check": false,
-        "sha256": "5ca9aeb2ff02435633b9cda5ca3b3ee691cd16f59d05a13c304bba9fb46e1718",
+        "sha256": "9c0bf96862763fa9eccca12b4536ce4ba548d939ee6a82a510e7e85e85985b1f",
         "signing_date": "1950-08-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10150-5ca9aeb2ff.txt",
-        "text_sha256": "863469952d6aeb8ae1d170561976cd47790ed16d65deef96d8e3b1aa5f38582b",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10150-creating-emergency-board-investigate-disputes-between-the-atlantic"
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10150_Actual_report_date_of_the_board_created_by_EO_10150_Presidential_Emergency_Board_Rail_519666f265.txt",
+        "text_sha256": "01dddc7e11469972ea58e19bc457ef4f412f1f1d969d21c71c846b469e734af9",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-092-Report.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "The board shall report its findings to the President with respect to the said disputes within thirty days from the date of this order."
+      "text": "Wanted: queue:EO:10150:Actual report date of the board created by EO 10150 (Presidential Emergency Board (Railway Labor Act sec. 10): the Atlantic & East Carolina Railway Company and Other Carriers, and Certain of Their Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound."
+    },
+    "TERM:EO:10150:8cbabacecb43c8b3@22d880cc5b13d330": {
+      "actor_id": "EO:10150",
+      "char_end": 393,
+      "char_start": 0,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10150:8cbabacecb43c8b3@22d880cc5b13d330",
+      "instrument_id": "EO:10150",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10150#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-092-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c0bf96862763fa9eccca12b4536ce4ba548d939ee6a82a510e7e85e85985b1f",
+        "signing_date": "1950-08-11",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-10150-9c0bf96862.txt",
+        "text_sha256": "22d880cc5b13d330bbdbdfc0b379dfb02063262f9b42f7617325c6014c478633",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-092-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Wanted: queue:EO:10150:Actual report date of the board created by EO 10150 (Presidential Emergency Board (Railway Labor Act sec. 10): the Atlantic & East Carolina Railway Company and Other Carriers, and Certain of Their Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound."
+    },
+    "TERM:EO:10150:9a6e556c922cf4dc@01dddc7e11469972": {
+      "actor_id": "EO:10150",
+      "char_end": 1220,
+      "char_start": 797,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10150:9a6e556c922cf4dc@01dddc7e11469972",
+      "instrument_id": "EO:10150",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10150#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-092-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c0bf96862763fa9eccca12b4536ce4ba548d939ee6a82a510e7e85e85985b1f",
+        "signing_date": "1950-08-11",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10150_Actual_report_date_of_the_board_created_by_EO_10150_Presidential_Emergency_Board_Rail_519666f265.txt",
+        "text_sha256": "01dddc7e11469972ea58e19bc457ef4f412f1f1d969d21c71c846b469e734af9",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-092-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "=== PDF page 1 of 54 ===\nReport \nTHE PRESIDENT \nBY THE \nEMERGENCY BOARD \nAPPOINTED AUGUST 11,1950, PURSUANT TO SECTION \n10 OF THE RAILWAY LABOR ACT AS AMENDED \nTo investigate disputes between the Atlantic and East \nCarolina Railway Company and certain other carriers \nand certain of their employees represented by the sixteen \ncooperating Railway \n/Labor \nOrganizations (nonoperating) \n(NMB Case No. A-3444) \nWASHINGTON, D."
+    },
+    "TERM:EO:10150:9a6e556c922cf4dc@22d880cc5b13d330": {
+      "actor_id": "EO:10150",
+      "char_end": 1220,
+      "char_start": 797,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10150:9a6e556c922cf4dc@22d880cc5b13d330",
+      "instrument_id": "EO:10150",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10150#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-092-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c0bf96862763fa9eccca12b4536ce4ba548d939ee6a82a510e7e85e85985b1f",
+        "signing_date": "1950-08-11",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-10150-9c0bf96862.txt",
+        "text_sha256": "22d880cc5b13d330bbdbdfc0b379dfb02063262f9b42f7617325c6014c478633",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-092-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "=== PDF page 1 of 54 ===\nReport \nTHE PRESIDENT \nBY THE \nEMERGENCY BOARD \nAPPOINTED AUGUST 11,1950, PURSUANT TO SECTION \n10 OF THE RAILWAY LABOR ACT AS AMENDED \nTo investigate disputes between the Atlantic and East \nCarolina Railway Company and certain other carriers \nand certain of their employees represented by the sixteen \ncooperating Railway \n/Labor \nOrganizations (nonoperating) \n(NMB Case No. A-3444) \nWASHINGTON, D."
     }
   },
-  "fingerprint": "c08df5c9da4936a3db63a6b5dfccd6a10c5212ac8b18523ae5a3b86b3bdb736f",
+  "fingerprint": "c7887dfa77089d28da7e3fbb9a6e45f15c6e6b7d6134f3d5a778a49a891c9752",
   "instrument_id": "EO:10150",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -351,16 +492,16 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10150",
   "own_terms": [
     "TERM:EO:10150:548e516d74d1eddf@3dc4904b0354acf3",
     "TERM:EO:10150:0708383de9c062bb@3dc4904b0354acf3",
-    "TERM:EO:10150:884f0291e7a5ba62@863469952d6aeb8a",
-    "TERM:EO:10150:3481ac24e9ad163b@863469952d6aeb8a",
+    "TERM:EO:10150:8cbabacecb43c8b3@22d880cc5b13d330",
+    "TERM:EO:10150:9a6e556c922cf4dc@22d880cc5b13d330",
+    "TERM:EO:10150:8cbabacecb43c8b3@01dddc7e11469972",
+    "TERM:EO:10150:9a6e556c922cf4dc@01dddc7e11469972",
     "TERM:EO:10150:884f0291e7a5ba62@7b9e744370812043",
     "TERM:EO:10150:3481ac24e9ad163b@7b9e744370812043"
   ],

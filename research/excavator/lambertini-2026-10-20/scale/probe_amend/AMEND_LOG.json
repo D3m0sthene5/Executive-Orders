@@ -1,0 +1,39 @@
+{
+ "schema": "lambertini-probe-amend/v1",
+ "date": "2026-10-20",
+ "agent": "claude-lambertini2-planner",
+ "why": "P1 reviewer D6 note: four amending orders were described in clause reasons but not attached as later_events. Attached now; no ending, state or savings changed.",
+ "attached": [
+  {
+   "order": "EO:11800",
+   "scope": "EO:11800#whole",
+   "event": "ACTOR_TEXT:EO:12608",
+   "effective_date": "1987-09-09",
+   "basis": "EO 12608 sec. 15 list (HEW to HHS), 52 FR 34617 official text, no effective wording so on signing"
+  },
+  {
+   "order": "EO:11800",
+   "scope": "EO:11800#whole",
+   "event": "ACT:EO:11800>EO:13286",
+   "effective_date": "2003-03-01",
+   "basis": "EO 13286 sec. 58 (Transportation to Homeland Security), effective under sec. 92; dossier evidence is an APP transcription, so claim-checker marks it custody_record_only. The official FR text jobs/fr-originals/data/full_run/texts/EO_13286.txt is held but has no dossier evidence id; an act_override record (independent review needed) would fix it."
+  },
+  {
+   "order": "EO:12852",
+   "scope": "EO:12852#sec3-d, EO:12852#sec4",
+   "event": "ACTOR_TEXT:EO:12855",
+   "effective_date": "1993-07-19",
+   "basis": "EO 12855 (58 FR 39107 official text), on signing"
+  },
+  {
+   "order": "EO:12089",
+   "scope": "EO:12089#1-102",
+   "event": "ACTOR_TEXT:EO:12107",
+   "effective_date": "1979-01-01",
+   "basis": "EO 12107 sec. 2-101 list (Civil Service Commission to OPM), effective under sec. 2-404"
+  }
+ ],
+ "method": "Copied decisions/EO_{11800,12852,12089}.json to sheets/, added later_events, kit.py assemble (dossier fingerprints unchanged), spliced only operative_clauses[].later_events into the committed claim lines (later_source_search kept from MACHINE_LATER_SEARCH as in P1), kit.py check clean on all 6, claim-checker all_checks_passed 5 of 6 (was 4), gate_passed 6 of 6.",
+ "remaining": "EO 11800 later_events[1] custody_record_only (EO 13286 APP transcription).",
+ "review_needed": "The scale reviewer re-checks these 4 attachments (D6) before the claims are treated as final. Not committed."
+}

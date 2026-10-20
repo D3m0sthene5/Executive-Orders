@@ -122,3 +122,37 @@ def make_readiness_plan(items, found, tracker_path, limit=12, budget=80):
     return {'schema':'eo-source-plan/v1','queue_fingerprint':queue_fingerprint(items),
             'tracker_sha256':hashlib.sha256(raw).hexdigest(),'wanted_ids':chosen,
             'max_requests':budget,'legal_cutoff':'2026-10-14','method':'readiness proximity, step opportunity, downstream work, stable ID'}
+
+
+QUEUE_PREFIX = 'queue:'
+UNSUCCESSFUL = ('retry_later', 'exhausted_proposed', 'no_route')
+
+
+def make_queue_first_plan(items, found, tried, tracker_path, limit=50, budget=300):
+    """Plan that serves what agents asked for before anything else (PANIZZI).
+
+    The readiness plan only picked items that could close a tracker step, which never selected 17 explicit
+    FETCH_QUEUE requests whose step was already closed, and its limit of 12 per run left the rest waiting.
+    Here, requests from FETCH_QUEUE.jsonl (wanted_id 'queue:...') that are not yet found come first, never-tried
+    before tried-and-failed (so a source that keeps failing cannot starve the others), then readiness proximity,
+    step opportunity, downstream work and the stable ID. Shared-source and Opus re-fetch items follow in the
+    readiness order, and only when they could complete a step. Up to `limit` (1..50) items, `budget` (1..300) requests.
+    Deterministic for the same inputs; the plan carries the queue fingerprint like the readiness plan.
+    """
+    import csv
+    raw = Path(tracker_path).read_bytes()
+    rows = {r['instrument_id']: r for r in csv.DictReader(raw.decode('utf-8-sig').splitlines())}
+    if not 1 <= limit <= 50 or not 1 <= budget <= 300:
+        raise ValueError('queue-first plan limit must be 1..50 and budget 1..300')
+    tried = set(tried)
+    actions = [a for a in (opportunity(w, rows, found) for w in items) if a['wanted_id'] not in found]
+    requested = [a for a in actions if a['wanted_id'].startswith(QUEUE_PREFIX)]
+    other = [a for a in actions if not a['wanted_id'].startswith(QUEUE_PREFIX) and a['potential_step_completions']]
+    requested.sort(key=lambda a: (a['wanted_id'] in tried, -len(a['near_ready_order_ids']),
+                                  -a['potential_step_completions'], a['remaining_step_tasks'], a['wanted_id']))
+    chosen = [a['wanted_id'] for a in requested + rank_actions(other)][:limit]
+    return {'schema': 'eo-source-plan/v1', 'queue_fingerprint': queue_fingerprint(items),
+            'tracker_sha256': hashlib.sha256(raw).hexdigest(), 'wanted_ids': chosen,
+            'max_requests': budget, 'legal_cutoff': '2026-10-14',
+            'method': 'FETCH_QUEUE requests first (untried before tried), then readiness proximity, step opportunity, '
+                      'downstream work, stable ID'}

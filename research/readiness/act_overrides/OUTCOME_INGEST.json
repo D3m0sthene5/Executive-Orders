@@ -1,0 +1,54 @@
+{
+ "workflow": "rastell-act-ingest",
+ "date": "2026-10-20",
+ "status": "local build measurement; AI review hypotheses, not human certification; certified count stays 0",
+ "ingest": {
+  "records_in_file": 57,
+  "records_ingested": 55,
+  "records_refused": 2,
+  "refused": {
+   "ACT:EO:10972>EO:12220@rastell": "pair_not_unlocated (the scanner now locates a whole_via_parent lead for this pair)",
+   "ACT:EO:11287>EO:12692@rastell": "names_target=true with reaches_target_via set, and the target number is not in the naming span"
+  },
+  "targets_with_act_gap_cleared": 35,
+  "dossiers_with_empty_missing": 18,
+  "ending_instrument_held_newly": 22,
+  "ending_instrument_held_lost": 0,
+  "mechanical_claim_candidates": 17,
+  "reviewer_claims_enabled": 2,
+  "note": "15 of the 17 candidates have an earlier end found at D6 (the EO 12553 record is an upper bound only); EO 5737 and EO 5848 remain the only claims-enabled orders and still need the EO 7968 page check."
+ },
+ "batch_03_addendum": {
+  "date": "2026-10-20",
+  "note": "measured after O-20261020-13/14 were recorded; no forecast was registered for batch_03, so no Llull outcome is attached to these numbers",
+  "records_in_file": 75,
+  "records_ingested": 73,
+  "records_refused": 2,
+  "refused_unchanged": true,
+  "b03": {
+   "produced": 20,
+   "planted": 2,
+   "plants_caught": 2,
+   "upheld": 18,
+   "refuted": 2,
+   "claims_enabled_yes": 17,
+   "ingested": 18
+  },
+  "dossiers_missing_target_provision_not_located": {
+   "base": 1257,
+   "after_57": 1229,
+   "after_b03": 1212
+  },
+  "dossiers_with_empty_missing": {
+   "base": 885,
+   "after_57": 903,
+   "after_b03": 920
+  },
+  "targets_with_whole_ending_dated_act": {
+   "from_57": 22,
+   "b03_adds": 18,
+   "total": 40
+  },
+  "caveat": "EO 12553 records are an upper bound (on_signing is a reading, no express effective wording); EO 10080 not claims-enabling (one-year window closed 1950-09-30)"
+ }
+}

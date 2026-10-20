@@ -1,0 +1,17 @@
+{
+  "agent": "claude-sinclair-01-producer",
+  "batch": "batch_01",
+  "role": "PROBE",
+  "start_utc": "2026-10-20T08:33:18Z",
+  "end_utc": "2026-10-20T08:45:06Z",
+  "wall_minutes_total": 11.8,
+  "tool_calls": 62,
+  "approx_tokens_total": 330000,
+  "tokens_basis": "ESTIMATE from the drop in remaining context-token budget (about 15,000,000 to about 14,672,000); the harness reports no per-agent usage. Per-order figures in OUTCOMES.csv are allocated estimates (60 percent of wall time and tokens spread over the 5 proposed, 40 percent over the 20 blocked). tool_calls is a count of my own calls, an estimate.",
+  "orders": 25,
+  "proposed": 5,
+  "blocked": 20,
+  "freeze_wall_seconds_all_25": 31.6,
+  "fetch_queue_lines_written_to_FETCH_LINES_jsonl": 16,
+  "notes": "overlay-prepare ran 5 in parallel through a staging folder under research/excavator/sinclair-2026-10-20/_staging/01 that was emptied and removed (a batch-02 staging folder belonging to another process was left untouched). overlay-review-sheet generated a blank pinned sheet for all 25 decisions, and status_overlay._decision_errors returned no errors for the 5 proposed decisions. Reviewer, planter and tally steps not performed here. No FETCH_QUEUE append, no git commit."
+}

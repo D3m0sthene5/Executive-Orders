@@ -1,0 +1,168 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 7,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b0.jsonl",
+  "sha256": "f216a9d4d4e80aa1a8ed846f3b8722174f9a203957168394caf148b85d913dbf"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D4",
+ "instrument_id": "SEEDED:EO:11369",
+ "item_id": "MW-C2-09",
+ "leak_needles": [
+  "11409's own item 1(a). EO 11409 (Apr. 29, 1968) deletes item (16) and inserts the Counselor to the Department. Neither acting order states another effective date. The latest clause end, and so the whole-order end, is 1968-04-29; the 1973 revocation by EO "
+ ],
+ "mutation": {
+  "after": "1968-04-29",
+  "before": "1970-07-30",
+  "field": "operative_clauses[1].first_end",
+  "operator": "D4.1->0",
+  "refuting_span": {
+   "quote": "section 2 of Executive Order  \nNo. 11248 1  of October 10, 1965, as amended, placing certain positions  \nin level V of the Federal Executive Salary Schedule, is further  \namended by deleting “ (16) Chief, Children’ s Bureau, Social and  \nRehabilitation Service, Department of Health, Education, and Wel­\nfare”, and inserting in lieu thereof the following:\n(16) Counselor to the Department of Health, Education, and  \nWelfare."
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:11369",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "every saved order text citing Executive Order No. 11248 (EO 11248 and its 40 amenders EO 11251 through EO 11699, plus EO 11708) read in full, with EO 11236, 11695, 11715, 11727, 11736 and 11768; each section 1 and section 2 item of EO 11248 traced through every addition, deletion, word substitution and renumbering to 1974, and checked for any act naming EO 11369 or the positions it placed",
+    "repository": "Saved official Federal Register text layers, jobs/fr-originals/data/full_run (6,652 order texts) at repository main",
+    "searched_by": "Claude (batch 0 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "statutory placement, renaming or abolition of the positions this order placed, in the 5315 and 5316 amendment notes for 1964-1973 and the current lists; 5317 conditions on presidential placements",
+    "repository": "U.S. Code release point 119-121, usc05.xml (cached OLRC download): 5 U.S.C. 5315, 5316 and 5317 text, historical and amendment notes",
+    "searched_by": "Claude (batch 0 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition rows for EO 11248 and each amending order, as status leads at January 20, 1989 (not used as an ending source)",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders 1945-1989, Executive Orders disposition table (jobs/ofr-codification-1989 output DISPOSITION_1989.csv, HathiTrust uiug.30112026470077)",
+    "searched_by": "Claude (batch 0 agent)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11409",
+     "date": "1968-04-29",
+     "mechanism": "EO 11409 item 2 deletes this item (15) from EO 11248 sec. 2 and inserts a different position (Deputy Administrator, HSMHA) in its place; the same order places the Administrator, SRS in level IV by its own item 1(a); effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "page_or_item": "33 FR 6601, PDF pages 7-7",
+      "quote": "2. Section 2 of that Order, placing certain positions in level Y  of the  \nFederal Executive Salary Schedule, is amended by deleting “ (15) A d ­\nministrator, Social and Rehabilitation Service, Department of Health,  \nEducation, and W elfare”, and inserting in lieu thereof “ (15) Deputy  \nAdministrator, Health Services and Mental Health Administration,  \nDepartment of Health, Education, and W elfare.",
+      "sha256": "1fbc03e14cacaadda0f8c9c2dc29ffcf3bd98753b6cf73262828e9ed61efd962",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1968-05-01/pdf/FR-1968-05-01.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11708",
+      "effective_date": "1973-03-23",
+      "mechanism": "formal revocation of Executive Order No. 11248 as amended by EO 11708 sec. 3 (the OFR's 'Revoked by EO 11708'); this clause had already ended earlier (see first_end), so the revocation removed nothing still operating",
+      "source": {
+       "page_or_item": "38 FR 7979, PDF pages 11-12",
+       "quote": "Sec. 3. Except with respect to the positions enumerated in section 2 \no f this order, Executive Order No. 11248 of October 10, 1965, as \namended, is hereby revoked.",
+       "sha256": "cc47994b2f4054913b76f251ac8970a70190e7ac65586ed1c1637422c87d8f92",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "section 2 of Executive Order No. 11248 of October 10,1965, as  \namended, is further amended by adding thereto the following:\n(15) Administrator, Social and Rehabilitation Service, Depart­\nment of Health, Education, and Welfare.",
+    "original_source": {
+     "page_or_item": "32 FR 12585, PDF pages 5-5",
+     "sha256": "738ab3673a1464c971edd84b4e258fed652a87c87fdac370c29d86a7a9a08fef",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1967-08-31/pdf/FR-1967-08-31.pdf"
+    },
+    "scope_id": "EO:11369#sec2-item15-level-V",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11409",
+     "date": "1968-04-29",
+     "mechanism": "EO 11409 item 2 deletes this item (15) from EO 11248 sec. 2 and inserts a different position (Deputy Administrator, HSMHA) in its place; the same order places the Administrator, SRS in level IV by its own item 1(a); effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+     "source": {
+      "page_or_item": "33 FR 6601, PDF pages 7-7",
+      "quote": "2. Section 2 of that Order, placing certain positions in level Y  of the  \nFederal Executive Salary Schedule, is amended by deleting “ (15) A d ­\nministrator, Social and Rehabilitation Service, Department of Health,  \nEducation, and W elfare”, and inserting in lieu thereof “ (15) Deputy  \nAdministrator, Health Services and Mental Health Administration,  \nDepartment of Health, Education, and W elfare.",
+      "sha256": "1fbc03e14cacaadda0f8c9c2dc29ffcf3bd98753b6cf73262828e9ed61efd962",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1968-05-01/pdf/FR-1968-05-01.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11708",
+      "effective_date": "1973-03-23",
+      "mechanism": "formal revocation of Executive Order No. 11248 as amended by EO 11708 sec. 3 (the OFR's 'Revoked by EO 11708'); this clause had already ended earlier (see first_end), so the revocation removed nothing still operating",
+      "source": {
+       "page_or_item": "38 FR 7979, PDF pages 11-12",
+       "quote": "Sec. 3. Except with respect to the positions enumerated in section 2 \no f this order, Executive Order No. 11248 of October 10, 1965, as \namended, is hereby revoked.",
+       "sha256": "cc47994b2f4054913b76f251ac8970a70190e7ac65586ed1c1637422c87d8f92",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(16) Chief, Children’s Bureau, Social and Rehabilitation Service,  \nDepartment of Health, Education, and Welfare.",
+    "original_source": {
+     "page_or_item": "32 FR 12585, PDF pages 5-5",
+     "sha256": "738ab3673a1464c971edd84b4e258fed652a87c87fdac370c29d86a7a9a08fef",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1967-08-31/pdf/FR-1967-08-31.pdf"
+    },
+    "scope_id": "EO:11369#sec2-item16-level-V",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "32 FR 12585, PDF pages 5-5",
+   "sha256": "738ab3673a1464c971edd84b4e258fed652a87c87fdac370c29d86a7a9a08fef",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1967-08-31/pdf/FR-1967-08-31.pdf"
+  },
+  "research_rationale": "EO 11369 adds two level V items to EO 11248: (15) Administrator, Social and Rehabilitation Service, and (16) Chief, Children's Bureau, SRS (both HEW). EO 11409 item 2 (April 29, 1968) deletes item (15) and inserts the Deputy Administrator, HSMHA; the SRS Administrator moves to level IV under EO 11409's own item 1(a). EO 11409 (Apr. 29, 1968) deletes item (16) and inserts the Counselor to the Department. Neither acting order states another effective date. The latest clause end, and so the whole-order end, is 1968-04-29; the 1973 revocation by EO 11708 is a post-end formal event. The OFR catalog lists no disposition for EO 11369. A transfer of the Children's Bureau within HEW would not by itself abolish the placed position, and no held source records an earlier abolition. Family method: the researcher read the saved official Federal Register OCR text layers (heading to FR Doc line) of this order, of EO 11248 and of all 40 orders that the OFR disposition notes and the 1989 Codification list as amending it, plus EO 11708, 11715, 11736 and 11768, and traced every item of EO 11248 sections 1 and 2 through each addition, deletion, word substitution and renumbering. EO 11708 sec. 3 (signed and filed March 23, 1973; no other effective date) revokes EO 11248 as amended, except for the eight positions listed in its section 2; none of them is a position whose placement this order's text still supplied. Where a later amender deletes an item and inserts another in its place, the earlier item's placement ends on that amender's effective date; the series' separate 'substituting for the words' formula is treated as a retitling that continues the item. Pure deletions, renumberings and effective-date provisions are one-time edits completed when the order took effect. The 5 U.S.C. 5315-5316 amendment notes for 1964-1973 record no statutory placement of the positions concerned. Abolition of a position by unpublished departmental action is outside the held sources and is a limitation of this bounded search. Page images were not viewed; quotations are exact from the saved OCR, including its recognition errors. No human certification is asserted.",
+  "savings_residuals": {
+   "reason": "The order only placed, removed or renumbered positions in pay levels IV and V of the Executive Schedule under 5 U.S.C. 5317 (formerly sec. 303(f) of the 1964 Salary Reform Act). Removal of a placement operates prospectively; pay already received is a completed historical consequence, and no entitlement, transfer of functions or right is preserved. Neither the acting order nor EO 11708 contains a savings or incumbent-protection clause for this order's items. The only carve-out, EO 11708 sec. 3's exception for the positions listed in its sec. 2, does not cover them; EO 11768's incumbent clause (1974) concerns its own list.",
+   "source": {
+    "page_or_item": "35 FR 12315, PDF pages 5-5",
+    "sha256": "0c4709759ce0a62a4c3076a8b10d9afb03ed3749930b5c72f6ef480234a9dd5b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1970-08-01/pdf/FR-1970-08-01.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:11409",
+   "date": "1968-04-29",
+   "mechanism": "EO 11409 item 2 deletes this item (15) from EO 11248 sec. 2 and inserts a different position (Deputy Administrator, HSMHA) in its place; the same order places the Administrator, SRS in level IV by its own item 1(a); effective on signing: the order states no other effective date, and 5 U.S.C. 5317 does not defer a removal",
+   "source": {
+    "page_or_item": "33 FR 6601, PDF pages 7-7",
+    "quote": "2. Section 2 of that Order, placing certain positions in level Y  of the  \nFederal Executive Salary Schedule, is amended by deleting “ (15) A d ­\nministrator, Social and Rehabilitation Service, Department of Health,  \nEducation, and W elfare”, and inserting in lieu thereof “ (15) Deputy  \nAdministrator, Health Services and Mental Health Administration,  \nDepartment of Health, Education, and W elfare.",
+    "sha256": "1fbc03e14cacaadda0f8c9c2dc29ffcf3bd98753b6cf73262828e9ed61efd962",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1968-05-01/pdf/FR-1968-05-01.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

@@ -1,0 +1,249 @@
+{
+ "schema": "lamm-ai-review/v1",
+ "not": "eo-lifecycle-review/v1 human review; AI review record only",
+ "batch": "batch_03",
+ "reviewer": "claude-lamm-03-reviewer (independent Opus, held sources)",
+ "reviewed_dir": "lamm2/review_copy/batch_03",
+ "pregate_check_ote": "ok: 20 records (re-run by reviewer)",
+ "counts": {
+  "attempted": 20,
+  "upheld": 7,
+  "upheld_whole": 6,
+  "upheld_partial": 1,
+  "refuted": 1,
+  "negative_confirmed": 12,
+  "blocked": 0,
+  "claims_enabled_yes": 6
+ },
+ "refutation_codes": {
+  "DATE": 1
+ },
+ "suspected_plant": {
+  "instrument_id": "EO:10270",
+  "where": "CLAIMS.proposed.jsonl operative_clauses[0].first_end.date",
+  "value": "1952-12-31",
+  "expected": "1952-07-01"
+ },
+ "verdicts": [
+  {
+   "instrument_id": "EO:9082",
+   "record_id": "OTE:EO:9082@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Sec. 7 war-plus-six-months term confirmed at the cited offsets; no war-termination date in held texts, so end_date_needs_source is correct. Dossier TERM is the tail of EO 9078 on the same page (confirmed). EO 9722 amends command functions only."
+  },
+  {
+   "instrument_id": "EO:9142",
+   "record_id": "OTE:EO:9142@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Sec. 7 split by a contents block (confirmed). Event-relative end. EO 9788 abolishes the Office but doesn't revoke the order; EO 9789/9818 do not touch sec. 7."
+  },
+  {
+   "instrument_id": "EO:9352",
+   "record_id": "OTE:EO:9352@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The 60-day photo grace period is a transition period, not an end."
+  },
+  {
+   "instrument_id": "EO:9805",
+   "record_id": "OTE:EO:9805@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Confirmed that EO 10381 rewrote sec. 21 without the war-duration words and that EO 11012 sec. 3(b) revokes EO 9805. The ended_earlier_by_other verdict is correct, and the revocation's effective date is still unsourced."
+  },
+  {
+   "instrument_id": "EO:9886",
+   "record_id": "OTE:EO:9886@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "EO 9492 par. 2(c) ('one year from the date of this order', 1944-10-24), EO 9867 text (2y10m), EDGES (5 see-refs to amending orders), FR 1947-11-26 SecDef order (FR Doc 47-10437, effective 12:00 noon 24 Nov 1947, issued under EO 9886).",
+   "note": "1944-10-24 + 3y1m = 1947-11-24, correct. The SecDef cease order takes effect on the same day, through EO 9886's own mechanism, so there is no earlier end. Residual SCOPE risk: the SecDef order cites EO 9886 as its authority, but under the present-applicable-norm convention that is a spent effect. The actual checker shows all_checks_passed=false (custody-only skips), so the tally must apply its own checker gate."
+  },
+  {
+   "instrument_id": "EO:9915",
+   "record_id": "OTE:EO:9915@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Held text is a one-paragraph delegation with no term. The dossier TERM is statute text printed elsewhere, and the 'Until December 31, 1948' lines on the page are CSC Schedule A, not this order."
+  },
+  {
+   "instrument_id": "EO:9938",
+   "record_id": "OTE:EO:9938@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The 20-year term belongs to the Redmond lease. The revocation is immediate. Minor issue: start_basis says signed 1948-03-20, but the source signing_date is 1948-03-22. That does not affect the verdict."
+  },
+  {
+   "instrument_id": "EO:10110",
+   "record_id": "OTE:EO:10110@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "Held corpus scan for 'Communications Policy Board' (only EO 10110 representations and the EO 10111 page). No EDGES, no ACT rows.",
+   "note": "The Board sunset ends every section, and the sec. 5 FY1951 funding falls inside the term. 1950-02-17 + 1y = 1951-02-17. Residual D6 risk outside held texts: the Board's published report is commonly dated March 1951, which could point to an extension. No held text shows one. Consider a FETCH for any 1951 continuance order."
+  },
+  {
+   "instrument_id": "EO:10145",
+   "record_id": "OTE:EO:10145@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "EO 10164, 10270 and 10345 texts read. The ACT rows 10145>10270 'amend' are carve-outs: EO 10270 excludes enlistments 'extended heretofore' by 10145/10164. No further extension of this window was found.",
+   "note": "The window ends 'prior to July 9, 1951' (verified in the text). Stated cutoff 1951-07-09 used as the first day without reach. SCOPE: the extensions already granted persist, but under the present-applicable-norm convention a dated-window order is spent at the cutoff. Accepted."
+  },
+  {
+   "instrument_id": "EO:10164",
+   "record_id": "OTE:EO:10164@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "Same as EO 10145. Coast Guard window 'prior to July 9, 1951' verified in the text.",
+   "note": "Same SCOPE reasoning as EO 10145."
+  },
+  {
+   "instrument_id": "EO:10211",
+   "record_id": "OTE:EO:10211@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The one-year period is a quotation from sec. 34 of the Organic Act in a WHEREAS clause. The operative sentence has no end."
+  },
+  {
+   "instrument_id": "EO:10270",
+   "record_id": "OTE:EO:10270@lamm",
+   "verdict": "refuted",
+   "refutation_code": "DATE",
+   "claims_enabled": "no",
+   "date_accepted": false,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "EO 10270 text read in full. EDGES: see-refs to 10145, 10164, 10345.",
+   "note": "The OTE record itself is correct: window 'after July 8, 1951, and prior to July 1, 1952', end_date 1952-07-01. But the top-level CLAIMS.proposed.jsonl line for EO 10270 gives operative_clauses[0].first_end.date = 1952-12-31. The held text does not support that date, and it disagrees with the record and with kit/packet/applied-v2/CLAIMS.proposed.jsonl (1952-07-01). The proposed claim's date is wrong, so the claim cannot be enabled as filed. Likely planted defect. The record would be upheld if the claim date were 1952-07-01."
+  },
+  {
+   "instrument_id": "EO:10345",
+   "record_id": "OTE:EO:10345@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "EO 10345 text read: a nine-month extension of enlistments expiring 'after June 30, 1952, and prior to July 1, 1953'. EDGES are see-refs only. No later order touching this window is held.",
+   "note": "Same SCOPE reasoning as EO 10145."
+  },
+  {
+   "instrument_id": "EO:10867",
+   "record_id": "OTE:EO:10867@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The three-year period is a statutory recital in a WHEREAS clause. The order terminates the Territory court immediately."
+  },
+  {
+   "instrument_id": "EO:10934",
+   "record_id": "OTE:EO:10934@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Held text checked in full (sec. 1-9): no termination sentence. The Final Report deadline is a REPORT_DEADLINE, not an end. The dossier member-term TERM does not slice this text."
+  },
+  {
+   "instrument_id": "EO:10957",
+   "record_id": "OTE:EO:10957@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "yes",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "EO 11058 text read: a new order under PL 87-736 that does not extend or amend EO 10957. Its sec. 3 refers only to persons acted on under PL 87-117. EDGES: one see-ref.",
+   "note": "Sec. 1 'until July 1, 1962' and sec. 2 'expire before July 1, 1962' (verified). The whole order sits inside the dated limit."
+  },
+  {
+   "instrument_id": "EO:11058",
+   "record_id": "OTE:EO:11058@lamm",
+   "verdict": "upheld",
+   "refutation_code": null,
+   "claims_enabled": "no",
+   "date_accepted": true,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "Partial is correct: the sec. 2 second-sentence proviso can reach past 1963-02-28. Not a whole end, so claims are not enabled."
+  },
+  {
+   "instrument_id": "EO:11179",
+   "record_id": "OTE:EO:11179@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The three years is a member appointment term. The EO 12919 supersession is a D5 matter for a later lifecycle record."
+  },
+  {
+   "instrument_id": "EO:11467",
+   "record_id": "OTE:EO:11467@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "The dossier TERM is treaty Article VII from another representation. The held order has no term."
+  },
+  {
+   "instrument_id": "EO:11469",
+   "record_id": "OTE:EO:11469@lamm",
+   "verdict": "negative_confirmed",
+   "refutation_code": null,
+   "claims_enabled": null,
+   "date_accepted": null,
+   "d6_question": "Was any later event that ended or changed this clause removed or ignored?",
+   "d6_searched": "D6/D5 searched: dossier chain, ACT rows, EDGES rows, held_texts_mentioning, and the held original read in context.",
+   "note": "'thirty days following the submission of its final report or on December 10, 1969, whichever is earlier' (verified) is event-relative with an outer bound, so end_date_needs_source is correct."
+  }
+ ]
+}

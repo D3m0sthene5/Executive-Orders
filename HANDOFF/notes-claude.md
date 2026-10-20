@@ -2,6 +2,106 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET (evening): handoff to a fresh coordinator
+
+- **Since the afternoon entry:**
+  - Lambertini III: 52 of 82 upheld, 49 pass the checker.
+  - Y2LEAD probe: 7 of 50 upheld; the gate failed and the line stops.
+  - Lamm III: 2 claims, plus 84 PEB report-date fetch lines.
+  - Near-ready fix-ups: 4 claims.
+  - Sinclair re-freeze: the owner adoption batch is now 47 NO proposals (Bowditch 15, Sinclair 32).
+- **Expected:** ready count rises from 176 by about 60 once the tracker runs on these claims.
+- **Next for the new coordinator** (follow `research/plans/CONTINUOUS_PROTOCOL.md`):
+  1. Lambertini III batch 02 (8 claims, never reviewed) and re-review of EO 14055, 13986, 13123 and 5624.
+  2. Sinclair EO 11209, 13555 and 9294 producer fix.
+  3. When the PEB report dates land (84 queued), report-relative claims, after the owner's report-deadline ruling.
+  4. Re-run the day review (Llull rank).
+- **Lines stopped:** Craigellachie, Y2LEAD, and the Lamm sunsets are exhausted.
+
+## 2026-10-20 ET (afternoon): continuous run, ready 135 -> 176
+
+- **Done:**
+  - Claims from Lambertini (per ending instrument), Rastell (EO 12553), Lamm (sunsets) and Bowditch Y2 made 41 of 45 claimed orders ready.
+  - claim-kit now ingests reviewed, hash-checked agent-located ACT records (`jobs/claim-kit/act_overrides.py`; 163 records).
+  - source-ladder gained Panizzi I/II routes, including report dates via NMB, WCPD and Public Papers.
+  - Mountweazel planted controls: plants now live in scratch copies only.
+  - Sinclair Y1 sweep: 35 NO upheld of 150, proposals only.
+  - Day review: `research/production/day-review-2026-10-20/REPORT.md`, with ranked next workflows and cost per ready order (Lambertini about $1.55, Lamm about $4.40).
+- **Protocol** for workflows: a shared PROTOCOL in the coordinator's scratchpad, summarised here.
+  - Preregister Llull forecasts (ledger-only commit, no push).
+  - Use an independent Opus reviewer with held sources and a D6 step.
+  - Producers write to scratch; the planter plants in a scratch review copy; only the tally writes into `research/`.
+  - Never retry an auto-mode denial.
+- **Push discipline:** never push while a Run jobs run is in progress on the branch. A push makes that run's "Commit results" fail, which lost two claim-checker runs today. Batch commits and push once.
+- **Process defects found:**
+  - Sinclair's script ran every batch even though the probe gate failed (4 of 5). Gates must be enforced in the workflow script.
+  - Sinclair batches 01-05 are stale-generation and need a re-freeze.
+- **Next (day-review ranking):**
+  1. Lamm III sunsets and the PEB report-date queue (running).
+  2. Lambertini III (running).
+  3. Near-ready fix-ups (about 7 orders).
+  4. Y2LEAD probe of 50, excluding EO 12553 targets.
+  5. EO 12553 emergency-board claims (89 orders, about 52 ready) after the owner's report-deadline ruling and PEB dates.
+  6. Report-relative claims as dates land.
+- **Asks:**
+  - `@Owner`, ranked by orders unblocked:
+    1. Report-deadline ruling: about 52 ready soon, the most of any ruling.
+    2. Transcription-as-copy: Lamm retirement exemptions.
+    3. Y1 batch adoption: 15 rechecked, plus 35 Sinclair and 6 current.
+    4. ProQuest/NYU request.
+    5. Lamm "further exempt" and "until" readings (EO 8554, 8392, 8828, 8058, 7300, 6933).
+  - `@Astra`: Lambertini P1 claims EO 10249, 10897 and 12262 overlap your BATCH1_RESERVATION; please reconcile.
+
+## 2026-10-20 ET: thinking tools (Llull, Polya, Mountweazel), Craigellachie, Panizzi; continuous run paused at cost cap
+
+- **Done:** `jobs/llull/` checks plans before they run: Brier forecast ledger, prerequisite census, premortem
+  wheel, rank, selfscore. Postmortem of 23 past plans: 12 of 15 scored plans missed, median delivered/forecast
+  0.036, 10 of 12 misses mechanically predictable. `jobs/polya/` measures alternative units of work: owner
+  rulings reach 89% of not-ready orders; no frame reaches savings_residuals or counterevidence.
+  `jobs/mountweazel/` calibrates reviewers with planted defects. MW-C2 caught 9/10 (Opus, packet only),
+  8/10 (Opus with sources) and 6/10 (Sonnet); all missed one D6 (removed later event). Use Opus with
+  sources plus a D6 step. Bowditch Y1's 0/15 certifies nothing.
+  Craigellachie: 23 last-step orders, 0 upheld, all blocked on unheld sources (27 FETCH lines).
+  Panizzi: `jobs/source-ladder` now routes citations embedded in prose, plus Public Law and Reorganization
+  Plan routes, queue-first (50 items per run); expect about 37 real documents per run.
+- **Running:** the source-ladder Actions run from commit b5aeb93d0. Check `jobs/source-ladder/output/STATUS.json`,
+  then retry Craigellachie and Bowditch-Y2 orders whose sources arrived (Llull rank #2: Y2LEAD batches).
+- **Next (continuous queue, 3 workflows at a time):**
+  1. Retry claims after fetches land.
+  2. ACT-provision producer probe (reach 1,213).
+  3. A unit for savings_residuals and counterevidence.
+  4. Own-term family probes.
+  5. Mountweazel check fix for D8 false positives.
+  6. Routes for 36 unservable lines (report dates, land records).
+- **Cost:** session $87.5 of token value; paused at the owner's $100/day cap.
+- **Asks:** `@Owner`:
+  1. Raise the cap to continue?
+  2. Batch adoption of reviewed statuses (reach 11,613)? Re-review Y1 with Opus plus sources first.
+  3. Send the ProQuest/NYU request?
+  4. Is a compiled transcription an acceptable copy (codebook reading)?
+  5. 138 ready and 0 certified: should human review start?
+
+## 2026-10-20 ET: Panizzi, source-ladder now resolves citations buried in prose and works the queue first
+
+- **Done:** `jobs/source-ladder/embedded_cites.py` (+ `ladder_queue.py`, `fetch_ladder.py`, `plan.py`, `job.py`, README,
+  `test_panizzi_resolvers.py`; 77 tests pass, and the tests of the jobs that import the ladder pass). Prose-only FETCH_QUEUE
+  lines are split into one item per embedded Stat./Pub. L./FR/U.S.C./CFR/Reorganization Plan cite. New routes: Public Law
+  by Congress and number (govinfo statute link service, checked back to 52 Stat.), and Reorganization Plan through the
+  Title 5 Appendix heading, then the plan's own Stat./FR page. Default plan: queue-first, 50 items, 300 requests, 800 MB.
+- **Review fixes (same day):** a Public Law or plan is no longer dropped because of an unrelated Stat. cite (only a cite in a
+  volume of that Congress drops it); `5USC3345etseq` gives section 3345; a prose line with a link falls back only to the
+  official copy of the SAME document as its link; no Wayback copy of the Title 5 Appendix, and a U.S. Code compilation is
+  rejected as a plan's source; the eCFR renderer-API route was removed (robots.txt disallows it); a govinfo PREMIS/MODS
+  metadata file is logged but never accepted as the document; no-route items are recorded before the plan.
+- **Preview (container, not committed):** the default plan worked 50 queue items: 44 found, 6 retry_later, 108 requests,
+  389 MB, 654 s. Of the 44, 5 are NARA finding-aid pages given by the requester and 1 was PREMIS metadata (now rejected).
+- **Running:** pushing a non-`output/` change under `jobs/source-ladder/` (or to `research/readiness/`) starts the Actions job.
+  Check `jobs/source-ladder/output/STATUS.json`, then `SUMMARY.json` (`found`, `embedded_cite_items`, `bytes_downloaded`).
+- **Not fixed:** 52 queue lines still have no route (report dates, land records, agency orders, pay calendars and others);
+  files over the shared 100 MB per-file pool bound (27 FR 2983 and 45 FR 44245 issues, 95 Stat. 357 granule).
+- **Do not:** treat a found statute or CFR page as authentication, or a current CFR/Code edition as the text in force at the
+  order's date (5 CFR 6 is served as the 2026 edition, which does not answer the 1953 question).
+
 ## 2026-10-20 ET: Bowditch, the Y2 claim-factory probe failed its gate and Y1 passed
 
 - **Done:** random probe of the funnel plan (`research/excavator/bowditch-2026-10-20/REPORT.md`). **Y2** covered 50

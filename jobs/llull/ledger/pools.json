@@ -1,0 +1,214 @@
+{
+ "schema": "llull.pools/1",
+ "note": "Custom census pools (declarative; no code runs). Y1, Y2 and X1 are built in and cannot be redefined. Row filters: from (all | another pool), where (tracker column = value | [values] | {not: ...}), eo_gte, eo_lt, open_steps_max/min (count of step_* columns that are open), ids_file (repo path, one instrument_id per line), gate_states ({gate: [allowed states]}). default_requires are the gates the census counts. Recorded censuses store the definition used.",
+ "pools": {
+  "CRAIG": {
+   "title": "Craigellachie last-step orders",
+   "describe": "claim present, not ready, exactly the ending/current basis step open (the 23-order pool of research/excavator/craigellachie-2026-10-20)",
+   "where": {"claim_present": "yes", "ready_for_human_review": "no", "step_ending_or_current_basis": "open"},
+   "open_steps_max": 1,
+   "default_requires": ["ending_or_current_lead2"]
+  },
+  "NR": {
+   "title": "claim present, not ready (claim repair)",
+   "describe": "any order with a claim that is not ready for human review",
+   "where": {"claim_present": "yes", "ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "NEAR": {
+   "title": "near-ready",
+   "describe": "not ready, at most one applicable step still open",
+   "where": {"ready_for_human_review": "no"},
+   "open_steps_max": 1,
+   "default_requires": ["status_present", "original_text_held"]
+  },
+  "Y2NO": {
+   "title": "Y2 orders with provisional NO",
+   "describe": "Y2 pool, provisional status no",
+   "from": "Y2",
+   "where": {"provisional_status": "no"},
+   "default_requires": ["ending_or_current_lead2"]
+  },
+  "Y2YES": {
+   "title": "Y2 orders with provisional YES",
+   "describe": "Y2 pool, provisional status yes",
+   "from": "Y2",
+   "where": {"provisional_status": "yes"},
+   "default_requires": ["ending_or_current_lead2"]
+  },
+  "Y2LEAD": {
+   "title": "Y2 lead-selected",
+   "describe": "Y2 orders whose ending/current gate is held or a lead (what a lead-selected batch would draw from)",
+   "from": "Y2",
+   "gate_states": {"ending_or_current_held": ["held", "lead"]},
+   "default_requires": ["ending_or_current_lead2"]
+  },
+  "Y1END": {
+   "title": "Y1 with an ending instrument if it is a NO",
+   "describe": "Y1 pool, counting ending_held_if_no",
+   "from": "Y1",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "X1S": {
+   "title": "pre-1937 with status (text route)",
+   "describe": "X1 pool with a provisional status yes/no: the ProQuest/CSC text route",
+   "from": "X1",
+   "where": {"provisional_status": ["yes", "no"]},
+   "default_requires": ["original_text_held", "ending_or_current_lead2"]
+  },
+  "X1PILOT": {
+   "title": "pre-1937 with status and held text (X1 pilot eligibility)",
+   "describe": "X1 orders that hold both a provisional status and an original text: the eligibility rule of the X1 pilot (research/production/x1-2026-10-19/REPORT.md ran all 52 such orders at its commit; this tracker counts the rows that hold both today)",
+   "from": "X1",
+   "gate_states": {"status_present": ["held", "na"], "original_text_held": ["held", "na"]},
+   "default_requires": ["status_present", "original_text_held"]
+  },
+  "X1T": {
+   "title": "pre-1937 with text, no status (status route)",
+   "describe": "X1 pool with held text and no status: the type-rule status route",
+   "from": "X1",
+   "where": {"step_original_text": "done", "provisional_status": ""},
+   "default_requires": ["ending_held_if_no"]
+  },
+  "RASTELL": {
+   "title": "ACT provision missing, acting text held (Rastell)",
+   "describe": "decided not-ready orders whose claim-kit dossier lists 'target provision not located' for an actor whose mechanism is ending/changing (revocation, supersession, termination, amendment, continuation, ...) and whose held text is acceptable_as_original; excludes 'See:' cross_references and 'acting text absent' (research/excavator/rastell-2026-10-20)",
+   "ids_file": "jobs/llull/ledger/pool_ids/RASTELL.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "RASTELL12553": {
+   "title": "Rastell sub-pool: EO 12553 targets",
+   "describe": "RASTELL orders whose missing ACT provision is EO 12553 (1986 revocation table)",
+   "from": "RASTELL",
+   "ids_file": "jobs/llull/ledger/pool_ids/RASTELL12553.txt",
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMBS": {
+   "title": "Lambertini savings S0 (shared ending-instrument reading)",
+   "describe": "decided-NO not-ready orders with savings open whose single EO ending instrument's held text names them with no savings or transfer wording near or anywhere (jobs/lambertini S0_none_candidate), original text and counterevidence done; excludes Rastell batch orders (research/plans/LAMBERTINI_DESIGN.md)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMBS.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMBC": {
+   "title": "Lambertini pre-1937 counterevidence record, no lead",
+   "describe": "decided not-ready orders blocked on counterevidence by NO_OFR_CATALOG_ENTRY with original text done and no later-events, current-law or WPA lead (jobs/lambertini C0_no_lead_found)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMBC.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMM": {
+   "title": "own fixed term, not ready (Lamm)",
+   "describe": "not-ready orders in claim-kit family own_term:fixed_term whose dossier holds a text (original_source_id set), excluding orders in Rastell batches, Lambertini pools LAMBS/LAMBC and any order with a claim filed (research/excavator/lamm-2026-10-20; Polya reach 650)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMM.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMMSUN": {
+   "title": "Lamm sub-pool: body/order sunset wording",
+   "describe": "LAMM orders whose best fixed_term sentence (zero-agent screen) is a sunset of a body or the order (shall terminate/expire/remain in effect), an event-relative sunset, a dated period or a member-term clause; excludes retirement-age exemptions and deadline noise",
+   "from": "LAMM",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN.txt",
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "CRAIG2": {
+   "title": "Craigellachie II: blocker source now held",
+   "describe": "not-ready orders blocked in Bowditch Y2 or Craigellachie on ending_or_current_basis whose FETCH_QUEUE request was found by the source-ladder run of 2026-10-20 05:35Z (45 new sources) and whose held text was verified as the requested document; excludes orders in Rastell/Lambertini batch files (EO 10976, 11049), orders whose end also needs an EO 12553 ACT record from the Rastell 12553 lane (EO 11387, 11797), and finds that were the wrong document, truncated before the needed section, or gzip-garbled (EO 10440, 11468, 12499, 12502, 11941, 12335, 11065, 11145) (research/excavator/craigellachie-ii-2026-10-20)",
+   "ids_file": "jobs/llull/ledger/pool_ids/CRAIG2.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMBS2": {
+   "title": "Lambertini II scale pool (S0 savings, report-free endings)",
+   "describe": "LAMBS remainder after the P1 probe (20) and exclusions: Rastell and Craigellachie II batch orders, Astra reserved/own39/claimed orders and any order with an existing claim; orders whose first own-terms end needs a report date (emergency boards, boards of inquiry, bodies ending N days after a report) pending the owner's report-deadline ruling; EO 12553 targets with no located EO 12553 ACT record (Rastell 12553 lane). 24 orders, 10 ending instruments (research/excavator/lambertini-2026-10-20/scale)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMBS2.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMB3": {
+   "title": "Lambertini III (single-instrument whole revocations, all savings classes)",
+   "describe": "decided-NO not-ready orders whose draft whole-order end names exactly one EO actor by revocation/supersession with no partial qualifier, that actor's held official text names the order (jobs/lambertini SAVINGS_PACKETS) and a claim-kit ACT revoke/supersede record from it exists, original_text step done; excludes EO 12553 targets (Rastell III), orders with an earlier whole-scope end by another actor, own dated end before the revocation, any own-term end tied to a report (emergency boards, boards of inquiry, end after report), revocations effective on an unheld external date (EO 11012 sec. 3 regulations date; agency_variable), Rastell batch/pool orders, Astra BATCH1_RESERVATION/own39/claimed orders, any order with a filed claim, prior Lambertini P1/LAMBS2 orders and other scratch batch orders. 82 orders, 28 ending instruments (scratch lambertini3/pool.py)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMB3.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "R12553C": {
+   "title": "R12553 claims pool: EO 12553 targets claims-enabled by Rastell ACT records",
+   "describe": "The 100 EO 12553 targets whose EO 12553 ACT record Rastell batches 03-08 upheld with claims_enabled yes (research/readiness/act_overrides/rastell-2026-10-20.jsonl, ingested by jobs/claim-kit/act_overrides.py), minus: 89 emergency boards, boards of inquiry and amendments of them whose own first end needs an actual report date (owner's report-deadline ruling pending); 3 with an own dated end before 1986-02-25; 3 prior Lambertini orders (reasons overlap: 90 held out in all); Astra reserved/own39/claimed, filed claims, LAMBS2/LAMB3 and other scratch batch orders (none left after the above). 10 orders, one ending instrument (EO 12553, on_signing reading 1986-02-25). The census reads the committed claim-kit output, which predates act_overrides ingestion (scratch r12553/pool.py)",
+   "ids_file": "jobs/llull/ledger/pool_ids/R12553C.txt",
+   "where": {
+    "ready_for_human_review": "no"
+   },
+   "default_requires": [
+    "status_present",
+    "original_text_held",
+    "ending_or_current_lead2"
+   ]
+  },
+  "SINCLAIR": {
+   "title": "Sinclair: Y1 no-status modern orders after exclusions",
+   "describe": "Y1 (numeric EO >= 7532, no provisional status, not ready) under the Bowditch Y1 rule on the current tracker (no claim; not in any claim file, excavator decisions/claims/overlays, claim-kit pilot freeze, lock or reservation), minus Bowditch's 50 Y1 orders and every order named in the running Lambertini III and Lamm II batches/pools and in Llull pool_ids lists. 4,137 orders (scratch sinclair/pool.py)",
+   "from": "Y1",
+   "ids_file": "jobs/llull/ledger/pool_ids/SINCLAIR.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "SINCLAIRS": {
+   "title": "Sinclair sample: seeded 150 of SINCLAIR",
+   "describe": "random.Random('sinclair-2026-10-20:y1').shuffle(SINCLAIR sorted by EO number), first 150; 6 batches of 25 (batch 01 is the probe)",
+   "from": "SINCLAIR",
+   "ids_file": "jobs/llull/ledger/pool_ids/SINCLAIRS.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "BOWY1NO": {
+   "title": "Bowditch Y1 accepted NO proposals (re-review population)",
+   "describe": "the 15 Y1 NO status proposals accepted by the Bowditch y1_01/y1_02 reviewers and re-reviewed by an Opus reviewer with held sources and a D6 step (research/excavator/bowditch-2026-10-20/Y1_RECHECK_OPUS_SOURCES.json). Conditional on prior acceptance: not a random Y1 draw",
+   "from": "Y1",
+   "ids_file": "jobs/llull/ledger/pool_ids/BOWY1NO.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "LAMMSUN3": {
+   "title": "Lamm III: LAMMSUN remainder not yet attempted",
+   "describe": "LAMMSUN orders with no OWN_TERM_END_RECORDS line under research/excavator/lamm-2026-10-20 (probe or sunsets batches), excluding Lambertini III (LAMB3 and scratch lambertini3 batches), Sinclair (SINCLAIRS and scratch sinclair batches), any order with a claim filed and ready orders: 25 event-relative (report) sunsets, 7 B/D sunsets on provisional-YES orders (trap check), 6 B sunsets whose original text step is open. 38 orders (scratch lamm3_pool.py)",
+   "from": "LAMMSUN",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN3.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "NEARFIX": {
+   "title": "Near-ready fix-ups: single-defect orders from today's claims",
+   "describe": "10 not-ready orders each one defect from ready: today's filed claude-* claims not ready (EO 11800 claim-check fail; EO 10110 Opus refetch; EO 10145, 10957 Opus media partly resolved), today's Lamm upheld lines not filed (EO 12358, 12528 must cite extenders EO 12415, 12604; EO 13147 sec1 date), and day-review near-ready older claims (EO 11708, 11812 quarantined relationships; EO 9789 open source audit). Excludes two-defect EO 12660 and 10270 (scratch nearready/list.json)",
+   "ids_file": "jobs/llull/ledger/pool_ids/NEARFIX.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held"]
+  },
+  "Y2LEADX": {
+   "title": "Y2LEAD minus exclusions (y2lead probe)",
+   "describe": "Y2LEAD (NO orders with a whole-scope ending ACT/TERM held, YES orders with a CURRENT predicate lead) minus EO 12553 targets (any EO 12553 ACT record, R12553 pools, day-review R12553ACT ids), filed claims, Astra reservations/claims, Lambertini III / Lamm III / Lamm I / R12553 / Craigellachie II scratch batch orders and their Llull pools, Bowditch exclusions and its two attempted Y2 batches, and orders in excavator ORDER_LOGs. Rastell ACT batch orders (non-12553) stay in. 331 orders: 308 YES current-lead, 23 NO whole-end held (scratch y2lead/pool.py)",
+   "from": "Y2LEAD",
+   "ids_file": "jobs/llull/ledger/pool_ids/Y2LEADX.txt",
+   "default_requires": ["ending_or_current_lead2"]
+  },
+  "LAMB3C": {
+   "title": "Lambertini III coda (batch 02 and plant-rejected re-production)",
+   "describe": "12 LAMB3 orders: the 8 batch 02 EO 14148 targets that were produced but never reviewed (claim lines lost) and EO 14055, EO 13986, EO 13123, EO 5624, rejected in Lambertini III only because a planter planted a wrong first-end date in the review copy (research/excavator/lambertini-2026-10-20/instruments/REPORT.md)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMB3C.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "SINCM": {
+   "title": "Sinclair mend: 3 held-back batch-02 orders and 6 plant-lost reviews",
+   "describe": "9 SINCLAIRS orders with a genuine producer NO proposal but no valid overlay proposal: batch-02 EO 11209, 13555, 9294 (reviewer-upheld; overlay-propose rejects all_history_observations_must_be_reviewed because observations_reviewed lists extra API: ids; need producer fix, new blank sheet and sign-off) and the 6 orders whose review was lost because a planter used them as planted controls (01 EO 9762, 02 EO 10704, 03 EO 12573, 04 EO 13975, 05 EO 11796, 06 EO 12604; research/excavator/sinclair-2026-10-20/PLANTED_CONTROLS_NOTE.md). Prior decision files lived in lost scratch; re-freeze at the current generation is needed for all 9",
+   "from": "SINCLAIRS",
+   "ids_file": "jobs/llull/ledger/pool_ids/SINCM.txt",
+   "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "LAMB4W": {
+   "title": "Lambertini IV whole-scope (located whole-scope ACT record)",
+   "describe": "16 of the LAMB4X screen (65 unclaimed, never-attempted decided-NO orders, each with a single held acting EO other than EO 12553 and original text done) that have a located whole-scope ACT record (research/production/day-review-2026-10-20/RERANK-evening.md, LAMB4W_ids.txt). Pending owner rulings report-deadline and transcription-as-copy: orders needing them are blocked, not decided.",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMB4W.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  }
+ }
+}

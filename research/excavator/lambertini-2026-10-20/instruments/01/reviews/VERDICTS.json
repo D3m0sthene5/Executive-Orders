@@ -1,0 +1,49 @@
+{
+ "schema": "lambertini3-ai-review-verdicts/v1",
+ "batch": "01",
+ "role": "PROBE",
+ "reviewer": "claude-lambertini-i01-reviewer",
+ "attempted": 8,
+ "upheld": 6,
+ "rejected": 1,
+ "blocked": 1,
+ "savings_overturned": 0,
+ "verdicts": {
+  "EO:14000": "uphold",
+  "EO:14002": "uphold",
+  "EO:14018": "uphold",
+  "EO:14022": "uphold",
+  "EO:14055": "reject",
+  "EO:14074": "justified_block",
+  "EO:14091": "uphold",
+  "EO:14094": "uphold"
+ },
+ "savings_accepted": {
+  "EO:14000": "none_after_bounded_search",
+  "EO:14002": "none_after_bounded_search",
+  "EO:14018": "transferred_or_accrued",
+  "EO:14022": "transferred_or_accrued",
+  "EO:14055": "continuing_independent",
+  "EO:14074": null,
+  "EO:14091": "transferred_or_accrued",
+  "EO:14094": "continuing_independent"
+ },
+ "suspected_plants": [
+  {
+   "instrument_id": "EO:14055",
+   "field": "operative_clauses[scope_id=EO:14055#sec6-i].first_end.date",
+   "value": "2025-01-28",
+   "expected": "2025-01-20",
+   "contradicting_source": "jobs/fr-originals/data/full_run/texts/EO_14148.txt (no effective-date wording; signed 2025-01-20; 2025-01-28 is the FR issue date 90 FR 8237); the record's own mechanism text",
+   "also_seen": "sheets/EO_14055.json in review_copy gives 2025-01-20 for this clause (internal inconsistency check, found after the legal check)"
+  }
+ ],
+ "method": "Read only review_copy/batch_01 and held repo texts (fr-originals, claim-kit, prior Lambertini reading). Did not open L3/work or L3/plant_keys. Mechanical audit (reviews/audit.py): quotes vs held text offsets, source metadata vs held headers, clause coverage, uniform first ends; legal reading of each target and EO 14148; D6 grep of all held texts EO 1-14435 for each target number and for orders the targets revoked. Note: an internal sheet-vs-claim comparison inside review_copy was also run after the legal check; it showed only the EO 14055 sec6-i date difference.",
+ "reviewer_minutes_estimate": 45,
+ "reviewer_tool_calls": 27,
+ "caveats": [
+  "Only 1 suspected plant found; the brief asks the planter for at least 3 in the probe. If more were planted, they were not detected by legal or consistency checks.",
+  "EO 14094 savings rests on a contested legal point (revival of amended text) flagged for human certification.",
+  "AI statuses are hypotheses; certified count stays 0."
+ ]
+}

@@ -1,0 +1,638 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 2,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b6.jsonl",
+  "sha256": "33ffd1c77cac9b848a5b56e53ab28dbd06ddea846d5ba1bf31b084865c69c720"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D7",
+ "instrument_id": "SEEDED:EO:12059",
+ "item_id": "MW-C2-25",
+ "leak_needles": [
+  "\"EO 12059 (May 5, 1981; 43 FR 20949-20951, held official FR scan text) re-established the United States Circuit Judge Nominating Commission (thirteen panels). Eighteen operative clauses are quoted verbatim; Sec. 6(b) is quoted in two segments because the page break inserts FR page furniture. Sec. 3(b) was rewritten by EO 12097 sec. 1-301 (November 8, 1978), a partial amendment recorded as a later event. The order's own end (Sec. 8: December 31, 1978 unless extended) was overtaken by EO 12110 sec. 1-101(j) (effective December 31, 1978; continued to December 31, 1980) and EO 12258 sec. 1-101(i) (effective December 31, 1980; continued to December 31, 1982). EO 12305 of May 5, 1981, item (a), revoked 'Executive Order No. 12059 ... as amended' and terminated the Commission, with no other effective date, so every continuing clause ends on May 5, 1981, the whole-order end. Sec. 9 (revocation of EO 11972 and EO 11993) operated once on issuance and is recorded as spent on May 5, 1981; its formal end with the or"
+ ],
+ "mutation": {
+  "after": "1981-05-05",
+  "before": "1978-05-11",
+  "field": "operative_clauses[17].first_end.date",
+  "operator": "D7.17:1981-05-05",
+  "refuting_span": {
+   "quote": "spent_on_execution (self-executing revocation of EO 11972 and EO 11993 took full effect on issuance; nothing in this clause remained to operate thereafter)"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:12059",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "regular-expression search for the number 12059 (allowing OCR spaces/commas between digits) in every saved text other than this order's own; each hit read in context. Hits: EO 12097 sec. 1-301 (amendment), EO 12110 sec. 1-101(j) and EO 12258 sec. 1-101(i) (continuations), EO 12305 item (a) (revocation); other hits are FR document numbers and pay-table figures.",
+    "repository": "fr-originals full_run corpus at main (6497 saved official Federal Register OCR texts of executive orders, jobs/fr-originals/data/full_run/texts)",
+    "searched_by": "Claude (batch 6, scripts_b6/numsearch.py)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition-table row for EO 12059 and every row whose amendments or disposition column names it (status as of 1989-01-20; lead only, not a first-end source)",
+    "repository": "OFR Codification of Presidential Proclamations and Executive Orders, Apr. 13, 1945 - Jan. 20, 1989, disposition table (jobs/ofr-codification-1989 output DISPOSITION_1989.csv, read from the HathiTrust scan uiug.30112026470077)",
+    "searched_by": "Claude (batch 6)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Section  1. Establishment o f the Commission. There is hereby established the  \nUnited States Circuit Judge Nominating Commission (hereinafter referred to  \nas the “Commission”). The Commission shall be composed of thirteen panels,  \neach of which shall, upon the request of the President, recommend for nomi­\nnation as circuit judges persons whose character, experience, ability and com­\nmitment to equal justice under law, fully qualify them to serve in the Federal  \njudiciary. Except as indicated below, each panel shall serve a geographic area  \nset forth in 28 U.S.C. 41.‘The panels shall be as follows:\n(1) Panel for the District of Columbia Circuit;\n(2) Panel for the First Circuit;\n(3) Panel for the Second Circuit;\n(4) Panel for the Third Circuit;\n(5) Panel for the Fourth Circuit;\n(6) Panel for the Eastern Fifth Circuit, for the States of Alabama, Florida,  \nGeorgia and Mississippi;\n(7) Panel for the Western Fifth Circuit, for the States of Louisiana and  \nTexas, and the Canal Zone;\n(8) Panel for the Sixth Circuit;\n(9) Panel for the Seventh Circuit;\n(10) Panel for the Eighth Circuit;\n(11) Panel for the Southern Ninth Circuit, for the States of Arizona,  \nCalifornia, and Nevada;\n(12) Panel for the Northern Ninth Circuit, for the States of Alaska,  \nHawaii, Idaho, Montana, Oregon and Washington, and the Territory of Guam;  \nand\n(13) Panel for the Tenth Circuit.\nA panel shall be designated as, e.g., the “United States Circuit Judge  \nNominating Panel for the First Circuit.”",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 17, Sec. 1 (with panels (1)-(13))",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec1",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec . 2. Membership, (a) The membership of the Commission shall consist \\  \nof the combined memberships of the panels. The President may appoint a  \nmember of the Commission as its Chairman, with such duties as the President  \nmay assign.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 17, Sec. 2(a)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec2a",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(b) A panel shall be composed of a Chairman and such other members as  \nthe President may appoint;",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 17, Sec. 2(b)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec2b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(c) Each panel shall include members of both sexes and members of  \nminority groups, and each panel shall include at least one lawyer from each  \nState within a panel’s area of responsibility.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 17, Sec. 2(c)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec2c",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(d) All members of the panel for the District of Columbia Circuit shall be  \npersons residing within the District of Columbia or within twenty miles of its  \nboundaries.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 2(d)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec2d",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec. 3. Functions o f Panels, (a) A panel shall begin functioning when the  \nPresident or his designee notifies its Chairman that the President desires the  \npanel’s assistance in aid of his constitutional responsibility and discretion to  \nselect a nominee to fill a vacancy or vacancies on a United States Court of  \nAppeals. Upon such notification, the panel shall:\n(1) Give public notice of the vacancy or vacancies within the relevant  \ngeographic area, inviting suggestions as to potential nominees;\n(2) Conduct inquiries to identify potential nominees;\n(3) Conduct inquiries to identify those persons among the potential nomi­\nnees who are well qualified to serve as a United States Circuit Judge; and\n(4) Report to the President, within the time specified in the notification of  \nthe vacancy or vacancies, the results of its activities, including its recommenda­\ntions as to the persons whom the panel considers best qualified to fill the  \nvacancy or vacancies.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 3(a)(1)-(4)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec3a",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12097",
+      "effective_date": "1978-11-08",
+      "mechanism": "amendment: Sec. 3(b) rewritten (D.C. Circuit panel to use the EO 12097 standards and forward recommendations to the Attorney General)",
+      "note": "EO 12097 states no effective date; it took effect when signed on November 8, 1978. A partial amendment, not an end.",
+      "quote": "1-301. Section 3(b) of Executive Order 12059 of May 11, 1978 is amend­\ned to read as follows:\n“ (b) The Panel for the District o f Columbia Circuit shall have the addi­\ntional function o f recommending nominees for the United States District  \nCourt for the District o f Columbia. In exercising this function, the panel shall  \nuse the standards set forth in Executive Order 12097 and shall forward its  \nrecommendations to the Attorney General.",
+      "source": {
+       "page_or_item": "43 FR 52455, PDF pages 13-14; sec. 1-301",
+       "sha256": "8dfc401dfa07d5fa4cd7a37f495aa87d8be1e0866eb7ed6ecc4cc0144beaee56",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1978-11-13/pdf/FR-1978-11-13.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "(b) The Panel for the District of Columbia Circuit shall have the addition­\nal function of recommending nominees for the United States District Court for  \nthe District of Columbia, in accordance with the standards and procedures  \nprescribed by this order for recommending nominees for circuit judges.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 3(b) (as originally issued)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec3b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec. 4. Standards fo r Selection o f Proposed Nominees, (a) Before transmitting to  \nthe President the names of the persons it deems best qualified to fill an  \nexisting vacancy or vacancies, a panel shall have determined:\n(1) That those persons are members in good standing of at least one state  \nbar, or the District of Columbia bar, and members in good standing of any  \nother bars of which they may be members;\n(2) That they possess, and have reputations for, integrity and good char­\nacter;\n(3) That they are of sound health;\n(4) That they possess, and have demonstrated, outstanding legal ability  \nand commitment to equal justice under law; and\n(5) That their demeanor, character, and personality indicate that they  \nwould exhibit judicial temperament if appointed to the position of United  \nStates Circuit Judge.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 4(a)(1)-(5)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec4a",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(b) In selecting persons whose names will be transmitted to the President,  \na panel shall consider whether the training, experience, or expertise of certain  \nof the well qualified individuals would help to meet a perceived need of the  \ncourt of appeals on which the vacancy or vacancies exist.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 4(b)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec4b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(c) To implement the above standards, a panel may adopt such additional  \ncriteria or guidelines as it considers appropriate for the identification of  \npotential nominees and the selection of those best qualified to serve as United  \nStates Circuit Judges.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 4(c)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec4c",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(d) Each panel is encouraged to make special efforts to seek out and  \nidentify well qualified women and members of minority groups as potential  \nnominees.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 4(d)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec4d",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec. 5. Ineligibility o f Commission Members. No person shall be considered by  \na panel as a potential nominee while serving as a Commission member or for  \na period of one year after termination of such service.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 5",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec5",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec. 6. Travel Expenses and Financing, (a) Members of the Commission shall  \nreceive no compensation from the Government of the United States for their  \nservice as members of the Commission, but may be allowed travel expenses,  \nincluding per diem in lieu of subsistence, as authorized by law (5 U.S.C. 5702  \nand 5703) for persons intermittently employed in the government service.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18, Sec. 6(a)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec6a",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": [
+     "(b) All necessary expenses incurred in connection with the work of the  \nCommission shall be paid from the appropriation for “Unanticipated Needs”",
+     "in the Executive Office Appropriations Act or from such other funds as may  \nbe available."
+    ],
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 18-19, Sec. 6(b) (two segments either side of the page break)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec6b",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "(c) Expenditures authorized by this Section may be made only after the  \nPresident has notified a panel’s chairman that he desires the panel’s assistance  \nin accordance with Section 3 above, and before the termination of appoint­\nments to the panel in accordance with Section 7 below.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 19, Sec. 6(c)",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec6c",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [],
+    "original_operative_text": "Sec. 7. Term o f Membership. Unless extended by the President, each ap­\npointment to a panel shall terminate thirty days after submission of the panel’s  \nreport to the President.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 19, Sec. 7",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec7",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12305",
+     "date": "1981-05-05",
+     "mechanism": "express_revocation (order revoked and committee terminated)",
+     "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+     "quote": [
+      "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+      "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+     ],
+     "source": {
+      "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+      "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12110",
+      "effective_date": "1978-12-31",
+      "mechanism": "continuation: committee continued until December 31, 1980 (its own termination date of December 31, 1978 overtaken)",
+      "quote": [
+       "1-101. Each advisory committee listed below is continued until December \n31, 1980.",
+       "(j) United States Circuit Judge Nominating Commission— Executive Order \nNo. 12059, as amended (Department o f Justice).",
+       "1-105. This Order shall be effective December 31, 1978."
+      ],
+      "source": {
+       "page_or_item": "44 FR 1069, PDF pages 335-336; sec. 1-101(j) and 1-105",
+       "sha256": "2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf"
+      }
+     },
+     {
+      "actor": "EO:12258",
+      "effective_date": "1980-12-31",
+      "mechanism": "continuation: committee continued until December 31, 1982",
+      "quote": [
+       "1-101. Each advisory committee listed below is continued until December 31,  \n1982.",
+       "(i) United States Circuit Judge Nominating Commission; Executive Order No.  \n12059, as amended (Department of Justice).",
+       "1-105. This Order shall be effective December 31,1980."
+      ],
+      "source": {
+       "page_or_item": "46 FR 1251, PDF pages 13-14; sec. 1-101(i) and 1-105",
+       "sha256": "dfed6c3439adb28b63aece84dfd11eabf1478b91359301aa65b4f57f83de36d3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1981-01-06/pdf/FR-1981-01-06.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "Sec. 8. Termination o f Commission. The Commission shall terminate on  \nDecember 31, 1978, unless sooner extended by the President.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 19, Sec. 8",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec8",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:12059",
+     "date": "1981-05-05",
+     "mechanism": "spent_on_execution (self-executing revocation of EO 11972 and EO 11993 took full effect on issuance; nothing in this clause remained to operate thereafter)",
+     "note": "Formal end of the clause with the rest of the order: EO 12305 revocation on May 5, 1981 (recorded as a later event); that revocation did not revive EO 11972 or EO 11993.",
+     "quote": "Sec. 9. Revocations. Executive Order No. 11972 and Executive Order No.  \n11993 are hereby revoked.",
+     "source": {
+      "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 19, Sec. 9",
+      "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:12305",
+      "effective_date": "1981-05-05",
+      "mechanism": "express_revocation of the whole order (formal end of this already executed clause)",
+      "quote": "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;",
+      "source": {
+       "page_or_item": "46 FR 25421, PDF pages 7-7; item (a)",
+       "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "Sec. 9. Revocations. Executive Order No. 11972 and Executive Order No.  \n11993 are hereby revoked.",
+    "original_source": {
+     "page_or_item": "43 FR 20949, PDF pages 17-19; PDF page 19, Sec. 9",
+     "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+    },
+    "scope_id": "EO:12059#sec9",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "43 FR 20949, PDF pages 17-19",
+   "sha256": "5ad59e86f8f2106e5c68b799eacf88c6f14d823b43dc0b14b74d9d0d2b32b06a",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1978-05-16/pdf/FR-1978-05-16.pdf"
+  },
+  "research_rationale": "EO 12059 (May 5, 1981; 43 FR 20949-20951, held official FR scan text) re-established the United States Circuit Judge Nominating Commission (thirteen panels). Eighteen operative clauses are quoted verbatim; Sec. 6(b) is quoted in two segments because the page break inserts FR page furniture. Sec. 3(b) was rewritten by EO 12097 sec. 1-301 (November 8, 1978), a partial amendment recorded as a later event. The order's own end (Sec. 8: December 31, 1978 unless extended) was overtaken by EO 12110 sec. 1-101(j) (effective December 31, 1978; continued to December 31, 1980) and EO 12258 sec. 1-101(i) (effective December 31, 1980; continued to December 31, 1982). EO 12305 of May 5, 1981, item (a), revoked 'Executive Order No. 12059 ... as amended' and terminated the Commission, with no other effective date, so every continuing clause ends on May 5, 1981, the whole-order end. Sec. 9 (revocation of EO 11972 and EO 11993) operated once on issuance and is recorded as spent on May 5, 1981; its formal end with the order on May 5, 1981 is a later event, and that revocation did not revive the earlier orders. The clause-drafts identity quarantine (the body cites its own number) is resolved: the held page shows the heading 'Executive Order 12059 - May 11,1978' on 43 FR 20949. USC note at 28 U.S.C. 44 and the OFR 1989 table agree (revoked by EO 12305). No savings provision exists.",
+  "savings_residuals": {
+   "reason": "EO 12305 revokes the whole order and terminates the committee without any savings, transfer or wind-up provision. The order itself creates no property, office tenure or entitlement that could survive: members served without compensation (travel expenses only, payable while engaged in the work), its post-service ineligibility rule is a provision of the revoked order and fell with it, and no function was transferred to another body. No continuing residual found in the order, in EO 12305, or in the later-source searches recorded below.",
+   "source": {
+    "page_or_item": "46 FR 25421, PDF pages 7-7; whole order (no savings clause)",
+    "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:12305",
+   "date": "1981-05-05",
+   "mechanism": "express_revocation (order revoked and committee terminated)",
+   "note": "EO 12305 states no separate effective date; it took effect when signed on May 5, 1981 (filed 4:49 pm that day).",
+   "quote": [
+    "the following Execu­\ntive Orders, establishing advisory committees, are hereby revoked and the \ncommittees terminated:",
+    "(a) Executive Order No. 12059 of May 11, 1978, as amended, establishing the \nUnited States Circuit Judge Nominating Commission;"
+   ],
+   "source": {
+    "page_or_item": "46 FR 25421, PDF pages 7-7; opening paragraph and item (a)",
+    "sha256": "dd5c081c6839bf477d16daeca43bbd3d5ae8469ab1d0a07fade6833c15c10f4b",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1981-05-07/pdf/FR-1981-05-07.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

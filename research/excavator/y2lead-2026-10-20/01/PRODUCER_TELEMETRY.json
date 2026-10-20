@@ -1,0 +1,54 @@
+{
+ "batch": "01",
+ "agent": "claude-y2lead-01-producer",
+ "role": "PROBE producer",
+ "wall_minutes_approx": 22,
+ "tool_calls_approx": 75,
+ "usage": "token usage not exposed to the producer; context consumed roughly 300k tokens",
+ "orders_attempted": 25,
+ "submitted": 6,
+ "blocked": 19,
+ "unresolved": 0,
+ "strata": {
+  "YES_current_lead": {
+   "attempted": 24,
+   "submitted": 6,
+   "blocked": 18
+  },
+  "NO_whole_end_held": {
+   "attempted": 1,
+   "submitted": 0,
+   "blocked": 1
+  }
+ },
+ "claims_file": "CLAIMS.proposed.jsonl (6 lines; kit.py check: 0 errors on all 6)",
+ "claim_checker": {
+  "claims_checked": 6,
+  "all_checks_passed": 4,
+  "mechanical_fail": 0,
+  "mechanical_unverified": 2,
+  "gate_passed": 6,
+  "unverified_orders": [
+   "EO:10631 (EO 13286 evidence is an APP transcription)",
+   "EO:12963 (EO 14354 and EO 13009 PDF bytes not held)"
+  ]
+ },
+ "inventory_corrections": [
+  "EO:11649 (d split from c)",
+  "EO:11701 (sec 1 added)",
+  "EO:10631 (Code articles added, 9 clauses)"
+ ],
+ "fetch_lines_added": 9,
+ "eo13306_pattern_claims": [
+  "EO:10104",
+  "EO:11649 (unamended clauses)",
+  "EO:11701",
+  "EO:12391",
+  "EO:10631 (unamended clauses)"
+ ],
+ "non_pattern_claims": [
+  "EO:12963 (held later continuation order EO 14354 as basis)"
+ ],
+ "honest_forecast_note": "Expect the reviewer to test: ONE_TIME_COMMAND on EO 11701 secs 4-5 and the EO 10104 item 3 supersession sentence; PARTIAL_SCOPE on EO 12963 (renewable continuation date); original-as-basis acceptance for the EO 13306 pattern on 10104, 12391, 11649, 11701, 10631.",
+ "scratch_tools": "work/01/tools/build_sheets.py builds the sheets; work/01/mentions.py, bare.py, usc_notes.py, show.py were the D6 scan helpers"
+}

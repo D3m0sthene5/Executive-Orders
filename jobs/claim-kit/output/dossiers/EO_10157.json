@@ -24,7 +24,8 @@
     "ACT:EO:10157>EO:10288@896d91f496fbb505",
     "ACT:EO:10157>EO:10288@a176a1a74b56a1d6",
     "ACT:EO:10157>EO:10288@c076a7757a09d77a",
-    "ACT:EO:10157>EO:10288@1ee7ea5f03ac4768"
+    "ACT:EO:10157>EO:10288@1ee7ea5f03ac4768",
+    "ACT:EO:10157>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -84,9 +85,36 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1951-09-11/pdf/FR-1951-09-11.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10157#3",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 211,
+    "generic_refs_excluded": 217,
     "id": "CHAIN:EO:10157",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10157"
@@ -826,6 +854,75 @@
       "text": "EXECUTIVE ORDER 10288\nF urther  A m en d in g E xecutive  O rder N o.\n101571  o f A u g u st 28, 1950, E nabling\nCertain  E m plo y ees  o f t h|£  F ederal\nG overnment  to  A cquire  a C o m p e t i­\ntive  S tatus\nBy virtue of the authority vested in  \nme by section 2 of the Civil Service Act  \n(22 Stat. 404) and by section 1753 of  \nthe Revised Statutes of the United  \nStates, Executive Order No. 10157 of  \nAugust 28,1950, entitled “Enabling Cer­\ntain Employees of the Federal Govern­\nment To Acquire a Competitive Status”,  \nas amended by Executive Order No.  \n10217 of February 26, 1951, is hereby  \nfurther amended as follows:\n1.",
       "verb": "amend"
     },
+    "ACT:EO:10157>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10157>EO:12553",
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10157>EO:12553@rastell",
+      "producer": "claude-rastell-04-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's clause text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10157: EO:10217 amendment, EO:10288 amendment, EO:10535 cross_reference, EO:12553 revocation. EARLIER PARTIAL CHANGES: EO 10217 (signed 1951-02-26) amended paragraph 1(c) (recommendation by the agency head, with an extension for employees entering the armed forces) and EO 10288 (1951-09-07) further amended paragraphs 1(a) and 1(c) (postal substitutes; late recommendations accepted for administrative inadvertence). These are partial amendments, not ends, and are covered by the sentence's 'any amendments thereto' (recorded in notes, not a separate target). SELF-LIMITATION: the acquisition of status had to be recommended 'within six months of the date of this order' (1950-08-28), i.e. a window of about 1951-02-28, as extended by EO 10217 and EO 10288; status already acquired is a residual effect that the revocation does not obviously undo. EO 10535 (1954-06-09, not in the EO 12553 table) lets the Civil Service Commission confer competitive status on people who met the EO 10157 requirements but were not recommended through administrative error; it relies on EO 10157 'as amended' and is not an ending (the dossier holds it only as a 'See:' cross-reference and a 'target provision not located: EO:10535' gap). So EO 12553 is at most a formal clean-up of a largely spent window order; the reviewer should treat it as an upper bound and look at residual-status effects. Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and no held text amends or revokes it (a text search of the held EO texts for '12553' finds only EO 12553 itself).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EO 10217 (1951) and EO 10288 (1951) partially amended paras 1(a),1(c) (not ends; covered by 'any amendments thereto'). Order's own six-month recommendation window (as extended) closed in 1951, so the order was largely spent; EO 12553 is the first express end but only an upper bound. EO 10535 is a cross-reference, not an end. Not claims-enabling (same treatment as EO 10080 in batch_03).",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-04-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_04/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10157",
+      "target_naming": {
+        "char_end": 8489,
+        "char_start": 8397,
+        "sha256": "600632f979e8e93525b731f94ac99924527e319d9e5175bac131bab225718c70",
+        "text": "10157 Authorizing certain Government employees to acquire a competitive civil service status"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:10217": {
       "actor_id": "EO:10217",
       "char_end": 5553,
@@ -1152,7 +1249,7 @@
       "text": "Instrument: EO:10157\nSource: https://www.govinfo.gov/content/pkg/FR-1950-08-30/pdf/FR-1950-08-30.pdf\nSHA-256 of the downloaded file: 12793b8c9d4822cbd216fa9d206cef28370695f2e51e04c459f9bc91c506b360\nLocation: 15 FR 5834, PDF pages 6-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 6 of 38 ===\n5834 THE PRESIDENT\nthe breeding habits of many species of \nmigratory birds, particularly waterfowl, \nare such that a comprehensive analysis \nof the various factors affecting the cur­\nrent year’ s abundance and distribution \nof such birds should not be considered \nearlier than the first week of August of \neach year. At the same time such no­\ntices stated that information then avail­\nable regarding the distribution and \nabundance of doves, rails, and gallinules, \nand waterfowl in certain geographical \nareas, permitted the inclusion in those \nnotices of schedules showing the pro­\nposed September open seasons, and re­\nlated bag and possession limits, on such \nbirds. The information contained in the \nschedules also was furnished to appro­\npriate State game officials and tp the \npublic by publication in widely distrib­\nuted newspapers and other publications \nand by other means. The open seasons, \ndaily bag and possession limits, and other \nlimitations specified in the notice of \nJuly 7, as modified by the notice of Au­\ngust 8, now have been included without \nchange in the above amendments. In \nthese circumstances, it has been deter­\nmined that the public interests will best \nbe served if those portions of §  6.3, Means \nby which migratory game birds may be  \ntaken,  and §  6.4, Open seasons, bag lim­\nits, and possession of certain migratory  \ngame birds, relating to ( 1) rails and gal­\nlinules; ( 2) doves (white-winged, mourn­\ning or turtle); (3) band-tailed pigeons; \n(4) waterfowl in Alaska; (5) scoter, \neider, and old squaw ducks in Connecti­\ncut1 , Maine, Massachusetts, New Hamp­\nshire, New York, and Rhode Island \nbecome effective September 1,1950. The \nremainder of the amendments, which \nparticularly affect waterfowl and are re­\nlated to seasons beginning later than \nSeptember 30,1950, become effective Oc­\ntober 1, 1950.\nIn witness whereof, I have hereunto \nsubscribed my name and caused the seal \nof the Department of the Interior to be \naffixed, this 24th day of August 1950.\n[ seal ] O scar L. C hapman ,\nSecretary of the Interior.\nAND WHEREAS upon consideration it \nappears that approval of the foregoing \namendments will effectuate the purposes \nof the aforesaid Migratory Bird Treaty \nAct:\nNOW, THEREFORE, I, HARRY S. \nTRUMAN, President of the United States \nof America, under and by virtue of the \nauthority vested in me by section 3 of the \nsaid Migratory Bird Treaty Act of July \n3, 1918, do hereby approve and proclaim \nthe foregoing amendments.\nIN WITNESS WHEREOF, I have here­\nunto set my hand and,caused the seal \nof the United States of America to be \naffixed.\nDONE at the City of Washington this \n28th day of August in the year of our \nLord nineteen hundred and \n[seal] fifty, and of the Independence of \nthe United States of America \nthe one hundred and seventy-fifth.\nH arry S. T ruman\nBy the President:\nDean A cheson ,\nSecretary of State.\n[P. R. Doc. 50-7675; Piled, Aug. 29, 1950;\n10:59 a. m.]\nEXECUTIVE ORDER 10157\nE nabling C ertain  E mployees  of the  \nF ederal G overnment  T o A cquire  a \nCompetitive  S tatus\nBy virtue of the authority vested in \nme by section 2 of the Civil Service Act \n(22 Stat. 404) and by section 1753 of the \nRevised Statutes of the United States, it \nis hereby ordered as follows:\n1. Except as provided by paragraph 2 \nhereof, any employee of the Federal Gov­\nernment without competitive status who \non the date of this order is serving in an \nactive-duty status in an office or position \nin the competitive service of the Govern­\nment shall be entitled to and shall ac­\nquire a competitive status upon compli­\nance with the following conditions:\n(a) The employee shall have served \ncontinuously in a full-time, active-duty \nstatus in the competitive service, without \na break in service of more than sixty cal­\nendar days, during the two years im­\nmediately prior to the date of this order:  \nProvided, that military service shall not \nbe regarded as a break in service.\n(b) If his employment is evaluated \nunder an efficiency rating system, the \nmost recent rating of the employee must \nbe “Good” or better, and if his employ­\nment is not so evaluated, the head of \nthe agency in which he is employed must \ncertify to the Civil Service Commission \nthat the employee has served with merit \nfor six months or longer immediately \nprior to the date of such certification.\n(c) The acquisition of competitive \nstatus by the employee must be recom­\nmended by the head of the agency in \nwhich he is employed within six months \nof the date of this order.\n(d) The employee must successfully \nqualify in such suitable noncompetitive \nexamination as the Civil Service Com­\nmission may prescribe: Provided, That \nonly one such noncompetitive examina­\ntion shall be given him.\n2. This order shall not be applicable to\n(a) postmasters; (b) rural carriers in \nthose cases with respect to which there \nis an existing register of eligibles for \nfilling the position In question or with \nrespect to which an examination has \nbeen announced by the Civil Service \nCommission for filling such position; and\n(c) persons not entitled to veteran pref­\nerence who are serving in positions \nwhich are by law or by Executive order \nrestricted to preference eligibles.\n3. For the purposes of this order, em­\nployees who are on active military duty \non the date hereof shall be considered as \nbeing in an active-duty status.\n4. The Civil Service Commission shall \npromulgate regulations to effectuate the \npurposes of this order.\nH arry S. T ruman\nT he  W hite  H ouse ,\nAugust 28, 1950.\n[F. R. Doc. 50-7025; Filed, Aug. 28, 1950;\n4:21 p. m.]\n%\nRULES AND REGULATIONS\nTITLE 10— ATOMIC ENERGY\nChapter I— Atomic Energy  \nCommission\nP art 3—R ules  of P rocedure of U nited  \nStates A tomic  E nergy  C ommission  \nAdvisory  B oard of C ontract A ppeals  \ngeneral  provisions\nSec.\n8.1 Purpose.\n8.2 ‘  Scope.\n8.3 Definitions.\nPRELIMINARY PROCEEDINGS\n3.10 In itial determ ination.\n3.11 Appeal.\n3.12 Notice of appeal.\nSec.\n3.13 T ransm ittal of notice of appeal.\n3.14 Notification of parties by th e  Board.\n3.15 R equest for hearing.\n3.16 C onsideration by Board w ithout h ear­\ning.\n8.17 Notice of hearing.\nHEARINGS\n8.20 Absence of parties.\n8.21 Recording of hearings.\n3.22 Scope of th e  proceedings.\n8.23 Conduct of hearings.\nDECISIONS\n3.30 Findings and recom m endation.\n3.31 Disposition by th e  G eneral Manager.\nMISCELLANEOUS\nSec.\n8.40 Modification of rules.\nAu th o r ity: §§3.1 to 3.40 issued Under 60 \nS tat. 755-775; 42 U. S. C. 1801-1819.\nGENERAL PROVISIONS\n§  3.1 Purpose. Contracts entered into \nby the United States Atomic Energy \nCommission, and subcontracts entered \ninto under such contracts, usually con­\ntain a “disputes article” providing that \ndisputes arising under the contract or \nsubcontract which are not disposed of by \nmutual agreement shall be decided in \nthe first instance by the representative \nof the Commission duly authorized to\n"
     }
   },
-  "fingerprint": "983cd58d65f36de15d187f43f9fd754e565307f532472aff00c64dd54341b1e3",
+  "fingerprint": "417baf02f185916c324c0343c70624d705f88a7dbd466fadead4f2c345fe2b83",
   "instrument_id": "EO:10157",
   "legal_cutoff": "2026-10-14",
   "machine_searches": [
@@ -1194,8 +1291,7 @@
     }
   ],
   "missing": [
-    "target provision not located: EO:10535",
-    "target provision not located: EO:12553"
+    "target provision not located: EO:10535"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10157",

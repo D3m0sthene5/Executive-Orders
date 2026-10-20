@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import time
 
+import act_overrides
 from inputs import load_corpus
 from current_evidence import enrich_current
 from excavate import segment, own_terms, acting_provision, discover_mentions, chain, generic_reference_count
@@ -281,6 +282,21 @@ def build(repo, out, cache=None):
         else:
             row={'target_id':target,'actor_id':actor,'parent_id':parent,'reason':'acting text absent' if not ar else 'target provision not located','source_event':p.get('source_event')}
             missing_sources.append(row);missing_by[target].append(row['reason']+': '+actor)
+    # Agent-located, independently upheld ACT records (research/readiness/act_overrides) fill only
+    # pairs the scanner could not locate; act_overrides.verify refuses anything else.
+    # With no override lines the build is unchanged: no report file and no extra counts.
+    override_rows=act_overrides.load(repo)
+    if override_rows:
+        unlocated={(r['target_id'],r['actor_id']) for r in missing_sources if r['reason']=='target provision not located' and not r.get('parent_id')}-set(located_pairs)
+        ingested,override_report=act_overrides.ingest(repo,selected,universe,unlocated,override_rows)
+        for (target,actor),a in ingested.items():
+            located_pairs[(target,actor)]=a
+            missing_by[target]=[m for m in missing_by[target] if m!='target provision not located: '+actor]
+        missing_sources=[r for r in missing_sources if (r['target_id'],r['actor_id']) not in ingested]
+        counts['act_overrides_ingested']=len(ingested);counts['act_overrides_refused']=sum(r['status']=='refused' for r in override_report)
+        dump(out/'ACT_OVERRIDES_REPORT.json',override_report)
+    elif (out/'ACT_OVERRIDES_REPORT.json').exists():
+        (out/'ACT_OVERRIDES_REPORT.json').unlink()
     for (target,actor),a in sorted(located_pairs.items()):
         a['alternative_provisions']=list(all_variants.get((target,actor),{}).values())
         actors_by[target].append(a)
@@ -365,7 +381,7 @@ def build(repo, out, cache=None):
     summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
     summary['overlay_input_schema']='eo-claim-kit-overlay-input/v1'
     summary['compiled_code_sha256']={p:hashlib.sha256(Path(__file__).with_name(p).read_bytes()).hexdigest()
-        for p in ('build.py','inputs.py','excavate.py','current_evidence.py','assemble.py')}
+        for p in ('build.py','inputs.py','excavate.py','current_evidence.py','assemble.py','act_overrides.py')}
     summary['jsonl_shard_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.jsonl'))}
     dump(out/'SUMMARY.json',summary)
     dump(out/'METRICS.json',{'wall_seconds':round(time.monotonic()-started,3),'cache_hits':cache_hits,'output_bytes':sum(p.stat().st_size for p in out.rglob('*') if p.is_file())})
