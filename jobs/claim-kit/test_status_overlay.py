@@ -265,6 +265,13 @@ class OverlayTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing_or_unlisted_compiled_shards"):
             O.freeze_evidence(self.repo, self.out, self.packet)
 
+    def test_changed_lifecycle_obligations_invalidates_frozen_snapshot(self):
+        with (self.repo / "jobs/claim-kit/lifecycle_obligations.py").open("a", encoding="utf-8") as fh:
+            fh.write("\n# changed lifecycle compiler\n")
+        with self.assertRaisesRegex(ValueError, "code_fingerprint"):
+            O.freeze_evidence(self.repo, self.out, self.packet)
+        self.assert_rejects("stale_compiler_code")
+
     def test_extra_unlisted_shard_is_rejected(self):
         write_jsonl(self.out / "CLAUSES.part0001.jsonl", [])
         with self.assertRaisesRegex(ValueError, "missing_or_unlisted_compiled_shards"):

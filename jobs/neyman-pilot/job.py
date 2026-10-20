@@ -19,9 +19,16 @@ from opportunities import aggregate
 from combinations import load_tracker,replay,validate_predictions,historical_batches
 
 subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',str(root/'jobs/junto'),'-p','test_*.py'],check=True)
-manifest=json.loads((root/'research/neyman/pilot-20261020/MANIFEST.json').read_text())
+manifest_path=(root/os.environ.get('NEYMAN_MANIFEST','jobs/neyman/output/MANIFEST.json')).resolve()
+if not manifest_path.is_relative_to(root):raise ValueError('manifest must be inside repository')
+manifest=json.loads(manifest_path.read_text())
 verify_manifest(manifest)
 check_pins(root,manifest['input_hashes'])
+write(out/'MANIFEST.json',manifest)
+write(out/'MANIFEST_PROVENANCE.json',{'manifest_path':manifest_path.relative_to(root).as_posix(),
+    'manifest_sha256':manifest['manifest_sha256'],'input_commit':os.environ.get('GITHUB_SHA'),
+    'frozen_before_attempts':True,'historical_manifest_unchanged':True,
+    'purpose':'Current bounded consistency run; separate from the preserved October 20 historical pilot.'})
 # Always compare against the real tracker, including exact blocker strings.
 tracker=load_tracker(root);live,problems=tracker.build(str(root));committed=csv_rows(root/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv')
 fields=list(committed[0])

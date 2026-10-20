@@ -1,0 +1,75 @@
+{
+ "schema": "lambertini-iii-ai-review/v1",
+ "record_kind": "AI review record (hypothesis; not eo-lifecycle-review/v1; not certification)",
+ "batch": "lamb4/01",
+ "reviewer": "claude-opus independent reviewer 01 (read only review_copy/01/claims.jsonl and held repo sources; did not open work/ or plant_keys/)",
+ "reviewed_on": "2026-10-20",
+ "method": "Mountweazel configuration: every quote/span re-sliced from the held text_path and text_sha256 re-hashed on disk; ending actor and effective-date wording re-read in the held acting texts (EO 13350, 12815, 12869, 12148); savings_residuals tested against the ending instrument's savings/continuation/transfer wording (EO 13350 sec. 1; EO 12148 secs. 1-103, 1-201, 2-302, 5-1, 6; EO 12869 secs. 4, 6) and the order's own text; explicit D6 by-number scan of all held FR order texts (jobs/fr-originals) plus jobs/later-events EDGES.csv, with every hit read in context and every amender text read (EO 13286 secs. 35, 92; EO 10773 sec. 3; EO 11051 sec. 601; EO 11725 secs. 3, 4, 8).",
+ "common_checks": "All 90 source quotes across 5 claims equal their cited slices; all text_sha256 match; each clause's original_operative_text equals its original_source quote. Signing dates of originals confirmed in held texts.",
+ "pending_owner_rulings": "report-deadline and transcription-as-copy: no claim in this batch depends on either. EO 12813 sec. 2's reporting duty is not used as an end. EO 12743 sec. 1's later event cites an APP transcription, but the identical sec. 35 and sec. 92 wording is in the held official FR text EO_13286.txt (68 FR 10625), and the event is a later amendment, not the end.",
+ "plant_scoring": "This reviewer has no plant key; scoring belongs to the tally step.",
+ "summary": {"claims_reviewed": 5, "upheld": 4, "rejected": 1, "blocked": 0, "savings_overturned": 0},
+ "verdicts": [
+  {
+   "instrument_id": "EO:12817",
+   "verdict": "upheld",
+   "savings_state_accepted": "transferred_or_accrued",
+   "savings_overturned": false,
+   "whole_order_end_accepted": {"actor": "EO:13350", "date": "2004-07-30"},
+   "clause_count": 9,
+   "d6_searched": true,
+   "d6_found": false,
+   "d6_result": "no removed or ignored later event found",
+   "notes": "EO 13350 preamble names EO 12817 of October 21, 1992 among orders revoked; sec. 10 effective 12:01 a.m. EDT July 30, 2004. The sec. 1 NEA 202(a) saving preserves actions taken and matured rights, which fits the completed transfers and sec. 4 acquittances. The IEEPA 207(a) continuation reaches only property blocked under EO 12722/12724. By-number scan: only EO 13350 (EO 11429 hit is the FR page number 33 FR 12817). EDGES shows only EO 13350. The inventory override (split of secs. 1 and 2; joins the Sec. 8 heading to (a)) matches the held text."
+  },
+  {
+   "instrument_id": "EO:12743",
+   "verdict": "upheld",
+   "savings_state_accepted": "transferred_or_accrued",
+   "savings_overturned": false,
+   "whole_order_end_accepted": {"actor": "EO:13350", "date": "2004-07-30"},
+   "clause_count": 7,
+   "d6_searched": true,
+   "d6_found": false,
+   "d6_result": "no removed or ignored later event found; EO 13286 sec. 35 amendment (effective 2003-03-01 by sec. 92) is attached on sec. 1, the only clause it touches",
+   "notes": "EO 13350 preamble revokes EO 12743 of January 18, 1991; effective 2004-07-30. The 24-month limit applies to each call-up, not to the order. By-number hits in EO 9490, 9491 and 9793 are FR page numbers or pay figures. EDGES shows only EO 13286 and EO 13350. The later-event source is an APP transcription, but the official FR text is held and has the same wording. It is not an end, so the transcription-as-copy ruling is not needed."
+  },
+  {
+   "instrument_id": "EO:12813",
+   "verdict": "upheld",
+   "savings_state_accepted": "none_after_bounded_search",
+   "savings_overturned": false,
+   "whole_order_end_accepted": {"actor": "EO:12815", "date": "1992-12-31"},
+   "clause_count": 8,
+   "d6_searched": true,
+   "d6_found": false,
+   "d6_result": "no removed or ignored later event found; EO 12869 sec. 4(b) revocation (effective 1993-09-30 by sec. 6) is attached on every clause as a later event",
+   "notes": "Sec. 4(b) as issued: 'terminate not later than September 30, 1992'. EO 12815, signed September 30, 1992 with no effective-date wording, substitutes 'December 31, 1992'. No further extension appears in the held texts or EDGES. The actor label (the extending order fixes the term) follows the repo's existing practice, e.g. EO 12852 > EO 13114. The sec. 2 reporting duty is not treated as an end. The inventory override replacing the title-block clause with the secs. 1-4 operative clauses matches the held text."
+  },
+  {
+   "instrument_id": "EO:10494",
+   "verdict": "upheld",
+   "savings_state_accepted": "transferred_or_accrued",
+   "savings_overturned": false,
+   "whole_order_end_accepted": {"actor": "EO:12148", "date": "1979-07-15"},
+   "clause_count": 5,
+   "d6_searched": true,
+   "d6_found": false,
+   "d6_result": "no removed or ignored later event found; EO 10773 sec. 3, EO 11051 sec. 601 item (7) and EO 11725 sec. 3 item (5) are attached on sec. 2 (ODM clause)",
+   "notes": "EO 12148 sec. 5-103 revokes it 'as amended'. Sec. 6: 'This Order is effective July 15,1979' (signed July 20). Every clause's first_end date is 1979-07-15. The EDGES revocation date 1979-07-20 is the signing date, and the claim correctly does not use it. The EDGES edge EO 10494 > EO 10332 is a page-sharing artifact of EO 10495 Part VI, as the claim says. Other by-number hits (EO 10493/10495 contents tables, EO 9470 page number, EO 13652 file hash) are not events."
+  },
+  {
+   "instrument_id": "EO:10634",
+   "verdict": "rejected",
+   "savings_state_accepted": "none_after_bounded_search",
+   "savings_overturned": false,
+   "whole_order_end_accepted": {"actor": "EO:12148", "date": "1979-07-15"},
+   "clause_count": 1,
+   "d6_searched": true,
+   "d6_found": false,
+   "d6_result": "no removed or ignored later event found; EO 10773, EO 11051 sec. 601 item (9) and EO 11725 sec. 3 item (7) are attached",
+   "defect": "first-end date error: operative_clauses[0] (EO:10634#whole) first_end.date is 1979-07-20, which is EO 12148's signing date. EO 12148 sec. 6 says 'This Order is effective July 15,1979' (held text EO_12148.txt). The claim's own first_end.mechanism and whole_order_end.date both give 1979-07-15, so the clause end is wrong and contradicts the rest of the claim. Correct value: 1979-07-15.",
+   "notes": "Savings is not overturned. EO 12148 has no pending-matter saving for the revoked orders. Sec. 2-302 continues only FEMA's own sec. 1 functions. That reading matches the committed EO 10529 claim. Note for the owner: sec. 1-103 transferred to FEMA the functions then delegated to FPA/GSA, which may include the determination function EO 11725 moved to GSA under this order. The claim's reading (FEMA's own function, not a continuation of this order) is defensible and is applied the same way to EO 10529."
+  }
+ ]
+}

@@ -2,6 +2,30 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET (Revere phase, ~18:00Z): coordinator after handoff
+
+- **Done (pushed `e3c9f0d87`+merge):**
+  - Lambertini III coda: 11 of 12 claims upheld (2/2 plants caught), all pass the checker. Files: `claims/claude-lambertini-{b02,rr4}-2026-10-20.jsonl`. EO 14052 is held back: EO 14082 sec. 4(c) strikes and re-adds subsection (xii), which needs a human ruling. Llull outcomes O-46..48.
+  - Re-sourced to the held official FR texts: EO 10324, 10467, 12977 (i04, i08). 21 of 21 claims pass the checker, 1/1 plant caught. EO 10169 and 10390 are recorded as blocked (`instruments/REMNANTS.md`).
+  - Sinclair mend II/III: 9 NO proposals written (EO 11209, 13555, 9294, 9762, 10704, 12573, 13975, 12604, 11796), 2/2 plants caught. Owner adoption batch is now **56** (Bowditch 15, Sinclair 41).
+  - Tycho: 32 PEB report dates landed. **0** orders can close without the owner's report-deadline ruling; **47** depend on it. Re-rank: `research/production/day-review-2026-10-20/RERANK-evening.md`.
+  - Ready for human review was 230 at 16:45Z, before these claims were counted. Certified: 0.
+- **Running:** Lambertini IV (16 orders, probe gate in code). EO 9830 probe (10 ACT records, then claims; scale only if at least 4 of 10 enable claims).
+- **Process lessons:**
+  - (a) Overlay proposals must be frozen and proposed with no push in between. Every Run jobs run regenerates claim-kit output, which gives `stale_compiled_generation`.
+  - (b) `python3 -I jobs/claim-kit/kit.py` fails on imports; run it without `-I`.
+  - (c) Workflow scripts must handle a null agent result. A session-limit hit at 14:30Z killed agents mid-run; resume from the journal works.
+  - (d) The PR for this branch is #40.
+- **Next:**
+  1. Read the Lambertini IV and R9830 results, then scale whichever passes.
+  2. After the next ladder run, check the 43 remaining Lamm III PEB lines.
+  3. Pre-stage the EO 12553 emergency-board packets so they can run as soon as the ruling lands.
+- **Asks:** `@Owner`:
+  1. Report-deadline ruling (47 orders now, about 89 in all).
+  2. Adopt the 56 NO proposals?
+  3. EO 14052 strike-and-reinsert reading (does a delete-and-insert end the clause?).
+  4. The transcription-as-copy and Lamm readings are still pending.
+
 ## 2026-10-20 ET: Merged PRs #38, #40, #42-#45 into main; Domesday tool audit
 
 - **Done (owner consent to merge everything):** integrated on `claude/dazzling-gates-4xkkzo`, then into main.

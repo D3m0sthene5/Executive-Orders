@@ -358,6 +358,36 @@ def run_worker(repo, out, flag, job=None):
     return result.returncode
 
 
+def current_packet(repo, out, inputs, batch):
+    """Version current held dossiers without rewriting the historical experiment."""
+    historical = BASE + "/bounded-preparation/PACKET.json"
+    inputs.read(historical)
+    frozen, _ = batch.load_packet(inputs.path(historical).parent, repo, check_sources=False)
+    dossiers, pins = {}, {}
+    for iid in (*CHECKED, BLOCKED):
+        rel = "jobs/claim-kit/output/dossiers/" + iid.replace(":", "_") + ".json"
+        raw = inputs.read(rel)
+        dossier = json.loads(raw)
+        if dossier.get("instrument_id") != iid or dossier.get("fingerprint") != batch.canonical_sha(dossier):
+            raise ValueError("current dossier identity/fingerprint mismatch: " + iid)
+        dossiers[iid] = dossier
+        pins[iid] = {"path": rel, "file_sha256": sha(raw), "fingerprint": dossier["fingerprint"]}
+    encoded = batch.encode(dossiers, repo)
+    packet = {"schema": batch.SCHEMA, "legal_cutoff": "2026-10-14", "agent": "codex-integration-validation",
+              "input_pins": pins, "historical_packet": {"path": historical,
+                  "file_sha256": inputs.pins[historical], "fingerprint": frozen["fingerprint"]},
+              "notice": "Current preparation only; no legal decision or historical experiment is changed.", **encoded}
+    packet["fingerprint"] = batch.digest(batch.canon(packet).encode())
+    destination = out / "current-packet/PACKET.json"
+    write(destination, packet)
+    changes = [{"path": pin["path"], "historical_sha256": pin["file_sha256"],
+                "current_sha256": sha(inputs.path(pin["path"]).read_bytes()) if inputs.path(pin["path"]).is_file() else None}
+               for pin in frozen["input_pins"].values()]
+    write(out / "HISTORICAL_PACKET_PROVENANCE.json", {"historical_packet_unchanged": True,
+          "historical_input_comparisons_are_not_current_acceptance": True, "comparisons": changes})
+    return destination.relative_to(repo).as_posix()
+
+
 def integration(repo, out, inputs):
     errors = []
 
@@ -386,7 +416,7 @@ def integration(repo, out, inputs):
             and gate_receipt.get("status") == "untested" and gate_receipt.get("may_continue") is False
             and not list(continuation.glob("PROBE_BATCH_*.json")),
             "historical incomplete-plant gate did not stop before selecting continuation work")
-    packet_path = BASE + "/bounded-preparation/PACKET.json"
+    packet_path = current_packet(repo, out, inputs, batch)
     inputs.read(packet_path)
     packet, dossiers = batch.load_packet(inputs.path(packet_path).parent, repo)
     require(set(dossiers) == set((*CHECKED, BLOCKED)), "packet membership differs from the bounded seven-case sample")

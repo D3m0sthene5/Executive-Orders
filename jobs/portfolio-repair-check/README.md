@@ -8,7 +8,9 @@ the inherited `TMPDIR` points into the job output. This preserves the production
 guards that reject synthetic data inside the repository. Durable test logs and
 receipts remain under `OUTPUT_DIR`; tests do not run a paid research campaign.
 
-It loads the seven-case repair packet through `claim-kit/batch.load_packet`,
+It preserves the original seven-case repair packet as a sealed historical artifact, then writes a separately sealed `current-packet/PACKET.json` under this job's output from the seven current, fingerprint-checked claim-kit dossiers. Historical input comparisons are retained in `HISTORICAL_PACKET_PROVENANCE.json`; a changed ledger never becomes a rewritten historical observation. Current dossier and held-source pins must still match exactly.
+
+It loads that current seven-case packet through `claim-kit/batch.load_packet`,
 verifies its held source hashes and original isolated dossier hashes, and
 selects the current effective canonical claims for EOs 13792, 13101, 13148,
 13783, 13807 and the positive control EO 13037. The actual claim checker runs

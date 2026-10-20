@@ -6,7 +6,7 @@ worked in practice. Junto is a meta tool for token savings. Design: `research/pl
 | Level | What it is | Here |
 |---|---|---|
 | Saver | A change that cuts tokens (Revere, Watchman, Spare setup, Quiet protocol) | not built by Junto |
-| Finder | A script that reads audit data and proposes savers ("candidates") | `finders/hamilton.py`, `finders/friction.py` (Clausewitz), `finders/wasted_work.py` (Gallatin), `finders/neyman.py` |
+| Finder | A script that reads audit data and proposes savers ("candidates") | `finders/hamilton.py`, `finders/friction.py` (Clausewitz), `finders/wasted_work.py` (Gallatin), `finders/neyman.py`, `finders/norton.py` |
 | Junto | Runs finders, scores them, divides effort, proposes new finders | `junto.py` |
 
 ## The hard rule
@@ -63,7 +63,7 @@ check     validate the ledger (schemas, privacy rules, every verified line tied 
 
 ```
 junto.py  config.json  test_junto.py
-finders/            hamilton.py friction.py wasted_work.py   (stdlib only; interface in design section 2)
+finders/            hamilton.py friction.py wasted_work.py neyman.py norton.py   (stdlib only; interface in design section 2)
 ledger/             finders.json (registry)  runs.jsonl  candidates.jsonl  tests.jsonl
                     verified_savings.jsonl  finder_proposals.jsonl  contracts.jsonl   (append-only; highest rev wins)
 output/             SCOREBOARD.json (derived, never hand-edited)
@@ -141,3 +141,8 @@ The registered `neyman` finder reads only sanitized survey aggregates, using the
 Candidates may also carry an optional validated `junto.test-contract/1` (NEYMAN's lighter embedded format; the frozen `contracts.jsonl` registration above is the stronger, commit-verified path) with unit, baseline, quality requirement, stopping rule and result location. `add-test` enforces the contracted unit. This is new functionality; legacy candidates remain supported.
 
 The missing-quality-data defect was fixed independently by NEYMAN and by the acceptance repair above; the merged code keeps the repair's rule, so a cheaper arm with missing, partial, negative or zero-denominator quality counts is `cost_reduction_quality_unverified` and cannot earn verified savings. Both counts must be explicit when supplied. Old verified lines are recomputed under this rule. API-price value remains distinct from cash expenditure; NEYMAN's workload estimates do not enter savings.
+
+NORTON is an owner-seeded domain finder for exact shared factual obligations. See
+`jobs/norton/README.md` and catalog entry `norton_shared_factual_obligations`. Its
+seven-order pilot remains unverified and earns no savings credit. Frozen proposal
+snapshots and renumbering maps preserve parallel ledgers; use stable saver keys.

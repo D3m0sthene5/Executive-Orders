@@ -10,7 +10,7 @@ import re
 import time
 
 import act_overrides
-from inputs import load_corpus
+from inputs import COMPILER_FILES, load_corpus
 from current_evidence import enrich_current
 from excavate import segment, own_terms, acting_provision, discover_mentions, chain, generic_reference_count
 from assemble import blank_sheet, canonical_sha, assemble
@@ -385,7 +385,7 @@ def build(repo, out, cache=None):
     summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
     summary['overlay_input_schema']='eo-claim-kit-overlay-input/v1'
     summary['compiled_code_sha256']={p:hashlib.sha256(Path(__file__).with_name(p).read_bytes()).hexdigest()
-        for p in ('build.py','inputs.py','excavate.py','current_evidence.py','assemble.py','act_overrides.py','lifecycle_obligations.py')}
+        for p in COMPILER_FILES}
     summary['jsonl_shard_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.jsonl'))}
     dump(out/'SUMMARY.json',summary)
     dump(out/'METRICS.json',{'wall_seconds':round(time.monotonic()-started,3),'cache_hits':cache_hits,'output_bytes':sum(p.stat().st_size for p in out.rglob('*') if p.is_file())})

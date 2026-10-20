@@ -619,7 +619,8 @@ class EndToEnd(unittest.TestCase):
             f = frags[0]
             self.assertEqual((f["data"]["location_verified"], f["data"]["needs_page_check"]), (False, False))
             body = (out / f["data"]["text_path"]).read_text(encoding="utf-8").split("\n\n", 1)[1]
-            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), f["data"]["text_sha256"])
+            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), f["data"]["body_sha256"])
+            self.assertEqual(hashlib.sha256((out / f["data"]["text_path"]).read_bytes()).hexdigest(), f["data"]["text_sha256"])
             self.assertTrue(body.startswith("Executive Mansion, May 15, 1876."))
             with open(out / "LORD_IR_CROSSWALK.csv", encoding="utf-8") as fh:
                 lord = list(csv.DictReader(fh))

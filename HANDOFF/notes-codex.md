@@ -2,7 +2,15 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
-<!-- Codex: add your first entry here. -->
+## 2026-10-20 ET: interrupted Claude diagnostic recovered; integration remains unfinished
+
+- **Done:** Inspected main ed19a060, junto bd4450ab and integration da75ca1d, current open PRs and actual run 39475524967. Report: `research/diagnostics/CLAUDE_DIAGNOSTIC_2026-10-20.md`; machine observations: `DIAGNOSTIC_EVIDENCE_2026-10-20.json`. Documentation only; no runtime, claim, source or canonical output edits.
+- **Correction:** Claude's integration note says merged into main; GitHub still has #38/#40/#42–#45 open and main is ed19a060. Integration misses 17 later junto commits. Ready counts are snapshot-specific: main 138, junto 256, integration 238. The latter has five new disputed-claim holds and six failed jobs; do not sum or publish these as a combined result.
+- **Verified:** Integration executed 22 jobs, 16 succeeded and six failed. Source-ladder's online run worked 177/1,448 items and reached 394 found receipts. All 173 source-ladder tests pass locally. Claim-kit reproduces 35 overlay errors in 185 tests (four corpus-dependent sparse-checkout skips). Writer hashes seven code files; reader hashes six, omitting lifecycle_obligations.py. Adding that entry only in memory makes all 35 overlay tests pass; no repair was applied.
+- **Next:** Align fingerprint inventories; stage successful generations rather than delete/publish outputs after failure; reconcile 17 later commits preserving holds and ledgers; separately version current portfolio/NEYMAN validation inputs without rewriting frozen experiments; then execute the combined pipeline and measure the count. The report also identifies 1,266 skipped stale-hash declarations and fixed-list tracker feed omissions.
+- **Running:** None. No full-corpus rebuild, new per-order research, legal adjudication or savings experiment performed; model/cash/per-order costs unavailable.
+- **Asks:** None requiring owner action for this diagnostic.
+- **Do not:** Treat a rebuild alone as the fingerprint repair; disable provenance checks; overwrite frozen pilot results; promote derivative texts; remove disputed-claim holds; merge the incomplete integration branch as-is.
 
 ## 2026-10-18: Alternate sources saved 1,531 texts for the 1,712-order gap
 

@@ -1,0 +1,104 @@
+{
+  "actor_contexts": [
+    {
+      "actor_id": "EO:7968",
+      "overflow": "actor-texts/EO_7968.json",
+      "text_sha256": "8b7c7056b202f8ea801c517ef1850d78eddd8c672e0892275bae4ca62f75cac0"
+    }
+  ],
+  "actor_provisions": [],
+  "chain": {
+    "confidence": "medium",
+    "events": [],
+    "generic_refs_excluded": 221,
+    "id": "CHAIN:EO:4552",
+    "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
+    "target_id": "EO:4552"
+  },
+  "clauses": [],
+  "conflicts": [],
+  "current_law_leads": [],
+  "draft_gate_errors": [
+    "original_representation_provenance",
+    "clause_0_original_text_or_source",
+    "clause_0_state",
+    "whole_order_end_evidence",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps",
+    "research_rationale"
+  ],
+  "draft_material_gaps": [
+    "DRAFT: original_representation not yet confirmed",
+    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: whole-order ending not established",
+    "DRAFT: savings and residual effects not closed",
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+  ],
+  "evidence": {},
+  "fingerprint": "a9888442e912664e27ccf2875d05e9e39d9a0bdea4c8540c58edcb96f7d87739",
+  "instrument_id": "EO:4552",
+  "legal_cutoff": "2026-10-14",
+  "machine_searches": [
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+        "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:usc"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-17",
+        "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+        "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+        "searched_by": "jobs/current-law (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:ecfr"
+    },
+    {
+      "complete": true,
+      "coverage_warning": "order dated 1926: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
+      "entry": {
+        "checked_on": "2026-10-19",
+        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+        "searched_by": "jobs/later-events (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "later-events:ofr_catalog"
+    }
+  ],
+  "missing": [
+    "Large actor context must be read at actor-texts/EO_7968.json before deciding scope/savings.",
+    "No attributed held text located for this order.",
+    "No clause inventory extracted; do not submit an empty inventory.",
+    "target provision not located: EO:7968"
+  ],
+  "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
+  "original_source_id": null,
+  "own_terms": [],
+  "schema": "eo-claim-kit-dossier/v1",
+  "status_history": {
+    "event_count": 1,
+    "fingerprint": "ff7a1fe483ab18879859c0f93022ae6790610b0949d6d1d02b995f96a65eba08",
+    "flags": [],
+    "history_path": "jobs/status-history/output/histories/EO_4552.json",
+    "history_sha256": "0cde8c2a747f45ee0b01558f966f2e2765fcb339ff41775b085b9a205b0fa7d2",
+    "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
+    "legal_cutoff": "2026-10-14",
+    "machine_lead": true,
+    "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
+    "observation_count": 1
+  },
+  "whole_order_status": "no"
+}

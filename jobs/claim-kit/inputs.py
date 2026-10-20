@@ -22,6 +22,8 @@ from collections import defaultdict
 
 
 UNIVERSE = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
+COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
+                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")
 LFS_MAGIC = b"version https://git-lfs.github.com/spec/v1"
@@ -367,7 +369,7 @@ class _Collector:
         # These instrument_ids name the affected/cited order, not the author
         # of the evidence. Their statute/actor text must never become a text
         # representation of the target order.
-        if kind not in EVENT_KINDS | CURRENT_KINDS:
+        if kind not in EVENT_KINDS | CURRENT_KINDS | {"family_rule_checks"}:
             self.walk_texts(frag, base, origin)
         if kind in EVENT_KINDS:
             for event in rows:

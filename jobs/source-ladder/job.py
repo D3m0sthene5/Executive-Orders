@@ -172,6 +172,14 @@ def main():
         prior_dir = os.environ.get('JOB_PRIOR_OUTPUT_DIR')
         prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
                  else prior_output.PriorOutput.from_git_head(repo, f'jobs/{name}/output'))
+    imports = repo / 'research/repair-20261020/SOURCE_IMPORTS.json'
+    if prior is not None and imports.is_file():
+        spec = json.loads(imports.read_bytes())
+        if spec.get('schema') != 'eo-source-generation-imports/v1':
+            raise ValueError('invalid pinned source-generation import schema')
+        prior = prior_output.UnionPriorOutput([prior] + [
+            prior_output.PriorOutput.from_git_ref(repo, f'jobs/{name}/output', ref)
+            for ref in spec['commits']])
     all_prior_found = previous_found(prior)
     previous_unresolved = prior_history(
         prior, 'PREVIOUS_UNRESOLVED.jsonl',

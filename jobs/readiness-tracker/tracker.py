@@ -82,7 +82,10 @@ J = {
     # captures of the same pages (MIRROR_FRAGMENTS). Historical-document discovery, never identity or custody.
     "compiled_transcription_fragments": ["jobs/richardson-volumes/output/FRAGMENTS.jsonl",
                                          "jobs/app-executive-orders/output/FRAGMENTS.jsonl",
-                                         "jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl"],
+                                         "jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl",
+                                         "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
+                                         "jobs/numbered-early-orders/output/FRAGMENTS.jsonl",
+                                         "jobs/wikisource-texts/output/FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],

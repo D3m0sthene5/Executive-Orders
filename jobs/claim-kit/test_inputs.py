@@ -55,6 +55,16 @@ class CorpusTests(unittest.TestCase):
         with self.assertRaisesRegex(FileNotFoundError, "authoritative census"):
             inputs.load_corpus(self.repo)
 
+    def test_family_proof_counterexamples_do_not_become_originals_of_target(self):
+        text = self.write('jobs/rules/output/actor.txt', 'A different order supplies this proof.\n')
+        self.jsonl('jobs/rules/output/FRAGMENTS.jsonl', [{
+            'instrument_id':'EO:1', 'kind':'family_rule_checks',
+            'sources':[self.source(text_sha256=hashlib.sha256(text.read_bytes()).hexdigest())],
+            'data':{'counterexamples':[{'text_path':'actor.txt'}]}}])
+        corpus = inputs.load_corpus(self.repo)
+        self.assertEqual(corpus['texts'], [])
+        self.assertEqual(corpus['pairs'], [])
+
     def test_shared_facts_stay_out_of_originals_events_and_predicates(self):
         p=self.write('research/readiness/factual/producer/questions.jsonl','held registry\n')
         self.write('jobs/norton/output/INPUTS.json',json.dumps({'sha256':{p.relative_to(self.repo).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()}}))

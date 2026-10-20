@@ -303,7 +303,8 @@ class EndToEnd(unittest.TestCase):
             self.assertTrue(all(f["data"]["location_verified"] is False for f in frags))
             self.assertEqual(frags[0]["data"]["route"], "official/ic_compilation_1911")
             body = (out / "texts" / "EO_200-half.txt").read_text(encoding="utf-8").split("\n\n", 1)[1]
-            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[1]["data"]["text_sha256"])
+            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[1]["data"]["body_sha256"])
+            self.assertEqual(hashlib.sha256((out / frags[1]["data"]["text_path"]).read_bytes()).hexdigest(), frags[1]["data"]["text_sha256"])
             self.assertTrue((out / "texts" / "LORD_1500.txt").exists())
             self.assertTrue((out / "texts" / "1904-03-08_presidential_letter_seq001.txt").exists())
             self.assertEqual(s["wpa_date_check"], {"yes": 3, "wpa_partial_year_agrees": 1})

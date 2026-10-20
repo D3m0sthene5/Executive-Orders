@@ -1,0 +1,90 @@
+{
+ "schema": "lambertini-iv-ai-review/v1",
+ "record_kind": "AI review record (hypothesis; not eo-lifecycle-review/v1; not certification; certified whole-lifecycle count unchanged at 0)",
+ "batch": "lamb4b",
+ "reviewer": "claude-opus independent reviewer lamb4b (read only review_copy/claims.jsonl and held repo sources; did not open work/ or plant_keys/)",
+ "reviewed_on": "2026-10-20",
+ "method": "Every source quote re-sliced from its held text_path equals the cited span; every text_sha256 re-hashed on disk matches; each clause's original_operative_text equals its original_source quote; every single-quoted phrase in mechanism/reason fields was found in a held FR text. D6: by-number scan of all 6,652 held FR texts (jobs/fr-originals) plus jobs/later-events EDGES.csv, every hit read in context.",
+ "pending_owner_rulings": "report-deadline and transcription-as-copy: no claim depends on either. EO 12063 sec. 1-203, EO 12168 sec. 1-205 and EO 12308 sec. 2(b) reports are not used as ends; EO 12063 and EO 12308 rely on held official FR texts of the acting orders, not APP transcriptions.",
+ "plant_scoring": "Reviewer has no plant key; scoring belongs to the tally step.",
+ "summary": {
+  "claims_reviewed": 5,
+  "upheld": 4,
+  "rejected": 1,
+  "blocked": 0,
+  "savings_overturned": 0
+ },
+ "verdicts": [
+  {
+   "instrument_id": "EO:12063",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "savings_state_accepted": "none_after_bounded_search",
+   "whole_order_end_accepted": {
+    "actor": "EO:12258",
+    "date": "1980-12-31"
+   },
+   "d6_searched": true,
+   "d6_found": false,
+   "defects": [],
+   "notes": "EO 12063 sec. 1-403 term Dec 31, 1978 'unless sooner extended'; EO 12110 sec. 1-101(k) continued it 'until December 31, 1980' (eff. 1978-12-31, sec. 1-105); EO 12258 sec. 1-103(d) revokes it, sec. 1-105 'effective December 31,1980'; EO 12258 sec. 1-101 does not list it. No savings wording in EO 12258. By-number hits: EO 12110, 12258, and EO 9621 (contract table figures, not a citation). EDGES: only EO 12110 continuation and EO 12258 revocation. Sec. 1-203 report not used as an end."
+  },
+  {
+   "instrument_id": "EO:12145",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "savings_state_accepted": "transferred_or_accrued",
+   "whole_order_end_accepted": {
+    "actor": "EO:12292",
+    "date": "1981-02-15"
+   },
+   "d6_searched": true,
+   "d6_found": false,
+   "defects": [],
+   "notes": "EO 12292 sec. 10(l) 'Executive Order No. 12145 of July 18,1979'; sec. 11 'effective as of February 15,1981'; signed Feb 23, 1981; no savings wording. Order has no term. Inventory override (18 clauses incl. sec. 1-101(a) and Annexes I-IV) matches held text. By-number hits: EO 12292; EO 9488 (FR page 9 FR 12145), EO 11524 (pay-table figure 12,145), EO 10317 (file-hash digits). EDGES: only EO 12292 revocation (and this order's own revocation of EO 11952). transferred_or_accrued for completed annuity acts is consistent with the lamb4/01 precedent; not overturned. Minor: the D6 narrative omits the EO 10317 hash-digit hit (irrelevant)."
+  },
+  {
+   "instrument_id": "EO:12168",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "savings_state_accepted": "none_after_bounded_search",
+   "whole_order_end_accepted": {
+    "actor": "EO:12168",
+    "date": "1981-02-15"
+   },
+   "d6_searched": true,
+   "d6_found": false,
+   "defects": [],
+   "notes": "Sec. 1-206 'The Com m ission shall term inate on February 15,1981.' (OCR spacing); sec. 1-205 report date Dec 31, 1980 correctly not used as an end (report-deadline ruling not needed). EO 12258 (eff. 1980-12-31) neither continues nor revokes it. EO 12399 sec. 4(b) revokes it effective 1982-12-31 (sec. 6) as a terminated committee: correctly a later event. By-number hits only EO 12399; EDGES only EO 12399."
+  },
+  {
+   "instrument_id": "EO:12308",
+   "verdict": "rejected",
+   "savings_overturned": false,
+   "savings_state_accepted": "none_after_bounded_search (state itself not disputed)",
+   "whole_order_end_accepted": null,
+   "d6_searched": true,
+   "d6_found": false,
+   "defects": [
+    "operative_clauses[0] (EO:12308#sec1) first_end.date is 1981-09-30, but the Task Force and every clause ended 1981-10-31: EO 12325 sec. 2 (held FR text 46 FR 48617) amended sec. 4(b) to read 'The T ask Force shall term inate on O ctober 31,1981.' The correct first-end date for sec1 is 1981-10-31.",
+    "The sec1 first_end.date (1981-09-30) contradicts the claim's own first_end.mechanism text for the same clause ('terminated on October 31, 1981 and every clause ... ended with it'), its judgment_reason ('the clause continued as amended until the Task Force ended'), the whole_order_end date (1981-10-31), the research_rationale ('every clause ended 1981-10-31') and the other 8 clauses (all 1981-10-31).",
+    "1981-09-30 is the date of EO 12325 sec. 1, which only deleted two sentences from sec. 1 ('No m ore than one m em ber shall be a full-time Federal officer or em ployee. The rem aining m em bers shall not represent Executive agencies.'); the claim itself records that event in later_events as 'amendment of sec. 1, not an end'. Recording a partial amendment date as the clause's first end treats an amendment as an ending; and the same event then appears as a later_event dated on (not after) the first end."
+   ],
+   "notes": "Everything else checked out: quotes/hashes; EO 12308 sec. 4(b) original term Sept 30, 1981 'unless sooner extended'; EO 12325 signed Sept 30, 1981 with no effective-date wording; EO 12399 sec. 4(f) revocation eff. 1982-12-31 correctly a later event; no savings wording in EO 12399; inventory override matches held text. D6: by-number hits EO 12325, 12399 and incidental figures in EO 9791/10308/10309; EDGES only EO 12325 amendment and EO 12399 revocation; no removed or ignored event. Once sec1 first_end.date is corrected to 1981-10-31 the claim would otherwise be upholdable."
+  },
+  {
+   "instrument_id": "EO:13050",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "savings_state_accepted": "none_after_bounded_search",
+   "whole_order_end_accepted": {
+    "actor": "EO:13050",
+    "date": "1998-09-30"
+   },
+   "d6_searched": true,
+   "d6_found": false,
+   "defects": [],
+   "notes": "Sec. 4(b) 'The Advisory Board shall terminate on September 30, 1998, unless extended by the President prior to such date.' EO 13062 (eff. 1997-09-30) does not list the Board. EO 13138 sec. 3(e) revokes EO 13050 among committees 'that have terminated and whose work is completed', eff. 1999-09-30 (sec. 9): correctly a later event. By-number hits: EO 13138; EO 14257 (tariff code 29213050, irrelevant). EDGES only EO 13138."
+  }
+ ]
+}

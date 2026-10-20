@@ -47,5 +47,7 @@ Prospective forecasts use the existing Llull implementation. The dated pilot for
 - Both declare `needs.txt`, `after.txt`, `triggers.txt`, and additional input globs. Committed outputs do not trigger consumers; run both explicitly when requested. Updating inventory after the dated pilot invalidates its frozen manifest; create a new prospective run instead of silently substituting new cases.
 
 Local frame: `OUTPUT_DIR=/tmp/neyman-frame python -B jobs/neyman/job.py`.
-Pilot: `OUTPUT_DIR=/tmp/neyman-pilot python -B jobs/neyman-pilot/job.py` (requires the committed dated manifest and matching inputs).
+Current pilot: `OUTPUT_DIR=/tmp/neyman-pilot python -B jobs/neyman-pilot/job.py` consumes the separately frozen `jobs/neyman/output/MANIFEST.json` from the preceding frame job and copies that manifest and its provenance into its own output before attempting any cases. Exact input checks still apply. This is a new bounded consistency run; it does not overwrite or pool the historical pilot.
+
+Historical replay: set `NEYMAN_MANIFEST=research/neyman/pilot-20261020/MANIFEST.json` on its pinned historical checkout. Changed inputs remain an error; the dated manifest, selected cases, observations and pilot limits are preserved.
 Tests: unittest discovery in `jobs/neyman`, `jobs/junto`, `jobs/readiness-tracker`, and `jobs/corpus-excavator`. Inspect both successful `output/STATUS.json` files and the final `INTEGRATION.json`; a passing script alone is not a published consumer result.
