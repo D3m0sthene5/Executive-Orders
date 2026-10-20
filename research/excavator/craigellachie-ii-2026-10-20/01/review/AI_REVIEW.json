@@ -1,0 +1,81 @@
+{
+ "schema": "eo-x1-independent-ai-batch-review/v1",
+ "reviewer": "claude-craig2-01-reviewer",
+ "reviewer_model": "claude-opus-5-5",
+ "producer_model": "claude-opus-5-5",
+ "reviewer_role": "independent_agent",
+ "not_human_certification": true,
+ "reviewed_on": "2026-10-20T07:10:00Z",
+ "claims_file": "applied-v1/CLAIMS.proposed.jsonl",
+ "checker_rerun": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/craig2/checker-01-review (claims_checked 1, all checks passed 1, unverified 0, failed 0; mechanical pass does not cure the merits defects below)",
+ "planted_items_received": 0,
+ "planted_items_note": "No planted control was present in the review packet given to this reviewer (no extra claim lines, decision rows or files beyond the producer's 06:47-06:59Z output); plant_keys not opened. Plant catch therefore cannot be scored for batch 01.",
+ "wall_minutes_total": 10,
+ "approx_tokens_total": 70000,
+ "items": [
+  {
+   "instrument_id": "EO:11367",
+   "producer_outcome": "submit",
+   "claim_sha256": "9e37c85aa2ffbef9ceed0d4a0694a9c1ada803bcc92f3cae5674baf31e3fbf81",
+   "decision": "reject",
+   "reasons": "Reject. (1) Earlier end not excluded: EO 11540 (held; 'This order shall be effective July 1, 1970') removed the words EO 11367 inserted in EO 11248 sec. 1 item (5) and substituted 'Assistant Director, Office of Management and Budget'. Whether that is a retitle of the same office (so the clause runs to EO 11708, 1973-03-23) or the end of the EO 11367 placement on 1970-07-01 turns on whether the 'Assistant Director for Executive Management' was one of the statutory Assistant Director offices (31 U.S.C. 16a, 16c) that Reorganization Plan No. 2 of 1970 sec. 102(b) redesignates. The held plan does not name the post and does not say which offices were statutory; non-statutory officers fall under sec. 102(c) (new Level V officers with titles set by the Director), not 102(b). The producer's 'live object under sec. 102(b)' and 'widened, not withdrawn' reading assumes the missing fact. The brief allows a partial find to be submitted only if the held plan alone decides the clause; it does not, and the OMB organization record (FETCH line 252) is still not held. Craigellachie 03's reviewer named the same dependency. (2) The binding lesson 'the quote must contain the mechanism and the date' is not met: the first_end quote is the EO 11708 sec. 3 sentence only; 'March 23, 1973' is outside the quoted span (producer flagged this). The EO 11708 sec. 3 revocation itself is correctly read: no effective-date wording, sec. 2 continues only eight level V positions, item (5) is level IV, and sec. 1(9) is a new placement; savings reading (none) holds. Outcome should be blocked, not upheld.",
+   "d6": "Searched for later events that ended or changed item (5) before 1973-03-23: EO 11540 (held, read: substitutes item (5) words, effective 1970-07-01) -- recorded only as a later event and its possible status as first end (partial supersession of the inserted text) is not settled by held sources: this is the D6 failure. Reorganization Plan No. 2 of 1970 secs. 101-103, 301 (held, read): redesignation, no abolition. EO 11708 secs. 1-3 (held, read). Producer's list of other EO 11248 amenders (EO 11581 renumbering etc.) accepted as stated; none reported to touch item (5).",
+   "sources_read": [
+    "jobs/fr-originals/data/full_run/texts/EO_11367.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_11540.txt",
+    "jobs/fr-originals/data/full_run/texts/EO_11708.txt",
+    "jobs/source-ladder/output/texts/queue_EO_11367_Reorganization_Plan_No._2_of_1970_Bureau_of_the_Budget_redesignated_Office_of_Managem_cc716e30b5.txt",
+    "research/excavator/craigellachie-ii-2026-10-20/01/decisions.csv",
+    "research/excavator/craigellachie-ii-2026-10-20/01/clauses.csv",
+    "research/excavator/craigellachie-2026-10-20/03/review/AI_REVIEW.md"
+   ],
+   "fetch": "Appended one FETCH line (31 U.S.C. 16a/16c and the 1967 title assignment); FETCH line 252 (OMB organization record) remains open.",
+   "minutes_estimate": 6,
+   "approx_tokens": 40000
+  },
+  {
+   "instrument_id": "EO:8399",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified. Held Reorganization Plan No. 2 of 1946 sec. 4 transfers the Board's functions to the Federal Security Administrator and says 'The Social Security Board is abolished.'; both EO 8399 permissions are keyed to the Board by name, so object-lost (1946) vs carry-over (ending no later than 1953 abolition of the FSA) is unresolved; the 1946 date rests on the marginal note only; the joined TERM records quote other provisions and would mislabel the end. EO 11408 is an upper bound. FETCH lines 263-264 (Reorganization Act of 1945; Plan No. 1 of 1953) are the right sources.",
+   "d6": "Checked the plan's secs. 4, 11, 12 for savings/continuation wording on outstanding orders: none in the held text; EO 11408 noted as upper bound.",
+   "sources_read": [
+    "jobs/fr-originals/output/texts/EO_8399.txt",
+    "jobs/source-ladder/output/texts/queue_EO_8399_Reorganization_Plan_No._2_of_1946_60_Stat._1095_abolition_of_the_Social_Security_Board_d00060ae5e.txt",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 1.5,
+   "approx_tokens": 8000
+  },
+  {
+   "instrument_id": "EO:11293",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified. Held Plan No. 3 of 1970 sec. 6(a)(1) abolishes 'The Federal Water Quality Administration in the Department of the Interior' exclusive of functions (a real 1970-12-02 earlier-end candidate); Pub. L. 91-224 sec. 110 is a renaming only. Carry-over to the EPA Water Quality Office (EO 11587 retitle, EO 11604 deletion 1971-07-02) cannot be excluded without the EPA organization record; the Dec. 2, 1970 date rests on the marginal note; the TERM span omits the Administration and the date, and EO 11604 has no ACT record. FETCH lines 265-267 fit.",
+   "d6": "Checked Pub. L. 91-224 sec. 110 and Plan No. 3 of 1970 secs. 2, 4, 6; EO 11587 and EO 11604 per producer and Craigellachie 03 review.",
+   "sources_read": [
+    "jobs/source-ladder/output/texts/queue_EO_11293_Reorganization_Plan_No._3_of_1970_35_FR_15623_84_Stat._2086_Environmental_Protection__85712bad45.txt",
+    "jobs/source-ladder/output/texts/queue_EO_11293_Water_Quality_Improvement_Act_of_1970_Pub._L._91-224_84_Stat._91_April_3_1970_provisi_e5ccc37264.txt",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 1.5,
+   "approx_tokens": 8000
+  },
+  {
+   "instrument_id": "EO:11299",
+   "producer_outcome": "blocked",
+   "claim_sha256": null,
+   "decision": "block_justified",
+   "reasons": "Block justified. Held Plan No. 2 of 1968 transfers UMTA functions to DOT and creates a DOT Urban Mass Transportation Administrator (sec. 3) but does not name or abolish the HUD Urban Transportation Administration or its Director, so the held plan alone does not decide the clause (brief's partial-find rule). EO 11634 deletion (1971-12-06) is an upper bound. Inventory also needs correction (24 draft clauses, 1 real). FETCH line 268 (HUD organization record) fits; minor note: producer text refers to the deleted item as both (8) and (9) -- confirm the item number on a future attempt.",
+   "d6": "Read Plan No. 2 of 1968 secs. 1-6 for abolition or savings wording on HUD offices: none.",
+   "sources_read": [
+    "jobs/source-ladder/output/texts/queue_EO_11299_Reorganization_Plan_No._2_of_1968_urban_mass_transportation_functions_of_HUD_transfer_61459d21ea.txt",
+    "research/readiness/FETCH_QUEUE.jsonl"
+   ],
+   "minutes_estimate": 1,
+   "approx_tokens": 6000
+  }
+ ]
+}

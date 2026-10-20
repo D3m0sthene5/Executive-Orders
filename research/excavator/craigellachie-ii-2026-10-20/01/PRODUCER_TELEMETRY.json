@@ -1,0 +1,26 @@
+{
+ "agent": "claude-craig2-01-producer",
+ "start_utc": "2026-10-20T06:46:53Z",
+ "end_utc": "2026-10-20T07:00:00Z",
+ "wall_minutes_total": 13,
+ "note": "Wall times from date -u; the split and token figure are estimates (no harness usage shown). Most time went to reading the four newly held statutes and plans and to tracing every EO 11248 amender for EO 11367 item (5).",
+ "minutes_split": {"reading_sources": 7, "deciding": 4, "mechanical_apply_batch_check_fixing": 2},
+ "approx_tokens_total": 150000,
+ "tool_calls": 38,
+ "apply_versions": ["applied-v1 (assembled 1, blocked 3; batch-check strict pass 1/1; actual checker 1/1 all checks passed)"],
+ "final_applied_dir": "research/excavator/craigellachie-ii-2026-10-20/01/applied-v1",
+ "checker_dir": "/tmp/claude-0/-home-user-Executive-Orders/dc388148-b92d-5956-9825-90ce34a3dac7/scratchpad/craig2/checker-01-v1",
+ "outcome_counts": {"submit": 1, "blocked": 3, "unresolved": 0, "route_owner": 0},
+ "fetch_lines_appended": 6,
+ "tool_gaps": [
+  "A statutory or reorganization-plan end cannot be expressed honestly: the TERM records joined from fetched statutes carry actor = the order and mechanism own_terms_condition, and their spans did not contain the abolition sentences (EO 8399: Employees' Compensation Commission and grant-in-aid spans; EO 11293: plan sec. 6 header span without the Administration or date). clauses.csv has no mechanism or actor override for first_end.",
+  "A deletion by words (EO 11604 deleting item (8) of EO 11248 sec. 2) names no EO number, so no ACT or ACTOR_TEXT record links it to EO 11293 or EO 11299; an act_overrides record would be needed.",
+  "EO 11299 dossier clause inventory is 24 draft clauses from neighbouring Federal Register regulations; only item (9) is the order's."
+ ],
+ "orders": [
+  {"instrument_id": "EO:8399", "outcome": "blocked", "minutes_estimate": 2.5, "approx_tokens": 20000, "family_or_shared_source": "Reorganization Plan No. 2 of 1946", "blocker": "statutory end (Social Security Board abolished) not expressible in kit; effective date only from marginal note; carry-over reading would end at the 1953 abolition of the Federal Security Agency (not held)"},
+  {"instrument_id": "EO:11293", "outcome": "blocked", "minutes_estimate": 3.5, "approx_tokens": 35000, "family_or_shared_source": "Pub. L. 91-224; Reorganization Plan No. 3 of 1970; EO 11248 amenders", "blocker": "plan abolishes the Administration (candidate earlier end 1970-12-02, date from marginal note) vs carry-over to EPA Water Quality Office until EO 11604 (1971-07-02); neither expressible (no statutory-end record; EO 11604 absent from dossier)"},
+  {"instrument_id": "EO:11299", "outcome": "blocked", "minutes_estimate": 1.5, "approx_tokens": 12000, "family_or_shared_source": "Reorganization Plan No. 2 of 1968", "blocker": "held plan transfers functions to DOT but does not abolish the HUD Urban Transportation Administration or Director post; HUD organization record not found"},
+  {"instrument_id": "EO:11367", "outcome": "submit", "minutes_estimate": 5.5, "approx_tokens": 60000, "family_or_shared_source": "EO 11248 amender family; Reorganization Plan No. 2 of 1970", "blocker": null}
+ ]
+}
