@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:1153",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:1153"
@@ -104,6 +104,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -115,9 +119,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:1153>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 1153 of January 12,1910.': number and date match the target's signing date. Target text: jobs/isthmian-canal-1911/output/texts/EO_1153.txt (official compilation). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:1153>EO:9830@rastell",
@@ -286,9 +292,39 @@
       "text": "The Executive Order of February 20, 1908, prescribing the proce-\ndure to be observed in submitting recommendations affecting the\nmetliod of appointment in the chissified service, will be amended by\nadding to line five after the word ''Rules\" the following: \"or pro-\nposing any exception to the requirements of said Act or Rules, or\nLabor Regulations, in either the classified or unclassified service\":\nand by adding to line sixteen after the word ''Congress\" the follow-\ning: \"in which case it shall onh* be made through or as authorized\nby the head of the Department.\"\nAs amended the Order will read :\n\"Hereafter the following procedure shall be strictly observed by\nofficers and emplo3^ees in the Executive Civil Service in submitting\nany recommendation affecting the method of appointment to any\nposition or class of positions now included or which may be included\nin the classified service under the operation of the Civil Service Act\nor Rules, or proposing any exception to the requirements of the said\nAct or Rules, or Labor Regulations, in either the classified or un-\nclassified service:\n\"Every recommendation shall be accompanied by a full statement\nof the reasons therefor, and, if approved by the head of the proper\nDepartment or independent bureau, shall be referred to the Civil\nService Commission, wliicli body shall submit a report thereon to the\nPresident.\n\"No recommendation cf the character mentioned shall be sub-\nmitted by an}^ officer or employee, directly or indirectly, to Congress\nor to any committee or member of Congress, except in the manner\nherein provided unless such recommendation shall be called for from\nsuch officer or employee by the Senate, the House of Representatives\nor the Congress, in wiiich case it shall only be made through or as\nauthorized by the head of the Department.\"\nWm."
     }
   },
-  "fingerprint": "3d3c190a24350e6096e5dc73f1bb2580a07d8d8089cc2501dc414b1c760902e1",
+  "fingerprint": "7631ce123543cbef2a36978864f8d4c254a2f64f06df932fd71cf6a18323e335",
   "instrument_id": "EO:1153",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "fa0323c91f910d286af7f8d2ba7a6d52fca1e01a65f8079df507b73695ad95da",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:1153",
+      "later_actor_evidence_ids": [
+        "ACT:EO:1153>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:1153:dd8cc53a23c9fc4c@145e35344958298a",
+        "TERM:EO:1153:faec08249bce7b07@145e35344958298a"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:1153#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

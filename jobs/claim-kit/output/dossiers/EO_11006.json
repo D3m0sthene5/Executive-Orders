@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:11006",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11006"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11006>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11006>EO:12553@rastell",
@@ -422,9 +428,41 @@
       "text": "As provided by Section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by Eastern Air Lines, Inc., or by its employees, in the condition out of which the dispute arose."
     }
   },
-  "fingerprint": "dc81654ce5ea9c86d0ac514c5f1cb8003a394de2747f063e649479a73e711e80",
+  "fingerprint": "883a9cef59d697921906b0fc63260aea455edcb08aee959a5eb010e3baec0522",
   "instrument_id": "EO:11006",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "1d53336df60b09a133262237e76d71a85fcdf840886a6684674a26697d705fd3",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11006",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11006>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:11006:69f23eef7f964af8@0c52237ac78e0595",
+        "TERM:EO:11006:dd3fd288b2e640ca@0c52237ac78e0595",
+        "TERM:EO:11006:69f23eef7f964af8@8a5009bc9ea80d3d",
+        "TERM:EO:11006:dd3fd288b2e640ca@8a5009bc9ea80d3d",
+        "TERM:EO:11006:e37af80e0e017bdc@2057160c72f8ef96",
+        "TERM:EO:11006:eff96af4487d26b7@2057160c72f8ef96"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11006#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

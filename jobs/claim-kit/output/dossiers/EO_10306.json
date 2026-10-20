@@ -43,7 +43,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10306",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10306"
@@ -152,13 +152,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10306>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10306>EO:12553@rastell",
@@ -715,9 +721,37 @@
       "text": "Full preparation and investigation \nof the dispute was not possible within that time and, on December 13, \n1951, upon the joint request of the parties and the recommendation \nof the National Mediation Board, the President extended the time to \nJanuary 15, 1952."
     }
   },
-  "fingerprint": "67c60908d36355468353f6386a3f0366816f8e48e6f66946d83c776c88f1d7f1",
+  "fingerprint": "ae1b14051cf82f346b387f729f269b1f9f00d1af44901289a54ec190b78278ab",
   "instrument_id": "EO:10306",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "dfb1d112ded34b22715fecefbbab0c5c401be5774e62ea8d97c50086915d6bd9",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10306",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10306>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10306:b58af2c47a74e80a@3ef64b7e6935732e",
+        "TERM:EO:10306:ae6eb5d15a52ad88@3ef64b7e6935732e"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10306#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

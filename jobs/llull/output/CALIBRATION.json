@@ -1,5 +1,5 @@
 {
-  "commit": "37887dbd2",
+  "commit": "ec1312167",
   "current_outcome_ids": {
     "L-20261020-1": "O-20261020-1",
     "L-20261020-13": "O-20261020-49",
@@ -49,7 +49,17 @@
     "L-20261020-58": "O-20261020-48",
     "L-20261020-59": "O-20261020-44",
     "L-20261020-60": "O-20261020-45",
-    "L-20261020-65": "O-20261020-52"
+    "L-20261020-61": "O-20261020-56",
+    "L-20261020-62": "O-20261020-59",
+    "L-20261020-63": "O-20261020-57",
+    "L-20261020-64": "O-20261020-58",
+    "L-20261020-65": "O-20261020-52",
+    "L-20261020-66": "O-20261020-61",
+    "L-20261020-67": "O-20261020-62",
+    "L-20261020-68": "O-20261020-53",
+    "L-20261020-69": "O-20261020-54",
+    "L-20261020-70": "O-20261020-55",
+    "L-20261020-78": "O-20261020-60"
   },
   "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count",
   "experiment_groups": {
@@ -102,6 +112,12 @@
       "L-20261020-38",
       "L-20261020-39"
     ],
+    "source:research/excavator/rastell-2026-10-20/r9830/OUTCOME.json": [
+      "L-20261020-78",
+      "L-20261020-66",
+      "L-20261020-67",
+      "L-20261020-68"
+    ],
     "source:research/excavator/sinclair-2026-10-20/OUTCOME.json": [
       "L-20261020-40",
       "L-20261020-41",
@@ -125,12 +141,12 @@
       "L-20261020-25"
     ]
   },
-  "n_current_outcomes": 49,
-  "n_experiments_scored": 14,
-  "n_forecasts": 65,
-  "n_outcome_records": 52,
-  "n_resolved": 47,
-  "n_scored": 43,
+  "n_current_outcomes": 59,
+  "n_experiments_scored": 15,
+  "n_forecasts": 78,
+  "n_outcome_records": 62,
+  "n_resolved": 57,
+  "n_scored": 47,
   "not_preregistered_excluded": {
     "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
     "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
@@ -226,18 +242,21 @@
       "trust": "unproven"
     },
     "claude:claude-opus-5-5": {
-      "coverage_p10_p90": 0.8,
+      "brier": 0.5625,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 0.75,
       "experiment_ids": [
         "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json",
+        "source:research/excavator/rastell-2026-10-20/r9830/OUTCOME.json",
         "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json"
       ],
-      "mean_norm_interval_score": 33.36792703479726,
-      "mean_skill_vs_outside_view": 0.47261995742987617,
-      "median_log_ratio": 0.0,
-      "n_binary": 0,
-      "n_experiments": 2,
-      "n_interval": 5,
-      "optimism_factor": 1.0,
+      "mean_norm_interval_score": 21.40759328563718,
+      "mean_skill_vs_outside_view": 0.46683438294585433,
+      "median_log_ratio": 0.1025211435618238,
+      "n_binary": 1,
+      "n_experiments": 3,
+      "n_interval": 8,
+      "optimism_factor": 0.903,
       "trust": "unproven"
     },
     "claude:claude-sonnet-5-5": {
@@ -325,11 +344,17 @@
   "schema": "llull.calibration/2",
   "unchecked_excluded": {
     "L-20261020-13": "no run directory declared",
-    "L-20261020-14": "no run directory declared"
+    "L-20261020-14": "no run directory declared",
+    "L-20261020-61": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-62": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-63": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-64": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-69": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified",
+    "L-20261020-70": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified"
   },
   "unresolved_outcomes": {
     "L-20261020-33": "untested",
     "L-20261020-37": "untested"
   },
-  "written_at": "2026-10-20T19:28:05Z"
+  "written_at": "2026-10-20T21:35:16Z"
 }

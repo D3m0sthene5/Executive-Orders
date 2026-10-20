@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:12357",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12357"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in: the only hit is the word \"effectiveness\" inside the subject of EO 11836's row). The order is dated \"Executive Order 12553 of February 25, 1986\". on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 is not an effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12357>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence, ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" (PDF pages 9-15 of the held text; all seven pages belong to EO 12553, the signature block follows the last row at offset 33109, so no neighbouring document is mixed in). The sentence says \"the following Executive Orders, and any amendments thereto, are revoked\"; \"any amendments thereto\" is a general phrase and is not treated as a separate target. Target row: 12357 in the \"No.\" column (number-only column; subjects print in a separate column in the same order layout). Subject column cross-check by order (the 41st number of the page-14 column pairs with the 41st subject): the subject printed for 12357 is \"Phasing out the United States Sinai Support Mission\", consistent with the target title \"Sinai Support Mission\".  Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12357>EO:12553@rastell",
@@ -308,9 +314,39 @@
       "text": "\"(g) The Director shall, as soon as possible after the Multinational Force and Observers becomes operational on April 25, 1982, phase-out the activities of the Mission in the Sinai and terminate all functions of the Mission not later than September 30, 1982."
     }
   },
-  "fingerprint": "5a8d43d4daa9fef74e649709e85360a1672138330aed86e4eb6034c5921f1bc0",
+  "fingerprint": "99d87736aac2fb6f149f3fabe81a9f5eca34eb60a8ddbc1a8e5837337ff73870",
   "instrument_id": "EO:12357",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "5ab27e779870dac180c3060b5a5cd409c83231dbe8377924b40d0c8fac11b92f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12357",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12357>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12357:6f7c68fef91eb40c@4c7d20467ecd9d8f",
+        "TERM:EO:12357:ce08180418bf1576@a1443f5d0d7a5f0f",
+        "TERM:EO:12357:ce08180418bf1576@c3f153fd3975fd4d"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12357#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "fixed_sunset",
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:11078",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11078"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11078>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The subject continues on a second printed line (\"and military aircraft industry\"), included in the target_naming span. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11078>EO:12553@rastell",
@@ -308,9 +314,40 @@
       "text": "The Board shall report to the President in accordance with the provisions of section 206 of such Act on or before Friday, January 25, 1963."
     }
   },
-  "fingerprint": "99ff9f8eef3b5a89189bd2353bb116befaa43b395b6d61ab315ada1ff93798ba",
+  "fingerprint": "82c49c37604131a9c267b0c3fe79ba35f970dbae7524c5f74788b286c6118ff0",
   "instrument_id": "EO:11078",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "217fc289d6d2716d3cba587e2284dd0f5e3e17adaa585e7fabe27f09af9d57d7",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11078",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11078>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:11078:2aed0ae3603bc981@d56ea2aaa741c750",
+        "TERM:EO:11078:2aed0ae3603bc981@619fe7924ba7a6de",
+        "TERM:EO:11078:b58fdbc3399bccb1@95571957898890e4"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11078#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

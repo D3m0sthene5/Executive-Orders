@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10114",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10114"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10114>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10114>EO:12553@rastell",
@@ -619,9 +625,50 @@
       "text": "The board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order."
     }
   },
-  "fingerprint": "37fc9db939c9b3aff73d32915d9aa0cf19ac5ab5b973a2d2171a5b2c78483391",
+  "fingerprint": "871ebca1de9dbdfe5cafe88fa9653c49becdee62f989d98a4e2a161e51b8cbd9",
   "instrument_id": "EO:10114",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "f5c5bee40342532c8e483f1fb333be95031f4561b1b4941101a0934c31f1a29e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10114",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10114>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10114:c72381d63bb794c1@5c57c79d198703bf",
+        "TERM:EO:10114:35798b6e611a01a9@5c57c79d198703bf",
+        "TERM:EO:10114:c72381d63bb794c1@609ce01bba747075",
+        "TERM:EO:10114:35798b6e611a01a9@609ce01bba747075",
+        "TERM:EO:10114:9a072786f8acba41@eee107290c86abb7",
+        "TERM:EO:10114:2c53de5ddc5dbf6f@eee107290c86abb7",
+        "TERM:EO:10114:1c68a04d2d447959@eee107290c86abb7",
+        "TERM:EO:10114:9e6a670a9b448cf3@eee107290c86abb7",
+        "TERM:EO:10114:bb5c71a837892da2@eee107290c86abb7",
+        "TERM:EO:10114:6d295d9216ac01f0@eee107290c86abb7",
+        "TERM:EO:10114:3734493756d32568@eee107290c86abb7",
+        "TERM:EO:10114:45fdfa34bd2750a3@eee107290c86abb7",
+        "TERM:EO:10114:0dd273bedcab8eb8@5b0dc19c97b5ff59",
+        "TERM:EO:10114:5a57fdd2367dbbde@5b0dc19c97b5ff59"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10114#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline",
+        "until_event"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

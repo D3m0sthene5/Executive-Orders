@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:11771",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11771"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11771>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 11771 found at char 26383 (PDF page 13 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 13, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11771>EO:12553@rastell",
@@ -308,9 +314,37 @@
       "text": "By virtue of the authority vested in me by the act of April 20, 1973 (87 Stat. 24; Public Law 93-22), and as President of the United States, I extend to the Liaison Office of the People's Republic of China in Washington, D.C. and to its members who are duly notified to, and accepted by, the Secretary of State the same privileges and immunities, subject to corresponding conditions and obligations, as are enjoyed by the diplomatic missions accredited to the United States and by members of the staffs thereof."
     }
   },
-  "fingerprint": "e101c0eb931e9b4402b40d0685c83e5c5cd458c1a3b0becdc91a3263530e6e83",
+  "fingerprint": "175ed2d428a4fea74ca7512fdb47e705609850cc04c468d804c0aa071d8bedf2",
   "instrument_id": "EO:11771",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "ef0ad7a550b4f45cd17fe52dda30a8d9eacf37603209032472a03e763bcc96d2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11771",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11771>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:11771:69091ffb47d13b19@7238c17b3170d0ea",
+        "TERM:EO:11771:69091ffb47d13b19@d34b653973c19118",
+        "TERM:EO:11771:734e6ea251af3478@1f5347bca06e3020"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11771#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "extension"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:11049",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11049"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11049>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11049>EO:12553@rastell",
@@ -334,9 +340,29 @@
       "text": "(a) Except as otherwise provided in this Act, the property \nacquired by the Secretary under this Act shall be administered by the \nSecretary, subject to the provisions of the Act entitled \"An Act to \nestablish a National Park Service, and for other purposes\", approved \nAugust 25,1916 (39 Stat. 535), as amended and supplemented, and in \naccordance with other laws of general application relating to the \nnational park system as defined by the Act of August 8, 1953 (67 \nStat, 496), except that authority otherwise available to the Secretary \nfor the conservation and management of natural resources may be \nutilized to the extent he finds such authority will further the purposes \nof this Act."
     }
   },
-  "fingerprint": "d455179929532cdc33f012fe9dbb3e7bd0cda8e7c0d42fa3fe4bc0de053077d0",
+  "fingerprint": "ed1c24d93f3a1da674e0fae7703c130af48b7be2b9c83ce9715009fbeb8c55ef",
   "instrument_id": "EO:11049",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "853db870b7316551e07fe07aee08df715e67561c91d8409b01caaea4a78a00aa",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11049",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11049>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11049#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

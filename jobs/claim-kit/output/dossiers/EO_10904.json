@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10904",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10904"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10904>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a bare number in the \"No.\" column; the subjects are printed as a separate block below the numbers on PDF page 11 (offsets 10267-15646), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. Positional alignment (number #63 of 64 on this page to subject-block entry #63, hand-checked against the target's own title): \"Creating an emergency board to investigate a railroad labor dispute\" at offset 15457. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10904>EO:12553@rastell",
@@ -450,9 +456,43 @@
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by carriers represented by the \nNew York Harbor Carriers’ Conference \nCommittee, or by their employees, in the \nconditions out of which the dispute arose."
     }
   },
-  "fingerprint": "c9b77b9eed77b67caf45da1146ed7120cb264d30e6f6e99b5746a3d23a3f6f80",
+  "fingerprint": "dacbb628dc2a036dff714ffd585a2c6b769bc910955b0d7bb24c16acd58b9da8",
   "instrument_id": "EO:10904",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "bbd9cd0b443948d4f840bdbb989af1c6d6b6ea96d6ed4b5b3f729955154efa60",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10904",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10904>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10904:7a28f9b475d3d6df@e06a163f72689711",
+        "TERM:EO:10904:a334baadb3aebce7@e06a163f72689711",
+        "TERM:EO:10904:7a28f9b475d3d6df@8f317073674b7bd6",
+        "TERM:EO:10904:a334baadb3aebce7@8f317073674b7bd6",
+        "TERM:EO:10904:067a7946275b0869@68104d26a4755982",
+        "TERM:EO:10904:35cae62d1bd2c3f3@68104d26a4755982",
+        "TERM:EO:10904:8393d4754854c7bc@4af28ba08416ff28",
+        "TERM:EO:10904:727a50918303cfd7@4af28ba08416ff28"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10904#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

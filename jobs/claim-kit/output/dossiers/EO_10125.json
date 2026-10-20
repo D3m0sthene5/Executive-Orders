@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10125",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10125"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10125>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10125>EO:12553@rastell",
@@ -563,9 +569,42 @@
       "text": "The board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order."
     }
   },
-  "fingerprint": "0435155fa5c75d11caed0c1b83b69fe3ea108d0afe4a2888a9ec9c633cac4f28",
+  "fingerprint": "45df0a68242f8166fc0655a421171012323413a0eea794f1b03228dd4aac33b3",
   "instrument_id": "EO:10125",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "40aba9522848d1aca63e24e4d35353fb31c9f2d73cb3b1ca1fb4615ab8017bc2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10125",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10125>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10125:fa14bc78574e0df4@3e6ff9d3a8e5f4c9",
+        "TERM:EO:10125:dbc7b68bc337c2d1@3e6ff9d3a8e5f4c9",
+        "TERM:EO:10125:cd35b5ba0a533d5b@6bf68c95e3aca657",
+        "TERM:EO:10125:f8435d30c633fe60@6bf68c95e3aca657",
+        "TERM:EO:10125:b2ae21e58cc8b979@b7d11438c5a68b13",
+        "TERM:EO:10125:a9d61646aa8d7b01@b7d11438c5a68b13"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10125#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "extension",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

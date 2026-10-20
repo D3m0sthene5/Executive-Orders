@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10038",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10038"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10038>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10038>EO:12553@rastell",
@@ -590,9 +596,38 @@
       "text": "The \napproval of the parties as stipulated in the record 3 was transmitted to \nthe President, through the National 11ediation Board, and this con­\nstituted a requested for an extension until September 19, 1949, of the \ntime within which the Board would complete its investigation and sub­\nmit its report."
     }
   },
-  "fingerprint": "490af33e36b25755ad0a8bd464caa1840b16d0164ab7d3d9b592099e117f46d3",
+  "fingerprint": "306ee9bc0e5dc0e8c7cd6239a2c2a1fd49dbee26b83011e77f6e08f463751101",
   "instrument_id": "EO:10038",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "d0d8684278739e7dee65e4e8b4f20a288f375b7c80005ce76551e0ed9d634ba1",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10038",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10038>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10038:9e0fc8ad78caceeb@ee7ae6cba954e572",
+        "TERM:EO:10038:a96b4bc9c878253d@ee7ae6cba954e572",
+        "TERM:EO:10038:6092549e2900ac25@26506c73257e3d52",
+        "TERM:EO:10038:0fa7e1881ab02dca@26506c73257e3d52"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10038#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

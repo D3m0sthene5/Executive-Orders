@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10283",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10283"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10283>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The row's subject wraps onto a second line in the held text; the span covers the whole wrapped row and ends before the next row. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10283>EO:12553@rastell",
@@ -395,9 +401,44 @@
       "text": "Upon the submission of its report, the Board shall continue in existence to perform such other functions as may be required under the said Act, until the Board is terminated by the President."
     }
   },
-  "fingerprint": "557b4c6718e09cf464d3786822c44701cc70b2ef44e7b5c9c2f6637cf867e332",
+  "fingerprint": "3f3b8519fdce103d1b4812a18d82f74488340596487e3b0a164dd2db476c9c9b",
   "instrument_id": "EO:10283",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "f55182fc84d26aa17b1f5713f1e28857a502871fc9225922a83e91ef30ea0239",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10283",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10283>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10283:78d28c8db6947b56@6bccec53f9356b34",
+        "TERM:EO:10283:1edf0877d0806c40@6bccec53f9356b34",
+        "TERM:EO:10283:78d28c8db6947b56@ecb34819d5d95bc9",
+        "TERM:EO:10283:1edf0877d0806c40@ecb34819d5d95bc9",
+        "TERM:EO:10283:c43aa10d52721840@31ab73a17b1f5b8f",
+        "TERM:EO:10283:d70a408413746ef2@31ab73a17b1f5b8f"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10283#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "deadline",
+        "performance_command",
+        "report_deadline",
+        "until_event"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

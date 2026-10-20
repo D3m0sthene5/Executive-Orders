@@ -1,5 +1,5 @@
 {
-  "commit": "37887dbd2",
+  "commit": "ec1312167",
   "definition": "miss = measured outside the 80% interval (interval) or event expected at p >= 0.5 and not happening (binary); flagged = prerequisite-coverage flag at registration (legacy CEILING_EXCEEDED included); out-of-sample = registered_commit is a strict descendant of rule_commit and registration is verifiably prospective",
   "dependence_note": "multiple forecasts from one underlying experiment are correlated",
   "experiment_groups": {
@@ -52,6 +52,12 @@
       "L-20261020-38",
       "L-20261020-39"
     ],
+    "source:research/excavator/rastell-2026-10-20/r9830/OUTCOME.json": [
+      "L-20261020-66",
+      "L-20261020-67",
+      "L-20261020-68",
+      "L-20261020-78"
+    ],
     "source:research/excavator/sinclair-2026-10-20/OUTCOME.json": [
       "L-20261020-40",
       "L-20261020-41",
@@ -92,29 +98,39 @@
     {
       "flagged": true,
       "forecast_id": "L-20261020-60"
+    },
+    {
+      "flagged": true,
+      "forecast_id": "L-20261020-66"
     }
   ],
-  "n_experiments_out_of_sample": 14,
-  "n_flagged_misses": 4,
-  "n_flagged_out_of_sample": 17,
+  "n_experiments_out_of_sample": 15,
+  "n_flagged_misses": 5,
+  "n_flagged_out_of_sample": 19,
   "n_in_sample": 0,
-  "n_miss_experiments": 3,
-  "n_misses_out_of_sample": 4,
+  "n_miss_experiments": 4,
+  "n_misses_out_of_sample": 5,
   "n_not_preregistered": 2,
-  "n_out_of_sample": 43,
-  "n_resolved": 47,
-  "n_unchecked": 2,
+  "n_out_of_sample": 47,
+  "n_resolved": 57,
+  "n_unchecked": 8,
   "n_unresolved": 2,
-  "precision": 0.23529411764705882,
+  "precision": 0.2631578947368421,
   "registration_excluded": {
     "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
     "L-20261020-13": "no run directory declared",
     "L-20261020-14": "no run directory declared",
-    "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
+    "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
+    "L-20261020-61": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-62": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-63": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-64": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-69": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified",
+    "L-20261020-70": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified"
   },
   "rule_commit": "15b4b4d85644ff6e71678e545b4962965045e7dd",
   "schema": "llull.selfscore/1",
   "share_flagged": 1.0,
   "trust": "unproven",
-  "written_at": "2026-10-20T19:28:07Z"
+  "written_at": "2026-10-20T21:35:18Z"
 }

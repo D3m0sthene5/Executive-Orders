@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10032",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10032"
@@ -107,13 +107,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10032>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10032>EO:12553@rastell",
@@ -734,9 +740,38 @@
       "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
     }
   },
-  "fingerprint": "e3d31b43d3de66bae74851327943ca6ec271a315568207b047938486a6bad5be",
+  "fingerprint": "f7d642d23768453fa71d7c0eb86845fe051c9d60132d9c4d0f4652f294d0156e",
   "instrument_id": "EO:10032",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "803197cde5992451e1d8a258f1a7e18a2eeef7b938d7a3c2e1ad7bd2f05fef3f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10032",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10032>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10032:b397784104017c58@49c4d157b85005a2",
+        "TERM:EO:10032:396b3a98325f9401@49c4d157b85005a2",
+        "TERM:EO:10032:f5f419ebf0d3326e@5783eece320e95c1",
+        "TERM:EO:10032:173692b4c79bf2c7@5783eece320e95c1"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10032#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

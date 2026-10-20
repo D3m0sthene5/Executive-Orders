@@ -79,7 +79,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10080",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10080"
@@ -641,13 +641,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10080>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10080>EO:12553@rastell",
@@ -886,9 +892,38 @@
       "text": "The incumbent in an active duty status of any office or position in the competitive serve of the Federal Government on the date of this order who is without competitive status shall, upon recommendation made within the period of one year from the date of this order by the head of the agency in which he is employed, acquire a competitive civil service status if all of the following conditions are satisfied: (1) That such incumbent was appointed to an office or position in the executive branch of the Federal Government prior to March 16, 1942 (the date on which the War Service Regulations became effective), and has had continuous service with the Federal Government since that date which is creditable for retirement purposes, inclusive of any intervening military service; (2) that if the employment of such incumbent is evaluated under an efficiency rating system his mot recent rating is \"Good\" or better, and if his employment is not evaluated under an efficiency rating system the head of the agency concerned has certified to the Civil Service Commission that the incumbent has served with merit for sic months or longer immediately prior to the date of such certification; (3) that such person successfully qualifies in such suitable noncompetitive examination as the Civil Service Commission may prescribe; and (4) that such incumbent shall be given only one such noncompetitive examination: Provided, that separation for one year or less due to reduction of force shall not prevent the acquisition of a competitive status hereunder by the present incumbent in an active duty status of an office or position in the competitive service."
     }
   },
-  "fingerprint": "fab271dc2ebb7c8aa885bbb2a0db5e995b58656e486aed246756e134e7ff072b",
+  "fingerprint": "890a6d6c7874e616a2d9af3e2a98668000503e441b6c5264b9b45e8e855cf134",
   "instrument_id": "EO:10080",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "13af72f6c798badf1c607a74ac6f9e6ce4ee978bca30b4ff8fe11033af336fd3",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10080",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10080>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10080:4e367282f10366e4@a1b54af1e3273555",
+        "TERM:EO:10080:4e367282f10366e4@afe7857bb94f86af",
+        "TERM:EO:10080:7a41b6b9d6891a00@c583f20a0e3c1905"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10080#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "fixed_term",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

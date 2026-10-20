@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10056",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10056"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10056>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10056>EO:12553@rastell",
@@ -451,9 +457,42 @@
       "text": "The board shall report its findings to the President with respect \nto the said dispute within thirty days from the date of this order."
     }
   },
-  "fingerprint": "a21bfa680950c722cc90c059aaef78123be7cb3ab3dd01c8f9e8a62c91ff5009",
+  "fingerprint": "ffde6f4a8263443988b44cf71579ac2d8cd2297bc867ced18fec330369465118",
   "instrument_id": "EO:10056",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "e6949924a52cbbe39e502e2def18b2469da70c6863473f5a4fc4e3a07ce21de2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10056",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10056>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10056:c1bd1aa041120ab0@977444b6882c3e7a",
+        "TERM:EO:10056:14f440c901abe84b@977444b6882c3e7a",
+        "TERM:EO:10056:c1bd1aa041120ab0@a4f7b9d0ed854e22",
+        "TERM:EO:10056:14f440c901abe84b@a4f7b9d0ed854e22",
+        "TERM:EO:10056:f9f5756ef2905a80@58c8a18f1ebb0565",
+        "TERM:EO:10056:cf1329e129e5a231@58c8a18f1ebb0565",
+        "TERM:EO:10056:8516ac6a059e483c@ea19dcf23be4c450",
+        "TERM:EO:10056:efa60f32e98a0480@ea19dcf23be4c450"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10056#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

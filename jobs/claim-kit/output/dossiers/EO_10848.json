@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10848",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10848"
@@ -125,13 +125,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10848>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 54 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 54 at offsets 14792-14895: \"ThTstell Tndust^6 ° rder N°' 10843 CreatÌng 8 b° ard ° f ÌnqUÌry t0 report on a labor dispute affecting\". That subject agrees with the target's own held title (an amendment of the steel-industry board order EO 10843). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The subject text is garbled by OCR; the number itself is clean. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10848>EO:12553@rastell",
@@ -352,9 +358,57 @@
       "text": "The terms \n\"full-time operator” and “family-type \nlarm” as used in this subpart are de­fined in §  341.4.\n124 F.R. 8289.\nof October 9, 1959, entitled “Creating a \nBoard of Inquiry To Report on a Labor \nDispute Affecting the Steel Industry of \nthe United States”, to read as follows:\n“The Board shall report to the Presi­\ndent in accordance with the provisions \nof section 206 of such Act on or before \nOctober 19, 1959.”"
     }
   },
-  "fingerprint": "6895d8a8fac7dbc980816a39bcb02afd159a4530c97b61245f127ca8f9f98c0d",
+  "fingerprint": "2628b8176fcc0751001c80107d690efbf09e4ddee288cf34bce8cae4070dd845",
   "instrument_id": "EO:10848",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "1b8068a8cabcecc997e4f33c9dea48d904ab7e9ae0cb3d017829116645789a22",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10848",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10848>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10848#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead"
+      ]
+    },
+    {
+      "clause_sha256": "5d7c0112bccdaef28d07e7a9ec5dc6b0ece1fde49dcafbda755652f42c817aa7",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10848",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10848>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10848:5721d4d611bb5b60@b0d834abfd97c53e"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10848#a",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

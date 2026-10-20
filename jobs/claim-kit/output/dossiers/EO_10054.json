@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10054",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10054"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10054>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10054>EO:12553@rastell",
@@ -537,9 +543,46 @@
       "text": "Gross, a former employee of the Federal Communications Commission who is now employed by the International Telecommunication Union, is terminated without prejudice within five years from the date of the beginning of his service with such Union; provided that he complies with all other provisions of the said Executive order with respect to such reemployment."
     }
   },
-  "fingerprint": "bca1ccf5f5d46fe33f928d1e066b59fe6063a28dd6567b919f8c8c81836bafe7",
+  "fingerprint": "904b751e561cedfe98f2d822613ed1d9e9c3a6a5dbfa9ab6d1c9005056c0b468",
   "instrument_id": "EO:10054",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "0fd8f60b4c63d748662241ebb02f0ad95bb10b82798efc08a4ef43e574713168",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10054",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10054>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10054:c44c35c671dc83cb@07dfc6380585bab5",
+        "TERM:EO:10054:14ee68f153c711c1@07dfc6380585bab5",
+        "TERM:EO:10054:2e5bcdac6147bae7@07dfc6380585bab5",
+        "TERM:EO:10054:5904c653f204ccfd@07dfc6380585bab5",
+        "TERM:EO:10054:c44c35c671dc83cb@3e8120893ee7af4f",
+        "TERM:EO:10054:14ee68f153c711c1@3e8120893ee7af4f",
+        "TERM:EO:10054:2e5bcdac6147bae7@3e8120893ee7af4f",
+        "TERM:EO:10054:5904c653f204ccfd@3e8120893ee7af4f",
+        "TERM:EO:10054:6872f49ea690aa30@aa913f9581e3d224",
+        "TERM:EO:10054:77aa19aebdce2eba@aa913f9581e3d224",
+        "TERM:EO:10054:c75ae93ccf75dae0@aa913f9581e3d224"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10054#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "fixed_term",
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:9923",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9923"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:9923>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 9923 found at char 1225 (PDF page 9 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 9, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:9923>EO:12553@rastell",
@@ -395,9 +401,40 @@
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by The Akron &  Barberton Belt  \nRailroad or its employees in the condi­\ntions out of which the said dispute arose."
     }
   },
-  "fingerprint": "031827ce41ee6db31714de85d706072ea9c6d7834b077df05015dafaf4543514",
+  "fingerprint": "22e04b8ae19ccf02404055828d4cd417b270f071dbde9a45ce81ddd6970de878",
   "instrument_id": "EO:9923",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "cf5c3e46d8d111e8c7a4e058587b4083c262b1736d2f2d406e8fc06b14b02141",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9923",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9923>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9923:48dc139fcbf53aff@ae807fb66268a4b7",
+        "TERM:EO:9923:9bd5a4f948cc8add@ae807fb66268a4b7",
+        "TERM:EO:9923:48dc139fcbf53aff@b31c3fe807cd21e3",
+        "TERM:EO:9923:9bd5a4f948cc8add@b31c3fe807cd21e3",
+        "TERM:EO:9923:35efa1c604cc6904@83a0ed2fffb8d587",
+        "TERM:EO:9923:8e0ead8cfc6c1d3c@83a0ed2fffb8d587"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9923#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

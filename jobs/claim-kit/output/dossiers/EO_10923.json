@@ -74,7 +74,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:10923",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10923"
@@ -423,13 +423,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10923>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10923>EO:12553@rastell",
@@ -846,9 +852,40 @@
       "text": "The last collective ,~greement \nbetween the parties was executed effective September 19, 1958, which, \nwith certain later amendments, continued in full force and effect until \nJuly 1, 1960."
     }
   },
-  "fingerprint": "25f1b60d72c610102f5a7db877ba909df184e62925c7b88c680d68feae9936b7",
+  "fingerprint": "9f608b7497f44afb7ee9b8055d5b54c5617759074eb412fcc0bc628c60427bea",
   "instrument_id": "EO:10923",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "7620f8504eb2cc3676783f6507b3bc4c6212de333acef3161e2a817bd8255b72",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10923",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10923>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10923:836beadbae1df802@9b645b2a43d870c6",
+        "TERM:EO:10923:31951902b6d19984@9b645b2a43d870c6",
+        "TERM:EO:10923:69ea6c5d6bde3a9a@0d05b26ec033cdcb",
+        "TERM:EO:10923:b89f2eda056f86af@0d05b26ec033cdcb",
+        "TERM:EO:10923:69ea6c5d6bde3a9a@63f0af604496c938",
+        "TERM:EO:10923:b89f2eda056f86af@63f0af604496c938"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10923#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

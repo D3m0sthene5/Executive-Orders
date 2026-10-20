@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:11029",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11029"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11029>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The subject continues on a second printed line (\"industry\"), included in the target_naming span. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11029>EO:12553@rastell",
@@ -250,9 +256,34 @@
       "text": "Executive Order 11029\nAMENDMENT OF EXECUTIVE ORDER NO. 110251  CREATING A BOARD  \nOF INQUIRY TO REPORT ON A LABOR DISPUTE AFFECTING THE  \nAIRCRAFT INDUSTRY OF THE UNITED STATES\nBy virtue of the authority vested in me by Section 206 of the Labor \nManagement Relations Act, 1947, 61 Stat. 155 (29 U.S.C. 176), I  \n^hereby amend the title of Executive Order No. 11025 of June 7, 1962, \nto read as follows: “Creating a Board of Inquiry to Report on Labor \nDisputes Affecting the Tactical Fighter Production Industry, which \nis part of the A ircraft Industry of the United States.”\nBy virtue of the above stated authority I  further amend Executive \nOrder No. 11025 by substituting the following for the first and second \nparagraphs:\n“W H E R E A S, there exists a labor dispute between Republic Avia­\ntion Corporation, Farmingdale, Long Island, New York, and certain \nof its employees represented by the International Association of \nMachinists; Republic Lodge 1987, International Association of \nMachinists, A F L -C IO ; Local Union 775."
     }
   },
-  "fingerprint": "ae1ac1fcbe1b75435f384c55e577e90b9678e3afcc95ac89479a8f7bb918b94f",
+  "fingerprint": "3ec50986a0798bde22d2054d27c71cca1724d6448eab75115bf5d846f6d99145",
   "instrument_id": "EO:11029",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "eff4464f78a6dadfe87815f713eb83d88f6500c32423603d1052d6e48baba29d",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11029",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11029>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:11029:c7c9bcb05c161676@6629f6d224a37f3e"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11029#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

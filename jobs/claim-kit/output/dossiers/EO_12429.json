@@ -101,7 +101,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:12429",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12429"
@@ -257,13 +257,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12429>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 12429 found at char 27022 (PDF page 14 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 14, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12429>EO:12553@rastell",
@@ -531,9 +537,40 @@
       "text": "I), and in order to extend the life o f the President’s \nPrivate Sector Survey on C ost Control in the Federal Governm ent, it is hereby \nordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as \namended, is further am ended to read: “The Com m ittee shall term inate on \nO ctober 30,1983, unless sooner extended.”."
     }
   },
-  "fingerprint": "65a84fee6f55d4686c4eab5fc96a65b28977ba4387d95e105f6fee5505873276",
+  "fingerprint": "c4782c4d3e86ee55a44c9faef0e289ef79c2b19c88d580f8900d65f5c12d7591",
   "instrument_id": "EO:12429",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "a643e2994952c1a526434efe27a2fc9864fe56dba255a53081a9c2695a884c19",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12429",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12429>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12429:f75e17c15f073370@ef5efc1803492ce2",
+        "TERM:EO:12429:f75e17c15f073370@d38647a37c5d6617",
+        "TERM:EO:12429:5bd12c3bd8ab1823@d20aa91f05596d49",
+        "TERM:EO:12429:516826d1d22d3ce0@d20aa91f05596d49"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12429#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "extension",
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

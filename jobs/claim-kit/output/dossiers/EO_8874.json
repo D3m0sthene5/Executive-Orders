@@ -43,7 +43,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:8874",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8874"
@@ -107,16 +107,22 @@
       "char_end": 12924,
       "char_start": 11160,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective wording is attached to EO 9526 (the 'This amendment shall become effective as of January 1, 1945' sentence belongs to the neighbouring EO 9525 on the same page). The order is dated 'The White House, February 28, 1945'. on_signing is a reading that the reviewer must accept.",
       "effective_class": "on_signing",
       "effective_date": "1945-02-28",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [
         "Any provision in any of the orders \nhereinabove enumerated which is in con­\nflict with this order is hereby superseded \nto the extent of such conflict",
         "Provided, \nhowever, That any provision for the \nearlier return of jurisdiction over the \npublic lands m any of said orders shall \nremain operative."
       ],
       "filing_date": null,
       "id": "ACT:EO:8874>EO:9526",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Number appears as a bare entry in the 'Executive Order Numbers' list (not the Public Land Order list); the held text prints the neighbouring entry '8^94' (OCR). The paragraph being added makes the jurisdiction granted by each listed order cease six months after the unlimited national emergency declared by Proclamation 2487 ends; the lands remain withdrawn until otherwise ordered. The text file begins with EO 9525 and EO 9526 starts at char 2544; the provision lies inside EO 9526 (before EO 9527 at char 13049). The 'conflict ... is hereby superseded' sentence is an exception-type clause that supersedes only conflicting provisions. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8874>EO:9526@rastell",
@@ -419,9 +425,35 @@
       "text": "This order shall (1) take precedence \nover, but shall not rescind or revoke, Ex­\necutive Order No. 6910 of November 26, \n1934, as amended, and (2) shall be subject \nto the order of the Secretary of the Inte­\nrior of March 27,1936,1  establishing Graz­\ning District No. 2, New Mexico, so far as \nsuch orders affect any of the lands in the \nabove-described areas."
     }
   },
-  "fingerprint": "277d5941e7be0950af7ba1a0cd09c4b75d6c95466572953c92a3919f6fbde483",
+  "fingerprint": "02e7a9d58a3786f8c75f924b633a5b30f316b948296709878e4be9c3a8c3d7c4",
   "instrument_id": "EO:8874",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "31dbe0ac001eecdf43b78db6eb7aefe261d2010bc4d4a9b254cdefd41f4a5d53",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8874",
+      "later_actor_evidence_ids": [],
+      "own_term_evidence_ids": [
+        "TERM:EO:8874:acffa9b941d63224@b8fa43b25c5e585e",
+        "TERM:EO:8874:d1e51dca90ae0f86@b8fa43b25c5e585e",
+        "TERM:EO:8874:acffa9b941d63224@8304be27e0101e0c",
+        "TERM:EO:8874:d1e51dca90ae0f86@8304be27e0101e0c",
+        "TERM:EO:8874:cc5daf01d4f50e53@9d2092c5b11e83dc",
+        "TERM:EO:8874:2f54445cf1ad0c70@9d2092c5b11e83dc"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8874#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

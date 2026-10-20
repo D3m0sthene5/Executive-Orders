@@ -1,9 +1,9 @@
 {
   "orders_total": 14972,
   "orders_with_provisional_status": 3359,
-  "ready_for_human_review": 238,
+  "ready_for_human_review": 251,
   "ready_by_tier": {
-    "complete_claim": 238
+    "complete_claim": 251
   },
   "human_verified": "not counted here; see the Stage 19 tracker",
   "step_done_among_decided": {
@@ -16,15 +16,15 @@
       "applicable": 3359
     },
     "clause_inventory": {
-      "done": 302,
+      "done": 315,
       "applicable": 3359
     },
     "ending_or_current_basis": {
-      "done": 258,
+      "done": 273,
       "applicable": 3359
     },
     "savings_residuals": {
-      "done": 291,
+      "done": 306,
       "applicable": 3359
     },
     "counterevidence": {
@@ -47,15 +47,15 @@
     "2/6": 474,
     "2/7": 82,
     "2/8": 6,
-    "3/6": 1117,
+    "3/6": 1102,
     "3/7": 430,
     "3/8": 54,
     "4/6": 24,
     "4/7": 71,
     "4/8": 151,
-    "5/6": 32,
+    "5/6": 34,
     "5/8": 21,
-    "6/6": 236,
+    "6/6": 249,
     "6/7": 9,
     "7/7": 2,
     "7/8": 1,
@@ -64,10 +64,10 @@
   "orders_blocked_by": {
     "NO_PROVISIONAL_STATUS": 11613,
     "NO_OFFICIAL_SOURCE_LOCATED": 7814,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3216,
-    "NO_CLAUSE_INVENTORY": 3017,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3017,
-    "FIRST_END_UNPROVED": 2624,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 4644,
+    "NO_CLAUSE_INVENTORY": 3002,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3002,
+    "FIRST_END_UNPROVED": 2609,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
     "OPUS_MEDIA_REFETCH_NEEDED": 435,
     "CURRENT_BASIS_UNPROVED": 393,
@@ -80,13 +80,13 @@
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
     "OPEN_SOURCE_AUDIT": 6,
-    "CLAIM_CHECK_FAILED": 1,
+    "CLAIM_CHECK_FAILED": 3,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
-    "NO_CLAUSE_INVENTORY": 3017,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 3017,
-    "FIRST_END_UNPROVED": 2624,
+    "NO_CLAUSE_INVENTORY": 3002,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3002,
+    "FIRST_END_UNPROVED": 2609,
     "NO_OFFICIAL_SOURCE_LOCATED": 959,
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 898,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
@@ -101,7 +101,7 @@
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
     "OPEN_SOURCE_AUDIT": 6,
-    "CLAIM_CHECK_FAILED": 1,
+    "CLAIM_CHECK_FAILED": 3,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
@@ -109,7 +109,7 @@
     {
       "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
       "kind": "machine_job",
-      "orders_unblocked": 3216,
+      "orders_unblocked": 4644,
       "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
     },
     {
@@ -198,7 +198,7 @@
       "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
       "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
       "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
-      "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl",
+      "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl + jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl + jobs/numbered-early-orders/output/FRAGMENTS.jsonl + jobs/wikisource-texts/output/FRAGMENTS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -219,9 +219,12 @@
       "indian-reservations-1912": 55,
       "richardson-volumes (lead only, never counted as the original)": 68,
       "app-executive-orders (lead only, never counted as the original)": 9902,
+      "hathi-gpo-orders (lead only, never counted as the original)": 1531,
+      "numbered-early-orders (lead only, never counted as the original)": 184,
+      "wikisource-texts (lead only, never counted as the original)": 1639,
       "opus-media-match status": 1155,
-      "source-ladder": 394,
-      "claim-checker": 342,
+      "source-ladder": 466,
+      "claim-checker": 357,
       "machine later-source search": 6938
     }
   }
