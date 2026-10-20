@@ -83,6 +83,20 @@
    "from": "RASTELL",
    "ids_file": "jobs/llull/ledger/pool_ids/RASTELL12553.txt",
    "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMBS": {
+   "title": "Lambertini savings S0 (shared ending-instrument reading)",
+   "describe": "decided-NO not-ready orders with savings open whose single EO ending instrument's held text names them with no savings or transfer wording near or anywhere (jobs/lambertini S0_none_candidate), original text and counterevidence done; excludes Rastell batch orders (research/plans/LAMBERTINI_DESIGN.md)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMBS.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
+  },
+  "LAMBC": {
+   "title": "Lambertini pre-1937 counterevidence record, no lead",
+   "describe": "decided not-ready orders blocked on counterevidence by NO_OFR_CATALOG_ENTRY with original text done and no later-events, current-law or WPA lead (jobs/lambertini C0_no_lead_found)",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMBC.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
