@@ -1,0 +1,63 @@
+{
+  "schema": "norton-junto-proposal-snapshot/v1",
+  "origin": "owner_seeded",
+  "saver_key": "norton_shared_factual_obligations",
+  "candidates": [
+    {
+      "candidate_id": "C-20261020-14",
+      "estimate": {
+        "basis": "Observed intersections only; dollars and savings unmeasured.",
+        "usd_per_session": null
+      },
+      "evidence": [
+        {
+          "clause_applications": 6,
+          "exact_questions": 2,
+          "path": "jobs/norton/output/CENSUS.json",
+          "reviewed_answers": 0,
+          "sha256": "57bfc615367c387d6276e29b5ce782549ad963c8620ba6b1c24730ce6930a49b"
+        }
+      ],
+      "finder_id": "F-norton",
+      "origin": "owner_seeded",
+      "proposed_test": "Fresh matched family clusters through independent factual review, per-clause applicability and integration; include source holds and all arm costs. No cross-arm source or answer sharing.",
+      "rev": 0,
+      "run_id": "R-20261020-4",
+      "saver_key": "norton_shared_factual_obligations",
+      "schema": "junto.candidate/1",
+      "status": "unverified",
+      "status_ref": null,
+      "targets": [
+        "repeated_factual_research"
+      ],
+      "title": "NORTON: pool exact shared factual obligations",
+      "usd_basis": "unmeasured",
+      "written_at": "2026-10-20T15:55:47Z",
+      "written_by": "claude"
+    }
+  ],
+  "runs": [
+    {
+      "candidates_emitted": [
+        "C-20261020-14"
+      ],
+      "data_digest": "57bfc615367c387d6276e29b5ce782549ad963c8620ba6b1c24730ce6930a49b",
+      "exit_code": 0,
+      "finder_id": "F-norton",
+      "finder_version": "1",
+      "inputs": {
+        "census_sha256": "57bfc615367c387d6276e29b5ce782549ad963c8620ba6b1c24730ce6930a49b"
+      },
+      "rev": 0,
+      "round_id": null,
+      "run_id": "R-20261020-4",
+      "schema": "junto.run/1",
+      "usd_basis": "local_script",
+      "usd_spent": 0.0,
+      "wall_seconds": 0.0004018740000901744,
+      "written_at": "2026-10-20T15:55:47Z",
+      "written_by": "claude"
+    }
+  ],
+  "integration_note": "Concurrent unmerged PR42 and PR43 also allocate C-20261020-14 (and branch-local R IDs). Preserve these exact frozen proposals; when combining the branches, keep the canonical append-only ledger and replay norton via junto.py run --force after other registrations, using the frozen census outside the repo. The saver key and owner-seeded origin remain stable; no verified savings exist."
+}
