@@ -296,3 +296,22 @@ Layout: `jobs/mountweazel/{README.md, mountweazel.py (taxonomy | seed | render |
 guard), taxonomy.json, fixtures/<batch>/*.seeded.json, results/<batch>/, output/STATUS.json,
 output/SENSITIVITY.json, needs.txt}`. Commands that need more than the container can hold run as a
 bounded GitHub Actions job, and their `output/STATUS.json` is checked before any result is used.
+
+## 8. First trial: MW-C1 (2026-10-20)
+
+20 Track C items, 6 plants, one same-family reviewer (claude-opus-5-5) reading the batch only.
+Strict catch 3/6 (Wilson 0.19-0.81). Caught: D4 MW-C1-04, D5 MW-C1-07 (keyed D2, relabelled: the clause is an
+annual report, not a one-time duty), D5 MW-C1-15. Missed: D3 MW-C1-09 (noticed the cut quote, accepted it as OCR
+truncation), D6 MW-C1-16, D9 MW-C1-01. False alarms 0/14 real (Wilson 0-0.22).
+
+All three caught plants carried a seeding tell: the global rationale swap rewrote sentences about sibling clauses,
+so each packet contradicted itself. All three tell-free plants were missed (0/3, Wilson 0-0.56). Those are also the
+subtler types, so tells and difficulty are confounded. Fixes: `_swap_safe` (skip plants whose old end is shared),
+recurring-duty exclusion for D2, same-unit refutability for D9, specific-term strict matching, novel-only leak
+needles in `check` (the trial's check had 24 false positives from real EO 12076 text matching a D3 prefix).
+
+Bowditch Y1's 0/15 (flag rate at most 0.22) with a 0.5 catch rate bounds defect prevalence at 0.44 or less; at the
+catch rate's lower bound, or tell-free, the bound is 1.0. A different track (status proposals), so it transfers
+only as an order of magnitude. Next: MW-C2 with fixed operators, a no-access leak discriminator, a Track S batch
+with source texts, and a different-family or human reviewer.
+

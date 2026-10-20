@@ -16,7 +16,8 @@ Standard library only. Run everything with `python3 -I`.
 ```
 python3 -I jobs/mountweazel/mountweazel.py pool
 python3 -I jobs/mountweazel/mountweazel.py seed  --track C --batch-id MW-C1 --seed <text> [--n 24] [--exclude-orders EO:1,EO:2]
-python3 -I jobs/mountweazel/mountweazel.py score --key <KEY.sealed.json> --verdicts <file> [--adjudication f] [--voids f] [--weights f] [--out f]
+python3 -I jobs/mountweazel/mountweazel.py score --key <KEY.sealed.json> --verdicts <file> [--adjudication f] [--voids f] [--weights f]
+        [--relabel f] [--tells f] [--production 0/15] [--out f]
 python3 -I jobs/mountweazel/mountweazel.py check [--write-status]
 python3 -I jobs/mountweazel/test_mountweazel.py
 ```
@@ -31,13 +32,20 @@ python3 -I jobs/mountweazel/test_mountweazel.py
 - **score** reads reviewer verdicts (a JSON list or JSONL of `item_id`, `decision`, `locus`, `reason`,
   `confidence`; decision is `accept`, `reject`, `block_justified` or `block_not_justified`). It reports, per
   defect type and pooled: strict catch (a flag that names the changed field, value or actor), lenient catch
-  (any flag), Wilson and Clopper-Pearson 95% intervals, and `indicative_only` when n is under 5. A flag on a real
+  (any flag; strict needs a specific value, actor, clause path or cut-off word, never a bare field name like
+  `first_end`), Wilson and Clopper-Pearson 95% intervals, and `indicative_only` when n is under 5. A flag on a real
   item is not a false alarm until adjudicated (`--adjudication`: `{"item": "false_alarm" | "contestable" |
   "confirmed_real_defect"}`); the false-alarm rate is given as a lower and an upper bound. `--voids` removes plants
-  a reviewer convincingly argued were correct. It refuses an edited key.
-- **check** proves no seeded item exists under `research/` (all of it) or `jobs/*/output`, `jobs/*/data`,
-  `jobs/mountweazel/results`. It looks for the SEEDED markers, batch item ids, exact copies of any plant, and plant
-  text of 40+ characters; it also fails if a fixture is not rejected by `claim_gate.validate_claim`, or if
+  a reviewer convincingly argued were correct. `--relabel` records the adjudicated true defect type when an
+  operator's label is wrong; `--tells` lists plants whose packet carried a seeding artifact and adds a tell-free
+  catch rate; accepted plants whose reason names the defect are listed as `noticed_but_accepted`.
+  `--production k/n` turns a production review result (Bowditch Y1: 0/15) into an upper 95% bound on its defect
+  rate, at the point catch rate and at its lower bound. Verdict rows may use `verdict` for `decision`. It refuses
+  an edited key.
+- **check** proves no seeded item exists anywhere in the repository except `.git` and the fixture folder. It
+  looks for the SEEDED markers and batch item ids (not in this tool's own files, the design doc or `HANDOFF/`),
+  exact copies of any plant (flagged or de-flagged), and `leak_needles`: JSON-quoted windows of plant text that
+  occur nowhere in the real base (so real text a plant shares, such as a D3 quote prefix, is never a hit); it also fails if a fixture is not rejected by `claim_gate.validate_claim`, or if
   `jobs/mountweazel/output` holds anything but `STATUS.json` and `SENSITIVITY.json`, or if `jobs/mountweazel/data`
   exists. Exit code 1 on any problem. The one allowed mention of the markers is the design document.
 
@@ -70,6 +78,11 @@ D11 and D12 are in the taxonomy but have no operator yet.
 
 ## Limits, stated plainly
 
+- Trial MW-C1 (2026-10-20) found three seeding faults, now fixed for new batches: global date/actor swaps rewrote
+  rationale sentences about sibling clauses (a tell; plants whose old end is shared with another clause or event
+  are now skipped), the one-time classifier took an "annual report" for a one-time duty (D2 now excludes recurring
+  duties), and D9's "true count still visible" test matched "49 Stat." (now needs the same count and unit). After
+  the fixes the real pool supports D3 51, D6 36, D7 11, D5 7, D8 5, D4 1 bases; D1, D2 and D9 have none.
 - Plant wording is mechanical (dates and actor numbers are swapped consistently in the rationale). The design calls
   for a separate seeder agent to polish rationales and two checkers to confirm each plant; that is not built. Run a
   leak test (a no-access discriminator) before trusting a batch.

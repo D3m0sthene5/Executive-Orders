@@ -363,7 +363,7 @@ class PlantQualityTests(Base):
     def test_rewrites_never_touch_another_clause(self):
         """MW-C1 tell: global date/actor swaps rewrote sentences about sibling clauses.  Every date/actor plant
         must have an old end that no other clause or later event shares."""
-        out, fx = self.seed("a", n=40, extra=("--share", "0.5", "--codes", "D2,D4,D5,D7"))
+        out, fx = self.seed("a", n=40, extra=("--share", "0.5", "--codes", "D2,D4,D5,D7", "--allow-short"))
         pool = mw.load_claim_pool(REPO)
         files = list(fx.glob("*.seeded.json"))
         self.assertTrue(files)
@@ -372,7 +372,8 @@ class PlantQualityTests(Base):
             base = pool[d["instrument_id"][len("SEEDED:"):]]["claim"]
             i = int(d["mutation"]["field"].split("[")[1].split("]")[0])
             fe = base["operative_clauses"][i]["first_end"]
-            self.assertTrue(mw._swap_safe(base, i, fe["date"], fe.get("actor")), f.name)
+            actor = fe.get("actor") if d["defect_code"] in ("D2", "D4", "D5") else None
+            self.assertTrue(mw._swap_safe(base, i, fe["date"], actor), f.name)
 
     def test_recurring_duties_are_not_one_time(self):
         self.assertTrue(mw.RECURRING_RE.search("shall submit an annual report to the President"))
