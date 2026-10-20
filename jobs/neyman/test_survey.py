@@ -47,6 +47,18 @@ class Sampling(unittest.TestCase):
         for n in (0,1,25):
             with self.assertRaises(ValueError):sample(rows(),1727,n)
 
+    def test_unconsumed_review_media_does_not_change_frame_but_audit_evidence_does(self):
+        from survey import pins
+        with tempfile.TemporaryDirectory() as td:
+            r=Path(td);t=r/'jobs/readiness-tracker/tracker.py';t.parent.mkdir(parents=True)
+            t.write_text('P={}\nJ={}\n')
+            baseline=pins(r)
+            media=r/'research/readiness/reviews/unconsumed/page.png';media.parent.mkdir(parents=True);media.write_bytes(b'image')
+            self.assertEqual(pins(r),baseline)
+            hold=r/'research/readiness/SOURCE_AUDIT_HOLDS.jsonl'
+            hold.write_text(json.dumps({'review_path':media.relative_to(r).as_posix()})+'\n')
+            self.assertEqual(pins(r)[media.relative_to(r).as_posix()],__import__('hashlib').sha256(b'image').hexdigest())
+
     def test_stale_membership_and_hash_refused(self):
         with patch('survey.pins',return_value={'old':'a','new':'b'}):
             with self.assertRaisesRegex(ValueError,'stale'):check_pins(ROOT,{'old':'a'})

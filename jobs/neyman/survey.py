@@ -57,7 +57,7 @@ def pins(root):
         if '*' not in val and val!=tracker.P['claim_gate_dir']:exact.add(val)
     for val in tracker.J.values():exact.update([val] if isinstance(val,str) else val)
     exact.add('research/readiness/SOURCE_AUDIT_HOLDS.jsonl')
-    patterns=['research/readiness/claims/*.jsonl','research/readiness/reviews/**/*',
+    patterns=['research/readiness/claims/*.jsonl',
               'jobs/claim-kit/output/ACTING_PROVISIONS*.jsonl','jobs/claim-kit/output/OWN_TERMS*.jsonl',
               'research/stage19/code/*.py','jobs/neyman/*.py','jobs/neyman/config.json',
               'jobs/corpus-excavator/combinations.py','jobs/corpus-excavator/measure.py',
