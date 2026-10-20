@@ -1,0 +1,37 @@
+{
+ "schema": "junto.catalog/1",
+ "catalog_id": "K-thornton_patent_scan",
+ "name": "thornton_patent_scan",
+ "historical_name": "Thornton Patent Scan",
+ "kind": "finder",
+ "status": "not_built",
+ "one_line": "Scan current platform documentation for cost features we are not using.",
+ "problem": "Some savings are not in our transcripts at all: new caching options, cheaper model tiers, batching, context-editing or compaction tools, output limits.",
+ "design": [
+  "Read the platform's release notes and pricing pages monthly (public documentation only).",
+  "For each feature, check whether our audited sessions pay for the thing it changes (cache writes, idle rebuilds, long outputs), using Hamilton's per-cause dollars.",
+  "Emit a candidate only when a feature touches a cause above 5% of some audited session; include the doc page name and the cause key.",
+  "The candidate's first test is the smallest A/B that turns the feature on for one task."
+ ],
+ "inputs": [
+  "public release notes and pricing pages",
+  "Hamilton profiles"
+ ],
+ "targets": [
+  "idle_wait",
+  "fixed_setup",
+  "model_writes"
+ ],
+ "cost_estimate": {
+  "build_usd": 2.0,
+  "run_usd_each": 1.5,
+  "basis": "one agent session reading roughly 10 documentation pages and 5 profiles per month",
+  "usd_basis": "estimate",
+  "verified": false,
+  "note": "Estimate only (unverified). Never counted as a saving."
+ },
+ "first_test": "If a caching or compaction feature exists, turn it on for one PR-babysit session and compare against the audited one.",
+ "risks": "Feature claims are marketing until measured. Documentation changes; every candidate needs a dated page reference.",
+ "written_by": "claude",
+ "written_at": "2026-10-20"
+}

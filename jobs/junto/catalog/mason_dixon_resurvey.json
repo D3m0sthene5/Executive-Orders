@@ -1,0 +1,38 @@
+{
+ "schema": "junto.catalog/1",
+ "catalog_id": "K-mason_dixon_resurvey",
+ "name": "mason_dixon_resurvey",
+ "historical_name": "Mason-Dixon Resurvey",
+ "kind": "finder",
+ "status": "not_built",
+ "one_line": "Replay a finished, accepted task at lower cost and compare the two bills.",
+ "problem": "Waste that no per-cause share can show: a whole task done in a heavier way than needed (model tier, context size, number of agents).",
+ "design": [
+  "Pick a finished task whose accepted output and Hamilton profile are committed (e.g. one PR merge or one X1 phase).",
+  "Replay it from its starting commit with one change at a time (smaller model for routine steps, fresh session at each phase, no standing monitors), in a scratch branch that is never merged.",
+  "Compare the replay's get_session cost and checker result with the original's; the replay is the 'after' arm and the audited original is the 'before' arm of an add-test record.",
+  "Emit the winning change as a saver candidate, with the measured pair attached as its first test."
+ ],
+ "inputs": [
+  "session ids of the original",
+  "task start commit",
+  "acceptance checker"
+ ],
+ "targets": [
+  "model_writes",
+  "coordinator_context",
+  "fixed_setup"
+ ],
+ "cost_estimate": {
+  "build_usd": 4.0,
+  "run_usd_each": 12.0,
+  "basis": "build is about one agent session; each replay costs roughly 25-60% of the original task (the original PR-merge session cost $4.97, the X1 coordinator $38.82)",
+  "usd_basis": "estimate",
+  "verified": false,
+  "note": "Estimate only (unverified). Never counted as a saving."
+ },
+ "first_test": "Replay the PR-merge task (about $5 original) once with phase handoff on.",
+ "risks": "Replays can drift from the original task; the checker must be the same one. Costs real money before it saves any.",
+ "written_by": "claude",
+ "written_at": "2026-10-20"
+}

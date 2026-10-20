@@ -1,0 +1,345 @@
+{
+ "schema": "junto.candidates_summary/1",
+ "note": "All unverified; estimates never count as savings.",
+ "candidates": [
+  {
+   "candidate_id": "C-20261020-1",
+   "finder_id": "F-hamilton",
+   "saver_key": "revere_phase_handoff",
+   "title": "Revere: hand off to a fresh session before the coordinator grows",
+   "status": "unverified",
+   "targets": [
+    "coordinator_context"
+   ],
+   "proposed_test": "Run one Y1 build phase with handoffs at a 200k-token cap against the audited X1 coordinator; unit completed_phase; measure get_session cost per phase and checker pass.",
+   "estimate_unverified": {
+    "basis": "simulated: main context held under 200k with a 20k handoff, net of handoff cost; mean of 4 complete session(s); tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 2033676,
+    "usd_per_session": 6.07
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 4,
+    "n_items": 4,
+    "usd_total": 69.84,
+    "cause_keys": [
+     "coordinator_context"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-2",
+   "finder_id": "F-hamilton",
+   "saver_key": "idle_cache_avoidance",
+   "title": "Avoid idle cache rebuilds: resume from a short handoff after waiting",
+   "status": "unverified",
+   "targets": [
+    "idle_wait"
+   ],
+   "proposed_test": "Before an expected idle longer than 5 minutes write a handoff and resume in a short context; compare the first resumed call's cache write with an audited rebuild; unit resumed_wait.",
+   "estimate_unverified": {
+    "basis": "simulated: idle rebuild rewrites a short handoff context instead; mean of 2 complete session(s); tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 822112,
+    "usd_per_session": 2.45
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 2,
+    "n_items": 2,
+    "usd_total": 6.22,
+    "cause_keys": [
+     "idle_wait"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-3",
+   "finder_id": "F-hamilton",
+   "saver_key": "watchman_outside_monitoring",
+   "title": "Watchman: monitor pull requests and CI outside the big session",
+   "status": "unverified",
+   "targets": [
+    "idle_wait"
+   ],
+   "proposed_test": "Run the next pull-request babysit to merge with a scripted CI watcher that wakes the main session only on change, against the audited PR 31/33 session; unit pr_babysit_to_merge.",
+   "estimate_unverified": {
+    "basis": "simulated: status checks run in a 50k context, last check kept; mean of 2 complete session(s); tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 680537,
+    "usd_per_session": 2.04
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 2,
+    "n_items": 2,
+    "usd_total": 5.42,
+    "cause_keys": [
+     "idle_wait"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-4",
+   "finder_id": "F-hamilton",
+   "saver_key": "tool_output_cap",
+   "title": "Quiet protocol: scripts print twenty lines or fewer",
+   "status": "unverified",
+   "targets": [
+    "tool_output"
+   ],
+   "proposed_test": "Run the next agent batch with scripts printing at most 20 lines and files read by range; re-audit against the audited X1 batch; unit accepted_claim.",
+   "estimate_unverified": {
+    "basis": "assumed: print cap removes 25% of tool-output cost (top-25 causes only); mean of 4 complete session(s), 1 partial excluded; tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 539248,
+    "usd_per_session": 1.61
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 5,
+    "n_items": 5,
+    "usd_total": 53.74,
+    "cause_keys": [
+     "tool_output"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-5",
+   "finder_id": "F-hamilton",
+   "saver_key": "narration_cap",
+   "title": "Quiet protocol: cap replies and move long reasoning into files",
+   "status": "unverified",
+   "targets": [
+    "narration"
+   ],
+   "proposed_test": "Run the next agent batch with replies capped at a few lines and reports written to files; re-audit against the audited X1 batch; unit accepted_claim.",
+   "estimate_unverified": {
+    "basis": "assumed: reply cap removes 50% of narration cost; mean of 4 complete session(s); tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 469908,
+    "usd_per_session": 1.4
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 4,
+    "n_items": 4,
+    "usd_total": 11.18,
+    "cause_keys": [
+     "narration"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-6",
+   "finder_id": "F-hamilton",
+   "saver_key": "spare_setup_trim",
+   "title": "Spare setup: shrink the fixed per-agent setup read on every call",
+   "status": "unverified",
+   "targets": [
+    "fixed_setup"
+   ],
+   "proposed_test": "Start one empty session per configuration (connectors off, shorter rules) and read each first-call context in tokens; unit empty_session_first_call.",
+   "estimate_unverified": {
+    "basis": "simulated: 10k tokens off each agent's setup on every call; mean of 4 complete session(s); tokens are input-price cost units; overlaps other savers; unmeasured",
+    "tokens_per_session": 300250,
+    "usd_per_session": 0.9
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 4,
+    "n_items": 4,
+    "usd_total": 24.7,
+    "cause_keys": [
+     "fixed_setup"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-7",
+   "finder_id": "F-friction",
+   "saver_key": "preflight_checks",
+   "title": "Sentinel: check inputs and paths before long scripts run",
+   "status": "unverified",
+   "targets": [
+    "friction_tool_error"
+   ],
+   "proposed_test": "Same job with a preflight step (paths, tools, network, schema); measure failed calls and usd per unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: friction cost attributed in 5 audited sessions, divided by 5; assumes the saver removes all of it; tokens are input-price cost units; an incomplete session counts only its saved part",
+    "events_total": 58,
+    "tokens_per_session": 209589,
+    "usd_attributed_total": 3.11,
+    "usd_per_session": 0.62
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 5,
+    "n_items": 5,
+    "usd_total": 3.11,
+    "cause_keys": [
+     "friction_tool_error"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-8",
+   "finder_id": "F-friction",
+   "saver_key": "quiet_protocol",
+   "title": "Quiet protocol: cap tool output before it enters context",
+   "status": "unverified",
+   "targets": [
+    "friction_oversize"
+   ],
+   "proposed_test": "Same agent batch with and without an output cap; measure oversize errors, tool_output cost and usd per unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: friction cost attributed in 5 audited sessions, divided by 5; assumes the saver removes all of it; tokens are input-price cost units; an incomplete session counts only its saved part",
+    "events_total": 72,
+    "tokens_per_session": 115253,
+    "usd_attributed_total": 1.69,
+    "usd_per_session": 0.34
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 1,
+    "n_items": 1,
+    "usd_total": 1.69,
+    "cause_keys": [
+     "friction_oversize"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-9",
+   "finder_id": "F-friction",
+   "saver_key": "permission_preapproval",
+   "title": "Letter of Marque: pre-approve safe commands, no blocked waits",
+   "status": "unverified",
+   "targets": [
+    "friction_permission"
+   ],
+   "proposed_test": "Same task twice, once with an allowlist and Monitor-style waits; measure denials and usd per accepted unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: friction cost attributed in 5 audited sessions, divided by 5; assumes the saver removes all of it; tokens are input-price cost units; an incomplete session counts only its saved part",
+    "events_total": 9,
+    "tokens_per_session": 23159,
+    "usd_attributed_total": 0.34,
+    "usd_per_session": 0.07
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 3,
+    "n_items": 3,
+    "usd_total": 0.34,
+    "cause_keys": [
+     "friction_permission"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-10",
+   "finder_id": "F-friction",
+   "saver_key": "conflict_guard",
+   "title": "Mason-Dixon: one owner per branch, fetch and rebase before push",
+   "status": "unverified",
+   "targets": [
+    "friction_merge_conflict"
+   ],
+   "proposed_test": "Two parallel-agent runs on one task, with and without the branch rule; measure conflicts and usd per merged PR.",
+   "estimate_unverified": {
+    "basis": "upper bound: friction cost attributed in 5 audited sessions, divided by 5; assumes the saver removes all of it; tokens are input-price cost units; an incomplete session counts only its saved part",
+    "events_total": 5,
+    "tokens_per_session": 21022,
+    "usd_attributed_total": 0.32,
+    "usd_per_session": 0.06
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 4,
+    "n_items": 4,
+    "usd_total": 0.32,
+    "cause_keys": [
+     "friction_merge_conflict"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-11",
+   "finder_id": "F-wasted_work",
+   "saver_key": "early_triage_gate",
+   "title": "Customs House: screen rows for sources before full production",
+   "status": "unverified",
+   "targets": [
+    "wasted_blocked_output"
+   ],
+   "proposed_test": "Same batch with a cheap source-availability screen before the producer runs; measure rows blocked after full work and usd per accepted unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: wasted-work cost attributed in 5 audited sessions, divided by 5; assumes the saver prevents all of it; tokens are input-price cost units; heuristic signal (hand-back counts), low confidence",
+    "events_total": 2,
+    "tokens_per_session": 315354,
+    "usd_attributed_total": 4.75,
+    "usd_per_session": 0.95
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 1,
+    "n_items": 1,
+    "usd_total": 4.75,
+    "cause_keys": [
+     "wasted_blocked_output"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-12",
+   "finder_id": "F-wasted_work",
+   "saver_key": "intent_echo_first",
+   "title": "Quorum: restate the ask in one line and confirm before long work",
+   "status": "unverified",
+   "targets": [
+    "wasted_user_correction"
+   ],
+   "proposed_test": "Same prompts with a one-line restatement step; measure user corrections and usd per accepted unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: wasted-work cost attributed in 5 audited sessions, divided by 5; assumes the saver prevents all of it; tokens are input-price cost units; heuristic signal (cue words), low confidence",
+    "events_total": 5,
+    "tokens_per_session": 247489,
+    "usd_attributed_total": 3.63,
+    "usd_per_session": 0.73
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 2,
+    "n_items": 2,
+    "usd_total": 3.63,
+    "cause_keys": [
+     "wasted_user_correction"
+    ]
+   }
+  },
+  {
+   "candidate_id": "C-20261020-13",
+   "finder_id": "F-wasted_work",
+   "saver_key": "producer_precheck",
+   "title": "Grand Jury: cheap pre-screen of producer output before full review",
+   "status": "unverified",
+   "targets": [
+    "wasted_rejected_review"
+   ],
+   "proposed_test": "Same batch with a pre-screen that routes weak items back early; measure rejected share and usd per accepted unit.",
+   "estimate_unverified": {
+    "basis": "upper bound: wasted-work cost attributed in 5 audited sessions, divided by 5; assumes the saver prevents all of it; tokens are input-price cost units; heuristic signal (hand-back counts), low confidence",
+    "events_total": 28,
+    "tokens_per_session": 212407,
+    "usd_attributed_total": 3.16,
+    "usd_per_session": 0.63
+   },
+   "usd_basis": "profile_scaled",
+   "evidence_aggregate": {
+    "n_sessions": 2,
+    "n_items": 2,
+    "usd_total": 3.16,
+    "cause_keys": [
+     "wasted_rejected_review"
+    ]
+   }
+  }
+ ]
+}

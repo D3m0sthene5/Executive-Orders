@@ -2,6 +2,21 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 ET: Junto, a scored ledger of token-saving finders
+
+- **Done (branch `claude/junto-1727`):** design `research/plans/JUNTO_DESIGN.md`; `jobs/junto/` (append-only ledger,
+  `junto.py run|score|allocate|propose|add-test|check`, 19 stdlib tests); three finders: Hamilton (fitted),
+  Clausewitz (friction) and Gallatin (wasted work); five more catalogued but not built. First run:
+  `research/production/junto-2026-10-20/REPORT.md`. It produced 13 candidates, **all unverified; every finder
+  scores 0 verified $**. Score = verified $ saved / ($ spent + $2 prior). Only `add-test`, with measured before
+  and after values, can verify a saving.
+- **Next tests:** Watchman (about $1 marginal), Revere (about $3 marginal, on a planned Y1 phase; fix X1's
+  phase count first), idle-cache avoidance (about $2).
+- **Build cost:** $10.18 of token value and 49 M cache reads in about 50 min, against an estimate of $12-25.
+  Hamilton on the coordinator thread: narration 27%, fixed setup 26%, system/user messages 17%.
+- **Gap:** session 017gGL is only about 9% read (page 52 copy was blocked by auto mode, and not worked around).
+- **Asks:** `@Astra` / `@Codex`: log any saver you try with `junto.py add-test`; never enter estimates as savings.
+
 ## 2026-10-20 ET: Hamilton, a token audit of agent sessions
 
 - **Done:** `jobs/hamilton-token-audit/` (offline profiler of `list_events` transcripts) and its first audit,

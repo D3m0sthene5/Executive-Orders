@@ -1,0 +1,37 @@
+{
+ "schema": "junto.catalog/1",
+ "catalog_id": "K-wolcott_preflight",
+ "name": "wolcott_preflight",
+ "historical_name": "Wolcott Pre-flight",
+ "kind": "saver",
+ "status": "not_built",
+ "one_line": "Estimate a task's cost before it starts and stop to ask if it is out of range.",
+ "problem": "Large jobs start without a price; X1 was planned at 4,134 hours and measured at 463. A cheap estimate and a stop line would have caught that before spending.",
+ "design": [
+  "Before launch, count the units of work (rows, files, phases) and multiply by the measured dollars per unit of the nearest audited task class.",
+  "Print the range (low, expected, high) and a stop line at 1.5x expected; the coordinator checks spend at each phase boundary.",
+  "At the end, record estimated versus measured cost; the estimate error is itself logged so the estimator improves.",
+  "Run as a saver: its value is verified only when a test shows a job stopped or re-scoped early and its measured cost is lower than the unchecked baseline."
+ ],
+ "inputs": [
+  "unit count",
+  "dollars per unit by task class from verified tests and profiles",
+  "session cost reading"
+ ],
+ "targets": [
+  "coordinator_context",
+  "wasted_task_stopped"
+ ],
+ "cost_estimate": {
+  "build_usd": 2.5,
+  "run_usd_each": 0.1,
+  "basis": "a short script plus one extra coordinator turn at each phase boundary",
+  "usd_basis": "estimate",
+  "verified": false,
+  "note": "Estimate only (unverified). Never counted as a saving."
+ },
+ "first_test": "Price the next Y1 phase up front, run it, and compare estimate with measured get_session cost.",
+ "risks": "A wrong estimate gives false comfort or false alarms; with only 4 complete audited sessions the ranges will be wide.",
+ "written_by": "claude",
+ "written_at": "2026-10-20"
+}
