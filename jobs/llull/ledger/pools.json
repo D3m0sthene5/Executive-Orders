@@ -166,6 +166,14 @@
    "from": "Y1",
    "ids_file": "jobs/llull/ledger/pool_ids/BOWY1NO.txt",
    "default_requires": ["original_text_held", "status_evidence_held", "ending_held_if_no"]
+  },
+  "LAMMSUN3": {
+   "title": "Lamm III: LAMMSUN remainder not yet attempted",
+   "describe": "LAMMSUN orders with no OWN_TERM_END_RECORDS line under research/excavator/lamm-2026-10-20 (probe or sunsets batches), excluding Lambertini III (LAMB3 and scratch lambertini3 batches), Sinclair (SINCLAIRS and scratch sinclair batches), any order with a claim filed and ready orders: 25 event-relative (report) sunsets, 7 B/D sunsets on provisional-YES orders (trap check), 6 B sunsets whose original text step is open. 38 orders (scratch lamm3_pool.py)",
+   "from": "LAMMSUN",
+   "ids_file": "jobs/llull/ledger/pool_ids/LAMMSUN3.txt",
+   "where": {"ready_for_human_review": "no"},
+   "default_requires": ["status_present", "original_text_held", "ending_or_current_lead2"]
   }
  }
 }
