@@ -1,0 +1,15 @@
+..............................................................................................................................................................................F.....
+======================================================================
+FAIL: test_offline_bounded_execution_never_republishes_invalid_found_source (test_request_contract.RevalidationTests.test_offline_bounded_execution_never_republishes_invalid_found_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/test_request_contract.py", line 264, in test_offline_bounded_execution_never_republishes_invalid_found_source
+    self.assertEqual((out / "SOURCES.jsonl").read_text(), "")
+AssertionError: '{"bytes": 23245832, "cache_path": "ladder[1729 chars]"}\n' != ''
+Diff is 1776 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 180 tests in 6.264s
+
+FAILED (failures=1)
+Unit tests failed; the job did not run.
