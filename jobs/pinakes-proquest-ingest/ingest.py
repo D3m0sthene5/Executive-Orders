@@ -112,10 +112,18 @@ def choose_files(rows):
     return best, copies
 
 
-def run(root, out_dir, ocr_pages_budget=None, ocr=None):
+def default_workers():
+    cpus = os.cpu_count() or 2
+    if os.environ.get("GITHUB_ACTIONS"):
+        return min(4, cpus * 2)
+    return max(1, cpus)
+
+
+def run(root, out_dir, ocr_pages_budget=None, ocr=None, workers=None):
     os.makedirs(os.path.join(out_dir, "texts"), exist_ok=True)
     budget = int(os.environ.get("JOB_OCR_PAGES", "4000")) if ocr_pages_budget is None else ocr_pages_budget
     ocr = eo_pdf.ocr_pdf if ocr is None else ocr
+    workers = int(os.environ.get("JOB_WORKERS") or default_workers()) if workers is None else workers
     universe = ident.load_universe(root)
     dates = ident.load_dates(root)
     pq_rows = {ident.canon_id(*ident.parse_eo_id(str(r["id"]))): r for r in ident.load_proquest_rows(root)}
@@ -126,9 +134,43 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None):
     if not rows:
         problems.append("no ProQuest PDFs found in " + " or ".join(ident.PROQUEST_DIRS))
 
+    # Decide the OCR work up front (greedy, in order number order, within the page budget), then run it on every
+    # core: about 4 workers on GitHub's 2-CPU runner, every CPU thread on the owner's PC (JOB_WORKERS overrides).
+    ordered = sorted(best, key=lambda x: ident.parse_eo_id(x) or (0, ""))
+    plan, ocr_used, ocr_pending, ocr_results = [], 0, 0, {}
+    can_ocr = eo_pdf.ocr_available() or ocr is not eo_pdf.ocr_pdf
+    deferred = {}
+    for iid in ordered:
+        r = best[iid]
+        if eo_pdf.usable(r["text_chars"], r["text_quality"], r["common_share"]) or r["sha256"] in prior:
+            continue
+        if not can_ocr:
+            deferred[iid] = "OCR programs not installed on this machine"
+            ocr_pending += 1
+            continue
+        pages = r["pages"] or 1
+        if ocr_used + pages <= budget:
+            plan.append(iid)
+            ocr_used += pages
+        else:
+            deferred[iid] = "deferred: OCR page budget for this run is used up"
+            ocr_pending += 1
+    if plan:
+        print(f"OCR: {len(plan)} orders, {ocr_used} pages, {workers} workers", flush=True)
+        if workers > 1 and ocr is eo_pdf.ocr_pdf:
+            import concurrent.futures
+            with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as ex:
+                for iid, res in zip(plan, ex.map(ocr, [best[i]["_path"] for i in plan], chunksize=4)):
+                    ocr_results[iid] = res
+        else:
+            for n, iid in enumerate(plan, 1):
+                ocr_results[iid] = ocr(best[iid]["_path"])
+                if n % 100 == 0:
+                    print(f"OCR {n}/{len(plan)}", flush=True)
+
     orders, fragments, events = [], [], []
-    ocr_used, ocr_done, ocr_pending, carried = 0, 0, 0, 0
-    for iid in sorted(best, key=lambda x: ident.parse_eo_id(x) or (0, "")):
+    ocr_done, carried = 0, 0
+    for iid in ordered:
         r = best[iid]
         text, source, ocr_pages, ocr_err = "", "none", 0, ""
         if eo_pdf.usable(r["text_chars"], r["text_quality"], r["common_share"]):
@@ -136,19 +178,12 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None):
         elif r["sha256"] in prior:
             text, source, ocr_pages = prior[r["sha256"]]
             carried += 1
-        elif eo_pdf.ocr_available() or ocr is not eo_pdf.ocr_pdf:
-            pages = r["pages"] or 1
-            if ocr_used + pages <= budget:
-                text, ocr_pages, ocr_err = ocr(r["_path"])
-                ocr_used += ocr_pages or pages
-                if text:
-                    source, ocr_done = "ocr", ocr_done + 1
-            else:
-                ocr_pending += 1
-                ocr_err = "deferred: OCR page budget for this run is used up"
+        elif iid in ocr_results:
+            text, ocr_pages, ocr_err = ocr_results[iid]
+            if text:
+                source, ocr_done = "ocr", ocr_done + 1
         else:
-            ocr_pending += 1
-            ocr_err = "OCR programs not installed on this machine"
+            ocr_err = deferred.get(iid, "")
         quality = eo_pdf.text_quality(text) if text else ""
         common = eo_pdf.common_share(text) if text else ""
         text_path, text_sha = "", ""
@@ -226,7 +261,8 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None):
                    "by_era": dict(collections.Counter(str(o["year"])[:3] + "0s" for o in orders))},
         "texts": {"by_source": dict(by_source), "usable": sum(1 for o in orders if o["text_usable"] == "yes"),
                   "low_quality_probably_handwritten": sum(1 for o in orders if o["text_usable"] == "no"),
-                  "ocr_this_run": ocr_done, "ocr_pages_this_run": ocr_used, "ocr_page_budget": budget, "carried_from_prior_run": carried,
+                  "ocr_this_run": ocr_done, "ocr_pages_this_run": ocr_used, "ocr_page_budget": budget, "ocr_workers": workers,
+                  "carried_from_prior_run": carried,
                   "still_without_text": by_source.get("none", 0), "deferred_by_budget": ocr_pending, "ocr_available_here": eo_pdf.ocr_available()},
         "supplied_links": {"total": len(pq_rows), "with_pdf": len(recon) - len(missing), "missing": len(missing),
                            "pdfs_for_orders_not_on_list": extra[:50], "pdfs_for_orders_not_on_list_count": len(extra)},

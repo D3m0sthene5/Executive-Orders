@@ -44,6 +44,11 @@ quality screen flags it (`text_usable: no`) rather than hiding it, and `REPORT.m
   number they cite.
 - **Domesday** (`jobs/domesday-register`) shows the file, hash, text source and usability per order.
 
+## Running on the owner's PC
+
+Much faster than GitHub's 2-CPU runner for the OCR: see `PC_RUN.md` and `run_on_pc.ps1` (one command, resumes from and
+commits into the same output folder).
+
 ## Running
 
 Daily, and whenever either ProQuest folder changes. `job.sh` installs tesseract and poppler, then `job.py` runs
