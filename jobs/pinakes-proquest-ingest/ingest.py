@@ -32,6 +32,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import posixpath
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -93,7 +94,7 @@ def scan_folders(root, universe):
                 iid = ident.canon_id(parsed["number"], parsed["suffix"])
                 row.update({"instrument_id": iid, "year": parsed["year"], "number": parsed["number"], "suffix": parsed["suffix"],
                             "copy": parsed["copy"], "page_range": parsed["page_range"], "in_census": "yes" if iid in universe else "no"})
-            seen_hash.setdefault(info["sha256"], os.path.join(rel, name))
+            seen_hash.setdefault(info["sha256"], posixpath.join(rel, name))
             rows.append(row)
     return rows
 
@@ -218,7 +219,7 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None, workers=None):
                      "text_quality": quality or None, "common_share": common or None, "signing_date": d.get("date", ""), "title": d.get("title", ""),
                      "page_or_item": f"ProQuest {r['year']}-EO-{r['number']}{r['suffix']}", "source_id": f"{JOB}:{iid}:{r['sha256'][:12]}",
                      "url": url, "route": "archival/proquest_replica_local_file"}})
-        events.append({"schema_version": 1, "event": "verified_repository", "id": iid, "name": r["file"], "path": os.path.join(r["folder"], r["file"]),
+        events.append({"schema_version": 1, "event": "verified_repository", "id": iid, "name": r["file"], "path": posixpath.join(r["folder"], r["file"]),
                        "bytes": r["bytes"], "sha256": r["sha256"], "pdf_signature": True, "pages": r["pages"], "recorded_by": JOB,
                        "observed_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")})
 
