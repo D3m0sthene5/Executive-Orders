@@ -283,3 +283,26 @@ class OnlineStage(SyntheticRepo):
         self.assertEqual(listed["EO:5852"]["in_census"], "yes")
         self.assertEqual(s["list_pages"]["not_in_census"], 2, "5854 and 5899")
         self.assertEqual(len(s["list_pages"]["pages_read"]), 2, "the index and the linked list page; not the weather link")
+
+
+class ListCursor(unittest.TestCase):
+    def test_pages_read_in_earlier_runs_wait_behind_unread_ones(self):
+        sys.path.insert(0, os.path.join(os.path.dirname(HERE), "_lib"))
+        import online
+        import test_eo_websearch as tw
+        import eo_websearch as w
+        tmp = tempfile.mkdtemp(prefix="clark-cursor-")
+        try:
+            web = tw.FakeWeb()
+            web.pages["https://lists.test/index"] = (200, "text/html", b'<a href="https://lists.test/a">List of executive orders A</a><a href="https://lists.test/b">List of executive orders B</a>')
+            web.pages["https://lists.test/a"] = (200, "text/html", b"Executive Order 5854 June 3, 1932")
+            web.pages["https://lists.test/b"] = (200, "text/html", b"Executive Order 5899 July 20, 1932")
+            s = w.Searcher(os.path.join(tmp, "c"), max_requests=50, transport=web, env={}, engines=[], now=lambda: "t")
+            first = online.run_list_pages(s, ["https://lists.test/index"], set(), tmp, max_pages=2)
+            self.assertEqual([p["url"] for p in first["pages_read"]], ["https://lists.test/index", "https://lists.test/a"])
+            s2 = w.Searcher(os.path.join(tmp, "c2"), max_requests=50, transport=web, env={}, engines=[], now=lambda: "t")
+            second = online.run_list_pages(s2, ["https://lists.test/index"], set(), tmp, max_pages=2, done_before=first["cursor"])
+            self.assertIn("https://lists.test/b", [p["url"] for p in second["pages_read"]], "the unread list page comes before re-reading")
+            self.assertEqual(second["new_pages_this_run"], 1)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)

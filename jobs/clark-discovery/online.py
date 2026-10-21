@@ -11,7 +11,7 @@ Two campaigns, after the offline stage (clark.py):
    printed beside it. Numbers the census lacks go to WEB_LISTED_ORDERS.csv. Any page read in the
    target campaign is harvested the same way (WEB_NUMBERS_NAMED.csv).
 
-Environment: JOB_MAX_REQUESTS (default 400), JOB_MAX_TARGETS (default 30), JOB_CACHE_DIR. The defaults keep a run
+Environment: JOB_MAX_REQUESTS (default 700), JOB_MAX_TARGETS (default 50), JOB_CACHE_DIR. The defaults keep a run
 short, so a push to the branch while it runs rarely collides with it; state carries forward anyway.
 """
 from __future__ import annotations
@@ -79,11 +79,19 @@ def harvest_list_page(text, url):
     return rows
 
 
-def run_list_pages(searcher, seeds, universe, out_dir, max_pages=60):
-    seen, queue, rows, pages_read = set(), list(seeds), [], []
-    while queue and max_pages > 0 and searcher.budget_left():
+def run_list_pages(searcher, seeds, universe, out_dir, max_pages=60, done_before=None):
+    """Read list pages and the list pages they link to. `done_before` (URLs read in earlier runs) are deferred
+    until every unread page has been read, so each run covers new ground; returns the cursor for the state file."""
+    done_before = set(done_before or [])
+    seen, queue, rows, pages_read, deferred = set(), list(seeds), [], [], []
+    while (queue or deferred) and max_pages > 0 and searcher.budget_left():
+        if not queue:
+            queue, deferred = deferred, []
         url = queue.pop(0)
         if url in seen:
+            continue
+        if url in done_before and any(u not in done_before and u not in seen for u in queue):
+            deferred.append(url)
             continue
         seen.add(url)
         text, links, rec = searcher.read_page(url)
@@ -113,7 +121,9 @@ def run_list_pages(searcher, seeds, universe, out_dir, max_pages=60):
         w = csv.DictWriter(fh, fieldnames=["instrument_id", "in_census", "pages_naming_it", "dates_seen", "example_page", "context"])
         w.writeheader()
         w.writerows(out)
-    return {"pages_read": pages_read, "orders_named": len(out), "not_in_census": sum(1 for r in out if r["in_census"] == "no")}
+    read_now = [p["url"] for p in pages_read if p["status"] == 200]
+    return {"pages_read": pages_read, "orders_named": len(out), "not_in_census": sum(1 for r in out if r["in_census"] == "no"),
+            "cursor": sorted(done_before | set(read_now)), "new_pages_this_run": sum(1 for u in read_now if u not in done_before)}
 
 
 def run(root, out_dir, transport=None, env=None, engines=None):
@@ -122,17 +132,24 @@ def run(root, out_dir, transport=None, env=None, engines=None):
     universe = set(ident.load_universe(root))
     targets = targets_from_outputs(out_dir, dates)
     cache = env.get("JOB_CACHE_DIR") or os.path.join(out_dir, "..", ".web-cache")
-    max_requests = int(env.get("JOB_MAX_REQUESTS", "400"))
+    max_requests = int(env.get("JOB_MAX_REQUESTS", "700"))
     list_budget = max(10, min(100, max_requests // 4))  # a share of the budget for the list pages
     summary = web.run_campaign(JOB, root, out_dir, targets, cache_dir=os.path.join(cache, "web"),
-                               max_requests=max(1, max_requests - list_budget), max_targets=int(env.get("JOB_MAX_TARGETS", "30")),
+                               max_requests=max(1, max_requests - list_budget), max_targets=int(env.get("JOB_MAX_TARGETS", "50")),
                                transport=transport, env=env, engines=engines, universe_ids=universe)
     seeds = []
     if os.path.exists(LIST_PAGES):
         with open(LIST_PAGES, encoding="utf-8") as fh:
             seeds = [l.split("#", 1)[0].strip() for l in fh if l.split("#", 1)[0].strip()]
     searcher = web.Searcher(os.path.join(cache, "web"), max_requests=list_budget, transport=transport, env=env, engines=engines)
-    lists = run_list_pages(searcher, seeds, universe, out_dir)
+    lists = run_list_pages(searcher, seeds, universe, out_dir, done_before=web.load_prior_extra(root, JOB, "list_pages_done") or [])
+    # the campaign wrote WEB_STATE.json before the list pass; add the cursor to it
+    state_path = os.path.join(out_dir, "WEB_STATE.json")
+    with open(state_path, encoding="utf-8") as fh:
+        state = json.load(fh)
+    state["list_pages_done"] = lists.pop("cursor")
+    with open(state_path, "w", encoding="utf-8") as fh:
+        json.dump(state, fh, indent=1, sort_keys=True)
     summary["list_pages"] = lists
     with open(os.path.join(out_dir, "SOURCES.jsonl"), "a", encoding="utf-8") as fh:
         for s in searcher.sources:

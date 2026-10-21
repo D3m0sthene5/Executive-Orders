@@ -617,6 +617,24 @@ def advance(searcher, target, state, engines, max_pages=3, min_follow_score=45):
     return state
 
 
+def rescore_state(state, target):
+    """Apply the current scoring rules to hits carried forward from earlier runs (rules change; evidence stays)."""
+    if not target:
+        return state
+    for h in state.get("hits", []):
+        sc, why = score_hit(h, target)
+        h["score"], h["why"] = sc, why
+        if h.get("page_score") not in (None, -1) and "transcription_host_already_held" in why:
+            h["page_score"] = min(h["page_score"], 35)
+            if "transcription_host_already_held" not in (h.get("page_why") or ""):
+                h["page_why"] = ((h.get("page_why") or "") + "|transcription_host_already_held").strip("|")
+    best = max(state.get("hits", []), key=lambda h: (h.get("page_score") or 0, h["score"]), default=None)
+    if best:
+        state["best_score"] = max(best.get("page_score") or 0, best["score"])
+        state["best_url"] = best["url"]
+    return state
+
+
 def pick_targets(states, targets, limit):
     """Round-robin: targets never searched first, then the fewest steps, then the oldest last run."""
     def key(t):
@@ -627,6 +645,34 @@ def pick_targets(states, targets, limit):
 
 
 # --- a campaign: many targets, one run, state carried forward -------------------------------------
+
+def load_prior_extra(root, job, key):
+    """One extra top-level key of the last committed WEB_STATE.json (e.g. the list-page cursor)."""
+    for getter in (_prior_state_git, _prior_state_folder):
+        data = getter(root, job)
+        if isinstance(data, dict) and key in data:
+            return data[key]
+    return None
+
+
+def _prior_state_git(root, job):
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(HERE), "source-ladder"))
+        import prior_output  # noqa: E402
+        raw = prior_output.PriorOutput.from_git_head(root, f"jobs/{job}/output").read("WEB_STATE.json")
+        return json.loads(raw.decode("utf-8") if isinstance(raw, bytes) else raw) if raw else None
+    except Exception:
+        return None
+
+
+def _prior_state_folder(root, job):
+    path = os.path.join(root, "jobs", job, "output", "WEB_STATE.json")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
+
 
 def load_prior_state(root, job):
     """The last committed WEB_STATE.json of this job (git HEAD, else the folder), so progress accumulates."""
@@ -654,7 +700,7 @@ def load_prior_state(root, job):
 
 
 def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, max_targets=40, transport=None,
-                 env=None, engines=None, offline=False, universe_ids=None, now=None):
+                 env=None, engines=None, offline=False, universe_ids=None, now=None, extra_state=None):
     """Advance up to `max_targets` targets one step each, within `max_requests`, and write the campaign files.
 
     targets: list of {'id','number','suffix','date','title','president','kind', ...extra}. Writes WEB_STATE.json
@@ -667,6 +713,8 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
     prior, prior_from = load_prior_state(root, job)
     states = {k: v for k, v in prior.items() if isinstance(v, dict)}
     by_id = {t["id"]: t for t in targets}
+    for iid, st in states.items():
+        rescore_state(st, by_id.get(iid))
     searcher = Searcher(cache_dir, max_requests=max_requests, transport=transport, env=env, engines=engines,
                         offline=offline, now=now)
     engines_ready = searcher.ready_engines()
@@ -681,7 +729,8 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
     stamp = searcher.now()
     # files
     with open(os.path.join(out_dir, "WEB_STATE.json"), "w", encoding="utf-8") as fh:
-        json.dump({"job": job, "updated_utc": stamp, "prior_state_from": prior_from, "targets": states}, fh, indent=1, sort_keys=True)
+        json.dump({"job": job, "updated_utc": stamp, "prior_state_from": prior_from, "targets": states, **(extra_state or {})},
+                  fh, indent=1, sort_keys=True)
     hit_fields = ["instrument_id", "score", "page_score", "engine", "strategy", "title", "url", "date", "why", "page_why",
                   "page_quote", "page_sha256", "found_utc", "snippet"]
     lead_rows, hit_rows, named = [], [], {}
