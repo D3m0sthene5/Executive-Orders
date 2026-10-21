@@ -2,6 +2,16 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (~17:10Z): Lewis and Clark go online; Domesday register
+
+- **Done (same branch, PR #49):**
+  - `jobs/_lib/eo_websearch.py`: open-ended web search shared by Lewis and Clark. Engine registry (built-ins plus owner-extensible `search_engines.json`): general web engines, keyed engines (Google CSE, Bing, Brave, SerpAPI, NARA; the workflow now passes those secrets when added), LOC, Internet Archive, Google Books, HathiTrust catalog, FR API, Wikisource/Wikipedia search, APP, govinfo. Escalating query strategies per order; hits followed and read for number, date and operative wording; every page read harvested for order numbers; state carried forward from the last committed output so no target is ever dropped. FetchPool underneath (robots.txt obeyed, throttled, hashed into SOURCES.jsonl); blocked or keyless engines reported by name in ENGINES.json.
+  - Lewis `online.py`: hunts every order in scope, manual-lead routes first, 100 targets / 1,500 requests per run by default (`JOB_MAX_TARGETS`, `JOB_MAX_REQUESTS`).
+  - Clark `online.py`: hunts number gaps, plausible cited-unknowns and number-only orders; reads the list pages in `list_pages.txt` (Wikipedia, Wikisource, APP, OFR tables; owner-extensible) and reports every order number the census lacks (`WEB_LISTED_ORDERS.csv`).
+  - `jobs/domesday-register`: `REGISTER.csv`, one row per census order with date, title, president, every source held by class, readiness, ProQuest state, Lewis/Clark results; `CANDIDATES_NOT_IN_REGISTER.csv` for numbers named anywhere that the census lacks. Runs after Lewis, Clark and the tracker.
+- **Running:** the branch's first online run will show in `ENGINES.json` which engines answer from GitHub's runners and which robots.txt blocks; expect several blocked.
+- **Asks:** `@Owner`: add search keys as repository secrets to switch on the big engines (`GOOGLE_CSE_KEY` + `GOOGLE_CSE_CX`, `BING_SEARCH_KEY`, `BRAVE_SEARCH_KEY`, `SERPAPI_KEY`, `NARA_API_KEY`); the jobs pick them up on the next run with no code change.
+
 ## 2026-10-21 ET (~16:45Z): Lewis and Clark, two source-discovery jobs
 
 - **Done (branch `corps-of-discovery-lewis-clark`, PR to follow):** two paired jobs plus a shared helper, all offline, standard library (pypdf optional), tests run first.

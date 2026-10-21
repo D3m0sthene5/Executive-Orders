@@ -212,3 +212,32 @@ class SyntheticRepo(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class OnlineStage(SyntheticRepo):
+    """The web stage runs after the offline routing, with an injected transport (no network)."""
+
+    def test_online_stage_hunts_manual_leads_first_and_writes_campaign_files(self):
+        sys.path.insert(0, os.path.join(os.path.dirname(HERE), "_lib"))
+        import online
+        import test_eo_websearch as tw
+        self.run_job()
+        web = tw.FakeWeb()
+        engines = [{"name": "fake_html", "kind": "html", "url": "https://engine.test/search?q={q}"}]
+        import eo_websearch as w
+        url = w.build_url(engines[0], '"Executive Order No. 6000"', 1932)
+        web.pages[url] = (200, "text/html", b'<a href="https://docs.test/6000">Executive Order 6000 of February 1, 1932</a>')
+        web.pages["https://docs.test/6000"] = (200, "text/html", b"<p>Executive Order No. 6000, February 1, 1932. It is hereby ordered. See Executive Order 5999.</p>")
+        env = {"JOB_MAX_REQUESTS": "40", "JOB_MAX_TARGETS": "3", "JOB_CACHE_DIR": os.path.join(self.root, "cache")}
+        s = online.run(self.root, self.out, transport=web, env=env, engines=engines)
+        self.assertEqual(s["advanced_this_run"], 3)
+        with open(os.path.join(self.out, "WEB_STATE.json"), encoding="utf-8") as fh:
+            st = json.load(fh)["targets"]
+        self.assertIn("EO:6000", st, "gpo_bound_volumes (priority 1) goes before federal_register routes")
+        self.assertIn("EO:5100", st)
+        self.assertNotIn("EO:7543", st, "a fetch-request route waits its turn")
+        self.assertGreaterEqual(st["EO:6000"]["best_score"], 60)
+        leads = ident.read_csv(os.path.join(self.out, "WEB_LEADS.csv"))
+        self.assertEqual([r["instrument_id"] for r in leads], ["EO:6000"])
+        self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
+        self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())

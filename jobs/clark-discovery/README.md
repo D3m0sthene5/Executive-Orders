@@ -40,6 +40,23 @@ plausible lettered citations, and identity-unknown census orders that have a Pro
 Each line says whether the id is in the census (`in_census`), the evidence, and the note that nothing follows from it.
 Lewis routes these on its next run (`scope_reason: clark_identified` or `clark_identified_not_in_universe`).
 
+## The web search (online stage)
+
+After the offline pass, Clark hunts the open web in two ways, through the same search layer Lewis uses
+(`jobs/_lib/eo_websearch.py`: open engine registry, escalating queries, hits followed and read, state carried forward,
+robots.txt obeyed, keys from repository secrets when the owner adds them; see Lewis's README for the rules):
+
+1. **Targets.** Number gaps with evidence and plausible cited-but-unknown ids first, then number-only gaps, then census
+   orders known by number only (those on the ProQuest list last, since the PDF is their answer). Each run advances the
+   least-searched targets one query strategy across every engine; pages that name the order are read and quoted
+   (`WEB_LEADS.csv`), and every order number they name is checked against the census (`WEB_NUMBERS_NAMED.csv`).
+2. **List pages.** Every page in `list_pages.txt` (Wikipedia's and Wikisource's lists, the American Presidency Project
+   category, the OFR disposition tables, and any page the owner adds) is read, same-site links about executive orders are
+   followed, and every order number named is harvested with the date and title printed beside it. Numbers the census
+   lacks are in `WEB_LISTED_ORDERS.csv`.
+
+Budget per run: `JOB_MAX_REQUESTS` (default 1,200, a quarter reserved for list pages) and `JOB_MAX_TARGETS` (default 80).
+
 ## What Clark does not do
 
 Nothing here enters the census, changes a readiness count, or authenticates an identity. A number gap is a lead for the
@@ -50,12 +67,15 @@ census gap is probably an ingestion miss, but only a person checking the identit
 ## Outputs
 
 `NUMBER_GAPS.csv`, `CITED_BUT_UNKNOWN.csv`, `IDENTITY_UNKNOWN.csv`, `DATED_UNNUMBERED.csv`, `HANDOFF_TO_LEWIS.jsonl`,
-`REPORT.md` (the gaps table and the plausible citations), `SUMMARY.json` (counts, input sizes, problems).
+`REPORT.md` (the gaps table, the plausible citations, the web stage), `SUMMARY.json` (counts, input sizes, problems); from the
+web stage `WEB_STATE.json`, `WEB_HITS.csv`, `WEB_LEADS.csv`, `WEB_NUMBERS_NAMED.csv`, `WEB_LISTED_ORDERS.csv`, `SOURCES.jsonl`,
+`ENGINES.json`, `WEB_SUMMARY.json`. The consolidated table of every order and what is held for it is
+`jobs/domesday-register/output/REGISTER.csv`.
 
 ## Running
 
 GitHub: Actions → Run jobs → `clark-discovery`. It runs daily, after the tracker and the text-producing jobs when they run
-together, and whenever the census or `research/pre-1937-sources/` changes. About 20 seconds, no network, standard library only.
+together, and whenever the census or `research/pre-1937-sources/` changes. The offline pass takes about 20 seconds; the web stage runs within its request budget.
 
 Locally, from the repo root:
 

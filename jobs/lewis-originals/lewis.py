@@ -17,8 +17,9 @@ For each order Lewis walks a fixed ladder of routes and records where the order 
                              phrase search for "Executive Order No. N" (a manual lead; sign-in needed)
   5. nara_rg11               the National Archives RG 11 numbered series (manual lead)
 
-Lewis writes leads and verified file facts. It fetches nothing from the network, changes no
-readiness count, and gives no ProQuest file a custody grade: every fragment it writes carries
+This offline stage writes leads and verified file facts and fetches nothing; the web stage in
+online.py then hunts the open web for every order in scope (see jobs/_lib/eo_websearch.py). Neither
+changes a readiness count, and neither gives a ProQuest file a custody grade: every fragment it writes carries
 acceptable_as_original=false and needs_page_check=true until a person compares the pages and the
 codebook assigns the grade. Only the owner enqueues its proposed fetch requests.
 """

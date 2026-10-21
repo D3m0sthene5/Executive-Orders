@@ -247,3 +247,39 @@ class MentionParsing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class OnlineStage(SyntheticRepo):
+    """The web stage: unknowns hunted by priority, list pages harvested, with an injected transport."""
+
+    def test_online_stage_targets_gaps_first_and_harvests_list_pages(self):
+        sys.path.insert(0, os.path.join(os.path.dirname(HERE), "_lib"))
+        import online
+        import test_eo_websearch as tw
+        import eo_websearch as w
+        self.run_job()
+        web = tw.FakeWeb()
+        engines = [{"name": "fake_html", "kind": "html", "url": "https://engine.test/search?q={q}"}]
+        url = w.build_url(engines[0], '"Executive Order No. 5853"', 1932)
+        web.pages[url] = (200, "text/html", b'<a href="https://docs.test/5853">Executive Order 5853 of June 3, 1932</a>')
+        web.pages["https://docs.test/5853"] = (200, "text/html", b"<p>Executive Order No. 5853, June 3, 1932, waiver of maximum age limit. It is hereby ordered.</p>")
+        web.pages["https://lists.test/index"] = (200, "text/html", b'<a href="https://lists.test/hoover">Executive orders of Herbert Hoover</a><a href="https://lists.test/other">Weather</a>')
+        web.pages["https://lists.test/hoover"] = (200, "text/html",
+                                                   b"<table><tr><td>Executive Order 5852</td><td>June 1, 1932</td></tr>"
+                                                   b"<tr><td>Executive Order 5854</td><td>June 3, 1932</td><td>Halibut fishery</td></tr>"
+                                                   b"<tr><td>Executive Order 5899</td><td>July 20, 1932</td></tr></table>")
+        online.LIST_PAGES = os.path.join(self.root, "list_pages.txt")
+        with open(online.LIST_PAGES, "w", encoding="utf-8") as fh:
+            fh.write("# seeds\nhttps://lists.test/index\n")
+        env = {"JOB_MAX_REQUESTS": "60", "JOB_MAX_TARGETS": "2", "JOB_CACHE_DIR": os.path.join(self.root, "cache")}
+        s = online.run(self.root, self.out, transport=web, env=env, engines=engines)
+        with open(os.path.join(self.out, "WEB_STATE.json"), encoding="utf-8") as fh:
+            st = json.load(fh)["targets"]
+        self.assertEqual(sorted(st), ["EO:5853", "EO:5854"], "number gaps (priority 0) first, lowest numbers first")
+        self.assertGreaterEqual(st["EO:5853"]["best_score"], 60)
+        listed = {r["instrument_id"]: r for r in ident.read_csv(os.path.join(self.out, "WEB_LISTED_ORDERS.csv"))}
+        self.assertEqual(listed["EO:5854"]["in_census"], "no")
+        self.assertEqual(listed["EO:5854"]["dates_seen"], "1932-06-03")
+        self.assertEqual(listed["EO:5852"]["in_census"], "yes")
+        self.assertEqual(s["list_pages"]["not_in_census"], 2, "5854 and 5899")
+        self.assertEqual(len(s["list_pages"]["pages_read"]), 2, "the index and the linked list page; not the weather link")

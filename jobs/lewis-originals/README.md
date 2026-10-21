@@ -27,6 +27,30 @@ For each order Lewis records where it stands on a fixed ladder of routes and the
 | `proquest_phrase_search` | Before 1937, not on the supplied list | `manual_lead` with the exact phrase to search | owner (ProQuest needs the NYU sign-in) |
 | `nara_rg11` | Anything left | `manual_lead` | owner |
 
+## The web search (online stage)
+
+After routing, Lewis hunts the open web for every order in scope, manual-lead routes first (ProQuest phrase search,
+volume indexes, NARA), then everything else, round-robin across runs. The search layer is `jobs/_lib/eo_websearch.py`:
+
+- **No fixed list of sources.** Engines are the built-ins there (general web engines, keyed engines when the owner adds
+  secrets, library and government catalogs) plus any the owner adds to `jobs/_lib/search_engines.json`: a URL template
+  with `{q}`, how to read the results (generic HTML links, RSS, or JSON paths) and any keys it needs. Every engine that
+  can answer is tried for every query.
+- **Escalating queries.** `"Executive Order No. N"`, the bare number, number with the signing date, `"Executive order
+  of <date>"`, title words, `E.O.`, president and number, lettered-suffix variants, year-only, `filetype:pdf`. The
+  state remembers which strategy each order has reached; a strategy added to the code is tried next run for every order.
+- **Hits are followed.** Promising pages are fetched and read for the order's number, its date and operative wording
+  (`page_score`, `page_quote`), for links to documents, and for every other order number they name.
+- **Nothing is given up on.** `WEB_STATE.json` is carried forward from the last committed output; every run advances
+  the least-searched orders one more step. Only a person records exhaustion (`research/readiness/EXHAUSTED.jsonl`).
+- **Polite fetching.** The project's FetchPool: HTTPS only, robots.txt obeyed, per-host throttling, byte bounds, every
+  response hashed into `SOURCES.jsonl`. An engine blocked by robots.txt is reported by name in `ENGINES.json` and tried
+  again next run; one whose key is missing is reported as `needs_key`. The workflow passes `GOOGLE_CSE_KEY`,
+  `GOOGLE_CSE_CX`, `BING_SEARCH_KEY`, `BRAVE_SEARCH_KEY`, `SERPAPI_KEY`, `NARA_API_KEY` and `GOVINFO_API_KEY` from
+  repository secrets when the owner adds them.
+
+Budget per run: `JOB_MAX_REQUESTS` (default 1,500) and `JOB_MAX_TARGETS` (default 100), both environment variables.
+
 ## Outputs (`output/`)
 
 | File | What it is |
@@ -37,6 +61,10 @@ For each order Lewis records where it stands on a fixed ladder of routes and the
 | `texts/EO_<n>.txt` | The PDF text layer, only where it passes the quality screen (printed originals; handwritten scans give noise and are not written). Clark reads these. |
 | `PROPOSED_FETCH_REQUESTS.jsonl` | Source-ladder requests for FR-era orders with an OFR citation, validated with `jobs/source-ladder/request_contract.py`. Lewis never writes to `research/readiness/FETCH_QUEUE.jsonl` itself. |
 | `REPORT.md`, `SUMMARY.json` | Counts by route, status and owner; folder statistics; problems. |
+| `WEB_STATE.json` | Per-order web-search state (strategies and engines tried, hits, pages read, best page), carried forward run to run. |
+| `WEB_HITS.csv`, `WEB_LEADS.csv` | Every hit with its score; and the pages confirmed to name the order (`page_score` 60+) with the quote. |
+| `WEB_NUMBERS_NAMED.csv` | Every order number any page read names, and whether the census has it. |
+| `SOURCES.jsonl`, `ENGINES.json`, `WEB_SUMMARY.json` | Every HTTP exchange (URL, status, SHA-256, time); engine status; the run's counts. |
 
 To enqueue the proposals:
 
@@ -46,7 +74,8 @@ python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-origina
 
 ## What Lewis does not do
 
-- It fetches nothing from the network. ProQuest needs a sign-in; the Federal Register route goes through the source-ladder job.
+- It downloads no originals itself. ProQuest needs a sign-in; the Federal Register route goes through the source-ladder job; a web
+  page it confirms is a lead for a person or a fetch request, never a saved source.
 - It changes no readiness step or count. A verified ProQuest file is a lead with byte evidence, not an original: the
   tracker counts only finds a job did not flag `needs_page_check`, and every Lewis fragment is flagged. If the owner
   decides ProQuest replica scans may count after a page check, the change is one rule in `jobs/readiness-tracker/tracker.py`
@@ -58,7 +87,7 @@ python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-origina
 ## Running
 
 GitHub: Actions → Run jobs → `lewis-originals`. It runs daily, after `clark-discovery` and `readiness-tracker` when
-they run together, and whenever `research/pre-1937-sources/` or the census changes. Needs about 20 seconds and no network.
+they run together, and whenever `research/pre-1937-sources/` or the census changes. The offline routing takes about 20 seconds; the web stage runs within its request budget.
 
 Locally, from the repo root:
 

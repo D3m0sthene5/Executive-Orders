@@ -190,27 +190,30 @@ def load_dates(root, fragments=None):
     """
     out = {}
 
-    def put(iid, date, title, source):
+    def put(iid, date, title, source, president=""):
         if not iid:
             return
         cur = out.get(iid)
         if cur is None:
-            out[iid] = {"date": date or "", "title": title or "", "date_source": source if date else ""}
+            out[iid] = {"date": date or "", "title": title or "", "date_source": source if date else "",
+                        "president": president or ""}
             return
         if not cur["date"] and date:
             cur["date"], cur["date_source"] = date, source
         if not cur["title"] and title:
             cur["title"] = title
+        if not cur["president"] and president:
+            cur["president"] = president
 
     for r in read_csv(os.path.join(root, OFR_CATALOG)):
-        put(r.get("id"), r.get("signing_date"), r.get("title"), "ofr_catalog")
+        put(r.get("id"), r.get("signing_date"), r.get("title"), "ofr_catalog", r.get("president", ""))
     frags = fragments if fragments is not None else load_fragments(root)
     for iid, fs in frags.items():
         for f in fs:
             if f["produced_by"] == "fr-originals":
                 put(iid, f["date"], f["title"], "fr-originals")
     for r in read_csv(os.path.join(root, APP_INDEX)):
-        put(r.get("instrument_id"), r.get("date"), r.get("title"), "app_index")
+        put(r.get("instrument_id"), r.get("date"), r.get("title"), "app_index", re.sub(r"\s*\(.*?\)", "", r.get("president", "")))
     for iid, fs in frags.items():
         for f in fs:
             put(iid, f["date"], f["title"], f["produced_by"])
