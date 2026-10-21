@@ -2,6 +2,19 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET: owner rulings 2-8 recorded (`research/readiness/owner_rulings/`)
+
+- **Ruled by the owner today:** (1) report deadlines never end a board order, record both dates; (2) struck-and-inserted
+  clauses continue, amended, with before/after text; (3) unnamed instruments are disclosed candidates, not ends;
+  (4) EO 10449 treated like the other boards; (5) adopt the 15 Bowditch NO proposals by pull request, lean-review the
+  41 Sinclair ones first; (6) transcriptions may satisfy the text step provisionally, labeled, originals still the
+  goal; (7) "until" dates inclusive, alternative noted; (8) no ProQuest request, the owner is retrieving scans himself.
+- **Unblocked:** Pullman's 97 packets, Blackstone's 4 orders, the 15 unnamed-instrument orders, the Lamm "until" six,
+  and the 4,644 transcription-only orders for text-step purposes.
+- **Rework owed:** 43 "ends on amendment" clauses in 26 orders (ruling 2); 6 claims get a disclosure flag (ruling 3).
+- **Next:** adoption pull request for the 15; lean review of the 41; re-run the day review with the rulings applied.
+- **Do not:** promote a transcription to `acceptable_as_original`; harvest ProQuest; change the codebook.
+
 ## 2026-10-21 ET: owner ruling on report deadlines (question 1 of the brief)
 
 - **Ruled (owner, option C with both dates):** `research/readiness/owner_rulings/2026-10-21-report-deadline.md`.
