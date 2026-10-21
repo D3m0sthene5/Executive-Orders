@@ -27,19 +27,18 @@ $pop = Find-Exe "pdftoppm.exe" @("$env:LOCALAPPDATA\Microsoft\WinGet\Packages", 
 if (-not $tess -or -not $pop) { throw "tesseract.exe or pdftoppm.exe not found; run jobs\pinakes-proquest-ingest\run_on_pc.ps1 first." }
 $env:PATH = "$tess;$pop;$env:PATH"
 
-# 2. A private Python environment for the GPU stack (PyTorch with CUDA 12.8 for RTX 50-series cards, transformers).
-$venv = "$env:USERPROFILE\.pinakes-htr\venv"
+# 2. A private Python environment for the GPU stack: PyTorch with CUDA 12.8 (RTX 50-series cards), transformers 5 (Qwen3-VL
+#    and Chandra OCR 2 need it), bitsandbytes for the 4-bit Qwen3-VL-8B. The models (about 17 GB and 10 GB) download from
+#    Hugging Face on first use into %USERPROFILE%\.cache\huggingface.
+$venv = "$env:USERPROFILE\.pinakes-htr\venv5"
 $py = "$venv\Scripts\python.exe"
 if (-not (Test-Path $py)) {
   python -m venv $venv
-  & $py -m pip install -q --upgrade pip
-  & $py -m pip install -q numpy==2.2.6 pillow==11.2.1 pypdf==6.20.1
-  & $py -m pip install -q torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu128
-  & $py -m pip install -q transformers==4.52.4 sentencepiece==0.2.0 accelerate==1.7.0
+  & $py -m pip install -q --disable-pip-version-check --upgrade pip
+  & $py -m pip install -q --disable-pip-version-check torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu128
 }
-& $py -m pip install -q --disable-pip-version-check accelerate==1.7.0   # added for the VLM after first installs
-& $py -m pip install -q --disable-pip-version-check torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu128
-& $py -c "import torch; print('GPU:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'none (CPU; slow)')"
+& $py -m pip install -q --disable-pip-version-check numpy==2.5.2 pillow==11.3.0 pypdf==6.20.1 transformers==5.20.2 accelerate==1.15.0 bitsandbytes==0.50.2
+& $py -c "import torch; print('GPU:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'none (CPU; far too slow for the VLMs)')"
 
 # 3. Tests, then the run, straight into the committed output folder; a rerun skips orders already read.
 $root = (git rev-parse --show-toplevel)

@@ -44,7 +44,9 @@ PINAKES_ORDERS = "jobs/pinakes-proquest-ingest/output/ORDERS.csv"
 DPI = 300
 MAX_PAGES = 40
 MODEL_ID = os.environ.get("HTR_MODEL", "microsoft/trocr-large-handwritten")
-METHOD_KEY = f"tess300-psm3+trocr:{MODEL_ID}:dpi{DPI}:v3"
+# TrOCR is off by default: the 2026-10-21 bake-off measured 51-88% character error on these hands (see README).
+USE_TROCR = bool(os.environ.get("HTR_TROCR"))
+METHOD_KEY = f"tess300-psm3{'+trocr:' + MODEL_ID if USE_TROCR else ''}:dpi{DPI}:v3"
 LOW_CONF = 0.5          # a TrOCR line below this beam confidence is counted as doubtful
 MIN_LINE_H, MIN_LINE_W, PAD = 14, 30, 6
 MIN_TYPICAL_H, MAX_CUTS = 24, 6   # a handwritten line at 300 dpi is taller than 24 px; a band is cut into at most 6
@@ -58,9 +60,9 @@ HTR_FIELDS = ["instrument_id", "year", "file", "folder", "sha256", "pages", "met
               "tess300_passes_screen",
               "trocr_text_path", "trocr_lines", "trocr_chars", "trocr_quality", "trocr_common_share", "trocr_mean_conf",
               "trocr_doubtful_lines", "trocr_passes_screen", "segmentation", "error"]
-SAMPLE_FIELDS = ["instrument_id", "year", "pages", "pdf_path", "pinakes_text_path", "tess300_text_path", "trocr_text_path",
-                 "trocr_mean_conf", "checked_by", "page_kind (handwritten/typed/mixed/other)", "words_checked",
-                 "words_wrong_trocr", "words_wrong_tess300", "notes"]
+SAMPLE_FIELDS = ["instrument_id", "year", "pages", "pdf_path", "compare_text_path", "vlm_qwen3_text_path", "vlm_chandra_text_path",
+                 "tess300_text_path", "checked_by", "page_kind (handwritten/typed/mixed/other)", "words_checked",
+                 "words_wrong_qwen3", "words_wrong_chandra", "marked_words_that_were_right", "unmarked_words_that_were_wrong", "notes"]
 
 
 # ---------- images ----------
@@ -428,7 +430,7 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
     tasks = [{"instrument_id": t["instrument_id"], "pdf": os.path.join(root, t["folder"], t["file"]),
               "work": os.path.join(work_root, hashlib.sha1(t["instrument_id"].encode()).hexdigest()[:12])} for t in todo]
     by_id = {t["instrument_id"]: t for t in todo}
-    if todo and reader is None:
+    if todo and reader is None and USE_TROCR:
         reader = TrOCR()
     workers = workers or max(1, (os.cpu_count() or 2) - 1)
     n = 0
@@ -452,6 +454,7 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
                     row.update({"tess300_text_path": stem + ".tess300.txt" if tess else "", "tess300_chars": len(tess),
                                 "tess300_quality": q, "tess300_common_share": c, "tess300_mean_word_conf": prep["tess_conf"],
                                 "tess300_passes_screen": ok})
+                if not prep.get("error") and reader is not None:
                     try:
                         text, lines = read_lines(prep, reader)
                     except Exception as exc:
@@ -487,8 +490,8 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
                        "pdf_path": f"{r['folder']}/{r['file']}",
                        "pinakes_text_path": "jobs/pinakes-proquest-ingest/output/texts/" + r["instrument_id"].replace(":", "_") + ".txt",
                        "tess300_text_path": f"jobs/{JOB}/output/{r['tess300_text_path']}" if r.get("tess300_text_path") else "",
-                       "trocr_text_path": f"jobs/{JOB}/output/{r['trocr_text_path']}" if r.get("trocr_text_path") else "",
-                       "trocr_mean_conf": r.get("trocr_mean_conf", "")})
+                       **{f"{k}_text_path": f"jobs/{JOB}/output/texts/{r['instrument_id'].replace(':', '_')}.{k}.txt"
+                          for k in ("compare", "vlm_qwen3", "vlm_chandra")}})
     write_csv(os.path.join(out_dir, "SAMPLE_FOR_PAGE_CHECK.csv"), SAMPLE_FIELDS, sample)
 
     provenance = {"job": JOB, "method_key": METHOD_KEY, "dpi": DPI, "max_pages": MAX_PAGES, "low_conf": LOW_CONF, **STATUS,
@@ -533,29 +536,29 @@ def summarize(rows, read_now, provenance):
 
 
 def report(s):
-    q = s["trocr_conf_quartiles"]
-    lines = ["# Pinakes HTR: second reading of the scans below the quality screen", "",
-             f"Generated {dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')} on the owner's PC "
-             f"({s['gpu'] or 'CPU'}), in {s['seconds']} s. Nothing was sent off the machine.", "",
-             f"**{s['orders']} orders** ({s['pages']} pages) whose Pinakes text failed the screen were read again; "
-             f"{s['read_this_run']} this run, {s['errors']} with errors.", "",
-             "| Reading | Orders passing the word-shape screen |", "|---|---:|",
-             f"| tesseract, 300 dpi, cleaned, automatic layout | {s['tess300_passes_screen']} |",
-             f"| TrOCR handwriting model ({s['model']}) | {s['trocr_passes_screen']} |",
-             f"| Either | {s['either_passes_screen']} |", "",
-             f"TrOCR read {s['trocr_lines']} lines; {s['trocr_doubtful_lines']} are below confidence {LOW_CONF}. "
-             f"Mean line confidence per order, quartiles: {q[0]} / {q[1]} / {q[2]}; {s['trocr_conf_ge_0_8']} orders average 0.8 or more. "
-             f"Line segmentation: " + ", ".join(f"{k or 'none'} {v}" for k, v in s["segmentation"].items()) + ".", "",
+    lines = ["# Pinakes HTR: new readings of the scans below the quality screen", "",
+             f"Generated {dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')} on the owner's PC. "
+             "Nothing was sent off the machine.", "",
+             f"**{s['orders']} orders** ({s['pages']} pages) whose Pinakes text failed the screen were read again: by two "
+             "vision-language models (Qwen3-VL-8B, the backbone, and Chandra OCR 2, the cross-check; `vlm.py`) and by "
+             f"tesseract at 300 dpi (`htr.py`; {s['tess300_passes_screen']} orders now pass the word-shape screen, mostly typed pages).", "",
+             "## Why these models", "",
+             "Bake-off on three sample pages (EO 12 and EO 14, clean 1874 clerk's hands; EO 23, a faded 1884 page), scored "
+             "against a reading made for choosing a model (not evidence): character error rate on the two clean pages, share of "
+             "the faded page's readable part recovered.", "",
+             "| Reader | EO 12 | EO 14 | EO 23 recovered |", "|---|---:|---:|---:|",
+             "| Qwen3-VL-8B (4-bit) | 3.5% | 0.6% | 87% |", "| Chandra OCR 2 | 6.0% | 0.2% | 87% |",
+             "| Qwen3-VL-4B | 5.3% | 0.5% | 78% |", "| Qwen2.5-VL-3B | 2.5% | 1.4% | 73% |", "| CHURRO 3B | 10.3% | 1.1% | 82% |",
+             "| TrOCR large handwritten | 87.6% | 51.3% | 18% |", "| tesseract 300 dpi | 86.4% | 69.5% | 21% |", "",
+             "On the faded page every model invented words where the ink fails, each different ones; Chandra also invented a "
+             "signature and a date on EO 12. That is why two models read every page and only words both read count as confirmed.", "",
              "## What these texts are", "",
              "Machine hypotheses for searching and routing. They are not source texts, they do not replace the Pinakes texts, "
              "the readiness tracker does not read them, and they do not move the certified count "
-             "(`acceptable_as_source_text: false`, `needs_page_check: true`, `counts_toward_certification: false`). "
-             "A handwriting model writes fluent English even where it misreads, so passing the word-shape screen is weak "
-             "evidence for TrOCR; its confidence is better, and a person's page check is what tells.", "",
+             "(`acceptable_as_source_text: false`, `needs_page_check: true`, `counts_toward_certification: false`).", "",
              "## Next", "",
-             "A person compares the ten orders in `SAMPLE_FOR_PAGE_CHECK.csv` against their PDFs and fills in the blank "
-             "columns (page kind, words checked, words wrong per reading). That measures the error rate and says whether "
-             "a model trained on these hands (eScriptorium/Kraken, local) is worth the effort.", ""]
+             "A person checks the ten orders in `SAMPLE_FOR_PAGE_CHECK.csv` against their PDFs (blank columns for page kind and "
+             "words wrong per reading), then works down `COMPARE.csv` from the least-confirmed order.", ""]
     return "\n".join(lines)
 
 

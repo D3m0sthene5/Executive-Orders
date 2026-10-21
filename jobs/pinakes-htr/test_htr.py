@@ -150,64 +150,89 @@ class Run(unittest.TestCase):
 
 
 class Compare(unittest.TestCase):
-    def test_unconfirmed_words_are_marked(self):
+    def test_words_the_cross_check_did_not_read_are_marked(self):
         import compare
         marked, s = compare.compare_order({
-            "vlm": "By virtue of the authority\nvested in me [illegible] hereby order",
-            "trocr": "By virtue of the anthority vested in me I hereby order",
+            "vlm_qwen3": "By virtue of the authority\nvested in me [illegible] hereby order",
+            "vlm_chandra": "By virtue of the authority vested in me I hereby order",
             "tess300": "By virtne of the authority vested in nie I hereby order"})
-        self.assertEqual(s["backbone"], "vlm")
-        self.assertEqual(s["readings"], "vlm+trocr+tess300")
+        self.assertEqual((s["backbone"], s["readings"]), ("vlm_qwen3", "vlm_qwen3+vlm_chandra+tess300"))
         self.assertEqual(marked, "By virtue of the authority\nvested in me [illegible] hereby order")
-        self.assertEqual(s["unconfirmed_words"], 0)
-        self.assertEqual(s["illegible_marks"], 1)
-        marked, s = compare.compare_order({"vlm": "The lands are reserved forever", "trocr": "The hands are reversed for ever"})
-        self.assertEqual(marked, "The ⟦lands⟧ are ⟦reserved⟧ ⟦forever⟧")
-        self.assertEqual(s["confirmed_share"], 0.4)
-        self.assertEqual(s["confirmed_by_tess300_share"], "")
+        self.assertEqual((s["unconfirmed_words"], s["illegible_marks"], s["crosscheck_only_words"]), (0, 1, 1))
+        marked, s = compare.compare_order({"vlm_qwen3": "Laboratory Exhibition at Chicago", "vlm_chandra": "Cotton Centennial Exhibition"})
+        self.assertEqual(marked, "⟦Laboratory⟧ Exhibition ⟦at⟧ ⟦Chicago⟧")
+        self.assertEqual((s["confirmed_share"], s["crosscheck_only_words"]), (0.25, 2))
+
+    def test_tesseract_alone_does_not_confirm(self):
+        import compare
+        marked, s = compare.compare_order({"vlm_qwen3": "the lands are reserved", "vlm_chandra": "the hands are reversed",
+                                           "tess300": "the lands are reserved"})
+        self.assertEqual(marked, "the ⟦lands⟧ are ⟦reserved⟧")
+        self.assertEqual(s["confirmed_by_tess300_share"], 1.0)
 
     def test_one_reading_is_not_a_comparison(self):
         import compare
-        self.assertEqual(compare.compare_order({"vlm": "only one", "trocr": ""}), (None, None))
+        self.assertEqual(compare.compare_order({"vlm_qwen3": "only one", "vlm_chandra": ""}), (None, None))
 
 
 class FakeVLM:
-    def __init__(self, loop_first=False):
-        self.loop_first, self.retries = loop_first, 0
+    def __init__(self, loop=False):
+        self.loop, self.closed = loop, False
 
-    def read_page(self, image, retry=False):
-        self.retries += retry
-        if self.loop_first and not retry:
-            return "Executive Mansion" + " [illegible]" * 40
+    def read_page(self, image):
+        if self.loop:
+            return "Executive Mansion\nBy virtue of the authority" + " [illegible]" * 40
         return "Executive Mansion [illegible] 1865"
+
+    def close(self):
+        self.closed = True
 
 
 class VLMRun(Run):
-    def test_vlm_reads_each_page_and_resumes(self):
+    pages = staticmethod(lambda pdf, work: [Image.fromarray(bars_page(2)).save(os.path.join(work, "p-1.png")) or os.path.join(work, "p-1.png")])
+
+    def test_each_reader_reads_each_order_and_resumes(self):
         import vlm
-        pages = lambda pdf, work: [Image.fromarray(bars_page(2)).save(os.path.join(work, "p-1.png")) or os.path.join(work, "p-1.png")]
-        s = vlm.run(self.root, self.out, reader=FakeVLM(), pages_of=pages)
-        self.assertEqual((s["orders"], s["read_this_run"], s["errors"]), (2, 2, 0))
+        made = []
+        make = lambda key: made.append(FakeVLM()) or made[-1]
+        s = vlm.run(self.root, self.out, make_reader=make, pages_of=self.pages)
+        self.assertEqual((s["orders"], s["read_this_run"]), (2, 4))
+        self.assertEqual(s["errors"], {"vlm_qwen3": 0, "vlm_chandra": 0})
+        self.assertTrue(all(r.closed for r in made), "each model is unloaded before the next loads")
         with open(os.path.join(self.out, "VLM.csv"), newline="", encoding="utf-8") as fh:
-            rows = {r["instrument_id"]: r for r in csv.DictReader(fh)}
-        self.assertEqual(rows["EO:4"]["vlm_illegible_marks"], "1")
-        self.assertEqual(vlm.run(self.root, self.out, reader=FakeVLM(), pages_of=pages)["read_this_run"], 0)
+            rows = {(r["instrument_id"], r["reader"]): r for r in csv.DictReader(fh)}
+        self.assertEqual(rows[("EO:4", "vlm_chandra")]["illegible_marks"], "1")
+        self.assertTrue(os.path.exists(os.path.join(self.out, "texts", "EO_4.vlm_qwen3.txt")))
+        self.assertEqual(vlm.run(self.root, self.out, make_reader=make, pages_of=self.pages)["read_this_run"], 0)
 
-    def test_a_looping_page_is_retried(self):
+    def test_a_looping_page_is_cut_where_it_loops(self):
         import vlm
-        pages = lambda pdf, work: [Image.fromarray(bars_page(2)).save(os.path.join(work, "p-1.png")) or os.path.join(work, "p-1.png")]
-        reader = FakeVLM(loop_first=True)
-        s = vlm.run(self.root, self.out, reader=reader, pages_of=pages)
-        self.assertEqual((reader.retries, s["degenerate_orders"]), (2, 0))
+        s = vlm.run(self.root, self.out, readers=["vlm_qwen3"], make_reader=lambda key: FakeVLM(loop=True), pages_of=self.pages)
+        self.assertEqual(s["cut_orders"]["vlm_qwen3"], 2)
+        with open(os.path.join(self.out, "texts", "EO_4.vlm_qwen3.txt"), encoding="utf-8") as fh:
+            self.assertEqual(fh.read(), "Executive Mansion\nBy virtue of the authority [illegible]\n"
+                                        "[model output cut here: it began to repeat itself]")
 
-    def test_loops_are_detected_and_collapsed(self):
+    def test_runaways_are_cut(self):
         import vlm
-        self.assertTrue(vlm.degenerate("By order" + " [illegible]" * 20))
-        self.assertTrue(vlm.degenerate("\n".join(["Approved"] * 9 + ["A. Lincoln"])))
-        self.assertFalse(vlm.degenerate("the lands of the United States are hereby reserved"))
-        self.assertEqual(vlm.collapse("x\nx\nx\ny"), "x [repeated 3 times by the model]\ny")
-        self.assertEqual(vlm.collapse("a b b b b b c"), "a b [repeated 5 times by the model] c")
-
+        good = "In conformity with the Executive order directing\nthe organization of a Board"
+        self.assertEqual(vlm.cut_runaway(good), (good, ""))
+        meta = good + "\nThe above is an incomplete transcript based solely upon what appears visible within your provided image"
+        self.assertEqual(vlm.cut_runaway(meta)[1], "comment on the image instead of transcribing")
+        self.assertTrue(vlm.cut_runaway(meta)[0].startswith(good + "\n[model output cut here"))
+        salad = good + "\n" + " ".join(["hollow pit crater fissure crevasse chasm canyon gorge ravine gully"] * 5)
+        self.assertEqual(vlm.cut_runaway(salad)[1], "list words instead of transcribing")
+        self.assertEqual(vlm.cut_runaway(good + " cave窟洞")[1], "write in another script")
+        roll = "viz: " + "William H. G. Fessenden, Secretary of State; President of the Board; " * 8
+        self.assertEqual(vlm.cut_runaway(roll)[1], "repeat itself")
+        self.assertIn("Fessenden", vlm.cut_runaway(roll)[0], "the first occurrence is kept")
+        order = "This order shall be printed with this document and the scan of the plat shall be kept on file."
+        self.assertEqual(vlm.cut_runaway(order)[1], "", "real order prose is not commentary")
+    def test_layout_html_is_reduced_to_text(self):
+        import vlm
+        html = ('<div data-bbox="1 2 3 4" data-label="Text">Executive Mansion</div><div data-label="Text"><p>By virtue &amp; '
+                'authority</p></div><div><img alt="Handwritten signature of Mr. T. C. Smith"/></div>')
+        self.assertEqual(vlm.plain(html), "Executive Mansion\nBy virtue & authority")
 
 if __name__ == "__main__":
     unittest.main()

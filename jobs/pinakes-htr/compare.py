@@ -1,16 +1,17 @@
 """Line up Pinakes HTR's readings of each page word by word and mark where they agree.
 
-The readings fail differently: tesseract (`tess300`) and TrOCR (`trocr`) read what the ink shows; the vision-language
-model (`vlm`) reads with the sense of the sentence and may supply plausible words where the ink is illegible. The
-fullest reading (the VLM's, else TrOCR's) is the backbone; each of its words is aligned (difflib, on lower-cased words
-without punctuation) against every other reading and gets a support count. Agreement makes a reading likelier right
-but proves nothing: two engines can share a guess, and every text here stays a machine hypothesis.
+Two vision-language models read every page (vlm.py): `vlm_qwen3` is the backbone and `vlm_chandra` the cross-check.
+Each backbone word is aligned (difflib, on lower-cased words without punctuation) against the other model's reading;
+a word the other model also read is confirmed. Both models invent words where the ink fails, but they invent
+different ones, so an unconfirmed word is where a person should look. tesseract (`tess300`) is aligned too and its
+agreement reported separately: it reads typed pages literally and handwriting not at all, so it never confirms a
+word on its own. Agreement makes a reading likelier right but proves nothing; every text stays a machine hypothesis.
 
-Writes, per order, texts/EO_<n>.compare.txt: the backbone text with every word no other reading confirms in
-double brackets, ⟦like this⟧, so a person checking the page can go straight to them; and COMPARE.csv: per order the
-backbone, words, share confirmed by at least one other reading, share confirmed by tesseract (the most literal
-reading), words unconfirmed, [illegible] marks, and the pairwise similarity of every two readings; sorted with the
-least-confirmed orders first, as a page-check queue. Appends a section to REPORT.md and adds counts to SUMMARY.json.
+Writes, per order, texts/EO_<n>.compare.txt: the backbone text with every word the other model did not read in
+double brackets, ⟦like this⟧; and COMPARE.csv: per order the words, share confirmed, share also read by tesseract,
+words unconfirmed, words only the cross-check read (possible omissions by the backbone), [illegible] marks, and the
+pairwise similarity of the readings; least-confirmed orders first, as the page-check queue. Appends a section to
+REPORT.md and adds counts to SUMMARY.json.
 """
 from __future__ import annotations
 
@@ -27,10 +28,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import htr  # noqa: E402
 
-READINGS = ("vlm", "trocr", "tess300")   # backbone preference order
+READINGS = ("vlm_qwen3", "vlm_chandra", "tess300")   # backbone preference order
+CONFIRMING = ("vlm_qwen3", "vlm_chandra")              # readings whose agreement confirms a word
 ILLEGIBLE = "[illegible]"
 COMPARE_FIELDS = ["instrument_id", "year", "pages", "backbone", "readings", "words", "confirmed_share", "confirmed_by_tess300_share",
-                  "unconfirmed_words", "illegible_marks", "compare_text_path"] + [f"similarity_{a}_{b}" for a, b in combinations(READINGS, 2)]
+                  "unconfirmed_words", "crosscheck_only_words", "illegible_marks", "compare_text_path"] + [f"similarity_{a}_{b}" for a, b in combinations(READINGS, 2)]
 
 
 def norm(token):
@@ -40,7 +42,7 @@ def norm(token):
 def tokens(text):
     """Original tokens (whitespace split, line structure kept) and their normalized forms; [illegible] is kept as is."""
     out = []
-    text = re.sub(r"\[repeated \d+ times by the model\]", " ", text or "")
+    text = re.sub(r"\[model output cut here: [^\]]*\]", " ", text or "")
     for li, line in enumerate(text.splitlines()):
         for tok in line.replace(ILLEGIBLE, f" {ILLEGIBLE} ").split():
             out.append((li, tok, ILLEGIBLE if tok == ILLEGIBLE else norm(tok)))
@@ -68,15 +70,19 @@ def compare_order(texts):
     backbone = next(k for k in READINGS if k in have)
     base = have[backbone]
     base_norm = [t[2] for t in base]
-    support, by_tess = [0] * len(base), set()
+    support, by_tess, extra = [0] * len(base), set(), 0
     for k, toks in have.items():
         if k == backbone:
             continue
-        hit = matched(base_norm, [t[2] for t in toks])
-        for i in hit:
-            support[i] += 1
+        other = [t[2] for t in toks]
+        hit = matched(base_norm, other)
         if k == "tess300":
             by_tess = hit
+        if k in CONFIRMING or backbone not in CONFIRMING:
+            for i in hit:
+                support[i] += 1
+            if k in CONFIRMING:
+                extra += sum(1 for j in set(range(len(other))) - matched(other, base_norm) if other[j] != ILLEGIBLE)
     lines, cur, last = [], [], None
     for i, (li, tok, n) in enumerate(base):
         if last is not None and li != last:
@@ -91,7 +97,7 @@ def compare_order(texts):
     stats = {"backbone": backbone, "readings": "+".join(k for k in READINGS if k in have), "words": len(words),
              "confirmed_share": round(len(confirmed) / len(words), 3) if words else 0.0,
              "confirmed_by_tess300_share": round(len([i for i in words if i in by_tess]) / len(words), 3) if words and "tess300" in have and backbone != "tess300" else "",
-             "unconfirmed_words": len(words) - len(confirmed), "illegible_marks": sum(t[2] == ILLEGIBLE for t in base)}
+             "unconfirmed_words": len(words) - len(confirmed), "crosscheck_only_words": extra, "illegible_marks": sum(t[2] == ILLEGIBLE for t in base)}
     for a, b in combinations(READINGS, 2):
         stats[f"similarity_{a}_{b}"] = similarity([t[2] for t in have.get(a, [])], [t[2] for t in have.get(b, [])])
     return "\n".join(lines), stats
@@ -129,6 +135,7 @@ def summarize(rows):
             "confirmed_share_overall": round(1 - unconf / words, 3) if words else None,
             "confirmed_share_quartiles": [q(0.25), q(0.5), q(0.75)],
             "orders_90pct_confirmed": sum(s >= 0.9 for s in shares), "orders_under_50pct_confirmed": sum(s < 0.5 for s in shares),
+            "crosscheck_only_words": sum(r["crosscheck_only_words"] for r in rows),
             "illegible_marks": sum(r["illegible_marks"] for r in rows),
             "median_similarity": {f"{a}_{b}": (statistics.median(v) if v else None) for a, b in combinations(READINGS, 2)
                                   for v in [[r[f"similarity_{a}_{b}"] for r in rows if r[f"similarity_{a}_{b}"] != ""]]}}
@@ -139,14 +146,15 @@ def report_section(s):
     sim = ", ".join(f"{k.replace('_', ' vs ')} {v}" for k, v in s["median_similarity"].items() if v is not None)
     return "\n".join([
         "## Where the readings agree", "",
-        f"{s['orders_compared']} orders have two or more readings. Of {s['words']} words in the backbone reading, "
-        f"{s['words'] - s['unconfirmed_words']} ({s['confirmed_share_overall']}) are confirmed by at least one other engine and "
-        f"{s['unconfirmed_words']} are not; the VLM marked {s['illegible_marks']} words [illegible]. Share confirmed per order, "
-        f"quartiles: {q[0]} / {q[1]} / {q[2]}; {s['orders_90pct_confirmed']} orders are 90% or more confirmed, "
-        f"{s['orders_under_50pct_confirmed']} under half. Median word-sequence similarity: {sim}.", "",
-        "`texts/EO_<n>.compare.txt` marks every unconfirmed word ⟦like this⟧; `COMPARE.csv` lists the orders "
-        "least confirmed first, as the queue for a person's page check. Agreement is not proof: engines can share a guess, "
-        "and every reading stays a machine hypothesis.", ""])
+        f"{s['orders_compared']} orders have two or more readings. Of {s['words']} words in the backbone reading (Qwen3-VL-8B), "
+        f"{s['words'] - s['unconfirmed_words']} ({s['confirmed_share_overall']}) were also read by the cross-check model "
+        f"(Chandra OCR 2) and {s['unconfirmed_words']} were not; {s['crosscheck_only_words']} words appear only in the "
+        f"cross-check (possible omissions by the backbone). The backbone marked {s['illegible_marks']} words [illegible]. "
+        f"Share confirmed per order, quartiles: {q[0]} / {q[1]} / {q[2]}; {s['orders_90pct_confirmed']} orders are 90% or "
+        f"more confirmed, {s['orders_under_50pct_confirmed']} under half. Median word-sequence similarity: {sim}.", "",
+        "`texts/EO_<n>.compare.txt` marks every word the cross-check did not also read ⟦like this⟧; `COMPARE.csv` lists "
+        "the orders least confirmed first, as the queue for a person's page check. Agreement is not proof: two models can "
+        "share a guess, and every reading stays a machine hypothesis.", ""])
 
 
 def main():
