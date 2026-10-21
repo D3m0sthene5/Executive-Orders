@@ -2,6 +2,17 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET: figures refreshed on main 09310ada; tool map added to the dashboard
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main):** reran `build_remaining_work.py` and
+  `build_effort.py`: 278 ready, 86,103 open steps, about 15,700 agent-hours (was 16,178). New
+  `build_toolmap.py` and hand-kept `TOOLS.csv` put every open step in a lane (machine queued 509, machine output
+  not counted 723, agent claim 13,480, owner ruling 8,357, earlier step first 50,379, no route 3,457) with the tools
+  serving each. Dashboard tab "Tool map": https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#toolmap.
+- **Reading:** the gap is not missing tools. 8,357 open steps wait on owner rulings (transcription-as-copy,
+  report deadline), 13,480 on agent claim lines that already work, and 3,457 old texts have no free route.
+- **Do not:** treat lane counts as yields; they are reach, in the Polya sense.
+
 ## 2026-10-20 ET (Revere phase, ~21:45Z): late update
 
 - **Ready 256** at 21:42Z, certified 0; newer claims not yet counted.
