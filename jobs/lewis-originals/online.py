@@ -6,7 +6,8 @@ else, round-robin across runs, so no order is ever left behind. Each run advance
 of targets one query strategy across every engine that answers, reads the best pages, and carries
 the state forward. See jobs/_lib/eo_websearch.py for the rules.
 
-Environment: JOB_MAX_REQUESTS (default 1500), JOB_MAX_TARGETS (default 100), JOB_CACHE_DIR.
+Environment: JOB_MAX_REQUESTS (default 500), JOB_MAX_TARGETS (default 40), JOB_CACHE_DIR. The defaults keep a run
+under about half an hour, so a push to the branch while it runs rarely collides with it; state carries forward anyway.
 """
 from __future__ import annotations
 
@@ -47,8 +48,8 @@ def run(root, out_dir, transport=None, env=None, engines=None):
     env = os.environ if env is None else env
     cache = env.get("JOB_CACHE_DIR") or os.path.join(out_dir, "..", ".web-cache")
     summary = web.run_campaign(JOB, root, out_dir, targets, cache_dir=os.path.join(cache, "web"),
-                               max_requests=int(env.get("JOB_MAX_REQUESTS", "1500")),
-                               max_targets=int(env.get("JOB_MAX_TARGETS", "100")),
+                               max_requests=int(env.get("JOB_MAX_REQUESTS", "500")),
+                               max_targets=int(env.get("JOB_MAX_TARGETS", "40")),
                                transport=transport, env=env, engines=engines, universe_ids=universe)
     with open(os.path.join(out_dir, "WEB_SUMMARY.json"), "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2, sort_keys=True)

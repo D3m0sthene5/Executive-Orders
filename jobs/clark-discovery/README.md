@@ -55,7 +55,7 @@ robots.txt obeyed, keys from repository secrets when the owner adds them; see Le
    followed, and every order number named is harvested with the date and title printed beside it. Numbers the census
    lacks are in `WEB_LISTED_ORDERS.csv`.
 
-Budget per run: `JOB_MAX_REQUESTS` (default 1,200, a quarter reserved for list pages) and `JOB_MAX_TARGETS` (default 80).
+Budget per run: `JOB_MAX_REQUESTS` (default 400, a quarter reserved for list pages) and `JOB_MAX_TARGETS` (default 30); short runs, state carried forward.
 
 ## What Clark does not do
 

@@ -79,7 +79,8 @@ def pinakes_orders(root):
                                    "text_chars": int(r["text_chars"]) if r.get("text_chars") else None,
                                    "text_quality": float(r["text_quality"]) if r.get("text_quality") else None,
                                    "text_layer_usable": r.get("text_usable", ""), "text_path": r.get("text_path", ""),
-                                   "text_sha256": r.get("text_sha256", ""), "duplicate_of": ""}
+                                   "text_sha256": r.get("text_sha256", ""), "duplicate_of": "", "pdf_signature": "yes",
+                                   "name_parsed": "yes", "copy": 0, "pdf_error": ""}
     return out
 
 

@@ -11,7 +11,8 @@ Two campaigns, after the offline stage (clark.py):
    printed beside it. Numbers the census lacks go to WEB_LISTED_ORDERS.csv. Any page read in the
    target campaign is harvested the same way (WEB_NUMBERS_NAMED.csv).
 
-Environment: JOB_MAX_REQUESTS (default 1200), JOB_MAX_TARGETS (default 80), JOB_CACHE_DIR.
+Environment: JOB_MAX_REQUESTS (default 400), JOB_MAX_TARGETS (default 30), JOB_CACHE_DIR. The defaults keep a run
+short, so a push to the branch while it runs rarely collides with it; state carries forward anyway.
 """
 from __future__ import annotations
 
@@ -119,10 +120,10 @@ def run(root, out_dir, transport=None, env=None, engines=None):
     universe = set(ident.load_universe(root))
     targets = targets_from_outputs(out_dir, dates)
     cache = env.get("JOB_CACHE_DIR") or os.path.join(out_dir, "..", ".web-cache")
-    max_requests = int(env.get("JOB_MAX_REQUESTS", "1200"))
+    max_requests = int(env.get("JOB_MAX_REQUESTS", "400"))
     list_budget = max(10, min(100, max_requests // 4))  # a share of the budget for the list pages
     summary = web.run_campaign(JOB, root, out_dir, targets, cache_dir=os.path.join(cache, "web"),
-                               max_requests=max(1, max_requests - list_budget), max_targets=int(env.get("JOB_MAX_TARGETS", "80")),
+                               max_requests=max(1, max_requests - list_budget), max_targets=int(env.get("JOB_MAX_TARGETS", "30")),
                                transport=transport, env=env, engines=engines, universe_ids=universe)
     seeds = []
     if os.path.exists(LIST_PAGES):

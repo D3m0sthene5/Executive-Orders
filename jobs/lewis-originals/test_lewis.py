@@ -184,6 +184,21 @@ class SyntheticRepo(unittest.TestCase):
         self.assertNotIn("EO:9000", r)
         self.assertNotIn("EO:UN:x", r)
 
+    def test_pinakes_orders_become_the_proquest_authority(self):
+        write_csv(os.path.join(self.root, lewis.PINAKES_ORDERS), [
+            {"instrument_id": "EO:2000", "number": "2000", "suffix": "", "year": "1914", "in_census": "yes", "file": "PT1-1914-EO-2000.pdf",
+             "folder": "ProQuest Pre-1937 Orders", "sha256": "b" * 64, "bytes": "241000", "pages": "2", "copies": "1", "text_source": "layer",
+             "text_path": "texts/EO_2000.txt", "text_sha256": "c" * 64, "text_chars": "1200", "text_quality": "0.8", "common_share": "0.5",
+             "text_usable": "yes", "ocr_pages": "", "ocr_error": "", "signing_date": "1914-07-28", "title": "", "proquest_link_supplied": "yes",
+             "accession_url": "https://congressional.proquest.com/congressional/docview/t67.d72.1914-eo-2000"}])
+        s = self.run_job()
+        self.assertEqual(s["proquest_authority"], "pinakes-proquest-ingest")
+        r = self.read_routes()
+        self.assertEqual(r["EO:2000"]["best_route"], "proquest_local")
+        self.assertEqual(r["EO:2000"]["proquest_file"], "PT1-1914-EO-2000.pdf")
+        self.assertEqual(r["EO:4"]["best_route"], "proquest_supplied_link", "Lewis's own folder scan is not used once Pinakes has run")
+        self.assertEqual(s["fragments_written"], 0, "Pinakes publishes the replica fragments")
+
     def test_text_quality_screens_handwriting_noise(self):
         self.assertLess(lewis.text_quality("/ (. / 7-,t1- * Ie '(cW(J 7UJ 4/4 . r!r.f"), 0.2)
         self.assertGreater(lewis.text_quality("By virtue of the authority vested in me it is hereby ordered that the lands be reserved."), 0.8)

@@ -49,7 +49,7 @@ volume indexes, NARA), then everything else, round-robin across runs. The search
   `GOOGLE_CSE_CX`, `BING_SEARCH_KEY`, `BRAVE_SEARCH_KEY`, `SERPAPI_KEY`, `NARA_API_KEY` and `GOVINFO_API_KEY` from
   repository secrets when the owner adds them.
 
-Budget per run: `JOB_MAX_REQUESTS` (default 1,500) and `JOB_MAX_TARGETS` (default 100), both environment variables.
+Budget per run: `JOB_MAX_REQUESTS` (default 500) and `JOB_MAX_TARGETS` (default 40), both environment variables; the defaults keep a run under about half an hour, and the state carries forward, so many short runs do the work of one long one.
 
 ## Outputs (`output/`)
 
