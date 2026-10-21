@@ -1,0 +1,90 @@
+{
+  "audit_date": "2026-10-20",
+  "base_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "conclusion": "The registered two-of-three planted-defect condition was untested. One detected plant does not establish this gate. Preserve historical batch-02 execution and original outcome; append an untested correction with no numeric score.",
+  "contract": {
+    "gate_id": "r12553-claims-probe-01",
+    "maximums": {
+      "savings_overturned": 1
+    },
+    "minimums": {
+      "upheld": 3
+    },
+    "planted_defects": {
+      "minimum_caught": 2,
+      "required": 3
+    },
+    "schema": "llull.gate-contract/v1"
+  },
+  "forecast_id": "L-20261020-37",
+  "historical_measured": 1.0,
+  "historical_outcome_id": "O-20261020-22",
+  "historical_probe_note": "batch_01 upheld 3/5, 0 savings overturned, 1 of 1 inserted plant caught (planter inserted 1, not the 3 the gate text assumed; literal 'at least 2 of 3' not attainable). Workflow treated gate as passed and ran batch_02.",
+  "historical_source": {
+    "path": "research/excavator/rastell-2026-10-20/claims/OUTCOME.json",
+    "sha256": "4a268263765d6bbb0256f61719ee92e9b24a24d91503822f437b936e3b1ee671"
+  },
+  "limits": [
+    "Counts are read from the existing outcome; no independent item-level plant adjudication is asserted.",
+    "The 2/2 aggregate plant-catch quantity is not changed by this contract audit. It is a separate quantity, not proof that the planned three-plant probe passed."
+  ],
+  "observation": {
+    "evidence": [
+      {
+        "path": "research/excavator/rastell-2026-10-20/claims/OUTCOME.json",
+        "sha256": "4a268263765d6bbb0256f61719ee92e9b24a24d91503822f437b936e3b1ee671"
+      }
+    ],
+    "gate_id": "r12553-claims-probe-01",
+    "metrics": {
+      "savings_overturned": 0,
+      "upheld": 3
+    },
+    "planted_defects": {
+      "caught": 1,
+      "present": 1,
+      "reviewed": 1
+    },
+    "schema": "llull.gate-observation/v1"
+  },
+  "receipt": {
+    "conditions": [
+      {
+        "condition": "planted_defects",
+        "observed": {
+          "caught": 1,
+          "present": 1,
+          "reviewed": 1
+        },
+        "reason": "the exact planned plant cohort was not planted and reviewed",
+        "required": {
+          "minimum_caught": 2,
+          "required": 3
+        },
+        "status": "untested"
+      },
+      {
+        "condition": "upheld",
+        "observed": 3,
+        "reason": "minimums",
+        "required": 3,
+        "status": "pass"
+      },
+      {
+        "condition": "savings_overturned",
+        "observed": 0,
+        "reason": "maximums",
+        "required": 1,
+        "status": "pass"
+      }
+    ],
+    "contract_sha256": "069831bc2eca3f00997f564e476dc547d8a8bcdb4fff5af0646dd3c70bb4d2e0",
+    "gate_id": "r12553-claims-probe-01",
+    "may_continue": false,
+    "observation_sha256": "1573f3bdbe225680f4236dda3086550300e104cc315b9a79353b8efa352aedbd",
+    "schema": "llull.gate-receipt/v1",
+    "status": "untested"
+  },
+  "registered_event": "R12553 probe (batch 01, 5 seeded-random orders) passes its gate: at least 3 of 5 upheld by the blinded independent Opus reviewer (held sources, D6 step), at most 1 savings state overturned, and at least 2 of 3 planted defects caught (planter step exists; reviewer has no access to producer work or plant keys)",
+  "schema": "astra.gate-correction-evidence/v1"
+}

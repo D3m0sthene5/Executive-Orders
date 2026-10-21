@@ -14,7 +14,8 @@
     "ACT:EO:10644>EO:11281@6253f82d3219f0b8",
     "ACT:EO:10644>EO:11281@bb73d3bf67220804",
     "ACT:EO:10644>EO:11281@ca2693a8809084aa",
-    "ACT:EO:10644>EO:11281@a17bf9ec40f5ad82"
+    "ACT:EO:10644>EO:11281@a17bf9ec40f5ad82",
+    "ACT:EO:10644>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -48,9 +49,36 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1966-05-18/pdf/FR-1966-05-18.pdf"
         },
         "verb": "terminate"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10644#2",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 211,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10644",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10644"
@@ -829,6 +857,81 @@
       "text": "Section 1 of Executive Order No. 10644 of November 7, 1955, is hereby amended to read as follows:",
       "verb": "amend"
     },
+    "ACT:EO:10644>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10644>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 28 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 28 at offsets 12710-12872: 'Administering Title II of the International Claims Settlement Act, as amended, relating to vesting and liquidation of Bulgarian, Hungarian and Rumanian property'. That subject agrees with the target's own held title (designation under Title II of the International Claims Settlement Act). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10644>EO:12553@rastell",
+      "producer": "claude-rastell-06-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's held text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10644: EO:11281 amendment, EO:12553 revocation. Also scanned all 6652 held EO texts for a reference to this order's number (hits outside EO 12553 itself: EO 11281). EARLIER PARTIAL CHANGE: EO 11281 (signed 1966-05-13, effective at midnight May 15, 1966, per its section 8) section 5 amends section 1 of EO 10644 so that the Attorney General keeps the functions of Title II of the International Claims Settlement Act of 1949 except the section 202 release of blocked property and net proceeds, which go to the Secretary of the Treasury. That is a partial amendment, not an end: sections 2 (Attorney General is the officer in whom property vests) and 3 of EO 10644 are left standing, and EO 11281 section 7 says nothing in it revokes or limits Attorney General powers 'other than Executive Order No. 9989 or No. 10644'. EO 11281's recital that the vesting functions 'have been terminated' is a recital, and the dossier's 'terminate' verb for EO 11281 belongs to its section 1 on EO 9989, not to EO 10644. No other held instrument ends or changes EO 10644. EO 12553 is therefore the first whole-order end in held sources; it revokes EO 10644 'and any amendments thereto', which covers the section 1 text as amended by EO 11281. The reviewer should decide whether the 1966 partial amendment affects claims. Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and a scan of the held EO texts for '12553' finds only EO 12553 itself.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "Earlier PARTIAL amendment only: EO 11281 sec. 5 rewrote sec. 1 of EO 10644 (effective midnight 1966-05-15, verified in held EO 11281 text lines 94-122). Not an end; EO 12553 revokes the order 'and any amendments thereto'.",
+        "d6_searched": "Searched: order dossier (chain, own_terms, missing lines; other instruments named), jobs/claim-kit/output/MISSING_SOURCES.jsonl, jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for the target and for EO:12553 as target, and held target text own terms. No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources, D6 step); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-rastell-06-reviewer (claude-opus-5-5, independent; plant_keys not opened)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_06/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10644",
+      "target_naming": {
+        "char_end": 10552,
+        "char_start": 10547,
+        "sha256": "b888891c59a10fc23e3ae249bf1a4a6ab6ff9386b5ba7622dd981754b3f5b679",
+        "text": "10644"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:11281": {
       "actor_id": "EO:11281",
       "char_end": 7647,
@@ -915,11 +1018,88 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1955-11-09/pdf/FR-1955-11-09.pdf"
       },
       "text": "Instrument: EO:10644\nSource: https://www.govinfo.gov/content/pkg/FR-1955-11-09/pdf/FR-1955-11-09.pdf\nSHA-256 of the downloaded file: 7bac6de4a8c4b5f58f9ab893cbe8e8ea63f6125d63e86d0cbe0ca00a68fcbf51\nLocation: 20 FR 8363, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 56 ===\nWednesday, N ovem ber 9, 1955 FEDERAL REGISTER 8363\nEast Portland Freight Term inal \nEldorado & Wesson Railway Company \nElgin, Joliet & Eastern Railway \nEl Paso Union Passenger Depot \nBscanaba & Lake Superior Railroad \nPort Dodge, Des Moines & Southern Railway \nCo.\nPort W orth & Denver Railway Company \nGalveston, Houston & Henderson Railroad \nCompany\nGalveston Wharves\nGreat Northern Railway\nGreen Bay & Western Railroad:\nKewaunee, Green Bay & Western R ail­\nroad Co.\nGulf Coast Lines:\nAsherton & G ulf Railway \nAsphalt Belt Railway \nBeaumont, Sour Lake & Western \nHouston & Brazos Valley \nHouston North Shore Railway \nIberia, St. Mary & Eastern Railway \nNew Iberia & Northern Railroad \nNew Orleans, Texas & Mexico \nOrange & Northwestern Railroad \nRio Grande City Railway \nSt. Louis, Brownsville & Mexico \nSan Antonio Southern \nSan Antonio, Uvalde & G ulf \nSan Benito & R io Grande Valley \nSugar Land Railway \nHarbor Belt Line- (Los Angeles)\nHouston Belt & Term inal Railway \nIllinois Central Railroad Company:\nChicago & Illinois Westérn Railroad \nSteamer Pelican \nIllinois Northern Railway \nIllinois Term inal Railroad Company \nInternational Great Northern Railroad \nJoint Agency, National Stock Yards, Illinois \nJoint Railway Agency (South St. Paul)\nJoint Texas Division of CRI&P and FW&D \nJoliet Union Depot Company \nKansas City Southern Railway:\nArkansas Western Railway \nFt. Smith & Van Burén Railway \nJoplin Union Depot Company \nKansas City Term inal Railway \nKeokuk Union Depot Company \nKing Street Passenger Station (Seattle)\nLake Superior & Ishpem ing Railroad Co.\nLake Superior Term inal & Transfer Railway\nLaSalle Street Station\nLitchfield & Madison Railway Company\nLongview, Portland & Northern\nLos Angeles Junction Railway\nLos Angeles Union Passenger Term inal\nLouisiana & Arkansas Railway Company\nManistique & Lake Superior Railroad\nManufacturer’s Railway\nMcCloud River Railroad\nMidland Continental Railroad\nMidland V alley. Railroad:\nKansas,-Oklahoma. & G ulf Railway \nKansas, Oklahoma & G ulf of Texas \nOklahoma City-Ada-Atoka Railway \nMilwaukee— Kansas City Southern Joint \nAgency\nMinneapolis & St. Louis Railway:\nRailway Transfer Co. City of Minneapolis \nMinneapolis, Northfield & Southern:\nElectric Short Line\nMinneapolis, St. Paul & Sault Ste Marie RR  \nCo.:\nDuluth, South Shore & Atlantic Railway \nMinnesota Transfer Railway \nMinnesota Western Railway Company \nMissouri & Illinois Bridge & Belt Railroad Co. \nMissouri-Kansas-Texas Railroad Company: \nBeaver, Meade & Englewood \nMissouri-Kansas-Texas Railroad Co. o f \nTexas\nMissouri Pacific Railroad:\nMissouri-Illinois Railroad \nSedalia Reclam ation Plant\nMissouri Produce Yards (Kansas City, Mo.) \nModesto & Empire Traction Company \nMontana Western Railway Company \nM ount Hood Railway Company \nMunicipal Bridge of Saint Louis \nNatchez & Southern Railway \nNortheast Oklahoma Railroad Company \nNorthern Pacific Railway \nNorthern Pacific Term inal Company o f \nOregon\nNorthern Refrigerator Line, Inc.\nNorth Pacific Coast Freight Bureau \nNorthwestern Pacific Railroad \nOakland Term inal Railway Company \nOgden Union Railway & Depot Company \nOregon, California & Eastern Railway \nPacific Car Demurrage Bureau \nPacific Coast Railroad Company \nPacific Electric Railway \nPacific Fruit Express Company \nPaducah & Illinois Railroad Company \nPeoria & Pekin Union Railway \nPort Term inal Railroad Association (Hous­\nton )\nPueblo Joint Interchange\nPueblo Union Depot & Railroad Company\nPullm an Company\nQuanah, Acme & Pacific\nRoscoe, Snyder & Pacific Railway Company\nSt. Joseph Term inal Railroad Company\nSt. Joseph Union Depot Company\nSacramento Northern Railway\nSt. Louis-San Francisco Railway Co.:\nSt. Louis, San Francisco & Texas Railway \nCo.\nSt. Louis Southwestern Railway:\nSt. Louis Southwestern Railway Qp. of \nTexas\nSt. Paul Union Depot Company \nSalt Lake City Union Depot & Railroad \nSalt Lake Union Stock Yards \nSan Antonio Joint Car Interchange Associa­\ntion\nSan Diego & Arizona Eastern Railway \nSand Springs Railway Company \nSioux City Term inal Railway \nSouthern Pacific Company (Pacific U nes) \nSouth Omaha Term inal Railway \nSpokane International Railway \nSpokane, Portland & Seattle Railway:\nOregon Electric Railway \nOregon Trunk Railway \nStock Yards District Agency (Chicago)\nSun Valley Operations\nSuperintendents’ Association— St. Louis-E.\nSt. Louis (Term . Dist.)\nTerm inal Railroad Association of St. Louis \nTexarkana Union Station Trust \nTexas & New Orleans Railroad \nTexas & Pacific Railway:\nAbilene & Southern Railway \nFort W orth Belt Railway \nTexas-New Mexico Railway \nTexas Short U n e Railway \nW eatherford, Mineral W ells & Northwest­\nern Ry.\nTexas City Term inal Railway Company \nTexas Mexican Railway Company \nTexas Paciflc-Missouri Pacific Term. R R  of \n.  New Orleans\nTidewater Southern Railway Company\nToledo, Peoria & Western Railroad\nTrans-Continental Freight Bureau\nTulsa Union Depot Company\nUnion Pacific Railroad Company\nUnion Passenger Depot Company (Galveston)\nUnion Railway Company (Mem phis)\nUnion Term inal Company (Dallas)\nUnion Term inal Railway Co. (St. Joseph, \nMo.) :\nSt. Joseph Belt Railway Company \nUtah Railway (D. & R. G. W .)\nWabash Railroad Company\nW alla W alla Valley Railway Company\nWestern Fruit Express Company\nWestern Pacific Railroad \nWestern W eighing & Inspection Bureau \nW ichita Term inal Association \nW ichita Union Term inal Railway \nYakim a Valley Transportation Company\nList D\n1955 HEALTH AND WELFARE M O V E M E N T - \nCOOPERATING RAILWAY LABOR ORGANIZATIONS\nInternational Association of Machinists \nIn tern ation al. Brotherhood of Boilermakers, \nIron Ship Builders, Blacksmiths, Forgers \nand Helpers\nSheet Metal Workers’ International Associa­\ntion\nInternational Brotherhood o f Electrical \nWorkers\nBrotherhood Railway Carmen of America \nInternational Brotherhood o f Firemen, \nOilers, Helpersr Roundhouse and Railway \nShop Laborers\nBrotherhood o f Railway and Steamship \nClerks, Freight Handlers, Express and Sta­\ntion  Employes\nBrotherhood o f Maintenance of Way Em­\nployes\nThe Order of Railroad Telegraphers \nBrotherhood o f Railroad Signalmen o f \nAmerica\nNational Marine Engineers’ Beneficial Asso­\nciation\nInternational Longshoremen’s Association\n[F. R. Doc. 56-9124; Filed, Nov. 8, 1955;\n12:08 p .m .}\nEXECUTIVE ORDER 10644\nA d m in is t r a t io n o f T it l e n  o f t h e I n ­\nt e r n a t io n a l C l a im s S e t t l e m e n t A ct  \no f 1949, as  A m en d ed, R e l a t in g to  th e \nV e s t in g and  L iq u id a t io n o f B u l g a r­\nia n, H u n g a r ia n, an d R u m a n ia n P r o p-,  \ne r t y\nBy virtue of the authority vested in me  \nby Title n  of the International Claims  \nSettlement Act of 1949, as added by  \nPublic Law 285, 84th Congress, approved  \nAugust 9, 1955 (69 Stat. 562), and by  \nsection 301 of title 3 of the United States \nCode, and as President of the United  \nStates, it is ordered as follows:\nS e c t io n 1. The Attorney General, and,  \nas designated by the Attorney General  \nfor this purpose, any Assistant Attorney  \nGeneral are hereby designated and em­\npowered to perform the functions con­\nferred by the said Title n  of the Inter­\nnational Claims Settlement Act of 1949  \nupon the President, and the functions  \nconferred by that title upon any designee  \nof the President.\nS ec . 2. The Attorney General is hereby  \ndesignated as the officer in whom prop­\nerty shall vest under the said Title II.\nS ec . 3. As used in this order, the term  \n“functions” includes duties, powers, re­\nsponsibilities, authority, and discretion,  \nand the term \"perform” may be con­\nstrued to include \"exercise”. -\nD w ig h t D . E is e n h o w e r\nT h e W h it e H o u se,\nNovember 7,1955.\n[F. R. Doc. 55-9123; Filed, Nov. 8, 1955; \n12:08 p. m.]\n"
+    },
+    "TERM:EO:10644:ae6e9e1c14c583ec@94db42936cf33bfd": {
+      "actor_id": "EO:10644",
+      "char_end": 2811,
+      "char_start": 2768,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10644:ae6e9e1c14c583ec@94db42936cf33bfd",
+      "instrument_id": "EO:10644",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10644#sec212-c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "26 CFR 302.1 and 26 CFR 302.1-1 (eCFR as of 2026-10-14), full section text with a retained copy and sha256.; CFR-2025-title26-vol20-sec302-1.pdf PDF pages 1-1 of 1",
+        "requires_page_check": false,
+        "sha256": "4f260bda9cad299cdcd0d5b0312457db36d2d264c9e729fb3b21fa5f9526970a",
+        "signing_date": "1955-11-07",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10644_26_CFR_302.1_and_26_CFR_302.1-1_eCFR_as_of_2026-10-14_full_section_text_with_a_retain_54d26278c0.txt",
+        "text_sha256": "94db42936cf33bfd2e548e30b7f5916a21d0c7e438ce37c7ea10e96ebe160d89",
+        "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title26-vol20/pdf/CFR-2025-title26-vol20-sec302-1.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(c) Subject to the provisions of subsection"
+    },
+    "TERM:EO:10644:c66dffad58e4ce2a@94db42936cf33bfd": {
+      "actor_id": "EO:10644",
+      "char_end": 1860,
+      "char_start": 1616,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10644:c66dffad58e4ce2a@94db42936cf33bfd",
+      "instrument_id": "EO:10644",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10644#sec212-b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "26 CFR 302.1 and 26 CFR 302.1-1 (eCFR as of 2026-10-14), full section text with a retained copy and sha256.; CFR-2025-title26-vol20-sec302-1.pdf PDF pages 1-1 of 1",
+        "requires_page_check": false,
+        "sha256": "4f260bda9cad299cdcd0d5b0312457db36d2d264c9e729fb3b21fa5f9526970a",
+        "signing_date": "1955-11-07",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10644_26_CFR_302.1_and_26_CFR_302.1-1_eCFR_as_of_2026-10-14_full_section_text_with_a_retain_54d26278c0.txt",
+        "text_sha256": "94db42936cf33bfd2e548e30b7f5916a21d0c7e438ce37c7ea10e96ebe160d89",
+        "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title26-vol20/pdf/CFR-2025-title26-vol20-sec302-1.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The former owner shall not be liable \nfor any such tax accruing while such prop-\nerty, earnings, increment, or proceeds are \nheld by such designee, unless they are re-\nturned pursuant to this title without pay-\nment of such tax by the designee."
     }
   },
-  "fingerprint": "cf089eebb5b5d628601d99dca6508c1ff640b055e0236515c41e53a6c88f2323",
+  "fingerprint": "d6ae2fadc9cad2dd12005fa98e09a0c30731b18956daa75db6a76037f3e89628",
   "instrument_id": "EO:10644",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "c93313ed20d2f4bb12ab5e7c1ced6605ad2f839076186f96e870f2b034795dc7",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10644",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10644>EO:11281",
+        "ACT:EO:10644>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10644#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -960,12 +1140,14 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "target provision not located: EO:12553"
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10644",
-  "own_terms": [],
+  "own_terms": [
+    "TERM:EO:10644:c66dffad58e4ce2a@94db42936cf33bfd",
+    "TERM:EO:10644:ae6e9e1c14c583ec@94db42936cf33bfd"
+  ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,

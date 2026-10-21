@@ -22,7 +22,8 @@
     "ACT:EO:9691>EO:9815@1fd8b8e80a518d6b",
     "ACT:EO:9691>EO:9815@a027d601f030e4fe",
     "ACT:EO:9691>EO:9815@5b3bcac6fd5d4263",
-    "ACT:EO:9691>EO:9815@d9acdcbe2fdbbace"
+    "ACT:EO:9691>EO:9815@d9acdcbe2fdbbace",
+    "ACT:EO:9691>EO:9830"
   ],
   "chain": {
     "confidence": "medium",
@@ -80,9 +81,36 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1946-12-27/pdf/FR-1946-12-27.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:9691#3",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 211,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:9691",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9691"
@@ -1040,6 +1068,108 @@
       "target_id": "EO:9691",
       "text": "By virtue of the authority vested in me by the Civil Service Act of January 16, 1883 (22 Stat. 403), and section 1753 of the Revised States, and in the interest of the internal management of the Government, the proviso of section 7 of Executive Order 9691 of February 4, 1946, is hereby amended to read as follows:",
       "verb": "amend"
+    },
+    "ACT:EO:9691>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:9691>EO:9830",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9691 of February 4, 1946.': number and date match the target's signing date (1946-02-04). Not claims-enabling as a single dated end: per-clause ends differ (EO 9815 for the sec. 7 proviso) and claims touching the sec. 3 / sec. 7 report duties wait for the pending report-deadline ruling. Dossier clause inventory has 16 clauses; clause '#d-3' (offsets 4246-11646) spans the FR contents block between PDF pages 1 and 3, so an inventory override is likely needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:9691>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "EARLIER PARTIAL END FOUND (held): EO 9815 (signed 1946-12-23; held jobs/fr-originals/data/full_run/texts/EO_9815.txt, filed for FR of 1946-12-27) orders \"the proviso of section 7 of Executive Order No. 9691 of February 4, 1946, is hereby amended to read as follows\" and replaces the December 31, 1946 cut-off with 'after the general revision of Schedule A is promulgated' (no express effective date; on signing is a reading). So the sec. 7 proviso text ended before EO 9830. EO 9721 (1946-05-10, held EO_9721.txt) only refers to sec. 6 (not a change). EO 9758 (CSC temporary regulations, in held issue) cites secs. 6 and 8 (not a change). Searched held FR texts 1946-1947 for 9691 (OCR-tolerant): only these and EO 9830. OWN-TERM / DEADLINE ITEMS (not decided): sec. 3 proviso (recommendations for a general revision of the Civil Service Rules 'not later than July 1, 1946') and sec. 7 first sentence (recommendations for a general revision of Schedule A 'before July 1, 1946') are report deadlines; whether they end anything turns on the pending owner ruling 'report-deadline', which is not decided here. Sec. 3 'transitional period until such time as the Civil Service Rules are revised' and sec. 4 'Pending the establishment of appropriate registers' are conditional own terms (leads). Sec. 9 revokes EO 9063, 9378 and 8514 (one-time act, executed on signing). EO 9830 is the whole-order revocation; it is not the first end of the sec. 7 proviso. COVERAGE NOTE: the held FR corpus (jobs/fr-originals full_run, 6,652 files) holds only FR issues that carry an executive order, so Civil Service Commission regulations or notices published in other issues of 1945-1947 cannot be searched. ",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER PARTIAL END FOUND (held): EO 9815 (signed 1946-12-23, F.R. Doc. 46-21962 filed Dec. 24, 1946) amends the proviso of sec. 7 (December 31, 1946 cut-off replaced by 'after the general revision of Schedule A is promulgated'); no stated effective date. Not an end of the whole order. BLOCKED, not decided: sec. 3 proviso ('not later than July 1, 1946' recommendations) and sec. 7 first sentence ('before July 1, 1946' recommendations) turn on the pending owner ruling report-deadline. Sec. 3 transitional period and sec. 4 'Pending the establishment of appropriate registers' are conditional own-term leads. Sec. 9 revocations are one-time acts on signing. Claims only per clause; inventory clause '#d-3' (4246-11646) spans the FR contents block and must be corrected first.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number (all hits read) and for amendments of the clauses the target set; EO 9830 searched for savings. Read held EO_9691.txt (secs. 1-9). Hits for 9691: EO_9721.txt (refers to sec. 6), EO_9758.txt (cites secs. 6 and 8), EO_9759.txt (same issue as 9758), EO_9773.txt (page numbers, coincidental), EO_9815.txt, EO_9830.txt. Read held EO_9815.txt.",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830s-s3-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:9691",
+      "target_naming": {
+        "char_end": 91994,
+        "char_start": 91965,
+        "sha256": "f616ab535b4f05ec989f5368693b4ca890227aa4cd83f9c16aed18c095811369",
+        "text": "No. 9691 of February 4, 1946."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:9691>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:9691>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
     },
     "ACTOR_TEXT:EO:9721": {
       "actor_id": "EO:9721",
@@ -2748,9 +2878,385 @@
       "text": "(c) He has had at least one year of service under such appointment: Provided that military service shall be counted in computing the period of service."
     }
   },
-  "fingerprint": "57c714eff02609ef783e2e002ff5814be550396b304e260cc04c8abde4894748",
+  "fingerprint": "7385b8f7cd427cad97c5a2b2a40e8d90589f8c6fd1b5a2ae8d4a0e1f88f1b733",
   "instrument_id": "EO:9691",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "06e7b7a71c1a94d96aeb2220e9c9e36fed33471f55440c387e124208d76da6f4",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "ca57d321b3fe1b64bd395cb73b9fb1c6447bfea156e87ceadfaf22fb1830cb0a",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#2",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "596b2cd57b040a46c228ffa77a7a01f6b0d518882b30b7922bf1eade659af80f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#b",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "51bff4f7fe278bb9b3c1db6072e3044496da396022c5e0e8b559cfd0d0edcf52",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#c",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "b156a68b4ce83c214f7776f6feaae4b1ff4f862e3159217bccf4f5ed278c7c81",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#d",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "a018ce94ef33b3de73b4ba28146a51064e0c797d1e1cda2d084ec55585c558ad",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:1d2d8a19ce79021a@7de4a5554a608c60",
+        "TERM:EO:9691:65d16f5962affdb4@7de4a5554a608c60",
+        "TERM:EO:9691:b62594ef9443ac05@5306f5123d3298ce",
+        "TERM:EO:9691:819b9696e29d015b@5306f5123d3298ce",
+        "TERM:EO:9691:b62594ef9443ac05@77712a4cf35119c2",
+        "TERM:EO:9691:819b9696e29d015b@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#d-3",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "deadline",
+        "fixed_sunset",
+        "report_deadline",
+        "until_event"
+      ]
+    },
+    {
+      "clause_sha256": "1ca01044843e26ed554900b57761b96dae640640432cabf1424f31cf82d006cc",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:54f73cd710486052@7de4a5554a608c60",
+        "TERM:EO:9691:8d2009749bb9fe9a@5306f5123d3298ce",
+        "TERM:EO:9691:7128c7252eff16fc@5306f5123d3298ce",
+        "TERM:EO:9691:8d2009749bb9fe9a@77712a4cf35119c2",
+        "TERM:EO:9691:7128c7252eff16fc@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#d-4",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "temporary_body"
+      ]
+    },
+    {
+      "clause_sha256": "2b7884dd6c84377055e872d24782c8f6aceeb07de05c85d73ac6f5a91040e4c2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:8c59a9c93a571ef3@7de4a5554a608c60"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#b-dup2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "a61ff9d9c8093af2f4bf7de1ee6dbd29c94a0638ab77f8c90a7710d5baefd196",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:67f73530d2374eed@7de4a5554a608c60",
+        "TERM:EO:9691:788bb6d449e2efe2@7de4a5554a608c60",
+        "TERM:EO:9691:69a051a55a8f20d6@7de4a5554a608c60",
+        "TERM:EO:9691:2a71a7914e78b005@7de4a5554a608c60",
+        "TERM:EO:9691:b0f5469e2c948c20@7de4a5554a608c60"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#b-5",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "emergency_duration",
+        "extension",
+        "fixed_term",
+        "performance_command",
+        "temporary_body"
+      ]
+    },
+    {
+      "clause_sha256": "f19264cf2eef2b0389ae3486a4542a086403458587935bdda3d317a92e1f94b0",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:06b61d1935ded32a@7de4a5554a608c60",
+        "TERM:EO:9691:e356bc929d47733c@5306f5123d3298ce",
+        "TERM:EO:9691:e356bc929d47733c@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#a",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead",
+        "contingent_end",
+        "until_event"
+      ]
+    },
+    {
+      "clause_sha256": "cf76a7562fdc63f14e3d4964fea23fe76b20c96bee81dcac481af79f7559a208",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#a-1944",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "c469045e627a0ea67a7424d6239924c80bec50a963b0539211d33d03bd12a4be",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#b-dup3",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "6fc8932c0f63b3574cd4c5da56379ecf6b846b4cba5844f4e2141ffc224890cc",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:7603d99614672851@5306f5123d3298ce",
+        "TERM:EO:9691:f39cc08e61bf7685@5306f5123d3298ce",
+        "TERM:EO:9691:7603d99614672851@77712a4cf35119c2",
+        "TERM:EO:9691:f39cc08e61bf7685@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#c-dup2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "fixed_term"
+      ]
+    },
+    {
+      "clause_sha256": "ed162cf8b0604cfdf05be22ad8a17ee0d56c50a4eb1ea31fbe24a5d14d51651f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:d33a309cd3c53550@7de4a5554a608c60",
+        "TERM:EO:9691:d8f7ce3ed3c6052d@7de4a5554a608c60",
+        "TERM:EO:9691:4f5b1838fe5f1231@7de4a5554a608c60",
+        "TERM:EO:9691:067a42b36ee7111d@5306f5123d3298ce",
+        "TERM:EO:9691:5d59f9b3f5449c0c@5306f5123d3298ce",
+        "TERM:EO:9691:ddd51761c16e6b49@5306f5123d3298ce",
+        "TERM:EO:9691:067a42b36ee7111d@77712a4cf35119c2",
+        "TERM:EO:9691:5d59f9b3f5449c0c@77712a4cf35119c2",
+        "TERM:EO:9691:ddd51761c16e6b49@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#c-7",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "fixed_term",
+        "performance_command",
+        "until_event"
+      ]
+    },
+    {
+      "clause_sha256": "29d7dcb2ac3c5b2d1fc2b9f2224ebdd4704632dc88c27ed952004ce012756c6e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9691:794a6fd19511af8b@5306f5123d3298ce",
+        "TERM:EO:9691:794a6fd19511af8b@77712a4cf35119c2"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#c-8",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "1701599e261718de2aceca9c63c240410e98371b75adead82e06abdf13512b4a",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9691",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9691>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9691#c-9",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -2790,8 +3296,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:9691",

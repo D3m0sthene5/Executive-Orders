@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10868>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10868#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10868",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10868"
@@ -55,6 +85,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10868>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10868>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 56 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 56 at offsets 14968-15035: 'Creating an emergency board to investigate a railroad labor dispute'. That subject agrees with the target's own held title (a Railway Labor Act emergency board). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10868>EO:12553@rastell",
+      "producer": "claude-rastell-06-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's held text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10868: EO:12553 revocation. Also scanned all 6652 held EO texts for a reference to this order's number (hits outside EO 12553 itself: none). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms roughly two months after 1960-02-29, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and a scan of the held EO texts for '12553' finds only EO 12553 itself.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found. Railway Labor Act emergency board: 30-day report deadline and status-quo period are not express ends (kit rule; batch_03 convention). Only EDGES event is the EO 12553 revocation.",
+        "d6_searched": "Searched: order dossier (chain, own_terms, missing lines; other instruments named), jobs/claim-kit/output/MISSING_SOURCES.jsonl, jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for the target and for EO:12553 as target, and held target text own terms. No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources, D6 step); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-rastell-06-reviewer (claude-opus-5-5, independent; plant_keys not opened)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_06/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10868",
+      "target_naming": {
+        "char_end": 10726,
+        "char_start": 10721,
+        "sha256": "8c3c9e1971d1d739af205233c8547b6828b576bbceff3a57ffefc251c2fd5e68",
+        "text": "10868"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -121,6 +226,34 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1960-03-05/pdf/FR-1960-03-05.pdf"
       },
       "text": "Instrument: EO:10868\nSource: https://www.govinfo.gov/content/pkg/FR-1960-03-05/pdf/FR-1960-03-05.pdf\nSHA-256 of the downloaded file: 79af5e0ba3ff5ef3a4c079ba347a8749da8a1ea46ba0d0eb680bdae86c360b6f\nLocation: 25 FR 1927, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 64 ===\ndential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10868\nCREATING AN EMERGENCY BOARD  \nTO INVESTIGATE A DISPUTE BE­\nTWEEN THE NEW YORK CENTRAL  \nSYSTEM AND CERTAIN OF ITS  \nEMPLOYEES\nWHEREAS a dispute exists between  \nthe New York Central System, a carrier,  \nand certain of its employees represented  \nby the Order of Railway Conductors and  \nBrakemen, a labor organization; and  \nWHEREAS this dispute has not here­\ntofore been adjusted under the provi­\nsions of the Railway Labor Act, as  \namended; and\nWHEREAS this dispute, in the judg­\nment of the' National Mediation Board,  \nthreatens substantially to interrupt in­\nterstate commerce to a degree such as to  \ndeprive a section of the country of essen­\ntial transportation service:\nNOW, THEREFORE, by virtue of the  \nauthority vested in me by section 10 of  \nthe Railway Labor Act, as amended (45  \nU.S.C. 160), I hereby create a board of  \nthree members, to be appointed by me,  \nto investigate this dispute. No member  \nof the board shall be pecuniarily or  \notherwise interested in any organization  \nof railway employees or any carrier.\nThe board shall report its findings to  \nthe President with respect to the dispute  \nwithin thirty days from the date of this  \norder.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by the New York Central System,  \nor by its employees, in the conditions out  \nof which the dispute arose.\nD wight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 29, 1960.\n[F.R. Doc. 60-2121; Filed, Mar. 3, 1960;\n12:47 p.m.]\n"
+    },
+    "TERM:EO:10868:04540fa03c2d12a4@9adacd064c1068db": {
+      "actor_id": "EO:10868",
+      "char_end": 11240,
+      "char_start": 11103,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10868:04540fa03c2d12a4@9adacd064c1068db",
+      "instrument_id": "EO:10868",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10868#1960",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-127-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "d23294fcb35c8d0016251e5826673bbd1950be331704fd345b5d707a5e97aa39",
+        "signing_date": "1960-02-29",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10868_Actual_report_date_of_the_board_created_by_EO_10868_Presidential_Emergency_Board_Rail_fc0ec43545.txt",
+        "text_sha256": "9adacd064c1068db392e59c78878b1ce7cb77815c77b550c6d74956d447d87d2",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-127-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The most recent of these stipulations requested an extension of time \nwhich would permit the Board to report not later than July 1, 1960."
     },
     "TERM:EO:10868:2693870cc03535ed@6e2d200413f5670a": {
       "actor_id": "EO:10868",
@@ -236,6 +369,62 @@
       "stated_end_date": null,
       "text": "The board shall report its findings to  \nthe President with respect to the dispute  \nwithin thirty days from the date of this  \norder."
     },
+    "TERM:EO:10868:788382793b0c5d12@9adacd064c1068db": {
+      "actor_id": "EO:10868",
+      "char_end": 10592,
+      "char_start": 10405,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": "1960-03-14",
+      "id": "TERM:EO:10868:788382793b0c5d12@9adacd064c1068db",
+      "instrument_id": "EO:10868",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10868#1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-127-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "d23294fcb35c8d0016251e5826673bbd1950be331704fd345b5d707a5e97aa39",
+        "signing_date": "1960-02-29",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10868_Actual_report_date_of_the_board_created_by_EO_10868_Presidential_Emergency_Board_Rail_fc0ec43545.txt",
+        "text_sha256": "9adacd064c1068db392e59c78878b1ce7cb77815c77b550c6d74956d447d87d2",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-127-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": "1960-03-14",
+      "text": "SUMMARY OF PROCEEDINGS OF EMERGENCY \nBOARD NO. 127 \nEmergency Board No. 127 after its first meeting in Chicago on \nMarch 14, 1960, recessed, at the request of the parties, until April 19,"
+    },
+    "TERM:EO:10868:891684702b3cbada@9adacd064c1068db": {
+      "actor_id": "EO:10868",
+      "char_end": 11101,
+      "char_start": 10893,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10868:891684702b3cbada@9adacd064c1068db",
+      "instrument_id": "EO:10868",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10868#1960",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-127-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "d23294fcb35c8d0016251e5826673bbd1950be331704fd345b5d707a5e97aa39",
+        "signing_date": "1960-02-29",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10868_Actual_report_date_of_the_board_created_by_EO_10868_Presidential_Emergency_Board_Rail_fc0ec43545.txt",
+        "text_sha256": "9adacd064c1068db392e59c78878b1ce7cb77815c77b550c6d74956d447d87d2",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-127-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In the course of the Board's proceedings, the parties twice entered \ninto stipulations in which they agreed that the time limit within which \nthe Board must make its report to the President could be extended."
+    },
     "TERM:EO:10868:ae05079f969076cf@734f4daa4138796c": {
       "actor_id": "EO:10868",
       "char_end": 1002,
@@ -295,9 +484,40 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the New York Central System, or by its employees, in the conditions out of which the dispute arose."
     }
   },
-  "fingerprint": "777bd9add04d7c89b3314096129a6d4cc89de7a679cd065195c82c46296461aa",
+  "fingerprint": "f5dcda81379f06de0a994b8cc1a380ab4ae8a5e0fcdc675c1878af794e032724",
   "instrument_id": "EO:10868",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "b7319146663d2b97548966b3f043a96f7d4c8c63a42170d6c428f40fa7ceb8b1",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10868",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10868>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10868:3eb71de8897829bf@6e2d200413f5670a",
+        "TERM:EO:10868:2693870cc03535ed@6e2d200413f5670a",
+        "TERM:EO:10868:3eb71de8897829bf@7ee97c5325a41116",
+        "TERM:EO:10868:2693870cc03535ed@7ee97c5325a41116",
+        "TERM:EO:10868:ae05079f969076cf@734f4daa4138796c",
+        "TERM:EO:10868:d10c477394ad7adb@734f4daa4138796c"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10868#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -336,9 +556,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10868",
   "own_terms": [
@@ -346,6 +564,9 @@
     "TERM:EO:10868:2693870cc03535ed@6e2d200413f5670a",
     "TERM:EO:10868:3eb71de8897829bf@7ee97c5325a41116",
     "TERM:EO:10868:2693870cc03535ed@7ee97c5325a41116",
+    "TERM:EO:10868:788382793b0c5d12@9adacd064c1068db",
+    "TERM:EO:10868:891684702b3cbada@9adacd064c1068db",
+    "TERM:EO:10868:04540fa03c2d12a4@9adacd064c1068db",
     "TERM:EO:10868:ae05079f969076cf@734f4daa4138796c",
     "TERM:EO:10868:d10c477394ad7adb@734f4daa4138796c"
   ],

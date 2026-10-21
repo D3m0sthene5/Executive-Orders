@@ -1,0 +1,53 @@
+{
+  "schema": "astra.junto-hamilton-repair-validation/1",
+  "base_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "validation_kind": "local_uncommitted_repair_snapshot",
+  "github_execution_verified": false,
+  "code_sha256": {
+    "jobs/junto/junto.py": "40e623cb8a77019c1a2258c21a5e2825bb906abaa2074b188ada88f5350190b9",
+    "jobs/junto/test_junto.py": "7a6a270fc36fe2e6c4e6f56c591a41d713653251fe6fc9a753ba18d4c11347bb",
+    "jobs/junto/job.py": "b2dd976ee9b0a7aaca244da087cd74d57bbcfbebf21f49372715a31d2cf014d2",
+    "jobs/junto/finders/hamilton.py": "cb94e29fda59a0413f7409d9d31be7d63e2aeef6ecb355c09bdcd7f3531a2465",
+    "jobs/hamilton-token-audit/profile.py": "92eee47540c8f51d141a6cf32520ab42e607cbc07a8c655274170de05daba0cb",
+    "jobs/hamilton-token-audit/test_profile.py": "0694fa48833cffcf22b3cc8df650451271034b6cce6bac7275501706ef5ff369",
+    "jobs/hamilton-token-audit/job.py": "d7ba6cfc8d24c200d3cc465b101a1d9dc3f43d38294c81973fb0682d841a3669"
+  },
+  "before": {
+    "junto_missing_quality_ok": true,
+    "junto_missing_quality_verdict": "saves",
+    "hamilton_synthetic_partial_observed_cost_units": 25,
+    "hamilton_supplied_full_session_value_usd": 100,
+    "hamilton_full_session_value_attributed_to_one_partial_call_usd": 100
+  },
+  "tests": {
+    "junto": {
+      "command": "python3 -I jobs/junto/test_junto.py",
+      "passed": 36
+    },
+    "hamilton": {
+      "command": "python3 -I jobs/hamilton-token-audit/test_profile.py",
+      "passed": 12
+    },
+    "runner_entrypoints": {
+      "junto_exit": 0,
+      "hamilton_exit": 0,
+      "output_scope": "explicit OUTPUT_DIR under scratch"
+    }
+  },
+  "after": {
+    "known_reported_api_build_token_value_usd": 10.18,
+    "complete_campaign_expense_usd": null,
+    "actual_cash_charge_usd": null,
+    "verified_savings_usd": 0,
+    "existing_candidates": 13,
+    "production_matched_tests": 0,
+    "historical_hamilton_profiles_examined": 5,
+    "historical_scaled_profiles_needing_complete_category_totals": 3
+  },
+  "limits": [
+    "Model token counters, cash billing, and complete local-session metering unavailable. No production savings experiment was run.",
+    "Historical raw transcripts were unavailable; profiles were preserved and coverage gaps reported, not remeasured.",
+    "Complete-cost and receipt declarations require research review; software cannot authenticate all external claims about workload execution.",
+    "Prospective registration compares exact Git records and declared receipt times; it is not cryptographic execution attestation."
+  ]
+}

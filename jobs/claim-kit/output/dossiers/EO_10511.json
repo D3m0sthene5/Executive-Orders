@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10511>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10511#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10511",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10511"
@@ -56,6 +86,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10511>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10511>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is a bare number in the \"No.\" column; the subjects are printed as a separate block below the numbers on PDF page 11 (offsets 10267-15646), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once in the table region. Positional alignment (number #12 of 64 on this page to subject block entry #12, hand-checked against the target's own title): \"Creating an emergency board to investigate railroad labor disputes\" at offset 11576. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10511>EO:12553@rastell",
+      "producer": "claude-rastell-05-producer",
+      "producer_d6": "Searched: dossier chain (empty), own_terms (OWN_TERMS.jsonl), the target's held clause text, and EDGES.csv (later-events, app-footnote-leads; edges targeting EO:10511: EO:12553 revocation). Own terms: the board 'shall report its findings to the President ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking, amending or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms within about two months after 1953-12-28, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553 and nothing in the dossier amends or revokes it. The dossier lists no OWN_TERMS rows for this order, so the thirty-day report and status-quo wording was read directly from the held text of EO 10511 (same wording as the other boards); multi-carrier board for the Akron, Canton and Youngstown dispute.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "none earlier: emergency-board report deadline and RLA sec. 10 status-quo period are not ends under kit rule; no earlier revocation; no instrument changed EO 12553",
+        "d6_searched": "dossier chain (producer_d6), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for edges targeting this order and edges targeting EO:12553 (none), jobs/claim-kit/output/MISSING_SOURCES.jsonl rows; EO 12553 held text for effective/except/savings wording (only hit 'effectiveness' at 27579 inside a row subject)",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-05-reviewer-opus",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_05/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10511",
+      "target_naming": {
+        "char_end": 10451,
+        "char_start": 10446,
+        "sha256": "6a7c811c3b7fc53a502b3ef070444a0f6953e7947c168f941e09c9491629f823",
+        "text": "10511"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -123,6 +228,34 @@
       },
       "text": "Instrument: EO:10511\nSource: https://www.govinfo.gov/content/pkg/FR-1954-01-01/pdf/FR-1954-01-01.pdf\nSHA-256 of the downloaded file: 42b9f8aeb2ded008bfce8808c17d5bd91b6cd24a0eaa65462b575b154f6356ff\nLocation: 19 FR 1, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 44 ===\n^ 0 N A L 4 *\n'  lU T T E B M  >7.\nVOLUME 19 ' V / . 1 9 3 4 < &C O /v iT tO  * NUMBER 1\nWashington, Friday, January 1, 1954\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10511\nCreating an E mergency  B oard To I n­\nvestigate D isputes  B etween  the \nAkron , C anton and Y oungstown  \nR ailroad C ompany  and O ther C ar­\nriers  and Certain of T heir  E mployees\nWHEREAS disputes exist between the \nAkron, Canton and Youngstown Railroad \nCompany and other carriers represented \nby the Eastern, Western andrSoutheast- \nern Carriers’  Conference Committees, \ndesignated in list A attached hereto and \nmade a part hereof, and certain of their \nemployees represented by the fifteen co­\noperating (non-operating) railway labor \norganizations designated in list B a t­\ntached hereto and made a part hereof; \nand\nWHEREAS these disputes have not \nheretofore been adjusted under the pro­\nvisions of the Railway Labor Act, as \namended! and\nWHEREAS these disputes, in the judg­\nment of the National Mediation Board, \nthreaten substantially to interrupt in­\nterstate commerce to a degree such as \nto deprive the country of essential \ntransportation service:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by section 10 of \nthe Railway Labor Act, as amended (45 \nU. S. C. 160), I hereby create a board \nof three members, to be appointed by \nme, to investigate the said disputes. \nNo member of the said board shall be \npecuniarily or otherwise interested in \nany organization of employees or any \ncarrier.\nThe board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Akron, Canton and Youngs­\ntown Railroad Company and other \ncarriers represented by the Eastern, \nWestern and Southeastern Carriers’  \nConference Committees or their em­\nployees in the conditions out of which \nthe said disputes arose.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nDecember 28, 1953.\nL is t A\ne a st e r n r e g io n\nAkron, Canton &  Youngstown Railroad.\nAnn Arbor Railroad Company.\nBaltimore &  Ohio Railroad Company:\nBaltimore &  Ohio Chicago Terminal Rail­\nroad Co.\nCurtis Bay Railroad.\nDayton and Union Railroad.\nStaten Island Rapid Transit Railway Co. \nBessemer &  Lake Erie Railroad Company. \nBoston &  Maine Railroad Co.\nBoston Terminal Co.\nBrooklyn Eastern District Terminal.\nBuffalo Creek Railroad Co.\nBush Terminal Railroad Company. \nCanadian National Railways:\nCanadian National Railways—Lines in N. E. \nUnited States &  Canada- Railroad. \nChamplain &  St. Lawrence Railroad. \nCanadian National Railways—State of New \nYork.\nSt. Clair Tunnel Company.\nCentral Railroad Co. of New Jersey.\nCentral Vermont Railway, Inc. '\nChicago, Indianapolis & Louisville Railway. \nChicago Union Station Co.\nCincinnati Union; Terminal Co.\nDayton Union Railway Company.\nDelaware &  Hudson Railroad Corporation. \nDelaware, Lackawanna &  Western Railroad \nCo.\nDetroit &  Toledo Shore Line Railroad. \nDetroit Terminal Railroad Company.\nDetroit, Toledo &  Ironton Railroad.\nErie Railroad Company.\nGrand Trunk Western Railroad Co.\nHudson &  Manhattan Railroad Co. \nIndianapolis Union Railway Co.\nLake Terminal Railroad Co.\nLehigh &  New England Railroad Co.\nLehigh Valley Railroad Co.\nLong Island Railroad Co.\nMaine Central Railroad Co.:\nPortland Terminal Company. \nMonongahela Connecting Railroad Co. \nMonongahela Railway Company.\nMontour Railroad Co.\nNewburgh &  South Shore Railway Co.\nNew York Central System:\nNew York Central Railroad.\nFederal Valley RaUroad.\nNew York Central Railroad—Buffalo &  \nEast.\nBuffalo Stock Yards.\nGrand Central Terminal.\n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nExecutive Order Pa& ®\nCreating an emergency board to \ninvestigate disputes between \nAkron, Canton and Youngs­\ntown Railroad Co. and other \ncarriers and certain of their \nemployees_________________ 1\nEXECUTIVE AGENCIES\nAgriculture Department \nSee also  Production and Market­\ning Administration.\nNotices :\nAgricultural Marketing Serv­\nice; organization and delega­\ntion of authority _________« 35\nCivil Service Commission  \nRules and regulations:\nCompetitive service, exceptions \nfrom:\nAir FOrce Department ____\nMiscellaneous amendments _\nCommerce Department  \nSee Federal Martime Board; For­\neign Commerce Bureau.\nFederal Communications Com­\nmission \nNotices :\nHampton Roads Broadcasting \nCorp. et al.; prehearing con­\nference ________________« 39\nFederal Maritime Board  \nNotices :\nPope &  Talbot, Inc., et al.; \nagreements filed for ap-\nproval __________________« .  38\nFederal Power Commission  \nNotices:\nHearings, etc.:\nArkansas-Oklahoma Gas Co.\nand Fort Smith Gas Corp_ 40 \nBlack Hills Power &  Light Co_ 39\nOtter Tail Power Co ______« 40\nForeign Commerce Bureau  \nNotices:\nCohn, Ernst, et al.; revocation \nof licenses and denial of ex­\nport privileges __________« 37\nInterior Department\nSee Land Management Bureau.\n1\nC O\n\n=== PDF page 2 of 44 ===\n2 THE PRESIDENT\nfederalSb reg ister\n^  « 9 3 4 £\nPublished daily, except Sundays, Mondays, \nand days following official Federal holidays, \nby the Federal Register Division, National \nArchives and Records Service, General Serv­\nices Administration, pursuant to the au­\nthority contained in the Federal Register \nAct, approved July 26, 1935 (49 Stat. 500, as \namended; 44 U. S. C., ch. 8B), under regula­\ntions prescribed by the Administrative Com­\nmittee of the Federal Register, approved by \nthe President. Distribution is made only by \nthe Superintendent of Documents, Govern­\nment Printing Office, Washington 25, D. C.\nThe regulatory material appearing herein \nis keyed to the Code of Federal Regulations, \nwhich is published, under 50 titles, pursuant \nto section 11 of the Federal Register Act, as \namended August 5, 1953.\nThe F ederal  R e g ist er will be furnished by \nmail to subscribers, free of postage, for $1.50 \nper month or $15.00 per year, payable in \nadvance. The charge for individual copies \n(minimum 15^) varies in proportion to the \nsize of the issue. Remit check or money \norder, made payable to the Superintendent \nof Documents, directly to the Government \nPrinting Office, Washington 25, D. C.\nThere are no restrictions on the republica­\ntion of material appearing in the F ederal  \nR e g ist e r.\nNow Available\nUNITED STATES  \nGOVERNM ENT  \nORGANIZATION  \nMANUAL\n1953-54 Edition\n'(Revised through July 1)\nPublished by the Federal Register Division,  \nthe National Archives and Records Service,  \nGeneral Services Administration\n734 Pagqs— $1.00 a copy\nOrder from Superintendent of Documents,  \nUnited States Government Printing Office,  \nWashington 25, D. C.\nCONTENTS— Continued\nInterstate Commerce Commis- Page  \nsion \nNotices:\nApplications for relief:\nCatalogues from Chicago, 1 1 1 ., \nto Council Bluffs, Iowa, \nOmaha, Nebr., St. Joseph,\n*  Mo., and Wichita, Kans _ _ 44\nGrain, grain products and re­\nlated articles, carloads, \nfrom Sioux City, Iowa, to\nstations in Illinois _______ 43\nLime from Cleburne, Tex., to\nNatchez, Miss___________ 42\nMotor-rail rates on moulding \nsand from Sandale, Ind., to\nSouthwest— ___________  43\nMoulding sand from Lexing­\nton and Saulsbury, Term., \nto Pomeroy, Ohio _______  44\nCONTENTS— Continued\nInterstate Commerce Commis- ra°e  \nsion— Continued \nNotices—Continued \nApplications for relief— Con. \nProportional rates on grain \nfrom Kansas City, Mo., to \nPort Arthur, Tex., for\nexport _________________,  42\nSulphuric acid from:\nSavannah and Port Went­\nworth, to Valdosta, Ga_, 43\nSouthern territory to East-\nport Junction, Fla _____ 43\nSuperphosphate from south­\nern territory to Fairbury,\nNebr., and Hatfield, Minn _ 44\nRules and regulations:\nMotor Carrier Annual Report \nForm A ____________   11\nLabor Department  \nSee Wage and Horn: Division. \nLand Management Bureau  \nNotices:\nBureau of Indian Affairs; dele-\ngations of authority ______—  34\nSpecified classes of employees; \nredelegations of authority (2 \ndocuments) ___________   34\nProduction and. Marketing Ad­\nministration \nProposed rule making:\nCorn, green; U. S. standards- __ I I\nMilk handling in marketing \nareas:\nCentral West Texas ______ _ 16\nDayton-Springfield, Ohio ___ 16\nTri-State— _______________ 16\nPeas, canned; U. S. standards\nfor grades ________________ 13\nPrunes, dried, produced in Cali­\nfornia; handling (2 docu­\nments) ------------------------------17,34\nRules and regulations:\nCotton, upland; marketing\nquota regulations relating to \napportionment of national \nacreage allotment for 1954 \ncrop to States, counties and\nfarms ________________'__ 4\nLemons grown in California and \nArizona; findings and deter­\nminations relative to expenses \nto be incurred and fixing of \nrate of assessment for 1953-\n1954 fiscal year __________ 10\nLimitation of shipments:\nCalifornia and Arizona;\nlemons_____________:__ 10\nFlorida:\nG rapefruit _____________ 8\nOranges ________________ 9\nTangerines _____________ 9\nMilk handling in Toledo, Ohio _ 7\nOranges, navel, grown in Ari­\nzona and designated part of \nCalifornia; limitation of han­\ndling ___________________ 5\nRice; proclamations and deter­\nminations with respect to \nmarketing quotas and acreage \nallotments on 1954 crop _____ 5\nSecurities and Exchange Com­\nmission \nNotices :\nHearings, etc.:\nCentral Ohio Light &  Power\nCo------------------------------- 42\nMission Oil Co. et al _______ 40\nCONTENTS— Continued\nWage and Hour Division PaS ®\nNotices:\nLearner employment certif­\nicates; issunance to various \nindustries. _______________ 38\nCODIFICATION GUIDE\nA numerical list of the parts of the Code \nof Federal Regulations affected by documents \npublished in this issue. Proposed rules, as \nopposed to final actions, are identified as \nsuch.\nTitle 3 Paê0\nChapter H (Executive orders) :\n10511________________   1\nTitle 5  \nChapter I:\nPart 6 (2 documents) _______ 3,4\nTitle 7 \nChapter I:\nPart 51 (proposed) _______   11\nPart 52 (proposed) _________« 13\nChapter VII:\nPart 722____________________ 4\nPart 730____________________ 5\nChapter EX:\nPart 914 ____________________ 5\nPart 930________;__________ 7\nPart 933 (3 documents) _______ 8,9\nPart 953 (2 documents) ____  10\nPart 971 (proposed)- ______  16\nPart 972 (proposed) ________  16\nPart 982 (proposed) _________ 16\nPart 993 (proposed) (2 docu­\nments) __________-_______17, 34\nTitle 49  \nChapter I:\nPart 205 ________________—_ 11\nEASTERN re g io n— continued\nNew York Central System—Continued \nNew York Central Railroad—West of Buf­\nfalo.\nMichigan Central Railroad.\nCleveland, Cincinnati, Chicago & St. Louis ■  \nRailway.\nPeoria &  Eastern Railway.\nLouisville & Jeffersonville Bridge &  Rail­\nroad Co.\nBoston &  Albany Railroad.\nIndiana Harbor Belt Railroad.\nChicago River &  Indiana Railroad.\nChicago Junction Railway.\nPittsburgh & Lake Erie Railroad.\nLake Erie &  Eastern Railroad.\nCleveland Union Terminals Company.\nTroy Union Railroad Company.\nNew York, Chicago &  St. Louis Railroad Co. \nNew York Dock Railway.\nNew York, New Haven &  Hartford Railroad \nCo.\nNew York, Susquehanna &  Western Rail­\nroad Co.\nNorthampton &  Bath Railroad Co. \nPennsylvania Railroad Company;\nBaltimore & Eastern Railroad Co. \nPennsylvania-Reading Seashore Lines. \nPittsburgh &  West Virginia Railway Co. \nPittsburgh, Chartiers &  Youghiogheny Rail­\nway Co.\nRailroad Perishable Inspection Agency. \nReading Company:\nPhiladelphia Reading &  Pottsville Tele­\ngraph Co.\nBeaver Creek Water Company.\nRiver Terminal Railway Company.\nToledo Terminal Railroad Company.\nUnion Depot Co. (Columbus, Ohio).\nUnion Freight Railroad Co. (Boston).\nUnion Inland Freight Station.\nUnion Railroad Co. (Pittsburgh, Pa.). \nWashington Terminal Company.\nYoungstown &  Northern Railway Co.\n\n=== PDF page 3 of 44 ===\nFriday , January 1 , 1954 3FEDERAL REGISTER\nWESTERN REGION\nAlton &  Southern Railroad.\nAtchison, Topeka &  Santa Fe Railway:\nGulf, Colorado &  Santa Pe Railway. \nPanhandle & Santa Fe Railway.\nAtchison Union Depot & Railroad Co.\nBelt Railway Company of Chicago.\nChicago, Burlington &  Quincy Railroad: \nColorado &  Southern Railway Company. \nPort Worth and Denver Railway Co.\nCamas Prairie Railroad Company.\nChicago &  Eastern Illinois Railroad Co. \nChicago Heights Terminal Transfer Rail­\nroad Co.Chicago &  Illinois Midland Railway Co. \nChicago &  North Western Railway:\nChicago, St. Paul, Minneapolis and Omaha \nRailway Co.\nChicago and Western Indiana Railroad Co. \nChicago Great Western Railway Co.\nChicago, Milwaukee, St. Paul &  Pacific Rail­\nroad.\nChicago, Terre Haute &  Southeastern Rail­\nway Co.Chicago, Rock Island &  Pacific Railroad Co.: \nPeoria Terminal Co.\nColorado &  Wyoming Railroad.\nDavenport, Rock Island &  North Western \nRailway.\nDenver &  Rio Grande Western Railroad. \nDenver Union Terminal Railway.\nDes Moines Union Railway.\nDuluth, South Shore &  Atlantic Railroad Co. \nDuluth Union Depot &  Transfer Co.\nDuluth, Winnipeg &  Pacific Railway.\nEast St. Louis Junction Railroad Co.\nElgin, Joliet &  Eastern Railway.\nEl Paso Union Passenger Depot Co. \nGalveston, Houston &  Henderson Railroad \nCo.\nGreat Northern Railway Co.\nGreen Bay &  Western Railroad:\nKewaunee, Green Bay &  Western Railroad \nCo.\nHouston Belt &  Terminal Railway.\nIllinois Central Railroad Company.\nIllinois Terminal Railroad Company.\nJoplin Union Depot Co.\nKansas City Southern Railway:\nArkansas Western Railway.\nFort Smith &  Van Buren Railway. \nLouisiana &  Arkansas Railway.\nKansas City Terminal Railway.\nLake Superior &  Ishpeming Railroad Co. \nLake Superior Terminal & Transfer Rail­\nway.\nLitchfield &  Madison Railway Co.\nLos Angeles Junction Railway Co. \nManufacturers Railway Co.\nMidland Valley Railroad:\nKansas, Oklahoma &  Gulf Railway. \nOklahoma City-Ada-Atoka Railway. \nMinneapolis & St. Louis Railway Co. ' \nMinneapolis, St. Paul &  Sault Ste. Marie \nRailroad Co.\nw e s t e r n r e g io n—continued\nMinnesota Transfer Railway. \nMissouri-Kansas-Texas Railroad Co.:\nMissouri-Kansas-Texas Railroad Co. of \nTexas.\nMissouri-Illinois Railroad Co.\nMissouri Pacific Railroad Co.:\nMissouri Pacific Lines in Texas &  Louisiana. \nNorthern Pacific Terminal Co. of Oregon. \nNorthern Pacific Railway Co.:\nWalla Walla Valley Railway Company. \nOgden Union Railway &  Depot Co.\nOregon, California &  Eastern Railway Co. \nPacific Coast Railroad Company.\nPeoria and Pekin Union Railway Co.\nPueblo Union Depot and Railroad Co. \nRailway Transfer Company of the City of \nMinneapolis.\nSt. Joseph Terminal Railroad Co.\nSt. Louis-San Francisco Railway Co.:\nSt. Louis, San Francisco and Texas Rail­\nway Co.St. Louis Southwestern Railway Co.\nSt. Louis Southwestern Railway Co. of \nTexas.\nSt. Paul Union Depot Co.\nSioux City Terminal' Railway.\nSouthern Pacific Company:\nNorthwestern Pacific Railroad Co.\nSan Diego &  Arizona Eastern Railway Co. \nTexas and New Orleans Railroad Co. \nSouth Omaha Terminal Railway Company. \nSpokane International Railroad Company. \nSpokane, Portland &  Seattle Railway: \nOregon Electric Railway.\nOregon Trunk Railway.\nTerminal Railroad Association of St. Louis. \nTexas &  Pacific Railway:\nAbilene &  Southern Railway.\nDenison &  Pacific Suburban Railway. \nFort Worth Belt Railway.\nTexas-New Mexico Railway.\nTexas Short Line Railway.\nWeatherford Mineral Wells &  Northwest­\nern Railway.\nTexas Mexican Railway Co.\nTexas Pacific-Missouri Pacific Terminal Rail­\nroad of New Orleans.\nToledo, Peoria &  Western Railroad.\nUnion Pacific Railroad Co.\nUnion Railway Company.\nUnion Terminal Company:\nSt. Joseph Belt Railway Co.\nWabash Railroad Company.\nWestern Pacific Railroad Co.:\nSacramento Northern Railway.\nTidewater Southern Railway.\nTakima Valley Transportation Company.\nSOUTHEASTERN REGION\nAtlantic Coast Line Railroad.\nAtlanta & West Point:\nWestern Railway of Alabama.\nAtlanta Joint Terminals.\nCentral of Georgia Railway.\ns o u t h e a s t e r n r e g io n—continued\nCharleston &  Western Carolina Railway. \nChesapeake &  Ohio Railway.\nClinchfield Railroad.\nFlorida East Coast Railway,\nGeorgia Railroad:\nAugusta Union Station.\nGulf, Mobile &  Ohio Railroad.\nJacksonville Terminal Co.\nKentucky &  Indiana Terminal Railroad. \nLouisville &  Nashville Railroad.\nNashville, Chattanooga &  St. Louis Railway. \nNorfolk &  Portsmouth Belt Line.\nNorfolk &  Western Railway.\nRichmond, Fredericksburg &  Potomac Rail­\nroad:\nRichmond Terminal Railway Co.\nPotomac Yard.\nSeaboard Air Line Railway Co.\nSouthern Railway:\nAlabama Great Southern Railway-Co. \nCincinnati, New Orleans &  Texas Pacific \nRailway.\nGeorgia Southern &  Florida Railway. \nHarriman &  Northeastern Railroad Co.\nNew Orleans &  Northeastern Railroad.\nNew Orleans Terminal Co.\nSt. Johns River Terminal Co.\nTennessee Central Railway Company. \nVirginian Railway Company.\nL i s t B\n1. International Association of Machinists.\n2. International Brotherhood of Boilermak­\ners, Iron Ship Builders and Helpers of \nAmerica.\n3. International Brotherhood of Black­\nsmiths, Drop Forgers and Helpers.\n4. Sheet Metal Workers’  International Asso­\nciation.\n5. International Brotherhood of Electrical\nWorkers.\n6. Brotherhood Railway Carmen of America.\n7. International Brotherhood of Firemen,\nOilers, Helpers, Roundhouse and Rail­\nway Shop Laborers.\n8. Brotherhood of Railway and Steamship\nClerks, Freight Handlers,.  Express and \nStation Employes.\n9. Brotherhood of Maintenance of Way Em­\nployes.\n10. The Order of Railroad Telegraphers.\n11. Brotherhood of Railroad Signalmen of\nAmerica.\n12. National Organization Masters, Mates and\nPilots of America.\n13. National Marine Engineers’  Beneficial As­\nsociation.\n1 4 * . International Longshoremen’ s Associa­\ntion.\n15. Hotel and Restaurant Employees and \nBartenders International Union.\n[F. R. Doc. 53-10906; Filed, Dec. 30, 1953; \n12:16 p. m.]\nRULES AND REGULATIONS\nTITLE 5— ADMINISTRATIVE  \nPERSONNEL\nChapter I— Civil Service Commission\nP art 6—E xceptions  P rom the \nCompetitive  S ervice\nMISCELLANEOUS AM ENDM ENTS\nEffective upon publication in the F ed­\neral R egister, §§ 6.103 (h) (2), 6.137\n(d) and 6.144 (d) are amended as set out \nbelow:\nI 6.103 Treasury Department. *  *  *\n(h) Comptroller of the Currency .\n(2) Until March 31, 1954, positions of \nChief National Bank Examiner, Assist­\nant Chief National Bank Examiner, Dis­\ntrict Chief National Bank Examiner, \nNational Bank Examiner, and Assistant \nNational Bank Examiner, whose salaries \nare paid from assessments against na­\ntional banks and other financial institu­\ntions.\n§  6.137 Civil Aeronautics Board. *  *  *\n(d) Until March 31, 1954, the position \nof Secretary of the Board.\n§  6.144 Selective Service System. *  *  *\n(d) Until July 1, 1955, the following\npositions in the National Advisory Com­\nmittee on the Selection of Physicians, \nDentists and Allied Specialists: One \nExecutive Secretary; professional advi­\nsors in the field of medicine, dentistry, \nveterinary medicine, and related fields.\n(R. S. 1753, sec. 2, 22 Stat. 403; 5 U. S. O. \n631, 633. E. O. 10440, March 31, 1953, 18 F. R. \n1823)\nUnited S tates C ivil S erv­\nice C ommission ,\n[seal] W m. C. H ull ,\nExecutive Assistant.\n[F. R. Doc. 53-10908; Filed, Dec. 31, 1953? \n8:53 a. m.]\n"
     },
+    "TERM:EO:10511:0ab43dcd6c141b68@de81e37036ce6a97": {
+      "actor_id": "EO:10511",
+      "char_end": 5523,
+      "char_start": 5279,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10511:0ab43dcd6c141b68@de81e37036ce6a97",
+      "instrument_id": "EO:10511",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10511#v",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-106-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "bc27178e97c57357ad7db2a6f60ec6a9395a730c38235e637d3240c0248b49b6",
+        "signing_date": "1953-12-28",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10511_Actual_report_date_of_the_board_created_by_EO_10511_Presidential_Emergency_Board_Rail_7d5b92513c.txt",
+        "text_sha256": "de81e37036ce6a97b9901d3869846f6195a04d3ed220349fd72306466db4c62c",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-106-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The original date for the submission of the Board's report and \nrecommendations was extended from time to time and finally, by \nagreement between the parties with the approval of the National \nMediation Board and the President~ to May 15, 1954."
+    },
     "TERM:EO:10511:5996a488086c9e4e@8c2fe29e69796178": {
       "actor_id": "EO:10511",
       "char_end": 1237,
@@ -151,6 +284,34 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
+    },
+    "TERM:EO:10511:5c1f70ee9c8dd3cc@de81e37036ce6a97": {
+      "actor_id": "EO:10511",
+      "char_end": 4938,
+      "char_start": 4848,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10511:5c1f70ee9c8dd3cc@de81e37036ce6a97",
+      "instrument_id": "EO:10511",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10511#v",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-106-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "bc27178e97c57357ad7db2a6f60ec6a9395a730c38235e637d3240c0248b49b6",
+        "signing_date": "1953-12-28",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10511_Actual_report_date_of_the_board_created_by_EO_10511_Presidential_Emergency_Board_Rail_7d5b92513c.txt",
+        "text_sha256": "de81e37036ce6a97b9901d3869846f6195a04d3ed220349fd72306466db4c62c",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-106-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Hearings were held for a total of 8 weeks in the period between Janu- \nary 19 and April 3."
     },
     "TERM:EO:10511:973193fb007f7cb0@172aacbb5dfe3c97": {
       "actor_id": "EO:10511",
@@ -238,6 +399,34 @@
       "stated_end_date": null,
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Akron, Canton and Youngstown Railroad Company and other carriers represented by the Eastern, Western and Southeastern Carriers' Conference Committees or their employees in the conditions out of which the said disputes arose."
     },
+    "TERM:EO:10511:b8a4d7b229a6a389@de81e37036ce6a97": {
+      "actor_id": "EO:10511",
+      "char_end": 7659,
+      "char_start": 7390,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10511:b8a4d7b229a6a389@de81e37036ce6a97",
+      "instrument_id": "EO:10511",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10511#v-1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-106-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "bc27178e97c57357ad7db2a6f60ec6a9395a730c38235e637d3240c0248b49b6",
+        "signing_date": "1953-12-28",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10511_Actual_report_date_of_the_board_created_by_EO_10511_Presidential_Emergency_Board_Rail_7d5b92513c.txt",
+        "text_sha256": "de81e37036ce6a97b9901d3869846f6195a04d3ed220349fd72306466db4c62c",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-106-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Carriers took the position that the ttealth and Welfare and Free \nTransportation proposals were not subject to negotiation under the \nRailway Labor Act and the Organizations took the position that nego- \ntiations should not proceed on the remaining proposals alone."
+    },
     "TERM:EO:10511:c70a3da4a55f7338@172aacbb5dfe3c97": {
       "actor_id": "EO:10511",
       "char_end": 1930,
@@ -296,9 +485,40 @@
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Akron, Canton and Youngs­\ntown Railroad Company and other \ncarriers represented by the Eastern, \nWestern and Southeastern Carriers’  \nConference Committees or their em­\nployees in the conditions out of which \nthe said disputes arose."
     }
   },
-  "fingerprint": "3bfcabe3bf8b14c0c4a0bd6fb0bc956efbb1dc6b0049eef87684da12a1f358ad",
+  "fingerprint": "1a29b1ae03082482e7aeed1ef2f0272ce24d0dd0f7e37b33b3e2a4cb223a428a",
   "instrument_id": "EO:10511",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "d028e2cfe4c020696f460721a8102392a6b22e0715eb1772d82f3b35d6689a44",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10511",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10511>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10511:973193fb007f7cb0@fa58abf9d5cc4b75",
+        "TERM:EO:10511:c70a3da4a55f7338@fa58abf9d5cc4b75",
+        "TERM:EO:10511:973193fb007f7cb0@172aacbb5dfe3c97",
+        "TERM:EO:10511:c70a3da4a55f7338@172aacbb5dfe3c97",
+        "TERM:EO:10511:5996a488086c9e4e@8c2fe29e69796178",
+        "TERM:EO:10511:a264d22507fca558@8c2fe29e69796178"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10511#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -337,9 +557,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10511",
   "own_terms": [
@@ -347,6 +565,9 @@
     "TERM:EO:10511:c70a3da4a55f7338@fa58abf9d5cc4b75",
     "TERM:EO:10511:973193fb007f7cb0@172aacbb5dfe3c97",
     "TERM:EO:10511:c70a3da4a55f7338@172aacbb5dfe3c97",
+    "TERM:EO:10511:5c1f70ee9c8dd3cc@de81e37036ce6a97",
+    "TERM:EO:10511:0ab43dcd6c141b68@de81e37036ce6a97",
+    "TERM:EO:10511:b8a4d7b229a6a389@de81e37036ce6a97",
     "TERM:EO:10511:5996a488086c9e4e@8c2fe29e69796178",
     "TERM:EO:10511:a264d22507fca558@8c2fe29e69796178"
   ],

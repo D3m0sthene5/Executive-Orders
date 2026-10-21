@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10054>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10054#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10054",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10054"
@@ -55,6 +85,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10054>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10054>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10054>EO:12553@rastell",
+      "producer": "claude-rastell-03-producer",
+      "producer_d6": "Searched: dossier chain, own_terms, clause text and EDGES. Edges targeting EO:10054: EO:12553 (revocation) and a cross-reference to Transfer Order 40 of the Secretary of Defense (1949-07-22, 'See:' footnote, not an ending). The target modifies para. 3(a) of EO 9721 for one named employee (Gerald C. Gross), letting five years of service with the International Telecommunication Union (instead of three) preserve reemployment rights; its operative effect is personal and time-bound by the employee's service, with no end clause of its own. The parent EO 9721 is itself a row in the same EO 12553 table (offset 1105), so the sweep revokes parent and modification together. No earlier whole-order end found; the practical effect of the modification may have been spent long before 1986 (open, reviewer to decide whether 12553 is a clean-up). No edge targets EO:12553.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "Cross-reference to Transfer Order 40 (See: footnote, not an end); personal 5-year reemployment-rights condition is not an order end.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-03-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_03/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10054",
+      "target_naming": {
+        "char_end": 6738,
+        "char_start": 6640,
+        "sha256": "4108c68ab6c00188b7b6728e4150bd949abe50b0aca6877b2df8c8d144633b36",
+        "text": "10054 Modifying provisions for transfer of personnel to certain public international organizations"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -438,9 +543,46 @@
       "text": "Gross, a former employee of the Federal Communications Commission who is now employed by the International Telecommunication Union, is terminated without prejudice within five years from the date of the beginning of his service with such Union; provided that he complies with all other provisions of the said Executive order with respect to such reemployment."
     }
   },
-  "fingerprint": "096bc85d622e2da33391d947d682aab1122d217a77246c3eec700689b8819b30",
+  "fingerprint": "372adfb881c96f81489b538576482f9b84549daaa841591dfeed42bf72c7d548",
   "instrument_id": "EO:10054",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "0fd8f60b4c63d748662241ebb02f0ad95bb10b82798efc08a4ef43e574713168",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10054",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10054>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10054:c44c35c671dc83cb@07dfc6380585bab5",
+        "TERM:EO:10054:14ee68f153c711c1@07dfc6380585bab5",
+        "TERM:EO:10054:2e5bcdac6147bae7@07dfc6380585bab5",
+        "TERM:EO:10054:5904c653f204ccfd@07dfc6380585bab5",
+        "TERM:EO:10054:c44c35c671dc83cb@3e8120893ee7af4f",
+        "TERM:EO:10054:14ee68f153c711c1@3e8120893ee7af4f",
+        "TERM:EO:10054:2e5bcdac6147bae7@3e8120893ee7af4f",
+        "TERM:EO:10054:5904c653f204ccfd@3e8120893ee7af4f",
+        "TERM:EO:10054:6872f49ea690aa30@aa913f9581e3d224",
+        "TERM:EO:10054:77aa19aebdce2eba@aa913f9581e3d224",
+        "TERM:EO:10054:c75ae93ccf75dae0@aa913f9581e3d224"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10054#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "fixed_term",
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -479,9 +621,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10054",
   "own_terms": [

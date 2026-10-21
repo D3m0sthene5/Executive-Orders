@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10125>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10125#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10125",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10125"
@@ -43,7 +73,6 @@
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
-    "clause_2_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -51,12 +80,87 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 3 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10125>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10125>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10125>EO:12553@rastell",
+      "producer": "claude-rastell-04-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's clause text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10125: EO:12553 revocation. Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, the status quo is frozen 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms roughly two months after 1950-04-26, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and no held text amends or revokes it (a text search of the held EO texts for '12553' finds only EO 12553 itself).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end; board report/status-quo terms are not express ends.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-04-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_04/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10125",
+      "target_naming": {
+        "char_end": 7879,
+        "char_start": 7806,
+        "sha256": "035e1f35cb580c667a14ba1fede3540545f15f118adbc48b3f8fed5ff0bcd545",
+        "text": "10125 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -124,33 +228,117 @@
       },
       "text": "Instrument: EO:10125\nSource: https://www.govinfo.gov/content/pkg/FR-1950-04-28/pdf/FR-1950-04-28.pdf\nSHA-256 of the downloaded file: 10820884a8d0168f4fb10f5531f4583ea7b0299f2877264c09b317d1529ca3f9\nLocation: 15 FR 2391, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 40 ===\n^ \\ O N A L 4/s\nFEDERALREGISTER\nVOLUME 15 NUMBER 82'* / * , '9 3 4  ■  ^\n* ^A/ITEO ^\nWashington, Friday, April 28, 1950\nTITLE 3— THE PRESIDENT r f W E  6— AGRICULTURAL CREDIT\nEXECUTIVE ORDER 10125\nCreating  an  E m ergency  B oard T o I nves ­\ntigate  a D ispute  B e t w e e n the  C hicago  \n& I l lin o is M idland  R a il w a y C o m p a n y \nand  C ertain  of  I ts  E m plo y e e s\nWHEREAS a dispute exists between \nthe Chicago &  Illinois Midland Railway \nCompany, a carrier, and certain of its \nemployees represented by the Brother­\nhood of Railroad Trainmen, a labor or­\nganization; and\nWHEREAS this dispute has not here­\ntofore been adjusted under the provi­\nsions of the Railway Labor Act, as \namended; and\nWHEREAS this dispute, in the judg­\nment of the National Mediation Board, \nthreatens substantially to interrupt in­\nterstate commerce to a degree such as \nto deprive a large section of the country \nof essential transportation service:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by section 10 of \nthe Railway Labor Act, as amended (45 \nU. S. C. 160), I hereby create a board \nof three members, to be appointed by \nme, to investigate the said dispute. No \nmember of the said board shall be pecu­\nniarily or otherwise interested in any \norganization of railway employees or \nany carrier.\nThe board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Chicago & Hlinois Midland \nRailway Company or its employees in \nthe conditions out of which the said dis­\npute arose.\nH arry  S. T r um an\nChapter IV— Production and Market­\ning Administration and Commodity  \nCredit Corporation, Department of  \nAgriculture\nSubchapter B— Export and Diversion Programs  \n[Amdt. 4]\nP art 517—F ruits  and  B erries , F resh\nTERMS AND CONDITIONS OF FRESH APPLE  \nEXPORT PROGRAM; EXTENDING FINAL DATES\nEligibility for payment.  The final date \nfiling Form FV-427, “Declaration of Sale \nand Intent To Export Fresh Apples Un­\nder Program QMX 96a” (as provided in \n§ 517.104 (a) ), shall be 12:00 o’clock mid­\nnight May 31, 1950.\nThe final date of export (as provided \nin § 517.104 (c) ) is hereby extended to \n12:00 o’clock midnight May 31, 1950.\nClaims supported by proof of exporta­\ntion. The final date for filing claims \nfor payment (Form FDA-564, “Public \nVoucher-Diversion Programs,” and sup­\nporting documents, as provided in \n§  517.105 (a) ) is hereby extended to \n12:00 o’clock midnight June 30, 1950.\nEffective date.  This amendment shall \nbecome effective at 12:01 a. m., e. s. t., \nApril 25, 1950.\n(Sec. 32, 49 Stat. 774r as amended, sec. 112,  \n62 Stat. 146; 7 U. S. C. and Sup., 612c)\nDated this 24th day of April 1950.\n[ seal ] S. R. S m it h,\nAuthorized Representative of  \nthe Secretary of Agriculture.\n{F. R. Doc. 50-3600; Filed. Apr. 27, 1950;  \n8:46 a. m.]\n/ n il\" 1! ! 17 / 'TITLE 7— AGRICULTURE\nChapter I— Production and Marketing  \nAdministration (Standards, Inspec­\ntions, Marketing Practices), Depart­\nment of Agriculture\nSubchapter R— Federal Seed Act  \nP art 201—F ederal  S eed A ct R egulatio ns\nT he  W h ite H o u se,\nApril 26, 1950.\nIP. R. Doc. 50-3675; Filed, Apr. 26, 1950;  \n5:15 j). m.]\nMISCELLANEOUS AMENDMENTS\nPursuant to section 402 of the Federal \nSeed Act (7 U. S. C. 1592) and after \n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nExecutive Order Pa8e\nChicago & Illinois Midland Rail­\nway Co.; creation of emergency \nboard to investigate dispute \nwith certain of its employees— 2391\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee Production and Marketing \nAdministration.\nAir Force Department  \nRules and regulations:\nDetermination of renegotiable \nbusiness and costs; general \nclasses or types of exempted \ncontracts and subcontracts \n(see Military Renegotiation \nPolicy and Review Board).\nAlien Property, Office of  \nNotices:\nVesting orders, etc.:\nAnheuser, Stella N __________ 2428\nButte, Anna Martha, et al _ 2429\nGüssregen, Johann, etal__ _ _ 2429\nKlangfilm G. m. b. H ________ 2427\nOhse, C. Hermann, arid Flora\nOhse _________________:__ 2428\nPfaltz, Annie A _____________ 2430\nSchultz, Otto R., and Louise\nSchultz ___________________ 2428\nWagner, Adolph ____________ 2430\nArmy Department\nRules and regulations:\nDetermination of renegotiable \nbusiness and costs; general \nclasses or types of exempted \ncontracts and subcontracts \n(see Military Renegotiation \nPolicy and Review Board).\nDefense Department\nSee Military Renegotiation Policy \nand Review Board.\nFederal Communications Com­\nmission\nProposed rule making:\nPublic safety radio services___ _ 2423\nFederal Power Commission\nNotices:\nHearings, etc.:\nEl Paso Natural Gas Co. (2\ndocuments)  ________ 2426\nPhillips Petroleum Co ______ 2426\n2391\n"
     },
-    "TERM:EO:10125:a9d61646aa8d7b01@9637bdf6341f4894": {
+    "TERM:EO:10125:0aa0eed2d03fb530@dc94a322c25ee237": {
       "actor_id": "EO:10125",
-      "char_end": 1515,
-      "char_start": 1195,
+      "char_end": 11538,
+      "char_start": 11305,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:10125:a9d61646aa8d7b01@9637bdf6341f4894",
+      "id": "TERM:EO:10125:0aa0eed2d03fb530@dc94a322c25ee237",
+      "instrument_id": "EO:10125",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#d-10125",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The carrier has received the recommendation both of the Emergency Board \nand the Brotherhood representatives that, \neffectire \nMay 19, 1950 and subject to \nall rules applicable to other \ntrain \nor yard service \nemplogees \nBrakeman C."
+    },
+    "TERM:EO:10125:1293a0255d6e1869@dc94a322c25ee237": {
+      "actor_id": "EO:10125",
+      "char_end": 11656,
+      "char_start": 11543,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:1293a0255d6e1869@dc94a322c25ee237",
+      "instrument_id": "EO:10125",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#d-10125",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Myers be reinstated to service as train and yard service employee, subject to a \nsix months' probationary period."
+    },
+    "TERM:EO:10125:5cf11b178d5868a7@dc94a322c25ee237": {
+      "actor_id": "EO:10125",
+      "char_end": 8592,
+      "char_start": 8441,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:5cf11b178d5868a7@dc94a322c25ee237",
       "instrument_id": "EO:10125",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10125#whole",
+      "scope_id": "EO:10125#d",
       "source": {
         "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 278901; common-crawl capture 2025-09-15T06:00:58Z",
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
         "requires_page_check": false,
-        "sha256": "0439d87745552229d3b5340e7e199d10c55721aeabad230ffd108799e5ee7b60",
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
         "signing_date": "1950-04-26",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10125-0439d87745.txt",
-        "text_sha256": "9637bdf6341f48949816f6b609898bdf6dd55811910637b4702e632db465b8dc",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10125-creating-emergency-board-investigate-dispute-between-the-chicago"
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Chicago & Illinois Midland Railway Company or its employees in the conditions out of which the said dispute arose."
+      "text": "After 2 days of lengthy conferences and negotiations, the Board is \npleased to report \nthat \nthe dispute \nwas \nadjusted by \nagreeinent \non all \nissues."
+    },
+    "TERM:EO:10125:63e42352d8c29831@dc94a322c25ee237": {
+      "actor_id": "EO:10125",
+      "char_end": 3160,
+      "char_start": 3020,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:63e42352d8c29831@dc94a322c25ee237",
+      "instrument_id": "EO:10125",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The \nboard shall \n~~yort its findings to the Pwsictent with respect to the said \ndispute within thirty \ndays \nfroin \nthe date of this order."
     },
     "TERM:EO:10125:a9d61646aa8d7b01@b7d11438c5a68b13": {
       "actor_id": "EO:10125",
@@ -181,34 +369,6 @@
       "stated_end_date": null,
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Chicago & Illinois Midland Railway Company or its employees in the conditions out of which the said dispute arose."
     },
-    "TERM:EO:10125:b2ae21e58cc8b979@9637bdf6341f4894": {
-      "actor_id": "EO:10125",
-      "char_end": 1193,
-      "char_start": 1060,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10125:b2ae21e58cc8b979@9637bdf6341f4894",
-      "instrument_id": "EO:10125",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10125#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 278901; common-crawl capture 2025-09-15T06:00:58Z",
-        "requires_page_check": false,
-        "sha256": "0439d87745552229d3b5340e7e199d10c55721aeabad230ffd108799e5ee7b60",
-        "signing_date": "1950-04-26",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10125-0439d87745.txt",
-        "text_sha256": "9637bdf6341f48949816f6b609898bdf6dd55811910637b4702e632db465b8dc",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10125-creating-emergency-board-investigate-dispute-between-the-chicago"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
-    },
     "TERM:EO:10125:b2ae21e58cc8b979@b7d11438c5a68b13": {
       "actor_id": "EO:10125",
       "char_end": 1033,
@@ -238,6 +398,62 @@
       "stated_end_date": null,
       "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
     },
+    "TERM:EO:10125:b5790bc3b0932630@dc94a322c25ee237": {
+      "actor_id": "EO:10125",
+      "char_end": 11656,
+      "char_start": 11543,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:b5790bc3b0932630@dc94a322c25ee237",
+      "instrument_id": "EO:10125",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#d-10125",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Myers be reinstated to service as train and yard service employee, subject to a \nsix months' probationary period."
+    },
+    "TERM:EO:10125:cd35b5ba0a533d5b@6bf68c95e3aca657": {
+      "actor_id": "EO:10125",
+      "char_end": 3160,
+      "char_start": 3020,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:cd35b5ba0a533d5b@6bf68c95e3aca657",
+      "instrument_id": "EO:10125",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-10125-797cff0c04.txt",
+        "text_sha256": "6bf68c95e3aca65713216092749e71f5fed5c39944de5f6c907df39830956c69",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The \nboard shall \n~~yort its findings to the Pwsictent with respect to the said \ndispute within thirty \ndays \nfroin \nthe date of this order."
+    },
     "TERM:EO:10125:dbc7b68bc337c2d1@3e6ff9d3a8e5f4c9": {
       "actor_id": "EO:10125",
       "char_end": 2279,
@@ -266,6 +482,62 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Chicago & Hlinois Midland \nRailway Company or its employees in \nthe conditions out of which the said dis­\npute arose."
+    },
+    "TERM:EO:10125:e8e60b5aa484c02b@dc94a322c25ee237": {
+      "actor_id": "EO:10125",
+      "char_end": 3494,
+      "char_start": 3162,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:e8e60b5aa484c02b@dc94a322c25ee237",
+      "instrument_id": "EO:10125",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10125_Actual_report_date_of_the_board_created_by_EO_10125_Presidential_Emergency_Board_Rail_d68f78cdf2.txt",
+        "text_sha256": "dc94a322c25ee2379b0050407e303fa51b38b500375e162b253b61eba6e3650e",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "As provided by Section 10 of the Railway Labor Act, as amended, from this \ndate and for \nthirty \ndays after the board has made its report to the President, \nno change, except by agreement, shall be made by the Chicago & Illinois Midland \nRailway \nCompany or its \nemlslo~ees \nin the conditions out of which the said dis- \npute arose."
+    },
+    "TERM:EO:10125:f8435d30c633fe60@6bf68c95e3aca657": {
+      "actor_id": "EO:10125",
+      "char_end": 3494,
+      "char_start": 3162,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10125:f8435d30c633fe60@6bf68c95e3aca657",
+      "instrument_id": "EO:10125",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10125#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-085-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "797cff0c048cc17d98eec54a6cc21aeddce48fba3c377a295ebb590687e4c279",
+        "signing_date": "1950-04-26",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-10125-797cff0c04.txt",
+        "text_sha256": "6bf68c95e3aca65713216092749e71f5fed5c39944de5f6c907df39830956c69",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-085-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "As provided by Section 10 of the Railway Labor Act, as amended, from this \ndate and for \nthirty \ndays after the board has made its report to the President, \nno change, except by agreement, shall be made by the Chicago & Illinois Midland \nRailway \nCompany or its \nemlslo~ees \nin the conditions out of which the said dis- \npute arose."
     },
     "TERM:EO:10125:fa14bc78574e0df4@3e6ff9d3a8e5f4c9": {
       "actor_id": "EO:10125",
@@ -297,9 +569,42 @@
       "text": "The board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order."
     }
   },
-  "fingerprint": "1eaf2a7fc053cf2649d7b73b7cbb6a25eff604c549670840231df38af013cb12",
+  "fingerprint": "db86015689f6be770985b92a3dbbf1774e07b8a6b4af067d0d7946954a0adabb",
   "instrument_id": "EO:10125",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "40aba9522848d1aca63e24e4d35353fb31c9f2d73cb3b1ca1fb4615ab8017bc2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10125",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10125>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10125:fa14bc78574e0df4@3e6ff9d3a8e5f4c9",
+        "TERM:EO:10125:dbc7b68bc337c2d1@3e6ff9d3a8e5f4c9",
+        "TERM:EO:10125:cd35b5ba0a533d5b@6bf68c95e3aca657",
+        "TERM:EO:10125:f8435d30c633fe60@6bf68c95e3aca657",
+        "TERM:EO:10125:b2ae21e58cc8b979@b7d11438c5a68b13",
+        "TERM:EO:10125:a9d61646aa8d7b01@b7d11438c5a68b13"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10125#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "extension",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -338,16 +643,20 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10125",
   "own_terms": [
     "TERM:EO:10125:fa14bc78574e0df4@3e6ff9d3a8e5f4c9",
     "TERM:EO:10125:dbc7b68bc337c2d1@3e6ff9d3a8e5f4c9",
-    "TERM:EO:10125:b2ae21e58cc8b979@9637bdf6341f4894",
-    "TERM:EO:10125:a9d61646aa8d7b01@9637bdf6341f4894",
+    "TERM:EO:10125:cd35b5ba0a533d5b@6bf68c95e3aca657",
+    "TERM:EO:10125:f8435d30c633fe60@6bf68c95e3aca657",
+    "TERM:EO:10125:63e42352d8c29831@dc94a322c25ee237",
+    "TERM:EO:10125:e8e60b5aa484c02b@dc94a322c25ee237",
+    "TERM:EO:10125:5cf11b178d5868a7@dc94a322c25ee237",
+    "TERM:EO:10125:0aa0eed2d03fb530@dc94a322c25ee237",
+    "TERM:EO:10125:b5790bc3b0932630@dc94a322c25ee237",
+    "TERM:EO:10125:1293a0255d6e1869@dc94a322c25ee237",
     "TERM:EO:10125:b2ae21e58cc8b979@b7d11438c5a68b13",
     "TERM:EO:10125:a9d61646aa8d7b01@b7d11438c5a68b13"
   ],

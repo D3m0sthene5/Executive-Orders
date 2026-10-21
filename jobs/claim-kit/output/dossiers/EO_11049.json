@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:11049>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:11049#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:11049",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11049"
@@ -55,6 +85,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:11049>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11049>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:11049>EO:12553@rastell",
+      "producer": "claude-rastell-08-producer",
+      "producer_d6": "Searched: dossier chain (no events), own_terms (OWN_TERMS.jsonl), the target's held clause text, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:11049: EO:12553 revocation), and a number search of all 6,652 held Federal Register order texts for other orders naming EO 11049 (no relevant hit: every hit was a page number, Federal Register document number, index entry or hash string). The order (signed 1962-09-14) carries out the Public Works Acceleration Act (Pub. L. 87-658, 1962) by assigning duties to the Secretary of Commerce (secs. 1-3); it has no term, report deadline or end date of its own. The dossier's OWN_TERMS 'fixed_term/condition' entries for EO 11049 are statute-like text not found in the held order text (2,914 characters) and were disregarded; the dossier's clause inventory covers only sec. 3 (2298-2796), so it is incomplete (secs. 1 and 2 are missing) - this does not affect the act record. OPEN LEAD, not a held source: the Act itself (temporary programme of accelerated public works) may have lapsed or been exhausted long before 1986; no held text records it. If so 12553 is an upper-bound clean-up and not the first end. No earlier revoking or superseding order found. Later event changing the acting provision: no edge in either EDGES file targets EO:12553, no held order text amends or revokes it, and nothing in the dossier does.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources; report deadlines, status-quo terms and unheld statutory-lapse leads are not express ends (EO 12553 may be a clean-up, upper bound).",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl (20 target rows, all 'target provision not located' for EO:12553), later-events and app-footnote-leads EDGES.csv for each target and for EO:12553, target held texts for own terms where relevant (EO 11026/11029/11025 amendment wording). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-08-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_08/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:11049",
+      "target_naming": {
+        "char_end": 18307,
+        "char_start": 18234,
+        "sha256": "e3030d38865819e1ea6c7f0466d542ac175700fec63feea05ea2d81ecdc1906a",
+        "text": "11049 Providing for the carrying out of the Public Works Acceleration Act"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -121,11 +226,143 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1962-09-18/pdf/FR-1962-09-18.pdf"
       },
       "text": "Instrument: EO:11049\nSource: https://www.govinfo.gov/content/pkg/FR-1962-09-18/pdf/FR-1962-09-18.pdf\nSHA-256 of the downloaded file: e809215a9980b44bceac6339ff635c07bbfbc9b23481b90c0fd9cc5e7292637f\nLocation: 27 FR 9203, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 40 ===\nTuesday , September 18, 1962 FEDERAL REGISTER 9203\nExecutive Order 11049\nPROVIDING FOR THE CARRYING OUT OF THE PUBLIC WORKS  \nACCELERATION ACT\nBy virtue of the authority vested in me by the Public Works Ac­\nceleration Act, approved September 14, 1962 (Public Law 87-658), \nhereinafter referred to as the Act, arid by Section 301 of title 3 of the \nUnited States Code, it is hereby ordered as follows:\nSection  L The Secretary of Commerce shall assist the President in \ncarrving °ut of the Public Works Acceleration Act and to that \nend he shall (a) receive and coordinate proposals from Federal agen­\ncies for allocations from funds appropriated pursuant to Section 3 \nof the Act, and (b) make recommendations to the President for the \nallocation of such funds. The Secretary shall maintain such records \nof progress and accomplishments and shall recommend such actions \nby the President as are necessary to assure that Federal responsibilities \nunder the Act are carried out expeditiously.\nS ec, 2. There is hereby delegated to the Secretary of Commerce the \nauthority vested in the President by Section 3(e) of the Act to \nprescribe rules, regulations, and procedures to carry out Section 3 of \nuie Act. In prescribing such rules, regulations, and procedures, the \nSecretary shall include therein provisions to assure that (a) preference \nin employment on public works undertaken pursuant to the Act shall, \ninsofar as practicable, be given to (ju&lified local labor, (b) funds \nallocated under the Act shall be supplementary to other F ederal funds \nwhich otherwise would have been experided in eligible areas as defined \nm the Act, and (c) appropriate State and local agencies shall direct \nrequests for Federal assistance to the Federal agency administering \nthe law authorizing such assistance.\nSec. 3. Federal departments and agencies receiving allocations of \nfunds appropriated pursuant to the Act shall make such regular re­\nports and provide such other information to the Secretary of Com­\nmerce as he deems necessary in order to carry out his responsibilities \nunder this order, and shall cooperate with the Secretary to assure that \nFederal funds are expended in accordance with the requirements of \nthe Act and of the rules, regulations, and procedures prescribed \npursuant to the Act.\nJ ohn  F. K ennedy\nT he  W h ite H ouse,\nSeptember 14, 1962.\n[F.R. Doc. 62-9352 ; Filed, Sept. 14,1962 ; 4 :42 p.m.]\n"
+    },
+    "TERM:EO:11049:0b102f4e348ca9fe@60e42d55f7fea1eb": {
+      "actor_id": "EO:11049",
+      "char_end": 5636,
+      "char_start": 5156,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11049:0b102f4e348ca9fe@60e42d55f7fea1eb",
+      "instrument_id": "EO:11049",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11049#sec2-b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "76 Stat. 541; STATUTE-76-Pg541.pdf PDF pages 1-4 of 4 (govinfo link-service page hint 1)",
+        "requires_page_check": false,
+        "sha256": "119ab89c18a2b702dcb5b3fbc333cc0de39336250237a66bd69f417a3bf16181",
+        "signing_date": "1962-09-14",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11049_Public_Works_Acceleration_Act_of_1962_Pub._L._87-658_76_Stat._541_text_and_any_expiry_34db25bbaf.txt",
+        "text_sha256": "60e42d55f7fea1eb3199da4e85a7117abaffed019c3fd5a0cf4224cbac12d539",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg541.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) The Congress further finds that Federal assistance to stimulate \npublic works investment in order to increase employment opportuni­\nties is most urgently needed in those areas, both urban and rural, \nwhich qualify as redevelopment areas because they suffer from per­\nsistent and chronic unemployment and economic underdevelopment, \nas well as in other areas which have suffered from substantial unem­\nployment for a period of at least twelve months. \n\"Eligible area.»» SEC. 3."
+    },
+    "TERM:EO:11049:54f69209f64269f2@60e42d55f7fea1eb": {
+      "actor_id": "EO:11049",
+      "char_end": 1012,
+      "char_start": 688,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11049:54f69209f64269f2@60e42d55f7fea1eb",
+      "instrument_id": "EO:11049",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11049#sec6",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "76 Stat. 541; STATUTE-76-Pg541.pdf PDF pages 1-4 of 4 (govinfo link-service page hint 1)",
+        "requires_page_check": false,
+        "sha256": "119ab89c18a2b702dcb5b3fbc333cc0de39336250237a66bd69f417a3bf16181",
+        "signing_date": "1962-09-14",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11049_Public_Works_Acceleration_Act_of_1962_Pub._L._87-658_76_Stat._541_text_and_any_expiry_34db25bbaf.txt",
+        "text_sha256": "60e42d55f7fea1eb3199da4e85a7117abaffed019c3fd5a0cf4224cbac12d539",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg541.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) Any owner or owners (hereinafter in this subsection \nreferred to as \"owner\") of improved property on the date of its acqui­\nsition by the Secretary may, as a condition to such acquisition, retain \nthe right of use and occupancy of the improved property for noncom­\nmercial residential purposes for a term of fifty years."
+    },
+    "TERM:EO:11049:59db6a1c30d32f9c@60e42d55f7fea1eb": {
+      "actor_id": "EO:11049",
+      "char_end": 10433,
+      "char_start": 9938,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11049:59db6a1c30d32f9c@60e42d55f7fea1eb",
+      "instrument_id": "EO:11049",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11049#sec4",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "76 Stat. 541; STATUTE-76-Pg541.pdf PDF pages 1-4 of 4 (govinfo link-service page hint 1)",
+        "requires_page_check": false,
+        "sha256": "119ab89c18a2b702dcb5b3fbc333cc0de39336250237a66bd69f417a3bf16181",
+        "signing_date": "1962-09-14",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11049_Public_Works_Acceleration_Act_of_1962_Pub._L._87-658_76_Stat._541_text_and_any_expiry_34db25bbaf.txt",
+        "text_sha256": "60e42d55f7fea1eb3199da4e85a7117abaffed019c3fd5a0cf4224cbac12d539",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg541.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) No part of any allocation made by the President under \nthis Act shall be made available during any fiscal year to any State \nor local government for any public works project, unless the pro­\nposed or planned total expenditure (exclusive of Federal funds) of \nsuch State or local government during such fiscal year for all its capi­\ntal improvement projects is increased by an amount approximately, \nequal to the non-Federal funds required to be made available for such \npublic works project."
+    },
+    "TERM:EO:11049:fef6f1acdc0fef03@60e42d55f7fea1eb": {
+      "actor_id": "EO:11049",
+      "char_end": 2697,
+      "char_start": 2003,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11049:fef6f1acdc0fef03@60e42d55f7fea1eb",
+      "instrument_id": "EO:11049",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11049#sec7",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "76 Stat. 541; STATUTE-76-Pg541.pdf PDF pages 1-4 of 4 (govinfo link-service page hint 1)",
+        "requires_page_check": false,
+        "sha256": "119ab89c18a2b702dcb5b3fbc333cc0de39336250237a66bd69f417a3bf16181",
+        "signing_date": "1962-09-14",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11049_Public_Works_Acceleration_Act_of_1962_Pub._L._87-658_76_Stat._541_text_and_any_expiry_34db25bbaf.txt",
+        "text_sha256": "60e42d55f7fea1eb3199da4e85a7117abaffed019c3fd5a0cf4224cbac12d539",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-76/pdf/STATUTE-76-Pg541.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) Except as otherwise provided in this Act, the property \nacquired by the Secretary under this Act shall be administered by the \nSecretary, subject to the provisions of the Act entitled \"An Act to \nestablish a National Park Service, and for other purposes\", approved \nAugust 25,1916 (39 Stat. 535), as amended and supplemented, and in \naccordance with other laws of general application relating to the \nnational park system as defined by the Act of August 8, 1953 (67 \nStat, 496), except that authority otherwise available to the Secretary \nfor the conservation and management of natural resources may be \nutilized to the extent he finds such authority will further the purposes \nof this Act."
     }
   },
-  "fingerprint": "af031cc45e5a72458ff2b621929fcf9be5b4e78bf2aba8bfa56035bc97483c01",
+  "fingerprint": "feaaad9c4425f95d753096771ab09fa7655d248dcabda2a2aaa9e617dee836a0",
   "instrument_id": "EO:11049",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "853db870b7316551e07fe07aee08df715e67561c91d8409b01caaea4a78a00aa",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11049",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11049>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11049#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -164,12 +401,15 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11049",
-  "own_terms": [],
+  "own_terms": [
+    "TERM:EO:11049:54f69209f64269f2@60e42d55f7fea1eb",
+    "TERM:EO:11049:fef6f1acdc0fef03@60e42d55f7fea1eb",
+    "TERM:EO:11049:0b102f4e348ca9fe@60e42d55f7fea1eb",
+    "TERM:EO:11049:59db6a1c30d32f9c@60e42d55f7fea1eb"
+  ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,

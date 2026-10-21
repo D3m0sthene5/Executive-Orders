@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10105>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10105#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10105",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10105"
@@ -57,6 +87,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10105>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10105>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10105>EO:12553@rastell",
+      "producer": "claude-rastell-03-producer",
+      "producer_d6": "Searched: dossier chain, own_terms (OWN_TERMS.jsonl), the target's clause text, and EDGES.csv (later-events, app-footnote-leads). Edges targeting EO:10105: only EO:12553 (revocation, both the 'Revoked by' footnote and the 12553 row). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, the status quo is frozen 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms about two months after 1950-02-04, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Searched for a later event that changed the acting provision: no edge in either EDGES file targets EO:12553, and nothing else in the dossier amends or revokes it.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "no earlier express end; only EO:12553 revocation edge",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-03-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_03/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10105",
+      "target_naming": {
+        "char_end": 7299,
+        "char_start": 7226,
+        "sha256": "9cb27d1cc65fe769c235c4609dd1145d22598067c0020004bafd5a2bd66dc094",
+        "text": "10105 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -124,6 +229,34 @@
       },
       "text": "Instrument: EO:10105\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-07/pdf/FR-1950-02-07.pdf\nSHA-256 of the downloaded file: 2be3b05ba3e2e8a9476216048f975bef8c6e2a15837f1978b65e49a5cc6bac45\nLocation: 15 FR 649, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 28 ===\nVOLUME 15\n^XONAL^,\nEGISTER\n^ O N n e o ^  NUMBER 25\nWashington, Tuesday, February 7, 1950\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10105\nCreating  an E mergency  B oard T o I nves ­\ntigate  a D is p u t e B et w een th e D enver  \nand Rio G rande  W estern  R ailroad  \nCom pany and C ertain  o f I ts E m plo y ees\nWHEREAS a dispute exists between \nthe Denver and Rio Grande Western \nRailroad Company, a carrier, and certain \nof its employees represented by the \nBrotherhood of Railroad Trainmen, a \nlabor organization; and \nWHEREAS this dispute has not here­\ntofore been adjusted under the provisions \nof the Railway Labor Act, as amended; \nand\nWHEREAS this dispute, in the judg­\nment of the National Mediation Board, \nthreatens substantially to interrupt in­\nterstate commerce to a degree such as to \ndeprive a large section of the country of \nessential transportation service;\nNOW, THEREFORE, by virtue of the \nauthority vested in me by section 10 of \nthe Railway Labor Act,,as amended (45 \nU. S. C. 160), I hereby create a board of \nthree members, to be appointed by me, to \ninvestigate the said dispute. No member \nof the said board shall be pecuniarily or \notherwise interested in any organization \nof railway employees or any carrier. J \nThe board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Denver and Rio Grande \nWestern Railroad Company or its em­\nployees in the conditions out of wliich \nthe said dispute arose.\nEXECUTIVE ORDER 10106\nC reating  a B oard o f I n q u ir y T o R eport  \non  a L abor D is p u t e A ffectin g  th e \nB itu m in o u s C oal I ndustry  o f th e \nU nited  S tates\nWHEREAS there exists a labor dispute \nbetween certain bituminous coal operat­\nors and associations and certain of their \nemployees represented by the Interna­\ntional Union, United Mine Workers of \nAmerica, involving wages and terms and \nconditions of employment; and \nWHEREAS in my opinion such dispute \nhas resulted or threatens to result in a \nstrike or lockout affecting a substantial \npart of the bituminous coal industry, an \nindustry engaged in trade and commerce \namong the several states and with for­\neign nations, and in the production of \ngoods for commerce, which strike or \nlockout, if permitted to occur or to con­\ntinue, will imperil the national health \nand safety;\nNOW, THEREFORE, by virtue of the \nauthority vested in me by section 206 of \nthe Labor Management Relations Act, \n1947 (Public Law 101, 80th Congress), I \nhereby create a Board of Inquiry, con­\nsisting of such members as I shall \nappoint, to inquire into the issues in­\nvolved in such dispute.\nThe Board shall have powers and \nduties as set forth in Title II of the said \nAct. The Board shall report to the \nPresident in accordance with provisions \nof section 206 of the said Act on or before \nFebruary 13, 1950.\nUpon submission of its report, the \nBoard shall continue in existence to per­\nform such other functions as may be \nrequired under the said Act, until the \nBoard is terminated by the President.\nH arry  S. T ruman\nT h e W h it e H o u se,\nFebruary 4, 1950.\n[P. R. Doc. 60-1119; Piled, Pel). 6, 1950; \n11:22 a. m.J\nH arry  S. T ruman  \nT he  W h it e H ouse ,\nFebruary 6, 1950.\n[F. R. Doo. 60-1126; Piled, Peb. 6, 1950; \n12:59 p. m.]\nCONTENTS\nTHE PRESIDENT\nExecutive Orders Pase\nCreation of board of inquiry to \nreport on labor dispute affect­\ning bituminous coal industry of\nUnited States _______________ 649\nDenver and Rio Grande Western \nRailroad Co.; creation of emer­\ngency board to investigate dis­\npute with certain employees __ 649\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee Commodity Credit Corpora­\ntion; Farmers Home Adminis­\ntration; Production and Mar­\nketing Administration.\nAir Force Department  \nRules and regulations;\nCivilian personnel loyalty and\nsecurity program __________ 658\nAlien Property, Office of  \nNotices:\nVesting orders, etc. :\nAktieselskabet “Volund” ___ 676\nBoeschen, Gertrude _______ 673\nDe Couto, Pedro Vicente ____ 672\nFrank, Flora, et al _________ 675\nFrank, Ida, et al __________ 675\nFriedmann, Steffi _________ 675\nHausleiter, Herman _______ 673\nHeugel &  Cie_____________ 674\nLorenz, Erwin, et al_________ 673\nMeinicke, Karl ____________ 674\nNolte, K arl_______________ 673\nSitar, Veronica ___;________ 675\nSociété Anonyme Chimie et\nAtomistique ____________ 675\nSonnino, Bruno ___________ 675\nTakahashi, Eiiti __________ 674\nVon Gumppenberg, Baroness_ \nFannie ________________T 676\nCivil Aeronautics Administra­\ntion\nRules and regulations:\nCivil airways, designation and\nredesignation; miscellaneous\namendments______________ 654\nControl areas, control zones, and \nreporting points, designation \nand redesignation; miscella­\nneous amendments ________ 656\n649\n"
     },
+    "TERM:EO:10105:31f922fc7f302312@5fa48b550fd52765": {
+      "actor_id": "EO:10105",
+      "char_end": 2945,
+      "char_start": 2615,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10105:31f922fc7f302312@5fa48b550fd52765",
+      "instrument_id": "EO:10105",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10105#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-079-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "2d4cfcc8f61a33f5de11cbaa362ad00185f22161bc47042621f977592c2a194f",
+        "signing_date": "1950-02-04",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10105_Actual_report_date_of_the_board_created_by_EO_10105_Presidential_Emergency_Board_Rail_ef4fcb872e.txt",
+        "text_sha256": "5fa48b550fd52765cdc3f472314972b1eefe7778cd06bda5f4ef52652e6b2b73",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-079-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "As provided by section 10 of the Railway Labor Act, as amended, from this \ndate and for thirty days after the board has made its report to the President, no \nchange, \nescept \nby agreement, shall be made by the Denver & Rio Grande Western \nRailroad \nCompany \nor its employees in the conditions out of which the said dispute \narose."
+    },
     "TERM:EO:10105:625910e5ea0525f1@b9fc364b84a6256a": {
       "actor_id": "EO:10105",
       "char_end": 1876,
@@ -153,14 +286,14 @@
       "stated_end_date": null,
       "text": "J \nThe board shall report its findings to \nthe President with respect to the said \ndispute within thirty days from the date \nof this order."
     },
-    "TERM:EO:10105:92b999a343589cdf@8ae7e76a3e245c7d": {
+    "TERM:EO:10105:78030fc8c7462fa1@5fa48b550fd52765": {
       "actor_id": "EO:10105",
-      "char_end": 1200,
-      "char_start": 1067,
+      "char_end": 16178,
+      "char_start": 15946,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:10105:92b999a343589cdf@8ae7e76a3e245c7d",
+      "id": "TERM:EO:10105:78030fc8c7462fa1@5fa48b550fd52765",
       "instrument_id": "EO:10105",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
@@ -169,17 +302,17 @@
       "scope_id": "EO:10105#whole",
       "source": {
         "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 231745; common-crawl capture 2025-10-06T08:00:26Z",
+        "page_or_item": "PEB-079-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
         "requires_page_check": false,
-        "sha256": "ec5080cbe8f4960dd0bbb7d4513efbbdf034238cc9fd10dc9b2ec71ee30ae84f",
+        "sha256": "2d4cfcc8f61a33f5de11cbaa362ad00185f22161bc47042621f977592c2a194f",
         "signing_date": "1950-02-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10105-ec5080cbe8.txt",
-        "text_sha256": "8ae7e76a3e245c7d5980db7e4381d6fb683cb8058bf80c5d6f000cbb5291376a",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10105-creating-emergency-board-investigate-dispute-between-the-denver-and"
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10105_Actual_report_date_of_the_board_created_by_EO_10105_Presidential_Emergency_Board_Rail_ef4fcb872e.txt",
+        "text_sha256": "5fa48b550fd52765cdc3f472314972b1eefe7778cd06bda5f4ef52652e6b2b73",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-079-Report.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
+      "text": "Again, we concur \nwith the views of the emergency board in their report of March 5, \n1949, if the procedure here followed by the Brotherhood is to be car- \nried out, the usefulness of the Railway Labor Act will soon be de- \nstroyed."
     },
     "TERM:EO:10105:92b999a343589cdf@92d09a2d75ae565a": {
       "actor_id": "EO:10105",
@@ -239,14 +372,14 @@
       "stated_end_date": null,
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this \ndate and for thirty days after the board \nhas made its report to the President, no \nchange, except by agreement, shall be \nmade by the Denver and Rio Grande \nWestern Railroad Company or its em­\nployees in the conditions out of wliich \nthe said dispute arose."
     },
-    "TERM:EO:10105:e133676509a7bc71@8ae7e76a3e245c7d": {
+    "TERM:EO:10105:b52b3351079ebd48@5fa48b550fd52765": {
       "actor_id": "EO:10105",
-      "char_end": 1526,
-      "char_start": 1202,
+      "char_end": 13749,
+      "char_start": 13541,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:10105:e133676509a7bc71@8ae7e76a3e245c7d",
+      "id": "TERM:EO:10105:b52b3351079ebd48@5fa48b550fd52765",
       "instrument_id": "EO:10105",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
@@ -255,17 +388,17 @@
       "scope_id": "EO:10105#whole",
       "source": {
         "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 231745; common-crawl capture 2025-10-06T08:00:26Z",
+        "page_or_item": "PEB-079-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
         "requires_page_check": false,
-        "sha256": "ec5080cbe8f4960dd0bbb7d4513efbbdf034238cc9fd10dc9b2ec71ee30ae84f",
+        "sha256": "2d4cfcc8f61a33f5de11cbaa362ad00185f22161bc47042621f977592c2a194f",
         "signing_date": "1950-02-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10105-ec5080cbe8.txt",
-        "text_sha256": "8ae7e76a3e245c7d5980db7e4381d6fb683cb8058bf80c5d6f000cbb5291376a",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10105-creating-emergency-board-investigate-dispute-between-the-denver-and"
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10105_Actual_report_date_of_the_board_created_by_EO_10105_Presidential_Emergency_Board_Rail_ef4fcb872e.txt",
+        "text_sha256": "5fa48b550fd52765cdc3f472314972b1eefe7778cd06bda5f4ef52652e6b2b73",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-079-Report.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Denver and Rio Grande Western Railroad Company or its employees in the conditions out of which the said dispute arose."
+      "text": "The Brotherhood declined \nto accept several of the recommendations so made, and before us \npresent substantially the same questions involving the same rules, \nseeking to secure a more favorable determination."
     },
     "TERM:EO:10105:e133676509a7bc71@92d09a2d75ae565a": {
       "actor_id": "EO:10105",
@@ -295,11 +428,72 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Denver and Rio Grande Western Railroad Company or its employees in the conditions out of which the said dispute arose."
+    },
+    "TERM:EO:10105:ff09688811276c70@5fa48b550fd52765": {
+      "actor_id": "EO:10105",
+      "char_end": 2613,
+      "char_start": 2479,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10105:ff09688811276c70@5fa48b550fd52765",
+      "instrument_id": "EO:10105",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10105#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-079-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "2d4cfcc8f61a33f5de11cbaa362ad00185f22161bc47042621f977592c2a194f",
+        "signing_date": "1950-02-04",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10105_Actual_report_date_of_the_board_created_by_EO_10105_Presidential_Emergency_Board_Rail_ef4fcb872e.txt",
+        "text_sha256": "5fa48b550fd52765cdc3f472314972b1eefe7778cd06bda5f4ef52652e6b2b73",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-079-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Board shall report its findings to the President with respect to the said \ndispute within thirty days from the date of this order."
     }
   },
-  "fingerprint": "e093e770c8ef0fc6e874a7bf6fb7330ad9c0bb3e1d3b0635253980742e5cd987",
+  "fingerprint": "32903b3df81e654fa762034b79cb05a8c9a0221dd29b277b60c3fe8a0a84295f",
   "instrument_id": "EO:10105",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "9d205bdb37379dc36a9eb1a7ab9b40e16bbb8fd587a1d6abb70afcace0a4f516",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10105",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10105>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10105:625910e5ea0525f1@b9fc364b84a6256a",
+        "TERM:EO:10105:94d6206c77bd30ee@b9fc364b84a6256a",
+        "TERM:EO:10105:ff09688811276c70@5fa48b550fd52765",
+        "TERM:EO:10105:31f922fc7f302312@5fa48b550fd52765",
+        "TERM:EO:10105:b52b3351079ebd48@5fa48b550fd52765",
+        "TERM:EO:10105:78030fc8c7462fa1@5fa48b550fd52765",
+        "TERM:EO:10105:92b999a343589cdf@92d09a2d75ae565a",
+        "TERM:EO:10105:e133676509a7bc71@92d09a2d75ae565a"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10105#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -338,16 +532,16 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10105",
   "own_terms": [
     "TERM:EO:10105:625910e5ea0525f1@b9fc364b84a6256a",
     "TERM:EO:10105:94d6206c77bd30ee@b9fc364b84a6256a",
-    "TERM:EO:10105:92b999a343589cdf@8ae7e76a3e245c7d",
-    "TERM:EO:10105:e133676509a7bc71@8ae7e76a3e245c7d",
+    "TERM:EO:10105:ff09688811276c70@5fa48b550fd52765",
+    "TERM:EO:10105:31f922fc7f302312@5fa48b550fd52765",
+    "TERM:EO:10105:b52b3351079ebd48@5fa48b550fd52765",
+    "TERM:EO:10105:78030fc8c7462fa1@5fa48b550fd52765",
     "TERM:EO:10105:92b999a343589cdf@92d09a2d75ae565a",
     "TERM:EO:10105:e133676509a7bc71@92d09a2d75ae565a"
   ],

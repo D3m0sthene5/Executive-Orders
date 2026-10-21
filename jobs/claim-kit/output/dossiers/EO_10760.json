@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10760>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10760#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10760",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10760"
@@ -56,6 +86,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10760>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10760>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 46 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 46 at offsets 14193-14260: 'Creating an emergency board to investigate an airline labor dispute'. That subject agrees with the target's own held title (a Railway Labor Act emergency board). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10760>EO:12553@rastell",
+      "producer": "claude-rastell-06-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's held text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10760: EO:12553 revocation. Also scanned all 6652 held EO texts for a reference to this order's number (hits outside EO 12553 itself: EO 11577). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms roughly two months after 1958-03-27, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and a scan of the held EO texts for '12553' finds only EO 12553 itself. OCR drops letters at line starts in the status-quo paragraph; the sentences are still readable. The EO 11577 hit is an FAA docket number (Docket No. 10760), not a reference to this order.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found. Railway Labor Act emergency board: 30-day report deadline and status-quo period are not express ends (kit rule; batch_03 convention). Only EDGES event is the EO 12553 revocation.",
+        "d6_searched": "Searched: order dossier (chain, own_terms, missing lines; other instruments named), jobs/claim-kit/output/MISSING_SOURCES.jsonl, jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for the target and for EO:12553 as target, and held target text own terms. No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources, D6 step); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-rastell-06-reviewer (claude-opus-5-5, independent; plant_keys not opened)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_06/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10760",
+      "target_naming": {
+        "char_end": 10663,
+        "char_start": 10658,
+        "sha256": "4a3689f56e53d1bbb18fb06fca0e3b90f97e57d6029782b83de681ef9af48532",
+        "text": "10760"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -122,6 +227,34 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1958-03-28/pdf/FR-1958-03-28.pdf"
       },
       "text": "Instrument: EO:10760\nSource: https://www.govinfo.gov/content/pkg/FR-1958-03-28/pdf/FR-1958-03-28.pdf\nSHA-256 of the downloaded file: c4608fcbabaaf76fde42d93b5153d2ee0e20451a64d1e3c7c60b7c2d67ba7a4e\nLocation: 23 FR 2067, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 24 ===\nVOLUME 23\n^ O N A U « ,\n’  L1TTEUA \\\nSCRIPTA I A\nMANET\n1934 ^\n^A//TEO  ^\nNUMBER 62\nWashington, Friday, March 28, 1958\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10760\nCreating  an  E m ergency  B oard  T o I n ­\nvestigate  a  D is p u t e B e t w e e n t h e \nTrans W orld  A ir lin e s, I n c., and  C er ­\ntain  op  I ts E m pl o y e e s\nWHEREAS a dispute exists between \nthe Trans World Airlines, Inc., a carrier, \nand certain of its employees represented \nby the Plight Engineers’ International \nAssociation, a labor organization; and \nWHEREAS this dispute has not here­\ntofore been adjusted under the provisions \nof the Railway Labor Act, as amended, \nand\nWHEREAS this dispute, in the judg­\nment of the National Mediation Board, \nthreatens substantially to interrupt in­\nterstate commerce to a degree such as \nto deprive a section of the country of \nessential transportation service;\nNOW, THEREFORE, by virtue of the \nauthority vested in me by section 10 of \nthe Railway Labor Act, as amended (45 \nU. S. C. 160), I hereby create a board of \nthree members, to be appointed by me, \nto investigate,the said dispute. No mem­\nber of the said Board shall be pecuniarily \nor otherwise interested in any organiza- \nairline employees or any carrier. \nBoard shall report its findings to \nthe President with respect to the said \naisput6  within thirty days from the date \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this \nQ ate and for thirty days after the Board \nnas made its report to the President' no \nnange, except by agreement, shall be \nm ade by the Trans World Airlines, Inc., \nnf , emPloyees, in the conditions out \noi which the said dispute arose.\nD w ig h t D . E is e n h o w e r \nThe W hite  H o u se,\nMarch 27,1958.\nlp. R. Doc. 58-2378; Piled, Mar. 27, 1958;\n12:01p.m.]\nEXECUTIVE ORDER 1076\nGovernment  P urchases  ó f C rude  \ni-eum and  P etr o leum  P roduc\nadviSEfiEAS,i foll°wing the ree \nIn v e s tà i^ ® ^  Special Commi \nistigate Crude Oil Imports,\ndetermined that essential national se­\ncurity interests are adversely affected by \nthe purchase by the United States of \ncrude petroleum imported in quantities \nin excess of those now or hereafter speci­\nfied under the Voluntary Oil Import Pro­\ngram or of petroleum products refined \nin the United States and composed of \nor derived from such crude petroleum, \nin whole or in part; and\nWHEREAS I  have determined that \nsuch purchases would not be in the pub- \nlie interest *\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the Consti­\ntution and statutes, and as President of \nthe United States, it is hereby ordered \nas follows:\nS e c t io n 1. For the purposes of the \napplication of the act of March 3, 1933, \n47 stat. 1520, 41 U. S. C. 10a^-10c; 63 \nStat. 1024, 41 U. S. C. lOd, commonly \nknown as the Buy American Act, pur­\nsuant to this order; “domestic petroleum \nproduct” means crude petroleum of \nwholly domestic origin and any product \nrefined in the United States entirely \nfrom such crude petroleum; “non­\ndomestic petroleum product” means \ncrude petroleum not wholly of domestic \norigin and any product refined in the \nUnited States which is not derived en­\ntirely from crude petroleum of domestic \norigin; “complying petroleum product” \nmeans crude petroleum of foreign origin \nor any product refined in the United \nStates in whole or in part from crude \npetroleum of foreign origin, all of which \nhas been, or will be imported by a \nfirm which, during the period of con­\ntract performance and for the three \nmonths preceding the month in which \na bid is submitted to a Government de­\npartment or agency, has imported crude \npetroleum in compliance with the Vol­\nuntary Oil Import Program.\nS ec . 2. The heads of all executive de­\npartments and agencies are requested \nto re-examine existing policy with re­\nspect to the application of the Buy \nAmerican Act to petroleum products and \nto apply the provisions of that act so \nthat, (1) unless a domestic product is \nunavailable or its cost is determined to \nbe unreasonable, the purchase of a non­\ndomestic petroleum product will be \nmade only if it is a complying petroleum \nproduct, and (2) in considering bids no \n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nExecutive Orders  \nCreating an emergency board to \ninvestigate a dispute between \nthe Trans World Airlines, Inc., \nand eertain of its employees—  \nGovernment purchases of crude \npetroleum and petroleum prod­\nucts____________________________\nEXECUTIVE AGENCIES  \nAgricultural Marketing Service  \nProposed rule making:\nMilk, Mississippi Gulf Coast \nmarketing area; handling—  \nRules and regulations:\nMilk, Corpus Christi, Tex., \nmarketing area; suspension of \ncertain provisions ___________\nAgriculture Department  \nSee Agricultural Marketing Serv­\nice ; Commodity Stabilization \nService.\nAlien Property Office  \nNotices:\nVested property, intention to re­\nturn:\nBenjamins-van Schagen, H.\nA. J________________________\nBirckicht, Antoinette ________\nFifis-Finken, W. J. E., and \nJohanna Hendrika Finken_\nHeringa, G. H --------------------\nNetherlands, State of, for the \nbenefit of :\nLindeman, W. N., et al _____\nN. V. de Centrale Arbeiders \nVerzekering & Deposito\nBank et al ____________\nVrancken-Wauters, Joanna \nOdilia Maria Henrica, et al_\nWallner, Emma, et al ---------\nWeberpals, Louise, and Eliza­\nbeth Paptistella ___________\nVesting orders:\nHungarian Discount and Ex­\nchange Bank_ _____;_______\nHungarian General Credit- \nbank_________,___>________\nCivil Service Commission  \nRules and regulations : \nCompetitive service, exceptions \nfrom:\nFederal  Communications\nCommission _______________\nState Department __________\nPage\n2067\n2067\n2073\n2072\n2087\n2087\n2087\n2087\n2088\n2087\n2087\n2086\n2086\n2085\n2086\n2069\n2069\n2067\n"
+    },
+    "TERM:EO:10760:34ac2a42979d41c6@e5861ef8d09e4f6a": {
+      "actor_id": "EO:10760",
+      "char_end": 3660,
+      "char_start": 3501,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10760:34ac2a42979d41c6@e5861ef8d09e4f6a",
+      "instrument_id": "EO:10760",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10760#v-1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-123-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "1687a30130922887b3c5bb7fe56f5bcedb808d083f6606d709082550d6aeeb16",
+        "signing_date": "1958-03-27",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10760_Actual_report_date_of_the_board_created_by_EO_10760_Presidential_Emergency_Board_Rail_b9c925cf50.txt",
+        "text_sha256": "e5861ef8d09e4f6a6d4c22fccc32c13b34e0d261801de51a51386f3ffbd92838",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-123-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "That the investigation and report be made by an Emer- \ngency Board consisting of one of the three Board.members \ndesigalated by the President namely, Dudley E."
     },
     "TERM:EO:10760:3531087ce914254c@4514a8ebfbd6fb8f": {
       "actor_id": "EO:10760",
@@ -237,6 +370,62 @@
       "stated_end_date": null,
       "text": "As provided by section 10 of the Rail­\nway Labor Act, as amended, from this \nQ ate and for thirty days after the Board \nnas made its report to the President' no \nnange, except by agreement, shall be \nm ade by the Trans World Airlines, Inc., \nnf , emPloyees, in the conditions out \noi which the said dispute arose."
     },
+    "TERM:EO:10760:897133fefbc97057@e5861ef8d09e4f6a": {
+      "actor_id": "EO:10760",
+      "char_end": 3496,
+      "char_start": 3008,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10760:897133fefbc97057@e5861ef8d09e4f6a",
+      "instrument_id": "EO:10760",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10760#v",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-123-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "1687a30130922887b3c5bb7fe56f5bcedb808d083f6606d709082550d6aeeb16",
+        "signing_date": "1958-03-27",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10760_Actual_report_date_of_the_board_created_by_EO_10760_Presidential_Emergency_Board_Rail_b9c925cf50.txt",
+        "text_sha256": "e5861ef8d09e4f6a6d4c22fccc32c13b34e0d261801de51a51386f3ffbd92838",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-123-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The \npa~fies then executed a stipulation as follows: \nSTIPULATION \nIt is hereby stipulated by Trans World Airlines, Inc., and \nFlight Engiiaeers Internittional Association, TWA Chapter, a \nlabor organization representing certain employees of this aii- \ncarrier that the Emergency Board proceedings instituted on \nMarch o,7, 1958, by Executive order of the President pursuant to \nSection 10 of the Railway Labor Act be continued subject to \nthe following modifica£ions and understandings :"
+    },
+    "TERM:EO:10760:9ccfc30388454e28@e5861ef8d09e4f6a": {
+      "actor_id": "EO:10760",
+      "char_end": 4149,
+      "char_start": 4000,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10760:9ccfc30388454e28@e5861ef8d09e4f6a",
+      "instrument_id": "EO:10760",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10760#v-4",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-123-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "1687a30130922887b3c5bb7fe56f5bcedb808d083f6606d709082550d6aeeb16",
+        "signing_date": "1958-03-27",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10760_Actual_report_date_of_the_board_created_by_EO_10760_Presidential_Emergency_Board_Rail_b9c925cf50.txt",
+        "text_sha256": "e5861ef8d09e4f6a6d4c22fccc32c13b34e0d261801de51a51386f3ffbd92838",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-123-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "That the Board i~s thus constituted shall report its find- \ning~ to the President with respect to this dispute within 30 \ndays from June 0_3, 1958; ."
+    },
     "TERM:EO:10760:c5d5ce7741948252@9b3bfa87557f8b0d": {
       "actor_id": "EO:10760",
       "char_end": 1022,
@@ -265,6 +454,34 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The Board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
+    },
+    "TERM:EO:10760:ccd03f2149fb2873@e5861ef8d09e4f6a": {
+      "actor_id": "EO:10760",
+      "char_end": 5493,
+      "char_start": 5385,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10760:ccd03f2149fb2873@e5861ef8d09e4f6a",
+      "instrument_id": "EO:10760",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10760#v-5",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-123-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "1687a30130922887b3c5bb7fe56f5bcedb808d083f6606d709082550d6aeeb16",
+        "signing_date": "1958-03-27",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10760_Actual_report_date_of_the_board_created_by_EO_10760_Presidential_Emergency_Board_Rail_b9c925cf50.txt",
+        "text_sha256": "e5861ef8d09e4f6a6d4c22fccc32c13b34e0d261801de51a51386f3ffbd92838",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-123-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "It was subject to modification by 30-day notice \nprior to October 26, '1957, or any succeeding October 26th."
     },
     "TERM:EO:10760:f1c17b0e41b67fa5@9b3bfa87557f8b0d": {
       "actor_id": "EO:10760",
@@ -296,9 +513,40 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the Board has made its report to the President, no change, except by agreement, shall be made by the Trans World Airlines, Inc., or by its employees, in the conditions out of which the said dispute arose."
     }
   },
-  "fingerprint": "cb02f47a20b83e78146cf45573e39d828e89bb8fc12b895ab0008411fbbb36b7",
+  "fingerprint": "7a5225201a891dcbdb1c8c058eeb62d27a1e44ba4130531e9797d936e893c7bf",
   "instrument_id": "EO:10760",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "5ce30e8f385411e7795c6f790fc3e8053cd3f6e7e51c0f054bd1f51d82e9065f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10760",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10760>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10760:3531087ce914254c@92ab17474e350555",
+        "TERM:EO:10760:4bbd5fc24066f560@92ab17474e350555",
+        "TERM:EO:10760:3531087ce914254c@4514a8ebfbd6fb8f",
+        "TERM:EO:10760:4bbd5fc24066f560@4514a8ebfbd6fb8f",
+        "TERM:EO:10760:c5d5ce7741948252@9b3bfa87557f8b0d",
+        "TERM:EO:10760:f1c17b0e41b67fa5@9b3bfa87557f8b0d"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10760#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -337,9 +585,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10760",
   "own_terms": [
@@ -347,6 +593,10 @@
     "TERM:EO:10760:4bbd5fc24066f560@92ab17474e350555",
     "TERM:EO:10760:3531087ce914254c@4514a8ebfbd6fb8f",
     "TERM:EO:10760:4bbd5fc24066f560@4514a8ebfbd6fb8f",
+    "TERM:EO:10760:897133fefbc97057@e5861ef8d09e4f6a",
+    "TERM:EO:10760:34ac2a42979d41c6@e5861ef8d09e4f6a",
+    "TERM:EO:10760:9ccfc30388454e28@e5861ef8d09e4f6a",
+    "TERM:EO:10760:ccd03f2149fb2873@e5861ef8d09e4f6a",
     "TERM:EO:10760:c5d5ce7741948252@9b3bfa87557f8b0d",
     "TERM:EO:10760:f1c17b0e41b67fa5@9b3bfa87557f8b0d"
   ],

@@ -1,0 +1,25 @@
+{
+  "plan_id": "R9830S",
+  "date": "2026-10-20",
+  "batches": {"s1": 7, "s2": 7, "s3": 6},
+  "attempted": 20,
+  "act_records_upheld": 17,
+  "act_records_upheld_per_attempt": 0.85,
+  "act_records_ingestable": 16,
+  "claims_enabled": 8,
+  "claims_files": [
+    "research/readiness/claims/claude-r9830-s1-2026-10-20.jsonl",
+    "research/readiness/claims/claude-r9830-s2-2026-10-20.jsonl",
+    "research/readiness/claims/claude-r9830-s3-2026-10-20.jsonl"
+  ],
+  "plants_planted": 3,
+  "plants_caught": 3,
+  "plants_caught_share": 1.0,
+  "notes": [
+    "Planted orders EO 8257, 9200 and 9653 were caught; their genuine records count as unreviewed and are left out.",
+    "EO 7975A ACT record upheld but refused by act_overrides.verify (target_number_not_in_naming_span: 'No. 7975-A' vs '7975A'); verifier fix needed for lettered numbers.",
+    "EO 9538 was superseded earlier by EO 9733 (1946-06-04); EO 9691 has two clauses blocked on the report-deadline ruling.",
+    "Claims pass kit.py check only against dossiers rebuilt with the new ACT records; the claim-kit Actions job must ingest the overrides first.",
+    "AI review hypotheses only; certified count stays 0."
+  ]
+}

@@ -9,10 +9,12 @@ from pathlib import Path
 import re
 import time
 
-from inputs import load_corpus
+import act_overrides
+from inputs import COMPILER_FILES, load_corpus
 from current_evidence import enrich_current
 from excavate import segment, own_terms, acting_provision, discover_mentions, chain, generic_reference_count
 from assemble import blank_sheet, canonical_sha, assemble
+from lifecycle_obligations import obligations
 
 CUTOFF = '2026-10-14'
 
@@ -146,9 +148,12 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
         'conflicts':d.get('conflicts',[]),
         'draft_material_gaps':draft.get('claim',{}).get('unresolved_material_gaps',[]),
         'missing':sorted(set(missing)),
+        'lifecycle_obligations':obligations(iid, clauses, terms, acts),
         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
     if iid in corpus.get('status_histories',{}):
         dossier['status_history']=corpus['status_histories'][iid]
+    if corpus.get('factual_obligations',{}).get(iid):
+        dossier['factual_obligations']=corpus['factual_obligations'][iid]
     dossier['fingerprint']=canonical_sha(dossier)
     return dossier
 
@@ -281,6 +286,21 @@ def build(repo, out, cache=None):
         else:
             row={'target_id':target,'actor_id':actor,'parent_id':parent,'reason':'acting text absent' if not ar else 'target provision not located','source_event':p.get('source_event')}
             missing_sources.append(row);missing_by[target].append(row['reason']+': '+actor)
+    # Agent-located, independently upheld ACT records (research/readiness/act_overrides) fill only
+    # pairs the scanner could not locate; act_overrides.verify refuses anything else.
+    # With no override lines the build is unchanged: no report file and no extra counts.
+    override_rows=act_overrides.load(repo)
+    if override_rows:
+        unlocated={(r['target_id'],r['actor_id']) for r in missing_sources if r['reason']=='target provision not located' and not r.get('parent_id')}-set(located_pairs)
+        ingested,override_report=act_overrides.ingest(repo,selected,universe,unlocated,override_rows)
+        for (target,actor),a in ingested.items():
+            located_pairs[(target,actor)]=a
+            missing_by[target]=[m for m in missing_by[target] if m!='target provision not located: '+actor]
+        missing_sources=[r for r in missing_sources if (r['target_id'],r['actor_id']) not in ingested]
+        counts['act_overrides_ingested']=len(ingested);counts['act_overrides_refused']=sum(r['status']=='refused' for r in override_report)
+        dump(out/'ACT_OVERRIDES_REPORT.json',override_report)
+    elif (out/'ACT_OVERRIDES_REPORT.json').exists():
+        (out/'ACT_OVERRIDES_REPORT.json').unlink()
     for (target,actor),a in sorted(located_pairs.items()):
         a['alternative_provisions']=list(all_variants.get((target,actor),{}).values())
         actors_by[target].append(a)
@@ -318,7 +338,7 @@ def build(repo, out, cache=None):
                          'selected':{k:v for k,v in selected[iid].items() if k!='text'} if iid in selected else None,
                          'draft':draft,'machine_searches':{k:v for k,v in corpus['machine_searches'].items() if k in search_ids},
                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
-                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
+                line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
             dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
             name=filename(iid)
@@ -365,7 +385,7 @@ def build(repo, out, cache=None):
     summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
     summary['overlay_input_schema']='eo-claim-kit-overlay-input/v1'
     summary['compiled_code_sha256']={p:hashlib.sha256(Path(__file__).with_name(p).read_bytes()).hexdigest()
-        for p in ('build.py','inputs.py','excavate.py','current_evidence.py','assemble.py')}
+        for p in COMPILER_FILES}
     summary['jsonl_shard_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.jsonl'))}
     dump(out/'SUMMARY.json',summary)
     dump(out/'METRICS.json',{'wall_seconds':round(time.monotonic()-started,3),'cache_hits':cache_hits,'output_bytes':sum(p.stat().st_size for p in out.rglob('*') if p.is_file())})

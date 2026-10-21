@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10693>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10693#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10693",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10693"
@@ -56,6 +86,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10693>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10693>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 34 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 34 at offsets 13271-13337: 'Creating an emergency board to investigate railroad labor disputes'. That subject agrees with the target's own held title (a Railway Labor Act emergency board). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10693>EO:12553@rastell",
+      "producer": "claude-rastell-06-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's held text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10693: EO:12553 revocation. Also scanned all 6652 held EO texts for a reference to this order's number (hits outside EO 12553 itself: none). Own terms: the board 'shall report its findings ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, earlier revoking or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the order's operative effect plausibly lapsed by its own terms roughly two months after 1956-12-22, so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and a scan of the held EO texts for '12553' finds only EO 12553 itself. The order refers to a list of carriers 'attached hereto and made a part hereof'; the list is not needed for this pair.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found. Railway Labor Act emergency board: 30-day report deadline and status-quo period are not express ends (kit rule; batch_03 convention). Only EDGES event is the EO 12553 revocation.",
+        "d6_searched": "Searched: order dossier (chain, own_terms, missing lines; other instruments named), jobs/claim-kit/output/MISSING_SOURCES.jsonl, jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv for the target and for EO:12553 as target, and held target text own terms. No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources, D6 step); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-rastell-06-reviewer (claude-opus-5-5, independent; plant_keys not opened)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_06/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10693",
+      "target_naming": {
+        "char_end": 10588,
+        "char_start": 10583,
+        "sha256": "5da3cb5ea15a9ae6f42bf7b98022c817dc374bbe33ff84f138d0fe9ae8f66ecc",
+        "text": "10693"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -122,6 +227,34 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1956-12-27/pdf/FR-1956-12-27.pdf"
       },
       "text": "Instrument: EO:10693\nSource: https://www.govinfo.gov/content/pkg/FR-1956-12-27/pdf/FR-1956-12-27.pdf\nSHA-256 of the downloaded file: 3a5794f2b8d5eeb27154965cd4f89679e24dc8a4e288c912f748f6182616946c\nLocation: 21 FR 10325, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 32 ===\n/ £ \\\nFEDERAL\nVOLUME 21 NUMBER 249\n^ A /IT B O\nWashington, Thursday, December 27, 1956\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10692\nAmendment op E xecutive  O rder No. 9080\nTo Provide for the D esignation  op\nMembers of the Joint  M exican -U nited\nStates D efense  C ommission  by  the\nSecretary of D efense\nBy virtue of the authority vested in me  \nas President of the United States it is  \nordered as follows:\nSection 1. The third paragraph of  \nExecutive Order No. 9080 of February  \n27,1942, authorizing the creation of the  \nJoint Mexican-United States Defense  \nCommission, is hereby amended to read  \nas follows:\n“ The United-States membership of the \nCommission shall consist of an Army  \nm em ber, a Navy member, and an Air  \nForce member, each of whom shall be  \ndesignated by the Secretary of Defense  \nand serve during the pleasure of the Sec­\nretary. The Secretary shall designate  \nfrom am ong the United States members  \nthe chairman thereof and may designate  \nalternate United States members of the  \nCommission.”\nSec. 2. The amendment made by \nsection 1  hereof shall not be construed as \nterminating the tenure of any person  \nwho is a member, chairman, or alternate  \nmember of the United States section of  \nthe Commission on the date of this order,  \nbut such tenure may be terminated by  \nthe Secretary of Defense.\nD wight  D. Eisenhower\nThe W hite  H ouse ,\nDecember 22, 1956.\n[F. R. Doc. 56-10566; Filed, Dec. 26, 1956;\n11:44 a. m.J\nEXECUTIVE ORDER 10693\nCreating an E mergency  B oard T o \nInvestigate D isputes  * •  Between  the \nAkron &  Barberton B elt R ailroad \nand O ther C arriers and C ertain of \nTheir E mployees\nWHEREAS disputes exist between the  \nAkron &  Barberton Belt Railroad and  \nother carriers represented by the Eastern,  \nwestern and Southeastern Carriers'  \nConference Committees, designated in\nlist attached hereto and made a part  \nhereof, and certain of their employees  \nrepresented by the Brotherhood of Rail­\nroad Trainmen, a labor organization;  \nand\nWHEREAS these disputes have not  \nheretofore been adjusted under the pro­\nvisions of the Railway Labor Act, as  \namended; and\nWHEREAS these disputes, in the judg­\nment of the National Mediation Hoard,  \nthreaten substantially to interrupt inter­\nstate commerce to a degree such as to  \ndeprive the country of essential trans­\nportation service:\nNOW, THEREFORE, by virtue of the  \nauthority vested in me by section 10 of  \nthe Railway Labor Act, as amended (45  \nU. S. C. 160), I hereby create a board of  \nthree members, to be appointed by me, to  \ninvestigate the said disputes. No mem­\nber of the said board shall be pecuniarily  \nor otherwise interested in any organiza­\ntion of employees or any carrier.\nThe board shall report its findings to  \nthe President with respect to the said  \ndisputes within thirty days from the date  \nof this order.\nAs provided by section 10 of the Rail­\nway Labor Act, as amended, from this  \ndate and for thirty days after the board  \nhas made its report to the President, no  \nchange, except by agreement, shall be  \nmade by the Akron &  Barberton Belt  \nRailroad Company and other carriers  \nrepresented by the Eastern, Western and  \nSoutheastern Carriers’  Conference Com­\nmittees or their employees in the condi­\ntions out of which the said disputes arose.\nD wight  D. E isenhower\nT he White  H ouse ,\nDecember 22,1956.\nEastern  R ailroads\nAkron & Barberton Belt Railroad Company  \nAkron, Canton & Youngstown Railroad Co.  \nAnn Arbor Railroad Co.\nBaltimore & Ohio Railroad Co.\nBuffalo, Rochester & Pittsburgh Territory\nBuffalo and Susquehanna District\nBaltimore &  Ohio Chicago Terminal Rail­\nroad Co.\nCurtis Bay Railroad\nStaten Island Rapid Transit Railway Co.  \nBessemer & Lake Erie Railroad Co.\nBoston & Maine Railroad Co.\nBrooklyn Eastern District Terminal  \nBush Terminal Railroad\n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nExecutive Orders Page\nAmendment of Executive Order  \nNo. 9080 to provide for the des­\nignation of members of the  \nJoint Mexican-United States  \nDefense Commission by the Sec­\nretary of Defense ____________ 10325\nCreating an Emergency Board to  \ninvestigate disputes between the  \nAkron &  Barberton Belt Rail­\nroad and other carriers and cer­\ntain of their employees ----------- 10325\nEXECUTIVE AGENCIES\nAgricultural Marketing Service  \nProposed rule making:\nMilk; in Muskegon, Mich., mar­\nketing area__ _________  10338\nPerishable Agricultural Com­\nmodities A c t; regulations  \nother than rules of practice _ 10338\nAgriculture Department  \nSee also  Agricultural Marketing  \nService; Commodity Stabiliza­\ntion Service.\nNotices:\nColorado, Kansas, and Texas;  \ndisaster assistance ;  delinea­\ntion of drought areas _______ 10346\nAlien Property Office  \nNotices:\nSorge, Gaetano; vested prop­\nerty; intention to return ____ 10347\nArmy Department \nSee Engineers Corps.\nCivil Service Commission  \nRules and regulations:\nExceptions f r o m  competitive- \nservice:\nGeneral Services Administra-\ntion ______________  10331\nHealth, Education, and Wel­\nfare Department _________ 10331\nRenegotiation Board _______ 10331\nState Department __________ 10331\nCommerce Department\nSee also  Federal Maritime Board.  \nNotices:\nJones, Stuart M.; report of ap­\npointment and statement of\nfinancial interests __________ 10346\nKlingenstein, Henry S.; state­\nment of changes in financial  \ninterests __________________ 10346\n10325\n\n=== PDF page 2 of 32 ===\n10326 THE PRESIDENT\nFEDERAL0REIÌISTER\nV , l 9 3 .l\nPublished daily, except Sundays, Mondays,  \nand days following official Federal holidays,  \nby the Federal Register Division, National  \nArchives and Records Service, General Serv­\nices Administration, pursuant to  the au­\nthority contained in the Federal Register Act,  \napproved July 26, 1935 (49 Stat. 500, as  \namended; 44 U. S. C., ch. 8B ), under regula­\ntions prescribed by the Administrative Com­\nm ittee of the Federal Register, approved by  \nth e President. Distribution is made only by  \nthe Superintendent of Documents, Govern­\nm ent Printing Office, W ashington 25, D. C.\nThe F ederal R egister  will be furnished by  \nm ail to subscribers, free of postage, for $1.50  \nper m onth or $15.00 per year, payable in  \nadvance. The' charge for individual copies  \n(m inim um  15 cents) varies in proportion to  \nthe size of the issue. Rem it check or money  \norder, made payable to the Superintendent  \nof Documents, directly to th e Government  \nPrinting Office, W ashington 25, D. C.\nThe regulatory material appearing herein  \nis keyed to the Code op F ederal R egulations , \nwhich is published, under 50 titles, pursuant  \nto section 11 of the Federal Register Act, as  \namended August 5, 1953. The Code op F ed­\neral R egulations  is sold by the Superin­\ntendent of Documents. Prices of books and  \npocket supplem ents vary.\nThere are no restrictions on the re­\npublication of material appearing in the  \nF ederal R egister , or the Code op F ederal \nR egulations .\nCFR SUPPLEMENTS\n(As of January 1, 1956)\nThe following Supplement Is now  \navailable:\nTitles 1-3 ($0.75)\nAll Supplements and revised books are  \nnow available except the revised General  \nIndex\nOrder from Superintendent of Documents,  \nGovernment Printing Office, Washington  \n25, D. C.\nCONTENTS— Continued\nCommodity Stabilization Service Pas ® \nRules and regulations:\nSugar; 1957 requirements and\n.quotas:\nContinental _______________ 10332\nHawaii and Puerto Rico ____ 10334\nWheat; identification obtained  \nthrough redemption of soil  \nbank certificates ___________ 10331\nDefense Department  \nSee also  Engineers Corps.\nNotices:\nSingle manager assignment for  \nairlift service _____________ 10343\nEngineers Corps -  \nRules and regulations:\nAnchorage, danger zone and  \nnavigation regulations; mis­\ncellaneous amendments ____ 10335\nCONTENTS— Continued\nFarm Credit Administration Pa® e  \nRules and regulations:\nProduction credit associations _ 10327\nFederal Maritime Board  \nNotices:\nAlcoa Steamship Co., Inc., and  \nMitsui Steamship Co., Ltd.;\nagreement filed for approval. 10346\nFederal Power Commission  \nRules and regulations:\nOfficial seal _________________ 10335\nIndian Affairs Bureau  \nNotices :\nRedelegation of authority; mis­\ncellaneous amendments ____ 10345\nInterior Department\nSee Indian Affairs Bureau; Recla­\nmation Bureau.\nInterstate Commerce Commis­\nsion \nNotices:\nMotor carrier applications ____ 10347\nJustice Department  \nSee Alien Property Office.\nPost Office Department \nRules and regulations:\nStamped envelopes; new prices. 10338\nReclamation Bureau  \nNotices:\nShoshone Project, Wyoming;\norder of revocation _________ 10346\nSecurities and Exchange Com­\nmission \nNotices :\nHearings, etc.:\nElectric Energy, Inc., et al _ 10352\nEstate Security, Inc ________ 10352\nLouisiana Power &  Light Co__ 10353 \nMichigan Wisconsin Pipe Line\nCo_____________    10353\nTrans-Continental Uranium  \nCorp__------------------   10352\nProposed rule making:\nGeneral rules and regulations;  \nSecurities and Exchange Act  \nof 1933; public hearing and  \nextension of time to submit\nwritten comments ____ _____ 10342\nRights offerings by certain for­\neign private issuers _________ 10343\nCODIFICATION GUIDE\nA numerical list of the parts of the Code  \nof Federal Regulations affected by docum ents  \npublished in this issue. Proposed rules, as  \nopposed to final actions, are identified as  \nsuch.\nTitle 3 Page\nChapter n  (Executive orders):\n9080 (amended by EO 10692) _ _ 10325\n10692 __________   10325\n10693 _________________  10325\nTitle 5  \nChapter I:\nPart 6 (4 documents), ________ 10331\nTitle 6 \nChapter I:\nPart 50____________:_________ 10327\nPart 52______________________ 10327\nCODIFICATION GUIDE— Con.\nTitle 7 P a g e\nChapter I:\nPart 46 (proposed) ___________ 10338\nChapter VII:\nPart 728______________L____ 10331\nChapter VIII:\nPart 811. ------- 10332\nPart 812----------   10334\nChapter IX:\nPart 985 (proposed) _________ 10338\nTitle 17  \nChapter II:\nPart 230 (proposed) _________ 10342\nPart 239 (proposed) __________ 10343\nTitle 18 \nChapter I:\nP a r ti_______________________ 10335\nTitle 33  \nChapter II:\nPart 202_____________________ 10335\nPart 204_____________________ 10335\nPart 207..1 ___   10335\nTitle 39  \nChapter I:\nPart 31_________  10338\nCanadian National Railways\nCanadian National Lines in New England  \nCanadian National Railways in the State  \nof New York\nUnited States & Canada Railroad  \nChamplain & St. Lawrence Railroad  \nSt. Clair Tunnel Company  \nCentral Railroad Company of New Jersey  \nNew York & Long Branch Railroad Co.  \nCentral Vermont Railway, Inc.\nChicago Union Station Co.\nCincinnati Union Terminal Co.\nCuyahoga Valley Railway Co.\nDelaware & Hudson Railroad Corp.  \nDelaware, Lackawanna & Western Railroad  \nCo.\nDetroit and Toledo Shore Line Railroad C o.  \nDetroit Terminal Railroad Co.\nDetroit, Toledo & Ironton Railroad Co.  \nDonora Southern Railroad Co.\nErie Railroad Co.\nGrand Trunk Western Railroad Co.  \nHoboken Shore Railroad  \nLake Terminal Railroad Co.\nLehigh & New England Railroad Co.  \nLehigh Valley Railroad Co.\nLong Island Railroad Co.\nMaine Central Railroad Co.\nPortland Terminal Co.\nMcKeesport Connecting Railroad Co.\nMonon Railroad  \nMonongahela Railway Co.\nNewburgh & South Shore Railway Co.\nNew York Central System\nNew York Central Railroad Co.\nEastern District (excl. Boston Division)  \nBoston Division  \nWestern D istrict\nOhio Central Division  \nNorthern District  \nSouthern D istrict  \nL & J B & R R\nIndiana Harbor Belt Railroad Co.\nChicago River & Indiana Railroad Co.\nChicago Junction Railway  \nPittsburgh & Lake Erie Railroad Co.\nLake Erie & Eastern Railroad Co.\nCleveland Union Terminals Co.\nNew York, Chicago & St. Louis Railroad C o.  \nNew York Dock Railway Co.\nNew York, New Haven & Hartford Railroad  \nCo.\nNew York, Susquehanna &  Western Railroad \nCo. *\n\n=== PDF page 3 of 32 ===\n10327Thursday, December 27, 1956\nPennsylvania Railroad Co.\nBaltimore &  Eastern Railroad Co. \nPennsylvania-Reading Seashore Lines  \nPittsburgh, Chartiers & Youghiogheny Rail­\nway Co.\nReading Company\nRiver Terminal Railway Ca.\nToledo Terminal Railroad Co.\nUnion Railroad Co.\nUpper Merion &  Plym outh Railroad Co. \nWashington Terminal Company  \nWestern Maryland Railway Co.\nYoungstown &  Northern Railroad Co.\nWestern  R ailroads\nAlton and Southern Railroad  \nAtchison, Topeka and Santa Fe Railway  \nThe Gulf, Colorado and Santa Fe Railway  \nPanhandle and Santa Fe Railway  \nBelt Railway Co., of Chicago, The  \nCamas Prairie Railroad  \nChicago &  Eastern Illinois Railroad  \nChicago &  Illinois Midland Railway  \nChicago and North Western Railway  \nChicago and Western Indiana Railroad  \nChicago, Burlington & Quincy Railroad  \nChicago, Great Western Railway  \nChicago, Milwaukee, St. Paul and Pacific  \nRailroad\nChicago, Rock Inland and Pacific Railroad  \nChicago, St. Paul, Minneapolis and Omaha  \nRailway\nColorado and Southern Railway, The  \nColorado and Wyoming Railway, The  \nDenver and Rio Grande Western Railroad,  \nThe\nDes Moines Union Railway  \nDuluth, South Shore and Atlantic Railroad  \nDuluth Union Depot and Transfer Co.  \nDuluth, Winnipeg & Pacific Railway  \nEast St. Louis Junction Railroad  \nElgin, Joliet and Eastern Railway  \nPort Worth and Denver Railway  \nJoint Texas Division of CRI&P Railroad  \n&  FtW&D Railway\nGalveston, Houston and Henderson Railroad  \nGreat Northern Railway  \nGreen Bay and Western Railroad  \nKewaunee, Green Bay and Western Rail­\nroad\nFEDERAL REGISTER\nHouston Belt & Terminal Railway  \nIllinois Central Railroad\nChicago and Illinois Western Railroad  \nIllinois Northern Railway  \nIllinois Terminal Railroad  \nKansas City Southern Railway, The  \nKansas City Terminal Railway  \nKing Street Passenger Station (Seattle)  \nLitchfield and Madison Railway  \nLos Angeles Junction  \nLouisiana &  Arkansas Railway  \nManufacturers Railway  \nMidland Valley Railroad\nKansas, Oklahoma & Gulf Railway  \nMinneapolis & St. Louis Railway, The  \nMinneapolis, St. Paul & Sault Ste. Marie  \nRailroad\nM innesota Transfer Railway, The  \nMissouri-Kansas-Texas Railroad\nMissouri-Kansas-Texas Railroad Co. of  \nTexas\nMissouri Pacific Railroad\nMissouri Pacific Railroad (Gulf District)  \nM issouri-Illinois Railroad  \nNorthern Pacific Railway  \nNorthwestern Pacific Railroad  \nOgden Union Railway and Depot Co., The  \nPeoria and Pekin Union Railway  \nPort Terminal Railroad Association  \nSt. Joseph Terminal Railroad  \nSt. Louis-San Francisco Railway\nSt. Louis, San Francisco & Texas Railway  \nSt. Louis Southwestern Railway  \nSan Diego & Arizona Eastern Railway  \nSouthern Pacific Co. (Pac. Lines) (Excl.\nFormer El Paso & Southwestern System)  \nSouthern Pacific Co. (Pac. Lines)\n(Former El Paso & Southwestern System)  \nSpokane, Portland and Seattle Railway  \nOregon Trunk Railway  \nOregon Electric Railway  \nTerminal Railroad Association of St. Louis  \nTexas and New Orleans Railroad  \nTexas and Pacific Railway, The  \nAbilene and Southern Railway  \nFort Worth Belt Railway  \nTexas-New Mexico Railway  \nTexas Short Line Railway  \nWeatherford, Mineral Wells and North­\nwestern Railway  \nTexas Mexican Railway, The\nTP-MP Terminal of New Orleans  \nToledo, Peoria & Western Railroad  \nUnion Pacific Railroad  \nUnion Railway Co. (Memphis)\nUnion Terminal Co. (Dallas) '\nWabash Railroad—Lines West of Detroit  \nWabash Railroad—Lines East of Detroit  \nWestern Pacific Railroad\nSoutheastern  R ailroads\nAtlanta & West Point\nWestern Railway of Alabama  \nAtlanta Joint Terminals  \nAtlantic Coast Line Railroad  \nBirmingham Southern Railroad  \nCentral of Georgia Railway  \nCharleston & Western Carolina Railway  \nChesapeake &  Ohio Railway  \nClinchfield Railroad  \nFlorida East Coast Railway\n(In trusteeship. Any com m itm ent subject  \nto court approval)\nGeorgia Railroad  \nGulf, Mobile & Ohio Railroad  \nJacksonville Terminal Company  \nKentucky &  Indiana Terminal Railroad  \nLouisville &  Nashville Railroad  \nNashville, Chattanooga & St. Louis Railway  \nNorfolk & Portsmouth Belt Line  \nNorfolk & Western Railway  \nRichmond, Fredericksburg & Potomac Rail­\nroad\nPotomac Yard\n.Seaboard Air Line Railway Company  \nSouthern Railway\nAlabama Great Southern Railway Company  \nCincinnati, New Orleans & Texas Pacific  \nRailway\nGeorgia Southern & Florida Railway  \nHarriman & Northeastern Railroad Com­\npany\nNew Orleans & Northeastern Railroad  \nNew Orleans Terminal Company  \nSt. Johns River Terminal Company  \n(Includes State University R. R. and East  \nSt. Louis Terminal)\nTennessee Central Railway Company  \nVirginian Railway Company\n[F. R. Doc. 56-10567; Filed, Dec. 26, 1956;  \n11:44 a. m.]\nRULES AND REGULATIONS\nTITLE 6— AGRICULTURAL CREDIT\nChapter I— Farm Credit \nAdministration\nSubchapter E— Production Credit System\nP art 50— Production  C redit  \nAssociations\nPa r t 52—P articular  P roduction  C redit  \nA ssociations\nREVISION OF PARTS\nSection 20 of the Farm Credit Act of  \n1933 provides that the Governor of the  \nFarm Credit Administration shall have  \nthe power, under rules and regulations  \nprescribed by him, to provide for the or­\nganization, management, and conduct of  \nthe business of production credit associa­\ntions. Section 23 of the Farm Credit Act  \nof 1933, as amended by section 105 (i) of  \nthe Farm Credit Act of 1956, effective  \nJanuary l, 1957, provides that each pro­\nduction credit association shall invest its  \nfunds and make loans to farmers under  \nsuch rules and regulations as may be  \nprescribed by the farm credit board of  \nthe district with the approval of the\nFarm Credit Administration. Also ef­\nfective January 1, 1957, as provided in  \nthe Farm Credit Act of 1956, each pro­\nduction credit corporation, which for­\nmerly exercised supervisory authority  \nover the production credit associations in  \nits district, will be merged in the Federal  \nintermediate credit bank of the district  \nwhich then will assume corresponding  \nsupervisory authority over the produc­\ntion credit associations. To reflect these  \nand other changes made by the Farm  \nCredit Act of 1956, the farm credit board  \nin each district, with the approval of the  \nFarm Credit Administration, and the  \nGovernor of the Farm Credit Adminis­\ntration, .  respectively, have prescribed  \nrules and regulations for Production  \nCredit Associations, to be effective Janu­\nary 1, 1957. In accordance therewith,  \nPart 50 of Title 6 of the Code of Federal  \nRegulations is hereby amended, effective  \nJanuary 1,1957, to read as follows:\nSubpart A— Loans to Members\nELIG IB ILITY\nSec.\n50.101 General.\n50.102 Corporation.\nSec.\n50.103 Stockholder endorsements.\n50.104 Fiduciaries and representatives.\n50.105 Receivers and trustees.\n50.106 Territorial lim itations.\nLO AN PU R PO SES\n50.111 Short- and interm ediate-term  loans.\n50.112 Determ ination of authority.\nSEC U R ITY  FOR LO AN S\n50.121 Secured and unsecured loans.\n50.122 Acceptable security.\nM E M B E R S H IP  I N  OR CONTRACTS W IT H  OTH ER \nORGANIZATIONS\n50.131 Requirements imposed on borrower.\nO T H ER  LO AN R E Q U IR E M E N TS, TE R M S, ETC.\n50.141 Applications.\n50.142 Inspections.\n50.143 Maturities.\n50.144 Interest rates.\n50.145 Other charges to borrowers.\n50.146 Disbursement of loan proceeds.\n50.147 Time lim it on closing loans.\nSPECIAL T Y PES O F LO ANS\n50.151 Guaranteed loans to veterans.\n50.152 Insured loans to veterans.\n50.153 Storage facility loans guaranteed\nby Commodity Credit Corporation.\n"
+    },
+    "TERM:EO:10693:321eb13925f61f41@13e3e9a59d6c7eb3": {
+      "actor_id": "EO:10693",
+      "char_end": 9343,
+      "char_start": 8900,
+      "computed_end_candidate": "1956-12-03",
+      "confidence": "medium",
+      "effective_date": "1956-12-03",
+      "id": "TERM:EO:10693:321eb13925f61f41@13e3e9a59d6c7eb3",
+      "instrument_id": "EO:10693",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10693#b-5",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-116-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "451e91a60c54d61f44426ed91ae12cfd6a7de892546f162397f6a057d76c14a5",
+        "signing_date": "1956-12-22",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10693_Actual_report_date_of_the_board_created_by_EO_10693_Presidential_Emergency_Board_Rail_c19da2b877.txt",
+        "text_sha256": "13e3e9a59d6c7eb3438d4adefe11417385cab626dd43541421ad7da4b7902ad3",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-116-Report.pdf"
+      },
+      "start_date": "1956-10-03",
+      "stated_end_date": null,
+      "text": "A moratorium barring further changes in all rules and schedules governing \ntim rates of pay and compensation (including rules governing vacations and \nlieulth and welfare beueflts) for what remains of a 3-year period ending November \nt, 1959. \n\"\" On failure of the parties to agree, the services of the National M:edia- \ntion Board were hivoked and for \"2 months starting October 3, 1956, \n~ind ending December 10, 1956, conferences were held."
     },
     "TERM:EO:10693:9873a680ce47b977@b36204cc496ea035": {
       "actor_id": "EO:10693",
@@ -296,9 +429,40 @@
       "text": "The board shall report its findings to the President with respect to the said disputes within thirty days from the date of this order."
     }
   },
-  "fingerprint": "1a3c3d27f6d63c3f76b92868eb7f27adc9b7741a9d1818efcaf76f2d7366a847",
+  "fingerprint": "a1e637aeff6fd606ddb723b2b13ea35ce3fda957ee154e9e6630d9eda51eac4a",
   "instrument_id": "EO:10693",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "b806faa65ea5cb5b940e62e7279aa781790948964f0781a39d3cfdf4f0708efd",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10693",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10693>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10693:d812230427062114@cbe6b81593b7cfe8",
+        "TERM:EO:10693:9873a680ce47b977@cbe6b81593b7cfe8",
+        "TERM:EO:10693:d812230427062114@b36204cc496ea035",
+        "TERM:EO:10693:9873a680ce47b977@b36204cc496ea035",
+        "TERM:EO:10693:e91c6c6890469d91@e1c2c37c9ac3824d",
+        "TERM:EO:10693:cab939d09cf05b37@e1c2c37c9ac3824d"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10693#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -337,9 +501,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10693",
   "own_terms": [
@@ -347,6 +509,7 @@
     "TERM:EO:10693:9873a680ce47b977@cbe6b81593b7cfe8",
     "TERM:EO:10693:d812230427062114@b36204cc496ea035",
     "TERM:EO:10693:9873a680ce47b977@b36204cc496ea035",
+    "TERM:EO:10693:321eb13925f61f41@13e3e9a59d6c7eb3",
     "TERM:EO:10693:e91c6c6890469d91@e1c2c37c9ac3824d",
     "TERM:EO:10693:cab939d09cf05b37@e1c2c37c9ac3824d"
   ],

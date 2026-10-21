@@ -1,0 +1,157 @@
+{
+  "claims": [
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13792",
+      "mechanical_result": "fail",
+      "observed": true
+    },
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13101",
+      "mechanical_result": "fail",
+      "observed": true
+    },
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13148",
+      "mechanical_result": "fail",
+      "observed": true
+    },
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13783",
+      "mechanical_result": "fail",
+      "observed": true
+    },
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13807",
+      "mechanical_result": "fail",
+      "observed": true
+    },
+    {
+      "all_checks_passed": false,
+      "gate_passed": true,
+      "instrument_id": "EO:13037",
+      "mechanical_result": "fail",
+      "observed": true
+    }
+  ],
+  "errors": [
+    "not all ten exact cited GovInfo sources could be byte-verified",
+    "actual checker claims_all_checks_passed=0; required 6",
+    "actual checker claims_mechanical_pass=0; required 6",
+    "EO:13792: checker mechanical=fail, gate=True, all_checks_passed=False",
+    "EO:13101: checker mechanical=fail, gate=True, all_checks_passed=False",
+    "EO:13148: checker mechanical=fail, gate=True, all_checks_passed=False",
+    "EO:13783: checker mechanical=fail, gate=True, all_checks_passed=False",
+    "EO:13807: checker mechanical=fail, gate=True, all_checks_passed=False",
+    "EO:13037: checker mechanical=fail, gate=True, all_checks_passed=False"
+  ],
+  "network_attempts_blocked": [],
+  "passed": false,
+  "summary": {
+    "check_results": {
+      "checker_error": {},
+      "date_after_signing": {
+        "pass": 316
+      },
+      "date_valid": {
+        "pass": 976
+      },
+      "order_exists": {
+        "pass": 94
+      },
+      "parse": {},
+      "quote_verbatim": {
+        "fail": 31,
+        "pass": 477,
+        "skip": 438
+      },
+      "source_held": {
+        "fail": 318,
+        "pass": 193,
+        "skip": 126
+      },
+      "source_identity": {
+        "pass": 192
+      },
+      "structural_gate": {
+        "pass": 6
+      }
+    },
+    "claim_checks_csv": {
+      "max_mb": 50.0,
+      "mode": "all_rows",
+      "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
+      "rows_total": 3167,
+      "rows_written": 3167
+    },
+    "claim_files": [
+      "EFFECTIVE_CLAIMS.jsonl"
+    ],
+    "claim_lines_found": 6,
+    "claims_all_checks_passed": 0,
+    "claims_checked": 6,
+    "claims_checker_errors": 0,
+    "claims_gate_passed": 6,
+    "claims_mechanical_fail": 6,
+    "claims_mechanical_pass": 0,
+    "claims_mechanical_unverified": 0,
+    "claims_parse_errors": 0,
+    "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
+    "fetch": null,
+    "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+    "held_copies_indexed_by_origin": {
+      "jobs/source-ladder/output/SOURCES.jsonl": 364,
+      "opus_media_member_map": 496,
+      "stage20_statute_fetch_index": 7,
+      "stage21_acquisition_log": 160,
+      "stage21_custody": 160
+    },
+    "held_distinct_sha256": 886,
+    "job": "claim-checker",
+    "job_limit": null,
+    "legal_cutoff": "2026-10-14",
+    "opus_text_pack_texts": 0,
+    "orders_with_claim": 6,
+    "pypdf_available": true,
+    "quote_status_counts": {
+      "exact": 477,
+      "not_found": 31,
+      "source_text_not_available": 438
+    },
+    "schema": "eo-claim-check/v1",
+    "signing_dates_loaded": {
+      "identity_layer_year_only": 14854,
+      "stage21_crosswalk": 402
+    },
+    "source_identity_counts": {
+      "recorded_for_this_order": 192
+    },
+    "source_status_counts": {
+      "custody_record_only": 126,
+      "held_bytes_verified": 193,
+      "not_held": 318
+    },
+    "source_status_policy": {
+      "custody_record_only": "skip",
+      "gpo_published_hash_match": "pass",
+      "held_bytes_in_release_or_repo": "pass",
+      "held_bytes_verified": "pass"
+    },
+    "steps_checker_passed_effective_claims": {
+      "clause_inventory": 0,
+      "counterevidence": 6,
+      "ending_or_current_basis": 0,
+      "original_text": 0,
+      "savings_residuals": 0
+    }
+  }
+}

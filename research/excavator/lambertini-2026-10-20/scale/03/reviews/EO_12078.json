@@ -1,0 +1,33 @@
+{
+ "schema": "lambertini-ai-review/v1",
+ "reviewer": "claude-lambertini-s03-reviewer (independent Opus, Mountweazel configuration, held fr-originals texts)",
+ "reviewer_role": "independent_ai_reviewer",
+ "not_a_human_review": true,
+ "reviewed_on": "2026-10-20",
+ "claim_file": "research/readiness/claims/claude-lambertini-s03-2026-10-20.jsonl",
+ "reviewed_packet": "scratch review_copy/03 (planted), compared with the producer file after independent review; decision applies to the producer claim with plants removed",
+ "status_note": "AI review; the status is a hypothesis; certified count stays 0; no tier promotion.",
+ "instrument_id": "EO:12078",
+ "claim_sha256": "ce7a92de037fbc9fa4d0793ee0cf34f6e0a6ca3a3f235e0ec0e2baa982aef538",
+ "decision": "uphold",
+ "accepted_savings_state": "none_after_bounded_search",
+ "prefill": "none_after_bounded_search",
+ "savings_overturned": false,
+ "eligible_to_close_steps_now": true,
+ "checks": {
+  "inventory": "17 clauses, one per numbered section 1-101 to 1-402, matching the 17 numbered sections in EO_12078.txt.",
+  "ending": "Own term: sec. 1-402 'shall terminate on June 30, 1980, or earlier as directed by the President' was rewritten by EO 12219 (signed 1980-06-19, no effective wording, before June 30) to 'The Commission shall terminate on August 31,1980'. No later extension. First end 1980-08-31 by own term as amended; EO 12258 sec. 1-103(e) (effective 1980-12-31 per sec. 1-105) correctly attached as a later event on every clause. PACKET DEFECT: in the review copy the sec. 1-101 first_end.actor read EO:12258 while its date, mechanism and source are the EO 12219 extension; the producer file has EO:12219 (correct).",
+  "savings": "Kept: advisory commission only; no transfer, fund, property or right. Accept none_after_bounded_search.",
+  "D6": "Reviewer's own hyphen/space-tolerant by-number scan of all held fr-originals texts: EO 12078 is named only in EO 12219 and EO 12258. Dossier lead EO:12024 read: it is only cited in sec. 1-307 (FACA functions to GSA) and does not act on EO 12078; ruled out correctly. Nothing ignored."
+ },
+ "suspected_plants": [
+  {
+   "where": "operative_clauses[EO:12078#1-101].first_end.actor",
+   "packet_value": "EO:12258",
+   "correct_value": "EO:12219",
+   "why": "first_end date 1980-08-31, mechanism and source are the EO 12219 extension of sec. 1-402; EO 12258 is the later revocation effective 1980-12-31 and is already the later event"
+  }
+ ],
+ "dossier_fingerprint_rechecked": "unchanged from selection",
+ "claim_checker_rerun": "all_checks_passed (scratch OUTPUT_DIR/JOB_CACHE_DIR)"
+}

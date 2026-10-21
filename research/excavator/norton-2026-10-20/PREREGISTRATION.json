@@ -1,0 +1,53 @@
+{
+  "schema": "norton-pilot-preregistration/v1",
+  "origin": "owner_seeded",
+  "saver_key": "norton_shared_factual_obligations",
+  "base_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "initial_census": "INITIAL_CENSUS.json",
+  "eligible_automatic_pools": 0,
+  "design_status": "registered_before_curated_pilot",
+  "questions_max": 4,
+  "orders_max": 7,
+  "orders": [
+    "EO:12335",
+    "EO:12397",
+    "EO:12402",
+    "EO:11769",
+    "EO:12024",
+    "EO:11471",
+    "EO:11698"
+  ],
+  "families": [
+    "NCSSR final report delivery",
+    "OMB to GSA specified FACA management functions",
+    "Hague Service Convention central authority actual performance",
+    "Hague Evidence Convention central authority actual performance"
+  ],
+  "matched_design": {
+    "unit": "family cluster, including its full shared source and all clause applications",
+    "before": "existing per-clause source/claim-kit route without NORTON shared answers",
+    "after": "NORTON factual answer once, then separate review of each clause applicability",
+    "matching": [
+      "same frozen inputs and legal cutoff",
+      "same exact factual question and clause scopes",
+      "same source availability",
+      "same review standard and integration gates"
+    ],
+    "contamination_control": "Do not let a producer or reviewer work in both arms. Freeze separate source snapshots. The whole family and shared-source acquisition cost belongs to each arm; never split dependent clauses across arms. Source discovery in one arm may not be passed to the other. This session has read these pilot sources and cannot act as a fresh control producer.",
+    "cost_boundary": "Total source acquisition, extraction, producer, independent factual and applicability review, corrections, claim-kit assembly, checker and integration. Keep elapsed time, active time, model tokens, cached tokens and session-dollar bills separate.",
+    "cost_missing": "No Junto add-test without actual complete arm bills and independently reviewed units."
+  },
+  "preflight_stop": "If no primary source supports a dated receipt or precise transfer provision with adequate identity, edition and applicability, retain all holds; do not run expensive arms or substitute different families.",
+  "feasibility_gate": {
+    "reviewed_reused_answers_min": 1,
+    "distinct_reviewed_applications_min": 2,
+    "materially_improved_dossiers_min": 1,
+    "wrong_entity_joins_max": 0,
+    "unreviewed_legal_promotions_max": 0
+  },
+  "scale_gate": "Stop expansion unless feasibility gate passes and a complete independently reviewed matched cost comparison demonstrates benefit. Report additional integrated-ready cases separately.",
+  "zero_cohorts": [
+    "appointment event not selected: no source-bound repeated appointment obligation identified by initial screen"
+  ],
+  "initial_warning": "6,681 obligations are leads, 4,464 keys are unbound; zero auto-pooled questions is a conservative extraction result, not proof that the corpus lacks shared questions."
+}

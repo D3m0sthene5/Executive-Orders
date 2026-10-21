@@ -259,6 +259,7 @@ def run_volume(vol, repo: pathlib.Path, job_dir: pathlib.Path, out: pathlib.Path
                   f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and page numbers removed. "
                   f"Not human-verified. Body sha256 {body_sha}\n\n")
         (out / fname).write_text(header + body_text, encoding="utf-8", newline="\n")
+        artifact_sha = sha256_bytes((out / fname).read_bytes())
         c = census.get(iid)
         de = (c or {}).get("date_effective", "").strip()
         if not c:
@@ -277,7 +278,7 @@ def run_volume(vol, repo: pathlib.Path, job_dir: pathlib.Path, out: pathlib.Path
             "closing_tag": o["closing_tag"], "confidence": o["confidence"], "census": census_state,
             "census_date_effective": de, "provisional_status": rd.get("provisional_status", ""),
             "original_text_step_before": rd.get("step_original_text", ""),
-            "text_path": fname, "text_sha256": body_sha, "chars": len(body_text)}
+            "text_path": fname, "text_sha256": artifact_sha, "body_sha256": body_sha, "chars": len(body_text)}
         order_rows.append(row)
         page_or_item = f"{vol['short']}, {printed}, {pp}"
         if c:
@@ -293,7 +294,7 @@ def run_volume(vol, repo: pathlib.Path, job_dir: pathlib.Path, out: pathlib.Path
                          "route": "official/ofr_compilation_1974", "location_confidence": o["confidence"],
                          "location_verified": False, "needs_page_check": o["confidence"] != "high",
                          "signing_date": o["date"], "title": t2row.get("subject_same_line", ""),
-                         "text_path": fname, "text_sha256": body_sha,
+                         "text_path": fname, "text_sha256": artifact_sha, "body_sha256": body_sha,
                          "source_id": f"ofr-compilations:{iid}:{vol['pdf_sha256'][:12]}"},
                 "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": page_or_item}]})
         if census_state in ("NOT_IN_CENSUS", "census_date_blank", "YEAR_CONFLICT", "DATE_CONFLICT"):

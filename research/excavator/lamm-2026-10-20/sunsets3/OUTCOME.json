@@ -1,0 +1,21 @@
+{
+ "schema": "lamm3-outcome/1",
+ "date": "2026-10-20",
+ "pool": "LAMMSUN3",
+ "batches_run": ["batch_01","batch_02","batch_03"],
+ "scale_gate": "batch_01 upheld per attempt 0.1538 >= 0.15 and 1 upheld claim, plant caught: scaled",
+ "probe": {"attempts": 13, "own_term_ends_upheld": 2, "own_term_ends_upheld_per_attempt": 0.1538},
+ "all": {"attempts": 38, "own_term_ends_upheld": 5, "own_term_ends_upheld_per_attempt": 0.1316, "claims_upheld": 2, "negatives_confirmed": 33, "records_refuted": 0},
+ "plants_planted": 3,
+ "plants_caught": 3,
+ "plants_caught_share": 1.0,
+ "per_batch": {
+  "batch_01": {"attempted": 13, "upheld_ends": 2, "negatives_confirmed": 11, "claims_upheld": 1, "plant_caught": true, "upheld": ["EO:13037 whole 1999-09-30", "EO:6734A partial 1934-06-29 (record only)"]},
+  "batch_02": {"attempted": 13, "upheld_ends": 2, "negatives_confirmed": 11, "claims_upheld": 0, "plant_caught": true, "upheld": ["EO:13933 sec.5 partial 2020-12-26", "EO:13111 Committee partial 2003-01-11"]},
+  "batch_03": {"attempted": 12, "upheld_ends": 1, "negatives_confirmed": 11, "claims_upheld": 1, "plant_caught": true, "upheld": ["EO:13369 whole 2005-11-15"]}
+ },
+ "negative_codes": {"end_date_needs_source": 22, "not_an_end": 8, "extended_or_renewed": 3},
+ "claim_files": ["research/readiness/claims/claude-lamm-t01-2026-10-20.jsonl", "research/readiness/claims/claude-lamm-t02-2026-10-20.jsonl"],
+ "claim_checker": "273 claims in repo, 0 parse errors; both Lamm III lines mechanical pass, gate passed",
+ "certified_count": 0
+}

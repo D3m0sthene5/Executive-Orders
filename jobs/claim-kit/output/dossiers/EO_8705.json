@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8705>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8705#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8705",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8705"
@@ -101,6 +131,108 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8705>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8705>EO:9830",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8705 of March 6, 1941.': number matches; the date 'March 6, 1941' is the FR filing date, while the held original is signed 'March 5,1941' (White House date line; filed March 6, 1941). The reviewer must accept or reject the identity on number + subject (EO 9830 Part III revokes Civil Service Rules orders; EO 8705 amends Civil Service Rules I, XII and XV). Target text: jobs/fr-originals/data/full_run/texts/EO_8705.txt (6 FR 1313, PDF pages 1-1). DOSSIER NOTE: clause inventory labels '#1' (Rule I sec. 1) and '#5' (Rule XII sec. 5) and merges the Rule XV rewrite and the effective-as-of clause into '#5'; an inventory correction may be needed before any claim. EO 9830 Rule IV sec. 4.1 re-enacts similar political-activity wording (re-enactment under the new rules, not continuation). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8705>EO:9830@rastell",
+      "producer": "claude-r9830s2-producer",
+      "producer_d6": "Searched held FR texts (jobs/fr-originals full_run, EO_8706..EO_9829 files, whitespace-normalised regex) for the target number in any naming context and for later amendment of the specific rule/schedule paragraph the target set. Number hits: only EO 9354 (FR page numbers '8705' in a contents table, coincidental). No held instrument amends Rule I sec. 1, Rule XII sec. 5 or Rule XV between 1941-03-05 and 1947-05-01 (searched 'Rule I', 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no hits other than the target). Dossier chain empty; no own-term end (order is 'effective as of November 7, 1940', a retroactive start, no end term). UNHELD LEADS (not decided): (1) Veterans' Preference Act of June 27, 1944 (58 Stat. 387), sec. 12, statutory retention preference in reductions in force, may have overtaken the Rule XII sec. 5 text before EO 9830 (EO 9830 Part 20 replaces it with retention preference regulations); (2) EO 9063 (1942-02-16, held) authorises War Service Regulations binding on positions under the Act and Rules; it does not name or amend Rules I, XII or XV, and the Regulations themselves are not held. No earlier end found in held sources.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources. Disclosed UNHELD lead not ignored: Veterans' Preference Act of 1944 (58 Stat. 387) sec. 12 retention preference may have displaced the Rule XII sec. 5 text before 1947-05-01; statute text not held, so D6 for that clause is open. Conditional: also needs the dossier inventory correction (Rule XV rewrite and effective-as-of clause merged into '#5') before any claim.",
+        "d6_searched": "Searched every held FR text (jobs/fr-originals full_run) numbered after the target up to EO 9852 (inclusive of EO 9831-9852, i.e. through 1947-05-01, beyond the producer's EO 9829 bound) for the target number (word-bounded) and, whitespace-normalised, for amendments of the rule/schedule paragraph the target set; EO 9830 searched for savings. Number hits: EO 9354 only (coincidental). Subject: 'Rule I' section 1, 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no later held hits. Held target read: three rule texts plus 'This order shall be effective as of November 7, 1940' (retroactive start, no end term).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830s2-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8705",
+      "target_naming": {
+        "char_end": 91313,
+        "char_start": 91287,
+        "sha256": "eb9f057e96f7c4e047aa5d2069fa3fc44a7c073c3ec0f909876fb0107bfe1456",
+        "text": "No. 8705 of March 6, 1941."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8705>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8705>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8705#1": {
       "char_end": 1501,
       "char_start": 969,
@@ -191,11 +323,329 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1941-03-07/pdf/FR-1941-03-07.pdf"
       },
       "text": "Instrument: EO:8705\nSource: https://www.govinfo.gov/content/pkg/FR-1941-03-07/pdf/FR-1941-03-07.pdf\nSHA-256 of the downloaded file: 80ecf23fb79a14cdea416488d2f7b5ec8c51e6a22c356e83881ddd65814e1105\nLocation: 6 FR 1313, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 20 ===\nJo\n&\nFEDERAL REGISTER\nVOLUME 6\n%  x<\n' V ,  '934\nc  ^ a/iteo %\n< ?\nNUMBER 46\nWashington, Friday, March 7, 1941\nThe President\nEXECUTIVE ORDER\nAmending Certain P rovisions  op the \nCivil  S ervice R ules\nBy virtue of and pursuant to the au­\nthority vested in me by the Civil Service \nAct (22 Stat. 403), and by section 1753 \nof the Revised Statutes (U.S.C., title 5, \nsec. 631), the Civil Service Rules are \nhereby amended as follows:\nSection 1 of Rule I is amended to \nread:\n1. No interference with elections.  No \nperson in the executive civil service shall \nuse his official authority or influence for \nthe purpose of interfering with an elec­\ntion or affecting the results thereof. \nPersons who by the provisions of these \nrules are in the competitive classified \nservice, while retaining the right to vote \nas they please and to express their opin­\nions on all political subjects, shall take \nno active part in political management \nor in political campaigns.\nSection 5 of Rule X II is amended to \nread:\n5. Retention of soldiers and sailors.  \nIn harmony with statutory provisions, \nwhen reductions are being made in the \nforce, in any part of the classified serv­\nice, no employee entitled to military pref­\nerence in appointment shall be dis­\ncharged, dropped, or reduced in rank or \nsalary before any employee not entitled \nto military preference in competition \nwith him if his record is good; nor shall \nany classified employee entitled to mili­\ntary preference in appointment be dis­\ncharged, dropped, or reduced in rank or \nsalary before any employee not entitled \nto military preference in competition \nwith him if his efficiency rating is less \nthan good but better than, or equal to, \nthat of any such non-preference em­\nployee.\nCivil Service Rule XV is amended to \nread:\nLegal appointment necessary to com ­\npensation.  Whenever the Commission \nfinds, after due notice and opportunity \nfor explanation, that any person has been \nappointed to or is holding any position, \nwhether by original appointment, pro­\nmotion, assignment, transfer, or rein­\nstatement, in violation of the Civil Serv­\nice Act or Rules, or of any Executive \norder or any regulation of the Commis­\nsion, or that any employee subject \nthereto has violated such Act, Rules, \norders, or regulations, it shall certify the \nfacts to the proper appointing officer with \nspecific instructions as to discipline or \ndismissal of the person or employee af­\nfected. If the appointing officer fails \nto carry out the instructions of the Com­\nmission within 10 days after receipt \nthereof, the Commission shall certify \nthe facts to the proper disbursing and \nauditing officers, and such officers shall \nmake no payment or allowance of the \nsalary or wages of any such person or \nemployee thereafter accruing.\nThis order shall be effective as of \nNovember 7, 1940.\nF ranklin D R oosevelt\nT he W hite  H ouse,\nMarch 5,1941.\n[No. 87051\n[F. R. Doc. 41-1697; Filed March 6, 1941;\n11:58 a. m.]\nCONTENTS \nTHE PRESIDENT\nExecutive Order: Pa8e\nCivil Service Rules, certain pro­\nvisions amended__________ 1313\nRULES, REGULATIONS, \nORDERS\nT itle  30—Mineral R esources : \nBituminous Coal Division:\nDistrict No. 13, minimum \nprice schedule; relief\ngranted________________ 1314\nT itle  47—T elecommunication :\nFederal Communications Com­\nmission:\nAmateur radio stations and \noperators, amendments\n(2 documents) _________ 1317\nStandard and high frequency \nbroadcast stations,\namendment ____________ 1317\nT itle  49—T ransportation an d \nR ailroads:\nInterstate Commerce Commis­\nsion:\nAnnual reports from lessors \nto steam railway com­\npanies_________________ 1318\nNOTICES\nDepartment of the Interior:\nBituminous Coal Division:\nBlue Bird Coal Co., correction\nof order of dismissal ------- 1326\nFay Collieries Co., order of\ndismissal_______________ 1322\nHearings:\nDistrict Board No. 7 (2\ndocuments) __________ 1325\nDistrict Board No. 8 ______ 1324\n(Continued on next page)\n1313\n"
+    },
+    "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 14179,
+      "char_start": 13917,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Civil Service Commission is authorized and directed \nto hold an examination, during the next succeeding quarterly period, \nfor any position to which any appointment has been made within the \npreceding three years, for any person included under section 2 (1),"
+    },
+    "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 3462,
+      "char_start": 2906,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "When any \nagency or instrumentality is or has been prevented from using appro-\npriations by reason of this section, no part of any appropriation or \nfund made available by this or any other Act shall be used to pay \nthe expenses of the performance by any other agency or instru-\nmentality of functions which are substantially the same as or similar \nto the principal functions of the agency or instrumentality so pre-\nvented from using appropriations, unless the Congress has specifically \nauthorized the expenditure of funds for performing such functions."
+    },
+    "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 7504,
+      "char_start": 6665,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In all examinations to determine the qualifications of appli-\ncants for entrance into the service ten points shall be added to the \nearned ratings of those persons included under section 2 (1), (2), \nand (3), and five points shall be added to the earned ratings of those \npersons included under section 2 (4) of this Act: Provided, That in \nexaminations for the positions of guards, elevator operators, mes-\nsengers, and custodians competition shall be restricted to persons \nentitled to preference under this Act as long as persons entitled to \npreference are available and during the present war and for a period \nof five years following the termination of the present war as pro-\nclaimed by the President or by a concurrent resolution of the Con-\ngress for such other positions as may from time to time be deter-\nmined by the President."
+    },
+    "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 12497,
+      "char_start": 10921,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The \nnominating or appointing officer shall make selection for each vacancy \nfrom not more than the highest three names available for appointment \non such certification, unless objection shall be made, and sustained \nby the Commission, to one or more of the persons certified, for any \nproper and adequate reason, as may be prescribed in the rules promul-\ngated by the Civil Service Commission: Provided, That an appointing \nofficer who passes over a veteran eligible and selects a nonveteran shall \nfile with the Civil Service Commission his reasons in writing for so \ndoing, which shall become a part of the record of such veteran eligible, \nand shall be made available upon request to the veteran or his desig-\nnated representative; the Civil Service Commission is directed to \ndetermine the sufficiency of such submitted reasons and, if found \ninsufficient, shall require such appointing officer to submit more \ndetailed information in support thereof; the findings of the Civil \nService Commission as to the sufficiency or insufficiency of such \nreasons shall be transmitted to and considered by such appointing \nofficer, and a copy thereof shall be sent to the veteran eligible or to \nhis designated representative upon request therefor: Provided, \nfurther, That if, upon certification, reasons deemed sufficient by the \nCivil Service Commission for passing over his name shall three times \nhave been given by an appointing officer., certification of his name for \nappointment may thereafter be discontinued, prior notice of which \nshall be sent to the veteran eligible."
+    },
+    "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 9843,
+      "char_start": 9403,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Preference eligibles shall not be subject to the provisions of \nsection 9 of the Civil Service Act concerning two or more members \nof a family in the service, or to the provisions of section 2 of that \nAct concerning apportionment of appointments in the Government \ndepartments in the District of Columbia among the several States and \nTerritories according to population, but may be required to furnish \nevidence of residence and domicile."
+    },
+    "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 12897,
+      "char_start": 12498,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Whenever in the Postal Service \ntwo or more substitutes are appointed on the same day, they shall be \npromoted to the regular force in the order in which their names \nappeared on the civil-service register from which they were originally \nappointed, whenever there are substitutes of the required sex who are \neligible and will accept, unless such vacancies are filled by transfer or \nreinstatement."
+    },
+    "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 17633,
+      "char_start": 16192,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c-2",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "No permanent or indefinite preference eligible, who has \ncompleted a probationary or trial period employed in the civil service, \nor in any establishment, agency, bureau, administration, project, or \ndepartment, hereinbefore referred to shall be discharged, suspended \nfor more than thirty days, furloughed without pay, reduced in rank \nor compensation, or debarred for future appointment except for such \ncause as will promote the efficiency of the service and for reasons \ngiven in writing, and the person whose discharge, suspension for \nmore than thirty days, furlough without pay, or reduction in rank \nor compensation is sought shall have at least thirty days’ advance \nwritten notice (except where there is reasonable cause to believe the \nemployee to be guilty of a crime for which a sentence of imprison-\nment can be imposed), stating any and all reasons, specifically and \nin detail, for any such proposed action; such preference eligible shall be \nallowed a reasonable time for answering the same personally and in \nwriting, and for furnishing affidavits in support of such answer, and \nshall have the right to appeal to the Civil Service Commission from \nan adverse decision of the administrative officer so acting, such appeal \nto be made in writing within a reasonable length of time after the \ndate of receipt of notice of such adverse decision: Provided, That \nsuch preference eligible shall have the right to make a personal"
+    },
+    "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 2533,
+      "char_start": 2041,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "After January 1, 1945, no part of any appropriation or \nfund made available by this or any other Act shall be allotted or \nmade available to, or used to pay the expenses of, any agency or \ninstrumentality including those established by Executive order after \nsuch agency or instrumentality has been in existence for more than \none year, if the Congress has not appropriated any money specifically \nfor such agency or instrumentality or specifically authorized the \nexpenditure of funds by it."
+    },
+    "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6": {
+      "actor_id": "EO:8705",
+      "char_end": 7504,
+      "char_start": 6665,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6",
+      "instrument_id": "EO:8705",
+      "kind": "emergency_duration",
+      "mechanism": "own_terms_emergency_duration",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:8705#c",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+        "requires_page_check": false,
+        "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+        "signing_date": "1941-03-05",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+        "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In all examinations to determine the qualifications of appli-\ncants for entrance into the service ten points shall be added to the \nearned ratings of those persons included under section 2 (1), (2), \nand (3), and five points shall be added to the earned ratings of those \npersons included under section 2 (4) of this Act: Provided, That in \nexaminations for the positions of guards, elevator operators, mes-\nsengers, and custodians competition shall be restricted to persons \nentitled to preference under this Act as long as persons entitled to \npreference are available and during the present war and for a period \nof five years following the termination of the present war as pro-\nclaimed by the President or by a concurrent resolution of the Con-\ngress for such other positions as may from time to time be deter-\nmined by the President."
     }
   },
-  "fingerprint": "966a3b264289797730c7d05dc722a11783abf8376ea70e5a5995c969c8f336f5",
+  "fingerprint": "ed266e4ca02ee21181a7e91b38c0a21c434e6c59a27a7e17db43e859b545c1bf",
   "instrument_id": "EO:8705",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "ddff30cd8bba1a23fb38164556015e677bc188cc27d784831e86953506ed9541",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+        "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "fixed_term"
+      ]
+    },
+    {
+      "clause_sha256": "1c2f3db623c67625ed2eca93c235b4e38d0c51346c6f794ae73c72a54173b43b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "e973d1ce06932f5cde244e60888cd80116f3a2ea1b7ceb20b73b67c57031e3e5",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#5",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -235,12 +685,21 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8705",
-  "own_terms": [],
+  "own_terms": [
+    "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+    "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+    "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6",
+    "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6",
+    "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+    "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+    "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+    "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6",
+    "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6"
+  ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,

@@ -22,6 +22,8 @@ from collections import defaultdict
 
 
 UNIVERSE = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
+COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
+                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")
 LFS_MAGIC = b"version https://git-lfs.github.com/spec/v1"
@@ -173,6 +175,8 @@ class _Collector:
         self.pairs = []
         self.current = defaultdict(list)
         self.status_histories = {}
+        self.factual_obligations = defaultdict(list)
+        self.factual_inputs_checked = {}
         self.hashes = {}
         self.text_keys = set()
         self.pair_keys = set()
@@ -323,6 +327,29 @@ class _Collector:
         iid = self.identity(frag.get("instrument_id"))
         kind, data = frag.get("kind"), frag.get("data")
         rows = data if isinstance(data, list) else [data]
+        if kind == 'shared_factual_obligations':
+            # Factual answers and clause applicability are distinct from original
+            # texts, legal events and current predicates. Never walk their text.
+            try:
+                status = base / 'STATUS.json'
+                if status.exists() and json.loads(status.read_bytes()).get('result') != 'succeeded':
+                    raise ValueError('NORTON run did not succeed')
+                if base not in self.factual_inputs_checked:
+                    pins = json.loads((base / 'INPUTS.json').read_bytes())
+                    for name, digest in pins.get('consumer_sha256', pins['sha256']).items():
+                        p = _path(self.repo, self.repo, name)
+                        if p is None or hashlib.sha256(p.read_bytes()).hexdigest() != digest:
+                            raise ValueError('NORTON input changed: ' + name)
+                    for name, digest in pins.get('code_sha256', {}).items():
+                        p = _path(self.repo, self.repo / 'jobs/norton', name)
+                        if p is None or hashlib.sha256(p.read_bytes()).hexdigest() != digest:
+                            raise ValueError('NORTON code changed: ' + name)
+                    self.factual_inputs_checked[base] = True
+                if iid and isinstance(data, dict) and data.get('legal_effect') == 'unresolved':
+                    self.factual_obligations[iid].append(dict(data, input_origin=origin, machine_lead=True))
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                self.warnings.append(f'{origin}: factual obligation rejected: {exc}')
+            return
         if kind == 'status_history_candidates':
             if not iid or not isinstance(data,dict):return
             path=_path(self.repo,base,data.get('history_path'))
@@ -342,7 +369,7 @@ class _Collector:
         # These instrument_ids name the affected/cited order, not the author
         # of the evidence. Their statute/actor text must never become a text
         # representation of the target order.
-        if kind not in EVENT_KINDS | CURRENT_KINDS:
+        if kind not in EVENT_KINDS | CURRENT_KINDS | {"family_rule_checks"}:
             self.walk_texts(frag, base, origin)
         if kind in EVENT_KINDS:
             for event in rows:
@@ -530,4 +557,5 @@ def load_corpus(repo):
             "texts": collector.texts, "pairs": collector.pairs,
             "current_law": dict(collector.current), "machine_searches": searches,
             "status_histories": collector.status_histories,
+            "factual_obligations": dict(collector.factual_obligations),
             "warnings": sorted(set(warnings))}

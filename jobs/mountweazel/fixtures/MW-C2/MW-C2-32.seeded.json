@@ -1,0 +1,131 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 10,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b4.jsonl",
+  "sha256": "e05ce6c3977680462cbf4625290cd50f7bb141e599b8fadd1aff3754faa6ff0a"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D6",
+ "instrument_id": "SEEDED:EO:8960",
+ "item_id": "MW-C2-32",
+ "leak_needles": [],
+ "mutation": {
+  "after": "(entry removed)",
+  "before": "EO:9183 1942-06-15",
+  "field": "operative_clauses[0].later_events[0]",
+  "operator": "D6.0.0",
+  "refuting_span": {
+   "quote": "amendment_renaming_body"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:8960",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition-table row for EO:8960 and every row naming its acting order; row reads: '8960 | Amended EO 8546. Amended by EO 9183 | Revoked by EO 9831' (PDF p. 1045); status as of 1989-01-20 used only as a lead and checked against the acting order's own text",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), disposition table; saved OCR rows parsed by job ofr-codification-1989 (output/DISPOSITION_1989.csv)",
+    "searched_by": "Claude (batch 4 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "read EO 9831 (12 FR 1363) in full for the provision ending EO:8960, its effective date and savings; read this order for any expiry, war-duration or other condition and for earlier partial endings; checked later-events EDGES.csv and current-law MENTIONS.csv rows for this order",
+    "repository": "Saved official Federal Register texts (jobs/fr-originals output, govinfo FR issue scans with OCR layer) of this order, of EO 9831 and of the related Board orders EO 8546, 8960, 8964, 9089 and 9183",
+    "searched_by": "Claude (batch 4 agent)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:9831",
+     "date": "1947-02-24",
+     "mechanism": "express_revocation",
+     "mechanism_detail": "express revocation by EO 9831 para. 2 (with abolition of the Board and transfer of its property and records to the FCC in para. 1); EO 9831 states no effective date, so it took effect on issuance, Feb. 24, 1947 (signature date; F.R. Doc. 47-1887 filed Feb. 25, 1947)",
+     "quote": "2. Executive Orders Nos. 8546 of Sep­\ntember 24, 1940, 8960 of December 6, \n1941, 8964 of December 10, 1941, 9089 of \nMarch 6,1942, and 9183 of June 15,1942, \nare revoked.",
+     "source": {
+      "page_or_item": "12 FR 1363, PDF pages 1-1; 12 FR 1363, PDF page 1; para. 2",
+      "sha256": "58899a1f4ecd2adf26910bca960f4811c72c24e5502d32bdba17d31322969054",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-26/pdf/FR-1947-02-26.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:9831",
+      "effective_date": "1947-02-24",
+      "mechanism": "express_revocation",
+      "mechanism_detail": "express revocation by EO 9831 para. 2 (with abolition of the Board and transfer of its property and records to the FCC in para. 1); EO 9831 states no effective date, so it took effect on issuance, Feb. 24, 1947 (signature date; F.R. Doc. 47-1887 filed Feb. 25, 1947)",
+      "quote": "2. Executive Orders Nos. 8546 of Sep­\ntember 24, 1940, 8960 of December 6, \n1941, 8964 of December 10, 1941, 9089 of \nMarch 6,1942, and 9183 of June 15,1942, \nare revoked.",
+      "source": {
+       "page_or_item": "12 FR 1363, PDF pages 1-1; 12 FR 1363, PDF page 1; para. 2",
+       "sha256": "58899a1f4ecd2adf26910bca960f4811c72c24e5502d32bdba17d31322969054",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-26/pdf/FR-1947-02-26.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "By virtue of the authority vested in me \nas President of the United States, and by \nthe Communications Act of 1934 (48 Stat. \n1064), as amended, it is ordered that Ex­\necutive Order No.",
+    "original_source": {
+     "page_or_item": "6 FR 6325, PDF pages 5-5; sole paragraph",
+     "sha256": "4a6c7ccee6d9d64e8c2826390a4e480f0ac1e3194077a4667fe0ab7cd93fe405",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1941-12-10/pdf/FR-1941-12-10.pdf"
+    },
+    "quote_continuation": "of September 24, \n1940, creating the Defense Communica­\ntions Board and defining its functions \nand duties, be, and it is hereby, amended \nby substituting for the words “Assistant \nSecretary of the Treasury in Charge of \nthe Coast Guard”, wherever they appear \nin the said order, the words “Assistant \nSecretary of the Treasury in Charge of \nTreasury Enforcement Activities” .",
+    "scope_id": "EO:8960#whole",
+    "state_at_cutoff": "terminated",
+    "text_note": "The number of the amended order (EO 8546) is printed with a footnote mark that the OCR joins to it; the quotation is split around that token and resumes in quote_continuation."
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "6 FR 6325, PDF pages 5-5",
+   "sha256": "4a6c7ccee6d9d64e8c2826390a4e480f0ac1e3194077a4667fe0ab7cd93fe405",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1941-12-10/pdf/FR-1941-12-10.pdf"
+  },
+  "research_rationale": "EO 8960 (Dec. 6, 1941; 6 FR 6325) has one operative paragraph: it amends EO 8546 by substituting 'Assistant Secretary of the Treasury in Charge of Treasury Enforcement Activities' for the Assistant Secretary in charge of the Coast Guard wherever EO 8546 names him (Board membership and secretary). The substituted wording lived in EO 8546 until that order was revoked; EO 9183 (June 15, 1942) amended this order only by the Board's renaming. No expiry or condition. The orders rest on wartime and emergency powers (Communications Act sec. 606 and the national emergency); neither the orders nor sec. 606 had lapsed before Feb. 24, 1947: the state of war declared in December 1941 had not been terminated, and no concurrent resolution ending the sec. 606 powers is recorded in the bounded sources; no earlier presidential order ending any of these provisions appears in the OFR catalog or the saved order texts. EO 9831 para. 2 revokes EO 8960 together with EO 8546, effective on issuance Feb. 24, 1947; first end of the clause and of the order: 1947-02-24. The 1989 Codification row: 'Amended EO 8546. Amended by EO 9183 ... Revoked by EO 9831'. No current-law citation.",
+  "savings_residuals": {
+   "quote": "1. The Board of War Communica­\ntions, established as the Defense Com­\nmunications Board by Executive Order \nNo. 8546 of September 24, 1940, is abol­\nished, and all property and records \nthereof are transferred to the Federal \nCommunications Commission.",
+   "reason": "EO 9831 para. 1 abolishes the Board of War Communications and transfers all its property and records to the Federal Communications Commission; para. 2 revokes the five orders without any savings clause. The Board's records and property pass to the FCC; claims to just compensation for any government use or control of facilities rest on Communications Act sec. 606 itself, not on the revoked orders. No continuing effect rests on this order.",
+   "source": {
+    "page_or_item": "12 FR 1363, PDF pages 1-1; 12 FR 1363, PDF page 1; paras. 1-2",
+    "sha256": "58899a1f4ecd2adf26910bca960f4811c72c24e5502d32bdba17d31322969054",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-26/pdf/FR-1947-02-26.pdf"
+   },
+   "state": "transferred_or_accrued"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:9831",
+   "date": "1947-02-24",
+   "mechanism": "express_revocation",
+   "mechanism_detail": "express revocation by EO 9831 para. 2 (with abolition of the Board and transfer of its property and records to the FCC in para. 1); EO 9831 states no effective date, so it took effect on issuance, Feb. 24, 1947 (signature date; F.R. Doc. 47-1887 filed Feb. 25, 1947)",
+   "quote": "2. Executive Orders Nos. 8546 of Sep­\ntember 24, 1940, 8960 of December 6, \n1941, 8964 of December 10, 1941, 9089 of \nMarch 6,1942, and 9183 of June 15,1942, \nare revoked.",
+   "source": {
+    "page_or_item": "12 FR 1363, PDF pages 1-1; 12 FR 1363, PDF page 1; para. 2",
+    "sha256": "58899a1f4ecd2adf26910bca960f4811c72c24e5502d32bdba17d31322969054",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-26/pdf/FR-1947-02-26.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

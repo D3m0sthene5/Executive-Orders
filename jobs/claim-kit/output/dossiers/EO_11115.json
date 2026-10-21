@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:11115>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:11115#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:11115",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11115"
@@ -42,6 +72,11 @@
   "current_law_leads": [],
   "draft_gate_errors": [
     "clause_0_state",
+    "clause_1_state",
+    "clause_2_state",
+    "clause_3_state",
+    "clause_4_state",
+    "clause_5_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -49,12 +84,87 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 1 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 6 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:11115>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11115>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block, and the row's subject matches the target's own title. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:11115>EO:12553@rastell",
+      "producer": "claude-rastell-08-producer",
+      "producer_d6": "Searched: dossier chain (no events), own_terms (OWN_TERMS.jsonl), the target's held clause text, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:11115: EO:12553 revocation), and a number search of all 6,652 held Federal Register order texts for other orders naming EO 11115 (no relevant hit: every hit was a page number, Federal Register document number, index entry or hash string). Emergency board, Pullman Company, Chicago, Rock Island & Pacific, New York Central System and Soo Line Railroad Company disputes. Own terms: the board 'shall report its findings to the President ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, or earlier revoking, amending-away or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the board's operative effect plausibly lapsed by its own terms within about two months of signing (1963-07-04), so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, no held order text amends or revokes it, and nothing in the dossier does.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources; report deadlines, status-quo terms and unheld statutory-lapse leads are not express ends (EO 12553 may be a clean-up, upper bound).",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl (20 target rows, all 'target provision not located' for EO:12553), later-events and app-footnote-leads EDGES.csv for each target and for EO:12553, target held texts for own terms where relevant (EO 11026/11029/11025 amendment wording). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-08-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_08/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:11115",
+      "target_naming": {
+        "char_end": 19236,
+        "char_start": 19164,
+        "sha256": "094160822d5b7f4d5e392f44a7ccf80b9225eb2810ed6604c50ef14c87972ca1",
+        "text": "11115 Creating an emergency board to investigate railroad labor disputes"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -122,34 +232,6 @@
       },
       "text": "Instrument: EO:11115\nSource: https://www.govinfo.gov/content/pkg/FR-1963-07-06/pdf/FR-1963-07-06.pdf\nSHA-256 of the downloaded file: d0c117945062683092288f912dd1b813bfe43f4a25c270fd086d0dd25dd1f710\nLocation: 28 FR 6905, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 40 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 11115\nCREATING AN EMERGENCY BOARD TO INVESTIGATE DISPUTES BE­\nTWEEN THE PULLMAN COMPANY, THE CHICAGO, ROCK ISLAND &\nPACIFIC RAILROAD COMPANY, THE NEW YORK CENTRAL SYSTEM,\nAND THE SOO LINE RAILROAD COMPANY AND CERTAIN OF THEIR\nEMPLOYEES\nW HEREAS disputes exist between The Pullman Company, The  \nChicago, Rock Island &  Pacific Railroad Company, the New York  \nCentral System and The Soo Line Railroad Company, and certain  \nof their employees represented by the Brotherhood of Sleeping Car  \nPorters, a labor organization;  and\nW HEREAS these disputes have not heretofore been adjusted under  \nthe provisions of the Railway Labor Act, as amended;  and\nW HEREAS these disputes, in the judgment of the National Medi­\nation Board, threaten substantially to interrupt interstate commerce  \nto a degree such as to deprive a section of the country of essential trans­\nportation service:\nNOW, THEREFORE, by virtue of the authority vested in me by  \nsection 10 of the Railway Labor Act, as amended (45 U.S.C. 160), I  \nhereby create a board of three members, to be appointed by me, to  \ninvestigate these disputes. No member of the board shall be pecuni­\narily or otherwise interested in any organization of railroad employees  \nor any carrier.\nThe board shall report its findings to the President with respect to  \nthese disputes within thirty days from the date of this order.\nAs provided by section 10 of the Railway Labor Act, as amended,  \nfrom this date and for thirty days after the board has made its report  \nto the President, no change, except by agreement, shall be made by  \nThe Pullman Company, the Chicago, Rock Island & Pacific Railroad  \nCompany, the New York Central System and The Soo Line Railroad  \nCompany, or by its employees, in the conditions out of which this  \ndispute arose.\nJ ohn  F. K ennedy\nT he W hite  H ouse,\nJuly  -I, 1963.\n[F.R. Doc. 63-7224; Filed, July 5, 1963; 10:44 a.m.]\n"
     },
-    "TERM:EO:11115:17f567ed12cdf416@06628f530f8167ab": {
-      "actor_id": "EO:11115",
-      "char_end": 1386,
-      "char_start": 1253,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11115:17f567ed12cdf416@06628f530f8167ab",
-      "instrument_id": "EO:11115",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11115#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "28 FR 6905, PDF pages 3-3",
-        "requires_page_check": false,
-        "sha256": "d0c117945062683092288f912dd1b813bfe43f4a25c270fd086d0dd25dd1f710",
-        "signing_date": "1963-07-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-11115-d0c1179450.txt",
-        "text_sha256": "06628f530f8167abcbc24716c45c15b39ac5edadc368051e971730d12934097f",
-        "url": "https://www.govinfo.gov/content/pkg/FR-1963-07-06/pdf/FR-1963-07-06.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The board shall report its findings to the President with respect to  \nthese disputes within thirty days from the date of this order."
-    },
     "TERM:EO:11115:17f567ed12cdf416@e6f5c2fd17da3155": {
       "actor_id": "EO:11115",
       "char_end": 1929,
@@ -178,6 +260,174 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The board shall report its findings to the President with respect to  \nthese disputes within thirty days from the date of this order."
+    },
+    "TERM:EO:11115:3b5468d0bff5639b@b6c68226b4a69822": {
+      "actor_id": "EO:11115",
+      "char_end": 3875,
+      "char_start": 3475,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:3b5468d0bff5639b@b6c68226b4a69822",
+      "instrument_id": "EO:11115",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11115_Actual_report_date_of_the_board_created_by_EO_11115_Presidential_Emergency_Board_Rail_00e18b7405.txt",
+        "text_sha256": "b6c68226b4a698226b1a14b5226b0391add0362a54bf0f8d4bc7e9af98385705",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "As provided by section 10 of the Railway Labor Act, as amended, \nfrom this date and for 80 days after the board has made its report to \nthe President, no change, except by agreement, shall be made by the \nPullman Co., the Chicago, Rock Island & Pacific Railroad Co., the \nNow York Central System and the Soo Line Railroad Co., or by its \nemployees, in the conditions out of wlfich this dispute arose."
+    },
+    "TERM:EO:11115:3b5468d0bff5639b@f721c3d15876273b": {
+      "actor_id": "EO:11115",
+      "char_end": 1759,
+      "char_start": 1359,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:3b5468d0bff5639b@f721c3d15876273b",
+      "instrument_id": "EO:11115",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-11115-9c28d3bc79.txt",
+        "text_sha256": "f721c3d15876273b0d92ee057dccd1a3ba84a04760220bfa7c5f834fae445b5a",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "As provided by section 10 of the Railway Labor Act, as amended, \nfrom this date and for 80 days after the board has made its report to \nthe President, no change, except by agreement, shall be made by the \nPullman Co., the Chicago, Rock Island & Pacific Railroad Co., the \nNow York Central System and the Soo Line Railroad Co., or by its \nemployees, in the conditions out of wlfich this dispute arose."
+    },
+    "TERM:EO:11115:4d6f31e4c276048c@b6c68226b4a69822": {
+      "actor_id": "EO:11115",
+      "char_end": 10467,
+      "char_start": 9354,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:4d6f31e4c276048c@b6c68226b4a69822",
+      "instrument_id": "EO:11115",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#v-1-dup2",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11115_Actual_report_date_of_the_board_created_by_EO_11115_Presidential_Emergency_Board_Rail_00e18b7405.txt",
+        "text_sha256": "b6c68226b4a698226b1a14b5226b0391add0362a54bf0f8d4bc7e9af98385705",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In these notices the Organization requested a conference to be held \nwith reference thereto \"at the e~trliest practicable date and in any \nevent prior to the expiration of 30 days from the date of this notice \n* * *,\" but continued-- \nIn accordance with established procedure which has been followed for \nmore than 20 years, and on the assumption that an agreement may not be \nreached in separate system conferences, our organization, in the interest of \nsaving time of Management and the Organization, suggests that the above- \nmentioned conference be waived without prejudice to the merits of the posi- \ntion of Management or the Organization pending finalization of negotiations \nupon the aforementioned subject matter by the Employees, National Con- \nference Committee, composed of the Chief Executives of the Cooperating \nRailway Labor Organizations and the Carriers' National Conference Com- \nmittee; whereupon the Organization will communicate with Management \nfor conference to discuss application of agreement reached to the employees \non your road represented by the Brotherhood of Sleeping Car Porters."
+    },
+    "TERM:EO:11115:4d6f31e4c276048c@f721c3d15876273b": {
+      "actor_id": "EO:11115",
+      "char_end": 8351,
+      "char_start": 7238,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:4d6f31e4c276048c@f721c3d15876273b",
+      "instrument_id": "EO:11115",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#v-1-dup2",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-11115-9c28d3bc79.txt",
+        "text_sha256": "f721c3d15876273b0d92ee057dccd1a3ba84a04760220bfa7c5f834fae445b5a",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In these notices the Organization requested a conference to be held \nwith reference thereto \"at the e~trliest practicable date and in any \nevent prior to the expiration of 30 days from the date of this notice \n* * *,\" but continued-- \nIn accordance with established procedure which has been followed for \nmore than 20 years, and on the assumption that an agreement may not be \nreached in separate system conferences, our organization, in the interest of \nsaving time of Management and the Organization, suggests that the above- \nmentioned conference be waived without prejudice to the merits of the posi- \ntion of Management or the Organization pending finalization of negotiations \nupon the aforementioned subject matter by the Employees, National Con- \nference Committee, composed of the Chief Executives of the Cooperating \nRailway Labor Organizations and the Carriers' National Conference Com- \nmittee; whereupon the Organization will communicate with Management \nfor conference to discuss application of agreement reached to the employees \non your road represented by the Brotherhood of Sleeping Car Porters."
+    },
+    "TERM:EO:11115:56dd068b64e127f0@b6c68226b4a69822": {
+      "actor_id": "EO:11115",
+      "char_end": 3473,
+      "char_start": 3345,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:56dd068b64e127f0@b6c68226b4a69822",
+      "instrument_id": "EO:11115",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_11115_Actual_report_date_of_the_board_created_by_EO_11115_Presidential_Emergency_Board_Rail_00e18b7405.txt",
+        "text_sha256": "b6c68226b4a698226b1a14b5226b0391add0362a54bf0f8d4bc7e9af98385705",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Board shall report its findings to the President with respect \nto these disputes within 30 days from the date of this order."
+    },
+    "TERM:EO:11115:56dd068b64e127f0@f721c3d15876273b": {
+      "actor_id": "EO:11115",
+      "char_end": 1357,
+      "char_start": 1229,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:11115:56dd068b64e127f0@f721c3d15876273b",
+      "instrument_id": "EO:11115",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:11115#lead",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-155-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "9c28d3bc79d7ceffbf6350724315ee69bef733fd2a51c47bc9c6cca0eae06646",
+        "signing_date": "1963-07-04",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-11115-9c28d3bc79.txt",
+        "text_sha256": "f721c3d15876273b0d92ee057dccd1a3ba84a04760220bfa7c5f834fae445b5a",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-155-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Board shall report its findings to the President with respect \nto these disputes within 30 days from the date of this order."
     },
     "TERM:EO:11115:6cdaf7aa37395678@9e0fa6dd835e631c": {
       "actor_id": "EO:11115",
@@ -237,34 +487,6 @@
       "stated_end_date": null,
       "text": "The board shall report its findings to the President with respect to these disputes within thirty days from the date of this order."
     },
-    "TERM:EO:11115:f7b94b620ec1e246@06628f530f8167ab": {
-      "actor_id": "EO:11115",
-      "char_end": 1809,
-      "char_start": 1387,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11115:f7b94b620ec1e246@06628f530f8167ab",
-      "instrument_id": "EO:11115",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11115#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "28 FR 6905, PDF pages 3-3",
-        "requires_page_check": false,
-        "sha256": "d0c117945062683092288f912dd1b813bfe43f4a25c270fd086d0dd25dd1f710",
-        "signing_date": "1963-07-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-11115-d0c1179450.txt",
-        "text_sha256": "06628f530f8167abcbc24716c45c15b39ac5edadc368051e971730d12934097f",
-        "url": "https://www.govinfo.gov/content/pkg/FR-1963-07-06/pdf/FR-1963-07-06.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "As provided by section 10 of the Railway Labor Act, as amended,  \nfrom this date and for thirty days after the board has made its report  \nto the President, no change, except by agreement, shall be made by  \nThe Pullman Company, the Chicago, Rock Island & Pacific Railroad  \nCompany, the New York Central System and The Soo Line Railroad  \nCompany, or by its employees, in the conditions out of which this  \ndispute arose."
-    },
     "TERM:EO:11115:f7b94b620ec1e246@e6f5c2fd17da3155": {
       "actor_id": "EO:11115",
       "char_end": 2352,
@@ -295,9 +517,39 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended,  \nfrom this date and for thirty days after the board has made its report  \nto the President, no change, except by agreement, shall be made by  \nThe Pullman Company, the Chicago, Rock Island & Pacific Railroad  \nCompany, the New York Central System and The Soo Line Railroad  \nCompany, or by its employees, in the conditions out of which this  \ndispute arose."
     }
   },
-  "fingerprint": "07a2eab1c96b4e23efd3b6225daa3cd80109ea2edfc9e9184dbba64a7e8a376e",
+  "fingerprint": "590c05a7cbd9208f0219361f345b8badc7416719307905901535ba9ad8005aca",
   "instrument_id": "EO:11115",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "60f5384ecc8400cb2a2e265439f89ea4fc04f29c3c0fe6cee522129248794545",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11115",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11115>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:11115:17f567ed12cdf416@e6f5c2fd17da3155",
+        "TERM:EO:11115:f7b94b620ec1e246@e6f5c2fd17da3155",
+        "TERM:EO:11115:d10bd3b708d1d5aa@9e0fa6dd835e631c",
+        "TERM:EO:11115:6cdaf7aa37395678@9e0fa6dd835e631c"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11115#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -336,16 +588,18 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11115",
   "own_terms": [
     "TERM:EO:11115:17f567ed12cdf416@e6f5c2fd17da3155",
     "TERM:EO:11115:f7b94b620ec1e246@e6f5c2fd17da3155",
-    "TERM:EO:11115:17f567ed12cdf416@06628f530f8167ab",
-    "TERM:EO:11115:f7b94b620ec1e246@06628f530f8167ab",
+    "TERM:EO:11115:56dd068b64e127f0@f721c3d15876273b",
+    "TERM:EO:11115:3b5468d0bff5639b@f721c3d15876273b",
+    "TERM:EO:11115:4d6f31e4c276048c@f721c3d15876273b",
+    "TERM:EO:11115:56dd068b64e127f0@b6c68226b4a69822",
+    "TERM:EO:11115:3b5468d0bff5639b@b6c68226b4a69822",
+    "TERM:EO:11115:4d6f31e4c276048c@b6c68226b4a69822",
     "TERM:EO:11115:d10bd3b708d1d5aa@9e0fa6dd835e631c",
     "TERM:EO:11115:6cdaf7aa37395678@9e0fa6dd835e631c"
   ],

@@ -50,10 +50,21 @@ to `needs.txt`, and a test.
 `research/readiness/SOURCE_AUDIT_HOLDS.jsonl` can prevent a mechanically complete
 claim from being advertised as ready while a documented independent AI source
 audit has an unresolved material objection. Each hold binds the exact canonical
-claim SHA256 and the review file SHA256. It changes only final readiness, never
-individual steps, legal status or claims; it cannot confer acceptance. A changed
+claim SHA256 and the review file SHA256. An active hold reopens the
+`counterevidence` step, removes that step's machine-search and exhaustion credit,
+and withholds final readiness. Legal status and the owner's canonical claim stay
+unchanged; a hold cannot confer acceptance. This prevents the row from displaying
+counterevidence as complete while a material objection remains open. A changed
 claim gets a stale-hold warning for explicit rereview. Missing or damaged held
-review evidence fails closed. EO 9789's held claim remains unresolved.
+review evidence fails closed.
+
+The October 20 portfolio repair adds exact-version holds for EOs 13792, 13101,
+13148, 13783 and 13807 alongside the existing EO 9789 hold. Their reviews and
+unaccepted partial proposals are under
+`research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/`.
+Mechanical checker passes do not resolve these first-cessation and scope
+questions. The existing claim owners must supply the missing evidence and
+clause-specific reasoning through the normal review process.
 
 Status-history outputs are research preparation and confer no readiness step.
 The 1989 snapshot is still excluded from legal/current-status proof.

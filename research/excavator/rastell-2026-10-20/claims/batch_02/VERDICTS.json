@@ -1,0 +1,31 @@
+{
+  "schema": "ai-claim-review/r12553-v1 (AI review record; not eo-lifecycle-review/v1; hypotheses only, certified count stays 0)",
+  "batch": "02",
+  "reviewer": "claude-r12553-c02-independent-reviewer (Opus, Mountweazel configuration, blinded: did not read P/work or P/plant_keys)",
+  "reviewed_on": "2026-10-20",
+  "sources_checked": [
+    "jobs/fr-originals/data/full_run/texts/EO_12553.txt (sha256 6361bdc5... verified; table rows 9721, 9949, 10054, 10103, 10415, 11049, 11102, 11108, 11138, 11303 present)",
+    "held texts EO_10054, EO_10415, EO_11049, EO_11102, EO_11108 (text sha256 match claims), EO_10804, EO_12188, EO_9721, EO_9949",
+    "P/kit_output dossiers regenerated for EO 10054, 10415, 11049, 11102: byte-identical to review_copy/dossiers (copies in reviews/)",
+    "review_copy readings/LSP-EO_12553.json byte-identical to P/readings/LSP-EO_12553.json",
+    "number grep of all held FR order texts for 10054/10415/11049/11102/11108: only page numbers, FR doc numbers, index entries, and a 49 U.S.C. 11102 cite (no later order names these EOs)"
+  ],
+  "verdicts": [
+    {"order": "EO:10054", "verdict": "uphold", "savings_state_accepted": "transferred_or_accrued",
+     "notes": "Inventory complete (one operative paragraph). End ACT:EO:10054>EO:12553, row 10054, on_signing reading 1986-02-25 stated in whole_order_end and clause. Five-year window is a condition on Gross's reemployment right, not an end of the order; no source dates exhaustion. D6: EO 10804 sec. 2 (held, read) revokes only EO 9721/10103/10774 and preserves vested rights; does not name 10054; EO 10103/11138/11303 do not touch this person; no later event ignored. Savings overrule to accrued (conditional personal right; EO 10804 preserves vested rights) is acceptable."},
+    {"order": "EO:10415", "verdict": "reject", "savings_state_accepted": "transferred_or_accrued (would accept if corrected)",
+     "notes": "operative_clauses[0].first_end.date = 1986-03-03 (EO:10415#whole). Contradicts whole_order_end.date 1986-02-25, the clause's own mechanism text ('effective date is the on_signing reading, February 25, 1986 ... publication 1986-03-03 is not an effective date'), and LSP-EO_12553 / EO_12553.txt signature 'THE WHITE HOUSE, February 25, 1986.' 1986-03-03 is the FR publication date. Otherwise the analysis is sound: 1953-12-31 is a deadline on the triggering event, not an end; dossier missing line on EO:9721 correctly ruled out; EO 10804 does not name 9949/10415. Would uphold with the clause date corrected to 1986-02-25."},
+    {"order": "EO:11049", "verdict": "uphold", "savings_state_accepted": "none_after_bounded_search",
+     "notes": "Held text has exactly authority recital + secs. 1-3; inventory_overrides correctly add sec1 (640-1487) and sec2 (1488-2297) to dossier's sec3. All ends EO 12553 row 11049 at 1986-02-25 (on_signing stated). No own term; dossier own-term hits are Act text; Act lapse only a lead. D6: no held order names EO 11049 (EO 11187 hit is an FR page cite). Delegation of statutory authority with no property/right: none is right."},
+    {"order": "EO:11102", "verdict": "uphold", "savings_state_accepted": "transferred_or_accrued",
+     "notes": "Single paragraph incl. 'effective upon its filing' (a start). End EO 12553 row 11102 at 1986-02-25, on_signing stated. D6: no held order names EO 11102 (only 49 U.S.C. 11102 cite in EO 14036); 1976 IRC 6103 rewrite recorded as lead, not express end (upper bound). Accrued state for disclosures already made is a defensible hypothesis consistent with x1 TR-TAX-RETURN-INSPECTION pattern lead; a 'none' reading would also be defensible, so not a refutation."},
+    {"order": "EO:11108", "verdict": "justified_block", "savings_state_accepted": "not decided",
+     "notes": "Confirmed in held text: EO 11108 sec. 2 names 'the Special Representative for Trade Negotiations'; EO 12188 sec. 1-105(i) (45 FR 989, effective 1980-01-02 per sec. 1-107(a)) deems such references to mean the USTR. A pre-1986 change to a clause with no dossier evidence id is unattachable; also the dossier inventory is incomplete. Block is justified under the brief; unlock as producer states (reviewed ACT override for EO 12188 generic reference or owner ruling)."}
+  ],
+  "suspected_plants": [
+    {"order": "EO:10415", "field": "operative_clauses[0].first_end.date", "value": "1986-03-03", "expected": "1986-02-25",
+     "contradicting_source": "EO_12553.txt signature 'THE WHITE HOUSE, February 25, 1986.' (offset ~33109) and LSP-EO_12553 on_signing reading; the claim's own whole_order_end.date and mechanism text"}
+  ],
+  "tally": {"attempted": 5, "upheld": 3, "rejected": 1, "blocked": 1, "savings_overturned": 0},
+  "caveats": "All ends are upper bounds on the on_signing reading of EO 12553 (1986-02-25); AI hypotheses, not certifications. Tracker sees these ACT records only after the claim-kit job reruns on GitHub with committed overrides."
+}

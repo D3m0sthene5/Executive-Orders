@@ -1,0 +1,145 @@
+{
+  "schema": "portfolio-repair-cost-coverage/v1",
+  "session_start_utc": "2026-10-20T15:36:02Z",
+  "session_start_precision": "Recorded clock tool result at task start",
+  "model_token_usage_observed": false,
+  "session_model_tokens": null,
+  "session_cash_charge_usd": null,
+  "session_api_token_value_usd": null,
+  "verified_savings_usd": 0,
+  "matched_efficiency_trial_performed": false,
+  "reason": "The repair session has no complete model/token meter. Deterministic preparation timing, acquisition bytes and test elapsed time cannot price the agent work or establish quality-preserving savings.",
+  "included_work_categories": [
+    "build",
+    "coordination",
+    "monitoring",
+    "review",
+    "rework",
+    "integration",
+    "failed_attempts"
+  ],
+  "per_order": [
+    {
+      "instrument_id": "EO:13792",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:13101",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:13148",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:13783",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:13807",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:11513",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    },
+    {
+      "instrument_id": "EO:13037",
+      "model_tokens": null,
+      "allocated_agent_seconds": null,
+      "reason": "Not separately metered; shared preparation and review effort cannot be allocated without inventing precision."
+    }
+  ],
+  "historical_build_record": {
+    "api_token_value_usd": 10.18,
+    "basis": "Dated Claude handoff transcribed with provenance into the existing Junto ledger; historical and separate from this repair session.",
+    "cash_charge_usd": null,
+    "complete_portfolio_cost_usd": null
+  },
+  "new_primary_acquisition": {
+    "ladder_http_requests": 5,
+    "pool_network_calls_including_robots": 7,
+    "range_requests": 0,
+    "downloaded_document_bytes": 1117670,
+    "canonical_cache_refresh_network_requests": 0
+  },
+  "bounded_existing_citation_verification": {
+    "purpose": "Verify exact sources already cited by six canonical claims; no new research acquisition.",
+    "runs": [
+      {
+        "run_id": 39456616069,
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39456616069",
+        "execution_commit": "7247771207c619b88121b7ad8d7cd87fde9166c0",
+        "result_commit": "65915348be9ac350cd8c0830279a2c131247ca2a",
+        "workflow_result": "failed",
+        "source_count": 10,
+        "verified_count": 10,
+        "download_attempts": 10,
+        "downloaded_bytes": 1881645,
+        "download_byte_coverage_complete": true,
+        "cache_reused_count": 0,
+        "cache_reused_bytes": 0
+      },
+      {
+        "run_id": 39458800358,
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39458800358",
+        "execution_commit": "d0527136caa14cbde2455737dbf86eee37f868c3",
+        "result_commit": "4f6632fa78f6c7c921a5bd4c14a7724d9ad40ce9",
+        "workflow_result": "failed",
+        "source_count": 10,
+        "verified_count": 10,
+        "download_attempts": 10,
+        "downloaded_bytes": 1881645,
+        "download_byte_coverage_complete": true,
+        "cache_reused_count": 0,
+        "cache_reused_bytes": 0
+      },
+      {
+        "run_id": 39461050945,
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39461050945",
+        "execution_commit": "b0f1aa6954985ba19687e16a24a70c41c6151c2a",
+        "result_commit": "fb992bdf42a7d6d5b463360c0c6064e365b96d26",
+        "workflow_result": "success",
+        "source_count": 10,
+        "verified_count": 10,
+        "download_attempts": 10,
+        "downloaded_bytes": 1881645,
+        "download_byte_coverage_complete": true,
+        "cache_reused_count": 0,
+        "cache_reused_bytes": 0
+      }
+    ],
+    "scope": "These are measured bounded citation-verification downloads; unrelated repository checkout traffic, model tokens and total runner traffic are not measured here.",
+    "totals": {
+      "download_attempts": 30,
+      "downloaded_bytes": 5644935,
+      "cache_reused_count": 0,
+      "cache_reused_bytes": 0,
+      "distinct_cited_source_hashes": 10,
+      "interpretation": "The same ten already-cited files were verified in each of three attempts. These are repeated verification downloads, not thirty newly acquired sources."
+    }
+  },
+  "failed_attempt_accounting": {
+    "first_github_run": "Preserved in GITHUB_RUN_1.json; failed synthetic-fixture placement and the follow-up repair are included in the elapsed repair observation window. They are not deducted from total effort.",
+    "local_attempts": "Original incomplete-checkout checker/tracker failures and later strict checker rejection are retained under local-validation.",
+    "unavailable_costs_remain_null": true,
+    "second_github_run": "Preserved in GITHUB_RUN_2.json: one Mountweazel scan false-positive on the runner input-freshness manifest. All remaining tests and source-to-tracker checks passed; follow-up repair effort remains part of the unmetered total."
+  },
+  "accounted_bounded_source_download_bytes": 6762605,
+  "accounted_download_scope": "New-primary probe plus three bounded citation-verification runs only; excludes Git checkout, unrelated runner network traffic, external tools and all unobserved model/token usage.",
+  "observation_cutoff_utc": "2026-10-20T16:57:58Z",
+  "elapsed_wall_seconds_observed": 4916.0,
+  "elapsed_wall_interpretation": "Overlapping end-to-end observation window through final validation/report assembly, including the two failed GitHub attempts and rework. It is not summed worker time, an allocation per EO, model tokens, or cash cost. Final documentation publication and response follow this cutoff."
+}

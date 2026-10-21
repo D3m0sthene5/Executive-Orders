@@ -1,0 +1,27 @@
+{
+ "batch": "batch_05",
+ "producer": "claude-lamm-05-producer",
+ "model": "claude-sonnet-5-5",
+ "orders_in_batch": 20,
+ "records_written": 14,
+ "orders_skipped_no_original_text": ["EO:2834","EO:4359A","EO:6620A","EO:6734A","EO:6950","EO:7509"],
+ "skip_reason": "held text is a derivative lead or held_text_lead (acceptable_as_original false); task limited to orders with original text held",
+ "tool_calls_approx": 75,
+ "wall_time_minutes_approx": 60,
+ "usage": "token usage not exposed to the subagent",
+ "network_used": false,
+ "pregate": "check_ote.py on batch_05_held_original.json (the 14 held-original orders): ok 14 records",
+ "fetch_lines_appended": 4,
+ "fetch_lines_for": ["EO:13267","EO:13339","EO:11412","EO:12184"],
+ "kit_sheets": 1,
+ "kit_sheets_note": "EO:13147 only (the sole whole-end NO order with original text done); kit.py prepare/apply/batch-check: strict_claim_pass 1, actual claim-checker claims_gate_passed 1. Claim not committed. Kit packet moved from the temporary in-repo folder batch_05_kitwork to work/batch_05/kit and deleted from research/.",
+ "claim_kit_change": "none",
+ "verdict_counts": {"ends_by_own_term_whole": 1, "ends_by_own_term_partial": 1, "ended_earlier_by_other": 7, "end_date_needs_source": 3, "not_an_end": 2},
+ "caveats": [
+  "Seven records are ended_earlier_by_other or extended-then-revoked (D5/D6 traps): EO 13260 (EO 13286), EO 13515 (four continuance orders then EO 13872), EO 14007/14031/14045/14050/14084 (EO 14048/14109 continuance then EO 14148 revocation). For these end_date holds the last held continuance date as an upper bound only, not the end.",
+  "EO 13147 whole end rests on absence of a held extension ('unless extended by the President prior to such date'); EO 13316 calls the Commission terminated or completed but does not date it. EO 13339 is partial (Commission only) and a further extension past 2007-05-13 is not ruled out by held texts.",
+  "EO 7680 and EO 9579: dossier TERM hits come from other documents (a 1950 statute representation; an OPA regional order on mislocated FR pages). EO 9579's held 'original' does not contain the order; the real text is held inside EO_9578.txt / EO_9580.txt.",
+  "EO 11412 and EO 12184 original texts have requires_page_check true; EO 11412 dossier computed candidate 1968-07-10 misreads the clause.",
+  "No planted or example text written by the producer; all outputs under the work dir except four FETCH_QUEUE appends."
+ ]
+}

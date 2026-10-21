@@ -1,0 +1,92 @@
+{
+ "batch": "batch_01",
+ "role": "PROBE",
+ "producer": "claude-lamm-t01-producer",
+ "model": "claude-sonnet-5-5",
+ "orders_in_batch": 13,
+ "records_written": 13,
+ "orders_skipped": [],
+ "verdict_counts": {
+  "end_date_needs_source": 8,
+  "ends_by_own_term_whole": 1,
+  "not_an_end": 1,
+  "extended_or_renewed": 2,
+  "ends_by_own_term_partial": 1
+ },
+ "positive_end_records": 2,
+ "positive_end_records_detail": [
+  "EO:13037 ends_by_own_term_whole 1999-09-30 (claims-enabled candidate; stated date after EO 13108 amendment)",
+  "EO:6734A ends_by_own_term_partial 1934-06-29 (orig_open; derivative text; record only; one-day counting ambiguity)"
+ ],
+ "attempts": 13,
+ "positive_per_attempt": 0.1538,
+ "strata": {
+  "C_event": {
+   "orders": 8,
+   "positive": 1,
+   "note": "EO 13037 only: an amending order replaced the event-relative clause with a stated date; the other 7 have no held report date"
+  },
+  "YES_trap": {
+   "orders": 3,
+   "positive": 0,
+   "verdicts": [
+    "not_an_end",
+    "extended_or_renewed",
+    "extended_or_renewed"
+   ]
+  },
+  "orig_open": {
+   "orders": 2,
+   "positive": 1,
+   "note": "records only, never claims"
+  }
+ },
+ "kit_sheets": 1,
+ "kit_sheet_orders": [
+  "EO:13037"
+ ],
+ "kit_path": "legacy kit.py sheet/assemble/check with --write to scratch (prepare requires a destination under research/, so it was not used, to keep the blinding rule)",
+ "claim_checker": {
+  "claims_checked": 1,
+  "gate_passed": 1,
+  "mechanical_fail": 0,
+  "all_checks_passed": 0,
+  "unverified": "custody_record_only for the amending order's PDF (first_end.source and whole_order_end.source); original and quotations verified (33 exact)",
+  "run": "REPO_ROOT=repo OUTPUT_DIR/JOB_CACHE_DIR under work/batch_01/checker, CLAIM_CHECKER_VERIFY_DOWNLOADS=0, checker.py --claims CLAIMS.proposed.jsonl"
+ },
+ "claims_proposed": 1,
+ "pregate": "check_ote.py: ok 13 records",
+ "fetch_lines_appended": 9,
+ "fetch_lines_for": [
+  "EO:11513",
+  "EO:11279",
+  "EO:12526",
+  "EO:12792",
+  "EO:13075",
+  "EO:12946",
+  "EO:14011",
+  "EO:6950",
+  "EO:6734A"
+ ],
+ "fetch_line_basis": "refined (not duplicate) lines: the source ladder returned no_route report_date_cannot_be_bracketed for the claude-lamm2-queue report-date lines (no due date or window given); the new lines add the due date and a search window from the order text. EO 6950 and 6734A: official text requests (orig_open).",
+ "detector_gaps": [
+  "EO:12905: the sec. 5 two-year sunset is not among the batch fixed_term_records (only the member-term sentence); it exists as a dossier TERM only for the APP mirror text",
+  "EO:6950: TERM stated_end_date 1934-03-20 is the list date defining the class, not an end",
+  "EO:13037: the operative end sits in an amending order (EO 13108) and is not a TERM record of the order"
+ ],
+ "network_used": false,
+ "files_written_outside_work_batch_dir": [
+  "research/readiness/FETCH_QUEUE.jsonl (9 appended lines, as directed)"
+ ],
+ "tool_calls_approx": 95,
+ "wall_time_minutes_approx": 17,
+ "usage": "token usage not exposed to the subagent",
+ "plants_or_example_text_written_by_producer": false,
+ "caveats": [
+  "EO 13037's end rests on the amending order EO 13108; if a reviewer requires the end evidence to be a TERM record of the order itself the claim line is not enabled.",
+  "EO 13037 all_checks_passed is false only because the amending order's PDF is a custody record, not kept bytes; gate and quotations pass.",
+  "EO 6734A partial end rests on a derivative transcription and a counting convention (20 days from 1934-06-09 gives 1934-06-29; counting the order day gives 06-28).",
+  "Seven C_event orders end_date_needs_source: no held text gives the final report date; the revocations by later continuance orders are upper bounds only.",
+  "EO 13265 and 12905 are YES-order sunsets renewed through EO 14354 (until 2027-09-30); no status is changed."
+ ]
+}

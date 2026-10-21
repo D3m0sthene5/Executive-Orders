@@ -9,11 +9,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10306>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10306#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10306",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10306"
@@ -104,6 +134,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10306>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10306>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10306>EO:12553@rastell",
+      "producer": "claude-rastell-04-producer",
+      "producer_d6": "Searched: dossier chain and missing lines, own_terms, the target's clause text, MISSING_SOURCES and EDGES.csv (later-events, app-footnote-leads); edges targeting EO:10306: EO:10155 cross_reference, EO:12553 revocation. Own terms: the board 'shall report its findings ... within thirty days from the date of this order'; the order invokes section 10 of the Railway Labor Act 'and subject to the provisions of that section' (the held order text has no separate express status-quo sentence), and says 'Nothing in this order shall be construed to derogate from the authority of the Secretary of the Army under the said Executive Order No. 10155' (that is a saving in the target in favour of the Army's authority under EO 10155 of 1950-08-25; the dossier's EO 10155 edge is a 'See:' cross-reference, not an ending or change of this order; EO 10155 is not itself a row in the EO 12553 table). No termination clause, fixed end date, earlier revoking or superseding instrument found. A report deadline is never an end, so EO 12553 is the first express end in held sources, but the order plausibly spent itself soon after 1951-11-15; the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, and no held text amends or revokes it (a text search of the held EO texts for '12553' finds only EO 12553 itself).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EO 10155 edge is a 'See:' cross-reference (target saves Army authority under EO 10155); not an end or change of the target. No earlier express end.",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text (own terms). No edge targets EO:12553 (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-04-reviewer (independent Opus, held sources)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_04/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10306",
+      "target_naming": {
+        "char_end": 9572,
+        "char_start": 9499,
+        "sha256": "81f31a62c41c09b06cd331b5ac5f91aeb3798a3c60f5891de47be554b7984d98",
+        "text": "10306 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:10155": {
       "actor_id": "EO:10155",
       "char_end": 39013,
@@ -190,6 +295,34 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1951-11-20/pdf/FR-1951-11-20.pdf"
       },
       "text": "Instrument: EO:10306\nSource: https://www.govinfo.gov/content/pkg/FR-1951-11-20/pdf/FR-1951-11-20.pdf\nSHA-256 of the downloaded file: 76c8091d141b79fe029e45d4e3dfb44f2b3cc80bdeb27d851210a7dedfee3369\nLocation: 16 FR 11709, PDF pages 3-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 52 ===\nFEDERAL REGISTER 11709Tuesday, November 20, 1951\nCO N TEN TS— Continued\nPrice Stabilization, Office of—  Pa8 ®  \nContinued \nNotices—Continued \nDelegation of authority:\nDirector of Region 13; to ap­\nprove and disapprove grad-\ners and scalers----------------11752\nRegional Directors ; to modify, \nrevise or request further in­\nformation concerning ap­\nplications filed _____________11752\nRules and regulations:\nArea milk price adjustments; \nChicago, HI., milk marketing\narea (GCPR, SR 63) __________11721\nCeiling prices:\nPacific Northwest logs (CPR\n-S7) __________________: ___11716\nPork sold at wholesale; mis­\ncellaneous amendments \n(CPR 74)__________________11715\nProduction and Marketing Ad­\nministration\nNotices:\nDirector, Fruit and Vegetable \nBranch, delegation of au­\nthority to exercise certain\nfunctions relating to:\nGrading, certification and \nstandardization of fruits, \nvegetables and other prod­\nucts ----:----------------------- 11741\nProcessed fruits and vegeta­\nbles, processed products \nthereof, and certain other \nprocessed food products—  11741 \nRules and regulations:\nPrunes, dried, produced in Cali­\nfornia; correction-------------- 11712\nRaisins produced from raisin \nvariety grapes grown in Cali­\nfornia; termination of certain \nprovisions, reports and rec­\nords; correction -----------------11712\nRent Stabilization, Office of\nRules and regulations:\nHotel regulation, defense rental \narea, Alabama, California,\nUtah and Alaska; correction- 11737\nSecurities and Exchange Com­\nmission\nNotices:\nHearings, etc.:\nPublic Service Co. of New\nHampshire------------— -----11755\nUnion Securities Corp. and \nAmerican Express Co -------11755\nTreasury Department\nRules and regulations:\nPractice of attorneys and \nagents before the Depart­\nment; judges of courts of rec­\nord _____________  11712\nWage and Hour Division\nProposed rule making:\nPuerto Rico, Hooked Rug In­\ndustry; disapproval of rec­\nommended minimum -  wage \nrates_________________________11738\nC O D IFICA TIO N  G U ID E\nA numerical list of the parts of the Code  \nof Federal Regulations affected by documents  \npublished in tbis issue. Proposed rules, as  \nopposed to final actions, are identified as\nBUCh.\nTitle 3 Pag e\nChapter I  (Proclamations):\n2953____________________________11707\nChapter II (Executive Orders):\n10306._________   11709\nTitle 5  \n. Chapter I:\nPart 30_________________________11711\nTitle 6  \nChapter III:\nPart 31L _________  11712\nChapter IV:\nPart 601 (2 documents) _________11712\nTitle 7  \nChapter IX :\nPart 989________________________11712\nPart 993___________  11712\nTitle 15  \nChapter H I:\nPart 399________________________11713\nTitle 29  \nChapter V:\nPart 684 (proposed) ____________11738\nTitle 31 \nSubtitle A:\nPart 10_______________________11712\nTitle 32A\nChapter H I (OPS):\nCPR 74 _______________________11715\nCPR 97_________________________11716\nGCPR, SR 63, AMPR 5 __________11721\nChapter VI (N P A ):\nM-16, Dir. 1 ___________________11728\nM-79___________________________11723\nM-89________  11725\nChapter X V II (H H FA):\nCR 2 _________________________  11728\nCR 3 ___________________________11731\nChapter X X I (O R S):\nRR 3 _________________  11737\nTitle 47  \nChapter I:\nPart 10____________ 11737\nPart 19 (proposed) ____________11738\nTitle 50  \nChapter I:\nPart 34_________________________11737\nEXECUTIVE ORDER 10306 \nC reating  a n E m er g ency B oars  T o I n v e s­\ntigate  D ispu t e s B e t w e e n th e A k r o n & \nB arberton  B elt  R ailroad  C o m p a n y \nand  O ther  C arriers  and  C ertain  \nW orkers\nWHEREAS disputes exist between the \nAkron & Barberton Belt Railroad Com­\npany and certain other carriers desig­\nnated in list A attached hereto and made \na part hereof, carriers under Federal \nmanagement, and certain workers repre­\nsented by the seventeen cooperating \n(non-operating) railway labor organiza­\ntions designated in list B attached hereto \nand made a part hereof; and \nWHEREAS by Executive Order No. \n10155 of August 25,1950, possession, con-\ntrol, and operation of the transportation \nsystems owned or operated by the said \ncarriers, together with the transporta­\ntion systems owned or operated by cer­\ntain other carriers, were assumed by the \nPresident, through the Secretary of the \nArmy; and\nWHEREAS these disputes have not \nheretofore been adjusted under the pro­\nvisions of the Railway Labor Act, as \namended; and\nWHEREAS these disputes threaten, in \nthe judgment of the National Mediation \nBoard, substantially to interrupt inter­\nstate commerce to a degree such as to \ndeprive the country of essential trans­\nportation service, and also threaten to \ninterfere with the operation by the Sec­\nretary of the Army of transportation \nsystems taken pursuant to the said \nExecutive Order No. 10155:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion and the laws of the United States, \nincluding section 10 of the Railway \nLabor Act, as amended (45 U. S.C. 160), \nand subject to the provisions of that sec­\ntion, I  hereby create a board of three \nmembers, to be appointed by me, to in­\nvestigate the said disputes. Nothing in \nthis order shall be construed to derogate \nfrom the authority of the Secretary of \nthe Army under the said Executive \nOrder No. 10155.\nNo member of the said Board shall be \npecuniarily or otherwise interested in any \norganization of railway employees or any \ncarrier.\nThe Board shall report its findings to \nthe President with respect to the said \ndisputes within thirty days from the date \nof this order. The Board may, to the ex­\ntent it deems necessary or desirable, \nmake separate and independent findings \nwith respect to each of the carriers in­\nvolved.\nIn performing its functions under this \norder the Board shall comply with the \nrequirements of section 502 of the De­\nfense Production Act of 1950, as \namended.\nH arry  S. T r u m an\nT he  W h it e H o u s e,\nNovember 15, 1951.\nList “A”\n(Eastern Region)\nAlbany Port District Railroad Company  \nAkron & Barberton Belt Railroad Company  \nAkron, Canton & Youngstown Railroad  \nAkron Union Passenger Depot Company  \nAnn Arbor Railroad Company  \nArcade & Attica Railroad Corporation  \nBangor & Aroostook Railroad Company  \nBarre & Chelsea Railroad  \nBelfast & Moosehead Lake Railroad Company  \nBessemer & Lake Erie Railroad Company  \nBoston & Maine Railroad Company  \nBoston Terminal Company  \nBrooklyn Eastern District Terminal  \nBuffalo Creek Railroad  \nBush Terminal Company  \nCanadian National Railways:\nCanadian National Railway State of New  \nYork\nCanadian National Railway Lines in New  \nEngland\nChamplain & St. Lawrence Railroad\nUnited States & Canada Railroad\nSt. Clair Tunnel Company  \nCanadian Pacific Railways in the United\nStates\n\n=== PDF page 4 of 52 ===\n11710 THE PRESIDENT\nCanton Railroad Company  \nCentral Indiana Railway Company  \nCentral Railroad Company of New Jersey  \nCentral Railroad of Pennsylvania  \nJersey Central Transport Company  \nNew York & Long Branch Railroad  \nWharton & Northern Railroad  \nCentral Vermont Railway, Inc.\nChesapeake & Ohio Railway Company:\nPere Marquette District  \nFort Street Union Depot Company  \nChicago, Indianapolis & Louisville Railway  \nChicago South Shore & South Bend Railroad  \nChicago Union Station Company  \nCincinnati Union Terminal Company  \nDayton Union Railway Company  \nDelaware & Hudson Railroad  \nDelaware, Lackawanna & Western Railroad  \nDetroit & Mackinac  \nDetroit & Toledo Shore Line Railroad  \nDetroit, Toledo & Ironton Railroad  \nDetroit Terminal Railroad Company  \nEast Broad Top Railroad & Coal Company  \nEast St. Louis Junction Railway Company  \nErie Railroad Company  \nChicago & Erie\nGrand Trunk Western Railroad Company  \nHoboken Manufacturers Railroad Company  \nHuntingdon & Broad Top Mountain Railroad  \n& Coal Company (Penna.)\nIllinois Terminal Railroad Company  \nIndianapolis Union Railway Company  \nJay Street Connecting Railroad  \nLackawanna & Wyoming Valley Railroad  \nLake Champlain & Moriah Railroad Company  \nLake Terminal Railroad Company  \nLehigh & Hudson River Railroad Company  \nLehigh & New England Railroad Company  \nLong Island Railroad Company  \nMackina6 Transportation Company  \nMaine Central Railroad Company  \nPortland Terminal Coihpany  \nManistee & Northeastern Railway Company  \nMaryland & Pennsylvania Railroad  \nMerchants Despatch Trans Corporation  \nMontour Railroad\nMorristown & Erie Railroad Company  \nMystic Terminal Company (Charleston,  \nMass.)\nNew Jersey and New York Railroad  \nNew Jersey, Indiana & Illinois Railroad Com­\npany\nNew York Connecting Railroad Company  \nNew York Chicago & St. Louis Railroad Com­\npany\nNew York Dock Railway  \nNew York, New Haven & Hartford Railroad  \nCompany\nNew York, Susquehanna & Western Railroad  \nPatapsco & Back Rivers Railroad Company  \nPennsylvania Railroad Company\nBaltimore & Eastern Railway Company  \nJersey City Stock Yards, Inc.\nPittsburgh Joint Stock Yards  \nPennsylvania-Reading Seashore Lines  \nPhiladelphia Bethlehem & New England Rail­\nroad Company\nPittsburgh & Shawmut Railroad Company  \nPittsburgh & West Virginia Railway  \nPullman Company\nRailroad Perishable Inspection Agency  \nReading Company\nBeaver Creek Water Company  \nPhiladelphia Reading & Pottsville  \nSt. Johnsbury & Lemoille County  \nSt. Louis & O’Fallon Railway Company  \nSouth Buffalo Railway  \nUnion Belt of Detroit  \nUnion Depot Company (Columbus, Ohio)'  \nUnion Freight Railroad (Boston)\nUnion Inland Freight Station (New York)  \nWashington Terminal Company  \nWestern Alleghany Railroad Company  \nYoungstown & Northern Railway Company\n(Southeastern Region)\nAtlanta & St. Andrews Bay  \nAtlanta & West Point  \nWestern Railway of Alabama  \nAtlanta Joint Terminals  \nAtlantic & East Carolina Railway Company\nAtlantic Coast Line Railroad  \nBirmingham Terminal Company  \nCentral of Georgia Railway  \nCharleston & Western Carolina Railway  \nChattanooga Station Company  \nChattanooga Traction Company  \nChesapeake & Ohio Railway  \n(Chesapeake District)\nClinchfield Railroad  \nColumbia Union Station Company  \nColumbus & Greenville Railway  \nDurham Union Station Company  \nEast Tennessee & Western North Carolina  \nRailroad\nFlorida East Coast Railway  \nFruit Growers’ Express Company  \nGeorgia & Florida Railroad  \nGeorgia Railroad\nAugusta Union Station Company  \nGulf, Mobile & Ohio Railroad  \nInterstate Railroad Company  \nJacksonville Terminal Company  \nKentucky & Indiana Terminal Railroad  \nLancaster & Chester Railroad Company  \nLouisville & Nashville Railroad\nLexington Union Station Company  \nMacon, Dublin & Savannah s.\nMacon Terminal  \nMaher, Walter C.\nMeridian & Bigbee River Railway Company  \nMeridian Terminal Company  \nMississippi Central Railroad  \nNashville, Chattanooga & St. Louis Railway  \nNashville Terminals Company  \nNatchez & Louisiana Railway & Transfer  \nCompany\nNew Orleans Public Belt Railroad Company  \nNorfolk & Portsmouth Belt Line  \nNorfolk & Western Railway  \nNorfolk Southern Railway Company  \nNorfolk Terminal Railway Company  \nPiedmont & Northern Railway Company  \nPort Everglades (Broward County Port  \nAuthority)\nRichmond, Fredericksburg & Potomac Rail­\nroad\nPotomac Yard\nRichmond Terminal Railway Company  \nSavannah & Atlanta Railway Company  \nSeaboard Air Line Railway Company  \nSoutheastern Demurrage & Storage Bureau  \nSouthern Freight Tariff Bureau  \nSouthern Railway\nAlabama Great Southern Railway Company  \nCincinnati, New Orleans & Texas Pacific  \nRailway\nGeorgia Southern & Florida Railway  \nHarriman & Northeastern Railroad Com­\npany\nNew Orleans & Northeastern Railroad  \nNew Orleans Terminal Company  \nSt. Johns River Tèrminal Company  \nState University Railroad Company  \nWoodstock & Blocktori  \nSouthern Short Lines:\nBlue Ridge Railway Company  \nOarolina & Northwestern  \nDanville & Western Railway  \nHigh Point, Randleman, Asheboro &  \nSouthern Railroad  \nYadkin Railroad\nTennessee, Alabama & Georgia Railway Com­\npany\nTennessee Central Railway  \nTennessee Railroad Company  \nTerminal Railway Alabama State Dock»  \nVirginian Railway  \nWinston-Salem Southbound  \nWinston-Salem Terminal Company\n(Western Region)\nAhnapee & Western Railroad  \nAlton & Southern Railroad  \nAmerican Refrigerator Transit  \nAshley, Drew & Northern  \nAtchison, Topeka & Santa Fe Railway  \nDining Car Department  \nGulf, Colorado & Santa Fe Railway  \nPanhandle & Santa Fe Railway  \nAtchison Union Depot & Railroad Company  \nBelt Railway Company of Chicago\nBurlington Refrigerator Express Company  \nCamas Prairie Railroad Company  \nCedar Rapids & Iowa City  \nCentral California Traction Company  \nChicago & Eastern Illinois Railroad  \nChicago Heights Terminal & Transfer  \nChicago & Illinois Midland Railway  \nChicago & North Western Railway  \nChicago & Western Indiana Railroad  \nChicago, Aurora & Elgin Railway Company  \nChicago Car Interchange & Inspection Bureau  \nChicago, Burlington & Quincy Railroad  \nChicago Great-Western Railway Company  \nChicago, Milwaukee, St. Paul & Pacific  \nRailroad\nChicago, Terre Haute & Southeastern Railway  \nChicago North Shore & Milwaukee  \nChicago Produce Terminal Company  \nChicago Railroad Freight Collection Associa­\ntion\nChicago Railways Hotel Ticket Office  \nChicago, Rock Island & Pacific Railway  \nPeoria Terminal Company  \nChicago, St. Paul, Minneapolis & Omaha  \nRailway\nColorado & Southern Railway  \nColorado & Wyoming Railway  \nCopper Range Company  \nDallas Car Interchange & Inspection Bureau  \nDavenport, Rock Island & North Western  \nRailway\nDenver & Rio Grande Western Railroad  \nDenver Union Stock Yards Company  \nDenver Union Terminal Railway  \nDes Moines & Central Iowa  \nDes Moines Union Railway  \nDuluth, Missabe & Iron Range Railway  \nDuluth, Union Depot & Transfer Company  \nDuluth, Winnipeg & Pacific Railway  \nEast Portland Freight Terminal  \nElgin, Joliet & Eastern Railway  \nEl Paso Union Passenger Depot  \nFort Dodge, Des Moines & Southern  \nFort Worth & Denver City  \nWichita Valley\nGalveston, Houston & Henderson  \nGalveston Wharves  \nGreen Bay & Western Railroad  \nKewaunee, Green Bay & Western  \nGulf Coast Lines— Comprising:\nAsherton & Gulf Railway  \nAsphalt Belt Railway  \nBeaumont, Sour Lake & Western Railway  \nHouston & Brazos Valley Railway  \nHouston North Shore Railway  \nIberia, St. Mary & Eastern Railway  \nInternational-Great Northern Railroad  \nNew Iberia & Northern Railroad  \nNew Orleans, Texas & Mexicd Railway  \nOrange & Northwestern Railroad  \nRio Grande City Railway  \nSt. Louis, Brownsville & Mexico Railway  \nSan Antonio Southern Railway  \nSan Antonio, Uvalde & Gulf Railroad  \nSan Benito & Rio Grande Valley  \nSugar Land Railway  \nHarbor Belt Line (Los Angeles)\nHouston Belt & Terminal Railway  \nIllinois Central Hospital Department  \nIllinois Central Railroad\nChicago & Illinois Western Railroad  \nSteamer Pelican  \nIllinois Northern Railway  \nJoint Railway Agency (So. St. Paul)\nJoint Texas Division of CRI&P RR Co. &  \nFW&DC Ry. Co.\nJoliet Union Depot Company  \nKansas City, Kaw Valley Railroad, Inc.  \nKansas City Southern Railway  \nArkansas Western Railway  \nFt. Smith & Van Buren  \nJoplin Union Depot Company  \nKansas City Terminal Railway  \nKing Street Passenger Station (Seattle)  \nLake Superior & Ishpeming  \nLake Superior Terminal & Transfer Railway  \nLaramie, North Park & Western  \nLaSalle Street Stations  \nLongview Portland & Northern  \nLos Angeles Union Passenger Terminal  \nLouisiana & Arkansas Railway Company\n\n=== PDF page 5 of 52 ===\nTuesday, November 20, 1951\nLouisiana & North West Railroad  \nManistique & Lake Superior Railroad Com­\npany\nManufacturers’ Junction Railway  \nManufacturer’s Railway  \nMarinette, Tomahawk & Western Railroad  \nMidland Valley Railroad  \nKansas, Oklahoma & Gulf Railway  \nKansas, Oklahoma & Gulf of Texas  \nOklahoma City, Ada, Atoka Railway  \nMilwaukee-Kansas City Southern Joint  \nAgency\nMineral Range\nMinneapolis & St. Louis Railway  \nRailway Transfer Company City of Min­\nneapolis\nMinneapolis, St. Paul & Sault Ste. Marie  \nDuluth So. Shore & Atlantic Railway  \nMinnesota Transfer Railway  \nMissouri-Kansas-Texas Railroad Company  \nBeaver, Meade & Englewood  \nMissouri-Kansas-Texas Railroad Company  \nof Texas\nMissouri Pacific Railroad  \nMissouri-Illinois Railroad  \nSedalia Reclamation Plant  \nNatchez & Southern Railway  \nNorthern Pacific Railway  \nNorthern Pacific Terminal Company of  \nOregon\nNorthern Refrigerator Line, Inc.\nNorth Louisiana & Gulf Railroad Company  \nNorthwestern Pacific Railroad  \nOgden Union Railway & Depot Company  \nOgden Union Stock Yards  \nOkmulgee Northern Railway Company  \nPacific Car Demurrage Bureau  \nPacific Coast Railroad Company  \nPacific Coast Company  \nPacific Electric Railway Company  \nPacific Fruit Express Company  \nPaducah & Illinois Railroad Company  \nPeoria & Pekin Union Railway  \nPetaluma & Santa Rosa Railroad Company  \nPort Terminal Railroad Association (Hous­\nton)\nPueblo Joint Car Interchange & Inspection  \nBureau\nPueblo Union Depot & Railroad Company\nFEDERAL REGISTER\nQuanah, Acme & Pacific  \nRio Grande Southern  \nSt. Joseph Terminal Company  \nSt. Louis-San Francisco Railway  \nSt. Louis, San Francisco of Texas  \nSt. Louis Southwestern Railway\nSt. Louis Southwestern Railway Company  \nof Texas\nSt. Paul Union Depot Company  \nSalt Lake City Union Depot & Railroad Com­\npany\nSalt Lake Union Stock Yards Company  \nSan Antonio Joint Car Interchange Asso­\nciation\nSan Diego & Arizona Eastern Railway  \nSand Springs Railway Company  \nSioux City Terminal Railway  \nSouthern Pacific Company (Pacific Lines)  \nSouthern Pacific DeMexico (In United States)  \nSouth Omaha Terminal Railway  \nSouthern Illinois & Missouri Bridge Company  \nSpokane International Railway  \nSpokane, Portland & Seattle Railway  \nOregon Electric' Railway  \nOregon Trunk Railway  \nSpokane Union Station Company  \nStock Yards (Dist. Agency Chicago)\nSun Valley Operations\nTerminal Railroad Association of St. Louis\nTexarkana Union Station Trust\nTexas & New Orleans Railroad\nTexas & Pacific Railway\nAbilene & Southern Railway  \nFt. Worth Belt Railway  \nTexas-New Mexico Railway  \nTexas Short Line Railway  \nWeatherford Mineral Wells & Northwest­\nern Railway\nTexas City Terminal Railway Company  \nTexas Mexican Railway Company  \nTexas Pacific-Missouri Pacific Terminal Rail­\nroad of New Orleans  \nToledo, Peoria & Western Railroad  \nTooele Valley Railway Company  \nTremont & Gulf Railway  \nTucson, Cornelia & Gila Bend Railroad  \nUnion Pacific Railroad\nSt. Joseph & Grand Island Railway  \nUnion Railway Company (Memphis)\n11711\nUnion Terminal Company (Dallas)\nUnion Terminal Railway Company (St.  \nJoseph, Mo.)\nSt. Joseph Belt Railway Company  \nWabash Railroad Company  \nWalla Walla Valley Railway Company  \nWarren & Ouachita Valley Railway  \nWaterloo, Cedar Falls & Northern Railroad  \nWestern Fruit Express Company  \nWestern Pacific Railroad  \nWestern Weighing & Inspection Bureau  \nWichita Falls & Southern Railroad  \nYakima Valley Transportation Company  \nL ist  “B ”\n1. International Association of Machinists.\n2. International Brotherhood of Boiler­\nmakers, Iron Ship Builders and Help­\ners of America.\n3. International Brotherhood of Black­\nsmiths, Drop Forgers and Helpers.\n4. Sheet Metal Workers’ International Asso­\nciation.\n5. International Brotherhood of Electrical\nWorkers.\n6. Brotherhood Railway Carmen of America.\n7. International Brotherhood of Firemen,  \nl Oilers, Helpers, Roundhouse and Rail­\nway Shop Laborers.\n8. Brotherhood of Railway and Steamship\nClerks, Freight Handlers, Express and  \nStation Employes.\n9. Brotherhood of Maintenance of Way Em­\nployes.\n10. The Order of Railroad Telegraphers.\n11. Brotherhood of Railroad Signalmen of\nAmerica.\n12. National Organization, Masters, Mates\nand Pilots of America.\n13. National Marine Engineers’ Beneficial\nAssociation.\n14. International Longshoremen’s Associa­\ntion.\n15. Hotel and Restaurant Employees and\nBartenders International Union.\n16. American Train Dispatchers Association.\n17. Railroad Yardmasters of America.\n[F. R. Doc. 51-13936; Filed, Nov. 19, 1951;  \n10:44 a. m.]\nRULES AND REGULATIONS\nTITLE 5— AD M IN ISTRA TIVE \nPERSO N N EL\nChapter I— Civil Service CommUsion\nP art 30—A nnual  and S ick  L eave \nR egulations\naccrual of annual  leave  and nonpay\nSTATUS\nPublic Law No. 233, 82d Congress, in \naddition to prescribing a new leave sys­\ntem beginning January 6, 1952, repeals \nab initio section 601 bf the Independent \nOffices Appropriations Act of 1952, which \nin part reduced annual leave to twenty \ndays a year elective July 1, 1951. Ac­\ncordingly, the amendments to §§ 30.201 \nand 30.403 which were issued September \n7,1951 (16 P. R. 9067), are revoked retro­\nactively to July 1,1951, and the pre-exist­\ning wording of these sections is restored \nfor the period July 1,1951, through Jan­\nuary 5, 1952. The sections concerned \nwill, therefore, read as follows:\n§ 30.201 Accrual of annual leave.  An­\nnual leave shall accrue and be credited to \nemployees as follows:\n(a) Full-time employees.  (1) Perma­\nnent full-time employees shall earn and\nbe credited with annual leave of twenty- \nsix days for each calendar year. The \ntotal credit for a calendar year may be \ngiven at the beginning of the calendar \nyear in which it accrues, or it may be \ngiven at the rate of one day per bi­\nweekly pay period: Provided, That the \ncredit equals twenty-six days for a full \ncalendar year of service. In computing \nannual leave accruals for less than a \ncomplete bi-weekly pay period, the table \ngiven below will govern In determining \nleave accruals for basic eight-hour work \ndays in five-day work weeks. Fractions \nof work days shall be disregarded.\nHours\nBasic work days credit\n1--------------------------------------- 1\n2 ---------------------------------------- 2\n3  ---------------------------------------------------- 2\n4  -------------------------------------1________I 3\n5  ---------------------------------------------------- 4\n(2) Temporary full-time employees \nshall earn and be credited with annual \nleave of two and one-half days for each \nfull continuous month of service.\n(b) Part-time employees.  (1) Perma­\nnent part-time employees for whom there \nhas been established a regular tour of \nduty covering not less than five days in\nany administrative work week shall earn \nand be credited with one hour of annual \nleave for each ten hours in a pay status, \nany hours in excess of forty in any ad­\nministrative work week to be disregarded.\n(2) Temporary part-time employees \nfor whom there has been established a \nregular tour of duty covering not less \nthan five days in any administrative work \nweek shall earn ahd be credited with one \nhour of annual leave for each eight hours \nin a pay status during each full continu­\nous month of service, any hours in excess \nof forty in any administrative work week \nto be disregarded.\nN ote  : Such part-time employees began  \nearning pro rata leave October 5, 1949, the  \ndate of Public Law 316, 81st Congress. From  \nthat date until July 14, 1950, any system  \nfor computing their leave not inconsistent  \nwith that act may have been used by the  \nemploying agency.\n(c) Intermittent employees.  Employ­\nees whose services are required on an \nintermittent basis and whose appoint­\nment actions state: (1) That they are to \nbe employed on an intermittent basis, \nand (2) that they are not entitled to \nearn leave, shall not earn leave even \nthough they may serve a continuous\n"
+    },
+    "TERM:EO:10306:0cecc4f268880f05@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 14672,
+      "char_start": 12536,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:0cecc4f268880f05@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Notwithstanding any other provisions of this act, or of any other \nstatute or law of the United States, or Territory thereof, or of any State, any \ncarrier or carriers as defined in this act and a labor organization or labor organ- \nizations duly designated and authorized to represent employes in accordance \nwith the requirements of this act shall he permitted-- \n\"(a) to make agreements, requiring, as a condition of continued employment, \nthat within 60 days following the beginning of such employment, or the effective \ndate of such agreements, whichever is the later, all employes shall become mem- \nbers of the labor organization representing their craft or class: Providea, That \nno such agreement shall require such condition of employment with respect to \nemployes to whom membership is not available upon the same terms and condi- \ntions as are generally applicable to any other member or with respect to em- \nployes to whom membership was denied or terminated for any reason other than \nthe failure of the employe to tender the periodic dues, initiation fees, and assess- \nments (not including fines and penalties) uniformly required as a condition of \nacquiring or retaining membership. \n\"(b) to make agreements providing for the deduction by such carrier 'or car- \nriers from the wages of its or their employees in a craft or class and payment to \nthe labor organization representing the craft or class of such employes, of any \nperiodic dues, initiation fees, and assessments (not including fines and penal- \nties) uniformly required as a condition of acquiring or retaining membership: \nProvided, That no such agreement shall be effective with respect to any individual \nemploye until he shall have furnished the employer with a written assignment \nto the labor organization of such membership dues, initiation fees, and assess- \nments, which shall be revocable in writing after the expiration of one year or \nupon the termination date of the applicable collective agreement, whichever \noccurs sooner.\" \nThe proposal before us represents the organizations' effort to move \nunder the permission granted by this amendment."
     },
     "TERM:EO:10306:0dcec8d28c776f63@d4710f0aaa485c4f": {
       "actor_id": "EO:10306",
@@ -305,6 +438,62 @@
       "stated_end_date": null,
       "text": "The Board shall report its findings to the President with respect to the said disputes within thirty days from the date of this order."
     },
+    "TERM:EO:10306:6b1230c553abbfaf@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 11033,
+      "char_start": 10048,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:6b1230c553abbfaf@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#a",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) All employes now or hereafter employed in any work covered by the rules \nand working conditions agreement between the parties hereto shall, as a condi- \ntion of continued employment in such work, within 60 days following the begin- \nning of such employment or the effective date of this agreement, whichever is \nlater, become members of, and thereafter maintain membership in good stand- \ning in, the organization party to this agreement representing their craft or \nclass: Provided, That such condition shall not apply with respect to any em- \nploye to whom such membership is not available upon the same terms and con- \nditions as are generally applicable to any other member or with respect to any \nemploye to whom membership was denied or terminated for any reason other \nthan the failure of the employe to tender the periodic dues, initiation fees, and \nassessments (not including fines and penalties) uniformly required as a condi- \ntion of acquiring or retaining membership."
+    },
+    "TERM:EO:10306:7ad01a354c9105f1@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 14672,
+      "char_start": 12536,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:7ad01a354c9105f1@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Notwithstanding any other provisions of this act, or of any other \nstatute or law of the United States, or Territory thereof, or of any State, any \ncarrier or carriers as defined in this act and a labor organization or labor organ- \nizations duly designated and authorized to represent employes in accordance \nwith the requirements of this act shall he permitted-- \n\"(a) to make agreements, requiring, as a condition of continued employment, \nthat within 60 days following the beginning of such employment, or the effective \ndate of such agreements, whichever is the later, all employes shall become mem- \nbers of the labor organization representing their craft or class: Providea, That \nno such agreement shall require such condition of employment with respect to \nemployes to whom membership is not available upon the same terms and condi- \ntions as are generally applicable to any other member or with respect to em- \nployes to whom membership was denied or terminated for any reason other than \nthe failure of the employe to tender the periodic dues, initiation fees, and assess- \nments (not including fines and penalties) uniformly required as a condition of \nacquiring or retaining membership. \n\"(b) to make agreements providing for the deduction by such carrier 'or car- \nriers from the wages of its or their employees in a craft or class and payment to \nthe labor organization representing the craft or class of such employes, of any \nperiodic dues, initiation fees, and assessments (not including fines and penal- \nties) uniformly required as a condition of acquiring or retaining membership: \nProvided, That no such agreement shall be effective with respect to any individual \nemploye until he shall have furnished the employer with a written assignment \nto the labor organization of such membership dues, initiation fees, and assess- \nments, which shall be revocable in writing after the expiration of one year or \nupon the termination date of the applicable collective agreement, whichever \noccurs sooner.\" \nThe proposal before us represents the organizations' effort to move \nunder the permission granted by this amendment."
+    },
     "TERM:EO:10306:ae6eb5d15a52ad88@3ef64b7e6935732e": {
       "actor_id": "EO:10306",
       "char_end": 5993,
@@ -362,11 +551,207 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "S.C. 160), \nand subject to the provisions of that sec­\ntion, I  hereby create a board of three \nmembers, to be appointed by me, to in­\nvestigate the said disputes."
+    },
+    "TERM:EO:10306:bb82ab404027f8cc@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 3497,
+      "char_start": 3367,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:bb82ab404027f8cc@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#2-dup3",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Board desires to acknowledge the valuable assistance rendered \nin th e preparation of this report by its ]egM assistant, Prof."
+    },
+    "TERM:EO:10306:c175fe0f711d0768@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 12128,
+      "char_start": 11035,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:c175fe0f711d0768@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) The carrier party to this agreement shall periodically, at such times and \nintervals as the organization party to this agreement representing the craft or \nclass shall designate, deduct from the wages of all employes now or hereafter \nemployed in any work covered by the rules and working conditions agreement \nbetween the parties hereto all periodic dues, initiation fees, and assessments \n(not including fines and penalties), uniformly required as a condition of acquir- \ning or retaining membership in such organization, and shall within 10 days after \nmaking such deductions pay the amount so deducted to such oIficer of the organi- \nzation as the organization shall designate: Provided, That the requirements of \nthis paragraph (b) shall not be effective with respect to any individual employe \nuntil he shall have furnished the carrier with a written assignment to the or- \nganization of such membership dues, initiation fees, and assessments, which \nshall be revocable in writing after the expiration of one year or upon the termi- \nnation of this agreement whichever occurs sooner."
+    },
+    "TERM:EO:10306:c50ae2aa0db814af@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 9840,
+      "char_start": 9730,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:c50ae2aa0db814af@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#v-1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "A further extension was granted by the President \ndirecting the Board to file its report by February 15, 1952."
+    },
+    "TERM:EO:10306:c7df2a4ad299de71@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 9467,
+      "char_start": 9365,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:c7df2a4ad299de71@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#v-1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The President's Executive order directed the Board to report within \n30 days, or by December 15, 1951."
+    },
+    "TERM:EO:10306:f485a4f7792c3ada@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 12128,
+      "char_start": 11035,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:f485a4f7792c3ada@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#b",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) The carrier party to this agreement shall periodically, at such times and \nintervals as the organization party to this agreement representing the craft or \nclass shall designate, deduct from the wages of all employes now or hereafter \nemployed in any work covered by the rules and working conditions agreement \nbetween the parties hereto all periodic dues, initiation fees, and assessments \n(not including fines and penalties), uniformly required as a condition of acquir- \ning or retaining membership in such organization, and shall within 10 days after \nmaking such deductions pay the amount so deducted to such oIficer of the organi- \nzation as the organization shall designate: Provided, That the requirements of \nthis paragraph (b) shall not be effective with respect to any individual employe \nuntil he shall have furnished the carrier with a written assignment to the or- \nganization of such membership dues, initiation fees, and assessments, which \nshall be revocable in writing after the expiration of one year or upon the termi- \nnation of this agreement whichever occurs sooner."
+    },
+    "TERM:EO:10306:fccefa708b2f9a2a@d87d90bedc3b2144": {
+      "actor_id": "EO:10306",
+      "char_end": 9729,
+      "char_start": 9468,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10306:fccefa708b2f9a2a@d87d90bedc3b2144",
+      "instrument_id": "EO:10306",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10306#v-1",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-098-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "e0ed9ef15789118af8474e9338fb51b9ab012b89492355d9b7604bd15586d82f",
+        "signing_date": "1951-11-15",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10306_Actual_report_date_of_the_board_created_by_EO_10306_Presidential_Emergency_Board_Rail_97b6e5c39e.txt",
+        "text_sha256": "d87d90bedc3b21441523c3d1a53a5c02c49d1d0328d42e1918553f1466866556",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-098-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Full preparation and investigation \nof the dispute was not possible within that time and, on December 13, \n1951, upon the joint request of the parties and the recommendation \nof the National Mediation Board, the President extended the time to \nJanuary 15, 1952."
     }
   },
-  "fingerprint": "ef8a6a603b143a087ed1181ed0206652c0f3cc917c7826e9ce62e253a22cf291",
+  "fingerprint": "79a78d29ef5f021eebb57f7626d20d14ea684e4ee6f9deab6ac370717f732954",
   "instrument_id": "EO:10306",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "dfb1d112ded34b22715fecefbbab0c5c401be5774e62ea8d97c50086915d6bd9",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10306",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10306>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10306:b58af2c47a74e80a@3ef64b7e6935732e",
+        "TERM:EO:10306:ae6eb5d15a52ad88@3ef64b7e6935732e"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10306#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -406,8 +791,7 @@
     }
   ],
   "missing": [
-    "target provision not located: EO:10155",
-    "target provision not located: EO:12553"
+    "target provision not located: EO:10155"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10306",
@@ -416,6 +800,15 @@
     "TERM:EO:10306:ae6eb5d15a52ad88@3ef64b7e6935732e",
     "TERM:EO:10306:0dcec8d28c776f63@d4710f0aaa485c4f",
     "TERM:EO:10306:12d3a09101f3e5f8@d4710f0aaa485c4f",
+    "TERM:EO:10306:bb82ab404027f8cc@d87d90bedc3b2144",
+    "TERM:EO:10306:c7df2a4ad299de71@d87d90bedc3b2144",
+    "TERM:EO:10306:fccefa708b2f9a2a@d87d90bedc3b2144",
+    "TERM:EO:10306:c50ae2aa0db814af@d87d90bedc3b2144",
+    "TERM:EO:10306:6b1230c553abbfaf@d87d90bedc3b2144",
+    "TERM:EO:10306:c175fe0f711d0768@d87d90bedc3b2144",
+    "TERM:EO:10306:f485a4f7792c3ada@d87d90bedc3b2144",
+    "TERM:EO:10306:7ad01a354c9105f1@d87d90bedc3b2144",
+    "TERM:EO:10306:0cecc4f268880f05@d87d90bedc3b2144",
     "TERM:EO:10306:0dcec8d28c776f63@dc1b88e8328d9e41",
     "TERM:EO:10306:12d3a09101f3e5f8@dc1b88e8328d9e41"
   ],

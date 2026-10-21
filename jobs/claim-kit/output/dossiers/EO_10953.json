@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:10953>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:10953#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10953",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10953"
@@ -57,6 +87,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:10953>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:10953>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:10953>EO:12553@rastell",
+      "producer": "claude-rastell-07-producer",
+      "producer_d6": "Searched: dossier chain, own_terms (OWN_TERMS.jsonl), the target's held clause text, EDGES.csv (later-events, app-footnote-leads; edges targeting EO:10953: EO:12553 revocation), and a number search of all 6,652 held Federal Register order texts for other orders naming EO 10953 (result: none relevant (hits were page-contents, index, document-number or hash strings)). Emergency board, Southern Pacific Company (Pacific Lines) dispute (signed 1961-07-20). Own terms: the board 'shall report its findings to the President ... within thirty days from the date of this order' and, as provided by section 10 of the Railway Labor Act, no change except by agreement 'from this date and for thirty days after the board has made its report'. No termination clause, fixed end date, or earlier revoking, amending-away or superseding instrument found. Under the kit rule a report deadline is never an end, so EO 12553 is the first express end in held sources; but the board's operative effect plausibly lapsed by its own terms within about two months of signing (1961-07-20), so the reviewer should decide whether 12553 is the end or only a formal clean-up (upper bound). Later event changing the acting provision: no edge in either EDGES file targets EO:12553, no held order text amends or revokes it, and nothing in the dossier does.",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end; board report/status-quo terms and dated extensions are not express ends (EO 12553 may be a clean-up, upper bound).",
+        "d6_searched": "Searched: dossier chain/missing lines, MISSING_SOURCES.jsonl, later-events and app-footnote-leads EDGES.csv (target and EO:12553), target held text own terms as reported. No edge targets EO:12553 except as actor of revocations (no later change to the acting provision).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-rastell-07-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_07/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:10953",
+      "target_naming": {
+        "char_end": 16456,
+        "char_start": 16383,
+        "sha256": "58959dcd82e5d46d12b4e55068cba9e6a182d342c33987043cbdce714b0989f4",
+        "text": "10953 Creating an emergency board to investigate a railroad labor dispute"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -153,6 +258,62 @@
       "stated_end_date": null,
       "text": "No m em ber \nof the board shall be pecuniarily or \notherwise interested in any organization \nof railroad employees or any carrier \nThe board shall report its findings to \nthe President with respect to the dispute \nwithin thirty days from the date of th is \norder."
     },
+    "TERM:EO:10953:5cf3ced75ec3e7d7@386b88a9051a9ecb": {
+      "actor_id": "EO:10953",
+      "char_end": 342,
+      "char_start": 0,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10953:5cf3ced75ec3e7d7@386b88a9051a9ecb",
+      "instrument_id": "EO:10953",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10953#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-138-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "5ec033cf5e6f6c89dc36b35c7bf7d563da2132905e0880d67dc492aa1171665a",
+        "signing_date": "1961-07-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-source-ladder-10953-5ec033cf5e.txt",
+        "text_sha256": "386b88a9051a9ecb9ad8760f94715e7ac8fd1f41e44c6527151fdaeea37d44e1",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-138-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Wanted: queue:EO:10953:Actual report date of the board created by EO 10953 (Presidential Emergency Board (Railway Labor Act sec. 10): the Southern Pacific Company (Pacific Lines)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound."
+    },
+    "TERM:EO:10953:5cf3ced75ec3e7d7@b6502286b7d2ce0e": {
+      "actor_id": "EO:10953",
+      "char_end": 342,
+      "char_start": 0,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:10953:5cf3ced75ec3e7d7@b6502286b7d2ce0e",
+      "instrument_id": "EO:10953",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:10953#whole",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "PEB-138-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+        "requires_page_check": false,
+        "sha256": "5ec033cf5e6f6c89dc36b35c7bf7d563da2132905e0880d67dc492aa1171665a",
+        "signing_date": "1961-07-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_10953_Actual_report_date_of_the_board_created_by_EO_10953_Presidential_Emergency_Board_Rail_1f695cad2e.txt",
+        "text_sha256": "b6502286b7d2ce0e87bbe609b513b6dde9f4ad01152227f6beb85b75d5e399c8",
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-138-Report.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Wanted: queue:EO:10953:Actual report date of the board created by EO 10953 (Presidential Emergency Board (Railway Labor Act sec. 10): the Southern Pacific Company (Pacific Lines)): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound."
+    },
     "TERM:EO:10953:7936224e96021352@b951208b20b2cb35": {
       "actor_id": "EO:10953",
       "char_end": 1010,
@@ -176,34 +337,6 @@
         "signing_date": "1961-07-20",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-10953-creating-emergency-board-investigate-dispute-between-the-southern.txt",
         "text_sha256": "b951208b20b2cb351a81c1ab6ef726516c5a0538e5cc7811d80ec96844fa65c4",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10953-creating-emergency-board-investigate-dispute-between-the-southern"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The board shall report its findings to the President with respect to the dispute within thirty days from the date of this order."
-    },
-    "TERM:EO:10953:7936224e96021352@c63c3ac66c99ede8": {
-      "actor_id": "EO:10953",
-      "char_end": 1168,
-      "char_start": 1040,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10953:7936224e96021352@c63c3ac66c99ede8",
-      "instrument_id": "EO:10953",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10953#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 237236; common-crawl capture 2025-09-14T02:21:52Z",
-        "requires_page_check": false,
-        "sha256": "d6fd611b12db0852f138dd5e3789fed1cafeda9f68300ad9a4743fdfefe0b4b4",
-        "signing_date": "1961-07-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10953-d6fd611b12.txt",
-        "text_sha256": "c63c3ac66c99ede881fcf76a453418e52c8b03178bc987f948e3b46b5967b124",
         "url": "https://www.presidency.ucsb.edu/documents/executive-order-10953-creating-emergency-board-investigate-dispute-between-the-southern"
       },
       "start_date": null,
@@ -267,39 +400,43 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Southern Pacifie Company (Pacific Lines), or by its employees, in the conditions out of which the dispute arose."
-    },
-    "TERM:EO:10953:d0ef3d3f9f9227ab@c63c3ac66c99ede8": {
-      "actor_id": "EO:10953",
-      "char_end": 1488,
-      "char_start": 1170,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10953:d0ef3d3f9f9227ab@c63c3ac66c99ede8",
-      "instrument_id": "EO:10953",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10953#whole",
-      "source": {
-        "filing_date": null,
-        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 237236; common-crawl capture 2025-09-14T02:21:52Z",
-        "requires_page_check": false,
-        "sha256": "d6fd611b12db0852f138dd5e3789fed1cafeda9f68300ad9a4743fdfefe0b4b4",
-        "signing_date": "1961-07-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-10953-d6fd611b12.txt",
-        "text_sha256": "c63c3ac66c99ede881fcf76a453418e52c8b03178bc987f948e3b46b5967b124",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-10953-creating-emergency-board-investigate-dispute-between-the-southern"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Southern Pacifie Company (Pacific Lines), or by its employees, in the conditions out of which the dispute arose."
     }
   },
-  "fingerprint": "322b107c92250ffb3aebf98a0c95406f0c6872b1f06ca6acbec56b8bf78625ca",
+  "fingerprint": "73de03d71fc64275f2486c77f4d638f07b205f5637dd7dab47a638ddb37d0d93",
   "instrument_id": "EO:10953",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "46e11efa09f8605e60fb07e0c74c3c08491ec71d1f7d0412dd6669a48556a421",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10953",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10953>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10953:01121d93623b27d9@b98bdb95d64b294b",
+        "TERM:EO:10953:b6a721cfa4bf9b67@b98bdb95d64b294b",
+        "TERM:EO:10953:5cf3ced75ec3e7d7@386b88a9051a9ecb",
+        "TERM:EO:10953:5cf3ced75ec3e7d7@b6502286b7d2ce0e",
+        "TERM:EO:10953:7936224e96021352@b951208b20b2cb35",
+        "TERM:EO:10953:d0ef3d3f9f9227ab@b951208b20b2cb35"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10953#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -338,16 +475,14 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:10953",
   "own_terms": [
     "TERM:EO:10953:01121d93623b27d9@b98bdb95d64b294b",
     "TERM:EO:10953:b6a721cfa4bf9b67@b98bdb95d64b294b",
-    "TERM:EO:10953:7936224e96021352@c63c3ac66c99ede8",
-    "TERM:EO:10953:d0ef3d3f9f9227ab@c63c3ac66c99ede8",
+    "TERM:EO:10953:5cf3ced75ec3e7d7@386b88a9051a9ecb",
+    "TERM:EO:10953:5cf3ced75ec3e7d7@b6502286b7d2ce0e",
     "TERM:EO:10953:7936224e96021352@b951208b20b2cb35",
     "TERM:EO:10953:d0ef3d3f9f9227ab@b951208b20b2cb35"
   ],

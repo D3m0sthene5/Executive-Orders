@@ -395,7 +395,8 @@ class EndToEnd(unittest.TestCase):
             self.assertFalse(frags[0]["data"]["location_verified"])
             self.assertIn("NOT the signed original", frags[0]["confidence_note"])
             body = (out / frags[0]["data"]["text_path"]).read_text(encoding="utf-8").split("\n\n", 1)[1]
-            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[0]["data"]["text_sha256"])
+            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[0]["data"]["body_sha256"])
+            self.assertEqual(hashlib.sha256((out / frags[0]["data"]["text_path"]).read_bytes()).hexdigest(), frags[0]["data"]["text_sha256"])
             self.assertTrue((out / "pages" / "T" / "p027.txt").exists())
             prov["volumes"][0]["text_sha256"] = "f" * 64
             (job / "data" / "PROVENANCE.json").write_text(json.dumps(prov), encoding="utf-8")

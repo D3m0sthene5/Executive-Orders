@@ -1,0 +1,27 @@
+{
+ "batch": "batch_03",
+ "reviewer": "claude-lamm3-reviewer-t03 (independent Opus, held sources, D6 step)",
+ "attempted": 12,
+ "upheld_own_term_ends": 1,
+ "upheld_whole": [
+  "EO:13369 (2005-11-15, as amended by EO 13386 sec. 2)"
+ ],
+ "negative_confirmed": 11,
+ "refuted_records": 0,
+ "blocked": 0,
+ "claims_enabled_yes": [
+  "EO:13369"
+ ],
+ "suspected_plants": [
+  {
+   "file": "CLAIMS.proposed.jsonl",
+   "instrument_id": "EO:13369",
+   "field": "whole_order_end.date",
+   "found_value": "2005-11-01",
+   "expected_value": "2005-11-15",
+   "defect": "report deadline recorded as the end date",
+   "contradicting_source": "jobs/fr-originals/data/full_run/texts/EO_13386.txt sec. 1 (Nov 1, 2005 = sec. 5 report deadline) vs sec. 2 [1245:1469] (sec. 7 terminate November 15, 2005); also contradicts the line's own 17 operative_clauses first_end.date and the record/sheet"
+  }
+ ],
+ "notes": "checker SUMMARY in review_copy predates/omits the planted field; tally must re-run checker on the genuine line. AI review only, not eo-lifecycle-review/v1; statuses remain hypotheses; certified count 0."
+}

@@ -15,7 +15,8 @@
   ],
   "actor_provisions": [
     "ACT:EO:12429>EO:12447",
-    "ACT:EO:12429>EO:12455"
+    "ACT:EO:12429>EO:12455",
+    "ACT:EO:12429>EO:12553"
   ],
   "chain": {
     "confidence": "medium",
@@ -71,9 +72,36 @@
           "url": "https://www.presidency.ucsb.edu/documents/executive-order-12455-presidents-private-sector-survey-cost-control-the-federal-government"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12429#3",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 211,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12429",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12429"
@@ -210,6 +238,81 @@
       "target_id": "EO:12429",
       "text": "I), and in order to extend the life of the President's Private Sector Survey on Cost Control in the Federal Government, it is hereby ordered that Section 4(b) of Executive Order No. 12369 of June 30, 1982, as amended, is further amended to read: \"The Committee shall terminate on January 31, 1984, unless sooner extended.\".",
       "verb": "amend"
+    },
+    "ACT:EO:12429>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12429>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "Table row for 12429 found at char 27022 (PDF page 14 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 14, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:12429>EO:12553@rastell",
+      "producer": "rastell-batch_02-producer",
+      "producer_d6": "Searched the dossier chain (EO 12447, 12455), the held 12429 text and the 12447 text. EO 12429 amended sec 4(b) of EO 12369 so the Committee 'shall terminate on October 30, 1983, unless sooner extended'. Found EARLIER changes to that same clause: EO 12447 (1983-10-27) further amended sec 4(b) to terminate December 31, 1983, and EO 12455 (1983-12-29) amended it again. So the 12429 wording was already replaced before 12553, and the Committee's own deadlines had passed. The 12553 revocation reaches a spent amending order; it is an upper bound only. No later event changing the 12553 provision found. jobs/later-events EDGES.csv was also searched: it holds no edge ending this target before EO 12553 other than those named above.",
+      "provenance": "agent_located",
+      "provision_label": "unnumbered enacting sentence (single section) with No. table",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "Searched the dossier chain (EO 12447, 12455), the held 12429 text and the 12447 text. EO 12429 amended sec 4(b) of EO 12369 so the Committee 'shall terminate on October 30, 1983, unless sooner extended'. Found EARLIER changes to that same clause: EO 12447 (1983-10-27) further amended sec 4(b) to terminate December 31, 1983, and EO 12455 (1983-12-29) amended it again. So the 12429 wording was already replaced before 12553, and the Committee's own deadlines had passed. The 12553 revocation reaches a spent amending order; it is an upper bound only. No later event changing the 12553 provision foun",
+        "d6_searched": "Target dossier chain and MISSING lines, jobs/later-events/output/EDGES.csv rows for EO:12429, held actor text (supersession/term clauses), held target text where held.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "rastell-batch_02-reviewer",
+        "source_file": "research/excavator/rastell-2026-10-20/batch_02/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:12429",
+      "target_naming": {
+        "char_end": 27027,
+        "char_start": 27022,
+        "sha256": "7954615b888c43f477bd71e497a69e2ba592af0992a589ffe7e7c80f2fd21d54",
+        "text": "12429"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
     },
     "ACTOR_TEXT:EO:12447": {
       "actor_id": "EO:12447",
@@ -434,9 +537,40 @@
       "text": "I), and in order to extend the life o f the President’s \nPrivate Sector Survey on C ost Control in the Federal Governm ent, it is hereby \nordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as \namended, is further am ended to read: “The Com m ittee shall term inate on \nO ctober 30,1983, unless sooner extended.”."
     }
   },
-  "fingerprint": "0db5c352d1e16c6d9ae492bdaeb79a05ca1f1a8be03a9d9302c2726a3122d335",
+  "fingerprint": "389ac5f783c93497e5380be445ed70e418478af0e99f3b8ce2e80c66aac5eae4",
   "instrument_id": "EO:12429",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "a643e2994952c1a526434efe27a2fc9864fe56dba255a53081a9c2695a884c19",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12429",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12429>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12429:f75e17c15f073370@ef5efc1803492ce2",
+        "TERM:EO:12429:f75e17c15f073370@d38647a37c5d6617",
+        "TERM:EO:12429:5bd12c3bd8ab1823@d20aa91f05596d49",
+        "TERM:EO:12429:516826d1d22d3ce0@d20aa91f05596d49"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12429#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "extension",
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -475,9 +609,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12429",
   "own_terms": [

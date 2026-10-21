@@ -77,6 +77,36 @@ base64url UTF-8 under `evidence_id`, marked `evidence_id_encoding: base64url-utf
 the checker decodes it solely for exact dossier lookup. Legal citations, quotes,
 actors and producer rationale remain unchanged.
 
+For a pair whose dossier says `target provision not located: EO:X` while the acting text is
+held, an agent may record the provision in `research/readiness/act_overrides/*.jsonl` (one ACT
+record per line, fields as in `excavate.py` plus `provision_sha256`, `target_naming.sha256`,
+`target_text_sha256` and a `review` object with `verdict: "upheld"`, `independent: true`, a
+`reviewer` different from the `producer`, `review_kind`, `d6_searched`, `d6_found` and
+`source_file`). `source_file` names the reviewer's committed `REVIEW.jsonl` under `research/`;
+its line for the record id must say `upheld` with the same reviewer, review kind and D6 fields,
+and the sibling `UPHELD_ACT_RECORDS.jsonl` must hold the reviewed record with every ACT field
+equal. `act_overrides.py` re-slices every quoted span from the held actor text and requires and
+checks the sha256 values. It refuses any record whose hash or span does not match or is missing,
+that has an unknown field, that has no independent upheld review with a D6 step, that differs
+from what the reviewer upheld, that is marked seeded, planted or example (or carries `EXAMPLE ONLY`
+text anywhere), that says `located: false`, whose review ledger sits outside `research/` or inside
+the override folder, whose pair the scanner already located, or that shares its pair or id with
+another line (every such line is refused). Refusals are listed in `output/ACT_OVERRIDES_REPORT.json`;
+with no override lines no report is written and the build output is unchanged.
+An accepted record enters `ACTING_PROVISIONS` as `ACT:<target>><actor>` with provenance
+`agent_located`; it is an AI-review hypothesis, never a certification, and never a status.
+
 A source marked `requires_page_check` also requires explicit
 `original_pages_confirmed: true` after the official pages/images were inspected;
 confirming an extracted OCR text alone does not satisfy that flag.
+
+VALLA adds exact reasoning review leads and explicitly reviewed preparation
+components to batch packets. Read the pinned `valla_context` and the readable
+review section. A wording match is never a confirmed error or legal equivalence.
+An independently examined dependency identifies only the specified conclusions
+for revalidation. Component attestations cover only their stated scope and method;
+an overall upheld review or silence approves no field. Reusing a quotation does
+not confirm its source identity, complete inventory or ending theory. Changed
+review dependencies require a new packet version. Every correction still needs
+all member-specific checks, independent whole-case review, and owner acceptance
+for replacement proposals. See `jobs/valla/README.md`.

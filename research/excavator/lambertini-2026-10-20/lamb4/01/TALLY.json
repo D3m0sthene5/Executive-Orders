@@ -1,0 +1,23 @@
+{
+ "schema": "lambertini-iv-tally/v1",
+ "batch": "lamb4/01",
+ "role": "probe batch 1 (first 8 LAMB4W ids in file order)",
+ "tallied_on": "2026-10-20",
+ "record_kind": "AI tally of AI review records (hypotheses; not certification; certified whole-lifecycle count unchanged at 0)",
+ "attempts": 8,
+ "orders": ["EO:10200", "EO:10494", "EO:10634", "EO:12490", "EO:12743", "EO:12813", "EO:12817", "EO:12934"],
+ "blocked_by_producer": {"count": 3, "ids": ["EO:10200", "EO:12490", "EO:12934"], "pending_owner_ruling": {"EO:10200": "transcription-as-copy", "EO:12490": "report-deadline", "EO:12934": "none (D6 sources not held)"}},
+ "reviewed": 5,
+ "upheld": 4,
+ "upheld_ids": ["EO:10494", "EO:12743", "EO:12813", "EO:12817"],
+ "rejected": 1,
+ "rejected_ids": ["EO:10634"],
+ "rejected_note": "The only rejection is the planted defect in the scratch review copy (first_end.date 1979-07-20 for 1979-07-15). The genuine EO:10634 line carries 1979-07-15; its own independent verdict is therefore not measured by this review and it is not counted as upheld.",
+ "savings_overturned": 0,
+ "plants": {"planted": 1, "caught": 1, "missed": 0, "plants_caught_share": 1.0, "key": "scratch plant_keys/01.json (kept in scratch only)", "caught_detail": "EO:10634 operative_clauses[0].first_end.date: reviewer found 1979-07-20 and named the correct 1979-07-15 (EO 12148 sec. 6)"},
+ "upheld_per_attempt": 0.5,
+ "gate": {"rule": ">=5 of 8 upheld by the independent reviewer and <=1 savings state overturned (enforced in the workflow script)", "passed": false, "probe_gate_passed": 0},
+ "claims_copied": 0,
+ "claims_copied_note": "Gate failed: no claim lines copied into research/readiness/claims/.",
+ "pending_owner_rulings_not_decided": ["report-deadline", "transcription-as-copy"]
+}

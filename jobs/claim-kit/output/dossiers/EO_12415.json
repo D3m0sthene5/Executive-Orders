@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:12415>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12415#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12415",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12415"
@@ -55,6 +85,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:12415>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12415>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12415 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12415 is the 59th number of the page-14 column and pairs with the 59th subject after joining wrapped lines, \"Continuing the Presidential Commission on Drunk Driving\" (offset 31264), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12415.txt (48 FR 15117, PDF pages 7-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:12415>EO:12553@rastell-r12553nbs",
+      "producer": "claude-r12553nbs-s6-producer",
+      "producer_d6": "EARLIER END HELD (dated term set by the order itself): the target's only operative provision (EO_12415.txt offset 1053) amends Section 4(b) of EO 12358 to read \"The Commission shall terminate on December 31,1983.\" (replacing EO 12358's own \"shall terminate one year from this date\", EO_12358.txt offset 3297, i.e. 1983-04-14, before that date arrived). No held order extends the Commission beyond 1983-12-31: the only held texts naming EO 12358 are EO 12376, EO 12415 and EO 12553, and the only held texts mentioning the Presidential Commission on Drunk Driving are EO 12358, 12376, 12415 and 12553. The Commission therefore terminated on 1983-12-31 under the date this order set, and the order's operative content was exhausted then; EO 12553 is NOT the end, only a formal upper bound / clean-up (compare the probe's upheld EO 12351, own dated term). This is a termination date, not a report deadline; no pending owner ruling is used. Note for the reviewer: EO 12415 is formally an amendment of EO 12358, and its own words supply the dated end; it does not depend on a whole-text restatement or a non-naming decontrol. No later event changed EO 12553 itself (no EDGES row targets EO:12553; no held order text amends or revokes it). Search base: target dossier (chain, own_terms, missing, actor_provisions), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv rows for the target, jobs/status-history/output/events, and a number search of all 6,652 held Federal Register order texts (jobs/fr-originals/data/full_run/texts) for other orders naming the target (page numbers, FR document numbers and index entries discarded). D6 RESULT: earlier end held; EO 12553 is only an upper bound for this target (not claims-enabling as an end date).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "EARLIER END HELD (dated term set in the order's own words) and recorded: EO 12415 amends EO 12358 Sec. 4(b) to read 'The Commission shall terminate on December 31,1983.' (offset 1053; replacing 'shall terminate one year from this date', EO_12358.txt offset 3297, i.e. 1983-04-14). No held extension. EO 12553 is only an upper bound. Accepted as an own-term end (like probe EO 12351/12269), not dependent on a non-naming instrument or whole-text restatement; not a report deadline.",
+        "d6_searched": "Re-sliced provision 691-966 and target_naming from held EO_12553.txt (text sha256 matches; provision and naming sha256 match); target held-text sha256 checked; column-ordinal subject pairing recounted on the PDF page (62 numbers / 62 joined subjects on p.14); number search of all 6,652 held FR order texts for the target (non-order hits were FR doc numbers / page, index or file-hash digits); target held text read for own terms; quoted earlier/later instruments re-read in held official FR texts. Held EO_12415.txt, EO_12358.txt (heading 'of April 14, 1982'); held texts naming 12358 and mentioning 'Drunk Driving' are only EO 12358, 12376, 12415, 12553 (confirmed); EO_14257 hit for 12415 is a tariff code ('81124150').",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-r12553nbs-s6-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:12415",
+      "target_naming": {
+        "char_end": 27013,
+        "char_start": 27008,
+        "sha256": "84909c7ba11f17777bb9eda44b77e48fbe77e23797ed25a711507a41288e7133",
+        "text": "12415"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -180,9 +285,35 @@
       "text": "By the authority vested in me as President by the Constitution and laws of the United States of America, and in order to ensure the continuation of efforts to assist the States in the fight against drunk driving, it is hereby ordered that Section 4(b) of Executive Order No. 12358, as amended, is amended to read as follows: \"The Commission shall terminate on December 31, 1983.\""
     }
   },
-  "fingerprint": "098e33f50da1858b32ac74c60083ac515452b0858021151d080ae0261d748d10",
+  "fingerprint": "313ad813f399cf44bbb7177c9ef6b51a7c1efcd5bc16282866b95b714273c545",
   "instrument_id": "EO:12415",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "2594132b1d64f45165878808ff4c985580d205259d29cb2540ade1a595e0e78b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12415",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12415>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12415:cc93e787520d5326@5f7d1843bc72dfeb",
+        "TERM:EO:12415:cc93e787520d5326@3019c12c211bea21"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12415#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -221,9 +352,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12415",
   "own_terms": [

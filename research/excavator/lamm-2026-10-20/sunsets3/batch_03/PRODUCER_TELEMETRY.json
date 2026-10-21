@@ -1,0 +1,42 @@
+{
+ "batch": "batch_03",
+ "producer": "claude-lamm-t03-producer",
+ "model": "claude-sonnet-5-5 (subagent; see note)",
+ "orders": 12,
+ "records_written": 12,
+ "verdicts": {
+  "end_date_needs_source": 7,
+  "ends_by_own_term_whole": 1,
+  "not_an_end": 4
+ },
+ "attempts_unit": "one own-term end record per order",
+ "positive_records": [
+  "EO:13369"
+ ],
+ "claim_sheets": [
+  "EO:13369"
+ ],
+ "claim_lines_proposed": 1,
+ "checks": {
+  "check_ote": "ok: 12 records",
+  "kit_assemble": "1 assembled",
+  "kit_check": "no errors",
+  "claim_checker": "1 claim, all checks passed, mechanical fail 0, gate passed (37 source references held_bytes_verified, 54 quotations exact, 18 identity recorded_for_this_order); run with OUTPUT_DIR and JOB_CACHE_DIR under work/batch_03/checker/"
+ },
+ "fetch_queue_lines_added": 0,
+ "tool_calls_approx": {
+  "total": 75,
+  "bash": 55,
+  "read": 3,
+  "write": 1,
+  "edit": 0,
+  "notes": "approximate count from the session; exact usage telemetry not available to the subagent"
+ },
+ "wall_time_note": "not measured by the subagent clock; session ran continuously through reading, per-order analysis, record build, kit sheet and checker",
+ "surprises": [
+  "EO 10111 TERM is the neighbouring EO 10110 sentence on the same FR page",
+  "EO 7509 TERM records (97 of 99) come from Pub. L. 106-541 attached as evidence",
+  "EO 12607 batch original (recheck text) is truncated; TERM ids belong to EO_12607.txt",
+  "EO 13369 end comes from EO 13386 sec. 2 (stated date replaces the event-relative clause); the kit has no ACT row for that section so the sheet cites ACTOR_TEXT:EO:13386"
+ ]
+}

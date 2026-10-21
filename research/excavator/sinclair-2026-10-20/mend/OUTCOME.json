@@ -1,0 +1,75 @@
+{
+  "schema": "sinclair-mend-outcome/1",
+  "plan_id": "SINCM",
+  "attempt": "mend-2",
+  "date": "2026-10-20",
+  "status": "reviewed_proposals_refused_stale_evidence",
+  "orders_in_pool": 9,
+  "orders_produced": 9,
+  "orders_reviewed": 9,
+  "review_verdicts": {
+    "accept": [
+      "EO:11209",
+      "EO:13555",
+      "EO:10704",
+      "EO:12573",
+      "EO:13975",
+      "EO:12604"
+    ],
+    "accept_with_defect": [
+      "EO:9762"
+    ],
+    "reject": [
+      "EO:9294",
+      "EO:11796"
+    ]
+  },
+  "plants_planted": 2,
+  "plants_caught": 2,
+  "plants_caught_share": 1.0,
+  "plant_scoring": "scored: both planted orders (EO:9294 rationale 9625->9652, EO:11796 rationale 11798->11797) were rejected on the planted point",
+  "plant_gate": "passed",
+  "proposal_candidates": [
+    "EO:11209",
+    "EO:13555",
+    "EO:9294",
+    "EO:9762",
+    "EO:10704",
+    "EO:12573",
+    "EO:13975",
+    "EO:12604"
+  ],
+  "proposal_exclusions": {
+    "EO:11796": "planted order, but the reviewer also raised a D6 omission (EO 12002 revocation of EO 11798 not addressed)"
+  },
+  "overlay_propose_refusal": "claim-kit: stale_compiled_generation",
+  "overlay_propose_refusal_detail": "All 8 candidates refused (rc=2). Evidence was frozen 13:51Z; results commit 91116f879 (14:25Z) changed claim-kit/output OWN_TERMS.jsonl, TEXT_REPRESENTATIONS.jsonl and TEXT_REPRESENTATIONS.part0001.jsonl. Authority, compiler code, decision checks and review checks all pass; only the compiled generation is stale.",
+  "proposals_written": 0,
+  "proposals_per_attempt": 0.0,
+  "owner_adoption_total": 47,
+  "owner_acceptance": {
+    "accepted": false
+  },
+  "certified_whole_lifecycle_count": 0,
+  "proposals_written_mend3": {
+    "count": 9,
+    "orders": [
+      "EO:11209",
+      "EO:13555",
+      "EO:9294",
+      "EO:9762",
+      "EO:10704",
+      "EO:12573",
+      "EO:13975",
+      "EO:12604",
+      "EO:11796"
+    ],
+    "accept_with_defect": [
+      "EO:9762",
+      "EO:11796"
+    ],
+    "refusals": [],
+    "note": "First attempt refused 'claim-kit: overlay_bundle_exists; use a new versioned destination' (inputs sat in destination); inputs staged in scratch, re-proposed into proposal-v1. All recommended_provisional_status 'no', owner_acceptance.accepted false.",
+    "owner_adoption_total": 56
+  }
+}

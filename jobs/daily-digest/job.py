@@ -45,12 +45,16 @@ def build(root,day,old):
             elif line.startswith('- **'):inside=False
             if inside:asks.append(line.strip())
         lines.append(f'- {p.name}: '+(' '.join(asks)[:1100] or 'No open ask recorded in newest entry.'))
-    lines+=['','## Failed jobs','']
+    lines+=['','## Published output status','',
+        'A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.']
     failed=[]
     for p in sorted((root/'jobs').glob('*/output/STATUS.json')):
         s=load(p)
         if s.get('result')!='succeeded':failed.append(f"- {p.parent.parent.name}: {s.get('result','unknown')} ({s.get('run_url','no run link')})")
-    lines+=failed or ['No failed job status is recorded.']
+    lines+=failed or ['No failed canonical output status is recorded; inspect retained attempts for newer failures.']
+    if os.environ.get('GITHUB_RUN_ID') and os.environ.get('GITHUB_REPOSITORY'):
+        run_url=f"{os.environ.get('GITHUB_SERVER_URL','https://github.com')}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+        lines.append(f'[Current workflow status and retained attempt artifacts]({run_url})')
     if len(lines)>149:lines=lines[:148]+['Additional items omitted to keep this operational digest below 150 lines.']
     return '\n'.join(lines)+'\n',snapshot
 

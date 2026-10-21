@@ -17,16 +17,18 @@ live only in jobs/mountweazel/fixtures/ with SEEDED=true.  `check` proves the ru
 Standard library only.  Never edits claims, statuses, the codebook, ledgers or reviews.
 """
 import argparse
+import ast
 import copy
 import csv
 import hashlib
+import importlib.util
 import json
 import math
 import os
 import re
 import sys
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 sys.dont_write_bytecode = True
 
@@ -39,7 +41,10 @@ LEGAL_CUTOFF = "2026-10-14"
 
 SEEDED_MARKERS = (b"SEEDED:", b"mountweazel-seeded", b"SEEDED-eo-", b'"SEEDED": true', b'"SEEDED":true')
 # Documents that describe the marker strings may mention them; they are still checked for planted text.
-ALLOWED_DOCS = frozenset({"research/plans/MOUNTWEAZEL_DESIGN.md"})
+ALLOWED_DOCS = frozenset({"research/plans/MOUNTWEAZEL_DESIGN.md", "jobs/mountweazel/README.md",
+                          "jobs/mountweazel/paired.py", "jobs/mountweazel/test_paired.py",
+                          "jobs/mountweazel/mountweazel.py", "jobs/mountweazel/test_mountweazel.py"})
+ALLOWED_DOC_PREFIXES = ("HANDOFF/",)  # notes may name batch ids and markers; planted text is still checked there
 PLANT_ID_RE = re.compile(rb"\bMW-[A-Z]\d+-\d{2}\b")
 VERDICTS = ("accept", "reject", "block_justified", "block_not_justified")
 FLAG_VERDICTS = ("reject", "block_not_justified")
@@ -275,6 +280,8 @@ def load_status_pool(repo):
 
 
 # ----------------------------------------------------------------------------- Track C operators
+RECURRING_RE = re.compile(r"(?i)\b(annual(ly)?|each (year|fiscal year|month|quarter)|every (year|month)|periodic(ally)?|"
+                          r"from time to time|biennial(ly)?|quarterly|monthly|semi-?annual(ly)?|continuing|thereafter)\b")
 ONE_TIME_RE = re.compile(r"(?is)\b(shall|is hereby directed to|is directed to|are directed to)\b.{0,120}?\b(report|submit|transmit|"
                          r"study|recommend|prepare|survey|review)\b|\bwithin\s+\w+\s+(days|months)\b")
 EARLIER_END_RE = re.compile(r"(?i)\b(term\b|expir|terminat|amend|supersed|partial)")
@@ -302,6 +309,9 @@ def _resync_whole(claim):
             claim["whole_order_end"][k] = copy.deepcopy(fe[k])
 
 
+PROVENANCE_ONLY = ("claim_kit",)
+
+
 def _retitle(claim, old_date, new_date, old_actor=None, new_actor=None):
     olds = date_variants(old_date)
     news = date_variants(new_date)
@@ -314,6 +324,26 @@ def _retitle(claim, old_date, new_date, old_actor=None, new_actor=None):
         r = swap_text(r, actor_variants(old_actor), actor_variants(new_actor))
     claim["research_rationale"] = r
     return olds, news
+
+
+def _swap_safe(claim, i, old_date, old_actor=None, new_actor=None):
+    """True when rewriting old_date/old_actor in the rationale cannot touch another clause's history.
+
+    The first trial (MW-C1) showed the tell: a global swap rewrote sentences about sibling clauses
+    ("EO 12050 substituted new texts for secs. 101(a), 103 and 201") so the packet contradicted itself.
+    A plant whose old date or actor is shared with any other clause, any later event, or the order itself
+    is skipped instead of rewritten."""
+    own = claim.get("instrument_id")
+    if old_actor and new_actor and old_actor != new_actor and own in (old_actor, new_actor):
+        return False
+    for j, cl in enumerate(claim["operative_clauses"]):
+        fe = cl.get("first_end") or {}
+        if j != i and (fe.get("date") == old_date or (old_actor and fe.get("actor") == old_actor)):
+            return False
+        for ev in cl.get("later_events", []):
+            if ev.get("effective_date") == old_date or (old_actor and ev.get("actor") == old_actor):
+                return False
+    return True
 
 
 def _move_end(claim, i, event):
@@ -342,7 +372,7 @@ def ops_c(code, claim, pool, seed):
         for i in ended:
             fe = cls[i]["first_end"]
             nlt = fe.get("not_later_than")
-            if exact_date(nlt) and nlt != fe["date"]:
+            if exact_date(nlt) and nlt != fe["date"] and _swap_safe(claim, i, fe["date"]):
                 def apply(c, i=i, nlt=nlt):
                     f = c["operative_clauses"][i]["first_end"]
                     old = f["date"]
@@ -359,8 +389,11 @@ def ops_c(code, claim, pool, seed):
             if not later:
                 continue
             ev = max(later, key=lambda e: e["effective_date"])
-            one_time = bool(ONE_TIME_RE.search(cls[i].get("original_operative_text", "")))
+            txt = cls[i].get("original_operative_text", "")
+            one_time = bool(ONE_TIME_RE.search(txt)) and not RECURRING_RE.search(txt + " " + fe.get("mechanism", ""))
             earlier = bool(EARLIER_END_RE.search(fe.get("mechanism", "")))
+            if not _swap_safe(claim, i, fe["date"], fe.get("actor"), ev["actor"]):
+                continue
             if (code == "D2" and one_time) or (code == "D5" and earlier and not one_time):
                 def apply(c, i=i, ev=ev, code=code):
                     old = _move_end(c, i, ev)
@@ -396,7 +429,8 @@ def ops_c(code, claim, pool, seed):
             if len(dates) >= 2:
                 hi = max(ended, key=lambda i: cls[i]["first_end"]["date"])
                 lo = min(ended, key=lambda i: cls[i]["first_end"]["date"])
-                if claim.get("whole_order_status") == "no":
+                f_hi, f_lo = cls[hi]["first_end"], cls[lo]["first_end"]
+                if claim.get("whole_order_status") == "no" and _swap_safe(claim, hi, f_hi["date"], f_hi.get("actor"), f_lo.get("actor")):
                     def apply(c, hi=hi, lo=lo):
                         f_old = copy.deepcopy(c["operative_clauses"][hi]["first_end"])
                         f_new = copy.deepcopy(c["operative_clauses"][lo]["first_end"])
@@ -438,7 +472,7 @@ def ops_c(code, claim, pool, seed):
             fe = cls[i]["first_end"]
             blob = " ".join(str(fe.get(k, "")) for k in ("mechanism", "mechanism_detail", "effective_date_basis", "date_basis", "note"))
             others = sorted({d for d in find_dates(blob) if d != fe["date"] and d <= LEGAL_CUTOFF})
-            if others and fe["date"] in find_dates(blob) + [fe["date"]]:
+            if others and _swap_safe(claim, i, fe["date"]):
                 for new in others:
                     def apply(c, i=i, new=new):
                         f = c["operative_clauses"][i]["first_end"]
@@ -470,8 +504,9 @@ def ops_c(code, claim, pool, seed):
         for k, e in blob_parts:
             for field in ("repository", "query_or_scope"):
                 for mo in COUNT_RE.finditer(e.get(field, "")):
-                    n = mo.group(1)
-                    other = canonical(claim).count(n + " ")
+                    n, unit = mo.group(1), mo.group(2)
+                    # refutable in-packet only if the same "<n> <unit>" appears somewhere else too (not "49 Stat.")
+                    other = len(re.findall(r"(?<!\d)" + n + r"\s+" + re.escape(unit) + r"\b", canonical(claim)))
                     if other >= 2:
                         def apply(c, k=k, field=field, mo=mo, n=n):
                             ee = c["later_source_search"][k]
@@ -610,7 +645,8 @@ def seed_cmd(args):
             payload, base_obj = mutated, rec["packet"]
         used.add(oid)
         plants.append({"code": code, "base_order": oid, "spec": spec_id, "payload": payload, "record": record,
-                       "base_path": rec["path"], "base_line": rec["line"], "base_sha256": sha(base_obj)})
+                       "base_path": rec["path"], "base_line": rec["line"], "base_sha256": sha(base_obj),
+                       "leak_needles": [n.decode("utf-8") for n in novel_needles(base_obj, payload)]})
     if len(plants) < n_plants and not args.allow_short:
         fail(f"could only seed {len(plants)} of {n_plants} plants from this pool (use --allow-short to accept)")
 
@@ -640,6 +676,9 @@ def seed_cmd(args):
         else:
             body, order = e["payload"], e["base_order"]
         if track == "C":
+            # Assembly provenance (claim-kit's block) is not claim content, and only some real
+            # claims carry it, so showing it would let a reviewer tell plants from real items.
+            body = {k: v for k, v in body.items() if k not in PROVENANCE_ONLY}
             packet = {"item_id": item_id, "track": "C", "claim": body}
         else:
             packet = {"item_id": item_id, "track": "S", **body}
@@ -655,6 +694,9 @@ def seed_cmd(args):
             ki.update({"defect_code": e["code"], "operator": f"{e['code']}.{e['spec']}", "field": r["field"],
                        "locus_terms": [t for t in r["locus_terms"] if t], "refuting_quote": r["refuting_quote"],
                        "base_sha256": e["base_sha256"]})
+            clause = re.match(r"operative_clauses\[(\d+)\]", r["field"])
+            if clause and track == "C":
+                ki["affected_scope_id"] = e["payload"]["operative_clauses"][int(clause.group(1))].get("scope_id")
             seeded_payload = copy.deepcopy(e["payload"])
             if track == "C":
                 seeded_payload["schema"] = "SEEDED-eo-lifecycle-claim/v1"
@@ -667,7 +709,7 @@ def seed_cmd(args):
                 "base": {"path": e["base_path"], "line": e["base_line"], "sha256": e["base_sha256"]},
                 "mutation": {"operator": ki["operator"], "field": r["field"], "before": r["before"], "after": r["after"],
                              "refuting_span": {"quote": r["refuting_quote"]}},
-                "seeded_payload": seeded_payload}))
+                "leak_needles": e["leak_needles"], "seeded_payload": seeded_payload}))
         key_items.append(ki)
 
     manifest = {"schema": SCHEMA_BATCH, "batch_id": batch_id, "track": track, "n_items": len(entries),
@@ -679,6 +721,9 @@ def seed_cmd(args):
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
             "n_items": len(entries), "n_seeded": len(plants), "seeded_share": round(len(plants) / len(entries), 4),
+            "planned_n_seeded": n_plants,
+            "blinding": {"mode": "instructed", "technical_separation_verified": False,
+                         "basis": "key outside batch and mode 0600; a reviewer with the same account can still read it"},
             "items": key_items}
     key = {**body, "key_seal_sha256": sha(body)}
     kp = key_dir / "KEY.sealed.json"
@@ -704,7 +749,109 @@ def load_verdicts(path):
     return rows
 
 
-def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weights=None):
+GENERIC_TERMS = frozenset({"first_end", "whole_order_end", "later_events", "later_source_search", "quote", "operative",
+                           "original_operative_text", "repository", "query_or_scope", "coverage", "date", "effective",
+                           "identity", "block", "blocker", "events", "actor_text", "act:", "basis", "actor"})
+
+
+def specific_terms(it):
+    """Terms that pin the reviewer to THIS mutation, not just to a field name every packet has.
+
+    Generic field names ("first_end", "quote") alone never earn a strict catch.  An EO:nnn actor also
+    matches as its bare number; the clause path (e.g. operative_clauses[7]) counts; for D3 the first word
+    cut off the quote (normally the operative verb) counts."""
+    out = set()
+    for t in it.get("locus_terms", []):
+        t = str(t)
+        if len(t) < 3 or t.lower() in GENERIC_TERMS:
+            continue
+        out.add(t.lower())
+        m = re.fullmatch(r"EO:(\d+)", t)
+        if m:
+            out.add(m.group(1))
+    m = re.match(r"(operative_clauses\[\d+\]|later_source_search\[\d+\])", it.get("field", ""))
+    if m:
+        out.add(m.group(1).lower())
+    if it.get("defect_code") == "D3":
+        w = re.search(r"[A-Za-z]{4,}", str(it.get("refuting_quote") or ""))
+        if w:
+            out.add(w.group(0).lower())
+    return sorted(out)
+
+
+# A matching order number or field path is only a locator. It does not establish that
+# the reviewer identified the material defect planted at that location.
+ISSUE_PATTERNS = {
+    "D1": r"deadline|not.later.than|due date|performance|actual (?:end|delivery)",
+    "D2": r"perform|one.time|completed|discharg|spent command|delivery",
+    "D3": r"(?:quote|quotation).{0,60}(?:cut|truncat|incomplete|omit|support|operative)|(?:cut|truncat).{0,30}(?:quote|quotation)",
+    "D4": r"partial|scope|whole.order|last clause|other clause|only (?:section|clause)",
+    "D5": r"earlier|first (?:end|cessation)|later revocation|already (?:ended|expired|terminated)",
+    "D6": r"(?:omit|miss|remov|absent|left out|exclude|unrecorded).{0,60}(?:event|amend|repeal|revok|revocation|order)|(?:event|amend|revocation|order).{0,60}(?:omit|miss|remov|absent|left out|unrecorded)",
+    "D7": r"(?:wrong|incorrect|different|effective|signing|publication).{0,35}date|date.{0,35}(?:wrong|incorrect|effective|signing|publication)",
+    "D8": r"wrong (?:order|identity|text)|neighbou?r|different order|belongs to|identity mismatch",
+    "D9": r"overstat|inflat|coverage|count.{0,30}(?:wrong|mismatch|incorrect)",
+    "D10": r"wrong (?:target|actor)|does not (?:revoke|end|name)|not the target",
+    "D11": r"infer|not express|no express|implied",
+    "D12": r"saving|residual|preserv|surviv",
+    "D13": r"held|available|already (?:in|present)|unjustified block",
+}
+
+
+def defect_correspondence(it, verdict):
+    """Conservative mechanical candidate, requiring the issue AND affected locus.
+
+    Natural-language synonyms that this screen cannot establish need a sourced
+    adjudication. Passing this screen is a scoring correspondence, not a legal ruling.
+    """
+    hay = " ".join(str(verdict.get(k, "")) for k in ("locus", "reason", "defect", "evidence")).lower()
+    field = it.get("field", "").lower()
+    scope = str(it.get("affected_scope_id") or "").lower()
+    clause = re.match(r"(operative_clauses\[\d+\]|later_source_search\[\d+\])", field)
+    locators = [x for x in (field, scope, clause.group(1) if clause else "") if x and x not in GENERIC_TERMS]
+    locus_hits = [x for x in locators if x in hay]
+    issue = bool(re.search(ISSUE_PATTERNS.get(it.get("defect_code"), r"(?!)"), hay, re.S))
+    hits = [t for t in specific_terms(it) if t in hay]
+    # An omitted event needs its actor/date as well as the affected clause; the clause
+    # can contain multiple later events and a different omission is not this plant.
+    event_hits = [t for t in hits if re.fullmatch(r"(?:eo:)?\d{3,}|\d{4}-\d{2}-\d{2}", t)]
+    identity = bool(event_hits) if it.get("defect_code") == "D6" else True
+    candidate = bool(locus_hits) and issue and identity
+    return {"mechanical_candidate": candidate, "affected_locus_matched": locus_hits,
+            "material_issue_matched": issue, "event_identity_matched": identity,
+            "matched_terms": hits, "needs_adjudication": not candidate}
+
+
+def validated_override(iid, value):
+    """A manual score is auditable; bare booleans cannot silently change a result."""
+    if not isinstance(value, dict) or not isinstance(value.get("caught"), bool):
+        fail(f"{iid}: strict override needs caught (boolean), adjudicator, reason, source, affected_locus and material_issue")
+    for name in ("adjudicator", "reason", "source", "affected_locus", "material_issue"):
+        if not isinstance(value.get(name), str) or not value[name].strip():
+            fail(f"{iid}: strict override missing {name}")
+    return value
+
+
+def implied_prevalence(flags, n, catch, false_alarm_rate=0.0):
+    """Upper 95% bound on the defect rate of a production batch given its flag count and the reviewer's catch rate.
+
+    flags/n is the production review result (e.g. Bowditch Y1: 0 of 15).  With catch rate c and false-alarm
+    rate f, P(flag) = pi*c + (1-pi)*f, so pi <= (CP_upper(flags, n) - f) / (c - f).  Uses the point catch rate and
+    its lower 95% bound; a bound of 1.0 means the review says nothing about prevalence."""
+    up = clopper_pearson(flags, n)[1]
+    out = {"production_flags": flags, "production_n": n, "flag_rate_upper95": up}
+    for label, c in (("at_point_catch", catch.get("rate")), ("at_catch_lower95", (catch.get("clopper_pearson95") or [None])[0])):
+        if c is None or c <= false_alarm_rate:
+            out["prevalence_upper95_" + label] = 1.0
+        else:
+            out["prevalence_upper95_" + label] = round(min(1.0, max(0.0, (up - false_alarm_rate) / (c - false_alarm_rate))), 4)
+    out["note"] = ("assumes production defects resemble the planted mix and the same reviewer, prompt and packet format; "
+                   "a different track (status proposals vs claims) breaks that assumption")
+    return out
+
+
+def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weights=None, relabel=None, tells=None,
+          production=None):
     if key.get("schema") != SCHEMA_KEY:
         fail("not a mountweazel key")
     body = {k: v for k, v in key.items() if k != "key_seal_sha256"}
@@ -718,10 +865,21 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
             fail(f"verdict for unknown item {iid}")
         if iid in seen:
             fail(f"duplicate verdict for {iid}")
+        if "decision" not in r and "verdict" in r:
+            r = dict(r, decision=r["verdict"])
         if r.get("decision") not in VERDICTS:
             fail(f"{iid}: decision must be one of {VERDICTS}")
         seen[iid] = r
     adjudication, voids, strict_overrides = adjudication or {}, set(voids or []), strict_overrides or {}
+    for iid, value in strict_overrides.items():
+        if iid not in items or not items[iid]["is_seeded"]:
+            fail(f"strict override {iid}: not a plant in this key")
+        validated_override(iid, value)
+    relabel, tells = relabel or {}, set(tells or [])
+    for iid, code in relabel.items():
+        if iid not in items or not items[iid]["is_seeded"] or code not in TAXONOMY:
+            fail(f"relabel {iid}->{code}: not a plant or not a taxonomy code")
+    noticed, tf_n, tf_l, tf_s = [], 0, 0, 0
     per = {}
     unreviewed = [i for i in items if i not in seen]
     plant_rows, real_flags, n_real = [], [], 0
@@ -734,15 +892,22 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         if it["is_seeded"]:
             if iid in voids:
                 continue
-            terms = [t.lower() for t in it["locus_terms"] if len(t) >= 3]
-            hay = (str(v.get("locus", "")) + " " + str(v.get("reason", ""))).lower()
-            auto_strict = flagged and any(t in hay for t in terms)
-            strict = bool(strict_overrides.get(iid, auto_strict)) and flagged
-            p = per.setdefault(it["defect_code"], {"n": 0, "lenient": 0, "strict": 0, "items": []})
+            correspondence = defect_correspondence(it, v)
+            hits = correspondence["matched_terms"]
+            override = strict_overrides.get(iid)
+            strict = (override["caught"] if override else correspondence["mechanical_candidate"]) and flagged
+            if correspondence["mechanical_candidate"] and not flagged:
+                noticed.append({"item_id": iid, "defect_code": relabel.get(iid, it["defect_code"]), "matched": hits})
+            if iid not in tells:
+                tf_n, tf_l, tf_s = tf_n + 1, tf_l + flagged, tf_s + strict
+            p = per.setdefault(relabel.get(iid, it["defect_code"]), {"n": 0, "lenient": 0, "strict": 0, "items": []})
             p["n"] += 1
             p["lenient"] += flagged
             p["strict"] += strict
-            p["items"].append({"item_id": iid, "decision": v["decision"], "caught_lenient": flagged, "caught_strict": strict})
+            p["items"].append({"item_id": iid, "decision": v["decision"], "caught_lenient": flagged, "caught_strict": strict,
+                               "key_code": it["defect_code"], "seeding_tell": iid in tells, "matched_terms": hits,
+                               "correspondence": correspondence, "adjudication": override,
+                               "strict_basis": "adjudicated" if override else "mechanical_correspondence"})
         else:
             adj = adjudication.get(iid)
             if flagged and adj == "confirmed_real_defect":
@@ -761,7 +926,11 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         tot_n += p["n"]
         tot_l += p["lenient"]
         tot_s += p["strict"]
-    pooled = {"strict": rate(tot_s, tot_n), "lenient": rate(tot_l, tot_n)}
+    pooled = {"strict": rate(tot_s, tot_n), "lenient": rate(tot_l, tot_n),
+              "noticed_but_accepted": noticed,
+              "tell_free": {"strict": rate(tf_s, tf_n), "lenient": rate(tf_l, tf_n),
+                            "excluded_items": sorted(tells & set(seen)),
+                            "note": "plants whose packet carried a seeding artifact (e.g. a collateral rationale rewrite) removed"}}
     if weights:
         use = {c: weights[c] for c in types if c in weights and types[c]["strict"]["rate"] is not None}
         wsum = sum(use.values())
@@ -777,7 +946,20 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
                    "lower_bound": rate(fa_low, n_real), "upper_bound": rate(fa_low + fa_contest + unadj, n_real),
                    "note": "a flag on a real item is not a false alarm until adjudicated; upper bound counts contestable and "
                            "unadjudicated flags as false alarms"}
-    return {"schema": "mountweazel-score/v1", "batch_id": key["batch_id"], "track": key["track"],
+    implied = None
+    if production:
+        fa_up = false_alarm["lower_bound"]["rate"] or 0.0
+        implied = {basis: implied_prevalence(production[0], production[1], pooled[basis]["strict"] if basis == "tell_free" else pooled["strict"], fa_up)
+                   for basis in ("all_plants", "tell_free")}
+    actual_plants = sum(bool(i.get("is_seeded")) for i in items.values())
+    expected_plants = key.get("planned_n_seeded", key.get("n_seeded", actual_plants))
+    return {"schema": "mountweazel-score/v3", "batch_id": key["batch_id"], "track": key["track"],
+            "blinding": key.get("blinding", {"mode": "unknown", "technical_separation_verified": False}),
+            "plants_planned": expected_plants, "plants_present": actual_plants,
+            "plants_missing_unscored": max(0, expected_plants - actual_plants),
+            "plants_unreviewed_unscored": sum(items[i]["is_seeded"] for i in unreviewed),
+            "strict_rule": "material issue and affected locus must correspond; insufficient matches need sourced adjudication",
+            "relabelled_by_adjudication": relabel, "implied_for_production": implied,
             "n_items": key["n_items"], "n_reviewed": len(seen), "unreviewed": unreviewed,
             "voided_plants": sorted(voids & {i for i, x in items.items() if x["is_seeded"]}),
             "by_defect_type": types, "pooled": pooled, "false_alarm": false_alarm,
@@ -788,8 +970,13 @@ def score_cmd(args):
     key = json.loads(Path(args.key).read_text(encoding="utf-8"))
     rows = load_verdicts(args.verdicts)
     load = lambda p: json.loads(Path(p).read_text(encoding="utf-8")) if p else None  # noqa: E731
+    prod = None
+    if args.production:
+        k, n = (int(x) for x in args.production.split("/"))
+        prod = (k, n)
     res = score(key, rows, adjudication=load(args.adjudication), voids=load(args.voids),
-                strict_overrides=load(args.strict_overrides), weights=load(args.weights))
+                strict_overrides=load(args.strict_overrides), weights=load(args.weights),
+                relabel=load(args.relabel), tells=load(args.tells), production=prod)
     text = json.dumps(res, indent=1, sort_keys=True) + "\n"
     if args.out:
         o = Path(args.out).resolve()
@@ -805,28 +992,189 @@ def score_cmd(args):
 # ----------------------------------------------------------------------------- check
 def iter_files(root):
     for dirpath, dirs, files in os.walk(root):
-        dirs.sort()
+        dirs[:] = sorted(d for d in dirs if d not in (".git", "__pycache__"))
         for f in sorted(files):
             yield Path(dirpath) / f
 
 
 def scan_roots(repo, fixtures):
-    roots = [repo / "research"]
-    jobs = repo / "jobs"
-    if jobs.is_dir():
-        for j in sorted(jobs.iterdir()):
-            if not j.is_dir():
-                continue
-            for sub in ("output", "data"):
-                if (j / sub).is_dir():
-                    roots.append(j / sub)
-            if j.name == "mountweazel":
-                if (j / "results").is_dir():
-                    roots.append(j / "results")
-    return roots
+    """Everything in the repository except .git and the fixture folder (jobs read their own inputs from
+    anywhere under jobs/<name>/, and FETCH_QUEUE, ledgers and tracker inputs live in several places)."""
+    return [repo]
 
 
-def scan_file(path, needles, plant_hashes, markers=True):
+def _skip(path, repo, fixtures):
+    if inside(path, Path(fixtures)):
+        return True
+    rel = path.relative_to(repo).parts if inside(path, repo) else ()
+    return bool(rel) and rel[0] == ".git"
+
+
+def _deflag(payload):
+    """The blinded, real-format copy of a flagged payload (what a leak would look like)."""
+    d = dict(payload)
+    if isinstance(d.get("schema"), str) and d["schema"].startswith("SEEDED-"):
+        d["schema"] = d["schema"][len("SEEDED-"):]
+    if isinstance(d.get("instrument_id"), str) and d["instrument_id"].startswith("SEEDED:"):
+        d["instrument_id"] = d["instrument_id"][len("SEEDED:"):]
+    return d
+
+
+def _strings(o, path=""):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            yield from _strings(v, f"{path}.{k}")
+    elif isinstance(o, list):
+        for i, v in enumerate(o):
+            yield from _strings(v, f"{path}[{i}]")
+    elif isinstance(o, str):
+        yield path, o
+
+
+def novel_needles(base, plant, width=28):
+    """Byte strings that exist in the plant but nowhere in its real base: a window around each changed
+    string, JSON-encoded with its quotes so a truncated quote ("... is hereby") does not match the real,
+    longer text.  The first trial's check matched 24 real files because it used raw after-text that a
+    D3 cut (a prefix of a real quote) shares with every copy of the real order."""
+    old = dict(_strings(base))
+    base_blob = canonical(base) + json.dumps(base, ensure_ascii=True)
+    out = set()
+    for path, new in _strings(plant):
+        prev = old.get(path)
+        if prev == new or len(new) < 12:
+            continue
+        for enc in (lambda x: json.dumps(x, ensure_ascii=False), lambda x: json.dumps(x, ensure_ascii=True)):
+            n_enc, o_enc = enc(new), enc(prev) if isinstance(prev, str) else ""
+            i = next((k for k, (a, b) in enumerate(zip(n_enc, o_enc)) if a != b), min(len(n_enc), len(o_enc)))
+            j = 0
+            while j < min(len(n_enc), len(o_enc)) - i and n_enc[-1 - j] == o_enc[-1 - j]:
+                j += 1
+            win = n_enc[max(0, i - width): len(n_enc) - j + width]
+            if len(win) >= 24 and win not in base_blob:
+                out.add(win.encode("utf-8"))
+    return sorted(out)
+
+
+def _base_object(repo, base):
+    try:
+        lines = (Path(repo) / base["path"]).read_text(encoding="utf-8").splitlines()
+        if base.get("line"):
+            return json.loads(lines[base["line"] - 1])
+        return json.loads((Path(repo) / base["path"]).read_text(encoding="utf-8"))
+    except (OSError, ValueError, IndexError, KeyError, TypeError):
+        return None
+
+
+def _runner_inventory_location(rel):
+    for pattern in (
+            r"oversized/runner-freshness/([A-Za-z0-9][A-Za-z0-9._-]*)-inputs\.json",
+            r"jobs/([A-Za-z0-9][A-Za-z0-9._-]*)/output/RUNNER_INPUTS\.json",
+            r"\.job-cache/runner-prior/[A-Za-z0-9._-]+/([A-Za-z0-9][A-Za-z0-9._-]*)/RUNNER_INPUTS\.json",
+            r"jobs/_attempts/([A-Za-z0-9][A-Za-z0-9._-]*)/[A-Za-z0-9._-]+/RUNNER_INPUTS\.json"):
+        match = re.fullmatch(pattern, rel)
+        if match:
+            return match
+    return None
+
+
+def _runner_inventory_for_item_scan(path, repo):
+    """Remove only fixture filename keys from a validated runner input inventory.
+
+    This is a scanning view, not a provenance/authenticity decision. Raw bytes
+    still undergo every seeded-marker, planted-text and exact-copy check.
+    Unknown locations, duplicate keys or malformed inventories get no exception.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+    location = _runner_inventory_location(rel)
+    if not location:
+        return None
+
+    def unique_object(pairs):
+        obj = {}
+        for key, value in pairs:
+            if key in obj:
+                raise ValueError("duplicate inventory key")
+            obj[key] = value
+        return obj
+
+    def relative(value):
+        return (isinstance(value, str) and bool(value)
+                and not any(c in value for c in ("\\", ":", "\0", "\n", "\r"))
+                and not PurePosixPath(value).is_absolute()
+                and ".." not in PurePosixPath(value).parts
+                and PurePosixPath(value).as_posix() == value)
+
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        if (not isinstance(manifest, dict) or set(manifest) != {
+                "schema", "job", "base_commit", "run_url", "scope", "inputs_sha256", "inputs", "base_output_sha256"}
+                or type(manifest["schema"]) is not int or manifest["schema"] != 1
+                or manifest["job"] != location.group(1)
+                or not isinstance(manifest["run_url"], str)
+                or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", manifest["base_commit"])):
+            return None
+        scope, inputs = manifest["scope"], manifest["inputs"]
+        if (not isinstance(scope, dict) or set(scope) != {"roots", "patterns", "exclude"}
+                or scope["exclude"] != f"jobs/{manifest['job']}/output"
+                or not all(isinstance(scope[k], list) and all(relative(v) for v in scope[k])
+                           for k in ("roots", "patterns"))
+                or not isinstance(inputs, dict)
+                or not all(relative(k) and isinstance(v, str)
+                           and re.fullmatch(r"(?:100644|100755|120000|160000):(?:[0-9a-f]{40}|[0-9a-f]{64})", v)
+                           for k, v in inputs.items())
+                or not re.fullmatch(r"[0-9a-f]{64}", manifest["base_output_sha256"])
+                or hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+                   != manifest["inputs_sha256"]):
+            return None
+        # The only exempt content is a filename in the pinned input map. IDs
+        # elsewhere (including other input paths and scope/run_url) still fail.
+        fixture_path = re.compile(r"jobs/mountweazel/fixtures/(?:[A-Za-z0-9._-]+/)*MW-[A-Z]\d+-\d{2}\.seeded\.json")
+        manifest["inputs"] = {k: v for k, v in inputs.items() if not fixture_path.fullmatch(k)}
+        return canonical(manifest).encode("utf-8")
+    except (OSError, UnicodeError, ValueError, TypeError):
+        return None
+
+
+def _runner_diagnostic_for_item_scan(path, repo):
+    """Recognize an archived unittest report of an inventory false positive.
+
+    Only the exact scanner diagnostic is an annotation. Every raw byte still
+    undergoes planted-text, seeded-marker and exact-item checks.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+        if not re.fullmatch(
+                r"(?:jobs/_attempts/portfolio-repair-check/[A-Za-z0-9._-]+"
+                r"|jobs/portfolio-repair-check/output"
+                r"|\.job-cache/runner-prior/[A-Za-z0-9._-]+/portfolio-repair-check)"
+                r"/tests/mountweazel\.log", rel):
+            return None
+        lines, changed = [], False
+        prefix = "AssertionError: False is not true : "
+        for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+            if line.startswith(prefix):
+                report = ast.literal_eval(line[len(prefix):].strip())
+                if (not isinstance(report, list) or not report
+                        or not all(isinstance(row, dict) and set(row) == {"where", "problem"}
+                                   and isinstance(row["where"], str)
+                                   and _runner_inventory_location(row["where"])
+                                   and isinstance(row["problem"], str)
+                                   and re.fullmatch(r"batch item id MW-[A-Z]\d+-\d{2}", row["problem"])
+                                   for row in report)):
+                    return None
+                line = prefix + repr([{**row, "problem": "batch item id [inventory diagnostic]"}
+                                      for row in report]) + "\n"
+                changed = True
+            lines.append(line)
+        return "".join(lines).encode("utf-8") if changed else None
+    except (OSError, UnicodeError, ValueError, SyntaxError, TypeError):
+        return None
+
+
+def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None):
     hits = []
     try:
         size = path.stat().st_size
@@ -843,12 +1191,14 @@ def scan_file(path, needles, plant_hashes, markers=True):
             for m in SEEDED_MARKERS if markers else ():
                 if m in data:
                     hits.append("marker " + m.decode())
-            if markers and b"MW-" in data and PLANT_ID_RE.search(data):
+            if markers and item_id_data is None and b"MW-" in data and PLANT_ID_RE.search(data):
                 hits.append("batch item id " + PLANT_ID_RE.search(data).group(0).decode())
             for nd in needles:
                 if nd in data:
                     hits.append("planted text " + nd[:40].decode("utf-8", "replace"))
             tail = data[-overlap:]
+    if markers and item_id_data is not None and PLANT_ID_RE.search(item_id_data):
+        hits.append("batch item id " + PLANT_ID_RE.search(item_id_data).group(0).decode())
     if plant_hashes and path.suffix in (".jsonl", ".json"):
         try:
             text = path.read_text(encoding="utf-8")
@@ -859,6 +1209,25 @@ def scan_file(path, needles, plant_hashes, markers=True):
         except (ValueError, OSError):
             pass
     return sorted(set(hits))
+
+
+def real_claim_blobs(repo, plant_hashes):
+    """JSON text (both encodings) of each real claim under research/readiness/claims, for telling a plant's
+    borrowed real wording (a D8 plant reuses a donor order's own text) from a leak.  A claim that is itself an
+    exact copy of a plant, or carries a seeded marker, is not real text and is left out."""
+    blobs = []
+    for f in sorted((Path(repo) / "research" / "readiness" / "claims").glob("*.jsonl")):
+        try:
+            objs = read_jsonl(f)
+        except (OSError, ValueError):
+            continue
+        for o in objs:
+            if not isinstance(o, dict) or sha(o) in plant_hashes:
+                continue
+            if any(isinstance(v, str) and (v.startswith("SEEDED") or "SEEDED:" in v) for v in (o.get("schema"), o.get("instrument_id"))):
+                continue
+            blobs.append((json.dumps(o, ensure_ascii=False) + json.dumps(o, ensure_ascii=True)).encode("utf-8"))
+    return blobs
 
 
 def check(repo, fixtures_dir):
@@ -881,20 +1250,35 @@ def check(repo, fixtures_dir):
         if "schema" not in errs or "instrument_id" not in errs:
             problems.append({"where": str(fp), "problem": "claim gate does not reject the flagged payload", "gate_errors": errs[:5]})
         plant_hashes.add(sha(payload))
-        deflag = {k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}
-        plant_hashes.add(sha(deflag))
-        aft = fx.get("mutation", {}).get("after", "")
-        if isinstance(aft, str) and len(aft) >= 40:
-            needles.add(aft.encode("utf-8"))
-            needles.add(json.dumps(aft, ensure_ascii=False)[1:-1].encode("utf-8"))
-        if fx.get("mutation", {}).get("refuting_span"):
-            pass
+        plant_hashes.add(sha(_deflag(payload)))
+        plant_hashes.add(sha({k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}))
+        if isinstance(fx.get("leak_needles"), list):
+            needles.update(n.encode("utf-8") for n in fx["leak_needles"])
+        else:
+            base = _base_object(repo, fx.get("base") or {})
+            if isinstance(base, dict) and fx.get("track", "C") == "C":
+                if sha(base) != (fx.get("base") or {}).get("sha256"):
+                    problems.append({"where": str(fp), "problem": "base item changed since seeding; leak needles cannot be derived"})
+                else:
+                    needles.update(novel_needles(base, _deflag(payload)))
+    if needles:
+        # A plant may reuse a real donor order's wording verbatim (D8); that text legitimately exists in the
+        # repository.  Such a needle cannot show a leak: the plant's marker and exact-item-copy checks still do.
+        blobs = real_claim_blobs(repo, plant_hashes)
+        needles = {nd for nd in needles if not any(nd in b for b in blobs)}
     scanned = 0
     for root in scan_roots(repo, fixtures_dir):
         for f in iter_files(root):
+            if _skip(f, repo, fixtures_dir):
+                continue
             scanned += 1
             rel = str(f.relative_to(repo)) if inside(f, repo) else str(f)
-            hits = scan_file(f, needles, plant_hashes, markers=rel not in ALLOWED_DOCS)
+            allowed = rel in ALLOWED_DOCS or rel.startswith(ALLOWED_DOC_PREFIXES)
+            item_view = _runner_inventory_for_item_scan(f, repo)
+            if item_view is None:
+                item_view = _runner_diagnostic_for_item_scan(f, repo)
+            hits = scan_file(f, needles, plant_hashes, markers=not allowed,
+                             item_id_data=item_view)
             for hit in hits:
                 problems.append({"where": str(f.relative_to(repo)) if inside(f, repo) else str(f), "problem": hit})
     mw_out = repo / "jobs" / "mountweazel" / "output"
@@ -904,7 +1288,8 @@ def check(repo, fixtures_dir):
                 problems.append({"where": str(f.relative_to(repo)), "problem": "jobs/mountweazel/output may hold only STATUS.json and SENSITIVITY.json"})
     if (repo / "jobs" / "mountweazel" / "data").exists():
         problems.append({"where": "jobs/mountweazel/data", "problem": "no data/ folder allowed (other jobs read jobs/*/data)"})
-    return {"ok": not problems, "fixtures_checked": len(fixture_files), "files_scanned": scanned, "problems": problems[:200],
+    return {"ok": not problems, "fixtures_checked": len(fixture_files), "files_scanned": scanned, "leak_needles": len(needles),
+            "problems": problems[:200],
             "problem_count": len(problems)}
 
 
@@ -927,6 +1312,11 @@ def pool_cmd(args):
 
 # ----------------------------------------------------------------------------- main
 def main(argv=None):
+    argv=list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0]=='pairs':
+        spec=importlib.util.spec_from_file_location('mountweazel_pairs',HERE/'paired.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        return module.main(argv[1:])
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--repo", default=str(REPO))
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -948,6 +1338,9 @@ def main(argv=None):
     sc.add_argument("--voids")
     sc.add_argument("--strict-overrides")
     sc.add_argument("--weights")
+    sc.add_argument("--relabel", help='JSON {"item": "Dn"}: adjudicated true defect type when the operator label is wrong')
+    sc.add_argument("--tells", help="JSON list of plant item ids whose packet carried a seeding artifact")
+    sc.add_argument("--production", help="k/n flags in a production review (e.g. 0/15) to bound its defect prevalence")
     sc.add_argument("--out")
     c = sub.add_parser("check", help="prove no seeded item exists where a job reads")
     c.add_argument("--fixtures-dir", default=str(HERE / "fixtures"))

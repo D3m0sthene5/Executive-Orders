@@ -1,0 +1,357 @@
+{
+ "SEEDED": true,
+ "base": {
+  "line": 20,
+  "path": "research/readiness/claims/claude-2026-10-18-codif-b4.jsonl",
+  "sha256": "00fd205e96c64174302e73d0596f80a53dbc4a25f7072fc17d60d5590ba310cd"
+ },
+ "batch_id": "MW-C2",
+ "defect_code": "D7",
+ "instrument_id": "SEEDED:EO:11812",
+ "item_id": "MW-C2-26",
+ "leak_needles": [
+  "\"EO 11812 (Oct. 1, 1974, 'shall take effect October 1, 1974'; 39 FR 36307-36312) adjusts for members of the uniformed services the monthly basic pay (Sec. 1 tables), basic allowance for subsistence (Sec. 2) and basic allowance for quarters (Sec. 3), caps basic pay at Executive Schedule level V under 5 U.S.C. 5308 (Sec. 4), supersedes seven earlier uniformed-pay orders (Sec. 5) and sets its effective date (Sec. 6). It has no term of its own; its rates govern until the next adjustment. EO 11883 (signed Oct. 6, 1975) sec. 5 supersedes 'Executive Order No. 11812 of October 1, 1974', and its sec. 2 replacement rates for basic pay, subsistence and quarters 'shall be effective on October 1, 1975' (sec. 4). Every clause except Sec. 5 therefore first ended on 1975-10-01, the stated effective date in the acting instrument (the displacement was retroactive from that date to Oct. 6). Sec. 5's supersession of earlier orders was completed when the order issued on 1974-10-01 (spent). Whole-order end = 1975-10-01. All of this order concerns the uniformed services, so the agency-specific civilian pay-period dates in EO 11883 sec. 4 do not affect it. Counterevidence: the U.S. Code note under 37 U.S.C. 1009 states that EO 11812 'which provided for the adjustment of pay rates effective Oct. 1, 1974, was superseded by Ex. Ord. No. 11883' (history, not a predicate); the 1989 Codification row reads 'Superseded by EO 11883'. CONFLICT QUARANTINED_RELATIONSHIP_CONFLICT resolved: the quarantined relationship (research/stage15/AUDIT/RELATIONSHIP_CHRONOLOGY_VIOLATIONS.csv) is an OFR note on EO 11778 (Apr. 12, 1974) reading 'Amends: EO 11692, December 15, 1972 (which was revoked by EO 11812, October 1, 1974)'; the parenthetical "
+ ],
+ "mutation": {
+  "after": "1974-10-01",
+  "before": "1974-10-07",
+  "field": "operative_clauses[5].first_end.date",
+  "operator": "D7.5:1974-10-01",
+  "refuting_span": {
+   "quote": "the supersession of seven earlier uniformed-pay orders operated when this order issued on Oct. 7, 1974 (with its rates applying from Oct. 1, 1974 under Sec. 6) and required nothing further; EO 11883 did not revive them"
+  }
+ },
+ "schema": "mountweazel-seeded-item/v1",
+ "seeded_payload": {
+  "instrument_id": "SEEDED:EO:11812",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 7619 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "disposition-table row for EO:11812 and every row naming its acting order; row reads: '11812 | Superseded by EO 11883' (PDF p. 1089); status as of 1989-01-20 used only as a lead and checked against the acting order's own text",
+    "repository": "OFR, Codification of Presidential Proclamations and Executive Orders, April 13, 1945 - January 20, 1989 (GPO 1989), disposition table; saved OCR rows parsed by job ofr-codification-1989 (output/DISPOSITION_1989.csv)",
+    "searched_by": "Claude (batch 4 agent)"
+   },
+   {
+    "checked_on": "2026-10-18",
+    "query_or_scope": "read EO 11883 (40 FR 47091) secs. 1-5 for the provision superseding EO:11812, its stated effective dates and any savings; read this order for its own effective date, term and the orders it superseded; checked later-events EDGES.csv, current-law MENTIONS.csv and the Stage 15 relationship-chronology audit rows for this order",
+    "repository": "Saved official Federal Register texts (jobs/fr-originals output, govinfo FR issue scans with OCR layer) of EO 11811, EO 11812 and EO 11883",
+    "searched_by": "Claude (batch 4 agent)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "By v i r t u e  o f th e  a u t h o r it y  v e s t e d  i n  me by th e  la w s o f  th e  U n ite d \nS ta te s, in c lu d in g  th e  F e d e r a l Pay C o m p a ra b ility  A c t  o f 1 9 7 0 , and s e c t io n \n1009 o f t i t l e  37 o f th e  U n ite d  S t a t e s  C o d e, and a s  P r e s id e n t  o f  th e  U n ite d \nStates and Commander i n  C h ie f  o f th e  Armed F o r c e s  o f  th e  U n ite d  S t a t e s , \ni t  i s  h ereb y o rd e re d  a s f o llo w s :",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; enacting words",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#enacting",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "SECTION 1 . The r a t e s  o f  m o n thly b a s ic  p ay  f o r  members o f  th e  u n ifo rm ed \nse rv ic e s w it h in  e a ch  p ay g rad e a re  a d ju s t e d  upw ards a s  s e t  f o r t h  i n  th e \nfollow ing t a b l e s :",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 1 with the basic-pay tables (PDF pages 199-202)",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "quote_table_note": "* The r a t e  o f b a s ic  pay fo r  m ilit a r y  p e rso n n e l a t  th e se  ra t e s  i s  lim ited \nby s e c t io n  5308 o f t i t l e  5 o f th e U n ited  State's Code, as added by the  \nF e d e ra l Pay C o m p a ra b ility  A ct o f 1970, to  th e r a t e  f o r  le v e l V of the \nE x e c u tiv e  S ch ed u le.",
+    "scope_id": "EO:11812#sec1",
+    "state_at_cutoff": "terminated",
+    "text_note": "The monthly basic-pay tables (commissioned officers, officers with over 4 years' enlisted service, warrant officers, enlisted members) and their footnotes follow the quoted lead sentence; the OCR layer gives them with letter-spaced text and is not reproduced. One footnote is quoted in quote_table_note."
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "SEC. 2 . The r a t e s  o f b a s ic  allo w an ce f o r  s u b s is te n c e  a u th o rize d  members \no f the uniform ed s e r v ic e s  a re  a d ju ste d  upwards as s e t  fo r t h  in  the \nfo llo w in g  t a b le :\nfoil, »ir: B a s ic  A llow ance fo r  S u b siste n ce  R ates \nO f f ic e r s : $50.52 p er month,\nEnlisted Members:\nWhen on leaye or authorized\nto  mess s e p a r a t e ly : $ 2.41  p e r day\nWhen r a t io n s  in  k in d  a re\nnot a v a ila b le : $ 2.71  p e r day\nWhen a ssig n e d  to  duty under  \nemergency co n d itio n s where  \nno m essing f a c i l i t i e s  o f the\nU n ite d  S ta te s  a re  a v a ila b le : $3.61 p e r day",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 2 with the subsistence-allowance table",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#sec2",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "¡E C , 3. The r a t e s  o f m onthly b a s ic  a llo w a n c e  f o r  q u a r t e r s  a u th o r iz e d \ne m b e rs of the u n ifo rm ed  s e r v ic e s  by p ay g rad e a re  a d ju s te d  upwards a s \ne t forth in  th e fo llo w in g  t a b le :",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 3 with the quarters-allowance table (PDF page 203)",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#sec3",
+    "state_at_cutoff": "terminated",
+    "text_note": "The left margin of Sec. 3 is clipped in the OCR layer ('¡E C , 3.', 'e m b e rs', 'e t forth'); the quarters-allowance table follows the quoted lead sentence."
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "N o  W ith s ta n d in g  th e  r a t e s  o f b a s ic  p ay e s t a b lis h e d  by s e c t io n  1 \ntiti S  o r< ^ e r ' no r a t e  o f b a s ic  p ay  may be p a id  under s e c t io n  5308 o f \no r  ,6  5  We U n ite d  S t a t e s  Co d e, w h ich  i s  i n  e x c e s s  o f th e  r a t e  now \nereafter p ro y id e d  f o r  l e y e l  V o f th e  E x e c u t iv e  S c h e d u le .",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 4 (limitation to Executive Schedule level V under 5 U.S.C. 5308)",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#sec4",
+    "state_at_cutoff": "terminated",
+    "text_note": "The section number and left margin of Sec. 4 are garbled in the OCR layer ('S E C  Ao f  thi'); the readable remainder is quoted as given."
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11812",
+     "date": "1974-10-01",
+     "mechanism": "spent_by_completed_performance",
+     "mechanism_detail": "the supersession of seven earlier uniformed-pay orders operated when this order issued on Oct. 7, 1974 (with its rates applying from Oct. 1, 1974 under Sec. 6) and required nothing further; EO 11883 did not revive them",
+     "quote": "The f o llo w in g  E x e c u t iv e  O rd e rs a re  h e re b y  su p e rse d e d :\n(1) E x e c u t iv e  O rd er No. 11414 o f Ju n e 1 1 , 1968;\n(2) Executive Order No. 11475 o f June 1 6 , 1969;\n(3) E x e c u t iv e  O rd e r No. 11525 o f A p r i l  1 5 , 1970;\n( 4 )  . E x e c u t iv e  O rd e r No. 11577 o f J a n u a ry  8 , 1971;\n(5) E x e c u t iv e  O rd er No. 11638 o f December 2 2 , 1971;\n(6) E x e c u t iv e  O rd e r No. 11692 o f December 1 5 , 1 9 7 2 , a s  amended; a n d ,\n(7) E x e c u t iv e  O rd e r No. 11740 o f O cto b er 3 , 1 97 3.",
+     "source": {
+      "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 5",
+      "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "The f o llo w in g  E x e c u t iv e  O rd e rs a re  h e re b y  su p e rse d e d :\n(1) E x e c u t iv e  O rd er No. 11414 o f Ju n e 1 1 , 1968;\n(2) Executive Order No. 11475 o f June 1 6 , 1969;\n(3) E x e c u t iv e  O rd e r No. 11525 o f A p r i l  1 5 , 1970;\n( 4 )  . E x e c u t iv e  O rd e r No. 11577 o f J a n u a ry  8 , 1971;\n(5) E x e c u t iv e  O rd er No. 11638 o f December 2 2 , 1971;\n(6) E x e c u t iv e  O rd e r No. 11692 o f December 1 5 , 1 9 7 2 , a s  amended; a n d ,\n(7) E x e c u t iv e  O rd e r No. 11740 o f O cto b er 3 , 1 97 3.",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 5 (orders superseded; PDF page 204, where the OCR prints the headings 'S E C . 5 .' and 'S E C . 6 .' together above both texts)",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#sec5",
+    "state_at_cutoff": "terminated"
+   },
+   {
+    "current_predicate": null,
+    "first_end": {
+     "actor": "EO:11883",
+     "date": "1975-10-01",
+     "mechanism": "express_supersession",
+     "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+     "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+     "source": {
+      "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+      "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+     }
+    },
+    "later_events": [
+     {
+      "actor": "EO:11883",
+      "effective_date": "1975-10-01",
+      "mechanism": "express_supersession",
+      "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+      "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+      "source": {
+       "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+       "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+       "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+      }
+     }
+    ],
+    "original_operative_text": "T h is  o rd e r s h a l l  ta k e  e f f e c t  O cto b e r 1 , 3-974.",
+    "original_source": {
+     "page_or_item": "39 FR 36307, PDF pages 199-204; Sec. 6 (effective date)",
+     "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+    },
+    "scope_id": "EO:11812#sec6",
+    "state_at_cutoff": "terminated"
+   }
+  ],
+  "original_representation": {
+   "page_or_item": "39 FR 36307, PDF pages 199-204",
+   "sha256": "8fab17603b8b5580b8232f739ba19fb8dab9ed8a68562c65b64da824b27e4d7f",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1974-10-08/pdf/FR-1974-10-08.pdf"
+  },
+  "research_rationale": "EO 11812 (Oct. 1, 1974, 'shall take effect October 1, 1974'; 39 FR 36307-36312) adjusts for members of the uniformed services the monthly basic pay (Sec. 1 tables), basic allowance for subsistence (Sec. 2) and basic allowance for quarters (Sec. 3), caps basic pay at Executive Schedule level V under 5 U.S.C. 5308 (Sec. 4), supersedes seven earlier uniformed-pay orders (Sec. 5) and sets its effective date (Sec. 6). It has no term of its own; its rates govern until the next adjustment. EO 11883 (signed Oct. 6, 1975) sec. 5 supersedes 'Executive Order No. 11812 of October 1, 1974', and its sec. 2 replacement rates for basic pay, subsistence and quarters 'shall be effective on October 1, 1975' (sec. 4). Every clause except Sec. 5 therefore first ended on 1975-10-01, the stated effective date in the acting instrument (the displacement was retroactive from that date to Oct. 6). Sec. 5's supersession of earlier orders was completed when the order issued on 1974-10-01 (spent). Whole-order end = 1975-10-01. All of this order concerns the uniformed services, so the agency-specific civilian pay-period dates in EO 11883 sec. 4 do not affect it. Counterevidence: the U.S. Code note under 37 U.S.C. 1009 states that EO 11812 'which provided for the adjustment of pay rates effective Oct. 1, 1974, was superseded by Ex. Ord. No. 11883' (history, not a predicate); the 1989 Codification row reads 'Superseded by EO 11883'. CONFLICT QUARANTINED_RELATIONSHIP_CONFLICT resolved: the quarantined relationship (research/stage15/AUDIT/RELATIONSHIP_CHRONOLOGY_VIOLATIONS.csv) is an OFR note on EO 11778 (Apr. 12, 1974) reading 'Amends: EO 11692, December 15, 1972 (which was revoked by EO 11812, October 1, 1974)'; the parenthetical names this order as the later superseder of EO 11692, it is not an event on this order, and the Stage 15 audit already suppressed it. The draft had no clause inventory; it is built here from the official FR scan.",
+  "savings_residuals": {
+   "quote": "Sec. 2. Pay and Allowances For Members of the Uniformed Services. \nPursuant to the provisions of section 1009 of title 37 of the United States \nCode, the rates of monthly basic pay (37 U.S.C. 205(a)), the rates of \nbasic allowances for subsistence (37 U.S.C. 402), and the rates of basic \nallowances for quarters (37 U.S.C. 403 (a )) are adjusted, as set forth at \nSchedule 4 attached hereto and made a part hereof, for members of the \nuniformed services.",
+   "reason": "EO 11883 sec. 2 adjusts again, from Oct. 1, 1975, the same uniformed-services rates of monthly basic pay, basic allowance for subsistence and basic allowance for quarters; the adjustment function under 37 U.S.C. 1009 continues under EO 11883, and pay and allowances accrued at this order's rates for periods before Oct. 1, 1975 remain due as accrued entitlements. EO 11883 has no other savings clause. The supersession of seven earlier orders by sec. 5 of this order is a completed result not undone. No continuing effect rests on this order.",
+   "source": {
+    "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Sec. 2",
+    "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+   },
+   "state": "transferred_or_accrued"
+  },
+  "schema": "SEEDED-eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": {
+   "actor": "EO:11883",
+   "date": "1975-10-01",
+   "mechanism": "express_supersession",
+   "mechanism_detail": "express supersession by EO 11883 sec. 5, whose replacement uniformed-services rates (sec. 2) are 'effective on October 1, 1975' (sec. 4). EO 11883 was signed Oct. 6, 1975, so it displaced the superseded uniformed rates retroactively from that stated effective date",
+   "quote": "Sec . 4. Effective Date. The adjustments in rates of monthly basic pay \nand basic allowances for subsistence and quarters for members of the \nuniformed services shall be effective on October 1, 1975. All other adjust \nments of salary or pay shall be effective on the first day of the first appli­\ncable pay period beginning on or after October 1, 1975.\nSec. 5. Superseded Orders. Executive Order No. 11811 of October 2* \n1974, and Executive Order No. 11812 of October 7, 1974, are hereby \nsuperseded.",
+   "source": {
+    "page_or_item": "40 FR 47091, PDF pages 15-23; 40 FR 47091, PDF page 15; Secs. 4 and 5",
+    "sha256": "480394a88ab2570300f7d5448607bc50f8aadb300badb21d8ee0560d02a49bc3",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1975-10-08/pdf/FR-1975-10-08.pdf"
+   }
+  },
+  "whole_order_status": "no"
+ },
+ "track": "C"
+}

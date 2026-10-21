@@ -7,7 +7,7 @@ Core claims proved here:
   4. every flagged fixture is rejected by the production claim gate, while the de-flagged copy passes it;
   5. scoring gives catch rate per defect type, false-alarm bounds and Wilson intervals, and refuses an edited key.
 """
-import contextlib, io, json, shutil, sys, tempfile, unittest
+import contextlib, hashlib, io, json, shutil, sys, tempfile, unittest
 sys.dont_write_bytecode = True
 from pathlib import Path
 
@@ -171,11 +171,81 @@ class CheckTests(Base):
     def test_planted_text_is_found_even_without_markers(self):
         out, fx = self.seed("a", n=24)
         repo = self.make_repo(fx)
-        texts = [json.loads(p.read_text())["mutation"]["after"] for p in fx.glob("*.seeded.json")]
-        long = [t for t in texts if isinstance(t, str) and len(t) >= 40]
-        if not long:
-            self.skipTest("this seed produced no long mutation text")
-        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + long[0])
+        needles = [n for p in fx.glob("*.seeded.json") for n in json.loads(p.read_text())["leak_needles"]]
+        if not needles:
+            self.skipTest("this seed produced no novel plant text")
+        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + needles[0])
+        self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_real_text_shared_with_a_plant_is_not_a_leak(self):
+        """Regression for the MW-C1 false positives: a D3 cut is a prefix of the real quote, so every real copy
+        of the order contained the old raw needle.  Real base items placed in the repo must pass."""
+        out, fx = self.seed("a", n=24)
+        repo = self.make_repo(fx)
+        lines = []
+        for p in fx.glob("*.seeded.json"):
+            d = json.loads(p.read_text())
+            lines.append(Path(REPO, d["base"]["path"]).read_text().splitlines()[d["base"]["line"] - 1])
+            for n in d["leak_needles"]:
+                self.assertNotIn(n, lines[-1])
+        (repo / "research/readiness/claims/real-bases.jsonl").write_text("\n".join(lines) + "\n")
+        res = mw.check(repo, fx.parent)
+        self.assertTrue(res["ok"], res["problems"][:3])
+
+    def _d8_like(self):
+        """A fixture whose only leak needle is wording that a real donor claim in the repo also contains."""
+        out, fx = self.seed("a", n=12)
+        repo = self.make_repo(fx)
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d = json.loads(f.read_text())
+        donor_text = "Donor order wording: the Secretary shall furnish a detailed statement of expenditures \u2014 verbatim."
+        d["leak_needles"] = [json.dumps(donor_text, ensure_ascii=False)]
+        f.write_text(json.dumps(d))
+        donor = {"schema": "eo-lifecycle-claim/v1", "instrument_id": "EO:99999",
+                 "operative_clauses": [{"original_operative_text": donor_text}]}
+        (repo / "research/readiness/claims/donor.jsonl").write_text(json.dumps(donor) + "\n")
+        (repo / "jobs/other/output/copy.jsonl").write_text(json.dumps(donor, ensure_ascii=False) + "\n")
+        return fx, repo, d, donor_text
+
+    def test_plant_text_that_is_real_donor_wording_is_not_a_leak(self):
+        """Regression for the MW-C2 false positives: a D8 plant reuses a donor order's real wording, which
+        sits in the donor's own claim and in its downstream copies."""
+        fx, repo, d, _ = self._d8_like()
+        res = mw.check(repo, fx.parent)
+        self.assertTrue(res["ok"], res["problems"][:3])
+
+    def test_donor_wording_does_not_hide_a_real_leak(self):
+        fx, repo, d, donor_text = self._d8_like()
+        payload = d["seeded_payload"]
+        deflag = mw._deflag(payload)
+        leaks = {
+            "marker": ("jobs/other/output/m.json", json.dumps(payload)),
+            "exact copy without markers": ("jobs/other/output/q.jsonl", json.dumps(deflag) + "\n"),
+            "exact copy placed among the claims": ("research/readiness/claims/leak.jsonl", json.dumps(deflag) + "\n"),
+        }
+        for label, (rel, text) in leaks.items():
+            path = repo / rel
+            path.write_text(text)
+            self.assertFalse(mw.check(repo, fx.parent)["ok"], label)
+            path.unlink()
+            self.assertTrue(mw.check(repo, fx.parent)["ok"], "clean again after removing " + label)
+
+    def test_novel_needle_still_fails_when_another_needle_is_donor_wording(self):
+        fx, repo, d, _ = self._d8_like()
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d["leak_needles"].append(json.dumps("Wording that exists only in the plant and nowhere in the repository."))
+        f.write_text(json.dumps(d))
+        self.assertTrue(mw.check(repo, fx.parent)["ok"])
+        (repo / "jobs/other/output/DIGEST.txt").write_text("copied: " + d["leak_needles"][1])
+        self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_scan_covers_job_inputs_beyond_output_and_data(self):
+        out, fx = self.seed("a", n=12)
+        repo = self.make_repo(fx)
+        (repo / "jobs/other/inputs").mkdir(parents=True)
+        f = sorted(fx.glob("*.seeded.json"))[0]
+        d = json.loads(f.read_text())
+        (repo / "jobs/other/inputs/claims.jsonl").write_text(json.dumps(mw._deflag(d["seeded_payload"])) + "\n")
         self.assertFalse(mw.check(repo, fx.parent)["ok"])
 
     def test_check_flags_fixture_without_flag(self):
@@ -189,6 +259,117 @@ class CheckTests(Base):
         res = mw.check(repo, fx.parent)
         self.assertFalse(res["ok"])
         self.assertTrue(any("claim gate does not reject" in p["problem"] for p in res["problems"]))
+
+    def runner_manifest(self, inputs=None):
+        inputs = inputs or {"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "100644:" + "a" * 40}
+        return {"schema": 1, "job": "portfolio-repair-check", "base_commit": "b" * 40,
+                "run_url": "https://github.com/example/repository/actions/runs/1",
+                "scope": {"roots": ["jobs/mountweazel/fixtures"], "patterns": [],
+                          "exclude": "jobs/portfolio-repair-check/output"},
+                "inputs": inputs,
+                "inputs_sha256": hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+                "base_output_sha256": hashlib.sha256(b"{}").hexdigest()}
+
+    def test_runner_manifest_fixture_inventory_is_not_a_leak(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/runner-freshness/portfolio-repair-check-inputs.json",
+                    "jobs/portfolio-repair-check/output/RUNNER_INPUTS.json",
+                    ".job-cache/runner-prior/123-1/portfolio-repair-check/RUNNER_INPUTS.json",
+                    "jobs/_attempts/portfolio-repair-check/123-1/RUNNER_INPUTS.json"):
+            p = repo / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(json.dumps(self.runner_manifest(), indent=2))
+        result = mw.check(repo, self.tmp / "none")
+        self.assertTrue(result["ok"], result["problems"])
+        self.assertEqual(result["files_scanned"], 7)  # manifests are scanned, not skipped
+
+    def test_retained_inventory_diagnostic_is_annotation_but_other_ids_still_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        path = repo / "jobs/_attempts/portfolio-repair-check/123-1/tests/mountweazel.log"
+        path.parent.mkdir(parents=True)
+        report = [{"where": ".job-cache/runner-prior/123-1/portfolio-repair-check/RUNNER_INPUTS.json",
+                   "problem": "batch item id MW-C1-01"}]
+        text = "AssertionError: False is not true : " + repr(report) + "\n"
+        path.write_text(text)
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"])
+        for extra in ("actual item MW-C1-01\n", "SEEDED:EO:1\n"):
+            path.write_text(text + extra)
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        path.write_text(text)
+        view = mw._runner_diagnostic_for_item_scan(path, repo)
+        self.assertTrue(mw.scan_file(path, [b"AssertionError"], set(), item_id_data=view))
+        report[0]["where"] = "research/readiness/claims/real.jsonl"
+        path.write_text("AssertionError: False is not true : " + repr(report) + "\n")
+        self.assertIsNone(mw._runner_diagnostic_for_item_scan(path, repo))
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def test_runner_manifest_exception_rejects_invalid_or_duplicate_structure(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        for field, value in (("job", "other"), ("schema", True), ("inputs_sha256", "0" * 64),
+                             ("base_output_sha256", "bad"), ("extra_payload", {"item_id": "MW-C1-01"})):
+            m = self.runner_manifest()
+            m[field] = value
+            variants.append((field, json.dumps(m)))
+        m = self.runner_manifest({"jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json": "actual payload"})
+        variants.append(("non-hash inventory value", json.dumps(m)))
+        variants.append(("duplicate field", json.dumps(self.runner_manifest()).replace('"schema": 1', '"schema": 0, "schema": 1')))
+        for name, raw in variants:
+            with self.subTest(name=name):
+                p.write_text(raw)
+                self.assertIsNone(mw._runner_inventory_for_item_scan(p, repo))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def test_runner_manifest_exception_is_limited_to_exact_locations(self):
+        repo = self.make_repo(self.tmp / "none")
+        for rel in ("oversized/arbitrary-inputs.json", "oversized/runner-freshness/other-inputs.json",
+                    "jobs/other/output/RUNNER_INPUTS.json", "jobs/portfolio-repair-check/output/notes.json"):
+            with self.subTest(path=rel):
+                p = repo / rel
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text(json.dumps(self.runner_manifest()))
+                self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+                p.unlink()
+
+    def test_runner_manifest_other_ids_and_payloads_still_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        variants = []
+        m = self.runner_manifest()
+        m["run_url"] += "/MW-C1-01"
+        variants.append(m)
+        m = self.runner_manifest()
+        m["scope"]["roots"].append("jobs/other/MW-C1-01")
+        variants.append(m)
+        inputs = dict(self.runner_manifest()["inputs"])
+        inputs["research/readiness/claims/MW-C1-01.json"] = "100644:" + "c" * 40
+        variants.append(self.runner_manifest(inputs))  # recomputed digest does not exempt other paths
+        m = self.runner_manifest()
+        m["run_url"] += "/SEEDED:EO:1"
+        variants.append(m)
+        for m in variants:
+            p.write_text(json.dumps(m))
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        out, fx = self.seed("a", n=12)
+        payload = json.loads(sorted(fx.glob("*.seeded.json"))[0].read_text())["seeded_payload"]
+        for obj in (payload, mw._deflag(payload)):
+            p.write_text(json.dumps(obj))
+            self.assertFalse(mw.check(repo, fx.parent)["ok"])
+
+    def test_valid_runner_inventory_still_scans_raw_planted_text(self):
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
+        p.parent.mkdir(parents=True)
+        m = self.runner_manifest()
+        m["run_url"] = "Novel planted wording must remain detectable inside an otherwise valid inventory."
+        p.write_text(json.dumps(m))
+        view = mw._runner_inventory_for_item_scan(p, repo)
+        self.assertIsNotNone(view)
+        hits = mw.scan_file(p, [json.dumps(m["run_url"]).encode()], set(), item_id_data=view)
+        self.assertTrue(any(h.startswith("planted text ") for h in hits), hits)
 
     def test_real_repository_has_no_seeded_item(self):
         res = mw.check(REPO, HERE_FIXTURES)
@@ -212,12 +393,20 @@ HERE_FIXTURES = Path(mw.HERE) / "fixtures"
 
 
 class ScoreTests(Base):
+    def correct_reason(self, it):
+        issue = {"D1": "deadline is not demonstrated performance", "D2": "one-time performance already completed",
+                 "D3": "quote truncated before the operative verb", "D4": "partial scope is not the whole order",
+                 "D5": "earlier end was missed in favor of later revocation", "D6": "omitted later event",
+                 "D7": "wrong effective date", "D8": "wrong order text from a neighbour", "D9": "coverage overstated",
+                 "D10": "wrong target does not revoke this order", "D13": "source is already held"}
+        return issue[it["defect_code"]] + ": " + " ".join(it.get("locus_terms", []))
+
     def verdicts(self, key, catch=(), wrong_reason=(), flag_real=(), voids=()):
         rows = []
         for it in key["items"]:
             if it["is_seeded"]:
                 if it["item_id"] in catch:
-                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": "defect", "confidence": 0.9})
+                    rows.append({"item_id": it["item_id"], "decision": "reject", "locus": it["field"], "reason": self.correct_reason(it), "confidence": 0.9})
                 elif it["item_id"] in wrong_reason:
                     rows.append({"item_id": it["item_id"], "decision": "reject", "locus": "nothing relevant", "reason": "gut feeling", "confidence": 0.4})
                 else:
@@ -275,6 +464,37 @@ class ScoreTests(Base):
         self.assertIn(plants[-1], res["unreviewed"])
         self.assertEqual(res["pooled"]["strict"]["n"], len(plants) - 2)
 
+    def test_generic_field_name_is_not_a_strict_catch(self):
+        key = self.setup_batch()
+        plants = [i for i in key["items"] if i["is_seeded"]]
+        rows = [{"item_id": i["item_id"], "decision": "reject" if i["is_seeded"] else "accept",
+                 "locus": "first_end whole_order_end quote later_events", "reason": "looks off"} for i in key["items"]]
+        res = mw.score(key, rows)
+        self.assertEqual(res["pooled"]["strict"]["k"], 0)
+        self.assertEqual(res["pooled"]["lenient"]["k"], len(plants))
+
+    def test_relabel_tells_noticed_and_verdict_alias(self):
+        key = self.setup_batch()
+        plants = [i for i in key["items"] if i["is_seeded"]]
+        a, b = plants[0], plants[1]
+        rows = []
+        for i in key["items"]:
+            if i["item_id"] == a["item_id"]:
+                rows.append({"item_id": i["item_id"], "verdict": "reject", "locus": i["field"], "reason": self.correct_reason(i)})
+            elif i["item_id"] == b["item_id"]:
+                rows.append({"item_id": i["item_id"], "verdict": "accept", "locus": i["field"], "reason": self.correct_reason(i)})
+            else:
+                rows.append({"item_id": i["item_id"], "verdict": "accept"})
+        res = mw.score(key, rows, relabel={a["item_id"]: "D11"}, tells=[a["item_id"]], production=(0, 15))
+        self.assertIn("D11", res["by_defect_type"])
+        self.assertEqual(res["pooled"]["tell_free"]["strict"]["n"], len(plants) - 1)
+        self.assertEqual(res["pooled"]["tell_free"]["strict"]["k"], 0)
+        if mw.specific_terms(b):
+            self.assertEqual([x["item_id"] for x in res["pooled"]["noticed_but_accepted"]], [b["item_id"]])
+        self.assertIn("tell_free", res["implied_for_production"])
+        with self.assertRaises(SystemExit):
+            mw.score(key, rows, relabel={a["item_id"]: "D99"})
+
     def test_edited_key_is_refused(self):
         key = self.setup_batch()
         key["items"][0]["is_seeded"] = not key["items"][0]["is_seeded"]
@@ -305,7 +525,103 @@ class ScoreTests(Base):
         self.assertFalse((REPO / "research" / "mw-score.json").exists())
 
 
+class PlantQualityTests(Base):
+    def test_rewrites_never_touch_another_clause(self):
+        """MW-C1 tell: global date/actor swaps rewrote sentences about sibling clauses.  Every date/actor plant
+        must have an old end that no other clause or later event shares."""
+        out, fx = self.seed("a", n=40, extra=("--share", "0.5", "--codes", "D2,D4,D5,D7", "--allow-short"))
+        pool = mw.load_claim_pool(REPO)
+        files = list(fx.glob("*.seeded.json"))
+        self.assertTrue(files)
+        for f in files:
+            d = json.loads(f.read_text())
+            base = pool[d["instrument_id"][len("SEEDED:"):]]["claim"]
+            i = int(d["mutation"]["field"].split("[")[1].split("]")[0])
+            fe = base["operative_clauses"][i]["first_end"]
+            actor = fe.get("actor") if d["defect_code"] in ("D2", "D4", "D5") else None
+            self.assertTrue(mw._swap_safe(base, i, fe["date"], actor), f.name)
+
+    def test_recurring_duties_are_not_one_time(self):
+        self.assertTrue(mw.RECURRING_RE.search("shall submit an annual report to the President"))
+        for rec in mw.load_claim_pool(REPO).values():
+            for spec, apply in mw.ops_c("D2", rec["claim"], {}, "x"):
+                i = int(spec.split(":")[0])
+                self.assertFalse(mw.RECURRING_RE.search(rec["claim"]["operative_clauses"][i]["original_operative_text"]))
+
+
+class MaterialCorrespondenceTests(unittest.TestCase):
+    """Controlled scoring pairs, not new legal adjudications or production claims."""
+    def key(self, code, field="operative_clauses[0].first_end"):
+        body = {"schema": mw.SCHEMA_KEY, "batch_id": "scoring-control", "track": "C", "n_items": 1,
+                "n_seeded": 1, "planned_n_seeded": 3,
+                "items": [{"item_id": "control-item", "is_seeded": True, "defect_code": code,
+                           "field": field, "affected_scope_id": "control-clause-a",
+                           "locus_terms": ["EO:12345", "2001-01-01"],
+                           "refuting_quote": "The approved test method requires investigation of this evidence."}]}
+        return {**body, "key_seal_sha256": mw.sha(body)}
+
+    def result(self, code, reason, locus="operative_clauses[0]", **kw):
+        return mw.score(self.key(code), [{"item_id": "control-item", "decision": "reject",
+                                        "reason": reason, "locus": locus}], **kw)
+
+    def test_wrong_issue_in_same_order_gets_no_d6_credit(self):
+        r = self.result("D6", "EO 12345 has a cut quote in a different clause.", "operative_clauses[9]")
+        self.assertEqual(r["pooled"]["strict"]["k"], 0)
+        self.assertEqual(r["pooled"]["lenient"]["k"], 1)
+
+    def test_locator_alone_does_not_establish_material_issue(self):
+        for reason in ("EO 12345", "2001-01-01", "Something looks questionable."):
+            self.assertEqual(self.result("D6", reason)["pooled"]["strict"]["k"], 0)
+
+    def test_missing_event_needs_matching_clause_and_event(self):
+        good = "The omitted event from EO 12345 on 2001-01-01 must be investigated."
+        self.assertEqual(self.result("D6", good)["pooled"]["strict"]["k"], 1)
+        self.assertEqual(self.result("D6", good, "operative_clauses[7]")["pooled"]["strict"]["k"], 0)
+        self.assertEqual(self.result("D6", "An omitted event needs investigation.")["pooled"]["strict"]["k"], 0)
+
+    def test_earlier_event_performance_partial_scope_and_savings_pairs(self):
+        cases = {
+            "D5": "An earlier end requires investigation before selecting later revocation.",
+            "D2": "Demonstrated performance of this one-time command requires clause-specific analysis.",
+            "D4": "The partial scope does not establish the whole order's end.",
+            "D12": "The savings provision preserves effects that this conclusion omits.",
+        }
+        for code, reason in cases.items():
+            with self.subTest(code=code):
+                self.assertEqual(self.result(code, reason)["pooled"]["strict"]["k"], 1)
+                self.assertEqual(self.result(code, reason, "operative_clauses[8]")["pooled"]["strict"]["k"], 0)
+        # A coherent but disputed premise does not itself make performance the end.
+        self.assertEqual(self.result("D2", "The date typography is wrong.")["pooled"]["strict"]["k"], 0)
+
+    def test_manual_correspondence_requires_provenance_and_preserves_mechanical_result(self):
+        with self.assertRaises(SystemExit):
+            self.result("D6", "unclear", strict_overrides={"control-item": True})
+        override = {"caught": True, "adjudicator": "test-reviewer", "source": "review-decision.json",
+                    "reason": "Verified the synonym against the exact omitted event.",
+                    "affected_locus": "control-clause-a", "material_issue": "omitted amendment event"}
+        r = self.result("D6", "The history elides the amendment.", strict_overrides={"control-item": override})
+        self.assertEqual(r["pooled"]["strict"]["k"], 1)
+        item = r["by_defect_type"]["D6"]["items"][0]
+        self.assertFalse(item["correspondence"]["mechanical_candidate"])
+        self.assertEqual(item["adjudication"], override)
+
+    def test_missing_plants_and_blinding_are_explicit(self):
+        r = mw.score(self.key("D6"), [])
+        self.assertEqual(r["plants_missing_unscored"], 2)
+        self.assertEqual(r["plants_unreviewed_unscored"], 1)
+        self.assertIsNone(r["pooled"]["strict"]["rate"])
+        self.assertFalse(r["blinding"]["technical_separation_verified"])
+
+
 class StatsTests(unittest.TestCase):
+    def test_implied_prevalence(self):
+        catch = mw.rate(3, 6)
+        r = mw.implied_prevalence(0, 15, catch)
+        self.assertAlmostEqual(r["flag_rate_upper95"], 0.218, places=3)
+        self.assertAlmostEqual(r["prevalence_upper95_at_point_catch"], 0.436, places=2)
+        self.assertEqual(r["prevalence_upper95_at_catch_lower95"], 1.0)
+        self.assertEqual(mw.implied_prevalence(0, 15, mw.rate(0, 3))["prevalence_upper95_at_point_catch"], 1.0)
+
     def test_known_intervals(self):
         lo, hi = mw.wilson(9, 10)
         self.assertAlmostEqual(lo, 0.60, places=2)

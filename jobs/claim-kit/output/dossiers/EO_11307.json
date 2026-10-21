@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:11307>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:11307#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:11307",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11307"
@@ -171,6 +201,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:11307>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:11307>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: same-line row on PDF page 13, number followed by its subject \"Coordinating Federal programs affecting agriculture and rural development\" (subject begins at offset 22143), matching the target's title. Target original held: jobs/fr-originals/data/full_run/texts/EO_11307.txt (31 FR 12917, PDF pages 5-6). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:11307>EO:12553@rastell-r12553nb",
+      "producer": "claude-r12553nbs2-producer",
+      "producer_d6": "Own terms: none (Sec. 5 supersedes EO 11122; that is an act by the target, not an end of it). Dossier chain: no events. EDGES: EO 11307 supersedes EO 11122 (as actor); only EO 12553 acts on EO 11307 (revocation, 1986-02-25). Number search: the target number appears in EO_11321 only inside an FR page-citation list and in EO_11671 only as its own FR page (37 FR 11307); no other held order names EO 11307. Non-express lead only: later statutes on rural development coordination by the Secretary of Agriculture (e.g., the Rural Development Act of 1972) are unheld and are not named by any held instrument or OFR note as acting on EO 11307; not an express end, recorded for the reviewer. No later event changed EO 12553 itself (no EDGES row targets EO:12553; no held order text amends or revokes it). Search base: target dossier (chain, own_terms, missing, actor_provisions), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv rows for the target, jobs/status-history/output/events and histories, and a number search of all 6,652 held Federal Register order texts (jobs/fr-originals/data/full_run/texts) for other orders naming the target (page numbers, FR document numbers and index entries discarded). D6 RESULT: no earlier express end in held sources; EO 12553 is the first express end (date is the on_signing reading).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources. Sec. 5 supersedes EO 11122 (an act by the target). Non-express lead only (Rural Development Act of 1972; unheld, names no EO). EO 12553 is the first express end, not proof of continuous operation.",
+        "d6_searched": "Re-sliced provision 691-966 and target_naming from held EO_12553.txt (text sha256 matches; provision and naming sha256 match); target held-text sha256 checked; subject on the same row read in held text; number search of all held FR order texts for the target (non-order hits were FR doc numbers / page or index numbers); target held text read for own terms; quoted earlier/later instruments re-read in held official FR texts; EDGES rows for the target re-read. EO_11307.txt read for own terms (none); '11307' hits in EO_11321 (FR page-citation list) and EO_11671 (its own page 37 FR 11307) are page numbers.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-r12553nbs2-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:11307",
+      "target_naming": {
+        "char_end": 22142,
+        "char_start": 22137,
+        "sha256": "11672f73e58b8f15006c718ab195d7e7103ce52a822e61e64569a6b12425f7d4",
+        "text": "11307"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -349,9 +454,119 @@
       "text": "Instrument: EO:11307\nSource: https://www.govinfo.gov/content/pkg/FR-1966-10-04/pdf/FR-1966-10-04.pdf\nSHA-256 of the downloaded file: e6780c4bb2833ac70a49ab3f1852d41a685ab3ece3ca237a196a2c180fe4fac8\nLocation: 31 FR 12917, PDF pages 5-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 24 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 11307\nCOORDINATION OF FEDERAL PROGRAMS AFFECTING AGRICULTURAL  \nAND RURAL AREA DEVELOPMENT\nW H E R E AS the development of our Nation’s agricultural and \nrural areas has undergone radical changes due to technological ad­\nvancement and the increasing urbanization of the Nation’s society and \neconomy ; and\nW H E R E AS the living standards and welfare of the rural area \npopulation depend upon a successf ul accommodation to these changes ; \nand\nW H E R E AS Congress has vested responsibilities in the Secretary of \nAgriculture for the administration of numerous programs aimed at the \nachievement of sound agricultural and rural development; and\nW H E R E AS such programs are closely interrelated with important \nprograms and activities administered by other Federal departments \nand agencies, which affect agricultural and rural area development; \nand\nW H E R E AS the President has directed the Secretary of Agriculture \nto put the facilities of Department of Agriculture field offices at the \ndisposal of all Federal agencies to assist them in making their pro­\ngrams effective in rural areas, and jointly with the Director of the \nBureau of the Budget to review with the head of each department or \nagency the administrative obstacles which may stand in the way of \nequitable distribution in rural areas of the benefits of their programs \nand to propose administrative or legislative steps which can be taken \nto assure that equity is attained to assure full participation by rural \nareas ; and\nW H E R E AS the highest level of coordination is required between \nthe Department of Agriculture and such other Federal departments \nand agencies in order to achieve the maximum beneficial impact on \nagricultural and rural area development :\n— NOW, TH EREFO RE, by virtue of the authority vested in me as \nPresident of the United States, it is ordered as follows :\nS ectio n  1. Responsibilities of the Secretary, (a) The Secretary \nof Agriculture, shall take the initiative in identifying problems of \nagricultural and rural area development which require the coopera­\ntion of various Federal departments and agencies for their effective \nsolution, and pursuant thereto shall convene, or authorize his repre­\nsentatives to convene, meetings at appropriate times and places, to \nwhich he shall invite the heads of such departments and agencies as \nmay be responsible for interrelated programs or activities, or repre­\nsentatives designated by them, for the following purposes : __\n(1) To provide a forum for consideration of mutual problems con­\ncerning Federal programs and activities affecting agricultural and \nrural area development and for the exchange of information needed \nto achieve coordination of, and to avoid duplication in, such programs \nand activities.\n(2) To promote cooperation among Federal departments and agen­\ncies in achieving consistent policies, practices, and procedures for \nadministration of their programs affecting agricultural and rural area \ndevelopment.\nFEDERAL REGISTER, VOL. 31, NO. 192— TUESDAY, OCTOBER 4, 1966\n\n=== PDF page 6 of 24 ===\n12918 THE PRESIDENT\n(3) To consult with and obtain the advice of appropriate Federal \ndepartments and agencies with respect to :\n(A ) intergovernmental relations and cooperation in promoting \nsound agricultural and rural area development ;\n(B ) provision of information and technical assistance to State and \nlocal governments in solving agricultural and rural area development \nproblems; and\n(C ) encouragement of comprehensive planning of, and effective \nregional, State, and local cooperation in agricultural and rural area \ndevelopment activities.\n(4) To identify agricultural and rural area development problems \nof particular States, regions, or localities which require interagency or \nintergovernmental coordination.\n(b ) The Secretary shall make arrangements with such Federal \ndepartments and agencies for such working groups as they shall agree \nmay be desirable to consider special problems arising with respect to \nmatters described in subsection (a) oi this section.\nS ec . 2. Agency responsibilities. The heads of Federal depart­\nments and agencies having programs which have an impact on agri­\ncultural or rural area development shall to the extent permitted by \nlaw and funds available, furnish information, at the request of the \nSecretary, pertaining to programs within the responsibilities of such \ndepartments or agencies, and such additional information as will assist \nthe Secretary in developing solutions to agricultural and rural area \ndevelopment problems.\nS ec . 3. Construction. Nothing in this Order shall be construed as \nsubjecting any function vested by law in, or assigned pursuant to law \nto, any Federal department or agency or head thereof to the authority \nof any other agency or officer or as abrogating or restricting any such \nfunction in any manner.\nS ec . 4. Administrative arrangements, (a) Each executive de­\npartment and agency participating under section 1  or section 2 shall \nfurnish necessary assistance for effectuating the provisions of this \nOrder as authorized by section 214 of the Act of May 3,1945, 59 Stat. \n134 (31 U.S.C. 691).\n(b) The Department of Agriculture shall provide necessary admin­\nistrative services pursuant to this Order.\nS ec. 5. Executive Order 11122 of October 16, 1963, establishing the \nRural Development Committee, is hereby superseded.\nL y n d o n B. J o h n so n\nT h e W h it e H ouse ,\nSeptember 30,1966.\n[F.R. Doc. 66-10841 ; Filed, Sept. 30,1966 ; 5 :05 p.m.]\nFEDERAL REGISTER, VOL. 31, NO. 192— TUESDAY, OCTOBER 4, 1966\n"
     }
   },
-  "fingerprint": "3e6c32939af20f79da7d8f16c5e1e9474c3f3fa574e462151d0d9991eb2cb960",
+  "fingerprint": "85d1d669ba878bfc9e8641d42cbc12f2f70ba56323720220cc01466870f489a7",
   "instrument_id": "EO:11307",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "57c8ba1bc3f8920057e73378476b01133ce53ce2253f79174cad72494198d902",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "3022b7cb66ce05b4fc26bc2f209e50b175c80be02b567ad7f32407d55b3b9d84",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#2",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "88be946c62c45aa12f5dc31cb6b5b5d38c63a67101c27a50adf1eda7704c03a2",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#3",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "3eac69b888bbb30d7d4f6cc7e1c51be34cad5c00b59d14f02284366cfbdad634",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#4",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "68e12562541a8d414db32f31ad4fee84191544089ec93560aef8ef0c08a245e9",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#b",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "b4722c2201d5a0aa650cbfa1949e6067ca969b9378107298951a6ba111ae516d",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11307",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11307>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11307#b-dup2",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -390,9 +605,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11307",
   "own_terms": [],

@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:12040>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 211,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:12040#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12040",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12040"
@@ -78,6 +108,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:12040>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:12040>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12040 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12040 is the 15th number of the page-14 column and pairs with the 15th subject after joining wrapped lines, \"Relating to the transfer of certain environmental evaluation functions\" (offset 28173), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12040.txt (43 FR 8097, PDF pages 15-15). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:12040>EO:12553@rastell-r12553nb",
+      "producer": "claude-r12553nb-producer",
+      "producer_d6": "Own terms: Sec. 1 makes a Reorganization Plan No. 1 of 1977 transfer (CEQ to EPA, FNERDA sec. 11 evaluation) effective February 26, 1978; Sec. 2 directs OMB to effectuate it. This is an effective date of a transfer, not an end of the order; the order may have been spent on execution, which is not an express end. Dossier chain: no events. EDGES: EO 12553 revocation and a Reorganization Plan No. 1 of 1977 cross-reference only. Number search: no other held order names EO 12040. No earlier express end found in held sources; EO 12553 is the first express end. No later event changed EO 12553 itself (no EDGES row targets EO:12553; no held order text amends or revokes it). Search base: target dossier (chain, own_terms, missing, actor_provisions), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv rows for the target, jobs/status-history/output/events, and a number search of all 6,652 held Federal Register order texts (jobs/fr-originals/data/full_run/texts) for other orders naming the target (page numbers, FR document numbers and index entries discarded). D6 RESULT: no earlier express end in held sources; EO 12553 is the first express end (date is the on_signing reading).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources; order possibly spent on execution (not an express end). EO 12553 is the first express end.",
+        "d6_searched": "Re-sliced provision 691-966 and target_naming from held EO_12553.txt (text sha256 matches; provision and naming sha256 match); target held-text sha256 checked; column-ordinal subject pairing recounted on the PDF page; number search of all held FR order texts for the target (non-order hits were FR doc numbers / page or index numbers); target held text read for own terms; quoted earlier/later instruments re-read in held official FR texts. Target own terms (EO_12040.txt Sec. 1 transfer effective Feb. 26, 1978: a start, not an end); EO_10878/9487/9621 hits are FR page/index numbers.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-r12553nb-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:12040",
+      "target_naming": {
+        "char_end": 26739,
+        "char_start": 26734,
+        "sha256": "a5ceb237353761471279bd1eadc64a35e4f6f8bcd294e4581a43a84f49b6f514",
+        "text": "12040"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -168,9 +273,50 @@
       "text": "Instrument: EO:12040\nSource: https://www.govinfo.gov/content/pkg/FR-1978-02-28/pdf/FR-1978-02-28.pdf\nSHA-256 of the downloaded file: 5f6aa369bca9432c03f40fc086ea1d7312db434e13651b946b2cadb120f8171a\nLocation: 43 FR 8097, PDF pages 15-15 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 15 of 168 ===\nTHE PRESIDENT 8097\n[3195 - 01 ]\nExecutive Order 12040 February 24,1978\nRelating to the Transfer of Certain Environmental Evaluation Functions\nBy virtue of the authority vested in me by the Constitution and laws of the \nUnited States of America, including Section 7 of Reorganization Plan No. 1  of \n1977 (42 FR 56101 (October 21, 1977)), and as President of the United States \nof America, in order to effectuate the transfer of certain environmental quality \nfunctions, it is hereby ordered as follows:\nSection 1. The transfer, provided by Section 5E of Reorganization Plan \nNo. 1  of 1977 (42 FR 56101), of those functions relating to the evaluation \nprovided for by Section 11 of the Federal Nonnuclear Energy Research and \nDevelopment Act of 1974 (88 Stat. 1878, 42 U.S.C. 5910), from the Council \non Environmental Quality and the Office of Environmental Quality to the \nAdministrator of the Environmental Protection Agency shall be effective Feb­\nruary 26, 1978.\nSec. 2. The Director of the Office of Management and Budget shall make \nsuch determinations, issue such orders, and take all actions necessary or \nappropriate to effectuate the transfer of functions provided in this Order, \nincluding the transfer of funds, personnel and positions, property, records, \nand other items related to the functions transferred.\nT he W hite H ouse ,\nFebruary 24, 1978.\n[FR Doc. 78-5428 Filed 2-24-78; 5:13 pm]\nFEDERAL REGISTER, VOL. 43, NO. 40— TUESDAY, FEBRUARY 28, 1978\n"
     }
   },
-  "fingerprint": "0fa579aed0cbb75d0dcc7d06fc92cc875d4efc42df0c78380ed9690b8e86a549",
+  "fingerprint": "def04efda15abb608b3e9441b88238209da2e676d7365671588b58abe7cbc6b6",
   "instrument_id": "EO:12040",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "4106dac97d5d14ee7afa2b0d82e58711791f397f72a0d0212aa09bf6b34fcf59",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12040",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12040>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12040#sec1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "dbedd3ee40b4e7d3a6da5e32218168804426042f8c482a99e5b732047b3ffa6e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12040",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12040>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12040#sec2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "performance_command"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,
@@ -209,9 +355,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12040",
   "own_terms": [],
