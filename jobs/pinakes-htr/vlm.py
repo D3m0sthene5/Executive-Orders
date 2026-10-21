@@ -148,7 +148,7 @@ def run(root, out_dir, reader=None, pages_of=None, limit=None):
             row.update({"vlm_retried_pages": retried, "vlm_degenerate_pages": bad})
             text = "\n\f\n".join(texts).strip()
             if text:
-                with open(os.path.join(out_dir, stem), "w", encoding="utf-8") as fh:
+                with open(os.path.join(out_dir, stem), "w", encoding="utf-8", newline="\n") as fh:
                     fh.write(text)
                 row.update({"vlm_text_path": stem, "vlm_chars": len(text), "vlm_illegible_marks": text.count("[illegible]")})
         except Exception as exc:
@@ -173,7 +173,7 @@ def main():
     limit = int(os.environ["HTR_LIMIT"]) if os.environ.get("HTR_LIMIT") else None
     s = run(root, out_dir, limit=limit)
     import json
-    with open(os.path.join(out_dir, "VLM_PROVENANCE.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "VLM_PROVENANCE.json"), "w", encoding="utf-8", newline="\n") as fh:
         json.dump({**s, **htr.STATUS}, fh, indent=2)
     print({k: s[k] for k in ("orders", "read_this_run", "errors")})
 

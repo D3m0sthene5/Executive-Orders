@@ -190,7 +190,7 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None, workers=None):
         text_path, text_sha = "", ""
         if text:
             text_path = "texts/" + iid.replace(":", "_") + ".txt"
-            with open(os.path.join(out_dir, text_path), "w", encoding="utf-8") as fh:
+            with open(os.path.join(out_dir, text_path), "w", encoding="utf-8", newline="\n") as fh:
                 fh.write(text)
             text_sha = hashlib.sha256(text.encode("utf-8")).hexdigest()
         d = dates.get(iid) or {}
@@ -245,10 +245,10 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None, workers=None):
     write("SUPPLIED_LINKS_RECONCILED.csv", recon, ["instrument_id", "year", "pdf_in_repository", "file", "rec"])
     write("MISSING_FROM_UPLOAD.csv", missing, ["instrument_id", "year", "pdf_in_repository", "file", "rec"])
     write("STRAY_FILES.csv", stray, ["file", "folder", "bytes", "sha256", "pdf_signature"])
-    with open(os.path.join(out_dir, "FRAGMENTS.jsonl"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "FRAGMENTS.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
         for f in fragments:
             fh.write(json.dumps(f, ensure_ascii=False, sort_keys=True) + "\n")
-    with open(os.path.join(out_dir, "PROGRESS_EVENTS.jsonl"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "PROGRESS_EVENTS.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
         for e in events:
             fh.write(json.dumps(e, ensure_ascii=False, sort_keys=True) + "\n")
 
@@ -270,7 +270,7 @@ def run(root, out_dir, ocr_pages_budget=None, ocr=None, workers=None):
         "problems": problems,
         "what_this_is_not": "File facts and machine text. No identity, custody grade, readiness count or legal status changes here.",
     }
-    with open(os.path.join(out_dir, "SUMMARY.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "SUMMARY.json"), "w", encoding="utf-8", newline="\n") as fh:
         json.dump(summary, fh, indent=2, sort_keys=True)
     write_report(os.path.join(out_dir, "REPORT.md"), summary, stray, extra)
     return summary
@@ -301,7 +301,7 @@ def write_report(path, s, stray, extra):
         lines += ["## PDFs for orders not on the supplied list", "", ", ".join(extra[:60]) + (" ..." if len(extra) > 60 else ""), ""]
     if s["problems"]:
         lines += ["## Problems", ""] + [f"- {p}" for p in s["problems"]]
-    with open(path, "w", encoding="utf-8") as fh:
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
 
 

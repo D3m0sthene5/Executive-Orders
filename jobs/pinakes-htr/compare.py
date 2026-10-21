@@ -112,7 +112,7 @@ def run(root, out_dir):
         if stats is None:
             continue
         path = f"texts/{stem}.compare.txt"
-        with open(os.path.join(out_dir, path), "w", encoding="utf-8") as fh:
+        with open(os.path.join(out_dir, path), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(marked)
         rows.append({"instrument_id": iid, "year": t.get("year", ""), "pages": t.get("pages", ""), "compare_text_path": path, **stats})
     rows.sort(key=lambda r: (r["confirmed_share"], r["instrument_id"]))
@@ -156,12 +156,12 @@ def main():
     rp = os.path.join(out_dir, "REPORT.md")
     body = open(rp, encoding="utf-8").read() if os.path.exists(rp) else ""
     body = body.split("## Where the readings agree")[0].rstrip() + "\n\n" + report_section(s)
-    with open(rp, "w", encoding="utf-8") as fh:
+    with open(rp, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(body)
     sp = os.path.join(out_dir, "SUMMARY.json")
     summary = json.load(open(sp, encoding="utf-8")) if os.path.exists(sp) else {}
     summary["compare"] = s
-    with open(sp, "w", encoding="utf-8") as fh:
+    with open(sp, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(summary, fh, indent=2)
     print(json.dumps({k: s[k] for k in ("orders_compared", "words", "unconfirmed_words", "confirmed_share_overall")}))
 

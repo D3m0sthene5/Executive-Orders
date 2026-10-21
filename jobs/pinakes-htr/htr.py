@@ -447,7 +447,7 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
                     tess = prep["tess_text"]
                     q, c, ok = score(tess)
                     if tess:
-                        with open(os.path.join(out_dir, stem + ".tess300.txt"), "w", encoding="utf-8") as fh:
+                        with open(os.path.join(out_dir, stem + ".tess300.txt"), "w", encoding="utf-8", newline="\n") as fh:
                             fh.write(tess)
                     row.update({"tess300_text_path": stem + ".tess300.txt" if tess else "", "tess300_chars": len(tess),
                                 "tess300_quality": q, "tess300_common_share": c, "tess300_mean_word_conf": prep["tess_conf"],
@@ -460,7 +460,7 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
                     q, c, ok = score(text)
                     confs = [ln["conf"] for ln in lines if ln["conf"] is not None and ln["text"]]
                     if text:
-                        with open(os.path.join(out_dir, stem + ".trocr.txt"), "w", encoding="utf-8") as fh:
+                        with open(os.path.join(out_dir, stem + ".trocr.txt"), "w", encoding="utf-8", newline="\n") as fh:
                             fh.write(text)
                     row.update({"trocr_text_path": stem + ".trocr.txt" if text else "", "trocr_lines": len(lines),
                                 "trocr_chars": len(text), "trocr_quality": q, "trocr_common_share": c,
@@ -478,7 +478,7 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
 
     rows.sort(key=lambda r: r["instrument_id"])
     write_csv(os.path.join(out_dir, "HTR.csv"), HTR_FIELDS, rows)
-    with open(lines_path, "w", encoding="utf-8") as fh:
+    with open(lines_path, "w", encoding="utf-8", newline="\n") as fh:
         for ln in all_lines:
             fh.write(json.dumps(ln, ensure_ascii=False) + "\n")
     sample = []
@@ -496,12 +496,12 @@ def run(root, out_dir, reader=None, prepare=prepare_order, workers=None, limit=N
                   "trocr": reader.describe() if reader is not None and hasattr(reader, "describe") else {},
                   "machine": os.environ.get("COMPUTERNAME", ""), "ran_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                   "seconds": round(time.time() - started)}
-    with open(os.path.join(out_dir, "PROVENANCE.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "PROVENANCE.json"), "w", encoding="utf-8", newline="\n") as fh:
         json.dump(provenance, fh, indent=2)
     summary = summarize(rows, len(todo), provenance)
-    with open(os.path.join(out_dir, "SUMMARY.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "SUMMARY.json"), "w", encoding="utf-8", newline="\n") as fh:
         json.dump(summary, fh, indent=2)
-    with open(os.path.join(out_dir, "REPORT.md"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "REPORT.md"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(report(summary))
     return summary
 
