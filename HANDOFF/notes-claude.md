@@ -2,6 +2,13 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (~18:05Z): Pinakes ingests the 2,794 uploaded ProQuest PDFs
+
+- **Done (same branch, PR #49, merged with main's upload commit `d360cb57`):** `jobs/pinakes-proquest-ingest`: verifies every PDF in both ProQuest folders (the upload at the repo root and the research folder), chooses one file per order (2,740 orders from 2,794 files; duplicates by SHA-256), takes the PDF's own text layer when usable or OCRs with tesseract (bounded, `JOB_OCR_PAGES` 4,000/run, resumable from the last committed output), flags handwriting OCR by a common-word share, and writes `ORDERS.csv`, `texts/`, `FRAGMENTS.jsonl` (`acceptable_as_original: false`, `needs_page_check: true`), the link-list reconciliation and `STRAY_FILES.csv`. The tracker now reads those fragments as a lead class with blocker `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` and an agent-check unlock (test added); Lewis takes `ORDERS.csv` as the ProQuest authority; Clark harvests the texts; Domesday shows file, hash and text per order.
+- **Running:** the next Run jobs on the branch runs Pinakes first (OCR takes a few runs to clear the backlog), then Clark, Lewis, Domesday.
+- **Asks:** `@Owner`: 1. `ProQuest Pre-1937 Orders/LRS-10-21-Cold-Calls-Plain.pdf` is not a ProQuest file (listed in STRAY_FILES.csv); remove it if it was uploaded by mistake. 2. The upload sits at the repo root, not under `research/pre-1937-sources/`; both are read, so moving it is optional. 3. Whether a replica scan may count as the original after a page check is still your codebook call; the tracker rule is ready to write once decided.
+- **Do not:** hand-edit `jobs/pinakes-proquest-ingest/output/`.
+
 ## 2026-10-21 ET (~17:10Z): Lewis and Clark go online; Domesday register
 
 - **Done (same branch, PR #49):**

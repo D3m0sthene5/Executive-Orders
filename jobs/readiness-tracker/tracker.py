@@ -86,6 +86,10 @@ J = {
                                          "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
                                          "jobs/numbered-early-orders/output/FRAGMENTS.jsonl",
                                          "jobs/wikisource-texts/output/FRAGMENTS.jsonl"],
+    # ProQuest "Replica of Original" scans ingested by pinakes-proquest-ingest: an archival replica of the signed
+    # order, matched by file name only, with a machine text. A lead with byte evidence, never counted as the original
+    # until a person compares the pages and the codebook assigns the grade (acceptable_as_original stays false).
+    "archival_replica_fragments": ["jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
@@ -204,6 +208,16 @@ def load_job_outputs(root):
             by_job.setdefault(job, None)
     for job, ids in by_job.items():
         used[f"{job} (lead only, never counted as the original)"] = len(ids) if ids is not None else None
+    replica = set()
+    for rel in J["archival_replica_fragments"]:
+        job = rel.split("/")[1]
+        paths = existing([rel])
+        rows, more = read_jsonl(paths)
+        problems += more
+        ids = {r["instrument_id"] for r in rows
+               if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
+        replica |= ids
+        used[f"{job} (archival replica scan, lead only until a page check and a codebook grade)"] = len(ids) if paths else None
 
     status_path = os.path.join(root, J["opus_status"])
     opus_status = None
@@ -243,7 +257,7 @@ def load_job_outputs(root):
     used["claim-checker"] = len(checker) if checker is not None else None
     search = load_machine_search(root, problems)
     used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
-    return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription,
+    return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription, "replica": replica,
             "opus_status": opus_status, "ladder_found": ladder_found,
             "opus_missing": opus_missing, "search": search,
             "checker": checker, "used": used}, problems
@@ -402,6 +416,9 @@ def build(root, *, planning_closures=None):
             if i in jobs["transcription"]:
                 # Only a compiled transcription (Richardson, APP) was found: a lead to the original, not the original.
                 blockers["original_text"].append("ONLY_COMPILED_TRANSCRIPTION_FOUND")
+            if i in jobs["replica"]:
+                # A ProQuest replica scan is on file: a person must compare its pages before the codebook can grade it.
+                blockers["original_text"].append("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK")
 
         # 3-6. need a claim (partial claims light up the steps they satisfy)
         for step, code in (
@@ -575,6 +592,10 @@ def summarise(orders, problems):
                    "earlier ones need an official compilation or archival copy",
          "kind": "machine_job", "orders_unblocked": blocker_orders["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
          "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"},
+        {"action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and "
+                   "decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+         "kind": "agent_check", "orders_unblocked": blocker_orders["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"],
+         "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"},
         {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
          "kind": "agent_check", "orders_unblocked": blocker_orders["OPUS_MEDIA_MATCH_AMBIGUOUS"], "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"},
         {"action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",

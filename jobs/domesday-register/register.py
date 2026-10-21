@@ -28,10 +28,11 @@ import eo_identity as ident  # noqa: E402
 JOB = "domesday-register"
 LEWIS = "jobs/lewis-originals/output"
 CLARK = "jobs/clark-discovery/output"
+PINAKES = "jobs/pinakes-proquest-ingest/output"
 FIELDS = ["instrument_id", "number", "suffix", "era", "census_class", "date", "date_source", "title", "president",
           "best_held", "official_sources", "archival_replica", "transcription_sources", "text_files",
           "provisional_status", "original_text_step", "ready_for_human_review", "blockers",
-          "proquest_link_supplied", "proquest_pdf_file", "proquest_pdf_sha256",
+          "proquest_link_supplied", "proquest_pdf_file", "proquest_pdf_sha256", "proquest_text_source", "proquest_text_usable",
           "lewis_route", "lewis_status", "lewis_next_action", "lewis_web_best_score", "lewis_web_best_url",
           "clark_class", "clark_web_best_score", "clark_web_best_url", "web_pages_naming_it"]
 CANDIDATE_FIELDS = ["instrument_id", "number", "suffix", "named_by", "dates_seen", "titles_seen", "strength", "example_source", "note"]
@@ -59,8 +60,10 @@ def run(root, out_dir):
     dates = ident.load_dates(root, frags)
     pq_rows = {ident.canon_id(*ident.parse_eo_id(str(r["id"]))): r for r in ident.load_proquest_rows(root)}
     routes = {r["instrument_id"]: r for r in ident.read_csv(os.path.join(root, LEWIS, "ROUTES.csv"))}
-    pq_inv = {r["instrument_id"]: r for r in ident.read_csv(os.path.join(root, LEWIS, "PROQUEST_INVENTORY.csv"))
-              if r.get("instrument_id") and r.get("pdf_signature") == "yes" and not r.get("duplicate_of")}
+    pq_inv = {r["instrument_id"]: r for r in ident.read_csv(os.path.join(root, PINAKES, "ORDERS.csv")) if r.get("instrument_id")}
+    if not pq_inv:  # before the ingest has run, Lewis's own inventory
+        pq_inv = {r["instrument_id"]: r for r in ident.read_csv(os.path.join(root, LEWIS, "PROQUEST_INVENTORY.csv"))
+                  if r.get("instrument_id") and r.get("pdf_signature") == "yes" and not r.get("duplicate_of")}
     clark_class = {}
     for name, cls in (("NUMBER_GAPS.csv", "number_gap"), ("IDENTITY_UNKNOWN.csv", "identity_unknown")):
         for r in ident.read_csv(os.path.join(root, CLARK, name)):
@@ -104,6 +107,7 @@ def run(root, out_dir):
             "ready_for_human_review": rd.get("ready_for_human_review", ""), "blockers": rd.get("blockers", ""),
             "proquest_link_supplied": "yes" if iid in pq_rows else "no",
             "proquest_pdf_file": pq_inv.get(iid, {}).get("file", ""), "proquest_pdf_sha256": pq_inv.get(iid, {}).get("sha256", ""),
+            "proquest_text_source": pq_inv.get(iid, {}).get("text_source", ""), "proquest_text_usable": pq_inv.get(iid, {}).get("text_usable", ""),
             "lewis_route": r.get("best_route", ""), "lewis_status": r.get("route_status", ""), "lewis_next_action": r.get("next_action", ""),
             "lewis_web_best_score": lw[0] or "", "lewis_web_best_url": lw[1], "clark_class": clark_class.get(iid, ""),
             "clark_web_best_score": cw[0] or "", "clark_web_best_url": cw[1], "web_pages_naming_it": named.get(iid, 0),

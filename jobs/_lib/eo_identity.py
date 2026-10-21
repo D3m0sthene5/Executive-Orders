@@ -46,7 +46,7 @@ FRAGMENT_FILES = {
         "jobs/wikisource-texts/output/FRAGMENTS.jsonl",
     ],
     # Lewis's own ProQuest text layers, read by Clark on the next run.
-    "archival_replica": ["jobs/lewis-originals/output/FRAGMENTS.jsonl"],
+    "archival_replica": ["jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl", "jobs/lewis-originals/output/FRAGMENTS.jsonl"],
 }
 
 _ID_RE = re.compile(r"^EO:(\d{1,5})(?:-?([A-Z])|(½|\s?1/2)|-(\d{1,2}))?$")
@@ -169,16 +169,21 @@ def load_proquest_rows(root):
     return [r for r in rows if isinstance(r, dict) and parse_eo_id(str(r.get("id", "")))]
 
 
-_PQ_NAME = re.compile(r"^(?:PT1-)?(\d{4})-EO-(\d{1,5})([A-Z])?(?:\s\((\d+)\))?\.pdf$", re.I)
+_PQ_NAME = re.compile(r"^(?:PT1-)?(\d{4})-EO-(\d{1,5})(?:-?([A-Z]))?(?:_From_(\d+)_to_(\d+))?(?:\s\((\d+)\))?\.pdf$", re.I)
+PROQUEST_DIRS = (PROQUEST_DIR, "ProQuest Pre-1937 Orders")  # the research folder, and the owner's upload at the repo root
 
 
 def proquest_filename(name):
-    """'PT1-1865-EO-4 (1).pdf' -> {'year': 1865, 'number': 4, 'suffix': '', 'copy': 1} or None."""
+    """'PT1-1865-EO-4 (1).pdf' -> {'year': 1865, 'number': 4, 'suffix': '', 'copy': 1, 'page_range': ''}.
+
+    Also '1900-EO-125-A.pdf' (hyphenated suffix) and '1918-EO-3016-E_From_1_to_2.pdf' (a page range
+    the viewer put in the name). Anything else -> None.
+    """
     m = _PQ_NAME.match(name)
     if not m:
         return None
     return {"year": int(m.group(1)), "number": int(m.group(2)), "suffix": (m.group(3) or "").upper(),
-            "copy": int(m.group(4) or 0)}
+            "copy": int(m.group(6) or 0), "page_range": f"{m.group(4)}-{m.group(5)}" if m.group(4) else ""}
 
 
 def load_dates(root, fragments=None):

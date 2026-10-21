@@ -58,57 +58,45 @@ TEXT_QUALITY_MIN = 0.55         # share of alphabetic tokens that look like word
 
 # --- ProQuest folder ------------------------------------------------------------------------------
 
-def text_quality(text):
-    """Share of tokens that are plain words of 2+ letters. A handwritten scan's OCR layer scores near 0."""
-    tokens = re.findall(r"\S+", text)
-    if not tokens:
-        return 0.0
-    words = sum(1 for t in tokens if re.fullmatch(r"[A-Za-z][a-z]+[.,;:]?", t) and len(t) >= 2)
-    return round(words / len(tokens), 3)
+import eo_pdf  # noqa: E402
+
+text_quality = eo_pdf.text_quality
+inspect_pdf = eo_pdf.inspect_pdf
 
 
-def inspect_pdf(path):
-    """Byte facts about one PDF: size, sha256, signature, pages, text layer (if pypdf is available)."""
-    with open(path, "rb") as fh:
-        data = fh.read()
-    info = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
-            "pdf_signature": data[:5] == b"%PDF-", "pages": None, "text_chars": None,
-            "text_quality": None, "text": "", "pdf_error": ""}
-    if not info["pdf_signature"]:
-        return info
-    if pypdf is None:
-        info["pdf_error"] = "pypdf not installed; pages and text layer not read"
-        return info
-    try:
-        reader = pypdf.PdfReader(path)
-        info["pages"] = len(reader.pages)
-        parts = []
-        for page in reader.pages:
-            try:
-                parts.append(page.extract_text() or "")
-            except Exception as exc:  # one bad page must not lose the file
-                parts.append("")
-                info["pdf_error"] = f"page text error: {type(exc).__name__}"
-        text = "\n".join(parts).strip()
-        info["text_chars"] = len(text)
-        info["text_quality"] = text_quality(text)
-        info["text"] = text
-    except Exception as exc:
-        info["pdf_error"] = f"{type(exc).__name__}: {exc}"[:200]
-    return info
+PINAKES_ORDERS = "jobs/pinakes-proquest-ingest/output/ORDERS.csv"
+
+
+def pinakes_orders(root):
+    """id -> row from the Pinakes ingest (the ProQuest authority once it has run), in Lewis's inventory shape."""
+    out = {}
+    for r in ident.read_csv(os.path.join(root, PINAKES_ORDERS)):
+        if not r.get("instrument_id"):
+            continue
+        out[r["instrument_id"]] = {"file": r["file"], "folder": r.get("folder", ""), "instrument_id": r["instrument_id"],
+                                   "year": r.get("year", ""), "number": r.get("number", ""), "suffix": r.get("suffix", ""),
+                                   "sha256": r["sha256"], "bytes": r.get("bytes", ""), "pages": int(r["pages"]) if r.get("pages") else None,
+                                   "text_chars": int(r["text_chars"]) if r.get("text_chars") else None,
+                                   "text_quality": float(r["text_quality"]) if r.get("text_quality") else None,
+                                   "text_layer_usable": r.get("text_usable", ""), "text_path": r.get("text_path", ""),
+                                   "text_sha256": r.get("text_sha256", ""), "duplicate_of": ""}
+    return out
 
 
 def inventory_proquest(root, universe, out_dir=None, write_texts=True):
-    """Every PDF in the ProQuest folder, read by name, with its byte facts. Returns rows and id -> best row."""
-    folder = os.path.join(root, ident.PROQUEST_DIR)
+    """Every PDF in the ProQuest folders, read by name, with its byte facts. Returns rows and id -> best row.
+
+    Used only when the Pinakes ingest has not run; Pinakes also OCRs and is the ProQuest authority."""
     rows, by_id = [], {}
-    if not os.path.isdir(folder):
-        return rows, by_id
     seen_hash = {}
-    names = [n for n in os.listdir(folder) if n.lower().endswith(".pdf")]
+    entries = []
+    for rel in ident.PROQUEST_DIRS:
+        folder = os.path.join(root, rel)
+        if os.path.isdir(folder):
+            entries += [(folder, n) for n in os.listdir(folder) if n.lower().endswith(".pdf")]
     # the plain file first, then Chrome's ' (1)', ' (2)' copies, so a duplicate points at the plain name
-    names.sort(key=lambda n: ((ident.proquest_filename(n) or {}).get("copy", 0), n))
-    for name in names:
+    entries.sort(key=lambda e: ((ident.proquest_filename(e[1]) or {}).get("copy", 0), e[1]))
+    for folder, name in entries:
         parsed = ident.proquest_filename(name)
         path = os.path.join(folder, name)
         info = inspect_pdf(path)
@@ -221,7 +209,8 @@ def route_order(iid, reason, dates, frags, pq_rows, pq_local, catalog):
                     "proquest_text_layer": local["text_layer_usable"], "best_route": "proquest_local",
                     "route_status": "file_verified_pages_unchecked",
                     "next_action": "Compare the PDF pages with the transcription; owner decides the custody grade",
-                    "action_owner": "agent_check", "lead_url_or_search": os.path.join(ident.PROQUEST_DIR, local["file"])})
+                    "action_owner": "agent_check",
+                    "lead_url_or_search": os.path.join(local.get("folder") or ident.PROQUEST_DIR, local["file"])})
     elif iid in pq_rows:
         row.update({"best_route": "proquest_supplied_link", "route_status": "awaiting_acquisition",
                     "next_action": "Upload the ProQuest PDF from the supplied link to the repository folder",
@@ -302,14 +291,19 @@ def run(root, out_dir):
     if not readiness:
         problems.append("readiness output missing: " + ident.READINESS)
 
-    inv_rows, pq_local = inventory_proquest(root, universe, out_dir)
+    pq_local = pinakes_orders(root)
+    inv_rows = list(pq_local.values()) if pq_local else []
+    proquest_authority = "pinakes-proquest-ingest" if pq_local else "lewis inventory (Pinakes has not run)"
+    if not pq_local:
+        inv_rows, pq_local = inventory_proquest(root, universe, out_dir)
     scope, skipped = load_scope(root, readiness, universe)
     if skipped:
         problems.append(f"{len(skipped)} transcription-only ids have no order number and were not routed: " + ", ".join(skipped[:5]))
     routes = [route_order(i, reason, dates, frags, pq_rows, pq_local, catalog)
               for i, reason in sorted(scope.items(), key=lambda kv: (ident.parse_eo_id(kv[0]) or (0, ""), kv[0]))]
     proposals = [fetch_request(r, dates) for r in routes if r["route_status"] == "fetch_request_proposed"]
-    fragments = [proquest_fragment(pq_local[i], dates) for i in sorted(pq_local, key=lambda x: ident.parse_eo_id(x) or (0, ""))]
+    fragments = ([] if proquest_authority == "pinakes-proquest-ingest" else
+                 [proquest_fragment(pq_local[i], dates) for i in sorted(pq_local, key=lambda x: ident.parse_eo_id(x) or (0, ""))])
 
     write_csv(os.path.join(out_dir, "ROUTES.csv"), routes, list(routes[0].keys()) if routes else None)
     inv_fields = ["file", "instrument_id", "year", "number", "suffix", "copy", "in_universe", "name_parsed", "bytes", "sha256",
@@ -343,7 +337,7 @@ def run(root, out_dir):
                                     "contract_valid": sum(1 for p in proposals if p.get("_contract_status") in ("", "valid", "ok"))
                                     if request_contract is None else sum(1 for p in proposals if not p.get("_contract_errors")),
                                     "contract_available": request_contract is not None},
-        "fragments_written": len(fragments),
+        "fragments_written": len(fragments), "proquest_authority": proquest_authority,
         "pypdf_available": pypdf is not None,
         "inputs": {"universe": len(universe), "readiness_rows": len(readiness), "dated_orders": len(dates),
                    "ofr_catalog_rows": len(catalog), "clark_handoff_rows": len(ident.read_jsonl(os.path.join(root, CLARK_HANDOFF)))},

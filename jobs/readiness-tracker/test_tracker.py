@@ -231,6 +231,30 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_original_text"], "done")
         self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
 
+    def test_proquest_replica_scan_is_a_lead_that_needs_a_page_check(self):
+        rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "pinakes-proquest-ingest",
+                          "acceptable_as_original": False, "grade": "archival_replica_scan_pending_codebook",
+                          "data": {"url": "https://congressional.proquest.com/congressional/docview/t67.d72.1865-eo-3",
+                                   "sha256": "a" * 64, "needs_page_check": True, "text_source": "ocr"}})
+        files = {tracker.J["archival_replica_fragments"][0]: rec + "\n"}
+        orders, s = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        self.assertEqual(s["decided_orders_blocked_by"]["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"], 1)
+        self.assertTrue(any(u["blocker"] == "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK" and u["kind"] == "agent_check"
+                            for u in s["shared_unlocks"]))
+        # even a record claiming original-like flags stays a lead
+        rec2 = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "pinakes-proquest-ingest",
+                           "data": {"needs_page_check": False, "location_confidence": "high", "acceptable_as_original": True}})
+        orders, _ = self.run_tracker(files={tracker.J["archival_replica_fragments"][0]: rec2 + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        # once an official original counts, the replica lead is no longer reported
+        fr = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
+                         "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": False}})
+        orders, _ = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "done")
+        self.assertNotIn("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+
     def test_new_acquisition_feeds_remain_leads_even_with_original_like_flags(self):
         for path in tracker.J["compiled_transcription_fragments"][3:]:
             with self.subTest(path=path):
