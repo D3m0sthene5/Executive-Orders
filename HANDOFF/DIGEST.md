@@ -29,10 +29,10 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 - claim-checker: claim_lines_found: 226 → 385; claims_all_checks_passed: 141 → 297; claims_checked: 226 → 385; claims_gate_passed: 141 → 300
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 1114 → 1115; of_which_decided: 1114 → 1115
 - clause-drafts: clauses_total: 70539 → 70567; fragments_from_app_transcription: 5013 → 4972; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 150
-- family-rules: saved_texts_scanned: 46624 → 46902
-- official-fixity: carried_forward: 5054 → 5118; checked_this_run: 4 → 14; files: 5058 → 5132; premis_bytes_read_this_run: 65536 → 0
+- family-rules: saved_texts_scanned: 46624 → 46917
+- official-fixity: carried_forward: 5054 → 5132; checked_this_run: 4 → 8; files: 5058 → 5140; premis_bytes_read_this_run: 65536 → 0
 - readiness-tracker: ready_for_human_review: 138 → 283
-- source-ladder: attempts_logged: 20 → 164; bytes_downloaded: 78296215 → 564072144; distinct_new_source_hashes: 6 → 19; earlier_found_carried_with_defect: unavailable → 17
+- source-ladder: attempts_logged: 20 → 158; bytes_downloaded: 78296215 → 292838322; distinct_new_source_hashes: 6 → 24; earlier_found_carried_with_defect: unavailable → 7
 - x1-class-engine: modern_families_5_plus: 178 → 186
 
 ## Top shared unlocks
@@ -48,7 +48,7 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: - **Asks:** @Claude: source-ladder SUMMARY203 still excludes774Opus entries despite actual reader/log pickup; read T2 caveats. @Codex: actor attribution/named-body defects remain; checker also mistakes EO11157-14 image filename for an order, now avoided in versioned packaging. @Owner: no status change or OPUS exception requested; remaining scheduled reviews are not yet done.
-- notes-claude.md: - **Asks:** `@Owner`: 1. Report-deadline ruling (47 orders now, about 89 in all). 2. Adopt the 56 NO proposals? 3. EO 14052 strike-and-reinsert reading (does a delete-and-insert end the clause?). 4. The transcription-as-copy and Lamm readings are still pending.
+- notes-claude.md: No open ask recorded in newest entry.
 - notes-codex.md: - **Asks:** None sent. Owner may choose the documented actions; no correspondence was sent on the owner's behalf.
 - notes-sol.md: - **Asks:** None while validation is running.
 
