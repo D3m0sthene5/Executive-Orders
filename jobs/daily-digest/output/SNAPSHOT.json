@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "summaries": {
     "app-footnote-leads": {
       "distinct_footnotes": 1994,
@@ -4701,6 +4701,69 @@
         "jobs/early-orders-hunt/data/PROVENANCE.json: held text missing: jobs/wpa-lists/output/UNNUMBERED_ENTRIES.csv"
       ]
     },
+    "clark-discovery": {
+      "cited_but_unknown": {
+        "by_plausibility": {
+          "citing_date_unknown": 1,
+          "exceeds_numbers_issued_by_citing_date": 1,
+          "likely_ocr_footnote_digit": 212,
+          "likely_ocr_letter_for_digit": 18,
+          "plausible": 59,
+          "rare_suffix_letter": 4
+        },
+        "distinct_ids": 145,
+        "mentions_raw": 527,
+        "ofr_notes_scanned": 5063,
+        "rows": 295,
+        "texts_scanned": 29928
+      },
+      "dated_unnumbered": {
+        "distinct_dates": 385,
+        "rows": 636
+      },
+      "generated_utc": "2026-10-21T20:15:35Z",
+      "handoff_to_lewis": {
+        "by_class": {
+          "cited_but_unknown": 8,
+          "identity_unknown": 37,
+          "number_gap": 34
+        },
+        "rows": 79
+      },
+      "identity_unknown": {
+        "by_year_group": {
+          "1862\u20131906": 9,
+          "1907\u20131936": 727,
+          "Unknown date": 78
+        },
+        "number_only": 777,
+        "orders": 814,
+        "with_proquest_link": 37,
+        "with_proquest_pdf": 0
+      },
+      "inputs": {
+        "app_index_rows": 9949,
+        "dated_orders": 15003,
+        "lewis_proquest_fragments": 11,
+        "ofr_catalog_rows": 6938,
+        "proquest_list_rows": 2765,
+        "readiness_rows": 14972,
+        "universe": 14972,
+        "wpa_rows": 104
+      },
+      "job": "clark-discovery",
+      "number_gaps": {
+        "by_strength": {
+          "cited": 8,
+          "number_only": 12,
+          "strong": 26
+        },
+        "highest_numbered_order": 14435,
+        "total": 46
+      },
+      "problems": [],
+      "what_this_is_not": "Leads only. Nothing here enters the census, changes a readiness count or authenticates an identity."
+    },
     "clause-drafts": {
       "app_transcription_quality": {
         "good": 4771,
@@ -7302,7 +7365,7 @@
       "packets_covering_half_of_targets": 3,
       "pool_LAMBC": 18,
       "pool_LAMBS": 91,
-      "repo_head": "9f405c462",
+      "repo_head": "7f5842847",
       "rules": [
         "prefills and draft search records are leads a reader confirms; nothing here closes a step",
         "writes no claim, EXHAUSTED line, status or tier; codebook unchanged; certified stays 0",
@@ -7437,6 +7500,61 @@
         "unrecognized label": 3
       }
     },
+    "lewis-originals": {
+      "by_owner": {
+        "agent_check": 2377,
+        "machine_job": 266,
+        "owner": 4697
+      },
+      "fragments_written": 11,
+      "generated_utc": "2026-10-21T16:41:20Z",
+      "inputs": {
+        "clark_handoff_rows": 2696,
+        "dated_orders": 15003,
+        "ofr_catalog_rows": 6938,
+        "readiness_rows": 14972,
+        "universe": 14972
+      },
+      "job": "lewis-originals",
+      "problems": [],
+      "proposed_fetch_requests": {
+        "contract_available": true,
+        "contract_valid": 266,
+        "count": 266
+      },
+      "proquest_folder": {
+        "bad_signature": 0,
+        "orders_in_lewis_scope_with_pdf": 4,
+        "orders_with_verified_pdf": 11,
+        "pdf_files": 13,
+        "pdfs_for_orders_outside_lewis_scope": 7,
+        "supplied_links_in_lewis_scope": 2742,
+        "supplied_links_total": 2765,
+        "unique_files": 11,
+        "unparsed_names": 0,
+        "usable_text_layers": 1
+      },
+      "pypdf_available": true,
+      "routes": {
+        "federal_register:fetch_request_proposed": 266,
+        "federal_register:fr_era_not_in_ofr_catalog": 215,
+        "federal_register:in_ofr_catalog_no_citation": 431,
+        "gpo_bound_volumes:in_volume_range_not_found": 1253,
+        "ofr_hoover_compilation:in_volume_range_not_found": 474,
+        "proquest_local:file_verified_pages_unchecked": 4,
+        "proquest_phrase_search:manual_lead": 1959,
+        "proquest_supplied_link:awaiting_acquisition": 2738
+      },
+      "scope": {
+        "by_reason": {
+          "clark_identified": 2655,
+          "clark_identified_not_in_universe": 41,
+          "transcription_only": 4644
+        },
+        "orders": 7340
+      },
+      "what_this_is_not": "Leads and byte facts only. No readiness step, count, custody grade or legal status changes here."
+    },
     "library-survey": {
       "OCR_attempts": 2,
       "OCR_recovered_characters": 7118,
@@ -7464,7 +7582,7 @@
       "complete_dossiers": 0,
       "human_certifications_added": 0,
       "legal_decisions_added": 0,
-      "manifest_sha256": "e2351684aa2b9b03454370c9b91ace0c1bf754b9794328b1515a4ab11245d6b3",
+      "manifest_sha256": "0cc85823feb24d61c650fac887266829d1d7702ae3a0895a1ff5431cf2004e69",
       "observed_model_api_calls": 0,
       "outcomes": {
         "blocked_prerequisite": 24
@@ -9028,6 +9146,60 @@
       },
       "unmatched_members": 44
     },
+    "pinakes-proquest-ingest": {
+      "files": {
+        "folders": [
+          "ProQuest Pre-1937 Orders",
+          "research/pre-1937-sources/ProQuest Pre-1937 Orders"
+        ],
+        "pdf_files": 2807,
+        "stray_or_bad": 1,
+        "unique_by_sha256": 2751
+      },
+      "generated_utc": "2026-10-21T19:45:12Z",
+      "job": "pinakes-proquest-ingest",
+      "orders": {
+        "by_era": {
+          "1860s": 2,
+          "1870s": 6,
+          "1880s": 2,
+          "1890s": 9,
+          "1900s": 286,
+          "1910s": 1040,
+          "1920s": 1401,
+          "1930s": 1,
+          "1940s": 3
+        },
+        "in_census": 2750,
+        "not_in_census": [],
+        "with_pdf": 2750
+      },
+      "problems": [],
+      "supplied_links": {
+        "missing": 15,
+        "pdfs_for_orders_not_on_list": [],
+        "pdfs_for_orders_not_on_list_count": 0,
+        "total": 2765,
+        "with_pdf": 2750
+      },
+      "texts": {
+        "by_source": {
+          "layer": 2297,
+          "ocr": 453
+        },
+        "carried_from_prior_run": 453,
+        "deferred_by_budget": 0,
+        "low_quality_probably_handwritten": 310,
+        "ocr_available_here": true,
+        "ocr_page_budget": 4000,
+        "ocr_pages_this_run": 0,
+        "ocr_this_run": 0,
+        "ocr_workers": 4,
+        "still_without_text": 0,
+        "usable": 2440
+      },
+      "what_this_is_not": "File facts and machine text. No identity, custody grade, readiness count or legal status changes here."
+    },
     "readiness-tracker": {
       "decided_by_steps_done": {
         "1/6": 632,
@@ -9051,6 +9223,7 @@
         "8/8": 1
       },
       "decided_orders_blocked_by": {
+        "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 77,
         "CLAIM_CHECK_FAILED": 3,
         "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 393,
@@ -9091,6 +9264,7 @@
         "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
         "exhausted": "research/readiness/EXHAUSTED.jsonl",
         "job_outputs": {
+          "archival_replica_fragments": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
           "checker": "jobs/claim-checker/output/PER_CLAIM.json",
           "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
           "cl_status": "jobs/current-law/output/STATUS.json",
@@ -9119,6 +9293,7 @@
           "ofr-compilations": 500,
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
+          "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
           "richardson-volumes (lead only, never counted as the original)": 68,
           "source-ladder": 504,
           "wikisource-texts (lead only, never counted as the original)": 1639
@@ -9129,6 +9304,7 @@
         "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
       },
       "orders_blocked_by": {
+        "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2750,
         "CLAIM_CHECK_FAILED": 3,
         "CLAIM_INCOMPLETE": 83,
         "CURRENT_BASIS_UNPROVED": 393,
@@ -9162,6 +9338,12 @@
           "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
           "kind": "machine_job",
           "orders_unblocked": 4644
+        },
+        {
+          "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+          "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "kind": "agent_check",
+          "orders_unblocked": 2750
         },
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",

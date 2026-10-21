@@ -1,14 +1,14 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes.
+Generated 2026-10-21T20:15:35Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
 | Numbers with no census row (1 to 14435) | 46 | NUMBER_GAPS.csv |
-| Numbers cited in texts or OFR notes but absent from the census | 138 ids (58 plausible) | CITED_BUT_UNKNOWN.csv |
-| Census orders known by number only | 3432 | IDENTITY_UNKNOWN.csv |
-| Dated unnumbered references matching nothing known | 415 | DATED_UNNUMBERED.csv |
-| Handed to Lewis with identity evidence | 2696 | HANDOFF_TO_LEWIS.jsonl |
+| Numbers cited in texts or OFR notes but absent from the census | 145 ids (59 plausible) | CITED_BUT_UNKNOWN.csv |
+| Census orders known by number only | 814 | IDENTITY_UNKNOWN.csv |
+| Dated unnumbered references matching nothing known | 636 | DATED_UNNUMBERED.csv |
+| Handed to Lewis with identity evidence | 79 | HANDOFF_TO_LEWIS.jsonl |
 
 ## Number gaps
 
@@ -63,7 +63,7 @@ Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes
 
 ## Cited but unknown (plausible rows first)
 
-288 (cited id, citing document) pairs from 27177 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 209, likely_ocr_letter_for_digit 16, plausible 58, rare_suffix_letter 3. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+295 (cited id, citing document) pairs from 29928 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 59, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -88,6 +88,7 @@ Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes
 | EO:92 |  | EO:93 | plausible | Executive Order 92 |
 | EO:130A |  | EO:130 | plausible | Executive Order 130-A |
 | EO:130A |  | EO:130B | plausible | Executive Order 130-A |
+| EO:967A | 1914-06-23 | EO:3366 | plausible | Executive Orber. It is hereby ordered that the lands hereinaf ter described be, and the same are, eliminated from the operation of Executive |
 | EO:2539 | 1917-02-26 | EO:6972 | plausible | Executive Order No. 2539, of February 26, 1917, reserving certain lands for town-site purposes, and for other purposes in connection with th |
 | EO:2539 | 1917-02-26 | EO:6972 | plausible | REVOCATION IN Part oF EXECUTIVE ORDER No. 2539, oF FEBRUARY 26, 1917, WITHDRAWING Pustic Lanps |
 | EO:2687A | 1917-08-21 | EO:2645 | plausible | Executive Order 2687-A, August 21, 1917 |
@@ -106,9 +107,40 @@ Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes
 | EO:5856 | 1932-06-11 | EO:5947 | plausible | And it is further ordered that Executive Order No. 5856, of June 11, 1932, excluding certain lands from the said national forest, be, and it |
 | EO:5856 | 1932-06-11 | EO:5947 | plausible | The survey was made September 25 and 26, 1928, using a plane table and telescopic alidade; the bearings of the lines were determined by need |
 | EO:5862 | 1932-06-23 | EO:6852 | plausible | 497), it is ordered that Executive Order No. 5862, dated June 23, 1932, withdrawing, with other lands, public lands in T. |
-| EO:5862 | 1932-06-23 | EO:6852 | plausible | REVOCATION IN PART OF EXECUTIVE ORDER No. 5862, oF JUNE 23, 1932, WITHDRAWING PusLic LANDS |
 
 ## Identity unknown
 
-3432 census orders have an open original_text step, no transcription lead and no date or title in any index. 2655 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 777 are a number and nothing else. By census era: 1862–1906 92, 1907–1936 3262, Unknown date 78.
+814 census orders have an open original_text step, no transcription lead and no date or title in any index. 37 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 777 are a number and nothing else. By census era: 1862–1906 9, 1907–1936 727, Unknown date 78.
 
+
+## Web search (online stage)
+
+17 of 849 unknowns advanced this run (832 never searched yet); 199 of 300 requests used. 216 hits on file, 6 pages confirmed to name the order (3 unknowns): `WEB_LEADS.csv`. 3 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+
+List pages: 60 read, 234 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+
+| Engine | Status |
+|---|---|
+| bing_api | needs_key |
+| bing_rss | blocked_by_robots_txt |
+| brave_api | needs_key |
+| brave_html | blocked_by_robots_txt |
+| duckduckgo_html | error |
+| duckduckgo_lite | error |
+| federal_register_api | ok |
+| google_books | http_429 |
+| google_cse | needs_key |
+| govinfo_search_page | ok |
+| hathitrust_catalog | blocked_by_robots_txt |
+| internet_archive | ok |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
+| marginalia | error |
+| mojeek_html | blocked_by_robots_txt |
+| nara_catalog | needs_key |
+| presidency_project | ok |
+| serpapi_google | needs_key |
+| wikipedia_search | blocked_by_robots_txt |
+| wikisource_search | blocked_by_robots_txt |
+| yandex_html | blocked_by_robots_txt |

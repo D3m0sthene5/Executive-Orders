@@ -67,6 +67,7 @@
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 4644,
     "NO_CLAUSE_INVENTORY": 2975,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2975,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2750,
     "FIRST_END_UNPROVED": 2582,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
     "OPUS_MEDIA_REFETCH_NEEDED": 435,
@@ -96,6 +97,7 @@
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
     "CLAIM_INCOMPLETE": 83,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 77,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "SHARED_SOURCE_NOT_RETRIEVED": 46,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
@@ -111,6 +113,12 @@
       "kind": "machine_job",
       "orders_unblocked": 4644,
       "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+    },
+    {
+      "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+      "kind": "agent_check",
+      "orders_unblocked": 2750,
+      "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
     },
     {
       "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
@@ -199,6 +207,7 @@
       "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
       "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
       "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl + jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl + jobs/numbered-early-orders/output/FRAGMENTS.jsonl + jobs/wikisource-texts/output/FRAGMENTS.jsonl",
+      "archival_replica_fragments": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -222,6 +231,7 @@
       "hathi-gpo-orders (lead only, never counted as the original)": 1531,
       "numbered-early-orders (lead only, never counted as the original)": 184,
       "wikisource-texts (lead only, never counted as the original)": 1639,
+      "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
       "opus-media-match status": 1155,
       "source-ladder": 504,
       "claim-checker": 384,

@@ -26,6 +26,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 4,644 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook |
 | 435 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
@@ -46,6 +47,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 4,644 |
 | `NO_CLAUSE_INVENTORY` | 2,975 | 2,975 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,975 | 2,975 |
+| `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 77 | 2,750 |
 | `FIRST_END_UNPROVED` | 2,582 | 2,582 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 687 | 687 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 435 | 435 |
@@ -85,6 +87,7 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
 - numbered-early-orders (lead only, never counted as the original): 184
 - wikisource-texts (lead only, never counted as the original): 1,639
+- pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - opus-media-match status: 1,155
 - source-ladder: 504
 - claim-checker: 384
