@@ -1,6 +1,15 @@
 test_ids_round_trip (test_clark.MentionParsing.test_ids_round_trip) ... ok
 test_lists_suffixes_halves_and_dates (test_clark.MentionParsing.test_lists_suffixes_halves_and_dates) ... ok
 test_ocr_shapes_are_not_mentions (test_clark.MentionParsing.test_ocr_shapes_are_not_mentions) ... ok
+test_cited_but_unknown_separates_real_citations_from_ocr (test_clark.OnlineStage.test_cited_but_unknown_separates_real_citations_from_ocr) ... ok
+test_dated_unnumbered_reference_without_a_match (test_clark.OnlineStage.test_dated_unnumbered_reference_without_a_match) ... ok
+test_handoff_to_lewis_carries_evidence_and_no_census_claim (test_clark.OnlineStage.test_handoff_to_lewis_carries_evidence_and_no_census_claim) ... ok
+test_identity_unknown_is_number_without_any_index (test_clark.OnlineStage.test_identity_unknown_is_number_without_any_index) ... ok
+test_lewis_proquest_texts_are_scanned_next_run (test_clark.OnlineStage.test_lewis_proquest_texts_are_scanned_next_run) ... ok
+test_missing_inputs_are_reported_not_fatal (test_clark.OnlineStage.test_missing_inputs_are_reported_not_fatal) ... ok
+test_number_gaps_with_windows_and_index_evidence (test_clark.OnlineStage.test_number_gaps_with_windows_and_index_evidence) ... ok
+test_online_stage_targets_gaps_first_and_harvests_list_pages (test_clark.OnlineStage.test_online_stage_targets_gaps_first_and_harvests_list_pages) ... ok
+test_outputs_are_deterministic (test_clark.OnlineStage.test_outputs_are_deterministic) ... ok
 test_cited_but_unknown_separates_real_citations_from_ocr (test_clark.SyntheticRepo.test_cited_but_unknown_separates_real_citations_from_ocr) ... ok
 test_dated_unnumbered_reference_without_a_match (test_clark.SyntheticRepo.test_dated_unnumbered_reference_without_a_match) ... ok
 test_handoff_to_lewis_carries_evidence_and_no_census_claim (test_clark.SyntheticRepo.test_handoff_to_lewis_carries_evidence_and_no_census_claim) ... ok
@@ -11,7 +20,22 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 11 tests in 0.892s
+Ran 20 tests in 6.153s
+
+OK
+test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
+test_budget_stops_cleanly_and_is_recorded (test_eo_websearch.SearchLayer.test_budget_stops_cleanly_and_is_recorded) ... ok
+test_campaign_writes_files_and_resumes_from_prior_state (test_eo_websearch.SearchLayer.test_campaign_writes_files_and_resumes_from_prior_state) ... ok
+test_html_results_unwrap_redirects_and_skip_engine_links (test_eo_websearch.SearchLayer.test_html_results_unwrap_redirects_and_skip_engine_links) ... ok
+test_json_results_and_url_prefix (test_eo_websearch.SearchLayer.test_json_results_and_url_prefix) ... ok
+test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named (test_eo_websearch.SearchLayer.test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named) ... ok
+test_page_to_text_strips_scripts (test_eo_websearch.SearchLayer.test_page_to_text_strips_scripts) ... ok
+test_scoring_prefers_number_date_and_order_wording (test_eo_websearch.SearchLayer.test_scoring_prefers_number_date_and_order_wording) ... ok
+test_strategies_escalate_and_use_date_and_title (test_eo_websearch.SearchLayer.test_strategies_escalate_and_use_date_and_title) ... ok
+test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 9.034s
 
 OK
 {
@@ -36,7 +60,7 @@ OK
       "likely_ocr_footnote_digit": 209
     },
     "mentions_raw": 520,
-    "texts_scanned": 27177,
+    "texts_scanned": 27178,
     "ofr_notes_scanned": 5063
   },
   "identity_unknown": {
@@ -63,5 +87,37 @@ OK
     }
   },
   "problems": []
+}
+Offline stage done; starting the web search stage
+{
+  "advanced_this_run": 59,
+  "requests_used": 697,
+  "hits_total": 987,
+  "leads_page_confirmed": 22,
+  "engines": {
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
+    "bing_rss": "blocked_by_robots_txt",
+    "mojeek_html": "blocked_by_robots_txt",
+    "brave_html": "blocked_by_robots_txt",
+    "marginalia": "error",
+    "yandex_html": "blocked_by_robots_txt",
+    "google_cse": "needs_key",
+    "bing_api": "needs_key",
+    "brave_api": "needs_key",
+    "serpapi_google": "needs_key",
+    "loc_newspapers": "ok",
+    "loc_books": "ok",
+    "loc_manuscripts": "ok",
+    "internet_archive": "ok",
+    "google_books": "http_429",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "federal_register_api": "ok",
+    "wikisource_search": "blocked_by_robots_txt",
+    "wikipedia_search": "blocked_by_robots_txt",
+    "presidency_project": "ok",
+    "govinfo_search_page": "ok",
+    "nara_catalog": "needs_key"
+  }
 }
 Outputs written to /home/runner/work/Executive-Orders/Executive-Orders/jobs/clark-discovery/output
