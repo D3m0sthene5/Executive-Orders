@@ -190,3 +190,28 @@ class SearchLayer(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RunAdaptation(unittest.TestCase):
+    def test_blocked_engine_is_skipped_for_the_rest_of_the_run(self):
+        tmp = tempfile.mkdtemp(prefix="websearch-skip-")
+        try:
+            web = FakeWeb()
+            web.robots["blocked.test"] = "User-agent: *\nDisallow: /\n"
+            s = w.Searcher(os.path.join(tmp, "c"), max_requests=50, transport=web, env={}, engines=ENGINES, now=lambda: "t")
+            first = s.search(ENGINES[3], "one")
+            self.assertEqual(first["error"], "blocked_by_robots_txt")
+            calls = len(web.calls)
+            second = s.search(ENGINES[3], "two")
+            self.assertTrue(second["error"].startswith("skipped_this_run"))
+            self.assertEqual(len(web.calls), calls, "no request was made")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_lewis_ranks_held_transcription_hosts_low_but_clark_does_not(self):
+        hit = {"title": "Executive Order 5862 of June 23, 1932", "url": "https://www.presidency.ucsb.edu/documents/eo-5862", "snippet": ""}
+        lewis_score, why = w.score_hit(hit, {**TARGET, "wants": "original"})
+        clark_score, _ = w.score_hit(hit, TARGET)
+        self.assertLessEqual(lewis_score, 35)
+        self.assertIn("transcription_host_already_held", why)
+        self.assertGreaterEqual(clark_score, 65)

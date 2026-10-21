@@ -325,6 +325,8 @@ def query_strategies(target):
 
 # --- scoring and page reading ----------------------------------------------------------------------
 
+# Editorial or volunteer transcriptions the project already harvests (app-executive-orders, wikisource-texts).
+TRANSCRIPTION_HOSTS = ("presidency.ucsb.edu", "wikisource.org", "wikipedia.org")
 ORDER_MARKERS = re.compile(r"(?i)(by virtue of the authority|it is hereby ordered|is hereby (revoked|amended)|the white house|"
                            r"executive order|hereby ordered|be it ordered|signed by the president)")
 LINK_DOC = re.compile(r"(?i)\.(pdf|djvu|txt|xml)(\?|$)|/download/|/content/pkg/|/details/|docview|/item/|babel\.hathitrust|/resource/")
@@ -375,6 +377,9 @@ def score_hit(hit, target, page_text=None):
     if any(h in host for h in ("govinfo.gov", "archives.gov", "loc.gov", "hathitrust.org", "archive.org", "federalregister.gov", "congress.gov")):
         score += 5
         why.append("official_or_library_host")
+    if target.get("wants") == "original" and any(h in host for h in TRANSCRIPTION_HOSTS):
+        score = min(score, 35)  # a transcription the project already has: a lead to cite, never the original Lewis wants
+        why.append("transcription_host_already_held")
     return min(score, 100), "|".join(why)
 
 
@@ -487,9 +492,17 @@ class Searcher:
         except Exception as exc:  # network errors are retryable facts, never findings
             return 0, b"", type(exc).__name__ + ": " + str(exc)[:120]
 
+    SKIP_FOR_RUN = ("blocked_by_robots_txt", "http_401", "http_403", "http_429", "timeout", "unreachable")
+
     def search(self, engine, query, year=None):
-        """One query on one engine -> {'engine','query','url','status','hits','error'}."""
+        """One query on one engine -> {'engine','query','url','status','hits','error'}.
+
+        An engine that this run has already found blocked, rate-limited or unreachable is skipped for the
+        rest of the run without a request (it is tried again next run), so dead engines cost nothing."""
         url = build_url(engine, query, year, self.env)
+        prior = self.engine_status.get(engine["name"], "")
+        if prior in self.SKIP_FOR_RUN:
+            return {"engine": engine["name"], "query": query, "url": url, "status": 0, "hits": [], "error": "skipped_this_run:" + prior}
         status, body, error = self._fetch(url, build_headers(engine, self.env))
         hits, perr = [], ""
         if status == 200 and body:
@@ -508,6 +521,10 @@ class Searcher:
             self.engine_status[name] = "blocked_by_robots_txt"
         elif error.startswith("HTTP 4") and status in (401, 403, 429):
             self.engine_status[name] = f"http_{status}"
+        elif "timed out" in error or "timeout" in error.lower():
+            self.engine_status[name] = "timeout"
+        elif error.startswith(("URLError", "ConnectionResetError", "OSError", "ConnectionRefusedError")) or "robots unavailable" in error:
+            self.engine_status[name] = "unreachable"
         elif error == "budget_exhausted":
             pass
         elif not error and not perr:

@@ -35,7 +35,7 @@ def targets_from_routes(routes, dates):
         d = dates.get(r["instrument_id"]) or {}
         out.append({"id": r["instrument_id"], "number": p[0], "suffix": p[1], "date": r.get("date") or d.get("date", ""),
                     "title": r.get("title") or d.get("title", ""), "president": d.get("president", ""),
-                    "kind": r.get("best_route", ""), "priority": PRIORITY.get(r.get("best_route", ""), 5)})
+                    "kind": r.get("best_route", ""), "priority": PRIORITY.get(r.get("best_route", ""), 5), "wants": "original"})
     return out
 
 

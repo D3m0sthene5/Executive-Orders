@@ -93,9 +93,11 @@ def run_list_pages(searcher, seeds, universe, out_dir, max_pages=60):
             continue
         rows.extend(harvest_list_page(text, url))
         host = urllib.parse.urlsplit(url).hostname
-        for link in links:
-            if LIST_LINK.search(link["text"]) and urllib.parse.urlsplit(link["url"]).hostname == host and link["url"] not in seen:
-                queue.append(link["url"])
+        same_site = [l for l in links if LIST_LINK.search(l["text"]) and urllib.parse.urlsplit(l["url"]).hostname == host
+                     and l["url"] not in seen and "action=edit" not in l["url"]]
+        # pages that list many orders first ("List of executive orders by ..."), single-order articles last
+        same_site.sort(key=lambda l: (0 if re.match(r"(?i)list of|category:|portal:", l["text"]) else 1, l["text"]))
+        queue = [l["url"] for l in same_site if l["url"] not in queue] + queue if same_site and re.match(r"(?i)list of|category:|portal:", same_site[0]["text"]) else queue + [l["url"] for l in same_site]
     by_id = {}
     for r in rows:
         cur = by_id.setdefault(r["instrument_id"], {"instrument_id": r["instrument_id"], "in_census": "yes" if r["instrument_id"] in universe else "no",
