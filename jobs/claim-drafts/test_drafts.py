@@ -5,6 +5,7 @@ into a temporary fake repo so every test runs the real gate.
 """
 
 import csv
+import hashlib
 import io
 import json
 import os
@@ -13,6 +14,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from contextlib import redirect_stdout
 
 sys.dont_write_bytecode = True
@@ -933,6 +935,154 @@ class Outputs(unittest.TestCase):
             w.write({"n": n, "pad": "x" * 20})
         w.close()
         self.assertEqual(w.files, ["X.jsonl", "X_2.jsonl", "X_3.jsonl", "X_4.jsonl", "X_5.jsonl"])
+
+
+class EmbeddedCheckerOfflineTests(Fixture):
+    def test_standalone_receipts_are_reused_read_only_and_rehashed(self):
+        dest = self.repo / "jobs/claim-checker"
+        dest.mkdir(parents=True)
+        for name in ("checker.py", "sources.py"):
+            shutil.copy(REAL_REPO / "jobs/claim-checker" / name, dest / name)
+        inputs, _ = D.discover_inputs(self.repo)
+        cache = pathlib.Path(self.tmp) / ".job-cache"
+        data = b"verified predecessor source bytes"
+        sha = hashlib.sha256(data).hexdigest()
+        receipt = cache / "claim-checker/verified" / sha[:2] / (sha + ".bin")
+        receipt.parent.mkdir(parents=True)
+        receipt.write_bytes(data)
+        url = "https://www.govinfo.gov/content/pkg/standalone.pdf"
+        runner = D.CheckerRunner(self.repo, cache / "claim-drafts", inputs)
+        runner.index.add(runner.mod.S.HeldCopy("predecessor", sha, url, custody="record_only"))
+        ref = {"url": url, "sha256": sha, "page_or_item": "whole document"}
+        with mock.patch("urllib.request.urlopen", side_effect=AssertionError("network forbidden")):
+            rows = []
+            runner.mod.check_source(ref, "original_representation", runner.ctx, rows)
+            self.assertEqual(rows[0]["status"], "held_bytes_verified")
+            self.assertEqual(runner.verification.hashes, 1)
+            self.assertEqual(receipt.read_bytes(), data)
+            self.assertFalse((cache / "claim-drafts/checker-text/verified").exists())
+            receipt.write_bytes(b"corrupt predecessor receipt")
+            rows = []
+            runner.mod.check_source(ref, "original_representation", runner.ctx, rows)
+            self.assertEqual(rows[0]["status"], "custody_record_only")
+
+    def test_checker_cannot_download_even_with_standalone_allowance(self):
+        dest = self.repo / "jobs/claim-checker"
+        dest.mkdir(parents=True)
+        for name in ("checker.py", "sources.py"):
+            shutil.copy(REAL_REPO / "jobs/claim-checker" / name, dest / name)
+        inputs, _ = D.discover_inputs(self.repo)
+        with mock.patch.dict(os.environ, {"CLAIM_CHECKER_VERIFY_DOWNLOADS": "400"}), \
+                mock.patch("urllib.request.urlopen", side_effect=AssertionError("network forbidden")) as network:
+            runner = D.CheckerRunner(self.repo, pathlib.Path(self.tmp) / "cache", inputs)
+            result, rows = runner.check(self.draft("EO:100")["claim"], 1)
+        network.assert_not_called()
+        self.assertNotIn("checker_error", result)
+        self.assertTrue(any(r["status"] == "custody_record_only" for r in rows))
+        self.assertFalse(result["gate_passed"])
+        self.assertFalse(result["steps_checker_passed"]["original_text"])
+
+
+class OfflineVerificationTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = pathlib.Path(self.tmp.name)
+        self.data = b"held GovInfo bytes"
+        self.sha = hashlib.sha256(self.data).hexdigest()
+        self.path = self.root / "verified" / self.sha[:2] / (self.sha + ".bin")
+        self.url = "https://www.govinfo.gov/content/pkg/example.pdf"
+
+    def write_receipt(self, data=None):
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.path.write_bytes(self.data if data is None else data)
+
+    def test_cold_warm_and_new_run_rehash(self):
+        self.write_receipt()
+        verify = D.OfflineVerification()
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        self.assertEqual((verify.hashes, verify.cache_hits), (1, 1) if verify.reuse_unchanged else (2, 0))
+        fresh = D.OfflineVerification()
+        self.assertIs(fresh(self.url, self.sha, self.root), True)
+        self.assertEqual(fresh.hashes, 1)
+
+    def test_missing_receipt_is_never_fetched_or_promoted(self):
+        verify = D.OfflineVerification()
+        with mock.patch("urllib.request.urlopen", side_effect=AssertionError("network forbidden")):
+            self.assertIsNone(verify(self.url, self.sha, self.root))
+        self.assertFalse(self.path.exists())
+        self.write_receipt()
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+
+    def test_corruption_with_preserved_size_and_mtime_invalidates(self):
+        self.write_receipt()
+        verify = D.OfflineVerification()
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        before = self.path.stat()
+        self.write_receipt(b"x" * len(self.data))
+        os.utime(self.path, ns=(before.st_atime_ns, before.st_mtime_ns))
+        self.assertIs(verify(self.url, self.sha, self.root), False)
+        self.assertIs(verify(self.url, self.sha, self.root), False)
+        self.assertEqual(verify.hashes, 2 if verify.reuse_unchanged else 3)
+        self.write_receipt()
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+
+    def test_replacement_deletion_and_separate_cache_root(self):
+        self.write_receipt()
+        verify = D.OfflineVerification()
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        replacement = self.path.with_suffix(".replacement")
+        replacement.write_bytes(b"x" * len(self.data))
+        replacement.replace(self.path)
+        self.assertIs(verify(self.url, self.sha, self.root), False)
+        self.path.unlink()
+        self.assertIsNone(verify(self.url, self.sha, self.root))
+        self.assertIsNone(verify(self.url, self.sha, self.root / "another"))
+
+    def test_restricts_verification_to_original_checker_hosts(self):
+        self.write_receipt()
+        verify = D.OfflineVerification()
+        for url in ("http://www.govinfo.gov/example", "https://example.com/file", None):
+            self.assertIsNone(verify(url, self.sha, self.root))
+        self.assertEqual(verify.hashes, 0)
+
+    def test_platform_without_change_time_rehashes_every_reference(self):
+        self.write_receipt()
+        verify = D.OfflineVerification()
+        verify.reuse_unchanged = False
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        self.assertIs(verify(self.url, self.sha, self.root), True)
+        self.assertEqual((verify.hashes, verify.cache_hits), (2, 0))
+
+    def test_atomic_replacement_or_removal_during_hash_is_unverified(self):
+        real_sha256 = hashlib.sha256
+        for action in ("replace", "remove"):
+            with self.subTest(action=action):
+                self.write_receipt()
+                verify = D.OfflineVerification()
+                path = self.path
+
+                class ChangedWhileHashing:
+                    def __init__(self):
+                        self.digest = real_sha256()
+
+                    def update(self, chunk):
+                        self.digest.update(chunk)
+
+                    def hexdigest(self):
+                        answer = self.digest.hexdigest()
+                        if action == "replace":
+                            replacement = path.with_suffix(".replacement")
+                            replacement.write_bytes(b"different bytes")
+                            replacement.replace(path)
+                        else:
+                            path.unlink()
+                        return answer
+
+                with mock.patch.object(D.hashlib, "sha256", ChangedWhileHashing):
+                    self.assertIsNone(verify(self.url, self.sha, self.root))
+                self.assertEqual(verify._verified, {})
 
 
 if __name__ == "__main__":

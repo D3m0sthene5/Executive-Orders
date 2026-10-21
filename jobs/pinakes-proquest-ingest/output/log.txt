@@ -1,0 +1,113 @@
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+test_inventory_orders_texts_and_reconciliation (test_ingest.Ingest.test_inventory_orders_texts_and_reconciliation) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+OCR: 4 orders, 4 pages, 4 workers
+ok
+test_ocr_budget_defers_and_prior_texts_are_carried_forward (test_ingest.Ingest.test_ocr_budget_defers_and_prior_texts_are_carried_forward) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+OCR: 1 orders, 1 pages, 4 workers
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+OCR: 3 orders, 3 pages, 4 workers
+ok
+test_text_quality_flags_handwriting (test_ingest.Ingest.test_text_quality_flags_handwriting) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.039s
+
+OK
+OCR: 453 orders, 756 pages, 4 workers
+{
+  "files": {
+    "pdf_files": 2807,
+    "unique_by_sha256": 2751,
+    "stray_or_bad": 1,
+    "folders": [
+      "ProQuest Pre-1937 Orders",
+      "research/pre-1937-sources/ProQuest Pre-1937 Orders"
+    ]
+  },
+  "orders": {
+    "with_pdf": 2750,
+    "in_census": 2750,
+    "not_in_census": [],
+    "by_era": {
+      "1860s": 2,
+      "1870s": 6,
+      "1880s": 2,
+      "1890s": 9,
+      "1900s": 286,
+      "1910s": 1040,
+      "1920s": 1401,
+      "1930s": 1,
+      "1940s": 3
+    }
+  },
+  "texts": {
+    "by_source": {
+      "ocr": 453,
+      "layer": 2297
+    },
+    "usable": 2440,
+    "low_quality_probably_handwritten": 310,
+    "ocr_this_run": 453,
+    "ocr_pages_this_run": 756,
+    "ocr_page_budget": 4000,
+    "ocr_workers": 4,
+    "carried_from_prior_run": 0,
+    "still_without_text": 0,
+    "deferred_by_budget": 0,
+    "ocr_available_here": true
+  },
+  "supplied_links": {
+    "total": 2765,
+    "with_pdf": 2750,
+    "missing": 15,
+    "pdfs_for_orders_not_on_list": [],
+    "pdfs_for_orders_not_on_list_count": 0
+  },
+  "problems": []
+}
+Outputs written to /home/runner/work/Executive-Orders/Executive-Orders/jobs/pinakes-proquest-ingest/output

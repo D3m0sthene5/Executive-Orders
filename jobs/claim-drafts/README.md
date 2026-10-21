@@ -8,6 +8,32 @@ whole-lifecycle claim, plus a to-do list of exactly what a research agent
 It is an ordinary Python script: it costs no model tokens and makes no
 downloads.
 
+The embedded claim checker also runs **offline**. It reuses held bytes,
+official-fixity records and existing verified-download receipts, and leaves a
+missing receipt unverified. Acquisition belongs to source-ladder or the
+standalone claim-checker job; `CLAIM_CHECKER_VERIFY_DOWNLOADS` does not enable
+downloads inside claim-drafts. Previously this job inherited the standalone
+checker's default allowance of 400 downloads with 120-second request timeouts,
+despite promising no network requests.
+
+Receipts are read from the draft's `checker-text/verified/` store and the
+sibling standalone checker stores (`claim-checker/verified/` under the shared
+runner cache, or `claim-checker-cache/verified/` for local runs). Additional
+`CLAIM_CHECKER_CACHE_ROOTS` and their checker subdirectories are searched too.
+Reuse is read-only and requires hashing the bytes; the draft job neither
+copies nor writes predecessor receipts. A receipt changed or removed during
+hashing is unverified for that invocation.
+
+Existing verified-download bytes are hashed once per file version per run,
+then reused for repeated references. The key includes the path, expected hash,
+device, inode, size, nanosecond mtime and ctime. Changed, replaced or deleted
+files are checked afresh; a new run rehashes all receipts it uses. No verdict
+is persisted, and no absent receipt is promoted. Drafts, gates and quotations
+are still rebuilt and checked on each run. The console reports rehashes,
+within-run reuse and missing receipts separately. Windows rehashes each
+reference because its ctime may be creation time, which cannot safely detect
+a same-size edit whose mtime was restored.
+
 ## Why
 
 Agents were spending most of their tokens copying source references, clause

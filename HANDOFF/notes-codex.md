@@ -2,6 +2,14 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21: owner-requested workflow swarm and reviewed-claim pilot
+
+- **Done:** Integrated Pinakes/CSC source outputs and readers from pinned branch generations; repaired scheduler paths, dependencies, ranger/census wiring and cycle diagnostics. Enqueued266 validated Lewis requests without altering the historical prefix. Drafting is offline with safely reused checker receipts; unavailable search engines defer after one probe per run. LOC repair retrieved11 XML transcriptions/10,857 words. Evidence: `research/diagnostics/codex-swarm-20261021/INTEGRATION_REPORT.md`.
+- **Research:** Five bounded attempts; separate independent AI review upheld EO11087/EO11089 under verified frozen codebook2.0.0. Only those exact claims are in `research/readiness/claims/codex-swarm-2026-10-21.jsonl`; three transfer/savings cases stay blocked. Pilot/reviews/source pages/codebook provenance: `research/production/codex-swarm-20261021/`. Actual checker2/2 passes. Local tracker replay278→280 ready for human review, not a new full GitHub generation or human certification.
+- **Validation:**192 distinct offline tests across final suites; independent review findings fixed. All3,359 draft outputs unchanged across four runs: baseline cold169.794s/warm23.759s; patched169.204s/24.080s. No new CPU or token savings asserted; prior implicit network work is removed. Exact per-order model tokens/cash/active-time telemetry unavailable; five-case research and integration overlap, so session wall time is not allocated per order.
+- **Next:** Inspect integration PR checks and bounded runner receipts; queued acquisition is not a claimed recovery. Keep original imported execution provenance. No other agent notes edited.
+- **Do not:** Remove the six source-audit holds, adopt unmerged owner rulings, rewrite frozen experiments/codebook/statuses, authenticate derivative sources automatically, or call AI review human certification.
+
 ## 2026-10-20: all-active-PR reconciliation; PR #40 final integration
 
 - **Done:** Owner explicitly requested de-conflicting and merging every active PR. #40 was the sole open PR, at 69372304; integrated all five remaining commits into current main 6d9cbc21 while preserving their original histories. Applied all six authored-file changes, including the owner-question brief and bounded carried-defect prioritization. Kept the coherent main output generation from successful run 39507868600; both incoming generated executions remain reachable merge ancestors and their output-tree pins are in the audit.

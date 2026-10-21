@@ -1,0 +1,5 @@
+## 2026-10-21: bounded claim producer pilot (for coordinator's Codex handoff)
+
+- **Done:** Five unclaimed F11490-pool attempts; two isolated source-reviewed proposals (EO11087/11089), three explicit blocks (11088/11090/11092). Exact inventories repaired using complete official originals. Real claim-checker2/2 all checks passed; no canonical publication or readiness gain claimed. See `research/production/codex-swarm-20261021/producer/REPORT.md`.
+- **Next:** Recovered and authenticated the existing frozen codebook2.0.0 under producer/verification/codebook; separate independent AI review upheld both unchanged proposals and all three blocks. Coordinator can publish the exact accepted claims through the existing path and run an actual tracker replay. Producer cannot independently approve its own claims.
+- **Do not:** Treat mechanical passes as legal findings, treat codebook recovery as a methodology change, drop blocked attempts, infer savings from bytes, or commit the large verification PDFs stored in sibling scratch. Model token and per-order labor telemetry unavailable; no human certification.

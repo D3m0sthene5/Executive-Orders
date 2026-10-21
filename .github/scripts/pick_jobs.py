@@ -66,7 +66,9 @@ def ordered(picked):
     picked, done, out = list(dict.fromkeys(picked)), set(), []
 
     def visit(name, path=()):
-        if name in done or name in path:
+        if name in path:
+            raise ValueError("Job dependency cycle: " + " -> ".join((*path, name)))
+        if name in done:
             return
         for before in job_list(name, "after.txt"):
             if before in picked:
@@ -88,6 +90,36 @@ def with_consumers(picked):
         selected |= more
 
 
+def for_changes(changed):
+    """Select direct consumers of code/data edits; outputs never start feedback loops.
+
+    Shared-library consumers declare exact files in triggers.txt, including
+    transitive imports. This keeps docs/test-only library edits from refetching
+    the corpus and makes non-Python or dynamic dependencies explicit too.
+    """
+    picked = []
+    for path in changed:
+        # A change to the runner itself reruns the smoke test.
+        if path in RUNNER_FILES or path.startswith(".github/scripts/"):
+            if SMOKE_TEST not in picked and runnable(SMOKE_TEST):
+                picked.append(SMOKE_TEST)
+            continue
+        parts = path.split("/")
+        if len(parts) < 3 or parts[0] != "jobs" or parts[2] == "output":
+            continue
+        name = parts[1]
+        if name.startswith("_") or name in picked or not runnable(name):
+            continue
+        picked.append(name)
+    # Jobs that asked to rerun when these paths change (job outputs never count).
+    inputs = [p for p in changed if not re.match(r"^jobs/[^/]+/output/", p)]
+    for name in all_jobs():
+        patterns = job_list(name, "triggers.txt")
+        if name not in picked and any(fnmatch.fnmatch(p, pat) for p in inputs for pat in patterns):
+            picked.append(name)
+    return picked
+
+
 def main():
     if os.environ.get("EVENT") == "schedule":
         picked = sorted(
@@ -106,29 +138,12 @@ def main():
         if not picked:
             sys.exit("Type at least one job name.")
     else:
-        picked = []
-        changed = changed_files(os.environ.get("BEFORE"), os.environ["AFTER"])
-        for path in changed:
-            # A change to the runner itself reruns the smoke test.
-            if path in RUNNER_FILES or path.startswith(".github/scripts/"):
-                if SMOKE_TEST not in picked and runnable(SMOKE_TEST):
-                    picked.append(SMOKE_TEST)
-                continue
-            parts = path.split("/")
-            if len(parts) < 3 or parts[0] != "jobs" or parts[2] == "output":
-                continue
-            name = parts[1]
-            if name.startswith("_") or name in picked or not runnable(name):
-                continue
-            picked.append(name)
-        # Jobs that asked to rerun when these paths change (job outputs never count).
-        inputs = [p for p in changed if not re.match(r"^jobs/[^/]+/output/", p)]
-        for name in all_jobs():
-            patterns = job_list(name, "triggers.txt")
-            if name not in picked and any(fnmatch.fnmatch(p, pat) for p in inputs for pat in patterns):
-                picked.append(name)
+        picked = for_changes(changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]))
 
-    picked = ordered(with_consumers(picked))
+    try:
+        picked = ordered(with_consumers(picked))
+    except ValueError as exc:
+        sys.exit(str(exc))
     print("Jobs to run:", ", ".join(picked) or "none")
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")
