@@ -208,6 +208,18 @@ class RunAdaptation(unittest.TestCase):
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
+    def test_number_alone_on_a_page_is_not_confirmation_and_state_orders_are_marked_down(self):
+        hit = {"title": "Executive order No. 11-2021 Declaring Statewide Drought Emergency", "url": "https://archive.org/details/x", "snippet": ""}
+        montana = "Executive Order No. 11-2021. Office of the Governor, State of Montana. It is hereby ordered that a drought emergency exists."
+        sc, why = w.score_hit(hit, {"id": "EO:11", "number": 11, "suffix": "", "date": "1873-07-01", "title": "", "wants": "original"}, montana)
+        self.assertLess(sc, 60)
+        self.assertIn("number_only_not_confirmed", why)
+        self.assertIn("reads_as_state_or_local_order", why)
+        federal = "Executive Order No. 5862, June 23, 1932. By virtue of the authority vested in me as President of the United States, it is hereby ordered."
+        sc2, why2 = w.score_hit({"title": "EO 5862", "url": "https://archive.org/details/y", "snippet": ""}, {**TARGET, "wants": "original"}, federal)
+        self.assertGreaterEqual(sc2, 60)
+        self.assertNotIn("number_only_not_confirmed", why2)
+
     def test_lewis_ranks_held_transcription_hosts_low_but_clark_does_not(self):
         hit = {"title": "Executive Order 5862 of June 23, 1932", "url": "https://www.presidency.ucsb.edu/documents/eo-5862", "snippet": ""}
         lewis_score, why = w.score_hit(hit, {**TARGET, "wants": "original"})

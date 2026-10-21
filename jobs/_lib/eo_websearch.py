@@ -327,6 +327,8 @@ def query_strategies(target):
 
 # Editorial or volunteer transcriptions the project already harvests (app-executive-orders, wikisource-texts).
 TRANSCRIPTION_HOSTS = ("presidency.ucsb.edu", "wikisource.org", "wikipedia.org")
+NON_FEDERAL = re.compile(r"(?i)\b(governor|county council|county executive|mayor|state of [A-Z][a-z]+ executive order|"
+                         r"office of the governor|city of [A-Z][a-z]+)\b")
 ORDER_MARKERS = re.compile(r"(?i)(by virtue of the authority|it is hereby ordered|is hereby (revoked|amended)|the white house|"
                            r"executive order|hereby ordered|be it ordered|signed by the president)")
 LINK_DOC = re.compile(r"(?i)\.(pdf|djvu|txt|xml)(\?|$)|/download/|/content/pkg/|/details/|docview|/item/|babel\.hathitrust|/resource/")
@@ -380,6 +382,16 @@ def score_hit(hit, target, page_text=None):
     if target.get("wants") == "original" and any(h in host for h in TRANSCRIPTION_HOSTS):
         score = min(score, 35)  # a transcription the project already has: a lead to cite, never the original Lewis wants
         why.append("transcription_host_already_held")
+    if page_text:
+        # States, counties and cities number their executive orders too ("Executive Order No. 11-2021, Montana"):
+        # a page that names the number but neither the date nor the title is not confirmed, and one that reads as
+        # a governor's or mayor's order is marked down.
+        if "date_named" not in why and "title_words" not in why:
+            score = min(score, 50)
+            why.append("number_only_not_confirmed")
+        if NON_FEDERAL.search(page_text[:20_000]) and not re.search(r"(?i)\bpresident of the united states\b|\bthe white house\b", page_text[:20_000]):
+            score = max(0, score - 30)
+            why.append("reads_as_state_or_local_order")
     return min(score, 100), "|".join(why)
 
 
