@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-10-21T20:53:48Z. Leads only; no census, count or identity changes.
+Generated 2026-10-21T21:22:56Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -115,7 +115,7 @@ Generated 2026-10-21T20:53:48Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-30 of 849 unknowns advanced this run (802 never searched yet); 286 of 300 requests used. 729 hits on file, 19 pages confirmed to name the order (9 unknowns): `WEB_LEADS.csv`. 13 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+50 of 849 unknowns advanced this run (752 never searched yet); 402 of 600 requests used. 1388 hits on file, 22 pages confirmed to name the order (10 unknowns): `WEB_LEADS.csv`. 16 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 354 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
@@ -125,16 +125,16 @@ List pages: 60 read, 354 order numbers named, **0 absent from the census**: `WEB
 | bing_rss | blocked_by_robots_txt |
 | brave_api | needs_key |
 | brave_html | unreachable |
-| duckduckgo_html | error |
-| duckduckgo_lite | ok |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
 | federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
 | govinfo_search_page | ok |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | ok |
-| loc_manuscripts | ok |
+| loc_books | timeout |
+| loc_manuscripts | timeout |
 | loc_newspapers | timeout |
 | marginalia | unreachable |
 | mojeek_html | blocked_by_robots_txt |

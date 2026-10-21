@@ -1,3 +1,4 @@
+test_pages_read_in_earlier_runs_wait_behind_unread_ones (test_clark.ListCursor.test_pages_read_in_earlier_runs_wait_behind_unread_ones) ... ok
 test_ids_round_trip (test_clark.MentionParsing.test_ids_round_trip) ... ok
 test_lists_suffixes_halves_and_dates (test_clark.MentionParsing.test_lists_suffixes_halves_and_dates) ... ok
 test_ocr_shapes_are_not_mentions (test_clark.MentionParsing.test_ocr_shapes_are_not_mentions) ... ok
@@ -20,7 +21,7 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 6.019s
+Ran 21 tests in 9.685s
 
 OK
 test_blocked_engine_is_skipped_for_the_rest_of_the_run (test_eo_websearch.RunAdaptation.test_blocked_engine_is_skipped_for_the_rest_of_the_run) ... ok
@@ -37,7 +38,7 @@ test_strategies_escalate_and_use_date_and_title (test_eo_websearch.SearchLayer.t
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 12 tests in 9.034s
+Ran 12 tests in 9.028s
 
 OK
 {
@@ -92,13 +93,13 @@ OK
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 30,
-  "requests_used": 286,
-  "hits_total": 729,
-  "leads_page_confirmed": 19,
+  "advanced_this_run": 50,
+  "requests_used": 402,
+  "hits_total": 1388,
+  "leads_page_confirmed": 22,
   "engines": {
-    "duckduckgo_html": "error",
-    "duckduckgo_lite": "ok",
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
     "brave_html": "unreachable",
@@ -109,8 +110,8 @@ Offline stage done; starting the web search stage
     "brave_api": "needs_key",
     "serpapi_google": "needs_key",
     "loc_newspapers": "timeout",
-    "loc_books": "ok",
-    "loc_manuscripts": "ok",
+    "loc_books": "timeout",
+    "loc_manuscripts": "timeout",
     "internet_archive": "ok",
     "google_books": "http_429",
     "hathitrust_catalog": "blocked_by_robots_txt",
