@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-21T16:41:20Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 7340 orders** (clark_identified 2655, clark_identified_not_in_universe 41, transcription_only 4644).
 
@@ -57,3 +57,33 @@ Generated 2026-10-21T16:41:20Z. Leads and verified file facts; no count or grade
 | EO:21 | 1881 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:22 | 1884-04-09 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:23-1 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+
+## Web search (online stage)
+
+83 of 7340 targets advanced this run (7257 never searched yet); 934 of 1500 requests used. 1117 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+
+| Engine | Status |
+|---|---|
+| bing_api | needs_key |
+| bing_rss | blocked_by_robots_txt |
+| brave_api | needs_key |
+| brave_html | blocked_by_robots_txt |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
+| federal_register_api | ok |
+| google_books | http_429 |
+| google_cse | needs_key |
+| govinfo_search_page | ok |
+| hathitrust_catalog | blocked_by_robots_txt |
+| internet_archive | ok |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
+| marginalia | error |
+| mojeek_html | blocked_by_robots_txt |
+| nara_catalog | needs_key |
+| presidency_project | ok |
+| serpapi_google | needs_key |
+| wikipedia_search | blocked_by_robots_txt |
+| wikisource_search | blocked_by_robots_txt |
+| yandex_html | blocked_by_robots_txt |

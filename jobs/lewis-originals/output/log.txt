@@ -1,3 +1,73 @@
+test_clark_handoff_enters_scope_without_entering_the_census (test_lewis.OnlineStage.test_clark_handoff_enters_scope_without_entering_the_census) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_fetch_requests_pass_the_source_ladder_contract (test_lewis.OnlineStage.test_fetch_requests_pass_the_source_ladder_contract) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_fragments_never_claim_an_original (test_lewis.OnlineStage.test_fragments_never_claim_an_original) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_ladder_picks_one_route_per_order (test_lewis.OnlineStage.test_ladder_picks_one_route_per_order) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_missing_inputs_are_reported_not_fatal (test_lewis.OnlineStage.test_missing_inputs_are_reported_not_fatal) ... ok
+test_online_stage_hunts_manual_leads_first_and_writes_campaign_files (test_lewis.OnlineStage.test_online_stage_hunts_manual_leads_first_and_writes_campaign_files) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-mmylgz0y/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+  self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-mmylgz0y/_out/REPORT.md' mode='r' encoding='utf-8'>
+  self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_outputs_are_deterministic (test_lewis.OnlineStage.test_outputs_are_deterministic) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_proquest_inventory_verifies_bytes_and_marks_duplicates (test_lewis.OnlineStage.test_proquest_inventory_verifies_bytes_and_marks_duplicates) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_scope_is_transcription_only_plus_handoff (test_lewis.OnlineStage.test_scope_is_transcription_only_plus_handoff) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_text_quality_screens_handwriting_noise (test_lewis.OnlineStage.test_text_quality_screens_handwriting_noise) ... ok
 test_clark_handoff_enters_scope_without_entering_the_census (test_lewis.SyntheticRepo.test_clark_handoff_enters_scope_without_entering_the_census) ... incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
@@ -57,7 +127,22 @@ ok
 test_text_quality_screens_handwriting_noise (test_lewis.SyntheticRepo.test_text_quality_screens_handwriting_noise) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.058s
+Ran 19 tests in 3.176s
+
+OK
+test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
+test_budget_stops_cleanly_and_is_recorded (test_eo_websearch.SearchLayer.test_budget_stops_cleanly_and_is_recorded) ... ok
+test_campaign_writes_files_and_resumes_from_prior_state (test_eo_websearch.SearchLayer.test_campaign_writes_files_and_resumes_from_prior_state) ... ok
+test_html_results_unwrap_redirects_and_skip_engine_links (test_eo_websearch.SearchLayer.test_html_results_unwrap_redirects_and_skip_engine_links) ... ok
+test_json_results_and_url_prefix (test_eo_websearch.SearchLayer.test_json_results_and_url_prefix) ... ok
+test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named (test_eo_websearch.SearchLayer.test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named) ... ok
+test_page_to_text_strips_scripts (test_eo_websearch.SearchLayer.test_page_to_text_strips_scripts) ... ok
+test_scoring_prefers_number_date_and_order_wording (test_eo_websearch.SearchLayer.test_scoring_prefers_number_date_and_order_wording) ... ok
+test_strategies_escalate_and_use_date_and_title (test_eo_websearch.SearchLayer.test_strategies_escalate_and_use_date_and_title) ... ok
+test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 9.033s
 
 OK
 {
@@ -97,5 +182,37 @@ OK
     "contract_available": true
   },
   "problems": []
+}
+Offline stage done; starting the web search stage
+{
+  "advanced_this_run": 83,
+  "requests_used": 934,
+  "hits_total": 1117,
+  "leads_page_confirmed": 3,
+  "engines": {
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
+    "bing_rss": "blocked_by_robots_txt",
+    "mojeek_html": "blocked_by_robots_txt",
+    "brave_html": "blocked_by_robots_txt",
+    "marginalia": "error",
+    "yandex_html": "blocked_by_robots_txt",
+    "google_cse": "needs_key",
+    "bing_api": "needs_key",
+    "brave_api": "needs_key",
+    "serpapi_google": "needs_key",
+    "loc_newspapers": "ok",
+    "loc_books": "ok",
+    "loc_manuscripts": "ok",
+    "internet_archive": "ok",
+    "google_books": "http_429",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "federal_register_api": "ok",
+    "wikisource_search": "blocked_by_robots_txt",
+    "wikipedia_search": "blocked_by_robots_txt",
+    "presidency_project": "ok",
+    "govinfo_search_page": "ok",
+    "nara_catalog": "needs_key"
+  }
 }
 Outputs written to /home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/output

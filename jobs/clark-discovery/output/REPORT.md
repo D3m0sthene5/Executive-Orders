@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes.
+Generated 2026-10-21T17:18:24Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -63,7 +63,7 @@ Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes
 
 ## Cited but unknown (plausible rows first)
 
-288 (cited id, citing document) pairs from 27177 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 209, likely_ocr_letter_for_digit 16, plausible 58, rare_suffix_letter 3. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+288 (cited id, citing document) pairs from 27178 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 209, likely_ocr_letter_for_digit 16, plausible 58, rare_suffix_letter 3. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -112,3 +112,35 @@ Generated 2026-10-21T16:41:15Z. Leads only; no census, count or identity changes
 
 3432 census orders have an open original_text step, no transcription lead and no date or title in any index. 2655 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 777 are a number and nothing else. By census era: 1862–1906 92, 1907–1936 3262, Unknown date 78.
 
+
+## Web search (online stage)
+
+59 of 3466 unknowns advanced this run (3407 never searched yet); 696 of 1100 requests used. 992 hits on file, 22 pages confirmed to name the order (10 unknowns): `WEB_LEADS.csv`. 21 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+
+List pages: 60 read, 234 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+
+| Engine | Status |
+|---|---|
+| bing_api | needs_key |
+| bing_rss | blocked_by_robots_txt |
+| brave_api | needs_key |
+| brave_html | blocked_by_robots_txt |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
+| federal_register_api | ok |
+| google_books | http_429 |
+| google_cse | needs_key |
+| govinfo_search_page | ok |
+| hathitrust_catalog | blocked_by_robots_txt |
+| internet_archive | ok |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
+| marginalia | error |
+| mojeek_html | blocked_by_robots_txt |
+| nara_catalog | needs_key |
+| presidency_project | ok |
+| serpapi_google | needs_key |
+| wikipedia_search | blocked_by_robots_txt |
+| wikisource_search | blocked_by_robots_txt |
+| yandex_html | blocked_by_robots_txt |
