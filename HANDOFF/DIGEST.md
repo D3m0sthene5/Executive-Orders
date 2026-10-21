@@ -6,7 +6,7 @@ New York date: 2026-10-20. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 251 of 14,972 orders (1.7%)**
+**Ready for human review: 278 of 14,972 orders (1.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -20,22 +20,22 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 315 | 3,359 | 9.4% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 273 | 3,359 | 8.1% |
+| Complete inventory of the order's operative clauses | 342 | 3,359 | 10.2% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 300 | 3,359 | 8.9% |
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-19; intervening runs may be absent.
-- claim-checker: claim_lines_found: 226 → 358; claims_all_checks_passed: 141 → 270; claims_checked: 226 → 358; claims_gate_passed: 141 → 273
+- claim-checker: claim_lines_found: 226 → 385; claims_all_checks_passed: 141 → 297; claims_checked: 226 → 385; claims_gate_passed: 141 → 300
 - claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 1114 → 1115; of_which_decided: 1114 → 1115
-- clause-drafts: clauses_total: 70539 → 70593; fragments_from_app_transcription: 5013 → 4971; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 149
-- family-rules: saved_texts_scanned: 46624 → 46954
+- clause-drafts: clauses_total: 70539 → 70600; fragments_from_app_transcription: 5013 → 4968; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 149
+- family-rules: saved_texts_scanned: 46624 → 46996
 - lambertini: counterevidence_records: unavailable → 687; decided_orders_with_draft: unavailable → 3359; packet_targets: unavailable → 807; packets: unavailable → 84
 - neyman-pilot: attempts: unavailable → 24; complete_dossiers: unavailable → 0; human_certifications_added: unavailable → 0; legal_decisions_added: unavailable → 0
-- official-fixity: carried_forward: 5054 → 5104; checked_this_run: 4 → 32; files: 5058 → 5136; orders_with_a_gpo_matched_file: 5068 → 5069
-- readiness-tracker: ready_for_human_review: 138 → 251
-- source-ladder: attempts_logged: 20 → 64; bytes_downloaded: 78296215 → 89048310; distinct_new_source_hashes: 6 → 45; earlier_found_carried_with_defect: unavailable → 0
-- valla: active_claims: unavailable → 357; examined_dependencies: unavailable → 0; legal_promotions: unavailable → 0; model_calls: unavailable → 0
+- official-fixity: carried_forward: 5054 → 5136; checked_this_run: 4 → 18; files: 5058 → 5154; orders_with_a_gpo_matched_file: 5068 → 5070
+- readiness-tracker: ready_for_human_review: 138 → 278
+- source-ladder: attempts_logged: 20 → 50; bytes_downloaded: 78296215 → 475352251; distinct_new_source_hashes: 6 → 38; earlier_found_carried_with_defect: unavailable → 0
+- valla: active_claims: unavailable → 384; examined_dependencies: unavailable → 0; legal_promotions: unavailable → 0; model_calls: unavailable → 0
 - x1-class-engine: modern_families_5_plus: 178 → 188
 
 ## Top shared unlocks
@@ -60,4 +60,4 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39503891853)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39507868600)

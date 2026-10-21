@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8423>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 224,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8423#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8423",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8423"
@@ -56,6 +86,108 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8423>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8423>EO:9830",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8423 of May 28, 1940. ,': number and date match the target's signing date (1940-05-28). Dossier clause inventory (offsets 683-1597) is EO 8423's own text. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8423>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Searched held FR texts 1940-1947 for EO 8423 and for later amendment of section 2(b) of Civil Service Rule VII (OCR-tolerant 'Rule VII'): none after 1940-05-28 (EO 8300 of 1939-12-12 amended Rule VII sec. 2(b) earlier and is the text EO 8423 rewrites; EO 9428 of 1944-02-29 only refers to Rule VII for fingerprint classifiers, no amendment). Dossier chain empty; no own-term end. No earlier end found in held sources. LEAD (scope-limited, not an end): EO 9063 War Service Regulations procedures bind covered positions from 1942; none names Rule VII sec. 2(b) in held texts.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources. War Service Regulations are a scope lead only and do not name Rule VII sec. 2(b).",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number (with context check of every hit) and for amendments of the specific rule/order text the target set; EO 9830 searched for savings. \"8423\" hits after 1940 are commodity table numbers (EO 8702/8703). Read held EO_8423.txt own text (rewrites first sentence of Rule VII sec. 2(b)). All 1940-1947 \"Rule VII\" hits checked: EO 8424/8425 (same FR issue), EO 8833/8834 (\"Rule VIII\", not VII), EO 9428 (refers to Rule VII for fingerprint classifiers, no amendment).",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830-reviewer-s1 (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:8423",
+      "target_naming": {
+        "char_end": 91175,
+        "char_start": 91148,
+        "sha256": "d76d6612081bb8da08c8ee136ff8b7fe064186d309db8214d28ba95e7bff222e",
+        "text": "No. 8423 of May 28, 1940. ,"
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:8423>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:8423>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:8423#whole": {
       "char_end": 1597,
       "char_start": 683,
@@ -190,7 +322,7 @@
       "text": "The nominating or appointing officer shall make selections for the first vacancy from not more than the highest three persons certified, or from the register, with sole reference to merit and fitness, unless objection shall be made and sustained by the Commission, to one or more of the persons certified, for any of the reasons stated in Rule V, section 3, or in the case of positions in Federal agencies concerned in preparedness and the national defense program, for such other reasons as may be approved by the Commission.\""
     }
   },
-  "fingerprint": "c997540b210b59bb7767ff791eb0ce4dcc806cbe736145bbbf97de71fc5255ed",
+  "fingerprint": "679b854964450677acb948c0e14c7b63982f0ba16001dd833cf531f517e5fb40",
   "instrument_id": "EO:8423",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -199,7 +331,9 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8423",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8423>EO:9830"
+      ],
       "own_term_evidence_ids": [
         "TERM:EO:8423:7ecb5e987b204762@07f3535f759b86ff",
         "TERM:EO:8423:7ecb5e987b204762@33c735bf216b7929",
@@ -207,6 +341,7 @@
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
         "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
       ],
       "schema": "eo-lifecycle-obligation/v1",
@@ -257,8 +392,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8423",

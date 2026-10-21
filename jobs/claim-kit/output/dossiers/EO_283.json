@@ -6,11 +6,41 @@
       "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:283>EO:9830"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 224,
+    "events": [
+      {
+        "actor_id": "EO:9830",
+        "char_end": 90328,
+        "char_start": 90277,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:283#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "The following Executive orders are \nhereby revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1947-02-24",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "12 FR 1259, PDF pages 1-11",
+          "requires_page_check": false,
+          "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "signing_date": "1947-02-24",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:283",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:283"
@@ -56,6 +86,108 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:283>EO:9830": {
+      "actor_id": "EO:9830",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 90328,
+      "char_start": 90277,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+      "effective_class": "stated_date",
+      "effective_date": "1947-05-01",
+      "effective_wording": [
+        {
+          "char_end": 2220,
+          "char_start": 2164,
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+        }
+      ],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:283>EO:9830",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 283 of December 8, 1904.': number and date match the target's signing date (1904-12-08). Target text: jobs/isthmian-canal-1911/output/texts/EO_283.txt (official GPO 1911 compilation, OCR). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:283>EO:9830@rastell",
+      "producer": "claude-r9830-producer",
+      "producer_d6": "Searched held FR texts (jobs/fr-originals full_run, 6,652 files) for any instrument naming EO 283 or the order of December 8, 1904 other than EO 9830: none (hits for '283' are page numbers only). Searched the held Isthmian Canal Commission compilation (178 texts, 1904-1911): no other order names it or touches the citizenship waiver. Dossier chain empty; no own-term end. LEADS (not ends, not decided): Civil Service Rule V sec. 1 as restated by EO 7915 (1938-06-24, held) requires applicants to be citizens of or owe allegiance to the United States, with no express revocation of EO 283 (possible implied tension only); Schedule A (EO 8043 para. 8, EO 9653) excepts most Federal positions on the Isthmus of Panama from examination. COVERAGE GAP: the held FR corpus starts in 1936, so instruments of 1905-1935 (e.g. the Panama Canal Act of 1912 and EO 1888 of 1914-02-02 on conditions of employment on the Isthmus, neither held) cannot be searched; an earlier end of EO 283 in that period cannot be excluded. No earlier end found in held sources, but D6 is incomplete for 1905-1935.",
+      "provenance": "agent_located",
+      "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+      "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+      "provision_text": "The following Executive orders are \nhereby revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier end found in held sources. D6 is INCOMPLETE: no held instruments cover 1905-1935 (FR corpus starts 1936; Isthmian compilation ends 1911-06-12), so an earlier end (e.g. Panama Canal Act 1912, EO 1888 of 1914) cannot be excluded. Coverage gap disclosed by producer, not ignored. Not claims-enabling until those sources are held.",
+        "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number (with context check of every hit) and for amendments of the specific rule/order text the target set; EO 9830 searched for savings. \"No. 283\" hits: EO 9830 and EO 11285 (Export Control Commodity No. 28393, coincidental); \"December 8, 1904\" occurs only in EO 9830 and the target; \"citizenship\" occurs in no other of the 178 held Isthmian Canal Commission texts. Held target text read: waiver of citizenship requirement for Isthmus applicants under CSC regulations; no own end term.",
+        "independent": true,
+        "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+        "reviewer": "claude-r9830-reviewer-s1 (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1947-02-24",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "target_id": "EO:283",
+      "target_naming": {
+        "char_end": 90387,
+        "char_start": 90359,
+        "sha256": "1deb63bf3144300dcb770cb4fd457105039c6db21dde95c2c26b3818cbb60c09",
+        "text": "No. 283 of December 8, 1904."
+      },
+      "text": "The following Executive orders are \nhereby revoked:",
+      "verb": "revoke"
+    },
+    "ACT:EO:283>EO:9830:effective#0": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "ACT:EO:283>EO:9830:effective#0",
+      "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "12 FR 1259, PDF pages 1-11",
+        "requires_page_check": false,
+        "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+        "signing_date": "1947-02-24",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+        "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+      },
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+    },
     "CLAUSES:EO:283#whole": {
       "char_end": 1339,
       "char_start": 0,
@@ -102,7 +234,7 @@
       "text": "# EO:283: Order of the President, Dec. 8, 1904, waiving United States citizenship of em- ployees on the Isthmus L 26 (contents entry 11)\n# Source: Executive Orders Relating to the Isthmian Canal Commission, March, 1904, to June 12, 1911, inclusive (Washington: Government Printing Office, 1911); University of Florida copy (gift of the Panama Canal Museum); HathiTrust handle 2027/ufl1.ark:/13960/t3dz15k02\n# PDF: releases/source_books/Isthmian_Canal_Commission_Executive_Orders_1904-1911_ufl1.ark+=13960=t3dz15k02.pdf sha256 4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda\n# PDF pages 39-39; printed pages 26-26; date 1904-12-08 (contents); body date check white_house_strict; confidence high\n# Identity: EO number from the committed crosswalk (the volume prints none): EO:283\n# Text: OCR text layer of the scan (pypdf 6.20.1 extract_text(), one JSON line per PDF page, NUL characters removed; the layer is the scan's own OCR), running heads and GPO footers removed. Not human-verified. Body sha256 aa94ba9a1a02e5a6d82827da6cf35483222262a645b5710262f6b3047f7d6449\n\nThe requirements as to United States citizenship may be waived\nfor apphcants for positions on tlie Isthmus of Panama under such\nregulations as may be provided by the United States Civil Service\nCommission.\nTheodore Roosevelt.\nWhite House, December 8, 1904-\n"
     }
   },
-  "fingerprint": "15d4137b05700954b19435d00fdc4a4a63377b347cc2b8a5ec887ef4588078d6",
+  "fingerprint": "775838fb876718b4621749215febec05937935c7acc341ad175af2f656ccdeb9",
   "instrument_id": "EO:283",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -111,10 +243,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:283",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:283>EO:9830"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:283#whole",
@@ -162,8 +297,7 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
-    "target provision not located: EO:9830"
+    "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:283",

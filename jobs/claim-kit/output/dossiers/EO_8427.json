@@ -5,11 +5,41 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     }
   ],
-  "actor_provisions": [],
+  "actor_provisions": [
+    "ACT:EO:8427>EO:12553"
+  ],
   "chain": {
     "confidence": "medium",
-    "events": [],
-    "generic_refs_excluded": 224,
+    "events": [
+      {
+        "actor_id": "EO:12553",
+        "char_end": 966,
+        "char_start": 691,
+        "confidence": "agent_located_independently_upheld",
+        "how_named": "direct",
+        "id": "CHAIN:EO:8427#1",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "1986-02-25",
+        "source": {
+          "filing_date": null,
+          "location_confidence": "high",
+          "location_verified": false,
+          "page_or_item": "51 FR 7237, PDF pages 9-15",
+          "requires_page_check": false,
+          "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+          "signing_date": "1986-02-25",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+          "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+        },
+        "verb": "revoke"
+      }
+    ],
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8427",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8427"
@@ -217,6 +247,81 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACT:EO:8427>EO:12553": {
+      "actor_id": "EO:12553",
+      "actor_source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 966,
+      "char_start": 691,
+      "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
+      "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
+      "effective_class": "on_signing",
+      "effective_date": "1986-02-25",
+      "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:8427>EO:12553",
+      "lifecycle_complete": false,
+      "names_target": true,
+      "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 8427 in the \"No.\" column of PDF page 9 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 8427 is the 7th number of the page-9 column and pairs with the 7th subject after joining wrapped lines, \"Prescribing regulations for interbuilding mail and messenger service\" (offset 1743), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_8427.txt (5 FR 2131, PDF pages 1-1). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+      "override_id": "ACT:EO:8427>EO:12553@rastell-r12553nb",
+      "producer": "claude-r12553nb-producer",
+      "producer_d6": "Own terms: Sec. 8 makes the order effective upon the effective date of Reorganization Plan No. IV of 1940 (a start, not an end); the other own_terms leads (sec. 3-4 schedule wording) are conditions, not ends. Dossier chain: no events. EDGES: only EO 12553 (revocation, 1986-02-25). Number search: no other held order names EO 8427. No earlier express end found in held sources. Non-express lead only: the Post Office Department, whose Postmaster General administered the service, was replaced by the United States Postal Service under the Postal Reorganization Act of 1970 (statute not held, not named by any held instrument or OFR note as acting on EO 8427); this is not an express end and is recorded so the reviewer can weigh whether EO 12553 is the end or a formal clean-up (upper bound). No later event changed EO 12553 itself (no EDGES row targets EO:12553; no held order text amends or revokes it). Search base: target dossier (chain, own_terms, missing, actor_provisions), jobs/later-events/output/EDGES.csv and jobs/app-footnote-leads/output/EDGES.csv rows for the target, jobs/status-history/output/events, and a number search of all 6,652 held Federal Register order texts (jobs/fr-originals/data/full_run/texts) for other orders naming the target (page numbers, FR document numbers and index entries discarded). D6 RESULT: no earlier express end in held sources; EO 12553 is the first express end (date is the on_signing reading).",
+      "provenance": "agent_located",
+      "provision_label": "(unnumbered single sentence before the \"No. Subject\" table)",
+      "provision_sha256": "9f90d1a7a95328e9ccda6045127544fe73e849118ca621d2e53f0888bbf3d7b0",
+      "provision_text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "reaches_target_via": "",
+      "review": {
+        "d6_found": "No earlier express end in held sources. Non-express lead only (Postal Reorganization Act 1970, unheld, names no EO): EO 12553 may be a formal clean-up and should be read as the first express end, not proof of continuous operation to 1986.",
+        "d6_searched": "Re-sliced provision 691-966 and target_naming from held EO_12553.txt (text sha256 matches; provision and naming sha256 match); target held-text sha256 checked; column-ordinal subject pairing recounted on the PDF page; number search of all held FR order texts for the target (non-order hits were FR doc numbers / page or index numbers); target held text read for own terms; quoted earlier/later instruments re-read in held official FR texts. Target own terms (EO_8427.txt Sec. 8 effective on Reorg. Plan IV date: a start); no other held order names 8427.",
+        "independent": true,
+        "review_kind": "AI review record (independent Opus reviewer, held sources); not an eo-lifecycle-review/v1 human review",
+        "reviewer": "claude-r12553nb-reviewer (independent Opus, held sources, D6 step)",
+        "source_file": "research/excavator/rastell-2026-10-20/r12553nb/review/REVIEW.jsonl",
+        "verdict": "upheld"
+      },
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "1986-02-25",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "51 FR 7237, PDF pages 9-15",
+        "requires_page_check": false,
+        "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+        "signing_date": "1986-02-25",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+        "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+      },
+      "target_id": "EO:8427",
+      "target_naming": {
+        "char_end": 1012,
+        "char_start": 1008,
+        "sha256": "14a7c340ed1fb1e8c9a26a5e6a115a077a86184b6ec15c8e9440f8ef09e41519",
+        "text": "8427"
+      },
+      "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
+      "verb": "revoke"
+    },
     "ACTOR_TEXT:EO:12553": {
       "actor_id": "EO:12553",
       "char_end": 33227,
@@ -525,7 +630,7 @@
       "text": "Unless otherwise directed, the messengers in this service shall call on their scheduled rounds at one designated point in each building or each group of contiguous buildings occupied by a Government agency."
     }
   },
-  "fingerprint": "56008b89c4198ba7ca82387a9f137663f6cb34c0c6f86c8e61d6fbcfa9e8ea6a",
+  "fingerprint": "2ae1bc0fbb4f921ca42e0ce294c55e1136f5495ae93c04b5faa8ed469f6cd6c6",
   "instrument_id": "EO:8427",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -534,10 +639,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec1",
@@ -549,10 +657,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec2",
@@ -564,10 +675,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
         "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
       ],
       "schema": "eo-lifecycle-obligation/v1",
@@ -582,7 +696,9 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [
         "TERM:EO:8427:04dfb5c10006f20d@0e037f6a8feaa584",
         "TERM:EO:8427:04dfb5c10006f20d@4b47e29768287064",
@@ -590,6 +706,7 @@
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
         "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
       ],
       "schema": "eo-lifecycle-obligation/v1",
@@ -605,10 +722,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec5",
@@ -620,10 +740,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec6",
@@ -635,10 +758,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec7",
@@ -650,10 +776,13 @@
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:8427",
-      "later_actor_evidence_ids": [],
+      "later_actor_evidence_ids": [
+        "ACT:EO:8427>EO:12553"
+      ],
       "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:8427#sec8",
@@ -699,9 +828,7 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [
-    "target provision not located: EO:12553"
-  ],
+  "missing": [],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8427",
   "own_terms": [
