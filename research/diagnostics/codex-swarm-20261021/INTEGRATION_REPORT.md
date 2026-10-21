@@ -33,6 +33,17 @@ claim production, with separate independent review (roles used available slots i
   codebook2.0.0 was recovered by range reads and verified against nested manifests;
   its bytes and retrieval evidence accompany the pilot. No methodology changed.
 
+## CI checkout efficiency
+
+The offline test workflow now excludes `jobs/*/output/` while keeping code, data,
+fixtures and the real Stage19 claim gate. In this working copy that excludes
+3,219,658,751 bytes of saved outputs, leaving122,085,274 non-output job bytes.
+A physical isolated checkout passed the entire192-test entry point; a real Git
+sample verified the sparse patterns. These are checkout-volume observations,
+not a claimed measured network or wall-time reduction on every runner.
+Superseded read-only CI runs on the same ref are cancelled; the acquisition and
+publication workflow keeps its existing non-cancelling behavior.
+
 ## Measured validation
 
 The expanded road entry point passed 190 offline tests. Two final ranger-chain
