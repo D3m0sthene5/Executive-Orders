@@ -318,6 +318,27 @@ class BudgetAndPlanTests(Base):
         again = plan_mod.make_queue_first_plan(items, found={"queue:EO:4:done"}, tried={"queue:EO:1:a"}, tracker_path=tr)
         self.assertEqual(p, again)
 
+    def test_carried_defect_rewalks_go_first_bounded(self):
+        # A found record flagged carried_defect (e.g. partial_extraction of the pages a request names) is not
+        # in `found`; without the defect lane it ranked behind untried requests and was never re-walked.
+        W = lambda wid, iid: fl.Wanted(wid, [iid], citation="71 Stat. 78")
+        items = [W(f"queue:EO:{n}:x", f"EO:{n}") for n in range(1, 30)] + \
+                [W("queue:EO:x11490:pages", "EO:99"), W("opus-refetch:aa", "EO:98"), W("STAT::66 Stat. 259", "EO:97")]
+        tr = self.tracker([(f"EO:{n}", "open") for n in range(1, 30)] + [("EO:99", "closed")])
+        defective = {"queue:EO:x11490:pages", "opus-refetch:aa", "STAT::66 Stat. 259", "queue:EO:gone:not-an-item"}
+        p = plan_mod.make_queue_first_plan(items, set(), set(), tr, limit=5, defective=defective)
+        # queue requests first, then the rest by ID; unknown IDs ignored; others follow within the same limit
+        self.assertEqual(p["wanted_ids"], ["queue:EO:x11490:pages", "STAT::66 Stat. 259", "opus-refetch:aa",
+                                           "queue:EO:10:x", "queue:EO:11:x"])
+        self.assertEqual(p, plan_mod.make_queue_first_plan(items, set(), set(), tr, limit=5, defective=defective))
+        without = plan_mod.make_queue_first_plan(items, set(), set(), tr, limit=5)
+        self.assertNotIn("queue:EO:x11490:pages", without["wanted_ids"])
+        many = [W(f"queue:EO:{n}:x", f"EO:{n}") for n in range(1, 30)]
+        p = plan_mod.make_queue_first_plan(many, set(), set(), tr, defective={w.wanted_id for w in many[10:]})
+        self.assertEqual(p["wanted_ids"][:plan_mod.MAX_DEFECTIVE_FIRST],
+                         sorted(w.wanted_id for w in many[10:])[:plan_mod.MAX_DEFECTIVE_FIRST])
+        self.assertEqual(len(p["wanted_ids"]), len(set(p["wanted_ids"])))
+
     def test_queue_first_plan_is_bounded(self):
         items = [fl.Wanted(f"queue:EO:{n}:x", [f"EO:{n}"], citation="71 Stat. 78") for n in range(1, 80)]
         tr = self.tracker([(f"EO:{n}", "open") for n in range(1, 80)])

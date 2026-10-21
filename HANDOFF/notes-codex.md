@@ -2,6 +2,14 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20: all-active-PR reconciliation; PR #40 final integration
+
+- **Done:** Owner explicitly requested de-conflicting and merging every active PR. #40 was the sole open PR, at 69372304; integrated all five remaining commits into current main 6d9cbc21 while preserving their original histories. Applied all six authored-file changes, including the owner-question brief and bounded carried-defect prioritization. Kept the coherent main output generation from successful run 39507868600; both incoming generated executions remain reachable merge ancestors and their output-tree pins are in the audit.
+- **Source preservation:** Existing SOURCE_IMPORTS interface now pins both final PR40 acquisition generations. Current-priority union preserves all 504 baseline receipts and admits five additional receipts after current retrieval checks; all 509 pass, zero stale, all 21 original quarantine records retained. Same-PDF re-extractions require an actual current request, explicit replacement provenance, changed text and current retrieval checks; old quarantines are not removed. EO 11490 retains all 33 requested PDF pages (63-95), including sections 3014-3015.
+- **Validation:** 180 source-ladder tests and 29 runner tests pass. Offline real-data audit: research/diagnostics/pr40-final-merge-20261020/MERGE_AUDIT.json, reproducible with audit_merge.py. All five protected identity/status/codebook/hold blobs are unchanged. The merged-source union is tested offline; new post-integration derived counts are not asserted. The last complete validated tracker snapshot remains 278 ready for human review.
+- **Running / next:** Publish the reconciled head to #40, inspect CI, merge after final head refresh, then verify no open PR remains. The normal source-to-dossier pipeline refreshes derived outputs from the pinned imports; its new output count must be measured rather than inferred.
+- **Do not:** Adopt pending owner rulings or NO proposals, remove holds, rewrite historical experiments, count mechanical readiness as human certification, or conflate the preserved main generation with a new full online run. No per-order legal research; session token/cash totals unavailable.
+
 ## 2026-10-20 20:29 ET: owner-authorized merge of repair PR #46
 
 - **Done:** Owner explicitly requested merging #46. Full run 39507868600 completed successfully and published a6a005c41f8271c14816883f3dfd438f5d2a4d0c from tested code 9f405c46. Portfolio validation passed with zero errors, 452 fixture tests, all seven integration stages, six mechanical claim checks and ten exact source verifications; tracker reports 278 ready for human review. Windows/Ubuntu and current Valla checks passed on the tested code.

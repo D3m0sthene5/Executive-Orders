@@ -9,6 +9,7 @@ under jobs/<name>/data/full_run/). Nothing here writes to git.
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import subprocess
@@ -107,20 +108,24 @@ class PriorOutput:
 class UnionPriorOutput:
     """Reconcile pinned acquisition generations; current quarantines take precedence."""
 
-    def __init__(self, priors):
+    def __init__(self, priors, requests=None):
         self.priors = priors
         self.label = "union: " + "; ".join(p.label for p in priors)
         self.sources, self.results, self.owners = {}, {}, {}
-        rejected = {(r.get("wanted_id"), r.get("sha256"))
-                    for p in priors for r in p.jsonl("REJECTED_PRIOR_SOURCES.jsonl")}
+        rejected = {}
+        for p in priors:
+            for record in p.jsonl("REJECTED_PRIOR_SOURCES.jsonl"):
+                rejected.setdefault((record.get("wanted_id"), record.get("sha256")), []).append(record)
         for prior in priors:
             rows = {r["wanted_id"]: r for r in prior.csv_rows("RESULTS.csv")}
             for wid, row in rows.items():
                 self.results.setdefault(wid, row)
             for source in prior.jsonl("SOURCES.jsonl"):
                 wid = source.get("wanted_id")
-                if (wid not in rows or rows[wid].get("result") != "found" or wid in self.sources
-                        or (wid, source.get("sha256")) in rejected):
+                if wid not in rows or rows[wid].get("result") != "found" or wid in self.sources:
+                    continue
+                quarantines = rejected.get((wid, source.get("sha256")))
+                if quarantines and not self._repaired_text(prior, source, quarantines, (requests or {}).get(wid)):
                     continue
                 self.sources[wid], self.results[wid] = source, rows[wid]
                 if source.get("text_path"):
@@ -128,6 +133,28 @@ class UnionPriorOutput:
                     if name in self.owners and self.owners[name].read(name) != prior.read(name):
                         raise ValueError("Conflicting imported text bytes at " + name)
                     self.owners[name] = prior
+
+    @staticmethod
+    def _repaired_text(prior, source, quarantines, request):
+        """A re-extraction may repair the same PDF; its old text stays quarantined.
+
+        Require a current request, explicit same-document replacement provenance,
+        changed retained text and all current retrieval checks. A marker alone
+        cannot release a quarantine, and job.revalidate_previous checks it again.
+        """
+        replacement = source.get("supersedes_defective_source")
+        if (request is None or not isinstance(replacement, dict)
+                or replacement.get("sha256") != source.get("sha256")
+                or not source.get("text_path") or source.get("carried_defect")):
+            return False
+        old_hashes = {r.get("preserved_text_sha256") for r in quarantines}
+        if not old_hashes or any(not isinstance(h, str) or len(h) != 64 for h in old_hashes):
+            return False
+        text = prior.read(source["text_path"])
+        if not text or hashlib.sha256(text).hexdigest() in old_hashes:
+            return False
+        import fetch_ladder
+        return not fetch_ladder.carried_defect(request, source, text)
 
     def csv_rows(self, name):
         if name != "RESULTS.csv":

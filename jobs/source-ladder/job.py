@@ -179,7 +179,8 @@ def main():
             raise ValueError('invalid pinned source-generation import schema')
         prior = prior_output.UnionPriorOutput([prior] + [
             prior_output.PriorOutput.from_git_ref(repo, f'jobs/{name}/output', ref)
-            for ref in spec['commits']])
+            for ref in spec['commits']],
+            requests={w.wanted_id: w for w in queue_items + shared + opus})
     all_prior_found = previous_found(prior)
     previous_unresolved = prior_history(
         prior, 'PREVIOUS_UNRESOLVED.jsonl',
@@ -219,7 +220,10 @@ def main():
         tried = {r['wanted_id'] for r in previous_unresolved
                  if r.get('result') in UNSUCCESSFUL and r.get('result') != 'no_route'}
         plan_used = make_queue_first_plan(routable,set(carried),tried,repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
-                                         limit=env_int('JOB_PLAN_LIMIT') or 50,budget=env_int('JOB_MAX_REQUESTS') or 300)
+                                         limit=env_int('JOB_PLAN_LIMIT') or 50,budget=env_int('JOB_MAX_REQUESTS') or 300,
+                                         # A record already re-walked once (it supersedes a defective one) and still
+                                         # flagged ranks normally, so a check the walk cannot satisfy never holds a front place for ever.
+                                         defective={w for w in stale if not all_prior_found[w][0].get('supersedes_defective_source')})
         # No-route items go first: they make no request, so a budget stop can never leave them unrecorded.
         items = unroutable + select_plan(routable,plan_used)
         os.environ['JOB_MAX_REQUESTS'] = str(plan_used['max_requests'])
