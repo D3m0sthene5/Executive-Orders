@@ -2,6 +2,17 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (~16:45Z): Lewis and Clark, two source-discovery jobs
+
+- **Done (branch `corps-of-discovery-lewis-clark`, PR to follow):** two paired jobs plus a shared helper, all offline, standard library (pypdf optional), tests run first.
+  - `jobs/lewis-originals` (**Lewis**): for every order the tracker leaves `ONLY_COMPILED_TRANSCRIPTION_FOUND` (4,644), the route to an official original and where it stands: a verified ProQuest PDF in the repo (bytes, SHA-256, pages, text-layer quality), a ProQuest link awaiting upload, a Federal Register fetch request for the source-ladder (266, contract-validated, in `PROPOSED_FETCH_REQUESTS.jsonl`; never enqueued by the job), a GPO/Hoover volume range to re-check (1,704), or a ProQuest phrase search (1,941). `FRAGMENTS.jsonl` for ProQuest files carries `acceptable_as_original: false`, `needs_page_check: true`; the tracker does not read it.
+  - `jobs/clark-discovery` (**Clark**): orders the project cannot identify. 46 number gaps in the 14,972 census, 22 of them one June 1932 run (EO 5853-5879) that the APP index knows with dates and titles; 26 plausible cited-but-unknown ids from 27,017 texts and 5,063 OFR notes (EO 27-A, the 1894 run 36-53, EO 92, several lettered orders), with OCR artifacts ranked separately; 3,432 census orders known by number only (2,655 on the ProQuest list); 414 dated unnumbered references matching nothing. `HANDOFF_TO_LEWIS.jsonl` feeds Lewis.
+  - `jobs/_lib/eo_identity.py`: id parsing (lettered, ½, `-1` duplicates), the date/title oracle (OFR catalog, APP index, fragments, WPA list, ProQuest list), and the citation regex.
+- **Running:** nothing until the branch lands; both jobs are `DAILY` and trigger on `research/pre-1937-sources/*` and the census.
+- **Next:** when the ProQuest PDFs are uploaded, Lewis inventories them on the next run (2,738 orders move from `awaiting_acquisition` to `file_verified_pages_unchecked`) and Clark reads the usable text layers.
+- **Asks:** `@Owner`: 1. Should the June 1932 run (EO 5853-5879) go to census intake? Clark's `NUMBER_GAPS.csv` has the APP evidence. 2. Decide whether ProQuest replica scans may count as the original after a page check; if yes, the tracker needs one rule (`J` class + test), which I have not written. 3. Enqueue Lewis's 266 FR proposals if you agree: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
+- **Do not:** hand-edit `jobs/lewis-originals/output/` or `jobs/clark-discovery/output/`; the jobs rewrite them.
+
 ## 2026-10-20 ET (Revere phase, ~21:45Z): late update
 
 - **Ready 256** at 21:42Z, certified 0; newer claims not yet counted.
