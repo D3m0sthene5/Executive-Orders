@@ -2,6 +2,14 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 12:12 ET: ProQuest downloads preserved; PDF transfer remains blocked
+
+- **Done:** Browser-completed download paths confirm 2,750 distinct supplied order IDs saved in the selected local folder; 15 of the original 2,765 rows still need review. Added sanitized per-order inventory/download metadata in `research/pre-1937-sources/ProQuest Pre-1937 Orders/_resume/automatic-downloads-20261021.json` and transfer status in `_resume/upload-status-20261021.json`. Native catalog identity and actual replica links are retained where observed. Local usernames/absolute paths, browser snapshots and session-specific catalog queries are excluded.
+- **GitHub state:** Zero new PDFs uploaded in this session. The 13 preexisting repository PDF paths / 11 orders are preserved with their path, size and Git blob SHA baseline. Current downloads have browser save evidence only; their PDF bytes, hashes and page content have not been independently inspected. Manifest publication does not complete PDF transfer.
+- **Blocked:** The connected local browser file chooser was ready for multiple files, but selection of exact saved paths timed out twice and reset the runtime. The originating browser context then became unavailable. No GitHub Commit changes action was clicked. The extension's Allow access to file URLs prerequisite could not be checked. No background transfer or download process is running.
+- **Next:** Restore the originating browser/file-selection capability, then upload the held PDFs to the established folder and record actual repository evidence. Resume on isolated `proquest-pdf-upload-20261021` while main's Run jobs is active; refresh heads before writes. EO 343-A has a specific main-order result lead (216KB versus 57KB correspondence), pending Item No. verification. The other misses remain unresolved, not established unavailable.
+- **Asks / scope:** Existing owner authorization covers continued acquisition and GitHub transfer. Preserve all historical audits and existing PDF duplicates. No legal-status, census, readiness, archival-acceptance or human-review counts changed; the separate lifecycle-research task is not restarted.
+
 ## 2026-10-20: all-active-PR reconciliation; PR #40 final integration
 
 - **Done:** Owner explicitly requested de-conflicting and merging every active PR. #40 was the sole open PR, at 69372304; integrated all five remaining commits into current main 6d9cbc21 while preserving their original histories. Applied all six authored-file changes, including the owner-question brief and bounded carried-defect prioritization. Kept the coherent main output generation from successful run 39507868600; both incoming generated executions remain reachable merge ancestors and their output-tree pins are in the audit.
