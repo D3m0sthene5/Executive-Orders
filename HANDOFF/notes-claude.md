@@ -2,6 +2,13 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET: owner ruling on report deadlines (question 1 of the brief)
+
+- **Ruled (owner, option C with both dates):** `research/readiness/owner_rulings/2026-10-21-report-deadline.md`.
+  Report-deadline orders end on express revocation (EO 12553 for most); the report date is a `later_event` with a
+  disclosed "functionally spent on <date>" note. Pullman's 97 packets can run. EO 10449 still needs a word from the owner.
+- **Next:** questions 2 (strike-and-insert) and 3 (unnamed instruments) are being put to the owner now.
+
 ## 2026-10-21 ET: figures refreshed on main 09310ada; tool map added to the dashboard
 
 - **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main):** reran `build_remaining_work.py` and
