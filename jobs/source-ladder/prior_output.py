@@ -9,6 +9,7 @@ under jobs/<name>/data/full_run/). Nothing here writes to git.
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import subprocess
@@ -29,10 +30,11 @@ def _git(repo, args, timeout=600):
 class PriorOutput:
     """The files of an earlier output, from a folder or from git HEAD:<rel_dir>."""
 
-    def __init__(self, label, folder=None, repo=None, rel_dir=None):
+    def __init__(self, label, folder=None, repo=None, rel_dir=None, ref="HEAD"):
         self.label = label
         self.folder = Path(folder) if folder else None
         self.repo, self.rel_dir = repo, (rel_dir or "").strip("/")
+        self.ref = ref
         self._texts = None
 
     @classmethod
@@ -43,6 +45,13 @@ class PriorOutput:
     def from_git_head(cls, repo, rel_dir):
         return cls(f"git HEAD:{rel_dir}", repo=repo, rel_dir=rel_dir)
 
+    @classmethod
+    def from_git_ref(cls, repo, rel_dir, ref):
+        import re
+        if not re.fullmatch(r"[0-9a-f]{40}", ref):
+            raise ValueError("A source import must pin a full commit SHA")
+        return cls(f"git {ref}:{rel_dir}", repo=repo, rel_dir=rel_dir, ref=ref)
+
     def read(self, name):
         """Bytes of one file (e.g. 'SOURCES.jsonl'), or None if it is not there."""
         if self.folder is not None:
@@ -50,7 +59,7 @@ class PriorOutput:
             return p.read_bytes() if p.is_file() else None
         if self.repo is None:
             return None
-        return _git(self.repo, ["show", f"HEAD:{self.rel_dir}/{name}"])
+        return _git(self.repo, ["show", f"{self.ref}:{self.rel_dir}/{name}"])
 
     def jsonl(self, name):
         raw = self.read(name)
@@ -84,7 +93,7 @@ class PriorOutput:
                     if p.is_file():
                         out[p.name] = p.read_bytes()
         elif self.repo is not None:
-            raw = _git(self.repo, ["archive", "--format=tar", "HEAD", f"{self.rel_dir}/{subdir}"])
+            raw = _git(self.repo, ["archive", "--format=tar", self.ref, f"{self.rel_dir}/{subdir}"])
             if raw:
                 with tarfile.open(fileobj=io.BytesIO(raw), mode="r:") as tar:
                     for m in tar.getmembers():
@@ -94,3 +103,83 @@ class PriorOutput:
                                 out[m.name.rsplit("/", 1)[-1]] = fh.read()
         self._texts = out
         return out
+
+
+class UnionPriorOutput:
+    """Reconcile pinned acquisition generations; current quarantines take precedence."""
+
+    def __init__(self, priors, requests=None):
+        self.priors = priors
+        self.label = "union: " + "; ".join(p.label for p in priors)
+        self.sources, self.results, self.owners = {}, {}, {}
+        rejected = {}
+        for p in priors:
+            for record in p.jsonl("REJECTED_PRIOR_SOURCES.jsonl"):
+                rejected.setdefault((record.get("wanted_id"), record.get("sha256")), []).append(record)
+        for prior in priors:
+            rows = {r["wanted_id"]: r for r in prior.csv_rows("RESULTS.csv")}
+            for wid, row in rows.items():
+                self.results.setdefault(wid, row)
+            for source in prior.jsonl("SOURCES.jsonl"):
+                wid = source.get("wanted_id")
+                if wid not in rows or rows[wid].get("result") != "found" or wid in self.sources:
+                    continue
+                quarantines = rejected.get((wid, source.get("sha256")))
+                if quarantines and not self._repaired_text(prior, source, quarantines, (requests or {}).get(wid)):
+                    continue
+                self.sources[wid], self.results[wid] = source, rows[wid]
+                if source.get("text_path"):
+                    name = source["text_path"]
+                    if name in self.owners and self.owners[name].read(name) != prior.read(name):
+                        raise ValueError("Conflicting imported text bytes at " + name)
+                    self.owners[name] = prior
+
+    @staticmethod
+    def _repaired_text(prior, source, quarantines, request):
+        """A re-extraction may repair the same PDF; its old text stays quarantined.
+
+        Require a current request, explicit same-document replacement provenance,
+        changed retained text and all current retrieval checks. A marker alone
+        cannot release a quarantine, and job.revalidate_previous checks it again.
+        """
+        replacement = source.get("supersedes_defective_source")
+        if (request is None or not isinstance(replacement, dict)
+                or replacement.get("sha256") != source.get("sha256")
+                or not source.get("text_path") or source.get("carried_defect")):
+            return False
+        old_hashes = {r.get("preserved_text_sha256") for r in quarantines}
+        if not old_hashes or any(not isinstance(h, str) or len(h) != 64 for h in old_hashes):
+            return False
+        text = prior.read(source["text_path"])
+        if not text or hashlib.sha256(text).hexdigest() in old_hashes:
+            return False
+        import fetch_ladder
+        return not fetch_ladder.carried_defect(request, source, text)
+
+    def csv_rows(self, name):
+        if name != "RESULTS.csv":
+            raise ValueError("Unsupported union CSV: " + name)
+        return list(self.results.values())
+
+    def jsonl(self, name):
+        if name == "SOURCES.jsonl":
+            return list(self.sources.values())
+        result, seen = [], set()
+        for prior in self.priors:
+            for row in prior.jsonl(name):
+                key = json.dumps(row, sort_keys=True)
+                if key not in seen:
+                    seen.add(key)
+                    result.append(row)
+                    if name == "REJECTED_PRIOR_SOURCES.jsonl" and row.get("preserved_text_path"):
+                        self.owners.setdefault(row["preserved_text_path"], prior)
+        return result
+
+    def read(self, name):
+        if name in self.owners:
+            return self.owners[name].read(name)
+        for prior in self.priors:
+            raw = prior.read(name)
+            if raw is not None:
+                return raw
+        return None

@@ -31,7 +31,7 @@ class FreshnessTests(unittest.TestCase):
         self.cmd("git", "init", "--bare", str(self.remote), cwd=self.root)
         self.cmd("git", "-c", "core.autocrlf=false", "clone", str(self.remote), str(self.repo), cwd=self.root)
         self.config(self.repo)
-        for name in ("run_jobs.sh", "commit_results.sh", "result_freshness.py"):
+        for name in ("run_jobs.sh", "run_jobs.py", "commit_results.sh", "result_freshness.py"):
             self.put(".github/scripts/" + name, (SCRIPTS / name).read_text(encoding="utf-8"))
         self.put("jobs/_lib/cache_cap.py", "# Fixture has no download cache.\n")
         self.put(".github/workflows/run-jobs.yml", "# fixture runner\n")
@@ -124,6 +124,46 @@ class FreshnessTests(unittest.TestCase):
         oid = self.cmd("git", "hash-object", "inputs/request.json").stdout.strip()
         self.assertEqual(manifest["inputs"]["inputs/request.json"], "100644:" + oid)
         self.assertNotEqual(self.check()[0], 0)
+
+    def test_failed_generation_preserves_output_blocks_consumers_and_publishes_independent_job(self):
+        self.put("jobs/source/job.py", "import os\nfrom pathlib import Path\nPath(os.environ['OUTPUT_DIR'], 'result.txt').write_text('incomplete replacement')\nraise SystemExit(7)\n")
+        self.put("jobs/other/job.py", "import os\nfrom pathlib import Path\nPath(os.environ['OUTPUT_DIR'], 'result.txt').write_text('independent success\\n')\n")
+        self.commit(self.repo, "exercise failure retention")
+        self.cmd("git", "push", "origin", "main")
+        result = self.shell("run_jobs.sh", "source consumer other")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual((self.repo / "jobs/source/output/result.txt").read_text(), "baseline source\n")
+        self.assertEqual((self.repo / "jobs/consumer/output/result.txt").read_text(), "baseline consumer\n")
+        records = json.loads((self.repo / "oversized/runner-freshness/ATTEMPTS.json").read_text())
+        self.assertEqual([r["publish_output"] for r in records], [False, False, True])
+        failed = self.repo / records[0]["attempt_path"]
+        blocked = self.repo / records[1]["attempt_path"]
+        self.assertEqual((failed / "result.txt").read_text(), "incomplete replacement")
+        self.assertEqual(json.loads((blocked / "STATUS.json").read_text())["blocked_by"], ["source"])
+        published = self.shell("commit_results.sh", "source consumer other")
+        self.assertEqual(published.returncode, 0, published.stdout + published.stderr)
+        self.assertEqual(self.cmd("git", "show", "origin/main:jobs/source/output/result.txt").stdout, "baseline source\n")
+        self.assertEqual(self.cmd("git", "show", "origin/main:jobs/other/output/result.txt").stdout, "independent success\n")
+        self.assertEqual(self.cmd("git", "show", "origin/main:" + records[0]["attempt_path"] + "/result.txt").stdout, "incomplete replacement")
+
+    def test_all_failed_attempts_publish_receipts_without_promoting_output(self):
+        self.put("jobs/source/job.py", "raise SystemExit(9)\n")
+        self.commit(self.repo, "exercise failed-only publication")
+        self.cmd("git", "push", "origin", "main")
+        self.assertNotEqual(self.shell("run_jobs.sh").returncode, 0)
+        published = self.shell("commit_results.sh")
+        self.assertEqual(published.returncode, 0, published.stdout + published.stderr)
+        self.assertEqual(self.cmd("git", "show", "origin/main:jobs/source/output/result.txt").stdout, "baseline source\n")
+
+    def test_setup_failure_preserves_output_and_next_run_can_recover(self):
+        self.put("jobs/source/inputs.txt", "../outside/**\n")
+        failed = self.shell("run_jobs.sh", "source consumer")
+        self.assertNotEqual(failed.returncode, 0)
+        self.assertEqual((self.repo / "jobs/source/output/result.txt").read_text(), "baseline source\n")
+        self.put("jobs/source/inputs.txt", "inputs/**\n")
+        recovered = self.shell("run_jobs.sh", "source consumer")
+        self.assertEqual(recovered.returncode, 0, recovered.stdout + recovered.stderr)
+        self.assertEqual((self.repo / "jobs/consumer/output/result.txt").read_text(), "old input\n")
 
     def test_changed_declared_input_rejects_old_runner_before_push(self):
         self.capture()

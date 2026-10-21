@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8705",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8705"
@@ -149,6 +149,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -160,9 +164,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:8705>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8705 of March 6, 1941.': number matches; the date 'March 6, 1941' is the FR filing date, while the held original is signed 'March 5,1941' (White House date line; filed March 6, 1941). The reviewer must accept or reject the identity on number + subject (EO 9830 Part III revokes Civil Service Rules orders; EO 8705 amends Civil Service Rules I, XII and XV). Target text: jobs/fr-originals/data/full_run/texts/EO_8705.txt (6 FR 1313, PDF pages 1-1). DOSSIER NOTE: clause inventory labels '#1' (Rule I sec. 1) and '#5' (Rule XII sec. 5) and merges the Rule XV rewrite and the effective-as-of clause into '#5'; an inventory correction may be needed before any claim. EO 9830 Rule IV sec. 4.1 re-enacts similar political-activity wording (re-enactment under the new rules, not continuation). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8705>EO:9830@rastell",
@@ -571,9 +577,75 @@
       "text": "In all examinations to determine the qualifications of appli-\ncants for entrance into the service ten points shall be added to the \nearned ratings of those persons included under section 2 (1), (2), \nand (3), and five points shall be added to the earned ratings of those \npersons included under section 2 (4) of this Act: Provided, That in \nexaminations for the positions of guards, elevator operators, mes-\nsengers, and custodians competition shall be restricted to persons \nentitled to preference under this Act as long as persons entitled to \npreference are available and during the present war and for a period \nof five years following the termination of the present war as pro-\nclaimed by the President or by a concurrent resolution of the Con-\ngress for such other positions as may from time to time be deter-\nmined by the President."
     }
   },
-  "fingerprint": "220776e697c1fa6d99d9f1501c8f104c15655fc4edacb6d7766fb2a108235bad",
+  "fingerprint": "ed266e4ca02ee21181a7e91b38c0a21c434e6c59a27a7e17db43e859b545c1bf",
   "instrument_id": "EO:8705",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "ddff30cd8bba1a23fb38164556015e677bc188cc27d784831e86953506ed9541",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+        "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "fixed_term"
+      ]
+    },
+    {
+      "clause_sha256": "1c2f3db623c67625ed2eca93c235b4e38d0c51346c6f794ae73c72a54173b43b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "e973d1ce06932f5cde244e60888cd80116f3a2ea1b7ceb20b73b67c57031e3e5",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8705",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8705#5",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

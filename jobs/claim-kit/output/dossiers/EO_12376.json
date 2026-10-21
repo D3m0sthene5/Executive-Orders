@@ -69,7 +69,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12376",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12376"
@@ -177,13 +177,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12376>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12376 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12376 is the 45th number of the page-14 column and pairs with the 45th subject after joining wrapped lines, \"Increasing membership on the Presidential Commission on Drunk Driving\" (offset 30193), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12376.txt (47 FR 34349, PDF pages 9-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12376>EO:12553@rastell-r12553nbs",
@@ -316,9 +322,29 @@
       "text": "Instrument: EO:12376\nSource: https://www.govinfo.gov/content/pkg/FR-1982-08-09/pdf/FR-1982-08-09.pdf\nSHA-256 of the downloaded file: 5bc2337114260069587471c15fe28c15067656774df41ef32c7aa72ab8a7750e\nLocation: 47 FR 34349, PDF pages 9-9 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 160 ===\nFederal Register \nVol. 47, No. 153 \nMonday, August 9, 1982\nPresidential Documents\n34349\nTitle 3— Executive Order 12376 of August 5, 1982\nPresidential Commission on Drunk DrivingThe President\nBy the authority vested in me as President by the Constitution of the United  \nStates of America, and in order to increase the membership of the Presidential  \nCommission on Drunk Driving by two, it is hereby ordered that the second  \nsentence of Section 1 of Executive Order No. 12358 of April 14, 1982, is  \namended to read as follows: “The Commission shall be composed of no more  \nthan 28 members appointed by the President.”.\nTHE WHITE HOUSE,  \nA u g u s t 5, 1982.\n[FR Doc. 82-21628  \nFiled 8-5-82; 4:12 pm]  \nBilling code 3195-01-M\n"
     }
   },
-  "fingerprint": "1236e44d9ff273e26e035924970e6f51be7ded95692b35741328b18bb86e53f2",
+  "fingerprint": "18a0c901e46bf6aae8fa1f198b584a9632a8158308490ec97a350a5f2d06021f",
   "instrument_id": "EO:12376",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "89488aaa8f8e55ee1efbdf34ec067450e349309400ce160f5b3ab97b157144ee",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12376",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12376>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12376#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

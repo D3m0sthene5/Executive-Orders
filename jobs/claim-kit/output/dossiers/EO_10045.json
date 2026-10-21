@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10045",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10045"
@@ -126,13 +126,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10045>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10045>EO:12553@rastell",
@@ -549,9 +555,51 @@
       "text": "The board shall report its findings to the President with respect to the said dispute within thirty days from the date of this order."
     }
   },
-  "fingerprint": "549994e870bd0436b2d063c91e52c89c8b35e42b4c5c3c3cba84ae755eb8b206",
+  "fingerprint": "80c1a0764e1a9c9f1038dcb277853fe4752752be0916c36f075ae45115784df1",
   "instrument_id": "EO:10045",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "703c78d9dbc29f9037df354f53ad4704e8b883999f812e7795d01632c3095599",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10045",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10045>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10045#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "123b41f5765f1c8ac3cb1f8a9e7f492e02104220ec914efca63a5b18ceffbad4",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10045",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10045>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10045#f",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead",
+        "deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

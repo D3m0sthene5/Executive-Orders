@@ -70,7 +70,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12186",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12186"
@@ -227,13 +227,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12186>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12186 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12186 is the 23rd number of the page-14 column and pairs with the 23rd subject after joining wrapped lines, \"Changing the definition of heavy oil\" (offset 28753), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12186.txt (44 FR 76477, PDF pages 9-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12186>EO:12553@rastell-r12553nb",
@@ -366,9 +372,29 @@
       "text": "Instrument: EO:12186\nSource: https://www.govinfo.gov/content/pkg/FR-1979-12-27/pdf/FR-1979-12-27.pdf\nSHA-256 of the downloaded file: 6431c6b21e138e41f87c159d86e235f71f2c1b0ec4e8f414a800b9b21939e30c\nLocation: 44 FR 76477, PDF pages 9-9 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 256 ===\nFederal Register \nVol. 44, No. 249 \nThursday, D ecem ber 27, 1979\nPresidential Documents\n76477\nTitle 3— Executive Order 12186 of December 21, 1979\nThe President Change in Definition of Heavy Oil\nBy the authority vested in me as President by the Constitution and statutes of  \nthe United States of America, including the Emergency Petroleum Allocation  \nAct of 1973, as amended (15 U.S.C. 751 et seq .), Executive Order No. 12153 is  \nhereby amended by deleting Section 1-102, renumbering Section 1-103 as 1 -  \n102, and deleting in Section 1-101 the figure “16.0° API” and inserting in lieu  \nthereof “20.0° API.”.\n[FR Doc. 79-39678 \nFiled 12-26-79; 10:50 am] \nBilling code 3195-01-M\nTHE WHITE HOUSE,  \nD ecem b er 21, 1979.\nEditorial Note: The W hite House statem ent of Dec. 21, 1979, on the decontrol o f heavy oil, is \nprinted in the W eekly Compilation of Presidential Documents (vol. 15, no. 51).\n"
     }
   },
-  "fingerprint": "eeb8d7a80e6d876b4cd179dbc85903488f8d49a79252fdc6d3ef9f5881948c2c",
+  "fingerprint": "af906952dba36e6cf0c855382d8e580c3bd7ee6e33c9dd101c36f0ebe6686c3a",
   "instrument_id": "EO:12186",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "83f528d1b08a6bc286e2e65864dd74a31df26ce9c9de354950d9bf2c36e8a339",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12186",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12186>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12186#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

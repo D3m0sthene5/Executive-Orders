@@ -1,97 +1,409 @@
 {
- "commit": "ab88f6d138",
- "n_forecasts": 44,
- "n_resolved": 25,
- "n_scored": 23,
- "not_preregistered_excluded": {
-  "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
-  "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
- },
- "planners": {
-  "claude-lambertini2-scout:claude-opus-5-5": {
-   "brier": 0.30250000000000005,
-   "brier_reference_base_rate": 0.0,
-   "coverage_p10_p90": 0.6666666666666666,
-   "mean_norm_interval_score": 2.097569236102778,
-   "mean_skill_vs_outside_view": 0.7054770926627627,
-   "median_log_ratio": 0.6161461386237956,
-   "n_binary": 1,
-   "n_interval": 3,
-   "optimism_factor": 0.54,
-   "trust": "unproven"
+  "commit": "e9669403e",
+  "current_outcome_ids": {
+    "L-20261020-1": "O-20261020-1",
+    "L-20261020-13": "O-20261020-49",
+    "L-20261020-14": "O-20261020-4",
+    "L-20261020-15": "O-20261020-5",
+    "L-20261020-16": "O-20261020-6",
+    "L-20261020-17": "O-20261020-10",
+    "L-20261020-18": "O-20261020-11",
+    "L-20261020-19": "O-20261020-12",
+    "L-20261020-2": "O-20261020-2",
+    "L-20261020-20": "O-20261020-7",
+    "L-20261020-21": "O-20261020-8",
+    "L-20261020-22": "O-20261020-9",
+    "L-20261020-23": "O-20261020-25",
+    "L-20261020-24": "O-20261020-13",
+    "L-20261020-25": "O-20261020-14",
+    "L-20261020-26": "O-20261020-15",
+    "L-20261020-27": "O-20261020-16",
+    "L-20261020-28": "O-20261020-17",
+    "L-20261020-29": "O-20261020-18",
+    "L-20261020-30": "O-20261020-19",
+    "L-20261020-31": "O-20261020-20",
+    "L-20261020-32": "O-20261020-35",
+    "L-20261020-33": "O-20261020-50",
+    "L-20261020-34": "O-20261020-37",
+    "L-20261020-35": "O-20261020-38",
+    "L-20261020-36": "O-20261020-21",
+    "L-20261020-37": "O-20261020-51",
+    "L-20261020-38": "O-20261020-23",
+    "L-20261020-39": "O-20261020-24",
+    "L-20261020-40": "O-20261020-26",
+    "L-20261020-41": "O-20261020-27",
+    "L-20261020-42": "O-20261020-28",
+    "L-20261020-43": "O-20261020-29",
+    "L-20261020-44": "O-20261020-30",
+    "L-20261020-45": "O-20261020-31",
+    "L-20261020-46": "O-20261020-33",
+    "L-20261020-47": "O-20261020-32",
+    "L-20261020-48": "O-20261020-34",
+    "L-20261020-51": "O-20261020-39",
+    "L-20261020-52": "O-20261020-40",
+    "L-20261020-53": "O-20261020-41",
+    "L-20261020-54": "O-20261020-42",
+    "L-20261020-55": "O-20261020-43",
+    "L-20261020-56": "O-20261020-46",
+    "L-20261020-57": "O-20261020-47",
+    "L-20261020-58": "O-20261020-48",
+    "L-20261020-59": "O-20261020-44",
+    "L-20261020-60": "O-20261020-45",
+    "L-20261020-61": "O-20261020-56",
+    "L-20261020-62": "O-20261020-59",
+    "L-20261020-63": "O-20261020-57",
+    "L-20261020-64": "O-20261020-58",
+    "L-20261020-65": "O-20261020-52",
+    "L-20261020-66": "O-20261020-61",
+    "L-20261020-67": "O-20261020-62",
+    "L-20261020-68": "O-20261020-53",
+    "L-20261020-69": "O-20261020-54",
+    "L-20261020-70": "O-20261020-55",
+    "L-20261020-71": "O-20261020-76",
+    "L-20261020-72": "O-20261020-77",
+    "L-20261020-73": "O-20261020-78",
+    "L-20261020-74": "O-20261020-79",
+    "L-20261020-75": "O-20261020-63",
+    "L-20261020-76": "O-20261020-64",
+    "L-20261020-77": "O-20261020-65",
+    "L-20261020-78": "O-20261020-60",
+    "L-20261020-79": "O-20261020-67",
+    "L-20261020-80": "O-20261020-68",
+    "L-20261020-81": "O-20261020-69",
+    "L-20261020-82": "O-20261020-70",
+    "L-20261020-83": "O-20261020-71",
+    "L-20261020-84": "O-20261020-72",
+    "L-20261020-85": "O-20261020-73",
+    "L-20261020-86": "O-20261020-74",
+    "L-20261020-87": "O-20261020-75",
+    "L-20261020-88": "O-20261020-66"
   },
-  "claude-r12553-scout:claude-opus-5-5": {
-   "brier": 0.30250000000000005,
-   "brier_reference_base_rate": 0.0,
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 1.2788888888888887,
-   "mean_skill_vs_outside_view": 0.3999759990399617,
-   "median_log_ratio": 0.22314355131420976,
-   "n_binary": 1,
-   "n_interval": 3,
-   "optimism_factor": 0.8,
-   "trust": "unproven"
+  "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count",
+  "experiment_groups": {
+    "source:research/excavator/craigellachie-ii-2026-10-20/OUTCOME.json": [
+      "L-20261020-26",
+      "L-20261020-27"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/OUTCOME.json": [
+      "L-20261020-17",
+      "L-20261020-18",
+      "L-20261020-19"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json": [
+      "L-20261020-56",
+      "L-20261020-57",
+      "L-20261020-58"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json": [
+      "L-20261020-32",
+      "L-20261020-34",
+      "L-20261020-35"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/pagechk3/OUTCOME.json": [
+      "L-20261020-82",
+      "L-20261020-83",
+      "L-20261020-84"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/scale/OUTCOME.json": [
+      "L-20261020-28",
+      "L-20261020-29",
+      "L-20261020-30",
+      "L-20261020-31"
+    ],
+    "source:research/excavator/lambertini-2026-10-20/viapar/OUTCOME.json": [
+      "L-20261020-76",
+      "L-20261020-77"
+    ],
+    "source:research/excavator/lamm-2026-10-20/OUTCOME.json": [
+      "L-20261020-20",
+      "L-20261020-21",
+      "L-20261020-22",
+      "L-20261020-23"
+    ],
+    "source:research/excavator/lamm-2026-10-20/sunsets3/OUTCOME.json": [
+      "L-20261020-45",
+      "L-20261020-46",
+      "L-20261020-47",
+      "L-20261020-48"
+    ],
+    "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json": [
+      "L-20261020-65"
+    ],
+    "source:research/excavator/rastell-2026-10-20/OUTCOME.json": [
+      "L-20261020-15",
+      "L-20261020-16"
+    ],
+    "source:research/excavator/rastell-2026-10-20/claims/OUTCOME.json": [
+      "L-20261020-36",
+      "L-20261020-38",
+      "L-20261020-39"
+    ],
+    "source:research/excavator/rastell-2026-10-20/r12553nb/OUTCOME.json": [
+      "L-20261020-88",
+      "L-20261020-79",
+      "L-20261020-80",
+      "L-20261020-81"
+    ],
+    "source:research/excavator/rastell-2026-10-20/r12553nbs/OUTCOME.json": [
+      "L-20261020-85",
+      "L-20261020-86",
+      "L-20261020-87"
+    ],
+    "source:research/excavator/rastell-2026-10-20/r9830/OUTCOME.json": [
+      "L-20261020-78",
+      "L-20261020-66",
+      "L-20261020-67",
+      "L-20261020-68"
+    ],
+    "source:research/excavator/rastell-2026-10-20/r9830s/OUTCOME.json": [
+      "L-20261020-71",
+      "L-20261020-72",
+      "L-20261020-73"
+    ],
+    "source:research/excavator/sinclair-2026-10-20/OUTCOME.json": [
+      "L-20261020-40",
+      "L-20261020-41",
+      "L-20261020-42",
+      "L-20261020-43",
+      "L-20261020-44"
+    ],
+    "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json": [
+      "L-20261020-59",
+      "L-20261020-60"
+    ],
+    "source:research/excavator/y2lead-2026-10-20/OUTCOME.json": [
+      "L-20261020-51",
+      "L-20261020-52",
+      "L-20261020-53",
+      "L-20261020-54",
+      "L-20261020-55"
+    ],
+    "source:research/readiness/act_overrides/OUTCOME_INGEST.json": [
+      "L-20261020-24",
+      "L-20261020-25"
+    ]
   },
-  "claude:claude-sonnet-5-5": {
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 1.5463636363636362,
-   "median_log_ratio": 0.09531017980432493,
-   "n_binary": 0,
-   "n_interval": 3,
-   "optimism_factor": 0.909,
-   "trust": "unproven"
+  "n_current_outcomes": 76,
+  "n_experiments_scored": 20,
+  "n_forecasts": 88,
+  "n_outcome_records": 79,
+  "n_resolved": 74,
+  "n_scored": 62,
+  "not_preregistered_excluded": {
+    "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
+    "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
   },
-  "craigellachie-ii-scout:claude-opus-5-5": {
-   "brier": 0.2025,
-   "brier_reference_base_rate": 0.0,
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 40.0,
-   "median_log_ratio": -2.9957322735539913,
-   "n_binary": 1,
-   "n_interval": 1,
-   "optimism_factor": 20.0,
-   "trust": "unproven"
+  "planners": {
+    "claude-lambertini2-scout:claude-opus-5-5": {
+      "brier": 0.30250000000000005,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 0.6666666666666666,
+      "experiment_ids": [
+        "source:research/excavator/lambertini-2026-10-20/scale/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 2.097569236102778,
+      "mean_skill_vs_outside_view": 0.7054770926627627,
+      "median_log_ratio": 0.6161461386237956,
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 3,
+      "optimism_factor": 0.54,
+      "trust": "unproven"
+    },
+    "claude-lambertini3-scout:claude-opus-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.324556750144853,
+      "mean_skill_vs_outside_view": 0.4062920411553306,
+      "median_log_ratio": 0.20294084399669038,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 3,
+      "optimism_factor": 0.816,
+      "trust": "unproven"
+    },
+    "claude-lamm3-scout:claude-opus-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/lamm-2026-10-20/sunsets3/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.7970926004245042,
+      "median_log_ratio": 0.012508881487643972,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 4,
+      "optimism_factor": 0.988,
+      "trust": "unproven"
+    },
+    "claude-r12553-scout:claude-opus-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/rastell-2026-10-20/claims/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.2788888888888887,
+      "mean_skill_vs_outside_view": 0.3999759990399617,
+      "median_log_ratio": 0.22314355131420976,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 3,
+      "optimism_factor": 0.8,
+      "trust": "unproven"
+    },
+    "claude-sinclair-scout:claude-opus-5-5": {
+      "brier": 0.2025,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/sinclair-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 3.33135835546172,
+      "mean_skill_vs_outside_view": 0.13157894736842102,
+      "median_log_ratio": 0.11023666137916543,
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 4,
+      "optimism_factor": 0.896,
+      "trust": "unproven"
+    },
+    "claude-y2lead-scout:claude-opus-5-5": {
+      "brier": 0.0144,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 0.5,
+      "experiment_ids": [
+        "source:research/excavator/y2lead-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 2.6709586466165414,
+      "mean_skill_vs_outside_view": 0.11029165269862568,
+      "median_log_ratio": 1.1411911928382632,
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 4,
+      "optimism_factor": 0.319,
+      "trust": "unproven"
+    },
+    "claude:claude-opus-5-5": {
+      "brier": 0.52625,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 0.9090909090909091,
+      "experiment_ids": [
+        "source:research/excavator/lambertini-2026-10-20/coda/OUTCOME.json",
+        "source:research/excavator/lambertini-2026-10-20/pagechk3/OUTCOME.json",
+        "source:research/excavator/lambertini-2026-10-20/viapar/OUTCOME.json",
+        "source:research/excavator/rastell-2026-10-20/r12553nb/OUTCOME.json",
+        "source:research/excavator/rastell-2026-10-20/r12553nbs/OUTCOME.json",
+        "source:research/excavator/rastell-2026-10-20/r9830/OUTCOME.json",
+        "source:research/excavator/rastell-2026-10-20/r9830s/OUTCOME.json",
+        "source:research/excavator/sinclair-2026-10-20/mend/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 9.43262995437512,
+      "mean_skill_vs_outside_view": 0.21994175466808397,
+      "median_log_ratio": 0.1025211435618238,
+      "n_binary": 2,
+      "n_experiments": 8,
+      "n_interval": 22,
+      "optimism_factor": 0.903,
+      "trust": "miscalibrated"
+    },
+    "claude:claude-sonnet-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/readiness/act_overrides/OUTCOME_INGEST.json"
+      ],
+      "mean_norm_interval_score": 1.8545454545454545,
+      "median_log_ratio": 0.02979604860112285,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 2,
+      "optimism_factor": 0.971,
+      "trust": "unproven"
+    },
+    "craigellachie-ii-scout:claude-opus-5-5": {
+      "brier": 0.2025,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/craigellachie-ii-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 40.0,
+      "median_log_ratio": -2.9957322735539913,
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 1,
+      "optimism_factor": 20.0,
+      "trust": "unproven"
+    },
+    "lambertini:claude-opus-5-5": {
+      "brier": 0.6400000000000001,
+      "brier_reference_base_rate": 0.0,
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/lambertini-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.462143928035982,
+      "mean_skill_vs_outside_view": 0.7648902821316614,
+      "median_log_ratio": 0.25566274940382083,
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 2,
+      "optimism_factor": 0.774,
+      "trust": "unproven"
+    },
+    "lamm:claude-opus-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/lamm-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.9188405797101449,
+      "median_log_ratio": 0.0911607783969773,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 4,
+      "optimism_factor": 0.913,
+      "trust": "unproven"
+    },
+    "rastell:claude-opus-5-5": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/rastell-2026-10-20/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 4.081113801452784,
+      "median_log_ratio": -0.24563254895574865,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 2,
+      "optimism_factor": 1.278,
+      "trust": "unproven"
+    },
+    "sol:current": {
+      "brier": 0.0225,
+      "brier_reference_base_rate": 0.0,
+      "experiment_ids": [
+        "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json"
+      ],
+      "n_binary": 1,
+      "n_experiments": 1,
+      "n_interval": 0,
+      "trust": "unproven"
+    }
   },
-  "lambertini:claude-opus-5-5": {
-   "brier": 0.6400000000000001,
-   "brier_reference_base_rate": 0.0,
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 1.462143928035982,
-   "mean_skill_vs_outside_view": 0.7648902821316614,
-   "median_log_ratio": 0.25566274940382083,
-   "n_binary": 1,
-   "n_interval": 2,
-   "optimism_factor": 0.774,
-   "trust": "unproven"
+  "schema": "llull.calibration/2",
+  "unchecked_excluded": {
+    "L-20261020-13": "no run directory declared",
+    "L-20261020-14": "no run directory declared",
+    "L-20261020-61": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-62": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-63": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-64": "run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified",
+    "L-20261020-69": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified",
+    "L-20261020-70": "run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified",
+    "L-20261020-74": "run artifacts in research/excavator/lambertini-2026-10-20/viapar/probe are not committed; ordering is unverified",
+    "L-20261020-75": "run artifacts in research/excavator/lambertini-2026-10-20/viapar/probe are not committed; ordering is unverified"
   },
-  "lamm:claude-opus-5-5": {
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 1.9188405797101449,
-   "median_log_ratio": 0.0911607783969773,
-   "n_binary": 0,
-   "n_interval": 4,
-   "optimism_factor": 0.913,
-   "trust": "unproven"
+  "unresolved_outcomes": {
+    "L-20261020-33": "untested",
+    "L-20261020-37": "untested"
   },
-  "mw-c2-seed:unknown": {
-   "coverage_p10_p90": 0.0,
-   "mean_norm_interval_score": 3.212500000000001,
-   "median_log_ratio": 0.9808292530117263,
-   "n_binary": 0,
-   "n_interval": 1,
-   "optimism_factor": 0.375,
-   "trust": "unproven"
-  },
-  "rastell:claude-opus-5-5": {
-   "coverage_p10_p90": 1.0,
-   "mean_norm_interval_score": 4.081113801452784,
-   "median_log_ratio": -0.24563254895574865,
-   "n_binary": 0,
-   "n_interval": 2,
-   "optimism_factor": 1.278,
-   "trust": "unproven"
-  }
- },
- "schema": "llull.calibration/1",
- "written_at": "2026-10-20T11:34:16Z"
+  "written_at": "2026-10-21T00:54:25Z"
 }

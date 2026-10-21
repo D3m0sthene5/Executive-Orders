@@ -72,7 +72,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:6359",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:6359"
@@ -497,13 +497,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:6359>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 6359 found at char 998 (PDF page 9 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 9, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:6359>EO:12553@rastell",
@@ -903,9 +909,154 @@
       "text": "The Reconstruction Finance Corporation is authorized, subject to such regulations as may from time to time be prescribed by the Secretary of the Treasury, to acquire gold which has been received on consignment by a United States mint or assay office, and to hold, earmark for foreign account, export, or otherwise dispose of such gold."
     }
   },
-  "fingerprint": "ebcd81943350bc25f083a0d76d3cb23c97f9f39d491d8bb0b49a715e83ecf832",
+  "fingerprint": "d7cb43c61d410863adc5ee618d9a95cb177ea31907ccbf1a3854a37fdc5ca1a4",
   "instrument_id": "EO:6359",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "d3d52164a8150de5b2e20d65a29cc4f9b69d8b8d9841f12b282d69d375ed57d7",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec1",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline"
+      ]
+    },
+    {
+      "clause_sha256": "2dcb284d6b61163227d3e0c2b263c83be3010ecfe8cdcf5e5128cb99d91597e3",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:6359:0f5257f5199919d6@49de4429bfab8176",
+        "TERM:EO:6359:0f5257f5199919d6@60d10b5a97482839"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead",
+        "condition",
+        "recurring_duty"
+      ]
+    },
+    {
+      "clause_sha256": "522e1715b170955d079b9ea2928479be8079b5e1b204d6afbbbe08483c71a278",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:6359:ad7ede517d23ccd5@49de4429bfab8176",
+        "TERM:EO:6359:ad7ede517d23ccd5@60d10b5a97482839"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec3",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "recurring_duty"
+      ]
+    },
+    {
+      "clause_sha256": "d1d00f8996b46d158a5a5f5c13c60146cb9474c3a4bbca1803b32a174ae11154",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:6359:4bc16da01b692dde@49de4429bfab8176",
+        "TERM:EO:6359:4bc16da01b692dde@60d10b5a97482839"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec4",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "recurring_duty"
+      ]
+    },
+    {
+      "clause_sha256": "5159243226a8a496bbdc7c26738760f2ac1cdae9d297446ef4bece80eed72cd7",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec5",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "39e93ca0dcf9adbfd8cc46bf3e1d0b81f775da023429a5aeca947de50d65d037",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:6359",
+      "later_actor_evidence_ids": [
+        "ACT:EO:6359>EO:11825",
+        "ACT:EO:6359>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:6359#sec6",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

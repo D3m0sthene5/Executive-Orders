@@ -28,3 +28,5 @@ by claim-kit. See `research/excavator/2026-10-18/REPORT.md` for the component ch
 measurements, costs, rejected readiness claim and next work. Neither profiler
 families nor historical gap records are admitted census identities.
 
+
+The NEYMAN extension adds `measure.py --closures FILE.json --out DIR` for small planning-only singles/pairs through the actual tracker. `combinations.py` labels assumptions and preserves claim gates/audit holds; it never writes hypothetical receipts or canonical evidence. See `jobs/neyman/README.md` for scope and validation limitations.

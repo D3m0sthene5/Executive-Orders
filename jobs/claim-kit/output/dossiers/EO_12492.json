@@ -70,7 +70,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12492",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12492"
@@ -1469,13 +1469,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12492>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 12492 found at char 32775 (PDF page 15 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 15, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12492>EO:12553@rastell",
@@ -3469,9 +3475,141 @@
       "text": "ITB’s, \nwhich are not capable of separating \nfrom the barge and towing on a hawser, \nare subject to the regulations applicable \nto their aggregate tonnage."
     }
   },
-  "fingerprint": "899ca5bea85f79ef494303122e843b623c4dd213eda6f668e06b00591a3fd4d3",
+  "fingerprint": "2d5c2b37ada2c773f2460d5ba6e929bf286c105ce5390ff897604c62dcb41349",
   "instrument_id": "EO:12492",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "5ac367eab2be8ae97cf0013b91754ed5e63ca3214973da973510812332f2940f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12492",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12492>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12492:c5dffe2e1495f5ff@47ec07e188774f8a",
+        "TERM:EO:12492:b9015b86e26ff3e6@9255540bd41613f5",
+        "TERM:EO:12492:c5dffe2e1495f5ff@f1c0b42a426cf4ff",
+        "TERM:EO:12492:b9015b86e26ff3e6@48b915726bfee56b"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12492#sec1",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "2a2c5d445b7285d262e2273357f5f16d52e5711ace6695bf8fbe707f80e0525e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12492",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12492>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12492:cf44d9580648ca28@47ec07e188774f8a",
+        "TERM:EO:12492:cf44d9580648ca28@f1c0b42a426cf4ff"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12492#sec2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    },
+    {
+      "clause_sha256": "c02fa44c0b29fc9b6c47aaeba0eacfe948d477bbc15754bc85f646fbd3b860c6",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12492",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12492>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12492:3576a13f4de9c143@47ec07e188774f8a",
+        "TERM:EO:12492:87af820d23a727be@9255540bd41613f5",
+        "TERM:EO:12492:3576a13f4de9c143@f1c0b42a426cf4ff",
+        "TERM:EO:12492:87af820d23a727be@48b915726bfee56b"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12492#sec2-b",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    },
+    {
+      "clause_sha256": "508dc1c196ab3651970db2f53ddd8ca6aa71955e60e901092f4c1809ddcb75ac",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12492",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12492>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12492:42b2b7206309fa9e@47ec07e188774f8a",
+        "TERM:EO:12492:44d22e649f2485dd@47ec07e188774f8a",
+        "TERM:EO:12492:0ece5fc348bd5cbf@9255540bd41613f5",
+        "TERM:EO:12492:fae48c5482df9f22@9255540bd41613f5",
+        "TERM:EO:12492:42b2b7206309fa9e@f1c0b42a426cf4ff",
+        "TERM:EO:12492:44d22e649f2485dd@f1c0b42a426cf4ff",
+        "TERM:EO:12492:0ece5fc348bd5cbf@48b915726bfee56b",
+        "TERM:EO:12492:fae48c5482df9f22@48b915726bfee56b"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12492#sec3",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "report_deadline",
+        "until_event"
+      ]
+    },
+    {
+      "clause_sha256": "ca0aaf3c830914c879a25fe43e4276375749c61dcab0a3dbf84341d9033149e0",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12492",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12492>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12492#sec4",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

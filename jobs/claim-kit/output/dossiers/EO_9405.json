@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:9405",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9405"
@@ -126,6 +126,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -137,9 +141,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:9405>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9405 of December 17, 1943.': number and date match the target's signing date. Target text: jobs/fr-originals/data/full_run/texts/EO_9405.recheck.txt (8 FR 16957, PDF pages 3-3). The dossier's original text is EO_9405.recheck.txt (reading-order rebuild of the same official scan's OCR, not a transcription); a prior note says the claim-checker does not yet read .recheck texts, which may matter for claims, not for this ACT record. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:9405>EO:9830@rastell",
@@ -274,9 +280,47 @@
       "text": "Instrument: EO:9405\nSource: https://www.govinfo.gov/content/pkg/FR-1943-12-21/pdf/FR-1943-12-21.pdf\nSHA-256 of the downloaded file: 0169774ae567ccdce88920a6db1426c3ff64593b6b878a6b1785ade0ef75ab90\nLocation: 8 FR 16957, PDF pages 3-3 (confidence high, from the pdfplumber recheck)\nReading-order text rebuilt from the scan's OCR word positions (pdfplumber), from the order's heading to its filing line. May contain recognition errors, and page furniture printed in between (running heads are left out; a masthead or contents column may remain). Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 ===\nEXECUTIVE ORDER 9405\nAmending Subdivision IX of Schedule A\nof the Civil Service Rules\nBy virtue of the authority vested in me\nby section 2 of the Civil Service Act (22\nStat. .403), it is ordered that paragraph\n9 of Subdivision IX of Schedule A of the\nCivil Service Rules be, and it is hereby,\namended to read as follows:\n. ix. department of agriculture\n9. Farm Credit Administration: Posi­\ntions in the Federal Intermediate Credit\nBanks, the Production Credit Corpora­\ntion^, the Federal Land Banks, the Banks\nfor Cooperatives, and positions filled by\njoint officers and employees for these\nfour institutions.\nFranklin D Roosevelt\nThe White House,\nDecember 17, 1943.\n[P. R. Doc. 43-20122; Piled, December 17,1943;\n"
     }
   },
-  "fingerprint": "3cd5c6a01720ad2afedc1328deafc53a256d114dba398f1b57dac11a68be9f91",
+  "fingerprint": "36c1d15ab37b5fd763a7510035936085b8b1afd3db268f8a781cadbd17ee31e5",
   "instrument_id": "EO:9405",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "c205dae8abb2750135dfd5cf7b3f55a50637529620cdbb26df4e0b3432497515",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9405",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9405>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9405#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "226852d7bda41f86bdfa73e1276e3a534c2bd1ba4ec79e366059ba2805ab3cf6",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9405",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9405>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9405#9",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

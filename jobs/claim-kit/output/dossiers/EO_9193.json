@@ -9,6 +9,10 @@
       "evidence_id": "ACTOR_TEXT:EO:12553"
     },
     {
+      "actor_id": "EO:6694",
+      "evidence_id": "ACTOR_TEXT:EO:6694"
+    },
+    {
       "actor_id": "EO:8389",
       "evidence_id": "ACTOR_TEXT:EO:8389"
     },
@@ -65,6 +69,7 @@
   "actor_provisions": [
     "ACT:EO:9193>EO:11281",
     "ACT:EO:9193>EO:12553",
+    "ACT:EO:9193>EO:6694",
     "ACT:EO:9193>EO:9276",
     "ACT:EO:9193>EO:9361",
     "ACT:EO:9193>EO:9567",
@@ -424,9 +429,36 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
         },
         "verb": "revoke"
+      },
+      {
+        "actor_id": "EO:6694",
+        "char_end": 3074,
+        "char_start": 1642,
+        "confidence": "medium",
+        "how_named": "parent_as_amended",
+        "id": "CHAIN:EO:9193#12",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "2. All power and authority conferred \non the President by Sections 3 (a) and \n5 (b) of the Trading with the Enemy \nAct of October 6, 1917, as amended, and \nby Sections 301 and 302 of Title III of \nthe First War Powers Act, 1941, approved \nDecember 18, 1941, except such powers \nand authority as were delegated to the \nSecretary of the Treasury by Executive \nOrders issued prior to February 12, 1942, \nand to the Board of Governors of the \nFederal Reserve System by Executive \nOrder No. 88431  of August 9, 1941 \n(which powers and authority shall con­\ntinue to be vested in and exercised by \nthe Secretary of the Treasury and the \nBoard of Governors respectively), are \nhereby delegated to and vested in the \nAlien Property Custodian. The memo- \nrandum of February 12, 1942,2  delegating\n1  6 F.R. 4035.\n*  7 F.R. 1409.\nto the Secretary of the Treasury certain \npowers and authority under said sec­\ntions, is hereby revoked and canceled. \nAny and all action heretofore taken by \nthe Board of Governors of the Federal \nReserve System after February 11, 1942, \nin pursuance of Executive Order No. 8843 \nof August 9, 1941, is hereby confirmed \nand ratified. In the exercise of the \nauthority herein delegated, the Alien \nProperty Custodian shall be subject to \nthe provisions of Executive Order No. \n88393  of July 30, 1941, and shall desig­\nnate a representative to the Board of \nEconomic Warfare in accordance with \nsection 6 thereof.",
+        "sections_touched": [
+          "Sections 3",
+          "Sections 301",
+          "section 6"
+        ],
+        "signing_date": null,
+        "source": {
+          "filing_date": null,
+          "page_or_item": "7 FR 1971, PDF pages 1-1",
+          "requires_page_check": false,
+          "sha256": "d25258bab27b7e373cc696647196219064ea3a287307814ad4052f1f39ada4f8",
+          "signing_date": null,
+          "text_path": "jobs/source-ladder/output/texts/queue_EO_6694_EO_9095_4f3b011a51.txt",
+          "text_sha256": "fcb0387d8b9850445d3cbbabc22649a4c1075a30072fddd2a327d2bffde19af2",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1942-03-13/pdf/FR-1942-03-13.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:9193",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9193"
@@ -1299,13 +1331,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:9193>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 9193 found at char 1018 (PDF page 9 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 9, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:9193>EO:12553@rastell",
@@ -1349,6 +1387,75 @@
       },
       "text": "By the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:",
       "verb": "revoke"
+    },
+    "ACT:EO:9193>EO:6694": {
+      "actor_id": "EO:6694",
+      "actor_source": {
+        "filing_date": null,
+        "page_or_item": "7 FR 1971, PDF pages 1-1",
+        "requires_page_check": false,
+        "sha256": "d25258bab27b7e373cc696647196219064ea3a287307814ad4052f1f39ada4f8",
+        "signing_date": null,
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_6694_EO_9095_4f3b011a51.txt",
+        "text_sha256": "fcb0387d8b9850445d3cbbabc22649a4c1075a30072fddd2a327d2bffde19af2",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1942-03-13/pdf/FR-1942-03-13.pdf"
+      },
+      "alternative_provisions": [],
+      "char_end": 3074,
+      "char_start": 1642,
+      "confidence": "medium",
+      "effective_class": "unknown",
+      "effective_date": null,
+      "effective_wording": [
+        {
+          "char_end": 3947,
+          "char_start": 3631,
+          "text": "Any outstanding order, proclama­\ntion, regulation, ruling, license, or in­\nstruction issued pursuant to, or relating \nto the administration of, any power or \nauthority vested in the Alien Property \nCustodian by this Order shall remain in \neffect unless and until amended or re­\nvoked by the Alien Property Custodian."
+        }
+      ],
+      "exceptions_text": [
+        "except such powers \nand authority as were delegated to the \nSecretary of the Treasury by Executive \nOrders issued prior to February 12, 1942, \nand to the Board of Governors of the \nFederal Reserve System by Executive \nOrder No"
+      ],
+      "filing_date": null,
+      "id": "ACT:EO:9193>EO:6694",
+      "names_target": false,
+      "notes": "Machine lead only; no legal ending asserted. Effective wording is ambiguous, section-specific, or has no determinable date. Indirect parent membership is an unconfirmed lead.",
+      "provision_label": "",
+      "provision_text": "2. All power and authority conferred \non the President by Sections 3 (a) and \n5 (b) of the Trading with the Enemy \nAct of October 6, 1917, as amended, and \nby Sections 301 and 302 of Title III of \nthe First War Powers Act, 1941, approved \nDecember 18, 1941, except such powers \nand authority as were delegated to the \nSecretary of the Treasury by Executive \nOrders issued prior to February 12, 1942, \nand to the Board of Governors of the \nFederal Reserve System by Executive \nOrder No. 88431  of August 9, 1941 \n(which powers and authority shall con­\ntinue to be vested in and exercised by \nthe Secretary of the Treasury and the \nBoard of Governors respectively), are \nhereby delegated to and vested in the \nAlien Property Custodian. The memo- \nrandum of February 12, 1942,2  delegating\n1  6 F.R. 4035.\n*  7 F.R. 1409.\nto the Secretary of the Treasury certain \npowers and authority under said sec­\ntions, is hereby revoked and canceled. \nAny and all action heretofore taken by \nthe Board of Governors of the Federal \nReserve System after February 11, 1942, \nin pursuance of Executive Order No. 8843 \nof August 9, 1941, is hereby confirmed \nand ratified. In the exercise of the \nauthority herein delegated, the Alien \nProperty Custodian shall be subject to \nthe provisions of Executive Order No. \n88393  of July 30, 1941, and shall desig­\nnate a representative to the Board of \nEconomic Warfare in accordance with \nsection 6 thereof.",
+      "reaches_target_via": "EO:8843 as amended",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": null,
+      "source": {
+        "filing_date": null,
+        "page_or_item": "7 FR 1971, PDF pages 1-1",
+        "requires_page_check": false,
+        "sha256": "d25258bab27b7e373cc696647196219064ea3a287307814ad4052f1f39ada4f8",
+        "signing_date": null,
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_6694_EO_9095_4f3b011a51.txt",
+        "text_sha256": "fcb0387d8b9850445d3cbbabc22649a4c1075a30072fddd2a327d2bffde19af2",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1942-03-13/pdf/FR-1942-03-13.pdf"
+      },
+      "target_id": "EO:9193",
+      "text": "2. All power and authority conferred \non the President by Sections 3 (a) and \n5 (b) of the Trading with the Enemy \nAct of October 6, 1917, as amended, and \nby Sections 301 and 302 of Title III of \nthe First War Powers Act, 1941, approved \nDecember 18, 1941, except such powers \nand authority as were delegated to the \nSecretary of the Treasury by Executive \nOrders issued prior to February 12, 1942, \nand to the Board of Governors of the \nFederal Reserve System by Executive \nOrder No. 88431  of August 9, 1941 \n(which powers and authority shall con­\ntinue to be vested in and exercised by \nthe Secretary of the Treasury and the \nBoard of Governors respectively), are \nhereby delegated to and vested in the \nAlien Property Custodian. The memo- \nrandum of February 12, 1942,2  delegating\n1  6 F.R. 4035.\n*  7 F.R. 1409.\nto the Secretary of the Treasury certain \npowers and authority under said sec­\ntions, is hereby revoked and canceled. \nAny and all action heretofore taken by \nthe Board of Governors of the Federal \nReserve System after February 11, 1942, \nin pursuance of Executive Order No. 8843 \nof August 9, 1941, is hereby confirmed \nand ratified. In the exercise of the \nauthority herein delegated, the Alien \nProperty Custodian shall be subject to \nthe provisions of Executive Order No. \n88393  of July 30, 1941, and shall desig­\nnate a representative to the Board of \nEconomic Warfare in accordance with \nsection 6 thereof.",
+      "verb": "revoke"
+    },
+    "ACT:EO:9193>EO:6694:effective#0": {
+      "actor_id": "EO:6694",
+      "char_end": 3947,
+      "char_start": 3631,
+      "id": "ACT:EO:9193>EO:6694:effective#0",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "7 FR 1971, PDF pages 1-1",
+        "requires_page_check": false,
+        "sha256": "d25258bab27b7e373cc696647196219064ea3a287307814ad4052f1f39ada4f8",
+        "signing_date": null,
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_6694_EO_9095_4f3b011a51.txt",
+        "text_sha256": "fcb0387d8b9850445d3cbbabc22649a4c1075a30072fddd2a327d2bffde19af2",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1942-03-13/pdf/FR-1942-03-13.pdf"
+      },
+      "text": "Any outstanding order, proclama­\ntion, regulation, ruling, license, or in­\nstruction issued pursuant to, or relating \nto the administration of, any power or \nauthority vested in the Alien Property \nCustodian by this Order shall remain in \neffect unless and until amended or re­\nvoked by the Alien Property Custodian."
     },
     "ACT:EO:9193>EO:9276": {
       "actor_id": "EO:9276",
@@ -6155,6 +6262,24 @@
       },
       "text": "Instrument: EO:12553\nSource: https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf\nSHA-256 of the downloaded file: 945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c\nLocation: 51 FR 7237, PDF pages 9-15 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 200 ===\nFederal Register  \nVoi. 51, No. 41  \nMonday, March 3, 1986\nPresidential Documents\n7237\nTitle 3—\nThe President\nExecutive Order 12553 of February 25, 1986\nRevocation of Various Executive Orders\nBy the authority vested in me as President by the Constitution and law s of the  \nUnited States of Am erica, and to eliminate Executive Orders that are no  \nlonger necessary, it is hereby ordered that the following Executive Orders, and  \nany amendments thereto, are revoked:\nNo. Subject\n723\n3577\n5491\n5918\n6359\n6558\n8427\n9095\n9193\n9553\n9555\n9567\n9573\n9576\n9588\n9640\n9663\n9675\n9684\n9700\n9702\n9713\n9716\n9717 \n9719 \n9721 \n9731\n9748\n9749 \n9763 \n9770 \n9782 \n9793 \n9798 \n9803 \n9838 \n9855 \n9874 \n9878 \n9880 \n9891\n9899\n9900 \n9910 \n9918\n9922\n9923 \n9929 \n9936 \n9940\nProviding for examination for appointment to the U.S. Military and Naval Academies  \nEstablishing the manner of dating proclamations, commissions and similar executive documents  \nProviding for appointments to and inclusion of the District of Columbia municipal service in the Civil  \nService\nProviding for examination for appointment to the U.S. Military and Naval Academies\nRelating to gold recovered from natural deposits\nRelating to receipt of gold on consignment by mints and assay offices\nPrescribing regulations for interbuilding mail and messenger service\nEstablishing the Office of Alien Property Custodian\nRelating to the Office of Alien Property Custodian\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nAmending functions and duties of the Alien Property Custodian with respect to property of Germany  \nand Japan and their nationals\nCreating an emergency board to investigate a railroad labor dispute \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate airline labor disputes  \nProviding for transfer of personnel to certain public international organizations\nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to  \nCreating an emergency board to\nnvestigate a railroad labor dispute  \nnvestigate an airline labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate railroad labor disputes  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate railroad labor disputes  \ninvestigate a railroad labor dispute  \nnvestigate railroad labor disputes  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate railroad labor disputes  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute  \nnvestigate a railroad labor dispute\n\n=== PDF page 10 of 200 ===\n7238 Federal Register /  Vol. 51, No. 41 /  Monday, M arch 3, 1986 /  Presidential Documents\nNo. Subject\n9942 Providing for performance of functions under the Rubber Act of 1948\n9947 Creating an emergency board to investigate a railroad labor dispute\n9948 Creating an emergency board to investigate a railroad labor dispute\n9949 Amending provisions for transfer of personnel to certain public international organizations \n9965 Creating an emergency board to investigate airline labor disputes\n9971 Creating an emergency board to investigate labor disputes between certain workers and transporta­\ntion systèms operated by the Secretary of the Army  \n9988 Prescribing Selective Service regulations\n9991 Creating an emergency board to investigate a railroad labor dispute\n9992 Amending Selective Service regulations\n9996 Creating an emergency board to investigate a railroad labor dispute \n10001 Prescribing and amending Selective Service regulations \n10008 Amending Selective Service regulations\n10010 Creating an emergency board to investigate railroad labor disputes \n10015 Amending an order creating an emergency board to investigate railroad labor disputes \n10029 Creating an emergency board to investigate an airline labor dispute\n10032 Creating an emergency board to investigate a railroad labor dispute\n10037 Creating an emergency board to investigate a railroad labor dispute\n10038 Creating an emergency board to investigate a railroad labor dispute\n10045 Creating an emergency board to investigate a railroad labor dispute\n10048 Creating an emergency board to investigate a railroad labor dispute\n10050 Creating an emergency board to investigate a railroad labor dispute\n10051 Creating an emergency board to investigate a railroad labor dispute\n10054 Modifying provisions for transfer of personnel to certain public international organizations\n10056 Creating an emergency board to investigate a railroad labor dispute\n10067 Creating an emergency board to investigate a railroad labor dispute\n10071 Creating an emergency board to investigate a railroad labor dispute\n10078 Creating an emergency board to investigate a railroad labor dispute\n10080 Authorizing certain Government employees to acquire a competitive civil service status\n10103 Amending provisions for transfer of personnel to certain public international organizations\n10105 Creating an emergency board to investigate a railroad labor dispute\n10106 Creating a board of inquiry to report on a labor dispute affecting the coal industry \n10109 Creating an emergency board to investigate railroad labor disputes\n10112 Creating an emergency board to investigate a railroad labor dispute\n10114 Creating an emergency board to investigate a railroad labor dispute\n10116 Amending Selective Service regulations\n10117 Creating an emergency board to investigate a railroad labor dispute\n10120 Creating an emergency board to investigate a railroad labor dispute\n10125 Creating an emergency board to investigate a railroad labor dispute\n10130 Creating an emergency board to investigate a railroad labor dispute\n10138 Creating an emergency board to investigate a railroad labor dispute\n10139 Creating an emergency board to investigate a railroad labor dispute\n10140 Creating an emergency board to investigate a railroad labor dispute\n10142 Creating an emergency board to investigate an airline labor dispute\n10147 Creating an emergency board to investigate a railroad labor dispute\n10150 Creating an emergency board to investigate railroad labor disputes\n10157 Authorizing certain Government employees to acquire a competitive civil service status \n10165 Creating an emergency board to investigate a railroad labor dispute \n10167 Prescribing or amending Selective Service regulations\n10202 Prescribing or amending Selective Service regulations\n10203 Creating an emergency board to investigate an airline labor dispute \n10230 Amending Selective Service regulations\n10232 Amending Selective Service regulations  \n10258 Amending Selective Service regulations\n10283 Creating a board of inquiry to report on labor disputes affeoting the copper and nonferrous metals \nindustry\n10285 Creating an emergency board to investigate a labor dispute between certain workers and a railroad\noperated by the Secretary of the Army\n10286 Creating an emergency board to investigate a railroad labor dispute \n10292 Amending Selective Service regulations\n10300 Providing for the administration of the Mutual Security Act of 1951\n10303 Creating an emergency board to investigate a labor dispute between employees and transportation \nsystems operated by the Secretary of the Army \n10306 Creating an emergency board to investigate a railroad labor dispute\n10314 Creating an emergency board to investigate an airline labor dispute\n10319 Creating an emergency board to investigate an airline labor dispute\n10323 Transferring certain functions and delegating certain powers to the Small Defense Plants Administra­\ntion\n10328 Prescribing Selective Service regulations \n10344 Prescribing or amending Selective Service regulations \n10363 Amending Selective Service regulations \n10366 Amending Selective Service regulations\n10368 Amending provisions for the administration of the Mutual Security Act of 1951\n10371 Creating an emergency board to investigate an airline labor dispute\n10372 Creating an emergency board to investigate an airline labor dispute\n\n=== PDF page 11 of 200 ===\nVol. 51, No. 41 /  Monday, Mayeh 3, 1986 /  Presidential Documents 7239\nNo. Subject\n10376\n10406\n10415\n10417\n10420\n10449\n10458\n10469\n10504\n10505 \n10509 \n10511\n10542\n10543\n10562\n10570\n10576\n10578\n10587\n10593\n10594 \n10601 \n10615 \n10622 \n10630 \n10635\n10643\n10644\n10650\n10657\n10659\n10689\n10691\n10693\n10696\n10709\n10710\n10714\n10723\n10734\n10735 \n10738\n10749\n10750 \n10757 \n10760 \n10770 \n10774\n10809\n10811\n10837\n10842\n10843 \n10848\n10862\n10868\n10872\n10874\n10875\n10877\n10878 \n10888 \n10904 \n10906\nProviding for permanent appointments in the field service of the Post Office Department  \nCreating an emergency board to investigate an airline labor dispute  \nAmending provisions for transfer of personnel to certain public international organizations  \nCreating a board of inquiry to report on a labor dispute affecting the construction and operation of  \natomic energy facilities  \nAmending Selective Service regulations\nCreating an emergency board to investigate a railroad labor dispute  \nProviding for the administration of certain foreign aid programs  \nAmending Selective Service regulations\nTransferring certain functions, powers, and duties to the Small Business Administration  \nAmending Selective Service regulations\nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate railroad labor disputes\n^ fa c ilitie s * )° art^  °* inquiry t0 rePort on a labor dispute affecting the operations of atomic energy\nCrfacHu1es ° f inQuiry t0 report on a labor disPute affecting the operations of atomic energy\nAmending Selective Service regulations\nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nProviding for the administration of the Trading with the Enemy Act\nAuthorizing the Director of the Office of Defense Mobilization to perform additional functions of the  \nPresident\nAmending Selective Service regulations\nRelating to the administration of a commodity set-aside\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate railroad labor disputes\nAdministering Title II of the International Claims Settlement Act, as amended, relating to vesting and  \nliquidation of Bulgarian, Hungarian and Rumanian property  \nPrescribing Selective Service regulations\nTransferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy  \nCommission under the Atomic Energy Community Act of 1955  \nAmending Selective Service regulations\nCreating a board of inquiry to report on labor disputes affecting the maritime industry\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate railroad labor disputes\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a dock company labor dispute\n^facUMes b° ard ° f inqu,ry t0 reP°rt on « labor dispute affecting the operations of atomic energy  \nAmending Selective Service regulations\nCreating an emergency board to investigate a railroad labor dispute\nAmending Executive Order No. 10657 relating to the transfer of certain functions to the Housing and  \nHome Finance Administrator under the Atomic Energy Community Act of 1955  \nAmending Selective Service regulations\nProviding for inspection of estate and gift tax returns by State tax officials  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate an airline labor dispute\nProviding for the protection of the civil service rights of Federal personnel who transfer to the  \nInternational Atomic Energy Agency  \nAmending Selective Service regulations\nCreating an emergency board to investigate an airline labor dispute  \nAmending Selective Service regulations\nCreating a board of inquiry to report on labor disputes affecting the maritime industry  \nCreating a board of inquiry to report on a labor dispute affecting the steel industry\nThTstell Tndust^6 ° rder N°' 10843 CreatÌng 8 b° ard ° f ÌnqUÌry t0 report on a labor dispute affecting  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate an airline labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate railroad labor disputes  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute  \nCreating an emergency board to investigate a railroad labor dispute\nProviding for inspection of tax returns made in respect to certain taxes imposed by the Internal  \nRevenue Code of 1954\n\n=== PDF page 12 of 200 ===\n7240 Federal Register / Vol. 51, No. 41 / Monday, M arch 3, 1986 / Presidential Documents\nNo. Subject\n10919 Creating an emergency board to investigate an airline labor dispute \n10923 Creating an emergency board to investigate airline labor disputes \n10926 Extending an emergency board created to investigate an airline labor dispute \n10933 Extending an emergency board to investigate airline labor disputes \n10944 Creating an emergency board to investigate a railroad labor dispute \n10949 Creating a board of inquiry to report on a labor dispute affecting the maritime industry \n10951 Amending Executive Order No. 10949 creating a board of inquiry to report on a labor dispute affecting \nthe maritime industry\n10953 Creating an emergency board to investigate a railroad labor dispute\n10954 Amending an authorization to inspect certain tax returns\n10962 Providing for inspection of tax returns by the Advisory Commission on Intergovernmental Relations\n10963 Creating an emergency board to investigate railroad labor disputes\n10965 Creating an emergency board to investigate an airline labor dispute\n10969 Creating an emergency board to investigate a railroad labor dispute\n10971 Creating an emergency board to investigate an airline labor dispute\n10975 Creating an emergency board to investigate an airline labor dispute\n10976 Relating to working hours for employees of the National Aeronautics and Space Administration \n10984 Amending Selective Service regulations\n11006 Creating an emergency board to investigate an airline labor dispute\n11008 Creating an emergency board to investigate railroad labor disputes\n11011 Creating an emergency board to investigate an airline labor dispute\n11013 Creating a board of inquiry to report on a labor dispute affecting the maritime industry\n11015 Creating an emergency board to investigate railroad labor disputes\n11025 Creating a board of inquiry to report on a labor dispute affecting the aircraft industry\n11026 Amending Executive Order No. 11025 creating a board of inquiry to report on a labor dispute affecting\nthe aircraft industry\n11027 Creating an emergency board to investigate a railroad labor dispute\n11029 Amending an order creating a board of inquiry to report on a labor dispute affecting the aircraft \nindustry\n11033 Creating an emergency board to investigate airline labor disputes\n11040 Creating an emergency board to investigate a railroad labor dispute\n11042 Creating an emergency board to investigate a railroad labor dispute\n11043 Creating an emergency board to investigate an airline labor dispute\n11049 Providing for the carrying out of the Public Works Acceleration Act\n11050 Creating an emergency board to investigate railroad labor disputes\n11054 Creating a board of inquiry to report on labor disputes affecting the maritime industry \n11078 Creating a board of inquiry to report on a labor dispute affecting the ballistics missile, space vehicle, \nand military aircraft industry\n11086 Amending the administration of the Trading with the Enemy Act \n11098 Amending Selective Service regulations\n11101 Creating an emergency board to investigate railroad labor disputes\n11102 Providing for inspection of tax returns by possessions of the United States\n11105 Transferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy \nCommission under the Atomic Energy Community Act of 1955 \n11108 Delegating authority to the Secretary of Agriculture under the International Wheat Agreement Act of \n1949\n11115 Creating an emergency board to investigate railroad labor disputes\n11116 Prescribing and delegating authority to prescribe rates of charges for certain hospitalization and\ndispensary services\n11119 Amending Selective Service regulations\n11121 Creating an emergency board to investigate an airline labor dispute\n11127 Creating an emergency board to investigate a railroad labor dispute\n11131 Creating an emergency board to investigate airline labor disputes\n11135 Creating an emergency board to investigate railroad labor disputes\n11138 Modifying provisions for the transfer of personnel to certain public international organizations \n11147 Creating an emergency board to investigate railroad labor disputes\n11168 Creating an emergency board to investigate railroad labor disputes\n11169 Creating an emergency board to investigate railroad labor disputes\n11170 Creating an emergency board to investigate railroad labor disputes\n11171 Relating to the Canal Zone Merit System\n11180 Creating an emergency board to investigate railroad labor disputes\n11181 Creating a board of inquiry to report on labor disputes affecting the maritime indusiry \n11188 Amending Selective Service regulations\n11196 Providing for performance by the Housing and Home Finance Administrator of functions vested in or \nsubject to the approval of the President \n11206 Providing for inspection of interest equalization tax returns\n11213 Providing for inspection of certain interest equalization tax information returns by the Board of \nGovernors of the Federal Reserve System and the Federal Reserve Banks \n11237 Prescribing regulations for coordinating planning and acquiring land under the Outdoor Recreation \nProgram of the Department of the Interior and the Open Space Program of the Housing and Home \nFinance Agency\n11241 Amending Selective Service regulations\n11243 Creating an emergency board to investigate a railroad labor dispute\n11252 Transferring the functions of the Director of the Food-for-Peace Program to the Secretary of State \n11255 Designating Vietnam and waters adjacent thereto as an overseas combat area for purposes of Armed \nForces mailing privileges\n\n=== PDF page 13 of 200 ===\nFederal Register /  Vol. 51, No. 41 /  Monday, M arch 3, 1986 /  Presidential Documents 7241\nNo. Subject\n11266 Amending Selective Service regulations\n11276 Creating an emergency board to investigate an airline labor dispute\n11284 Suspending provisions of sections 5701(a)(1) and 6371 of title 10, U.S.C., relating to continuation on the \nactive list of rear admirals in the line of the Navy not restricted in the performace of duty \n11286 Designating the Department of Commerce as the Department through which the United States shall \nparticipate in the inter-American Cultural and Trade Center in Dade County, Florida \n11291 Creating an emergency board to investigate an airline labor dispute \n11303 Modifying provisions for transfer of personnel to certain public international organizations\n11307 Coordinating Federal programs affecting agriculture and rural development\n11308 Creating an emergency board to investigate an airline labor dispute\n11314 Creating a board of inquiry to report on labor disputes affecting the military jet engine, military \naircraft, military armament and military electronics industries\n11320 Delegating authority to prescribe rules and regulations relating to foreign gifts and decorations\n11321 Creating a board of inquiry to report on a labor dispute affecting the military aircraft engine industry\n11324 Creating an emergency board to investigate a railroad labor dispute\n11325 Prescribing Selective Service regulations\n11327 Assigning authority to order certain persons in the Ready Reserve to active duty \n11329 Creating a board of inquiry to report on a labor dispute affecting the shipbuilding and repair \nindustries\n11343 Creating an emergency board to investigate a railroad labor dispute\n11344 Creating a board of inquiry to report on a labor dispute affecting the military aircraft and military\naircraft engine industries \n11350 Amending Selective Service regulations\n11356 Creating an emergency board to investigate a railroad labor dispute \n11360 Amending Selective Service regulations\n11386 Prescribing arrangements for coordination of the activities of regional commissions and activities of\nthe Federal Government relating to regional economic development\n11387 Governing certain capital transfers abroad \n11391 Amending Selective Service regulations\n11422 Establishing the Cooperative Area Manpower Planning System affecting the aircraft industry.\n11431 Creating a board of inquiry to report on labor disputes affecting the maritime industry\n11433 Creating an emergency board to investigate a railroad labor dispute\n11434 Relating to the administration of the Foreign Service personnel systems of the United States, and for\nother purposes\n11436 Suspending provisions of section 6372 of title 10, U.S.C., relating to retirement or retention on the \nactive list of certain rear admirals in the Navy\n11442 Creating an emergency board to investigate a railroad labor dispute\n11443 Creating an emergency board to investigate railroad labor disputes\n11444 Creating an emergency board to investigate railroad labor disputes\n11445 Creating an emergency board to investigate railroad labor disputes\n11449 Relating to participation in the International Coffee Organization \n11452 Establishing the Council for Urban Affairs\n11486 Creating an emergency board to investigate railroad labor disputes\n11493 Establishing the Council for Rural Affairs\n11497 Amending Selective Service regulations\n11527 Amending Selective Service regulations\n11537 Amending Selective Service regulations\n11543 Creating an emergency board to investigate railroad labor disputes \n11553 Amending Selective Service regulations\n11555 Amending Selective Service regulations\n11558 Creating an emergency board to investigate railroad labor disputes\n11559 Creating an emergency board to investigate railroad labor disputes\n11563 Amending Selective Service regulations\n11569 Amending Selective Service regulations\n11574 Providing for administration of the Refuse Act Permit Program *\n11585 Creating an emergency board to investigate railroad labor disputes\n11586 Amending Selective Service regulations\n11606 Amending Selective Service regulations\n11621 Creating a board of inquiry to report on labor disputes affecting the- maritime industry\n11622 Amending an order creating a board of inquiry to report on labor disputes affecting the maritime\nindustry\n11650 Providing for inspection of tax returns by certain persons and State and Federal establishments\n11663 Creating an emergency board to investigate railroad labor disputes\n11664 Creating an emergency board to investigate a railroad labor dispute\n11679 Creating an emergency board to investigate a railroad labor dispute\n11694 Creating an emergency board to investigate a railroad labor dispute\n11706 Providing for inspection of tax returns by U.S. Attorneys and justice Department attorneys for grand  \njiiry proceedings and litigation\n11745 Creating an emergency board to investigate a railroad labor dispute \n11761 Facilitating the coordination of Federal education programs\n11771 Extending diplomatic privileges and immunities to the Liaison Office of the People’s Republic of China  \nin Washington, D.C.\n\n=== PDF page 14 of 200 ===\n7242 Federal Register /  Voi. 51, Nò. 41 /  M onday, M arch 3, 1986 /  Presidential Documents\nNo. Subject\n11783\n11787\n11788  \n11797\n11805\n11834\n11836\n11852\n11867\n11871\n11876\n11896\n11969\n12009\n12040\n12097\n12129\n12140\n12150\n12153\n12162\n12184\n12186\n12187\n12189\n12193\n12209\n12212\n12227\n12244\n12254\n12256\n12257\n12263\n12269\n12270 \n12297 \n12299  \n12327 \n12351\n12357\n12358 \n12370 \n12373 \n12376\n12384\n12385\n12386  \n12390\n12392\n12393\n12397\n12398\n12402\n12405\n12408\n12409\n12414\n12415 \n12427 \n12429 \n12434\nCreating an emergency- board to investigate a railroad labor dispute\nRelating to the adverse actions appeals system\nProviding for termination of economic stabilization activities\nDelegating to the Secretary of Agriculture submission of an annual report to Congress on location of  \nnew Federal facilities in rural areas\nProviding for inspection of tax returns by the President and certain employees of the White House  \nOffice\nActivating the Energy Research and Development Administration and the Nuclear Regulatory Commis­\nsion\nincreasing the effectiveness of the Transportation Cargo Security Program  \nCreating an emergency board to investigate a railroad labor dispute\nDelegating to the Administrator of General Services authority to issue joint funding regulations\nTransferring the SCORE and ACE programs from ACTION to the Small Business Administration\nCreating an emergency board to investigate a railroad labor dispute\nEstablishing the United-States Sinai Support Mission\nProviding for the administration of the Emergency Natural Gas Act of 1977\nProviding for the effectuation of the Department of Energy Organization Act of 1977\nRelating to the transfer of certain environmental evaluation functions\nEstablishing standards and guidelines for the merit selection of United States district judges-\nEstablishing a Critical Energy Facility Program\nDelegating authorities relating to motor gasoline end-user allocation\nRelating to the. United States Sinai Support Mission\nDecontrolling heavy oil\nContinuing the delegation of authorities relating to motor gasoline end-user allocation  \nRelating to the President’s Commission for the Study of Ethical Problems in Medicine and Biomedical  \nand Behavioral Research  \nChanging the definition of heavy oil\nProviding for the base production control level for marginal properties\nRelating to the definition of heavy oil\nProviding for nuclear cooperation with EURATOM\nRelating to the base production level for marginal properties\nProviding for the effectuation of the Department of Education Organization Act\nRelating to the United States Sinai Support Mission\nProviding exemption for Fort Allen from compliance with the Federal Water Pollution Control Act  \nEstablishing the National Advisory Community Investment Board  \nProviding for census statistics on legal immigrants\nProviding for noncompetitive conversion of CETA participants to career or career-conditional civil  \nservice status\nDelegating strategic and critical materials transaction authority to the United States Trade Representa­\ntive\nEstablishing the President’s Committee on Small Business Policy  \nEstablishing the President’s Council on Spinal Cord Injury  \nExecuting the International Coffee Agreement of 1976  \nTerminating the President's Advisory Board on Ambassadorial Appointments  \nExempting Fort Allen from pollution control statutes  \nProviding for nuclear cooperation with EURATOM  \nPhasing out the United States Sinai Support Mission  \nEstablishing the Presidential Commission on Drunk Driving  \nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nIncreasing membership on the Presidential Commission on Drunk Driving\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nCreating an emergency board to investigate a railroad labor dispute\nDelegating a reporting function to the Secretary of State concerning U.S. credit to Poland  \nDelegating authority to the Secretary of the Treasury to make payments to certain international  \nfinancial institutions\nCreating an emergency board to investigate a railroad labor dispute  \nContinuing the National Commission on Social Security Reform\nIncreasing membership and extending the President’s Private Sector Survey on Cost Control in the  \nFederal Government\nContinuing the National Commission on Social Security Reform\nCreating an emergency board to investigate a railroad labor dispute\nDelegating responsibility for preparing reports on international organizations\nExtending the period for nuclear cooperation with EURATOM\nCreating an emergency board to investigate a railroad labor dispute\nContinuing the Presidential Commission on Drunk Driving\nEstablishing the President’s Advisory Council on Private Sector Initiatives\nContinuing the President’s Private Sector Survey on Cost Control in the Federal Government  \nTransferring responsibility for setting rates for the Alaska Railroad\n\n=== PDF page 15 of 200 ===\nFederal Register /  Vol. 51, No. 41 /  Monday, M arch 3, 1986 /  Presidential Documents 7243\nNo. Subject\n12440 Increasing the membership of the President’s Commission on Industrial Competitiveness  \n12442 Continuing the President’s Commission on Indian Reservation Economies\n12447 Continuing the President’s Private Sector Survey on- Cost Control in the Federal Government  \n12449 Continuing the National Bipartisan Commission on Central America\n12455 Continuing the President’s Private Sector Survey on Cost Control in the Federal Government  \n12457 Continuing the President's Commission on- Industrial Competitiveness and increasing its membership  \n12463 Extending the period for nuclear cooperation with EURATOM\n12476 Relating to the Presidential Commission on the Conduct of United States-Japan Relations\n12480 Creating an emergency board to investigate a railroad labor dispute\n12481 Creating an emergency board to investigate a railroad labor dispute\n12482 Continuing the President’s Advisory Committee on Women’s Business Ownership\n12486 Creating an emergency board to investigate a railroad labor dispute\n12491 Creating an emergency board to investigate a railroad labor dispute\n12492 Creating an emergency board to investigate a railroad labor dispute\n12495 Creating an emergency board to investigate a railroad labor dispute\nEditorial note: For the text of a White House announcement, released February 25, on Executive  \nOrder 12553, see the W eekly Com pilation o f P residential Documents  (vol. 22, no. 9).\nTHE W HITE HOUSE,  \nF e b r u a r y  2 5 , 1986.\n[FR Doc. 86-4455  \nFiled 2-26-86; 11:19 am]  \nBilling code 3195-01-M\n"
     },
+    "ACTOR_TEXT:EO:6694": {
+      "actor_id": "EO:6694",
+      "char_end": 4440,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:6694",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition)",
+        "requires_page_check": false,
+        "sha256": "f759a4644268645867b6105fd786b4ba2f819ed935a878659813fb3d17930afe",
+        "signing_date": null,
+        "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-6694-f759a46442.txt",
+        "text_sha256": "db9ee0d7a2fa3fbdbb8fbcb1d55056f73c47c072936eba405c5e6d9c1254d54f",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6694-abolishment-the-office-the-alien-property-custodian-and-transfer-its"
+      },
+      "text": "Executive Order 6694—Abolishment of the Office of the Alien Property Custodian and Transfer of Its Functions to the Department of Justice\n\n\n\n\n\n\n\n\n\n\nMay 01, 1934\n \n\n\n\n\nWhereas\n section 16 of the act of March 3, 1933 (ch. 212, 47 Stat. 1489, 1517), provides for reorganizations within the executive branch of the Government, requires the President to investigate and determine what reorganizations are necessary to effectuate the purposes of section 16, and authorizes the President to make such reorganizations by Executive order; and\n\nWhereas\n after investigation I find and declare that the abolishment of the Office of the Alien Property Custodian and the transfer of its functions to the Department of Justice is necessary to effectuate the purposes of section 16;\n\nNow, Therefore\n, by virtue of and pursuant to the authority vested in me by the aforesaid section 16 of the act of March 3, 1933, it is hereby ordered as follows:\n\n\nAbolishment of the Office and Transfer of Its Functions\n\n1. The Office of the Alien Property Custodian is abolished, and the authority, rights, privileges, powers, and duties conferred and imposed on the Alien Property Custodian by law and/or Executive order are transferred to the Department of Justice, to be administered under the supervision of the Attorney General.\n\n\nTransfer of Official Records, Supplies, and Equipment\n\n2. The official records and papers on file in, and pertaining to the business of, the Office of the Alien Property Custodian, together with the supplies, furniture, equipment, and other property of the United States in use in such office are transferred to the Department of Justice.\n\n\nTransfer of Personnel\n\n3. (a) All officers and employees of the Office of the Alien Property Custodian are transferred to the Department of Justice, without loss of such civil service status as they may have. The duties and responsibilities of the positions to be occupied by them shall be established by the Attorney General and the compensation of such established positions shall be determined by the Civil Service Commission in accordance with the Classification Act of 1923, as amended.\n\n(b) The officers and employees transferred to the Department of Justice hereunder who do not already possess a competitive classified civil service status appropriate for the position to which assigned shall not acquire such status by reason of such transfer except upon recommendation by the Attorney General to the Civil Service Commission, subject to such noncompetitive tests of fitness as the Commission may prescribe; and no persons or employees other than attorneys so transferred may be retained in the Department of Justice without appropriate civil service status for a period longer than 60 days from the effective date of this order.\n\n\nTransfer of Funds, Securities, Real Estate, and Other Property\n\n4. (a) All funds, securities, choses in action, real estate, patents, trade marks, copyrights, and all other property of whatsoever kind, to which the Alien Property Custodian has title or which are in his possession or control, or which are held in trust for the Alien Property Custodian, are hereby transferred to the Attorney General, to be administered and disposed of by him as required by law. The Alien Property Custodian is hereby authorized and directed to execute all such deeds, conveyances, transfers, assignments, and other documents and to take all such steps as the Attorney General may deem necessary or proper to effectuate the provisions of this order.\n\n(b) All expenses incurred by the Department of Justice in the administration of the \"Trading with the Enemy Act\", as amended, and in pursuance of this order, shall be paid out of the money or other property transferred under this section, or out of interest and other earnings thereof.\n\n\nGeneral Provisions\n\n5. All Executive orders insofar as they are in conflict with the provisions of this order are revoked.\n\n6. In accordance with law, this order shall become effective upon the sixty-first calendar day after its transmission to the Congress; \nProvided\n, That in case it shall appear to the President that the interests of economy require that the transfer be delayed beyond the date this order becomes effective, he may, in his discretion, fix a later date therefor, and he may for like cause further defer such date from time to time.\n\nDone in triplicate.\n\nFRANKLIN D. ROOSEVELT\n\nThe White House,\nMay 1, 1934."
+    },
     "ACTOR_TEXT:EO:8389": {
       "actor_id": "EO:8389",
       "char_end": 15896,
@@ -7397,9 +7522,562 @@
       "text": "Subject to the provisions of this Ex­\necutive Order, all powers and authority \nconferred upon me by sections 3 (a) and \n5 (b) of the Trading with the enemy \nAct, as amended, are hereby delegated \nto the Secretary of the Treasury or any \nperson, agency, or instrumentality desig­\nnated by him; provided, however,  that \nwhen any property or interest, not be­\nlonging to a foreign government or cen­\ntral bank, shall be vested by the Secretary \nof the Treasury, such property or interest \nshall be vested in, and dealt with by, the \nAlien Property Custodian upon the terms \ndirected by the Secretary of the Treasury."
     }
   },
-  "fingerprint": "1dd9dcd2ccae9c894993c52110db73cfcb5da5c7abbe51e401d7ca42826c6197",
+  "fingerprint": "32deb71715853d185bd46d20d38e4c4daa4b5835fbaafbcc12e1604cb7dc9ceb",
   "instrument_id": "EO:9193",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "c1753155613bcbf1bbcbdbe7f321cd5b562021c8c0cb5a0131aeca6ac5b6f8cc",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "c8b2fe8f52879cee31e162c87a5bac4514f31da536cd911bbf4b4b4944d72f0e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#2",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "92980476654ae9149188dd28dde925bae39eedbdf7d2e0d7928b878f4472c810",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#a",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "de74b34b417d9ae35a7a69c9949b609c0171d29dbdd1904d7ea77b0b3804f90b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#b",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "c6f763283653611bf41bf128f5e3bffae5658f21fc9158048bef6f306d393318",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:15be23e219fb3406@4038eb87f934f416",
+        "TERM:EO:9193:cbe71646b513df16@b795f262890c484a",
+        "TERM:EO:9193:cbe71646b513df16@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#c",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "2fbddb910b7edb20c7949dbe323b98c009d18f6c229111ab0caf37d757226812",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#d",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "c10e3c791c0b36b0a420f2f89288d246668af5252e999beefcf8a4401b8c8530",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#e",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "7041ea6e5b84aef4370020f1823eb4f47b40d489545abe39d443a561151faa8a",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "e7857ed8d31b1b6eb3f482a8570309cf91e84c9411674e3a48823d3f0758cb94",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:f2dbcf13db5f0ebd@4038eb87f934f416",
+        "TERM:EO:9193:7df2dba623d76d8f@b795f262890c484a",
+        "TERM:EO:9193:7df2dba623d76d8f@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-3",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "4a2e2618ab3e4174bd950aa08bbf134a6c6c3036e137941b8871f46a6a4b214a",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-4",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "recurring_duty"
+      ]
+    },
+    {
+      "clause_sha256": "6eb3ca59baf257a372d8554d03e818809ed91acdac84dc3330153b7d1b8cbcbd",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:2347ddd2da17fc8b@4038eb87f934f416",
+        "TERM:EO:9193:19813f038ae58135@b795f262890c484a",
+        "TERM:EO:9193:19813f038ae58135@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-5",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "621d4c518d174eb48e6b47a0fe401c50d5db1b691ddf1a4cf477f7e17b967568",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:78aa2f01f92b3953@4038eb87f934f416",
+        "TERM:EO:9193:8b0e5d021bb6307f@b795f262890c484a",
+        "TERM:EO:9193:8b0e5d021bb6307f@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-6",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "bab89d3fd856d0f089e9a11f00b8d496a8f5df9ee66bfadfe85acf8d48629297",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:47cd925911001eb6@4038eb87f934f416",
+        "TERM:EO:9193:c143519dadb32bd2@b795f262890c484a",
+        "TERM:EO:9193:c143519dadb32bd2@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-7",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "445f61b942d89e9badcb309218055ff33607e2b8b141f7a89ea5a391f28f8206",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-8",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "cbabfc4a6b546aea8830afcf2dd77be02daaa81aa01bf55bbd6f49deec2a5d5f",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-9",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "3eec4355ba1aa6f43468a76b0330e03caec0ec61ca53ffa07ea90dabb159e973",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#f-10",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "4f8012c6ec92bfd51bec7f95fc0fa1c9fcddfae394c43b7ee27fbd1159c10f2a",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9193:c39b92592b8126ea@4038eb87f934f416",
+        "TERM:EO:9193:3565256ad26b0d4f@b795f262890c484a",
+        "TERM:EO:9193:3565256ad26b0d4f@a2e92f46542736a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#a-dup2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end"
+      ]
+    },
+    {
+      "clause_sha256": "5dc322a8b07404f1256f0106be45f578c003f00bb477a9782ee972b6c56216da",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#b-dup2",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "77ef6ffa2239dddaa0235c336346336e17abb2b30d7203537ac6c5a020dc5453",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#b-11",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "e15c09651aa5c010d86f6c1171b620c020d36b9f05c61e283fcfa27045d5c0e8",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#b-12",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead"
+      ]
+    },
+    {
+      "clause_sha256": "44758ab46fb2093e047946b0a8f3e9009c2e881b38359965c863e3d0e532c53d",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9193",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9193>EO:11281",
+        "ACT:EO:9193>EO:12553",
+        "ACT:EO:9193>EO:6694",
+        "ACT:EO:9193>EO:9276",
+        "ACT:EO:9193>EO:9361",
+        "ACT:EO:9193>EO:9760",
+        "ACT:EO:9193>EO:9989"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9193#b-13",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

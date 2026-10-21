@@ -228,7 +228,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12351",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12351"
@@ -292,13 +292,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12351>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12351 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12351 is the 40th number of the page-14 column and pairs with the 40th subject after joining wrapped lines, \"Providing for nuclear cooperation with EURATOM\" (offset 29894), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12351.txt (47 FR 10505, PDF pages 11-11). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12351>EO:12553@rastell-r12553nb",
@@ -2028,9 +2034,37 @@
       "text": "Instrument: EO:12351\nSource: https://www.govinfo.gov/content/pkg/FR-1982-03-11/pdf/FR-1982-03-11.pdf\nSHA-256 of the downloaded file: 8d0339ae09c487d9a61e7449bb27e94afc034cc8e2b456fdd155e60aecb8c63c\nLocation: 47 FR 10505, PDF pages 11-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 11 of 240 ===\nFederal Register /  Vol. 47, No. 48 / Thursday, March 11,1982 /  Presidential Documents 10505\nPresidential Documents\nExecutive Order 12351 of March 9, 1982\nNuclear Cooperation With EURATOM\nBy the authority vested in me as President by the Constitution and statutes of  \nthe United States of America, including Section 126a(2) of the Atomic Energy  \nAct of 1954, as amended (42 U.S.C. 2155(a)(2)), and having determined that,  \nupon the expiration of the period specified in the first proviso to Section  \n126a(2) of such Act and extended by Executive Orders No. 12193 and No.  \n12295, failure to continue peaceful nuclear cooperation with the European  \nAtomic Energy Community would be seriously prejudicial to the achievement  \nof United States nonproliferation objectives and would otherwise jeopardize  \nthe common defense and security of the United States, and having notified the  \nCongress of this determination, 1  hereby extend the duration of that period to  \nMarch 10,1983.\nTHE WHITE HOUSE,  \nM a rc h  9, 1982.\n[FR Doc. 82-6840]\nFiled 3-10-82; 10:41 am]  \nBilling code 3195-01-M\n"
     }
   },
-  "fingerprint": "a3a91b71dd9753d69dcc467bfb40720121db776a8f8362586e0f8b1a021cf42c",
+  "fingerprint": "d211648cf30ca9a02ea74811c8894c24729d7fbe8d5f3eef6575fd9d3c945459",
   "instrument_id": "EO:12351",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "a51501e3c757b041dbea722bf54485a2c67b822824ca6f81234bda685a021e72",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12351",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12351>EO:12553",
+        "ACT:EO:12351>EO:12629",
+        "ACT:EO:12351>EO:12706",
+        "ACT:EO:12351>EO:12791",
+        "ACT:EO:12351>EO:12840",
+        "ACT:EO:12351>EO:12903"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12351#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "extension"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

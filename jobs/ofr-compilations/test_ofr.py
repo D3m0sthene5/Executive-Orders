@@ -144,7 +144,8 @@ class EndToEnd(unittest.TestCase):
             self.assertEqual([f["instrument_id"] for f in frags], ["EO:5550", "EO:6022A"])  # census ids only
             self.assertFalse(frags[0]["data"]["location_verified"])
             body = (out / "texts" / "EO_6022A.txt").read_text(encoding="utf-8").split("\n\n", 1)[1]
-            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[1]["data"]["text_sha256"])
+            self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), frags[1]["data"]["body_sha256"])
+            self.assertEqual(hashlib.sha256((out / frags[1]["data"]["text_path"]).read_bytes()).hexdigest(), frags[1]["data"]["text_sha256"])
             vol["text_sha256"] = "f" * 64
             (job / "data" / "PROVENANCE.json").write_text(json.dumps(
                 {"census": "census/c.csv", "readiness": "none.csv", "volumes": [vol]}), encoding="utf-8")

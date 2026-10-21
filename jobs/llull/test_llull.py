@@ -11,6 +11,7 @@ Core claims proved here:
 import contextlib, io, json, math, shutil, subprocess, sys, tempfile, unittest
 sys.dont_write_bytecode = True
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import llull  # noqa: E402
@@ -111,10 +112,10 @@ class TestCeiling(Base):
 
     def test_flag_function(self):
         # 0.5 is above both the strict share (60/2000 = 3%) and the leads share (400/2000 = 20%)
-        self.assertIn("CEILING_EXCEEDED_EVEN_COUNTING_LEADS", llull.ceiling_flags("upheld_per_attempt", 0.5, CENSUS))
-        self.assertEqual(llull.ceiling_flags("upheld_per_attempt", 0.1, CENSUS), ["CEILING_EXCEEDED"])   # above 3%, below 20%
+        self.assertIn("PREREQUISITE_COVERAGE_EXCEEDED_EVEN_COUNTING_LEADS", llull.ceiling_flags("upheld_per_attempt", 0.5, CENSUS))
+        self.assertEqual(llull.ceiling_flags("upheld_per_attempt", 0.1, CENSUS), ["PREREQUISITE_COVERAGE_EXCEEDED"])   # above 3%, below 20%
         self.assertEqual(llull.ceiling_flags("upheld_per_attempt", 0.03, CENSUS), [])                    # at the ceiling
-        self.assertEqual(llull.ceiling_flags("ready_orders_gained", 61, CENSUS), ["CEILING_EXCEEDED"])    # counts: 60
+        self.assertEqual(llull.ceiling_flags("ready_orders_gained", 61, CENSUS), ["PREREQUISITE_COVERAGE_EXCEEDED"])    # counts: 60
         self.assertEqual(llull.ceiling_flags("ready_orders_gained", 60, CENSUS), [])
         self.assertEqual(llull.ceiling_flags("ready_orders_gained", 100, CENSUS, unlock_p90=40), [])      # unlock step adds room
         self.assertEqual(llull.ceiling_flags("usd_total", 10 ** 9, CENSUS), [])                           # costs are not capped
@@ -123,7 +124,7 @@ class TestCeiling(Base):
         code, out, _ = self.fc(*self.Q, "--p10", "0.0", "--p50", "0.5", "--p90", "1.0", "--deviation", "hoped",
                                "--census-id", "D-test-1")
         self.assertEqual(code, 3)
-        self.assertIn("CEILING_EXCEEDED", out)
+        self.assertIn("PREREQUISITE_COVERAGE_EXCEEDED", out)
         self.assertEqual(jl(self.led / "forecasts.jsonl"), [])
 
     def test_accepted_flag_stays_on_the_record(self):
@@ -131,7 +132,7 @@ class TestCeiling(Base):
                              "--census-id", "D-test-1", "--accept-flag", "owner wants the original target kept visible")
         self.assertEqual(code, 0)
         rec = jl(self.led / "forecasts.jsonl")[0]
-        self.assertIn("CEILING_EXCEEDED", rec["flags"])
+        self.assertIn("PREREQUISITE_COVERAGE_EXCEEDED", rec["flags"])
         self.assertEqual(rec["census_ceiling"]["ceiling_strict"], 60)
         self.assertEqual(run(*self.args, "check")[0], 0)
 
@@ -173,10 +174,12 @@ class TestReviewFixes(Base):
                 "--event", "upheld >= 0.5", "--prob", "0.9", "--reference-class", "upheld_per_attempt.modern_claim_no_held_end")
         for f in jl(self.led / "forecasts.jsonl"):
             run(*self.args, "outcome", "--forecast", f["forecast_id"], "--measured", "0", "--source", "research/plans/LLULL_DESIGN.md")
-        run(*self.args, "score")
+        with patch.object(llull, "registration_status", return_value=("preregistered", "verified fixture")):
+            run(*self.args, "score")
         e = json.loads((self.tmp / "output" / "CALIBRATION.json").read_text())["planners"]["claude:b"]
         self.assertAlmostEqual(e["brier"], 0.81)
-        self.assertEqual(e["trust"], "miscalibrated")
+        self.assertEqual(e["trust"], "unproven")  # five metrics share one underlying experiment
+        self.assertEqual(e["n_experiments"], 1)
 
     def test_check_fails_a_quote_missing_from_its_source(self):
         d = json.loads((self.led / "base_rates.json").read_text())
@@ -207,7 +210,8 @@ class TestOutcomeAndScore(Base):
         self.register()
         fid = jl(self.led / "forecasts.jsonl")[0]["forecast_id"]
         run(*self.args, "outcome", "--forecast", fid, "--measured", "3", "--source", "research/plans/LLULL_DESIGN.md")
-        self.assertEqual(run(*self.args, "score")[0], 0)
+        with patch.object(llull, "registration_status", return_value=("preregistered", "verified fixture")):
+            self.assertEqual(run(*self.args, "score")[0], 0)
         cal = json.loads((self.tmp / "output" / "CALIBRATION.json").read_text())
         e = cal["planners"]["claude:test"]
         self.assertEqual(e["coverage_p10_p90"], 1.0)              # 3 is inside [2, 50]
@@ -267,7 +271,10 @@ class TestCensusAndWheel(unittest.TestCase):
         names = (llull.git("ls-tree", "-r", "--name-only", commit, "--", *self.INPUTS) or "").split()
         for n in names:
             if Path(n).name.startswith(self.KEEP):
-                blob = subprocess.run(["git", "-C", str(llull.REPO), "show", "%s:%s" % (commit, n)], capture_output=True).stdout
+                result = subprocess.run(["git", "-C", str(llull.REPO), "show", "%s:%s" % (commit, n)], capture_output=True)
+                if result.returncode:
+                    self.skipTest("historical census blob unavailable in this sparse clone: " + n)
+                blob = result.stdout
                 (d / n).parent.mkdir(parents=True, exist_ok=True)
                 (d / n).write_bytes(blob)
         return llull.Data(repo=d)
@@ -335,7 +342,7 @@ class TestCensusAndWheel(unittest.TestCase):
             p.write_text(json.dumps(spec))
             w = llull.run_wheel(p, census)
             fails = [c for c in w["questions"] if c["state"] == "auto_fail"]
-            self.assertTrue(any("above the Y2 joint ceiling of 60" in c["evidence"] for c in fails))
+            self.assertTrue(any("above the Y2 observed joint prerequisite coverage of 60" in c["evidence"] and c["state"] == "fires" for c in w["questions"]))
             self.assertTrue(any("not a registered gate" in c["evidence"] for c in fails))
             self.assertLessEqual(len(w["questions"]), 12)
             self.assertEqual(w["questions"][0]["state"], "auto_fail")
@@ -568,6 +575,20 @@ class TestOutcomeBaseRates(Base):
         self.assertEqual(code, 4)
         self.assertIn("outcome %s measured 0.06" % oid, out)
 
+    def test_check_rejects_old_identifiers_left_inside_derived_from(self):
+        oid = self.outcome(0.06)
+        self.assertEqual(self.baserate(oid, "--num", "3", "--den", "50")[0], 0)
+        d = json.loads((self.led / "base_rates.json").read_text())
+        row = next(r for r in d["rows"] if r["key"] == "upheld_per_attempt.llull_t")
+        self.assertEqual(llull.outcome_rate_problems(row["key"], row, llull.Ledger(self.led)), [])
+        correct = dict(row["derived_from"])
+        for field, value in (("outcome_id", "O-20260101-999"), ("forecast_id", "L-20260101-999")):
+            row["derived_from"] = {**correct, field: value}
+            (self.led / "base_rates.json").write_text(json.dumps(d))
+            code, out, _ = run(*self.args, "check")
+            self.assertEqual(code, 4)
+            self.assertIn("derived_from identifiers disagree", out)
+
     def test_binary_outcomes_are_not_rates(self):
         run(*self.args, "forecast", "--plan-id", "B", "--planner", "claude:t", "--quantity", "upheld_per_attempt", "--event",
             "e", "--prob", "0.3", "--reference-class", "upheld_per_attempt.modern_claim_no_held_end")
@@ -657,14 +678,98 @@ class TestNotPreregistered(unittest.TestCase):
         self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "not_preregistered")
         self.assertEqual(run(*self.args, "check")[0], 0)
 
-    def test_uncommitted_forecast_is_unchecked_not_excluded(self):
+    def test_uncommitted_forecast_is_unchecked_and_excluded(self):
         git_commit(self.tmp, {"README": "x"})
         f = self.forecast("L-4", "runs/L-4")
         (self.led / "forecasts.jsonl").write_text(self.lines(f))
         self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "unchecked")
+        (self.led / "outcomes.jsonl").write_text(self.lines(self.outcome("L-4", "O-4")))
+        scored = llull.score_all(llull.Ledger(self.led))
+        self.assertEqual(scored["n_scored"], 0)
+        self.assertIn("L-4", scored["unchecked_excluded"])
+
+    def test_committed_forecast_with_uncommitted_run_is_unchecked(self):
+        f = self.forecast("L-4", "runs/L-4")
+        git_commit(self.tmp, {self.FC: self.lines(f)})
+        self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "unchecked")
+
+    def test_post_run_forecast_revision_cannot_borrow_original_registration(self):
+        f = self.forecast("L-4", "runs/L-4")
+        git_commit(self.tmp, {self.FC: self.lines(f)})
+        git_commit(self.tmp, {"runs/L-4/OUT.json": "{}"})
+        revised = dict(f, p50=7.0)
+        git_commit(self.tmp, {self.FC: self.lines(revised)})
+        (self.led / "outcomes.jsonl").write_text(self.lines(self.outcome("L-4", "O-4")))
+        ledger = llull.Ledger(self.led)
+        self.assertEqual(llull.registration_status(revised, ledger)[0], "unchecked")
+        self.assertEqual(llull.score_all(ledger)["n_scored"], 0)
+
+    def test_outcome_source_before_forecast_is_retrospective(self):
+        f = self.forecast("L-4", "runs/L-4")
+        git_commit(self.tmp, {"old-result.json": "{}"})
+        git_commit(self.tmp, {self.FC: self.lines(f)})
+        git_commit(self.tmp, {"runs/L-4/OUT.json": "{}"})
+        o = self.outcome("L-4", "O-4")
+        o["source"] = "old-result.json"
+        (self.led / "outcomes.jsonl").write_text(self.lines(o))
+        self.assertEqual(llull.registration_status(f, llull.Ledger(self.led))[0], "not_preregistered")
+
+
+class TestOutcomeCorrections(Base):
+    def setUp(self):
+        super().setUp()
+        self.L = llull.Ledger(self.led)
+        self.f = {"forecast_id": "F", "rev": 1, "kind": "interval", "quantity": "hit_rate",
+                  "p10": 0.03, "p50": 0.3, "p90": 0.6, "planner": {"agent": "a", "model": "m"}, "flags": []}
+        llull.append_jsonl(self.L.forecasts, self.f)
+
+    def test_correction_appends_and_current_score_uses_adjudicated_value(self):
+        args = [*self.args, "outcome", "--forecast", "F", "--source", "research/plans/LLULL_DESIGN.md"]
+        self.assertEqual(run(*args, "--measured", "0.8")[0], 0)
+        original = jl(self.L.outcomes)[0]
+        self.assertEqual(run(*args, "--corrects", original["outcome_id"], "--correction-reason", "wrong clause credit",
+                             "--measured", "0.7", "--experiment-id", "single-probe")[0], 0)
+        rows = jl(self.L.outcomes)
+        self.assertEqual(rows[0], original)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(llull.current_outcomes(self.L)["F"]["measured"], 0.7)
+        with patch.object(llull, "registration_status", return_value=("preregistered", "verified fixture")):
+            cal = llull.score_all(self.L)
+        self.assertEqual((cal["n_outcome_records"], cal["n_current_outcomes"], cal["n_scored"]), (2, 1, 1))
+        self.assertAlmostEqual(cal["planners"]["a:m"]["median_log_ratio"], math.log(0.7 / 0.3))
+
+    def test_incomplete_gate_correction_is_untested_not_zero_or_one(self):
+        args = [*self.args, "outcome", "--forecast", "F", "--source", "research/plans/LLULL_DESIGN.md"]
+        run(*args, "--measured", "1")
+        oid = jl(self.L.outcomes)[0]["outcome_id"]
+        code, _, err = run(*args, "--corrects", oid, "--correction-reason", "missing two of three plants",
+                           "--resolution-status", "untested")
+        self.assertEqual(code, 0, err)
+        cal = llull.score_all(self.L)
+        self.assertEqual(cal["n_scored"], 0)
+        self.assertEqual(cal["unresolved_outcomes"], {"F": "untested"})
+        self.assertIsNone(llull.current_outcomes(self.L)["F"]["measured"])
+
+    def test_unlinked_or_unpinned_duplicate_outcome_is_refused(self):
+        llull.append_jsonl(self.L.outcomes, {"forecast_id": "F", "outcome_id": "O-1", "measured": 0.8})
+        llull.append_jsonl(self.L.outcomes, {"forecast_id": "F", "outcome_id": "O-2", "measured": 0.7})
+        with self.assertRaises(llull.Refusal):
+            llull.score_all(self.L)
+
+    def test_unchecked_forecast_cannot_enter_selfscore(self):
+        llull.append_jsonl(self.L.outcomes, {"forecast_id": "F", "outcome_id": "O-1", "measured": 0.8})
+        scored = llull.selfscore_all(self.L, "rule", is_after=lambda _: True)
+        self.assertEqual(scored["n_out_of_sample"], 0)
+        self.assertEqual(scored["n_unchecked"], 1)
 
 
 class TestSelfScore(Base):
+    def setUp(self):
+        super().setUp()
+        self.registration = patch.object(llull, "registration_status", return_value=("preregistered", "verified fixture"))
+        self.registration.start()
+        self.addCleanup(self.registration.stop)
+
     def put(self, fid, flags, p10, p90, measured, commit):
         f = {"forecast_id": fid, "rev": 1, "kind": "interval", "quantity": "accepted_items", "p10": p10, "p50": (p10 + p90) / 2,
              "p90": p90, "reference_class": "new:t", "flags": flags, "planner": {"agent": "a", "model": "m"},
@@ -674,8 +779,8 @@ class TestSelfScore(Base):
                                                          "source": "research/plans/LLULL_DESIGN.md"})
 
     def test_only_out_of_sample_misses_count(self):
-        self.put("L-1", ["CEILING_EXCEEDED"], 10, 20, 0, "old")          # miss, flagged, but registered before the rule
-        self.put("L-2", ["CEILING_EXCEEDED"], 10, 20, 1, "new")          # miss, flagged: counts
+        self.put("L-1", ["PREREQUISITE_COVERAGE_EXCEEDED"], 10, 20, 0, "old")          # miss, flagged, but registered before the rule
+        self.put("L-2", ["PREREQUISITE_COVERAGE_EXCEEDED"], 10, 20, 1, "new")          # miss, flagged: counts
         self.put("L-3", [], 10, 20, 2, "new")                            # miss, not flagged: counts against recall
         self.put("L-4", [], 10, 20, 15, "new")                           # not a miss
         self.put("L-5", ["NO_CENSUS_CAP"], 10, 20, 99, "new")            # miss, NO_CENSUS_CAP is not a miss warning
@@ -697,7 +802,7 @@ class TestSelfScore(Base):
     def test_default_rule_compares_resolved_hashes(self):
         # registered_commit is stored short, rule_commit full: a forecast registered AT the rule commit is in-sample
         rc = llull.git("rev-parse", "HEAD")
-        self.put("L-1", ["CEILING_EXCEEDED"], 10, 20, 0, rc[:9])
+        self.put("L-1", ["PREREQUISITE_COVERAGE_EXCEEDED"], 10, 20, 0, rc[:9])
         self.put("L-2", [], 10, 20, 0, "not-a-commit")
         res = llull.selfscore_all(llull.Ledger(self.led), rc)
         self.assertEqual((res["n_in_sample"], res["n_out_of_sample"]), (2, 0))
@@ -749,7 +854,7 @@ class TestPremortemDiscriminates(unittest.TestCase):
             self.assertIn(c["state"], ("auto_fail", "fires", "cannot_run"))
         rest = [c for c in w["questions"] if c["state"] != "auto_fail"]
         self.assertEqual([c["past_misses"] for c in rest], sorted((c["past_misses"] for c in rest), reverse=True))
-        self.assertEqual(w["questions"][0]["state"], "auto_fail")
+        self.assertEqual(w["questions"][0]["state"], "fires")  # coverage is not a proved bound
 
     def test_cannot_run_when_the_check_has_no_census(self):
         w = self.wheel([{"step": "draft 500 orders as claims", "requires": []}], census=None)

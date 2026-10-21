@@ -15,6 +15,7 @@ from __future__ import annotations
 import csv
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -46,10 +47,87 @@ def previous_found(prior):
     out = {}
     for src in prior.jsonl("SOURCES.jsonl"):
         wid = src.get("wanted_id")
-        if wid in found_ids and wid not in out and src.get('matches_expected_sha256') is not False:
+        if wid in found_ids and wid not in out:
             text = prior.read(src["text_path"]) if src.get("text_path") else None
             out[wid] = (src, text)
     return out
+
+
+def prior_history(prior, history_file, latest_records):
+    """Keep unsuccessful work and attempts across successive bounded runs."""
+    records, seen = [], set()
+    for row in (prior.jsonl(history_file) if prior else []) + list(latest_records):
+        key = json.dumps(row, ensure_ascii=False, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            records.append(row)
+    return records
+
+
+def revalidate_previous(found, by_id):
+    """Validate even offline and for retained sources outside this run's plan."""
+    import fetch_ladder
+    valid, stale, audit = {}, {}, []
+    for wid, (source, text) in found.items():
+        src = dict(source)
+        current = by_id.get(wid)
+        fallback = fetch_ladder.Wanted(
+            wanted_id=wid, instrument_ids=src.get("instrument_ids") or [],
+            urls=[src.get("requested_url") or src.get("url")], citation=src.get("citation") or "",
+            extra={"parent_citation": src.get("embedded_in_request") or "",
+                   "report_date": src.get("report_date_request"),
+                   **{k: src[k] for k in ("as_of", "required_date", "edition_year") if k in src}})
+        why = fetch_ladder.carried_defect(current or fallback, src, text)
+        if not why and not re.fullmatch(r"[0-9a-fA-F]{64}", str(src.get("sha256") or "")):
+            why = "invalid_receipt: missing or malformed source SHA-256"
+        if not why and not fetch_ladder.request_contract.http_url(src.get("url")):
+            why = "invalid_receipt: missing or malformed source URL"
+        if current is None and src.get("carried_defect"):
+            why = why or src["carried_defect"]
+        src["evidence_tier"] = fetch_ladder.evidence_tier(src, text)
+        audit.append({"wanted_id": wid, "sha256": src.get("sha256"), "url": src.get("url"),
+                      "status": "rejected" if why else "passed_retrieval_checks",
+                      "reason": why, "current_request_available": current is not None,
+                      "evidence_tier": src["evidence_tier"],
+                      "scope": "retrieval checks; no authentication or legal conclusion"})
+        if why:
+            stale[wid] = why
+        else:
+            src.pop("carried_defect", None)
+            valid[wid] = (src, text)
+    return valid, stale, audit
+
+
+def preserve_rejected(prior, found, stale, out):
+    """Keep invalid receipts and exact text outside the usable SOURCES catalog."""
+    import fetch_ladder
+    records, seen = [], set()
+
+    def keep(record, text):
+        key = (record.get("wanted_id"), record.get("sha256"), record.get("reason"))
+        if key in seen:
+            return
+        seen.add(key)
+        r = dict(record)
+        if text is not None:
+            rel = "rejected_texts/" + fetch_ladder.unique_file_name(
+                str(r.get("wanted_id")) + ":" + str(r.get("sha256")))
+            (out / rel).parent.mkdir(parents=True, exist_ok=True)
+            (out / rel).write_bytes(text)
+            r["preserved_text_path"] = rel
+            r["preserved_text_sha256"] = fetch_ladder.sha256_bytes(text)
+        records.append(r)
+
+    if prior:
+        for record in prior.jsonl("REJECTED_PRIOR_SOURCES.jsonl"):
+            text = prior.read(record["preserved_text_path"]) if record.get("preserved_text_path") else None
+            keep(record, text)
+    for wid, why in stale.items():
+        src, text = found[wid]
+        keep({"wanted_id": wid, "sha256": src.get("sha256"), "url": src.get("url"),
+              "reason": why, "source_record": src, "from": prior.label if prior else None,
+              "status": "needs_revalidation", "usable_for_request": False}, text)
+    return records
 
 
 def main():
@@ -82,7 +160,8 @@ def main():
         print("Note: OFR index snapshot (jobs/fr-originals/data/ofr_index) not found; EO citations get fewer routes.")
     hints = ladder_queue.load_hints(repo)
 
-    queue_items, problems = ladder_queue.read_fetch_queue(repo / ladder_queue.FETCH_QUEUE, eo_index)
+    request_audit = []
+    queue_items, problems = ladder_queue.read_fetch_queue(repo / ladder_queue.FETCH_QUEUE, eo_index, audit=request_audit)
     shared = ladder_queue.shared_source_wanted(repo, eo_index, hints) if (repo / ladder_queue.SHARED).exists() else []
     opus, more = ladder_queue.opus_refetch_wanted(repo)
     problems += more
@@ -93,19 +172,30 @@ def main():
         prior_dir = os.environ.get('JOB_PRIOR_OUTPUT_DIR')
         prior = (prior_output.PriorOutput.from_folder(prior_dir) if prior_dir
                  else prior_output.PriorOutput.from_git_head(repo, f'jobs/{name}/output'))
+    imports = repo / 'research/repair-20261020/SOURCE_IMPORTS.json'
+    if prior is not None and imports.is_file():
+        spec = json.loads(imports.read_bytes())
+        if spec.get('schema') != 'eo-source-generation-imports/v1':
+            raise ValueError('invalid pinned source-generation import schema')
+        prior = prior_output.UnionPriorOutput([prior] + [
+            prior_output.PriorOutput.from_git_ref(repo, f'jobs/{name}/output', ref)
+            for ref in spec['commits']],
+            requests={w.wanted_id: w for w in queue_items + shared + opus})
     all_prior_found = previous_found(prior)
-    carried = {} if os.environ.get('JOB_REFETCH') == '1' else dict(all_prior_found)
+    previous_unresolved = prior_history(
+        prior, 'PREVIOUS_UNRESOLVED.jsonl',
+        [r for r in prior.csv_rows('RESULTS.csv') if r.get('result') != 'found'] if prior else [])
+    previous_attempts = prior_history(prior, 'PREVIOUS_ATTEMPTS.jsonl',
+                                     prior.jsonl('ATTEMPTS.jsonl') if prior else [])
     items = queue_items + shared + opus
     # An earlier found record that fails today's checks (gzip bytes, a partial statute, a listing page, a current
     # edition for a dated question ...) is walked again instead of carried for ever. Until it is walked (outside a
-    # bounded plan, or not reached) the old record is kept and marked; its hash is never dropped.
-    stale = {}
+    # bounded plan, or not reached) its original receipt and bytes are quarantined,
+    # never published as a usable found source.
     by_id = {w.wanted_id: w for w in items}
-    for wid, (src, text) in list(carried.items()):
-        why = fetch_ladder.carried_defect(by_id[wid], src, text) if (wid in by_id and not offline) else ""
-        if why:
-            stale[wid] = why
-            del carried[wid]
+    valid_prior, stale, revalidation_audit = revalidate_previous(all_prior_found, by_id)
+    carried = {} if os.environ.get('JOB_REFETCH') == '1' else dict(valid_prior)
+    rejected_prior = preserve_rejected(prior, all_prior_found, stale, out)
     if stale:
         print(f"{len(stale)} earlier found record(s) fail today's checks and will be walked again:")
         for wid, why in sorted(stale.items()):
@@ -127,8 +217,8 @@ def main():
                       and not fetch_ladder.plan_routes(w)]
         # A request that ended no_route was never tried with a route: once a route exists (e.g. the report-date lane)
         # it ranks with the untried requests, not behind every untried one.
-        tried = {r['wanted_id'] for r in prior.csv_rows('RESULTS.csv')
-                 if r.get('result') in UNSUCCESSFUL and r.get('result') != 'no_route'} if prior else set()
+        tried = {r['wanted_id'] for r in previous_unresolved
+                 if r.get('result') in UNSUCCESSFUL and r.get('result') != 'no_route'}
         plan_used = make_queue_first_plan(routable,set(carried),tried,repo/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv',
                                          limit=env_int('JOB_PLAN_LIMIT') or 50,budget=env_int('JOB_MAX_REQUESTS') or 300,
                                          # A record already re-walked once (it supersedes a defective one) and still
@@ -204,15 +294,18 @@ def main():
     # Bounded plans must not erase evidence acquired by an earlier pass. Keep
     # exact prior bytes and receipts even when those requests are outside this
     # pass. These are carried evidence, not new acquisitions or readiness gains.
-    if plan_used:
+    if prior:
         from plan import retain_unselected
-        old_sources, old_results = retain_unselected(prior, all_prior_found, {w.wanted_id for w in items}, out)
-        for src, row in zip(old_sources, old_results):
-            if src.get("wanted_id") in stale:
-                src["carried_defect"] = stale[src["wanted_id"]]
-                row["why"] = "carried with a defect, to be walked again: " + stale[src["wanted_id"]]
+        old_sources, old_results = retain_unselected(prior, valid_prior, {w.wanted_id for w in items}, out)
         sources.extend(old_sources)
         results.extend(old_results)
+        selected = {w.wanted_id for w in items}
+        previous_rows = {r["wanted_id"]: r for r in prior.csv_rows("RESULTS.csv")} if prior else {}
+        for wid, reason in stale.items():
+            if wid not in selected:
+                row = dict(previous_rows[wid], result="needs_revalidation", why=reason,
+                           attempts=0, text_path="", carried_forward_from="")
+                results.append(row)
 
     for n, w in enumerate(items, 1):
         print(f"[{n}/{len(items)}] {w.wanted_id} ({len(w.instrument_ids)} orders)")
@@ -295,12 +388,17 @@ def main():
     for a in attempts:
         a.pop("path", None)
     write_jsonl("SOURCES.jsonl", sources)
+    write_jsonl("QUEUE_AUDIT.jsonl", request_audit)
+    write_jsonl("UNRESOLVED_REQUESTS.jsonl", [a for a in request_audit if a["status"] in ("invalid", "unresolved")])
+    write_jsonl("SOURCE_REVALIDATION.jsonl", revalidation_audit)
+    write_jsonl("REJECTED_PRIOR_SOURCES.jsonl", rejected_prior)
     if plan_used:
         fetch_ladder.write_text_lf(out/'SOURCE_PLAN.json',json.dumps(plan_used,sort_keys=True,indent=2)+'\n')
     write_jsonl("ATTEMPTS.jsonl", attempts)
     write_jsonl("EXHAUSTED_PROPOSED.jsonl", exhausted)
-    if plan_used and prior:
-        write_jsonl('PREVIOUS_UNRESOLVED.jsonl', [r for r in prior.csv_rows('RESULTS.csv') if r.get('result')!='found'])
+    if prior:
+        write_jsonl('PREVIOUS_UNRESOLVED.jsonl', previous_unresolved)
+        write_jsonl('PREVIOUS_ATTEMPTS.jsonl', previous_attempts)
     with open(out / "RESULTS.csv", "w", encoding="utf-8", newline="") as fh:
         wr = csv.DictWriter(fh, fieldnames=RESULT_COLUMNS, lineterminator="\n")
         wr.writeheader()
@@ -318,6 +416,13 @@ def main():
         "found_carried_forward": sum(1 for r in results if r["carried_forward_from"]),
         "earlier_found_failing_todays_checks": len(stale),
         "earlier_found_carried_with_defect": sum(1 for s in sources if s.get("carried_defect")),
+        "quarantined_prior_sources": len(rejected_prior),
+        "retained_prior_failure_records": len(previous_unresolved),
+        "retained_prior_attempt_records": len(previous_attempts),
+        "needs_revalidation": counts.get("needs_revalidation", 0),
+        "source_evidence_tiers": dict(Counter(s.get("evidence_tier", "unclassified") for s in sources)),
+        "request_validation": dict(Counter(a["status"] for a in request_audit)),
+        "unresolved_request_tasks": sum(t.get("status") == "unresolved" for a in request_audit for t in a["tasks"]),
         "exhausted_proposed_items": counts.get("exhausted_proposed", 0),
         "exhausted_proposed_lines": len(exhausted),
         "retry_later": counts.get("retry_later", 0), "no_route": counts.get("no_route", 0),

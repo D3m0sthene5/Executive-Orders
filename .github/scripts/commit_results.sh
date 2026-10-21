@@ -6,10 +6,21 @@ set -euo pipefail
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+ALL_JOBS="$JOBS"
+if [ -f oversized/runner-freshness/ATTEMPTS.json ]; then
+  JOBS="$(python - <<'PY'
+import json
+from pathlib import Path
+print(' '.join(r['job'] for r in json.loads(Path('oversized/runner-freshness/ATTEMPTS.json').read_text()) if r['publish_output']))
+PY
+)"
+fi
+
 # Fetch/check even before the first push: fast-forward ancestry alone does not
 # prove that the branch still contains the code and inputs this run consumed.
 check_freshness() {
   git fetch -q origin "$BRANCH"
+  [ -z "$JOBS" ] && return 0
   python .github/scripts/result_freshness.py check "origin/$BRANCH" \
     oversized/runner-freshness/publication-check.json $JOBS
 }
@@ -17,6 +28,9 @@ check_freshness() {
 paths=()
 for name in $JOBS; do
   [ -d "jobs/$name/output" ] && paths+=("jobs/$name/output")
+done
+for name in $ALL_JOBS; do
+  [ -d "jobs/_attempts/$name" ] && paths+=("jobs/_attempts/$name")
 done
 if [[ " $JOBS " == *" daily-digest "* ]] && [ -f jobs/daily-digest/output/DIGEST.md ]; then
   python - <<'PYDIGEST'

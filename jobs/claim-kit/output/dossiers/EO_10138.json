@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10138",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10138"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10138>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10138>EO:12553@rastell",
@@ -451,9 +457,42 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Toledo, Lorain & Fairport Dock Company or its employees in the conditions out of which the said dispute arose."
     }
   },
-  "fingerprint": "7448bdfdd92ff08d5a194ea3003849da6cbc86ee0879dc228312526d64fe5052",
+  "fingerprint": "55492264bec571019113f3074c692fc6e36b6b0f5a54e07c5a653cab9beaf7e2",
   "instrument_id": "EO:10138",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "bb36f6c1e8ef6deb520cb409d749ef5b1061017d19c84457a49c9ffd623015ab",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10138",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10138>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10138:74f8685c030b8515@f64f31b0e582fe27",
+        "TERM:EO:10138:35aa3c0273ebb524@f64f31b0e582fe27",
+        "TERM:EO:10138:74f8685c030b8515@94c793286dc25dae",
+        "TERM:EO:10138:35aa3c0273ebb524@94c793286dc25dae",
+        "TERM:EO:10138:993516799027c17c@550c553542499b9c",
+        "TERM:EO:10138:a605ee5b0e3017a6@550c553542499b9c",
+        "TERM:EO:10138:63dff26c4f8989a6@13a0a4876d2946e3",
+        "TERM:EO:10138:b4cf5c05411a0e7f@13a0a4876d2946e3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10138#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

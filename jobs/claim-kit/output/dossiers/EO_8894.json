@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8894",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8894"
@@ -107,6 +107,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -118,9 +122,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:8894>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8894 ofSeptember 8, 1941,': number and date match the target's signing date. Target text: jobs/fr-originals/data/full_run/texts/EO_8894.txt (6 FR 4681, PDF pages 5-6). EO 8894 is itself the EO 8894 that replaced EO 8283's section 6 text (probe R9830P). DOSSIER DEFECT: the clause inventory 'EO:8894#whole' spans offsets 0-5677 of the held file, which starts with the neighbouring ICC carrier list (Exhibit C); EO 8894's own text begins at the 'EXECUTIVE ORDER / Amending Certain Provisions of the Civil Service Rules' heading on PDF page 5 and ends at the '[No. 88941' footer on PDF page 6. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8894>EO:9830@rastell",
@@ -432,9 +438,29 @@
       "text": "Except as provided in section 7 of \nthis rule, a person holding a position \nwhen it is placed in the classified (com­\npetitive) service or otherwise is made \nsubject to competitive examination shall, \nupon recommendation to the Commission \nby the head of the department or agency \nin which he is employed, have all the \nrights which he would have acquired if \nappointed thereto by competitive exam­\nination: Provided:"
     }
   },
-  "fingerprint": "12d08aed1a848b75b0261b55c442d1296ec53f74037194bcaf2aba4ea067249a",
+  "fingerprint": "d30b4ee3b535d07f94f452341daf4c69b0aac97e53e32dec4df0e0f05f2af20b",
   "instrument_id": "EO:8894",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "a6fa43de929d88ce7758b371278b4bc7d9767173fbea4c11e7340a7ea2190d7e",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8894",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8894>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8894#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

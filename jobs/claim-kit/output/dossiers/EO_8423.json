@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8423",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8423"
@@ -104,6 +104,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -115,9 +119,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:8423>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8423 of May 28, 1940. ,': number and date match the target's signing date (1940-05-28). Dossier clause inventory (offsets 683-1597) is EO 8423's own text. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8423>EO:9830@rastell",
@@ -316,9 +322,37 @@
       "text": "The nominating or appointing officer shall make selections for the first vacancy from not more than the highest three persons certified, or from the register, with sole reference to merit and fitness, unless objection shall be made and sustained by the Commission, to one or more of the persons certified, for any of the reasons stated in Rule V, section 3, or in the case of positions in Federal agencies concerned in preparedness and the national defense program, for such other reasons as may be approved by the Commission.\""
     }
   },
-  "fingerprint": "0b66ca52f5e7644d43b9664275899f67ae3b445a45b519ff6b53e27ba1b7e298",
+  "fingerprint": "679b854964450677acb948c0e14c7b63982f0ba16001dd833cf531f517e5fb40",
   "instrument_id": "EO:8423",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "6a7cc3597c115cd84a19f797eea06d0b284bf0c16467d775a3f930602fe20a32",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8423",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8423>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:8423:7ecb5e987b204762@07f3535f759b86ff",
+        "TERM:EO:8423:7ecb5e987b204762@33c735bf216b7929",
+        "TERM:EO:8423:a05d7aa42a2b9300@5c902d791ac89de1"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8423#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10878",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10878"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording in the order: the enacting words are 'it is hereby ordered ... are revoked' and the document is headed 'Executive Order 12553 of February 25, 1986' and dated 'THE WHITE HOUSE, February 25, 1986'. on_signing is a reading (revocation operative on signing) that the reviewer must accept; the Federal Register publication date (1986-03-03) is not the effective date.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10878>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Table row for 10878 found at char 10751 (PDF page 11 of the 12553 text layer), the only occurrence of the number in the file. 12553 lists the order in the 'No.' column; the enacting sentence also revokes 'any amendments thereto' (recorded here, not a separate target). Row lies between the enacting sentence and the signature block, on PDF page 11, inside the 12553 document and not inside a subject description. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10878>EO:12553@rastell",
@@ -1290,9 +1296,43 @@
       "text": "The holder of \nsuch certificate will then qualify subject \nto the terms of the certificate as a small \nbusiness concern for Government pro­\ncurement purposes."
     }
   },
-  "fingerprint": "b0cdbee46753b4763d4abae9a0f599fd1f63736a1169403d109c67a533896c97",
+  "fingerprint": "18906846fd446f41e18a98e525b18cb9264bec9eee24d623085109ef8c8db3de",
   "instrument_id": "EO:10878",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "916eacd7e1a4a7facdd0cf82ba02d93820f2fc9931a4bc5fad8ffbe81dc08722",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10878",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10878>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10878:e82ec6fc8b8d8d24@6cfabe0bc5a80d0c",
+        "TERM:EO:10878:178da0ba1089d13b@6cfabe0bc5a80d0c",
+        "TERM:EO:10878:245683fb53d188e5@4841e9834d67681b",
+        "TERM:EO:10878:e1e8fe3bf46a7d27@4841e9834d67681b",
+        "TERM:EO:10878:1efe04e8a199cf5f@f95f0b8db214e94a",
+        "TERM:EO:10878:65d334873c009d6b@f95f0b8db214e94a",
+        "TERM:EO:10878:1219926f97d35a94@bc34114ffbd0b17d",
+        "TERM:EO:10878:5e1cb1766266625a@bc34114ffbd0b17d"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10878#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

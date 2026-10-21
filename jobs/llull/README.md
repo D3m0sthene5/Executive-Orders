@@ -31,11 +31,11 @@ another ledger (used by the tests).
 
 | Part | Command | What it does |
 |---|---|---|
-| BRIER | `forecast`, `outcome`, `score` | Registers an 80% interval or a probability **before** a run, resolves it from a committed file, scores Brier, normalized interval score, coverage, optimism (median log of measured/p50), and skill against the outside view, per planner `agent:model`. A planner is "unproven" until 5 resolved forecasts. |
-| Domesday | `census` | Zero-agent, per-item count of orders that hold **every** required input. Strict ceiling = all gates held; leads ceiling = leads count too. Prints the product of marginals and flags `ASSUMED_INDEPENDENCE` when it is 1.5x or more above the joint count. |
-| Wheel | `premortem` | Plan step x 10 failure modes (`failure_modes.json`). Each mode has a mechanical check; a question is emitted only when the check **fires** on that step or **cannot run** (needs a census, `reference_class`, `producer_model`/`reviewer_model`, `access_checked`, `approval`), and every question shows the plan-specific evidence. Checks that ran and passed are counted, not asked, so a clean plan gets 0 questions. In prose plans a paragraph line belongs to the step (heading, list item) above it, and a stated upheld/accepted/ready rate (`>= 50%`, `p50 0.15`) above the census strict share fires `UNMEASURED_PREREQUISITE`; a fetch or by-hand word negated just before it (`never fetch`) is not asked about. Order: `auto_fail` (structured plan only: number above the census ceiling, `requires_unmeasured`, unregistered gate, proxy unit), then by how many of the 12 past misses the mode caused. At most 2 per mode and 12 in all. |
+| BRIER | `forecast`, `outcome`, `score` | Registers an 80% interval or a probability **before** a run, resolves it from a committed file, scores Brier, normalized interval score, coverage, optimism (median log of measured/p50), and skill against the outside view, per planner `agent:model`. A planner is "unproven" until at least 5 resolved forecasts from at least 5 underlying experiment groups. |
+| Domesday | `census` | Zero-agent, per-item count of orders that hold **every** required input. Held coverage = all gates held; coverage with leads counts leads too. Neither is a proved bound. Prints the product of marginals and flags `ASSUMED_INDEPENDENCE` when it is 1.5x or more above the joint count. |
+| Wheel | `premortem` | Plan step x 10 failure modes (`failure_modes.json`). Each mode has a mechanical check; a question is emitted only when the check **fires** on that step or **cannot run** (needs a census, `reference_class`, `producer_model`/`reviewer_model`, `access_checked`, `approval`), and every question shows the plan-specific evidence. Checks that ran and passed are counted, not asked, so a clean plan gets 0 questions. In prose plans a paragraph line belongs to the step (heading, list item) above it, and a stated upheld/accepted/ready rate (`>= 50%`, `p50 0.15`) above the census strict share fires `UNMEASURED_PREREQUISITE`; a fetch or by-hand word negated just before it (`never fetch`) is not asked about. Order: `auto_fail` (structured plan only: number above the actual pool size, `requires_unmeasured`, unregistered gate, proxy unit), then by how many of the 12 past misses the mode caused. At most 2 per mode and 12 in all. |
 | Raiffa | `rank` | Ranks actions by (expected ready orders + EVSI) / cost, with a Beta prior from a measured base rate and an exact beta-binomial preposterior. An action with no measured cost or conversion is listed UNRANKED. A zero-agent check that measures a missing input runs first. The census share is applied **only when the action's pool differs from the population the base rate was measured on** (`population` in `base_rates.json`): a rate measured on random Y2 draws already contains Y2's gate failures, so on Y2 the share is 1.0 (first use found a 55x undercount from applying it twice). On a different pool the rate moves by the ratio of strict shares (action pool / population), capped at 1: a pool that holds its prerequisites less often is discounted, a richer sub-pool (e.g. Y2LEAD) keeps the measured rate instead of being cut 10x, and a population with strict share 0 leaves the action UNRANKED. With no recorded population the action pool's own share applies. `RANK.json` shows each action's share and basis. |
-| Juvenal (part) | `selfscore` | Of the resolved misses, the share Llull flagged in advance (`CEILING_EXCEEDED` at registration), counting only forecasts whose `registered_commit` resolves to a strict descendant of the rule's commit (hashes are resolved first, so a forecast registered at the rule commit is in-sample) and not marked `not_preregistered`. A miss is a measured value outside [p10, p90], or a binary event expected at p >= 0.5 that did not happen. "unproven" until 5 out-of-sample misses; 0 today. The full Juvenal (precision of premortem questions) is not built. |
+| Juvenal (part) | `selfscore` | Of the resolved misses, the share Llull flagged in advance (`CEILING_EXCEEDED` at registration), counting only forecasts whose `registered_commit` resolves to a strict descendant of the rule's commit (hashes are resolved first, so a forecast registered at the rule commit is in-sample) and verifiably preregistered (unchecked and retrospective forecasts are excluded). A miss is a measured value outside [p10, p90], or a binary event expected at p >= 0.5 that did not happen. "unproven" until misses from 5 distinct out-of-sample experiments. The full Juvenal (precision of premortem questions) is not built. |
 
 ## Refusals and flags (proved in `test_llull.py`)
 
@@ -45,8 +45,8 @@ another ledger (used by the tests).
   `check` fails on an unmeasured seeded row.
 - A class with fewer than 3 studies needs the same wide interval. Most seeded classes have n = 1.
 - p50 more than 2x from the measured outside view needs `--deviation`.
-- p90 above the census ceiling (a count for `ready_orders_gained` / `accepted_items` / `items_reached`,
-  a share for rate quantities) prints `CEILING_EXCEEDED` and exits 3 without writing. `--accept-flag`
+- p90 above observed prerequisite coverage (a count for `ready_orders_gained` / `accepted_items` / `items_reached`,
+  a share for rate quantities) prints `PREREQUISITE_COVERAGE_EXCEEDED` and exits 3 without writing. `--accept-flag`
   registers it flagged. `--unlock-p90` adds the p90 of a registered step that creates the missing input.
 - Proxy units (tokens, payload, bytes, packets, certificates, agent-hours) are refused.
 - `--run-dir` refuses if the directory already holds committed files. `check` verifies from git history
@@ -58,8 +58,11 @@ another ledger (used by the tests).
 - `baserate --outcome O-..` makes a base-rate row whose `source` is the outcome id (same quantity, a rate
   in [0, 1], `--num/--den` equal to the measured value, a known `--population`). `check` fails the row if
   its value differs from the outcome.
-- `outcome` needs a repository-relative existing source file, one outcome per forecast, and warns
-  `ceiling_violated` when the measurement exceeds the census cap (a gate missed a route).
+- `outcome` needs a repository-relative existing source file and pins its SHA-256. Corrections append a new
+  outcome with `--corrects CURRENT_ID --correction-reason TEXT`; they never overwrite forecasts or old outcomes.
+  Use `--resolution-status untested` (without `--measured`) for an incomplete test. Such records remain
+  visible and are excluded from numeric calibration. `coverage_screen_exceeded` records a measurement
+  beyond the heuristic, not a violated legal bound.
 
 ## Seeds
 
@@ -105,9 +108,9 @@ pool were checked by hand against the raw files.
 **The strict count is not a ceiling for rates.** Bowditch Y2 drew its 50 orders at random from this pool and
 upheld 3 (6%), above the strict share (3.2% in rev 1, 1.8% in rev 2). None of the 3 upheld orders passed the gate
 in either rev (one partial revocation without a date, one whole TERM with a stated but not computed end, one
-amended), and 0 of the 50 pass it in rev 2. So the gate misses routes; `outcome` logs `ceiling_violated` in that
-case. The strict share is a gate-held share, useful for the order of magnitude, and caps a share only when the
-attempts are an unselected draw from the pool. `hit_rate` is not capped at all (it is conditional on the
+amended), and 0 of the 50 pass it in rev 2. So the gate misses routes; `outcome` logs `coverage_screen_exceeded` in that
+case. The strict share describes observed prerequisite coverage. It is not a ceiling even for an unselected
+draw: valid routes outside the screen can succeed. `hit_rate` is not capped at all (it is conditional on the
 finder's own selection). Widening the gate to catch these three would be fitting the test cases, so it is not done.
 Either way the Y2 target of 50% upheld was far above both counts. No repository source holds a
 CURRENT predicate yet, so `current_predicate_held` yields leads only (325 YES orders), never "held".
@@ -115,5 +118,47 @@ Also registered: `claim_draft_present`, `no_evidence_conflict`, `only_judgment_l
 
 ## Not built yet
 
-The `host_allows` network gate, the Juvenal score (`selfscore`), a Murphy decomposition below 10
+The `host_allows` network gate, the full Juvenal premortem-question score, a Murphy decomposition below 10
 binaries, and per-step `requires` evaluation inside `premortem` (it checks only that the gate exists).
+
+
+## Prospective calibration and correction receipts
+
+Only `preregistered` forecasts enter prospective calibration. Missing run directories, incomplete Git
+history, uncommitted runs, and unchecked registration remain visible in `unchecked_excluded`.
+A current forecast must match its first committed record; a later edit cannot borrow the original
+registration date. Unverified revisions are excluded without rewriting the forecast history.
+A source recorded before or with its forecast is retrospective. `n_scored` counts quantities;
+`n_experiments_scored` groups quantities sharing an experiment/source. These counts are not interchangeable.
+The scores are descriptive; multiple metrics from the same experiment do not become independent studies.
+
+The October 20 repair appends O-20261020-49 (MW-C2 Opus with sources, adjudicated 7/10),
+O-20261020-50 (Lambertini III plant gate untested), and O-20261020-51 (Rastell R12553 plant gate untested).
+These were written as O-20261020-44..46 on the repair branch and renumbered when the parallel branches merged;
+NORTON's forecast and outcome likewise became L-20261020-65 and O-20261020-52. A forecast with `renumbered_from`
+is proved by the commit that first registered its original record under the old id.
+It retains the mechanical 8/10 and false passes in
+history. The corresponding base-rate correction is a new pinned revision, leaving the original row intact.
+`research/production/astra-portfolio-repair-2026-10-20/mountweazel-llull/HISTORICAL_CORRECTIONS.json`
+contains exact input hashes and reasons. Missing sealed per-item verdicts were not reconstructed.
+
+`job.py` checks the ledgers and refreshes CALIBRATION, SELFSCORE and CHECK under `OUTPUT_DIR`.
+It does not append ledger entries. The runner's STATUS identifies the actual executed commit.
+
+## Executable continuation gate
+
+```sh
+python3 -I jobs/llull/gates.py --contract CONTRACT.json --observation OBSERVATION.json \
+  --repo . --out RECEIPT.json --run python3 next_batch.py
+```
+
+A contract declares `gate_id`, `planted_defects: {required, minimum_caught}`, numeric `minimums`
+and `maximums`. The observation supplies the same gate ID, `planted_defects: {present, reviewed,
+caught}`, measured `metrics`, and SHA-256-pinned repository-relative `evidence` files.
+Schemas are `llull.gate-contract/v1` and `llull.gate-observation/v1`.
+
+Missing conditions produce **untested**, failed thresholds produce **fail**, and either exits 5 before
+the command can run. A requirement of 2 catches in 3 planted controls cannot pass on 1/1. Omitting
+`--run` evaluates and records the gate without continuation. `evaluate_gate` and `require_gate` are
+available for callers, and `verify_evidence` checks source bytes. The gate verifies the recorded protocol;
+it does not establish legal conclusions or turn an AI review into human certification.

@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8564",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8564"
@@ -104,6 +104,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -115,9 +119,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:8564>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8564 of October 8, 1940.': number and date match the target's signing date (1940-10-08). DOSSIER DEFECT: the clause inventory for EO:8564 (offsets 736-1250) is EO 8563 (Schedule A Subdivision VII para. 5, temporary postal holiday workers), footer '[No. 8563]' (OCR 'tNo. 8563]'); EO 8564's own text is the following 'Amendment of Executive Order No. 8257' ending at the '[No. 8564]' footer. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8564>EO:9830@rastell",
@@ -287,9 +293,34 @@
       "text": "EXECUTIVE ORDER\nAmendment  of Executive  O rder N o. 8257  \nof S eptember 21, 1939, A uthorizing  \nExcepted A ppointments  T o M eet \nPublic E xigency\nExecutive Order No. 8257 2  of Sep­\ntember 21, 1939, authorizing excepted  \nappointments to meet public exigency,  \nis hereby amended to read as follows:\n“By virtue of the authority vested in  \nme by paragraph Eighth, subdivision  \nSECOND, section 2 of the Civil Service  \nAct (22 Stat. 404), it is hereby ordered  \nas follows:\n“Whenever, because of a public exi­\ngency directly connected with the na-\n15 CFR Part 50.  \n*4 F U . 4023.\ntional-defense program, or because of  \nthe urgency for the immediate filling of  \na position involved in such program, the  \nCivil Service Commission determines  \nthat it is in the public interest to do so,  \nit may authorize the filling of any posi­\ntion connected with the national-defense  \nprogram for a term not extending beyond  \nthe duration of the national-defense  \nprogram, without regard to the competi­\ntive requirements of the Civil Service  \nRules, subject to such noncompetitive  \ntests of fitness as the Commission may  \nprescribe."
     }
   },
-  "fingerprint": "78829313edac8782b4ea6e9df6ed24f5e978f57af2e3a14c642c2638d734d906",
+  "fingerprint": "079b319d77d6f439ef7dc1a67e16dc3c78d2e6b5fdd7be327827fb74f33e34a0",
   "instrument_id": "EO:8564",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "eb0c22c0446ba57821accb6e868d6e82b230674189789441aab4515a14f1f719",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8564",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8564>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:8564:b7adc1882966676a@eaa240c5cadc933a",
+        "TERM:EO:8564:8514ea5760c8b6c7@e7f55c095372af3c"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8564#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

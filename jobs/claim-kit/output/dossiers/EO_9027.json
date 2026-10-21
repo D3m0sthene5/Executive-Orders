@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:9027",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9027"
@@ -108,6 +108,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -119,9 +123,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:9027>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9027 of January 16, 1942.': number and date match the target's signing date. Target text: jobs/fr-originals/data/full_run/texts/EO_9027.txt (7 FR 363, PDF pages 1-1). DOSSIER DEFECT: the clause inventory for EO:9027 (offsets 713-2314) is EO 9026 (Alaska cantonment-site land withdrawal, footer '[No. 90261'); EO 9027's own text is the next order on the same page: Subdivision XL of Schedule A amended by adding paragraph '3. One general counsel.' (Board of Investigation and Research per the FR contents), ending at the '[No. 90271' footer. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:9027>EO:9830@rastell",
@@ -3679,9 +3685,33 @@
       "text": "Unlawful disclo-\nsures by carrier, etc.\nor his or its officer, agent, employee, or representative, knowingly and \nwillfully obtain transportation subject to this part at less than the \nrates, fares, or charges lawfully in effect, or shall knowingly and will-\nfully, directly or indirectly, by false claim, false billing, false repre-\nsentation, or other device or means, obtain or attempt to obtain any \nallowance, refund, or repayment in connection with or growing out of \nsuch transportation, whether with or without the consent or connivance \nof such carrier or his or its officer, agent, employee, or representative, \nwhereby the compensation of such carrier for such transportation or \nservice, either before or after payment, shall be less than the rates, \nfares, or charges lawfully in effect, shall be deemed guilty of a mis-\ndemeanor and upon conviction thereof in any court of the United \nStates of competent jurisdiction within the district in which such \noffense was in whole or in part committed, be subject for each offense \nto a fine of not more than $5,000.\n“(d) Any water carrier or other person, or any officer, agent, \nemployee, or representative thereof, who shall willfully fail or refuse \nto make a report to the Commission as required by this part, or to \nmake specific and full, true, and correct answer to any question \nwithin thirty days from the time it is lawfully required by the Com-\nmission so to do, or to keep accounts, records, and memoranda in \nthe form and manner prescribed by the Commission, or shall willfully \nfalsify, destroy, mutilate, or alter any report, account, record, \nmemorandum, book, correspondence, or other document, required \nunder this part to be kept, or who shall willfully neglect or fail to \nmake full, true, and correct entries in such accounts, records, or \nmemoranda of all facts and transactions as required under this part, \nor shall willfully keep any accounts, records, or memoranda contrary \nto the rules, regulations, or orders of the Commission with respect \nthereto, or shall knowingly and willfully file with the Commission \nany false report, account, record, or memorandum, shall be deemed \nguilty of a misdemeanor, and upon conviction thereof in any court of \nthe United States of competent jurisdiction within the district in \nwhich such offense was in whole or in part committed, be subject for \neach offense to a fine of not more than $5,000."
     }
   },
-  "fingerprint": "fb84339cd6fda9840898cdd0f487a57ea90195632002f7923141b3933eb1bf57",
+  "fingerprint": "8c01e0a093e79825975fd39e8de072bb4e675aefe611d99eea3164aad649c713",
   "instrument_id": "EO:9027",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "2774d2804f4b8906b14bd315092038039a292d11318e0d3dbb44824247a4e738",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9027",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9027>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9027:6d9a4f39d8eb2733@f76b49e11b1224a5"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9027#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

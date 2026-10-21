@@ -84,7 +84,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10103",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10103"
@@ -361,13 +361,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10103>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: same-line row on PDF page 10, number followed by its subject, matching the target's title. EO 9949's row carries the identical subject text; the number, not the subject, fixes the row. Target original held: jobs/fr-originals/data/full_run/texts/EO_10103.txt (15 FR 597, PDF pages 3-3). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10103>EO:12553@rastell-r12553nbs",
@@ -747,9 +753,81 @@
       "text": "\"Any employee so transferred shall, for a period not to exceed three years from the date of transfer and while employed by the said international organization, be considered as being on leave of absence from his employment by the Federal Government: Provided, that the employee is subsequently reemployed by the Federal Government in accordance with section 3 of this order.\""
     }
   },
-  "fingerprint": "2661baea6e722b8bdac78c549599aa5a04423ffceecf672379bb6f82ae4fe62f",
+  "fingerprint": "9892202f7fb5a8dcf3e4a16a36473f412743e214bc49fa6ba5ca99503a99f59e",
   "instrument_id": "EO:10103",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "e8eeb1079434b1dc65fcd539f75bf15569dd2cdee8da601f051efb9f8ec7c8df",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10103",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10103>EO:10804",
+        "ACT:EO:10103>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10103#lead",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "40fb2796a4e4cb1d34aefaa6aeb8291724aeb54c35e41eb7ee75b7d33de5f972",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10103",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10103>EO:10804",
+        "ACT:EO:10103>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10103:31c52ff88156c395@17f14e6e35cc6148",
+        "TERM:EO:10103:31c52ff88156c395@587f56b181c21721",
+        "TERM:EO:10103:dfd0b3de30158bb8@133cf396fcbbdd59"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10103#1",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "fixed_term"
+      ]
+    },
+    {
+      "clause_sha256": "284609a60d1c2777af78fe84e6f4559366a0d24eda373cf7a66eb1b57a99a70d",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10103",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10103>EO:10804",
+        "ACT:EO:10103>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10103:28392bf2416dba89@17f14e6e35cc6148",
+        "TERM:EO:10103:28392bf2416dba89@587f56b181c21721"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10103#2",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "fixed_term"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

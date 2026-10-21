@@ -1,0 +1,120 @@
+{
+  "schema": "portfolio-historical-corrections/v1",
+  "input_commit": "91116f879978902343dafa88490b9b19587b10da",
+  "corrections": [
+    {
+      "forecast_id": "L-20261020-13",
+      "supersedes_outcome_id": "O-20261020-3",
+      "original_measured": 0.8,
+      "corrected_measured": 0.7,
+      "basis": {
+        "k": 7,
+        "n": 10,
+        "rate": 0.7,
+        "wilson95": [
+          0.3968,
+          0.8922
+        ],
+        "clopper_pearson95": [
+          0.3475,
+          0.9333
+        ],
+        "why": "one D6 strict credit matched the right order number but the reason flagged a cut quote in a different clause, not the removed event"
+      },
+      "source": "research/production/mountweazel-2026-10-20/MW-C2_SCORES.json",
+      "source_sha256": "35e5133c59f839744e5e8487f665c51947f6e85919274f132916d070bfe6a065",
+      "defect_type_correction": {
+        "D6": {
+          "raw": [
+            1,
+            3
+          ],
+          "adjudicated": [
+            0,
+            3
+          ]
+        }
+      },
+      "limits": "Existing manual adjudication preserved; individual sealed verdicts are unavailable here. No fresh blinded experiment performed."
+    },
+    {
+      "forecast_id": "L-20261020-33",
+      "supersedes_outcome_id": "O-20261020-36",
+      "original_measured": 1,
+      "corrected_measured": null,
+      "resolution_status": "untested",
+      "contract": {
+        "schema": "llull.gate-contract/v1",
+        "gate_id": "lambertini-III-probe",
+        "planted_defects": {
+          "required": 3,
+          "minimum_caught": 2
+        },
+        "minimums": {
+          "upheld": 5
+        },
+        "maximums": {
+          "savings_overturned": 1
+        }
+      },
+      "observation": {
+        "schema": "llull.gate-observation/v1",
+        "gate_id": "lambertini-III-probe",
+        "planted_defects": {
+          "present": 1,
+          "reviewed": 1,
+          "caught": 1
+        },
+        "metrics": {
+          "upheld": 6,
+          "savings_overturned": 0
+        },
+        "evidence": [
+          {
+            "path": "research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json",
+            "sha256": "108a2e167e9359d5b09a97832e18b69f979c6c6a919ccdd524e6605ab76b3a4b"
+          }
+        ]
+      },
+      "gate_receipt": {
+        "schema": "llull.gate-receipt/v1",
+        "gate_id": "lambertini-III-probe",
+        "status": "untested",
+        "may_continue": false,
+        "conditions": [
+          {
+            "condition": "planted_defects",
+            "status": "untested",
+            "reason": "required plants were not all planted and reviewed",
+            "observed": {
+              "present": 1,
+              "reviewed": 1,
+              "caught": 1
+            },
+            "required": {
+              "required": 3,
+              "minimum_caught": 2
+            }
+          },
+          {
+            "condition": "upheld",
+            "status": "pass",
+            "reason": "minimums",
+            "observed": 6,
+            "required": 5
+          },
+          {
+            "condition": "savings_overturned",
+            "status": "pass",
+            "reason": "maximums",
+            "observed": 0,
+            "required": 1
+          }
+        ],
+        "contract_sha256": "223c1c213c492964e52dd90478d260b6d38372b9a3d97e99e5bc23fff166abfb",
+        "observation_sha256": "a185f0255ecfcc1b51619d6f550440fce00db30ac30b8fadcf1cbe286d27ab1a"
+      },
+      "basis": "Forecast L-20261020-33 requires at least 2 of 3 planted defects caught. Only 1 was planted and reviewed. Missing conditions cannot establish a pass."
+    }
+  ]
+}

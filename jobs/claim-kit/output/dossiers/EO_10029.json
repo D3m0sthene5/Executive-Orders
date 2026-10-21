@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10029",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10029"
@@ -104,13 +104,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10029>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the row in the 'No. Subject' table on PDF page 10 (offsets 4861-10267), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); page 10 holds no neighbouring document. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10029>EO:12553@rastell",
@@ -395,9 +401,40 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Northwest Airlines, Inc., or its employees in the conditions out of which the said dispute arose."
     }
   },
-  "fingerprint": "095b20e4955b61e5ffbb8b4ff8c3c0f57fafe1a89e998a63ea5b75114cc7749f",
+  "fingerprint": "9fbf5cbc8fb5be3c588863cb16b8b0f89ae6fc66ca108f3f5d28761236f83576",
   "instrument_id": "EO:10029",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "754d16a572b040d7e9437e4e3a0ee6fa778ca2ecdf9ea59d30100aa13fb13888",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10029",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10029>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10029:8659a26194b63f11@2e2f9c13ff34e88e",
+        "TERM:EO:10029:585f878060afb2cc@2e2f9c13ff34e88e",
+        "TERM:EO:10029:8659a26194b63f11@f1d42183a0cb5f38",
+        "TERM:EO:10029:585f878060afb2cc@f1d42183a0cb5f38",
+        "TERM:EO:10029:850cab7e64c399b5@bc49af7c3397eec1",
+        "TERM:EO:10029:a2dbef2b5cc6c074@bc49af7c3397eec1"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10029#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

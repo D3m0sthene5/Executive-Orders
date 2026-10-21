@@ -24,3 +24,28 @@ It writes no claim, no `EXHAUSTED.jsonl` line, no status or tier, and never chan
 certified count (0). A phrase found is a lead; a phrase not found is a lead. The tracker does not read these
 outputs; the counterevidence record counts only if a producer copies it into a claim after reading the leads
 (and after the owner rules on its adequacy for pre-1937 orders, design Q-L2).
+
+## Research progress and continuation gates
+
+`progress.py --out FILE` reconciles logged attempts, per-case AI verdicts,
+canonical claims, exact-hash checker results and the existing integrated tracker.
+It also separates Rastell acting evidence from research opportunities and Lamm
+ending records from complete claims. Every consumed file is pinned by SHA-256.
+The runner writes this as `RESEARCH_PROGRESS.json`; historical outcome files are
+preserved. Evidence, claims and ready orders are overlapping stages, not numbers
+to add. None is independent human certification.
+
+Use `probe` to select a new initial test. Use `continue` for work authorized by
+that test's frozen continuation contract:
+
+```sh
+python3 -I jobs/lambertini/lambertini.py continue --pool LAMBS --n 8 --seed TEXT \
+  --out NEW_DIRECTORY --gate-contract CONTRACT.json --gate-observation OBSERVATION.json
+```
+
+The contract and observation use `jobs/llull/gates.py` schemas. Evidence hashes
+are checked before any continuation sample is selected. Missing plants or
+measurements produce an `untested` receipt and exit 5. A failed gate also stops.
+One caught plant does not satisfy a registered two-of-three test. A new output
+directory preserves each receipt. These gates enforce this CLI's continuation
+path; they cannot enforce an agent's behavior outside the tool.

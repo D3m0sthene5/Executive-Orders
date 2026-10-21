@@ -122,6 +122,32 @@ class Fixture(unittest.TestCase):
         v = polya.f9(self.c)[0]
         self.assertEqual({k: len(o) for k, o in v["units"].items()}, {"A": 3, "B": 1, "NO_PROVISIONAL_STATUS": 2})
 
+    def test_single_blocker_keeps_all_remaining_steps(self):
+        v = polya.f9(self.c)[0]
+        report = polya.remaining_prerequisites(self.c, v['units']['NO_PROVISIONAL_STATUS'], v['steps'])
+        self.assertEqual(report['remaining_open_steps_by_kind']['clause_inventory'], 2)
+        self.assertIsNone(report['hypothetical_completion_potential'])
+        self.assertIsNone(report['realized_integrated_ready_change'])
+        self.assertNotIn('directly', polya.BYID['F9_single_blocker_frontier'][3])
+
+    def test_snapshot_changes_with_consumed_bytes_and_pins_tracker(self):
+        old = self.c.snapshot()
+        p = Path(self.tmp.name, 'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv')
+        p.write_text(p.read_text() + '\n')
+        with self.assertRaisesRegex(RuntimeError, 'Input changed'):
+            self.c.snapshot()
+        new = polya.Ctx(self.tmp.name).snapshot()
+        self.assertNotEqual(old['snapshot_sha256'], new['snapshot_sha256'])
+        self.assertIn(str(p.relative_to(self.tmp.name)), new['input_files_sha256'])
+
+    def test_partial_dossier_population_is_not_full_coverage(self):
+        p = Path(self.tmp.name, 'jobs/claim-kit/output/dossiers/EO_1.json')
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps({'instrument_id':'EO:1','missing':[]}))
+        views, why = polya.build(self.c, 'F6_missing_input_type')
+        self.assertIsNone(views)
+        self.assertIn('3 missing', why)
+
     def test_f0_is_aggregate_only(self):
         rep = polya.view_report(self.c, polya.f0(self.c)[0])
         self.assertEqual(rep["top"], [])

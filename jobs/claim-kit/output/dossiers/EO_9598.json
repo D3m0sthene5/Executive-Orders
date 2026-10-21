@@ -44,7 +44,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:9598",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9598"
@@ -109,6 +109,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -120,9 +124,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:9598>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 9598 of August 17, 1945.': number and date match the target's signing date (1945-08-17). Dossier clause inventory (offsets 5489-6814) is EO 9598's own text, but the FR page interleaves EO 9599 text immediately before it; the reviewer should confirm the inventory boundary. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:9598>EO:9830@rastell",
@@ -341,9 +347,39 @@
       "text": "Hereafter no person shall be accorded as classified civil-service status on the basis of his name having been reached on a civil-service register unless he shall have been regularly selected for appointment from a certificate issued by the Civil Service Commission for probational appointment and shall have entered on duty pursuant to selection from such certificate, or unless (a) he shall have been appointed to a classified (competitive) position for other than temporaryless, (b) his appointment shall have been prior to March 16, 1942, with respect to positions generally or prior to October 23, 1943, with respect to positions in the field service of the Post Office Department, and (c) the records of the Civil Service Commission clearly show that he stood higher on an appropriate civil-service list of eligibles than another eligible who received an original probational appointment from such list."
     }
   },
-  "fingerprint": "d1e291447c544515887b394cd4a96ec61608548e88445c5aad9d9e89c90daa25",
+  "fingerprint": "7483fcc963fab8cfdf25a05fdbf308c38cce1b561263f61576a5c65bf1abe87f",
   "instrument_id": "EO:9598",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "b12b43578700d2f127b98ab8dbb33081c6bd96b953815a44f23d02fb1401cb45",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:9598",
+      "later_actor_evidence_ids": [
+        "ACT:EO:9598>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:9598:4e6847dd315d07eb@44211be82f663cd9",
+        "TERM:EO:9598:4e6847dd315d07eb@9d5c014f10651ee9",
+        "TERM:EO:9598:55a0f543ce9b3677@9100e7ad77e46a01"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:9598#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "actual_performance_lead",
+        "condition",
+        "contingent_end"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

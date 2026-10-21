@@ -1281,6 +1281,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                   f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and page numbers removed. "
                   f"Not human-verified. Body sha256 {body_sha}\n\n")
         (out / fname).write_text(header + body, encoding="utf-8", newline="\n")
+        artifact_sha = sha256_bytes((out / fname).read_bytes())
         papers_path, papers_pages = "", ""
         if a["papers"] and all(re.fullmatch(SUBHEAD, lines_of[k]) or not lines_of[k].strip()
                                for k in range(a["papers"][0], a["papers"][1] + 1)):
@@ -1315,7 +1316,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
             "lord_seqs": joined(lm["match"]), "lord_seqs_ambiguous": joined(lm["ambiguous"]),
             "census": cstate, "census_date_effective": de, "provisional_status": rd.get("provisional_status", ""),
             "original_text_step_before": rd.get("step_original_text", ""), "blockers": rd.get("blockers", ""),
-            "confidence": confidence, "signature_line": a["signature_line"], "text_path": fname, "text_sha256": body_sha,
+            "confidence": confidence, "signature_line": a["signature_line"], "text_path": fname, "text_sha256": artifact_sha, "body_sha256": body_sha,
             "papers_path": papers_path, "chars": len(body)}
         act_rows.append(row)
         evidence = f"{vol['short']}, {act_printed}, {act_pdf}"
@@ -1342,7 +1343,7 @@ def run(repo_root, job_dir, out_dir, wpa_dir=None):
                          "route": "official/gpo_compilation_1912", "location_confidence": "high" if exact else "medium",
                          "location_verified": False, "needs_page_check": not exact,
                          "signing_date": agreed_date(od, wdate), "title": f"{a['reservation'].title()}, {a['state'].title()}",
-                         "text_path": fname, "text_sha256": body_sha, "match_level": level,
+                         "text_path": fname, "text_sha256": artifact_sha, "body_sha256": body_sha, "match_level": level,
                          "source_id": f"indian-reservations-1912:{a['lead_id']}:{vol['pdf_sha256'][:12]}"},
                 "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence}]})
 

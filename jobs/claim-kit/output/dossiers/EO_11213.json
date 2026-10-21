@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:11213",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11213"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:11213>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: same-line row on PDF page 12, number followed by its subject, matching the target's title. The subject wraps to the next line (\"Governors of the Federal Reserve System and the Federal Reserve Banks\"); the naming span stops at the line end. Target original held: jobs/fr-originals/data/full_run/texts/EO_11213.txt (30 FR 4389, PDF pages 9-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:11213>EO:12553@rastell-r12553nbs",
@@ -7670,9 +7676,29 @@
       "text": "Rules. \"(c) ASCERTAINMENT OF GENERATION.—For purposes of this chapter, \nthe generation to which any person (other than the grantor) belongs \nshall be determined in accordance with the following rules: \n\"(1) an individual who is a lineal descendent of a grandparent \nof the grantor shall be assigned to that generation which results \nfrom comparing the number of generations between the grandpar­\nent and such individual with the number of generations between \nthe grandparent and the grantor, \n\"(2) an individual who has been at any time married to a per­\nson described in paragraph (1) shall be assigned to the generation \nof the person so described and an individual who has been at any \n=== PDF page 364 of 414 ===\nPUBLIC LAW 94-455—OCT. 4, 1976 90 STAT. 1883 \ntime married to the grantor shall be assigned to the grantor's \ngeneration, \n\"(3) a relationship by the half blood shall be treated as a rela­\ntionship by the whole blood, \n\"(4) a relationship by legal adoption shall be treated as a rela­\ntionship by blood, \n\"(5) an individual who is not assigned to a generation by rea­\nson of the foregoing paragraphs shall be assigned to a generation \non the basis of the date of such individual's birth, with— \n\"(A) an individual born not more than 121/^ years after \nthe date of the birth of the grantor assigned to the grantor's \ngeneration, \n\"(B) an individual born more than 121/^ years but not \nmore than 371/^ years after the date of the birth of the grantor \nassigned to the first generation younger than the grantor, and \n\"(C) similar rules for a new generation every 25 years, \n\"(6) an individual who, but for this paragraph, would be \nassigned to more than one generation shall be assigned to the \nyoungest such generation, and \n\"(7) if any beneficiary of the trust is an estate or a trust, part­\nnership, corporation, or other entity (other than an organization \ndescribed in section 511(a) (2) and other than a charitable trust \ndescribed in section 511(b)(2)), each individual having an \nindirect interest or power in the trust through such entity shall be \ntreated as a beneficiary of the trust and shall be assigned to a gen­\neration under the foregoing provisions of this subsection. \n\"(d) GENERATION-SKIPPING TIRUST EQUIVALENT.— \n\"(1) IN GENERAL.—For purposes of this chapter, the term \n'generation-skipping trust equivalent' means any arrangement \nwhich, although not a trust, has substantially the same effect as a \ngeneration-skipping trust. \n\"(2) EXAMPLES OF ARRANGEMENTS TO WHICH SUBSECTION \nRELATES.—Arrangements to be taken into account for purposes of \ndetermining whether or not paragraph (1) applies include (but \nare not limited to) arrangements involving life estates and \nremainders, estates for years, insurance and annuities, and split \ninterests. \n\"(3) REFERENCES TO TRUST INCLUDE REFERENCES TO TRUST EQUIV­\nALENTS.—Any reference in this chapter in respect of a generation-\nskipping trust shall include the appropriate reference in respect \nof a generation-skipping trust equivalent. \n\"SEC. 2612."
     }
   },
-  "fingerprint": "621e95fea48eac8b809b95c954c124599dfbc119986033537203e3d0fad66782",
+  "fingerprint": "c8633f55cb8d4b62b85e6858f5781dfbd6b47e8b926c9f90ec5a464e59ac3023",
   "instrument_id": "EO:11213",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "25d0b6c3a41042a8d8ca662aacee0d899d7bb3781e4d881eb90fd29410115b36",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:11213",
+      "later_actor_evidence_ids": [
+        "ACT:EO:11213>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:11213#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

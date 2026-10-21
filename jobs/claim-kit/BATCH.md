@@ -36,6 +36,26 @@ not-later-than bound, an implementation command and an actual completion date
 are different propositions. A later revocation does not prove first cessation
 for a command already performed.
 
+The dossier's `lifecycle_obligations` retains clause-specific wording features
+and first-cessation questions. Deadline, actual-performance lead, recurring
+duty, fixed sunset, contingent end, extension, renewal, and savings are separate
+features; overlapping features remain visible. Every field remains a research
+obligation, never an established ending. ACT ingestion records likewise do not
+establish a complete lifecycle.
+
+For a source-blocked attempt, retain the original failure and run
+`lifecycle_obligations.py checkpoint` with the dossier, validated unresolved
+requests, the SHA-256 of relevant route code/configuration, and result paths.
+Pass `--source-results` with relevant acquisition receipts so a newly held
+document can reopen work before the next corpus rebuild. Receipt timing alone
+does not reopen an unchanged failure. The content fingerprint is recomputed;
+a stale embedded dossier fingerprint cannot conceal changed evidence.
+Before repeating research, `lifecycle_obligations.py resume` compares those
+substantive inputs: unchanged work is deferred; changed evidence, requests or
+routes reopen it. Use a new output filename for every checkpoint/decision.
+Submit requests through `jobs/source-ladder/request_contract.py`; metadata and
+delivery deadlines cannot substitute for the required occurrence evidence.
+
 Clause rows execute through the existing assembler. For corrected inventory,
 fill the `inventory_source_id`, absolute `inventory_char_start` / `end`, and
 `inventory_reason` columns for every replacement scope. They become the existing

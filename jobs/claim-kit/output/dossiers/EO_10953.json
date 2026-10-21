@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10953",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10953"
@@ -105,13 +105,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10953>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10953>EO:12553@rastell",
@@ -396,9 +402,41 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the Southern Pacifie Company (Pacific Lines), or by its employees, in the conditions out of which the dispute arose."
     }
   },
-  "fingerprint": "5f95e2ead5655e5ee450e78c048c1c368dc9230944766526ecf02213575d541c",
+  "fingerprint": "73de03d71fc64275f2486c77f4d638f07b205f5637dd7dab47a638ddb37d0d93",
   "instrument_id": "EO:10953",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "46e11efa09f8605e60fb07e0c74c3c08491ec71d1f7d0412dd6669a48556a421",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10953",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10953>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10953:01121d93623b27d9@b98bdb95d64b294b",
+        "TERM:EO:10953:b6a721cfa4bf9b67@b98bdb95d64b294b",
+        "TERM:EO:10953:5cf3ced75ec3e7d7@386b88a9051a9ecb",
+        "TERM:EO:10953:5cf3ced75ec3e7d7@b6502286b7d2ce0e",
+        "TERM:EO:10953:7936224e96021352@b951208b20b2cb35",
+        "TERM:EO:10953:d0ef3d3f9f9227ab@b951208b20b2cb35"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10953#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "performance_command",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

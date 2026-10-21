@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:283",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:283"
@@ -104,6 +104,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -115,9 +119,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:283>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 283 of December 8, 1904.': number and date match the target's signing date (1904-12-08). Target text: jobs/isthmian-canal-1911/output/texts/EO_283.txt (official GPO 1911 compilation, OCR). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:283>EO:9830@rastell",
@@ -228,9 +234,29 @@
       "text": "# EO:283: Order of the President, Dec. 8, 1904, waiving United States citizenship of em- ployees on the Isthmus L 26 (contents entry 11)\n# Source: Executive Orders Relating to the Isthmian Canal Commission, March, 1904, to June 12, 1911, inclusive (Washington: Government Printing Office, 1911); University of Florida copy (gift of the Panama Canal Museum); HathiTrust handle 2027/ufl1.ark:/13960/t3dz15k02\n# PDF: releases/source_books/Isthmian_Canal_Commission_Executive_Orders_1904-1911_ufl1.ark+=13960=t3dz15k02.pdf sha256 4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda\n# PDF pages 39-39; printed pages 26-26; date 1904-12-08 (contents); body date check white_house_strict; confidence high\n# Identity: EO number from the committed crosswalk (the volume prints none): EO:283\n# Text: OCR text layer of the scan (pypdf 6.20.1 extract_text(), one JSON line per PDF page, NUL characters removed; the layer is the scan's own OCR), running heads and GPO footers removed. Not human-verified. Body sha256 aa94ba9a1a02e5a6d82827da6cf35483222262a645b5710262f6b3047f7d6449\n\nThe requirements as to United States citizenship may be waived\nfor apphcants for positions on tlie Isthmus of Panama under such\nregulations as may be provided by the United States Civil Service\nCommission.\nTheodore Roosevelt.\nWhite House, December 8, 1904-\n"
     }
   },
-  "fingerprint": "79fbc593dc1b9f17a37099265faa7dbc6282dc57855e82649c4e5fb63321670b",
+  "fingerprint": "775838fb876718b4621749215febec05937935c7acc341ad175af2f656ccdeb9",
   "instrument_id": "EO:283",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "a59e24a11a0180150ea317c462b9c49e2bb9212e2029dd1945974b4ad746d254",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:283",
+      "later_actor_evidence_ids": [
+        "ACT:EO:283>EO:9830"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:283#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

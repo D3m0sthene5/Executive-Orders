@@ -91,7 +91,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10601",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10601"
@@ -756,13 +756,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10601>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 10601 in the \"No.\" column of PDF page 11 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 10601 is the 22nd number of the page-11 column and pairs with the 22nd subject after joining wrapped lines, \"Relating to the administration of a commodity set-aside\" (offset 12315), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_10601.txt (20 FR 1761, PDF pages 1-1). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10601>EO:12553@rastell-r12553nb",
@@ -1178,9 +1184,111 @@
       "text": "Functions under Title I respecting the disposal outside the United States of commodities in the commodity set-aside shall be subject to the responsibilities of the Secretary of State with respect to the foreign policy of the United States as such policy relates to the said functions."
     }
   },
-  "fingerprint": "646e6cc0246c17a4f1c0e597aca5d2f4abbc981c83874de8cd89c7e05d1b59b3",
+  "fingerprint": "1179db2c309e2b0b9bbaaafd10d024a165edef0959720cd357f00435c64b6404",
   "instrument_id": "EO:10601",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "9bd02b7c7792203109bc906cf624c17bdd5c81a689f2842d2c0edc2a5332d917",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10601",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10601>EO:12148",
+        "ACT:EO:10601>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10601:203a7f1b30ace009@913824518adfb0f3",
+        "TERM:EO:10601:203a7f1b30ace009@f1d4b907af5cfc26"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10601#b",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition"
+      ]
+    },
+    {
+      "clause_sha256": "ff615a9dfe8d6962427a27f1f31524e2724c5a719286065f1df25fe8a40cc0dc",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10601",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10601>EO:12148",
+        "ACT:EO:10601>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10601#sec3",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "3f9feced4a282a9cd947d154c48035a72a8420d17ff52379f00fc09b26c332f8",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10601",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10601>EO:12148",
+        "ACT:EO:10601>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10601#sec4",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "937d14afbdc9d5a3865109d3b18187ee0e8b7af54da686f283cdde4cae34884b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10601",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10601>EO:12148",
+        "ACT:EO:10601>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10601#sec5",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    },
+    {
+      "clause_sha256": "382e7d87fe85c85c11eb6968ba22438f7779ed956610e1907716834ef5d3f028",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10601",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10601>EO:12148",
+        "ACT:EO:10601>EO:12553"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10601#sec6",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:12415",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12415"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of EO 11836's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:12415>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 12553 (signed 1986-02-25, 51 FR 7237 of 1986-03-03) has one operative sentence (offsets 691-966) ending \"are revoked:\", followed by a two-column table headed \"No. Subject\" on PDF pages 9-15; all seven pages belong to EO 12553 and the signature block follows the last row (offset 33109), so no neighbouring document is mixed in. \"any amendments thereto\" is a general phrase and is not treated as a separate target. The target number occurs once in the held actor text. Target row: 12415 in the \"No.\" column of PDF page 14 (number-only column; subjects print in a separate column in the same order). Subject column cross-check by order: 12415 is the 59th number of the page-14 column and pairs with the 59th subject after joining wrapped lines, \"Continuing the Presidential Commission on Drunk Driving\" (offset 31264), consistent with the target's own title. Target original held: jobs/fr-originals/data/full_run/texts/EO_12415.txt (48 FR 15117, PDF pages 7-9). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:12415>EO:12553@rastell-r12553nbs",
@@ -279,9 +285,35 @@
       "text": "By the authority vested in me as President by the Constitution and laws of the United States of America, and in order to ensure the continuation of efforts to assist the States in the fight against drunk driving, it is hereby ordered that Section 4(b) of Executive Order No. 12358, as amended, is amended to read as follows: \"The Commission shall terminate on December 31, 1983.\""
     }
   },
-  "fingerprint": "54181496c3fbfe72cd50f4dcdd842528828f4031de89502c9bec9e6aab77c5fa",
+  "fingerprint": "313ad813f399cf44bbb7177c9ef6b51a7c1efcd5bc16282866b95b714273c545",
   "instrument_id": "EO:12415",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "2594132b1d64f45165878808ff4c985580d205259d29cb2540ade1a595e0e78b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12415",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12415>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:12415:cc93e787520d5326@5f7d1843bc72dfeb",
+        "TERM:EO:12415:cc93e787520d5326@3019c12c211bea21"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12415#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "sunset_date"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

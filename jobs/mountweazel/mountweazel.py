@@ -17,16 +17,18 @@ live only in jobs/mountweazel/fixtures/ with SEEDED=true.  `check` proves the ru
 Standard library only.  Never edits claims, statuses, the codebook, ledgers or reviews.
 """
 import argparse
+import ast
 import copy
 import csv
 import hashlib
+import importlib.util
 import json
 import math
 import os
 import re
 import sys
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 sys.dont_write_bytecode = True
 
@@ -40,6 +42,7 @@ LEGAL_CUTOFF = "2026-10-14"
 SEEDED_MARKERS = (b"SEEDED:", b"mountweazel-seeded", b"SEEDED-eo-", b'"SEEDED": true', b'"SEEDED":true')
 # Documents that describe the marker strings may mention them; they are still checked for planted text.
 ALLOWED_DOCS = frozenset({"research/plans/MOUNTWEAZEL_DESIGN.md", "jobs/mountweazel/README.md",
+                          "jobs/mountweazel/paired.py", "jobs/mountweazel/test_paired.py",
                           "jobs/mountweazel/mountweazel.py", "jobs/mountweazel/test_mountweazel.py"})
 ALLOWED_DOC_PREFIXES = ("HANDOFF/",)  # notes may name batch ids and markers; planted text is still checked there
 PLANT_ID_RE = re.compile(rb"\bMW-[A-Z]\d+-\d{2}\b")
@@ -304,6 +307,9 @@ def _resync_whole(claim):
     if claim["whole_order_end"].get("date") != fe["date"]:
         for k in ("date", "actor", "mechanism", "source"):
             claim["whole_order_end"][k] = copy.deepcopy(fe[k])
+
+
+PROVENANCE_ONLY = ("claim_kit",)
 
 
 def _retitle(claim, old_date, new_date, old_actor=None, new_actor=None):
@@ -670,6 +676,9 @@ def seed_cmd(args):
         else:
             body, order = e["payload"], e["base_order"]
         if track == "C":
+            # Assembly provenance (claim-kit's block) is not claim content, and only some real
+            # claims carry it, so showing it would let a reviewer tell plants from real items.
+            body = {k: v for k, v in body.items() if k not in PROVENANCE_ONLY}
             packet = {"item_id": item_id, "track": "C", "claim": body}
         else:
             packet = {"item_id": item_id, "track": "S", **body}
@@ -685,6 +694,9 @@ def seed_cmd(args):
             ki.update({"defect_code": e["code"], "operator": f"{e['code']}.{e['spec']}", "field": r["field"],
                        "locus_terms": [t for t in r["locus_terms"] if t], "refuting_quote": r["refuting_quote"],
                        "base_sha256": e["base_sha256"]})
+            clause = re.match(r"operative_clauses\[(\d+)\]", r["field"])
+            if clause and track == "C":
+                ki["affected_scope_id"] = e["payload"]["operative_clauses"][int(clause.group(1))].get("scope_id")
             seeded_payload = copy.deepcopy(e["payload"])
             if track == "C":
                 seeded_payload["schema"] = "SEEDED-eo-lifecycle-claim/v1"
@@ -709,6 +721,9 @@ def seed_cmd(args):
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
             "n_items": len(entries), "n_seeded": len(plants), "seeded_share": round(len(plants) / len(entries), 4),
+            "planned_n_seeded": n_plants,
+            "blinding": {"mode": "instructed", "technical_separation_verified": False,
+                         "basis": "key outside batch and mode 0600; a reviewer with the same account can still read it"},
             "items": key_items}
     key = {**body, "key_seal_sha256": sha(body)}
     kp = key_dir / "KEY.sealed.json"
@@ -764,6 +779,59 @@ def specific_terms(it):
     return sorted(out)
 
 
+# A matching order number or field path is only a locator. It does not establish that
+# the reviewer identified the material defect planted at that location.
+ISSUE_PATTERNS = {
+    "D1": r"deadline|not.later.than|due date|performance|actual (?:end|delivery)",
+    "D2": r"perform|one.time|completed|discharg|spent command|delivery",
+    "D3": r"(?:quote|quotation).{0,60}(?:cut|truncat|incomplete|omit|support|operative)|(?:cut|truncat).{0,30}(?:quote|quotation)",
+    "D4": r"partial|scope|whole.order|last clause|other clause|only (?:section|clause)",
+    "D5": r"earlier|first (?:end|cessation)|later revocation|already (?:ended|expired|terminated)",
+    "D6": r"(?:omit|miss|remov|absent|left out|exclude|unrecorded).{0,60}(?:event|amend|repeal|revok|revocation|order)|(?:event|amend|revocation|order).{0,60}(?:omit|miss|remov|absent|left out|unrecorded)",
+    "D7": r"(?:wrong|incorrect|different|effective|signing|publication).{0,35}date|date.{0,35}(?:wrong|incorrect|effective|signing|publication)",
+    "D8": r"wrong (?:order|identity|text)|neighbou?r|different order|belongs to|identity mismatch",
+    "D9": r"overstat|inflat|coverage|count.{0,30}(?:wrong|mismatch|incorrect)",
+    "D10": r"wrong (?:target|actor)|does not (?:revoke|end|name)|not the target",
+    "D11": r"infer|not express|no express|implied",
+    "D12": r"saving|residual|preserv|surviv",
+    "D13": r"held|available|already (?:in|present)|unjustified block",
+}
+
+
+def defect_correspondence(it, verdict):
+    """Conservative mechanical candidate, requiring the issue AND affected locus.
+
+    Natural-language synonyms that this screen cannot establish need a sourced
+    adjudication. Passing this screen is a scoring correspondence, not a legal ruling.
+    """
+    hay = " ".join(str(verdict.get(k, "")) for k in ("locus", "reason", "defect", "evidence")).lower()
+    field = it.get("field", "").lower()
+    scope = str(it.get("affected_scope_id") or "").lower()
+    clause = re.match(r"(operative_clauses\[\d+\]|later_source_search\[\d+\])", field)
+    locators = [x for x in (field, scope, clause.group(1) if clause else "") if x and x not in GENERIC_TERMS]
+    locus_hits = [x for x in locators if x in hay]
+    issue = bool(re.search(ISSUE_PATTERNS.get(it.get("defect_code"), r"(?!)"), hay, re.S))
+    hits = [t for t in specific_terms(it) if t in hay]
+    # An omitted event needs its actor/date as well as the affected clause; the clause
+    # can contain multiple later events and a different omission is not this plant.
+    event_hits = [t for t in hits if re.fullmatch(r"(?:eo:)?\d{3,}|\d{4}-\d{2}-\d{2}", t)]
+    identity = bool(event_hits) if it.get("defect_code") == "D6" else True
+    candidate = bool(locus_hits) and issue and identity
+    return {"mechanical_candidate": candidate, "affected_locus_matched": locus_hits,
+            "material_issue_matched": issue, "event_identity_matched": identity,
+            "matched_terms": hits, "needs_adjudication": not candidate}
+
+
+def validated_override(iid, value):
+    """A manual score is auditable; bare booleans cannot silently change a result."""
+    if not isinstance(value, dict) or not isinstance(value.get("caught"), bool):
+        fail(f"{iid}: strict override needs caught (boolean), adjudicator, reason, source, affected_locus and material_issue")
+    for name in ("adjudicator", "reason", "source", "affected_locus", "material_issue"):
+        if not isinstance(value.get(name), str) or not value[name].strip():
+            fail(f"{iid}: strict override missing {name}")
+    return value
+
+
 def implied_prevalence(flags, n, catch, false_alarm_rate=0.0):
     """Upper 95% bound on the defect rate of a production batch given its flag count and the reviewer's catch rate.
 
@@ -803,6 +871,10 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
             fail(f"{iid}: decision must be one of {VERDICTS}")
         seen[iid] = r
     adjudication, voids, strict_overrides = adjudication or {}, set(voids or []), strict_overrides or {}
+    for iid, value in strict_overrides.items():
+        if iid not in items or not items[iid]["is_seeded"]:
+            fail(f"strict override {iid}: not a plant in this key")
+        validated_override(iid, value)
     relabel, tells = relabel or {}, set(tells or [])
     for iid, code in relabel.items():
         if iid not in items or not items[iid]["is_seeded"] or code not in TAXONOMY:
@@ -820,11 +892,11 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         if it["is_seeded"]:
             if iid in voids:
                 continue
-            terms = specific_terms(it)
-            hay = " ".join(str(v.get(k, "")) for k in ("locus", "reason", "defect", "evidence")).lower()
-            hits = [t for t in terms if t in hay]
-            strict = bool(strict_overrides.get(iid, bool(hits))) and flagged
-            if hits and not flagged:
+            correspondence = defect_correspondence(it, v)
+            hits = correspondence["matched_terms"]
+            override = strict_overrides.get(iid)
+            strict = (override["caught"] if override else correspondence["mechanical_candidate"]) and flagged
+            if correspondence["mechanical_candidate"] and not flagged:
                 noticed.append({"item_id": iid, "defect_code": relabel.get(iid, it["defect_code"]), "matched": hits})
             if iid not in tells:
                 tf_n, tf_l, tf_s = tf_n + 1, tf_l + flagged, tf_s + strict
@@ -833,7 +905,9 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
             p["lenient"] += flagged
             p["strict"] += strict
             p["items"].append({"item_id": iid, "decision": v["decision"], "caught_lenient": flagged, "caught_strict": strict,
-                               "key_code": it["defect_code"], "seeding_tell": iid in tells, "matched_terms": hits})
+                               "key_code": it["defect_code"], "seeding_tell": iid in tells, "matched_terms": hits,
+                               "correspondence": correspondence, "adjudication": override,
+                               "strict_basis": "adjudicated" if override else "mechanical_correspondence"})
         else:
             adj = adjudication.get(iid)
             if flagged and adj == "confirmed_real_defect":
@@ -877,7 +951,14 @@ def score(key, rows, adjudication=None, voids=None, strict_overrides=None, weigh
         fa_up = false_alarm["lower_bound"]["rate"] or 0.0
         implied = {basis: implied_prevalence(production[0], production[1], pooled[basis]["strict"] if basis == "tell_free" else pooled["strict"], fa_up)
                    for basis in ("all_plants", "tell_free")}
-    return {"schema": "mountweazel-score/v2", "batch_id": key["batch_id"], "track": key["track"],
+    actual_plants = sum(bool(i.get("is_seeded")) for i in items.values())
+    expected_plants = key.get("planned_n_seeded", key.get("n_seeded", actual_plants))
+    return {"schema": "mountweazel-score/v3", "batch_id": key["batch_id"], "track": key["track"],
+            "blinding": key.get("blinding", {"mode": "unknown", "technical_separation_verified": False}),
+            "plants_planned": expected_plants, "plants_present": actual_plants,
+            "plants_missing_unscored": max(0, expected_plants - actual_plants),
+            "plants_unreviewed_unscored": sum(items[i]["is_seeded"] for i in unreviewed),
+            "strict_rule": "material issue and affected locus must correspond; insufficient matches need sourced adjudication",
             "relabelled_by_adjudication": relabel, "implied_for_production": implied,
             "n_items": key["n_items"], "n_reviewed": len(seen), "unreviewed": unreviewed,
             "voided_plants": sorted(voids & {i for i, x in items.items() if x["is_seeded"]}),
@@ -984,7 +1065,116 @@ def _base_object(repo, base):
         return None
 
 
-def scan_file(path, needles, plant_hashes, markers=True):
+def _runner_inventory_location(rel):
+    for pattern in (
+            r"oversized/runner-freshness/([A-Za-z0-9][A-Za-z0-9._-]*)-inputs\.json",
+            r"jobs/([A-Za-z0-9][A-Za-z0-9._-]*)/output/RUNNER_INPUTS\.json",
+            r"\.job-cache/runner-prior/[A-Za-z0-9._-]+/([A-Za-z0-9][A-Za-z0-9._-]*)/RUNNER_INPUTS\.json",
+            r"jobs/_attempts/([A-Za-z0-9][A-Za-z0-9._-]*)/[A-Za-z0-9._-]+/RUNNER_INPUTS\.json"):
+        match = re.fullmatch(pattern, rel)
+        if match:
+            return match
+    return None
+
+
+def _runner_inventory_for_item_scan(path, repo):
+    """Remove only fixture filename keys from a validated runner input inventory.
+
+    This is a scanning view, not a provenance/authenticity decision. Raw bytes
+    still undergo every seeded-marker, planted-text and exact-copy check.
+    Unknown locations, duplicate keys or malformed inventories get no exception.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+    location = _runner_inventory_location(rel)
+    if not location:
+        return None
+
+    def unique_object(pairs):
+        obj = {}
+        for key, value in pairs:
+            if key in obj:
+                raise ValueError("duplicate inventory key")
+            obj[key] = value
+        return obj
+
+    def relative(value):
+        return (isinstance(value, str) and bool(value)
+                and not any(c in value for c in ("\\", ":", "\0", "\n", "\r"))
+                and not PurePosixPath(value).is_absolute()
+                and ".." not in PurePosixPath(value).parts
+                and PurePosixPath(value).as_posix() == value)
+
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        if (not isinstance(manifest, dict) or set(manifest) != {
+                "schema", "job", "base_commit", "run_url", "scope", "inputs_sha256", "inputs", "base_output_sha256"}
+                or type(manifest["schema"]) is not int or manifest["schema"] != 1
+                or manifest["job"] != location.group(1)
+                or not isinstance(manifest["run_url"], str)
+                or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", manifest["base_commit"])):
+            return None
+        scope, inputs = manifest["scope"], manifest["inputs"]
+        if (not isinstance(scope, dict) or set(scope) != {"roots", "patterns", "exclude"}
+                or scope["exclude"] != f"jobs/{manifest['job']}/output"
+                or not all(isinstance(scope[k], list) and all(relative(v) for v in scope[k])
+                           for k in ("roots", "patterns"))
+                or not isinstance(inputs, dict)
+                or not all(relative(k) and isinstance(v, str)
+                           and re.fullmatch(r"(?:100644|100755|120000|160000):(?:[0-9a-f]{40}|[0-9a-f]{64})", v)
+                           for k, v in inputs.items())
+                or not re.fullmatch(r"[0-9a-f]{64}", manifest["base_output_sha256"])
+                or hashlib.sha256(json.dumps(inputs, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+                   != manifest["inputs_sha256"]):
+            return None
+        # The only exempt content is a filename in the pinned input map. IDs
+        # elsewhere (including other input paths and scope/run_url) still fail.
+        fixture_path = re.compile(r"jobs/mountweazel/fixtures/(?:[A-Za-z0-9._-]+/)*MW-[A-Z]\d+-\d{2}\.seeded\.json")
+        manifest["inputs"] = {k: v for k, v in inputs.items() if not fixture_path.fullmatch(k)}
+        return canonical(manifest).encode("utf-8")
+    except (OSError, UnicodeError, ValueError, TypeError):
+        return None
+
+
+def _runner_diagnostic_for_item_scan(path, repo):
+    """Recognize an archived unittest report of an inventory false positive.
+
+    Only the exact scanner diagnostic is an annotation. Every raw byte still
+    undergoes planted-text, seeded-marker and exact-item checks.
+    """
+    try:
+        rel = path.relative_to(repo).as_posix()
+        if not re.fullmatch(
+                r"(?:jobs/_attempts/portfolio-repair-check/[A-Za-z0-9._-]+"
+                r"|jobs/portfolio-repair-check/output"
+                r"|\.job-cache/runner-prior/[A-Za-z0-9._-]+/portfolio-repair-check)"
+                r"/tests/mountweazel\.log", rel):
+            return None
+        lines, changed = [], False
+        prefix = "AssertionError: False is not true : "
+        for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+            if line.startswith(prefix):
+                report = ast.literal_eval(line[len(prefix):].strip())
+                if (not isinstance(report, list) or not report
+                        or not all(isinstance(row, dict) and set(row) == {"where", "problem"}
+                                   and isinstance(row["where"], str)
+                                   and _runner_inventory_location(row["where"])
+                                   and isinstance(row["problem"], str)
+                                   and re.fullmatch(r"batch item id MW-[A-Z]\d+-\d{2}", row["problem"])
+                                   for row in report)):
+                    return None
+                line = prefix + repr([{**row, "problem": "batch item id [inventory diagnostic]"}
+                                      for row in report]) + "\n"
+                changed = True
+            lines.append(line)
+        return "".join(lines).encode("utf-8") if changed else None
+    except (OSError, UnicodeError, ValueError, SyntaxError, TypeError):
+        return None
+
+
+def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None):
     hits = []
     try:
         size = path.stat().st_size
@@ -1001,12 +1191,14 @@ def scan_file(path, needles, plant_hashes, markers=True):
             for m in SEEDED_MARKERS if markers else ():
                 if m in data:
                     hits.append("marker " + m.decode())
-            if markers and b"MW-" in data and PLANT_ID_RE.search(data):
+            if markers and item_id_data is None and b"MW-" in data and PLANT_ID_RE.search(data):
                 hits.append("batch item id " + PLANT_ID_RE.search(data).group(0).decode())
             for nd in needles:
                 if nd in data:
                     hits.append("planted text " + nd[:40].decode("utf-8", "replace"))
             tail = data[-overlap:]
+    if markers and item_id_data is not None and PLANT_ID_RE.search(item_id_data):
+        hits.append("batch item id " + PLANT_ID_RE.search(item_id_data).group(0).decode())
     if plant_hashes and path.suffix in (".jsonl", ".json"):
         try:
             text = path.read_text(encoding="utf-8")
@@ -1082,7 +1274,11 @@ def check(repo, fixtures_dir):
             scanned += 1
             rel = str(f.relative_to(repo)) if inside(f, repo) else str(f)
             allowed = rel in ALLOWED_DOCS or rel.startswith(ALLOWED_DOC_PREFIXES)
-            hits = scan_file(f, needles, plant_hashes, markers=not allowed)
+            item_view = _runner_inventory_for_item_scan(f, repo)
+            if item_view is None:
+                item_view = _runner_diagnostic_for_item_scan(f, repo)
+            hits = scan_file(f, needles, plant_hashes, markers=not allowed,
+                             item_id_data=item_view)
             for hit in hits:
                 problems.append({"where": str(f.relative_to(repo)) if inside(f, repo) else str(f), "problem": hit})
     mw_out = repo / "jobs" / "mountweazel" / "output"
@@ -1116,6 +1312,11 @@ def pool_cmd(args):
 
 # ----------------------------------------------------------------------------- main
 def main(argv=None):
+    argv=list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0]=='pairs':
+        spec=importlib.util.spec_from_file_location('mountweazel_pairs',HERE/'paired.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        return module.main(argv[1:])
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--repo", default=str(REPO))
     sub = ap.add_subparsers(dest="cmd", required=True)

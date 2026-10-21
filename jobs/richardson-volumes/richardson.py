@@ -1160,6 +1160,7 @@ def run_volume(vol, repo, job_dir, out, census, readiness, witems, litems, lists
                       f"# Text: OCR text layer of the scan ({vol['extractor']}); running heads, sheet signatures and specks removed. "
                       f"Boundaries are machine-found and not human-verified. Body sha256 {bsha}\n\n")
             (out / tpath).write_text(header + body, encoding="utf-8", newline="\n")
+        artifact_sha = sha256_bytes((out / tpath).read_bytes()) if tpath else ""
         states = []
         for w in wids:
             st, de = census_state(census, w, d["date"])
@@ -1179,7 +1180,7 @@ def run_volume(vol, repo, job_dir, out, census, readiness, witems, litems, lists
                "provisional_status": "|".join(f"{s['id']}:{s['provisional_status']}" for s in states if s["provisional_status"]),
                "original_text_step_before": "|".join(f"{s['id']}:{s['original_text']}" for s in states if s["original_text"]),
                "confidence": d["confidence"], "needs_page_check": "yes" if d["is_order"] and d["confidence"] != "high" else "",
-               "weak_points": "|".join(d["weak"]), "note": d.get("note", ""), "text_path": tpath, "text_sha256": bsha if tpath else ""}
+               "weak_points": "|".join(d["weak"]), "note": d.get("note", ""), "text_path": tpath, "text_sha256": artifact_sha}
         rows.append(row)
         page_or_item = f"{vol['short']}, printed pages {d['printed_first']}-{d['printed_last']}, PDF pages {d['pdf_first']}-{d['pdf_last']}"
         for s in states:
@@ -1199,7 +1200,7 @@ def run_volume(vol, repo, job_dir, out, census, readiness, witems, litems, lists
                              "location_confidence": d["confidence"] if s["id"] in cited_ids else "medium",
                              "location_verified": False, "identified_by": "wpa_citation" if s["id"] in cited_ids else "date_and_subject_only",
                              "needs_page_check": d["confidence"] != "high" or s["id"] not in cited_ids, "signing_date": d["date"], "title": d["title"],
-                             "text_path": tpath, "text_sha256": bsha, "source_id": f"richardson-volumes:{s['id'].upper()}:{vol['pdf_sha256'][:12]}"},
+                             "text_path": tpath, "text_sha256": artifact_sha, "body_sha256": bsha, "source_id": f"richardson-volumes:{s['id'].upper()}:{vol['pdf_sha256'][:12]}"},
                     "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": page_or_item}]})
             lead = {"census_year_only": "DATE_FILL", "census_date_blank": "DATE_FILL_census_blank", "YEAR_CONFLICT": "YEAR_CONFLICT",
                     "DATE_CONFLICT": "DATE_CONFLICT", "NOT_IN_CENSUS": "NOT_IN_CENSUS_numbered"}.get(s["state"])

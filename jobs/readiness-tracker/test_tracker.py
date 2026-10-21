@@ -231,6 +231,15 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_original_text"], "done")
         self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
 
+    def test_new_acquisition_feeds_remain_leads_even_with_original_like_flags(self):
+        for path in tracker.J["compiled_transcription_fragments"][3:]:
+            with self.subTest(path=path):
+                rec = json.dumps({'instrument_id':'EO:3', 'kind':'original_representation',
+                                  'data':{'needs_page_check':False, 'location_confidence':'high'}})
+                orders, _ = self.run_tracker(files={path:rec+'\n'})
+                self.assertEqual(orders['EO:3']['step_original_text'],'open')
+                self.assertIn('ONLY_COMPILED_TRANSCRIPTION_FOUND',orders['EO:3']['blockers'])
+
     def test_app_transcription_live_and_archive_is_a_lead_never_the_original(self):
         # APP pages, read live or from a web-archive capture, are the same lead-only class as Richardson,
         # even when the record carries needs_page_check=False or a high location confidence.
@@ -352,6 +361,8 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders['EO:2']['ready_for_human_review'],'no')
         self.assertEqual(orders['EO:2']['step_ending_or_current_basis'],'done')
         self.assertIn('OPEN_SOURCE_AUDIT',orders['EO:2']['blockers'])
+        self.assertEqual(orders['EO:2']['step_counterevidence'],'open')
+        self.assertNotIn('counterevidence',orders['EO:2']['exhausted_steps'])
         changed=copy.deepcopy(COMPLETE_NO_CLAIM);changed['research_rationale']+=' Corrected.'
         orders,s=self.run_tracker([changed],files=files)
         self.assertEqual(orders['EO:2']['ready_for_human_review'],'yes')

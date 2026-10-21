@@ -13,7 +13,7 @@ could move forward one step.  It is NOT a yield: orders made ready are not estim
 only; writes only jobs/polya/output/ (aggregate counts and unit ids, no per-order lists).
 Never changes the codebook, a status, a tier or the certified count (0).
 """
-import argparse, collections, csv, glob, json, os, subprocess, sys
+import argparse, collections, csv, glob, hashlib, json, os, subprocess, sys
 
 sys.dont_write_bytecode = True
 csv.field_size_limit(1 << 28)
@@ -117,7 +117,9 @@ class Ctx:
 
     def __init__(self, repo):
         self.repo = repo
+        self.consumed = {}
         self.rows = {}
+        self.need('jobs/readiness-tracker/output/READINESS_BY_ORDER.csv')
         with open(self.p("jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"), encoding="utf-8", newline="") as fh:
             for r in csv.DictReader(fh):
                 self.rows[r["instrument_id"]] = r
@@ -138,9 +140,33 @@ class Ctx:
         return [b for b in self.rows[i].get("blockers", "").split("|") if b]
 
     def need(self, *rels):
-        miss = [r for r in rels if not glob.glob(self.p(r))]
+        matched = {r: sorted(glob.glob(self.p(r))) for r in rels}
+        for path in (p for paths in matched.values() for p in paths if os.path.isfile(p)):
+            sha = self.file_sha(path)
+            if path in self.consumed and self.consumed[path] != sha:
+                raise RuntimeError('Input changed during Polya calculation: ' + path)
+            self.consumed[path] = sha
+        miss = [r for r, paths in matched.items() if not paths]
         if miss:
             raise Missing(miss)
+
+    @staticmethod
+    def file_sha(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as fh:
+            for block in iter(lambda: fh.read(1 << 20), b''): h.update(block)
+        return h.hexdigest()
+
+    def snapshot(self):
+        files = {}
+        for path, sha in sorted(self.consumed.items()):
+            if self.file_sha(path) != sha:
+                raise RuntimeError('Input changed during Polya calculation: ' + path)
+            files[os.path.relpath(path, self.repo)] = sha
+        payload = json.dumps(files, sort_keys=True, separators=(',', ':')).encode()
+        return {'repo_head': self.head, 'input_files_sha256': files,
+                'snapshot_sha256': hashlib.sha256(payload).hexdigest(),
+                'basis': 'Exact consumed bytes; repo_head alone does not establish output freshness.'}
 
 
 def view(name, units, pool, steps, label="", note="", aggregate_only=False, difficulty=None):
@@ -214,6 +240,7 @@ def f4(c):
     out = [view("claim_kit_family", fam, c.dec_nr, ["ending_or_current_basis"], "prove the family rule once, check members",
                 "own_term wording is a lead (a report deadline never ends an order); families overlap")]
     if glob.glob(c.p("jobs/x1-class-engine/output/CLUSTER_MEMBERS.csv")):
+        c.need('jobs/x1-class-engine/output/CLUSTER_MEMBERS.csv')
         x1 = collections.defaultdict(set)
         with open(c.p("jobs/x1-class-engine/output/CLUSTER_MEMBERS.csv"), encoding="utf-8", newline="") as fh:
             for r in csv.DictReader(fh):
@@ -261,12 +288,14 @@ def classify_missing(m):
 def f6(c):
     c.need("jobs/claim-kit/output/dossiers/*.json")
     typ, sole = collections.defaultdict(set), collections.defaultdict(set)
+    seen = set()
     for f in sorted(glob.glob(c.p("jobs/claim-kit/output/dossiers/*.json"))):
         with open(f, encoding="utf-8") as fh:
             d = json.load(fh)
         i = d.get("instrument_id")
         if i not in c.dec_nr:
             continue
+        seen.add(i)
         ts = {classify_missing(m) for m in d.get("missing") or []}
         for t in ts:
             typ[t].add(i)
@@ -274,6 +303,8 @@ def f6(c):
             sole["NONE_listed_missing (judgment only)"].add(i)
         elif len(ts) == 1:
             sole["ONLY_" + next(iter(ts))].add(i)
+    if c.dec_nr - seen:
+        raise Missing(['complete decided not-ready dossier population (%d missing)' % len(c.dec_nr - seen)])
     return [view("missing_input_type", dict(typ), c.dec_nr, None, "build each input type's producer once",
                  "step by type: ORIGINAL->original_text, ACT/CURRENT->ending_or_current_basis, INVENTORY->clause_inventory"),
             view("sole_missing_type", dict(sole), c.dec_nr, None, "orders whose ONLY listed gap is this type (or none)",
@@ -348,7 +379,7 @@ FRAMES = [
     ("F6_missing_input_type", "decompose the unknown by data type; build each producer once", "one missing input type", "original_text / ending_or_current_basis / clause_inventory", f6),
     ("F7_aux_current_predicate_table", "auxiliary problem: build the current-law predicate table once", "one USC/CFR provision slice", "ending_or_current_basis for YES orders", f7),
     ("F8_work_backwards_reviewer", "work backwards: start from what the independent human must check", "one source URL the reviewer reads, or one near-ready step set", "reviewer cost / ready", f8),
-    ("F9_single_blocker_frontier", "specialize: solve the cases with exactly one obstacle first", "one blocker code (as the only blocker)", "ready_for_human_review directly", f9),
+    ("F9_single_blocker_frontier", "specialize: inspect cases sharing one recorded blocker category", "one blocker category (possibly many research actions)", "research grouping; no readiness implication", f9),
 ]
 BYID = {f[0]: f for f in FRAMES}
 
@@ -404,6 +435,17 @@ def closeness(c, orders):
     return {"reached_with_le2_open_steps": sum(x <= 2 for x in n), "median_open_steps_of_reached": n[len(n) // 2] if n else None}
 
 
+def remaining_prerequisites(c, orders, steps):
+    """Counts of existing tracker steps outside a proposed advance, without replaying readiness."""
+    proposed = set(steps or [])
+    remaining = collections.Counter(st for i in set(orders) if i in c.rows
+                                    for st in c.open_steps(i) if st not in proposed)
+    return {'remaining_open_steps_by_kind': dict(sorted(remaining.items())),
+            'hypothetical_completion_potential': would_complete(c, orders, steps),
+            'realized_integrated_ready_change': None,
+            'completion_potential_basis': 'Assumes the proposed steps are fully satisfied for every affected clause; no action or legal review has been executed.'}
+
+
 def view_report(c, v, top=20):
     pool = v["pool"]
     d = dist(v["units"], pool)
@@ -411,6 +453,7 @@ def view_report(c, v, top=20):
     rep = {"view": v["name"], "advances_step": v["steps"] if v["steps"] else "n/a (see note)", "what": v["label"], "note": v["note"],
            "pool_size": len(pool), "dropped_orders_step_not_open": v.get("dropped_orders_step_not_open", 0),
            "pool_already_ready": len(pool) - len(pool & c.notready), **d, **closeness(c, union), "reached_with_no_other_open_step_upper_bound": would_complete(c, union, v["steps"])}
+    rep.update(remaining_prerequisites(c, union, v['steps']))
     if v["aggregate_only"]:
         rep["top"] = []
         rep["open_steps_histogram_not_ready"] = {str(k): n for k, n in sorted(collections.Counter(len(c.open_steps(i)) for i in c.notready).items())}
@@ -461,6 +504,7 @@ def cmd_leverage(a, c):
         return 1
     rep = {"schema": SCHEMA, "repo_head": c.head, "frame": fid, "unit": BYID[fid][2], "polya_move": BYID[fid][1],
            "pool": pool_block(c), "rules": RULES, "views": [view_report(c, v, a.top) for v in views]}
+    rep['input_snapshot'] = c.snapshot()
     path = write(a.output, "LEVERAGE_%s.json" % fid, rep)
     for v in rep["views"]:
         print("%s / %s: units=%d reach=%d (%.1f%% of pool %d) max=%d gini=%.3f top10/100 cover %.1f%%/%.1f%%  step=%s" % (
@@ -475,6 +519,7 @@ def cmd_leverage(a, c):
 
 def cmd_compare(a, c):
     frames = []
+    reached_union = set()
     nr, dnr = c.notready, c.dec_nr
     matrix = {st: {"open_in_not_ready": sum(1 for i in nr if c.rows[i].get("step_" + st) == "open"),
                    "open_in_decided_not_ready": sum(1 for i in dnr if c.rows[i].get("step_" + st) == "open"),
@@ -500,6 +545,7 @@ def cmd_compare(a, c):
                 units_all.setdefault(v["name"] + "|" + u, set()).update(set(o) & nr)
         for o in units_all.values():
             reached |= o
+        if fid != 'F0_order': reached_union |= reached
         merged = dist(units_all, nr)
         vrep = [view_report(c, v, 20) for v in views]
         frames.append({
@@ -512,7 +558,7 @@ def cmd_compare(a, c):
             "reached_with_no_other_open_step_upper_bound": [(r["view"], r["reached_with_no_other_open_step_upper_bound"]) for r in vrep],
             "top20_units": ("aggregate only (one order per unit)" if fid == "F0_order"
                             else [{"unit": u, "orders": len(o)} for u, o in ranked(units_all)[:20]]),
-            "views": [{k: r[k] for k in ("view", "advances_step", "pool_size", "units", "distinct_orders_reached", "gini", "max", "median", "coverage", "reached_with_le2_open_steps", "reached_with_no_other_open_step_upper_bound")} for r in vrep],
+            "views": [{k: r[k] for k in ("view", "advances_step", "pool_size", "units", "distinct_orders_reached", "gini", "max", "median", "coverage", "reached_with_le2_open_steps", "reached_with_no_other_open_step_upper_bound", "remaining_open_steps_by_kind", "hypothetical_completion_potential", "realized_integrated_ready_change")} for r in vrep],
         })
     uncovered = collections.Counter()
     for i in dnr:
@@ -529,6 +575,8 @@ def cmd_compare(a, c):
            "step_matrix": matrix,
            "step_matrix_reading": "steps with an empty views map have no frame that places a unit on them (a measured gap, not a judgement)",
            "frames": frames}
+    doc.update(input_snapshot=c.snapshot(), distinct_not_ready_orders_reached_across_nonbaseline_frames=len(reached_union),
+               realized_integrated_ready_change=None)
     p = write(a.output, "COMPARE.json", doc)
     lines = ["# POLYA compare (generated; repo_head %s)" % c.head, "",
              "Pool: %d orders, %d ready, %d not ready (%d decided, %d undecided). Reach is not yield." % (
@@ -543,7 +591,10 @@ def cmd_compare(a, c):
         lines.append("| %s | %d | %d | %.1f%% | %.2f | %d | %.1f%% | %.1f%% | %.1f%% | %d | %s |" % (
             f["frame"], f["units"], f["orders_reachable"], 100 * f["pct_not_ready_reachable"], f["gini"], f["max_unit"],
             100 * cv["top10"], 100 * cv["top100"], 100 * cv["greedy10"], f["reached_with_le2_open_steps"], f["median_open_steps_of_reached"]))
-    lines += ["", "| step | open (not ready) | open (decided, not ready) | views reaching orders with it open |", "|---|---:|---:|---|"]
+    lines += ['', 'Distinct not-ready orders reached across nonbaseline frames: %d (deduplicated union).' % len(reached_union),
+              'Potential is conditional on completing all affected clauses. Realized readiness change is unmeasured. A single blocker category can require several research actions.',
+              'Input snapshot SHA-256: ' + doc['input_snapshot']['snapshot_sha256'],
+              "", "| step | open (not ready) | open (decided, not ready) | views reaching orders with it open |", "|---|---:|---:|---|"]
     for st, m in matrix.items():
         vs = m["views_that_reach_orders_with_this_step_open"]
         lines.append("| %s | %d | %d | %s |" % (st, m["open_in_not_ready"], m["open_in_decided_not_ready"],
@@ -581,6 +632,7 @@ def cmd_export(a, c):
                     "reach_orders": n, "reach_decided_not_ready": len(o & c.dec_nr), "reach_undecided": len(o & c.undec),
                     "reach_already_ready": n - len(nr),
                     "steps_complete_if_done_upper_bound": would_complete(c, nr, v["steps"]),
+                    **remaining_prerequisites(c, nr, v['steps']),
                     "ceiling_orders": len(nr),
                     "cost_usd": None, "E_ready": None, "reference_class": None,
                     "requires_unmeasured": ["conversion of reach to accepted claims", "cost per accepted claim for this unit type"],
@@ -595,6 +647,7 @@ def cmd_export(a, c):
                     "lists the same unit under another frame. cost_usd, E_ready and "
                     "reference_class are null on purpose: Llull fills them from measured reference classes."),
            "actions": acts}
+    doc['input_snapshot'] = c.snapshot()
     p = write(a.output, "CANDIDATE_ACTIONS.json", doc)
     print("exported %d candidate actions -> %s" % (len(acts), rel(c, p)))
     return 0

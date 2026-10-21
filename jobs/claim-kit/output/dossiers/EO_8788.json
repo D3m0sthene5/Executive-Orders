@@ -39,7 +39,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8788",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8788"
@@ -104,16 +104,22 @@
       "char_end": 12924,
       "char_start": 11160,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective wording is attached to EO 9526 (the 'This amendment shall become effective as of January 1, 1945' sentence belongs to the neighbouring EO 9525 on the same page). The order is dated 'The White House, February 28, 1945'. on_signing is a reading that the reviewer must accept.",
       "effective_class": "on_signing",
       "effective_date": "1945-02-28",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [
         "Any provision in any of the orders \nhereinabove enumerated which is in con­\nflict with this order is hereby superseded \nto the extent of such conflict",
         "Provided, \nhowever, That any provision for the \nearlier return of jurisdiction over the \npublic lands m any of said orders shall \nremain operative."
       ],
       "filing_date": null,
       "id": "ACT:EO:8788>EO:9526",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Number appears as a bare entry in the 'Executive Order Numbers' list (not the Public Land Order list); the held text prints the neighbouring entry '8^94' (OCR). The paragraph being added makes the jurisdiction granted by each listed order cease six months after the unlimited national emergency declared by Proclamation 2487 ends; the lands remain withdrawn until otherwise ordered. The text file begins with EO 9525 and EO 9526 starts at char 2544; the provision lies inside EO 9526 (before EO 9527 at char 13049). The 'conflict ... is hereby superseded' sentence is an exception-type clause that supersedes only conflicting provisions. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8788>EO:9526@rastell",
@@ -255,9 +261,33 @@
       "text": "The reservation made by \nsection one of this order shall remain in\n*3 F.R. 885.  \n*8 F.R. 615.\nforce until revoked by the President or  \nby act of Congress."
     }
   },
-  "fingerprint": "d4f701921b55ef63ffef4461b5019042e115fcb82c23e3443b935261046ea8a2",
+  "fingerprint": "7ce4eece9a7889a0c64602d0319f725506f9852eb4de2835fc84e221e8a46f00",
   "instrument_id": "EO:8788",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "36493945b538b80b61862695740f5f724975751101ca20e72747710a17e2fdf1",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8788",
+      "later_actor_evidence_ids": [],
+      "own_term_evidence_ids": [
+        "TERM:EO:8788:37c5401c6d7b13c9@2a71699e5a690db6"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8788#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "savings_or_residual",
+        "until_event"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

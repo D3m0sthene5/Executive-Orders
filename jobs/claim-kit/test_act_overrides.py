@@ -261,9 +261,10 @@ class NamesNumberTests(unittest.TestCase):
             self.assertFalse(AO.names_number("7975A", text), text)
 
     def test_plain_number_unchanged_but_not_lettered(self):
-        for text in ("No. 7975 of September 16, 1938.", "Order 7975,", "Order 7975."):
+        for text in ("No. 7975 of September 16, 1938.", "Order 7975,", "Order 7975.", "Order 7975 and later orders"):
             self.assertTrue(AO.names_number("7975", text), text)
-        for text in ("No. 7975A of", "No. 7975-A of", "No. 79750", "No. 17975", "No. 7975a,"):
+        for text in ("No. 7975A of", "No. 7975-A of", "No. 79750", "No. 17975", "No. 7975a,",
+                     "No. 7975 A,", "No. 7975  A,", "No. 7975 - A,", "No. 7975AB"):
             self.assertFalse(AO.names_number("7975", text), text)
 
 

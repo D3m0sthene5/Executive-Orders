@@ -40,7 +40,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:8425",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8425"
@@ -104,6 +104,10 @@
       "char_end": 90328,
       "char_start": 90277,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
       "effective_class": "stated_date",
       "effective_date": "1947-05-01",
@@ -115,9 +119,11 @@
           "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
         }
       ],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:8425>EO:9830",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8425 of May 29, 1940,': number and date match the target's signing date (1940-05-29). DOSSIER DEFECT: the clause inventory for EO:8425 (offsets 683-1597) is EO 8423's text (Rule VII sec. 2(b)); EO 8425's own text ('Amendment of Section 1 (a) of Civil Service Rule IX', ending at the '[No. 8425]' footer on PDF page 2) is split by the FR contents and masthead blocks. An inventory override is needed before any claim. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:8425>EO:9830@rastell",
@@ -316,9 +322,38 @@
       "text": "\"(a) Upon requisition for reinstatement by the appointing office having a vacancy to fill, made within 1 year of separation if the period of service was less than 2 years; within 2 years if the period of service was 2 years or more but less than 3 years; within 3 years if the period of service was 3 years or more but less than 4 years; within 4 years if the period of service was 4 years or more but less than 5 years; and without time limit if the period of service was 5 years or more: Provided, That the applicant is otherwise eligible under the conditions of the Executive order of June 2, 1920: Provided further, That the time limit may be waived in the case of reinstatements to positions in Federal agencies concerned with preparedness and the national-defense program.\""
     }
   },
-  "fingerprint": "fe5f0a6c9cdd1e376a0246cf8b84db5283b7b8f99065f2ff0092459c7948df23",
+  "fingerprint": "0ed37067d375c41913790e3222e113140445ac0a94d3752f116a7cdcd2ffd893",
   "instrument_id": "EO:8425",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "6a7cc3597c115cd84a19f797eea06d0b284bf0c16467d775a3f930602fe20a32",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:8425",
+      "later_actor_evidence_ids": [
+        "ACT:EO:8425>EO:9830"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:8425:18cbf7d641c7590e@3a928de653c8c853",
+        "TERM:EO:8425:7521dfa9891a0e18@86c298b5c65bbf37",
+        "TERM:EO:8425:7521dfa9891a0e18@33bf8bbb07af30b3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:8425#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "condition",
+        "contingent_end",
+        "fixed_term"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

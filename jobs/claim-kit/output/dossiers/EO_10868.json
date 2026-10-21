@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10868",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10868"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched the whole held file for effective / take effect / shall become / except / notwithstanding / nothing in; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10868>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is the number in the 'No.' column of the two-column table on PDF page 11 (offsets 10267-15646; the page-11 text layer lists all 64 numbers first and then all 64 subjects, rather than row by row). The number is entry 56 of 64 and the subject block, taken in order, has 64 entries, so the aligned subject is entry 56 at offsets 14968-15035: 'Creating an emergency board to investigate a railroad labor dispute'. That subject agrees with the target's own held title (a Railway Labor Act emergency board). The number lies between the enacting sentence (691-966) and the editorial note/signature block (32923), is a standalone line that occurs once in the held file, and the page holds no neighbouring document. The alignment of number to subject is by order, not by a printed row, so the reviewer should confirm it. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10868>EO:12553@rastell",
@@ -478,9 +484,40 @@
       "text": "As provided by section 10 of the Railway Labor Act, as amended, from this date and for thirty days after the board has made its report to the President, no change, except by agreement, shall be made by the New York Central System, or by its employees, in the conditions out of which the dispute arose."
     }
   },
-  "fingerprint": "5e9421236dd62d3466b6641527a1ebd1b0f0da5acc4ccd849153aba0286bcf76",
+  "fingerprint": "f5dcda81379f06de0a994b8cc1a380ab4ae8a5e0fcdc675c1878af794e032724",
   "instrument_id": "EO:10868",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "b7319146663d2b97548966b3f043a96f7d4c8c63a42170d6c428f40fa7ceb8b1",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10868",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10868>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10868:3eb71de8897829bf@6e2d200413f5670a",
+        "TERM:EO:10868:2693870cc03535ed@6e2d200413f5670a",
+        "TERM:EO:10868:3eb71de8897829bf@7ee97c5325a41116",
+        "TERM:EO:10868:2693870cc03535ed@7ee97c5325a41116",
+        "TERM:EO:10868:ae05079f969076cf@734f4daa4138796c",
+        "TERM:EO:10868:d10c477394ad7adb@734f4daa4138796c"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10868#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "deadline",
+        "report_deadline"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

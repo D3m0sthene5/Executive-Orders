@@ -39,7 +39,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 223,
+    "generic_refs_excluded": 226,
     "id": "CHAIN:EO:10926",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10926"
@@ -103,13 +103,19 @@
       "char_end": 966,
       "char_start": 691,
       "confidence": "agent_located_independently_upheld",
+      "earlier_cessation_obligation": {
+        "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+        "state": "unresolved"
+      },
       "effective_basis": "No express effective-date wording anywhere in the held EO 12553 text (searched effective / take effect / shall become / except / notwithstanding / nothing in / provided that / saving; the only hit is the word \"effectiveness\" inside the subject of another order's row, not in this provision). The order is headed \"Executive Order 12553 of February 25, 1986\" and the signature block is dated February 25, 1986. on_signing is therefore a READING, not express wording; the reviewer must accept or reject it. Federal Register publication date 1986-03-03 and filing date 1986-02-26 are not effective dates.",
       "effective_class": "on_signing",
       "effective_date": "1986-02-25",
       "effective_wording": [],
+      "evidence_tier": "AI_reviewed_acting_provision",
       "exceptions_text": [],
       "filing_date": null,
       "id": "ACT:EO:10926>EO:12553",
+      "lifecycle_complete": false,
       "names_target": true,
       "notes": "Target naming is a row with its subject on the same line in the \"No. Subject\" table on PDF page 12 (offsets 15646-21316), lying between the enacting sentence (691-966) and the editorial note/signature block (32923); the page holds no neighbouring document. The number occurs once between the enacting sentence and the signature block. The provision also reaches 'any amendments thereto' (recorded here; not a separate target). Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
       "override_id": "ACT:EO:10926>EO:12553@rastell",
@@ -364,9 +370,42 @@
       "text": "By virtue of the authority vested in me by section 10 of the Railway Labor Act, as amended (45 U.S.C. 160), and as President of the United States, I hereby extend until June 20, 1961, the time within which the emergency board created by Executive Order No. 10919 of February 17, 1961, to investigate a dispute between Pan American World Airways, Inc., and certain of its employees, represented by the Flight Engineers' International Association, PAA Chapter, a labor organization, shall report its findings to the President."
     }
   },
-  "fingerprint": "e723e0eab821d206a4ad563868a50aa74ed03f003624cf092ca1d7d289500c82",
+  "fingerprint": "cbce3a33ff960df7d3491a09cf9ca3999a09485b9ce6cee7b9cabe547c123875",
   "instrument_id": "EO:10926",
   "legal_cutoff": "2026-10-14",
+  "lifecycle_obligations": [
+    {
+      "clause_sha256": "e3eba90c881f6f36957ea822ebe0a4fc468ff562d61adbc90bc46c1cf7170e47",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:10926",
+      "later_actor_evidence_ids": [
+        "ACT:EO:10926>EO:12553"
+      ],
+      "own_term_evidence_ids": [
+        "TERM:EO:10926:65c2c7bc5f9a1925@638a6a29ea554292",
+        "TERM:EO:10926:65c2c7bc5f9a1925@c4233561cbec0e94",
+        "TERM:EO:10926:a69b78a7e99b6960@815ed76eadd02ae0",
+        "TERM:EO:10926:03130e36a1385723@815ed76eadd02ae0",
+        "TERM:EO:10926:fc22928a1a6545ea@4ed8a11febb9b2a3"
+      ],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+        "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:10926#whole",
+      "state": "requires_clause_specific_research",
+      "wording_features": [
+        "contingent_end",
+        "extension",
+        "report_deadline",
+        "until_event"
+      ]
+    }
+  ],
   "machine_searches": [
     {
       "complete": true,

@@ -662,6 +662,7 @@ def run(repo_root, job_dir, out_dir):
         evidence = f"{short}, {printed}, {pp}"
         identity = ("EO number from the committed crosswalk (the volume prints none): " + ", ".join(ids)) if ids else \
                    (f"not numbered; matched by hand to Lord 1943 unnumbered list seq {lord['lord_seq']}" if lord else "not numbered")
+        file_hashes = {}
         for iid, fname in zip(ids or [""] * len(names), names):
             title = f"{iid}: " if iid else (f"LORD:{lord['lord_seq']}: " if lord else "")
             header = (f"# {title}{d['contents_text']} (contents entry {d['seq']})\n"
@@ -674,6 +675,7 @@ def run(repo_root, job_dir, out_dir):
                       f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and GPO footers removed. "
                       f"Not human-verified. Body sha256 {body_sha}\n\n")
             (out / fname).write_text(header + body_text, encoding="utf-8", newline="\n")
+            file_hashes[fname] = sha256_bytes((out / fname).read_bytes())
         doc_rows.append({
             "seq": d["seq"], "category": d["category"], "kind": d["kind"], "date": d["date"], "date_source": d["date_source"],
             "contents_date_raw": d["contents_date_raw"], "date_check": d["date_check"],
@@ -686,7 +688,8 @@ def run(repo_root, job_dir, out_dir):
             "instrument_ids": "|".join(ids), "lord_seq": lord["lord_seq"] if lord else "",
             "needs_page_check": "yes" if d["needs_page_check"] else "", "confidence": d["confidence"],
             "subject": d["subject"], "contents_text": d["contents_text"], "text_path": "|".join(names),
-            "text_sha256": body_sha, "chars": len(body_text)})
+            "text_sha256": file_hashes[names[0]] if len(names) == 1 else "",
+            "body_sha256": body_sha, "chars": len(body_text)})
         d["_names"], d["_sha"], d["_evidence"] = names, body_sha, evidence
 
         if d["category"] in PRESIDENTIAL:
@@ -702,7 +705,7 @@ def run(repo_root, job_dir, out_dir):
                     "confidence": d["confidence"], "census": state, "census_date_effective": de,
                     "provisional_status": rd.get("provisional_status", ""),
                     "original_text_step_before": rd.get("step_original_text", ""), "blockers_before": rd.get("blockers", ""),
-                    "text_path": fname, "text_sha256": body_sha, "chars": len(body_text)})
+                    "text_path": fname, "text_sha256": file_hashes[fname], "body_sha256": body_sha, "chars": len(body_text)})
                 if c:
                     fragments.append({
                         "instrument_id": iid, "kind": "original_representation", "produced_by": JOB_NAME,
@@ -716,7 +719,7 @@ def run(repo_root, job_dir, out_dir):
                         "data": {"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence,
                                  "route": ROUTE, "location_confidence": d["confidence"], "location_verified": False,
                                  "needs_page_check": d["needs_page_check"], "signing_date": d["date"], "title": d["subject"],
-                                 "text_path": fname, "text_sha256": body_sha,
+                                 "text_path": fname, "text_sha256": file_hashes[fname], "body_sha256": body_sha,
                                  "source_id": f"{JOB_NAME}:{iid}:{vol['pdf_sha256'][:12]}"},
                         "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence}]})
                 if iid and state in ("NOT_IN_CENSUS", "census_date_blank", "YEAR_CONFLICT", "DATE_CONFLICT"):

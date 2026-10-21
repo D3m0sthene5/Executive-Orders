@@ -79,3 +79,6 @@ days. Publish anything that must last longer as a release.
   go through the project's normal review before any count changes.
 - Write a line in `HANDOFF/` saying which job you started and why, so the
   other agents know to look for its results.
+# Output publication and failed attempts
+
+The runner prepares and fingerprints inputs before replacing a job's output. It keeps the previous generation until the new job succeeds. A failed or blocked attempt is retained under `jobs/_attempts/<job>/<run>-<attempt>/`, including its status, log and any captured input manifest; the prior output is restored. Same-run dependent jobs are blocked. Independent successful jobs retain the normal provenance and publication checks. Failure receipts are published separately and never promote an older output to a new generation.
