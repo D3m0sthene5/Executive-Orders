@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "ProQuest EO Queue — Session Recovery",
+  "version": "1.0.0",
+  "description": "Resumable EO downloads with bounded ProQuest institutional-session recovery.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://*.proquest.com/*"],
+  "background": {"service_worker": "worker.js"},
+  "action": {"default_title": "Open the ProQuest EO queue"},
+  "content_scripts": [{"matches": ["https://*.proquest.com/*"], "js": ["page.js"], "run_at": "document_idle"}]
+}

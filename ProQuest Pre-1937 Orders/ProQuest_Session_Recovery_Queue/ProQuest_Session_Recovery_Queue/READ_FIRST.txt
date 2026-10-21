@@ -1,0 +1,74 @@
+PROQUEST EO QUEUE WITH SESSION RECOVERY
+
+INSTALL ONCE IN YOUR SIGNED-IN CHROME BROWSER
+
+1. Pause the old HTML queue. Export its checkpoint if you have associated
+   PDFs manually, then close the old queue and its download tab.
+2. Extract this ZIP into a folder you can keep on this computer.
+3. Type chrome://extensions into Chrome's address bar. Enable Developer
+   mode, click Load unpacked, and select the extracted folder containing
+   manifest.json. Select the folder, not the ZIP file.
+4. Click Chrome's Extensions (puzzle-piece) button and then
+   ProQuest EO Queue — Session Recovery. This opens the queue.
+   Do not launch queue.html by double-clicking it: use the extension button.
+5. Choose your existing ProQuest Pre-1937 Orders folder. The queue checks
+   existing files before requesting anything. If you exported an old
+   checkpoint, import it to retain your manual filename associations.
+6. Ensure Chrome is set to download PDFs instead of displaying them:
+   chrome://settings/content/pdfDocuments → Download PDFs.
+   In chrome://settings/downloads set Location to that same folder and
+   turn off Ask where to save each file before downloading.
+7. Press Start / resume. Leave the queue open and the computer awake.
+
+SESSION RECOVERY
+
+When the queue's ProQuest download tab shows Begin a new session, the
+helper clicks it, clicks Your Institution (or Institution), then selects
+NYU Library / NYU Libraries / New York University. Finding the visible
+link replaces the manual Command/Ctrl+F step; keyboard shortcuts are not
+needed. Only a unique matching control is clicked.
+
+If NYU redirects automatically using your existing sign-in, the queue
+waits for the return to ProQuest and retries the SAME interrupted PDF
+once. If credentials or MFA are required, complete that step yourself.
+The helper never reads or enters credentials and has no access to NYU
+pages. It waits up to ten minutes for the institutional flow.
+
+An isolated failed order is left for review, and other pending orders
+continue. Three consecutive failures pause the queue. Access challenges,
+rate-limit messages, ambiguous controls, and unfamiliar external sites
+pause it. There is no endless session-reset loop. Do not press Back.
+
+WHAT IT SAVES AND CHECKS
+
+All 2,765 original inventory rows are included. There are 2,735 supplied
+PDF links; 30 entries need manual research. Requests are sequential and
+at least 12 seconds apart. The helper does not invent PDF URLs.
+
+Chrome saves into its configured download location. The folder picker
+only grants the queue read access to inspect that folder; it does not
+change Chrome's download location.
+
+The counter increases only after a matching completed file has a PDF
+header and EOF marker. SHA-256 detects duplicate contents under different
+order names. These checks do not establish legal identity, complete page
+renderability, or correctness of a guessed historical filename. Inspect
+the first few PDFs. Use Associate saved PDF for an unexpected filename.
+
+Progress stays in this browser's extension storage. Export a checkpoint
+to move computers. The helper acts only on its own download tab and only
+while its queue is running. It makes no credential or document uploads.
+
+VALIDATION AND CURRENT LIMITATION
+
+The package passed JavaScript syntax checks, 26 simulated extension
+recovery checks, and 11 queue integration checks. The underlying queue
+also passed 17 local checks for PDF detection and resumability.
+
+The live browser connection timed out during development. Actual NYU
+and ProQuest navigation could not be tested end-to-end. Labels different
+from those shown or specified may require a small adjustment; ambiguous
+labels are not guessed.
+
+This package is prepared, not installed or running on your computer.
+Install it and press Start / resume to begin local downloads.
