@@ -146,10 +146,12 @@ class SearchLayer(unittest.TestCase):
         self.assertNotIn(("https://docs.test/eo5862.html",), [(c[0],) for c in self.web.calls[before:]])
 
     def test_budget_stops_cleanly_and_is_recorded(self):
-        s = self.searcher(max_requests=2)  # robots + one query
+        s = self.searcher(max_requests=2)  # two fetches; robots.txt reads are extra
         st = w.advance(s, TARGET, w.new_state(TARGET), s.ready_engines())
         self.assertTrue(any("budget stopped" in n for n in st["notes"]))
-        self.assertLessEqual(s.requests_used, 3)
+        self.assertEqual(s.reserved, 2, "parallel engine queries cannot overrun the budget")
+        self.assertLessEqual(s.requests_used, 2 + 2, "at most one robots.txt read per fetched host")
+        self.assertFalse(s.budget_left())
 
     def test_campaign_writes_files_and_resumes_from_prior_state(self):
         root = os.path.join(self.tmp, "repo")

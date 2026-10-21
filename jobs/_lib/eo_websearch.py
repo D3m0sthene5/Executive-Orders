@@ -29,6 +29,7 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 
@@ -428,6 +429,8 @@ class Searcher:
         self.engines = engines if engines is not None else load_engines()
         self.sources = []
         self.engine_status = {}
+        self._lock = threading.Lock()
+        self.reserved = 0  # fetches started; robots.txt reads are extra (one per host) and not counted here
         self.now = now or (lambda: dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
 
     @property
@@ -435,7 +438,15 @@ class Searcher:
         return self.pool.requests
 
     def budget_left(self):
-        return self.requests_used < self.max_requests
+        return self.reserved < self.max_requests
+
+    def _reserve(self):
+        """Atomically take one unit of budget; False when none is left (parallel callers cannot overrun)."""
+        with self._lock:
+            if self.reserved >= self.max_requests:
+                return False
+            self.reserved += 1
+            return True
 
     def ready_engines(self):
         out = []
@@ -455,7 +466,7 @@ class Searcher:
 
     def _fetch(self, url, headers=None):
         """status, body, error. Redirects are followed to 7 hops; robots and budget are enforced."""
-        if not self.budget_left():
+        if not self._reserve():
             return 0, b"", "budget_exhausted"
         current = url
         try:
@@ -688,7 +699,8 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
     summary = {
         "targets_total": len(targets), "targets_with_state": len(states), "advanced_this_run": advanced,
         "never_searched": sum(1 for t in targets if t["id"] not in states),
-        "requests_used": searcher.requests_used, "max_requests": max_requests, "cache_hits": searcher.pool.cache_hits,
+        "requests_used": searcher.requests_used, "fetches_budgeted": searcher.reserved, "max_requests": max_requests,
+        "cache_hits": searcher.pool.cache_hits,
         "hits_total": len(hit_rows), "leads_page_confirmed": len(lead_rows),
         "targets_with_page_confirmed_lead": len({r["instrument_id"] for r in lead_rows}),
         "numbers_named_not_in_census": sum(1 for n in named if n not in uni),
