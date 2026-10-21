@@ -3,12 +3,17 @@
 For every open readiness step the tracker records, puts the order into one lane:
 
   machine_queued     a wired job can do it; it only has to run (fetch queue, re-fetch list)
-  machine_unwired    a machine copy or draft exists, but the tracker does not count it
-                     until the owner rules or the output is wired in
+  machine_unwired    a machine copy or draft exists, or the owner has ruled, but the tracker
+                     does not count it until the rule or output is wired in
   ai_judgment        a machine draft or lead exists; an agent claim line can finish it
   owner_ruling       blocked on a ruling the owner has not made
+  owner_action       the owner is doing it by hand (ProQuest scans, phrase searches)
   prerequisite       cannot start until an earlier step is done (status or text first)
   no_route           no copy, lead or job reaches it today
+
+Owner rulings of 2026-10-21 (research/readiness/owner_rulings/) are applied: report
+deadlines and strike-and-insert no longer block; transcriptions may satisfy the text
+step once the tracker rule is wired (until then they sit in machine_unwired).
 
 Lane membership is decided from the tracker's own blockers plus committed job
 outputs (X1 types, claim-drafts, Lambertini, claim-kit families). Counts are
@@ -22,7 +27,7 @@ import build_remaining_work as brw
 ROOT, HERE, JOBS = brw.ROOT, brw.HERE, brw.ROOT / "jobs"
 MODERN_FROM = 7532
 
-LANES = ["machine_queued", "machine_unwired", "ai_judgment", "owner_ruling", "prerequisite", "no_route"]
+LANES = ["machine_queued", "machine_unwired", "ai_judgment", "owner_ruling", "owner_action", "prerequisite", "no_route"]
 STEPS = [("provisional_status", "First yes/no"), ("original_text", "Official text"),
          ("clause_inventory", "Clause inventory"), ("ending_or_current_basis", "Ending or current basis"),
          ("savings_residuals", "Savings and residuals"), ("counterevidence", "Counter-evidence search"),
@@ -59,6 +64,11 @@ def main():
                 lamb_ce.add(json.loads(line).get("instrument_id"))
             except json.JSONDecodeError:
                 pass
+    lewis = {}
+    p = JOBS / "lewis-originals/output/ROUTES.csv"
+    if p.exists():
+        for r in csv.DictReader(open(p)):
+            lewis[r["instrument_id"]] = (r["best_route"], r["route_status"], r["action_owner"])
     report_deadline = set()
     p = JOBS / "claim-kit/output/FAMILIES.json"
     if p.exists():
@@ -89,22 +99,27 @@ def main():
 
         if r["step_provisional_status"] == "open":
             if m:
-                put("provisional_status", "ai_judgment", "Bowditch Y1 · Sinclair")
-            elif text:
-                put("provisional_status", "ai_judgment", "X1 type rules")
-            elif lead_text:
-                put("provisional_status", "owner_ruling", "transcription-as-copy ruling")
+                put("provisional_status", "ai_judgment", "Bowditch Y1 · Sinclair (lean review)")
+            elif text or lead_text:
+                put("provisional_status", "ai_judgment", "X1 type rules on held or transcribed text")
             else:
                 put("provisional_status", "prerequisite")
         if r["step_original_text"] == "open":
+            route, status, owner = lewis.get(i, ("", "", ""))
             if "ORIGINAL_FOUND_NEEDS_PAGE_CHECK" in bl:
                 put("original_text", "ai_judgment", "page check")
             elif lead_text:
-                put("original_text", "owner_ruling", "transcription-as-copy ruling")
+                put("original_text", "machine_unwired", "transcription ruled usable; tracker rule pending (Lewis routes the original)")
+            elif owner == "machine_job":
+                put("original_text", "machine_queued", "Lewis → source-ladder fetch request")
+            elif owner == "agent_check":
+                put("original_text", "ai_judgment", "Lewis: check a volume index or page")
+            elif owner == "owner":
+                put("original_text", "owner_action", "Lewis: ProQuest scan or phrase search by the owner")
             elif m:
                 put("original_text", "machine_queued", "fr-originals · source-ladder")
             else:
-                put("original_text", "no_route", "ProQuest / NARA (owner decision)")
+                put("original_text", "no_route", "Clark: identity unknown")
         if r["step_clause_inventory"] == "open":
             if not st:
                 put("clause_inventory", "prerequisite")
@@ -118,7 +133,7 @@ def main():
             if not st:
                 put("ending_or_current_basis", "prerequisite")
             elif i in report_deadline:
-                put("ending_or_current_basis", "owner_ruling", "report-deadline ruling (Pullman · Tycho)")
+                put("ending_or_current_basis", "ai_judgment", "Pullman packets (report-deadline ruling made)")
             elif judged:
                 put("ending_or_current_basis", "ai_judgment", "claim-drafts judgment-only")
             elif has_hist:

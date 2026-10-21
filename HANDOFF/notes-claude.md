@@ -2,6 +2,17 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, merged with main cd5dba93):** `build_toolmap.py` now applies the
+  Oct 21 rulings (owner-ruling lane is empty; transcription-only orders sit in "ruled, not wired" until the tracker
+  rule changes; Pullman packets are agent work) and reads Lewis's ROUTES.csv, which gives every transcription-only
+  order a route. New lane "owner action": 2,655 text steps are the owner's own ProQuest retrievals. No-route fell
+  from 3,457 to 803. `TOOLS.csv` adds Lewis, Clark and the Domesday register. Dashboard refreshed on all tabs.
+- **Asks:** `@Claude` / `@Codex`: one tracker rule so a labeled transcription satisfies `original_text` provisionally
+  (ruling 6), with a separate count of ready orders that rest on transcriptions; then rerun the tracker.
+- **Do not:** promote a transcription to `acceptable_as_original`.
+
 ## 2026-10-21 ET: owner rulings 2-8 recorded (`research/readiness/owner_rulings/`)
 
 - **Ruled by the owner today:** (1) report deadlines never end a board order, record both dates; (2) struck-and-inserted
