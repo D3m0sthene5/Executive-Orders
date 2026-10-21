@@ -84,6 +84,16 @@ jobs:
         env:
           JOBS: ${{ steps.pick.outputs.jobs }}
           TRIGGER: ${{ github.event_name }} by ${{ github.actor }}
+          # Optional search keys for the Lewis/Clark web search (jobs/_lib/eo_websearch.py). Each is
+          # empty unless the owner adds the secret under Settings -> Secrets and variables -> Actions;
+          # an engine whose key is empty is skipped and listed as "needs_key" in the job summary.
+          GOOGLE_CSE_KEY: ${{ secrets.GOOGLE_CSE_KEY }}
+          GOOGLE_CSE_CX: ${{ secrets.GOOGLE_CSE_CX }}
+          BING_SEARCH_KEY: ${{ secrets.BING_SEARCH_KEY }}
+          BRAVE_SEARCH_KEY: ${{ secrets.BRAVE_SEARCH_KEY }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          NARA_API_KEY: ${{ secrets.NARA_API_KEY }}
+          GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
         run: bash .github/scripts/run_jobs.sh
 
       - name: Keep oversized files as a download

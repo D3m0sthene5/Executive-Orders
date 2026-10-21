@@ -1,0 +1,4 @@
+{
+  "_readme": "Owner-extensible search engines for the Lewis/Clark web search (jobs/_lib/eo_websearch.py). Each entry: name; url with {q} (the URL-encoded query) and optional {year}; kind = html (result links read generically), rss (<item> entries), or json (give 'json': {items, title, url, snippet, date} as dotted paths); optional env (environment variables that must be set; reference them in url/headers as {ENV:NAME}), headers, host_only (keep only result links on these hosts), url_prefix (for ids that are not URLs), disabled. Built-ins live in ENGINES in eo_websearch.py; an entry here with the same name overrides it. Example: {\"name\": \"searxng_example\", \"kind\": \"json\", \"url\": \"https://searx.example.org/search?q={q}&format=json\", \"json\": {\"items\": \"results\", \"title\": \"title\", \"url\": \"url\", \"snippet\": \"content\"}}",
+  "engines": []
+}
