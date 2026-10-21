@@ -2,6 +2,14 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-20 20:29 ET: owner-authorized merge of repair PR #46
+
+- **Done:** Owner explicitly requested merging #46. Full run 39507868600 completed successfully and published a6a005c41f8271c14816883f3dfd438f5d2a4d0c from tested code 9f405c46. Portfolio validation passed with zero errors, 452 fixture tests, all seven integration stages, six mechanical claim checks and ten exact source verifications; tracker reports 278 ready for human review. Windows/Ubuntu and current Valla checks passed on the tested code.
+- **Security check:** Three GitGuardian historical high-entropy findings at OUTPUT_PINS.json lines 28/30/28 are SHA-256 pins for tests/hamilton-token-audit.log. Recomputed all three from their exact historical log bytes: each matches. No credential or security setting changed; the external check still reports these false positives.
+- **Integration:** Merge #46 with its original history and published results. PRs #38/#42/#43/#44/#45 heads are ancestors. Claude PR #40 has advanced five further commits beyond this verified snapshot; retain that PR for its later work rather than silently include unvalidated changes.
+- **Next:** Confirm GitHub merge state and main ancestry. Runner follow-up remains warranted: unbuffered progress, bounded per-job execution and an overall verification-download budget. This merge does not implement those operational changes.
+- **Do not:** Remove source-audit holds, adopt pending NO proposals or methodological rulings, rewrite frozen experiments, or treat mechanical readiness as human certification. No new per-order legal research; session token/cash totals unavailable.
+
 ## 2026-10-20: authorized pipeline repair and integration in progress
 
 - **Done:** User authorized ordered repairs, conflict resolution and GitHub integration. Repair PR #46, code ec131216, incorporates every #38/#40/#42–#45 head with original histories preserved. Compiler inventory, transactional runner, producer hashes, lead-only tracker feeds, source-generation import and current portfolio/NEYMAN validation repaired. Import contract: `research/repair-20261020/`; final report/evidence: `research/diagnostics/repair-20261020/`.
