@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-21T20:31:32Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-21T21:05:29Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 4723 orders** (clark_identified 37, clark_identified_not_in_universe 42, transcription_only 4644).
 
@@ -60,7 +60,7 @@ Generated 2026-10-21T20:31:32Z. Leads and verified file facts; no count or grade
 
 ## Web search (online stage)
 
-28 of 4723 targets advanced this run (4695 never searched yet); 268 of 500 requests used. 422 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+40 of 4723 targets advanced this run (4655 never searched yet); 345 of 500 requests used. 1027 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -68,8 +68,8 @@ Generated 2026-10-21T20:31:32Z. Leads and verified file facts; no count or grade
 | bing_rss | blocked_by_robots_txt |
 | brave_api | needs_key |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | error |
-| duckduckgo_lite | error |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
 | federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
@@ -78,8 +78,8 @@ Generated 2026-10-21T20:31:32Z. Leads and verified file facts; no count or grade
 | internet_archive | ok |
 | loc_books | ok |
 | loc_manuscripts | ok |
-| loc_newspapers | ok |
-| marginalia | error |
+| loc_newspapers | timeout |
+| marginalia | unreachable |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
 | presidency_project | ok |

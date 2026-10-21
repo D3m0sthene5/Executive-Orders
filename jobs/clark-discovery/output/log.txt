@@ -20,9 +20,11 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 5.191s
+Ran 20 tests in 6.019s
 
 OK
+test_blocked_engine_is_skipped_for_the_rest_of_the_run (test_eo_websearch.RunAdaptation.test_blocked_engine_is_skipped_for_the_rest_of_the_run) ... ok
+test_lewis_ranks_held_transcription_hosts_low_but_clark_does_not (test_eo_websearch.RunAdaptation.test_lewis_ranks_held_transcription_hosts_low_but_clark_does_not) ... ok
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
 test_budget_stops_cleanly_and_is_recorded (test_eo_websearch.SearchLayer.test_budget_stops_cleanly_and_is_recorded) ... ok
 test_campaign_writes_files_and_resumes_from_prior_state (test_eo_websearch.SearchLayer.test_campaign_writes_files_and_resumes_from_prior_state) ... ok
@@ -35,7 +37,7 @@ test_strategies_escalate_and_use_date_and_title (test_eo_websearch.SearchLayer.t
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 9.026s
+Ran 12 tests in 9.034s
 
 OK
 {
@@ -60,7 +62,7 @@ OK
       "likely_ocr_footnote_digit": 212
     },
     "mentions_raw": 527,
-    "texts_scanned": 29928,
+    "texts_scanned": 29927,
     "ofr_notes_scanned": 5063
   },
   "identity_unknown": {
@@ -90,23 +92,23 @@ OK
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 17,
-  "requests_used": 199,
-  "hits_total": 216,
-  "leads_page_confirmed": 6,
+  "advanced_this_run": 30,
+  "requests_used": 286,
+  "hits_total": 729,
+  "leads_page_confirmed": 19,
   "engines": {
     "duckduckgo_html": "error",
-    "duckduckgo_lite": "error",
+    "duckduckgo_lite": "ok",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
-    "brave_html": "blocked_by_robots_txt",
-    "marginalia": "error",
+    "brave_html": "unreachable",
+    "marginalia": "unreachable",
     "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
     "brave_api": "needs_key",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "ok",
+    "loc_newspapers": "timeout",
     "loc_books": "ok",
     "loc_manuscripts": "ok",
     "internet_archive": "ok",
