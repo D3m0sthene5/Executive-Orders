@@ -2,6 +2,20 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (~01:30Z): continuous run stopped at the owner's request
+
+- **Last line:** F11490 filed 14 of 20 claims (orders superseded by EO 11490 in 1969). Probe 6/8, plants 3/3 caught.
+  - s2 plant score was inferred from the review-copy diff because its key file was missing. Re-plant s2 if that matters.
+  - Blocked: EO 11004, 11005 and 11088 lack held statutes (HUD Act, DOT Act); EO 11090 waits on transcription-as-copy.
+  - Rejected: EO 10998 and EO 11003.
+- **Ready 283** at 00:35Z, before the F11490, R9830 and R12553NB claims were counted. Certified 0.
+- **Infrastructure:** source-ladder plan now re-walks up to 10 carried-defect records first (`86d7494df`). This is what made EO 11490 pp. 63-95 land.
+- **No workflows running, no check-ins scheduled.**
+- **To resume:**
+  1. Read `research/production/owner-rulings-2026-10-20/BRIEF.md`. The three method rulings gate almost all remaining lines.
+  2. Then run the matching staged packets: Pullman (report deadline) or Blackstone (strike-and-insert).
+  3. Ruling-independent leftovers are small: re-fetches for the blocked F11490/R12553NB statutes, and EO 11927.
+
 ## 2026-10-20 ET (Revere phase, ~21:45Z): late update
 
 - **Ready 256** at 21:42Z, certified 0; newer claims not yet counted.
