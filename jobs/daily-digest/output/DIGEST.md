@@ -51,8 +51,8 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: No open ask recorded in newest entry.
-- notes-claude.md: No open ask recorded in newest entry.
-- notes-codex.md: No open ask recorded in newest entry.
+- notes-claude.md: - **Asks:** `@Owner`: 1. Report-deadline ruling (47 orders now, about 89 in all). 2. Adopt the 56 NO proposals? 3. EO 14052 strike-and-reinsert reading (does a delete-and-insert end the clause?). 4. The transcription-as-copy and Lamm readings are still pending.
+- notes-codex.md: - **Asks:** None requiring owner confirmation; user already authorized software integration.
 - notes-sol.md: - **Asks:** None while validation is running.
 
 ## Published output status
@@ -60,4 +60,4 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39530100148)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39507868600)

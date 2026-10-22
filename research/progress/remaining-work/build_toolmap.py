@@ -38,28 +38,28 @@ def ids(path, col="instrument_id"):
     p = ROOT / path
     if not p.exists():
         return set()
-    with open(p) as f:
+    with open(p, encoding="utf-8") as f:
         return {r[col] for r in csv.DictReader(f) if r.get(col)}
 
 
 def main():
-    tracker = list(csv.DictReader(open(brw.TRACKER)))
+    tracker = list(csv.DictReader(open(brw.TRACKER, encoding="utf-8")))
     year = {}
-    for r in csv.DictReader(open(brw.PROJ)):
+    for r in csv.DictReader(open(brw.PROJ, encoding="utf-8")):
         if r["date_effective"].isdigit():
             year[r["id"]] = int(r["date_effective"])
-    drafts = {r["instrument_id"]: r for r in csv.DictReader(open(JOBS / "claim-drafts/output/TODO_BY_ORDER.csv"))}
+    drafts = {r["instrument_id"]: r for r in csv.DictReader(open(JOBS / "claim-drafts/output/TODO_BY_ORDER.csv", encoding="utf-8"))}
     clause_draft = ids("jobs/clause-drafts/output/CLAUSES.csv")
     hist = set()
     p = JOBS / "status-history/output/INDEX.json"
     if p.exists():
-        hist = {x["instrument_id"] for x in json.load(open(p)) if x["history"] or x["events"]}
+        hist = {x["instrument_id"] for x in json.load(open(p, encoding="utf-8")) if x["history"] or x["events"]}
     edge_targets = ids("jobs/later-events/output/EDGES.csv", "target_id")
     lamb_prefill = ids("jobs/lambertini/output/SAVINGS_PREFILL.csv")
     lamb_ce = set()
     p = JOBS / "lambertini/output/COUNTEREVIDENCE_RECORDS.jsonl"
     if p.exists():
-        for line in open(p):
+        for line in open(p, encoding="utf-8"):
             try:
                 lamb_ce.add(json.loads(line).get("instrument_id"))
             except json.JSONDecodeError:
@@ -67,12 +67,12 @@ def main():
     lewis = {}
     p = JOBS / "lewis-originals/output/ROUTES.csv"
     if p.exists():
-        for r in csv.DictReader(open(p)):
+        for r in csv.DictReader(open(p, encoding="utf-8")):
             lewis[r["instrument_id"]] = (r["best_route"], r["route_status"], r["action_owner"])
     report_deadline = set()
     p = JOBS / "claim-kit/output/FAMILIES.json"
     if p.exists():
-        for f in json.load(open(p)):
+        for f in json.load(open(p, encoding="utf-8")):
             if f["family_id"] == "own_term:report_deadline":
                 report_deadline |= set(f["instrument_ids"])
 
@@ -168,7 +168,7 @@ def main():
             else:
                 put("opus_media", "ai_judgment", "match or settle images")
 
-    with open(HERE / "TOOLMAP_WORKLOAD.csv", "w", newline="") as f:
+    with open(HERE / "TOOLMAP_WORKLOAD.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["step_order", "step", "step_label", "lane_order", "lane", "orders", "tools"])
         for si, (s, label) in enumerate(STEPS, 1):
@@ -184,3 +184,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

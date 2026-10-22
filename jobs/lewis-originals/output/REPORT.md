@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 7340 orders** (clark_identified 2655, clark_identified_not_in_universe 41, transcription_only 4644).
 
@@ -60,7 +60,7 @@ Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade
 
 ## Web search (online stage)
 
-83 of 7340 targets advanced this run (7257 never searched yet); 934 of 1500 requests used. 1117 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+83 of 7340 targets advanced this run (7257 never searched yet); 934 of 1500 requests used. 1119 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
