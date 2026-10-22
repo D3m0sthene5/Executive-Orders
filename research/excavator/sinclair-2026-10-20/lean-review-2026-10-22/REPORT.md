@@ -45,3 +45,12 @@ EO:7980, EO:8051, EO:8706, EO:8714, EO:8751, EO:9301, EO:9380, EO:9593, EO:10656
 ## Adoption rows
 
 ADOPTION_ROWS.csv prepares rows for the 15 Bowditch orders (all upheld) plus the 37 Sinclair orders upheld here, for the owner to merge by pull request per ruling 5. The reconciled CSV itself was not edited. These stay provisional AI status hypotheses.
+
+
+## Pending-adoption cleanup addendum (2026-10-22)
+
+The review findings above remain the historical attempt-2 record. This addendum changes the pending proposal set, not those verdicts. PR51 at `e07f115f12a007171cf3b554680242ce57178beb` had added 52 proposed rows to the reconciled CSV; the earlier sentence saying that CSV was not edited described preparation of this report and no longer describes the PR patch.
+
+Six proposals are now held out of pending adoption: **EO:11261, EO:11943, EO:11979, EO:12240, EO:12573, and EO:13371**. PR51 disclosed inconsistent treatment of these parent-based endings and EO:12488 under the review-cited `2026-10-21-unnamed-instruments` option C. The six historical uphold verdicts and all underlying review evidence remain unchanged. Their exact removed proposal records, review pointers, naming caveats, reasons, and source/ruling references are preserved in [HELD_PROPOSALS.json](HELD_PROPOSALS.json). This is a procedural hold pending resolution through the existing owner/review process, not a new legal determination.
+
+`ADOPTION_ROWS.csv` and the PR's appended reconciled rows now contain **46 pending proposals: 15 Bowditch and 31 Sinclair**. Only the six newly proposed rows were removed; every pre-existing reconciled row and every retained proposal remains byte-for-byte unchanged and in its original order. No proposal was merged or adopted by this cleanup. Historical prospective wording about adoption in retained rows remains unchanged and does not establish adoption. Certified whole-lifecycle count stays **0**; codebook, source evidence, `LEAN_REVIEW.json`, `PLANT_SCORE.json`, and earlier review attempts remain unchanged.
