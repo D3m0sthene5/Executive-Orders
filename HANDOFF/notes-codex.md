@@ -2,6 +2,14 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22: PR cleanup and Lewis schema follow-up
+
+- **Done:** PR#48 now preserves main's generated job outputs/digest, retains eight owner rulings and old snapshots in history, labels tool-map estimates as historical, and fixes explicit UTF-8 I/O with identical CSV output. PR#51 retains 46 unchanged proposals and holds six disputed parent-based endings separately; no adoption merge. Both are conflict-free against main. PR#48 Windows/Ubuntu/smoke pass; historical GitGuardian log hash is verified as a false positive, not dismissed. PR#51 security passes.
+- **Runtime:** Run39802916101 finished with successful ranger, tracker and Clark outputs preserved in5510babb. Actual published tracker280/14,972 ready, 3,359 provisional statuses, six source-audit holds retained. Clark took47min. Lewis then failed because current Pinakes ORDERS omits two inventory-only fields; Domesday was blocked.
+- **Fixed:** Lewis explicitly adapts current Pinakes records without rescanning PDFs or inventing verification. Missing facts stay unknown; empty published Pinakes output remains authoritative; malformed rows fail clearly. CI now includes24 Lewis tests. Diagnostic: `research/diagnostics/codex-swarm-20261021/LEWIS_RUNTIME_FOLLOWUP.md`.
+- **Next:** Verify targeted Lewis→Domesday run and exact-head CI. Scheduler selects only these two jobs plus smoke; completed Clark/ranger work is retained. No new per-order research in this cleanup; token/cash allocation unavailable.
+- **Do not:** Merge status adoption on behalf of the owner, remove holds, rewrite historical reviews, or count mechanical readiness as human certification. Only Codex notes edited.
+
 ## 2026-10-22: refreshed ranger runtime repair
 
 - **Found:** Run39666192712 preserved successful source/draft outputs in640279c but blocked at a fixed23-response assertion; actual Scout produced24. Source-ladder now holds538 receipts (29new,509carried), and all21quarantines remain. Full3,359-draft run made zero network requests.

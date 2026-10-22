@@ -241,3 +241,89 @@ class OnlineStage(SyntheticRepo):
         self.assertEqual([r["instrument_id"] for r in leads], ["EO:6000"])
         self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
         self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
+
+
+class PinakesSchema(unittest.TestCase):
+    setUp = SyntheticRepo.setUp
+    tearDown = SyntheticRepo.tearDown
+    run_job = SyntheticRepo.run_job
+    read_routes = SyntheticRepo.read_routes
+
+    def row(self):
+        # Exact current Pinakes ORDER_FIELDS, including OCR-only metadata and no
+        # INVENTORY.csv pdf_signature/name_parsed columns (bot5510babb6c60).
+        return dict(zip(
+            'instrument_id number suffix year in_census file folder sha256 bytes pages copies text_source text_path text_sha256 text_chars text_quality common_share text_usable ocr_pages ocr_error signing_date title proquest_link_supplied accession_url'.split(),
+            ['EO:4', '4', '', '1865', 'yes', 'PT1-1865-EO-4.pdf', ident.PROQUEST_DIR, 'a'*64,
+             '2263557', '11', '7', 'ocr', 'texts/EO_4.txt', 'b'*64, '6919', '0.726', '0.364',
+             'no', '11', '', '1865-05-09', 'Unverified title', 'yes', 'https://congressional.proquest.com/example']))
+
+    def test_current_schema_runs_without_inventing_verification_or_fragments(self):
+        from unittest.mock import patch
+        write_csv(os.path.join(self.root, lewis.PINAKES_ORDERS), [self.row()])
+        with patch.object(lewis, 'inventory_proquest', side_effect=AssertionError('must reuse Pinakes')):
+            s = self.run_job()
+        self.assertEqual(s['proquest_authority'], 'pinakes-proquest-ingest')
+        self.assertEqual(s['proquest_folder']['orders_with_recorded_pdf'], 1)
+        self.assertEqual(s['proquest_folder']['orders_with_verified_pdf'], 0)
+        self.assertEqual(s['proquest_folder']['signature_not_reported'], 1)
+        self.assertEqual(s['proquest_folder']['name_parse_not_reported'], 1)
+        self.assertEqual(s['proquest_folder']['bad_signature'], 0)
+        self.assertEqual(s['fragments_written'], 0)
+        self.assertEqual(ident.read_jsonl(os.path.join(self.out, 'FRAGMENTS.jsonl')), [])
+        r = self.read_routes()['EO:4']
+        self.assertEqual(r['route_status'], 'pinakes_file_record_pages_unchecked')
+        inv = ident.read_csv(os.path.join(self.out, 'PROQUEST_INVENTORY.csv'))[0]
+        self.assertEqual(inv['pdf_signature'], '')
+        self.assertEqual(inv['name_parsed'], '')
+        self.assertEqual(inv['pages'], '11')
+        self.assertEqual(inv['text_layer_usable'], 'no')
+
+    def test_absent_pinakes_retains_legacy_inspection_and_pending_grades(self):
+        s = self.run_job()
+        self.assertEqual(s['proquest_authority'], 'lewis inventory (Pinakes has not run)')
+        self.assertEqual(s['proquest_folder']['orders_with_verified_pdf'], 2)
+        for f in ident.read_jsonl(os.path.join(self.out, 'FRAGMENTS.jsonl')):
+            self.assertFalse(f['acceptable_as_original'])
+            self.assertFalse(f['data']['acceptable_as_original'])
+            self.assertTrue(f['data']['needs_page_check'])
+
+    def test_present_empty_orders_does_not_rescan_or_duplicate_fragments(self):
+        from unittest.mock import patch
+        path = os.path.join(self.root, lewis.PINAKES_ORDERS)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(','.join(self.row())+'\n')
+        with patch.object(lewis, 'inventory_proquest', side_effect=AssertionError('empty Pinakes is authoritative')):
+            s = self.run_job()
+        self.assertEqual(s['proquest_authority'], 'pinakes-proquest-ingest')
+        self.assertEqual(s['proquest_folder']['pdf_files'], 0)
+        self.assertEqual(s['fragments_written'], 0)
+        self.assertEqual(self.read_routes()['EO:4']['best_route'], 'proquest_supplied_link')
+
+    def test_missing_optional_facts_stay_unknown(self):
+        row = {'instrument_id': 'EO:4', 'file': 'PT1-1865-EO-4.pdf', 'sha256': 'a'*64}
+        write_csv(os.path.join(self.root, lewis.PINAKES_ORDERS), [row])
+        out = lewis.pinakes_orders(self.root)['EO:4']
+        self.assertIsNone(out['pages'])
+        self.assertIsNone(out['text_quality'])
+        self.assertEqual(out['pdf_signature'], '')
+        self.assertEqual(out['text_layer_usable'], '')
+
+    def test_invalid_records_fail_explicitly_without_legacy_fallback(self):
+        from unittest.mock import patch
+        invalid = [dict(self.row(), **{key: value}) for key, value in [
+            ('sha256', ''), ('sha256', 'wrong'), ('file', ''), ('instrument_id', ''),
+            ('pages', '-1'), ('pages', 'not-an-integer'), ('text_chars', '-1'),
+            ('text_quality', 'nan'), ('text_quality', '1.1'), ('text_usable', 'maybe'),
+            ('pdf_signature', 'no')]]
+        invalid.append({k:v for k,v in self.row().items() if k != 'sha256'})
+        for row in invalid:
+            with self.subTest(row=row):
+                write_csv(os.path.join(self.root, lewis.PINAKES_ORDERS), [row])
+                with patch.object(lewis, 'inventory_proquest', side_effect=AssertionError('no fallback')):
+                    with self.assertRaisesRegex(ValueError, 'Pinakes ORDERS.csv'):
+                        self.run_job()
+        write_csv(os.path.join(self.root, lewis.PINAKES_ORDERS), [self.row(), self.row()])
+        with self.assertRaisesRegex(ValueError, 'duplicate instrument_id'):
+            lewis.pinakes_orders(self.root)

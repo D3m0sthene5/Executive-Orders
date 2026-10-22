@@ -30,6 +30,7 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 import re
 import sys
@@ -68,18 +69,54 @@ PINAKES_ORDERS = "jobs/pinakes-proquest-ingest/output/ORDERS.csv"
 
 
 def pinakes_orders(root):
-    """id -> row from the Pinakes ingest (the ProQuest authority once it has run), in Lewis's inventory shape."""
+    """Adapt Pinakes order records; absent inventory facts stay unknown.
+
+    ORDERS.csv is per-order and omits INVENTORY.csv's pdf_signature/name_parsed.
+    Do not rescan PDFs or infer verification from the presence of a hash.
+    """
+    path = os.path.join(root, PINAKES_ORDERS)
+    if not os.path.isfile(path):
+        return {}
     out = {}
-    for r in ident.read_csv(os.path.join(root, PINAKES_ORDERS)):
-        if not r.get("instrument_id"):
-            continue
-        out[r["instrument_id"]] = {"file": r["file"], "folder": r.get("folder", ""), "instrument_id": r["instrument_id"],
-                                   "year": r.get("year", ""), "number": r.get("number", ""), "suffix": r.get("suffix", ""),
-                                   "sha256": r["sha256"], "bytes": r.get("bytes", ""), "pages": int(r["pages"]) if r.get("pages") else None,
-                                   "text_chars": int(r["text_chars"]) if r.get("text_chars") else None,
-                                   "text_quality": float(r["text_quality"]) if r.get("text_quality") else None,
-                                   "text_layer_usable": r.get("text_usable", ""), "text_path": r.get("text_path", ""),
-                                   "text_sha256": r.get("text_sha256", ""), "duplicate_of": ""}
+    with open(path, encoding="utf-8", newline="") as fh:
+        reader = csv.DictReader(fh)
+        if not {"instrument_id", "file", "sha256"}.issubset(reader.fieldnames or []):
+            raise ValueError("Pinakes ORDERS.csv missing required columns")
+        for n, r in enumerate(reader, 2):
+            label = f"Pinakes ORDERS.csv row {n}"
+            iid = r.get("instrument_id") or ""
+            if not ident.parse_eo_id(iid) or iid in out:
+                raise ValueError(f"{label}: invalid or duplicate instrument_id")
+            if not r.get("file") or not re.fullmatch(r"[a-f0-9]{64}", r.get("sha256") or ""):
+                raise ValueError(f"{label}: missing file or invalid SHA-256")
+            def numeric(key, cast, minimum=0):
+                value = r.get(key)
+                if value in (None, ""):
+                    return None
+                try:
+                    parsed = cast(value)
+                    if not math.isfinite(parsed) or parsed < minimum or (key == "text_quality" and parsed > 1):
+                        raise ValueError()
+                    return parsed
+                except (ValueError, TypeError, OverflowError):
+                    raise ValueError(f"{label}: invalid {key}") from None
+            facts = {}
+            for key in ("pdf_signature", "name_parsed", "text_usable"):
+                value = r.get(key) or ""
+                if value not in ("", "yes", "no"):
+                    raise ValueError(f"{label}: invalid {key}")
+                facts[key] = value
+            if facts["pdf_signature"] == "no":
+                raise ValueError(f"{label}: rejected PDF signature in order records")
+            out[iid] = {"file": r["file"], "folder": r.get("folder") or "", "instrument_id": iid,
+                        "year": r.get("year") or "", "number": r.get("number") or "", "suffix": r.get("suffix") or "",
+                        "sha256": r["sha256"], "bytes": numeric("bytes", int, 1), "pages": numeric("pages", int, 1),
+                        "text_chars": numeric("text_chars", int), "text_quality": numeric("text_quality", float),
+                        "text_layer_usable": facts["text_usable"], "text_path": r.get("text_path") or "",
+                        "text_sha256": r.get("text_sha256") or "", "duplicate_of": "",
+                        "pdf_signature": facts["pdf_signature"], "name_parsed": facts["name_parsed"],
+                        "in_universe": r.get("in_census") or "", "pdf_error": r.get("pdf_error") or "",
+                        "inventory_source": "pinakes-proquest-ingest"}
     return out
 
 
@@ -207,7 +244,8 @@ def route_order(iid, reason, dates, frags, pq_rows, pq_local, catalog):
     if local:
         row.update({"proquest_file": local["file"], "proquest_sha256": local["sha256"], "proquest_pages": local["pages"],
                     "proquest_text_layer": local["text_layer_usable"], "best_route": "proquest_local",
-                    "route_status": "file_verified_pages_unchecked",
+                    "route_status": ("pinakes_file_record_pages_unchecked" if local.get("inventory_source") == "pinakes-proquest-ingest"
+                                     else "file_verified_pages_unchecked"),
                     "next_action": "Compare the PDF pages with the transcription; owner decides the custody grade",
                     "action_owner": "agent_check",
                     "lead_url_or_search": os.path.join(local.get("folder") or ident.PROQUEST_DIR, local["file"])})
@@ -291,10 +329,11 @@ def run(root, out_dir):
     if not readiness:
         problems.append("readiness output missing: " + ident.READINESS)
 
+    pinakes_present = os.path.isfile(os.path.join(root, PINAKES_ORDERS))
     pq_local = pinakes_orders(root)
     inv_rows = list(pq_local.values()) if pq_local else []
-    proquest_authority = "pinakes-proquest-ingest" if pq_local else "lewis inventory (Pinakes has not run)"
-    if not pq_local:
+    proquest_authority = "pinakes-proquest-ingest" if pinakes_present else "lewis inventory (Pinakes has not run)"
+    if not pinakes_present:
         inv_rows, pq_local = inventory_proquest(root, universe, out_dir)
     scope, skipped = load_scope(root, readiness, universe)
     if skipped:
@@ -308,7 +347,7 @@ def run(root, out_dir):
     write_csv(os.path.join(out_dir, "ROUTES.csv"), routes, list(routes[0].keys()) if routes else None)
     inv_fields = ["file", "instrument_id", "year", "number", "suffix", "copy", "in_universe", "name_parsed", "bytes", "sha256",
                   "pdf_signature", "pages", "text_chars", "text_quality", "text_layer_usable", "text_path", "text_sha256",
-                  "duplicate_of", "pdf_error"]
+                  "duplicate_of", "pdf_error", "inventory_source"]
     write_csv(os.path.join(out_dir, "PROQUEST_INVENTORY.csv"), inv_rows, inv_fields)
     with open(os.path.join(out_dir, "PROPOSED_FETCH_REQUESTS.jsonl"), "w", encoding="utf-8") as fh:
         for p in proposals:
@@ -325,12 +364,15 @@ def run(root, out_dir):
         "by_owner": dict(collections.Counter(r["action_owner"] for r in routes)),
         "proquest_folder": {"pdf_files": len(inv_rows),
                             "unique_files": sum(1 for r in inv_rows if not r["duplicate_of"]),
-                            "orders_with_verified_pdf": len(pq_local),
+                            "orders_with_recorded_pdf": len(pq_local),
+                            "orders_with_verified_pdf": sum(1 for r in pq_local.values() if r.get("pdf_signature") == "yes"),
                             "orders_in_lewis_scope_with_pdf": sum(1 for r in routes if r["best_route"] == "proquest_local"),
                             "pdfs_for_orders_outside_lewis_scope": sum(1 for i in pq_local if i not in scope),
                             "usable_text_layers": sum(1 for r in inv_rows if r.get("text_layer_usable") == "yes"),
-                            "bad_signature": sum(1 for r in inv_rows if r["pdf_signature"] == "no"),
-                            "unparsed_names": sum(1 for r in inv_rows if r["name_parsed"] == "no"),
+                            "bad_signature": sum(1 for r in inv_rows if r.get("pdf_signature") == "no"),
+                            "signature_not_reported": sum(1 for r in inv_rows if not r.get("pdf_signature")),
+                            "unparsed_names": sum(1 for r in inv_rows if r.get("name_parsed") == "no"),
+                            "name_parse_not_reported": sum(1 for r in inv_rows if not r.get("name_parsed")),
                             "supplied_links_total": len(pq_rows),
                             "supplied_links_in_lewis_scope": sum(1 for r in routes if r["proquest_link_supplied"] == "yes")},
         "proposed_fetch_requests": {"count": len(proposals),
@@ -360,11 +402,14 @@ def write_report(path, s, routes):
         lines.append(f"| {r} | {st} | {v} |")
     p = s["proquest_folder"]
     lines += ["", "## ProQuest folder", "",
-              f"{p['pdf_files']} PDF files ({p['unique_files']} unique by SHA-256) cover {p['orders_with_verified_pdf']} orders; "
+              f"{p['pdf_files']} PDF files ({p['unique_files']} unique by SHA-256) cover {p['orders_with_recorded_pdf']} orders; "
               f"{p['orders_in_lewis_scope_with_pdf']} of them are in Lewis's scope and {p['pdfs_for_orders_outside_lewis_scope']} "
               f"belong to orders outside it (Clark's no-text orders, mostly). {p['usable_text_layers']} text layers pass the "
               f"quality screen (handwritten originals give noise and are excluded). The supplied link list has {p['supplied_links_total']} "
               f"links, {p['supplied_links_in_lewis_scope']} for orders in this scope.", "",
+              f"Authority: {s['proquest_authority']}. PDF signature results are not reported for {p['signature_not_reported']} "
+              "inventory records; missing values are unknown, not verification failures or successful checks. "
+              "Pinakes order records are reused without rereading PDFs or duplicating its fragments.", "",
               "## Proposed fetch requests", "",
               f"{s['proposed_fetch_requests']['count']} requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` "
               f"(validated with the source-ladder request contract: {s['proposed_fetch_requests']['contract_available']}). "
