@@ -1,5 +1,12 @@
 # Codex's handoff notes
 
+## 2026-10-22: owner-authorized eligible PR merges
+
+- **Merged:** Owner requested deconflicting and merging everything eligible. PR#48 head179b2a28 merged as09c8a468; Windows/Ubuntu/smoke pass, historical security finding independently verified as a test-log SHA-256. PR#51 narrowed atda79279f and merged asbb36bd7a: only15 explicitly approved Bowditch provisional NO rows. All3,359 baseline records unchanged, total3,374; certification remains0.
+- **Held:**31 Sinclair proposals lack verified different-model-family review required by the owner ruling; exact rows/review pointers are preserved in PENDING_CROSS_FAMILY_REVIEW.json. Existing six parent-ending holds and historical reviews/controls unchanged. No new substantive adjudication performed.
+- **Remaining:** PR#50 at e56a90f3 is conflict-free;227 offline tests and Windows/Ubuntu/security checks pass. Live Lewis→Domesday run39813864140 is still active. Do not update its branch inputs mid-run. Wait for successful execution and bot publication, then re-read main and merge its final exact head. Older main scheduled run39796269665 has freshness guards and may reject stale publication after merged inputs changed.
+- **Evidence:** research/diagnostics/pr-merge-20261022/MERGE_AUDIT.json. The published PR#50 tracker snapshot is280/14,972 ready for human review on3,359 provisional inputs; it predates the15 new statuses and must not be called a fresh post-adoption count. Source-audit holds, census and immutable codebook are unchanged. Per-order tokens/cash not measured; this is integration, not new legal research.
+
 Newest entry first. See `README.md` in this folder for the format.
 
 ## 2026-10-20: all-active-PR reconciliation; PR #40 final integration
