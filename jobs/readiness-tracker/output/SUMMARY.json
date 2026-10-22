@@ -5,6 +5,15 @@
   "ready_by_tier": {
     "complete_claim": 278
   },
+  "ready_resting_on_transcriptions": 0,
+  "orders_with_provisional_text": 4651,
+  "provisional_text_by_grade": {
+    "mirror_transcription": 4392,
+    "government_printed_copy": 174,
+    "compiled_transcription": 68,
+    "machine_read_government_printed_copy": 10,
+    "archival_replica_scan_pending_codebook": 7
+  },
   "human_verified": "not counted here; see the Stage 19 tracker",
   "step_done_among_decided": {
     "provisional_status": {
@@ -12,7 +21,7 @@
       "applicable": 3359
     },
     "original_text": {
-      "done": 2312,
+      "done": 3212,
       "applicable": 3359
     },
     "clause_inventory": {
@@ -32,29 +41,29 @@
       "applicable": 3359
     },
     "shared_sources": {
-      "done": 190,
+      "done": 209,
       "applicable": 236
     },
     "opus_media": {
-      "done": 121,
+      "done": 125,
       "applicable": 844
     }
   },
   "decided_by_steps_done": {
-    "1/6": 632,
-    "1/7": 14,
-    "1/8": 2,
-    "2/6": 474,
-    "2/7": 82,
-    "2/8": 6,
-    "3/6": 1075,
-    "3/7": 430,
-    "3/8": 54,
+    "1/6": 140,
+    "1/7": 2,
+    "1/8": 1,
+    "2/6": 617,
+    "2/7": 57,
+    "2/8": 4,
+    "3/6": 1424,
+    "3/7": 465,
+    "3/8": 34,
     "4/6": 24,
-    "4/7": 71,
-    "4/8": 151,
+    "4/7": 73,
+    "4/8": 170,
     "5/6": 34,
-    "5/8": 21,
+    "5/8": 25,
     "6/6": 276,
     "6/7": 9,
     "7/7": 2,
@@ -63,21 +72,19 @@
   },
   "orders_blocked_by": {
     "NO_PROVISIONAL_STATUS": 11613,
-    "NO_OFFICIAL_SOURCE_LOCATED": 7814,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 4644,
+    "NO_OFFICIAL_SOURCE_LOCATED": 3449,
     "NO_CLAUSE_INVENTORY": 2975,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2975,
     "FIRST_END_UNPROVED": 2582,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
-    "OPUS_MEDIA_REFETCH_NEEDED": 435,
+    "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 393,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
     "OPUS_MEDIA_NONE_CITED": 217,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
     "CLAIM_INCOMPLETE": 83,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-    "SHARED_SOURCE_NOT_RETRIEVED": 46,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
     "OPEN_SOURCE_AUDIT": 6,
     "CLAIM_CHECK_FAILED": 3,
@@ -87,18 +94,16 @@
     "NO_CLAUSE_INVENTORY": 2975,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2975,
     "FIRST_END_UNPROVED": 2582,
-    "NO_OFFICIAL_SOURCE_LOCATED": 959,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 898,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
-    "OPUS_MEDIA_REFETCH_NEEDED": 435,
+    "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 393,
     "OPUS_MEDIA_NONE_CITED": 217,
+    "NO_OFFICIAL_SOURCE_LOCATED": 147,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
     "CLAIM_INCOMPLETE": 83,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-    "SHARED_SOURCE_NOT_RETRIEVED": 46,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
     "OPEN_SOURCE_AUDIT": 6,
     "CLAIM_CHECK_FAILED": 3,
@@ -107,28 +112,10 @@
   },
   "shared_unlocks": [
     {
-      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
-      "kind": "machine_job",
-      "orders_unblocked": 4644,
-      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
-    },
-    {
       "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
-      "orders_unblocked": 435,
+      "orders_unblocked": 431,
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
-    },
-    {
-      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
-      "kind": "agent_check",
-      "orders_unblocked": 286,
-      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-    },
-    {
-      "action": "Retrieve shared source STAT::66 Stat. 259",
-      "kind": "one_source",
-      "orders_unblocked": 19,
-      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -199,6 +186,7 @@
       "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
       "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
       "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl + jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl + jobs/numbered-early-orders/output/FRAGMENTS.jsonl + jobs/wikisource-texts/output/FRAGMENTS.jsonl",
+      "replica_scan_fragments": "jobs/lewis-originals/output/FRAGMENTS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -222,8 +210,9 @@
       "hathi-gpo-orders (lead only, never counted as the original)": 1531,
       "numbered-early-orders (lead only, never counted as the original)": 184,
       "wikisource-texts (lead only, never counted as the original)": 1639,
+      "lewis-originals (replica scans: provisional text only)": 11,
       "opus-media-match status": 1155,
-      "source-ladder": 504,
+      "source-ladder": 538,
       "claim-checker": 384,
       "machine later-source search": 6938
     }

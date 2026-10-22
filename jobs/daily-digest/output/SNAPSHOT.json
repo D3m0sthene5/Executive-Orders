@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-22",
   "summaries": {
     "app-footnote-leads": {
       "distinct_footnotes": 1994,
@@ -4121,6 +4121,7 @@
         "jobs/app-executive-orders/output/SOURCES.jsonl": 792,
         "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
         "jobs/astra-source-retention/output/SOURCES.jsonl": 25,
+        "jobs/clark-discovery/output/SOURCES.jsonl": 666,
         "jobs/clause-drafts/output/SOURCES.jsonl": 9761,
         "jobs/current-law/output/SOURCES.jsonl": 110,
         "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
@@ -4132,6 +4133,7 @@
         "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
         "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
         "jobs/later-events/output/SOURCES.jsonl": 17528,
+        "jobs/lewis-originals/output/SOURCES.jsonl": 723,
         "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
         "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
         "jobs/ofr-compilations/data/PROVENANCE.json": 1,
@@ -4139,7 +4141,7 @@
         "jobs/opus-media-match/output/SOURCES.jsonl": 496,
         "jobs/richardson-volumes/data/PROVENANCE.json": 3,
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
-        "jobs/source-ladder/output/SOURCES.jsonl": 504,
+        "jobs/source-ladder/output/SOURCES.jsonl": 538,
         "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
         "opus_media_member_map": 496,
         "opus_stage11_fetch_meta": 9203,
@@ -4149,7 +4151,7 @@
         "stage21_acquisition_log": 160,
         "stage21_custody": 160
       },
-      "held_distinct_sha256": 43487,
+      "held_distinct_sha256": 44695,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -4193,8 +4195,8 @@
     },
     "claim-drafts": {
       "book_sources": {
-        "compiled_transcription_lead": 3204,
-        "compiled_transcription_lead_is_the_only_original_candidate": 810,
+        "compiled_transcription_lead": 3206,
+        "compiled_transcription_lead_is_the_only_original_candidate": 812,
         "in_force_1989_lead": 273,
         "note": "orders whose draft uses the printed-volume jobs: official GPO/OFR compilations (ofr-compilations, isthmian-canal-1911, indian-reservations-1912; graded like fr-originals), Richardson's compiled transcriptions (leads only, never the original) and the OFR 1989 Codification (whole-order-end proposals from its disposition table; in-force leads checked through 1989-01-20 only)",
         "official_compilation_candidate": 31,
@@ -4225,12 +4227,12 @@
           "pass": 1432,
           "pass_with_unverified": 1874
         },
-        "note": "jobs/claim-checker imported; 87008 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 88431 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3359,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 1115,
-      "elapsed_seconds": 5179.1,
+      "elapsed_seconds": 5440.0,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 989,
@@ -4277,6 +4279,7 @@
         "fragments_read:app-executive-orders": 765,
         "fragments_read:app-transcriptions": 9387,
         "fragments_read:astra-source-retention": 0,
+        "fragments_read:clark-discovery": 0,
         "fragments_read:clause-drafts": 9761,
         "fragments_read:current-law": 3476,
         "fragments_read:family-rule-sources": 0,
@@ -4287,6 +4290,7 @@
         "fragments_read:indian-reservations-1912": 55,
         "fragments_read:isthmian-canal-1911": 105,
         "fragments_read:later-events": 6719,
+        "fragments_read:lewis-originals": 11,
         "fragments_read:norton": 8,
         "fragments_read:numbered-early-orders": 197,
         "fragments_read:ofr-codification-1989": 1924,
@@ -4300,6 +4304,7 @@
         "sources_read:app-executive-orders": 792,
         "sources_read:app-transcriptions": 9902,
         "sources_read:astra-source-retention": 25,
+        "sources_read:clark-discovery": 1172,
         "sources_read:clause-drafts": 9761,
         "sources_read:current-law": 110,
         "sources_read:family-rule-sources": 2,
@@ -4310,13 +4315,14 @@
         "sources_read:indian-reservations-1912": 0,
         "sources_read:isthmian-canal-1911": 0,
         "sources_read:later-events": 17528,
+        "sources_read:lewis-originals": 1500,
         "sources_read:norton": 0,
         "sources_read:numbered-early-orders": 197,
         "sources_read:ofr-codification-1989": 0,
         "sources_read:ofr-compilations": 0,
         "sources_read:opus-media-match": 496,
         "sources_read:richardson-volumes": 0,
-        "sources_read:source-ladder": 504,
+        "sources_read:source-ladder": 538,
         "sources_read:status-history": 0,
         "sources_read:wikisource-texts": 1639
       },
@@ -4334,6 +4340,10 @@
         {
           "job": "astra-source-retention",
           "path": "jobs/astra-source-retention/output"
+        },
+        {
+          "job": "clark-discovery",
+          "path": "jobs/clark-discovery/output"
         },
         {
           "job": "clause-drafts",
@@ -4374,6 +4384,10 @@
         {
           "job": "later-events",
           "path": "jobs/later-events/output"
+        },
+        {
+          "job": "lewis-originals",
+          "path": "jobs/lewis-originals/output"
         },
         {
           "job": "norton",
@@ -4599,10 +4613,10 @@
           "research": 912
         },
         "shared_sources": {
-          "confirm": 183,
+          "confirm": 202,
           "done_now": 7,
           "n/a": 3123,
-          "research": 46
+          "research": 27
         }
       },
       "scope": "decided",
@@ -4643,36 +4657,36 @@
         "act_overrides_refused": 2,
         "assembled_claims": 0,
         "decided_orders": 3359,
-        "declared_text_representations": 138648,
-        "distinct_held_text_artifacts": 37892,
+        "declared_text_representations": 138679,
+        "distinct_held_text_artifacts": 37923,
         "dossiers": 3359,
         "families": 4338,
-        "generic_references_excluded": 226,
-        "held_texts_scanned": 37892,
-        "known_pairs": 16311,
-        "located_actor_pairs": 10737,
-        "orders_with_held_text": 11520,
+        "generic_references_excluded": 227,
+        "held_texts_scanned": 37923,
+        "known_pairs": 16325,
+        "located_actor_pairs": 10751,
+        "orders_with_held_text": 11521,
         "status_leads": 11613,
         "universe_orders": 14972
       },
-      "input_commit": "9f405c462741e19a80d1adb4dfa8eb3dcc5519cc",
+      "input_commit": "cc13123cf3a77f66110829f9dbb5357ba5badd32",
       "jsonl_shard_sha256": {
-        "ACTING_PROVISIONS.jsonl": "6c90527ff25b4cdd5ced5b37ed7c719df6e4e7442edb61c3f6472902163e0723",
-        "ACTING_PROVISIONS.part0001.jsonl": "3fc0bfce7c950dfad381dfa73a38b2f960b7c8d0837e3db1515c9c2796409629",
-        "ACTING_REPRESENTATIONS.jsonl": "ad402366c536fd3b492a71a317f443d8715f3b7e4650224a569cca00d266ae07",
+        "ACTING_PROVISIONS.jsonl": "12be1523432a87effadb652e06f3978d8e0d21e0d6c9c20047ab86e7ff009b48",
+        "ACTING_PROVISIONS.part0001.jsonl": "b94a054616d20ca5d81f12c1c1d3395781aca3db33c46d6c0445fe750d13dd35",
+        "ACTING_REPRESENTATIONS.jsonl": "40f6d1c0991f2085881ab44cd4f1e422c9ae0c0c66d09a67b7fe08e7191ca083",
         "ASSEMBLED_CLAIMS.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "CHAINS.jsonl": "e67950e8cf557a72b9a34b87518f995d2297ba95049e90194b27815ebd527cb9",
-        "CLAUSES.jsonl": "4d9cc9a9d5e7de9505d95e6b49bfbaca801d21bb288287b358f96c822eed91c3",
+        "CHAINS.jsonl": "57578a99449dffd50718e6e78166889b482bd5512b6694766b37c6fa4c017628",
+        "CLAUSES.jsonl": "154feb36d693abcb54de187122421f10c408638c59986825d063c62224e7f614",
         "MISSING_SOURCES.jsonl": "46bdd4e87faf191c67f6b17e1e95b2099529ee077ccd98f14be0d2919c8f7924",
-        "OVERLAY_INPUTS.jsonl": "609f91f07b2cd59b295cf37ed873c6ab261ae1546241758cf776e1db40e60661",
-        "OWN_TERMS.jsonl": "0bf023a6c2f86275883020fe4e6d0a87e79989fb11db93b3d19b6b645e883cfe",
-        "STATUS_LEADS.jsonl": "2c7743a2dfc4e6a69fad5fcc43a5493bbaaadd4ce0a4f6bca535b79a02ddcb24",
+        "OVERLAY_INPUTS.jsonl": "07a391cc498a9a0ab359f0dc7d697ed27816ccafc90f38db186a2ec8a1b929c0",
+        "OWN_TERMS.jsonl": "943f13ade4a6bf08cd7f8836e339597d5156c02420428545c07a7c318256b771",
+        "STATUS_LEADS.jsonl": "101dfc837c8bb4839f31bc48d4537ef6a3a1215c5f384b588162429dea7c2e69",
         "TEXT_CLAUSES.jsonl": "c8618aec4025ba9db7cf9e053bc6180d2f5dda018f8ce0020e3c3c7915eb1580",
         "TEXT_CLAUSES.part0001.jsonl": "8032f6e56a535c24f513e0e9556c20453cdcd37e511abd9d26264c989dc40235",
-        "TEXT_CLAUSES.part0002.jsonl": "313b7ac0fac7ce148c0546a7eb268a33167c92a30896a97cc6427bf40f5d0f47",
-        "TEXT_CLAUSES.part0003.jsonl": "43c2637c3e8ab3483412a1c50a3b0373bc66a30c0a5a6715ce618cc22ce85341",
-        "TEXT_REPRESENTATIONS.jsonl": "9a33d019006c3062735eac7e245a75d54f9afc88ecf9e1e73ddaa59877200230",
-        "TEXT_REPRESENTATIONS.part0001.jsonl": "636db9d7e8c1993e770c60e92877bf990340ab578c0e1c6ffee826263307a567"
+        "TEXT_CLAUSES.part0002.jsonl": "25478b9efd807cd3268a86fee5d787cabdb9869e2581edb40449c6067da34c2f",
+        "TEXT_CLAUSES.part0003.jsonl": "b7fd456f7babadc0b2aa416361854ddcf0bd16d125f02f71f62930a708f27208",
+        "TEXT_REPRESENTATIONS.jsonl": "be329d2510a43eda6945e3f27db560011781203f830fe468c206bea202b2aea8",
+        "TEXT_REPRESENTATIONS.part0001.jsonl": "7ad4949bf580fca4e1ff4b5d846ceb6f8a62d1fe9373f78eea035379c6809b24"
       },
       "jsonl_shards": [
         "ACTING_PROVISIONS.jsonl",
@@ -4700,6 +4714,69 @@
         "jobs/census-completeness/data/PROVENANCE.json: held text missing: jobs/wpa-lists/output/NUMBERED_ENTRIES.csv",
         "jobs/early-orders-hunt/data/PROVENANCE.json: held text missing: jobs/wpa-lists/output/UNNUMBERED_ENTRIES.csv"
       ]
+    },
+    "clark-discovery": {
+      "cited_but_unknown": {
+        "by_plausibility": {
+          "citing_date_unknown": 1,
+          "exceeds_numbers_issued_by_citing_date": 1,
+          "likely_ocr_footnote_digit": 209,
+          "likely_ocr_letter_for_digit": 16,
+          "plausible": 58,
+          "rare_suffix_letter": 3
+        },
+        "distinct_ids": 138,
+        "mentions_raw": 520,
+        "ofr_notes_scanned": 5063,
+        "rows": 288,
+        "texts_scanned": 27178
+      },
+      "dated_unnumbered": {
+        "distinct_dates": 258,
+        "rows": 415
+      },
+      "generated_utc": "2026-10-22T17:02:52Z",
+      "handoff_to_lewis": {
+        "by_class": {
+          "cited_but_unknown": 7,
+          "identity_unknown": 2655,
+          "number_gap": 34
+        },
+        "rows": 2696
+      },
+      "identity_unknown": {
+        "by_year_group": {
+          "1862\u20131906": 92,
+          "1907\u20131936": 3262,
+          "Unknown date": 78
+        },
+        "number_only": 777,
+        "orders": 3432,
+        "with_proquest_link": 2655,
+        "with_proquest_pdf": 0
+      },
+      "inputs": {
+        "app_index_rows": 9949,
+        "dated_orders": 15003,
+        "lewis_proquest_fragments": 11,
+        "ofr_catalog_rows": 6938,
+        "proquest_list_rows": 2765,
+        "readiness_rows": 14972,
+        "universe": 14972,
+        "wpa_rows": 104
+      },
+      "job": "clark-discovery",
+      "number_gaps": {
+        "by_strength": {
+          "cited": 8,
+          "number_only": 12,
+          "strong": 26
+        },
+        "highest_numbered_order": 14435,
+        "total": 46
+      },
+      "problems": [],
+      "what_this_is_not": "Leads only. Nothing here enters the census, changes a readiness count or authenticates an identity."
     },
     "clause-drafts": {
       "app_transcription_quality": {
@@ -4769,7 +4846,7 @@
       "clauses_total": 70600,
       "fragments_from_app_transcription": 4968,
       "fragments_written": 9761,
-      "generated_utc": "2026-10-20T22:41:05Z",
+      "generated_utc": "2026-10-22T15:13:57Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 2,
         "identity_doubt_app_page_date": 1,
@@ -4808,7 +4885,7 @@
         },
         "other_jobs": {
           "fr-originals": "6497 order-text candidates",
-          "source-ladder": "918 order-text candidates"
+          "source-ladder": "978 order-text candidates"
         },
         "stage21_pdfs_usable": 160
       },
@@ -4822,7 +4899,7 @@
       "orders_not_segmented": 149,
       "orders_processed": 9919,
       "orders_with_candidate_text": 9919,
-      "seconds": 172.4,
+      "seconds": 169.4,
       "segmentation_outcomes_by_input": {
         "by_input": {
           "app_transcription_job": {
@@ -4843,18 +4920,18 @@
             "unusable": 6
           },
           "job:official_fr_scan_ocr_text": {
-            "good": 358,
+            "good": 360,
             "identity_doubt": 118,
-            "not_located:body_only_refused_text_has_heading_for_other_order": 215,
+            "not_located:body_only_refused_text_has_heading_for_other_order": 228,
             "not_located:order_not_located_in_text": 55,
             "partial": 2606,
-            "unusable": 1791
+            "unusable": 1806
           },
           "job:other_copy": {
             "good": 3,
             "identity_doubt": 42,
             "not_located:body_only_refused_text_has_heading_for_other_order": 6,
-            "not_located:order_not_located_in_text": 219,
+            "not_located:order_not_located_in_text": 249,
             "partial": 182
           },
           "opus_zip:mirror_transcription_app": {
@@ -6430,6 +6507,51 @@
         "why_chosen": "pinned default; listed on https://uscode.house.gov/download.html"
       }
     },
+    "domesday-register": {
+      "by_best_held": {
+        "archival_replica_scan": 11,
+        "nothing": 3449,
+        "official_found_page_check_pending": 286,
+        "official_original_counted": 6872,
+        "transcription_only": 4354
+      },
+      "by_era": {
+        "1862\u20131906": 611,
+        "1907\u20131936": 7304,
+        "1937\u20131989": 5202,
+        "1990\u20132026": 1737,
+        "Unknown date": 118
+      },
+      "candidates_not_in_register": {
+        "by_strength": {
+          "": 8,
+          "cited": 14,
+          "strong": 28,
+          "weak": 4
+        },
+        "total": 54
+      },
+      "clark": {
+        "classed": 3432,
+        "web_confirmed_page": 0
+      },
+      "generated_utc": "2026-10-21T18:46:13Z",
+      "job": "domesday-register",
+      "lewis": {
+        "routed": 7299,
+        "web_confirmed_page": 1
+      },
+      "orders": 14972,
+      "problems": [],
+      "proquest": {
+        "link_supplied": 2765,
+        "pdf_in_repository": 11
+      },
+      "what_this_is_not": "A survey of what is held. No identity, custody grade, readiness count or legal status changes here.",
+      "with_any_text_file": 11517,
+      "with_date": 14887,
+      "with_title": 10139
+    },
     "early-orders-hunt": {
       "books": {
         "copies_tried": {},
@@ -6747,7 +6869,7 @@
         "DATE_CONFLICT_OR_UNKNOWN": 72,
         "EARLIER_OR_UNDATED_ENDING": 75,
         "INDEPENDENT_CLAUSE_OR_SAVINGS_LEAD": 744,
-        "LATER_OR_UNDATED_SAVED_TEXT_USE": 706,
+        "LATER_OR_UNDATED_SAVED_TEXT_USE": 707,
         "NO_MATCHING_END_EDGE": 6,
         "ORIGINAL_SOURCE_CUSTODY_UNVERIFIED": 748,
         "QUALIFIED_OR_CONFLICTING_SCOPE": 17,
@@ -6760,8 +6882,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 46996,
-      "sweep_manifest_sha256": "c0e07a455f7a72d862afb75d2281a2631f467b93248a06447f99a04a47b6746a",
+      "saved_texts_scanned": 47033,
+      "sweep_manifest_sha256": "ece91b3dd2fd341e048f90f7377ae2931f84ed35e1d55a19d7a539ad0288fd10",
       "targets": 748
     },
     "fr-originals": {
@@ -7249,9 +7371,9 @@
         "Y1_later_events -> none_after_bounded_search": 1
       },
       "counterevidence_by_class": {
-        "C0_no_lead_found": 18,
+        "C0_no_lead_found": 455,
         "C1_contrary_or_wpa_lead": 111,
-        "C2_original_text_open": 558
+        "C2_original_text_open": 121
       },
       "counterevidence_records": 687,
       "decided_orders_with_draft": 3359,
@@ -7300,9 +7422,9 @@
       ],
       "packets": 84,
       "packets_covering_half_of_targets": 3,
-      "pool_LAMBC": 18,
-      "pool_LAMBS": 91,
-      "repo_head": "61edb04cb",
+      "pool_LAMBC": 455,
+      "pool_LAMBS": 103,
+      "repo_head": "cc13123cf",
       "rules": [
         "prefills and draft search records are leads a reader confirms; nothing here closes a step",
         "writes no claim, EXHAUSTED line, status or tier; codebook unchanged; certified stays 0",
@@ -7437,6 +7559,61 @@
         "unrecognized label": 3
       }
     },
+    "lewis-originals": {
+      "by_owner": {
+        "agent_check": 2377,
+        "machine_job": 266,
+        "owner": 4697
+      },
+      "fragments_written": 11,
+      "generated_utc": "2026-10-21T17:54:22Z",
+      "inputs": {
+        "clark_handoff_rows": 2696,
+        "dated_orders": 15003,
+        "ofr_catalog_rows": 6938,
+        "readiness_rows": 14972,
+        "universe": 14972
+      },
+      "job": "lewis-originals",
+      "problems": [],
+      "proposed_fetch_requests": {
+        "contract_available": true,
+        "contract_valid": 266,
+        "count": 266
+      },
+      "proquest_folder": {
+        "bad_signature": 0,
+        "orders_in_lewis_scope_with_pdf": 4,
+        "orders_with_verified_pdf": 11,
+        "pdf_files": 13,
+        "pdfs_for_orders_outside_lewis_scope": 7,
+        "supplied_links_in_lewis_scope": 2742,
+        "supplied_links_total": 2765,
+        "unique_files": 11,
+        "unparsed_names": 0,
+        "usable_text_layers": 1
+      },
+      "pypdf_available": true,
+      "routes": {
+        "federal_register:fetch_request_proposed": 266,
+        "federal_register:fr_era_not_in_ofr_catalog": 215,
+        "federal_register:in_ofr_catalog_no_citation": 431,
+        "gpo_bound_volumes:in_volume_range_not_found": 1253,
+        "ofr_hoover_compilation:in_volume_range_not_found": 474,
+        "proquest_local:file_verified_pages_unchecked": 4,
+        "proquest_phrase_search:manual_lead": 1959,
+        "proquest_supplied_link:awaiting_acquisition": 2738
+      },
+      "scope": {
+        "by_reason": {
+          "clark_identified": 2655,
+          "clark_identified_not_in_universe": 41,
+          "transcription_only": 4644
+        },
+        "orders": 7340
+      },
+      "what_this_is_not": "Leads and byte facts only. No readiness step, count, custody grade or legal status changes here."
+    },
     "library-survey": {
       "OCR_attempts": 2,
       "OCR_recovered_characters": 7118,
@@ -7464,7 +7641,7 @@
       "complete_dossiers": 0,
       "human_certifications_added": 0,
       "legal_decisions_added": 0,
-      "manifest_sha256": "e2351684aa2b9b03454370c9b91ace0c1bf754b9794328b1515a4ab11245d6b3",
+      "manifest_sha256": "5488b5a8b661917422d300aee29a3a8004529f1252e49e718de3ff5c9486d5ea",
       "observed_model_api_calls": 0,
       "outcomes": {
         "blocked_prerequisite": 24
@@ -7507,19 +7684,19 @@
       "texts_saved": 197
     },
     "official-fixity": {
-      "carried_forward": 5136,
-      "checked_this_run": 18,
+      "carried_forward": 5154,
+      "checked_this_run": 3,
       "establishes": "byte-identity of the project's copy with GPO's published SHA-256; custody evidence only",
-      "files": 5154,
+      "files": 5157,
       "job": "official-fixity",
       "orders_with_a_gpo_matched_file": 5070,
-      "premis_bytes_read_this_run": 327680,
+      "premis_bytes_read_this_run": 0,
       "results": {
         "match": 3435,
-        "not_listed": 1714,
+        "not_listed": 1717,
         "partial_match": 5
       },
-      "seconds": 0.3
+      "seconds": 0.1
     },
     "ofr-codification-1989": {
       "body": {
@@ -9030,20 +9207,20 @@
     },
     "readiness-tracker": {
       "decided_by_steps_done": {
-        "1/6": 632,
-        "1/7": 14,
-        "1/8": 2,
-        "2/6": 474,
-        "2/7": 82,
-        "2/8": 6,
-        "3/6": 1075,
-        "3/7": 430,
-        "3/8": 54,
+        "1/6": 140,
+        "1/7": 2,
+        "1/8": 1,
+        "2/6": 617,
+        "2/7": 57,
+        "2/8": 4,
+        "3/6": 1424,
+        "3/7": 465,
+        "3/8": 34,
         "4/6": 24,
-        "4/7": 71,
-        "4/8": 151,
+        "4/7": 73,
+        "4/8": 170,
         "5/6": 34,
-        "5/8": 21,
+        "5/8": 25,
         "6/6": 276,
         "6/7": 9,
         "7/7": 2,
@@ -9057,20 +9234,18 @@
         "FIRST_END_UNPROVED": 2582,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2975,
-        "NO_OFFICIAL_SOURCE_LOCATED": 959,
+        "NO_OFFICIAL_SOURCE_LOCATED": 147,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
         "NO_PROVISIONAL_STATUS": 0,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 898,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 435,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 88,
+        "OPUS_MEDIA_REFETCH_NEEDED": 431,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2975,
-        "SHARED_SOURCE_NOT_RETRIEVED": 46
+        "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
@@ -9105,7 +9280,8 @@
           "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
           "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
           "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
-          "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv"
+          "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
+          "replica_scan_fragments": "jobs/lewis-originals/output/FRAGMENTS.jsonl"
         },
         "job_outputs_used": {
           "app-executive-orders (lead only, never counted as the original)": 9902,
@@ -9114,13 +9290,14 @@
           "hathi-gpo-orders (lead only, never counted as the original)": 1531,
           "indian-reservations-1912": 55,
           "isthmian-canal-1911": 105,
+          "lewis-originals (replica scans: provisional text only)": 11,
           "machine later-source search": 6938,
           "numbered-early-orders (lead only, never counted as the original)": 184,
           "ofr-compilations": 500,
           "opus-media-match fragments": 122,
           "opus-media-match status": 1155,
           "richardson-volumes (lead only, never counted as the original)": 68,
-          "source-ladder": 504,
+          "source-ladder": 538,
           "wikisource-texts (lead only, never counted as the original)": 1639
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
@@ -9135,51 +9312,40 @@
         "FIRST_END_UNPROVED": 2582,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2975,
-        "NO_OFFICIAL_SOURCE_LOCATED": 7814,
+        "NO_OFFICIAL_SOURCE_LOCATED": 3449,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 687,
         "NO_PROVISIONAL_STATUS": 11613,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 4644,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 217,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
-        "OPUS_MEDIA_REFETCH_NEEDED": 435,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 286,
+        "OPUS_MEDIA_REFETCH_NEEDED": 431,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2975,
-        "SHARED_SOURCE_NOT_RETRIEVED": 46
+        "SHARED_SOURCE_NOT_RETRIEVED": 27
       },
       "orders_total": 14972,
       "orders_with_provisional_status": 3359,
+      "orders_with_provisional_text": 4651,
+      "provisional_text_by_grade": {
+        "archival_replica_scan_pending_codebook": 7,
+        "compiled_transcription": 68,
+        "government_printed_copy": 174,
+        "machine_read_government_printed_copy": 10,
+        "mirror_transcription": 4392
+      },
       "ready_by_tier": {
         "complete_claim": 278
       },
       "ready_for_human_review": 278,
+      "ready_resting_on_transcriptions": 0,
       "shared_unlocks": [
-        {
-          "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
-          "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
-          "kind": "machine_job",
-          "orders_unblocked": 4644
-        },
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
           "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
           "kind": "machine_job",
-          "orders_unblocked": 435
-        },
-        {
-          "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
-          "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "kind": "agent_check",
-          "orders_unblocked": 286
-        },
-        {
-          "action": "Retrieve shared source STAT::66 Stat. 259",
-          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259",
-          "kind": "one_source",
-          "orders_unblocked": 19
+          "orders_unblocked": 431
         },
         {
           "action": "Retrieve shared source EO::4314",
@@ -9239,11 +9405,11 @@
         },
         "opus_media": {
           "applicable": 844,
-          "done": 121
+          "done": 125
         },
         "original_text": {
           "applicable": 3359,
-          "done": 2312
+          "done": 3212
         },
         "provisional_status": {
           "applicable": 3359,
@@ -9255,7 +9421,7 @@
         },
         "shared_sources": {
           "applicable": 236,
-          "done": 190
+          "done": 209
         }
       }
     },
@@ -9994,29 +10160,29 @@
       "wpa_entries_parsed": 155
     },
     "source-ladder": {
-      "attempts_logged": 50,
-      "bytes_downloaded": 475352251,
+      "attempts_logged": 30,
+      "bytes_downloaded": 850521061,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
-      "distinct_new_source_hashes": 38,
+      "distinct_new_source_hashes": 29,
       "earlier_found_carried_with_defect": 0,
-      "earlier_found_failing_todays_checks": 2,
-      "embedded_cite_items": 27,
-      "exhausted_proposed_items": 10,
-      "exhausted_proposed_lines": 10,
+      "earlier_found_failing_todays_checks": 0,
+      "embedded_cite_items": 10,
+      "exhausted_proposed_items": 1,
+      "exhausted_proposed_lines": 1,
       "fetch_queue_problems": [
         "FETCH_QUEUE.jsonl line 515: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence",
         "FETCH_QUEUE.jsonl line 523: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence",
         "FETCH_QUEUE.jsonl line 562: unknown step 'later_events'"
       ],
-      "found": 504,
+      "found": 538,
       "found_by_route": {
-        "given/given": 168,
+        "given/given": 172,
         "official/govinfo_fr_issue_pdf": 61,
         "official/govinfo_link_cfr": 22,
         "official/govinfo_link_cfr_edition": 1,
-        "official/govinfo_link_fr": 55,
+        "official/govinfo_link_fr": 84,
         "official/govinfo_link_plaw": 2,
-        "official/govinfo_link_statute": 38,
+        "official/govinfo_link_statute": 39,
         "official/govinfo_link_statute_from_rp_index": 7,
         "official/govinfo_link_statute_publaw": 11,
         "official/govinfo_link_uscode": 36,
@@ -10027,105 +10193,105 @@
         "official/wcpd_document": 1,
         "wayback_given/wayback_id_": 5
       },
-      "found_carried_forward": 464,
-      "from_fetch_queue": 604,
+      "found_carried_forward": 509,
+      "from_fetch_queue": 870,
       "from_opus_refetch": 774,
       "from_stage20_shared_sources": 90,
-      "http_requests": 81,
-      "items_in_queue": 1468,
+      "http_requests": 60,
+      "items_in_queue": 1734,
       "items_worked": 182,
       "job": "source-ladder",
       "max_download_mb": 800,
-      "needs_revalidation": 1,
-      "new_sources_found": 40,
+      "needs_revalidation": 0,
+      "new_sources_found": 29,
       "no_route": 132,
-      "not_attempted_budget": 0,
+      "not_attempted_budget": 20,
       "offline": false,
-      "orders_covered_by_found_sources": 611,
-      "pool_cache_hits": 1,
-      "pool_network_requests": 83,
+      "orders_covered_by_found_sources": 663,
+      "pool_cache_hits": 0,
+      "pool_network_requests": 61,
       "prefetched_urls": 0,
       "quarantined_prior_sources": 21,
       "range_bytes": 0,
       "range_requests": 0,
-      "report_date_items": 40,
+      "report_date_items": 39,
       "report_date_records_found": 0,
       "request_validation": {
         "corrected": 15,
         "invalid": 1,
         "unresolved": 2,
-        "valid": 561
+        "valid": 827
       },
-      "retained_prior_attempt_records": 446,
-      "retained_prior_failure_records": 206,
+      "retained_prior_attempt_records": 818,
+      "retained_prior_failure_records": 227,
       "retry_later": 0,
-      "run_date": "2026-10-20",
-      "seconds": 599.5,
+      "run_date": "2026-10-22",
+      "seconds": 965.9,
       "source_evidence_tiers": {
-        "document_text": 417,
+        "document_text": 451,
         "report_record": 87
       },
       "source_plan": {
         "legal_cutoff": "2026-10-14",
         "max_requests": 300,
-        "method": "FETCH_QUEUE requests first (untried before tried), then readiness proximity, step opportunity, downstream work, stable ID",
-        "queue_fingerprint": "315de892fb5c3c069c97c8293f6d330abe32fdb4c3420812d2cfec152d4809bc",
+        "method": "up to 10 carried-defect re-walks first (queue requests, then ID), then FETCH_QUEUE requests (untried before tried), then readiness proximity, step opportunity, downstream work, stable ID",
+        "queue_fingerprint": "f77bcbff86134819a847640003c359aa22b1431b2b1f0b5a87d71654da35919e",
         "schema": "eo-source-plan/v1",
-        "tracker_sha256": "ff0b5c81314e0a6d196e176fdd2e499384c335769159dc5fadd1ad78e2b87377",
+        "tracker_sha256": "991536be79f72471a8c45379acb4b3b8f0646d97237e689179adfa94353ec69f",
         "wanted_ids": [
-          "queue:EO:11022:44 FR 1053, PDF pages 319-320; include EO12107, 44 FR 1055-1064, PDF pages 321-330",
-          "queue:EO:11206:Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202 (90 Stat. 1667): same request as for EO 10906 (enacted text of the sec. 6103 rewrite and its effective date); and the Interest Equalization Tax Extension Act of 1973 (Pub. L. 93-17) termination of chapter 41 for acquisitions after June 30, 1974. <90 Stat. 1667>",
-          "queue:EO:11206:Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202 (90 Stat. 1667): same request as for EO 10906 (enacted text of the sec. 6103 rewrite and its effective date); and the Interest Equalization Tax Extension Act of 1973 (Pub. L. 93-17) termination of chapter 41 for acquisitions after June 30, 1974. <Pub. L. 93-17>",
-          "queue:EO:11213:Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202 (90 Stat. 1667): same request as for EO 10906 and EO 11206. <90 Stat. 1667>",
-          "queue:EO:11237:Housing and Community Development Act of 1974, Pub. L. 93-383, 88 Stat. 633 (esp. sec. 116 on termination of Title VII open-space land grants), official Statutes at Large text with a retained copy and sha256. <88 Stat. 633>",
-          "queue:EO:11436:Defense Officer Personnel Management Act, Pub. L. 96-513 (Dec. 12, 1980), 94 Stat. 2835, including its provisions repealing or amending 10 U.S.C. 6372 and 6386 and its effective-date section, official Statutes at Large text with a retained copy and sha256; also needed for EO 11284. <94 Stat. 2835>",
-          "queue:EO:11574:Federal Water Pollution Control Act Amendments of 1972, Pub. L. 92-500 (Oct. 18, 1972), 86 Stat. 816, esp. sec. 402(a)(5) on permits under sec. 13 of the Act of March 3, 1899 (33 U.S.C. 407), official Statutes at Large text with a retained copy and sha256. <86 Stat. 816>",
-          "queue:EO:11969:Emergency Natural Gas Act of 1977, Pub. L. 95-2 (Feb. 2, 1977), 91 Stat. 4, esp. its termination/expiration provisions, official Statutes at Large text with a retained copy and sha256. <91 Stat. 4>",
-          "queue:EO:12257:Job Training Partnership Act, Pub. L. 97-300 (Oct. 13, 1982), 96 Stat. 1322, esp. sec. 184 (repeal of the Comprehensive Employment and Training Act) and its effective-date provisions, official Statutes at Large text with a retained copy and sha256; and any OPM Federal Register notice withdrawing the EO 12257 1-104 CETA conversion guidelines before 1986-02-25. <96 Stat. 1322>",
-          "queue:EO:12263:Strategic and Critical Materials Transaction Authorization Act of 1979, Pub. L. 96-175 (Dec. 29, 1979), 93 Stat. 1289, esp. sec. 5 (tin contribution to the Tin Buffer Stock) and any limit or expiry of that authority; and the Fifth International Tin Agreement's termination (1982-06-30) as published by the State Department (TIAS or Federal Register), official texts with retained copies and sha256. <93 Stat. 1289>",
-          "queue:EO:12297:International Coffee Agreement Act of 1980, Pub. L. 96-599 (Dec. 24, 1980), 94 Stat. 3491, including any expiry provision, and every later statute extending, amending or replacing it before 1986-02-25 (implementation of the International Coffee Agreement 1983), official Statutes at Large texts with retained copies and sha256. <94 Stat. 3491>",
-          "queue:EO:12390:Supplemental Appropriations Act, 1982, Pub. L. 97-257 (Sept. 10, 1982), 96 Stat. 818, sec. 306 (determination and reports on payments concerning U.S. credit to Poland), and any later appropriations or continuing-resolution provision (e.g. Pub. L. 97-276, Pub. L. 97-377 and FY1984-86 acts) carrying that condition forward up to 1986-02-25; also Pub. L. 97-216 sec. 205; official Statutes at Large texts with retained copies and sha256. <96 Stat. 818>",
-          "queue:EO:12392:Continuing appropriations resolution, Pub. L. 97-276 (Oct. 2, 1982), 96 Stat. 1186, sec. 129 (payments to international financial institutions) and its duration provision, and any later continuing appropriations (e.g. Pub. L. 97-377, Dec. 21, 1982) carrying sec. 129 forward; official Statutes at Large texts with retained copies and sha256. <96 Stat. 1186>",
-          "queue:EO:9942:Rubber Act of 1948 (Mar. 31, 1948, 62 Stat. 101) as amended, including its termination provision and every later Act extending or ending it (e.g. the Rubber Act of 1950), the Rubber Producing Facilities Disposal Act of 1953, and the Act or order dissolving the Federal Facilities Corporation, official Statutes at Large texts with retained copies and sha256. <62 Stat. 101>",
-          "queue:EO:8404:5 FR 1661",
-          "queue:EO:8556:5 FR 3869",
-          "queue:EO:8598:34 FR 6688; 34 FR 17773 <34 FR 17773>",
-          "queue:EO:8598:34 FR 6688; 34 FR 17773 <34 FR 6688>",
-          "queue:EO:9007:7 FR 95",
-          "queue:EO:9104:Public Land Order 512, Aug. 6, 1948, 13 FR 4792 (revokes EO 9104 'in part'); and any later land order covering the remaining acreage <13 FR 4792>",
-          "queue:EO:9249:Second War Powers Act, 1942, Title II (56 Stat. 176) and its later expiry or repeal <56 Stat. 176>",
-          "queue:EO:9326:8 FR 4683",
-          "queue:EO:9353:8 FR 8587",
-          "queue:EO:9630:10 FR 12245",
-          "queue:EO:9939:13 FR 1579",
-          "queue:EO:10590:20 FR 409, PDF pages 1-3",
-          "queue:EO:11403:33 FR 5501 page images (page check of EO 11403) and any order, proclamation or Defense Department release ending the April 1968 Washington deployment and relieving the called-up National Guard units; retained copy with sha256.",
-          "queue:EO:11542:35 FR 10943, PDF page 7",
-          "queue:EO:13029:61 FR 64592-64599, PDF pages 1-8",
-          "queue:EO:2834:EO 2834",
-          "queue:EO:4872:EO 4872",
-          "queue:EO:5038:EO 5038",
-          "queue:EO:6143:EO 6143",
-          "queue:EO:6276:EO 6276",
-          "queue:EO:6694:EO 6694",
-          "queue:EO:6694:EO 9095",
-          "queue:EO:7180:EO 7180",
-          "queue:EO:7373:1 FR 427",
-          "queue:EO:7435:1 FR 1164",
-          "queue:EO:7509:1 FR 2149",
-          "queue:EO:7510:1 FR 2150",
-          "queue:EO:7624:2 FR 1119 (June 3, 1937), page images for the Tongass National Forest enlargement order (EO 7624) to confirm the order number and text",
-          "queue:EO:7714:EO 7714",
-          "queue:EO:7737:EO 7737 (Nov. 6, 1937)",
-          "queue:EO:7848:3 FR 739, PDF pages 1-3",
-          "queue:EO:7848:Commodity Credit Corporation Charter Act, June 29, 1948, 62 Stat. 1070; and any instrument ending the paragraph 1 stock-receipt designation of EO 7848 <62 Stat. 1070>",
-          "queue:EO:7899:EO 7899",
-          "queue:EO:8586:5 FR 4444 (Nov. 13, 1940), page of the executive order itself (contents list the order at p. 4444; text may begin on a following page) <task:original_text>",
-          "queue:EO:8861:6 FR 4289",
-          "queue:EO:9132A:EO 9132A <task:original_text>"
+          "queue:EO:10230:16 FR 2905",
+          "queue:EO:10281:16 FR 8789",
+          "queue:EO:10287:16 FR 9137",
+          "queue:EO:10417:17 FR 11219",
+          "queue:EO:10607:20 FR 3017",
+          "queue:EO:10827:24 FR 5233",
+          "queue:EO:11025:27 FR 5467",
+          "queue:EO:11043:27 FR 8157",
+          "queue:EO:11080:28 FR 903",
+          "queue:EO:11146:29 FR 3417",
+          "queue:EO:11147:29 FR 3463",
+          "queue:EO:11194:30 FR 877",
+          "queue:EO:11208:30 FR 3927",
+          "queue:EO:11255:30 FR 14135",
+          "queue:EO:11344:32 FR 6173",
+          "queue:EO:11376:32 FR 14545",
+          "queue:EO:11412:33 FR 8583",
+          "queue:EO:11442:34 FR 187",
+          "queue:EO:11454:34 FR 1935",
+          "queue:EO:11633:36 FR 32197",
+          "queue:EO:11750:38 FR 34451",
+          "queue:EO:11836:40 FR 4255",
+          "queue:EO:11871:40 FR 30615, 30915 (corrected) <40 FR 30615>",
+          "queue:EO:12184:44 FR 75091",
+          "queue:EO:12366:47 FR 23135",
+          "queue:EO:12402:48 FR 2311",
+          "queue:EO:12434:48 FR 33229",
+          "queue:EO:12455:49 FR 345",
+          "queue:EO:12500:50 FR 3733",
+          "queue:EO:12692:54 FR 40627",
+          "queue:EO:12751:56 FR 6787",
+          "queue:EO:12825:57 FR 60973",
+          "queue:EO:12826:57 FR 62909",
+          "queue:EO:12829:58 FR 3479",
+          "queue:EO:12883:58 FR 63281",
+          "queue:EO:12886:58 FR 68708",
+          "queue:EO:7700:2 FR 2215",
+          "queue:EO:7915:3 FR 1519",
+          "queue:EO:7916:3 FR 1526",
+          "queue:EO:7968:3 FR 2185",
+          "queue:EO:8107:4 FR 1903",
+          "queue:EO:8195:4 FR 2911",
+          "queue:EO:8269:4 FR 4241",
+          "queue:EO:8336:5 FR 593",
+          "queue:EO:8587:5 FR 4445",
+          "queue:EO:8800:6 FR 3099",
+          "queue:EO:9004:7 FR 2",
+          "queue:EO:9448:9 FR 6387",
+          "queue:EO:9567:10 FR 9617",
+          "queue:EO:9579:10 FR 9186"
         ]
       },
-      "stopped_early": "",
+      "stopped_early": "download budget of 800000000 bytes reached",
       "unresolved_request_tasks": 2
     },
     "status-history": {

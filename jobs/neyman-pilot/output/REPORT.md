@@ -1,10 +1,10 @@
 # NEYMAN bounded pilot
 
-Known inventory: 14,972 orders, 14,694 unfinished; 2,923 actual joint strata.
+Known inventory: 14,972 orders, 14,694 unfinished; 2,912 actual joint strata.
 The frozen seed selected 24 attempts in 13 era/status macro strata.
 Outcomes: {"blocked_prerequisite": 24}. No completed legal dossiers or human certifications were added.
 
-This pilot measured an offline prerequisite investigation. Machine execution lower bound: 3.389 seconds, including shared preparation/integration once.
+This pilot measured an offline prerequisite investigation. Machine execution lower bound: 3.473 seconds, including shared preparation/integration once.
 Active agent effort, full independent review, correction, campaign coordination, token categories, API token valuation and actual cash expenditure are unavailable.
 No population completion total, confidence interval or completion date is justified. Blocked attempts remain in the denominator; their completion effort is null.
 The current Junto configuration has a $10 API-value round and 20% nominal exploration share ($2), without an assigned NEYMAN allocation. The job makes no model API calls. Session-level valuation/cash and allowance compliance cannot be measured here.

@@ -1,8 +1,8 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-22T17:41:04Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 7340 orders** (clark_identified 2655, clark_identified_not_in_universe 41, transcription_only 4644).
+**Scope: 7347 orders** (clark_identified 2655, clark_identified_not_in_universe 41, transcription_only 4651).
 
 ## Where they stand on the ladder
 
@@ -15,11 +15,11 @@ Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade
 | federal_register | in_ofr_catalog_no_citation | 431 |
 | federal_register | fetch_request_proposed | 266 |
 | federal_register | fr_era_not_in_ofr_catalog | 215 |
-| proquest_local | file_verified_pages_unchecked | 4 |
+| proquest_local | file_verified_pages_unchecked | 11 |
 
 ## ProQuest folder
 
-13 PDF files (11 unique by SHA-256) cover 11 orders; 4 of them are in Lewis's scope and 7 belong to orders outside it (Clark's no-text orders, mostly). 1 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 2742 for orders in this scope.
+13 PDF files (11 unique by SHA-256) cover 11 orders; 11 of them are in Lewis's scope and 0 belong to orders outside it (Clark's no-text orders, mostly). 1 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 2749 for orders in this scope.
 
 ## Proposed fetch requests
 
@@ -30,7 +30,7 @@ Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade
 | Owner | Orders |
 |---|---:|
 | owner | 4697 |
-| agent_check | 2377 |
+| agent_check | 2384 |
 | machine_job | 266 |
 
 ## First twenty rows
@@ -43,24 +43,24 @@ Generated 2026-10-21T17:54:22Z. Leads and verified file facts; no count or grade
 | EO:4 | 1865-05-09 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:5 | 1866-04-13 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:6 | 1868-07-20 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:7 | 1868-07-28 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:8 | 1872-04-16 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:8-1 | 1873-03-14 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:9 | 1873-01-17 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:9-2 | 1873-01-28 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:10 | 1873-06-24 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:11 | 1873-08-05 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:12 | 1874-01-02 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:13 | 1874-03-09 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
+| EO:14 | 1874-03-20 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
+| EO:15 | 1874-04-28 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:16 | 1874-05-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:17 | 1874-08-31 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:18 | 1875-07-31 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:19 | 1875-11-22 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:20 | 1876-08-21 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:21 | 1881 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:22 | 1884-04-09 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:23-1 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 
 ## Web search (online stage)
 
-83 of 7340 targets advanced this run (7257 never searched yet); 934 of 1500 requests used. 1117 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+83 of 7347 targets advanced this run (7181 never searched yet); 936 of 1500 requests used. 2219 hits on file, 14 pages confirmed to name the order (7 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|

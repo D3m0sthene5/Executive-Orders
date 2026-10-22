@@ -1,12 +1,14 @@
 # Daily research digest
 
-New York date: 2026-10-20. Generated mechanically; all findings remain provisional.
+New York date: 2026-10-22. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
 # Readiness tracker
 
 **Ready for human review: 278 of 14,972 orders (1.9%)**
+
+Of these, 0 rest on a labeled transcription for the text step (owner ruling 2026-10-21: provisional; original not yet held).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -19,39 +21,34 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 342 | 3,359 | 10.2% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 300 | 3,359 | 8.9% |
+| Original text saved in the project | 3,212 | 3,359 | 95.6% |
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-10-19; intervening runs may be absent.
-- claim-checker: claim_lines_found: 226 → 385; claims_all_checks_passed: 141 → 297; claims_checked: 226 → 385; claims_gate_passed: 141 → 300
-- claim-drafts: drafts_whose_only_remaining_gaps_are_judgment_fields: 1114 → 1115; of_which_decided: 1114 → 1115
-- clause-drafts: clauses_total: 70539 → 70600; fragments_from_app_transcription: 5013 → 4968; fragments_written: 9760 → 9761; orders_not_segmented: 151 → 149
-- family-rules: saved_texts_scanned: 46624 → 46996
-- lambertini: counterevidence_records: unavailable → 687; decided_orders_with_draft: unavailable → 3359; packet_targets: unavailable → 807; packets: unavailable → 84
-- neyman-pilot: attempts: unavailable → 24; complete_dossiers: unavailable → 0; human_certifications_added: unavailable → 0; legal_decisions_added: unavailable → 0
-- official-fixity: carried_forward: 5054 → 5136; checked_this_run: 4 → 18; files: 5058 → 5154; orders_with_a_gpo_matched_file: 5068 → 5070
-- readiness-tracker: ready_for_human_review: 138 → 278
-- source-ladder: attempts_logged: 20 → 50; bytes_downloaded: 78296215 → 475352251; distinct_new_source_hashes: 6 → 38; earlier_found_carried_with_defect: unavailable → 0
-- valla: active_claims: unavailable → 384; examined_dependencies: unavailable → 0; legal_promotions: unavailable → 0; model_calls: unavailable → 0
-- x1-class-engine: modern_families_5_plus: 178 → 188
+Comparison snapshot: 2026-10-20; intervening runs may be absent.
+- claim-checker: held_distinct_sha256: 43487 → 44695
+- domesday-register: orders: unavailable → 14972; with_any_text_file: unavailable → 11517; with_date: unavailable → 14887; with_title: unavailable → 10139
+- family-rules: saved_texts_scanned: 46996 → 47033
+- lambertini: pool_LAMBC: 18 → 455; pool_LAMBS: 91 → 103
+- lewis-originals: fragments_written: unavailable → 11
+- official-fixity: carried_forward: 5136 → 5154; checked_this_run: 18 → 3; files: 5154 → 5157; premis_bytes_read_this_run: 327680 → 0
+- readiness-tracker: orders_with_provisional_text: unavailable → 4651; ready_resting_on_transcriptions: unavailable → 0
+- source-ladder: attempts_logged: 50 → 30; bytes_downloaded: 475352251 → 850521061; distinct_new_source_hashes: 38 → 29; earlier_found_failing_todays_checks: 2 → 0
 
 ## Top shared unlocks
 
-- orders_unblocked: 4644; kind: machine_job; action: Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy; blocker: ONLY_COMPILED_TRANSCRIPTION_FOUND
-- orders_unblocked: 435; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
-- orders_unblocked: 286; kind: agent_check; action: Check the page location of fr-originals and official-compilation finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
-- orders_unblocked: 19; kind: one_source; action: Retrieve shared source STAT::66 Stat. 259; blocker: SHARED_SOURCE_NOT_RETRIEVED:STAT::66 Stat. 259
+- orders_unblocked: 431; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
 - orders_unblocked: 10; kind: one_source; action: Retrieve shared source EO::4314; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::4314
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source USC::48 U.S.C. 863); blocker: SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)
+- orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6964; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6964
+- orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6910; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6910
+- orders_unblocked: 2; kind: one_source; action: Retrieve shared source CFR::26 CFR 458.324; blocker: SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324
 
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: No open ask recorded in newest entry.
-- notes-claude.md: No open ask recorded in newest entry.
+- notes-claude.md: - **Asks:** `@Claude` / `@Codex`: one tracker rule so a labeled transcription satisfies `original_text` provisionally (ruling 6), with a separate count of ready orders that rest on transcriptions; then rerun the tracker.
 - notes-codex.md: No open ask recorded in newest entry.
 - notes-sol.md: - **Asks:** None while validation is running.
 
@@ -60,4 +57,4 @@ Comparison snapshot: 2026-10-19; intervening runs may be absent.
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - early-ranger-transcriptions: failed (https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39080984937)
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39530100148)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39799572427)

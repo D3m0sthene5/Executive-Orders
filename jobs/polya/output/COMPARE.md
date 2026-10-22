@@ -1,4 +1,4 @@
-# POLYA compare (generated; repo_head 61edb04cbff4bf9b0215b0f131a885a3a941c86d)
+# POLYA compare (generated; repo_head cc13123cf3a77f66110829f9dbb5357ba5badd32)
 
 Pool: 14972 orders, 278 ready, 14694 not ready (3081 decided, 11613 undecided). Reach is not yield.
 
@@ -7,33 +7,33 @@ Pool: 14972 orders, 278 ready, 14694 not ready (3081 decided, 11613 undecided). 
 | F0_order | 14694 | 14694 | 100.0% | 0.00 | 1 | 0.1% | 0.7% | 0.1% | 69 | 5 |
 | F1_ending_instrument | 1762 | 2696 | 18.4% | 0.42 | 311 | 4.1% | 7.6% | 4.1% | 43 | 5 |
 | F2_actor_provision_record | 992 | 971 | 6.6% | 0.45 | 171 | 2.2% | 3.9% | 2.4% | 20 | 3 |
-| F3_source_document | 906 | 945 | 6.4% | 0.04 | 19 | 0.4% | 1.0% | 0.4% | 0 | 5 |
-| F4_legal_family_template | 1575 | 3315 | 22.6% | 0.72 | 1024 | 15.2% | 18.3% | 15.4% | 47 | 4 |
-| F5_owner_or_codebook_decision | 6 | 13264 | 90.3% | 0.56 | 11613 | 90.3% | 90.3% | 90.3% | 25 | 6 |
-| F6_missing_input_type | 10 | 3081 | 21.0% | 0.38 | 1051 | 21.0% | 21.0% | 21.0% | 69 | 4 |
+| F3_source_document | 9 | 30 | 0.2% | 0.41 | 10 | 0.2% | 0.2% | 0.2% | 0 | 5 |
+| F4_legal_family_template | 1575 | 3317 | 22.6% | 0.72 | 1026 | 15.2% | 18.3% | 15.4% | 47 | 4 |
+| F5_owner_or_codebook_decision | 4 | 12439 | 84.7% | 0.60 | 11613 | 84.7% | 84.7% | 84.7% | 25 | 5 |
+| F6_missing_input_type | 10 | 3081 | 21.0% | 0.38 | 1051 | 21.0% | 21.0% | 21.0% | 69 | 3 |
 | F7_aux_current_predicate_table | 2178 | 340 | 2.3% | 0.23 | 20 | 0.6% | 1.1% | 0.6% | 0 | 4 |
 | F8_work_backwards_reviewer | 164 | 106 | 0.7% | 0.37 | 23 | 0.5% | 0.7% | 0.5% | 69 | 2 |
-| F9_single_blocker_frontier | 13 | 4604 | 31.3% | 0.92 | 4560 | 31.3% | 31.3% | 31.3% | 44 | 5 |
+| F9_single_blocker_frontier | 13 | 8355 | 56.9% | 0.92 | 8311 | 56.8% | 56.9% | 56.8% | 44 | 5 |
 
 Distinct not-ready orders reached across nonbaseline frames: 14694 (deduplicated union).
 Potential is conditional on completing all affected clauses. Realized readiness change is unmeasured. A single blocker category can require several research actions.
-Input snapshot SHA-256: d1586be7b5c281a37fc610b2a9e134732df2428cfcf46e74f79c8e6e53e70307
+Input snapshot SHA-256: 3d6f0a5a645a78f3de4d3a3916b0a675e32ed3afaffaa8653aec1bf64a971e4d
 
 | step | open (not ready) | open (decided, not ready) | views reaching orders with it open |
 |---|---:|---:|---|
 | provisional_status | 11613 | 0 | F1/NO_hypothesis_for_undecided 1748 |
-| original_text | 8100 | 1047 | F3/claim_kit_source_family 901 |
+| original_text | 3449 | 147 | F3/claim_kit_source_family 3 |
 | clause_inventory | 14630 | 3017 | F4/x1_text_cluster 1223 |
-| ending_or_current_basis | 14672 | 3059 | F4/claim_kit_family 2241, F2/actor_provision_record 971, F1/ending_of_decided_NO 948, F7/current_law_citation 340 |
+| ending_or_current_basis | 14672 | 3059 | F4/claim_kit_family 2243, F2/actor_provision_record 971, F1/ending_of_decided_NO 948, F7/current_law_citation 340 |
 | savings_residuals | 14639 | 3026 | NONE |
 | counterevidence | 12482 | 869 | NONE |
-| shared_sources | 46 | 46 | F3/tracker_shared_source 46 |
-| opus_media | 723 | 723 | NONE |
+| shared_sources | 27 | 27 | F3/tracker_shared_source 27 |
+| opus_media | 719 | 719 | NONE |
 
 Stack: 24 of 3081 decided not-ready orders have every open step reachable by some frame's unit; the rest need steps no frame covers.
-- 1334 orders: no frame reaches clause_inventory, savings_residuals
-- 545 orders: no frame reaches clause_inventory, savings_residuals, opus_media
+- 1340 orders: no frame reaches clause_inventory, savings_residuals
+- 541 orders: no frame reaches clause_inventory, savings_residuals, opus_media
 - 243 orders: no frame reaches clause_inventory, savings_residuals, counterevidence
 - 200 orders: no frame reaches ending_or_current_basis, savings_residuals, counterevidence
-- 179 orders: no frame reaches clause_inventory, ending_or_current_basis, savings_residuals
+- 177 orders: no frame reaches clause_inventory, ending_or_current_basis, savings_residuals
 - 152 orders: no frame reaches savings_residuals, counterevidence
