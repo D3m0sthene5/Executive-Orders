@@ -1,0 +1,189 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:10390": {
+   "claim_key": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1",
+   "claim_sha256": "340902f581f0af623d4d171e3f61d8f5f701b1abaf31664323b27a17da48d950",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": true
+   }
+  },
+  "EO:10926": {
+   "claim_key": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2",
+   "claim_sha256": "be1d5f9ab5d35523f7c114f90f854ba460ad223e403f8b6d1fb8a30fbc4a79a6",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": false,
+    "ending_or_current_basis": true,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1",
+   "file": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl",
+   "line": 1,
+   "instrument_id": "EO:10390",
+   "claim_sha256": "340902f581f0af623d4d171e3f61d8f5f701b1abaf31664323b27a17da48d950",
+   "provisional_status": "no",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 2,
+     "skip": 3
+    },
+    "source_identity": {
+     "pass": 2
+    },
+    "quote_verbatim": {
+     "pass": 6
+    },
+    "date_valid": {
+     "pass": 10
+    },
+    "date_after_signing": {
+     "pass": 2
+    },
+    "order_exists": {
+     "pass": 17
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.source",
+    "source_held:custody_record_only@savings_residuals.source",
+    "source_held:custody_record_only@whole_order_end.source"
+   ],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2",
+   "file": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl",
+   "line": 2,
+   "instrument_id": "EO:10926",
+   "claim_sha256": "be1d5f9ab5d35523f7c114f90f854ba460ad223e403f8b6d1fb8a30fbc4a79a6",
+   "provisional_status": "no",
+   "mechanical_result": "pass_with_unverified",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 5,
+     "skip": 1
+    },
+    "source_identity": {
+     "pass": 2
+    },
+    "quote_verbatim": {
+     "pass": 7
+    },
+    "date_valid": {
+     "pass": 12
+    },
+    "date_after_signing": {
+     "pass": 3
+    },
+    "order_exists": {
+     "pass": 4
+    },
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [],
+   "failures_total": 0,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].later_events[0].source"
+   ],
+   "effective_for_tracker": true
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "batch": "b01",
+ "stratum": "NO",
+ "attempted": 10,
+ "submitted": 2,
+ "submitted_ids": [
+  "EO:10390",
+  "EO:10926"
+ ],
+ "blocked": 8,
+ "blocked_ids": [
+  "EO:10915",
+  "EO:8072",
+  "EO:10319",
+  "EO:12414",
+  "EO:12370",
+  "EO:11927",
+  "EO:8173",
+  "EO:12975"
+ ],
+ "blocks_justified": 8,
+ "blocks_unjustified": 0,
+ "claims_reviewed": 2,
+ "plants_placed": 1,
+ "plants_caught": 1,
+ "plants": [
+  {
+   "instrument_id": "EO:10926",
+   "defect_type": "D3",
+   "field_path": "operative_clauses[0].first_end.source.quote (and whole_order_end.source.quote)",
+   "caught": true,
+   "catch_scoring": "strict",
+   "reviewer_code": "QUOTE",
+   "why": "reviewer named first_end.source and whole_order_end.source, the cut at char 953 and the omitted operative words 'are revoked:' (953-966), and flagged suspected_plant"
+  }
+ ],
+ "genuine_reviewed": 1,
+ "genuine_upheld": 1,
+ "genuine_upheld_ids": [
+  "EO:10390"
+ ],
+ "genuine_rejected": [],
+ "rejected_mechanical": [],
+ "filed": [
+  "EO:10390",
+  "EO:10926"
+ ],
+ "filed_file": "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl",
+ "gate": {
+  "EO:10390": [],
+  "EO:10926": []
+ },
+ "checker": {
+  "claims_checked": 2,
+  "all_checks_passed": 0,
+  "pass_with_unverified": 2,
+  "fail": 0,
+  "gate_passed": 2,
+  "unverified": {
+   "EO:10390": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.source",
+    "source_held:custody_record_only@savings_residuals.source",
+    "source_held:custody_record_only@whole_order_end.source"
+   ],
+   "EO:10926": [
+    "source_held:custody_record_only@operative_clauses[0].later_events[0].source"
+   ]
+  },
+  "unverified_note": "EO 10390: the EO 10480 ending/savings source is the APP transcription, held only as a custody record (original bytes not committed); the reviewer cross-checked it against the held official FR text EO_10480.txt. EO 10926: the PEB 135 report later-event source is held only as a custody record. Quotations 13/13 exact."
+ },
+ "fetch_lines_enqueued": 4,
+ "fetch_lines_enqueued_ids": [
+  "mansfield-b01:EO:8173:PublicLandOrder1660",
+  "mansfield-b01:EO:10319:EmergencyBoardReport-EO10319",
+  "mansfield-b01:EO:12370:PEB-194-Report",
+  "mansfield-b01:EO:12414:PEB-201-Report"
+ ],
+ "upheld_after_reveal": [
+  "EO:10926"
+ ],
+ "upheld_per_attempt": 0.1,
+ "genuine_rejection_share": 0.0,
+ "notes": [
+  "EO 10926 was the planted order. Its genuine (unplanted) line was re-reviewed after the reveal by the same independent reviewer (REVIEW_AFTER_REVEAL.jsonl, AFTER_REVEAL.json), upheld with no code, and filed; it is counted separately as upheld_after_reveal and not in genuine_upheld.",
+  "Reviewer non-fatal notes on EO 10926 (apply to the genuine line too, for the re-review): the report later_event source carries signing_date 1961-03-18 and actor EO:10926; the RLA standstill end is folded into the report event rather than a separate later_event.",
+  "All 8 blocks judged justified. Owner/method questions raised by the reviewer: whether a parent revocation 'as amended' ends an unnamed amending order (EO 10915, EO 11927); act_overrides may refuse pairs already located with short spans (EO 11927, EO 12975), possibly needing a kit change; EO 8072 and EO 10319 need inventory overrides.",
+  "No duplicate queue lines existed for the four fetch requests (FETCH_QUEUE.jsonl 845 -> 849 lines).",
+  "All filed lines are AI hypotheses; the human-certified whole-lifecycle count stays 0."
+ ],
+ "upheld_per_attempt_with_reveal": 0.2
+}
