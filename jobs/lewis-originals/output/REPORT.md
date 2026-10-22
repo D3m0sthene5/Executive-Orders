@@ -1,25 +1,27 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-22T20:35:23Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 7340 orders** (clark_identified 2655, clark_identified_not_in_universe 41, transcription_only 4644).
+**Scope: 5426 orders** (clark_identified 37, clark_identified_not_in_universe 42, transcription_only 5347).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_supplied_link | awaiting_acquisition | 2738 |
-| proquest_phrase_search | manual_lead | 1959 |
+| proquest_phrase_search | manual_lead | 2663 |
 | gpo_bound_volumes | in_volume_range_not_found | 1253 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
 | federal_register | fetch_request_proposed | 266 |
 | federal_register | fr_era_not_in_ofr_catalog | 215 |
-| proquest_local | file_verified_pages_unchecked | 4 |
+| proquest_local | pinakes_file_record_pages_unchecked | 114 |
+| proquest_supplied_link | awaiting_acquisition | 10 |
 
 ## ProQuest folder
 
-13 PDF files (11 unique by SHA-256) cover 11 orders; 4 of them are in Lewis's scope and 7 belong to orders outside it (Clark's no-text orders, mostly). 1 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 2742 for orders in this scope.
+2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 114 of them are in Lewis's scope and 2636 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 124 for orders in this scope.
+
+Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2750 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
 
 ## Proposed fetch requests
 
@@ -29,8 +31,8 @@ Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade
 
 | Owner | Orders |
 |---|---:|
-| owner | 4697 |
-| agent_check | 2377 |
+| owner | 2673 |
+| agent_check | 2487 |
 | machine_job | 266 |
 
 ## First twenty rows
@@ -40,7 +42,7 @@ Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade
 | EO:1 | 1862-02-14 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:2 | 1862-02-27 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:3 | 1865-04-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:4 | 1865-05-09 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
+| EO:4 | 1865-05-09 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:5 | 1866-04-13 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:6 | 1868-07-20 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:8 | 1872-04-16 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
@@ -48,9 +50,9 @@ Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade
 | EO:9 | 1873-01-17 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:9-2 | 1873-01-28 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:11 | 1873-08-05 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:13 | 1874-03-09 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
+| EO:13 | 1874-03-09 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:16 | 1874-05-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:17 | 1874-08-31 | proquest_local | file_verified_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
+| EO:17 | 1874-08-31 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:18 | 1875-07-31 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:19 | 1875-11-22 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:20 | 1876-08-21 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
@@ -60,7 +62,7 @@ Generated 2026-10-21T17:48:27Z. Leads and verified file facts; no count or grade
 
 ## Web search (online stage)
 
-83 of 7340 targets advanced this run (7257 never searched yet); 934 of 1500 requests used. 1119 hits on file, 3 pages confirmed to name the order (1 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 5426 targets advanced this run (5243 never searched yet); 962 of 1500 requests used. 2549 hits on file, 14 pages confirmed to name the order (8 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|

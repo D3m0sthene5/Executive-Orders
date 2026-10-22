@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-wtbq6mps/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-epk2k9wc/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-wtbq6mps/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-epk2k9wc/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -68,6 +68,17 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 ok
 test_text_quality_screens_handwriting_noise (test_lewis.OnlineStage.test_text_quality_screens_handwriting_noise) ... ok
+test_absent_pinakes_retains_legacy_inspection_and_pending_grades (test_lewis.PinakesSchema.test_absent_pinakes_retains_legacy_inspection_and_pending_grades) ... incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+incorrect startxref pointer(1)
+parsing for Object Streams
+ok
+test_current_schema_runs_without_inventing_verification_or_fragments (test_lewis.PinakesSchema.test_current_schema_runs_without_inventing_verification_or_fragments) ... ok
+test_invalid_records_fail_explicitly_without_legacy_fallback (test_lewis.PinakesSchema.test_invalid_records_fail_explicitly_without_legacy_fallback) ... ok
+test_missing_optional_facts_stay_unknown (test_lewis.PinakesSchema.test_missing_optional_facts_stay_unknown) ... ok
+test_present_empty_orders_does_not_rescan_or_duplicate_fragments (test_lewis.PinakesSchema.test_present_empty_orders_does_not_rescan_or_duplicate_fragments) ... ok
 test_clark_handoff_enters_scope_without_entering_the_census (test_lewis.SyntheticRepo.test_clark_handoff_enters_scope_without_entering_the_census) ... incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
@@ -127,31 +138,34 @@ ok
 test_text_quality_screens_handwriting_noise (test_lewis.SyntheticRepo.test_text_quality_screens_handwriting_noise) ... ok
 
 ----------------------------------------------------------------------
-Ran 19 tests in 3.180s
+Ran 24 tests in 3.138s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
 test_budget_stops_cleanly_and_is_recorded (test_eo_websearch.SearchLayer.test_budget_stops_cleanly_and_is_recorded) ... ok
 test_campaign_writes_files_and_resumes_from_prior_state (test_eo_websearch.SearchLayer.test_campaign_writes_files_and_resumes_from_prior_state) ... ok
+test_deferred_queries_are_not_persisted_as_engine_attempts (test_eo_websearch.SearchLayer.test_deferred_queries_are_not_persisted_as_engine_attempts) ... ok
 test_html_results_unwrap_redirects_and_skip_engine_links (test_eo_websearch.SearchLayer.test_html_results_unwrap_redirects_and_skip_engine_links) ... ok
 test_json_results_and_url_prefix (test_eo_websearch.SearchLayer.test_json_results_and_url_prefix) ... ok
 test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named (test_eo_websearch.SearchLayer.test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named) ... ok
 test_page_to_text_strips_scripts (test_eo_websearch.SearchLayer.test_page_to_text_strips_scripts) ... ok
+test_robots_block_does_not_consume_budget_for_every_target (test_eo_websearch.SearchLayer.test_robots_block_does_not_consume_budget_for_every_target) ... ok
 test_scoring_prefers_number_date_and_order_wording (test_eo_websearch.SearchLayer.test_scoring_prefers_number_date_and_order_wording) ... ok
 test_strategies_escalate_and_use_date_and_title (test_eo_websearch.SearchLayer.test_strategies_escalate_and_use_date_and_title) ... ok
+test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLayer.test_unavailable_engine_is_only_probed_once_per_run) ... ok
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 9.033s
+Ran 13 tests in 16.030s
 
 OK
 {
   "scope": {
-    "orders": 7340,
+    "orders": 5426,
     "by_reason": {
-      "transcription_only": 4644,
-      "clark_identified_not_in_universe": 41,
-      "clark_identified": 2655
+      "transcription_only": 5347,
+      "clark_identified_not_in_universe": 42,
+      "clark_identified": 37
     }
   },
   "routes": {
@@ -160,21 +174,24 @@ OK
     "federal_register:in_ofr_catalog_no_citation": 431,
     "gpo_bound_volumes:in_volume_range_not_found": 1253,
     "ofr_hoover_compilation:in_volume_range_not_found": 474,
-    "proquest_local:file_verified_pages_unchecked": 4,
-    "proquest_phrase_search:manual_lead": 1959,
-    "proquest_supplied_link:awaiting_acquisition": 2738
+    "proquest_local:pinakes_file_record_pages_unchecked": 114,
+    "proquest_phrase_search:manual_lead": 2663,
+    "proquest_supplied_link:awaiting_acquisition": 10
   },
   "proquest_folder": {
-    "pdf_files": 13,
-    "unique_files": 11,
-    "orders_with_verified_pdf": 11,
-    "orders_in_lewis_scope_with_pdf": 4,
-    "pdfs_for_orders_outside_lewis_scope": 7,
-    "usable_text_layers": 1,
+    "pdf_files": 2750,
+    "unique_files": 2750,
+    "orders_with_recorded_pdf": 2750,
+    "orders_with_verified_pdf": 0,
+    "orders_in_lewis_scope_with_pdf": 114,
+    "pdfs_for_orders_outside_lewis_scope": 2636,
+    "usable_text_layers": 2440,
     "bad_signature": 0,
+    "signature_not_reported": 2750,
     "unparsed_names": 0,
+    "name_parse_not_reported": 2750,
     "supplied_links_total": 2765,
-    "supplied_links_in_lewis_scope": 2742
+    "supplied_links_in_lewis_scope": 124
   },
   "proposed_fetch_requests": {
     "count": 266,
@@ -185,10 +202,10 @@ OK
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 83,
-  "requests_used": 934,
-  "hits_total": 1119,
-  "leads_page_confirmed": 3,
+  "advanced_this_run": 100,
+  "requests_used": 962,
+  "hits_total": 2549,
+  "leads_page_confirmed": 14,
   "engines": {
     "duckduckgo_html": "http_403",
     "duckduckgo_lite": "http_403",
