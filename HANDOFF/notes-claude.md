@@ -2,6 +2,47 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, merged with main cd5dba93):** `build_toolmap.py` now applies the
+  Oct 21 rulings (owner-ruling lane is empty; transcription-only orders sit in "ruled, not wired" until the tracker
+  rule changes; Pullman packets are agent work) and reads Lewis's ROUTES.csv, which gives every transcription-only
+  order a route. New lane "owner action": 2,655 text steps are the owner's own ProQuest retrievals. No-route fell
+  from 3,457 to 803. `TOOLS.csv` adds Lewis, Clark and the Domesday register. Dashboard refreshed on all tabs.
+- **Asks:** `@Claude` / `@Codex`: one tracker rule so a labeled transcription satisfies `original_text` provisionally
+  (ruling 6), with a separate count of ready orders that rest on transcriptions; then rerun the tracker.
+- **Do not:** promote a transcription to `acceptable_as_original`.
+
+## 2026-10-21 ET: owner rulings 2-8 recorded (`research/readiness/owner_rulings/`)
+
+- **Ruled by the owner today:** (1) report deadlines never end a board order, record both dates; (2) struck-and-inserted
+  clauses continue, amended, with before/after text; (3) unnamed instruments are disclosed candidates, not ends;
+  (4) EO 10449 treated like the other boards; (5) adopt the 15 Bowditch NO proposals by pull request, lean-review the
+  41 Sinclair ones first; (6) transcriptions may satisfy the text step provisionally, labeled, originals still the
+  goal; (7) "until" dates inclusive, alternative noted; (8) no ProQuest request, the owner is retrieving scans himself.
+- **Unblocked:** Pullman's 97 packets, Blackstone's 4 orders, the 15 unnamed-instrument orders, the Lamm "until" six,
+  and the 4,644 transcription-only orders for text-step purposes.
+- **Rework owed:** 43 "ends on amendment" clauses in 26 orders (ruling 2); 6 claims get a disclosure flag (ruling 3).
+- **Next:** adoption pull request for the 15; lean review of the 41; re-run the day review with the rulings applied.
+- **Do not:** promote a transcription to `acceptable_as_original`; harvest ProQuest; change the codebook.
+
+## 2026-10-21 ET: owner ruling on report deadlines (question 1 of the brief)
+
+- **Ruled (owner, option C with both dates):** `research/readiness/owner_rulings/2026-10-21-report-deadline.md`.
+  Report-deadline orders end on express revocation (EO 12553 for most); the report date is a `later_event` with a
+  disclosed "functionally spent on <date>" note. Pullman's 97 packets can run. EO 10449 still needs a word from the owner.
+- **Next:** questions 2 (strike-and-insert) and 3 (unnamed instruments) are being put to the owner now.
+
+## 2026-10-21 ET: figures refreshed on main 09310ada; tool map added to the dashboard
+
+- **Done (branch `claude/great-ptolemy-9r6zah`, restarted from main):** reran `build_remaining_work.py` and
+  `build_effort.py`: 278 ready, 86,103 open steps, about 15,700 agent-hours (was 16,178). New
+  `build_toolmap.py` and hand-kept `TOOLS.csv` put every open step in a lane (machine queued 509, machine output
+  not counted 723, agent claim 13,480, owner ruling 8,357, earlier step first 50,379, no route 3,457) with the tools
+  serving each. Dashboard tab "Tool map": https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#toolmap.
+- **Reading:** the gap is not missing tools. 8,357 open steps wait on owner rulings (transcription-as-copy,
+  report deadline), 13,480 on agent claim lines that already work, and 3,457 old texts have no free route.
+- **Do not:** treat lane counts as yields; they are reach, in the Polya sense.
 ## 2026-10-21 ET (~17:10Z): Lewis and Clark go online; Domesday register
 
 - **Done (same branch, PR #49):**
