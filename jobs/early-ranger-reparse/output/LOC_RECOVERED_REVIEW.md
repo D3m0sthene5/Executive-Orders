@@ -1,6 +1,6 @@
 # Historical LOC manuscripts recovered from already downloaded JSON
 
-Recovered 65 unique LOC item/resource links from 23 cached official API responses.
+Recovered 65 unique LOC item/resource links from 24 cached official API responses.
 These are **catalog candidates**. Verify the document's own pages, presidential action, date and inclusion before counting.
 
 ## Candidates (sorted by research relevance, not legal confidence)
