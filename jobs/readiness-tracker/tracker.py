@@ -86,6 +86,10 @@ J = {
                                          "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
                                          "jobs/numbered-early-orders/output/FRAGMENTS.jsonl",
                                          "jobs/wikisource-texts/output/FRAGMENTS.jsonl"],
+    # ProQuest "Replica of Original" scans the owner retrieved (lewis-originals): graded
+    # archival_replica_scan_pending_codebook, acceptable_as_original=false. Like the transcription feeds above, they
+    # satisfy the text step only provisionally (owner ruling 2026-10-21), and only when the record carries a grade.
+    "replica_scan_fragments": ["jobs/lewis-originals/output/FRAGMENTS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
@@ -99,6 +103,15 @@ J = {
     "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
     "cl_status": "jobs/current-law/output/STATUS.json",
 }
+
+# Owner ruling 2026-10-21: an order held only as a LABELED transcription satisfies the original_text step
+# provisionally. The label is the representation grade the fragment records; no grade becomes the original.
+TRANSCRIPTION_GRADES = (
+    "compiled_transcription", "government_printed_copy", "machine_read_government_printed_copy",
+    "mirror_transcription", "volunteer_transcription", "secondary_compilation_transcription",
+    "archival_replica_scan_pending_codebook", "proquest_replica_of_original_scan",
+)
+RICHARDSON_GRADE = "compiled_transcription"  # Richardson records carry only data.source_kind, not a grade
 
 # Opus media blockers, from opus-media-match's media_gap / media_status.
 OPUS_GAP_BLOCKER = {
@@ -126,6 +139,19 @@ def read_jsonl(paths):
                 except json.JSONDecodeError as exc:
                     problems.append(f"{os.path.basename(path)} line {n}: {exc.msg}")
     return rows, problems
+
+
+def transcription_grade(r):
+    """The representation grade a fragment record carries, or None when it is not labeled.
+
+    Top-level grade, else top-level representation_type, else the same two under data; a Richardson record
+    with none of them takes the documented class. A grade that is not an accepted label does not count."""
+    d = r.get("data") if isinstance(r.get("data"), dict) else {}
+    grade = next((g for g in (r.get("grade"), r.get("representation_type"),
+                              d.get("grade"), d.get("representation_type")) if g), None)
+    if grade is None and r.get("produced_by") == "richardson-volumes":
+        grade = RICHARDSON_GRADE
+    return grade if grade in TRANSCRIPTION_GRADES else None
 
 
 def step_for_gate_error(error):
@@ -189,6 +215,7 @@ def load_job_outputs(root):
                 ids.add(r["instrument_id"])
         used[job] = len(ids) if paths else None
     transcription = set()
+    grades = {}  # order -> first accepted grade label (feeds in J order); drives the provisional text step
     by_job = {}  # one job may publish several fragment files (app-executive-orders: live and archive lanes)
     for rel in J["compiled_transcription_fragments"]:
         job = rel.split("/")[1]
@@ -198,12 +225,22 @@ def load_job_outputs(root):
         ids = {r["instrument_id"] for r in rows
                if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str)}
         transcription |= ids
+        note_grades(rows, rel, grades, problems)
         if paths:
             by_job[job] = by_job.get(job, set()) | ids
         else:
             by_job.setdefault(job, None)
     for job, ids in by_job.items():
         used[f"{job} (lead only, never counted as the original)"] = len(ids) if ids is not None else None
+    for rel in J["replica_scan_fragments"]:
+        job = rel.split("/")[1]
+        paths = existing([rel])
+        rows, more = read_jsonl(paths)
+        problems += more
+        note_grades(rows, rel, grades, problems)
+        used[f"{job} (replica scans: provisional text only)"] = (
+            len({r["instrument_id"] for r in rows if r.get("kind") == "original_representation"
+                 and isinstance(r.get("instrument_id"), str)}) if paths else None)
 
     status_path = os.path.join(root, J["opus_status"])
     opus_status = None
@@ -244,9 +281,25 @@ def load_job_outputs(root):
     search = load_machine_search(root, problems)
     used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
     return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription,
-            "opus_status": opus_status, "ladder_found": ladder_found,
+            "transcription_grade": grades, "opus_status": opus_status, "ladder_found": ladder_found,
             "opus_missing": opus_missing, "search": search,
             "checker": checker, "used": used}, problems
+
+
+def note_grades(rows, rel, grades, problems):
+    """Record each labeled fragment's grade (first one wins). A record claiming acceptable_as_original is
+    ignored here: that would be a codebook change, so it is reported instead."""
+    for r in rows:
+        if r.get("kind") != "original_representation" or not isinstance(r.get("instrument_id"), str):
+            continue
+        d = r.get("data") if isinstance(r.get("data"), dict) else {}
+        if r.get("acceptable_as_original") is True or d.get("acceptable_as_original") is True:
+            problems.append(f"SUSPICIOUS_RECORD: {rel} {r['instrument_id']} has acceptable_as_original true; "
+                            "ignored by the transcription rule (a codebook change is not the tracker's to make)")
+            continue
+        grade = transcription_grade(r)
+        if grade:
+            grades.setdefault(r["instrument_id"], grade)
 
 
 def load_machine_search(root, problems):
@@ -392,6 +445,12 @@ def build(root, *, planning_closures=None):
                  or any(o.get("needs_page_check") is False for o in official)
                  or i in jobs["opus_text"])
         steps["original_text"] = saved or from_claim("original_text")
+        text_basis = "official" if steps["original_text"] else ""
+        provisional = jobs["transcription_grade"].get(i)
+        if not steps["original_text"] and provisional:
+            # Owner ruling 2026-10-21: a labeled transcription satisfies the text step provisionally.
+            steps["original_text"] = True
+            text_basis = "transcription_provisional:" + provisional
         if not steps["original_text"]:
             if fr is not None or official:
                 blockers["original_text"].append("ORIGINAL_FOUND_NEEDS_PAGE_CHECK")
@@ -400,7 +459,7 @@ def build(root, *, planning_closures=None):
             else:
                 blockers["original_text"].append("NO_OFFICIAL_SOURCE_LOCATED")
             if i in jobs["transcription"]:
-                # Only a compiled transcription (Richardson, APP) was found: a lead to the original, not the original.
+                # Only an unlabeled transcription was found: a lead to the original, not the original.
                 blockers["original_text"].append("ONLY_COMPILED_TRANSCRIPTION_FOUND")
 
         # 3-6. need a claim (partial claims light up the steps they satisfy)
@@ -504,6 +563,7 @@ def build(root, *, planning_closures=None):
             "claim_record_errors": "|".join(claim_level),
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
+            "original_text_basis": text_basis,
         })
     build.job_outputs_used = jobs["used"]
     build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
@@ -556,6 +616,9 @@ def summarise(orders, problems):
             if code == "SHARED_SOURCE_NOT_RETRIEVED":
                 shared[b.split(":", 1)[1]] += 1
 
+    on_transcription = lambda o: o["original_text_basis"].startswith("transcription_provisional")
+    by_grade = collections.Counter(o["original_text_basis"].split(":", 1)[1] for o in orders if on_transcription(o))
+
     step_done = {s: sum(o[f"step_{s}"] == "done" for o in decided) for s in STEP_NAMES}
     step_applicable = {s: sum(o[f"step_{s}"] != "n/a" for o in decided) for s in STEP_NAMES}
     ladder = collections.Counter((o["steps_done"], o["steps_applicable"]) for o in decided)
@@ -590,6 +653,10 @@ def summarise(orders, problems):
         "orders_with_provisional_status": len(decided),
         "ready_for_human_review": len(ready),
         "ready_by_tier": dict(collections.Counter(o["ready_tier"] for o in ready)),
+        # Owner ruling 2026-10-21: provisional; the original is not yet held for these orders.
+        "ready_resting_on_transcriptions": sum(on_transcription(o) for o in ready),
+        "orders_with_provisional_text": sum(on_transcription(o) for o in orders),
+        "provisional_text_by_grade": dict(by_grade.most_common()),
         "human_verified": "not counted here; see the Stage 19 tracker",
         "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s]} for s in STEP_NAMES},
         "decided_by_steps_done": {f"{k[0]}/{k[1]}": v for k, v in sorted(ladder.items())},
@@ -631,6 +698,9 @@ def write_outputs(out, orders, summary, inputs):
         "",
         f"**Ready for human review: {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
         "",
+        f"Of these, {s['ready_resting_on_transcriptions']:,} rest on a labeled transcription for the text step "
+        "(owner ruling 2026-10-21: provisional; original not yet held).",
+        "",
         "An order is ready when the machines have finished every step it needs: each step is backed by a saved",
         "source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in",
         "`research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.",
@@ -662,6 +732,9 @@ def write_outputs(out, orders, summary, inputs):
               "- If a step cannot be finished by machine, add a line to `research/readiness/EXHAUSTED.jsonl` with",
               "  `instrument_id`, `step`, `searched` (list of repositories and queries), `recorded_by`, `recorded_on`.",
               f"- Step names: {', '.join(f'`{n}`' for n in STEP_NAMES)}.",
+              "- `original_text_basis` in `READINESS_BY_ORDER.csv` says how the text step is met: `official`, or",
+              "  `transcription_provisional:<grade>` (a labeled transcription, owner ruling 2026-10-21). That is",
+              "  provisional: originals remain the goal, so an official copy retrieved later replaces it.",
               "- Per-order detail is in `READINESS_BY_ORDER.csv`."]
     used = inputs.get("job_outputs_used", {})
     if used:

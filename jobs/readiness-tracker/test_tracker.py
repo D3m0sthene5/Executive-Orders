@@ -212,37 +212,73 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_original_text"], "open")
         self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
 
-    def test_richardson_transcription_is_a_lead_never_the_original(self):
-        rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "richardson-volumes",
-                          "data": {"url": "https://hdl.handle.net/2027/ufl.31262091102953", "sha256": "f" * 64,
-                                   "page_or_item": "Richardson vol. VI, printed page 1", "location_confidence": "high",
-                                   "needs_page_check": False,
-                                   "source_kind": "printed compilation, not the signed original"}})
-        files = {tracker.J["compiled_transcription_fragments"][0]: rec + "\n"}
+    def richardson_rec(self, iid="EO:3"):
+        return json.dumps({"instrument_id": iid, "kind": "original_representation", "produced_by": "richardson-volumes",
+                           "data": {"url": "https://hdl.handle.net/2027/ufl.31262091102953", "sha256": "f" * 64,
+                                    "page_or_item": "Richardson vol. VI, printed page 1", "location_confidence": "high",
+                                    "needs_page_check": False,
+                                    "source_kind": "printed compilation, not the signed original"}})
+
+    def test_richardson_transcription_is_provisional_text_never_the_original(self):
+        files = {tracker.J["compiled_transcription_fragments"][0]: self.richardson_rec() + "\n"}
         orders, s = self.run_tracker(files=files)
-        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
-        self.assertIn("NO_OFFICIAL_SOURCE_LOCATED", orders["EO:3"]["blockers"])
-        self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
-        self.assertEqual(s["decided_orders_blocked_by"]["ONLY_COMPILED_TRANSCRIPTION_FOUND"], 1)
-        # Once an official original counts, the transcription lead is no longer reported.
+        o = orders["EO:3"]
+        self.assertEqual(o["step_original_text"], "done")
+        self.assertEqual(o["original_text_basis"], "transcription_provisional:compiled_transcription")
+        for code in ("NO_OFFICIAL_SOURCE_LOCATED", "ONLY_COMPILED_TRANSCRIPTION_FOUND"):
+            self.assertNotIn(code, o["blockers"])
+        self.assertEqual(s["orders_with_provisional_text"], 1)
+        self.assertEqual(s["provisional_text_by_grade"], {"compiled_transcription": 1})
+        self.assertEqual(s["ready_resting_on_transcriptions"], 0)
+        self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", s["orders_blocked_by"])
+        self.assertEqual(orders["EO:1"]["original_text_basis"], "")  # nothing found for EO:1
+        self.assertEqual(orders["EO:2"]["original_text_basis"], "official")
+
+    def test_official_original_wins_over_a_transcription(self):
+        files = {tracker.J["compiled_transcription_fragments"][0]: self.richardson_rec() + "\n"}
         fr = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
                          "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": False}})
-        orders, _ = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + "\n"})
+        orders, s = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + "\n"})
         self.assertEqual(orders["EO:3"]["step_original_text"], "done")
+        self.assertEqual(orders["EO:3"]["original_text_basis"], "official")
         self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
+        self.assertEqual(s["orders_with_provisional_text"], 0)
+        self.assertEqual(s["provisional_text_by_grade"], {})
 
-    def test_new_acquisition_feeds_remain_leads_even_with_original_like_flags(self):
+    def test_unlabeled_transcription_stays_a_lead_and_keeps_the_step_open(self):
         for path in tracker.J["compiled_transcription_fragments"][3:]:
             with self.subTest(path=path):
-                rec = json.dumps({'instrument_id':'EO:3', 'kind':'original_representation',
-                                  'data':{'needs_page_check':False, 'location_confidence':'high'}})
-                orders, _ = self.run_tracker(files={path:rec+'\n'})
-                self.assertEqual(orders['EO:3']['step_original_text'],'open')
-                self.assertIn('ONLY_COMPILED_TRANSCRIPTION_FOUND',orders['EO:3']['blockers'])
+                rec = json.dumps({'instrument_id': 'EO:3', 'kind': 'original_representation', 'produced_by': 'some-job',
+                                  'data': {'needs_page_check': False, 'location_confidence': 'high'}})
+                orders, s = self.run_tracker(files={path: rec + '\n'})
+                self.assertEqual(orders['EO:3']['step_original_text'], 'open')
+                self.assertEqual(orders['EO:3']['original_text_basis'], '')
+                self.assertIn('ONLY_COMPILED_TRANSCRIPTION_FOUND', orders['EO:3']['blockers'])
+                self.assertEqual(s['decided_orders_blocked_by']['ONLY_COMPILED_TRANSCRIPTION_FOUND'], 1)
+                self.assertEqual(s['orders_with_provisional_text'], 0)
+        # A grade that is not an accepted label does not count either.
+        rec = json.dumps({'instrument_id': 'EO:3', 'kind': 'original_representation', 'grade': 'signed_original_claimed',
+                          'data': {}})
+        orders, _ = self.run_tracker(files={tracker.J["compiled_transcription_fragments"][3]: rec + '\n'})
+        self.assertEqual(orders['EO:3']['step_original_text'], 'open')
 
-    def test_app_transcription_live_and_archive_is_a_lead_never_the_original(self):
-        # APP pages, read live or from a web-archive capture, are the same lead-only class as Richardson,
-        # even when the record carries needs_page_check=False or a high location confidence.
+    def test_labeled_new_acquisition_feeds_are_provisional(self):
+        for path, grade in (("hathi-gpo-orders", "machine_read_government_printed_copy"),
+                            ("numbered-early-orders", "government_printed_copy"),
+                            ("wikisource-texts", "volunteer_transcription")):
+            feed = next(p for p in tracker.J["compiled_transcription_fragments"] if f"/{path}/" in p)
+            with self.subTest(feed=feed):
+                # the grade sits under data here, as these jobs write it
+                rec = json.dumps({'instrument_id': 'EO:3', 'kind': 'original_representation',
+                                  'data': {'grade': grade, 'acceptable_as_original': False, 'needs_page_check': False}})
+                for old in tracker.J["compiled_transcription_fragments"]:  # earlier subtests leave their feeds behind
+                    (self.root / old).unlink(missing_ok=True)
+                orders, _ = self.run_tracker(files={feed: rec + '\n'})
+                self.assertEqual(orders['EO:3']['step_original_text'], 'done')
+                self.assertEqual(orders['EO:3']['original_text_basis'], 'transcription_provisional:' + grade)
+
+    def test_app_transcription_live_and_archive_is_provisional_text(self):
+        # APP pages, read live or from a web-archive capture, carry grade mirror_transcription.
         def rec(iid, lane):
             return json.dumps({"instrument_id": iid, "kind": "original_representation",
                                "produced_by": "app-executive-orders", "grade": "mirror_transcription",
@@ -256,15 +292,85 @@ class TrackerTest(unittest.TestCase):
                  mirror: rec("EO:3", "archive/common-crawl/american-presidency-project") + "\n"}
         orders, s = self.run_tracker(files=files)
         for i in ("EO:1", "EO:3"):
-            self.assertEqual(orders[i]["step_original_text"], "open")
-            self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders[i]["blockers"])
+            self.assertEqual(orders[i]["step_original_text"], "done")
+            self.assertEqual(orders[i]["original_text_basis"], "transcription_provisional:mirror_transcription")
+            self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders[i]["blockers"])
         # Both lanes of one job are reported once, as distinct orders.
         self.assertEqual(tracker.build.job_outputs_used[
             "app-executive-orders (lead only, never counted as the original)"], 2)
-        unlock = {u["blocker"]: u["orders_unblocked"] for u in s["shared_unlocks"]}
-        self.assertEqual(unlock["ONLY_COMPILED_TRANSCRIPTION_FOUND"], 2)
-        self.assertEqual(s["step_done_among_decided"]["original_text"]["done"],
-                         self.run_tracker()[1]["step_done_among_decided"]["original_text"]["done"])
+        self.assertEqual(s["orders_with_provisional_text"], 2)
+        self.assertEqual(s["provisional_text_by_grade"], {"mirror_transcription": 2})
+        # EO:2 (official in the fixture) plus the two provisional orders
+        self.assertEqual(s["step_done_among_decided"]["original_text"]["done"], 3)
+
+    def test_lewis_replica_scan_with_grade_is_provisional_text(self):
+        rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "lewis-originals",
+                          "acceptable_as_original": False, "grade": "archival_replica_scan_pending_codebook",
+                          "data": {"acceptable_as_original": False, "needs_page_check": True,
+                                   "grade": "archival_replica_scan_pending_codebook",
+                                   "representation_type": "proquest_replica_of_original_scan"}})
+        feed = tracker.J["replica_scan_fragments"][0]
+        orders, s = self.run_tracker(files={feed: rec + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "done")
+        self.assertEqual(orders["EO:3"]["original_text_basis"],
+                         "transcription_provisional:archival_replica_scan_pending_codebook")
+        self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
+        self.assertNotIn("NO_OFFICIAL_SOURCE_LOCATED", orders["EO:3"]["blockers"])
+        self.assertEqual(s["orders_with_provisional_text"], 1)
+        # The same record without any grade is not labeled and does not count.
+        bare = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "data": {}})
+        orders, s = self.run_tracker(files={feed: bare + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(s["orders_with_provisional_text"], 0)
+
+    def test_acceptable_as_original_true_is_ignored_and_reported(self):
+        for where in ("top", "data"):
+            with self.subTest(where=where):
+                rec = {"instrument_id": "EO:3", "kind": "original_representation", "grade": "mirror_transcription",
+                       "data": {}}
+                (rec if where == "top" else rec["data"])["acceptable_as_original"] = True
+                orders, s = self.run_tracker(files={tracker.J["compiled_transcription_fragments"][1]: json.dumps(rec) + "\n"})
+                self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+                self.assertEqual(orders["EO:3"]["original_text_basis"], "")
+                self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", orders["EO:3"]["blockers"])
+                self.assertEqual(s["orders_with_provisional_text"], 0)
+                self.assertTrue(any("SUSPICIOUS_RECORD" in p and "EO:3" in p for p in s["input_problems"]))
+
+    def test_complete_claim_on_a_transcription_is_ready_and_counted_separately(self):
+        # EO:2's text is official in the fixture; give EO:3 a NO claim whose text rests on a transcription.
+        files = {tracker.J["compiled_transcription_fragments"][0]: self.richardson_rec("EO:3") + "\n"}
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["instrument_id"] = "EO:3"
+        # no claim-checker pass for original_text: the transcription, not the claim, carries that step
+        orders, s = self.run_tracker([claim], files=files, checked={"original_text": False, **{
+            st: True for st in tracker.STEP_NAMES if st != "original_text"}})
+        o = orders["EO:3"]
+        self.assertEqual(o["original_text_basis"], "transcription_provisional:compiled_transcription")
+        self.assertEqual(o["step_original_text"], "done")
+        # EO:3 is held back by its quarantined relationship in the fixture; clear it for this check.
+        write_csv(self.root / tracker.P["causal"], [
+            {"instrument_id": "EO:1", "locally_preserved_primary_representation": "0", "quarantined_relationship_count": "0"},
+            {"instrument_id": "EO:2", "locally_preserved_primary_representation": "1", "quarantined_relationship_count": "0"},
+            {"instrument_id": "EO:3", "locally_preserved_primary_representation": "0", "quarantined_relationship_count": "0"},
+        ])
+        write_csv(self.root / tracker.P["shared"], [
+            {"authority": "STAT::1 Stat. 1", "cited_in": "EO:1", "source_already_retrieved": "no"}])
+        orders, s = self.run_tracker([claim], files=files, checked={"original_text": False, **{
+            st: True for st in tracker.STEP_NAMES if st != "original_text"}})
+        # EO:3 is an Opus case: its media step must be resolved too.
+        self.write(tracker.J["opus_status"], "instrument_id,media_status,all_cited_media_resolved,media_gap\n"
+                   "EO:3,unique_supported,yes,\n")
+        orders, s = self.run_tracker([claim], files=files, checked={"original_text": False, **{
+            st: True for st in tracker.STEP_NAMES if st != "original_text"}})
+        self.assertEqual(orders["EO:3"]["ready_for_human_review"], "yes", orders["EO:3"])
+        self.assertEqual(s["ready_for_human_review"], 1)
+        self.assertEqual(s["ready_resting_on_transcriptions"], 1)
+        self.assertEqual(s["orders_with_provisional_text"], 1)
+        # A ready order whose text is official is not in the transcription count.
+        orders, s = self.run_tracker([COMPLETE_NO_CLAIM])
+        self.assertEqual(orders["EO:2"]["original_text_basis"], "official")
+        self.assertEqual(s["ready_for_human_review"], 1)
+        self.assertEqual(s["ready_resting_on_transcriptions"], 0)
 
     def test_source_ladder_retrieval_clears_a_shared_source(self):
         rec = json.dumps({"wanted_id": "STAT::1 Stat. 1", "sha256": "b" * 64, "instrument_ids": ["EO:1", "EO:3"]})

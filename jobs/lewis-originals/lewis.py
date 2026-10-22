@@ -1,7 +1,8 @@
 """Lewis: find an official original for every order the project holds only as a transcription.
 
 Scope. An order is Lewis's when the readiness tracker leaves its `original_text` step open with the
-blocker ONLY_COMPILED_TRANSCRIPTION_FOUND (a Richardson, American Presidency Project, Wikisource,
+blocker ONLY_COMPILED_TRANSCRIPTION_FOUND, or whose text step is met only provisionally by a labeled
+transcription (original_text_basis, owner ruling 2026-10-21) (a Richardson, American Presidency Project, Wikisource,
 HathiTrust or other printed-copy lead exists, so the order's date and wording are known, but no
 official original is saved), plus any order Clark hands over with identity evidence
 (jobs/clark-discovery/output/HANDOFF_TO_LEWIS.jsonl).
@@ -181,11 +182,21 @@ def proquest_fragment(row, dates):
 
 # --- scope and routing ----------------------------------------------------------------------------
 
+def transcription_only(r):
+    """A tracker row whose text step rests on a transcription alone: either still open with the
+    ONLY_COMPILED_TRANSCRIPTION_FOUND blocker, or provisionally done on a labeled transcription
+    (original_text_basis transcription_provisional:<grade>, owner ruling 2026-10-21). Either way the
+    official original is not held, which is what Lewis hunts."""
+    if (r.get("original_text_basis") or "").startswith("transcription_provisional"):
+        return True
+    return r.get("step_original_text") == "open" and "ONLY_COMPILED_TRANSCRIPTION_FOUND" in (r.get("blockers") or "")
+
+
 def load_scope(root, readiness, universe):
     """Orders Lewis works: transcription-only (tracker) plus Clark's handoff. id -> reason."""
     scope, skipped = {}, []
     for iid, r in readiness.items():
-        if r.get("step_original_text") == "open" and "ONLY_COMPILED_TRANSCRIPTION_FOUND" in (r.get("blockers") or ""):
+        if transcription_only(r):
             if ident.parse_eo_id(iid) is None:  # unnumbered census rows (EO:UN:...) have no number to route by
                 skipped.append(iid)
                 continue

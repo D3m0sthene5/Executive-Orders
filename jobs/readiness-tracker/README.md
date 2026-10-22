@@ -17,7 +17,7 @@ they fail.
 | Step | Done when |
 |---|---|
 | `provisional_status` | It has a provisional YES/NO (`research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv`) |
-| `original_text` | Stage 19 marks a locally preserved original, Stage 21 captured the official PDF, fr-originals or an official compilation job (ofr-compilations, isthmian-canal-1911, indian-reservations-1912) found it without `needs_page_check` (otherwise `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`), opus-media-match matched an Opus copy to it, or its claim's original passes the gate and claim-checker. A find only in a compiled transcription, Richardson (richardson-volumes) or the American Presidency Project (app-executive-orders, live `FRAGMENTS.jsonl` and archive-capture `MIRROR_FRAGMENTS.jsonl`), never counts; it adds the lead blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND` (lead available, original still needed) |
+| `original_text` | Stage 19 marks a locally preserved original, Stage 21 captured the official PDF, fr-originals or an official compilation job (ofr-compilations, isthmian-canal-1911, indian-reservations-1912) found it without `needs_page_check` (otherwise `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`), opus-media-match matched an Opus copy to it, or its claim's original passes the gate and claim-checker. A find only in a compiled transcription (Richardson, the American Presidency Project, Hathi/GPO, numbered early orders, Wikisource) or a ProQuest replica scan (lewis-originals) never counts as the original; if the record carries an accepted representation grade it satisfies this step **provisionally** (see Transcriptions below), otherwise it adds the lead blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND` (lead available, original still needed) |
 | `clause_inventory`, `ending_or_current_basis`, `savings_residuals` | That part of its claim in `research/readiness/claims/` passes `claim_gate.py` **and** claim-checker passed that step for this exact claim (`jobs/claim-checker/output/PER_CLAIM.json`, matched by claim sha256) |
 | `counterevidence` | Either the claim's later-source search passes as above, **or** the machines' bounded searches covered the order and found nothing contrary: later-events read the whole OFR catalog (the order must be in it, so 1937 on) and every saved text, current-law scanned the whole U.S. Code and eCFR, and neither `COUNTEREVIDENCE_LEADS.csv` nor `POSSIBLE_CONFLICTS.csv` names the order. Never from a sample run; never with a quarantined relationship conflict. `output/MACHINE_LATER_SEARCH.jsonl` gives the claim-shaped `later_source_search` for each such order, ready to copy into its claim. Blockers say why not: `MACHINE_SEARCH_FOUND_CONTRARY_LEAD:<job>` (an agent must resolve it) or `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` (pre-1937) |
 | `shared_sources` | Only for orders citing a Stage 20 shared source: all of them retrieved (Stage 20 records or `jobs/source-ladder/output/SOURCES.jsonl`) |
@@ -44,6 +44,29 @@ ready when all its steps are done and either its claim passes the gate in full
 
 To add a new source of evidence, add its file to `P` in `tracker.py`, its folder
 to `needs.txt`, and a test.
+
+## Transcriptions (owner ruling 2026-10-21)
+
+The owner ruled to proceed with transcriptions now, labeled, to get orders moving; originals remain the goal.
+An order whose only text is a **labeled transcription** therefore meets the `original_text` step
+**provisionally**. A fragment is labeled when it is an `original_representation` record in one of
+`J["compiled_transcription_fragments"]` or `J["replica_scan_fragments"]` (`jobs/lewis-originals/output/FRAGMENTS.jsonl`)
+and carries one of these grades, read from top-level `grade`, else top-level `representation_type`, else
+`data.grade`, else `data.representation_type`: `compiled_transcription`, `government_printed_copy`,
+`machine_read_government_printed_copy`, `mirror_transcription`, `volunteer_transcription`,
+`secondary_compilation_transcription`, `archival_replica_scan_pending_codebook`,
+`proquest_replica_of_original_scan`. Richardson records carry only `data.source_kind`, so a Richardson record
+(`produced_by: richardson-volumes`) with no grade takes the documented class `compiled_transcription`. An unlabeled
+record does not count and the order keeps `ONLY_COMPILED_TRANSCRIPTION_FOUND`. A record with
+`acceptable_as_original: true` anywhere is ignored and listed under Input problems as `SUSPICIOUS_RECORD`: that
+would be a codebook change, which the tracker never makes.
+
+`READINESS_BY_ORDER.csv` gains `original_text_basis`: `official`, `transcription_provisional:<grade>` (first matching
+feed in `J` order), or empty. An official original that counts always wins. `SUMMARY.json` and `TRACKER.md` report
+`ready_resting_on_transcriptions` (ready orders on a transcription), `orders_with_provisional_text` (all such
+orders) and `provisional_text_by_grade`. Nothing about `acceptable_as_original`, the codebook, or the 0 certified
+count changes. Standing note for every claim built on a transcription (it belongs to the claim, not to this
+tracker): "original not yet held; replace and re-check quotes when an official copy is retrieved."
 
 ## Negative source-audit holds
 

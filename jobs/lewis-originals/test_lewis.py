@@ -39,8 +39,9 @@ def census_row(iid, year):
             "date_effective": str(year), "year_group": "1907–1936" if year < 1937 else "1937–1989"}
 
 
-def readiness_row(iid, blockers, step="open"):
-    return {"instrument_id": iid, "provisional_status": "", "blockers": blockers, "step_original_text": step}
+def readiness_row(iid, blockers, step="open", basis=""):
+    return {"instrument_id": iid, "provisional_status": "", "blockers": blockers, "step_original_text": step,
+            "original_text_basis": basis}
 
 
 def fragment(iid, produced_by, date="", title="", text_path=None):
@@ -59,7 +60,7 @@ class SyntheticRepo(unittest.TestCase):
         write_csv(os.path.join(r, ident.UNIVERSE), [
             census_row("EO:4", 1865), census_row("EO:7", 1868), census_row("EO:2000", 1914), census_row("EO:5100", 1929),
             census_row("EO:6000", 1932), census_row("EO:7400", 1936), census_row("EO:7543", 1937), census_row("EO:7600", 1937),
-            census_row("EO:9000", 1942)])
+            census_row("EO:9000", 1942), census_row("EO:9100", 1942)])
         write_csv(os.path.join(r, ident.READINESS), [
             readiness_row("EO:4", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND"),
             readiness_row("EO:7", "NO_OFFICIAL_SOURCE_LOCATED"),  # no transcription lead: Clark's, not Lewis's
@@ -70,6 +71,8 @@ class SyntheticRepo(unittest.TestCase):
             readiness_row("EO:7543", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND"),
             readiness_row("EO:7600", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND"),
             readiness_row("EO:9000", "", step="done"),
+            # text step met provisionally by a labeled transcription (owner ruling 2026-10-21): still Lewis's
+            readiness_row("EO:9100", "", step="done", basis="transcription_provisional:mirror_transcription"),
             readiness_row("EO:UN:executive-orders-01:row:1", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND")])
         write_jsonl(os.path.join(r, "jobs/app-executive-orders/output/FRAGMENTS.jsonl"), [
             fragment("EO:4", "app-executive-orders", "1865-03-01", "Order four"),
@@ -112,7 +115,8 @@ class SyntheticRepo(unittest.TestCase):
     def test_scope_is_transcription_only_plus_handoff(self):
         s = self.run_job()
         routes = self.read_routes()
-        self.assertEqual(set(routes), {"EO:4", "EO:2000", "EO:5100", "EO:6000", "EO:7400", "EO:7543", "EO:7600"})
+        self.assertEqual(set(routes), {"EO:4", "EO:2000", "EO:5100", "EO:6000", "EO:7400", "EO:7543", "EO:7600", "EO:9100"})
+        self.assertEqual(routes["EO:9100"]["best_route"], "federal_register", "provisional transcription basis: still hunted")
         self.assertNotIn("EO:7", routes, "no transcription lead: Clark's order, not Lewis's")
         self.assertNotIn("EO:9000", routes, "original already saved")
         self.assertTrue(any("no order number" in p for p in s["problems"]), "unnumbered id reported, not routed")
