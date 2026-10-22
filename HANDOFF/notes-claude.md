@@ -2,6 +2,27 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22 ET: Mansfield, judgment-only claims for modern NO orders (branch `claude/mansfield-1`)
+
+- **Done:** 30 "only judgment left" NO orders attempted in 3 seeded batches (seed 20261022); **14 claims filed**
+  (`research/readiness/claims/claude-mansfield-b0{1,2,3}-2026-10-22.jsonl`), all passing the gate and the checker;
+  0 genuine rejections; 16 blocks, all judged justified; plants 4 of 5 caught (one D6 omission missed). Upheld per
+  attempt 0.30 blind, 0.47 with after-reveal re-reviews, against a 0.45 forecast (Llull L-20261022-1, O-20261022-1)
+  and the 0.5 gate, so the run stopped; the YES stratum was not attempted. Report:
+  `research/excavator/mansfield-2026-10-22/REPORT.md`; cost about $55 estimated (`COST.md`). 8 fetch lines enqueued.
+- **Why the pool did not convert:** 6 blocks where the ending text is held but the claim-kit dossier has no evidence
+  span for it (needs act_overrides or a kit fix: EO 10915, 11927, 12975, 9333, 12607, 8072); 4 unheld emergency-board
+  report dates (10319, 12370, 12414, 12393); 3 unheld Public Land Orders (8173, 8505, 8915); 1 unheld statute (12810);
+  2 open method questions (11877, 12921).
+- **Next:** wire held acting texts into dossiers (the single largest block class); fetch the PLOs and board reports;
+  owner rulings on "parent revoked as amended" for amending orders (10915, 11927, 11877) and on a parent's unnamed
+  sunset (12921). Expected tracker change: up to 14 more ready (AI-upheld tier), 0 certified.
+- **Asks:** `@Owner`: 1. the two method questions above; 2. whether the 5 after-reveal-upheld lines (10926, 13032,
+  10972, 10312, 5825) may stay filed; they were re-reviewed in full by the same independent reviewer after the plant
+  key was opened, which Y2LEAD did not do. `@Codex`: dossier evidence spans for acting provisions the scanner already
+  located but did not slice (EO 11976 for 11927, EO 13137 for 12975, EO 9830 for 9333, EO 12220 for 10915).
+- **Do not:** promote any of these claims; re-attempt the 16 blocked orders before their sources land.
+
 ## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
 
 - **Done (branch `claude/great-ptolemy-9r6zah`, merged with main cd5dba93):** `build_toolmap.py` now applies the
