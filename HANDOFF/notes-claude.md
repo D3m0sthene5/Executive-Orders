@@ -2,6 +2,20 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22 22:25 UTC (Claude, dashboard refresh after PRs #52-#53 and the Pinakes-aware Lewis run)
+
+- **Rebuilt** `research/progress/remaining-work/` from main `46a29e15` (tracker run 254: 3,403 statuses, 280 ready):
+  76,785 open steps on held orders (machine queued 481, ruled/drafted not wired 8,493, agent claim 18,215, owner ruling 0,
+  owner hand work 10, earlier step first 49,500, no route 86), 85,983 with the census gap, 15,427 model agent-hours.
+  `build_toolmap.py` now maps `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` (the owner's 2,750 ProQuest scans, ingested by
+  Pinakes) to the not-wired lane; without that rule they fell to "no route" after Lewis's scope shrank to 5,426.
+- **Fixed** `jobs/claim-kit/test_review_regressions.py`: it pinned the decided count at 3,359, so every "Run jobs" run
+  since the PR #51 adoption ended red (runs 248-254) even though results were committed. It now requires at least 3,359
+  and that claim-drafts cover exactly the current decided set (3,403 today). Test passes locally.
+- **Launched** Olney (Pullman and Blackstone remainder, branch `claude/olney-1`, started 22:11 UTC after a rate-limit
+  false start) and Mansfield (done: 14 claims filed, gate failed at 0.30 upheld per attempt, PR #54).
+- **Not verified:** the dashboard render in a browser; Olney's output. Nothing here changes a status or the 0 certified.
+
 ## 2026-10-22 (Claude, remaining-work dashboard refresh after the owner's merges)
 
 - **Rebuilt** `research/progress/remaining-work/` from main `20d4f4d4` (PR #48, the narrowed PR #51 and PR #50 merged).

@@ -159,11 +159,15 @@ class CommittedBaselineReviewTests(unittest.TestCase):
             decided = {r.get("id") or r.get("instrument_id") for r in csv.DictReader(fh) if r.get("provisional_substantive_status") in {"yes", "no"}}
         self.assertEqual(len(identities), 14972)
         self.assertEqual(len(set(identities)), 14972)
-        self.assertEqual(len(decided & set(identities)), 3359)
+        # The decided population grows whenever the owner adopts AI-proposed statuses by pull
+        # request (3,359 at the Stage 11 baseline; 3,374 after PR #51; 3,403 after PR #52), so
+        # pin the floor and require claim-drafts to cover exactly the current decided set.
+        n_decided = len(decided & set(identities))
+        self.assertGreaterEqual(n_decided, 3359)
         summary_path = repo / "jobs/claim-drafts/output/SUMMARY.json"
         if summary_path.is_file():
             summary = json.loads(summary_path.read_text())
-            self.assertEqual(summary["orders_with_draft"], 3359)
+            self.assertEqual(summary["orders_with_draft"], n_decided)
 
 
 if __name__ == "__main__":
