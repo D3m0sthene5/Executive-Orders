@@ -1,6 +1,6 @@
 # How complete is the early executive-order census?
 
-Run 2026-10-22T18:25:02Z (1.3 s). 3442 dated mentions from 18 lists; 7427 cross-list matches (blind_date_and_token 5902, blind_year_and_two_tokens 1195, citation_link 330); 5002 same-date pairs left unmatched.
+Run 2026-10-22T18:17:52Z (1.3 s). 3442 dated mentions from 18 lists; 7427 cross-list matches (blind_date_and_token 5902, blind_year_and_two_tokens 1195, citation_link 330); 5002 same-date pairs left unmatched.
 
 Population-level estimates. Nothing here admits an order to the census, assigns a date to one, merges identities or changes any count or status.
 
