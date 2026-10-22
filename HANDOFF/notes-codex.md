@@ -1,5 +1,13 @@
 # Codex's handoff notes
 
+## 2026-10-22: independent Sinclair cross-family review and adoption proposal
+
+- **Reviewed:** Exactly the 31 pending Sinclair proposals, using held sources, a fixed seven-question checklist, D6 and fresh planted controls. Sole substantive reviewer Codex/OpenAI GPT is a different family from the Claude/Opus producer. No re-research. Result: 29 uphold; EO 9380 and EO 9593 need research because transfers/savings and conditional property return do not establish complete cessation.
+- **Controls:** Separate seeder, verdicts frozen before scoring; 3/3 planted defects caught strictly, 6/6 genuine items accepted. Small paired execution check, not a general sensitivity estimate. Mutated packets/keys stay outside the repository; aggregate audit and limitations saved next to the lean review.
+- **Proposal:** Branch `codex/sinclair-cross-family-review-20261022`; append only the 29 upheld rows, 3,374 → 3,403, preserving every baseline CSV byte. Owner merges the adoption PR; no merge performed. Provisional status only; certified whole-lifecycle count stays 0. Six parent-ending holds and historical pending/review/control records unchanged.
+- **Evidence/validation:** `research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_REPORT.md`, per-row verdicts, 104 held-input pins, control audit and bounded offline validator/receipt. Checks exact coverage, canonical producer hashes, raw source hashes, quote offsets, adoption fidelity and protected history. No generated output refresh or readiness gain claimed.
+- **Next:** Owner reviews and merges if satisfied; leave EO 9380/9593 unresolved and retain the six prior holds. Reviewed 31 production proposals plus 9 supplemental control items; exact per-order time/tokens/cash unavailable. Only Codex handoff notes edited.
+
 ## 2026-10-22: owner-authorized eligible PR merges
 
 - **Merged:** Owner requested deconflicting and merging everything eligible. PR#48 head179b2a28 merged as09c8a468; Windows/Ubuntu/smoke pass, historical security finding independently verified as a test-log SHA-256. PR#51 narrowed atda79279f and merged asbb36bd7a: only15 explicitly approved Bowditch provisional NO rows. All3,359 baseline records unchanged, total3,374; certification remains0.

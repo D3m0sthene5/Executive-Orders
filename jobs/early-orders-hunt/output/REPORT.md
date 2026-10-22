@@ -1,6 +1,6 @@
 # Early orders hunt
 
-Run 2026-10-21T20:48:54Z (live, 190.6 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1027 leads now have a printed text cut from a cited page (146 of them before 1862).**
+Run 2026-10-22T18:24:59Z (live, 184.9 s). 1994 leads from Lord's list and scan (320 before 1862); 1313 cite a book this job knows; **1027 leads now have a printed text cut from a cited page (146 of them before 1862).**
 
 Nothing is admitted to the census, dated, merged or changed. Every text here is OCR of a printed compilation, a lead for the original_text step, never the signed original. A page hit is not an identity.
 
@@ -99,7 +99,7 @@ Nothing is admitted to the census, dated, merged or changed. Every text here is 
 
 ## Requests
 
-Budget 160, spent 50, refused 0; 267,085,493 bytes downloaded, 0 cache hits.
+Budget 160, spent 50, refused 0; 267,084,797 bytes downloaded, 0 cache hits.
 
 ## Next
 

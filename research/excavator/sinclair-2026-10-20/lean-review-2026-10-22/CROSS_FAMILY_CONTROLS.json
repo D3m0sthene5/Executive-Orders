@@ -1,0 +1,77 @@
+{
+  "schema": "eo-cross-family-control-audit/v1",
+  "base_commit": "bf01fb77f171461c76a47bbae65df2425634efb8",
+  "reviewer": "Codex / OpenAI GPT family, root independent reviewer",
+  "seeder": "Separate Codex seeder agent; producer decisions remain Claude Sinclair",
+  "workflow": "Separate seeder prepared supplemental scratch-only items; root returned frozen verdicts before key release; seeder then verified source correspondence and scored. No canonical decision was mutated.",
+  "counts": {
+    "items_reviewed": 9,
+    "genuine_controls": 6,
+    "planted_controls": 3,
+    "strict_caught": 3,
+    "lenient_caught": 3,
+    "genuine_accepted": 6,
+    "genuine_flagged": 0,
+    "missing_verdicts": 0
+  },
+  "pins": {
+    "packet_sha256": "daa851c872dde4f3d84a184c868dc44ed0620fbec28841f2c35eba4eec72bef8",
+    "key_file_sha256": "0e1117c88da9f7c8765e09f08c25282cfeac5fc433d2f627fc83f439d8e59f80",
+    "key_seal_sha256": "211845eb681645fed18949b2dc7b94a8ce30c8ef9b37bd479266ceff1c9811f3",
+    "frozen_verdicts_sha256": "d1089665ff71bd21b0a7414059556cf3524e4c507e34b0fa0bf770863354633a",
+    "seeder_script_sha256": "afecf6a9db6d6676ef1165950faa1cfced0f9aba8abb3296930a0a8d8d2a2365"
+  },
+  "strict_correspondence": [
+    {
+      "defect_type": "D6_omitted_later_event",
+      "n": 1,
+      "strict_caught": 1,
+      "lenient_caught": 1,
+      "affected_locus": "d6_events_reviewed and d6_assessment",
+      "held_source": "jobs/fr-originals/data/full_run/texts/EO_13787.txt",
+      "source_sha256": "b6bd570f2e900f1d8fbd7914e80a34376e02ca48892ff0ea63eb79f11fc688c3",
+      "source_locus": "section 3; held text lines 37-38",
+      "strict_correspondence": "Reviewer rejected the omitted EO 13787 event, identified its revocation of EO 13775 and new succession list, and expressly distinguished this omission from revival of EO 13762. Matching event, field and substantive defect all identified."
+    },
+    {
+      "defect_type": "D7_wrong_own_term_date",
+      "n": 1,
+      "strict_caught": 1,
+      "lenient_caught": 1,
+      "affected_locus": "claimed_end_date and basis",
+      "held_source": "jobs/fr-originals/data/full_run/texts/EO_7980.txt",
+      "source_sha256": "9f84eafc8262f89c1d41b719dc8c9f5f635bef811fd5bfae1f5bf8087dc74cac",
+      "source_locus": "sole postponement; held text lines 41-42",
+      "strict_correspondence": "Reviewer rejected the asserted own-term date, identified the December 31, 1938 limit in the sole operative postponement, and refused to excuse the false date merely because provisional NO remained plausible."
+    },
+    {
+      "defect_type": "D10_wrong_ending_actor",
+      "n": 1,
+      "strict_caught": 1,
+      "lenient_caught": 1,
+      "affected_locus": "claimed_ending_actor, consequent claimed_end_date and basis",
+      "held_source": "jobs/fr-originals/data/full_run/texts/EO_14005.txt",
+      "source_sha256": "03f613b8c20b4baddec1f369f37f217ea10696100ec7d8ab0b51ab0573158f80",
+      "source_locus": "section 14(a); held text lines 219-222",
+      "strict_correspondence": "Reviewer identified EO 14005 section 14(a) as the operative revocation of EO 13975, rejected the non-revoking actor, and explained the associated date error. This is an actor-and-operative-clause correspondence, not credit for generic skepticism."
+    }
+  ],
+  "checks": {
+    "key_seal_valid": true,
+    "packet_pin_valid": true,
+    "verdict_pin_valid": true,
+    "all_source_hashes_valid": true,
+    "all_refuting_texts_present": true,
+    "exact_item_coverage": true,
+    "reviewer_packet_no_seed_markers": true
+  },
+  "limitations": [
+    "Small supplemental local control check; not a general sensitivity estimate.",
+    "Same-order variants permit comparison and may make defects easier to find.",
+    "Manual deterministic seeding with three defect types; no separately blinded seeder-validation agents.",
+    "Reviewer saw historical Sinclair review before this fresh packet; this packet is independently mutated but not an unseen case population.",
+    "Only proposal fields change; held original and actor texts and historical producer records are unchanged."
+  ],
+  "interpretation": "All three injected defects were caught with source-based matching loci. Each defect class has n=1. This is a small, paired and instructed-blind execution check only; no general reviewer sensitivity or population defect-rate estimate is warranted. Prior producer/review exposure and same-order comparisons can make detection easier. Filesystem permissions do not provide technical blinding. Full packet/key/verdict files stay scratch-only; this audit contains no opaque item identifiers or altered hypothesis payloads.",
+  "publication_scope": "Aggregate audit only. The review controls neither add eligible proposals nor decide any of the six parent-ending holds."
+}
