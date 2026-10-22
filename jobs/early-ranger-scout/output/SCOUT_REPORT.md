@@ -7,41 +7,41 @@ Every entry below is a **catalog discovery lead**, not a verified presidential o
 
 ## Highest-priority returned catalog candidates
 
-- [CIA Reading Room cia-rdp84-00780r003800160007-9: DRAFT OF MODIFICATION NO. 2 TO THE COMMISSION POLICIES AND PROCEDURES FOR IMPLEMENTING THE GOALS](https://archive.org/details/cia-readingroom-document-cia-rdp84-00780r003800160007-9) — 1971-10-19T00:00:00Z (internet_archive; retrieval relevance 3).
-- [CIA Reading Room cia-rdp86-00244r000100040015-6: DRAFT OF MODIFICATION NO. 2 TO THE COMMISSION POLICIES AND PROCEDURES FOR IMPLEMENTING THE GOALS](https://archive.org/details/cia-readingroom-document-cia-rdp86-00244r000100040015-6) — 1971-10-19T00:00:00Z (internet_archive; retrieval relevance 3).
-- [CIA Reading Room cia-rdp86-00244r000100190052-9: RESOLUTION ADOPTING AMENDMENTS TO THE COMMISSION'S POLICIES AND PROCEDURES FOR IMPLEMENTING THE ](https://archive.org/details/cia-readingroom-document-cia-rdp86-00244r000100190052-9) — 2000-09-27T00:00:00Z (internet_archive; retrieval relevance 3).
+- [DRAFT OF MODIFICATION NO. 2 TO THE COMMISSION POLICIES AND PROCEDURES FOR IMPLEMENTING THE GOALS AND POLICIES OF THE NATIONAL ENVIRONMENTAL POLIC](https://archive.org/details/CIA-RDP86-00244R000100040015-6) — 1971-10-19T00:00:00Z (internet_archive; retrieval relevance 3).
+- [Governor's proclamations and executive orders [microform]](https://archive.org/details/governor1938cali) — 1849-01-01T00:00:00Z (internet_archive; retrieval relevance 3).
 - [Executive orders and proclamations issued by the governor-general](https://archive.org/details/acd6603.1912.001.umich.edu) — 1904-01-01T00:00:00Z (internet_archive; retrieval relevance 2).
-- [CIA Reading Room cia-rdp73b00296r000400150030-9: EXECUTIVE ORDERS AND BILLS SCOPE DISCLOSURE REQUIREMENTS AND NATIONAL SECURITY OVERSIGHT INTELLI](https://archive.org/details/cia-readingroom-document-cia-rdp73b00296r000400150030-9) — 2001-11-15T00:00:00Z (internet_archive; retrieval relevance 2).
-- [CIA Reading Room cia-rdp84-00780r003600130002-9: UPDATING OF TEXT AND EXPLANATION OF CIA STATUTES AND EXECUTIVE ORDERS](https://archive.org/details/cia-readingroom-document-cia-rdp84-00780r003600130002-9) — 1970-05-20T00:00:00Z (internet_archive; retrieval relevance 2).
+- [CIA Reading Room cia-rdp89g00643r001000100052-8: YOU ASKED ME WHETHER THE AGENCY MAINTAINS A LIST OF "COMPLIANCE" DOCUMENTS OTHER THAN EXECUTIVE ](https://archive.org/details/cia-readingroom-document-cia-rdp89g00643r001000100052-8) — 1987-01-07T00:00:00Z (internet_archive; retrieval relevance 2).
 - [CIA Reading Room cia-rdp93b01194r001200030003-3: COMPARISON OF MAJOR FEATURES OF EXECUTIVE ORDERS GOVERNING NATIONAL SEURITY INFORMATION](https://archive.org/details/cia-readingroom-document-cia-rdp93b01194r001200030003-3) — 2005-09-13T00:00:00Z (internet_archive; retrieval relevance 2).
+- [General orders, regulations and rulings of the United States Fuel Administration : including the acts of Congress, executive orders, and proclama](https://archive.org/details/cu31924019366701) — 1919-01-01T00:00:00Z (internet_archive; retrieval relevance 2).
 - [Executive orders relating to Indian reservations : from May 14, 1855 to July 1, 1912](https://archive.org/details/cu31924097621753) — 1912-01-01T00:00:00Z (internet_archive; retrieval relevance 2).
-- [American state papers bearing on Sunday legislation](https://archive.org/details/americanstatepa00blakgoog) — 1911-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [Executive orders and procalamations issued by the civil governor](https://archive.org/details/executiveorders00unkngoog) — 1901-01-01T00:00:00Z (internet_archive; retrieval relevance 2).
+- [The Booker T. Washington papers](https://archive.org/details/bookertwashingto0000wash) — 1972-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [The Booker T. Washington papers](https://archive.org/details/bookertwashingto0000wash_dw34) — 1972-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [The Booker T. Washington papers](https://archive.org/details/bookertwashingto0004wash) — 1972-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [The Booker T. Washington papers. 8, 1904-1906](https://archive.org/details/bookertwashingto0008wash) — 1979-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [A Compilation of the messages and papers of the presidents](https://archive.org/details/bwb_S0-BGM-757) — 1879-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [THe Washington Papers](https://archive.org/details/bwb_S0-BKB-560) — 1967-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [A Compilation of the Messages and papers of the Presidents](https://archive.org/details/bwb_S0-BXT-923) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [CIA Reading Room cia-rdp86m00886r002300010054-0: HANDLING OF PRESIDENTIAL CORRESPONDENCE](https://archive.org/details/cia-readingroom-document-cia-rdp86m00886r002300010054-0) — 1984-04-02T00:00:00Z (internet_archive; retrieval relevance 0).
 - [A compilation of the messages and papers of the presidents](https://archive.org/details/compilationofmes0015unse) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [A Compilation of the Messages and Papers of the Presidents Volume 20](https://archive.org/details/compilationofmes0020bure) — 1909-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Contributions to Paleontology from the Carnegie Institution of Washington: Papers concerning the paleontology of the pleistocene of California an](https://archive.org/details/contributionstop0000vari_m3y7) — 1925-10-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [The Controversy Over Neutral Rights Between the United States and France, 1797-1800: A Collection of American State Papers and Judicial Decisions](https://archive.org/details/controversyovern0000jame) — 1917-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [Taxation in Washington; papers and discussions of the State tax conference at the University of Washington, May 27, 28 and 29, 1914](https://archive.org/details/cu31924014007847) — 1914-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [A compilation of the messages and papers of the presidents](https://archive.org/details/cu31924092694854) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [A compilation of the messages and papers of the presidents](https://archive.org/details/cu31924092694904) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [A compilation of the messages and papers of the presidents](https://archive.org/details/cu31924092694920) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [U.S. Presidential correspondence With Ethiopia 1974-1975](https://archive.org/details/ethiopia-1975) — 1975-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [The George Washington papers](https://archive.org/details/georgewashington0000wash) — 1964-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [A Compilation Of The Messages And Papers Of The Presidents Volume Xx](https://archive.org/details/in.ernet.dli.2015.169833) — 1916-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Messages And Papers Of The Presidents Vol.13](https://archive.org/details/in.ernet.dli.2015.45629) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Messages And Papers Of The Presidents Vol. 3](https://archive.org/details/in.ernet.dli.2015.45636) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Messages and Papers of the Presidents](https://archive.org/details/messagespapersof0008vari) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [Messages and Papers of the Presidents 4626-5071](https://archive.org/details/messagespapersof0011vari) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [A compilation of the messages and papers of the presidents](https://archive.org/details/messagespaperspr11unitiala) — 1897-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [The New American State Papers / [3], vol. 7, Continental North America](https://archive.org/details/newamericanstate0000unse) — 1972-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [American State Papers 1789 - 1815: Vol 1](https://archive.org/details/sim_american-state-papers_1789-1815_1) — 1789-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [American State Papers 1789 - 1815: Vol 2 Index](https://archive.org/details/sim_american-state-papers_1789-1815_2_index) — 1789-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [American State Papers 1790 - 1823: Vol 1](https://archive.org/details/sim_american-state-papers_1790-1823_1) — 1790-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [American State Papers 1794 - 1823: Vol 1 Index](https://archive.org/details/sim_american-state-papers_1794-1823_1_index) — 1794-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [American State Papers April 13, 1789-February 9, 1814: Vol 1](https://archive.org/details/sim_american-state-papers_april-13-1789-february-9-1814_1) — 1789-04-13T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1815 - 1819: Vol 4 Index](https://archive.org/details/sim_american-state-papers_1815-1819_4_index) — 1815-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1818 - 1826: Vol 5 Index](https://archive.org/details/sim_american-state-papers_1818-1826_5_index) — 1818-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1828 - 1832: Vol 4 Index](https://archive.org/details/sim_american-state-papers_1828-1832_4_index) — 1828-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1829: Vol 4](https://archive.org/details/sim_american-state-papers_1829_4) — 1829-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1832 - 1836: Vol 5 Index](https://archive.org/details/sim_american-state-papers_1832-1836_5_index) — 1832-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers 1837 - 1838: Vol 7 Index](https://archive.org/details/sim_american-state-papers_1837-1838_7_index) — 1837-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers December 6, 1815-March 1, 1827: Vol 2](https://archive.org/details/sim_american-state-papers_december-6-1815-march-1-1827_2) — 1815-12-06T00:00:00Z (internet_archive; retrieval relevance 0).
+- [American State Papers March 4, 1815-May 3, 1822: Vol 4](https://archive.org/details/sim_american-state-papers_march-4-1815-may-3-1822_4) — 1815-03-04T00:00:00Z (internet_archive; retrieval relevance 0).
 - [U.S. Presidential correspondence With Sudan 1973-1977](https://archive.org/details/u.s.-presidential-correspondence-with-sudan) — 1973-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [The Washington papers; basic selections from the public and private writings of George Washington](https://archive.org/details/washingtonpapers0000wash) — 1955-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
 - [The Washington papers; basic selections from the public and private writings of George Washington](https://archive.org/details/washingtonpapers00wash_0) — 1955-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Washington's masonic correspondence as found among the Washington papers in the Library of Congress, comp. from the original records, under the d](https://archive.org/details/washingtonsmaso00washgoog) — 1915-01-01T00:00:00Z (internet_archive; retrieval relevance 0).
-- [Washington's Masonic Correspondence As Found among the Washington Papers in the Library of Congress](https://archive.org/details/washingtonsmason29949gut) —  (internet_archive; retrieval relevance 0).
 
 ## Documented source collection/item anchors
 
