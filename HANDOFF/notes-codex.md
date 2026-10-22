@@ -2,6 +2,12 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22: refreshed ranger runtime repair
+
+- **Found:** Run39666192712 preserved successful source/draft outputs in640279c but blocked at a fixed23-response assertion; actual Scout produced24. Source-ladder now holds538 receipts (29new,509carried), and all21quarantines remain. Full3,359-draft run made zero network requests.
+- **Fixed:** Four ranger stages accept changing discovery counts while enforcing custody, schemas, coverage and bounded requests. Explicit three manuscript follow-ups survive refreshed searches; changed page counts require review. Eleven new regressions and independent review recorded in `research/diagnostics/codex-swarm-20261021/RUNTIME_FOLLOWUP.md` and adjacent review/replay receipts.
+- **Next:** Verify targeted follow-up runner and current PR#50 checks. Prior failed attempt is retained. No new human certification, legal status or census admission; no other agent notes edited.
+
 ## 2026-10-21: owner-requested workflow swarm and reviewed-claim pilot
 
 - **Done:** Integrated Pinakes/CSC source outputs and readers from pinned branch generations; repaired scheduler paths, dependencies, ranger/census wiring and cycle diagnostics. Enqueued266 validated Lewis requests without altering the historical prefix. Drafting is offline with safely reused checker receipts; unavailable search engines defer after one probe per run. LOC repair retrieved11 XML transcriptions/10,857 words. Evidence: `research/diagnostics/codex-swarm-20261021/INTEGRATION_REPORT.md`.
