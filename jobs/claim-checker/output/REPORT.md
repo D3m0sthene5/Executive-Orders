@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 389 (parse errors: 0)
-- Orders with a claim (latest claim per order): 388
-- All checks passed: 299
-- Mechanical checks passed: 384; with unverifiable items: 4; failed: 1
-- Structural gate passed: 304
+- Claims checked: 401 (parse errors: 0)
+- Orders with a claim (latest claim per order): 400
+- All checks passed: 310
+- Mechanical checks passed: 395; with unverifiable items: 5; failed: 1
+- Structural gate passed: 316
 
 ## Source references
 
-- custody_record_only: 7
-- gpo_published_hash_match: 4282
-- held_bytes_in_release_or_repo: 67
-- held_bytes_verified: 4593
+- custody_record_only: 10
+- gpo_published_hash_match: 4482
+- held_bytes_in_release_or_repo: 70
+- held_bytes_verified: 4647
 
 ## Quotations
 
-- exact: 11551
+- exact: 11915
 - normalised: 4
 - not_found: 7
 
@@ -116,10 +116,11 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:4` | EO:10494 | quote_verbatim:not_found@operative_clauses[1].original_operative_text; quote_verbatim:not_found@operative_clauses[1].original_source.quote; quote_verbatim:not_found@operative_clauses[2].original_operative_text; quote_verbatim:not_found@operative_clauses[2].original_source.quote; quote_verbatim:not_found@operative_clauses[3].original_operative_text; quote_verbatim:not_found@operative_clauses[3].original_source.quote ... |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | unverifiable items |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2` | EO:10926 | unverifiable items |
+| `research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl:1` | EO:10622 | unverifiable items |
 | `research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl:1` | EO:10631 | unverifiable items |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 3870
+- recorded_for_this_order: 3986
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

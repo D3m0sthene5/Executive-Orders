@@ -1,5 +1,5 @@
 {
-  "commit": "5d9d9c44b",
+  "commit": "e8f8a7f31",
   "current_outcome_ids": {
     "L-20261020-1": "O-20261020-1",
     "L-20261020-13": "O-20261020-49",
@@ -76,7 +76,9 @@
     "L-20261020-85": "O-20261020-73",
     "L-20261020-86": "O-20261020-74",
     "L-20261020-87": "O-20261020-75",
-    "L-20261020-88": "O-20261020-66"
+    "L-20261020-88": "O-20261020-66",
+    "L-20261022-1": "O-20261022-1",
+    "L-20261022-2": "O-20261022-2"
   },
   "dependence_note": "multiple quantities from one experiment are correlated; forecast count is not study count",
   "experiment_groups": {
@@ -125,6 +127,10 @@
       "L-20261020-46",
       "L-20261020-47",
       "L-20261020-48"
+    ],
+    "source:research/excavator/mansfield-2026-10-22/OUTCOME.json": [
+      "L-20261022-1",
+      "L-20261022-2"
     ],
     "source:research/excavator/norton-2026-10-20/results/ARM_STATUS.json": [
       "L-20261020-65"
@@ -183,17 +189,31 @@
       "L-20261020-25"
     ]
   },
-  "n_current_outcomes": 76,
-  "n_experiments_scored": 20,
+  "n_current_outcomes": 78,
+  "n_experiments_scored": 21,
   "n_forecasts": 90,
-  "n_outcome_records": 79,
-  "n_resolved": 74,
-  "n_scored": 62,
+  "n_outcome_records": 81,
+  "n_resolved": 76,
+  "n_scored": 64,
   "not_preregistered_excluded": {
     "L-20261020-1": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)",
     "L-20261020-2": "its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with the forecast (439e274ab)"
   },
   "planners": {
+    "agent:claude-fable-5-1": {
+      "coverage_p10_p90": 1.0,
+      "experiment_ids": [
+        "source:research/excavator/mansfield-2026-10-22/OUTCOME.json"
+      ],
+      "mean_norm_interval_score": 1.99375,
+      "mean_skill_vs_outside_view": 0.537172083814552,
+      "median_log_ratio": -0.26162407188227393,
+      "n_binary": 0,
+      "n_experiments": 1,
+      "n_interval": 2,
+      "optimism_factor": 1.299,
+      "trust": "unproven"
+    },
     "claude-lambertini2-scout:claude-opus-5-5": {
       "brier": 0.30250000000000005,
       "brier_reference_base_rate": 0.0,
@@ -405,5 +425,5 @@
     "L-20261020-33": "untested",
     "L-20261020-37": "untested"
   },
-  "written_at": "2026-10-22T20:34:58Z"
+  "written_at": "2026-10-22T22:51:05Z"
 }

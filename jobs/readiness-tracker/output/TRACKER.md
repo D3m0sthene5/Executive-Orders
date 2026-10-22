@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 280 of 14,972 orders (1.9%)**
+**Ready for human review: 291 of 14,972 orders (1.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -14,10 +14,10 @@ Orders with a provisional YES/NO status: 3,374. The other 11,598 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,374 | 3,374 | 100.0% |
 | Original text saved in the project | 2,327 | 3,374 | 69.0% |
-| Complete inventory of the order's operative clauses | 345 | 3,374 | 10.2% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 303 | 3,374 | 9.0% |
-| Savings clauses and surviving effects closed | 336 | 3,374 | 10.0% |
-| Search for later contrary sources recorded, no open conflicts | 2,505 | 3,374 | 74.2% |
+| Complete inventory of the order's operative clauses | 356 | 3,374 | 10.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 315 | 3,374 | 9.3% |
+| Savings clauses and surviving effects closed | 348 | 3,374 | 10.3% |
+| Search for later contrary sources recorded, no open conflicts | 2,506 | 3,374 | 74.3% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 844 | 14.8% |
 
@@ -44,11 +44,11 @@ Orders with a provisional YES/NO status: 3,374. The other 11,598 have not been r
 | `NO_PROVISIONAL_STATUS` | 0 | 11,598 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 944 | 5,347 |
-| `NO_CLAUSE_INVENTORY` | 2,986 | 2,986 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,986 | 2,986 |
+| `NO_CLAUSE_INVENTORY` | 2,974 | 2,974 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,974 | 2,974 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 77 | 2,750 |
-| `FIRST_END_UNPROVED` | 2,593 | 2,593 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 687 | 687 |
+| `FIRST_END_UNPROVED` | 2,581 | 2,581 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 686 | 686 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
@@ -59,8 +59,8 @@ Orders with a provisional YES/NO status: 3,374. The other 11,598 have not been r
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
+| `CLAIM_CHECK_FAILED` | 6 | 6 |
 | `OPEN_SOURCE_AUDIT` | 6 | 6 |
-| `CLAIM_CHECK_FAILED` | 5 | 5 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -89,8 +89,8 @@ Orders with a provisional YES/NO status: 3,374. The other 11,598 have not been r
 - csc-annual-reports (lead only, never counted as the original): 798
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - opus-media-match status: 1,155
-- source-ladder: 577
-- claim-checker: 388
+- source-ladder: 611
+- claim-checker: 400
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
