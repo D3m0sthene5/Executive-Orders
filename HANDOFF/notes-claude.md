@@ -2,6 +2,23 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22 (Claude, remaining-work dashboard refresh after the owner's merges)
+
+- **Rebuilt** `research/progress/remaining-work/` from main `582a64a0` (PR #48 and the narrowed PR #51 merged). The
+  three generated files came out identical to the PR #48 snapshot because the committed tracker still counts 3,359
+  statuses: 278 ready, 76,905 open steps on held orders (machine queued 508, ruled/drafted not wired 5,081, agent
+  claim 17,479, owner ruling 0, owner hand work 2,655, earlier step first 50,379, no route 803), 86,103 with the
+  1,314 census-gap orders, about 15,700 model agent-hours. A local preview run of the tracker with the 3,374 statuses
+  (not committed) gives 76,875 open steps and the same 278 ready; GitHub run 248 on main will publish the real recount.
+- **Updated** `TOOLS.csv` (Bowditch adopted; Sinclair 31 held for a cross-family reviewer plus 6 parent-ending holds;
+  Pullman first run 11 upheld of 16 attempted on `claude/justinian-1`; Junto first measured test, thin packet, no saving;
+  new rows for Justinian and for PR #50's Pinakes readers) and re-pinned `SNAPSHOT.md`. The three-tab dashboard
+  (steps, effort, tool map) carries the same figures and an Oct 22 mission line; its tools table reads the new CSV.
+- **Not verified:** the post-adoption tracker recount (run 248 in progress) and PR #50's 280-ready figure, which
+  rests on 3,359 statuses on its own branch. Nothing here changes a status, a claim or the 0 certified count.
+- **Next:** when run 248 commits, rerun the three builders and refresh the dashboard datasets; when `claude/justinian-1`
+  merges, the transcription-only orders (5,081 steps) move out of "not wired".
+
 ## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
 
 - **Done (branch `claude/great-ptolemy-9r6zah`, merged with main cd5dba93):** `build_toolmap.py` now applies the
