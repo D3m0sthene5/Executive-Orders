@@ -66,9 +66,37 @@ def citations(rows) -> list[dict]:
     return out
 
 
+UNITS = {"first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5, "sixth": 6, "seventh": 7, "eighth": 8,
+         "ninth": 9, "tenth": 10, "eleventh": 11, "twelfth": 12, "thirteenth": 13, "fourteenth": 14,
+         "fifteenth": 15, "sixteenth": 16, "seventeenth": 17, "eighteenth": 18, "nineteenth": 19}
+TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60}
+TENTHS = {"twentieth": 20, "thirtieth": 30, "fortieth": 40, "fiftieth": 50, "sixtieth": 60}
+ORDINAL_RE = re.compile(r"\b(?:(twenty|thirty|forty|fifty|sixty)[\s-]*)?(" + "|".join(list(UNITS) + list(TENTHS))
+                        + r")\s+(?:annual\s+)?report", re.I)
+
+
+def report_number(text: str):
+    """'THIRTY-FOURTH ANNUAL REPORT' -> 34; '57th Annual Report' -> 57."""
+    m = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)\s+(?:annual\s+)?report", text, re.I)
+    if m:
+        return int(m.group(1))
+    m = ORDINAL_RE.search(text)
+    if not m:
+        return None
+    word = m.group(2).lower()
+    return TENS.get((m.group(1) or "").lower(), 0) + UNITS.get(word, 0) + TENTHS.get(word, 0)
+
+
 def report_fy(first_pages_text: str):
-    m = FY_RE.search(norm_space(first_pages_text))
-    return int(m.group(1)) if m else None
+    """Fiscal year from the title page. Report n covers FY 1883 + n (the 34th covers FY 1917); the ordinal
+    wins when OCR garbles the year (the 40th report's title page reads 1925 for 1923)."""
+    text = norm_space(first_pages_text)
+    m = FY_RE.search(text)
+    fy = int(m.group(1)) if m else None
+    n = report_number(text)
+    if n and n >= 4 and (fy is None or fy != 1883 + n):
+        return 1883 + n
+    return fy
 
 
 def printed_number(page_text: str):

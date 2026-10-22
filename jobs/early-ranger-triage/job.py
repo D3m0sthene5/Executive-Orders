@@ -1,6 +1,6 @@
 """Early-order triage: separate presidential-term manuscript leads from noise.
 
-Inputs: 65 verified-custody LOC catalog links, the 73-year historic gap grid,
+Inputs: verified-custody LOC catalog links, the 73-year historic gap grid,
 and Stage 18 earlier candidate documents. All classification is research triage,
 NOT presidential attribution, EO census admission or legal effect.
 """
@@ -9,6 +9,7 @@ import csv
 import json
 import os
 import re
+import urllib.parse
 from pathlib import Path
 
 ROOT=Path(os.environ["REPO_ROOT"])
@@ -73,12 +74,22 @@ def attribution(title,iso):
 
 def main():
     items=read(SOURCE);grid=read(GRID);curated=read(CURATED)
-    if len(items)!=65 or len(grid)!=73 or len(curated)!=6:
-        raise ValueError("Unexpected frozen early source input count")
+    # Coverage is a defined year domain; search and curated lead counts vary.
+    years=[r["year"] for r in grid]
+    if len(set(years))!=len(years) or set(years)!={str(y) for y in range(1789,1862)}:
+        raise ValueError("Coverage grid must contain each year 1789–1861 exactly once")
+    if any("year_risk" not in r for r in grid):raise ValueError("Missing year risk")
+    curated_ids=[r["candidate_id"] for r in curated]
+    if any(not x for x in curated_ids) or len(set(curated_ids))!=len(curated_ids):
+        raise ValueError("Missing or duplicate curated candidate ID")
     year_map={r["year"]:r for r in grid}
     seen=set();rows=[]
     for c in items:
         url=c["loc_item_https"]
+        parsed=urllib.parse.urlsplit(url)
+        if parsed.scheme!="https" or parsed.hostname not in ("www.loc.gov","loc.gov") or not parsed.path.startswith(("/item/","/resource/")):
+            raise ValueError("Untrusted catalog item URL")
+        if not re.fullmatch(r"[a-f0-9]{64}",c["response_sha256"]):raise ValueError("Missing source response hash")
         if url in seen:raise ValueError("Duplicate catalog item")
         seen.add(url)
         iso,precision=date_bounds(c["catalog_date"])
@@ -126,7 +137,10 @@ def main():
     out=OUT
     out.mkdir(parents=True,exist_ok=True)
     with (out/"PRIORITIZED_PRESIDENTIAL_PERIOD_CANDIDATES.csv").open("w",newline="",encoding="utf-8") as f:
-        w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n")
+        w=csv.DictWriter(f,fieldnames=["catalog_item_url","date_as_indexed","year_hint","date_precision_not_legally_verified",
+            "title_as_indexed","possible_issuer_in_title","presidential_term_screen_ONLY","directive_wording_in_title",
+            "no_Lord_lead_for_year_in_prior_grid","triage_lane_NOT_identification","review_priority_NOT_probability",
+            "source_response_sha256","original_item_bytes_checked","eo_inclusion_judgment","next_action"],lineterminator="\n")
         w.writeheader();w.writerows(rows)
     gap_years=sorted({r["year_hint"] for r in rows if r["no_Lord_lead_for_year_in_prior_grid"]=="1" or r["no_Lord_lead_for_year_in_prior_grid"]==1})
     # Related primary representations may appear in more than one series;

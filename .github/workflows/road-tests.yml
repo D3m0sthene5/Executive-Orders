@@ -1,11 +1,16 @@
 name: Road system offline tests
 on:
   push:
-    paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**']
+    paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**', 'research/stage19/code/**']
   pull_request:
-    paths: ['jobs/**', '.github/**', 'research/readiness/rules/**']
+    paths: ['jobs/**', '.github/**', 'research/readiness/rules/**', 'research/stage19/code/**']
 permissions:
   contents: read
+# Superseded read-only tests can stop; acquisition/publication runs have their
+# own workflow and deliberately do not use this cancellation policy.
+concurrency:
+  group: road-tests-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   test:
     strategy:
@@ -16,9 +21,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: false
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            .github
-            jobs
+            /.github/
+            /jobs/
+            !/jobs/*/output/
+            /research/stage19/code/
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

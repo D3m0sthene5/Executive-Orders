@@ -20,6 +20,11 @@ OUT=Path(os.environ["OUTPUT_DIR"])
 PRIOR=ROOT/"jobs/early-ranger-scout/output"
 ATTEMPTS=PRIOR/"LIVE_SEARCH_ATTEMPTS.jsonl"
 CACHE=PRIOR/"response_cache"
+MAX_REQUESTS=65  # scout request budget, not an expected success count
+MAX_RESPONSE_BYTES=2_000_000
+FIELDS=["loc_item_https","catalog_id_as_returned","title","catalog_date","description",
+        "contributors","response_sha256","search_route","research_rank_NOT_legal_confidence",
+        "original_authentication","executive_order_inclusion"]
 
 def canonical(s):
     if not isinstance(s,str):return ""
@@ -47,8 +52,12 @@ def relevance(title,date,route):
 
 def main():
     a=[json.loads(x) for x in ATTEMPTS.read_text().splitlines() if x]
+    if len(a)>MAX_REQUESTS:raise ValueError("Scout attempt budget exceeded")
+    ids=[x["request_id"] for x in a]
+    if any(not isinstance(x,str) or not x for x in ids) or len(set(ids))!=len(ids):
+        raise ValueError("Missing or duplicate scout request ID")
     runs=[x for x in a if x["provider"]=="loc" and x["status"].startswith("json_response")]
-    if len(runs)!=23:raise ValueError("expected 23 original LOC responses")
+    if not runs:raise ValueError("No preserved LOC responses to reparse")
     pool={}
     counts={}
     for route in runs:
@@ -56,9 +65,14 @@ def main():
         if not re.fullmatch(r"[a-f0-9]{64}",digest):raise ValueError("missing hash")
         f=CACHE/(digest+".json.gz")
         if f.stat().st_size>2_000_000:raise ValueError("cache too large")
-        raw=gzip.decompress(f.read_bytes())
+        with gzip.open(f,"rb") as stream:raw=stream.read(MAX_RESPONSE_BYTES+1)
+        if len(raw)>MAX_RESPONSE_BYTES:raise ValueError("decompressed response too large")
         if hashlib.sha256(raw).hexdigest()!=digest:raise ValueError("raw response hash mismatch")
         data=json.loads(raw)
+        if not isinstance(data,dict) or not isinstance(data.get("results"),list):
+            raise ValueError("LOC search response missing results array")
+        if any(not isinstance(x,dict) for x in data["results"]):
+            raise ValueError("Invalid LOC result record")
         n=0
         for obj in data.get("results",[]):
             orig=obj.get("id") or obj.get("url") or ""
@@ -87,7 +101,7 @@ def main():
     records=sorted(pool.values(),key=lambda x:(-x["research_rank_NOT_legal_confidence"],x["loc_item_https"]))
     OUT.mkdir(parents=True,exist_ok=True)
     with (OUT/"LOC_MANUSCRIPT_CANDIDATES.csv").open("w",newline="",encoding="utf-8") as f:
-        w=csv.DictWriter(f,fieldnames=list(records[0]),lineterminator="\n")
+        w=csv.DictWriter(f,fieldnames=FIELDS,lineterminator="\n")
         w.writeheader();w.writerows(records)
     summary={
        "schema":"eo-loc-reparsed-catalog/v1",

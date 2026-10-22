@@ -123,6 +123,45 @@ class SearchLayer(unittest.TestCase):
         glued, _ = w.score_hit({"title": "Executive Order 58620", "url": "", "snippet": ""}, TARGET)
         self.assertLess(glued, 40, "58620 is not 5862")
 
+    def test_unavailable_engine_is_only_probed_once_per_run(self):
+        for status in (401, 403, 429):
+            with self.subTest(status=status):
+                engine = ENGINES[0]
+                self.web.pages[w.build_url(engine, "first")] = (status, "text/html", b"blocked")
+                s = self.searcher()
+                first = s.search(engine, "first")
+                before = (len(self.web.calls), s.reserved, len(s.sources))
+                for n in range(99):
+                    result = s.search(engine, "different query " + str(n))
+                    self.assertIn("deferred_this_run", result["error"])
+                self.assertEqual(first["status"], status)
+                self.assertEqual((len(self.web.calls), s.reserved, len(s.sources)), before)
+                self.assertEqual(s.deferred_queries[engine["name"]], 99)
+                # Deferral doesn't disable a working catalog or survive a new run.
+                self.assertEqual(s.search(ENGINES[1], '\"Executive Order No. 5862\"', 1932)["status"], 200)
+                fresh = self.searcher()
+                self.assertEqual(fresh.search(engine, "first")["status"], status)
+                self.assertEqual(fresh.reserved, 1)
+
+    def test_robots_block_does_not_consume_budget_for_every_target(self):
+        s = self.searcher()
+        self.assertEqual(s.search(ENGINES[3], "one")["error"], "blocked_by_robots_txt")
+        used = s.reserved
+        self.assertEqual(s.search(ENGINES[3], "two")["error"], "deferred_this_run:blocked_by_robots_txt")
+        self.assertEqual(s.reserved, used)
+        self.assertEqual(s.engine_status["fake_blocked"], "blocked_by_robots_txt")
+
+    def test_deferred_queries_are_not_persisted_as_engine_attempts(self):
+        s = self.searcher()
+        engine = ENGINES[3]
+        first = w.advance(s, TARGET, w.new_state(TARGET), [engine], max_pages=0)
+        self.assertEqual(first["engines_tried"][engine["name"]], 1)
+        # Simulate another target after this run has discovered a robots block.
+        second = w.advance(s, TARGET, w.new_state(TARGET), [engine], max_pages=0)
+        self.assertNotIn(engine["name"], second["engines_tried"])
+        self.assertEqual(second["engines_deferred"][engine["name"]], 1)
+        self.assertTrue(any("deferred_this_run:blocked_by_robots_txt" in note for note in second["notes"]))
+
     def test_advance_searches_reads_pages_harvests_numbers_and_carries_state(self):
         s = self.searcher()
         st = w.new_state(TARGET)

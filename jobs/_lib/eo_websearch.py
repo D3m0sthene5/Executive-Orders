@@ -429,6 +429,9 @@ class Searcher:
         self.engines = engines if engines is not None else load_engines()
         self.sources = []
         self.engine_status = {}
+        # A blocked/rate-limited engine is probed once per campaign, not once
+        # per order. Retry on the next run; this is never search exhaustion.
+        self.deferred_queries = {}
         self._lock = threading.Lock()
         self.reserved = 0  # fetches started; robots.txt reads are extra (one per host) and not counted here
         self.now = now or (lambda: dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
@@ -490,6 +493,12 @@ class Searcher:
     def search(self, engine, query, year=None):
         """One query on one engine -> {'engine','query','url','status','hits','error'}."""
         url = build_url(engine, query, year, self.env)
+        name = engine["name"]
+        unavailable = {"blocked_by_robots_txt", "http_401", "http_403", "http_429"}
+        if self.engine_status.get(name) in unavailable:
+            self.deferred_queries[name] = self.deferred_queries.get(name, 0) + 1
+            return {"engine": name, "query": query, "url": url, "status": 0,
+                    "hits": [], "error": "deferred_this_run:" + self.engine_status[name]}
         status, body, error = self._fetch(url, build_headers(engine, self.env))
         hits, perr = [], ""
         if status == 200 and body:
@@ -552,6 +561,11 @@ def advance(searcher, target, state, engines, max_pages=3, min_follow_score=45):
     for engine, res in zip(engines, results):
         if res["error"] == "budget_exhausted":
             state["notes"].append(f"{stamp} budget stopped before {engine['name']} on {label}")
+            continue
+        if res["error"].startswith("deferred_this_run:"):
+            deferred = state.setdefault("engines_deferred", {})
+            deferred[engine["name"]] = deferred.get(engine["name"], 0) + 1
+            state["notes"].append(f"{stamp} {engine['name']} deferred on {label}: {res['error']}")
             continue
         state["engines_tried"][engine["name"]] = state["engines_tried"].get(engine["name"], 0) + 1
         for h in res["hits"]:
@@ -695,12 +709,16 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
             fh.write(json.dumps(s, sort_keys=True) + "\n")
     status = {e["name"]: searcher.engine_status.get(e["name"], "not_tried") for e in searcher.engines}
     with open(os.path.join(out_dir, "ENGINES.json"), "w", encoding="utf-8") as fh:
-        json.dump({"updated_utc": stamp, "engines": status}, fh, indent=1, sort_keys=True)
+        json.dump({"updated_utc": stamp, "engines": status,
+                   "deferred_queries": searcher.deferred_queries,
+                   "retry_policy": "Blocked/rate-limited engines are retried next run; no exhaustion implied."},
+                  fh, indent=1, sort_keys=True)
     summary = {
         "targets_total": len(targets), "targets_with_state": len(states), "advanced_this_run": advanced,
         "never_searched": sum(1 for t in targets if t["id"] not in states),
         "requests_used": searcher.requests_used, "fetches_budgeted": searcher.reserved, "max_requests": max_requests,
         "cache_hits": searcher.pool.cache_hits,
+        "deferred_engine_queries": sum(searcher.deferred_queries.values()),
         "hits_total": len(hit_rows), "leads_page_confirmed": len(lead_rows),
         "targets_with_page_confirmed_lead": len({r["instrument_id"] for r in lead_rows}),
         "numbers_named_not_in_census": sum(1 for n in named if n not in uni),

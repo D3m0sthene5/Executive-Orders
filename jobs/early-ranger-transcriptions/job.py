@@ -41,16 +41,30 @@ def one_text(element):
     normalized=re.sub(r"[\t ]+"," "," ".join(texts))
     return re.sub(r"\s*\n\s*","\n",normalized).strip()
 
+MAX_LINKS = 50  # Finite metadata-only plan: at most 150 MB before XML extraction.
+
+
+def build_plan(rows):
+    plan, seen = [], set()
+    for record in rows:
+        for x in record.get("media_resource_candidates", []):
+            if x.get("link_role_as_metadata") != "fulltext_file":
+                continue
+            url = x.get("url", "")
+            if not validate_url(url):
+                raise ValueError("Unsafe XML source URL")
+            key = (record["catalog_item_id"], url)
+            if key not in seen:
+                plan.append((record, url))
+                seen.add(key)
+    if len(plan) > MAX_LINKS:
+        raise ValueError(f"LOC XML plan has {len(plan)} links; bounded maximum is {MAX_LINKS}")
+    return plan
+
+
 def main():
     rows=[json.loads(x) for x in SEEDS.read_text(encoding="utf-8").splitlines() if x]
-    plan=[]
-    for record in rows:
-        for x in record.get("media_resource_candidates",[]):
-            if x.get("link_role_as_metadata")!="fulltext_file":continue
-            url=x.get("url","")
-            if not validate_url(url):raise ValueError("Unsafe XML source URL")
-            plan.append((record,url))
-    if len(plan)!=9:raise ValueError("LOC XML transcription availability changed")
+    plan=build_plan(rows)
     (OUT/"xml_original").mkdir(parents=True,exist_ok=True)
     (OUT/"derived_text").mkdir(parents=True,exist_ok=True)
     POOL.prefetch([u for _,u in plan])
@@ -70,9 +84,10 @@ def main():
             root=ET.fromstring(raw)
             plain=one_text(root)
             if len(plain)<25:raise ValueError("XML lacked usable text nodes")
-            raw_path=OUT/"xml_original"/(id_+".xml")
+            file_id=id_+"-"+sha(url.encode("utf-8"))[:16]
+            raw_path=OUT/"xml_original"/(file_id+".xml")
             raw_path.write_bytes(raw)
-            derived=OUT/"derived_text"/(id_+".txt")
+            derived=OUT/"derived_text"/(file_id+".txt")
             derived.write_text(plain+"\n",encoding="utf-8")
             cues=[]
             for rexp in [r"\b(?:I direct|You will|You shall|I have directed|I authorize|orders?)\b",
