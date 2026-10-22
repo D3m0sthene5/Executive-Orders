@@ -1,0 +1,19 @@
+{
+  "batch": "b03",
+  "stratum": "NO",
+  "agent": "claude-mansfield-b03-producer",
+  "wall_minutes": 25,
+  "tool_calls": 78,
+  "tokens": "not visible to the agent; estimate about 300k input (mostly cached context re-reads) and 45k output",
+  "orders_attempted": 10,
+  "submitted": 7,
+  "submitted_orders": ["EO:10312", "EO:11040", "EO:11078", "EO:11135", "EO:13997", "EO:5825", "EO:9922"],
+  "blocked": 3,
+  "blocked_orders": ["EO:8915", "EO:11877", "EO:12393"],
+  "inventory_corrections": 1,
+  "inventory_correction_orders": ["EO:10312 (12 clauses via inventory_overrides)"],
+  "fetch_lines_added": 2,
+  "existing_fetch_lines_cited": ["FETCH_QUEUE line 407 (EO 11040 report)", "FETCH_QUEUE line 409 (EO 11078 report)", "FETCH_QUEUE line 417 (EO 5825, now resolved from held texts)"],
+  "checks": "kit.py check: 7/7 lines no errors; claim_gate.validate_claim: [] for all 7; claim-checker (scratch run): 7 passed, 0 mechanical fail, 156 exact quotations",
+  "reviewer_likely_tests": "(1) EO 10312: whether the 12-clause override inventory is right and whether EO 10782 (which names only EO 10773) belongs as a later event; whether EO 10773's effective-date section, held only as an APP transcription, is acceptable support (it equals the signing date). (2) EO 5825: whether EO 7409/7845 inconsistency revocations or an unheld order among the 21 missing numbers 5826-8188 is an earlier end, and the ruling-out of the EO 8190-8192 ACT records as the shared FR page. (3) Emergency boards (9922, 11040, 11078, 11135): ruling C application, the unknown report dates (only 11040 held: 1963-03-04, with the EO 11041/11040 discrepancy), and the ACTOR_TEXT citation of EO 12553 for 9922 and 11135, whose naming rows I located by offset. (4) EO 13997: the 'promptly' directives treated as ending on revocation rather than on performance. (5) Blocks: EO 11877 rests on an unruled method question (revocation of 'EO 11861, as amended' does not name EO 11877), EO 12393 on its own report-relative 90-day termination."
+}
