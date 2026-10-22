@@ -30,6 +30,6 @@ A person checks the ten orders in `SAMPLE_FOR_PAGE_CHECK.csv` against their PDFs
 
 ## Where the readings agree
 
-310 orders have two or more readings. Of 111052 words in the backbone reading (Qwen3-VL-8B), 88029 (0.793) were also read by the cross-check model (Chandra OCR 2) and 23023 were not; 13103 words appear only in the cross-check (possible omissions by the backbone). The backbone marked 139 words [illegible]. Share confirmed per order, quartiles: 0.805 / 0.93 / 0.981; 191 orders are 90% or more confirmed, 23 under half. Median word-sequence similarity: vlm vs qwen3 vs vlm vs chandra 0.9015, vlm vs qwen3 vs tess300 0.728, vlm vs chandra vs tess300 0.6765000000000001.
+310 orders have two or more readings. Of 111052 words in the backbone reading (Qwen3-VL-8B), 88029 (0.793) were also read by the cross-check model (Chandra OCR 2) and 23023 were not; 13103 words appear only in the cross-check (possible omissions by the backbone). The backbone marked 139 words [illegible]. Share confirmed per order, quartiles: 0.805 / 0.93 / 0.981; 191 orders are 90% or more confirmed, 23 under half. Median word-sequence similarity: vlm_qwen3 vs vlm_chandra 0.901, vlm_qwen3 vs tess300 0.728, vlm_chandra vs tess300 0.677.
 
 `texts/EO_<n>.compare.txt` marks every word the cross-check did not also read ⟦like this⟧; `COMPARE.csv` lists the orders least confirmed first, as the queue for a person's page check. Agreement is not proof: two models can share a guess, and every reading stays a machine hypothesis.

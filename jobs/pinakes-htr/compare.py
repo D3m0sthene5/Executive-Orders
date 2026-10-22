@@ -137,13 +137,13 @@ def summarize(rows):
             "orders_90pct_confirmed": sum(s >= 0.9 for s in shares), "orders_under_50pct_confirmed": sum(s < 0.5 for s in shares),
             "crosscheck_only_words": sum(r["crosscheck_only_words"] for r in rows),
             "illegible_marks": sum(r["illegible_marks"] for r in rows),
-            "median_similarity": {f"{a}_{b}": (statistics.median(v) if v else None) for a, b in combinations(READINGS, 2)
+            "median_similarity": {f"{a} vs {b}": (round(statistics.median(v), 3) if v else None) for a, b in combinations(READINGS, 2)
                                   for v in [[r[f"similarity_{a}_{b}"] for r in rows if r[f"similarity_{a}_{b}"] != ""]]}}
 
 
 def report_section(s):
     q = s["confirmed_share_quartiles"]
-    sim = ", ".join(f"{k.replace('_', ' vs ')} {v}" for k, v in s["median_similarity"].items() if v is not None)
+    sim = ", ".join(f"{k} {v}" for k, v in s["median_similarity"].items() if v is not None)
     return "\n".join([
         "## Where the readings agree", "",
         f"{s['orders_compared']} orders have two or more readings. Of {s['words']} words in the backbone reading (Qwen3-VL-8B), "

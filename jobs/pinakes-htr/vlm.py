@@ -158,6 +158,22 @@ class VLM:
         return info
 
 
+def model_info(key):
+    """Model id, quantization and the cached revision (no model load), plus library versions, for the provenance file."""
+    info = {"model_id": READERS[key]["model_id"], "quant": READERS[key]["quant"], "method_key": method_key(key)}
+    try:
+        import torch
+        import transformers
+        from huggingface_hub import snapshot_download
+        info.update({"torch": torch.__version__, "transformers": transformers.__version__,
+                     "model_revision": os.path.basename(snapshot_download(info["model_id"], local_files_only=True))})
+        if torch.cuda.is_available():
+            info["gpu"] = torch.cuda.get_device_name(0)
+    except Exception:
+        pass
+    return info
+
+
 def render(pdf, work):
     r = subprocess.run(["pdftoppm", "-r", str(DPI), "-gray", "-l", str(htr.MAX_PAGES), "-png", pdf, os.path.join(work, "p")],
                        capture_output=True, text=True, timeout=600)
@@ -250,10 +266,10 @@ def main():
     out_dir = os.environ.get("OUTPUT_DIR") or os.path.join(HERE, "output")
     limit = int(os.environ["HTR_LIMIT"]) if os.environ.get("HTR_LIMIT") else None
     s = run(root, out_dir, limit=limit)
+    s.pop("describe")
+    prov = {**s, **htr.STATUS, "prompt": PROMPT, "dpi": DPI, "max_pixels": MAX_PIXELS, "max_new_tokens": MAX_NEW_TOKENS,
+            "models": {k: model_info(k) for k in s["readers"]}}
     prov_path = os.path.join(out_dir, "VLM_PROVENANCE.json")
-    prov = json.load(open(prov_path, encoding="utf-8")) if os.path.exists(prov_path) else {}
-    prov.setdefault("readers", {}).update(s.pop("describe"))
-    prov.update({**s, **htr.STATUS})
     with open(prov_path, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(prov, fh, indent=2)
     print(json.dumps({k: s[k] for k in ("orders", "read_this_run", "errors", "cut_orders")}))
