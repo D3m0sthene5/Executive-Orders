@@ -1,0 +1,40 @@
+{
+  "orders": 310,
+  "read_this_run": 0,
+  "readers": [
+    "vlm_qwen3",
+    "vlm_chandra"
+  ],
+  "errors": {
+    "vlm_qwen3": 0,
+    "vlm_chandra": 0
+  },
+  "cut_orders": {
+    "vlm_qwen3": 75,
+    "vlm_chandra": 54
+  },
+  "status": "machine_hypothesis",
+  "acceptable_as_source_text": false,
+  "needs_page_check": true,
+  "counts_toward_certification": false,
+  "prompt": "Transcribe all the writing on this page of a historical United States government document exactly as written, line by line, top to bottom, including headings, dates, signatures and marginal notes. Keep the original spelling, capitalization, abbreviations and punctuation; do not correct, modernize, expand or summarize anything, and do not add words that are not on the page. Write [illegible] for any word you cannot read. Output only the transcription.",
+  "dpi": 200,
+  "max_pixels": 1605632,
+  "max_new_tokens": 1536,
+  "models": {
+    "vlm_qwen3": {
+      "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "quant": "nf4",
+      "method_key": "vlm_qwen3:Qwen/Qwen3-VL-8B-Instruct:nf4:dpi200:px1605632:tok1536:v4"
+    },
+    "vlm_chandra": {
+      "model_id": "datalab-to/chandra-ocr-2",
+      "quant": "bf16",
+      "method_key": "vlm_chandra:datalab-to/chandra-ocr-2:bf16:dpi200:px1605632:tok1536:v4",
+      "torch": "2.7.1+cu128",
+      "transformers": "5.20.2",
+      "model_revision": "af93b47dba1b47b6640c86ccf487ed2260ab9a09",
+      "gpu": "NVIDIA GeForce RTX 5080"
+    }
+  }
+}
