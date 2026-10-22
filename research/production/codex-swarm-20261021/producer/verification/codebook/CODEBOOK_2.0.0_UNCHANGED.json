@@ -1,0 +1,159 @@
+{
+  "version": "2.0.0",
+  "state": "frozen_after_one_pilot_revision",
+  "cutoff": "2026-10-14 America/New_York",
+  "compared_schemes": [
+    "A instrument axes plus deterministic rollup",
+    "B provision/operative episode before instrument rollup"
+  ],
+  "recommendation": "A storage/reporting plus demand-driven B scope episodes",
+  "rollups": {
+    "substantive_effect": [
+      "yes",
+      "no",
+      "indeterminate"
+    ],
+    "any_operative_EO_effect": [
+      "yes",
+      "no",
+      "indeterminate"
+    ]
+  },
+  "rules": [
+    {
+      "rule_id": "TC01",
+      "name": "orthogonal_axes",
+      "predicate": "Formal disposition, operative effect, cessation cause, judicial enforceability and evidence sufficiency are distinct.",
+      "scope_and_exception": "Every record; never derive current force from formal label alone."
+    },
+    {
+      "rule_id": "TC02",
+      "name": "demand_driven_episode",
+      "predicate": "Begin with whole instrument; split only on a material scope/date/authority conflict.",
+      "scope_and_exception": "Mixed clauses, conditions, savings, revivals, incorporated versions, judicial coverage."
+    },
+    {
+      "rule_id": "TC03",
+      "name": "rollup_substantive",
+      "predicate": "yes if at least one supported ongoing substantive/institutional/dormant/durable/incorporated effect; no only if every substantive scope ended; otherwise indeterminate.",
+      "scope_and_exception": "Unknown residual may coexist with substantive=no."
+    },
+    {
+      "rule_id": "TC04",
+      "name": "rollup_any",
+      "predicate": "yes if at least one supported current EO effect including genuine residual; no only if every scope ended; otherwise indeterminate.",
+      "scope_and_exception": "Saved independently authorized acts and historical consequences excluded by default."
+    },
+    {
+      "rule_id": "TC05",
+      "name": "current_norm_test",
+      "predicate": "Identify present actor/object, command/permission/status, unexpired applicability and legal source.",
+      "scope_and_exception": "Counterfactual historical causation does not suffice."
+    },
+    {
+      "rule_id": "TC06",
+      "name": "durable_status",
+      "predicate": "Require an identified continuing legal status and present legal consequence attributable to EO.",
+      "scope_and_exception": "Land/country designation needs current scope and legal bridge; no inference from social persistence."
+    },
+    {
+      "rule_id": "TC07",
+      "name": "spent_dispositive_act_convention",
+      "predicate": "Primaryrollup excludes completed pure repeal/transfer/appointment effects unless an independent continuing norm/status is shown.",
+      "scope_and_exception": "Preserve durable_disposition tag and alternate-convention sensitivity; root must freeze this choice."
+    },
+    {
+      "rule_id": "TC08",
+      "name": "residual_vs_saved_act",
+      "predicate": "Residual requires continued application of EO terms/authority; a successor saving prior acts does not alone preserve source authority.",
+      "scope_and_exception": "12364 explicit terms differs from11958 saved acts;10480 preserved amendment needs separate analysis."
+    },
+    {
+      "rule_id": "TC09",
+      "name": "incorporated_amendment",
+      "predicate": "Track amender-to-host-provision/version; scope cessation propagates only after entire amender footprint is mapped.",
+      "scope_and_exception": "No automatic formal revocation cascade; independent amender clauses survive separately."
+    },
+    {
+      "rule_id": "TC10",
+      "name": "deadline_vs_sunset",
+      "predicate": "A deadline to perform is not automatic termination; distinguish office termination from all authorities termination.",
+      "scope_and_exception": "Store event bounds if exact cessation unknown; check targeted extensions."
+    },
+    {
+      "rule_id": "TC11",
+      "name": "revival",
+      "predicate": "Revocation of a revoker alone is insufficient. Require explicit reinstatement or controlling legal rule and scope/date.",
+      "scope_and_exception": "Create new episode without erasing prior ended episode."
+    },
+    {
+      "rule_id": "TC12",
+      "name": "judicial_scope",
+      "predicate": "Track remedy and affected clause/party/time, with later stays/modifications; do not equate injunction with repeal.",
+      "scope_and_exception": "Any uncertainty in remedy scope remains in judicial axis, not automatically substantive_effect."
+    },
+    {
+      "rule_id": "TC13",
+      "name": "cleanup_dates",
+      "predicate": "A later cleanup revocation supplies at most latest cessation unless earlier episode end proved.",
+      "scope_and_exception": "first cessation, last effect end and cleanup date may differ."
+    },
+    {
+      "rule_id": "TC14",
+      "name": "bounded_continuity",
+      "predicate": "Positive current predicate plus finite logged change/condition/revival/savings and identified litigation checks can bridge to cutoff.",
+      "scope_and_exception": "No blank-note active inference; no universal-negative proof requirement."
+    },
+    {
+      "rule_id": "TC15",
+      "name": "source_temporality",
+      "predicate": "Historical1989 annotations stay historical; snippet evidence cannot decide scope-sensitive legal outcome.",
+      "scope_and_exception": "Preserve source_date/as_of_date/postcutoff/access flags; title/reference is not full operative text."
+    },
+    {
+      "rule_id": "TC16",
+      "name": "batch_member_predicate",
+      "predicate": "Every batch member must satisfy its own predicate, scope and exception result.",
+      "scope_and_exception": "Collective no-longer-necessary rationale does not establish same prior mechanism/date for every target."
+    }
+  ],
+  "open_freeze_choice": null,
+  "research_calls": {
+    "web_tool_calls": 3,
+    "finite_manifested_downloads": 2,
+    "cap": 12
+  },
+  "pilot": "pilot24.jsonl",
+  "no_national_counts": true,
+  "freeze_time": "2026-10-15T03:32:51.379074+00:00",
+  "primary_convention": "Spent pure dispositive acts: historical repeal/transfer alone is not current operative EO effect; enduring constitutive status and traceable incorporated norms may be.",
+  "headline_comparison": {
+    "continuing_substantive": "substantive_effect=yes",
+    "time_or_completion": "substantive_effect=no and first cessation proved under original/existing terms by expiration, fulfilled condition or completed assignment",
+    "affirmative_intervention": "substantive_effect=no and first cessation attributable to later presidential, legislative, final judicial action or later-imposed sunset",
+    "residual_only": "substantive=no and any=yes, shown separately within ceased substantive category",
+    "unallocated": "indeterminate substantive OR ceased substantive with mixed/unknown first cause OR never-operative; never force into time or intervention"
+  },
+  "inference_protocol": {
+    "positive": "Primary operative predicate, source identity, applicable scope, incoming Stage1 change graph through cutoff, relevant sunset/authority/savings and concrete litigation leads checked. Record finite checks and gaps.",
+    "negative": "Primary whole cessation or mapped entire footprint; inspect savings and incoming graph for reinstatement/extension and known contrary evidence through cutoff. Early original text absent does not defeat a clear whole-revocation endpoint but makes first cessation cause unknown absent stronger evidence.",
+    "modern_revocation_first_cause": "For a recent operative order whose original text has continuing commands and no prior end condition, a whole primary revocation and later-change review can support presidential first cause. For old list-only targets, accept substantive/any no under bounded closure but first cause unknown unless original scope/earlier endpoint established.",
+    "exceptions": "Partial changes do not support whole closure. Saved independent acts do not preserve old EO authority. Residual terms with no proved surviving subjects yield indeterminate any-effect, not affirmative residual."
+  },
+  "decision_required": [
+    "instrument_id",
+    "rule_id",
+    "substantive_effect",
+    "any_operative_EO_effect",
+    "effect_tags",
+    "formal_disposition",
+    "cessation_mechanism",
+    "evidence_ids",
+    "source_ids",
+    "scope",
+    "reasoning",
+    "counterevidence_checked",
+    "remaining_gap",
+    "review_status"
+  ]
+}

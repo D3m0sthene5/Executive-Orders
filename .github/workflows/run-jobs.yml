@@ -19,7 +19,11 @@ on:
       - ".github/scripts/**"
       # Claims, fetch requests and EXHAUSTED records rerun the jobs that read them
       # (each job lists what it reads in triggers.txt).
-      - "research/readiness/**"
+      - "research/**"
+      - "releases/**"
+      - "ProQuest Pre-1937 Orders/**"
+      # Keep this outer filter broad enough for every jobs/*/triggers.txt.
+      # pick_jobs.py applies each job's narrow patterns before any job runs.
   schedule:
     - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file
   workflow_dispatch:

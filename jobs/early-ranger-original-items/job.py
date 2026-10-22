@@ -1,6 +1,6 @@
 """Early original-document ranger: open LOC item metadata and image source pointers.
 
-Focus on the 20 titles screened as possible *in-term* presidential papers.
+Focus on titles screened as possible *in-term* presidential papers.
 Collect reproducible primary manuscript item metadata, link specific digital
 resources, crosswalk Lord index date mentions, and preserve unresolved legal
 inclusion. Prefer source recovery to extra certification or unrelated scans.
@@ -112,15 +112,10 @@ def lord_nearby(iso,lord):
         })
     return matches[:12]
 
-def main():
-    OUT.mkdir(parents=True,exist_ok=True)
-    CACHE.mkdir(parents=True,exist_ok=True)
-    rows=load_csv(SEEDS)
-    lord=load_csv(LORD)
+def build_plan(rows):
     target=[r for r in rows if r["triage_lane_NOT_identification"] in (
         "priority_presidential_period_directive_wording",
         "presidential_correspondence_needs_full_page")]
-    if len(target)!=20:raise ValueError("Expected 20 in-term source leads")
     target=sorted(target,key=lambda r:(-int(r["review_priority_NOT_probability"]),
                                        r["catalog_item_url"]))
     # Same-date "Madison to Armstrong" also has an alternative item in
@@ -130,7 +125,30 @@ def main():
                  "date_as_indexed":"1814-08-13",
                  "triage_lane_NOT_identification":"possible_same_document_representation",
                  "review_priority_NOT_probability":"0"}]
-    plan=target+additional
+    # These three previously selected manuscripts remain explicit follow-up
+    # targets even when a refreshed search page no longer returns them.
+    followups=["mjm017456","maj012871","mtjbib012509"]
+    known={item_id(r["catalog_item_url"]):r for r in target}
+    pinned=[]
+    for id_ in followups:
+        pinned.append(known.get(id_) or {
+            "catalog_item_url":"https://www.loc.gov/item/"+id_+"/",
+            "title_as_indexed":"Previously selected manuscript "+id_+" (metadata recheck)",
+            "date_as_indexed":"",  # do not invent a refreshed date/title
+            "triage_lane_NOT_identification":"historical_full_page_followup",
+            "review_priority_NOT_probability":"0"})
+    plan=[];seen=set()
+    for row in pinned+target+additional:
+        id_=item_id(row["catalog_item_url"])
+        if id_ not in seen:plan.append(row);seen.add(id_)
+    return plan
+
+def main():
+    OUT.mkdir(parents=True,exist_ok=True)
+    CACHE.mkdir(parents=True,exist_ok=True)
+    rows=load_csv(SEEDS)
+    lord=load_csv(LORD)
+    plan=build_plan(rows)
     packets=[]
     request_logs=[]
     errors=0
@@ -144,6 +162,10 @@ def main():
                "status":"not_requested","source_metadata_sha256":"",
                "catalog_authorship_not_presidential_certification":True,
                "legal_EO_inclusion":"unknown"}
+        if i>=MAX_ITEMS:
+            entry["status"]="deferred_after_item_budget"
+            packets.append(entry)
+            continue
         if errors>=4:
             entry["status"]="skipped_after_provider_failures"
             packets.append(entry)
@@ -187,6 +209,8 @@ def main():
     summary={
         "schema":"eo-early-original-item-metadata/v1",
         "items_planned":len(plan),
+        "item_request_budget":MAX_ITEMS,
+        "item_metadata_deferred":sum(x["status"]=="deferred_after_item_budget" for x in packets),
         "item_metadata_retrieved":sum(x["status"]=="official_item_JSON_retrieved" for x in packets),
         "item_metadata_failed":sum(x["status"]=="metadata_request_failed" for x in packets),
         "item_metadata_skipped":sum(x["status"]=="skipped_after_provider_failures" for x in packets),
@@ -224,7 +248,8 @@ def main():
         w=csv.DictWriter(f,fieldnames=cols,lineterminator="\n")
         w.writeheader();w.writerows(rows)
     lines=["# Early presidential papers: item-level source acquisition","",
-           f"Requested {len(plan)} official Library of Congress item endpoints; "
+           f"Planned {len(plan)} official Library of Congress item endpoints; "
+           f"attempted {len(request_logs)} metadata retrievals; "
            f"retrieved {summary['item_metadata_retrieved']} metadata packets. ",
            "",
            "The packet contains original manuscript/resource entry points, catalog creators "

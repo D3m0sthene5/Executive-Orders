@@ -35,6 +35,7 @@ import pathlib
 import re
 import sys
 import time
+import urllib.parse
 
 # Never leave __pycache__ folders in other jobs' folders when importing their code.
 sys.dont_write_bytecode = True
@@ -1674,6 +1675,75 @@ def select_orders(merged, rd, scope="all", ids=None, limit=None):
 
 # ---------------------------------------------------------------- checker
 
+class OfflineVerification:
+    """Reuse byte receipts, never acquire them while drafting.
+
+    The standalone checker may download missing GovInfo files. Drafting is
+    offline: missing receipts stay unverified. Rehash each existing receipt
+    once per run/file version, including negative results; never persist a
+    verdict. A replacement or in-place edit invalidates the memo even when
+    its size and mtime are unchanged (ctime/inode are included).
+    """
+
+    def __init__(self, receipt_roots=()):
+        self._verified = {}
+        self.receipt_roots = tuple(pathlib.Path(p) for p in receipt_roots)
+        # Windows ctime can be creation time rather than change time. Do not
+        # trust its stat tuple to detect a same-size edit with restored mtime.
+        self.reuse_unchanged = os.name == "posix"
+        self.hashes = 0
+        self.cache_hits = 0
+        self.missing = 0
+
+    def __call__(self, url, sha, cache_dir):
+        if urllib.parse.urlsplit(url or "").hostname != "www.govinfo.gov" or not url.startswith("https://"):
+            return None
+        paths = [root / "verified" / sha[:2] / (sha + ".bin")
+                 for root in (pathlib.Path(cache_dir), *self.receipt_roots)]
+        result = None
+        for path in dict.fromkeys(paths):
+            verdict = self._check_file(path, sha)
+            if verdict is True:
+                return True
+            if verdict is False:
+                result = False
+        if result is None:
+            self.missing += 1
+        return result
+
+    def _check_file(self, path, sha):
+        try:
+            return self._check_existing_file(path, sha)
+        except (FileNotFoundError, PermissionError, IsADirectoryError):
+            # An acquisition/cleanup can remove or replace a receipt during
+            # this check. It supplies no verified bytes for this invocation.
+            return None
+
+    def _check_existing_file(self, path, sha):
+        if not path.is_file():
+            return None
+        stat = path.stat()
+        key = (str(path.resolve()), sha, stat.st_dev, stat.st_ino,
+               stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+        if self.reuse_unchanged and key in self._verified:
+            self.cache_hits += 1
+            return self._verified[key]
+        digest = hashlib.sha256()
+        with path.open("rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                digest.update(chunk)
+        self.hashes += 1
+        result = digest.hexdigest() == sha
+        # A matching stream is insufficient if the path now names different
+        # bytes. Reject replacement/edit during hashing, without a retry loop.
+        after = path.stat()
+        if (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns) != key[2:]:
+            return None
+        if self.reuse_unchanged:
+            self._verified[key] = result
+        return result
+
+
 class CheckerRunner:
     """Runs jobs/claim-checker's mechanical checks on each draft claim (if importable)."""
 
@@ -1684,8 +1754,18 @@ class CheckerRunner:
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         self.mod = mod
-        S = mod.S
+        cache_dir = pathlib.Path(cache_dir)
+        # Shared runner: .job-cache/claim-drafts beside .job-cache/claim-checker.
+        # Local convention: claim-drafts-cache beside claim-checker-cache.
+        # Read only; the predecessor remains the owner of its receipts.
+        receipt_roots = [cache_dir.parent / "claim-checker", cache_dir.parent / "claim-checker-cache"]
         roots = [r for r in os.environ.get("CLAIM_CHECKER_CACHE_ROOTS", "").split(os.pathsep) if r]
+        receipt_roots.extend(pathlib.Path(r) for r in roots)
+        receipt_roots.extend(pathlib.Path(r) / "claim-checker" for r in roots)
+        receipt_roots.extend(pathlib.Path(r) / "claim-checker-cache" for r in roots)
+        self.verification = OfflineVerification(receipt_roots)
+        mod.verify_by_download = self.verification
+        S = mod.S
         index = S.build_index(repo, mod.HERE, roots, exclude_jobs=("claim-checker", JOB_NAME))
         self.added = 0
         for inp in inputs:
@@ -2094,6 +2174,10 @@ def main():
           + ", ".join(f"{k} {v}" for k, v in conflict_orders.most_common(5)))
     print(f"  effort: {dict(sorted(effort.items()))}")
     print(f"  claim checker: {summary['claim_checker']['drafts_by_mechanical_result'] or checker_note}")
+    if checker:
+        v = checker.verification
+        print(f"  offline verification receipts: {v.hashes} rehashes, {v.cache_hits} reused within this run, "
+              f"{v.missing} missing (left unverified); no download attempts")
     print(f"Outputs in {out}: {', '.join(summary['outputs'])}. These are drafts and leads, never claims.")
     return summary
 

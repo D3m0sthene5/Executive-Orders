@@ -9,6 +9,29 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-22: PR cleanup and Lewis schema follow-up
+
+- **Done:** PR#48 now preserves main's generated job outputs/digest, retains eight owner rulings and old snapshots in history, labels tool-map estimates as historical, and fixes explicit UTF-8 I/O with identical CSV output. PR#51 retains 46 unchanged proposals and holds six disputed parent-based endings separately; no adoption merge. Both are conflict-free against main. PR#48 Windows/Ubuntu/smoke pass; historical GitGuardian log hash is verified as a false positive, not dismissed. PR#51 security passes.
+- **Runtime:** Run39802916101 finished with successful ranger, tracker and Clark outputs preserved in5510babb. Actual published tracker280/14,972 ready, 3,359 provisional statuses, six source-audit holds retained. Clark took47min. Lewis then failed because current Pinakes ORDERS omits two inventory-only fields; Domesday was blocked.
+- **Fixed:** Lewis explicitly adapts current Pinakes records without rescanning PDFs or inventing verification. Missing facts stay unknown; empty published Pinakes output remains authoritative; malformed rows fail clearly. CI now includes24 Lewis tests. Diagnostic: `research/diagnostics/codex-swarm-20261021/LEWIS_RUNTIME_FOLLOWUP.md`.
+- **Next:** Verify targeted Lewis→Domesday run and exact-head CI. Scheduler selects only these two jobs plus smoke; completed Clark/ranger work is retained. No new per-order research in this cleanup; token/cash allocation unavailable.
+- **Do not:** Merge status adoption on behalf of the owner, remove holds, rewrite historical reviews, or count mechanical readiness as human certification. Only Codex notes edited.
+
+## 2026-10-22: refreshed ranger runtime repair
+
+- **Found:** Run39666192712 preserved successful source/draft outputs in640279c but blocked at a fixed23-response assertion; actual Scout produced24. Source-ladder now holds538 receipts (29new,509carried), and all21quarantines remain. Full3,359-draft run made zero network requests.
+- **Fixed:** Four ranger stages accept changing discovery counts while enforcing custody, schemas, coverage and bounded requests. Explicit three manuscript follow-ups survive refreshed searches; changed page counts require review. Eleven new regressions and independent review recorded in `research/diagnostics/codex-swarm-20261021/RUNTIME_FOLLOWUP.md` and adjacent review/replay receipts.
+- **Next:** Verify targeted follow-up runner and current PR#50 checks. Prior failed attempt is retained. No new human certification, legal status or census admission; no other agent notes edited.
+
+## 2026-10-21: owner-requested workflow swarm and reviewed-claim pilot
+
+- **Done:** Integrated Pinakes/CSC source outputs and readers from pinned branch generations; repaired scheduler paths, dependencies, ranger/census wiring and cycle diagnostics. Enqueued266 validated Lewis requests without altering the historical prefix. Drafting is offline with safely reused checker receipts; unavailable search engines defer after one probe per run. LOC repair retrieved11 XML transcriptions/10,857 words. Evidence: `research/diagnostics/codex-swarm-20261021/INTEGRATION_REPORT.md`.
+- **Research:** Five bounded attempts; separate independent AI review upheld EO11087/EO11089 under verified frozen codebook2.0.0. Only those exact claims are in `research/readiness/claims/codex-swarm-2026-10-21.jsonl`; three transfer/savings cases stay blocked. Pilot/reviews/source pages/codebook provenance: `research/production/codex-swarm-20261021/`. Actual checker2/2 passes. Local tracker replay278→280 ready for human review, not a new full GitHub generation or human certification.
+- **Validation:**192 distinct offline tests across final suites; independent review findings fixed. All3,359 draft outputs unchanged across four runs: baseline cold169.794s/warm23.759s; patched169.204s/24.080s. No new CPU or token savings asserted; prior implicit network work is removed. Exact per-order model tokens/cash/active-time telemetry unavailable; five-case research and integration overlap, so session wall time is not allocated per order.
+- **Publication:** PR#50, initial code ed84d9ac. Road-test sparse checkout now explicitly includes the real Stage19 gate required by the expanded fixture suites; gate edits trigger that validation. Output-free CI checkout passed all192 tests in an isolated copy and avoids ~3.2GB of saved job outputs; obsolete same-ref tests cancel, acquisition runs do not.
+- **Next:** Inspect integration PR checks and bounded runner receipts; queued acquisition is not a claimed recovery. Keep original imported execution provenance. No other agent notes edited.
+- **Do not:** Remove the six source-audit holds, adopt unmerged owner rulings, rewrite frozen experiments/codebook/statuses, authenticate derivative sources automatically, or call AI review human certification.
+
 ## 2026-10-20: all-active-PR reconciliation; PR #40 final integration
 
 - **Done:** Owner explicitly requested de-conflicting and merging every active PR. #40 was the sole open PR, at 69372304; integrated all five remaining commits into current main 6d9cbc21 while preserving their original histories. Applied all six authored-file changes, including the owner-question brief and bounded carried-defect prioritization. Kept the coherent main output generation from successful run 39507868600; both incoming generated executions remain reachable merge ancestors and their output-tree pins are in the audit.

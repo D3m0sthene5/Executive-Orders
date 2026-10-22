@@ -1,0 +1,104 @@
+{
+  "base_commit": "cd5dba93874a04e014b0167293fd2a95dffca63b",
+  "environment": {
+    "python": "3.12.14",
+    "pypdf": "6.10.0",
+    "platform": "Darwin",
+    "profiling": "cProfile",
+    "network": "urllib.request.urlopen forbidden; baseline allowance forced to zero"
+  },
+  "runs": {
+    "baseline_cold": {
+      "elapsed_seconds": 169.79368145903572,
+      "drafts": 3359,
+      "network_calls": 0,
+      "sha256": {
+        "DRAFT_CLAIMS.jsonl": "299a49de1cfacbb43647c4b6bae9329ab902fc69a0daf9fdc943afb99a75ec14",
+        "TODO_BY_ORDER.csv": "ba6c33037d031998737bc293e3cfcceaedeb09d616ef68c29a9de6d00e0124ed",
+        "CONFLICTS.csv": "9903e00a86ddae6ad1388fa963ddf737851035471ec2fdadb3d149d1d6fee222",
+        "BENCHMARK_SUMMARY.json": "bb00f4c75d33152234c99a4ecd4c6b840978781226c4851a62745e6993440836"
+      }
+    },
+    "baseline_warm": {
+      "elapsed_seconds": 23.759313917020336,
+      "drafts": 3359,
+      "network_calls": 0,
+      "sha256": {
+        "DRAFT_CLAIMS.jsonl": "299a49de1cfacbb43647c4b6bae9329ab902fc69a0daf9fdc943afb99a75ec14",
+        "TODO_BY_ORDER.csv": "ba6c33037d031998737bc293e3cfcceaedeb09d616ef68c29a9de6d00e0124ed",
+        "CONFLICTS.csv": "9903e00a86ddae6ad1388fa963ddf737851035471ec2fdadb3d149d1d6fee222",
+        "BENCHMARK_SUMMARY.json": "bb00f4c75d33152234c99a4ecd4c6b840978781226c4851a62745e6993440836"
+      }
+    },
+    "patched_cold": {
+      "elapsed_seconds": 169.20404083305039,
+      "drafts": 3359,
+      "network_calls": 0,
+      "sha256": {
+        "DRAFT_CLAIMS.jsonl": "299a49de1cfacbb43647c4b6bae9329ab902fc69a0daf9fdc943afb99a75ec14",
+        "TODO_BY_ORDER.csv": "ba6c33037d031998737bc293e3cfcceaedeb09d616ef68c29a9de6d00e0124ed",
+        "CONFLICTS.csv": "9903e00a86ddae6ad1388fa963ddf737851035471ec2fdadb3d149d1d6fee222",
+        "BENCHMARK_SUMMARY.json": "bb00f4c75d33152234c99a4ecd4c6b840978781226c4851a62745e6993440836"
+      }
+    },
+    "patched_warm": {
+      "elapsed_seconds": 24.080094875069335,
+      "drafts": 3359,
+      "network_calls": 0,
+      "sha256": {
+        "DRAFT_CLAIMS.jsonl": "299a49de1cfacbb43647c4b6bae9329ab902fc69a0daf9fdc943afb99a75ec14",
+        "TODO_BY_ORDER.csv": "ba6c33037d031998737bc293e3cfcceaedeb09d616ef68c29a9de6d00e0124ed",
+        "CONFLICTS.csv": "9903e00a86ddae6ad1388fa963ddf737851035471ec2fdadb3d149d1d6fee222",
+        "BENCHMARK_SUMMARY.json": "bb00f4c75d33152234c99a4ecd4c6b840978781226c4851a62745e6993440836"
+      }
+    }
+  },
+  "all_outputs_equal": true,
+  "summary_normalization": "elapsed_seconds removed; all other fields identical",
+  "orders": 3359,
+  "held_copy_index_count": 88425,
+  "draft_checker_results": {
+    "fail": 53,
+    "pass": 1211,
+    "pass_with_unverified": 2095
+  },
+  "baseline_pdf_profile": {
+    "seconds": 145.93,
+    "pdfs": 9,
+    "pages": 995
+  },
+  "patched_receipts": {
+    "rehashes": 0,
+    "cache_hits": 0,
+    "missing_references": 4119
+  },
+  "tests": {
+    "claim_drafts": 68,
+    "result": "pass",
+    "runtimes": [
+      "Python3.13.1 without pypdf",
+      "Python3.12.14 with pypdf6.10.0"
+    ]
+  },
+  "synthetic_receipt_microbenchmark": {
+    "bytes": 8388600,
+    "references": 200,
+    "baseline_seconds": 0.77051,
+    "memoized_seconds": 0.01296,
+    "equal_verdicts": true,
+    "rehashes": 1,
+    "cache_hits": 199,
+    "scope": "POSIX synthetic digest loop; not corpus, model-token or CI savings"
+  },
+  "source_sha256": {
+    "baseline_drafts.py": "5ce88acba7ed494ca4e736e2625f56c8f9aa6a574ecf3f7f8252fc6fee10610d",
+    "patched_drafts.py": "10b98ce22da617838f6328cb7b0e53dc854fd1e50475ad37f4348233eb2cded5"
+  },
+  "limitations": [
+    "No live network baseline rerun; no claimed magnitude for the historical 86-minute execution.",
+    "Cold-to-warm improvement comes from existing PDF extraction cache, not new whole-draft caching.",
+    "No cached receipts existed in corpus benchmark; standalone receipt reuse validated by integration test.",
+    "Whole-draft, legal verdict and gate results are not persisted; all are rebuilt or rerun.",
+    "Model tokens, cash and human-review time unmeasured."
+  ]
+}

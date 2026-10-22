@@ -4,6 +4,7 @@ test_claim_checker_failure_and_stale_check_keep_steps_open (test_tracker.Tracker
 test_claim_steps_need_claim_checker (test_tracker.TrackerTest.test_claim_steps_need_claim_checker) ... ok
 test_claim_with_no_clauses_lights_no_claim_step (test_tracker.TrackerTest.test_claim_with_no_clauses_lights_no_claim_step) ... ok
 test_complete_claim_makes_an_order_ready (test_tracker.TrackerTest.test_complete_claim_makes_an_order_ready) ... ok
+test_csc_report_is_a_consumed_lead_never_original_custody (test_tracker.TrackerTest.test_csc_report_is_a_consumed_lead_never_original_custody) ... ok
 test_exact_claim_source_audit_blocks_only_readiness (test_tracker.TrackerTest.test_exact_claim_source_audit_blocks_only_readiness) ... ok
 test_exhausted_step_counts_as_machine_finished (test_tracker.TrackerTest.test_exhausted_step_counts_as_machine_finished) ... ok
 test_fr_originals_high_confidence_counts_and_low_needs_page_check (test_tracker.TrackerTest.test_fr_originals_high_confidence_counts_and_low_needs_page_check) ... ok
@@ -15,6 +16,7 @@ test_official_compilation_without_needs_page_check_flag_does_not_count (test_tra
 test_opus_media_resolved_by_byte_identical_refetch (test_tracker.TrackerTest.test_opus_media_resolved_by_byte_identical_refetch) ... ok
 test_opus_media_uses_opus_media_match_status_when_present (test_tracker.TrackerTest.test_opus_media_uses_opus_media_match_status_when_present) ... ok
 test_partial_claim_lights_up_only_the_steps_it_satisfies (test_tracker.TrackerTest.test_partial_claim_lights_up_only_the_steps_it_satisfies) ... ok
+test_proquest_replica_scan_is_a_lead_that_needs_a_page_check (test_tracker.TrackerTest.test_proquest_replica_scan_is_a_lead_that_needs_a_page_check) ... ok
 test_richardson_transcription_is_a_lead_never_the_original (test_tracker.TrackerTest.test_richardson_transcription_is_a_lead_never_the_original) ... ok
 test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count (test_tracker.TrackerTest.test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count) ... ok
 test_source_ladder_retrieval_clears_a_shared_source (test_tracker.TrackerTest.test_source_ladder_retrieval_clears_a_shared_source) ... ok
@@ -23,12 +25,12 @@ test_tampered_source_audit_fails_closed (test_tracker.TrackerTest.test_tampered_
 test_without_claims_nothing_is_ready_and_blockers_are_specific (test_tracker.TrackerTest.test_without_claims_nothing_is_ready_and_blockers_are_specific) ... ok
 
 ----------------------------------------------------------------------
-Ran 23 tests in 0.128s
+Ran 25 tests in 0.146s
 
 OK
 # Readiness tracker
 
-**Ready for human review: 278 of 14,972 orders (1.9%)**
+**Ready for human review: 280 of 14,972 orders (1.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -42,21 +44,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
 | Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 342 | 3,359 | 10.2% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 300 | 3,359 | 8.9% |
-| Savings clauses and surviving effects closed | 333 | 3,359 | 9.9% |
+| Complete inventory of the order's operative clauses | 344 | 3,359 | 10.2% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 302 | 3,359 | 9.0% |
+| Savings clauses and surviving effects closed | 335 | 3,359 | 10.0% |
 | Search for later contrary sources recorded, no open conflicts | 2,490 | 3,359 | 74.1% |
-| Every shared legal source it cites has been retrieved | 190 | 236 | 80.5% |
-| Opus evidence images matched to this order (Opus cases only) | 121 | 844 | 14.3% |
+| Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
+| Opus evidence images matched to this order (Opus cases only) | 125 | 844 | 14.8% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 4,644 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 435 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 5,347 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook |
+| 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
-| 19 | one source | Retrieve shared source STAT::66 Stat. 259 |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -71,20 +73,21 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,613 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 898 | 4,644 |
-| `NO_CLAUSE_INVENTORY` | 2,975 | 2,975 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,975 | 2,975 |
-| `FIRST_END_UNPROVED` | 2,582 | 2,582 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 944 | 5,347 |
+| `NO_CLAUSE_INVENTORY` | 2,973 | 2,973 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,973 | 2,973 |
+| `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 77 | 2,750 |
+| `FIRST_END_UNPROVED` | 2,580 | 2,580 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 687 | 687 |
-| `OPUS_MEDIA_REFETCH_NEEDED` | 435 | 435 |
+| `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
-| `SHARED_SOURCE_NOT_RETRIEVED` | 46 | 46 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
+| `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
 | `OPEN_SOURCE_AUDIT` | 6 | 6 |
 | `CLAIM_CHECK_FAILED` | 3 | 3 |
@@ -113,15 +116,17 @@ Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been r
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
 - numbered-early-orders (lead only, never counted as the original): 184
 - wikisource-texts (lead only, never counted as the original): 1,639
+- csc-annual-reports (lead only, never counted as the original): 798
+- pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - opus-media-match status: 1,155
-- source-ladder: 504
-- claim-checker: 384
+- source-ladder: 538
+- claim-checker: 386
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
 
 - Distinct LOC catalog item candidates: 67 (not yet admitted).
-- LOC item transcripts obtained: 9.
+- LOC item transcripts obtained: 10.
 - LOC items with retained original-page images: 3.
 - Lord indexed date-row appearances awaiting identity authentication: 1,023, including 812 nineteenth-century gap leads.
 **Newly admitted EOs: 0.** Catalog data and manuscripts need independent signer, authority, duplicate and legal inclusion review.

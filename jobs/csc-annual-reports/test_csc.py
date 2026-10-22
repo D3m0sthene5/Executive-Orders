@@ -77,6 +77,10 @@ class T(unittest.TestCase):
     def test_report_fy(self):
         self.assertEqual(csc.report_fy("THIRTY-FOURTH ANNUAL REPORT ... FOR THE FISCAL YEAR ENDED JUNE 30 \n 1917"), 1917)
         self.assertEqual(csc.report_fy("Eighteenth Report ... July 1, 1900, to June 30, 1901"), 1901)
+        # OCR read 1923 as 1925 on the 40th report's title page; the ordinal decides.
+        self.assertEqual(csc.report_fy("FORTIETH ANNUAL REPORT OF THE ... FOR THE FISCAL YEAR ENDED JUNE 30 1925"), 1923)
+        self.assertEqual(csc.report_fy("57th Annual Report, United States Civil Service Commission. June 30, 1940"), 1940)
+        self.assertEqual(csc.report_number("FIFTY-SIXTH ANNUAL REPORT"), 56)
 
 
 if __name__ == "__main__":
