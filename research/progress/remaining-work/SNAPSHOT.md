@@ -1,24 +1,26 @@
 # Historical remaining-work and tool-map snapshot
 
 The `TOOLMAP_WORKLOAD.csv`, `REMAINING_WORK*`, and `EFFORT*` files were
-regenerated on 2026-10-22 from main at `582a64a0652b5ba4545805546d5d3d815273909e`
-(the tracker output there, committed in `a6a005c41f`, still counts 3,359
-provisional statuses; the 15 statuses adopted in PR #51 are not in it until the
-GitHub run after that merge publishes its results). The counts came out identical
-to the PR #48 snapshot at `78d1b67cb5157fb70be912b167f266718d10d483`. A local
-preview run of the tracker with the 3,374 statuses gives 76,875 open steps
-(prerequisite 50,319, agent claim 17,509) and the same 278 ready; that preview is
-not committed. These files are not a measurement of the results of PR #50. The PR description originally named
+regenerated on 2026-10-22 from main at `20d4f4d4b6c4284fecd46e6671411a05388d9d9a`
+(PR #48, the narrowed PR #51 and PR #50 merged). The tracker output committed
+there is PR #50's bot snapshot: 280 ready on 3,359 provisional statuses. The 15
+statuses adopted in PR #51 (3,374 in the decided file) are not counted until the
+GitHub run after the merge publishes its results. Against the PR #48 snapshot at
+`78d1b67cb5157fb70be912b167f266718d10d483` (278 ready, 76,905 open steps on held
+orders, 15,698 model agent-hours) this snapshot has 280 ready, 76,876 open steps
+on held orders, 86,074 in all, and 15,439 model agent-hours; the no-route lane
+fell from 803 to 100 because PR #50's ProQuest replica records give those old
+orders a text lead. The PR description originally named
 `09310ada` as its source baseline; these files do not themselves pin every
 input file's version. Restoring generated job outputs to main during PR cleanup
 does not refresh these planning snapshots or establish that they describe the
 restored outputs.
 
-At this snapshot, 278 of 14,972 tracked orders were ready for human review.
-`TOOLMAP_WORKLOAD.csv` partitions 76,905 open steps for those existing orders.
+At this snapshot, 280 of 14,972 tracked orders were ready for human review.
+`TOOLMAP_WORKLOAD.csv` partitions 76,876 open steps for those existing orders.
 `REMAINING_WORK*` also includes 9,198 estimated steps for 1,314 APP-counted
-orders not yet in the project (seven steps each), giving 86,103 total steps.
-`EFFORT*` estimates roughly 15,698 agent-hours under its effort model; this is
+orders not yet in the project (seven steps each), giving 86,074 total steps.
+`EFFORT*` estimates roughly 15,439 agent-hours under its effort model; this is
 a planning estimate, not measured runtime, token use, or verified savings.
 
 `TOOLS.csv` is a hand-maintained inventory, updated 2026-10-22 from the merge

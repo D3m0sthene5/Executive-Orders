@@ -4,11 +4,11 @@ Newest entry first. See `README.md` in this folder for the format.
 
 ## 2026-10-22 (Claude, remaining-work dashboard refresh after the owner's merges)
 
-- **Rebuilt** `research/progress/remaining-work/` from main `582a64a0` (PR #48 and the narrowed PR #51 merged). The
-  three generated files came out identical to the PR #48 snapshot because the committed tracker still counts 3,359
-  statuses: 278 ready, 76,905 open steps on held orders (machine queued 508, ruled/drafted not wired 5,081, agent
-  claim 17,479, owner ruling 0, owner hand work 2,655, earlier step first 50,379, no route 803), 86,103 with the
-  1,314 census-gap orders, about 15,700 model agent-hours. A local preview run of the tracker with the 3,374 statuses
+- **Rebuilt** `research/progress/remaining-work/` from main `20d4f4d4` (PR #48, the narrowed PR #51 and PR #50 merged).
+  The committed tracker there is PR #50's snapshot, 280 ready on 3,359 statuses: 76,876 open steps on held orders
+  (machine queued 485, ruled/drafted not wired 5,830, agent claim 18,130, owner ruling 0, owner hand work 2,655,
+  earlier step first 49,676, no route 100), 86,074 with the 1,314 census-gap orders, 15,439 model agent-hours
+  (15,698 before PR #50; the no-route lane fell from 803 because the ProQuest replica records give old orders a text lead). A local preview run of the tracker with the 3,374 statuses
   (not committed) gives 76,875 open steps and the same 278 ready; GitHub run 248 on main will publish the real recount.
 - **Updated** `TOOLS.csv` (Bowditch adopted; Sinclair 31 held for a cross-family reviewer plus 6 parent-ending holds;
   Pullman first run 11 upheld of 16 attempted on `claude/justinian-1`; Junto first measured test, thin packet, no saving;
