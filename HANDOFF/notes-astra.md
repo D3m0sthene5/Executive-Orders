@@ -1,3 +1,10 @@
+## 2026-10-22 ET: shared source recovery executed; integrated publication in progress
+
+- **Done:** Extended PR55 from523ac593, main46a29e15 and PR54d8613bab unchanged. Exact join:12 shared GovInfo objects,66 existing claims,2055 custody fields. Recovered all12 plus68 remaining exact source objects for those same claims:80PDFs/15119211bytes,6alreadytracked and74recovered. Existing retention/catalogue reused; prior generations and changed-byte failures preserved. No claim, review, grade, status or hold changed.
+- **Observed:** Identical warm-cache custody checks:2055rawreads/396188016bytes before;12reads/2149748bytes after. This is I/O reuse, not verified total token/dollar savings. CandidateC-20261020-16 retains owner attribution and unverified status. Local actual checker/tracker:all66mechanicalpass,272ready including53restored, fiveVallaholdsretained; final complete-input GitHub run pending. Exact scope, costs, failed regression and independent engineering review:research/production/astra-shared-dependencies-20261022/.
+- **Running:** Publishing code/evidence checkpoint, then explicitly scheduling only the affected checker→tracker consumer chain through existingleverage-campaign-check. No full-corpus rebuild or unrelated acquisition scheduled.
+- **Next:** Inspect shared-source/VALIDATION.json and STATUS.json on the exact trigger commit, reconcile final readiness/remaining obligations, then record run references. No merge authorization exercised.
+
 ## 2026-10-23 UTC: Astra leverage campaign — population and held-evidence prerequisite
 
 - **Final CI:** Core39885190210 passed on0b20fea321a85d5546509617e59511ea2dffb18b, results612eb7f7575acde54c11e08a45cce2dc889769a5. Consumer commitbc6b875c33f56ebe3010ae8f93827994017f8e6d passes Ubuntu/Windows road39887397694 and Valla39887397736. Final docs-only receipt commit does not change tested runtime. PR55 ready for owner review, unmerged; main unchanged.
