@@ -12,30 +12,35 @@ An order is ready when the machines have finished every step it needs: each step
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 3,359. The other 11,613 have not been researched yet.
+Orders with a provisional YES/NO status: 3,403. The other 11,569 have not been researched yet.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
-| Has a provisional YES/NO status | 3,359 | 3,359 | 100.0% |
-| Original text saved in the project | 2,312 | 3,359 | 68.8% |
-| Complete inventory of the order's operative clauses | 344 | 3,359 | 10.2% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 302 | 3,359 | 9.0% |
+| Has a provisional YES/NO status | 3,403 | 3,403 | 100.0% |
+| Original text saved in the project | 2,356 | 3,403 | 69.2% |
+| Complete inventory of the order's operative clauses | 345 | 3,403 | 10.1% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 303 | 3,403 | 8.9% |
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-10-20; intervening runs may be absent.
 - census-candidates: items_with_LOC_XML_transcript: 9 → 10
-- claim-checker: claim_lines_found: 385 → 387; claims_all_checks_passed: 297 → 299; claims_checked: 385 → 387; claims_gate_passed: 300 → 302
+- claim-checker: claim_lines_found: 385 → 389; claims_all_checks_passed: 297 → 299; claims_checked: 385 → 389; claims_gate_passed: 300 → 304
+- claim-drafts: decided_orders_with_draft: 3359 → 3403; drafts_whose_only_remaining_gaps_are_judgment_fields: 1115 → 1145; of_which_decided: 1115 → 1145; orders_with_any_conflict: 421 → 434
+- clause-drafts: clauses_total: 70600 → 70615; fragments_from_app_transcription: 4968 → 4964
 - csc-annual-reports: bytes_downloaded: unavailable → 5103541119; cache_hits: unavailable → 0; citations: unavailable → 842; orders_located: unavailable → 798
-- domesday-register: orders: unavailable → 14972; with_any_text_file: unavailable → 11517; with_date: unavailable → 14887; with_title: unavailable → 10139
-- family-rules: saved_texts_scanned: 46996 → 50581
-- lewis-originals: fragments_written: unavailable → 11
-- official-fixity: carried_forward: 5136 → 5154; checked_this_run: 18 → 3; files: 5154 → 5157; premis_bytes_read_this_run: 327680 → 0
-- readiness-tracker: ready_for_human_review: 278 → 280
-- source-ladder: attempts_logged: 50 → 30; bytes_downloaded: 475352251 → 850521061; distinct_new_source_hashes: 38 → 29; earlier_found_failing_todays_checks: 2 → 0
-- valla: active_claims: 384 → 386
+- domesday-register: orders: unavailable → 14972; with_any_text_file: unavailable → 14882; with_date: unavailable → 14887; with_title: unavailable → 10139
+- family-rules: saved_texts_scanned: 46996 → 50653
+- lambertini: decided_orders_with_draft: 3359 → 3403; packet_targets: 807 → 835; packets: 84 → 109; pool_LAMBS: 91 → 93
+- lewis-originals: fragments_written: unavailable → 0
+- official-fixity: carried_forward: 5136 → 5158; checked_this_run: 18 → 1; files: 5154 → 5159; premis_bytes_read_this_run: 327680 → 0
+- readiness-tracker: orders_with_provisional_status: 3359 → 3403; ready_for_human_review: 278 → 280
+- source-ladder: attempts_logged: 50 → 41; bytes_downloaded: 475352251 → 811147260; distinct_new_source_hashes: 38 → 35; earlier_found_failing_todays_checks: 2 → 0
+- status-history: printed_snapshot_undecided_identities: 2267 → 2240; undecided_with_history: 4817 → 4773; undecided_with_own_observation: 4640 → 4596
+- valla: active_claims: 384 → 388
+- x1-class-engine: modern_families_5_plus: 188 → 189
 
 ## Top shared unlocks
 
@@ -50,7 +55,7 @@ Comparison snapshot: 2026-10-20; intervening runs may be absent.
 ## Open asks from the newest handoff entries
 
 - notes-astra.md: No open ask recorded in newest entry.
-- notes-claude.md: - **Asks:** `@Owner`: add search keys as repository secrets to switch on the big engines (`GOOGLE_CSE_KEY` + `GOOGLE_CSE_CX`, `BING_SEARCH_KEY`, `BRAVE_SEARCH_KEY`, `SERPAPI_KEY`, `NARA_API_KEY`); the jobs pick them up on the next run with no code change.
+- notes-claude.md: No open ask recorded in newest entry.
 - notes-codex.md: No open ask recorded in newest entry.
 - notes-sol.md: - **Asks:** None while validation is running.
 
@@ -58,4 +63,4 @@ Comparison snapshot: 2026-10-20; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39802916101)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39864902483)
