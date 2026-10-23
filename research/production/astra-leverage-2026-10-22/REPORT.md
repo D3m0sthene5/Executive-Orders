@@ -11,8 +11,9 @@ the frozen historical population and independently pins the accepted Bowditch15
 and Sinclair29 additions, giving 3,403 authorized decided identities. It rejects
 duplicate, unauthorized, missing-evidence and status changes. Actual draft coverage
 is 3,403; the previous claim-kit generation contains 3,359 dossiers and is missing
-the 44 authorized additions. It remains stale until a current full build passes
-the post-build coverage audit. Changing the accepted CSV alone cannot authorize
+the 44 authorized additions. The bounded GitHub full build now passes
+the exact3,403-member post-build audit; canonical main remains unchanged pending
+review/integration and explicit production refresh. Changing the accepted CSV alone cannot authorize
 new statuses. The historical fixture assertions remain frozen.
 
 The owner-approved working-text rule is integrated through preparation, assembly,
@@ -58,6 +59,15 @@ near-ready citation repair must precede legal production. EO10390 and the
 10494/10926/12743 inventory cases are the bounded comparison alternative, with
 their existing owners preserved.
 
+A follow-up exact-source check of the EO10390 alternative was also executed. Its
+producer already describes the official EO10480 passage, but three citations
+remain on the custody-only APP source. The official source/text hash and three
+quoted spans are frozen in `NEAR_READY_10390.json`; none of its three indexed
+copies has rehashable raw bytes in this checkout. It therefore does not provide
+a demonstrated faster completed dossier. The candidate remains with Mansfield,
+with no replacement or legal finding authored here. This reinforces the next
+checkpoint: retained source bytes and exact-version source-based review.
+
 Zero legal production attempts, zero new or replaced lifecycle claims, zero
 source authentications, zero removed holds, zero status adoptions, and zero human
 certifications occurred. The twelve-case probe was retrospective prerequisite
@@ -72,8 +82,12 @@ is not another model family.
 Pristine baseline tracker replay and initial rule replay both report 14,972
 identities, 3,403 decided and 280 ready. The isolated rule effect on existing
 claims is zero; all 280 are original-supported and zero are transcription-
-dependent. No 300-ready checkpoint is claimed. Final current-code local and
-GitHub receipts are recorded in `VALIDATION.md` when available.
+dependent. No 300-ready checkpoint is claimed. The completed GitHub core run rebuilt the checker offline and reports219 ready,
+all original-supported:61 prior-ready cases have only unavailable custody bytes
+in that environment, with0 newly ready. EO10390 was already blocked and now
+also carries1 replacement/recheck obligation. Keep these environment-dependent
+results separate; exact receipts and per-order differences are in `VALIDATION.md`
+and `TRACKER_OFFLINE_DELTA.json`.
 
 Independent engineering review found and corrected concrete alias/hash/source-
 list disclosure bypasses, stale factual-review acceptance, incomplete clause
@@ -114,6 +128,9 @@ family.
 4. Obtain independent factual and per-clause applicability review of new exact
    evidence versions, then reprepare packets with current code and source pins.
    Compare this work with the exact near-ready citation repair before expanding.
+   The factual registry currently covers9 orders under its unchanged12-order cap;
+   the other10 proposed pilot cases have no approved bridge and cannot simply be
+   appended as a presumed successful expansion.
 5. Only after prerequisites pass, prospectively freeze roughly twelve eligible
    cases, budgets, blind controls including material D6, source-based independent
    reviewers and stop conditions. Run actual checker/tracker; preserve failed
