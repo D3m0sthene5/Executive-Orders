@@ -138,3 +138,14 @@ family.
 
 No reservation or ownership transfer was created. Main claims, census, immutable
 codebooks, prior reviews and substantive holds are unchanged.
+
+## Final publication
+
+PR55 is published for owner review, unmerged. Core run39885190210 and subsequent
+Ubuntu/Windows road run39887397694 and Valla regression39887397736 all succeeded.
+The first CI failures remain preserved. The final documentation-only update
+changes neither runtime nor scientific inputs; exact tested commits, run links,
+output generations, readiness differences and cost limitations are in
+`VALIDATION.md` / `GITHUB_COST_QUALITY.json`. The successful Valla regression
+retains holds and invalid historical attestations and supplies no Pullman review
+or verified saving. Main remains at46a29e15d6ed4c252416b28e0ccc0590fcf6abc2.
