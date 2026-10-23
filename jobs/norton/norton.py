@@ -376,11 +376,21 @@ def build(repo,out):
         'additional_integrated_ready_cases':0,'verified_savings':False,
         'notice':'Known inventory only. Unbound wording groups are not proven reusable facts. No lifecycle authority, readiness promotion or historical census estimate.'}
     fragments=[]
+    # Keep the already validated factual sources and both review boundaries
+    # available to a consumer. These are facts, never legal-effect records.
+    registered_evidence={clean(r)['id']:clean(r) for r in data['evidence'] if r.get('id')}
+    application_reviews=collections.defaultdict(list)
+    for review in data['reviews']:
+        if review.get('record_kind')=='application':
+            application_reviews[review.get('record_id')].append(clean(review))
     for a in applications:
         answer=answers.get(a.get('answer_id')) if a.get('state') in ('ai_reviewed','human_accepted') else None
+        app_review=application_reviews.get(a['id'],[])
         fragments.append({'instrument_id':a['instrument_id'],'kind':'shared_factual_obligations',
                           'data':{'application':a,'question':next(q for q in questions if q['question_key']==a['question_key']),
                                   'reviewed_answer':answer, 'candidate_evidence_ids':[c['id'] for c in candidates if c['question_key']==a['question_key']],
+                                  'reviewed_evidence':[registered_evidence[eid] for eid in answer['evidence_ids']] if answer else [],
+                                  'application_review':app_review[0] if answer and len(app_review)==1 else None,
                                   'registry_path':REGISTRY,'legal_effect':'unresolved',
                                   'factual_review_status':a['state'],'machine_lead':True}})
     for name,rs in [('QUESTION_LEADS',leads),('QUESTIONS',questions),('POSSIBLE_DUPLICATES',possible),('CANDIDATE_EVIDENCE',candidates),

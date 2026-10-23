@@ -33,13 +33,16 @@ import time
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import sources as S  # noqa: E402
+sys.path.insert(0, str(HERE.parent / "claim-kit"))
+import working_text as W  # noqa: E402
+import factual_events as F  # noqa: E402
 
 JOB_NAME = "claim-checker"
 SCHEMA = "eo-claim-check/v1"
 LEGAL_CUTOFF = "2026-10-14"
 STEPS = ["original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals", "counterevidence"]
 MECHANICAL_CHECKS = ["source_held", "source_identity", "quote_verbatim", "date_valid", "date_after_signing",
-                     "order_exists"]
+                     "order_exists", "working_text_policy", "factual_event_policy"]
 
 # The owner's policy: which custody status of a cited source counts as "held" (pass). A "skip" is
 # reported as unverified and stops the step from counting as checker-passed. See README.md.
@@ -438,6 +441,7 @@ class Context:
         except ImportError:
             self.pypdf = None
         self.not_held = []  # (claim_key, field, ref) for --fetch
+        self.working_text_index = W.Index(self.repo)
 
     def prepared(self, copy, pages, how):
         key = (copy.origin, copy.sha256, str(copy.text_path), how)
@@ -802,6 +806,15 @@ def check_gate(claim, ctx, rows):
 
 def check_claim(claim, ctx):
     rows = []
+    for error in F.claim_errors(claim, ctx.repo):
+        _row(rows, "claim_record", "factual_event_policy", "", "fail", "invalid_factual_event", error)
+    working_errors, dependent = W.policy(claim, ctx.repo, ctx.working_text_index)
+    for error in working_errors:
+        _row(rows, "claim_record", "working_text_policy", error.split(":", 1)[0], "fail",
+             "invalid_working_text", error)
+    if dependent and not working_errors:
+        _row(rows, "claim_record", "working_text_policy", "working_text", "pass",
+             "provisional_working_text", W.NOTE)
     for path, key, val, chain in walk(claim):
         refs = []
         if key in SOURCE_KEYS and isinstance(val, dict):
@@ -892,6 +905,9 @@ def summarise_claim(key, file_rel, line, claim, rows, errors, status, ctx):
         "instrument_id": claim.get("instrument_id"),
         "claim_sha256": ctx.gate.claim_sha(claim),
         "provisional_status": status,
+        "text_evidence_tier": "transcription_dependent" if any(
+            r["check"] == "working_text_policy" for r in rows) else "original_supported",
+        "working_text_policy_version": W.RULING,
         "mechanical_result": mechanical,
         "gate_passed": not errors,
         "all_checks_passed": mechanical == "pass" and not errors,
@@ -1091,6 +1107,8 @@ def write_outputs(out, csv_rows, per_claim, summary):
                 "claim_key": c["claim_key"], "claim_sha256": c["claim_sha256"],
                 "mechanical_result": c["mechanical_result"], "gate_passed": c["gate_passed"],
                 "all_checks_passed": c["all_checks_passed"],
+                "text_evidence_tier": c.get("text_evidence_tier"),
+                "working_text_policy_version": c.get("working_text_policy_version"),
                 "steps_checker_passed": {s: c["steps"][s]["checker_passed"] for s in STEPS},
             }
     doc = {"schema": SCHEMA, "legal_cutoff": LEGAL_CUTOFF,

@@ -120,3 +120,10 @@ not eliminate substantive research or independent review.
 Runner input declarations in `inputs.txt` complement literal `needs.txt` and
 `after.txt`. The publication guard records actual consumed repository versions
 and rejects concurrent newer inputs/outputs; it does not establish source truth.
+
+
+The `working_text` column contains the decision sheet's provisional-text disclosure
+as JSON. Complete its source-specific identity/completeness/page confirmations only
+after inspecting the held representation, and keep its standing replacement/recheck
+note. Blank confirmation values remain blocked. See `AGENT_PROTOCOL.md` for scope;
+this column grants no original authentication or custody waiver.

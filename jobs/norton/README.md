@@ -50,10 +50,22 @@ remain source holds, never exhaustion declarations.
 
 `FRAGMENTS` uses the shared fragment envelope and the new minimal kind
 `shared_factual_obligations`. Claim-kit exposes it under the dossier's same-named field and pins
-it in the dossier fingerprint. It is excluded from legal events, current predicates, original
-representations and automatic assembly. Changed inputs or failed runs refuse ingestion. Existing
+it in the dossier fingerprint. Unreviewed context is excluded from event evidence. A separately
+reviewed factual answer and separately reviewed clause application may expose exact held spans
+as `FACT:` evidence for explicit `later_events` selection. The consumer repeats the existing
+source-byte, source-text, question, answer-review and application-review gates against the
+unique current registry records. It preserves the source grade and records no legal effect.
+These facts cannot supply original representations, first ends, current predicates or savings;
+the assembler and independent checker both enforce that boundary. A factual citation remains
+bound to the reviewed clause, entity, event kind and date. Changed inputs or failed runs refuse ingestion. Existing
 case-bundles retain the attributed generic fragments. Claim-checker/tracker continue their own
 rules. Run consumers explicitly; output-only result commits do not trigger them.
+
+The two Pullman transmittal candidates in
+`research/readiness/factual/astra-pullman-20261022/` remain producer candidates. Their extracted
+text is held, but the raw report PDFs are only referenced by acquisition-cache paths in this
+checkout. No factual or application review is supplied, and the bridge emits no citable facts
+from those candidates. The existing twelve-order registry cap is unchanged.
 
 The own-term census reads claim-kit's previous generation. Its exact hashes stay in
 `lagged_census_sha256`; claim-kit necessarily clears those files before rebuilding. The consumer

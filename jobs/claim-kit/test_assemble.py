@@ -409,5 +409,167 @@ class AssemblyTests(unittest.TestCase):
                     self.assertEqual(json.loads(json.dumps(value, ensure_ascii=False)), value)
 
 
+    def working_fixture(self):
+        import working_text as W
+        original = self.dossier['evidence']['ORIGINAL:EO:1']
+        text = original['text']
+        p = self.repo / 'transcription.txt'
+        p.write_bytes(text.encode('utf-8'))
+        digest = hashlib.sha256(p.read_bytes()).hexdigest()
+        ref = dict(original['source'], url='https://example.org/transcription', sha256=digest,
+                   text_sha256=digest, text_path='transcription.txt', local_path='transcription.txt',
+                   instrument_id='EO:1', grade='mirror_transcription', acceptable_as_original=False)
+        original.update(source=ref, acceptable_as_original=False, grade='mirror_transcription')
+        for clause in self.dossier['clauses']:
+            clause['source'] = deepcopy(ref)
+        self.fragment = self.repo / 'jobs/app-executive-orders/output/FRAGMENTS.jsonl'
+        self.fragment.parent.mkdir(parents=True)
+        self.fragment_record = {'kind':'original_representation', 'instrument_id':'EO:1',
+                                'data': deepcopy(ref)}
+        self.fragment.write_text(json.dumps(self.fragment_record)+'\n')
+        self.refresh()
+        self.sheet['dossier_sha256'] = self.dossier['fingerprint']
+        self.sheet['original_confirmed'] = False
+        self.sheet['working_text'] = W.blank([ref])
+        self.sheet['working_text']['confirmations'][0].update(identity_confirmed=True, complete_text_confirmed=True)
+        return ref
+
+    def test_working_text_is_provisional_labeled_and_keeps_replacement_obligation(self):
+        import working_text as W
+        ref = self.working_fixture()
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        self.assertFalse(claim['original_representation']['acceptable_as_original'])
+        self.assertEqual(claim['original_representation']['grade'], ref['grade'])
+        self.assertEqual(claim['working_text']['standing_note'], W.NOTE)
+        self.assertTrue(claim['working_text']['replacement_required'])
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+        # The official ending source is still official; the ruling does not relabel it.
+        self.assertNotIn('acceptable_as_original', claim['whole_order_end']['source'])
+
+    def test_working_text_requires_identity_completeness_and_note(self):
+        self.working_fixture()
+        for field in ('identity_confirmed', 'complete_text_confirmed'):
+            self.sheet['working_text']['confirmations'][0][field] = False
+            self.assertFails('identity_and_complete_text_confirmation_required')
+            self.sheet['working_text']['confirmations'][0][field] = True
+        self.sheet['working_text']['standing_note'] = 'Original someday'
+        self.assertFails('replacement_and_recheck_note_required')
+
+    def test_working_text_rejects_missing_bytes_wrong_order_and_wrong_grade(self):
+        self.working_fixture()
+        data = deepcopy(self.fragment_record)
+        for field, value in [('instrument_id','EO:999'), ('grade','government_printed_copy')]:
+            changed = deepcopy(data)
+            if field == 'instrument_id': changed[field] = value
+            else: changed['data'][field] = value
+            self.fragment.write_text(json.dumps(changed)+'\n')
+            self.assertFails('working_text_fragment_identity_or_grade_mismatch')
+        self.fragment.write_text(json.dumps(data)+'\n')
+        (self.repo / 'transcription.txt').unlink()
+        self.assertFails('working_text_missing_bytes')
+
+    def test_working_text_rejects_known_incomplete_and_shortened_original(self):
+        self.working_fixture()
+        self.fragment_record['data']['complete_text'] = False
+        self.fragment.write_text(json.dumps(self.fragment_record)+'\n')
+        self.assertFails('working_text_known_incomplete')
+        del self.fragment_record['data']['complete_text']
+        self.fragment.write_text(json.dumps(self.fragment_record)+'\n')
+        original = self.dossier['evidence']['ORIGINAL:EO:1']
+        original['text'] = original['text'][:-1]
+        original['char_end'] -= 1
+        self.refresh(); self.sheet['dossier_sha256'] = self.dossier['fingerprint']
+        self.assertFails('working_text_incomplete_representation_span')
+
+    def test_working_text_rejects_hash_quote_edits_and_unlabeled_claim(self):
+        self.working_fixture()
+        claim, errors = self.assemble(); self.assertEqual(errors, [])
+        for field, value in [('text_sha256','f'*64), ('quote','invented'), ('acceptable_as_original',True), ('grade','official_original')]:
+            changed = deepcopy(claim)
+            changed['original_representation'][field] = value
+            self.assertTrue(A.check_claim(changed, self.repo, self.dossier), field)
+        changed = deepcopy(claim); del changed['working_text']
+        self.assertIn('working_text:disclosure_required', A.check_claim(changed, self.repo, self.dossier))
+
+    def test_working_text_requires_declared_text_hash_not_self_asserted_claim_hash(self):
+        self.working_fixture()
+        del self.fragment_record['data']['text_sha256']
+        self.fragment.write_text(json.dumps(self.fragment_record)+'\n')
+        self.assertFails('working_text_fragment_identity_or_grade_mismatch')
+
+    def test_working_text_cannot_launder_grade_via_identical_text_path_alias(self):
+        self.working_fixture()
+        claim, errors = self.assemble(); self.assertEqual(errors, [])
+        (self.repo/'alias.txt').write_bytes((self.repo/'transcription.txt').read_bytes())
+        for _, ref in A.W.references(claim):
+            if ref.get('acceptable_as_original') is False:
+                ref.update(text_path='alias.txt', acceptable_as_original=True)
+                ref.pop('grade')
+        claim.pop('working_text')
+        errors, dependent = A.W.policy(claim, self.repo)
+        self.assertTrue(dependent)
+        self.assertIn('working_text:disclosure_required', errors)
+        self.assertTrue(any('fragment_identity_or_grade_mismatch' in e for e in errors))
+
+    def test_existing_exact_official_representation_is_not_tainted_by_shared_pdf_hash(self):
+        ref = self.working_fixture()
+        claim, errors = self.assemble(); self.assertEqual(errors, [])
+        official = self.repo/'jobs/fr-originals/output/official.txt'
+        official.parent.mkdir(parents=True)
+        official.write_bytes((self.repo/'transcription.txt').read_bytes())
+        data = dict(ref, acceptable_as_original=True, grade='official_printing',
+                    needs_page_check=False, text_path='official.txt', url='https://example.gov/official')
+        fragment = {'kind':'original_representation','instrument_id':'EO:1','produced_by':'fr-originals','data':data}
+        (official.parent/'FRAGMENTS.jsonl').write_text(json.dumps(fragment)+'\n')
+        for _, source in A.W.references(claim):
+            if source.get('acceptable_as_original') is False:
+                source.update(text_path=str(official.relative_to(self.repo)), url=data['url'], acceptable_as_original=True)
+                source.pop('grade')
+        claim.pop('working_text')
+        errors, dependent = A.W.policy(claim, self.repo)
+        self.assertEqual(errors, [])
+        self.assertEqual(dependent, [])
+
+    def test_working_text_page_warning_is_not_waived(self):
+        self.working_fixture()
+        self.fragment_record['data']['needs_page_check'] = True
+        self.fragment.write_text(json.dumps(self.fragment_record)+'\n')
+        self.assertFails('working_text:page_confirmation_required')
+        self.sheet['working_text']['confirmations'][0]['pages_confirmed'] = True
+        self.assertEqual(self.assemble()[1], [])
+
+    def test_working_text_mixed_ending_cannot_hide_undeclared_derivative(self):
+        self.working_fixture()
+        end = self.dossier['evidence']['ACT:EO:1>EO:2']
+        end['source'].update(grade='mirror_transcription', acceptable_as_original=False, instrument_id='EO:2')
+        self.refresh(); self.sheet['dossier_sha256'] = self.dossier['fingerprint']
+        self.assertFails('working_text_fragment_identity_or_grade_mismatch')
+
+    def test_working_text_official_arrival_reopens_claim_until_rechecked(self):
+        self.working_fixture()
+        claim, errors = self.assemble(); self.assertEqual(errors, [])
+        path = self.repo / 'jobs/fr-originals/output/official.txt'
+        path.parent.mkdir(parents=True)
+        path.write_text('Executive Order 1. Official copy newly acquired.')
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        fragment = {'kind':'original_representation', 'instrument_id':'EO:1', 'produced_by':'fr-originals',
+                    'data':{'acceptable_as_original':True, 'sha256':digest, 'text_sha256':digest,
+                            'text_path':'official.txt', 'needs_page_check':False}}
+        (path.parent/'FRAGMENTS.jsonl').write_text(json.dumps(fragment)+'\n')
+        errors = A.check_claim(claim, self.repo, self.dossier)
+        self.assertIn('working_text:official_copy_available_recheck_required', errors)
+        self.assertTrue(claim['working_text']['replacement_required'])
+        self.assertFalse(claim['original_representation']['acceptable_as_original'])
+
+    def test_working_text_new_official_copy_requires_a_new_sheet(self):
+        self.working_fixture()
+        self.assertEqual(self.assemble()[1], [])
+        self.dossier['evidence']['ORIGINAL:EO:1']['source']['url'] = 'https://example.gov/new-official-copy'
+        self.dossier['evidence']['ORIGINAL:EO:1']['acceptable_as_original'] = True
+        self.refresh()
+        self.assertFails('stale_dossier_fingerprint')
+
+
 if __name__ == "__main__":
     unittest.main()

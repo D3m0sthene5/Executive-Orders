@@ -562,6 +562,135 @@ class CheckerTests(unittest.TestCase):
         self.assertEqual(json.loads((out / "PER_CLAIM.json").read_text("utf-8"))["claims"], [])
 
 
+    def working_claim(self):
+        import copy
+        claim = good_claim()
+        text = ORIGINAL_TEXT
+        rel = 'jobs/app-executive-orders/output/texts/EO_90001.txt'
+        path = self.repo / rel; path.parent.mkdir(parents=True)
+        path.write_text(text, encoding='utf-8')
+        source = dict(claim['original_representation'], text_path=rel, text_sha256=sha(text.encode()),
+                      grade='mirror_transcription', acceptable_as_original=False, instrument_id='EO:90001',
+                      char_start=0, char_end=len(text), quote=text)
+        fragment = {'kind':'original_representation', 'instrument_id':'EO:90001', 'data':source}
+        (path.parent.parent/'FRAGMENTS.jsonl').write_text(json.dumps(fragment)+'\n')
+        claim['original_representation'] = source
+        snippets = ["There is hereby established the Test Board, which shall advise the Presi-\ndent on testing.",
+                    "Executive Order No. 90002 of January 1, 1949, is superseded."]
+        for clause, quote in zip(claim['operative_clauses'], snippets):
+            start = text.index(quote)
+            clause['original_source'] = dict(source, quote=quote, char_start=start, char_end=start+len(quote))
+            clause['original_operative_text'] = quote
+        claim['working_text'] = C.W.blank([source])
+        claim['working_text']['confirmations'][0].update(identity_confirmed=True, complete_text_confirmed=True)
+        self.ctx.working_text_index = C.W.Index(self.repo)
+        return claim
+
+    def test_working_text_passes_separate_policy_without_original_upgrade(self):
+        claim = self.working_claim()
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertTrue(summary['all_checks_passed'], summary)
+        self.assertEqual(summary['text_evidence_tier'], 'transcription_dependent')
+        self.assertFalse(claim['original_representation']['acceptable_as_original'])
+
+    def test_working_text_does_not_waive_custody_only_or_missing_ending(self):
+        claim = self.working_claim()
+        original_sha = claim['original_representation']['sha256']
+        for copy in self.ctx.index.lookup_sha(original_sha):
+            copy.custody = 'record_only'
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertFalse(summary['steps']['original_text']['checker_passed'])
+        self.assertEqual(summary['mechanical_result'], 'pass_with_unverified')
+        claim['whole_order_end']['source']['sha256'] = 'e'*64
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertFalse(summary['steps']['ending_or_current_basis']['checker_passed'])
+
+    def test_transcription_hash_cannot_be_laundered_through_text_path_alias(self):
+        claim = self.working_claim()
+        original_path = self.repo / claim['original_representation']['text_path']
+        (self.repo / 'alias.txt').write_bytes(original_path.read_bytes())
+        for _, ref in C.W.references(claim):
+            if ref.get('acceptable_as_original') is False:
+                ref.update(text_path='alias.txt', acceptable_as_original=True)
+                ref.pop('grade')
+        claim.pop('working_text')
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertFalse(summary['all_checks_passed'])
+        self.assertEqual(summary['mechanical_result'], 'fail')
+
+    def test_unlabeled_transcription_cannot_use_old_checker_success(self):
+        claim = self.working_claim()
+        del claim['working_text']
+        for _, ref in C.W.references(claim):
+            ref.pop('grade', None); ref.pop('acceptable_as_original', None)
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertFalse(summary['all_checks_passed'])
+        self.assertFalse(summary['steps']['original_text']['checker_passed'])
+        self.assertTrue(any(r['check']=='working_text_policy' and r['result']=='fail' for r in rows))
+
+    def test_hash_spelling_and_archival_alias_cannot_hide_transcription(self):
+        import copy
+        original = self.working_claim()
+        for spelling in ('uppercase', 'whitespace', 'archival_alias'):
+            with self.subTest(spelling=spelling):
+                claim = copy.deepcopy(original)
+                claim.pop('working_text')
+                for _, ref in C.W.references(claim):
+                    if ref.get('acceptable_as_original') is not False:
+                        continue
+                    ref.pop('grade')
+                    ref['acceptable_as_original'] = True
+                    if spelling == 'uppercase':
+                        ref['sha256'] = ref['sha256'].upper()
+                    elif spelling == 'whitespace':
+                        ref['sha256'] = ' \t' + ref['sha256'] + '\n'
+                    else:
+                        ref['local_file_sha256'] = ref.pop('sha256')
+                        ref['archival_id'] = 'known-derivative'
+                rows, errors, status = C.check_claim(claim, self.ctx)
+                summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+                self.assertFalse(summary['all_checks_passed'])
+                self.assertTrue(rows_for(rows, 'working_text_policy', 'fail'))
+
+    def test_nested_source_lists_require_transcription_disclosure(self):
+        text = 'This held transcription supplies additional factual context.\n'
+        path = self.repo/'jobs/app-executive-orders/output/texts/EO_90001.txt'
+        path.parent.mkdir(parents=True)
+        path.write_text(text)
+        ref = {'sha256':sha(text.encode()), 'url':'https://example.gov/transcription',
+               'text_path':path.relative_to(self.repo).as_posix(), 'text_sha256':sha(text.encode()),
+               'instrument_id':'EO:90001', 'grade':'mirror_transcription',
+               'acceptable_as_original':False, 'quote':text, 'char_start':0,
+               'char_end':len(text), 'page_or_item':'complete text'}
+        (path.parent.parent/'FRAGMENTS.jsonl').write_text(json.dumps({
+            'kind':'original_representation', 'instrument_id':'EO:90001', 'data':ref})+'\n')
+        self.ctx.index.add(S.HeldCopy('derivative fixture',ref['sha256'],url=ref['url'],
+                                    local_path=path,text_path=path,instrument_ids=['EO:90001']))
+        self.ctx.working_text_index = C.W.Index(self.repo)
+        for key in ('sources', 'source_refs'):
+            with self.subTest(key=key):
+                claim = good_claim()
+                claim['additional_context'] = [{'nested':{key:[dict(ref)]}}]
+                errors, dependent = C.W.policy(claim,self.repo)
+                self.assertIn('working_text:disclosure_required',errors)
+                self.assertEqual(len(dependent),1)
+                rows, gate_errors, status = C.check_claim(claim,self.ctx)
+                summary = C.summarise_claim('test','test.jsonl',1,claim,rows,gate_errors,status,self.ctx)
+                self.assertFalse(summary['all_checks_passed'])
+                self.assertTrue(rows_for(rows,'working_text_policy','fail'))
+                claim['working_text'] = C.W.blank([ref])
+                claim['working_text']['confirmations'][0].update(identity_confirmed=True,complete_text_confirmed=True)
+                rows, gate_errors, status = C.check_claim(claim,self.ctx)
+                summary = C.summarise_claim('test','test.jsonl',1,claim,rows,gate_errors,status,self.ctx)
+                self.assertTrue(summary['all_checks_passed'],summary)
+                self.assertEqual(summary['text_evidence_tier'],'transcription_dependent')
+
+
 class PureFunctionTests(unittest.TestCase):
     def test_prepared_text_is_reused(self):
         prep = C.Prepared(["The Board shall meet. ", "It shall re-\nport yearly."])
@@ -695,6 +824,53 @@ class SourceBookTests(unittest.TestCase):
         src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
         self.assertEqual(src["original_representation"], "not_held")
         self.assertTrue(any("is not in this checkout" in n for n in ctx.index.notes))
+
+
+class ReplicaFragmentTests(unittest.TestCase):
+    setUp = CheckerTests.setUp
+    tearDown = CheckerTests.tearDown
+
+    def replica(self):
+        raw = self.repo / 'ProQuest Pre-1937 Orders/EO_90001.pdf'
+        raw.parent.mkdir(parents=True)
+        raw.write_bytes(b'%PDF-1.4 retained replica fixture bytes')
+        directory = self.repo / 'jobs/pinakes-proquest-ingest/output'
+        directory.mkdir(parents=True)
+        (directory/'text.txt').write_text(ORIGINAL_TEXT)
+        self.row = {'kind':'original_representation', 'produced_by':'pinakes-proquest-ingest',
+                    'instrument_id':'EO:90001', 'data':{'acceptable_as_original':False,
+                    'grade':'archival_replica_scan_pending_codebook', 'sha256':sha(raw.read_bytes()),
+                    'file':str(raw.relative_to(self.repo)), 'text_path':'text.txt',
+                    'url':'https://example.org/proquest/90001', 'page_or_item':'p1'}}
+        self.fragment = directory/'FRAGMENTS.jsonl'
+        self.fragment.write_text(json.dumps(self.row)+'\n')
+        return raw
+
+    def index_replica(self):
+        index = S.HeldIndex(); S.load_replica_fragments(index, self.repo)
+        return index.lookup_sha(self.row['data']['sha256'])
+
+    def test_replica_bytes_are_indexed_without_original_authentication(self):
+        self.replica()
+        copies = self.index_replica()
+        self.assertEqual(len(copies), 1)
+        self.assertEqual(copies[0].custody, 'repo_file')
+        self.assertTrue(self.ctx.reader.verify_bytes(copies[0]))
+        self.assertIn('unverified', copies[0].note)
+        self.assertFalse(self.row['data']['acceptable_as_original'])
+
+    def test_replica_missing_bytes_remain_record_only_and_wrong_hash_fails(self):
+        raw = self.replica(); raw.unlink()
+        copies = self.index_replica()
+        self.assertEqual(copies[0].custody, 'record_only')
+        raw.write_bytes(b'wrong bytes')
+        copies = self.index_replica()
+        self.assertFalse(self.ctx.reader.verify_bytes(copies[0]))
+
+    def test_replica_path_escape_is_refused(self):
+        self.replica(); self.row['data']['file'] = '../outside.pdf'
+        self.fragment.write_text(json.dumps(self.row)+'\n')
+        self.assertEqual(self.index_replica(), [])
 
 
 if __name__ == "__main__":

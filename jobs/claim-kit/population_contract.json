@@ -1,0 +1,70 @@
+{
+  "schema": "eo-accepted-population-contract/v1",
+  "purpose": "Frozen historical fixture plus exact already-owner-merged additions. A progress CSV edit or a proposal/review file alone never authorizes a new status. Extend only after the existing adoption process; this contract does not decide law or change statuses.",
+  "accepted_snapshot": "46a29e15d6ed4c252416b28e0ccc0590fcf6abc2",
+  "census": {
+    "path": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+    "count": 14972,
+    "identity_sha256": "c56f8c77d2e1e503ebc974ad07a6a0ece335391ee3b3125cbce56045bf402b92"
+  },
+  "historical_status_baseline": {
+    "path": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+    "commit": "cd5dba93874a04e014b0167293fd2a95dffca63b",
+    "git_blob": "f579711285cad6784b4eb213656b0fd9f9a32217",
+    "bytes": 738280,
+    "count": 3359,
+    "sha256": "fe765b62f799c2dc81f4c1f2358d2d88f8289d8044367ccba9bac160c5f505ff",
+    "rows_sha256": "e303645e18692baf9f2b42463eb1db598ea14d4188cdceb8e200ef3e5af2a200",
+    "verification": "Exact historical GitHub blob SHA was independently retrieved; it matches the current unchanged prefix, not merely a count-based inference."
+  },
+  "accepted_additions": [
+    {
+      "name": "Bowditch owner adoption",
+      "count": 15,
+      "accepted_in_main": "bb36bd7a205a66936ecc1f88ae59a780cc5ead9c",
+      "adoption_pr": 51,
+      "rows": {
+        "path": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/ADOPTION_ROWS.csv",
+        "sha256": "ca442f1d90590d54a641a554d74df475937036e8dbaf58b7a3ef71636e5cdaf6"
+      },
+      "authorization_pins": [
+        {
+          "path": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md",
+          "sha256": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe"
+        },
+        {
+          "path": "research/excavator/bowditch-2026-10-20/Y1_RECHECK_OPUS_SOURCES.json",
+          "sha256": "05d11e26882ccad28247d012ff2aa97ae30913631df7bc6a4ee5bb8fd0b5b08f"
+        },
+        {
+          "path": "research/diagnostics/pr-merge-20261022/MERGE_AUDIT.json",
+          "sha256": "a50ad3c97ca9b24646c4e2f03e0350102c6c38ddcfb873c93eb5f02ec0403588"
+        }
+      ]
+    },
+    {
+      "name": "Sinclair cross-family owner adoption",
+      "count": 29,
+      "accepted_in_main": "44f794a92c5b8fc746b2c02351885222629cea06",
+      "rows": {
+        "path": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_ADOPTION_ROWS.csv",
+        "sha256": "c7dda82b69d957ffd12d3efea83203f2c93b33336a4a76abd77ba272a9ab9d75"
+      },
+      "authorization_pins": [
+        {
+          "path": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md",
+          "sha256": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe"
+        },
+        {
+          "path": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_REVIEW.json",
+          "sha256": "ceeefbdd334488e00534babefa155fd10e059856309175bc3d5c1812eb0ef0e5"
+        },
+        {
+          "path": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_VALIDATION.json",
+          "sha256": "11f2b1e35601dd9c8403a320eaecfe21b1a2e5ff681ede09469ee0f8d692edc3"
+        }
+      ],
+      "adoption_pr": 52
+    }
+  ]
+}

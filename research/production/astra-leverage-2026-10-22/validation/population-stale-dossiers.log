@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/9c72f1fe0f19/executive-orders/jobs/claim-kit/population.py", line 189, in <module>
+    main()
+  File "/workspace/scratch/9c72f1fe0f19/executive-orders/jobs/claim-kit/population.py", line 184, in main
+    result["derived"] = validate_derived(population, args.drafts, args.dossiers)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/9c72f1fe0f19/executive-orders/jobs/claim-kit/population.py", line 154, in validate_derived
+    require(counts.get("decided_orders") == counts.get("dossiers") == len(statuses),
+  File "/workspace/scratch/9c72f1fe0f19/executive-orders/jobs/claim-kit/population.py", line 36, in require
+    raise ValueError(message)
+ValueError: Dossier summary population stale

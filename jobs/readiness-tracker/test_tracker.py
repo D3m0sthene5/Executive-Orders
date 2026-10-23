@@ -414,5 +414,49 @@ class TrackerTest(unittest.TestCase):
                 'research/readiness/SOURCE_AUDIT_HOLDS.jsonl':json.dumps(hold)+'\n'})
 
 
+    def working_claim(self):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        text = "The board shall report by June 30, 1950."
+        rel = 'jobs/app-executive-orders/output/texts/EO_2.txt'
+        self.write(rel, text)
+        digest = hashlib.sha256(text.encode()).hexdigest()
+        ref = dict(SRC, url='https://example.org/transcription', sha256=digest,
+                   instrument_id='EO:2', grade='mirror_transcription', acceptable_as_original=False,
+                   text_path=rel, text_sha256=digest, char_start=0, char_end=len(text), quote=text)
+        claim['original_representation'] = ref
+        claim['operative_clauses'][0]['original_source'] = copy.deepcopy(ref)
+        fragment = {'kind':'original_representation', 'instrument_id':'EO:2', 'data':ref}
+        self.write('jobs/app-executive-orders/output/FRAGMENTS.jsonl', json.dumps(fragment)+'\n')
+        claim['working_text'] = tracker.W.blank([ref])
+        claim['working_text']['confirmations'][0].update(identity_confirmed=True, complete_text_confirmed=True)
+        return claim
+
+    def test_working_text_ready_tier_retains_source_replacement_and_recheck_debt(self):
+        claim = self.working_claim()
+        orders, summary = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'yes')
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'transcription_dependent')
+        self.assertEqual(summary['ready_by_text_evidence_tier'], {'transcription_dependent':1})
+        self.assertEqual(summary['original_replacement_obligations'], 1)
+        self.assertEqual(summary['quotation_recheck_obligations'], 1)
+
+    def test_working_text_still_needs_other_steps_and_current_checker(self):
+        claim = self.working_claim()
+        orders, _ = self.run_tracker([claim], checked={'original_text':True})
+        self.assertEqual(orders['EO:2']['step_original_text'], 'done')
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
+        self.assertEqual(orders['EO:2']['step_ending_or_current_basis'], 'open')
+
+    def test_working_text_no_disclosure_or_bytes_blocks_even_with_old_checker_pass(self):
+        claim = self.working_claim()
+        changed = copy.deepcopy(claim); del changed['working_text']
+        orders, _ = self.run_tracker([changed])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
+        self.assertIn('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED', orders['EO:2']['blockers'])
+        (self.root / claim['original_representation']['text_path']).unlink()
+        orders, _ = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -13,6 +13,10 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import working_text as W
+import factual_events as F
 
 
 DOSSIER_SCHEMA = "eo-claim-kit-dossier/v1"
@@ -106,7 +110,7 @@ def derive_inventory(dossier, overrides):
 
 def blank_sheet(dossier, agent=""):
     """Produce an unapproved sheet, with every legal judgment left blank."""
-    return {
+    sheet = {
         "schema": DECISION_SCHEMA,
         "instrument_id": dossier.get("instrument_id"),
         "dossier_sha256": canonical_sha(dossier), "agent": agent,
@@ -124,6 +128,11 @@ def blank_sheet(dossier, agent=""):
         "unresolved_material_gaps": deepcopy(dossier.get("missing", [])),
         "approved": False,
     }
+    refs = [r.get("source", {}) for r in _records(dossier).values()
+            if isinstance(r, dict) and r.get("source", {}).get("acceptable_as_original") is False]
+    if refs:
+        sheet["working_text"] = W.blank(refs)
+    return sheet
 
 
 def _gate(repo):
@@ -308,7 +317,8 @@ def _check_claim(claim, repo, dossier=None):
                 elif len({c.get("scope_id") for c in actual}) != len(corrected):
                     errors.append("corrected_inventory_mismatch")
             original_record = evidence.get(dossier.get("original_source_id"), {})
-            if original_record.get("requires_page_check") and metadata.get("original_pages_confirmed") is not True:
+            if (original_record.get("requires_page_check") and original_record.get("acceptable_as_original") is not False
+                    and metadata.get("original_pages_confirmed") is not True):
                 errors.append("original_page_check_confirmation_required")
             representation = claim.get("original_representation")
             if not isinstance(representation, dict) or _reference_id(representation) != dossier.get("original_source_id"):
@@ -344,6 +354,9 @@ def _check_claim(claim, repo, dossier=None):
             for index, child in enumerate(value):
                 walk(child, f"{path}[{index}]")
     walk(claim)
+    policy_errors, _ = W.policy(claim, repo)
+    errors.extend(policy_errors)
+    errors.extend(F.claim_errors(claim, repo, dossier))
     return list(dict.fromkeys(errors))
 
 
@@ -367,7 +380,7 @@ def _assemble(sheet, dossier, repo):
         errors.append("whole_order_status_mismatch")
     if dossier.get("whole_order_status") not in ("yes", "no"):
         errors.append("missing_provisional_status")
-    for field in ("approved", "original_confirmed", "inventory_confirmed"):
+    for field in ("approved", "inventory_confirmed"):
         if sheet.get(field) is not True:
             errors.append(field + "_required")
     if not _nonempty(sheet.get("agent")):
@@ -403,16 +416,24 @@ def _assemble(sheet, dossier, repo):
     if not isinstance(original_record, dict):
         original_record = {}
     original = _reference(original_id, evidence, errors)
-    if original_record.get("requires_page_check") and sheet.get("original_pages_confirmed") is not True:
+    if (original_record.get("requires_page_check") and original_record.get("acceptable_as_original") is not False
+            and sheet.get("original_pages_confirmed") is not True):
         errors.append("original_page_check_confirmation_required")
     grade = " ".join(str(original_record.get(k, "")) for k in
                      ("source_grade", "kind", "role", "type", "origin"))
     grade += " " + str(original.get("url", ""))
     grade += " " + " ".join(str(original.get(k, "")) for k in
                               ("source_grade", "kind", "role", "type", "origin"))
-    if (original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False or
-            "richardson" in grade.lower() or "compiled_transcription_lead" in grade.lower()):
+    provisional = original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False
+    if provisional:
+        if original.get("grade") not in W.GRADES or original.get("acceptable_as_original") is not False:
+            errors.append("lead_is_not_original:working_text_grade_required")
+        if not isinstance(sheet.get("working_text"), dict):
+            errors.append("working_text:disclosure_required")
+    elif "richardson" in grade.lower() or "compiled_transcription_lead" in grade.lower():
         errors.append("lead_is_not_original")
+    elif sheet.get("original_confirmed") is not True:
+        errors.append("original_confirmed_required")
 
     claim = {"schema": "eo-lifecycle-claim/v1", "instrument_id": dossier.get("instrument_id"),
              "whole_order_status": dossier.get("whole_order_status"),
@@ -424,6 +445,8 @@ def _assemble(sheet, dossier, repo):
                            "producer_approved": sheet.get("approved") is True,
                            "original_pages_confirmed":sheet.get("original_pages_confirmed") is True,
                            "inventory_overrides": deepcopy(overrides)}}
+    if isinstance(sheet.get("working_text"), dict):
+        claim["working_text"] = deepcopy(sheet["working_text"])
     clauses = sheet.get("clauses")
     expected = corrected if corrected is not None else dossier.get("clauses")
     if not isinstance(clauses, list) or not clauses:
@@ -545,6 +568,13 @@ def _assemble(sheet, dossier, repo):
                         by_search[ident]["entry"].get("coverage_warning")))
                       for ident in chosen if isinstance(ident, str)):
         errors.append("search_coverage_incomplete")
+    if isinstance(claim.get("working_text"), dict):
+        used = {W.key(ref) for _, ref in W.references(claim) if ref.get("acceptable_as_original") is False}
+        if not used:
+            claim.pop("working_text")
+        elif isinstance(claim["working_text"].get("confirmations"), list):
+            claim["working_text"]["confirmations"] = [c for c in claim["working_text"]["confirmations"]
+                if isinstance(c, dict) and W.key(c) in used]
     errors.extend(check_claim(claim, repo, dossier))
     errors = list(dict.fromkeys(errors))
     return (None, errors) if errors else (claim, [])
