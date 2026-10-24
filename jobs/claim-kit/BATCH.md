@@ -127,3 +127,26 @@ as JSON. Complete its source-specific identity/completeness/page confirmations o
 after inspecting the held representation, and keep its standing replacement/recheck
 note. Blank confirmation values remain blocked. See `AGENT_PROTOCOL.md` for scope;
 this column grants no original authentication or custody waiver.
+
+Ordinary `prepare` also discovers existing lifecycle claims, exact-version AI
+reviews, selected-version manifests and unfinished producer checkpoints throughout
+`research/`. `prior_research` in PACKET and the prior-work section in READ / `view
+--order` retain paths, hashes, review scope, rejected versions, source availability,
+conflicting propositions and the current claim's remaining gaps. Different original
+quotes or source identities require scope reconciliation; a matching scope name or
+an overall upheld verdict supplies no approval. Decisions remain blank. No directory
+recency or checkpoint selection silently replaces the canonical claim.
+
+`apply` / `batch-check` recheck that context, including newly discovered work and
+changed source or review dependencies. Prepare a new packet when it changes. The
+existing `lifecycle_obligations.py checkpoint` / `resume` commands include this same
+context by default (`--repo` selects the repository), so newly found research reopens
+an unchanged source-blocked attempt. These commands do not convert prior research
+into a new legal conclusion or certify its sources.
+
+Before normal preparation in a sparse checkout, materialize this job's existing
+`needs.txt` roots. `research/readiness` already includes canonical claims and
+versioned producer/reviewer work; `research/excavator` and `research/production`
+retain the other checkpoints, reconciliation and frozen-selection artifacts.
+These declarations avoid treating an unmaterialized research session as an empty
+history. They do not materialize the ProQuest corpus or fetch primary sources.
