@@ -1,0 +1,297 @@
+"""Read-only, attributed prior work for the existing prepare/resume interfaces.
+
+Discovery uses current research artifacts, never Git history or directory recency.
+A hash-matched review is a recorded assessment, not approval of a new claim.
+"""
+import hashlib
+import json
+from pathlib import Path
+import re
+
+from assemble import canonical_sha
+
+SCHEMA = 'eo-claim-kit-prior-research/v1'
+NOTICE = ('Prior producer/reviewer assertions, not new findings or automatic approval. '
+          'Reuse only after checking the exact version, source, proposition and scope. '
+          'Rejected versions and contradictory assertions remain visible; whole-case review is still required.')
+MANIFEST = re.compile(r'(?:selection|selected|manifest|checkpoint|freeze)', re.I)
+REVIEW_KEYS = ('artifact_type', 'schema', 'reviewer', 'reviewer_role', 'review_kind',
+    'candidate_version', 'verdict', 'verdict_scope', 'disposition', 'reasons',
+    'substantive_lifecycle_verdict', 'rejection_reason', 'only_claim_change',
+    'preserved_prior_review', 'substantive_findings', 'limits_retained',
+    'human_certification', 'full_readiness_certification', 'checker_run',
+    'unresolved_material_legal_gaps', 'retained_material_gaps_as_written',
+    'scope', 'global_limits', 'state_standard', 'reviewer_family', 'clause_attestations',
+    'remaining_gaps_preserved', 'errors', 'reviewed_changes_from_v2', 'v2_rejection_resolved')
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def walk(value, pointer=''):
+    if isinstance(value, dict):
+        yield pointer, value
+        for key, child in value.items():
+            yield from walk(child, pointer + '/' + str(key).replace('~', '~0').replace('/', '~1'))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            yield from walk(child, pointer + '/' + str(index))
+
+
+def source_key(source):
+    return tuple(source.get(k) for k in ('sha256', 'text_path', 'text_sha256'))
+
+
+def clause_key(clause):
+    return (clause.get('original_operative_text', clause.get('text')), source_key(
+        clause.get('original_source', clause.get('source', {}))))
+
+
+def collect(repo, dossiers, exclude=None):
+    """Compact current-file inventory. Additions, edits and removals change its hash."""
+    repo = Path(repo).resolve()
+    excluded = [Path(p).resolve() for p in (exclude if isinstance(exclude, (list, tuple)) else [exclude]) if p]
+    ids = set(dossiers)
+    claims = {iid: {} for iid in ids}
+    reviews = {iid: [] for iid in ids}
+    checkpoints = {iid: [] for iid in ids}
+    manifests = {iid: [] for iid in ids}
+    pins = {}
+    issues = []
+    control_paths = {}
+    excluded_controls = []
+
+    def pin(rel, expected=None):
+        p = (repo / rel).resolve()
+        if not p.is_relative_to(repo):
+            return {'path': rel, 'expected_sha256': expected, 'state': 'outside_repository'}
+        if not p.is_file():
+            pins[rel] = None
+            return {'path': rel, 'expected_sha256': expected, 'state': 'missing'}
+        # Hash streamed bytes, including large sources; never read a raw PDF as text.
+        if rel not in pins:
+            with p.open('rb') as handle:
+                pins[rel] = hashlib.file_digest(handle, 'sha256').hexdigest()
+        actual = pins[rel]
+        return {'path': rel, 'expected_sha256': expected, 'sha256': actual,
+                'state': 'match' if expected == actual else ('changed' if expected else 'unqualified')}
+
+    # Existing blinded controls are identified by their reveal plus frozen file
+    # hashes, not by treating every blinded/reviewed proposal as a control.
+    for reveal_path in sorted((repo / 'research').rglob('*REVEAL*.json')):
+        try:
+            reveal = json.loads(reveal_path.read_bytes())
+        except (ValueError, OSError):
+            continue
+        if not isinstance(reveal, dict) or not isinstance(reveal.get('controls'), dict):
+            continue
+        for freeze_path in sorted(reveal_path.parent.rglob('FREEZE.json')):
+            try:
+                freeze = json.loads(freeze_path.read_bytes())
+            except (ValueError, OSError):
+                continue
+            candidates = freeze.get('candidates', {})
+            for label, reason in reveal['controls'].items():
+                if label not in candidates or not isinstance(label, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', label):
+                    continue
+                candidate = freeze_path.parent / (label + '.json')
+                if candidate.exists():
+                    control_paths[candidate.resolve()] = {
+                        'reason': reason, 'expected_frozen_file_sha256': candidates[label],
+                        'reveal_path': reveal_path.relative_to(repo).as_posix(),
+                        'freeze_path': freeze_path.relative_to(repo).as_posix()}
+
+    # Existing claims, reviews, selected-version manifests and unfinished producer
+    # checkpoints can live in any research session. Do not consume generated packet
+    # copies or recurse through arbitrary nested claims in reports.
+    for path in sorted((repo / 'research').rglob('*')):
+        if any(path.resolve().is_relative_to(p) for p in excluded):
+            continue
+        if path.suffix.lower() not in ('.json', '.jsonl') or not path.is_file():
+            continue
+        if path.name in ('PACKET.json', 'EVIDENCE.json'):
+            continue
+        raw = path.read_bytes()
+        if not any(iid.encode() in raw for iid in ids):
+            continue
+        rel = path.relative_to(repo).as_posix()
+        if path.resolve() in control_paths:
+            qualification = control_paths[path.resolve()]
+            for key in ('reveal_path', 'freeze_path'):
+                pin(qualification[key])
+            pins[rel] = sha(raw)
+            excluded_controls.append({'path': rel, 'file_sha256': sha(raw), **qualification,
+                'binding': 'exact' if sha(raw) == qualification['expected_frozen_file_sha256'] else 'changed_control_copy',
+                'state': 'control_excluded_from_research_assertions'})
+            continue
+        try:
+            values = [(f'line:{n}', json.loads(line)) for n, line in enumerate(raw.splitlines(), 1) if line.strip()] if path.suffix == '.jsonl' else [('', json.loads(raw))]
+        except (ValueError, UnicodeError) as exc:
+            # Ignore unrelated research formats; surface malformed candidate input.
+            if 'claim' in path.name.lower() or 'review' in path.name.lower() or MANIFEST.search(path.name):
+                pins[rel] = sha(raw)
+                issues.append({'path': rel, 'issue': 'unreadable research artifact', 'detail': str(exc)})
+            continue
+        for location, value in values:
+            if not isinstance(value, dict) or value.get('schema') == SCHEMA or ('prior_research' in value and value.get('schema') != 'eo-source-blocked-work/v1'):
+                continue
+            iid = value.get('instrument_id')
+            record = {'path': rel, 'pointer': location, 'file_sha256': sha(raw)}
+            if 'review' in value.get('schema', '').lower() or value.get('reviewer'):
+                for pointer, row in walk(value):
+                    target = row.get('instrument_id')
+                    if pointer and target in ids and 'verdict' in row and 'claim_sha256' in row:
+                        pins[rel] = sha(raw)
+                        inherited = {k: value[k] for k in REVIEW_KEYS if k in value}
+                        inherited.update(claim_path=value.get('claim_path', value.get('claim_file')),
+                                         claim_file_sha256=value.get('claim_file_sha256'))
+                        reviews[target].append(({**record, 'pointer': location + pointer}, {**inherited, **row}))
+            if iid in ids and value.get('schema') == 'eo-lifecycle-claim/v1':
+                pins[rel] = sha(raw)
+                key = canonical_sha(value)
+                entry = claims[iid].setdefault(key, {'claim': value, 'locations': []})
+                entry['locations'].append(record)
+            elif iid in ids and ('verdict' in value and ('claim_sha256' in value or 'claim_path' in value)):
+                pins[rel] = sha(raw)
+                reviews[iid].append((record, value))
+            elif iid in ids and (value.get('schema', '').endswith('checkpoint/v1') or path.name == 'IN_PROGRESS.json' or value.get('schema') == 'eo-source-blocked-work/v1'):
+                pins[rel] = sha(raw)
+                checkpoint = {k:v for k,v in value.items() if k != 'prior_research'}
+                dependencies = [pin(item['path'], item['sha256']) for _,item in walk(checkpoint)
+                                if isinstance(item.get('path'), str) and item.get('sha256')]
+                dependencies.extend(pin(rel) for rel in checkpoint.get('result_paths', []) if isinstance(rel, str))
+                checkpoints[iid].append({**record, 'record': checkpoint, 'dependency_pins': dependencies})
+            elif MANIFEST.search(path.name):
+                for target in ids & set(value):
+                    if isinstance(value[target], dict) and 'version' in value[target]:
+                        pins[rel] = sha(raw)
+                        manifests[target].append({**record, 'pointer': location + '/' + target, 'record': value[target]})
+                for pointer, row in walk(value):
+                    target = row.get('instrument_id')
+                    if target in ids and any(k in row for k in ('claim_sha256', 'canonical_claim_sha256', 'claim_path', 'produced', 'selected_version')):
+                        pins[rel] = sha(raw)
+                        manifests[target].append({**record, 'pointer': location + pointer, 'record': row})
+
+    result = {'schema': SCHEMA, 'notice': NOTICE, 'automatic_approvals': 0,
+              'whole_case_review_required': True, 'orders': {}, 'input_file_pins': pins,
+              'discovery_scope': 'Current materialized research files; unmaterialized work is not inferred absent. No Git history read.',
+              'discovery_issues': issues, 'excluded_control_records': excluded_controls}
+    for iid in sorted(ids):
+        versions = claims[iid]
+        active = []
+        for key, entry in versions.items():
+            for loc in entry['locations']:
+                if loc['path'].startswith('research/readiness/claims/'):
+                    active.append((loc['path'], int(loc['pointer'].split(':')[-1]), key))
+        current_key = max(active)[2] if active else None
+        current = versions[current_key]['claim'] if current_key else None
+        base_clauses = (current or {}).get('operative_clauses', dossiers[iid].get('clauses', []))
+        summaries = []
+        all_assertions = {}
+        for key, entry in sorted(versions.items()):
+            claim = entry['claim']
+            sources = {}
+            for pointer, item in walk(claim):
+                if item.get('text_path') and item.get('text_sha256'):
+                    source_id = canonical_sha({k: item.get(k) for k in ('url','sha256','text_path','text_sha256','page_or_item')})
+                    if source_id not in sources:
+                        sources[source_id] = {k: item[k] for k in ('url', 'sha256', 'text_path', 'text_sha256', 'page_or_item') if k in item}
+                        sources[source_id]['held_text'] = pin(item['text_path'], item['text_sha256'])
+                        sources[source_id]['raw_source_verification'] = 'not_reestablished_by_preparation'
+                    sources[source_id].setdefault('claim_pointers', []).append(pointer)
+            attached = []
+            for record, review in reviews[iid]:
+                matching_hash = review.get('claim_sha256') == key
+                matching_path = any(loc['path'] == review.get('claim_path') for loc in entry['locations'])
+                if not matching_hash and not matching_path:
+                    continue
+                expected_file = review.get('claim_file_sha256')
+                file_matches = any((not review.get('claim_path') or loc['path'] == review['claim_path']) and
+                    (not expected_file or loc['file_sha256'] == expected_file) for loc in entry['locations'])
+                exact = matching_hash and file_matches
+                dependencies = []
+                for _, item in walk(review):
+                    if isinstance(item.get('path'), str) and item.get('sha256'):
+                        dependencies.append(pin(item['path'], item['sha256']))
+                attached.append({**record, **{k: v for k, v in review.items() if k in REVIEW_KEYS or k.endswith('_approved') or k.endswith('_certified')},
+                    'reviewed_claim_sha256': review.get('claim_sha256'),
+                    'reviewed_claim_file_sha256': expected_file,
+                    'version_binding': 'exact' if exact else 'stale_or_mismatched',
+                    'dependency_pins': dependencies,
+                    'review_authority': 'recorded_assessment_only_no_inherited_approval'})
+            def compact(value):
+                if isinstance(value, dict):
+                    if value.get('text_path') and value.get('text_sha256'):
+                        sid = canonical_sha({k:value.get(k) for k in ('url','sha256','text_path','text_sha256','page_or_item')})
+                        return {'source_id': sid, 'quoted_parts_sha256': canonical_sha(value.get('quoted_parts', []))}
+                    return {k: compact(v) for k,v in value.items()}
+                return [compact(v) for v in value] if isinstance(value, list) else value
+            scopes = []
+            for number, clause in enumerate(claim.get('operative_clauses', [])):
+                matches = [base for base in base_clauses if clause_key(base) == clause_key(clause)
+                           and clause_key(clause)[0] and all(re.fullmatch(r'[0-9a-f]{64}', str(h or ''))
+                           for h in (clause_key(clause)[1][0], clause_key(clause)[1][2]))]
+                proposition = {field: clause.get(field) for field in
+                    ('state_at_cutoff', 'first_end', 'current_predicate', 'later_events')}
+                # Quotes are already located by source pointers. Preserve all proposition
+                # qualifiers but collapse repeated source dictionaries to compact IDs.
+                delta = []
+                if matches:
+                    delta = [field for field in proposition if clause.get(field) != matches[0].get(field)]
+                scopes.append({'scope_id': clause.get('scope_id'), 'claim_pointer': '/operative_clauses/' + str(number),
+                    'original_quote_sha256': sha(str(clause_key(clause)[0]).encode()),
+                    'original_source': compact(clause.get('original_source', {})),
+                    'alignment': 'exact_quote_and_source' if matches else 'scope_or_source_reconciliation_required',
+                    'aligned_current_scopes': [base.get('scope_id') for base in matches],
+                    'proposition': compact(proposition), 'different_current_fields': delta})
+                ck = canonical_sha(clause_key(clause))
+                assertion = {k: compact(v) for k, v in proposition.items() if v is not None and v != []}
+                all_assertions.setdefault(ck, []).append({'claim_sha256': key, 'scope_id': clause.get('scope_id'), 'assertion': assertion})
+            summaries.append({'claim_sha256': key, 'locations': entry['locations'], 'current_canonical': key == current_key,
+                'research_rationale': claim.get('research_rationale'), 'whole_order_end': compact(claim.get('whole_order_end')),
+                'savings_residuals': compact(claim.get('savings_residuals')),
+                'reported_material_gaps': claim.get('unresolved_material_gaps', []),
+                'reviews': attached, 'scopes': scopes, 'sources': sources})
+        conflicts = []
+        for group in all_assertions.values():
+            fields = sorted({field for a in group for field in a['assertion'] if
+                len({canonical_sha(other['assertion'][field]) for other in group if field in other['assertion']}) > 1})
+            if fields:
+                conflicts.append({'kind': 'different_assertions_same_quote_and_source', 'fields': fields,
+                    'versions': [{'claim_sha256': a['claim_sha256'], 'scope_id': a['scope_id']} for a in group],
+                    'resolution': 'unresolved_by_preparation'})
+        unattached = [{**r, 'record': v, 'version_binding': 'claim_version_not_discovered'} for r,v in reviews[iid]
+                      if not any(v.get('claim_sha256') == key or any(loc['path'] == v.get('claim_path') for loc in e['locations']) for key,e in versions.items())]
+        result['orders'][iid] = {'state': 'prior_work_located' if summaries or checkpoints[iid] or reviews[iid] or manifests[iid] else 'no_prior_research_located',
+            'current_canonical_claim_sha256': current_key, 'versions': summaries,
+            'unattached_reviews': unattached, 'selection_and_checkpoint_records': manifests[iid],
+            'unfinished_work': checkpoints[iid], 'conflicting_versions': conflicts,
+            'remaining_delta': {'current_reported_gaps': (current or {}).get('unresolved_material_gaps', []),
+                'prior_differences_require_scope_source_proposition_review': True,
+                'new_legal_gaps_invented': [], 'dossier_fingerprint': dossiers[iid].get('fingerprint')}}
+    result['input_file_pins'] = dict(sorted(pins.items()))
+    return result
+
+
+def brief(context, iid):
+    """Small entry point; exact qualifications and all propositions stay in PACKET."""
+    order = context['orders'][iid]
+    versions = []
+    for version in order['versions']:
+        versions.append({k: version[k] for k in ('claim_sha256', 'locations', 'current_canonical',
+            'research_rationale', 'reported_material_gaps')} | {
+            'source_pins': [{k: source[k] for k in ('text_path','text_sha256','sha256','held_text')}
+                            for source in version['sources'].values()],
+            'review_dependency_issues': [{'review_path': r['path'], **dep} for r in version['reviews']
+                                         for dep in r['dependency_pins'] if dep['state'] != 'match'],
+            'reviews': [{k: r[k] for k in ('path', 'pointer', 'file_sha256', 'candidate_version',
+                'verdict', 'verdict_scope', 'version_binding', 'review_kind', 'scope', 'limits_retained',
+                'full_lifecycle_approved') if k in r} for r in version['reviews']],
+            'scopes': [{k: c[k] for k in ('scope_id', 'alignment', 'aligned_current_scopes', 'different_current_fields')}
+                       for c in version['scopes']]})
+    return {'notice': context['notice'], 'state': order['state'], 'versions': versions,
+            'selection_and_checkpoint_records': order['selection_and_checkpoint_records'],
+            'unfinished_work': order['unfinished_work'], 'conflicting_versions': order['conflicting_versions'],
+            'remaining_delta': order['remaining_delta'],
+            'full_context': 'PACKET.json#/prior_research/orders/' + iid}

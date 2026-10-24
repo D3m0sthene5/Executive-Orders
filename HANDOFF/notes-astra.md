@@ -1,3 +1,15 @@
+## 2026-10-24 — cumulative research, two reconciled histories
+
+Isolated from PR56 head9ecddf9 on `astra/cumulative-research-20261024`; main pinned d66f404, PR55 merged, PR57 left separate. Active main run40056070366 observed; CLAIM_KIT_LOCK empty. No merge or other producer notes/statuses changed.
+
+EO11782 selected October18v4 was absent from ordinary preparation. Existing prepare/resume now exposes exact prior versions/reviews, selected checkpoints, stale/rejected findings and scope/source/proposition deltas. Added existing research materialization roots;29 tests pass. Actual before/after packet proof plus final regenerated current packet under `research/excavator/astra-cumulative-2026-10-24/preparation`.
+
+EO11782v5 and EO9452v3 independently source-reviewed in a separate same-family context, exact after-reveal confirmation. Both planted defects caught: omitted Treasury support and obsolete amendment-first-end. EO11782 carries prior succession/FACA/Bank/savings/search analysis with explicit EO12212 citation. EO9452 corrects first cessation to1981-02-15 under current amendment ruling. Actual checker41/22heldrefs and52/39exactquotes; actual tracker both6/6ready for human review. Two recovered/reconciled proposals newly ready, zero new statutory discoveries, no human certification or status edits. Other fivePR56partial lines preserved.
+
+Five exact missing rawPDFs recovered through existing bounded retention route (6requests,131563699bytes,60.348s);63downstream references across11distinct heldobjects. Failed sparse checks preserved, then corrected by unchanged tracked-input materialization. Durable publication/run status and exact PR go in campaign PUBLICATION.json.19casecrosswalk verifies selected hashes;4PR56overlaps;17other historical cases remain qualified priorwork. No invented tokens/dollars/hours-saving claim; JuntoC-20261024-2owner-seeded observation only. Reviewer observed370.782s partial timed interval; aggregate time/tokens unknown.
+
+Detailed result: `research/excavator/astra-cumulative-2026-10-24/REPORT.md`. Exact tracker resumption: `python research/excavator/astra-cumulative-2026-10-24/run_consumers.py`. Nextcheckpoint: remaining11022/11256/11829reconciliations, preserving current amendment rule and prior rejection reasons. Do not automatically promote their oldpartial drafts.
+
 ## 2026-10-24 UTC: PR56 source-first partial research; campaign still incomplete
 
 - **Delivered:** From merged PR55/main `d66f4040`, [draft PR56](https://github.com/D3m0sthene5/Executive-Orders/pull/56) carries six independently source-reviewed partial claims for EO11022,11256,11376,11782,11829,11853 in `research/readiness/claims/astra-source-first-2026-10-24.jsonl`. Twenty full original sections; one complete EO12379 analysis reused across six targets; one corrected EO12106 membership event reused across two. Eight existing raw objects, 52 source fields; no new software/acquisition/retention. Reservations released; producer ownership now follows that file.

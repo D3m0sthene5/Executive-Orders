@@ -66,35 +66,36 @@ def material_source_results(value):
     return value
 
 
-def work_fingerprint(dossier, requests, route_fingerprint, source_results=None):
+def work_fingerprint(dossier, requests, route_fingerprint, source_results=None, prior_research=None):
     if not isinstance(route_fingerprint, str) or not re.fullmatch(r'[0-9a-f]{64}', route_fingerprint):
         raise ValueError('route_fingerprint must be a SHA-256 of relevant route code/configuration')
     # Never trust a stale embedded fingerprint to hide changed evidence.
     return digest({'dossier_content':{k:v for k,v in dossier.items() if k!='fingerprint'},
                    'source_requests':requests, 'route_fingerprint':route_fingerprint,
-                   'source_results':material_source_results(source_results or [])})
+                   'source_results':material_source_results(source_results or []),
+                   'prior_research':prior_research})
 
 
-def blocked_checkpoint(dossier, requests, route_fingerprint, reason, result_paths, source_results=None):
+def blocked_checkpoint(dossier, requests, route_fingerprint, reason, result_paths, source_results=None, prior_research=None):
     if not reason or not requests or not result_paths:
         raise ValueError('blocked attempt needs a reason, unresolved requests and preserved result paths')
     return {'schema':'eo-source-blocked-work/v1', 'instrument_id':dossier['instrument_id'],
         'state':'source_blocked', 'reason':reason, 'source_requests':requests,
         'result_paths':result_paths, 'route_fingerprint':route_fingerprint,
         'source_results':material_source_results(source_results or []),
-        'input_fingerprint':work_fingerprint(dossier, requests, route_fingerprint, source_results)}
+        'input_fingerprint':work_fingerprint(dossier, requests, route_fingerprint, source_results, prior_research)}
 
 
-def resume_decision(checkpoint, dossier, requests, route_fingerprint, source_results=None):
+def resume_decision(checkpoint, dossier, requests, route_fingerprint, source_results=None, prior_research=None):
     if checkpoint.get('schema') != 'eo-source-blocked-work/v1' or checkpoint.get('state') != 'source_blocked':
         raise ValueError('only a recorded source-blocked attempt can be deferred')
     if checkpoint.get('instrument_id') != dossier.get('instrument_id'):
         raise ValueError('checkpoint belongs to another order')
-    current = work_fingerprint(dossier, requests, route_fingerprint, source_results)
+    current = work_fingerprint(dossier, requests, route_fingerprint, source_results, prior_research)
     changed = current != checkpoint.get('input_fingerprint')
     return {'instrument_id':dossier['instrument_id'],
         'action':'reopen' if changed else 'defer_unchanged_source_block',
-        'reason':'Relevant evidence/request/route changed.' if changed else 'No relevant input changed; retain the unsuccessful attempt and wait for evidence.',
+        'reason':'Relevant evidence/request/route/prior research changed.' if changed else 'No relevant input changed; retain the unsuccessful attempt and wait for evidence.',
         'previous_input_fingerprint':checkpoint.get('input_fingerprint'), 'input_fingerprint':current,
         'result_paths':checkpoint.get('result_paths', []), 'legal_conclusion':None}
 
@@ -103,6 +104,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('command', choices=['checkpoint', 'resume'])
     p.add_argument('--dossier', type=Path, required=True)
+    p.add_argument('--repo', type=Path, default=Path(__file__).resolve().parents[2])
     p.add_argument('--requests', type=Path, required=True, help='JSON array of validated unresolved requests')
     p.add_argument('--source-results', type=Path, help='JSON array of relevant source receipts, including new acquisitions before corpus rebuild')
     p.add_argument('--routes-sha256', required=True)
@@ -116,11 +118,14 @@ def main(argv=None):
     source_results = json.loads(a.source_results.read_text()) if a.source_results else []
     if not isinstance(requests, list): p.error('--requests must contain a JSON array')
     if not isinstance(source_results, list): p.error('--source-results must contain a JSON array')
+    from prior_research import collect
+    prior = collect(a.repo, {dossier['instrument_id']: dossier}, exclude=[a.out, a.checkpoint])
     if a.command == 'checkpoint':
-        result = blocked_checkpoint(dossier, requests, a.routes_sha256, a.reason, a.result, source_results)
+        result = blocked_checkpoint(dossier, requests, a.routes_sha256, a.reason, a.result, source_results, prior)
     else:
         if not a.checkpoint: p.error('resume requires --checkpoint')
-        result = resume_decision(json.loads(a.checkpoint.read_text()), dossier, requests, a.routes_sha256, source_results)
+        result = resume_decision(json.loads(a.checkpoint.read_text()), dossier, requests, a.routes_sha256, source_results, prior)
+    result['prior_research'] = prior
     if a.out.exists(): p.error('use a new result path; previous attempts are retained')
     a.out.parent.mkdir(parents=True, exist_ok=True)
     a.out.write_text(json.dumps(result, sort_keys=True, indent=2) + '\n')
