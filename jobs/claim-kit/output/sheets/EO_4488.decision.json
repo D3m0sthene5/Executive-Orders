@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "f4a521b6308f45a46f5c6efdd569e30d3622c280828404f046f54729a55d0530",
+  "dossier_sha256": "331431bdc743a2dd173042dfcf89a421d0d7bef8d454be1058db4793f6e9fa18",
   "instrument_id": "EO:4488",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,45 @@
   "schema": "eo-claim-kit-decision/v1",
   "search_ids": [],
   "unresolved_material_gaps": [
-    "Held representation is a lead; complete official original requires confirmation/acquisition.",
-    "Official-source page location requires a separate page/image check before original confirmation."
-  ]
+    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+  ],
+  "working_text": {
+    "confirmations": [
+      {
+        "complete_text_confirmed": false,
+        "grade": "archival_replica_scan_pending_codebook",
+        "identity_confirmed": false,
+        "instrument_id": "EO:4488",
+        "pages_confirmed": false,
+        "sha256": "2f6531425b14e56cb938e65848a6c692061912a1c073bf1469b06d3c11f3205a",
+        "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4488.txt",
+        "text_sha256": "4cc16891ecc35bcc201f39ca3faccca92c649898bce0cb28d7e8d12505792844"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "derivative_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8820",
+        "pages_confirmed": false,
+        "sha256": "18f2d9ea9ee2ce316f4540987c39f9329565f0a1805e447d271f1fb1b42e7cc0",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8820-18f2d9ea9e.txt",
+        "text_sha256": "2319c04fa488b462a0b56f0aaa3755eb07e3202c1c4f6a25b9b8a1de78858aee"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "mirror_transcription",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8820",
+        "pages_confirmed": false,
+        "sha256": "18f2d9ea9ee2ce316f4540987c39f9329565f0a1805e447d271f1fb1b42e7cc0",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8820-amending-the-foreign-service-regulations-the-united-states.txt",
+        "text_sha256": "538a6a365af2f63b94fa69e17c32a54c7a1233bdb5e6fac043b192684568f2f3"
+      }
+    ],
+    "quotation_recheck_required": true,
+    "replacement_required": true,
+    "ruling": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+    "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved."
+  }
 }

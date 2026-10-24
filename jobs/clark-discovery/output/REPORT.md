@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-10-22T19:42:34Z. Leads only; no census, count or identity changes.
+Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -63,7 +63,7 @@ Generated 2026-10-22T19:42:34Z. Leads only; no census, count or identity changes
 
 ## Cited but unknown (plausible rows first)
 
-295 (cited id, citing document) pairs from 30726 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 59, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+295 (cited id, citing document) pairs from 30725 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 59, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -115,7 +115,7 @@ Generated 2026-10-22T19:42:34Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-80 of 147 unknowns advanced this run (0 never searched yet); 843 of 1100 requests used. 2632 hits on file, 83 pages confirmed to name the order (38 unknowns): `WEB_LEADS.csv`. 44 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+80 of 147 unknowns advanced this run (0 never searched yet); 801 of 1100 requests used. 2860 hits on file, 84 pages confirmed to name the order (39 unknowns): `WEB_LEADS.csv`. 45 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 234 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 

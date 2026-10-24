@@ -830,7 +830,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "5b2b1982849465cec8e096592292ec35b84f62aedb3d3adbee10c316dad34709",
+  "dossier_sha256": "7f48b92f42b8822cbaab5e9f7e0b1195e18eadfc508eba00d0c7763160b7da79",
   "instrument_id": "EO:4465",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -845,9 +845,27 @@
   "schema": "eo-claim-kit-decision/v1",
   "search_ids": [],
   "unresolved_material_gaps": [
-    "Held representation is a lead; complete official original requires confirmation/acquisition.",
     "Large actor context must be read at actor-texts/EO_7968.json before deciding scope/savings.",
     "Official-source page location requires a separate page/image check before original confirmation.",
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
     "target provision not located: EO:7968"
-  ]
+  ],
+  "working_text": {
+    "confirmations": [
+      {
+        "complete_text_confirmed": false,
+        "grade": "archival_replica_scan_pending_codebook",
+        "identity_confirmed": false,
+        "instrument_id": "EO:4465",
+        "pages_confirmed": false,
+        "sha256": "39375677b0ad394de4cb196b5ce3a90f414f96d0146b8c92b62f5ad247b39cd5",
+        "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4465.txt",
+        "text_sha256": "a335df16961a7003f831622cfbfec8490cfd379b98b69c08421def78f6c27eee"
+      }
+    ],
+    "quotation_recheck_required": true,
+    "replacement_required": true,
+    "ruling": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+    "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved."
+  }
 }

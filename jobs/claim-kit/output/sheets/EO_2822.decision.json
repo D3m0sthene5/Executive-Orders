@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9ddcb19aff16c08ac315013307e20b5fa7f01e12cb27f5988a79689e2f3a4a7c",
+  "dossier_sha256": "e92a6b74037bab1155ef22965b2c0a5479dad6e78331f23c20bb9963bdc2277d",
   "instrument_id": "EO:2822",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -33,8 +33,36 @@
   "schema": "eo-claim-kit-decision/v1",
   "search_ids": [],
   "unresolved_material_gaps": [
-    "Held representation is a lead; complete official original requires confirmation/acquisition.",
     "Official-source page location requires a separate page/image check before original confirmation.",
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
     "target provision not located: EO:3461"
-  ]
+  ],
+  "working_text": {
+    "confirmations": [
+      {
+        "complete_text_confirmed": false,
+        "grade": "archival_replica_scan_pending_codebook",
+        "identity_confirmed": false,
+        "instrument_id": "EO:2822",
+        "pages_confirmed": false,
+        "sha256": "e05e54895f074a31d1a3d66a4469034629792a11032ae494b57c4be8d7ba54d3",
+        "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2822.txt",
+        "text_sha256": "d7438b25e4603b8c0e6a37f2131c1b1ab7a0bb9378639ba4b9109b7afbad7891"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:3461",
+        "pages_confirmed": false,
+        "sha256": "83a76e3cce9aaa41d76257329ee37df73dc70815c479bb69310a372835f2ed7f",
+        "text_path": "jobs/csc-annual-reports/output/texts/EO_3461.txt",
+        "text_sha256": "636711b09cca359afcd8bfb3160718611ece8bf958c0570bdfc9590b466c560d"
+      }
+    ],
+    "quotation_recheck_required": true,
+    "replacement_required": true,
+    "ruling": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+    "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved."
+  }
 }
