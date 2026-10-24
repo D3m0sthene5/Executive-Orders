@@ -7,7 +7,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 - Claims checked: 389 (parse errors: 0)
 - Orders with a claim (latest claim per order): 388
 - All checks passed: 299
-- Mechanical checks passed: 384; with unverifiable items: 4; failed: 1
+- Mechanical checks passed: 384; with unverifiable items: 3; failed: 2
 - Structural gate passed: 304
 
 ## Source references
@@ -114,7 +114,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:2` | EO:12743 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:4` | EO:10494 | quote_verbatim:not_found@operative_clauses[1].original_operative_text; quote_verbatim:not_found@operative_clauses[1].original_source.quote; quote_verbatim:not_found@operative_clauses[2].original_operative_text; quote_verbatim:not_found@operative_clauses[2].original_source.quote; quote_verbatim:not_found@operative_clauses[3].original_operative_text; quote_verbatim:not_found@operative_clauses[3].original_source.quote ... |
-| `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | unverifiable items |
+| `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source; working_text_policy:invalid_working_text@whole_order_end.source ... |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2` | EO:10926 | unverifiable items |
 | `research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl:1` | EO:10631 | unverifiable items |
 

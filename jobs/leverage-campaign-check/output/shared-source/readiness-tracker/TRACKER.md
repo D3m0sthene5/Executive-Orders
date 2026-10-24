@@ -93,7 +93,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 - csc-annual-reports (lead only, never counted as the original): 798
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - opus-media-match status: 1,155
-- source-ladder: 609
+- source-ladder: 632
 - claim-checker: 388
 - machine later-source search: 6,938
 
