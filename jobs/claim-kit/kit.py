@@ -110,6 +110,7 @@ def main(argv=None):
     s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path)
+    s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
     s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
     s=sub.add_parser('overlay-prepare');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
@@ -122,6 +123,11 @@ def main(argv=None):
     s=sub.add_parser('release');s.add_argument('--agent',required=True);s.add_argument('instrument_ids',nargs='+')
     a=p.parse_args(argv);repo=a.repo.resolve();out=(a.output or repo/'jobs/claim-kit/output').resolve()
     try:
+        if a.command=='complete':
+            from completion import complete
+            result=complete(repo,a.manifest,a.write,publish=a.publish)
+            print(json.dumps({k:v for k,v in result.items() if k!='outcomes'},ensure_ascii=False,indent=2))
+            return int(result['exceptions']>0)
         if a.command.startswith('overlay-'):
             import status_overlay as overlay
             if a.command in ('overlay-assemble','overlay-check'):
