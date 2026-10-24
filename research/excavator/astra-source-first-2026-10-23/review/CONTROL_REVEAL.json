@@ -1,0 +1,64 @@
+{
+  "frozen_verdict_sha256": "d468811b93d3ebba7b8c2d9a726c6f05b3e919040d4fbec1bcc6c8398155910c",
+  "key": {
+    "packet_sha256": "f97d697668c1a77df9700fcb777a8cfe85e9940c6c3022cf9f4750c7c25a2e9e",
+    "originals_file_sha256": "9f791bd6bc90853416f144a175206deadf58585f8dc487709b6eb0a76ec58238",
+    "review_kind": "same-family AI review; no human or cross-family review claimed",
+    "records": [
+      {
+        "record_id": "R-2900971592f2",
+        "instrument_id": "EO:11256",
+        "packet_record_sha256": "87f3fcc6bbc7787b36c1b513eaf91a5c9991909e0f8355572c769c7494939f87",
+        "original_record_sha256": "b12c75fca64f7326f314408fabf8c377a8b1ed92711f286eb0ec6c8f7a318d85",
+        "is_control": true,
+        "kind": "conditional_termination_misinterpretation",
+        "mutation": "Kept exact section 6 quote but rewrote reasoning to deny its express conditional termination and to treat actual report submission as legally irrelevant, invoking the report-deadline rule incorrectly.",
+        "expected_detection": "Reject reasoning; section 6 expressly terminates both bodies ninety days after actual final-report submission, requiring fact-specific trigger review."
+      },
+      {
+        "record_id": "R-314c6f8722be",
+        "instrument_id": "EO:11782",
+        "packet_record_sha256": "8dcd90248edb92d10af89ceabe6555e6299f4015317c1b865f529f07ca90bc47",
+        "original_record_sha256": "ebff3427a2734bb0b33ac3cd9cf25907f2d1b2c959426b5775833203700e96d7",
+        "is_control": true,
+        "kind": "material_operative_omission",
+        "mutation": "Removed operative section 3 requiring Treasury administrative support and its inventory override; changed inventory prose to two sections and removed that duty from rationale.",
+        "expected_detection": "Reject incomplete operative inventory; restore Treasury support section 3 from held original."
+      },
+      {
+        "record_id": "R-2e9f5e42c4bd",
+        "instrument_id": "EO:11022",
+        "packet_record_sha256": "ece492c2d8bf2d49deb619594e903a3fcf8f1f5c41171e9b272c8722d4d2f0aa",
+        "original_record_sha256": "9a3e188016587969a02b3687f2b8c4f41e45dbb2e5769ab07cce71a5b115a4e9",
+        "is_control": false
+      },
+      {
+        "record_id": "R-50344277c39f",
+        "instrument_id": "EO:11853",
+        "packet_record_sha256": "2dd21caf68ae14737e743b03d84b3253714d8aa525efd4b071c269b8eaec9e0f",
+        "original_record_sha256": "a32b0f3532ae0be11c57435ecc3b97e49b6fe0eab03b442a13090a78a88bd767",
+        "is_control": false
+      },
+      {
+        "record_id": "R-9508da78a0ae",
+        "instrument_id": "EO:11376",
+        "packet_record_sha256": "6bb65728040e305a8c2e6ce877e0e573f2aa183105946b150d0f44ecc2c85c4e",
+        "original_record_sha256": "dde75578efeda9dc7dcbb736475c9deace65043aeaa231d6d1aa560b1bac44d5",
+        "is_control": false
+      },
+      {
+        "record_id": "R-81d052f9eb4e",
+        "instrument_id": "EO:11829",
+        "packet_record_sha256": "529211cda2af484e8b49578e153fb8ea7a056302a6d178c9f4373d222fac0508",
+        "original_record_sha256": "d8ce722fbb7a4c64b7a95b7dc372067d1ba66f233f7f4f8ac0a55bc3d11ab247",
+        "is_control": false
+      }
+    ]
+  },
+  "both_planted_material_errors_detected": true,
+  "unplanted_producer_errors_detected": [
+    "EO:11022",
+    "EO:11376"
+  ],
+  "interpretation": "Control detection on two deliberate mutations is not an error-rate estimate. Actual producer errors were rejected before canonical publication. No expansion based on this sample."
+}
