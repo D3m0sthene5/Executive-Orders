@@ -58,7 +58,7 @@ def obligations(instrument_id, clauses, terms, acts):
 
 def material_source_results(value):
     """Retry timing alone is not new evidence; hashes, status and failures are."""
-    transient = {'retrieved_utc','attempted_utc','fetched_utc','retrieved_at','accessed_on',
+    transient = {'retrieved_utc','attempted_utc','fetched_utc','retrieved_at','accessed_on','time_utc',
                  'elapsed_seconds','duration_seconds','wall_seconds','retry_count','carried_forward'}
     if isinstance(value, dict):
         return {k:material_source_results(v) for k,v in value.items() if k not in transient}

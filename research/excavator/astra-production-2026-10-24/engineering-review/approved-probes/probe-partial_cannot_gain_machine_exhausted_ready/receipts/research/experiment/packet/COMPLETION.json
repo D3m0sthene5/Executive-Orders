@@ -1,0 +1,58 @@
+{
+  "agent": "producer",
+  "controls": [
+    {
+      "adjudication": {
+        "path": "research/experiment/packet/CONTROL_ADJUDICATION.json",
+        "sha256": "d24cc281975af299935c7a8edd36361d51b2da69127e64acf38fae86ba41101f"
+      },
+      "instrument_id": "EO:1",
+      "planted_claim_sha256": "dad44437fbf9839d13ff04835566c73ee9099c165eac9469cf504857589d5245",
+      "review": {
+        "path": "research/experiment/packet/PLANT_REVIEW.json",
+        "sha256": "45e40eb8d91bb3d72a45773e71bf0687e1fa86efd84a8f850ab88ae6f87b02be"
+      },
+      "seed": {
+        "path": "research/experiment/packet/SEED_RECEIPT.json",
+        "sha256": "0d236c07352cfad145182d0288ff2aa651ea2143aa70a153a4a2d01831055c15"
+      }
+    }
+  ],
+  "independence_requirement": "same_family_separate_context",
+  "members": [
+    {
+      "after_reveal_review": {
+        "path": "research/experiment/packet/AFTER_REVEAL.json",
+        "sha256": "77fe993e36055478319550d4b60cda792d812ace5a0a3a41074ea9d846b38878"
+      },
+      "claim": {
+        "line": 1,
+        "path": "research/experiment/packet/PRODUCER.jsonl",
+        "sha256": "add3f70bd66f374aeb501a400555c045760b22ed6e5d59d1814a5001ea28b7e9"
+      },
+      "claim_sha256": "8bd8f9ab287f0fdb835e2cc4ba786ec19767f01d555e01cbed67a6334f33f218",
+      "instrument_id": "EO:1",
+      "outcome": "submit",
+      "packet": {
+        "path": "research/experiment/packet/PACKET.json",
+        "sha256": "9bb9a5555dca1d5507b5e93bdb367ed421ac074a5a9d6a87630fed145c0f09b3"
+      },
+      "publication_kind": "partial_research",
+      "review": {
+        "path": "research/experiment/packet/REVIEW.json",
+        "sha256": "405bd27a88d3447984480dfe30c61a3c9b1e9b24f4d981d4ad7e3d6a6555d4c6"
+      }
+    },
+    {
+      "instrument_id": "EO:2",
+      "outcome": "blocked",
+      "reason": "Synthetic control-only member."
+    }
+  ],
+  "producer_model_family": "OpenAI",
+  "publication": {
+    "mode": "own_claims",
+    "path": "research/readiness/claims/producer-2026-10-24.jsonl"
+  },
+  "schema": "eo-claim-kit-completion/v1"
+}

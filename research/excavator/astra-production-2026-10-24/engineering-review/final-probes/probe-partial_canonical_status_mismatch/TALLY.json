@@ -1,0 +1,140 @@
+{
+  "attempted": 2,
+  "claims_published": 0,
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:1",
+      "planted_claim_sha256": "dad44437fbf9839d13ff04835566c73ee9099c165eac9469cf504857589d5245",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 1,
+    "rejected_mechanical": 1
+  },
+  "eligible": [],
+  "eligible_per_attempt": 0.0,
+  "exceptions": 1,
+  "finished_utc": "2026-10-24T16:49:43.565984+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": true,
+      "checker": [
+        {
+          "all_checks_passed": false,
+          "check_counts": {
+            "date_after_signing": {},
+            "date_valid": {
+              "pass": 4
+            },
+            "factual_event_policy": {},
+            "order_exists": {
+              "pass": 2
+            },
+            "quote_verbatim": {
+              "pass": 4
+            },
+            "source_held": {
+              "pass": 3
+            },
+            "source_identity": {
+              "pass": 2
+            },
+            "structural_gate": {
+              "fail": 4
+            },
+            "working_text_policy": {}
+          },
+          "claim_key": "research/experiment/packet/complete/CLAIMS.selected.jsonl:1",
+          "claim_sha256": "8bd8f9ab287f0fdb835e2cc4ba786ec19767f01d555e01cbed67a6334f33f218",
+          "effective_for_tracker": true,
+          "failures": [
+            "structural_gate:whole_order_status_mismatch@-",
+            "structural_gate:clause_0_first_end@-",
+            "structural_gate:whole_order_end_evidence@-",
+            "structural_gate:unresolved_material_gaps@-"
+          ],
+          "failures_total": 4,
+          "file": "research/experiment/packet/complete/CLAIMS.selected.jsonl",
+          "gate_claim_level_errors": [
+            "unresolved_material_gaps"
+          ],
+          "gate_errors": [
+            "whole_order_status_mismatch",
+            "clause_0_first_end",
+            "whole_order_end_evidence",
+            "unresolved_material_gaps"
+          ],
+          "gate_passed": false,
+          "instrument_id": "EO:1",
+          "line": 1,
+          "mechanical_result": "pass",
+          "provisional_status": "yes",
+          "steps": {
+            "clause_inventory": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "counterevidence": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "ending_or_current_basis": {
+              "checker_passed": false,
+              "gate": "fail",
+              "mechanical": "absent",
+              "present": false
+            },
+            "original_text": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "savings_residuals": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            }
+          },
+          "text_evidence_tier": "original_supported",
+          "unverified": [],
+          "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+        }
+      ],
+      "claim_sha256": "8bd8f9ab287f0fdb835e2cc4ba786ec19767f01d555e01cbed67a6334f33f218",
+      "gate_errors": [
+        "clause_0_first_end",
+        "whole_order_end_evidence",
+        "unresolved_material_gaps"
+      ],
+      "instrument_id": "EO:1",
+      "outcome": "rejected_mechanical",
+      "publication_kind": "partial_research",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:2",
+      "outcome": "blocked",
+      "reason": "Synthetic control-only member."
+    }
+  ],
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 1,
+  "started_utc": "2026-10-24T16:49:43.357244+00:00",
+  "submitted": 1,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 0.20875428099952842
+}

@@ -1,0 +1,56 @@
+{
+  "baseline_ref": "d8613babe75bbee5ac6b46d9e756835a8d61c5ab",
+  "source": "research/excavator/mansfield-2026-10-22/USAGE.jsonl",
+  "by_role": {
+    "producer": {
+      "recorded_contexts_or_continuations": 3,
+      "transcript_tokens_proxy": 865279,
+      "tool_rounds": 326,
+      "summed_reported_agent_seconds": 3606.425
+    },
+    "planter": {
+      "recorded_contexts_or_continuations": 3,
+      "transcript_tokens_proxy": 344476,
+      "tool_rounds": 43,
+      "summed_reported_agent_seconds": 580.556
+    },
+    "reviewer": {
+      "recorded_contexts_or_continuations": 3,
+      "transcript_tokens_proxy": 589134,
+      "tool_rounds": 178,
+      "summed_reported_agent_seconds": 1614.364
+    },
+    "reviewer_after_reveal": {
+      "recorded_contexts_or_continuations": 3,
+      "transcript_tokens_proxy": 31199,
+      "tool_rounds": 15,
+      "summed_reported_agent_seconds": 265.525
+    },
+    "tally": {
+      "recorded_contexts_or_continuations": 3,
+      "transcript_tokens_proxy": 270960,
+      "tool_rounds": 36,
+      "summed_reported_agent_seconds": 327.175
+    },
+    "tally_after_reveal": {
+      "recorded_contexts_or_continuations": 2,
+      "transcript_tokens_proxy": 8471,
+      "tool_rounds": 7,
+      "summed_reported_agent_seconds": 98.497
+    }
+  },
+  "actual_input_tokens": null,
+  "actual_output_tokens": null,
+  "cached_input_tokens": null,
+  "coordinator_cost": null,
+  "elapsed_campaign_seconds": null,
+  "limitations": [
+    "harness_subagent_tokens are transcript-size proxies, not billed token usage",
+    "duration_ms summed agent durations is not wall-clock campaign elapsed or active human time",
+    "Mansfield tally semantic control adjudication remains required; all tally time is not removable",
+    "Different cases/models/outcomes preclude savings attribution from raw totals",
+    "COST.md counts 20 agent runs while USAGE.jsonl has 17 records including delta continuations; do not silently equate records to unique agents. Delta fields included."
+  ],
+  "cost_md_agent_runs": 20,
+  "usage_jsonl_records": 17
+}

@@ -5,6 +5,7 @@ No verdict, control catch, legal correction, or latest version is inferred here.
 """
 from collections import Counter
 from datetime import datetime, timezone
+import hashlib
 import importlib.util
 import json
 import os
@@ -42,12 +43,30 @@ class Inputs:
         self.repo = repo
         self.files = {}
         self.pins = {}
+        self.absent = set()
+        self.file_sets = {}
 
     def pin(self, rel, sha=None):
         path = batch.safe(self.repo, rel)
-        actual = batch.file_sha(path)
+        with path.open('rb') as stream:
+            actual = hashlib.file_digest(stream, 'sha256').hexdigest()
         require(sha is None or actual == sha, 'changed dependency: ' + rel)
         require(self.pins.setdefault(rel, actual) == actual, 'dependency changed during completion: ' + rel)
+
+    def optional(self, rel):
+        if batch.safe(self.repo, rel).exists():
+            self.pin(rel)
+        else:
+            self.absent.add(rel)
+
+    def claim_files(self):
+        self.pattern('research/readiness/claims/*.jsonl')
+
+    def pattern(self, pattern):
+        paths = sorted(p.relative_to(self.repo).as_posix() for p in self.repo.glob(pattern) if p.is_file())
+        self.file_sets[pattern] = paths
+        for rel in paths:
+            self.pin(rel)
 
     def file(self, ref):
         require(isinstance(ref, dict), 'file reference must be an object')
@@ -83,7 +102,13 @@ class Inputs:
         for rel, raw in self.files.items():
             require(batch.safe(self.repo, rel).read_bytes() == raw, 'input changed during completion: ' + rel)
         for rel, sha in self.pins.items():
-            require(batch.file_sha(batch.safe(self.repo, rel)) == sha, 'dependency changed during completion: ' + rel)
+            with batch.safe(self.repo, rel).open('rb') as stream:
+                require(hashlib.file_digest(stream, 'sha256').hexdigest() == sha, 'dependency changed during completion: ' + rel)
+        for rel in self.absent:
+            require(not batch.safe(self.repo, rel).exists(), 'dependency appeared during completion: ' + rel)
+        for pattern, paths in self.file_sets.items():
+            require(sorted(p.relative_to(self.repo).as_posix() for p in self.repo.glob(pattern) if p.is_file()) == paths,
+                    'input file set changed during completion: ' + pattern)
 
     def save(self, dest):
         for rel, raw in self.files.items():
@@ -91,7 +116,8 @@ class Inputs:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
         batch.dump(dest / 'INPUTS.json', {'preserved_receipts': {rel: batch.digest(raw) for rel, raw in sorted(self.files.items())},
-                                        'dependency_sha256': dict(sorted(self.pins.items()))})
+                                        'dependency_sha256': dict(sorted(self.pins.items())),
+                                        'absent_dependencies': sorted(self.absent), 'file_sets': self.file_sets})
 
 
 def review_record(inputs, ref, member, manifest, after_reveal=False):
@@ -106,7 +132,7 @@ def review_record(inputs, ref, member, manifest, after_reveal=False):
     requirement = manifest['independence_requirement']
     require(requirement in ('same_family_separate_context', 'different_family'), 'unknown independence requirement')
     if requirement == 'different_family':
-        require(family.casefold() != manifest['producer_model_family'].casefold(), 'different model family required')
+        require(family.strip().casefold() != manifest['producer_model_family'].strip().casefold(), 'different model family required')
     require(review.get('separate_context') is True, 'separate reviewer context required')
     require(review.get('scope') == member['publication_kind'], 'review scope differs from publication kind')
     wanted = 'upheld_after_reveal' if after_reveal else 'upheld'
@@ -122,15 +148,20 @@ def controls(inputs, manifest):
         iid, sha = control['instrument_id'], control['planted_claim_sha256']
         require(SHA.fullmatch(sha) is not None and (iid, sha) not in keys, 'duplicate/invalid planted version')
         keys.add((iid, sha))
-        planted = inputs.object(control['claim'])
-        require(planted.get('instrument_id') == iid and claim_sha(planted) == sha, 'planted version mismatch')
+        require('line' not in control['seed'] and 'pointer' not in control['seed'], 'seed receipt must be a standalone safe JSON object')
+        seed = inputs.object(control['seed'])
+        require(set(seed) == {'schema', 'instrument_id', 'planted_claim_sha256', 'genuine_claim_sha256', 'seeded_by'} and
+                seed.get('schema') == 'eo-claim-kit-control-seed/v1' and seed.get('instrument_id') == iid and
+                seed.get('planted_claim_sha256') == sha and SHA.fullmatch(seed.get('genuine_claim_sha256', '')) and
+                seed['genuine_claim_sha256'] != sha and seed.get('seeded_by'), 'safe exact control seed receipt required')
         review = inputs.object(control['review'])
         require(review.get('instrument_id') == iid and review.get('claim_sha256') == sha, 'control review version mismatch')
         require(review.get('review_kind') == 'independent_ai_source_review' and review.get('independent') is True and
                 review.get('separate_context') is True and review.get('reviewer') and review['reviewer'] != manifest['agent'] and
-                review.get('model_family'), 'independent control source review required')
+                review['reviewer'] != seed['seeded_by'] and isinstance(review.get('model_family'), str) and
+                review['model_family'].strip(), 'independent control source review required')
         if manifest['independence_requirement'] == 'different_family':
-            require(review['model_family'].casefold() != manifest['producer_model_family'].casefold(), 'different control reviewer family required')
+            require(review['model_family'].strip().casefold() != manifest['producer_model_family'].strip().casefold(), 'different control reviewer family required')
         adjudication = inputs.object(control['adjudication'])
         require(adjudication.get('instrument_id') == iid and adjudication.get('planted_claim_sha256') == sha,
                 'control adjudication version mismatch')
@@ -196,7 +227,8 @@ def selected_claim(inputs, member, manifest, planted, held):
     dossier = None
     if 'claim_kit' in claim:
         packet_ref = member['packet']
-        inputs.file(packet_ref)
+        require(Path(packet_ref['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
+        inputs.pin(packet_ref['path'], packet_ref['sha256'])
         folder = batch.safe(inputs.repo, packet_ref['path']).parent
         packet, dossiers = batch.load_packet(folder, inputs.repo)
         require(packet['agent'] == manifest['agent'], 'packet belongs to another producer')
@@ -214,7 +246,9 @@ def selected_claim(inputs, member, manifest, planted, held):
     if member['publication_kind'] == 'whole_case':
         require(not gate_errors, 'whole-case gate failed: ' + str(gate_errors))
     else:
-        require(sorted(review.get('expected_gate_errors', [])) == sorted(gate_errors),
+        require(isinstance(review.get('expected_gate_errors'), list) and bool(review['expected_gate_errors']),
+                'partial review requires explicit nonempty expected_gate_errors; complete claims need whole_case review')
+        require(sorted(review['expected_gate_errors']) == sorted(gate_errors),
                 'partial-research completeness gaps differ from exact review')
     return claim, raw_line, {'gate_errors': gate_errors, 'after_reveal': after_reveal, 'source_review_upheld': True,
                             'publication_kind': member['publication_kind']}
@@ -223,7 +257,8 @@ def selected_claim(inputs, member, manifest, planted, held):
 def run_checker(repo, claims, dest):
     dest.mkdir()
     env = dict(os.environ, REPO_ROOT=str(repo), OUTPUT_DIR=str(dest), JOB_LIMIT='',
-               JOB_CACHE_DIR=str(dest / 'cache'), CLAIM_CHECKER_VERIFY_DOWNLOADS='0', PYTHONIOENCODING='utf-8')
+               JOB_CACHE_DIR=str(dest / 'cache'), CLAIM_CHECKER_VERIFY_DOWNLOADS='0',
+               CLAIM_CHECKER_CACHE_ROOTS='', PYTHONIOENCODING='utf-8')
     command = [sys.executable, '-B', str(repo / 'jobs/claim-checker/checker.py'), '--claims', str(claims)]
     started = time.monotonic()
     with (dest / 'RUN.log').open('w', encoding='utf-8') as log:
@@ -241,6 +276,47 @@ def load_module(name, path):
     return module
 
 
+def pin_checker_inputs(inputs, selected):
+    """Reuse the actual SourceIndex; freeze its relevant raw bytes and metadata."""
+    repo = inputs.repo
+    script = repo / 'jobs/claim-checker/checker.py'
+    if not script.exists():
+        return  # The actual invocation will report missing checker code.
+    checker = load_module('claim_kit_completion_checker', script)
+    for rel in checker.S.INPUTS.values():
+        inputs.optional(rel)
+    for key in ('universe', 'decided', 'crosswalk', 'stage14_fetch'):
+        inputs.optional(checker.P[key])
+    for pattern in ('jobs/*/output/SOURCES.jsonl', 'jobs/*/data/PROVENANCE.json',
+                    'jobs/*/output/FRAGMENTS*.jsonl', 'jobs/*/data/**/FRAGMENTS*.jsonl',
+                    'research/readiness/factual/*/*.jsonl', 'jobs/official-fixity/output/*',
+                    'jobs/claim-checker/data/*'):
+        inputs.pattern(pattern)
+    index = checker.S.build_index(repo, repo / 'jobs/claim-checker', exclude_jobs=('claim-checker',))
+    hashes = set()
+    def visit(value):
+        if isinstance(value, dict):
+            for key in ('sha256', 'local_file_sha256'):
+                if isinstance(value.get(key), str) and SHA.fullmatch(value[key]):
+                    hashes.add(value[key])
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+    for claim, _ in selected.values():
+        visit(claim)
+    for sha in hashes:
+        for copy in index.lookup_sha(sha):
+            paths = [copy.local_path, copy.text_path]
+            paths.extend(pair[0] for pair in copy.zip_members)
+            for path in paths:
+                if isinstance(path, tuple):
+                    path = path[0]
+                if path is not None and Path(path).is_file():
+                    inputs.pin(Path(path).resolve().relative_to(repo).as_posix())
+
+
 def run_tracker(repo, selected, checker, dest, inputs=None):
     """Use actual tracker build/summarise twice with isolated input substitutions."""
     tracker = load_module('claim_kit_completion_tracker', repo / 'jobs/readiness-tracker/tracker.py')
@@ -255,8 +331,7 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
             rels.extend(value if isinstance(value, list) else [value])
         rels.extend(p.relative_to(repo).as_posix() for p in (repo / 'research/readiness/claims').glob('*.jsonl'))
         for rel in sorted(set(rels)):
-            if (repo / rel).is_file():
-                inputs.pin(rel)
+            inputs.optional(rel)
     before, problems = tracker.build(str(repo))
     before_summary = tracker.summarise(before, problems)
     tracker.write_outputs(dest / 'tracker-before', before, before_summary, {'replay': 'actual current canonical inputs'})
@@ -270,6 +345,8 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
     previous = repo / tracker.J['checker']
     checked = read_json(previous.read_bytes()) if previous.exists() else {'by_instrument': {}, 'claims': []}
     checked['by_instrument'] = dict(checked.get('by_instrument', {}))
+    checked['claims'] = [row for row in checked.get('claims', []) if row.get('instrument_id') not in selected]
+    checked['claims'].extend(row for row in checker.get('claims', []) if row.get('instrument_id') in selected)
     for iid in selected:
         checked['by_instrument'].pop(iid, None)
         require(iid in checker.get('by_instrument', {}), 'checker lacks exact tracker receipt: ' + iid)
@@ -305,7 +382,7 @@ def complete(repo, manifest_path, dest, publish=False):
     members = manifest['members']
     require(isinstance(members, list) and 1 <= len(members) <= 50, '1–50 explicit members required')
     require(len({m['instrument_id'] for m in members}) == len(members), 'conflicting or duplicate selected member versions')
-    require(isinstance(manifest.get('controls'), list), 'explicit controls list required')
+    require(isinstance(manifest.get('controls'), list) and bool(manifest['controls']), 'nonempty planted controls required for ordinary completion')
     publication = manifest['publication']
     mode = publication['mode']
     require(mode in ('own_claims', 'replacement_proposal'), 'explicit publication mode required')
@@ -320,10 +397,18 @@ def complete(repo, manifest_path, dest, publish=False):
     blocked_batch = False
     try:
         for rel in ('research/stage19/code/claim_gate.py', 'jobs/claim-kit/completion.py',
-                    'jobs/claim-kit/assemble.py', 'jobs/claim-checker/checker.py',
+                    'jobs/claim-kit/kit.py', 'jobs/claim-kit/batch.py',
+                    'jobs/claim-kit/assemble.py', 'jobs/claim-kit/evidence_preflight.py',
+                    'jobs/claim-kit/excavate.py', 'jobs/claim-checker/checker.py',
                     'jobs/claim-checker/sources.py', 'jobs/readiness-tracker/tracker.py'):
             if (repo / rel).exists():
                 inputs.pin(rel)
+        for rel in batch.POLICY_CODE_FILES:
+            if (repo / rel).exists():
+                inputs.pin(rel)
+        inputs.claim_files()
+        inputs.optional('research/readiness/SOURCE_AUDIT_HOLDS.jsonl')
+        inputs.optional('research/production/claim-kit-pilot-2026-10-18/FREEZE_MANIFEST.json')
         held = held_versions(inputs)
         control_results = controls(inputs, manifest)
         require(all(row['caught'] for row in control_results), 'control was not caught; affected batch filing stopped')
@@ -359,13 +444,16 @@ def complete(repo, manifest_path, dest, publish=False):
             inputs.file(ref)
         proposed = dest / 'CLAIMS.selected.jsonl'
         proposed.write_bytes(b''.join(value[1] for value in selected.values()))
+        if selected:
+            pin_checker_inputs(inputs, selected)
         checker = run_checker(repo, proposed, dest / 'checker') if selected else {'claims': [], 'by_instrument': {}}
         for iid in list(selected):
             matches = [r for r in checker['claims'] if r.get('instrument_id') == iid and
                        r.get('claim_sha256') == claim_sha(selected[iid][0])]
             row = next(r for r in outcomes if r['instrument_id'] == iid)
             if len(matches) != 1 or matches[0].get('mechanical_result') != 'pass' or (
-                    row['publication_kind'] == 'whole_case' and not matches[0].get('all_checks_passed')):
+                    row['publication_kind'] == 'whole_case' and not matches[0].get('all_checks_passed')) or (
+                    row['publication_kind'] == 'partial_research' and sorted(matches[0].get('gate_errors', [])) != sorted(row['gate_errors'])):
                 row.update(outcome='rejected_mechanical', checker=matches)
                 exceptions.append({'instrument_id': iid, 'error': 'actual checker did not pass exact version', 'receipts': matches})
                 del selected[iid]
@@ -373,6 +461,11 @@ def complete(repo, manifest_path, dest, publish=False):
                 row['outcome'] = 'eligible'
         tracker_result = run_tracker(repo, selected, checker, dest, inputs)
         batch.dump(dest / 'TRACKER_REPLAY.json', tracker_result)
+        for row in outcomes:
+            if row.get('publication_kind') == 'partial_research' and row['instrument_id'] in selected:
+                after = tracker_result.get('selected', {}).get(row['instrument_id'], {}).get('after') or {}
+                require(after.get('ready_for_human_review') != 'yes',
+                        'partial review cannot supply complete-history/ready credit; whole_case review required: ' + row['instrument_id'])
         inputs.unchanged()
     except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
         exceptions.append({'scope': 'batch', 'error': str(exc)})

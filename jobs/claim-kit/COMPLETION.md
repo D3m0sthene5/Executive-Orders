@@ -33,13 +33,20 @@ may use `pointer` (RFC 6901) instead of `line`; omit both for a whole JSON objec
     "claim": {"path": "research/excavator/RUN/CLAIMS.proposed.jsonl", "sha256": "FILE_SHA256", "line": 1},
     "publication_kind": "whole_case",
     "review": {"path": "research/excavator/RUN/REVIEW.json", "sha256": "FILE_SHA256", "pointer": "/claims/0"},
+    "after_reveal_review": {"path": "research/excavator/RUN/AFTER_REVEAL.json", "sha256": "FILE_SHA256", "pointer": "/claims/0"},
     "packet": {"path": "research/excavator/RUN/packet/PACKET.json", "sha256": "FILE_SHA256"}
   }, {
     "instrument_id": "EO:124",
     "outcome": "blocked",
     "reason": "Requested complete source is still absent."
   }],
-  "controls": [],
+  "controls": [{
+    "instrument_id": "EO:123",
+    "planted_claim_sha256": "CANONICAL_PLANT_SHA256",
+    "seed": {"path": "research/excavator/RUN/SEED_RECEIPT.json", "sha256": "FILE_SHA256"},
+    "review": {"path": "research/excavator/RUN/BLIND_REVIEW.jsonl", "sha256": "FILE_SHA256", "line": 1},
+    "adjudication": {"path": "research/excavator/RUN/CONTROL_ADJUDICATION.json", "sha256": "FILE_SHA256"}
+  }],
   "receipts": [{"path": "research/excavator/RUN/PRODUCER_TELEMETRY.json", "sha256": "FILE_SHA256"}]
 }
 ```
@@ -81,17 +88,25 @@ a new explicit attestation; do not rewrite historical verdicts to fit the format
 
 For ordinary partial research, use `publication_kind` and review `scope` equal
 to `partial_research`. The reviewer additionally records `expected_gate_errors`
-as the exact complete Stage 19 error list for this version. Completion preserves
+as the explicit, nonempty complete Stage 19 error list for this version. Completion preserves
 those gaps and requires the actual mechanical checker to pass. Non-gate strict
 span/provenance errors still block. A partial claim supplies no complete-history
 or ready credit of its own; the actual tracker retains all remaining blockers.
+An empty-gap partial review or a partial result that the actual tracker would
+mark ready stops filing and requires whole-case review instead.
 `pass_with_unverified` is retained as an exception, not silently promoted.
 
 ## Planted controls and after-reveal review
 
-Always include `controls`, explicitly empty if this batch has none. Each control
-contains `instrument_id`, `planted_claim_sha256`, the exact planted `claim` file
-and line, a pinned `review` ref, and a pinned `adjudication` ref. The control
+Ordinary completion requires a nonempty `controls` list. Each control contains
+`instrument_id`, `planted_claim_sha256`, a pinned safe `seed` receipt, a pinned
+`review` ref, and a pinned `adjudication` ref. Raw planted claims and the private
+mutation key stay outside the repository; never include them among receipts.
+The seed reference must select a standalone JSON object, without line/pointer
+selectors, so retaining its complete bytes cannot copy an enclosing private key.
+The seed object has exactly these fields: `schema: eo-claim-kit-control-seed/v1`,
+`instrument_id`, `planted_claim_sha256`, `genuine_claim_sha256`, and `seeded_by`.
+It records exact version provenance without exposing the planted content. The control
 review has the same independence fields above, its planted claim hash, and the
 recorded verdict. The semantic adjudicator's object must contain:
 
@@ -114,6 +129,8 @@ and retains the exception. All planted versions are excluded regardless of
 their verdicts. A genuine claim for any planted identity requires an exact
 `after_reveal_review` selector in its member, with verdict `upheld_after_reveal`
 for the **genuine selected hash**; blind review cannot approve another version.
+That reviewed genuine version may be a correction after seeding; the seed's
+original genuine hash is historical provenance, not an implicit approval.
 
 ## Outputs and limits
 
@@ -123,11 +140,15 @@ for the **genuine selected hash**; blind review cannot approve another version.
 `EXCEPTIONS.json` identifies exact failures. `PUBLICATION.json` records the
 artifact hash, destination, proposal/owner limits and whether filing occurred.
 `receipts/` and `INPUTS.json` preserve consumed producer/reviewer inputs verbatim.
+Frozen packet/dossier and source files are pinned in place, not duplicated.
 List producer logs, usage, blocked-work and acquisition receipts in `receipts`.
 No fetch request is enqueued here; the existing request-contract command handles
 that separately. Preserve source receipts through the existing source workflow.
 
-`checker/` retains the actual offline checker audit and run log. `tracker-before/`,
+`checker/` retains the actual offline checker audit and run log. Relevant source
+bytes, custody manifests, direct policy code and tracker inputs are hashed before
+use and rechecked before filing; new canonical files or holds invalidate a run.
+`tracker-before/`,
 `tracker-after/` and `TRACKER_REPLAY.json` preserve actual tracker results with the
 selected claim/checker inputs substituted only for the proposed comparison. No
 canonical output is overwritten. Missing required tracker inputs are exceptions.

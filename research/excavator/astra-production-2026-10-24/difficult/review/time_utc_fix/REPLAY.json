@@ -1,0 +1,76 @@
+{
+  "authored_by": "batch_completion",
+  "engine_path": "jobs/claim-kit/lifecycle_obligations.py",
+  "engine_sha256": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
+  "independent_review": false,
+  "input_pins": {
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_CURRENT_RECEIPTS.json": "4e1d0a44c2107ebc3cbe7ea5598598b5c0b959a77adf6cbc6dc1bc10001cc17d",
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_PRIOR_ATTEMPTS.json": "ac07bd8df3f465b26d59b8ba33360d0132224e1166a7d36fc40e9c2cd77c1abc",
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_PRIOR_DOSSIER.json": "bce70e82f388861b053bd1527f3677a55f0e41c6bae46bb3a3b530e5f6b68f13",
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_PRIOR_RESEARCH_CONTEXT.json": "64be1baf31276e7a31860e3828fcac38c98fc92329db13bef6c328c72a0b3726",
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_RECONSTRUCTED_PRIOR_CHECKPOINT.json": "988eb111f3beeebc04cf1f66310cc67e3edc2c1076c3b3a15b79fe57cecd9eba",
+    "research/excavator/astra-production-2026-10-24/difficult/EO_4314_UNRESOLVED_REQUESTS.json": "4fb6fe01e8d285efa17d6e30946212e686bfc13c6bf4a566a44dc35cb2ec1ce3",
+    "research/excavator/astra-production-2026-10-24/difficult/review/v1/CHECKS.json": "1eacbb582854a4685f83ac3869071bedcc3849ae976f31c0d47e2928365f9bb9"
+  },
+  "legal_conclusion": null,
+  "monotonic_elapsed_seconds": 0.016486483000335284,
+  "normalization_note": "Historical failure and v1 audit remain unchanged. A separately versioned checkpoint is reconstructed from the same original failure under the corrected normalization; old recipe fingerprints are not silently replaced or migrated.",
+  "old_independent_probe": {
+    "actual_action": "reopen",
+    "after": "2026-10-24T16:47:07Z",
+    "before": "2026-10-18T08:22:10Z",
+    "engine_path": "jobs/claim-kit/lifecycle_obligations.py",
+    "engine_sha256": "33ab889b015c6e8719d8e9ac8c9ac57758401c37a46112566385074679842266",
+    "expected_action": "defer_unchanged_source_block",
+    "only_changed_field": "source_results[0].time_utc",
+    "passed": false
+  },
+  "only_receipt_change": {
+    "after": "2026-10-24T16:47:07Z",
+    "before": "2026-10-18T08:22:10Z",
+    "field": "source_results[0].time_utc"
+  },
+  "replays": {
+    "new_source_receipt": {
+      "action": "reopen",
+      "input_fingerprint": "3e755c3b5e5ba9cef5263f7038c03a316914588b6cb6cc98d75e5845069e5da9",
+      "instrument_id": "EO:4314",
+      "legal_conclusion": null,
+      "previous_input_fingerprint": "53e66cbf8250ae07b3d82ed30044533b2e8f1afc994373d5102953a9975c4980",
+      "reason": "Relevant evidence/request/route/prior research changed.",
+      "result_paths": [
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/EVIDENCE.json",
+        "research/excavator/2026-10-18/acquisition/ATTEMPTS.jsonl",
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/STATUS_DECISION.json"
+      ]
+    },
+    "same_failure_time_utc_only": {
+      "action": "defer_unchanged_source_block",
+      "input_fingerprint": "53e66cbf8250ae07b3d82ed30044533b2e8f1afc994373d5102953a9975c4980",
+      "instrument_id": "EO:4314",
+      "legal_conclusion": null,
+      "previous_input_fingerprint": "53e66cbf8250ae07b3d82ed30044533b2e8f1afc994373d5102953a9975c4980",
+      "reason": "No relevant input changed; retain the unsuccessful attempt and wait for evidence.",
+      "result_paths": [
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/EVIDENCE.json",
+        "research/excavator/2026-10-18/acquisition/ATTEMPTS.jsonl",
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/STATUS_DECISION.json"
+      ]
+    },
+    "unchanged_failure": {
+      "action": "defer_unchanged_source_block",
+      "input_fingerprint": "53e66cbf8250ae07b3d82ed30044533b2e8f1afc994373d5102953a9975c4980",
+      "instrument_id": "EO:4314",
+      "legal_conclusion": null,
+      "previous_input_fingerprint": "53e66cbf8250ae07b3d82ed30044533b2e8f1afc994373d5102953a9975c4980",
+      "reason": "No relevant input changed; retain the unsuccessful attempt and wait for evidence.",
+      "result_paths": [
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/EVIDENCE.json",
+        "research/excavator/2026-10-18/acquisition/ATTEMPTS.jsonl",
+        "research/excavator/2026-10-18/batch-pilot/overlay/EO_4314/STATUS_DECISION.json"
+      ]
+    }
+  },
+  "schema": "eo-source-blocked-regression-replay/v1",
+  "wall_effort_unknown_due_to_clock_discontinuity": true
+}
