@@ -117,6 +117,49 @@ OPUS_GAP_BLOCKER = {
 }
 
 
+# These are explicit integer-string counts in opus-media-match's CSV schema.
+# An absent/blank/malformed count is unknown, never an empty matching set.
+OPUS_EMPTY_COUNTS = (
+    "unique_supported_members", "ambiguous_members", "order_text_candidate_members",
+    "unique_supported_cited_source_members", "members_linked_by_opus_records",
+    "media_files_cited_in_case_records", "cited_media_not_packaged",
+    "media_urls_cited_in_case_records", "cited_media_urls_not_in_companion",
+    "cited_media_urls_not_packaged", "cited_media_kept_only_as_text",
+    "cited_media_only_excerpt_kept_for_other_order",
+)
+CLAIM_EVIDENCE_STEPS = (
+    "original_text", "clause_inventory", "ending_or_current_basis",
+    "savings_residuals", "counterevidence",
+)
+
+
+def empty_opus_matching_set(status, claim):
+    """Only an explicit empty historical set with no current Opus-media pointer."""
+    if (status.get("media_gap") != "none_cited"
+            or status.get("media_status") != "no_member_signal"
+            or not all(isinstance(status.get(k), str) and status[k].strip() == "0"
+                       for k in OPUS_EMPTY_COUNTS)):
+        return False
+
+    def has_media_pointer(value):
+        if isinstance(value, dict):
+            if "opus_media" in value or value.get("source_type") in (
+                    "opus_media", "opus_media_member_map", "opus_stage11_manifest",
+                    "opus_stage11_fetch_meta", "opus_stage11_evidence_originals"):
+                return True
+            return any(has_media_pointer(v) for v in value.values())
+        if isinstance(value, list):
+            return any(has_media_pointer(v) for v in value)
+        if isinstance(value, str):
+            value = value.replace("\\", "/").lower()
+            return any(marker in value for marker in (
+                "opus_stage11_evidence_originals:", "opus_stage11_manifest:", "opus-media-match",
+                "releases/opus_stage11_complete/"))
+        return False
+
+    return claim is not None and not has_media_pointer(claim)
+
+
 def read_csv(root, key):
     path = os.path.join(root, P[key])
     with open(path, encoding="utf-8", newline="") as fh:
@@ -371,6 +414,7 @@ def build(root, *, planning_closures=None):
         d = decided.get(i)
         status = d["provisional_substantive_status"] if d else None
         steps, blockers = {}, collections.defaultdict(list)
+        opus_media_note = ""
         claim = claims.get(i)
         working_errors, dependent_texts = W.policy(claim, root, working_index) if claim else ([], [])
         factual_errors = F.claim_errors(claim, root) if claim else []
@@ -463,31 +507,46 @@ def build(root, *, planning_closures=None):
             for a in shared_missing.get(i, []):
                 blockers["shared_sources"].append(f"SHARED_SOURCE_NOT_RETRIEVED:{a}")
 
-        # 8. Opus media (Opus cases only)
+        # 8. Opus media (Opus cases only). Empty historical matching sets are
+        # optional under the owner's current campaign instruction, but only after
+        # the unchanged claim independently satisfies every required evidence role.
         if d and d["decision_origin"].startswith("opus"):
-            if jobs["opus_status"] is None:  # opus-media-match has not run: older audit
-                steps["opus_media"] = i in media_linked
-                if not steps["opus_media"]:
-                    blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
+            ms = (jobs["opus_status"] or {}).get(i) or {}
+            independently_complete = (
+                checked_current and not gate_errors and not policy_errors and i not in holds
+                and all(steps.values()) and check.get("gate_passed") is True
+                and check.get("all_checks_passed") is True and check.get("mechanical_result") == "pass"
+                and all((check.get("steps_checker_passed") or {}).get(s) is True
+                        for s in CLAIM_EVIDENCE_STEPS)
+            )
+            if (independently_complete and not jobs["opus_missing"].get(i)
+                    and empty_opus_matching_set(ms, claim)):
+                opus_media_note = ("Not applicable: historical Opus records cite no media; "
+                                   "the exact current claim independently passes required evidence checks. "
+                                   "No media matched or search exhausted.")
             else:
-                # Done only when every medium the Opus records cite is resolved.
-                ms = jobs["opus_status"].get(i) or {}
-                missing = jobs["opus_missing"].get(i, set())
-                refetched_all = bool(missing) and missing <= jobs["ladder_found"]
-                steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
-                    refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
-                    and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
-                if not steps["opus_media"]:
-                    gap = ms.get("media_gap", "")
-                    if gap in OPUS_GAP_BLOCKER:
-                        blockers["opus_media"].append(OPUS_GAP_BLOCKER[gap])
-                    elif ms.get("media_status") == "ambiguous_only":
-                        blockers["opus_media"].append("OPUS_MEDIA_MATCH_AMBIGUOUS")
-                    elif ms.get("media_status") == "unique_supported":
-                        blockers["opus_media"].append("OPUS_MEDIA_PARTLY_RESOLVED")
-                    else:
+                if jobs["opus_status"] is None:  # opus-media-match has not run: older audit
+                    steps["opus_media"] = i in media_linked
+                    if not steps["opus_media"]:
                         blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
-
+                else:
+                    # Done only when every medium the Opus records cite is resolved.
+                    ms = jobs["opus_status"].get(i) or {}
+                    missing = jobs["opus_missing"].get(i, set())
+                    refetched_all = bool(missing) and missing <= jobs["ladder_found"]
+                    steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
+                        refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
+                        and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
+                    if not steps["opus_media"]:
+                        gap = ms.get("media_gap", "")
+                        if gap in OPUS_GAP_BLOCKER:
+                            blockers["opus_media"].append(OPUS_GAP_BLOCKER[gap])
+                        elif ms.get("media_status") == "ambiguous_only":
+                            blockers["opus_media"].append("OPUS_MEDIA_MATCH_AMBIGUOUS")
+                        elif ms.get("media_status") == "unique_supported":
+                            blockers["opus_media"].append("OPUS_MEDIA_PARTLY_RESOLVED")
+                        else:
+                            blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
         # Exhausted steps count as machine-finished.
         exhausted_steps = []
         for step, rec in exhausted.get(i, {}).items():
@@ -538,6 +597,7 @@ def build(root, *, planning_closures=None):
             "working_text_policy_errors": "|".join(working_errors),
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
+            "opus_media_applicability_note": opus_media_note,
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
@@ -634,6 +694,8 @@ def summarise(orders, problems):
         "original_replacement_obligations": sum(o.get("original_copy_replacement_required") == "yes" for o in orders),
         "quotation_recheck_obligations": sum(o.get("quotation_recheck_required") == "yes" for o in orders),
         "human_verified": "not counted here; see the Stage 19 tracker",
+        "opus_media_not_applicable": sorted(o["instrument_id"] for o in orders
+                                            if o.get("opus_media_applicability_note")),
         "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s]} for s in STEP_NAMES},
         "decided_by_steps_done": {f"{k[0]}/{k[1]}": v for k, v in sorted(ladder.items())},
         "orders_blocked_by": dict(blocker_orders.most_common()),
