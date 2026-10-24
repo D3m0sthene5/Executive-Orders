@@ -1,5 +1,5 @@
-# Shared-source consumer verification
+# Shared-source and optional-media consumer verification
 
-Execute the actual offline claim-checker then readiness-tracker against retained input checkpoint ecc8aea597f645ca5361aad50a59b2767444ca69. All 80 demanded raw versions are held under the existing retention output and SOURCES catalogue.
+Execute the actual offline claim-checker then readiness-tracker against input checkpoint 889b0bfb89a16801bed36457f21711bb8db0ddb3. All 80 demanded raw versions remain durably retained. Reconcile the unchanged source-restoration cohort and the five exact empty historical media matching sets in OPTIONAL_MEDIA_COHORT.json.
 
-Select only leverage-campaign-check. It executes the two real consumers sequentially in an isolated view and saves new results under output/shared-source/. No acquisition, legal producer or full dossier rebuild is dispatched. Preserve earlier full-core receipts and all canonical claims/reviews/holds.
+Select only leverage-campaign-check, sequential checker then tracker. Preserve earlier full-core receipts, canonical claims/reviews/holds, and the separately published COHORT_RESULTS_SOURCE_ONLY.json. No acquisition or legal producer is dispatched.
