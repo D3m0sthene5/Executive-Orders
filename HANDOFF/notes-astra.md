@@ -1,3 +1,5 @@
+Final publication receipt (2026-10-24): reviewed research payload `64469d48651d2b9b17df6eb8cf9fe9bcb6720e0b`, exact matching tree `8559026a6f7a5336b75370dfb945a31cd293fdf9`, published to PR59. Road40115120634 and Valla40115120600 passed tested runtime6fa32b2; bot-output checks40115290915/40115290877 require GitHub approval. No merge. Canonical claims/holds unchanged from pinned PR58. Exact resumption and storage mapping are in the report.
+
 Publication transport note (2026-10-24): four 27 MB tracker-input snapshots (three distinct contents) are retained losslessly as `.jsonl.gz`, with exact hashes/restoration commands in `research/excavator/astra-production-2026-10-24/PUBLICATION_STORAGE.json`; original claims and receipts are unchanged. Connector rejected requests above 16 MiB. These failed attempts/integration remain unmeasured costs.
 
 ## 2026-10-24 — deterministic completion used for reviewed production (PR59)

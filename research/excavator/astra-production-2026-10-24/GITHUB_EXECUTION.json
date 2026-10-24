@@ -46,9 +46,27 @@
   "raw_bytes": 104612053,
   "verification": "Local raw SHA256 and Git blob matched exact remote tree; output cap104857599; no oversized relocation;129 source records preserve128 prior records.",
   "ci_at_last_read": {
-    "road_push": 40115120634,
-    "valla_push": 40115120600,
-    "bot_road_requires_action": 40115290915,
-    "bot_valla_requires_action": 40115290877
-  }
+    "tested_runtime_input": "6fa32b22de77bb7f7f390126a9f5240ab8f66f27",
+    "road_push": {
+      "run": 40115120634,
+      "conclusion": "success"
+    },
+    "valla_push": {
+      "run": 40115120600,
+      "conclusion": "success"
+    },
+    "bot_road": {
+      "run": 40115290915,
+      "conclusion": "action_required"
+    },
+    "bot_valla": {
+      "run": 40115290877,
+      "conclusion": "action_required"
+    },
+    "note": "The latter two are GitHub approval-gated checks on the source-output bot commit, not failed substantive reviews. Research/report-only payload used skip actions; no tested runtime changed."
+  },
+  "research_payload_commit": "64469d48651d2b9b17df6eb8cf9fe9bcb6720e0b",
+  "research_payload_tree": "8559026a6f7a5336b75370dfb945a31cd293fdf9",
+  "tree_matches_local_committed_artifacts": true,
+  "publication_storage": "PUBLICATION_STORAGE.json"
 }
