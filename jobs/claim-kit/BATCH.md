@@ -2,7 +2,8 @@
 
 Run from the repository root. Check `output/STATUS.json`, `SUMMARY.json` and the
 runner's `RUNNER_INPUTS.json` first. Source matches and status observations are
-leads. No command below publishes a claim, status, identity or human review.
+leads. Only explicit `complete --publish` files eligible claims or isolated
+replacement proposals; no command publishes a status, identity or human review.
 
 ```text
 python jobs/claim-kit/kit.py prepare EO:NUMBER EO:OTHER --agent NAME --write research/excavator/RUN/packet
@@ -10,7 +11,16 @@ python jobs/claim-kit/kit.py view research/excavator/RUN/packet
 python jobs/claim-kit/kit.py view research/excavator/RUN/packet --source TEXT_BLOCK_ID
 python jobs/claim-kit/kit.py apply research/excavator/RUN/packet --write research/excavator/RUN/packet/applied-v1
 python jobs/claim-kit/kit.py batch-check research/excavator/RUN/packet research/excavator/RUN/packet/applied-v1
+python jobs/claim-kit/kit.py complete research/excavator/RUN/COMPLETION.json --write research/excavator/RUN/complete-v1
 ```
+
+After independent source review, `complete` selects explicitly reviewed producer
+versions, checks controls and exact source-audit holds, runs the existing gates,
+actual checker and before/after tracker, and prepares publication bytes and a
+compact exception/tally report. See [COMPLETION.md](COMPLETION.md) for its input
+contract. It preserves source/legal judgment in independent records. Add
+`--publish` only when filing the manifest's own-agent destination or isolated
+replacement proposal is authorized. Human certification remains separate.
 
 `prepare` accepts 1–50 explicit identities. It freezes complete dossiers, verifies
 held source text hashes/spans once, and writes a lossless `PACKET.json`, readable
@@ -127,3 +137,26 @@ as JSON. Complete its source-specific identity/completeness/page confirmations o
 after inspecting the held representation, and keep its standing replacement/recheck
 note. Blank confirmation values remain blocked. See `AGENT_PROTOCOL.md` for scope;
 this column grants no original authentication or custody waiver.
+
+Ordinary `prepare` also discovers existing lifecycle claims, exact-version AI
+reviews, selected-version manifests and unfinished producer checkpoints throughout
+`research/`. `prior_research` in PACKET and the prior-work section in READ / `view
+--order` retain paths, hashes, review scope, rejected versions, source availability,
+conflicting propositions and the current claim's remaining gaps. Different original
+quotes or source identities require scope reconciliation; a matching scope name or
+an overall upheld verdict supplies no approval. Decisions remain blank. No directory
+recency or checkpoint selection silently replaces the canonical claim.
+
+`apply` / `batch-check` recheck that context, including newly discovered work and
+changed source or review dependencies. Prepare a new packet when it changes. The
+existing `lifecycle_obligations.py checkpoint` / `resume` commands include this same
+context by default (`--repo` selects the repository), so newly found research reopens
+an unchanged source-blocked attempt. These commands do not convert prior research
+into a new legal conclusion or certify its sources.
+
+Before normal preparation in a sparse checkout, materialize this job's existing
+`needs.txt` roots. `research/readiness` already includes canonical claims and
+versioned producer/reviewer work; `research/excavator` and `research/production`
+retain the other checkpoints, reconciliation and frozen-selection artifacts.
+These declarations avoid treating an unmaterialized research session as an empty
+history. They do not materialize the ProQuest corpus or fetch primary sources.

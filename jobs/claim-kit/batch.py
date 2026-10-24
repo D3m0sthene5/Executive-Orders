@@ -31,7 +31,8 @@ CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effectiv
  'inventory_char_end','inventory_reason']
 TAG='@eo:'
 POLICY_CODE_FILES = ('jobs/claim-kit/working_text.py', 'jobs/claim-kit/factual_events.py',
-                     'jobs/norton/model.py', 'jobs/claim-kit/lifecycle_obligations.py')
+                     'jobs/norton/model.py', 'jobs/claim-kit/lifecycle_obligations.py',
+                     'jobs/claim-kit/prior_research.py')
 
 def policy_code_pins():
     source_root = Path(__file__).resolve().parents[2]
@@ -250,6 +251,11 @@ def load_packet(folder,repo,check_sources=True):
         if packet.get('valla_context') is not None:
             if valla_context(repo,list(dossiers))!=packet['valla_context']:
                 raise ValueError('changed Valla review context; prepare a new version')
+        from prior_research import collect
+        if packet.get('prior_research') is None:
+            raise ValueError('prior research context missing; prepare a new version')
+        if collect(repo, dossiers, exclude=folder) != packet['prior_research']:
+            raise ValueError('changed prior research; prepare a new version')
     return packet,dossiers
 
 
@@ -314,6 +320,9 @@ def render(packet,dossiers):
             'missing','status_history','notice'}}
         if remaining:lines.extend(['','### Additional dossier metadata','',canon(remaining)])
         lines.extend(['','### Preflight','',canon(packet['preflight'][iid]),''])
+        if packet.get('prior_research') is not None:
+            from prior_research import brief
+            lines.extend(['### Prior research and remaining delta', '', canon(brief(packet['prior_research'], iid)), ''])
     if packet.get('valla_context') is not None:
         ctx=packet['valla_context']
         lines.extend(['## Valla review leads and component attestations','',ctx['notice'],
@@ -348,6 +357,9 @@ def view(repo,folder,order=None,source=None):
                     'machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.append(key+' '+canon(d[key]))
         lines.append('Preflight '+canon(packet['preflight'][order]))
+        if packet.get('prior_research') is not None:
+            from prior_research import brief
+            lines.append('Prior research '+canon(brief(packet['prior_research'], order)))
         if packet.get('valla_context') is not None:
             ctx=packet['valla_context']
             lines.append('Valla '+canon({'notice':ctx['notice'],'claim':ctx['claims'].get(order),
@@ -392,6 +404,8 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'policy_code_sha256':policy_code_pins(),
         'preflight_dependency_sha256':{'excavate.py':file_sha(Path(__file__).with_name('excavate.py'))},
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
+    from prior_research import collect
+    packet['prior_research'] = collect(repo, dossiers, exclude=dest)
     if prepared_context is not None:packet['valla_context']=prepared_context
     if decode(packet)!=dossiers:raise ValueError('lossless reconstruction failed')
     packet['fingerprint']=digest(canon(packet).encode());dest.mkdir(parents=True)

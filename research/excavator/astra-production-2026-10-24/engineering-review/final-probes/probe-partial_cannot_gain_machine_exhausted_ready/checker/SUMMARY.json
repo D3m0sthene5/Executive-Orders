@@ -1,0 +1,85 @@
+{
+  "schema": "eo-claim-check/v1",
+  "job": "claim-checker",
+  "legal_cutoff": "2026-10-14",
+  "claim_files": [
+    "CLAIMS.selected.jsonl"
+  ],
+  "claim_lines_found": 1,
+  "job_limit": null,
+  "claims_checked": 1,
+  "claims_parse_errors": 0,
+  "claims_checker_errors": 0,
+  "orders_with_claim": 1,
+  "claims_all_checks_passed": 0,
+  "claims_mechanical_pass": 1,
+  "claims_mechanical_unverified": 0,
+  "claims_mechanical_fail": 0,
+  "claims_gate_passed": 0,
+  "steps_checker_passed_effective_claims": {
+    "original_text": 1,
+    "clause_inventory": 1,
+    "ending_or_current_basis": 0,
+    "savings_residuals": 1,
+    "counterevidence": 1
+  },
+  "check_results": {
+    "source_held": {
+      "pass": 3
+    },
+    "source_identity": {
+      "pass": 2
+    },
+    "quote_verbatim": {
+      "pass": 4
+    },
+    "date_valid": {
+      "pass": 4
+    },
+    "date_after_signing": {},
+    "order_exists": {
+      "pass": 2
+    },
+    "working_text_policy": {},
+    "factual_event_policy": {},
+    "structural_gate": {
+      "fail": 3
+    },
+    "parse": {},
+    "checker_error": {}
+  },
+  "source_status_counts": {
+    "held_bytes_verified": 3
+  },
+  "source_identity_counts": {
+    "recorded_for_this_order": 2
+  },
+  "quote_status_counts": {
+    "exact": 4
+  },
+  "source_status_policy": {
+    "held_bytes_verified": "pass",
+    "held_bytes_in_release_or_repo": "pass",
+    "gpo_published_hash_match": "pass",
+    "custody_record_only": "skip"
+  },
+  "claim_checks_csv": {
+    "mode": "non_pass_rows",
+    "rows_written": 3,
+    "rows_total": 18,
+    "max_mb": 50.0,
+    "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+  },
+  "held_copies_indexed_by_origin": {
+    "jobs/future-source/output/SOURCES.jsonl": 6
+  },
+  "held_distinct_sha256": 6,
+  "opus_text_pack_texts": 0,
+  "signing_dates_loaded": {
+    "jobs/future-source/output/SIGNING_DATES.csv": 6
+  },
+  "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+  "pypdf_available": true,
+  "fetch": null,
+  "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+}

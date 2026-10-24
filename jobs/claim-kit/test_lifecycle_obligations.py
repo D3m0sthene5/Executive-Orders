@@ -53,5 +53,23 @@ class LifecycleTests(unittest.TestCase):
         old=L.blocked_checkpoint({'instrument_id':'EO:1'},[{'id':'r'}],'a'*64,'missing',['result'])
         with self.assertRaises(ValueError): L.resume_decision(old,{'instrument_id':'EO:2'},[{'id':'r'}],'a'*64)
 
+    def test_same_failed_receipt_time_utc_does_not_reopen_but_material_changes_do(self):
+        dossier = {'instrument_id': 'EO:4314'}
+        requests = [{'id': 'official-original'}]
+        receipt = {'request_id': 'official-original', 'status': 'blocked',
+                   'failure': 'source unavailable', 'time_utc': '2026-10-18T08:22:10Z'}
+        old = L.blocked_checkpoint(dossier, requests, 'a' * 64, 'original not held',
+                                   ['preserved-failure.json'], [receipt])
+        retry = {**receipt, 'time_utc': '2026-10-24T16:47:07Z'}
+        self.assertEqual(L.resume_decision(old, dossier, requests, 'a' * 64, [retry])['action'],
+                         'defer_unchanged_source_block')
+        for field, value in (('status', 'found'), ('sha256', 'b' * 64),
+                             ('failure', 'different substantive source failure')):
+            with self.subTest(field=field):
+                changed = {**retry, field: value}
+                self.assertEqual(L.resume_decision(old, dossier, requests, 'a' * 64, [changed])['action'], 'reopen')
+        self.assertEqual(old['result_paths'], ['preserved-failure.json'])
+        self.assertEqual(receipt['time_utc'], '2026-10-18T08:22:10Z')
+
 
 if __name__ == '__main__': unittest.main()

@@ -1,0 +1,19 @@
+# EO11782 reconciliation, October 24
+
+The PR56 gaps do not contradict the selected October18 v4 analysis. They expose research that was not carried forward. `BATCH1_SELECTION.json` selects v4; its exact independent AI review upholds the lifecycle after correcting v3's falsely stated ladder-search coverage. The v3 rejection remains relevant and must accompany the corrected search. Neither checkpoint zero gaps nor that historical whole-case verdict is component-level approval or human certification.
+
+| Current question | Reusable research and exact scope | Remaining delta |
+| --- | --- | --- |
+| HEW/HHS seat and exception | v4 membership clause; v3 SOURCE_AUDIT independently reads PL96-88 sections104,301,502–511,601–602; section509 carries the general Bank Council seat to HHS rather than transferring an education-function office. | Recheck the cited provisions and attach the already reviewed EO12212 section1-101 as a structured supporting source. Date is May4,1980, not its May2 signature or May5 publication. |
+| Earlier end / FACA | Full original's eight federal-office roster; PL92-463 section3(2) exclusion; bounded numeric and named-body search; continuing commands with no own-terms sunset. | Current whole-case review must test applicability; no identical old search is charged as newly performed. |
+| Bank, Council and savings | PL93-224 sections4–5 distinguish statutory corporation/board from EO Council; PL96-88 section505; complete EO12379 and distinct EO13829 reviewed. | Preserve these distinctions and limited negative finding. Independently existing Bank functions are not saved Council commands. |
+| Original inventory | PR56 uses three complete sections. October18 tracks five operative units within exactly those three sections, including Treasury support. | Explicit mapping: sec1 establishment/membership; sec2 advice/coordination; sec3 support. No text or independent duty is dropped. |
+| Alleged earlier actors | PR56 independently identifies EO11022/11256/11829 acquisition wrappers as the same EO12379 source bytes. | Carry the correction forward; do not interpret wrapper labels/signing dates as earlier legal events. |
+
+No new statutory discovery is claimed. The new candidate retains original producer attribution, historical source-read qualifications and the old bounded search limits. The October18 initial 7,066-file scan did not include the nonexistent singular ladder directory; v4 adds the actual 178-file ladder sweep and five examined hits. These are 7,244 bounded held files, not exhaustive unheld-source coverage. USC release119-121 is current through October9, not October14. The legal cutoff remains October14,2026.
+
+On October24 root read the complete held EO12212 extract, relevant PL96-88 sections104/301/509/601 and surrounding transfer/savings text, and compared current packet chain/gaps with the selected claim and reviews. Five already retained raw objects (original, revoker, FACA, Bank Act, Education Act) were rehashed successfully. EO12212's raw object was not initially held in this checkout and is assigned to the existing bounded retention route; its record and extracted text alone are not held raw bytes. Review/checker receipts must determine the final evidence tier.
+
+The historical EO12212 SOURCE_AUDIT contains a copied `read_scope` phrase about all25 EO12379 sections. That phrase describes a different order and is not reused as EO12212 evidence; its complete one-page extract and explicit provision are inspected directly. No substantive contradiction was found in the membership result, but current independent review is required for the reconciled candidate.
+
+Exact input paths and hashes are in INPUT_PINS.json. `prepare_reconciliation.py` reconstructs the attributed proposal from those existing artifacts without adopting it automatically.

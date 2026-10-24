@@ -6,7 +6,7 @@ Start at the committed `output/SUMMARY.json` and `STATUS.json`: check the input 
 and read warnings. Never reuse a decision against a changed dossier fingerprint.
 
 For bounded production batches, prefer the executable `prepare` / `view` /
-`apply` / `batch-check` path in [BATCH.md](BATCH.md). It shares exact source text,
+`apply` / `batch-check` / `complete` path in [BATCH.md](BATCH.md). It shares exact source text,
 retains blocked members, supports inventory corrections and saves full audits.
 Undecided identities use its independently reviewed experimental-overlay path;
 owner acceptance remains separate from a working proposal. The legacy individual
@@ -41,7 +41,10 @@ JSON commands below remain supported.
 6. A separate reviewer reads the sources, tests earlier endings, and writes an
    **AI review record** under your pilot research folder (never an
    `eo-lifecycle-review/v1` human review). Commit only accepted claim lines to your
-   own `research/readiness/claims/NAME-DATE.jsonl`; no automatic publication exists.
+   own `research/readiness/claims/NAME-DATE.jsonl`. Use `kit.py complete` with the
+   exact reviewed selection and recorded control adjudication to prepare filing;
+   explicit `--publish` creates only its authorized new file. See
+   [COMPLETION.md](COMPLETION.md). Missing or conflicting versions are exceptions.
    Same-actor single-clause CSV sheets are conveniences: approve each row and remove
    outliers. They confer no group approval.
 7. Record the checker/tracker before and after, accept/reject outcomes, actual

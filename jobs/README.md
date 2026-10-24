@@ -64,9 +64,14 @@ After the run, `jobs/<name>/output/` is committed to the branch with:
   and a link to the run.
 - Every file the script wrote to `OUTPUT_DIR`.
 
-Files over 95 MB cannot go into git. They are listed in `STATUS.json` and kept
-as a download on the run's page (Actions tab → the run → Artifacts) for 90
-days. Publish anything that must last longer as a release.
+By default the runner moves files over 95 MiB (99,614,720 bytes) out of committed
+output. A job may explicitly set `MAX_OUTPUT_FILE_BYTES` in its folder to a
+positive integer at most 104,857,599, strictly below 100 MiB. Invalid values fail
+before replacing the previous output. The effective cap is recorded in
+`STATUS.json`, and its configuration is covered by ordinary input freshness checks.
+Files above the cap are listed there and kept as a download on the run's page
+(Actions tab → the run → Artifacts) for 90 days; they are not discarded. Publish
+anything above the repository cap that must last longer as a release.
 
 ## Rules
 

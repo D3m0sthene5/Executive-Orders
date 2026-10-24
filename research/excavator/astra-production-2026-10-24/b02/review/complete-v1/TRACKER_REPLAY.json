@@ -1,0 +1,334 @@
+{
+  "after": {
+    "decided_by_steps_done": {
+      "1/6": 1006,
+      "1/7": 56,
+      "1/8": 3,
+      "2/6": 1211,
+      "2/7": 541,
+      "2/8": 34,
+      "3/6": 19,
+      "3/8": 196,
+      "4/6": 10,
+      "5/6": 35,
+      "5/7": 1,
+      "5/8": 1,
+      "6/6": 278,
+      "6/7": 10,
+      "7/8": 2
+    },
+    "decided_orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 77,
+      "CLAIM_CHECK_FAILED": 5,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 7,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2615,
+      "LATER_SOURCE_SEARCH_NOT_RECORDED": 3008,
+      "NO_CLAUSE_INVENTORY": 3008,
+      "NO_OFFICIAL_SOURCE_LOCATED": 985,
+      "NO_PROVISIONAL_STATUS": 0,
+      "OPEN_SOURCE_AUDIT": 6,
+      "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 90,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3008,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27
+    },
+    "human_verified": "not counted here; see the Stage 19 tracker",
+    "input_problems": [],
+    "opus_media_not_applicable": [],
+    "orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2750,
+      "CLAIM_CHECK_FAILED": 5,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 7,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2615,
+      "LATER_SOURCE_SEARCH_NOT_RECORDED": 3008,
+      "NO_CLAUSE_INVENTORY": 3008,
+      "NO_OFFICIAL_SOURCE_LOCATED": 8469,
+      "NO_PROVISIONAL_STATUS": 11569,
+      "OPEN_SOURCE_AUDIT": 6,
+      "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 267,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3008,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27
+    },
+    "orders_total": 14972,
+    "orders_with_provisional_status": 3403,
+    "original_replacement_obligations": 0,
+    "quotation_recheck_obligations": 0,
+    "ready_by_text_evidence_tier": {
+      "original_supported": 277
+    },
+    "ready_by_tier": {
+      "complete_claim": 277
+    },
+    "ready_for_human_review": 277,
+    "shared_unlocks": [
+      {
+        "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+        "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 2750
+      },
+      {
+        "action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
+        "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER",
+        "kind": "machine_job",
+        "orders_unblocked": 844
+      },
+      {
+        "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+        "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 267
+      },
+      {
+        "action": "Retrieve shared source EO::4314",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+        "kind": "one_source",
+        "orders_unblocked": 10
+      },
+      {
+        "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+        "blocker": "CLAIM_NOT_YET_CHECKED",
+        "kind": "machine_job",
+        "orders_unblocked": 7
+      },
+      {
+        "action": "Retrieve shared source EO::6868",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+        "kind": "one_source",
+        "orders_unblocked": 6
+      },
+      {
+        "action": "Retrieve shared source USC::48 U.S.C. 863)",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6964",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6910",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source CFR::26 CFR 458.324",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+        "kind": "one_source",
+        "orders_unblocked": 2
+      }
+    ],
+    "step_done_among_decided": {
+      "clause_inventory": {
+        "applicable": 3403,
+        "done": 344
+      },
+      "counterevidence": {
+        "applicable": 3403,
+        "done": 326
+      },
+      "ending_or_current_basis": {
+        "applicable": 3403,
+        "done": 303
+      },
+      "opus_media": {
+        "applicable": 844,
+        "done": 0
+      },
+      "original_text": {
+        "applicable": 3403,
+        "done": 2328
+      },
+      "provisional_status": {
+        "applicable": 3403,
+        "done": 3403
+      },
+      "savings_residuals": {
+        "applicable": 3403,
+        "done": 336
+      },
+      "shared_sources": {
+        "applicable": 236,
+        "done": 209
+      }
+    }
+  },
+  "before": {
+    "decided_by_steps_done": {
+      "1/6": 1006,
+      "1/7": 56,
+      "1/8": 3,
+      "2/6": 1211,
+      "2/7": 541,
+      "2/8": 34,
+      "3/6": 19,
+      "3/8": 196,
+      "4/6": 10,
+      "5/6": 35,
+      "5/7": 1,
+      "5/8": 1,
+      "6/6": 278,
+      "6/7": 10,
+      "7/8": 2
+    },
+    "decided_orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 77,
+      "CLAIM_CHECK_FAILED": 5,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 7,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2615,
+      "LATER_SOURCE_SEARCH_NOT_RECORDED": 3008,
+      "NO_CLAUSE_INVENTORY": 3008,
+      "NO_OFFICIAL_SOURCE_LOCATED": 985,
+      "NO_PROVISIONAL_STATUS": 0,
+      "OPEN_SOURCE_AUDIT": 6,
+      "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 90,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3008,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27
+    },
+    "human_verified": "not counted here; see the Stage 19 tracker",
+    "input_problems": [],
+    "opus_media_not_applicable": [],
+    "orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2750,
+      "CLAIM_CHECK_FAILED": 5,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 7,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2615,
+      "LATER_SOURCE_SEARCH_NOT_RECORDED": 3008,
+      "NO_CLAUSE_INVENTORY": 3008,
+      "NO_OFFICIAL_SOURCE_LOCATED": 8469,
+      "NO_PROVISIONAL_STATUS": 11569,
+      "OPEN_SOURCE_AUDIT": 6,
+      "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 267,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3008,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27
+    },
+    "orders_total": 14972,
+    "orders_with_provisional_status": 3403,
+    "original_replacement_obligations": 0,
+    "quotation_recheck_obligations": 0,
+    "ready_by_text_evidence_tier": {
+      "original_supported": 277
+    },
+    "ready_by_tier": {
+      "complete_claim": 277
+    },
+    "ready_for_human_review": 277,
+    "shared_unlocks": [
+      {
+        "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+        "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 2750
+      },
+      {
+        "action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
+        "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER",
+        "kind": "machine_job",
+        "orders_unblocked": 844
+      },
+      {
+        "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+        "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 267
+      },
+      {
+        "action": "Retrieve shared source EO::4314",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+        "kind": "one_source",
+        "orders_unblocked": 10
+      },
+      {
+        "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+        "blocker": "CLAIM_NOT_YET_CHECKED",
+        "kind": "machine_job",
+        "orders_unblocked": 7
+      },
+      {
+        "action": "Retrieve shared source EO::6868",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+        "kind": "one_source",
+        "orders_unblocked": 6
+      },
+      {
+        "action": "Retrieve shared source USC::48 U.S.C. 863)",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6964",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6910",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source CFR::26 CFR 458.324",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+        "kind": "one_source",
+        "orders_unblocked": 2
+      }
+    ],
+    "step_done_among_decided": {
+      "clause_inventory": {
+        "applicable": 3403,
+        "done": 344
+      },
+      "counterevidence": {
+        "applicable": 3403,
+        "done": 326
+      },
+      "ending_or_current_basis": {
+        "applicable": 3403,
+        "done": 303
+      },
+      "opus_media": {
+        "applicable": 844,
+        "done": 0
+      },
+      "original_text": {
+        "applicable": 3403,
+        "done": 2328
+      },
+      "provisional_status": {
+        "applicable": 3403,
+        "done": 3403
+      },
+      "savings_residuals": {
+        "applicable": 3403,
+        "done": 336
+      },
+      "shared_sources": {
+        "applicable": 236,
+        "done": 209
+      }
+    }
+  },
+  "canonical_outputs_modified": false,
+  "selected": {}
+}

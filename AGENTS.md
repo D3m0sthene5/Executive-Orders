@@ -16,3 +16,19 @@ Commit code, primary-source acquisition outputs and clear status reports to GitH
 
 
 For the model-neutral claim-kit dossier/decision workflow, follow [`jobs/claim-kit/AGENT_PROTOCOL.md`](jobs/claim-kit/AGENT_PROTOCOL.md).
+
+**Ordinary production (owner, 2026-10-24):** use `kit.py prepare` / `view` /
+`apply` / `batch-check`, then `kit.py complete` for reviewed batch selection,
+gates, receipts, tally and authorized filing. Do not assign a model solely to
+copy, format, count, file successful receipts or repeatedly poll a run. A fresh
+research context and a separate independent reviewer exchange exact pinned
+artifacts; send the coordinator paths, versions, outcomes and actionable
+exceptions, not a restatement of every case. Supply applicable rules, qualified
+prior findings/rejections, complete source access and remaining questions.
+Where available use fresh contexts (`fork_turns="none"`); disclose the actual
+model families and obey any different-family requirement. Keep substantive
+control adjudication and after-reveal review with reviewers. A missing or
+conflicting version is an exception, never inferred approval. Source-blocked
+work uses the existing checkpoint/resume fingerprints and can publish reviewed
+research steps without pretending to be a complete claim. See
+[`jobs/claim-kit/BATCH.md`](jobs/claim-kit/BATCH.md) for the completion contract.
