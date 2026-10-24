@@ -18,6 +18,32 @@ BASH = shutil.which("bash") or str(Path(os.environ.get("ProgramFiles", "/")) / "
 spec = importlib.util.spec_from_file_location("freshness", SCRIPTS / "result_freshness.py")
 freshness = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(freshness)
+sys.path.insert(0, str(SCRIPTS))
+import run_jobs
+
+
+class OutputFileLimitTests(unittest.TestCase):
+    def test_default_and_strict_github_ceiling(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            folder = Path(temporary)
+            self.assertEqual(run_jobs.output_file_limit(folder), 95 * 1024 * 1024)
+            config = folder / "MAX_OUTPUT_FILE_BYTES"
+            for value in (1, 104612053, 104857599):
+                config.write_text(str(value) + "\n", encoding="utf-8")
+                self.assertEqual(run_jobs.output_file_limit(folder), value)
+            for value in ("0", "-1", "104857600", "104857601", "1.5", "NaN", "", "+1"):
+                with self.subTest(value=value):
+                    config.write_text(value, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "Invalid MAX_OUTPUT_FILE_BYTES"):
+                        run_jobs.output_file_limit(folder)
+
+    def test_retention_only_opt_in_covers_exact_pl9735_pdf(self):
+        jobs = SCRIPTS.parents[1] / "jobs"
+        self.assertEqual([p.parent.name for p in jobs.glob("*/MAX_OUTPUT_FILE_BYTES")], ["astra-source-retention"])
+        limit = run_jobs.output_file_limit(jobs / "astra-source-retention")
+        self.assertGreater(104612053, run_jobs.LIMIT)
+        self.assertGreaterEqual(limit, 104612053)
+        self.assertLess(limit, 100 * 1024 * 1024)
 
 
 class FreshnessTests(unittest.TestCase):
@@ -124,6 +150,39 @@ class FreshnessTests(unittest.TestCase):
         oid = self.cmd("git", "hash-object", "inputs/request.json").stdout.strip()
         self.assertEqual(manifest["inputs"]["inputs/request.json"], "100644:" + oid)
         self.assertNotEqual(self.check()[0], 0)
+
+    def test_output_cap_is_per_job_keeps_boundary_and_moves_oversized_bytes(self):
+        self.put("jobs/source/MAX_OUTPUT_FILE_BYTES", "16\n")
+        script = ("import os\nfrom pathlib import Path\n"
+                  "out=Path(os.environ['OUTPUT_DIR'])\n"
+                  "(out/'boundary.bin').write_bytes(b'A'*16)\n"
+                  "(out/'oversized.bin').write_bytes(b'B'*17)\n")
+        self.put("jobs/source/job.py", script)
+        self.put("jobs/other/job.py", script)
+        result = self.shell("run_jobs.sh", "source other")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        output = self.repo / "jobs/source/output"
+        self.assertEqual((output / "boundary.bin").read_bytes(), b'A' * 16)
+        self.assertFalse((output / "oversized.bin").exists())
+        self.assertEqual((self.repo / "oversized/source/oversized.bin").read_bytes(), b'B' * 17)
+        status = json.loads((output / "STATUS.json").read_text())
+        self.assertEqual(status["max_output_file_bytes"], 16)
+        self.assertEqual(status["oversized_files_moved_to_run_download"], ["oversized.bin"])
+        other = self.repo / "jobs/other/output"
+        self.assertEqual((other / "oversized.bin").read_bytes(), b'B' * 17)
+        self.assertEqual(json.loads((other / "STATUS.json").read_text())["max_output_file_bytes"], run_jobs.LIMIT)
+        manifest = json.loads((output / freshness.MANIFEST).read_text())
+        self.assertIn("jobs/source/MAX_OUTPUT_FILE_BYTES", manifest["inputs"])
+
+    def test_unsafe_output_cap_fails_before_generation_and_preserves_previous_output(self):
+        self.put("jobs/source/MAX_OUTPUT_FILE_BYTES", "104857600\n")
+        result = self.shell("run_jobs.sh", "source consumer")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Invalid MAX_OUTPUT_FILE_BYTES", result.stdout)
+        self.assertEqual((self.repo / "jobs/source/output/result.txt").read_text(), "baseline source\n")
+        records = json.loads((self.repo / "oversized/runner-freshness/ATTEMPTS.json").read_text())
+        self.assertEqual([r["publish_output"] for r in records], [False, False])
+        self.assertTrue((self.repo / records[0]["attempt_path"] / "STATUS.json").exists())
 
     def test_failed_generation_preserves_output_blocks_consumers_and_publishes_independent_job(self):
         self.put("jobs/source/job.py", "import os\nfrom pathlib import Path\nPath(os.environ['OUTPUT_DIR'], 'result.txt').write_text('incomplete replacement')\nraise SystemExit(7)\n")
