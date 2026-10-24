@@ -1,0 +1,82 @@
+{
+  "producer": "astra-production-b02",
+  "producer_model_family": "OpenAI",
+  "session_start_utc": null,
+  "first_recorded_utc": "2026-10-24T16:39:07Z",
+  "producer_freeze_utc": "2026-10-24T16:58:29.575178+00:00",
+  "session_elapsed_seconds": null,
+  "session_start_note": "No exact timestamp was captured at agent task receipt; first_recorded_utc is not falsely reported as the start.",
+  "ordinary_prepare_seconds": 7.3368,
+  "acquisition": {
+    "generated_utc": "2026-10-24T16:51:30Z",
+    "manifest_sha256": "d40e87c87238f80c899fc01341ceb57255993e63dc31d583fee7aab3c409957b",
+    "queue_sha256": "112daa79d28c9a7af333c68c214b4ec71127ae11c0ea1264a2c5e7b6cd07a1cd",
+    "requested": 1,
+    "attempted": 1,
+    "retained": 1,
+    "previous_attempts_preserved": 0,
+    "previous_source_records": 0,
+    "source_records_after": 1,
+    "imported_objects": 0,
+    "imported_bytes": 0,
+    "extractions_completed": 1,
+    "http_requests": 2,
+    "download_bytes": 879729,
+    "wall_seconds": 424.11209376700026,
+    "model_usage": null,
+    "reviewer_role": null,
+    "legal_findings": false,
+    "exhaustion_findings": false
+  },
+  "git_held_materialization_bytes": 154478135,
+  "git_held_materialization_downloads": 0,
+  "model_input_tokens": null,
+  "model_output_tokens": null,
+  "cached_tokens": null,
+  "model_dollars": null,
+  "active_labor_seconds": null,
+  "token_or_cash_savings_claimed": false,
+  "attempts": [
+    {
+      "command": "kit.py prepare EO:11829 EO:11853 --agent astra-production-b02 --replacement-proposal --write b02/packet-v1",
+      "outcome": "success",
+      "receipt": "research/excavator/astra-production-2026-10-24/b02/packet-v1/PREPARE.json"
+    },
+    {
+      "command": "kit.py view packet-v1 --order EO:11829; kit.py view packet-v1 --order EO:11853",
+      "outcome": "success",
+      "artifacts": [
+        "research/excavator/astra-production-2026-10-24/b02/EO11829-view.txt",
+        "research/excavator/astra-production-2026-10-24/b02/EO11853-view.txt"
+      ]
+    },
+    {
+      "command": "kit.py apply packet-v1 --write b02/applied-v1",
+      "outcome": "rejected",
+      "reason": "Output directory must be under packet."
+    },
+    {
+      "command": "kit.py apply packet-v1 --write packet-v1/applied-v1",
+      "outcome": "rejected",
+      "reason": "Changed Valla review context; prepare a new version."
+    },
+    {
+      "command": "assemble.derive_inventory on explicit seven-unit inventory",
+      "outcome": "success",
+      "receipt": "research/excavator/astra-production-2026-10-24/b02/INVENTORY_PROOF.json"
+    },
+    {
+      "command": "Existing request_contract enqueue + bounded existing retention job",
+      "outcome": "success",
+      "receipt": "research/excavator/astra-production-2026-10-24/b02/acquisition-v1/SUMMARY.json"
+    }
+  ],
+  "intermediate_versions_preserved": [
+    "PROPOSED_CLAIMS.v1.jsonl",
+    "PROPOSED_CLAIMS.v2.jsonl"
+  ],
+  "partial_draft_method": "Explicit ordinary lifecycle claim; existing assembler validated exact inventory and strict source spans; no claim_kit metadata or successful apply falsely asserted.",
+  "control_access": false,
+  "subagents_spawned": 0,
+  "human_certification": 0
+}

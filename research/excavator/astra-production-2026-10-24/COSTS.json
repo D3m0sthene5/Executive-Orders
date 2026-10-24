@@ -1,0 +1,66 @@
+{
+  "schema": "eo-production-observed-costs/v1",
+  "as_of_utc": "2026-10-24T17:26:09.195058+00:00",
+  "actual_model_input_tokens": null,
+  "actual_model_output_tokens": null,
+  "cached_tokens": null,
+  "current_transcript_size_proxy": null,
+  "dollars": null,
+  "full_elapsed_session_seconds": null,
+  "total_summed_agent_time_seconds": null,
+  "active_labor_seconds": null,
+  "clock_limit": "An execution clock discontinuity affects early setup/engineering absolute timestamps. Do not interpret 10:29\u201316:48 as six hours of effort. Later measured intervals have their own stated scope and include waits.",
+  "completion_attempts": [
+    {
+      "path": "b01/complete-v1",
+      "wall_seconds": 8.3480501060003,
+      "exceptions": 1
+    },
+    {
+      "path": "b01/complete-v2",
+      "wall_seconds": 101.6872950879997,
+      "exceptions": 0
+    },
+    {
+      "path": "b02/review/complete-v1",
+      "wall_seconds": 75.40253877699979,
+      "exceptions": 2
+    },
+    {
+      "path": "b02/review/complete-v2",
+      "wall_seconds": 64.27804066199951,
+      "exceptions": 0
+    }
+  ],
+  "completion_machine_seconds_all_attempts": 249.7159246329993,
+  "completion_machine_seconds_successful": 165.9653357499992,
+  "source_acquisition_machine_seconds": 516.7020120799999,
+  "source_acquisition_route_http_requests": 11,
+  "source_acquisition_bytes": 223290552,
+  "source_acquisition_note": "Local and remote acquisition both counted. Difficult route reports2 HTTP and3 pool network requests; this total uses the route metric and is not all session network traffic. Git transport/API publication, web discovery, imports, rendering and agent labor are additional costs.",
+  "roles_accounted": [
+    "producer source research and representation corrections",
+    "independent source review and after-reveal review",
+    "control preparation including one abandoned pre-review version",
+    "difficult blocked/source/census research and review",
+    "implementation and independent engineering probes",
+    "coordinator source integration, Git publication, failures and handoff"
+  ],
+  "observed_partial_intervals_seconds": {
+    "difficult_producer": 562.795883,
+    "difficult_reviewer": 242.204,
+    "b01_reviewer_including_waits_and_completions": 1242.371,
+    "b02_reviewer_including_waits_and_completions": 1088.489
+  },
+  "intervals_note": "Not full task durations or exclusive labor. Do not add machine times again to these overlapping agent intervals. Producer/engineering/coordinator total labor unknown.",
+  "baseline": "baseline/COMPARISON_BASIS.json",
+  "net_saving_demonstrated": false,
+  "reason": "No comparable complete-cost/control workload measurement or actual token/cache telemetry. Different hard cases and new source recovery prevent attributing raw differences to workflow.",
+  "publication_transport": {
+    "large_tracker_snapshot_base64_attempt": "failed; server limit initially not retained in error output",
+    "large_tracker_snapshot_utf8_attempt": "failed HTTP 400: MCP request exceeds 16 MiB",
+    "resolution": "Four exact tracker snapshots (three distinct contents) gzip-compressed; decompression verified byte-for-byte. Source claim files and receipts unmodified.",
+    "elapsed_seconds": null,
+    "model_tokens": null
+  }
+}
