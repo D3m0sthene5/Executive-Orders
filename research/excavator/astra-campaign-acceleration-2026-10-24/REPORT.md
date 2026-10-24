@@ -47,6 +47,8 @@ All existing first-end, savings, counterevidence, incorporated-instrument and mi
 
 ## Publication and exact checkpoint
 
+Published as [draft PR57](https://github.com/D3m0sthene5/Executive-Orders/pull/57), stacked on PR56. Initial result commit `dea469912517414c2be1652bda761b84cd4536ee` has exact validated tree `a3a798bae8f576cb30021389263d1f14422c9342`. No merge. The sample was frozen in local commit b9b3ae73; public commit metadata is later, and no prospective budgeted-trial registration is claimed.
+
 Junto candidate `C-20261024-2` is owner-seeded and unverified, linked to the feasibility results; prior candidates and verified monetary totals are preserved. An initial incompatible optional contract shape was rejected by `check`, retained in the research folder, and corrected without changing Junto code or other ledger rows. Other failed materialization attempts remain in `EXECUTION.json`. No acquisition/production job was launched and no process was changed by default.
 
 Reproduce the bounded join from this branch with `python research/excavator/astra-campaign-acceleration-2026-10-24/join_inventory.py`; run `python -I jobs/junto/junto.py check`. The original sample is frozen by SHA256; rerunning the join is not permission to substitute a new sample after inspection. Local-presence fields may differ on a fuller checkout. `VALIDATION.json` records source/span replay and protected-input checks. No full-corpus build or checker/tracker rerun is warranted by research-only changes.
