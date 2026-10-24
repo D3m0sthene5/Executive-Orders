@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 272 of 14,972 orders (1.8%)**
+**Ready for human review: 277 of 14,972 orders (1.9%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -8,7 +8,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,403. The other 11,569 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 272}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 277}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 1; quotation rechecks: 1. These remain work after readiness.
 
 ## Steps finished (orders with a provisional status)
@@ -22,7 +22,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | Savings clauses and surviving effects closed | 332 | 3,403 | 9.8% |
 | Search for later contrary sources recorded, no open conflicts | 2,534 | 3,403 | 74.5% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
-| Opus evidence images matched to this order (Opus cases only) | 125 | 844 | 14.8% |
+| Opus evidence images matched to this order (Opus cases only) | 125 | 839 | 14.9% |
 
 ## Do these first: one action, many orders
 
@@ -55,7 +55,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
-| `OPUS_MEDIA_NONE_CITED` | 217 | 217 |
+| `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 83 | 83 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
