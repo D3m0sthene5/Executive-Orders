@@ -100,6 +100,15 @@ A source marked `requires_page_check` also requires explicit
 `original_pages_confirmed: true` after the official pages/images were inspected;
 confirming an extracted OCR text alone does not satisfy that flag.
 
+NORTON `FACT:` evidence is available only after separate source-based factual and
+clause-application review against the exact held bytes. Select it explicitly in
+`later_events`; its reviewed date, entity, event kind and clause scope cannot be
+changed. It is not an original, ending, current predicate or savings source.
+The assembler and checker revalidate the current registry, both reviews and the
+source bytes. A dated transmittal letter is not automatically proof of receipt,
+delivery, standstill expiration or legal cessation. Unreviewed or custody-only
+report candidates remain visible context and supply no citable factual event.
+
 VALLA adds exact reasoning review leads and explicitly reviewed preparation
 components to batch packets. Read the pinned `valla_context` and the readable
 review section. A wording match is never a confirmed error or legal equivalence.
@@ -110,3 +119,32 @@ not confirm its source identity, complete inventory or ending theory. Changed
 review dependencies require a new packet version. Every correction still needs
 all member-specific checks, independent whole-case review, and owner acceptance
 for replacement proposals. See `jobs/valla/README.md`.
+
+
+## Provisional working texts under the October 21 owner ruling
+
+The immutable original-authentication rule is unchanged. The assembler may use an
+explicitly graded `acceptable_as_original: false` representation as a provisional
+working text. Its source reference preserves the fragment's exact `grade`, order
+identity, source hash, text path/hash and exact quoted span. Current supported
+records are order-specific `original_representation` rows in existing
+`jobs/*/output/FRAGMENTS*.jsonl` or `jobs/*/data/**/FRAGMENTS*.jsonl`; ungraded or
+unmapped provenance stays blocked rather than acquiring an invented grade.
+
+`blank_sheet` supplies a `working_text` disclosure and blank confirmations for
+these sources. Independently inspect the source before setting each source's
+`identity_confirmed` and `complete_text_confirmed` to true, plus `pages_confirmed`
+when its fragment calls for a page check. This confirms the held representation,
+not original authentication. A confirmed original is still required on the
+original-supported route. The batch CSV carries the same `working_text` JSON.
+The assembler retains only confirmations for sources actually cited by the claim.
+
+Every dependent claim must preserve this exact standing note:
+"original not yet held; replace and re-check quotes when an official copy is retrieved."
+The checker retains its existing byte-custody requirements for every reference,
+including ending instruments and current-law predicates. A custody record alone
+still cannot pass. A new available official copy reopens a dependent claim for
+replacement/recheck; rebuilding a dossier also invalidates old sheet fingerprints.
+The tracker separately reports transcription-dependent ready dossiers and the
+original-replacement/quotation-recheck obligations that remain. The rule does not
+make uncited fragment rows ready, resolve legal questions, or certify a history.

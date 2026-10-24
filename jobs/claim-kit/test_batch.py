@@ -135,6 +135,42 @@ class BatchTests(T.BuildIntegrationTests):
         self.assertEqual(batch.check(self.repo,p,p/'applied',actual=False)['strict_claim_pass'],1)
 
 
+    def test_every_direct_policy_dependency_change_requires_new_packet(self):
+        from unittest import mock
+        p = self.packet(('EO:1',))
+        pins = batch.policy_code_pins()
+        self.assertEqual(set(pins), set(batch.POLICY_CODE_FILES))
+        for rel in batch.POLICY_CODE_FILES:
+            with self.subTest(dependency=rel):
+                changed = dict(pins); changed[rel] = '0'*64
+                with mock.patch.object(batch, 'policy_code_pins', return_value=changed):
+                    with self.assertRaisesRegex(ValueError, 'direct policy code changed'):
+                        batch.apply(self.repo, p, p/'applied')
+        # A properly hashed historical packet without the pins is still stale.
+        packet = json.loads((p/'PACKET.json').read_text())
+        packet.pop('policy_code_sha256'); packet.pop('fingerprint')
+        packet['fingerprint'] = batch.digest(batch.canon(packet).encode())
+        (p/'PACKET.json').write_text(json.dumps(packet))
+        with self.assertRaisesRegex(ValueError, 'direct policy code changed or missing'):
+            batch.apply(self.repo, p, p/'applied')
+
+    def test_batch_codec_pin_is_enforced_even_for_rehashed_packet(self):
+        p = self.packet(('EO:1',))
+        original = json.loads((p/'PACKET.json').read_text())
+        for stale in ('0'*64, None):
+            with self.subTest(pin=stale):
+                packet = dict(original)
+                packet.pop('fingerprint')
+                if stale is None:
+                    packet.pop('codec_code_sha256')
+                else:
+                    packet['codec_code_sha256'] = stale
+                packet['fingerprint'] = batch.digest(batch.canon(packet).encode())
+                (p/'PACKET.json').write_text(json.dumps(packet))
+                with self.assertRaisesRegex(ValueError, 'batch codec changed or missing'):
+                    batch.apply(self.repo, p, p/'applied')
+
+
 # Only the nine batch-specific tests above run in this subclass.
 for _name in tuple(vars(T.BuildIntegrationTests)):
     if _name.startswith('test_'):setattr(BatchTests,_name,None)

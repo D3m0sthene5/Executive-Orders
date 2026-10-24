@@ -1,0 +1,197 @@
+{
+  "schema": "eo-campaign-validation-accounting/v1",
+  "core_execution_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+  "consumer_ci_commit": "bc6b875c33f56ebe3010ae8f93827994017f8e6d",
+  "jobs": [
+    {
+      "run_id": 39885190210,
+      "job_id": 120191624209,
+      "name": "run",
+      "conclusion": "success",
+      "started_at": "2026-10-23T01:39:09Z",
+      "completed_at": "2026-10-23T01:57:25Z",
+      "job_wall_seconds": 1096
+    },
+    {
+      "run_id": 39885194060,
+      "job_id": 120191637654,
+      "name": "test (ubuntu-latest)",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T01:39:06Z",
+      "completed_at": "2026-10-23T01:39:34Z",
+      "job_wall_seconds": 28
+    },
+    {
+      "run_id": 39885194060,
+      "job_id": 120191637836,
+      "name": "test (windows-latest)",
+      "conclusion": "cancelled",
+      "started_at": "2026-10-23T01:39:06Z",
+      "completed_at": "2026-10-23T01:39:49Z",
+      "job_wall_seconds": 43
+    },
+    {
+      "run_id": 39885194009,
+      "job_id": 120191637579,
+      "name": "bounded-offline-pilot",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T01:39:06Z",
+      "completed_at": "2026-10-23T01:43:21Z",
+      "job_wall_seconds": 255
+    },
+    {
+      "run_id": 39887397694,
+      "job_id": 120198662407,
+      "name": "test (windows-latest)",
+      "conclusion": "success",
+      "started_at": "2026-10-23T02:02:47Z",
+      "completed_at": "2026-10-23T02:05:26Z",
+      "job_wall_seconds": 159
+    },
+    {
+      "run_id": 39887397694,
+      "job_id": 120198662456,
+      "name": "test (ubuntu-latest)",
+      "conclusion": "success",
+      "started_at": "2026-10-23T02:02:47Z",
+      "completed_at": "2026-10-23T02:03:31Z",
+      "job_wall_seconds": 44
+    },
+    {
+      "run_id": 39887397736,
+      "job_id": 120198661945,
+      "name": "bounded-offline-pilot",
+      "conclusion": "success",
+      "started_at": "2026-10-23T02:02:47Z",
+      "completed_at": "2026-10-23T02:12:36Z",
+      "job_wall_seconds": 589
+    }
+  ],
+  "aggregate_github_job_wall_seconds": 2214,
+  "github_validation_window_elapsed_seconds": 2010,
+  "core_script_machine_wall_seconds": 916.536,
+  "uncached_input_tokens": null,
+  "cached_input_tokens": null,
+  "cache_write_tokens": null,
+  "output_tokens": null,
+  "aggregate_agent_seconds": null,
+  "cash_usd": null,
+  "verified_research_savings": null,
+  "production_pilot_attempts": 0,
+  "new_lifecycle_claims": 0,
+  "new_ready": 0,
+  "first_failed_checks_retained": true,
+  "nonexecuted_bot_checks": [
+    39886904072,
+    39886899412
+  ],
+  "notice": "Job wall includes waiting/checkout; overlapping jobs are summed, while elapsed validation window includes gaps. Neither equals active agent time or CPU time. All failures/cancellations counted. Local repeated suites overlap and are not added as unique research observations.",
+  "existing_valla_regression": {
+    "canonical_claims_unchanged": true,
+    "checker_existing_claims": {
+      "claims_all_checks_passed": 0,
+      "claims_checked": 5,
+      "claims_gate_passed": 5
+    },
+    "code_pins": {
+      "jobs/claim-kit/batch.py": "dd8f1b92fba2814ec148f943bd6c1c930e7ab4ccfed8c6391bfc7059e03aff81",
+      "jobs/mountweazel/paired.py": "de347196959c280a0e70a166b38c24e2a1514283fce0f6d686e1a23f4257221a",
+      "jobs/valla/pilot.py": "d017b32a114c385375d1351a732ad09c6f76ecdd54b08b625d421adb7c5c7953",
+      "jobs/valla/valla.py": "1841c6b79aa63dad4c80c1db280c6b892999bebfe5f50ddc9bdbeb9239787a45"
+    },
+    "comparison_arms_retained": 6,
+    "correction_packet_path": "research/valla/pilot-runtime/github-39887397736-1/correction-v1",
+    "correction_packet_sha256": "197ccc46ca9cc3bce4ee89fedc13f629065cf66124f4bf64383269c69d2bae5d",
+    "correction_safety": {
+      "EO:13101": {
+        "component_reviews": [
+          {
+            "attestation_id": "VALLA-Q-EO_13101",
+            "reason": "dependency changed: jobs/claim-kit/BATCH.md",
+            "valid": false
+          }
+        ],
+        "hold_review_paths": [
+          "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl",
+          "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13101.audit.v1.json"
+        ],
+        "invalidated_conclusion_pointers": []
+      },
+      "EO:13148": {
+        "component_reviews": [
+          {
+            "attestation_id": "VALLA-Q-EO_13148",
+            "reason": "dependency changed: jobs/claim-kit/BATCH.md",
+            "valid": false
+          }
+        ],
+        "hold_review_paths": [
+          "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl",
+          "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13148.audit.v1.json"
+        ],
+        "invalidated_conclusion_pointers": []
+      },
+      "EO:13783": {
+        "component_reviews": [
+          {
+            "attestation_id": "VALLA-Q-EO_13783",
+            "reason": "dependency changed: jobs/claim-kit/BATCH.md",
+            "valid": false
+          }
+        ],
+        "hold_review_paths": [
+          "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl",
+          "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13783.audit.v1.json"
+        ],
+        "invalidated_conclusion_pointers": []
+      },
+      "EO:13792": {
+        "component_reviews": [
+          {
+            "attestation_id": "VALLA-Q-EO_13792",
+            "reason": "dependency changed: jobs/claim-kit/BATCH.md",
+            "valid": false
+          }
+        ],
+        "hold_review_paths": [
+          "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl",
+          "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13792.audit.v1.json"
+        ],
+        "invalidated_conclusion_pointers": []
+      },
+      "EO:13807": {
+        "component_reviews": [
+          {
+            "attestation_id": "VALLA-Q-EO_13807",
+            "reason": "dependency changed: jobs/claim-kit/BATCH.md",
+            "valid": false
+          }
+        ],
+        "hold_review_paths": [
+          "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl",
+          "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13807.audit.v1.json"
+        ],
+        "invalidated_conclusion_pointers": []
+      }
+    },
+    "github_run_id": "39887397736",
+    "head": "088ca671965a8d3bba92dfbcd93ec8c322b7d260",
+    "independent_whole_case_replacement_reviews": 0,
+    "index_fingerprint": "9a53e1d2665afbae025a05a72361c6155c5f4df0e6a6d6366795d9ef3a50e1ac",
+    "ready_for_human_review": 280,
+    "replacement_claims_published": 0,
+    "schema": "valla-integrated-pilot/v1",
+    "validation_mode": "current-blocker-retention; historical attestations are not renewed",
+    "valla_summary": {
+      "active_claims": 388,
+      "examined_dependencies": 0,
+      "legal_promotions": 0,
+      "model_calls": 0,
+      "shared_rationale_references": 291,
+      "textual_leads": 11,
+      "valid_components": 0
+    },
+    "verified_rework_saving": false,
+    "wall_seconds": 44.50356407100003
+  }
+}

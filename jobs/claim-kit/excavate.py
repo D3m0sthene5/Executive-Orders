@@ -19,7 +19,7 @@ DATE = r"(?:\d{4}-\d{2}-\d{2}|(?:January|February|March|April|May|June|July|Augu
 EO_NUMBER = r"\d(?:[ \t]*\d){0,4}[A-Z]?(?:½)?"
 EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
 CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?)\b", re.I)
-HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)(?:[.):](?=\s|$)|(?=[ \t]*$)))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
+HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)[ \t]*(?:[.):](?=\s|$)|(?=[ \t]*$)))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
 WHITE_HOUSE = r"(?im)^[ \t]*T[ \t]*H[ \t]*E[ \t]+W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E[ \t]*[,.;]?[ \t]*$"
 NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "twelve": 12, "thirty": 30, "sixty": 60, "ninety": 90}
 NUMBERS.update({"eleven": 11, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20, "forty": 40, "fifty": 50, "seventy": 70, "eighty": 80})

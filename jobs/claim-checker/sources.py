@@ -561,11 +561,53 @@ def load_opus_text_pack(index, job_dir):
     index.notes.append(f"Opus text pack: texts of {n} cited Opus sources")
 
 
+def load_replica_fragments(index, repo, exclude_jobs=()):
+    """Index Pinakes's explicit held-PDF association without authenticating it.
+
+    Pinakes publishes FRAGMENTS.data.file, not SOURCES.jsonl. A missing raw file
+    remains record-only; a present file is re-hashed by the ordinary checker.
+    No page/identity/completeness confirmation is supplied by this adapter.
+    """
+    job = "pinakes-proquest-ingest"
+    path = repo / "jobs" / job / "output/FRAGMENTS.jsonl"
+    if job in exclude_jobs or not path.is_file():
+        return
+    count = 0
+    for row in _read_jsonl(path):
+        data = row.get("data")
+        if (row.get("kind") != "original_representation" or row.get("produced_by") != job
+                or not isinstance(data, dict) or data.get("acceptable_as_original") is not False
+                or data.get("grade") != "archival_replica_scan_pending_codebook"
+                or not isinstance(row.get("instrument_id"), str)):
+            continue
+        digest = sha_hex(data.get("sha256"))
+        raw = _safe_child(repo, data.get("file"))
+        text = _safe_child(path.parent, data.get("text_path"))
+        if digest is None or raw is None:
+            continue
+        try:
+            raw.resolve().relative_to(repo.resolve())
+            if text is not None:
+                text.resolve().relative_to(repo.resolve())
+        except ValueError:
+            index.notes.append(f"{path}: unsafe replica file/text path refused")
+            continue
+        held = raw.is_file() and not is_lfs_pointer(raw)
+        index.add(HeldCopy(str(path.relative_to(repo)), digest, data.get("url"),
+                           _int(data.get("bytes")), raw if held else None, text, (),
+                           data.get("page_or_item"), [row["instrument_id"]],
+                           "provisional replica; identity/pages and original grade remain unverified",
+                           custody="repo_file" if held else "record_only"))
+        count += 1
+    index.origin_counts["pinakes_replica_fragments"] = count
+
+
 def build_index(repo, job_dir, cache_roots=(), exclude_jobs=()):
     repo = pathlib.Path(repo)
     index = HeldIndex()
     load_job_sources(index, repo, cache_roots, exclude_jobs)
     load_source_books(index, repo, exclude_jobs)
+    load_replica_fragments(index, repo, exclude_jobs)
     load_stage21(index, repo)
     load_stage20(index, repo)
     load_stage18(index, repo)

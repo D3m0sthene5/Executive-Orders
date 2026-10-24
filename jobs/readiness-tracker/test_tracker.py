@@ -2,6 +2,7 @@
 
 import copy
 import hashlib
+import io
 import csv
 import json
 import os
@@ -334,6 +335,132 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_opus_media"], "open")
         self.assertIn("OPUS_MEDIA_REFETCH_NEEDED", orders["EO:3"]["blockers"])
 
+    def empty_media_files(self, claim=None, status_changes=None, check_changes=None):
+        claim = claim or COMPLETE_NO_CLAIM
+        rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
+        for row in rows:
+            if row["instrument_id"] == "EO:2":
+                row["decision_origin"] = "opus_complete_addition"
+        write_csv(self.root / tracker.P["decided"], rows)
+        status = {"instrument_id": "EO:2", "media_status": "no_member_signal",
+                  "all_cited_media_resolved": "no", "media_gap": "none_cited",
+                  **{k: "0" for k in tracker.OPUS_EMPTY_COUNTS}}
+        for k, v in (status_changes or {}).items():
+            if v is None:
+                status.pop(k, None)
+            else:
+                status[k] = v
+        text = io.StringIO()
+        writer = csv.DictWriter(text, fieldnames=list(status))
+        writer.writeheader(); writer.writerow(status)
+        sys.path.insert(0, str(self.root / "research/stage19/code"))
+        import claim_gate
+        checked = {"claim_sha256": claim_gate.claim_sha(claim), "gate_passed": True,
+                   "all_checks_passed": True, "mechanical_result": "pass",
+                   "steps_checker_passed": {k: True for k in tracker.CLAIM_EVIDENCE_STEPS}}
+        checked.update(check_changes or {})
+        return {tracker.J["opus_status"]: text.getvalue(),
+                tracker.J["checker"]: json.dumps({"by_instrument": {"EO:2": checked}})}
+
+    def assert_media_gate_remains(self, order):
+        self.assertEqual(order["step_opus_media"], "open")
+        self.assertEqual(order["opus_media_applicability_note"], "")
+        self.assertEqual(order["ready_for_human_review"], "no")
+
+    def test_empty_opus_matching_set_is_disclosed_na_after_independent_claim_checks(self):
+        files = self.empty_media_files()
+        orders, summary = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+        order = orders["EO:2"]
+        self.assertEqual(order["step_opus_media"], "n/a")
+        self.assertEqual(order["ready_for_human_review"], "yes")
+        self.assertEqual(order["steps_applicable"], 6)
+        self.assertEqual(order["exhausted_steps"], "")
+        self.assertIn("No media matched or search exhausted", order["opus_media_applicability_note"])
+        self.assertEqual(summary["opus_media_not_applicable"], ["EO:2"])
+        self.assertNotIn("OPUS_MEDIA_NONE_CITED", order["blockers"])
+
+    def test_empty_media_rule_requires_every_explicit_zero_count(self):
+        for key in tracker.OPUS_EMPTY_COUNTS:
+            for value in (None, "", "unknown", "-1", "0.0", "1"):
+                with self.subTest(key=key, value=value):
+                    files = self.empty_media_files(status_changes={key: value})
+                    orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+                    self.assert_media_gate_remains(orders["EO:2"])
+
+    def test_empty_media_rule_never_exempts_cited_missing_or_ambiguous_media(self):
+        for changes in ({"media_gap": "cited_files_not_packaged"},
+                        {"media_gap": "originals_not_in_companion"},
+                        {"media_status": "ambiguous_only"}, {"ambiguous_members": "1"}):
+            with self.subTest(changes=changes):
+                files = self.empty_media_files(status_changes=changes)
+                orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+                self.assert_media_gate_remains(orders["EO:2"])
+        files = self.empty_media_files()
+        files[tracker.J["opus_refetch"]] = json.dumps({"instrument_ids": ["EO:2"],
+            "url": "https://www.govinfo.gov/missing.pdf", "expected_sha256": "b" * 64}) + "\n"
+        orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+        self.assert_media_gate_remains(orders["EO:2"])
+
+    def test_empty_media_rule_rejects_current_claim_opus_media_dependencies(self):
+        for pointer in ("opus_stage11_evidence_originals:original.pdf",
+                        "opus_stage11_manifest:original.pdf",
+                        "jobs/opus-media-match/output/text/source.txt",
+                        "releases/opus_stage11_complete/evidence/image.png"):
+            with self.subTest(pointer=pointer):
+                claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+                claim["original_representation"]["archival_id"] = pointer
+                files = self.empty_media_files(claim)
+                orders, _ = self.run_tracker([claim], files=files)
+                self.assert_media_gate_remains(orders["EO:2"])
+
+    def test_empty_media_rule_rejects_structured_opus_dependencies_without_path_markers(self):
+        for changes in ({"opus_media": {"source": SRC}},
+                        {"original_representation": {**SRC, "source_type": "opus_media"}},
+                        {"original_representation": {**SRC, "source_type": "opus_stage11_manifest"}}):
+            with self.subTest(changes=changes):
+                claim = {**copy.deepcopy(COMPLETE_NO_CLAIM), **changes}
+                orders, _ = self.run_tracker([claim], files=self.empty_media_files(claim))
+                self.assert_media_gate_remains(orders["EO:2"])
+
+    def test_empty_media_rule_requires_fresh_complete_checker_receipt(self):
+        changes = [{"claim_sha256": "0" * 64}, {"gate_passed": False},
+                   {"all_checks_passed": False}, {"mechanical_result": "unverified"}]
+        changes += [{"steps_checker_passed": {s: s != missing for s in tracker.CLAIM_EVIDENCE_STEPS}}
+                    for missing in tracker.CLAIM_EVIDENCE_STEPS]
+        for change in changes:
+            with self.subTest(change=change):
+                orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=self.empty_media_files(check_changes=change))
+                self.assert_media_gate_remains(orders["EO:2"])
+        files = self.empty_media_files()
+        files[tracker.J["checker"]] = json.dumps({"by_instrument": {}})
+        orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+        self.assert_media_gate_remains(orders["EO:2"])
+
+    def test_empty_media_rule_keeps_incomplete_and_policy_invalid_claims_blocked(self):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["unresolved_material_gaps"] = ["Actual delivery date unresolved"]
+        orders, _ = self.run_tracker([claim], files=self.empty_media_files(claim))
+        self.assert_media_gate_remains(orders["EO:2"])
+        claim = self.working_claim()
+        del claim["working_text"]
+        orders, _ = self.run_tracker([claim], files=self.empty_media_files(claim))
+        self.assert_media_gate_remains(orders["EO:2"])
+        self.assertIn("WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED", orders["EO:2"]["blockers"])
+
+    def test_empty_media_rule_preserves_exact_source_audit_hold(self):
+        files = self.empty_media_files()
+        import claim_gate
+        raw = b"Independent audit: unresolved earlier cessation."
+        hold = {"schema": "eo-source-audit-hold/v1", "instrument_id": "EO:2", "state": "unresolved",
+                "claim_sha256": claim_gate.claim_sha(COMPLETE_NO_CLAIM), "reason": "earlier end unresolved",
+                "review_path": "research/audit.txt", "review_sha256": hashlib.sha256(raw).hexdigest()}
+        files.update({"research/audit.txt": raw.decode(),
+                      "research/readiness/SOURCE_AUDIT_HOLDS.jsonl": json.dumps(hold) + "\n"})
+        orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], files=files)
+        self.assert_media_gate_remains(orders["EO:2"])
+        self.assertIn("OPEN_SOURCE_AUDIT", orders["EO:2"]["blockers"])
+        self.assertEqual(orders["EO:2"]["step_counterevidence"], "open")
+
     def search_files(self, sample=False):
         le = {"catalog_complete": True, "job_limit": None, "text_documents_scanned": 7619}
         cl = {"sample_mode": sample, "job_limit": None}
@@ -412,6 +539,50 @@ class TrackerTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.run_tracker([COMPLETE_NO_CLAIM],files={'research/audit.txt':'changed',
                 'research/readiness/SOURCE_AUDIT_HOLDS.jsonl':json.dumps(hold)+'\n'})
+
+
+    def working_claim(self):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        text = "The board shall report by June 30, 1950."
+        rel = 'jobs/app-executive-orders/output/texts/EO_2.txt'
+        self.write(rel, text)
+        digest = hashlib.sha256(text.encode()).hexdigest()
+        ref = dict(SRC, url='https://example.org/transcription', sha256=digest,
+                   instrument_id='EO:2', grade='mirror_transcription', acceptable_as_original=False,
+                   text_path=rel, text_sha256=digest, char_start=0, char_end=len(text), quote=text)
+        claim['original_representation'] = ref
+        claim['operative_clauses'][0]['original_source'] = copy.deepcopy(ref)
+        fragment = {'kind':'original_representation', 'instrument_id':'EO:2', 'data':ref}
+        self.write('jobs/app-executive-orders/output/FRAGMENTS.jsonl', json.dumps(fragment)+'\n')
+        claim['working_text'] = tracker.W.blank([ref])
+        claim['working_text']['confirmations'][0].update(identity_confirmed=True, complete_text_confirmed=True)
+        return claim
+
+    def test_working_text_ready_tier_retains_source_replacement_and_recheck_debt(self):
+        claim = self.working_claim()
+        orders, summary = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'yes')
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'transcription_dependent')
+        self.assertEqual(summary['ready_by_text_evidence_tier'], {'transcription_dependent':1})
+        self.assertEqual(summary['original_replacement_obligations'], 1)
+        self.assertEqual(summary['quotation_recheck_obligations'], 1)
+
+    def test_working_text_still_needs_other_steps_and_current_checker(self):
+        claim = self.working_claim()
+        orders, _ = self.run_tracker([claim], checked={'original_text':True})
+        self.assertEqual(orders['EO:2']['step_original_text'], 'done')
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
+        self.assertEqual(orders['EO:2']['step_ending_or_current_basis'], 'open')
+
+    def test_working_text_no_disclosure_or_bytes_blocks_even_with_old_checker_pass(self):
+        claim = self.working_claim()
+        changed = copy.deepcopy(claim); del changed['working_text']
+        orders, _ = self.run_tracker([changed])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
+        self.assertIn('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED', orders['EO:2']['blockers'])
+        (self.root / claim['original_representation']['text_path']).unlink()
+        orders, _ = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ from collections import defaultdict
 
 UNIVERSE = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
 COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
-                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py")
+                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py", "working_text.py", "population.py", "factual_events.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")
 LFS_MAGIC = b"version https://git-lfs.github.com/spec/v1"
@@ -235,6 +235,8 @@ class _Collector:
         ref = {key: source.get(key) for key in ("url", "sha256", "page_or_item")}
         ref.update({key: source[key] for key in ("archival_id", "local_file_sha256") if source.get(key)})
         ref.update(text_path=rel, text_sha256=actual)
+        if acceptable is False:
+            ref.update(grade=grade, acceptable_as_original=False, instrument_id=iid)
         quality = dict(quality or {})
         quality.setdefault("requires_page_check", False)
         ref.update(quality)
@@ -276,7 +278,10 @@ class _Collector:
         local_quality = _quality(node, quality)
         if "needs_page_check" in str(local_grade):
             local_quality["requires_page_check"] = True
-        if local_quality["requires_page_check"] and "needs_page_check" not in str(local_grade):
+        # A provisional representation must keep its producer's exact grade.
+        # Page debt has its own field; appending a grade would break attribution.
+        if (local_quality["requires_page_check"] and "needs_page_check" not in str(local_grade)
+                and local_acceptable is not False and acceptable is not False):
             local_grade = str(local_grade) + "_needs_page_check"
         explicit = _boolean(node.get("acceptable_as_original"))
         if acceptable is False or explicit is False:
@@ -346,7 +351,12 @@ class _Collector:
                             raise ValueError('NORTON code changed: ' + name)
                     self.factual_inputs_checked[base] = True
                 if iid and isinstance(data, dict) and data.get('legal_effect') == 'unresolved':
-                    self.factual_obligations[iid].append(dict(data, input_origin=origin, machine_lead=True))
+                    from factual_events import reviewed_events
+                    events, failures = reviewed_events(self.repo, iid, data)
+                    self.factual_obligations[iid].append(dict(data, input_origin=origin, machine_lead=True,
+                        citable_factual_events=events, factual_event_errors=failures))
+                    if failures:
+                        self.warnings.append(f'{origin}: factual event citations rejected: ' + ';'.join(failures))
             except (OSError, ValueError, KeyError, TypeError) as exc:
                 self.warnings.append(f'{origin}: factual obligation rejected: {exc}')
             return

@@ -203,6 +203,18 @@ class CorpusTests(unittest.TestCase):
         self.assertTrue(record["source"]["requires_page_check"])
         self.assertEqual(record["source"]["location_confidence"], "medium")
 
+    def test_provisional_replica_keeps_exact_grade_with_page_debt(self):
+        self.write('jobs/pinakes-proquest-ingest/output/texts/one.txt','Held replica text.')
+        grade = 'archival_replica_scan_pending_codebook'
+        self.jsonl('jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl',[
+            self.original(grade=grade,acceptable_as_original=False,needs_page_check=True,
+                          location_confidence='medium',location_verified=False)])
+        record = inputs.load_corpus(self.repo)['texts'][0]
+        self.assertEqual(record['grade'],grade)
+        self.assertEqual(record['source']['grade'],grade)
+        self.assertFalse(record['source']['acceptable_as_original'])
+        self.assertTrue(record['source']['requires_page_check'])
+
     def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
         self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
         fragment = {"instrument_id": "EO:1", "kind": "original_representation",

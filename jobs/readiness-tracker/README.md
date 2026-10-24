@@ -22,7 +22,24 @@ they fail.
 | `clause_inventory`, `ending_or_current_basis`, `savings_residuals` | That part of its claim in `research/readiness/claims/` passes `claim_gate.py` **and** claim-checker passed that step for this exact claim (`jobs/claim-checker/output/PER_CLAIM.json`, matched by claim sha256) |
 | `counterevidence` | Either the claim's later-source search passes as above, **or** the machines' bounded searches covered the order and found nothing contrary: later-events read the whole OFR catalog (the order must be in it, so 1937 on) and every saved text, current-law scanned the whole U.S. Code and eCFR, and neither `COUNTEREVIDENCE_LEADS.csv` nor `POSSIBLE_CONFLICTS.csv` names the order. Never from a sample run; never with a quarantined relationship conflict. `output/MACHINE_LATER_SEARCH.jsonl` gives the claim-shaped `later_source_search` for each such order, ready to copy into its claim. Blockers say why not: `MACHINE_SEARCH_FOUND_CONTRARY_LEAD:<job>` (an agent must resolve it) or `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` (pre-1937) |
 | `shared_sources` | Only for orders citing a Stage 20 shared source: all of them retrieved (Stage 20 records or `jobs/source-ladder/output/SOURCES.jsonl`) |
-| `opus_media` | Only for Opus cases: opus-media-match resolved every medium its records cite (`all_cited_media_resolved`); otherwise a specific blocker (re-fetch needed, original not kept, ambiguous match, none cited). Falls back to the Stage 20 audit until that job has run |
+| `opus_media` | Only for Opus cases: opus-media-match resolved every medium its records cite (`all_cited_media_resolved`); otherwise a specific blocker (re-fetch needed, original not kept, ambiguous match, none cited). An explicitly empty matching set may be N/A under the narrow rule below. Falls back to the Stage 20 audit until that job has run |
+
+
+**Empty historical Opus matching sets.** The owner's current shared-bottleneck campaign
+instruction says not to make optional enrichment a mandatory gate. This applies the
+owner-choice point in `jobs/opus-media-match/README.md` for `none_cited`; it does not
+waive any actual source obligation. The matching step is `n/a` only when the committed
+status explicitly says `none_cited` and `no_member_signal`, all twelve cited/matched/
+ambiguous/missing-media counts are explicitly zero, no refetch item or current claim
+pointer depends on Opus media, and the exact current claim passes structural and policy
+checks plus all five evidence roles in the current checker receipt. Every other applicable
+step must already be done and no exact source-audit hold may apply. Missing, malformed or
+contradictory counts stay blocked. Cited-but-missing files, missing originals and ambiguous
+matches retain their existing requirements. This is neither successful matching nor
+exhaustion: `READINESS_BY_ORDER.csv` discloses the reason in
+`opus_media_applicability_note`, and `SUMMARY.json` lists the applicable order IDs in
+`opus_media_not_applicable`. Original-text grades, material events, counterevidence,
+source holds and human-review requirements remain unchanged.
 
 **Why the printed volumes count this way.** The three official compilations are government printings of the
 orders' texts (the Office of the Federal Register's 1974 Hoover volume, the GPO's 1911 Canal Commission and 1912

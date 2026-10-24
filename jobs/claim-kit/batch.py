@@ -24,12 +24,19 @@ SCHEMA='eo-claim-kit-work-package/v1'
 ROW_FIELDS=['instrument_id','dossier_sha256','agent','outcome','approved','original_confirmed',
  'original_pages_confirmed','inventory_confirmed','research_rationale','savings_state','savings_source_id',
  'savings_reason','search_ids','conflict_resolutions','unresolved_material_gaps','earlier_end_check',
- 'scope_check','independent_command_check','savings_check']
+ 'scope_check','independent_command_check','savings_check','working_text']
 CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effective_date',
  'effective_date_confirmed','current_basis_id','current_legal_basis','checked_through',
  'later_event_ids','later_events','reason','inventory_source_id','inventory_char_start',
  'inventory_char_end','inventory_reason']
 TAG='@eo:'
+POLICY_CODE_FILES = ('jobs/claim-kit/working_text.py', 'jobs/claim-kit/factual_events.py',
+                     'jobs/norton/model.py', 'jobs/claim-kit/lifecycle_obligations.py')
+
+def policy_code_pins():
+    source_root = Path(__file__).resolve().parents[2]
+    return {rel:file_sha(source_root/rel) for rel in POLICY_CODE_FILES}
+
 
 def canon(v):return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)
 def digest(v):return hashlib.sha256(v).hexdigest()
@@ -186,7 +193,18 @@ def preflight(d,repo):
         if r.get('kind') in ('report_deadline','condition'):
             add('actual_event_fact',iid+':'+eid,'Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened')
     if not d.get('clauses'):add('complete_inventory',iid,'No complete operative inventory located','absent_from_packet')
+    # Inspect actual held bytes/spans and known boundary risks before assigning
+    # production. A populated dossier is not proof that its snippets are usable.
+    from evidence_preflight import inspect
+    evidence_screen=inspect(d,repo)
+    for task in evidence_screen['tasks']:
+        task=dict(task)
+        task['instrument_id']=iid
+        task['task_id']='TASK:'+digest((task['kind']+'|'+task['shared_key']).encode())[:24]
+        tasks.append(task)
     return {'instrument_id':iid,'mechanical_tasks':tasks,'evidence_preflight':'blocked_or_research' if tasks else 'no_known_mechanical_gap',
+        'held_text_receipts':evidence_screen['held_text_receipts'],
+        'custody_validation':evidence_screen['custody_validation'],
         'lifecycle_obligations':obligations(iid,d.get('clauses',[]),
              [d.get('evidence',{}).get(eid,{}) for eid in d.get('own_terms',[])],
              [d.get('evidence',{}).get(eid,{}) for eid in d.get('actor_provisions',[])]),
@@ -370,6 +388,9 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         prepared_context=valla_context(repo,ids)
     packet={'schema':SCHEMA,'legal_cutoff':'2026-10-14','agent':agent,'input_pins':pins,
         'codec_code_sha256':file_sha(Path(__file__)),'assembler_code_sha256':file_sha(Path(__file__).with_name('assemble.py')),
+        'preflight_code_sha256':file_sha(Path(__file__).with_name('evidence_preflight.py')),
+        'policy_code_sha256':policy_code_pins(),
+        'preflight_dependency_sha256':{'excavate.py':file_sha(Path(__file__).with_name('excavate.py'))},
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
     if prepared_context is not None:packet['valla_context']=prepared_context
     if decode(packet)!=dossiers:raise ValueError('lossless reconstruction failed')
@@ -381,6 +402,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         sheet=blank_sheet(d,agent)
         decisions.append({**{k:'' for k in ROW_FIELDS},'instrument_id':iid,'dossier_sha256':d['fingerprint'],'agent':agent,
             'outcome':'unresolved','approved':'false','original_confirmed':'false','original_pages_confirmed':'false',
+            'working_text':canon(sheet.get('working_text',{})),
             'inventory_confirmed':'false','search_ids':'[]','conflict_resolutions':'{}','unresolved_material_gaps':canon(sheet['unresolved_material_gaps'])})
         for c in sheet['clauses']:
             row={k:'' for k in CLAUSE_FIELDS};row.update(instrument_id=iid)
@@ -417,7 +439,11 @@ def apply(repo,folder,write):
     if write.exists():raise ValueError('apply destination exists; refusing overwrite')
     if not write.is_relative_to(folder):raise ValueError('apply results must stay under frozen work package; no automatic publication')
     packet,dossiers=load_packet(folder,repo)
+    if packet.get('codec_code_sha256') != file_sha(Path(__file__)):raise ValueError('batch codec changed or missing; prepare a reviewed package')
+    if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
     if packet['assembler_code_sha256']!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
+    if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
+    if packet.get('preflight_dependency_sha256')!={'excavate.py':file_sha(Path(__file__).with_name('excavate.py'))}:raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
     order_rows=rows(folder/'decisions.csv');clause_rows=rows(folder/'clauses.csv');shared=json.loads((folder/'RATIONALES.json').read_bytes())
     counts=Counter(r.get('instrument_id') for r in order_rows)
     if set(counts)!=set(dossiers) or any(n!=1 for n in counts.values()):raise ValueError('decision rows must name every packet member exactly once')
@@ -436,6 +462,9 @@ def apply(repo,folder,write):
                     'remaining_gaps':json_field(r['unresolved_material_gaps'],list),'ownership':packet['ownership'][iid]});continue
             sheet=blank_sheet(dossiers[iid],r['agent'])
             for k in ('approved','original_confirmed','original_pages_confirmed','inventory_confirmed'):sheet[k]=boolean(r[k])
+            if r.get('working_text'):
+                disclosure=json_field(r['working_text'],dict)
+                if disclosure:sheet['working_text']=disclosure
             checks={k:rationale(r[k],shared) for k in ('earlier_end_check','scope_check','independent_command_check','savings_check')}
             if any(not v.strip() for v in checks.values()):raise ValueError('every member-specific legal check requires substantive rationale')
             sheet['research_rationale']=rationale(r['research_rationale'],shared)+'\nMember checks: '+canon(checks)

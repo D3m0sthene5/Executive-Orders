@@ -15,6 +15,7 @@ from current_evidence import enrich_current
 from excavate import segment, own_terms, acting_provision, discover_mentions, chain, generic_reference_count
 from assemble import blank_sheet, canonical_sha, assemble
 from lifecycle_obligations import obligations
+import working_text as W
 
 CUTOFF = '2026-10-14'
 
@@ -132,7 +133,10 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
     if rec and rec.get('requires_page_check'):missing.append('Official-source page location requires a separate page/image check before original confirmation.')
     if not rec: missing.append('No attributed held text located for this order.')
     elif not rec.get('acceptable_as_original'):
-        missing.append('Held representation is a lead; complete official original requires confirmation/acquisition.')
+        if rec.get('grade') in W.GRADES:
+            missing.append('Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.')
+        else:
+            missing.append('Held representation is a lead; complete official original requires confirmation/acquisition.')
     if not clauses: missing.append('No clause inventory extracted; do not submit an empty inventory.')
     if not searches: missing.append('No complete machine later-source search available.')
     if corpus['statuses'].get(iid)=='yes':
@@ -154,6 +158,11 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
         dossier['status_history']=corpus['status_histories'][iid]
     if corpus.get('factual_obligations',{}).get(iid):
         dossier['factual_obligations']=corpus['factual_obligations'][iid]
+        for context in dossier['factual_obligations']:
+            for event in context.get('citable_factual_events',[]):
+                evidence[event['id']]=event
+        dossier['factual_event_ids']=[eid for eid,record in evidence.items()
+                                     if record.get('role')=='reviewed_factual_event']
     dossier['fingerprint']=canonical_sha(dossier)
     return dossier
 
@@ -382,7 +391,7 @@ def build(repo, out, cache=None):
                 assembly.append({'sheet':str(path.relative_to(repo)),'errors':[type(e).__name__+': '+str(e)]})
     dump(out/'ASSEMBLY_REPORT.json',assembly)
     counts.update(dossiers=len(index),status_leads=len(universe)-len(decided),families=len(family_rows),assembled_claims=accepted)
-    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'baseline_expected':{'universe':14972,'decided':3359},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
+    summary={'schema':'eo-claim-kit-summary/v1','counts':dict(sorted(counts.items())), 'historical_baseline':{'universe':14972,'decided':3359},'population':{'universe':len(universe),'decided':len(decided),'identity_sha256':canonical_sha(sorted(universe)),'status_sha256':canonical_sha(corpus['statuses'])},'warnings':warnings,'input_commit':os.environ.get('GITHUB_SHA'),'jsonl_shards':sorted(p.name for p in out.glob('*.jsonl')),'lead_only':True,'legal_cutoff':CUTOFF}
     summary['overlay_input_schema']='eo-claim-kit-overlay-input/v1'
     summary['compiled_code_sha256']={p:hashlib.sha256(Path(__file__).with_name(p).read_bytes()).hexdigest()
         for p in COMPILER_FILES}
