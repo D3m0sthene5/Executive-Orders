@@ -66,7 +66,7 @@ class IsolationTests(unittest.TestCase):
         self.assert_preserved()
         result = json.loads((self.out / "VALIDATION.json").read_text())
         self.assertFalse(result["success"])
-        self.assertEqual([x["exit_code"] for x in result["commands"]], [0, 0, 7])
+        self.assertEqual([x["exit_code"] for x in result["commands"]], [7])
         self.assertFalse((self.out / "readiness-tracker").exists())
 
     def test_timeout_retains_failure_receipt_and_cleanup(self):

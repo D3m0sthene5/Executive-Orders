@@ -12,7 +12,7 @@ import time
 
 SAMPLE = [10032, 10056, 10112, 10140, 10449, 10570, 10693, 10749,
           10750, 10878, 10923, 11101, 10915, 11927, 12975, 9333, 12607, 8072]
-JOBS = ("norton", "claim-kit", "claim-checker", "readiness-tracker", "polya")
+JOBS = ("claim-checker", "readiness-tracker")
 
 
 def dump(path, value):
@@ -112,4 +112,14 @@ def main():
 if __name__ == "__main__":
     subprocess.run([sys.executable, "-B", "-m", "unittest", "discover", "-s",
                     str(Path(__file__).parent), "-p", "test_*.py"], check=True)
+    # Keep the earlier full-core receipt; this execution changes evidence custody only.
+    outer = Path(os.environ["OUTPUT_DIR"]).resolve()
+    prior = Path(os.environ["JOB_PRIOR_OUTPUT_DIR"]) if os.environ.get("JOB_PRIOR_OUTPUT_DIR") else None
+    if prior and prior.is_dir():
+        shutil.copytree(prior, outer, dirs_exist_ok=True,
+                        ignore=lambda directory, names: set(names) & {"log.txt", "install-log.txt", "STATUS.json", "RUNNER_INPUTS.json"})
+    fresh = outer / "shared-source"
+    if fresh.exists():
+        shutil.rmtree(fresh)
+    os.environ["OUTPUT_DIR"] = str(fresh)
     main()

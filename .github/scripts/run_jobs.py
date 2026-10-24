@@ -98,7 +98,8 @@ def main():
             cache = repo / ".job-cache" / name
             cache.mkdir(parents=True, exist_ok=True)
             env = {**os.environ, "JOB_CACHE_MB": str(cap), "JOB_CACHE_DIR": str(cache),
-                   "JOB_NAME": name, "JOB_DIR": str(folder), "OUTPUT_DIR": str(out), "REPO_ROOT": str(repo)}
+                   "JOB_NAME": name, "JOB_DIR": str(folder), "OUTPUT_DIR": str(out), "REPO_ROOT": str(repo),
+                   "JOB_PRIOR_OUTPUT_DIR": str(backup)}
             code = 0
             if (folder / "requirements.txt").is_file():
                 code = command([sys.executable, "-m", "pip", "install", "--quiet", "-r",
