@@ -11,7 +11,7 @@ def main():
  for iid in selected['orders']:
   c=new[iid];assert c['claim_key']==old[iid]['claim_key'] and c['claim_sha256']==old[iid]['claim_sha256'],iid
   assert c['mechanical_result']=='pass',(iid,c['mechanical_result'])
-  r=after[iid];cohort.append(dict(instrument_id=iid,claim_key=c['claim_key'],claim_sha256=c['claim_sha256'],mechanical=c['mechanical_result'],all_checks_passed=c['all_checks_passed'],before_ready=before[iid]['ready_for_human_review'],after_ready=r['ready_for_human_review'],ready_tier=r['ready_tier'],blockers=r['blockers'],steps={k:v for k,v in r.items() if k.startswith('step_')}))
+  r=after[iid];cohort.append(dict(instrument_id=iid,claim_key=c['claim_key'],claim_sha256=c['claim_sha256'],mechanical=c['mechanical_result'],all_checks_passed=c['all_checks_passed'],before_ready=before[iid]['ready_for_human_review'],after_ready=r['ready_for_human_review'],ready_tier=r['ready_tier'],blockers=r['blockers'],claim_record_errors=r['claim_record_errors'],steps={k:v for k,v in r.items() if k.startswith('step_')}))
  ready=lambda d:{i for i,r in d.items() if r['ready_for_human_review']=='yes'}
  restored=ready(after)-ready(before);lost=ready(before)-ready(after)
  assert not lost,sorted(lost)
@@ -21,6 +21,9 @@ def main():
   actual_optional={i for i,r in after.items() if r.get('opus_media_applicability_note')}
   assert actual_optional==optional,(actual_optional,optional)
   assert all(after[i]['step_opus_media']=='n/a' and after[i]['ready_for_human_review']=='yes' for i in optional)
+  for case in json.loads((here/'OPTIONAL_MEDIA_COHORT.json').read_text())['cases']:
+   iid=case['instrument_id'];assert new[iid]['claim_sha256']==case['checker']['claim_sha256'],iid
+   assert new[iid]['all_checks_passed'] is True and case['before']['blockers']=='OPUS_MEDIA_NONE_CITED',iid
  holds=['EO:13101','EO:13148','EO:13783','EO:13792','EO:13807','EO:9789'];assert all(after[i]['ready_for_human_review']=='no' for i in holds)
  summary=json.loads((out/'readiness-tracker/SUMMARY.json').read_text())
  result=dict(input_commit=json.loads((out/'VALIDATION.json').read_text())['input_commit'],cohort=cohort,selected=len(cohort),mechanically_passed=len(cohort),all_checks_passed=sum(c['all_checks_passed'] for c in cohort),before_ready=len(ready(before)),after_ready=len(ready(after)),restored=selected['prior_ready'],newly_ready_from_empty_matching_set=sorted(optional),newly_researched_histories=0,lost_ready=[],holds_preserved=holds,outside_previous_verification_gap=selected['prior_ready_outside'],remaining_selected=[c for c in cohort if c['after_ready']!='yes'],tracker_summary=summary,limits=['Unchanged claim versions and existing reviews; byte restoration is not a new legal conclusion.','No human certification or whole-campaign efficiency claim.'])
