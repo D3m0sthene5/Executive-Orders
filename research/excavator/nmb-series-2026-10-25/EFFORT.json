@@ -1,0 +1,51 @@
+{
+  "schema": "neyman.production-effort/1",
+  "events": [
+    {
+      "event_id": "nmb-series-20261025-root-shared-assignment",
+      "worker_id": "codex-root-series-20261025",
+      "phase": "production",
+      "kind": "worker_elapsed",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "started_utc": "2026-10-25T23:01:04.388800+00:00",
+      "finished_utc": "2026-10-25T23:24:39.506982+00:00",
+      "measurement_method": "Shared engineering/acquisition/production assignment umbrella, not separable per-phase active effort. Includes tools/reasoning/waits; initial idea-document read precedes marker.",
+      "coverage": "partial"
+    },
+    {
+      "event_id": "nmb-series-20261025-independent-source-and-engineering-review",
+      "worker_id": "codex-nmb-series-independent-review-20261025",
+      "phase": "review",
+      "kind": "worker_elapsed",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "started_utc": "2026-10-25T23:23:53.061413+00:00",
+      "finished_utc": "2026-10-25T23:29:46.800111+00:00",
+      "measurement_method": "Independent source, blind controls, corrected exact factual/application reviews, engineering/correction retests; initial tool call and final verification outside coverage.",
+      "coverage": "partial"
+    },
+    {
+      "event_id": "nmb-series-20261025-root-correction-and-integration",
+      "worker_id": "codex-root-series-20261025",
+      "phase": "integration",
+      "kind": "worker_elapsed",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "started_utc": "2026-10-25T23:24:39.506982+00:00",
+      "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+      "measurement_method": "Root correction/reconciliation, native consumers, documentation and artifact integration; includes tool/wait intervals. Final validation/publication after this marker not measured.",
+      "coverage": "partial"
+    }
+  ],
+  "scope": "Partial observed worker occupancy across the entire pilot; no active-labor/billing inference."
+}
