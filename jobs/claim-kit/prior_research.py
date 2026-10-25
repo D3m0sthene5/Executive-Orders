@@ -50,12 +50,12 @@ def clause_key(clause):
 
 
 STATUS_DECISION_SCHEMA = 'eo-status-history-decision/v1'
-STATUS_REVIEW_SCHEMAS = ('eo-status-overlay-review/v1', 'sinclair-cross-family-lean-review/v1')
+STATUS_HOLD_SCHEMA = 'eo-pending-adoption-procedural-hold/v1'
 STATUS_SCOPE = ('Provisional instrument status only; no inherited lifecycle approval, '
                 'first-cessation finding, any-effect determination or human certification.')
 
 
-def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pins):
+def status_context(repo, iid, decisions, reviews, pin, adoption_rows):
     """Adapt actual status records without turning a recorded verdict into authority."""
     def load(rel):
         path = (repo / rel).resolve()
@@ -84,12 +84,18 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pin
         source_pins = []
         if evidence:
             source_pins = [pin(path, digest) for path, digest in evidence.get('source_fingerprints', {}).items()]
+            history = evidence.get('history_packet', {}).get('history', {})
+            base = evidence.get('base_dossier', {})
             evidence_state = 'exact' if (
-                evidence.get('instrument_id') == iid
+                evidence.get('schema') == 'eo-status-overlay-evidence/v1'
+                and evidence.get('instrument_id') == iid
                 and evidence.get('fingerprint') == fingerprint(evidence) == decision.get('evidence_sha256')
                 and evidence.get('history_sha256') == decision.get('history_sha256')
-                and evidence.get('history_packet', {}).get('history', {}).get('instrument_id') == iid
-                and evidence.get('history_packet', {}).get('history', {}).get('fingerprint') == decision.get('history_sha256')
+                and history.get('instrument_id') == iid
+                and history.get('fingerprint') == fingerprint(history) == decision.get('history_sha256')
+                and isinstance(base, dict) and base.get('schema') == 'eo-claim-kit-dossier/v1'
+                and base.get('instrument_id') == iid and base.get('whole_order_status') is None
+                and base.get('fingerprint') == canonical_sha(base)
             ) else 'stale_or_mismatched'
         summary = {**record, 'decision_sha256': canonical_sha(decision),
             'producer': decision.get('agent'), 'recommended_provisional_status': decision.get('recommended_provisional_status'),
@@ -114,7 +120,23 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pin
             deps = dependency_pins(review)
             deps.extend(dependency_pins({k: parent[k] for k in ('ruling', 'pending_input', 'historical_review') if k in parent}))
             if cross:
-                exact = (all(p.get('sha256') == record['file_sha256'] for p in matching_files)
+                input_issues = []
+                required_inputs = ((record['path'], record['file_sha256']),
+                                   (evidence_path, evidence_pin.get('sha256')))
+                for required_path, actual in required_inputs:
+                    members = [p for p in review.get('input_files', []) if p.get('path') == required_path]
+                    if len(members) != 1:
+                        input_issues.append({'path': required_path, 'expected_sha256': None,
+                            'state': 'missing_review_input' if not members else 'duplicate_review_input',
+                            'review_path': review_record['path'], 'review_pointer': review_record['pointer']})
+                    elif not re.fullmatch(r'[0-9a-f]{64}', str(members[0].get('sha256') or '')):
+                        input_issues.append({'path': required_path, 'expected_sha256': members[0].get('sha256'),
+                            'state': 'missing_or_invalid_review_input_sha256',
+                            'review_path': review_record['path'], 'review_pointer': review_record['pointer']})
+                    elif members[0]['sha256'] != actual:
+                        input_issues.append(pin(required_path, members[0]['sha256']))
+                deps.extend(input_issues)
+                exact = (not input_issues
                     and review.get('producer') == decision.get('agent')
                     and review.get('evidence_canonical_fingerprint') == decision.get('evidence_sha256'))
             else:
@@ -134,13 +156,17 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pin
                 'scope': review.get('scope', review.get('notice', STATUS_SCOPE)),
                 'version_binding': 'exact' if exact else 'stale_or_mismatched',
                 'dependency_pins': deps, 'rationale': review.get('rationale'),
+                'dependency_state': 'all_historical_pins_match' if evidence_state == 'exact' and all(p['state'] == 'match' for p in deps) else 'reconciliation_required',
+                'basis_sources': [pin(p['path'], p.get('sha256')) for p in review.get('sources', []) if p.get('path')],
+                'checked_evidence_ids': review.get('checked_evidence_ids', []),
                 'propositions': propositions,
                 'd6': {key: d6[key] for key in ('assessment', 'coverage') if key in d6},
                 'basis_spans_pointer': review_record['pointer'] + '/held_basis_spans' if cross else None,
                 'review_authority': 'recorded_assessment_only_no_inherited_approval',
                 'full_lifecycle_approved': False})
         row = adoption_rows.get(iid)
-        bound_reviews = [r for r in summary['reviews'] if r['path'] in (row or {}).get('decision_origin', '')]
+        bound_reviews = [r for r in summary['reviews'] if r['path'] in (row or {}).get('decision_origin', '')
+                         and r['version_binding'] == 'exact' and r['verdict'] in ('accept', 'uphold')]
         summary['adoption'] = {'state': 'not_recorded_in_current_authority' if not row else (
             'recorded_provisional_status_for_review' if bound_reviews and
             row.get('provisional_substantive_status') == decision.get('recommended_provisional_status') else
@@ -154,6 +180,9 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pin
                 summary['remaining_questions'].append('Reconcile stale or mismatched review: ' + review['path'])
         if evidence_state != 'exact':
             summary['remaining_questions'].append('Reconcile producer evidence/history binding: ' + evidence_path)
+            problems.append({**evidence_pin, 'state': 'invalid_evidence_binding' if evidence else 'missing_or_unreadable_evidence',
+                'canonical_binding': evidence_state,
+                'detail': 'Reconcile evidence, history and frozen base-dossier identities and seals; no status or review approval inferred.'})
         if not summary['reviews']:
             summary['remaining_questions'].append('No matching status review discovered; no review or adoption approval inferred.')
         summary['reconciliation_tasks'] = list({(p['path'], p.get('expected_sha256'), p['state']): p for p in problems}.values())
@@ -164,6 +193,34 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows, ruling_pin
         'dependency_pins': dependency_pins(review), 'full_lifecycle_approved': False}
         for n, (record, review, _) in enumerate(reviews) if n not in attached]
     return result, unattached
+
+
+def status_hold(repo, iid, record, row, parent, pin):
+    """Keep the real procedural hold and its historical review separate from approval."""
+    review_path = parent.get('review_file')
+    review_pin = pin(review_path, parent.get('review_file_sha256')) if review_path else None
+    pointer = row.get('original_review_pointer', '')
+    original_review = None
+    match = re.fullmatch(r'/verdicts/(\d+)', pointer)
+    if review_path and match:
+        path = (repo / review_path).resolve()
+        if path.is_relative_to(repo):
+            try:
+                candidate = json.loads(path.read_bytes())['verdicts'][int(match[1])]
+                if candidate.get('instrument_id') == iid:
+                    original_review = candidate
+            except (OSError, ValueError, KeyError, IndexError, TypeError):
+                pass
+    references = [{**r, 'current_pin': pin(r['cited_path'])}
+                  for r in parent.get('ruling_references', []) if r.get('cited_path')]
+    return {**record, 'record': row, 'state': row.get('current_disposition', parent.get('disposition')),
+        'notice': parent.get('label'), 'reason': parent.get('reason'),
+        'historical_review': {'file': review_pin, 'pointer': pointer, 'record': original_review,
+            'binding': 'exact' if original_review and review_pin['state'] == 'match' else 'reconciliation_required',
+            'producer_version_binding': 'not_established_by_procedural_hold'},
+        'ruling_references': references,
+        'source_access': pin(row['original_review_source_file']) if row.get('original_review_source_file') else None,
+        'automatic_approval': False, 'full_lifecycle_approved': False}
 
 
 def collect(repo, dossiers, exclude=None):
@@ -178,6 +235,7 @@ def collect(repo, dossiers, exclude=None):
     pins = {}
     status_decisions = {iid: [] for iid in ids}
     status_reviews = {iid: [] for iid in ids}
+    status_holds = {iid: [] for iid in ids}
     issues = []
     control_paths = {}
     excluded_controls = []
@@ -270,6 +328,13 @@ def collect(repo, dossiers, exclude=None):
                         pins[rel] = sha(raw)
                         status_reviews[row['instrument_id']].append((
                             {**record, 'pointer': '/verdicts/' + str(number)}, row, value))
+            elif value.get('schema') == STATUS_HOLD_SCHEMA:
+                for number, row in enumerate(value.get('proposals', [])):
+                    target = row.get('instrument_id')
+                    if target in ids:
+                        pins[rel] = sha(raw)
+                        status_holds[target].append(status_hold(repo, target,
+                            {**record, 'pointer': '/proposals/' + str(number)}, row, value, pin))
             if 'review' in value.get('schema', '').lower() or value.get('reviewer'):
                 for pointer, row in walk(value):
                     target = row.get('instrument_id')
@@ -309,7 +374,7 @@ def collect(repo, dossiers, exclude=None):
                    for path in sorted((repo / 'research/readiness/owner_rulings').glob('*.md'))]
     adoption_rows = {}
     authority = repo / 'research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv'
-    if any(status_decisions.values()) or any(status_reviews.values()):
+    if any(status_decisions.values()) or any(status_reviews.values()) or any(status_holds.values()):
         pin(authority.relative_to(repo).as_posix())
         if authority.is_file():
             with authority.open(encoding='utf-8', newline='') as handle:
@@ -406,13 +471,18 @@ def collect(repo, dossiers, exclude=None):
                     'resolution': 'unresolved_by_preparation'})
         unattached = [{**r, 'record': v, 'version_binding': 'claim_version_not_discovered'} for r,v in reviews[iid]
                       if not any(v.get('claim_sha256') == key or any(loc['path'] == v.get('claim_path') for loc in e['locations']) for key,e in versions.items())]
-        status, unattached_status = status_context(repo, iid, status_decisions[iid], status_reviews[iid], pin, adoption_rows, ruling_pins)
-        result['orders'][iid] = {'state': 'prior_work_located' if summaries or checkpoints[iid] or reviews[iid] or manifests[iid] or status or unattached_status else 'no_prior_research_located',
-            'status_research': status, 'unattached_status_reviews': unattached_status,
+        status, unattached_status = status_context(repo, iid, status_decisions[iid], status_reviews[iid], pin, adoption_rows)
+        result['orders'][iid] = {'state': 'prior_work_located' if summaries or checkpoints[iid] or reviews[iid] or manifests[iid] or status or unattached_status or status_holds[iid] else 'no_prior_research_located',
+            'status_research': status, 'unattached_status_reviews': unattached_status, 'status_holds': status_holds[iid],
             'current_canonical_claim_sha256': current_key, 'versions': summaries,
             'unattached_reviews': unattached, 'selection_and_checkpoint_records': manifests[iid],
             'unfinished_work': checkpoints[iid], 'conflicting_versions': conflicts,
             'remaining_delta': {'current_reported_gaps': (current or {}).get('unresolved_material_gaps', []),
+                'existing_lifecycle_questions_notice': 'Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.',
+                'existing_lifecycle_questions': [{key: obligation[key] for key in
+                    ('scope_id', 'clause_sha256', 'state', 'questions', 'own_term_evidence_ids', 'later_actor_evidence_ids')
+                    if key in obligation} | {'dossier_pointer': '/lifecycle_obligations/' + str(number)}
+                    for number, obligation in enumerate(dossiers[iid].get('lifecycle_obligations', []))],
                 'prior_differences_require_scope_source_proposition_review': True,
                 'new_legal_gaps_invented': [], 'dossier_fingerprint': dossiers[iid].get('fingerprint')}}
     result['input_file_pins'] = dict(sorted(pins.items()))
@@ -443,9 +513,16 @@ def brief(context, iid):
             'source_pins': item['source_pins'],
             'reviews': [{key: review[key] for key in ('path', 'pointer', 'file_sha256', 'reviewer',
                 'verdict', 'scope', 'version_binding', 'propositions', 'rationale', 'd6',
-                'basis_spans_pointer', 'full_lifecycle_approved')} for review in item['reviews']]})
+                'basis_spans_pointer', 'basis_sources', 'checked_evidence_ids', 'dependency_state',
+                'full_lifecycle_approved') if key in review} for review in item['reviews']]})
     return {'notice': context['notice'], 'state': order['state'], 'versions': versions,
             'status_research': status, 'unattached_status_reviews': order.get('unattached_status_reviews', []),
+            'status_holds': [{key: hold[key] for key in ('path', 'pointer', 'file_sha256', 'state', 'notice',
+                'reason', 'source_access', 'automatic_approval', 'full_lifecycle_approved')} | {
+                'record': {key: hold['record'][key] for key in ('instrument_id', 'hold_reason',
+                    'original_review_locus', 'original_review_q2', 'original_review_defects') if key in hold['record']},
+                'historical_review': {key: hold['historical_review'][key] for key in
+                    ('file', 'pointer', 'binding', 'producer_version_binding')}} for hold in order.get('status_holds', [])],
             'current_rulings': context.get('current_rulings', []),
             'selection_and_checkpoint_records': order['selection_and_checkpoint_records'],
             'unfinished_work': order['unfinished_work'], 'conflicting_versions': order['conflicting_versions'],

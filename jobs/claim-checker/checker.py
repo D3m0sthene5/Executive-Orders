@@ -768,6 +768,18 @@ def check_orders(claim, ctx, rows):
             _row(rows, "claim_record", "order_exists", "instrument_id", "fail", "not_in_universe",
                  f"{iid} is not an id in the 14,972-order universe")
     for path, key, val, _ in walk(claim):
+        # This typed proposal key is metadata, never a second order identity.
+        # Validate it directly: the citation scanner can skip malformed values
+        # when their apparent order identity was already seen.
+        if path == "claim_kit.status_overlay.proposal_id":
+            valid = (isinstance(val, str) and isinstance(iid, str) and iid in ctx.universe
+                     and claim.get("claim_kit", {}).get("status_overlay", {}).get("schema") == "eo-claim-kit-working-status/v1"
+                     and re.fullmatch("status-overlay:" + re.escape(iid) + r":[0-9a-f]{20}", val))
+            _row(rows, "claim_record", "order_exists", path, "pass" if valid else "fail",
+                 "overlay_proposal_key" if valid else "invalid_overlay_proposal_key",
+                 "target-bound proposal metadata; not legal or review approval" if valid
+                 else "expected target-bound status-overlay proposal key and working-status schema")
+            continue
         if not isinstance(val, str) or path == "instrument_id":
             continue
         for written, cands in cited_orders(val):

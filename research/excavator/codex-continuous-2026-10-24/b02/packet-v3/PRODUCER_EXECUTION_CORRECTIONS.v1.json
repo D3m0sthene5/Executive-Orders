@@ -1,0 +1,14 @@
+{
+  "invalid_request_attempt": {
+    "file": "SOURCE_REQUESTS.v1.jsonl",
+    "file_sha256": "22e7080a828a7cdcdadb68e23eb909aed1a7a6b8deb481c863886f1fd4e9f86f",
+    "observed_validation_error": "instrument_id must look like EO:1234 or EO:9132A",
+    "cause": "Producer wrote order_id instead of instrument_id and singular url instead of urls. No invalid request was enqueued. Corrected v2 was validated and enqueued. This record summarizes observed tool output, rather than asserting an independently saved raw stdout receipt."
+  },
+  "first_checker_environment": {
+    "attempt": "checker-v1",
+    "incorrect_flag": "CLAIM_CHECKER_MAX_REQUESTS=0",
+    "required_flag": "CLAIM_CHECKER_VERIFY_DOWNLOADS=0",
+    "finding": "All five references resolved to held verified bytes. No source download was observed. v2/v3 explicitly disabled network verification; v3 used standard retained sources without custom cache roots."
+  }
+}

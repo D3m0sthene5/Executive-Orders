@@ -51,7 +51,7 @@ may use `pointer` (RFC 6901) instead of `line`; omit both for a whole JSON objec
 }
 ```
 
-`packet` is required for claims with `claim_kit` metadata. Completion repeats
+`packet` is required for ordinary claims with `claim_kit` metadata. Completion repeats
 the existing packet/source/prior-research and direct code fingerprints, plus
 exact dossier checks. Ordinary claims without that metadata use the existing
 strict source-span checks and actual Stage 19 gate/checker. Existing claims of
@@ -60,6 +60,23 @@ under research outside readiness; this prepares a proposal for that owner.
 No filename overwrite or implicit owner acceptance is supported. Own canonical
 filing must use an agent-prefixed new filename that is not shadowed by its prior
 canonical filename.
+
+For the existing experimental status-overlay route, a member instead supplies
+`overlay_bundle` with four whole-file `{path, sha256}` references named
+`evidence`, `decision`, `review`, and `proposal`. They must select `EVIDENCE.json`,
+`STATUS_DECISION.json`, `STATUS_REVIEW.json`, and `PROMOTION_PROPOSAL.json` in the
+same isolated proposal directory. Completion uses the existing overlay validator
+to recheck frozen evidence, exact status decision/review, proposal, source bytes,
+authority and compiled inputs, then requires separate exact lifecycle review and
+controls. An optional ordinary `packet` is archived provenance: its frozen base
+must equal the overlay base; its earlier context does not approve the later claim.
+
+Overlay completion requires `replacement_proposal` publication outside canonical
+readiness claims. Owner acceptance remains false. The actual checker and tracker
+consume the reviewed proposal with authoritative statuses unchanged, so an
+undecided order retains `NO_PROVISIONAL_STATUS`. This is usable reviewed research,
+not canonical readiness or status adoption. Changed dependencies during consumer
+execution block filing.
 
 ## Recorded review decisions
 

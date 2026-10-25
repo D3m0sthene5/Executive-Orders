@@ -1,0 +1,123 @@
+{
+  "active_labor_seconds": null,
+  "cache_tokens": null,
+  "canonical_statuses_changed": false,
+  "claims_created": 0,
+  "earlier_attempts": [
+    {
+      "command": "python -B -m unittest test_continuous_route test_status_overlay test_batch test_kit",
+      "outcome": "91 executed test instances passed; nonexistent test_kit import failed; imported fixture class caused duplicate instances",
+      "reported_seconds": 3.353,
+      "reported_tests": 92
+    },
+    {
+      "command": "python -B -m unittest test_continuous_route.ContinuousRouteTests test_status_overlay test_batch",
+      "outcome": "passed before direct policy pin regression was added",
+      "reported_seconds": 1.821,
+      "reported_tests": 55
+    },
+    {
+      "command": "post-pin focused run using early-yield output-only wrapper",
+      "outcome": "completion result not captured; repeated final command above; costs not excluded"
+    }
+  ],
+  "evidence_revalidation": {
+    "dossier_fingerprint": "370d280e52cb84b9555b2e3321348a89d89c8c3cf83b5c23df8d0dae610425ca",
+    "evidence_file": "research/excavator/codex-continuous-2026-10-24/route/freeze-eo10014-v1/undecided/EO_10014/EVIDENCE.json",
+    "evidence_fingerprint": "5e6f1887977db59ed9b4a6f3d940a3d3ac941e20032ae02c4fe8c108c36e07fd",
+    "file_sha256": "2abf40a40be2ed98fe0b7e17ac60df028189e0ffb94d985bccf4180f41b4f2dc",
+    "valid": true,
+    "wall_seconds": 0.09645
+  },
+  "files_sha256": {
+    "batch.py": "c9a5230712e58963a0d4c88feee54053e6ca43484f8c3d789a939525b33958f1",
+    "kit.py": "f747a27d69f4788748633dad7e7cbd6882632381cab44d7e8d2cfcfef0237059",
+    "status_overlay.py": "d8ab921fe43f7646ccf80f9f4044a5e63e7caf183106ad6f92a6779ff6dd1c7a",
+    "test_continuous_route.py": "70cd09cff6e1f3a909d67c70330a6133041ffd7d1ffcc2c94f0a1859a2cdec77"
+  },
+  "final_packet_retry": {
+    "agent_reserved": "codex-continuous-undecided",
+    "instrument_id": "EO:10014",
+    "outcome": "refused by another producer reservation; no v2 written",
+    "wall_seconds": 0.213899832
+  },
+  "focused_test_command": "python -B -m unittest test_continuous_route.ContinuousRouteTests test_status_overlay test_batch",
+  "focused_test_result": {
+    "errors": 0,
+    "failures": 0,
+    "reported_seconds": 2.123,
+    "tests": 56
+  },
+  "freeze_telemetry": {
+    "billed_input_tokens": null,
+    "billed_output_tokens": null,
+    "compiled_bytes_read": 401673613,
+    "compiled_records_read": 212119,
+    "compiled_shards_read": 10,
+    "corpus_rebuilds": 0,
+    "history_pin_file_bytes": 697576,
+    "history_pin_file_opens": 3,
+    "history_validator_source_opens": null,
+    "selected_text_bytes": 20187,
+    "selected_text_opens": 2,
+    "span_validation_file_bytes": 48671,
+    "span_validation_file_opens": 4,
+    "wall_seconds": 3.179857
+  },
+  "generation_counts": {
+    "jobs/claim-kit/output": {
+      "act_overrides_ingested": 221,
+      "act_overrides_refused": 2,
+      "assembled_claims": 0,
+      "decided_orders": 3403,
+      "declared_text_representations": 142532,
+      "distinct_held_text_artifacts": 41564,
+      "dossiers": 3403,
+      "families": 4547,
+      "generic_references_excluded": 234,
+      "held_texts_scanned": 41564,
+      "known_pairs": 16540,
+      "located_actor_pairs": 10962,
+      "orders_with_held_text": 14886,
+      "status_leads": 11569,
+      "universe_orders": 14972
+    },
+    "tmp/continuous-compiled": {
+      "act_overrides_ingested": 219,
+      "act_overrides_refused": 4,
+      "assembled_claims": 0,
+      "decided_orders": 3403,
+      "declared_text_representations": 109172,
+      "distinct_held_text_artifacts": 24858,
+      "dossiers": 3403,
+      "families": 4307,
+      "generic_references_excluded": 153,
+      "held_texts_scanned": 24858,
+      "known_pairs": 15464,
+      "located_actor_pairs": 9399,
+      "orders_with_held_text": 10674,
+      "status_leads": 11569,
+      "universe_orders": 14972
+    }
+  },
+  "legal_reviews_performed": 0,
+  "net_savings": null,
+  "observed_at_utc": "2026-10-25T15:50:33.755416+00:00",
+  "producer_packet_notice": "Diagnostic v1 PACKET pins pre-final batch policy and must not be applied. Frozen EVIDENCE remains source-valid. Producer owns reservation and must prepare a fresh packet.",
+  "real_preparation": {
+    "bounded_preparation_seconds": 4.6909,
+    "input_pretty_json_bytes": 48344,
+    "known_mechanical_tasks": 0,
+    "lossless_packet_json_bytes": 53750,
+    "model_tokens": null,
+    "no_legal_outcomes_inferred": true,
+    "orders": 1,
+    "readable_view_bytes": 38811,
+    "round_trip_exact": true,
+    "shared_text_blocks": 3,
+    "source_catalogue_entries": 4,
+    "source_files_validated": 4
+  },
+  "summed_task_elapsed_seconds": null,
+  "tokens": null
+}

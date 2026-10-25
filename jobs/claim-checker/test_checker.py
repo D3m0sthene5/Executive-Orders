@@ -243,6 +243,7 @@ class CheckerTests(unittest.TestCase):
         self.assertEqual(fails, [], fails)
         src = {r["field"]: r["status"] for r in rows_for(rows, "source_held")}
         self.assertEqual(src["original_representation"], "held_bytes_verified")
+
         self.assertEqual(src["savings_residuals.source"], "held_bytes_verified")  # re-hashed in the job's cache
         ident = {r["field"]: r["status"] for r in rows_for(rows, "source_identity")}
         self.assertEqual(ident, {"original_representation": "recorded_for_this_order",
@@ -259,6 +260,27 @@ class CheckerTests(unittest.TestCase):
         summ = C.summarise_claim("k", "f", 1, good_claim(), rows, errors, status, self.ctx)
         self.assertTrue(summ["all_checks_passed"])
         self.assertTrue(all(s["checker_passed"] for s in summ["steps"].values()))
+
+    def test_overlay_proposal_key_is_typed_metadata_not_a_second_order(self):
+        claim = good_claim()
+        claim["claim_kit"] = {"status_overlay": {"schema": "eo-claim-kit-working-status/v1",
+                                               "proposal_id": "status-overlay:EO:90001:" + "a" * 20}}
+        rows = []
+        C.check_orders(claim, self.ctx, rows)
+        self.assertEqual(rows_for(rows, "order_exists", "fail"), [])
+        self.assertTrue(any(r["status"] == "overlay_proposal_key" for r in rows))
+        for bad in ("status-overlay:EO:99999:" + "a" * 20, "status-overlay:EO:90003:" + "a" * 20,
+                    "status-overlay:EO:90001:" + "a" * 19, "status-overlay:EO:90001:" + "a" * 20 + " EO:99999",
+                    "EO:90001:" + "a" * 20, "status-overlay:EO:90001", "EO:90001", "not-an-id", None):
+            claim["claim_kit"]["status_overlay"]["proposal_id"] = bad
+            rows = []
+            C.check_orders(claim, self.ctx, rows)
+            self.assertTrue(rows_for(rows, "order_exists", "fail"), bad)
+        claim["claim_kit"]["status_overlay"]["proposal_id"] = "status-overlay:EO:90001:" + "a" * 20
+        claim["operative_clauses"][0]["first_end"]["actor"] = "EO:99999"
+        rows = []
+        C.check_orders(claim, self.ctx, rows)
+        self.assertTrue(rows_for(rows, "order_exists", "fail"))
 
     def test_bad_claim_is_caught(self):
         c = good_claim()

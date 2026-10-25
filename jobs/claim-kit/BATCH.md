@@ -22,7 +22,7 @@ contract. It preserves source/legal judgment in independent records. Add
 `--publish` only when filing the manifest's own-agent destination or isolated
 replacement proposal is authorized. Human certification remains separate.
 
-`prepare` accepts 1–50 explicit identities. It freezes complete dossiers, verifies
+`prepare` accepts 1–50 explicit identities, decided or undecided. It freezes complete dossiers, verifies
 held source text hashes/spans once, and writes a lossless `PACKET.json`, readable
 `READ.md`, blank `decisions.csv` / `clauses.csv`, shared `RATIONALES.json`, and
 `PREPARE.json`. Use the small `view` catalogue to navigate common text and member
@@ -89,6 +89,21 @@ assembler pin fails closed; prepare and review the changed evidence explicitly.
 
 ## Undecided identities
 
+Ordinary `prepare` uses `status_overlay.freeze_evidence` for undecided members:
+the full base dossier starts with `whole_order_status` unset and a blank
+`STATUS_DECISION.json` beside it. Selection includes undecided work by default;
+`next --scope decided|undecided|all` can bound an assignment. Existing ownership,
+reservations and source grades still govern selection.
+
+Use one cumulative source analysis for both output scopes. Fill the ordinary
+lifecycle CSV while investigating status. `apply` preserves the populated sheet
+and returns `awaiting_status_review` until the exact status decision is reviewed.
+Pass that saved sheet to `overlay-propose --lifecycle-sheet PATH`; the command
+preserves analysis, changes only the explicit status/dossier binding and resets
+producer approval to false. Reconfirm it after inspection, then assemble and
+obtain the separate exact lifecycle review. This path never adopts a status.
+The explicit overlay commands below remain supported.
+
 ```text
 python jobs/claim-kit/kit.py overlay-prepare EO:NUMBER --agent NAME --write research/excavator/RUN/overlay/EO_NUMBER/freeze-v1
 python jobs/claim-kit/kit.py overlay-review-sheet --evidence EVIDENCE.json --decision STATUS_DECISION.json --reviewer OTHER --write STATUS_REVIEW.json
@@ -138,7 +153,9 @@ after inspecting the held representation, and keep its standing replacement/rech
 note. Blank confirmation values remain blocked. See `AGENT_PROTOCOL.md` for scope;
 this column grants no original authentication or custody waiver.
 
-Ordinary `prepare` also discovers existing lifecycle claims, exact-version AI
+Ordinary `prepare` also discovers actual status decisions, their exact scoped
+reviews and adoption state, withheld findings and parent-ending holds, alongside
+existing lifecycle claims, exact-version AI
 reviews, selected-version manifests and unfinished producer checkpoints throughout
 `research/`. `prior_research` in PACKET and the prior-work section in READ / `view
 --order` retain paths, hashes, review scope, rejected versions, source availability,

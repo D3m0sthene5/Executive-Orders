@@ -199,6 +199,52 @@ def held_versions(inputs):
     return result
 
 
+def working_overlay(inputs, member, manifest, claim):
+    """Validate the existing isolated overlay route, never adopt its status."""
+    import status_overlay as overlay
+    require(manifest['publication']['mode'] == 'replacement_proposal',
+            'unadopted status overlay requires isolated replacement_proposal publication')
+    refs = member['overlay_bundle']
+    names = {'evidence': 'EVIDENCE.json', 'decision': 'STATUS_DECISION.json',
+             'review': 'STATUS_REVIEW.json', 'proposal': 'PROMOTION_PROPOSAL.json'}
+    require(isinstance(refs, dict) and set(refs) == set(names), 'four exact overlay bundle references required')
+    paths = []
+    values = {}
+    for key, name in names.items():
+        ref = refs[key]
+        require(isinstance(ref, dict) and set(ref) == {'path', 'sha256'} and
+                Path(ref['path']).name == name, 'whole-file exact overlay reference required: ' + key)
+        paths.append(batch.safe(inputs.repo, ref['path']).parent)
+        values[key] = inputs.object(ref)
+    require(len(set(paths)) == 1, 'overlay inputs must share one exact isolated bundle')
+    overlay._destination(inputs.repo, paths[0])
+    evidence = values['evidence']
+    # The complete current source/history/authority/compiler checks and exact
+    # reviewed working-status label are the existing overlay contract.
+    errors = overlay.check_working_claim(inputs.repo, claim, values['proposal'],
+        values['decision'], values['review'], evidence)
+    for rel, sha in {**evidence['source_fingerprints'], **evidence['authority']['files']}.items():
+        inputs.pin(rel, sha)
+    for name, sha in evidence['compiled']['code_sha256'].items():
+        inputs.pin('jobs/claim-kit/' + name, sha)
+    inputs.pin(evidence['compiled']['output'] + '/SUMMARY.json')
+    # A continuous producer may retain its earlier undecided packet as exact
+    # provenance. It is not the experimental dossier and its old context/code
+    # stamp cannot approve this claim. The overlay independently revalidates all
+    # dependencies above; a legacy individual overlay needs no ordinary packet.
+    if 'packet' in member:
+        require(Path(member['packet']['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
+        packet = inputs.object(member['packet'])
+        fingerprint = packet.get('fingerprint')
+        require(packet.get('schema') == batch.SCHEMA and
+                batch.digest(batch.canon({k:v for k,v in packet.items() if k != 'fingerprint'}).encode()) == fingerprint,
+                'changed archived preparation packet')
+        require(packet.get('agent') == manifest['agent'], 'packet belongs to another producer')
+        require(batch.decode(packet).get(member['instrument_id']) == evidence['base_dossier'],
+                'archived packet does not match frozen overlay base dossier')
+    return errors
+
+
 def selected_claim(inputs, member, manifest, planted, held):
     iid, sha = member['instrument_id'], member['claim_sha256']
     require(SHA.fullmatch(sha) is not None, 'explicit canonical claim_sha256 required')
@@ -225,7 +271,13 @@ def selected_claim(inputs, member, manifest, planted, held):
     review = review_record(inputs, member['after_reveal_review'] if after_reveal else member['review'],
                            member, manifest, after_reveal)
     dossier = None
+    is_overlay = ('overlay_bundle' in member or
+                  isinstance(claim.get('claim_kit'), dict) and 'status_overlay' in claim['claim_kit'])
     if 'claim_kit' in claim:
+        require(claim['claim_kit'].get('agent') == manifest['agent'], 'claim belongs to another producer')
+    if is_overlay:
+        strict_errors = working_overlay(inputs, member, manifest, claim)
+    elif 'claim_kit' in claim:
         packet_ref = member['packet']
         require(Path(packet_ref['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
         inputs.pin(packet_ref['path'], packet_ref['sha256'])
@@ -239,9 +291,9 @@ def selected_claim(inputs, member, manifest, planted, held):
                 packet.get('preflight_dependency_sha256') == {'excavate.py': batch.file_sha(Path(batch.__file__).with_name('excavate.py'))},
                 'packet code changed; prepare and review a new version')
         dossier = dossiers[iid]
-        require(claim['claim_kit'].get('agent') == manifest['agent'], 'claim belongs to another producer')
     gate_errors = _gate(inputs.repo).validate_claim(claim, expected_status=claim.get('whole_order_status'))
-    strict_errors = check_claim(claim, inputs.repo, dossier)
+    if not is_overlay:
+        strict_errors = check_claim(claim, inputs.repo, dossier)
     require(not [e for e in strict_errors if e not in gate_errors], 'strict claim checks failed: ' + str(strict_errors))
     if member['publication_kind'] == 'whole_case':
         require(not gate_errors, 'whole-case gate failed: ' + str(gate_errors))
@@ -250,8 +302,12 @@ def selected_claim(inputs, member, manifest, planted, held):
                 'partial review requires explicit nonempty expected_gate_errors; complete claims need whole_case review')
         require(sorted(review['expected_gate_errors']) == sorted(gate_errors),
                 'partial-research completeness gaps differ from exact review')
-    return claim, raw_line, {'gate_errors': gate_errors, 'after_reveal': after_reveal, 'source_review_upheld': True,
-                            'publication_kind': member['publication_kind']}
+    detail = {'gate_errors': gate_errors, 'after_reveal': after_reveal, 'source_review_upheld': True,
+              'publication_kind': member['publication_kind']}
+    if is_overlay:
+        detail.update(experimental_status_overlay=True, owner_adoption_required=True,
+                      authoritative_status=None, canonical_filing_allowed=False)
+    return claim, raw_line, detail
 
 
 def run_checker(repo, claims, dest):
@@ -466,6 +522,12 @@ def complete(repo, manifest_path, dest, publish=False):
                 after = tracker_result.get('selected', {}).get(row['instrument_id'], {}).get('after') or {}
                 require(after.get('ready_for_human_review') != 'yes',
                         'partial review cannot supply complete-history/ready credit; whole_case review required: ' + row['instrument_id'])
+        for member in members:
+            iid = member['instrument_id']
+            if iid in selected and 'status_overlay' in selected[iid][0].get('claim_kit', {}):
+                allowed = next(row['gate_errors'] for row in outcomes if row['instrument_id'] == iid)
+                require(not [error for error in working_overlay(inputs, member, manifest, selected[iid][0]) if error not in allowed],
+                        'overlay changed during completion: ' + iid)
         inputs.unchanged()
     except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
         exceptions.append({'scope': 'batch', 'error': str(exc)})
@@ -479,6 +541,10 @@ def complete(repo, manifest_path, dest, publish=False):
     publication.update(artifact=artifact.relative_to(repo).as_posix(), sha256=batch.digest(raw),
                        claims=len(selected), owner_acceptance_required=mode == 'replacement_proposal',
                        independent_human_certifications=0)
+    overlay_ids = [iid for iid,(claim,_) in selected.items() if 'status_overlay' in claim.get('claim_kit', {})]
+    if overlay_ids:
+        publication.update(status_adoption_required=overlay_ids, canonical_filing_allowed=False,
+                           tracker_uses_authoritative_statuses=True)
     inputs.save(dest)
     tally = {'schema': SCHEMA, 'attempted': len(members), 'counts': dict(Counter(r['outcome'] for r in outcomes)),
              'submitted': sum(m['outcome'] == 'submit' for m in members), 'controls': control_results,

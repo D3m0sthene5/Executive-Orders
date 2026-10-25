@@ -1,0 +1,43 @@
+{
+  "schema": "eo-publication-storage/v1",
+  "compressed_exact_snapshots": [
+    {
+      "original_path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v2/TRACKER_CLAIMS.jsonl",
+      "stored_path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v2/TRACKER_CLAIMS.jsonl.gz",
+      "bytes": 27081023,
+      "sha256": "8f89d1945664026ec8f68de0c753e450dbb01d00d20b2c17c40accea78f55468",
+      "stored_sha256": "847381b511901df96367617736de06658c384f30d40aa701bfb95297f3812fdf"
+    },
+    {
+      "original_path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v3/TRACKER_CLAIMS.jsonl",
+      "stored_path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v3/TRACKER_CLAIMS.jsonl.gz",
+      "bytes": 27081023,
+      "sha256": "8f89d1945664026ec8f68de0c753e450dbb01d00d20b2c17c40accea78f55468",
+      "stored_sha256": "847381b511901df96367617736de06658c384f30d40aa701bfb95297f3812fdf"
+    },
+    {
+      "original_path": "research/excavator/codex-continuous-2026-10-24/b02/packet-v3/review/complete-attempt-v1/TRACKER_CLAIMS.jsonl",
+      "stored_path": "research/excavator/codex-continuous-2026-10-24/b02/packet-v3/review/complete-attempt-v1/TRACKER_CLAIMS.jsonl.gz",
+      "bytes": 27081023,
+      "sha256": "ad4fc1342bf7ba3ead53128d747c5e451e6df2cc73a371fb34674d74654b0533",
+      "stored_sha256": "11fec48cf443e5d0579a7f845d300f9708897693d59b91d4894eb46627cc0e6a"
+    },
+    {
+      "original_path": "research/excavator/codex-continuous-2026-10-24/comparison/legacy-10016/review/complete-attempt-v1/TRACKER_CLAIMS.jsonl",
+      "stored_path": "research/excavator/codex-continuous-2026-10-24/comparison/legacy-10016/review/complete-attempt-v1/TRACKER_CLAIMS.jsonl.gz",
+      "bytes": 27081023,
+      "sha256": "ad4fc1342bf7ba3ead53128d747c5e451e6df2cc73a371fb34674d74654b0533",
+      "stored_sha256": "11fec48cf443e5d0579a7f845d300f9708897693d59b91d4894eb46627cc0e6a"
+    }
+  ],
+  "excluded_cache_fragments": [
+    {
+      "path": "research/excavator/codex-continuous-2026-10-24/b02/source-ladder-cache/pool/e7/e7916ed35cb6c86378f7a9b4f714cb412633b57675948d95a5419582913586dc.part",
+      "bytes": 4325376,
+      "sha256": "f4fc7066d9d1201146ff52e18a2ab83548541c56ebf12b12c7bba064a0174d8d",
+      "reason": "incomplete acquisition byte cache; retained failure receipt describes attempt"
+    }
+  ],
+  "restore": "python research/excavator/codex-continuous-2026-10-24/restore_publication.py",
+  "note": "Only oversized tracker input snapshots are losslessly compressed for connector transport. Source PDFs reuse exact already-retained Git blobs, including duplicate cache paths. No source bytes or claims are rewritten."
+}

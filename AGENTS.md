@@ -32,3 +32,14 @@ conflicting version is an exception, never inferred approval. Source-blocked
 work uses the existing checkpoint/resume fingerprints and can publish reviewed
 research steps without pretending to be a complete claim. See
 [`jobs/claim-kit/BATCH.md`](jobs/claim-kit/BATCH.md) for the completion contract.
+
+**Continuous status/lifecycle assignments (owner, 2026-10-24):** ordinary selection
+and preparation include undecided orders with a full frozen dossier and status
+unset. Carry qualified prior status research, corrections, rejected theories and
+bounded search coverage into the lifecycle assignment. Keep one producer analysis
+and, where independence rules permit, one independent source examination across
+both output scopes, with distinct exact status and lifecycle verdicts. Status
+review never substitutes for whole-case review or owner adoption. Use fresh
+contexts between bounded assignments, retain blocked checkpoints, and count all
+review, source, correction and integration costs; no efficiency saving is inferred
+from routing or recovered records alone.
