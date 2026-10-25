@@ -144,6 +144,8 @@ class PriorResearchTests(unittest.TestCase):
     def test_default_packet_and_resume_fingerprints_reject_changed_prior_work(self):
         self.write('research/session/claim.json', self.claim)
         out = self.repo/'compiled';self.write('compiled/dossiers/EO_11782.json', self.dossier)
+        self.write('compiled/INDEX.json', [{'instrument_id': 'EO:11782',
+            'status': self.dossier['whole_order_status'], 'fingerprint': self.dossier['fingerprint']}])
         dest = self.repo/'research/packet'
         batch.prepare(self.repo,out,dest,['EO:11782'],'test')
         packet, _ = batch.load_packet(dest,self.repo)

@@ -32,7 +32,7 @@ CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effectiv
 TAG='@eo:'
 POLICY_CODE_FILES = ('jobs/claim-kit/working_text.py', 'jobs/claim-kit/factual_events.py',
                      'jobs/norton/model.py', 'jobs/claim-kit/lifecycle_obligations.py',
-                     'jobs/claim-kit/prior_research.py')
+                     'jobs/claim-kit/prior_research.py', 'jobs/claim-kit/status_overlay.py')
 
 def policy_code_pins():
     source_root = Path(__file__).resolve().parents[2]
@@ -246,6 +246,13 @@ def load_packet(folder,repo,check_sources=True):
     if packet.get('schema')!=SCHEMA or digest(canon(packet).encode())!=fp:raise ValueError('changed work package')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
+        for iid,entry in packet.get('undecided_evidence',{}).items():
+            import status_overlay
+            path=safe(repo,entry['path'])
+            if file_sha(path)!=entry['file_sha256']:raise ValueError('changed frozen undecided evidence: '+iid)
+            evidence=json.loads(path.read_bytes())
+            status_overlay.validate_evidence(repo,evidence)
+            if evidence['base_dossier']!=dossiers.get(iid):raise ValueError('undecided evidence dossier mismatch: '+iid)
         for rel,sha in packet['held_text_file_pins'].items():
             if file_sha(safe(repo,rel))!=sha:raise ValueError('changed held source: '+rel)
         if packet.get('valla_context') is not None:
@@ -273,6 +280,10 @@ def render(packet,dossiers):
       'Read each common source independently, then record every member-specific check.',
       'Full lossless evidence and metadata: PACKET.json. Missing/overflow records are retained below.','',
       '## Source catalogue','']
+    if packet.get('undecided_evidence'):
+        lines[5:5]=['Undecided orders already contain the complete frozen lifecycle dossier. Keep one investigation in decisions.csv / clauses.csv; status remains unset.',
+            'Status decision sheets and exact evidence: '+canon(packet['undecided_evidence']),
+            'A status recommendation requires its own independent review. Reuse the populated lifecycle sheet with overlay-propose --lifecycle-sheet; owner adoption and lifecycle review remain separate.','']
     for sid,s in sorted(packet['sources'].items()):
         lines.append('- **'+sid+'**: '+str(s.get('url') or s.get('archival_id') or 'no URL'))
         lines.append('  '+canon(s))
@@ -378,14 +389,33 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     if not dest.is_relative_to(repo/'research') or not 1<=len(ids)<=50 or len(set(ids))!=len(ids):raise ValueError('bounded distinct IDs and research destination required')
     owned=owners(repo);locks_path=repo/'research/readiness/CLAIM_KIT_LOCK.json'
     locks=json.loads(locks_path.read_bytes()).get('orders',{}) if locks_path.exists() else {}
-    dossiers={};pins={};routing={};flight={};shared={}
+    dossiers={};pins={};routing={};flight={};shared={};undecided={};frozen={};freeze_stats={}
+    index={r['instrument_id']:r for r in json.loads((out/'INDEX.json').read_bytes())} if not dossier_paths else {}
     for iid in ids:
-        p=Path(dossier_paths[iid]) if dossier_paths else out/'dossiers'/(filename(iid)+'.json')
-        d=json.loads(p.read_bytes())
-        if d.get('instrument_id')!=iid or d.get('fingerprint')!=canonical_sha(d):raise ValueError('stale dossier '+iid)
         if iid in locks and locks[iid].get('agent')!=agent:raise ValueError('reservation belongs to '+str(locks[iid].get('agent'))+': '+iid)
         if iid in owned and not replacement_proposal:raise ValueError('route existing claim to owner or explicitly prepare replacement proposal: '+iid)
-        dossiers[iid]=d;pins[iid]={'file_sha256':file_sha(p),'fingerprint':d['fingerprint'],'path':str(p.relative_to(repo))}
+        if not dossier_paths and iid not in index:
+            import status_overlay
+            stats={};evidence=status_overlay.prepare_evidence(repo,out,iid,stats)
+            lock=locks.get(iid,{})
+            if (lock.get('history_sha256') and lock['history_sha256']!=evidence['history_sha256']
+                    or lock.get('compiled_summary_sha256') and lock['compiled_summary_sha256']!=evidence['compiled']['summary_sha256']):
+                raise ValueError('changed undecided reservation inputs; release and reselect: '+iid)
+            d=evidence['base_dossier'];frozen[iid]=evidence;freeze_stats[iid]=stats
+            p=dest/'undecided'/filename(iid)/'EVIDENCE.json'
+            raw=(json.dumps(evidence,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
+            undecided[iid]={'path':str(p.relative_to(repo)),'file_sha256':digest(raw),
+                'evidence_sha256':evidence['fingerprint'],
+                'status_decision':str((p.parent/'STATUS_DECISION.json').relative_to(repo)),
+                'owner_adoption_required':True,'independent_lifecycle_review_required':True}
+            pins[iid]={'file_sha256':digest(raw),'fingerprint':d['fingerprint'],'path':str(p.relative_to(repo))}
+        else:
+            p=Path(dossier_paths[iid]) if dossier_paths else out/'dossiers'/(filename(iid)+'.json')
+            d=json.loads(p.read_bytes())
+            if not dossier_paths and (d.get('fingerprint')!=index[iid]['fingerprint'] or d.get('whole_order_status')!=index[iid]['status']):raise ValueError('dossier does not match current INDEX: '+iid)
+            pins[iid]={'file_sha256':file_sha(p),'fingerprint':d['fingerprint'],'path':str(p.relative_to(repo))}
+        if d.get('instrument_id')!=iid or d.get('fingerprint')!=canonical_sha(d):raise ValueError('stale dossier '+iid)
+        dossiers[iid]=d
         routing[iid]={**owned.get(iid,{}),'route':'owner_reviewable_replacement_proposal' if iid in owned else 'new_producer_proposal'}
         flight[iid]=preflight(d,repo)
         for task in flight[iid]['mechanical_tasks']:
@@ -406,9 +436,15 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
     from prior_research import collect
     packet['prior_research'] = collect(repo, dossiers, exclude=dest)
+    if undecided:packet['undecided_evidence']=undecided
     if prepared_context is not None:packet['valla_context']=prepared_context
     if decode(packet)!=dossiers:raise ValueError('lossless reconstruction failed')
     packet['fingerprint']=digest(canon(packet).encode());dest.mkdir(parents=True)
+    for iid,evidence in frozen.items():
+        p=safe(repo,undecided[iid]['path']);dump(p,evidence)
+        dump(p.parent/'DOSSIER.json',evidence['base_dossier'])
+        dump(p.parent/'STATUS_DECISION.json',status_overlay.extend_decision(evidence['history_packet'],evidence,agent))
+        dump(p.parent/'FREEZE_TELEMETRY.json',freeze_stats[iid])
     dump(dest/'PACKET.json',packet)
     (dest/'READ.md').write_bytes(render(packet,dossiers).encode())
     decisions=[];clauses=[]
@@ -497,11 +533,13 @@ def apply(repo,folder,write):
                     clause.pop('clause_id',None)
                 sheet['clauses'].append(clause)
             sheet['inventory_overrides']=overrides
-            claim,errors=assemble(sheet,dossiers[iid],repo)
-            if not errors:claims.append(claim)
+            if dossiers[iid].get('whole_order_status') is not None:
+                claim,errors=assemble(sheet,dossiers[iid],repo)
+                if not errors:claims.append(claim)
         except (ValueError,OSError,KeyError,TypeError) as exc:errors=[type(exc).__name__+': '+str(exc)]
         if sheet:dump(write/'decisions'/(filename(iid)+'.json'),sheet)
-        report.append({'instrument_id':iid,'outcome':'assembled_proposal' if not errors else 'rejected',
+        outcome=('rejected' if errors else 'awaiting_status_review' if dossiers[iid].get('whole_order_status') is None else 'assembled_proposal')
+        report.append({'instrument_id':iid,'outcome':outcome,
             'errors':errors,'ownership':packet['ownership'][iid],'claim_sha256':canonical_sha(claim) if claim and not errors else None})
     with (write/'CLAIMS.proposed.jsonl').open('w',encoding='utf-8',newline='\n') as f:
         for c in claims:f.write(canon(c)+'\n')

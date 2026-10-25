@@ -22,9 +22,12 @@ def read(path,default=None):
     if not path.exists():return default
     return json.loads(path.read_text('utf-8'))
 
-def load_dossier(out,iid):
+def load_dossier(out,iid,repo=None):
     row=next((r for r in read(out/'INDEX.json',[]) if r['instrument_id']==iid),None)
-    if row is None:raise ValueError('Order absent from current decided INDEX: '+iid)
+    if row is None:
+        if repo is None:raise ValueError('Order absent from current decided INDEX: '+iid)
+        import status_overlay
+        return status_overlay.prepare_evidence(repo,out,iid)['base_dossier']
     d=read(out/'dossiers'/(filename(iid)+'.json'))
     if d and (d.get('fingerprint')!=row['fingerprint'] or d.get('whole_order_status')!=row['status']):raise ValueError('Dossier does not match current INDEX')
     if not d:raise ValueError('Dossier not found: '+iid+'; run the corpus job first.')
@@ -59,10 +62,25 @@ def existing_claims(repo):
             if r.get('instrument_id'):found.add(r['instrument_id'])
     return found
 
-def pick(repo,out,agent,n,excluded=None):
+def pick(repo,out,agent,n,excluded=None,scope='all'):
     if n<1 or not re.fullmatch(r'[A-Za-z0-9_.-]+',agent):raise ValueError('agent must be a simple name and n positive')
     index=read(out/'INDEX.json',[]);by={r['instrument_id']:r for r in index}
     if not index:raise ValueError('Corpus INDEX.json missing or empty')
+    if scope not in ('all','decided','undecided'):raise ValueError('unknown selection scope')
+    if scope!='decided':
+        histories={r['instrument_id']:r for r in read(repo/'jobs/status-history/output/INDEX.json',[])}
+        summary=out/'SUMMARY.json'
+        import hashlib
+        summary_sha=hashlib.sha256(summary.read_bytes()).hexdigest() if summary.exists() else None
+        for path in sorted(out.glob('STATUS_LEADS*.jsonl')):
+            with path.open(encoding='utf-8') as fh:
+                for line in fh:
+                    if not line.strip():continue
+                    lead=json.loads(line);iid=lead.get('instrument_id')
+                    if iid not in by and iid in histories and lead.get('status') is None:
+                        by[iid]={'instrument_id':iid,'status':None,'fingerprint':None,
+                            'history_sha256':histories[iid]['fingerprint'],'compiled_summary_sha256':summary_sha}
+    if scope=='undecided':by={iid:r for iid,r in by.items() if r.get('status') is None}
     from batch import owners,family_groups
     excluded=set(excluded or [])|existing_claims(repo)|set(owners(repo))
     families=read(out/'FAMILIES.json',[])
@@ -73,7 +91,7 @@ def pick(repo,out,agent,n,excluded=None):
         ranked=[];candidate_dossiers={}
         for f in families:
             if not f['family_id'].startswith('actor:'):continue
-            members=sorted(set(f['instrument_ids'])&eligible)
+            members=sorted(iid for iid in set(f['instrument_ids'])&eligible if by[iid].get('dossier'))
             for iid in members:
                 if iid not in candidate_dossiers:
                     d=read(out/by[iid]['dossier'])
@@ -95,14 +113,19 @@ def pick(repo,out,agent,n,excluded=None):
         for iid in sorted(eligible-set(selected)):
             if len(selected)>=n:break
             selected.append(iid);locks['orders'][iid]={'agent':agent,'family':None,'dossier_sha256':by[iid]['fingerprint'],'reserved_on':datetime.now(timezone.utc).isoformat()}
-        return [{'instrument_id':iid,**locks['orders'][iid],'dossier':str(out/by[iid]['dossier'])} for iid in selected]
+            if by[iid].get('status') is None:
+                locks['orders'][iid].update({k:by[iid][k] for k in ('history_sha256','compiled_summary_sha256')})
+        return [{'instrument_id':iid,**locks['orders'][iid],
+            'dossier':str(out/by[iid]['dossier']) if by[iid].get('dossier') else None,
+            'preparation_route':'decided_dossier' if by[iid].get('status') is not None else 'frozen_full_undecided_dossier',
+            'whole_order_status':by[iid].get('status')} for iid in selected]
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--repo',type=Path,default=HERE.parents[1]);p.add_argument('--output',type=Path)
     sub=p.add_subparsers(dest='command',required=True)
     sub.add_parser('build')
-    s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path)
+    s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path);s.add_argument('--scope',choices=('all','decided','undecided'),default='all')
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
@@ -114,7 +137,7 @@ def main(argv=None):
     s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
     s=sub.add_parser('overlay-prepare');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--write',type=Path,required=True)
+    s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--lifecycle-sheet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-assemble');s.add_argument('bundle',type=Path);s.add_argument('--sheet',type=Path,required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-check');s.add_argument('bundle',type=Path);s.add_argument('claims',type=Path)
     s=sub.add_parser('assemble');s.add_argument('sheets',nargs='+',type=Path);s.add_argument('--write',type=Path,required=True)
@@ -160,7 +183,8 @@ def main(argv=None):
                 if a.write.exists():raise ValueError('Review sheet exists; refusing overwrite')
                 dump(a.write,overlay.blank_review(decision,evidence,a.reviewer));print(str(a.write));return 0
             review=read(a.review);proposal=overlay.propose(repo,decision,review,evidence)
-            result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence)
+            result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence,
+                lifecycle_sheet=read(a.lifecycle_sheet) if a.lifecycle_sheet else None)
             print(json.dumps({'proposal_fingerprint':proposal['fingerprint'],'folder':str(a.write),'owner_acceptance':proposal['owner_acceptance'],'statuses_published':0}));return 0
         if a.command=='view':
             import batch
@@ -192,9 +216,9 @@ def main(argv=None):
         if a.command=='build':build(repo,out,os.environ.get('JOB_CACHE_DIR'));return 0
         if a.command=='next':
             excluded=read(a.exclude,[]) if a.exclude else []
-            print(json.dumps(pick(repo,out,a.agent,a.n,excluded),indent=2));return 0
+            print(json.dumps(pick(repo,out,a.agent,a.n,excluded,a.scope),indent=2));return 0
         if a.command in ('dossier','sheet'):
-            d=load_dossier(out,a.instrument_id)
+            d=load_dossier(out,a.instrument_id,repo)
             if a.command=='sheet':
                 d=blank_sheet(d,a.agent)
                 dest=a.write or repo/'research/readiness/decisions'/((a.agent or 'unassigned')+'-'+datetime.now(timezone.utc).date().isoformat())/(filename(a.instrument_id)+'.decision.json')
