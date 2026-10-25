@@ -1,3 +1,12 @@
+## 2026-10-25 13:00 ET: continuous production checkpoint, PR60
+
+- **Done:** PR60 is stacked on PR59 (21f9fed4); main76d2568 unchanged. Ordinary prepare now carries exact qualified status research and exposes full undecided dossiers. Existing completion consumes reviewed overlays as isolated proposals; adoption remains separate. 386 claim-kit tests, 38 checker tests and the 29+2+6 continuity cohort pass.
+- **Research:** EO13975 and EO10704 filed after exact independent whole-case review and strict controls; actual tracker replays each reaches6/6. EO10014,10016 comparator,10740,10785 filed as reviewed isolated whole-case proposals, each5/6 blocked on status. EO10030 is a reviewed partial (first conditional suspension unresolved),4/6 blocked. No human certification or status adoption.
+- **Evidence:** research/excavator/codex-continuous-2026-10-24 contains all sources, versions, rejections and consumer receipts. Bounded retention40213470747 succeeded; all28 new PDFs match reviewed bytes. Comparison/RESULTS.md finds no demonstrated net savings; competent legacy already preserved analysis.
+- **Running:** Same source family producer/reviewer now working10673/10772 (b06). Broad run40211818204 was inadvertently triggered by queue+REQUESTS together; cancellation unavailable (connector lacks action; browser unsigned). Its extra cost is retained, unrelated outputs are not adopted.
+- **Next:** Finish b06 exact review/consumers, final combined replay, publication and exact-head checks. This is an active checkpoint, not an unattended research promise.
+- **Do not:** Adopt statuses, merge dependency PRs, alter canonical holds/census/codebook, infer savings from counts or treat sparse compiler replay as a complete corpus generation. Only Codex notes edited.
+
 # Codex's handoff notes
 
 ## 2026-10-22: independent Sinclair cross-family review and adoption proposal

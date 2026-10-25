@@ -1,0 +1,27 @@
+{
+  "schema": "eo-reviewer-task-telemetry/v1",
+  "reviewer": "codex-continuous-reviewer-10704",
+  "instrument_id": "EO:10704",
+  "model_family": "OpenAI",
+  "model_version": null,
+  "first_measured_checkpoint_utc": "2026-10-25T16:31:33Z",
+  "blind_review_checkpoint_utc": "2026-10-25T16:33:26Z",
+  "after_reveal_finished_utc": "2026-10-25T16:36:33.813773+00:00",
+  "elapsed_from_first_checkpoint_seconds": 300.813773,
+  "initial_instruction_interval_unmeasured": true,
+  "active_labor_seconds": null,
+  "tokens": null,
+  "cache_tokens": null,
+  "cash_cost": null,
+  "machine_time_seconds": null,
+  "independent_pdf_documents": 7,
+  "independent_page_renders": 8,
+  "source_quote_span_checks_per_candidate": 24,
+  "review_candidates": 2,
+  "interleaving": "EO10030 status-v2 exact delta review occurred between EO10704 blind freeze and after-reveal work; the full b04 interval includes that interleaving and cannot be charged again as additive active labor. Other producer/root tasks overlap.",
+  "waits": [
+    "A single explicit60-second wait followed prior EO10030 status completion before EO10704 assignment; separate from this measured b04 interval.",
+    "EO10704 reveal arrived during EO10030 delta validation; no dedicated blocking wait."
+  ],
+  "reuse": "Historical status correction and bounded coverage reached reviewer; seven-source examination retained for later separately pinned EO10740/10785 status/lifecycle scopes. No token/time saving established."
+}

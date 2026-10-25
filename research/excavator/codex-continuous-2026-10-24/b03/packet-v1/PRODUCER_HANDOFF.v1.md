@@ -1,0 +1,15 @@
+# EO10030 production handoff — partial research
+
+The provisional NO has independent status review. The whole-order supersession and paragraph2 first ending are1969-10-01 under EO11485section5. Paragraph1 first interruption remains unknown; the claim deliberately omits its first_end. No status adoption, owner acceptance, human certification, complete-history credit or readiness is asserted.
+
+The same producer investigation retained the two-paragraph original inventory, full acting order and its official printing correction,1949reorganization continuity,1956recodification savings,1957rank amendment,1968emergency authority, actual1968service evidence, historical unit-activation leads, savings analysis and bounded searches through2026-10-14. ANALYSIS.v3.json is cumulative; SOURCE_MANIFEST.v3.json pins every source representation and its limits.
+
+The selected line is overlay/proposal-v2/CLAIMS.partial.v1.jsonl line1. Its canonical hash is b809bdd293634e57a546cb30073099049b3aca530f0e3315f86dcc21af51f6a7. HANDOFF_PINS.v1.json records raw hashes for the claim, overlay bundle, checker, analysis and checkpoint.
+
+Standard prepare/apply preserved the ordinary populated lifecycle sheet. Statusv1 put a lifecycle caveat in the wrong field; the actual adapter rejected it. Version2 moves that caveat into lifecycle_material_gaps, and independent exact delta review passes both validators. The standard lifecycle assembler refused the intentionally incomplete first ending. Its failure is retained. A one-case normal Stage19 partial record uses the existing exact reference helpers, retains the missing first ending and all gaps, and adds explicit producer-written bounded searches. It does not modify gates or invent machine search IDs.
+
+The actual checker at checker-v1 reports mechanical_result pass,7held-byte references,9exact quotations,3identity checks, no unverified results. The two expected gates are clause_0_first_end and unresolved_material_gaps. Authoritative provisional status remains null. The independent lifecycle review and control/after-reveal completion are pending with root/reviewer.
+
+Remaining work requires actual1951/1961unit callup/release records and interpretation of whether1963/1967special-police duties satisfy the emergency-duty proviso, with unit-versus-whole-Guard scope resolved. Actual1968federalization and release are evidenced; they are not assumed to be the earliest interruption. Source-v8returns no_route for identified unit/operational records; this is not exhaustion. SOURCE_BLOCKED_CHECKPOINT.v1.json retains exact requests, source receipts, route fingerprint and existing results for source-sensitive resumption.
+
+All failed attempts and corrections remain. Machine timezone inherited Asia/Shanghai, so local source-run dates initially readOct26 while retrieved_utc wasOct25; search receiptsv2correct to userUTC and preservev1. Known elapsed/source/checker times are retained. Actual model version, token/cache/cash use and active labor are unknown. No savings estimate or comparison arm exists.
