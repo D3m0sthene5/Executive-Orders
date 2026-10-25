@@ -1,3 +1,11 @@
+## 2026-10-25: NEYMAN real-production receipt importer and diagnostic reader
+
+- **Done:** Isolated `codex/neyman-production-diagnostics-20261025`, based on PR60 `e21be540`; main reverified `76d2568`. Added optional read-only `jobs/neyman/production_receipts.py` / `diagnose.py`; existing sampler/pilot/default job and scientific consumers unchanged. Contract/usage in NEYMAN README.
+- **Used:** Pinned nine-order PR60 cohort: 13 unique completion invocations, 3 failures, 8 whole-case proposals and 1 partial; 2 ready replay cases, 6 awaiting status adoption, EO10030 checkpoint bound to its selected partial. Completion machine sum451.304s, occupied union357.881s; agent hours/tokens/savings unknown. EO13975 repair has16 changed dependencies and is inconclusive. Results under `research/neyman/production-diagnostics/2026-10-25-pr60/observed-v2/`.
+- **Validation:** 39 tests passed, 1 existing full-corpus frame test skipped in bounded checkout; native metadata integration test ran. Exact source/receipt pins, unknowns, failed/censored work, shared cost, sample nonresponse and no-route limits retained. No legal research/status changes or savings claimed. Dedicated metadata-only CI is separate from source acquisition.
+- **Next:** Use the documented short attempt/effort receipts during the next authorized production assignments and original NEYMAN sample; do not reconstruct missing labor timings. A successful repair transition alone is not efficiency evidence. Review/integrate with PR60 dependency; no merge performed.
+- **Running/Asks:** No research/acquisition task launched. Check the PR's dedicated diagnostic-test status. No owner decision required for the reversible build.
+
 ## 2026-10-25 13:21 ET: nine reviewed orders through continuous production, PR60
 
 - **Done:** PR60 remains stacked on PR59 21f9fed4; main76d2568 unchanged. Ordinary prepare carries qualified prior status evidence and full undecided dossiers; exact overlay completion preserves separate reviews/adoption. Local suites386+38 pass. Full report: `research/excavator/codex-continuous-2026-10-24/REPORT.md`; restoration/replay: `REPLAY.md`.
