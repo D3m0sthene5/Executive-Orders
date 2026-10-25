@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 389 (parse errors: 0)
-- Orders with a claim (latest claim per order): 388
-- All checks passed: 299
-- Mechanical checks passed: 384; with unverifiable items: 3; failed: 2
-- Structural gate passed: 304
+- Claims checked: 396 (parse errors: 0)
+- Orders with a claim (latest claim per order): 395
+- All checks passed: 301
+- Mechanical checks passed: 391; with unverifiable items: 3; failed: 2
+- Structural gate passed: 306
 
 ## Source references
 
 - custody_record_only: 7
 - gpo_published_hash_match: 4282
 - held_bytes_in_release_or_repo: 67
-- held_bytes_verified: 4593
+- held_bytes_verified: 4701
 
 ## Quotations
 
-- exact: 11551
+- exact: 11699
 - normalised: 4
 - not_found: 7
 
@@ -68,6 +68,11 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:4` | EO:14137 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:5` | EO:14138 | structural_gate:clause_2_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/astra-2026-10-17-pother.jsonl:6` | EO:14139 | structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-source-first-2026-10-24.jsonl:1` | EO:11022 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@- ... |
+| `research/readiness/claims/astra-source-first-2026-10-24.jsonl:2` | EO:11256 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/astra-source-first-2026-10-24.jsonl:3` | EO:11376 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/astra-source-first-2026-10-24.jsonl:5` | EO:11829 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@- ... |
+| `research/readiness/claims/astra-source-first-2026-10-24.jsonl:6` | EO:11853 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:bounded_later_search@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:1` | EO:11262 | structural_gate:clause_0_first_end@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:3` | EO:11293 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:13` | EO:11409 | structural_gate:clause_3_first_end@-; structural_gate:unresolved_material_gaps@- |
@@ -120,6 +125,6 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 3870
+- recorded_for_this_order: 3902
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

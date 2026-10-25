@@ -1,8 +1,8 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-24T04:12:10Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-25T18:12:29Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 5426 orders** (clark_identified 37, clark_identified_not_in_universe 42, transcription_only 5347).
+**Scope: 5425 orders** (clark_identified 37, clark_identified_not_in_universe 42, transcription_only 5346).
 
 ## Where they stand on the ladder
 
@@ -12,7 +12,7 @@ Generated 2026-10-24T04:12:10Z. Leads and verified file facts; no count or grade
 | gpo_bound_volumes | in_volume_range_not_found | 1253 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
-| federal_register | fetch_request_proposed | 266 |
+| federal_register | fetch_request_proposed | 265 |
 | federal_register | fr_era_not_in_ofr_catalog | 215 |
 | proquest_local | pinakes_file_record_pages_unchecked | 114 |
 | proquest_supplied_link | awaiting_acquisition | 10 |
@@ -25,7 +25,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Proposed fetch requests
 
-266 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
+265 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
 
 ## Next actions by owner
 
@@ -33,7 +33,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 |---|---:|
 | owner | 2673 |
 | agent_check | 2487 |
-| machine_job | 266 |
+| machine_job | 265 |
 
 ## First twenty rows
 
@@ -62,7 +62,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 5426 targets advanced this run (5143 never searched yet); 996 of 1500 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 5425 targets advanced this run (5042 never searched yet); 1047 of 1500 requests used. 5820 hits on file, 73 pages confirmed to name the order (47 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
