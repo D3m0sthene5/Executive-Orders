@@ -1,0 +1,56 @@
+name: NEYMAN production diagnostics
+
+on:
+  pull_request:
+    paths:
+      - 'jobs/neyman/**'
+      - 'research/neyman/production-diagnostics/**'
+      - '.github/workflows/neyman-production-diagnostics.yml'
+  push:
+    paths:
+      - '.github/workflows/neyman-production-diagnostics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GIT_LFS_SKIP_SMUDGE: '1'
+
+jobs:
+  metadata-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /jobs/neyman/
+            !/jobs/neyman/output/
+            /research/neyman/production-diagnostics/
+            /research/excavator/codex-continuous-2026-10-24/COMPLETION_COSTS.json
+            /research/excavator/codex-continuous-2026-10-24/final-consumers-v2/SELECTION.json
+            /research/excavator/codex-continuous-2026-10-24/**/TALLY.json
+            /research/excavator/codex-continuous-2026-10-24/**/INPUTS.json
+            /research/excavator/codex-continuous-2026-10-24/**/TRACKER_REPLAY.json
+            /research/excavator/codex-continuous-2026-10-24/**/CLAIMS.selected.jsonl
+            /research/excavator/codex-continuous-2026-10-24/b03/packet-v1/SOURCE_BLOCKED_CHECKPOINT.v1.json
+            /research/excavator/codex-continuous-2026-10-24/b03/packet-v1/overlay/proposal-v2/CLAIMS.partial.v1.jsonl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run adapter, accounting, and existing sampler tests
+        run: python -B -m unittest discover -s jobs/neyman -p 'test_*.py' -v
+      - name: Reproduce the pinned nine-order import without scientific consumers
+        shell: bash
+        run: |
+          python -B jobs/neyman/diagnose.py --repo . \
+            --manifest research/neyman/production-diagnostics/2026-10-25-pr60/IMPORT.json \
+            --out "$RUNNER_TEMP/neyman-production-replay"
+          cmp research/neyman/production-diagnostics/2026-10-25-pr60/observed-v2/DIAGNOSIS.json \
+            "$RUNNER_TEMP/neyman-production-replay/DIAGNOSIS.json"
+          git diff --exit-code
