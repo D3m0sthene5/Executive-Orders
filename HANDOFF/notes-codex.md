@@ -1,3 +1,11 @@
+## 2026-10-25: NCSSR NORTON savings candidate rejected at incremental-work gate
+
+- **Done:** Executed the authorized first gate on EO12335/12397/12402, isolated from PR61 `f8238af3`; main reverified `76d2568`. Exact evidence/report: `research/excavator/norton-reuse-2026-10-25/`.
+- **Result:** One unresolved report event/four candidate applications, not four observed investigations. Existing ordinary explicit batch already supports common source analysis and shared rationale. Native codec:19 text blocks/17 sources/62 shared objects, zero issues/exact roundtrip; omit NORTON context in memory:19/17/54, still exact. Automatic grouping:13 singleton groups/0 multi-order groups; routing headroom remains unmeasured.
+- **Review:** Separate same-family method reviewer independently recommends stopping this candidate. This is not factual/legal review or a global NORTON verdict. Existing EO12335 claim already connects both amendments and retains actual submission as its gap.
+- **Costs:** Existing NEYMAN effort reader charges shared root/review/integration intervals once across3 orders;632.466 observed worker-elapsed seconds through artifact seal, not active labor or complete session cost. Tokens/cash/final-publication costs unknown; canceled broad blob-size query and other failed setup retained. No saving/causal/campaign estimate.
+- **Stopped:** No cost arms, new source acquisition/requests, producer factual answers, claims, statuses, reservations, scientific outputs, runtime changes or Junto entries. No job running. Reopen only with an additional operation demonstrably removed against competent ordinary shared work; do not repeat this same candidate as a new accelerator.
+
 ## 2026-10-25: NEYMAN real-production receipt importer and diagnostic reader
 
 - **Done:** Isolated `codex/neyman-production-diagnostics-20261025`, based on PR60 `e21be540`; main reverified `76d2568`. Added optional read-only `jobs/neyman/production_receipts.py` / `diagnose.py`; existing sampler/pilot/default job and scientific consumers unchanged. Contract/usage in NEYMAN README.
