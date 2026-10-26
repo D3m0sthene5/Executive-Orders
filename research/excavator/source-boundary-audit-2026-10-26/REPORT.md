@@ -124,6 +124,8 @@ Machine timers overlap worker intervals and are not added again as agent labor.
 EFFORT.json records observed coordinator, producer and reviewer occupancy and its
 coverage limits. Initial setup before the prospective root marker is unmeasured;
 active labor, complete tokens/cache/cash and campaign payback are unavailable.
+The publication extension brings observed worker occupancy to **45.7 minutes**,
+with those coverage limits and the last small receipt/PR operations excluded.
 Failures are retained in FAILURES.json and earlier test logs: an initially overbroad
 preamble change, incomplete sparse test hydration, failed proxy clone, the locator-only
 8083 omission, a synthetic boundary expectation, and a post-write reporting exception.

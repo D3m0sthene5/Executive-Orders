@@ -1,10 +1,11 @@
-## 2026-10-26 ET: source-boundary cause traced, modular claim-kit repair tested
+## 2026-10-26 ET: PR65 source-boundary cause traced, modular claim-kit repair tested
 
 - **Done:** source-boundary-audit-2026-10-26/REPORT.md traces four known wrong/truncated inventories to claim-kit independent segmentation, not missing originals. Existing clause-drafts locator reused for early trailing-number format; legacy-only opening-command safeguard; cache/compiler/runner dependency pins and dossier warnings preserved.
 - **Extent:** 6497FRtexts screened,894earlyclosing-number matches;501selectedunfinishedrepresentations disjoint fromtargetspan,74outside. Fixed8discrepancyprimarypagechecks confirm8wrongdocuments; patchedtargetcommands present,8220footnote/8729furniture still explicit. Counts are leads, not581certifiedinventories or newreadyorders.
 - **Validation:**391claim-kittests;894same-source replay598changed/296unchanged; independent engineering/source review. Twofresh same-familyproducers/counterbalanced2orderinventorytasks,4exactindependentcards upheld with8220sourcecorrectnesslimit. Productioncase103.286vs63.821sec, butshared/reviewcostallocationprevents end-to-end savingclaim; no lifecyclehistory completed.
 - **Sources/costs:**16exactqueuedPDFversions+texts inexistingretentionstore,203priorSOURCESrowspreserved+16emptyidentityrows.17HTTP82.49MB193machine seconds. DefaultREQUESTS/SUMMARYunchanged; no redundant remotejob. Fullcostlimits/failures inEFFORT/FAILURES; tokens/netcampaignsavings unknown.
 - **Next:** ownerreview/integrateboundedbugfix; recompileclaim-kit before using newinventories orundecidedcompilerfreshness. Existingcompiledgeneration/canonicalclaims/status/census/holds unchanged. Continue recording reconstruction and review costs during normalproduction; no broadnewreconciliationbuild justified.
+- **Publication:** PR65 ready, unmerged; verified sciencepayload f728d8ca,110paths/rawGitblobIDs checked. Observedworkeroccupancy45.7minpartial, lastsmallreceiptoperations excluded. No demonstrated netcampaignsaving.
 - **Running/Asks:** none. Do not infer original/human certification or skipinventoryreview from correctedextent. Main76d2568 andPR64head899671f preserved; branch codex/source-boundary-audit-20261026 unmerged.
 
 ## 2026-10-26 01:51 ET: six-case counterexample-first experiment; five reviewed proposals, no demonstrated acceleration
