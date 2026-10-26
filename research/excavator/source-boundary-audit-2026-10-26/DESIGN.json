@@ -1,0 +1,27 @@
+{
+  "schema": "eo-source-boundary-investigation/v1",
+  "base": "899671f30776c715f66141291125dd0fda9da202",
+  "main": "76d256857784621343e13b5f80d8dbeaeccde0ee",
+  "instrumented_start_utc": "2026-10-26T21:46:21.451999+00:00",
+  "instrumented_start_monotonic": 27796.612387231,
+  "setup_before_this_marker": "excluded; clone/retrieval and initial code reading uninstrumented",
+  "known_cases": [
+    "EO:8083",
+    "EO:8123",
+    "EO:8126",
+    "EO:8992"
+  ],
+  "hypothesis": "claim-kit independently segments whole-page old FR text and can choose neighboring/truncated text despite better held clause-drafts outputs",
+  "screen": "all available FR text records; compare old spans to existing exact-identity locator and segmentation; flags are discrepancy leads, not confirmed defects",
+  "sample": "seed20261026; after mechanical strata frozen, 8 discrepancies and 8 agreements excluding four known cases; fixed no replacement failures; primary pages inspected where held, missing access reported",
+  "decision": "only integrate an existing-parser adapter if known errors reproduced and review supports exact spans; no source/status/grade auto-promotion; compare machine cost and corrected inventories, and do not equate that with end-to-end hours savings",
+  "costs": "root and independent reviewer UTC/monotonic occupancy; machine time separate overlapping; tokens unavailable",
+  "protected": [
+    "census",
+    "statuses",
+    "codebook",
+    "source holds",
+    "canonical claims",
+    "existing generated outputs"
+  ]
+}

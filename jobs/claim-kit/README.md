@@ -5,6 +5,14 @@ known event pairs, current-law leads and claim drafts once across the whole proj
 It emits exact-slice evidence, compact dossiers, blank decision sheets and ranked
 families. Nothing chooses or changes legal status. Start with [AGENT_PROTOCOL.md](AGENT_PROTOCOL.md).
 
+Early Federal Register texts with a bare heading and closing `[No. NNNN]` use
+the existing `clause-drafts` locator before claim-kit segmentation, own-term and
+change-mention extraction. Exact raw-text offsets are retained. These are still
+unverified inventories: page furniture, OCR errors and clause boundaries require
+source review. Locator cautions appear in the dossier's missing-items list.
+The shared locator is pinned in compiler fingerprints and the parser cache key;
+recompile outputs after changing either parser.
+
 `python jobs/claim-kit/kit.py build` runs locally. The shared runner invokes
 `job.py`, runs the offline tests, then builds under `OUTPUT_DIR`. It runs after
 `claim-drafts`; it never invokes or modifies that job. `needs.txt` brings in the
