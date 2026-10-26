@@ -1,0 +1,10 @@
+{
+  "purpose": "Use unchanged native source retention job on isolated branch to durably publish24 exact already-reviewed public PDFversions, avoiding connector largeblob limits. No corpusresearch or automaticstatuspromotion.",
+  "expected_pdfs": 24,
+  "existing_job": "astra-source-retention",
+  "source_bytes": 222070535,
+  "first_commit": "Queue+manifest [skip actions]",
+  "second_commit": "Change only job REQUESTS triggers existing runner exactlysource retention; no broadqueuepush",
+  "restore": "After actualjobfinishes restoreold REQUESTS in finalskipactionscommit, retainexactexecutedplan/receipts.",
+  "cost": "Additional retrieval/runner/publishing cost belongs toexperiment, not net savings."
+}
