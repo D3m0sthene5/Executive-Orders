@@ -1,0 +1,29 @@
+{
+  "reviewer": "ce-review-pair3",
+  "model_family": "OpenAI",
+  "review_kind": "independent_ai_source_review",
+  "scope": "whole_case",
+  "independent": true,
+  "separate_context": true,
+  "human_review": false,
+  "cross_family_review": false,
+  "control_label": "M2",
+  "instrument_id": "EO:8992",
+  "control_claim_sha256": "cd45ffe63232ae0210f6505b5a04927f5d5a3f354af3e253726edc3b8eabf7e9",
+  "verdict": "strict_semantic_caught",
+  "strict_semantic_caught": true,
+  "actual_blind_rejection_ref": {
+    "path": "/workspace/scratch/c478176c789b/eo-neyman/research/excavator/counterexample-first-2026-10-26/packet/review/pair3/BLIND_REVIEW.jsonl",
+    "line": 2,
+    "file_sha256": "06a7899176092b07f75cf384b0966643ae124a8ad7da8d3b3e2920e4bdf48c08",
+    "record_sha256": "f8b6d4b37f1fe98579a260bd19d2002f5f0d3c498188b657ad9e73fae46aecdb",
+    "claim_sha256": "cd45ffe63232ae0210f6505b5a04927f5d5a3f354af3e253726edc3b8eabf7e9",
+    "verdict": "rejected"
+  },
+  "blind_seal_path": "/workspace/scratch/c478176c789b/eo-neyman/research/excavator/counterexample-first-2026-10-26/packet/review/pair3/BLIND_SEAL.json",
+  "blind_seal_sha256": "7a901e601292eceb888e33c9f6f56b95c238201319080fb2607d0300bc9cdc4b",
+  "defect": "Military-reservation first_end.date changed from1952-10-28 to1955-02-11.",
+  "semantic_detection": "Blind review independently applied9526 express8992-naming six-month jurisdiction condition to actual2974 emergency termination1952-04-28; it rejected1955 formal cleanup as first jurisdiction end and supplied required1952-10-28 correction. Detection was substantive despite internally retained correct date_derivation.",
+  "reveal_timing": "Identity revealed only after BLIND_SEAL and compact sealed verdict notification; all previously sealed bytes verified unchanged.",
+  "time_record": "AFTER_REVEAL_TIME.json"
+}
