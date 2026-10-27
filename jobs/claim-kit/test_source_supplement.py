@@ -131,6 +131,16 @@ class SourceSupplementTests(unittest.TestCase):
         self.prepare();path=self.repo/self.entry['source']['local_path'];path.write_bytes(path.read_bytes()+b' changed')
         with self.assertRaises(ValueError):B.load_packet(self.dest,self.repo)
 
+    def test_stripped_lineage_cannot_bypass_native_validation(self):
+        self.prepare();packet,ds=B.load_packet(self.dest,self.repo)
+        ds['EO:1'].pop('source_supplement')
+        ds['EO:1']['fingerprint']=A.canonical_sha(ds['EO:1'])
+        packet.update(B.encode(ds,self.repo));packet.pop('fingerprint')
+        packet['fingerprint']=B.digest(B.canon(packet).encode())
+        B.dump(self.dest/'PACKET.json',packet)
+        (self.dest/'SOURCE_SUPPLEMENT.json').unlink()
+        with self.assertRaisesRegex(ValueError,'supplement lineage missing'):B.load_packet(self.dest,self.repo)
+
     def test_undecided_and_chained_parent_refused(self):
         for change in [{'whole_order_status':None},{'source_supplement':{'schema':'old'}}]:
             ds=copy.deepcopy(self.ds);ds['EO:1'].update(change);ds['EO:1']['fingerprint']=A.canonical_sha(ds['EO:1'])

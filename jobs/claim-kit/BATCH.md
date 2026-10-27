@@ -87,6 +87,36 @@ Decision edits reuse the sealed packet and held source hashes. Neither `apply`
 nor `batch-check` extracts or rebuilds the corpus. A changed source/packet or
 assembler pin fails closed; prepare and review the changed evidence explicitly.
 
+## Newly held source excerpts
+
+When additional primary evidence is held after preparation, use
+`source_supplement.py --repo . prepare --parent OLD_PACKET --sources DECLARATIONS.json
+--agent NAME --write NEW_PACKET`. The destination must be new. This optional
+preparation route adds bounded, exactly hashed excerpts to decided dossiers and
+then calls ordinary native preparation. It neither downloads sources nor writes
+an ACT approval, source grade, mechanism, date, status or review.
+
+The declaration has `schema: eo-source-excerpt-declarations/v1` and a `sources`
+list. Each entry supplies `alias`, `instrument_ids` (parent members only),
+`actor_id` (a label the researcher must verify), a preparation `reason`, absolute
+Unicode `char_start` / `char_end`, and `source`. The source has exactly `url`,
+`sha256`, `text_path`, `text_sha256`, `page_or_item` and `local_path`; both held
+files must match. Excerpt text is copied from those bytes. Evidence IDs use
+`SUPPLEMENT:<alias>` and remain unreviewed source excerpts.
+
+Read the complete relevant sources and make every member-specific judgment.
+Select the excerpt ID in the ordinary CSV. Its optional `mechanism` clause column
+passes the producer's explicit legal characterization to the existing assembler;
+an excerpt without a mechanism does not acquire one. Existing ACT fallback and
+older CSV sheets remain supported. Ordinary `view`, `apply`, `batch-check` and
+`complete` revalidate the parent packet, declaration, preparation code, source
+bytes and unchanged inherited dossier fields. Changed inputs require another
+packet and review. Independent whole-case review and controls remain required.
+
+The route currently refuses undecided and already supplemented parents; use
+the established status-overlay path for undecided work, or prepare a fresh parent
+for another source set. It supplies no completeness or time-saving finding.
+
 ## Undecided identities
 
 Ordinary `prepare` uses `status_overlay.freeze_evidence` for undecided members:

@@ -246,7 +246,10 @@ def load_packet(folder,repo,check_sources=True):
     if packet.get('schema')!=SCHEMA or digest(canon(packet).encode())!=fp:raise ValueError('changed work package')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
-        if any(d.get('source_supplement') for d in dossiers.values()):
+        if ((folder/'SOURCE_SUPPLEMENT.json').exists() or
+                any(d.get('source_supplement') or any(
+                    str(eid).startswith('SUPPLEMENT:') or record.get('role')=='unreviewed_source_excerpt'
+                    for eid,record in d.get('evidence',{}).items()) for d in dossiers.values())):
             import source_supplement
             source_supplement.verify(repo, folder)
         for iid,entry in packet.get('undecided_evidence',{}).items():
