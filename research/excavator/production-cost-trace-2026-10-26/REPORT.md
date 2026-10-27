@@ -36,6 +36,6 @@ The next substantive acceleration test should target source discovery that cause
 - packet-b2-final-v8/producers/batch2/COST.v1.json:initial second production and export/checker intervals, including preserved failed check.
 - recovery2/review2/:independent source findings, April hold, preserved review and recovery cost; the control attempt is invalid as recorded separately.
 - recovery2/correction/:April primary-source correction research and recovery qualifications.
-- Final corrected packet, final review, native completion receipts, FINAL_RESULTS.json and COST_LEDGER.json:exact versions, final outcomes and additional costs. These files determine what was actually filed.
+- Final corrected packet, final review, native completion receipts, FINAL_RESULTS.json and packet-b2-correction-v9/COST_LEDGER.json:exact versions, final outcomes and additional costs. These files determine what was actually filed.
 
 AI source review is from separate OpenAI contexts. It is not human certification. No provisional legal statuses, canonical source-audit holds, census identities or codebook were adopted or rewritten. PR66 is stacked on unmerged PR65; neither PR was merged by this run.
