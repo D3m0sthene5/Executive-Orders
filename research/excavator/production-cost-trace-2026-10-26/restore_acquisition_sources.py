@@ -8,7 +8,7 @@ import hashlib,json,shutil
 RUN=Path(__file__).resolve().parent
 ROOT=RUN.parents[2]
 count=0
-for folder in ['acquisition-b1-8514','acquisition-b2-extra','acquisition-b2-july']:
+for folder in ['acquisition-b1-8514','acquisition-b2-extra','acquisition-b2-july','acquisition-b2-april']:
     result=RUN/folder/'RESULTS.json'
     if not result.exists():continue
     for row in json.loads(result.read_bytes()):
