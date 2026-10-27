@@ -2,6 +2,12 @@
 
 This run advanced four selected unfinished histories in two convenience batches (EO8179/8300 and EO8705/8707), while tracing production, source handling, review, correction and integration. They are not a representative sample, a randomized comparison, or a campaign-wide hours estimate. Final filing and combined tracker results are recorded in FINAL_RESULTS.json; incomplete or held versions remain preserved.
 
+## Final production result
+
+Both native completions filed two claims each, with no exceptions. The actual combined four-case tracker replay is **285→289 ready for human review**; EO8179,8300,8705,8707 all say yes. This is an isolated actual replay with exact filed claim/checker bytes, not a rewritten canonical output generation. Two valid material controls were caught under strict scoring; one additional exposed control attempt remains invalid/unscored. Human certification count is zero. All four own reservations were removed and the exact original nine-owner lock bytes restored. Final source review inspected35primary pages and verified76card source references; both corrected genuine claims were upheld, with exact after-reveal records.
+
+B2 native completion took94.583seconds; the combined tracker replay took15.579seconds. Fresh final independent review occupied at least799.860seconds, plus unknown initial context overhead. These are additional costs, not savings. The measured native prepare reduction remains109.2081→4.3402seconds with exactly equal frozen dossier/source/prior-context content.
+
 ## What actually became cheaper
 
 Required native dossier preparation repeatedly hashed an entire prior-research JSONL file for every admitted record, including unrelated records. In the profiled preparation, 165,363 SHA calls consumed 197.006 of 209.106 seconds. The small fix computes each admitted file's full-content hash once per collection and reuses it; discovery, record selection, source pins and legal checks are unchanged. A regression checks both one hash per file and invalidation on a content edit.
