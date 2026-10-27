@@ -125,6 +125,7 @@ def blank_sheet(dossier, agent=""):
                     for c in dossier.get("clauses", [])],
         "savings": {"state": None, "source_id": None, "reason": ""},
         "search_ids": [], "conflict_resolutions": {}, "research_rationale": "",
+        "source_notes": [],
         "unresolved_material_gaps": deepcopy(dossier.get("missing", [])),
         "approved": False,
     }
@@ -447,6 +448,24 @@ def _assemble(sheet, dossier, repo):
                            "inventory_overrides": deepcopy(overrides)}}
     if isinstance(sheet.get("working_text"), dict):
         claim["working_text"] = deepcopy(sheet["working_text"])
+    # Qualified candidates and source context need pins without inventing an
+    # exact legal event date. Only producer-selected existing evidence is copied.
+    notes = sheet.get("source_notes", [])
+    if not isinstance(notes, list):
+        errors.append("source_notes_list_required")
+    elif notes:
+        claim["source_notes"] = []
+        for note in notes:
+            if (not isinstance(note, dict) or set(note) != {"id", "reason", "date_qualification"}
+                    or not _nonempty(note.get("reason")) or not _nonempty(note.get("date_qualification"))):
+                errors.append("source_note_explicit_fields_required")
+                continue
+            ident = note["id"]
+            if isinstance(ident, str) and ident.startswith("FACT:"):
+                errors.append("source_note_factual_event_requires_existing_reviewed_event_route")
+                continue
+            claim["source_notes"].append({"source": _reference(ident, evidence, errors),
+                "reason": note["reason"], "date_qualification": note["date_qualification"]})
     clauses = sheet.get("clauses")
     expected = corrected if corrected is not None else dossier.get("clauses")
     if not isinstance(clauses, list) or not clauses:

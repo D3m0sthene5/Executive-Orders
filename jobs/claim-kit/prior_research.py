@@ -294,13 +294,16 @@ def collect(repo, dossiers, exclude=None):
         if not any(iid.encode() in raw for iid in ids):
             continue
         rel = path.relative_to(repo).as_posix()
+        # One file pin covers every JSONL record. Rehashing the entire payload
+        # for each line turns large research histories into quadratic work.
+        raw_sha = sha(raw)
         if path.resolve() in control_paths:
             qualification = control_paths[path.resolve()]
             for key in ('reveal_path', 'freeze_path'):
                 pin(qualification[key])
-            pins[rel] = sha(raw)
-            excluded_controls.append({'path': rel, 'file_sha256': sha(raw), **qualification,
-                'binding': 'exact' if sha(raw) == qualification['expected_frozen_file_sha256'] else 'changed_control_copy',
+            pins[rel] = raw_sha
+            excluded_controls.append({'path': rel, 'file_sha256': raw_sha, **qualification,
+                'binding': 'exact' if raw_sha == qualification['expected_frozen_file_sha256'] else 'changed_control_copy',
                 'state': 'control_excluded_from_research_assertions'})
             continue
         try:
@@ -308,52 +311,52 @@ def collect(repo, dossiers, exclude=None):
         except (ValueError, UnicodeError) as exc:
             # Ignore unrelated research formats; surface malformed candidate input.
             if 'claim' in path.name.lower() or 'review' in path.name.lower() or MANIFEST.search(path.name):
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 issues.append({'path': rel, 'issue': 'unreadable research artifact', 'detail': str(exc)})
             continue
         for location, value in values:
             if not isinstance(value, dict) or value.get('schema') == SCHEMA or ('prior_research' in value and value.get('schema') != 'eo-source-blocked-work/v1'):
                 continue
             iid = value.get('instrument_id')
-            record = {'path': rel, 'pointer': location, 'file_sha256': sha(raw)}
+            record = {'path': rel, 'pointer': location, 'file_sha256': raw_sha}
             if iid in ids and value.get('schema') == STATUS_DECISION_SCHEMA:
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 status_decisions[iid].append((record, value))
             elif iid in ids and value.get('schema') == 'eo-status-overlay-review/v1':
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 status_reviews[iid].append((record, value, value))
             elif value.get('schema') == 'sinclair-cross-family-lean-review/v1':
                 for number, row in enumerate(value.get('verdicts', [])):
                     if row.get('instrument_id') in ids:
-                        pins[rel] = sha(raw)
+                        pins[rel] = raw_sha
                         status_reviews[row['instrument_id']].append((
                             {**record, 'pointer': '/verdicts/' + str(number)}, row, value))
             elif value.get('schema') == STATUS_HOLD_SCHEMA:
                 for number, row in enumerate(value.get('proposals', [])):
                     target = row.get('instrument_id')
                     if target in ids:
-                        pins[rel] = sha(raw)
+                        pins[rel] = raw_sha
                         status_holds[target].append(status_hold(repo, target,
                             {**record, 'pointer': '/proposals/' + str(number)}, row, value, pin))
             if 'review' in value.get('schema', '').lower() or value.get('reviewer'):
                 for pointer, row in walk(value):
                     target = row.get('instrument_id')
                     if pointer and target in ids and 'verdict' in row and 'claim_sha256' in row:
-                        pins[rel] = sha(raw)
+                        pins[rel] = raw_sha
                         inherited = {k: value[k] for k in REVIEW_KEYS if k in value}
                         inherited.update(claim_path=value.get('claim_path', value.get('claim_file')),
                                          claim_file_sha256=value.get('claim_file_sha256'))
                         reviews[target].append(({**record, 'pointer': location + pointer}, {**inherited, **row}))
             if iid in ids and value.get('schema') == 'eo-lifecycle-claim/v1':
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 key = canonical_sha(value)
                 entry = claims[iid].setdefault(key, {'claim': value, 'locations': []})
                 entry['locations'].append(record)
             elif iid in ids and ('verdict' in value and ('claim_sha256' in value or 'claim_path' in value)):
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 reviews[iid].append((record, value))
             elif iid in ids and (value.get('schema', '').endswith('checkpoint/v1') or path.name == 'IN_PROGRESS.json' or value.get('schema') == 'eo-source-blocked-work/v1'):
-                pins[rel] = sha(raw)
+                pins[rel] = raw_sha
                 checkpoint = {k:v for k,v in value.items() if k != 'prior_research'}
                 dependencies = [pin(item['path'], item['sha256']) for _,item in walk(checkpoint)
                                 if isinstance(item.get('path'), str) and item.get('sha256')]
@@ -362,12 +365,12 @@ def collect(repo, dossiers, exclude=None):
             elif MANIFEST.search(path.name):
                 for target in ids & set(value):
                     if isinstance(value[target], dict) and 'version' in value[target]:
-                        pins[rel] = sha(raw)
+                        pins[rel] = raw_sha
                         manifests[target].append({**record, 'pointer': location + '/' + target, 'record': value[target]})
                 for pointer, row in walk(value):
                     target = row.get('instrument_id')
                     if target in ids and any(k in row for k in ('claim_sha256', 'canonical_claim_sha256', 'claim_path', 'produced', 'selected_version')):
-                        pins[rel] = sha(raw)
+                        pins[rel] = raw_sha
                         manifests[target].append({**record, 'pointer': location + pointer, 'record': row})
 
     ruling_pins = [pin(path.relative_to(repo).as_posix())

@@ -108,7 +108,13 @@ Read the complete relevant sources and make every member-specific judgment.
 Select the excerpt ID in the ordinary CSV. Its optional `mechanism` clause column
 passes the producer's explicit legal characterization to the existing assembler;
 an excerpt without a mechanism does not acquire one. Existing ACT fallback and
-older CSV sheets remain supported. Ordinary `view`, `apply`, `batch-check` and
+older CSV sheets remain supported. Optional `source_notes` in decisions.csv is
+a JSON list of `{id, reason, date_qualification}` records. It copies only the
+selected frozen source reference and the producer's qualifications into the
+claim. Use it to retain a savings source or ambiguous earlier candidate without
+inventing an exact dated event. It supplies no finding, approval or substitute
+for a required first-ending date; reviewed factual events retain their own route.
+Ordinary `view`, `apply`, `batch-check` and
 `complete` revalidate the parent packet, declaration, preparation code, source
 bytes and unchanged inherited dossier fields. Changed inputs require another
 packet and review. Independent whole-case review and controls remain required.

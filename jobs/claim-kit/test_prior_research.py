@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import batch
 import lifecycle_obligations as lifecycle
@@ -46,6 +47,25 @@ class PriorResearchTests(unittest.TestCase):
 
     def collect(self):
         return prior.collect(self.repo, self.dossiers)
+
+    def test_jsonl_file_pin_computed_once_and_edits_still_invalidate(self):
+        path=self.repo/'research/session/history.jsonl'
+        path.parent.mkdir(parents=True)
+        unrelated=[{'instrument_id':'EO:999','research_rationale':'Other case '+str(n)} for n in range(100)]
+        path.write_text(''.join(json.dumps(v)+'\n' for v in [*unrelated,self.claim]))
+        raw=path.read_bytes()
+        with patch.object(prior,'sha',wraps=prior.sha) as hashed:
+            context=self.collect()
+        self.assertEqual(sum(c.args==(raw,) for c in hashed.call_args_list),1)
+        self.assertEqual(len(context['orders']['EO:11782']['versions']),1)
+        rel=path.relative_to(self.repo).as_posix()
+        self.assertEqual(context['input_file_pins'][rel],prior.sha(raw))
+        changed=deepcopy(self.claim);changed['research_rationale']='Corrected qualified research.'
+        path.write_text(json.dumps(changed)+'\n')
+        after=self.collect()
+        self.assertNotEqual(after['input_file_pins'][rel],context['input_file_pins'][rel])
+        self.assertNotEqual(after['orders']['EO:11782']['versions'][0]['claim_sha256'],
+                            context['orders']['EO:11782']['versions'][0]['claim_sha256'])
 
     def test_11782_noncanonical_selected_review_and_prior_rejection_survive(self):
         old = 'research/readiness/reviews/session/producer/EO_11782/v3/claim.json'

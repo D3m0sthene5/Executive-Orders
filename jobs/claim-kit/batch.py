@@ -24,7 +24,7 @@ SCHEMA='eo-claim-kit-work-package/v1'
 ROW_FIELDS=['instrument_id','dossier_sha256','agent','outcome','approved','original_confirmed',
  'original_pages_confirmed','inventory_confirmed','research_rationale','savings_state','savings_source_id',
  'savings_reason','search_ids','conflict_resolutions','unresolved_material_gaps','earlier_end_check',
- 'scope_check','independent_command_check','savings_check','working_text']
+ 'scope_check','independent_command_check','savings_check','working_text','source_notes']
 CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effective_date','mechanism',
  'effective_date_confirmed','current_basis_id','current_legal_basis','checked_through',
  'later_event_ids','later_events','reason','inventory_source_id','inventory_char_start',
@@ -526,6 +526,8 @@ def apply(repo,folder,write):
             sheet['research_rationale']=rationale(r['research_rationale'],shared)+'\nMember checks: '+canon(checks)
             sheet['savings']={'state':r['savings_state'] or None,'source_id':r['savings_source_id'] or None,'reason':rationale(r['savings_reason'],shared)}
             sheet['search_ids']=json_field(r['search_ids'],list);sheet['conflict_resolutions']=json_field(r['conflict_resolutions'],dict)
+            if r.get('source_notes'):
+                sheet['source_notes']=json_field(r['source_notes'],list)
             sheet['unresolved_material_gaps']=json_field(r['unresolved_material_gaps'],list);sheet['clauses']=[];overrides=[]
             correction=any(c['inventory_source_id'] for c in by[iid])
             for c in by[iid]:

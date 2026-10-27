@@ -80,6 +80,70 @@ class SourceSupplementTests(unittest.TestCase):
         r=B.apply(self.repo,self.dest,self.dest/'applied')
         self.assertEqual(r['counts'],{'rejected':1})
 
+    def test_source_notes_native_csv_keep_qualified_source_without_event_date(self):
+        self.prepare();self.fill()
+        rows=B.rows(self.dest/'decisions.csv')
+        rows[0]['source_notes']=json.dumps([{'id':'SUPPLEMENT:held-revocation',
+            'reason':'Earlier scope candidate requires independent legal examination.',
+            'date_qualification':'Publication is established; initial application date is unresolved.'}])
+        B.csv_write(self.dest/'decisions.csv',B.ROW_FIELDS,rows)
+        result=B.apply(self.repo,self.dest,self.dest/'applied')
+        self.assertEqual(result['counts'],{'assembled_proposal':1})
+        claim=json.loads((self.dest/'applied/CLAIMS.proposed.jsonl').read_text())
+        self.assertEqual(len(claim['source_notes']),1)
+        self.assertNotIn('effective_date',claim['source_notes'][0])
+        self.assertNotIn('date',claim['source_notes'][0])
+        _,ds=B.load_packet(self.dest,self.repo)
+        self.assertEqual(A.check_claim(claim,self.repo,ds['EO:1']),[])
+        claim['source_notes'][0]['source']['quote']='Invented source text.'
+        self.assertTrue(A.check_claim(claim,self.repo,ds['EO:1']))
+
+    def test_source_notes_reject_free_source_missing_id_and_fact_route(self):
+        self.prepare();_,ds=B.load_packet(self.dest,self.repo)
+        for note in [{'id':'missing','reason':'Specific candidate.','date_qualification':'Not settled.'},
+                     {'id':'FACT:unreviewed','reason':'Specific candidate.','date_qualification':'Not settled.'},
+                     {'id':'SUPPLEMENT:held-revocation','reason':'Specific candidate.',
+                      'date_qualification':'Not settled.','source':{'quote':'Injected'}}]:
+            sheet=self.f.decision('EO:1');sheet['dossier_sha256']=ds['EO:1']['fingerprint'];sheet['source_notes']=[note]
+            claim,errors=A.assemble(sheet,ds['EO:1'],self.repo)
+            self.assertTrue(errors)
+
+    def test_old_csv_without_new_columns_retains_act_fallback(self):
+        self.prepare();self.fill()
+        rows=B.rows(self.dest/'decisions.csv');clauses=B.rows(self.dest/'clauses.csv')
+        for r in rows:r.pop('source_notes')
+        end=self.f.decision('EO:1')['clauses'][0]['end_id']
+        for c in clauses:c.pop('mechanism');c['end_id']=end
+        B.csv_write(self.dest/'decisions.csv',[k for k in B.ROW_FIELDS if k!='source_notes'],rows)
+        B.csv_write(self.dest/'clauses.csv',[k for k in B.CLAUSE_FIELDS if k!='mechanism'],clauses)
+        result=B.apply(self.repo,self.dest,self.dest/'applied')
+        self.assertEqual(result['counts'],{'assembled_proposal':1})
+
+    def test_existing_human_review_requires_note_url_in_checked_sources(self):
+        # Synthetic fixture only; this creates no real review or certification.
+        self.entry['source']['url']='https://example.gov/qualified-context'
+        self.write_decl([self.entry]);self.prepare();self.fill()
+        rows=B.rows(self.dest/'decisions.csv')
+        rows[0]['source_notes']=json.dumps([{'id':'SUPPLEMENT:held-revocation',
+            'reason':'Additional qualified context.','date_qualification':'No exact event date asserted.'}])
+        B.csv_write(self.dest/'decisions.csv',B.ROW_FIELDS,rows)
+        # Select the original ACT ending, so the note URL is a separate citation.
+        clauses=B.rows(self.dest/'clauses.csv')
+        for c in clauses:c['end_id']=self.f.decision('EO:1')['clauses'][0]['end_id']
+        B.csv_write(self.dest/'clauses.csv',B.CLAUSE_FIELDS,clauses)
+        B.apply(self.repo,self.dest,self.dest/'applied')
+        claim=json.loads((self.dest/'applied/CLAIMS.proposed.jsonl').read_text())
+        urls={claim['original_representation']['url'],claim['whole_order_end']['source']['url'],
+              claim['savings_residuals']['source']['url']}
+        review={'schema':'eo-lifecycle-review/v1','instrument_id':'EO:1','claim_sha256':A.canonical_sha(claim),
+                'reviewer':'synthetic-reviewer','reviewer_role':'independent_human','decision':'uphold',
+                'rationale':'Synthetic structural coverage fixture; no actual human reviewed this case.',
+                'checked_source_urls':sorted(urls),'reviewed_on':'2026-10-27'}
+        gate=A._gate(self.repo)
+        self.assertIn('unchecked_cited_source',gate.validate_review(review,claim))
+        review['checked_source_urls'].append(self.entry['source']['url'])
+        self.assertEqual(gate.validate_review(review,claim),[])
+
     def test_inherited_fields_unchanged(self):
         self.prepare();_,ds=B.load_packet(self.dest,self.repo)
         actual=copy.deepcopy(ds['EO:1']);actual.pop('source_supplement');actual.pop('fingerprint')

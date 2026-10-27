@@ -134,6 +134,9 @@ def validate_review(review,claim):
         whole=claim.get("whole_order_end")
         if isinstance(whole,dict):
             cited.append(whole.get("source"))
+        for note in claim.get("source_notes",[]):
+            if isinstance(note,dict):
+                cited.append(note.get("source"))
         for clause in claim.get("operative_clauses",[]):
             if not isinstance(clause,dict):
                 continue

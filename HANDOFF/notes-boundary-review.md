@@ -1,3 +1,30 @@
+## 2026-10-27T01:19:04.401392+00:00: existinghumanchecked-citation gate nowincludesqualifiednotes
+
+- **Done:** `recovery/source-notes-human-gate-review/REVIEW.json` SHA256 `27506811d3b70102eba2885c31685b307d6c08d78bfe237320f74cf715ce5e2f` upholds exact3lineenumeration anddistinctnoteURLregression.15focusedtests pass; noteURLomittedrejects,explicitincludedpasses. Gate-onlyaddition reversebytes equalsHEAD; priorassembler/batch/helperpins unchanged.
+- **Boundary:** Supersedesprevioussource-notes humanURLenumeration disclosure forpinnedgate. No realhumanreview/certification/sourceinspection orscientificapproval created. RootownsremainingStage19dependencies/fullsuite/B2research.
+- **Costs:**59.588s observed,3execcommands; tokens/cashunknown. Priorseals untouched.
+
+## 2026-10-27T01:15:46.815530+00:00: optional qualifiedsource-notes transport reviewed
+
+- **Done:** `recovery/source-notes-review/REVIEW.json` SHA256 `f1c3c7f1891bf34f5c1e6947b2d96a19722bce4d1ee6ae60e231ea4132ecd74d` upholds exactexistingref+producerqualification transport.14focusedtests pass; custommissingendingstillfails; absent/emptynotes outputsexactequal. Reverseaddition hashes match priorsealedassembler/batch.
+- **Gates:** Exactquotebinding/actualchecker recursive refs apply; free/missing/FACTrefs refused. No eventdate/mechanism/sourcegrade/status orlegalapproval inferred. Freshpacket required.
+- **Boundary:** Legacyhumanreviewchecked-URLenumerator doesnot includesource_notes; no newhumanreviewcoverage claimed. AIwholeclaim exacthashreview must readnotes. Rootownsfull406suite andactualmemberresearch.
+- **Costs:**140.254s observed,5execcommands; tokens/cashunknown. No campaignhour claim. Priorseals preserved.
+
+## 2026-10-27T01:12:10.990512+00:00: prior-research single-file-hash patch reviewed
+
+- **Done:** `recovery/prior-hash-review/REVIEW.json` SHA256 `a6c2ba4fcebb86f94847ac5d1716ad40c7089b275a3090a6dd7f2336562b1983` upholds minimalhoist. Mechanicalreverse equalsHEADbytes;9priorresearchtests pass; independentfrozenv3context replay exact with canonicalhash4f29a73c13370a191fd6bd8f6846d92e65833e1f8b7370a133d6fbf5823a2acb.
+- **Measurement:** Savedbeforeprofile independentlyread:2collect207.219s, SHA197.006s/165363calls. Currentonecollect2.590s; notdirectfullprepare/agenthour comparison. Source/legalrouting unchanged; policycodepin still requires freshpacket.
+- **Costs:**101.407s observed,4execcommands includingreplay; tokens/cashunknown. Rootownsfullsuite/productiontiming. Priorprofiles/failures/seals untouched.
+
+## 2026-10-27T00:55:25.942384+00:00: reconstructed source-supplement engineering review sealed
+
+- **Done:** `recovery/engineering-v2/REVIEW.json` SHA256 `8b06b674a5862b06eb3c1ae70dbba521577b3dbeaf98d991e6b1dc27fa64e4b2` upholds exactoptionalhelper/nativeCSVmechanism/nativehook implementation.11focused+2ordinarybatch tests pass; absentmechanism refused. No scientific/sourcegrade/status/humanapproval.
+- **Corrections:** OriginalCSVmechanismgap resolved. Foundstrippedlineagemetadata+refresheddeterministiccontext bypass; finalreceipt/metadata/namespace/role trigger refuses it. Allfailure/probeversions retained underengineering-v2.
+- **Limits:** Pre-resetrealb2packet observations reconstructedseparately; currentpost-resetproductionpacket not reviewed and must freshprepare/verify. Rootownsfullsuite/corpuschecks. No actualcampaign-saving conclusion.
+- **Costs:**251.525s observedv2occupancy includingroot-fixwait,7execcommands; tokens/cashunknown. Originallostclock not reconstructed.
+- **Do not:** Reuse earlierpacket/review against changedpins or treat unreviewedexcerpts as ACT/FACT/sourceidentity certification.
+
 ## 2026-10-26T22:10:08.566346+00:00: test/documentation-only append reviewed
 
 - **Done:** `review/TEST_DOC_APPEND.json` SHA256 `08ffd1382ad17f04b6b3af8e87417f63a45ee60c05f222964de8540cfd8e73fc` upholds nativepackagewarningtest and README. Runtime/helper/priorcompanionpins unchanged fromFINAL_RECHECK; testfile only adds5thcase.5focusedtests pass; no full391test verdict asserted. Priorseals unchanged; reveal not read.
