@@ -25,7 +25,7 @@ ROW_FIELDS=['instrument_id','dossier_sha256','agent','outcome','approved','origi
  'original_pages_confirmed','inventory_confirmed','research_rationale','savings_state','savings_source_id',
  'savings_reason','search_ids','conflict_resolutions','unresolved_material_gaps','earlier_end_check',
  'scope_check','independent_command_check','savings_check','working_text']
-CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effective_date',
+CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effective_date','mechanism',
  'effective_date_confirmed','current_basis_id','current_legal_basis','checked_through',
  'later_event_ids','later_events','reason','inventory_source_id','inventory_char_start',
  'inventory_char_end','inventory_reason']
@@ -246,6 +246,9 @@ def load_packet(folder,repo,check_sources=True):
     if packet.get('schema')!=SCHEMA or digest(canon(packet).encode())!=fp:raise ValueError('changed work package')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
+        if any(d.get('source_supplement') for d in dossiers.values()):
+            import source_supplement
+            source_supplement.verify(repo, folder)
         for iid,entry in packet.get('undecided_evidence',{}).items():
             import status_overlay
             path=safe(repo,entry['path'])
@@ -524,6 +527,8 @@ def apply(repo,folder,write):
             correction=any(c['inventory_source_id'] for c in by[iid])
             for c in by[iid]:
                 clause={k:(c[k] or None) for k in ('scope_id','clause_id','state','end_id','effective_date','current_basis_id','current_legal_basis','checked_through')}
+                if c.get('mechanism'):
+                    clause['mechanism']=c['mechanism']
                 clause.update(effective_date_confirmed=boolean(c['effective_date_confirmed'] or 'false'),
                     later_event_ids=json_field(c['later_event_ids'] or '[]',list),later_events=json_field(c['later_events'] or '[]',list),reason=rationale(c['reason'],shared))
                 if correction:
