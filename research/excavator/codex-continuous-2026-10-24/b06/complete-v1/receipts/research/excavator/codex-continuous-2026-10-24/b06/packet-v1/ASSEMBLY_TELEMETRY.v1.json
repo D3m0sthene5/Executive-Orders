@@ -1,0 +1,128 @@
+[
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-propose",
+      "--evidence",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/undecided/EO_10673/EVIDENCE.json",
+      "--decision",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/undecided/EO_10673/STATUS_DECISION.json",
+      "--review",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/review/STATUS_REVIEW.EO_10673.v1.json",
+      "--lifecycle-sheet",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/applied-v1/decisions/EO_10673.source-grounded-v1.json",
+      "--write",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/OVERLAY_PROPOSE.EO_10673.v1.log",
+    "machine_elapsed_seconds": 0.3831445569994685
+  },
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-assemble",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1",
+      "--sheet",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/LIFECYCLE_DECISION.confirmed-v1.json",
+      "--write",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/ordinary-assembly-v1"
+    ],
+    "exit_code": 1,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/OVERLAY_ASSEMBLE.v1.log",
+    "machine_elapsed_seconds": 3.4175219440003275
+  },
+  {
+    "command": [
+      "python",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/manual_claim_youth_fitness_v1.py",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/MANUAL_SUPPLEMENT.v1.log",
+    "machine_elapsed_seconds": 3.3554644910000206
+  },
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-check",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/CLAIMS.working.v1.jsonl"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10673/proposal-v1/OVERLAY_CHECK.v1.log",
+    "machine_elapsed_seconds": 3.2419586579999304
+  },
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-propose",
+      "--evidence",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/undecided/EO_10772/EVIDENCE.json",
+      "--decision",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/undecided/EO_10772/STATUS_DECISION.json",
+      "--review",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/review/STATUS_REVIEW.EO_10772.v1.json",
+      "--lifecycle-sheet",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/applied-v1/decisions/EO_10772.source-grounded-v1.json",
+      "--write",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/OVERLAY_PROPOSE.EO_10772.v1.log",
+    "machine_elapsed_seconds": 0.35319759100093506
+  },
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-assemble",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1",
+      "--sheet",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/LIFECYCLE_DECISION.confirmed-v1.json",
+      "--write",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/ordinary-assembly-v1"
+    ],
+    "exit_code": 1,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/OVERLAY_ASSEMBLE.v1.log",
+    "machine_elapsed_seconds": 3.264109469999312
+  },
+  {
+    "command": [
+      "python",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/manual_claim_youth_fitness_v1.py",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/MANUAL_SUPPLEMENT.v1.log",
+    "machine_elapsed_seconds": 3.126448082999559
+  },
+  {
+    "command": [
+      "python",
+      "jobs/claim-kit/kit.py",
+      "--output",
+      "tmp/continuous-compiled",
+      "overlay-check",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1",
+      "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/CLAIMS.working.v1.jsonl"
+    ],
+    "exit_code": 0,
+    "log": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/overlay/EO_10772/proposal-v1/OVERLAY_CHECK.v1.log",
+    "machine_elapsed_seconds": 3.254014415999336
+  }
+]

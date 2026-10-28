@@ -1,0 +1,847 @@
+{
+  "agent": "codex-counterexample-20261026",
+  "assembler_code_sha256": "2dadcf1fe62f1e5b8b50274e4e8b5a63b5af050b82fba3da7e5fd25b594ed5a4",
+  "codec_code_sha256": "c9a5230712e58963a0d4c88feee54053e6ca43484f8c3d789a939525b33958f1",
+  "codec_issues": [],
+  "dossiers": {
+    "EO:7975A": {
+      "actor_contexts": [
+        {
+          "actor_id": "EO:9830",
+          "overflow": "actor-texts/EO_9830.json",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+        }
+      ],
+      "actor_provisions": [
+        "ACT:EO:7975A>EO:9830"
+      ],
+      "chain": {
+        "confidence": "medium",
+        "events": [
+          {
+            "actor_id": "EO:9830",
+            "char_end": 90328,
+            "char_start": 90277,
+            "confidence": "agent_located_independently_upheld",
+            "how_named": "direct",
+            "id": "CHAIN:EO:7975A#1",
+            "notes": "Change wording lead; chronology does not decide legal effect.",
+            "provision_text": "The following Executive orders are \nhereby revoked:",
+            "sections_touched": [
+              "whole"
+            ],
+            "signing_date": "1947-02-24",
+            "source": {
+              "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+            },
+            "verb": "revoke"
+          }
+        ],
+        "generic_refs_excluded": 234,
+        "id": "CHAIN:EO:7975A",
+        "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
+        "target_id": "EO:7975A"
+      },
+      "clauses": [
+        {
+          "@eo:ref": "Rf2045c4d9d53e366f25b8277"
+        }
+      ],
+      "conflicts": [],
+      "current_law_leads": [],
+      "draft_gate_errors": [
+        "clause_0_state",
+        "whole_order_end_evidence",
+        "savings_residuals_evidence",
+        "bounded_later_search",
+        "unresolved_material_gaps",
+        "research_rationale"
+      ],
+      "draft_material_gaps": [
+        "DRAFT: state_at_cutoff not decided for 1 clause(s); clause inventory completeness not confirmed",
+        "DRAFT: whole-order ending not established",
+        "DRAFT: savings and residual effects not closed",
+        "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+      ],
+      "evidence": {
+        "ACT:EO:7975A>EO:9830": {
+          "actor_id": "EO:9830",
+          "actor_source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "alternative_provisions": [],
+          "char_end": 90328,
+          "char_start": 90277,
+          "confidence": "agent_located_independently_upheld",
+          "earlier_cessation_obligation": {
+            "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+            "state": "unresolved"
+          },
+          "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+          "effective_class": "stated_date",
+          "effective_date": "1947-05-01",
+          "effective_wording": [
+            {
+              "char_end": 2220,
+              "char_start": 2164,
+              "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+              "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+            }
+          ],
+          "evidence_tier": "AI_reviewed_acting_provision",
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:7975A>EO:9830",
+          "lifecycle_complete": false,
+          "names_target": true,
+          "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered; EO 8894 and EO 9004 are among them), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 7975-A of September 16, 1938.': number and date match the target's signing date (1938-09-16). Dossier clause inventory (offsets 776-1682) is the order's own designation text. AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+          "override_id": "ACT:EO:7975A>EO:9830@rastell",
+          "producer": "claude-r9830-producer",
+          "producer_d6": "Searched held FR texts 1938-1947 for EO 7975-A (also as 7975A) and for 'Personnel Supervision' / section 6 of EO 7916: no later instrument names EO 7975-A (EO 7975 hits are a different order, lands in New Mexico, amended by EO 8471-8473). EO 7916 sec. 6 (the provision under which the designation operates) was not amended before EO 9830 in held texts: EO 8043/8044 suspended EO 7916 only as to covering positions into the competitive service (sec. 1), EO 8364 modified sec. 3, EO 8468 amended sec. 7. EO 7916 itself is revoked by the same EO 9830 Part III row list on the same date (not earlier). Dossier chain empty; no own-term end. No earlier end found in held sources.",
+          "provenance": "agent_located",
+          "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+          "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+          "provision_text": "The following Executive orders are \nhereby revoked:",
+          "reaches_target_via": "",
+          "review": {
+            "d6_found": "No earlier end found in held sources. EO 7916 (parent sec. 6) is revoked by the same EO 9830 list on the same date, not earlier.",
+            "d6_searched": "Searched held FR corpus (jobs/fr-originals full_run) for later instruments naming the target number (with context check of every hit) and for amendments of the specific rule/order text the target set; EO 9830 searched for savings. \"7975-A\"/\"7975A\" occur only in the target and EO 9830. Read held EO_7975A.txt own text (designates 13 agencies under EO 7916 sec. 6, Divisions of Personnel Supervision and Management). Listed every 1938-1947 instrument citing EO 7916: EO 8043/8044 (sec. 1 suspension), EO 8045 (sec. 7 Council appointment), EO 8283/8364/8383 (sec. 3), EO 8467/8468 (sec. 7), EO 8699-8701 (sec. 1); none amends sec. 6 or the designation list.",
+            "independent": true,
+            "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+            "reviewer": "claude-r9830-reviewer-s1 (independent Opus, held sources, D6 step)",
+            "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+            "verdict": "upheld"
+          },
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1947-02-24",
+          "source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "target_id": "EO:7975A",
+          "target_naming": {
+            "char_end": 90972,
+            "char_start": 90939,
+            "sha256": "f4a7c41a16bd54bb437cd79856f6f6bbf213a2582c731c8a2937d72daf1a897a",
+            "text": "No. 7975-A of September 16, 1938."
+          },
+          "text": {
+            "@eo:span": [
+              "T684e22be417ae61c9ae2830b",
+              0,
+              51
+            ]
+          },
+          "verb": "revoke"
+        },
+        "ACT:EO:7975A>EO:9830:effective#0": {
+          "actor_id": "EO:9830",
+          "char_end": 2220,
+          "char_start": 2164,
+          "id": "ACT:EO:7975A>EO:9830:effective#0",
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "text": {
+            "@eo:span": [
+              "Tf5d254c2eded124655075d16",
+              0,
+              56
+            ]
+          }
+        },
+        "CLAUSES:EO:7975A#whole": {
+          "@eo:ref": "Rf2045c4d9d53e366f25b8277"
+        },
+        "ORIGINAL:EO:7975A": {
+          "acceptable_as_original": true,
+          "actor_id": "EO:7975A",
+          "char_end": 4455,
+          "char_start": 0,
+          "grade": "original_representation_unverified",
+          "id": "ORIGINAL:EO:7975A",
+          "location_confidence": "high",
+          "requires_page_check": false,
+          "role": "original",
+          "signing_date": "1938-09-16",
+          "source": {
+            "@eo:source": "S6d5ccc9e47a95819fd29114e"
+          },
+          "text": {
+            "@eo:span": [
+              "T49ccde206b47b90951a09f9e",
+              0,
+              4455
+            ]
+          }
+        }
+      },
+      "fingerprint": "fd1198a3f3fdfa7ffc85db4f5988d5a33632188bbde19303d4ffcba65125d46c",
+      "instrument_id": "EO:7975A",
+      "legal_cutoff": "2026-10-14",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "7c10deda7129b40143496a928a6d2e737f4a908ae36894f9ff8ad327e450707e",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:7975A",
+          "later_actor_evidence_ids": [
+            "ACT:EO:7975A>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:7975A#whole",
+          "state": "requires_clause_specific_research",
+          "wording_features": []
+        }
+      ],
+      "machine_searches": [
+        {
+          "complete": true,
+          "entry": {
+            "checked_on": "2026-10-17",
+            "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+            "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+            "searched_by": "jobs/current-law (machine search)"
+          },
+          "machine_hits_for_this_order": 0,
+          "scope_note": "",
+          "search_id": "current-law:usc"
+        },
+        {
+          "complete": true,
+          "entry": {
+            "checked_on": "2026-10-17",
+            "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+            "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+            "searched_by": "jobs/current-law (machine search)"
+          },
+          "machine_hits_for_this_order": 0,
+          "scope_note": "",
+          "search_id": "current-law:ecfr"
+        },
+        {
+          "complete": true,
+          "entry": {
+            "checked_on": "2026-10-19",
+            "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+            "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+            "searched_by": "jobs/later-events (machine search)"
+          },
+          "machine_hits_for_this_order": 2,
+          "scope_note": "",
+          "search_id": "later-events:ofr_catalog"
+        }
+      ],
+      "missing": [
+        "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
+      ],
+      "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
+      "original_source_id": "ORIGINAL:EO:7975A",
+      "own_terms": [],
+      "schema": "eo-claim-kit-dossier/v1",
+      "status_history": {
+        "event_count": 2,
+        "fingerprint": "606743496ec7ec80260d70679a3d6a4c6c3233cec14812a61feacf9c9dd4a9ae",
+        "flags": [],
+        "history_path": "jobs/status-history/output/histories/EO_7975A.json",
+        "history_sha256": "e336cb9851c80efcb77e3d7634529e2f4328b497fe2a3cefe850a810ea1acb9d",
+        "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
+        "legal_cutoff": "2026-10-14",
+        "machine_lead": true,
+        "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
+        "observation_count": 2
+      },
+      "whole_order_status": "no"
+    }
+  },
+  "families": [
+    {
+      "family_id": "FAMILY:a7feaa144906b667f83e97de",
+      "members": [
+        {
+          "evidence_id": "ACT:EO:7975A>EO:9830",
+          "instrument_id": "EO:7975A",
+          "shared_evidence": {
+            "actor_id": "EO:9830",
+            "exception_terms": [],
+            "operative_pattern_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+            "reaches_target_via": "",
+            "scope": "whole",
+            "source_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+            "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+          }
+        }
+      ],
+      "notice": "Shared evidence only. Every target requires its own earlier-end/scope/independent-command/savings checks.",
+      "orders": 1
+    }
+  ],
+  "fingerprint": "f00d78342a723e6419b26f2f76e8e8cfd60c83057d7c12df45772964754b8b77",
+  "held_text_file_pins": {
+    "jobs/fr-originals/data/full_run/texts/EO_7975A.txt": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+    "jobs/fr-originals/data/full_run/texts/EO_9830.txt": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+  },
+  "input_pins": {
+    "EO:7975A": {
+      "file_sha256": "1994a1c76bdbc72c90b88777d0ecf2dc3e728776855ac5cee1410363ac34ad04",
+      "fingerprint": "fd1198a3f3fdfa7ffc85db4f5988d5a33632188bbde19303d4ffcba65125d46c",
+      "path": "jobs/claim-kit/output/dossiers/EO_7975A.json"
+    }
+  },
+  "legal_cutoff": "2026-10-14",
+  "ownership": {
+    "EO:7975A": {
+      "route": "new_producer_proposal"
+    }
+  },
+  "policy_code_sha256": {
+    "jobs/claim-kit/factual_events.py": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659",
+    "jobs/claim-kit/lifecycle_obligations.py": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
+    "jobs/claim-kit/prior_research.py": "db4ec6170f21b4a361945326bec52c6877ea8b1c010a6c9c35491a790329024b",
+    "jobs/claim-kit/status_overlay.py": "d8ab921fe43f7646ccf80f9f4044a5e63e7caf183106ad6f92a6779ff6dd1c7a",
+    "jobs/claim-kit/working_text.py": "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9",
+    "jobs/norton/model.py": "abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12"
+  },
+  "preflight": {
+    "EO:7975A": {
+      "custody_validation": "required_from_actual_claim_checker",
+      "decisions_still_required": [
+        "complete original/inventory",
+        "earlier ending",
+        "partial scope and effective date",
+        "independent commands",
+        "savings/residuals",
+        "contrary evidence and cutoff predicate"
+      ],
+      "evidence_preflight": "blocked_or_research",
+      "held_text_receipts": {
+        "jobs/fr-originals/data/full_run/texts/EO_7975A.txt": {
+          "characters": 4455,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "db9957f78ec2a08bab13f2f4888003a74ebe83dcab4c35c86cae8264bf68eb15",
+          "text_sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt": {
+          "characters": 92143,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+        }
+      },
+      "instrument_id": "EO:7975A",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "7c10deda7129b40143496a928a6d2e737f4a908ae36894f9ff8ad327e450707e",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:7975A",
+          "later_actor_evidence_ids": [
+            "ACT:EO:7975A>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:7975A#whole",
+          "state": "requires_clause_specific_research",
+          "wording_features": []
+        }
+      ],
+      "mechanical_tasks": [
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:7975A",
+          "kind": "load_actor_overflow",
+          "reason": "Read full overflow before scope/savings decision",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:55083671c28924b6a6474bda"
+        }
+      ],
+      "notice": "No known gap is not a legal-readiness finding. Review may expose new facts."
+    }
+  },
+  "preflight_code_sha256": "0698661c59f5384fae99dac7586bbbc572793283abac5803f12482f4ae546242",
+  "preflight_dependency_sha256": {
+    "excavate.py": "1bb40681fb5f9bd2c55e7e73b5d48a5b0e84c24b32d8f69aa3bd0b38ce5977a2"
+  },
+  "prior_research": {
+    "automatic_approvals": 0,
+    "current_rulings": [
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md",
+        "sha256": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-proquest-request.md",
+        "sha256": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-report-deadline.md",
+        "sha256": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md",
+        "sha256": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+        "sha256": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+        "sha256": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md",
+        "sha256": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md",
+        "sha256": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc",
+        "state": "unqualified"
+      }
+    ],
+    "discovery_issues": [],
+    "discovery_scope": "Current materialized research files; unmaterialized work is not inferred absent. No Git history read.",
+    "excluded_control_records": [],
+    "input_file_pins": {
+      "jobs/fr-originals/data/full_run/texts/EO_7975A.txt": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+      "jobs/fr-originals/data/full_run/texts/EO_9830.txt": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+      "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+      "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/CLAIMS.publishable.jsonl": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/CLAIMS.selected.jsonl": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/TRACKER_CLAIMS.jsonl": "f844eb12c443235bee8a93d8e5b74dae2318503e20ed8b5833ce68335c852f04",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+      "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+      "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v1.jsonl": "49db850aff094f1aceb662d79d1af39ad8549558e6708c4ffe1cee86188ab57d",
+      "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v2.jsonl": "86d51a2f814dcf79f8939ec5cd4a40bbaa0cbbed38ba220fe3f809a494a3135c",
+      "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+      "research/excavator/counterexample-first-2026-10-26/packet/applied-v1/CLAIMS.proposed.jsonl": "5b16111d909909445672538f1245a4bab22e3df01929997dbaf66cd132714a9d",
+      "research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+      "research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+      "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+      "research/readiness/owner_rulings/2026-10-21-proquest-request.md": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+      "research/readiness/owner_rulings/2026-10-21-report-deadline.md": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+      "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+      "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+      "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+      "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+      "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc"
+    },
+    "notice": "Prior producer/reviewer assertions, not new findings or automatic approval. Reuse only after checking the exact version, source, proposition and scope. Rejected versions and contradictory assertions remain visible; whole-case review is still required.",
+    "orders": {
+      "EO:7975A": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "fd1198a3f3fdfa7ffc85db4f5988d5a33632188bbde19303d4ffcba65125d46c",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "7c10deda7129b40143496a928a6d2e737f4a908ae36894f9ff8ad327e450707e",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [
+                "ACT:EO:7975A>EO:9830"
+              ],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+              ],
+              "scope_id": "EO:7975A#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "prior_work_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": [
+          {
+            "claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+            "current_canonical": false,
+            "locations": [
+              {
+                "file_sha256": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/CLAIMS.publishable.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/CLAIMS.selected.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "f844eb12c443235bee8a93d8e5b74dae2318503e20ed8b5833ce68335c852f04",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/TRACKER_CLAIMS.jsonl",
+                "pointer": "line:399"
+              },
+              {
+                "file_sha256": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "49db850aff094f1aceb662d79d1af39ad8549558e6708c4ffe1cee86188ab57d",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v1.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "86d51a2f814dcf79f8939ec5cd4a40bbaa0cbbed38ba220fe3f809a494a3135c",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v2.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "15b8729cbab842c19fd81a0d2b4ee67a13f3a8111606f2fff7b4395e47da2f9a",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/PROPOSED_SELECTION.v3.jsonl",
+                "pointer": "line:1"
+              },
+              {
+                "file_sha256": "5b16111d909909445672538f1245a4bab22e3df01929997dbaf66cd132714a9d",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/applied-v1/CLAIMS.proposed.jsonl",
+                "pointer": "line:1"
+              }
+            ],
+            "reported_material_gaps": [],
+            "research_rationale": "The complete original page confirms one designation covering thirteen agencies under EO 7916 section 6. The complete EO 9830 and official pages 1, 3, 4 and 11 confirm express whole-order revocation effective May 1, 1947 and no target-specific saving. Primary EO 7916 pages 8–9 show a February 1, 1939 implementation bound followed by continuing director duties, so initial establishment does not exhaust the designation. Actual EO 8044 limits competitive coverage; actual EO 8363 changes parent section 3 and EO 8467 changes section 7. None changes section 6 or names EO 7975-A. Wrong adjacent instrument attributions in the prior review were corrected from original pages. No earlier end was found in the stated bounded searches and primary checks. Exact sources and limitations appear in ANALYSIS.md and SUPPLEMENT_RECEIPT.json.\nMember checks: {\"earlier_end_check\":\"The complete primary EO 7916, PDF pages 8–9, printed pages 1526–1527, makes establishment effective not later than February 1, 1939 and assigns continuing liaison, budget, supervision, training, grievance and Council duties. That implementation bound is not a sunset; no actual completion date is inferred. Actual EO 8043 amends Schedules A/B. Actual EO 8044 suspends only the competitive-coverage function. Actual EO 8363, rather than neighboring 8364, modifies parent section 3. Actual EO 8467, rather than neighboring 8468, restates section 7 effective July 1, 1940 while retaining personnel directors as ex officio Council members. Relevant complete personnel provisions and original pages were read. No earlier first end was found within the disclosed bounds. The owner unnamed-instrument and amendment rulings were applied without inventing dates for unproved reorganizations.\",\"independent_command_check\":\"The original contains one uniform designation and compliance requirement covering thirteen agencies. It contains no independent report, payment, return or other implementation clause. Primary parent section 6 imports continuing director liaison, budget, supervision, training and grievance duties; creating a division does not exhaust these functions. The whole designation and its imported obligations are reached by the same express revocation. No actual occurrence is inferred.\",\"savings_check\":\"The original contains no savings. The complete EO 9830 has no reservation of the target designation. Section 01.3 independently requires personnel offices; section 01.5 expressly continues and renames the Council of Personnel Administration. That separate institutional continuation is disclosed, rather than treated as continuation of the revoked thirteen-agency designation. No target-specific accrued or transferred right was found in these complete texts.\",\"scope_check\":\"The sole operative paragraph, original characters 776:1682, designates thirteen agencies under one parent provision. Original PDF page 1 was visually checked, confirming the list, number, date and complete operative boundary. EO 9830 Part III names EO 7975-A in full without a target-specific limitation; its global May 1 effective date applies to all thirteen objects. No inventory correction is proposed.\"}",
+            "reviews": [
+              {
+                "dependency_pins": [],
+                "file_sha256": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl",
+                "pointer": "line:1",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-after-reveal-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld_after_reveal",
+                "version_binding": "exact"
+              },
+              {
+                "dependency_pins": [],
+                "file_sha256": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-publish-v2/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl",
+                "pointer": "line:2",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-independent-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld",
+                "version_binding": "stale_or_mismatched"
+              },
+              {
+                "dependency_pins": [],
+                "file_sha256": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl",
+                "pointer": "line:1",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-after-reveal-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld_after_reveal",
+                "version_binding": "exact"
+              },
+              {
+                "dependency_pins": [],
+                "file_sha256": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+                "path": "research/excavator/counterexample-first-2026-10-26/complete-v1/receipts/research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl",
+                "pointer": "line:2",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-independent-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld",
+                "version_binding": "stale_or_mismatched"
+              },
+              {
+                "dependency_pins": [],
+                "file_sha256": "2c7bc67d59f74f6ae7c38e2c8cc6bf85782a284dbfc73bd2a4dc24d201eb2f82",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/review/pair1/AFTER_REVEAL.jsonl",
+                "pointer": "line:1",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-after-reveal-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld_after_reveal",
+                "version_binding": "exact"
+              },
+              {
+                "dependency_pins": [],
+                "file_sha256": "56584f8025ddfbc28339fe7279ccb407c45f1199a59511027e1967655946e068",
+                "path": "research/excavator/counterexample-first-2026-10-26/packet/review/pair1/BLIND_REVIEW.jsonl",
+                "pointer": "line:2",
+                "review_authority": "recorded_assessment_only_no_inherited_approval",
+                "review_kind": "independent_ai_source_review",
+                "reviewed_claim_file_sha256": null,
+                "reviewed_claim_sha256": "66f6114d524a37435cfee974138076c943fe34892b4b127df640260b3a30c505",
+                "reviewer": "ce-review-pair1",
+                "schema": "eo-independent-ai-source-review/v1",
+                "scope": "whole_case",
+                "verdict": "upheld",
+                "version_binding": "stale_or_mismatched"
+              }
+            ],
+            "savings_residuals": {
+              "reason": "The original contains no savings. The complete EO 9830 has no reservation of the target designation. Section 01.3 independently requires personnel offices; section 01.5 expressly continues and renames the Council of Personnel Administration. That separate institutional continuation is disclosed, rather than treated as continuation of the revoked thirteen-agency designation. No target-specific accrued or transferred right was found in these complete texts.",
+              "source": {
+                "quoted_parts_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                "source_id": "49977244404ebe71a2488b9e1bbf88677eb29e82d3cd5e273232769cc888c25a"
+              },
+              "state": "none_after_bounded_search"
+            },
+            "scopes": [
+              {
+                "aligned_current_scopes": [
+                  "EO:7975A#whole"
+                ],
+                "alignment": "exact_quote_and_source",
+                "claim_pointer": "/operative_clauses/0",
+                "different_current_fields": [
+                  "state_at_cutoff",
+                  "first_end",
+                  "later_events"
+                ],
+                "original_quote_sha256": "7c10deda7129b40143496a928a6d2e737f4a908ae36894f9ff8ad327e450707e",
+                "original_source": {
+                  "quoted_parts_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                  "source_id": "1db31975ec237574a0df8561b14079d19d8cde68e3a4194ca7247d1d351eb245"
+                },
+                "proposition": {
+                  "current_predicate": null,
+                  "first_end": {
+                    "actor": "EO:9830",
+                    "date": "1947-05-01",
+                    "mechanism": "revoke",
+                    "source": {
+                      "quoted_parts_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                      "source_id": "49977244404ebe71a2488b9e1bbf88677eb29e82d3cd5e273232769cc888c25a"
+                    }
+                  },
+                  "later_events": [],
+                  "state_at_cutoff": "terminated"
+                },
+                "scope_id": "EO:7975A#whole"
+              }
+            ],
+            "sources": {
+              "1db31975ec237574a0df8561b14079d19d8cde68e3a4194ca7247d1d351eb245": {
+                "claim_pointers": [
+                  "/operative_clauses/0/original_source",
+                  "/original_representation"
+                ],
+                "held_text": {
+                  "expected_sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+                  "path": "jobs/fr-originals/data/full_run/texts/EO_7975A.txt",
+                  "sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+                  "state": "match"
+                },
+                "page_or_item": "3 FR 2271, PDF pages 1-1",
+                "raw_source_verification": "not_reestablished_by_preparation",
+                "sha256": "db9957f78ec2a08bab13f2f4888003a74ebe83dcab4c35c86cae8264bf68eb15",
+                "text_path": "jobs/fr-originals/data/full_run/texts/EO_7975A.txt",
+                "text_sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+                "url": "https://www.govinfo.gov/content/pkg/FR-1938-09-22/pdf/FR-1938-09-22.pdf"
+              },
+              "49977244404ebe71a2488b9e1bbf88677eb29e82d3cd5e273232769cc888c25a": {
+                "claim_pointers": [
+                  "/operative_clauses/0/first_end/source",
+                  "/savings_residuals/source",
+                  "/whole_order_end/source"
+                ],
+                "held_text": {
+                  "expected_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+                  "path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+                  "sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+                  "state": "match"
+                },
+                "page_or_item": "12 FR 1259, PDF pages 1-11",
+                "raw_source_verification": "not_reestablished_by_preparation",
+                "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+                "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+                "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+                "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+              }
+            },
+            "whole_order_end": {
+              "actor": "EO:9830",
+              "date": "1947-05-01",
+              "mechanism": "revoke",
+              "source": {
+                "quoted_parts_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                "source_id": "49977244404ebe71a2488b9e1bbf88677eb29e82d3cd5e273232769cc888c25a"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "schema": "eo-claim-kit-prior-research/v1",
+    "whole_case_review_required": true
+  },
+  "schema": "eo-claim-kit-work-package/v1",
+  "shared_objects": {
+    "Rf2045c4d9d53e366f25b8277": {
+      "char_end": 1682,
+      "char_start": 776,
+      "id": "CLAUSES:EO:7975A#whole",
+      "kind": "whole",
+      "label": "sole paragraph",
+      "pdf_page": 1,
+      "scope_id": "EO:7975A#whole",
+      "source": {
+        "@eo:source": "S6d5ccc9e47a95819fd29114e"
+      },
+      "text": {
+        "@eo:span": [
+          "T49ccde206b47b90951a09f9e",
+          776,
+          1682
+        ]
+      }
+    }
+  },
+  "shared_tasks": [
+    {
+      "affected_orders": [
+        "EO:7975A"
+      ],
+      "availability": "held_not_loaded",
+      "kind": "load_actor_overflow",
+      "reasons": [
+        "Read full overflow before scope/savings decision"
+      ],
+      "shared_key": "EO:9830",
+      "task_id": "TASK:55083671c28924b6a6474bda"
+    }
+  ],
+  "sources": {
+    "S08ebf2ad4e9036ab1f9417c5": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "12 FR 1259, PDF pages 1-11",
+      "requires_page_check": false,
+      "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+      "signing_date": "1947-02-24",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+    },
+    "S6d5ccc9e47a95819fd29114e": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "3 FR 2271, PDF pages 1-1",
+      "requires_page_check": false,
+      "sha256": "db9957f78ec2a08bab13f2f4888003a74ebe83dcab4c35c86cae8264bf68eb15",
+      "signing_date": "1938-09-16",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_7975A.txt",
+      "text_sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1938-09-22/pdf/FR-1938-09-22.pdf"
+    }
+  },
+  "text_blocks": {
+    "T49ccde206b47b90951a09f9e": {
+      "char_end": 4455,
+      "char_start": 0,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_7975A.txt"
+      ],
+      "text": "Instrument: EO:7975A\nSource: https://www.govinfo.gov/content/pkg/FR-1938-09-22/pdf/FR-1938-09-22.pdf\nSHA-256 of the downloaded file: db9957f78ec2a08bab13f2f4888003a74ebe83dcab4c35c86cae8264bf68eb15\nLocation: 3 FR 2271, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 14 ===\n< r\\O N A L  JÜ is\nFEDERALREGISTER\nVOLUME 3 '934 ^\nS auted %\nNUMBER 185\nWashington, Thursday, September  22, 1938\nThe President\nEXECUTIVE ORDER\nD esignation  op I ndependent  E stablish ­\nments  and A gencies U nder S ection  6 \nof E xecutive  O rder No. 7916 of J une  \n24, 1938\nBy virtue of and pursuant to the \nauthority vested in me by the Constitu­\ntion, section 1753 of the Revised Statutes \n(U. S. C., title 5, sec. 631), and the Civil \nService Act (22 Stat. 403), and as Presi­\ndent of the United States, I  hereby des­\nignate the following-named independent \nestablishments and agencies as organiza­\ntions which are required to comply with \nthe provisions of section 6 of Executive \nOrder No. 7916, dated June 24, 1938,1  \nrelating to the establishment of Divisions \nof Personnel Supervision and Manage­\nment:\nCivil Aeronautics Authority \nCivil Service Commission \nFarm Credit Administration \nGeneral Accounting Office \nGovernment Printing Office \nInterstate Commerce Commission \nThe Panama Canal \nRailroad Retirement Board \nSecurities and Exchange Commis­\nsion\nSocial Security Board \nUnited States Housing Authority \nUnited States Maritime Commission \nVeterans’ Administration\nFranklin  D R oosevelt\nT he W hite  H ouse,\nSeptember 16,1938.\n[No. 7975-A]\n[F. R. Doc. 38-2766; Filed, September 20,  \n1938; 2:30 p.m .]\n13 F. R. 1526 DI.\nRules, Regulations, Orders\nTITLE 9—ANIMALS AND ANIMAL \nPRODUCTS\nBUREAU OF ANIMAL INDUSTRY \n[Amendment 2 to B. A. I. Order 366J ]\nAmendment  of O rder to P revent the \nIntroduction  I nto  the U nited  S tates \nof R inderpest  and F oot-and-M outh  \nDisease\nSeptember 21, 1938. \nUnder authority conferred by law \nupon the Secretary of Agriculture by \nSection 306 of the Tariff Act of 1930 \n(46 Stat. 689), the order to prevent the \nintroduction into the United States of \nrinderpest and foot-and-mouth disease \n(B. A. I. Order 366), dated May 27, 1938, \nand effective June 1, 1938, as amended, \nis hereby further amended by restoring \nthe name “Sweden” to the list of coun­\ntries in said order, as I have determined \nthat foot-and-mouth disease again \nexists in said country of Sweden and I \nhave so officially notified the Secretary \nof the Treasury.\nThe effect of this amendment is to \nrender commodities specified in B. A. I. \nOrder 366, originating in Sweden, sub­\nject to the provisions of said B. A. I. \nOrder 366, from which they were re­\nleased by Amendment 1  thereto.\nAmendment 1  to B. A. I. Order 366, \neffective September 3, 1938,2  is hereby \nrevoked.\nThis amendment, which for purpose of \nidentification is designated Amendment \n2 to B. A. I. Order 366, shall be effective \non and after September 21, 1938. (Sec. \n306, 46 Stat. 689, Sec. 2, 32 Stat. 792, 45 \nStat. 59; 19 U. S. C. 1306 (a), (b), and\n(c ), 21 U. S. C. 111.) [B. A. I. Order 366,\nunnumbered paragraph 1, as amended\n1  Amending 9 CFR 8.001.\n2  3 F. R. 2107 DI.\nCONTENTS \nTHE PRESIDENT\nExecutive Order: Pa€e\nDivisions of Personnel Supervi­\nsion and Management, des­\nignation of agencies rela­\ntive to establishment of ____ 2271\nRULES, REGULATIONS, ORDERS \nT itle  9— A nimals  and A nimal  \nP roducts :\nBureau of Animal Industry: \nRinderpest and foot-and- \nmouth disease, amend­\nment to order to prevent\nintroduction of __________ 2271\nT itle 11— Aviation :\nCivil Aeronautics Authority: \nCertificates of convenience \nand necessity, applica­\ntion for ________________  2272\nFiling, posting and publish­\ning of tariffs by air car­\nriers and foreign air car­\nriers ____________________ 2274\nForeign air carrier permits,\napplication for _________  2272\nPostponement of effective \ndate of parts of Section \n403 of Civil Aeronautics \nA ct______________________ 2274\nT itle 31— Money  and F inance : \nT reasery :\nOffice of the Secretary:\nGovernment Losses in Ship­\nment Act, amendment of \nexemption order pursuant\nto Section 4 of __________ 2281\nNavy contracts, excess profits\no n ----------------------------- 2279\n(Continued on next page)\n2271\n",
+      "text_sha256": "6e9994355855e6a58a10355782cc625426199eaf91c2fe6a3a74a8fd17def956"
+    },
+    "T684e22be417ae61c9ae2830b": {
+      "char_end": 90328,
+      "char_start": 90277,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt"
+      ],
+      "text": "The following Executive orders are \nhereby revoked:",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+    },
+    "Tf5d254c2eded124655075d16": {
+      "char_end": 2220,
+      "char_start": 2164,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt"
+      ],
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+    }
+  },
+  "valla_context": {
+    "automatic_approvals": 0,
+    "claims": {},
+    "notice": "Review lead only. Every case needs separate applicability, earlier-ending, scope, independent-command, savings and independent whole-case review.",
+    "package_scan": {
+      "causal_derivation_inferred": false,
+      "tracked_packages_loaded": 40,
+      "unmaterialized_packages": []
+    },
+    "premise_library_sha256": "e0b9d0af27e8ef2d0461046d4801b9c2cb5a20529051aab8ddbfaf3af745cac3",
+    "protocol_pins": {
+      "jobs/claim-kit/AGENT_PROTOCOL.md": "d0577fa4ce10d15e137c7347ba25645c52711cc864d095e17714c2c00c0d67a6",
+      "jobs/claim-kit/BATCH.md": "570deca9ac7f21ecd2a09f75f7801227c7ac629dfd89b7a0362fb6ba8f4cedc4",
+      "research/stage15/LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json": null,
+      "research/stage19/CLAIM_SCHEMA.md": "9ff2bb08b8984ecef528c779fc3207ac9f7c815ac10b3dbc9158b559d2f8dd79",
+      "research/stage19/code/claim_gate.py": "d9e33806ff5e592ace5166ec8faa63bc3266f7a0b5d836967abe8b527f3b5dd8"
+    },
+    "review_queue": [],
+    "schema": "eo-valla-packet-context/v1",
+    "valla_code_sha256": "1841c6b79aa63dad4c80c1db280c6b892999bebfe5f50ddc9bdbeb9239787a45",
+    "whole_case_review_required": true
+  }
+}

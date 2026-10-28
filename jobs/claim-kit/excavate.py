@@ -8,7 +8,10 @@ from __future__ import annotations
 import calendar
 import datetime as dt
 import hashlib
+import importlib.util
+from pathlib import Path
 import re
+import sys
 from functools import lru_cache
 
 
@@ -114,6 +117,41 @@ def _paragraph_start(text, offset):
     return boundary + 2 if boundary >= 0 else 0
 
 
+@lru_cache(maxsize=1)
+def _clause_locator():
+    """Reuse the established clause-drafts locator; never infer identity from a URL."""
+    path = Path(__file__).resolve().parents[1] / 'clause-drafts/segment.py'
+    spec = importlib.util.spec_from_file_location('_claim_kit_clause_locator', path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def segmentation_code_sha256():
+    """Both parsers participate in persistent-cache invalidation."""
+    paths = (Path(__file__), Path(__file__).resolve().parents[1] / 'clause-drafts/segment.py')
+    return hashlib.sha256(b''.join(p.read_bytes() for p in paths)).hexdigest()
+
+
+@lru_cache(maxsize=32)
+def _trailing_extent(instrument_id, text):
+    if not instrument_id.startswith('EO:'):
+        return None
+    if not re.search(r'(?im)^[ \t]*\[[ \t]*No\.', text):
+        return None
+    # This route is only for the early printed bare-heading / closing-number style.
+    # Preserve the established numbered-heading/schedule behavior elsewhere.
+    locator = _clause_locator()
+    loc = locator.locate_order(text, instrument_id[3:])
+    if loc is None or loc.heading_style != 'trailing_number':
+        return None
+    if any(locator._valid_generic(text, m) for m in
+           locator.GENERIC_HEADING.finditer(text,loc.doc_start,loc.doc_end)):
+        return None  # A numbered neighboring document intervenes; no binding inferred.
+    return loc
+
+
 @lru_cache(maxsize=32)
 def _extent(instrument_id, text):
     """Bound an attributed order before using any signature or legal wording.
@@ -122,6 +160,9 @@ def _extent(instrument_id, text):
     Only a printed heading matching the supplied identity licenses skipping
     those blocks. Space-separated printed digits are read, never repaired.
     """
+    legacy = _trailing_extent(instrument_id, text)
+    if legacy:
+        return legacy.doc_start, legacy.body_end
     heading = re.compile(r"(?im)^[ \t]*(?:[^\n]{0,30}?[-—–][ \t]*)?Executive[ \t]+Order[ \t]+(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)(?=\s+(?:of|o[ \t]+f)\b|[ \t]*$)")
     headers = list(heading.finditer(text))
     own = next((h for h in headers if "EO:" + re.sub(r"[ \t]", "", h[1]).upper() == instrument_id), None)
@@ -138,6 +179,10 @@ def segment(instrument_id, text, source):
     An unnumbered operative lead before numbered sections is always retained.
     """
     notes = ["Machine segmentation lead; compare the inventory with the official original."]
+    legacy = _trailing_extent(instrument_id, text)
+    if legacy:
+        notes.extend(legacy.warnings)
+        notes.append('Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.')
     body_start, end = _extent(instrument_id, text)
     headings = list(HEADING.finditer(text, body_start, end))
     operative = re.compile(r"\b(?:I\s+(?:hereby\s+)?(?:order|direct|extend|establish|revoke|amend)|it\s+is\s+(?:hereby\s+)?ordered|(?:is|are)\s+(?:hereby\s+)?(?:amended|revoked|established)|[A-Za-z]+\s+(?:shall|is hereby))\b", re.I).search(text, body_start, end)
@@ -155,7 +200,8 @@ def segment(instrument_id, text, source):
             # does not itself establish an additional operative clause. Keep
             # a separate unnumbered command only when it precedes that formula.
             preamble = text[start:headings[0].start()]
-            if re.search(r"\b(?:it\s+is\s+|is\s+)?(?:hereby\s+)?ordered\s+as\s+follow\s*s\s*:", preamble, re.I):
+            formula = r"\b(?:it\s+is\s+|is\s+)?(?:hereby\s+)?ordered\s+as\s+follow\s*s\s*:"
+            if re.search(formula + (r"\s*\Z" if legacy else ""), preamble, re.I):
                 command = re.search(r"\bI\s+(?:hereby\s+)?(?:establish|direct|extend|transfer|revoke|amend|abolish|terminate)\b", preamble, re.I)
                 if not command:
                     start = headings[0].start()
@@ -216,7 +262,7 @@ def segment(instrument_id, text, source):
         scope += "-dup" + str(seen[scope]) if seen[scope] > 1 else ""
         scope_id = instrument_id + "#" + scope
         clauses.append({"id": "CLAUSES:" + scope_id, "scope_id": scope_id, "kind": kind, "label": label, "text": value, "char_start": a, "char_end": b, "pdf_page": _page(text, a, source)})
-    return {"id": "CLAUSES:" + instrument_id, "instrument_id": instrument_id, "source": source, "clauses": clauses, "method": "heading_and_operative_boundary_v2", "confidence": "medium" if notes or not headings else "high", "notes": " ".join(notes)}
+    return {"id": "CLAUSES:" + instrument_id, "instrument_id": instrument_id, "source": source, "clauses": clauses, "method": "heading_and_operative_boundary_v3_trailing_number" if legacy else "heading_and_operative_boundary_v2", "confidence": "medium" if notes or not headings else "high", "notes": " ".join(notes)}
 
 
 def _uncached_sentences(text):

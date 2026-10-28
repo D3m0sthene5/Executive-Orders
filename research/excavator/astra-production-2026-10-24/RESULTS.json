@@ -1,0 +1,387 @@
+{
+  "schema": "eo-production-results/v1",
+  "batches": {
+    "b01": {
+      "tally": {
+        "attempted": 2,
+        "claims_published": 0,
+        "controls": [
+          {
+            "caught": true,
+            "instrument_id": "EO:11022",
+            "planted_claim_sha256": "a6b04c36d6b488f41b987eef5460863aa443b3156a041aadaf66210df497c47e",
+            "scoring": "strict"
+          }
+        ],
+        "counts": {
+          "blocked": 1,
+          "eligible": 1
+        },
+        "eligible": [
+          "EO:11022"
+        ],
+        "eligible_per_attempt": 0.5,
+        "exceptions": 0,
+        "finished_utc": "2026-10-24T17:10:50.512563+00:00",
+        "independent_human_certifications": 0,
+        "model_cost": null,
+        "model_tokens": null,
+        "outcomes": [
+          {
+            "after_reveal": true,
+            "claim_sha256": "c7b92a9c69c4a886f6e0073269ba71c59a20b48354003a8d3529d5212f3d976e",
+            "gate_errors": [
+              "clause_0_first_end",
+              "clause_1_first_end",
+              "clause_2_first_end",
+              "clause_3_first_end",
+              "whole_order_end_evidence",
+              "savings_residuals_evidence",
+              "bounded_later_search",
+              "unresolved_material_gaps"
+            ],
+            "instrument_id": "EO:11022",
+            "outcome": "eligible",
+            "publication_kind": "partial_research",
+            "source_review_upheld": true
+          },
+          {
+            "claim_sha256": null,
+            "instrument_id": "EO:11256",
+            "outcome": "blocked",
+            "reason": "Unchanged source-block fingerprint deferred. Section6 requires actual Commission report submission to the Committee; deadline and index-level summary are insufficient. See pinned RESUME-v1.json."
+          }
+        ],
+        "plants_caught": 1,
+        "plants_placed": 1,
+        "schema": "eo-claim-kit-completion/v1",
+        "source_review_upheld": 1,
+        "started_utc": "2026-10-24T17:09:08.825293+00:00",
+        "submitted": 1,
+        "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+        "wall_seconds": 101.6872950879997
+      },
+      "checker": {
+        "schema": "eo-claim-check/v1",
+        "job": "claim-checker",
+        "legal_cutoff": "2026-10-14",
+        "claim_files": [
+          "CLAIMS.selected.jsonl"
+        ],
+        "claim_lines_found": 1,
+        "job_limit": null,
+        "claims_checked": 1,
+        "claims_parse_errors": 0,
+        "claims_checker_errors": 0,
+        "orders_with_claim": 1,
+        "claims_all_checks_passed": 0,
+        "claims_mechanical_pass": 1,
+        "claims_mechanical_unverified": 0,
+        "claims_mechanical_fail": 0,
+        "claims_gate_passed": 0,
+        "steps_checker_passed_effective_claims": {
+          "original_text": 1,
+          "clause_inventory": 1,
+          "ending_or_current_basis": 0,
+          "savings_residuals": 0,
+          "counterevidence": 0
+        },
+        "check_results": {
+          "source_held": {
+            "pass": 32
+          },
+          "source_identity": {
+            "pass": 5
+          },
+          "quote_verbatim": {
+            "pass": 57
+          },
+          "date_valid": {
+            "pass": 23
+          },
+          "date_after_signing": {
+            "pass": 9
+          },
+          "order_exists": {
+            "pass": 7
+          },
+          "working_text_policy": {},
+          "factual_event_policy": {},
+          "structural_gate": {
+            "fail": 8
+          },
+          "parse": {},
+          "checker_error": {}
+        },
+        "source_status_counts": {
+          "held_bytes_verified": 32
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 5
+        },
+        "quote_status_counts": {
+          "exact": 57
+        },
+        "source_status_policy": {
+          "held_bytes_verified": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "gpo_published_hash_match": "pass",
+          "custody_record_only": "skip"
+        },
+        "claim_checks_csv": {
+          "mode": "non_pass_rows",
+          "rows_written": 8,
+          "rows_total": 141,
+          "max_mb": 50.0,
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+        },
+        "held_copies_indexed_by_origin": {
+          "jobs/app-executive-orders/output/SOURCES.jsonl": 792,
+          "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
+          "jobs/astra-source-retention/output/SOURCES.jsonl": 128,
+          "jobs/clark-discovery/output/SOURCES.jsonl": 746,
+          "jobs/clause-drafts/output/SOURCES.jsonl": 9761,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
+          "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/hathi-gpo-orders/output/SOURCES.jsonl": 1531,
+          "jobs/later-events/output/SOURCES.jsonl": 17528,
+          "jobs/lewis-originals/output/SOURCES.jsonl": 842,
+          "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
+          "jobs/opus-media-match/output/SOURCES.jsonl": 496,
+          "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": 2750,
+          "jobs/source-ladder/output/SOURCES.jsonl": 632,
+          "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
+          "opus_media_member_map": 496,
+          "opus_stage11_fetch_meta": 9203,
+          "opus_stage11_manifest": 27237,
+          "pinakes_replica_fragments": 2750,
+          "stage20_statute_fetch_index": 7,
+          "stage21_custody": 160
+        },
+        "held_distinct_sha256": 47613,
+        "opus_text_pack_texts": 0,
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854,
+          "jobs/pinakes-proquest-ingest/output/ORDERS.csv": 102,
+          "stage21_crosswalk": 402
+        },
+        "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+        "pypdf_available": true,
+        "fetch": null,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+      },
+      "publication": {
+        "artifact": "research/excavator/astra-production-2026-10-24/b01/complete-v2/CLAIMS.publishable.jsonl",
+        "claims": 1,
+        "independent_human_certifications": 0,
+        "mode": "replacement_proposal",
+        "owner_acceptance_required": true,
+        "path": "research/excavator/astra-production-2026-10-24/b01/astra-b01-replacement-v3.jsonl",
+        "sha256": "e7471737c31d80d8a8de044391c74dfbff1236765fe2dd512fd8eb05d6a36ebf",
+        "written": true
+      },
+      "exceptions": []
+    },
+    "b02": {
+      "tally": {
+        "attempted": 2,
+        "claims_published": 0,
+        "controls": [
+          {
+            "caught": true,
+            "instrument_id": "EO:11829",
+            "planted_claim_sha256": "aa5fc64c394cda3f090f350fdadcfa8f512001aa1140aa60985ac85df2cdd3a6",
+            "scoring": "strict"
+          }
+        ],
+        "counts": {
+          "eligible": 2
+        },
+        "eligible": [
+          "EO:11829",
+          "EO:11853"
+        ],
+        "eligible_per_attempt": 1.0,
+        "exceptions": 0,
+        "finished_utc": "2026-10-24T17:16:45.120047+00:00",
+        "independent_human_certifications": 0,
+        "model_cost": null,
+        "model_tokens": null,
+        "outcomes": [
+          {
+            "after_reveal": true,
+            "claim_sha256": "ab14f698b5b1b6eb9ece28d942de60dac231e47dafdad91c40a50c621bc1643a",
+            "gate_errors": [
+              "clause_5_first_end",
+              "clause_6_first_end",
+              "whole_order_end_evidence",
+              "savings_residuals_evidence",
+              "bounded_later_search",
+              "unresolved_material_gaps"
+            ],
+            "instrument_id": "EO:11829",
+            "outcome": "eligible",
+            "publication_kind": "partial_research",
+            "source_review_upheld": true
+          },
+          {
+            "after_reveal": false,
+            "claim_sha256": "9bd04e1f78aa350cb2105b04adf500069f0b5870186aeeaaf1e64e63b01ab1f7",
+            "gate_errors": [
+              "savings_residuals_evidence",
+              "bounded_later_search",
+              "unresolved_material_gaps"
+            ],
+            "instrument_id": "EO:11853",
+            "outcome": "eligible",
+            "publication_kind": "partial_research",
+            "source_review_upheld": true
+          }
+        ],
+        "plants_caught": 1,
+        "plants_placed": 1,
+        "schema": "eo-claim-kit-completion/v1",
+        "source_review_upheld": 2,
+        "started_utc": "2026-10-24T17:15:40.842028+00:00",
+        "submitted": 2,
+        "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+        "wall_seconds": 64.27804066199951
+      },
+      "checker": {
+        "schema": "eo-claim-check/v1",
+        "job": "claim-checker",
+        "legal_cutoff": "2026-10-14",
+        "claim_files": [
+          "CLAIMS.selected.jsonl"
+        ],
+        "claim_lines_found": 2,
+        "job_limit": null,
+        "claims_checked": 2,
+        "claims_parse_errors": 0,
+        "claims_checker_errors": 0,
+        "orders_with_claim": 2,
+        "claims_all_checks_passed": 0,
+        "claims_mechanical_pass": 2,
+        "claims_mechanical_unverified": 0,
+        "claims_mechanical_fail": 0,
+        "claims_gate_passed": 0,
+        "steps_checker_passed_effective_claims": {
+          "original_text": 2,
+          "clause_inventory": 2,
+          "ending_or_current_basis": 1,
+          "savings_residuals": 0,
+          "counterevidence": 0
+        },
+        "check_results": {
+          "source_held": {
+            "pass": 58
+          },
+          "source_identity": {
+            "pass": 10
+          },
+          "quote_verbatim": {
+            "pass": 66
+          },
+          "date_valid": {
+            "pass": 46
+          },
+          "date_after_signing": {
+            "pass": 16
+          },
+          "order_exists": {
+            "pass": 8
+          },
+          "working_text_policy": {},
+          "factual_event_policy": {},
+          "structural_gate": {
+            "fail": 9
+          },
+          "parse": {},
+          "checker_error": {}
+        },
+        "source_status_counts": {
+          "held_bytes_verified": 58
+        },
+        "source_identity_counts": {
+          "recorded_for_this_order": 10
+        },
+        "quote_status_counts": {
+          "exact": 66
+        },
+        "source_status_policy": {
+          "held_bytes_verified": "pass",
+          "held_bytes_in_release_or_repo": "pass",
+          "gpo_published_hash_match": "pass",
+          "custody_record_only": "skip"
+        },
+        "claim_checks_csv": {
+          "mode": "non_pass_rows",
+          "rows_written": 9,
+          "rows_total": 213,
+          "max_mb": 50.0,
+          "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+        },
+        "held_copies_indexed_by_origin": {
+          "jobs/app-executive-orders/output/SOURCES.jsonl": 792,
+          "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
+          "jobs/astra-source-retention/output/SOURCES.jsonl": 128,
+          "jobs/clark-discovery/output/SOURCES.jsonl": 746,
+          "jobs/clause-drafts/output/SOURCES.jsonl": 9761,
+          "jobs/current-law/output/SOURCES.jsonl": 110,
+          "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
+          "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
+          "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+          "jobs/hathi-gpo-orders/output/SOURCES.jsonl": 1531,
+          "jobs/later-events/output/SOURCES.jsonl": 17528,
+          "jobs/lewis-originals/output/SOURCES.jsonl": 842,
+          "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
+          "jobs/opus-media-match/output/SOURCES.jsonl": 496,
+          "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": 2750,
+          "jobs/source-ladder/output/SOURCES.jsonl": 632,
+          "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
+          "opus_media_member_map": 496,
+          "opus_stage11_fetch_meta": 9203,
+          "opus_stage11_manifest": 27237,
+          "pinakes_replica_fragments": 2750,
+          "stage20_statute_fetch_index": 7,
+          "stage21_custody": 160
+        },
+        "held_distinct_sha256": 47613,
+        "opus_text_pack_texts": 0,
+        "signing_dates_loaded": {
+          "identity_layer_year_only": 14854,
+          "jobs/pinakes-proquest-ingest/output/ORDERS.csv": 102,
+          "stage21_crosswalk": 402
+        },
+        "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+        "pypdf_available": true,
+        "fetch": null,
+        "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+      },
+      "publication": {
+        "artifact": "research/excavator/astra-production-2026-10-24/b02/review/complete-v2/CLAIMS.publishable.jsonl",
+        "claims": 2,
+        "independent_human_certifications": 0,
+        "mode": "replacement_proposal",
+        "owner_acceptance_required": true,
+        "path": "research/excavator/astra-production-2026-10-24/b02/review/reviewed-proposal-v2/CLAIMS.proposed.jsonl",
+        "sha256": "ba66fc01ee902077730fa4e074f6da4d5bfeab0c62f06f0044c26ce231d5eb75",
+        "written": true
+      },
+      "exceptions": []
+    }
+  },
+  "new_complete_histories": 0,
+  "new_ready_dossiers": 0,
+  "canonical_claim_replacements": 0,
+  "isolated_reviewed_partial_replacement_proposals": 3,
+  "human_certifications": 0,
+  "status_changes": 0,
+  "census_admissions": 0,
+  "independent_review_family": "OpenAI same-family separate fresh contexts; no different-family claim",
+  "source_run": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/40115115765",
+  "source_run_input": "6fa32b22de77bb7f7f390126a9f5240ab8f66f27",
+  "source_run_result": "2fbcd038d49aef412e274a7c3fd012ff9346d1e2"
+}

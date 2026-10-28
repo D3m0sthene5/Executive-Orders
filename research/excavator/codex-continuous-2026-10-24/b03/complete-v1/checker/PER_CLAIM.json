@@ -1,0 +1,109 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:10030": {
+   "claim_key": "research/excavator/codex-continuous-2026-10-24/b03/complete-v1/CLAIMS.selected.jsonl:1",
+   "claim_sha256": "b809bdd293634e57a546cb30073099049b3aca530f0e3315f86dcc21af51f6a7",
+   "mechanical_result": "pass",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": false,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/excavator/codex-continuous-2026-10-24/b03/complete-v1/CLAIMS.selected.jsonl:1",
+   "file": "research/excavator/codex-continuous-2026-10-24/b03/complete-v1/CLAIMS.selected.jsonl",
+   "line": 1,
+   "instrument_id": "EO:10030",
+   "claim_sha256": "b809bdd293634e57a546cb30073099049b3aca530f0e3315f86dcc21af51f6a7",
+   "provisional_status": null,
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "mechanical_result": "pass",
+   "gate_passed": false,
+   "all_checks_passed": false,
+   "gate_errors": [
+    "clause_0_first_end",
+    "unresolved_material_gaps"
+   ],
+   "gate_claim_level_errors": [
+    "unresolved_material_gaps"
+   ],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "fail",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 7
+    },
+    "source_identity": {
+     "pass": 3
+    },
+    "quote_verbatim": {
+     "pass": 9
+    },
+    "date_valid": {
+     "pass": 13
+    },
+    "date_after_signing": {
+     "pass": 3
+    },
+    "order_exists": {
+     "pass": 6
+    },
+    "working_text_policy": {},
+    "factual_event_policy": {},
+    "structural_gate": {
+     "fail": 2
+    }
+   },
+   "failures": [
+    "structural_gate:clause_0_first_end@-",
+    "structural_gate:unresolved_material_gaps@-"
+   ],
+   "failures_total": 2,
+   "unverified": [],
+   "effective_for_tracker": true
+  }
+ ]
+}

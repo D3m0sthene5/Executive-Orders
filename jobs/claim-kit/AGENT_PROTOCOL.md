@@ -6,10 +6,11 @@ Start at the committed `output/SUMMARY.json` and `STATUS.json`: check the input 
 and read warnings. Never reuse a decision against a changed dossier fingerprint.
 
 For bounded production batches, prefer the executable `prepare` / `view` /
-`apply` / `batch-check` path in [BATCH.md](BATCH.md). It shares exact source text,
+`apply` / `batch-check` / `complete` path in [BATCH.md](BATCH.md). It shares exact source text,
 retains blocked members, supports inventory corrections and saves full audits.
-Undecided identities use its independently reviewed experimental-overlay path;
-owner acceptance remains separate from a working proposal. The legacy individual
+Undecided identities enter the same assignment with a full dossier and status
+unset, using the existing experimental-overlay path for a reviewed proposal;
+owner acceptance remains separate. The legacy individual
 JSON commands below remain supported.
 
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
@@ -41,7 +42,10 @@ JSON commands below remain supported.
 6. A separate reviewer reads the sources, tests earlier endings, and writes an
    **AI review record** under your pilot research folder (never an
    `eo-lifecycle-review/v1` human review). Commit only accepted claim lines to your
-   own `research/readiness/claims/NAME-DATE.jsonl`; no automatic publication exists.
+   own `research/readiness/claims/NAME-DATE.jsonl`. Use `kit.py complete` with the
+   exact reviewed selection and recorded control adjudication to prepare filing;
+   explicit `--publish` creates only its authorized new file. See
+   [COMPLETION.md](COMPLETION.md). Missing or conflicting versions are exceptions.
    Same-actor single-clause CSV sheets are conveniences: approve each row and remove
    outliers. They confer no group approval.
 7. Record the checker/tracker before and after, accept/reject outcomes, actual
@@ -53,14 +57,28 @@ JSON commands below remain supported.
 Commands accept global `--repo` and `--output` before the subcommand. Only `build`
 (the runner's `job.py`) writes machine outputs. The assembler does not fetch sources.
 
-For undecided orders, start with `kit.py history EO:NUMBER`, then `--full` to read
-the exact held fields and page chunks. `kit.py status-sheet EO:NUMBER --agent NAME
---write PATH` creates a blank, history-pinned status-research decision. Review the
-typed snapshot/capture/candidate dates, partial scope and every conflict; request
-missing originals via FETCH_QUEUE. This sheet has no publication command and does
-not bypass provisional adjudication. Once that adjudication is recorded through
-the established process, resume the dossier/sheet/assemble/check steps above.
-History fragments are machine leads only. See `jobs/status-history/README.md`.
+For undecided orders, ordinary `prepare` freezes the existing full `base_dossier`
+with status unset, plus a blank status decision. Investigate the whole lifecycle
+from that evidence in one bounded producer assignment. Maintain the analysis as
+the status and lifecycle outputs are assembled; `apply` retains a populated
+lifecycle sheet as `awaiting_status_review` without issuing an unset-status claim.
+After exact independent status review, `overlay-propose --lifecycle-sheet PATH`
+carries that sheet forward, rebinds its status/fingerprint and resets producer
+approval for explicit reconfirmation. Status review approves only its stated
+scope. The same independent reviewer may retain its source examination for a
+separate lifecycle verdict, subject to all applicable independence and control
+requirements. Owner adoption remains a separate gate.
+
+Read the carried `prior_research` findings, qualifications, rejected theories,
+source pins and remaining questions before repeating an investigation. Missing
+or changed historical evidence requires reconciliation; no old status verdict
+approves a lifecycle. Keep each bounded assignment's evolving analysis and review
+inside its packet directory; preserve immutable earlier versions. Fresh contexts
+belong between bounded assignments, not automatically between these two outputs.
+The `history`, `status-sheet` and `overlay-prepare` commands remain available for
+targeted work. History fragments are machine leads only; see
+`jobs/status-history/README.md`.
+
 For OCR inventory corrections, add `inventory_overrides` to the decision sheet:
 `[{"scope_id":"EO:123#corrected-1","source_id":"ORIGINAL:EO:123","char_start":100,"char_end":250,"reason":"Explain the corrected operative boundary."}]`.
 Use the dossier's exact `original_source_id`; offsets are absolute Unicode character

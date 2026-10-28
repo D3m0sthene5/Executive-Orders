@@ -1,0 +1,45 @@
+{
+  "schema": "nmb-series-target-retrieval-check/v1",
+  "index_rows": 252,
+  "rows": [
+    {
+      "instrument_id": "EO:10029",
+      "target_board": "67",
+      "normal_index_candidates": [],
+      "normal_selects_target": false,
+      "series_proposes_target": true,
+      "scope": "Pure native matcher replay, not a complete prior producer/ladder run or time-saving estimate."
+    },
+    {
+      "instrument_id": "EO:10117",
+      "target_board": "83",
+      "normal_index_candidates": [
+        {
+          "board": 83,
+          "basis": "created_within_3_days_of_order_date"
+        },
+        {
+          "board": 81,
+          "basis": "order_date_inside_board_life_and_carrier_named"
+        }
+      ],
+      "normal_selects_target": true,
+      "series_proposes_target": true,
+      "scope": "Pure native matcher replay, not a complete prior producer/ladder run or time-saving estimate."
+    },
+    {
+      "instrument_id": "EO:10130",
+      "target_board": "86",
+      "normal_index_candidates": [
+        {
+          "board": 81,
+          "basis": "order_date_inside_board_life_and_carrier_named"
+        }
+      ],
+      "normal_selects_target": false,
+      "series_proposes_target": true,
+      "scope": "Pure native matcher replay, not a complete prior producer/ladder run or time-saving estimate."
+    }
+  ],
+  "note": "Actual raw reports were subsequently retained using the unchanged retention job; 10117 is a positive routing control with a separate no-text-layer obstacle. Index created can denote appointment, not the executive-order date; dates are not declared erroneous."
+}

@@ -1,0 +1,448 @@
+{
+  "schema": "astra-b01-source-span-correction/v3",
+  "script": {
+    "path": "research/excavator/astra-production-2026-10-24/b01/correct_v3_source_spans.py",
+    "sha256": "5e7bb4478f8a00d431a6988e398d311acc321f5790f79db9c653ff7a83390253"
+  },
+  "input": {
+    "path": "research/excavator/astra-production-2026-10-24/b01/CLAIMS.partial.proposed-v2.jsonl",
+    "sha256": "c78eca80f0229e82f34f9328154dda5959a408bec78c01e81f6789b52c48cb23"
+  },
+  "input_claim_sha256": "e0b08a634b3196258d612eb2fed58b6f36156bb2df863d973bdffdcf18279017",
+  "output": {
+    "path": "research/excavator/astra-production-2026-10-24/b01/CLAIMS.partial.proposed-v3.jsonl",
+    "sha256": "e7471737c31d80d8a8de044391c74dfbff1236765fe2dd512fd8eb05d6a36ebf"
+  },
+  "output_claim_sha256": "c7b92a9c69c4a886f6e0073269ba71c59a20b48354003a8d3529d5212f3d976e",
+  "changes": [
+    {
+      "pointer": "/savings_residuals/source",
+      "operation": "copy_existing_cited_source",
+      "copied_from": "/operative_clauses/0/later_events/5/source",
+      "support_scope": "EO12379 section12 proves formal revocation of EO11022 as amended. It supports that component of the existing open savings rationale only. No inference of first cessation or final savings classification; source document, existing separate full-order review and supporting statute references retain their existing roles."
+    },
+    {
+      "pointer": "/counterevidence_review/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94/73bbfdb60a5d2f1818e49c9bb66677ec72f2a66d208d8a6e323690df7eace99e/page-5.txt",
+      "text_sha256": "14308b5c51e7ebe4c482ca12926925768d486369310e34b76536f2bc238cbe3b",
+      "raw_sha256": "958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94",
+      "char_start": 534,
+      "char_end": 3751,
+      "quote_sha256": "5fa64bba38c0780e3d52b47e066c6a4d9f94da780e8a23d62ba04e2835516100",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 534,
+          "char_end": 1797,
+          "part_sha256": "184e01f3a1897101f6726e00e466c99777eb92aaffd047bd736516bf1ebb2d35"
+        },
+        {
+          "index": 1,
+          "char_start": 2466,
+          "char_end": 3751,
+          "part_sha256": "4673897055c6779e57f545a0f9cf2091844ec1b849f7ebd15741e3c7b644b88c"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/0/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94/73bbfdb60a5d2f1818e49c9bb66677ec72f2a66d208d8a6e323690df7eace99e/page-3.txt",
+      "text_sha256": "dcd9fca2ddc7f1e651bf80d8940aa1a434e9ab44dee633a0b4894890db548aae",
+      "raw_sha256": "958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94",
+      "char_start": 73,
+      "char_end": 986,
+      "quote_sha256": "053a8b106b0839b41224850a887a9395bc152de7b936a88c3f170d3420a72351",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 73,
+          "char_end": 986,
+          "part_sha256": "053a8b106b0839b41224850a887a9395bc152de7b936a88c3f170d3420a72351"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/1/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-1.txt",
+      "text_sha256": "516f4cb52ed4e4a9073a77b53a0dfb00c73e04706a8eb08531166b27d716b6b1",
+      "raw_sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+      "char_start": 1970,
+      "char_end": 2781,
+      "quote_sha256": "c096fb9a92a8f23d08cc5aa481a78432a55ee682b0504365fe79c8bd8322086b",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 1970,
+          "char_end": 2781,
+          "part_sha256": "c096fb9a92a8f23d08cc5aa481a78432a55ee682b0504365fe79c8bd8322086b"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/1/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8/page-7.txt",
+      "text_sha256": "c82764947782072ff9937bc093d304cf2be94d76b9376c0683c9d0ac59470760",
+      "raw_sha256": "d46eb8e8384da8352c9619cf2c5df1c534e0b20dd36b68317c76bf5b612718d8",
+      "char_start": 148,
+      "char_end": 2373,
+      "quote_sha256": "309ffc70eb33b69ada9ed174ddb3527774487edc64406e3594eb3115e3fc36a5",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 148,
+          "char_end": 2373,
+          "part_sha256": "309ffc70eb33b69ada9ed174ddb3527774487edc64406e3594eb3115e3fc36a5"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/2/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-28.txt",
+      "text_sha256": "374debc8e9d04763b9aba171cd1c607e4548eda38067902ded33a2120fc6ae2f",
+      "raw_sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "char_start": 868,
+      "char_end": 1887,
+      "quote_sha256": "db4da8309309b327682bb72bce0adb368ebfc7ede3a7662f6bde1ac63dc622e4",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 868,
+          "char_end": 1887,
+          "part_sha256": "db4da8309309b327682bb72bce0adb368ebfc7ede3a7662f6bde1ac63dc622e4"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/2/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-24.txt",
+      "text_sha256": "6a79441d1154fced46f5d3cc79bd3e40f1fa3a4f5777a644c9aa436eb8db7727",
+      "raw_sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "char_start": 152,
+      "char_end": 923,
+      "quote_sha256": "100862bd7900bfa7b175e1cbb01b1e9c81cf556e8c1ad40801f47adc8759b114",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 152,
+          "char_end": 923,
+          "part_sha256": "100862bd7900bfa7b175e1cbb01b1e9c81cf556e8c1ad40801f47adc8759b114"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/counterevidence_review/3/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12107.txt",
+      "text_sha256": "e734f4979787e2a514366e3f5f1a4e7f5e0655156d9e187790cafc5a72316561",
+      "raw_sha256": "2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b",
+      "char_start": 4294,
+      "char_end": 5175,
+      "quote_sha256": "e506319fe719df84ea09e1202de3df22c5382df80293f937e49b6c6191b73018",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 4294,
+          "char_end": 5175,
+          "part_sha256": "e506319fe719df84ea09e1202de3df22c5382df80293f937e49b6c6191b73018"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/0/before_text_evidence/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11022.txt",
+      "text_sha256": "427d93b0e3144cbd7fa0685db401914c278e2cc5facaa43a07ca4c33bd48ce03",
+      "raw_sha256": "56b46770ca89bc4f1e85cec8842eb0e28a4dd0cfb466a6513647bdeeb7dceba2",
+      "char_start": 848,
+      "char_end": 1222,
+      "quote_sha256": "fd99f587af42703685eb2b4c2220f511135703da8c5ee9ac58c77a5ed2f3e641",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 848,
+          "char_end": 1222,
+          "part_sha256": "fd99f587af42703685eb2b4c2220f511135703da8c5ee9ac58c77a5ed2f3e641"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/1/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee/89eef548be7abfbe38aecf96522215d065989babf32c48f807e4ad3e2d0d2b62/page-21.txt",
+      "text_sha256": "182c209301dfdd5d0aa5c235f0b6cc639095de270e683365cc33ac63ba4a49c6",
+      "raw_sha256": "78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee",
+      "char_start": 1578,
+      "char_end": 3220,
+      "quote_sha256": "b40172ebaeffeeeaad2c8b6afd6f3fd57de8dba13a810895997ea0233a97445b",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 1578,
+          "char_end": 3220,
+          "part_sha256": "b40172ebaeffeeeaad2c8b6afd6f3fd57de8dba13a810895997ea0233a97445b"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/1/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee/89eef548be7abfbe38aecf96522215d065989babf32c48f807e4ad3e2d0d2b62/page-20.txt",
+      "text_sha256": "e2c92b2b781e68a1a0cfc951779268361a3e5b18a0e957f4eafdfb55cb8f9184",
+      "raw_sha256": "78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee",
+      "char_start": 2768,
+      "char_end": 3476,
+      "quote_sha256": "48536b947304fbd62875f10408d67914b0589038aebe9e8436784c0384adf02b",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 2768,
+          "char_end": 3476,
+          "part_sha256": "48536b947304fbd62875f10408d67914b0589038aebe9e8436784c0384adf02b"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/2/before_text_evidence/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11376.txt",
+      "text_sha256": "22446c97d74e4d1cefc7a1fb22296137f6ad65323259942eac80838d76309651",
+      "raw_sha256": "982a91c8a31ea0c55a6dae51918dc8efc122a3e7c0654b6c4b5c228e8bb46996",
+      "char_start": 954,
+      "char_end": 1408,
+      "quote_sha256": "7ba4d7402b4e1378d509f78b6d6fde215502ff7e093d7a6f33e631837cbfc8d7",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 954,
+          "char_end": 1408,
+          "part_sha256": "7ba4d7402b4e1378d509f78b6d6fde215502ff7e093d7a6f33e631837cbfc8d7"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/3/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-28.txt",
+      "text_sha256": "374debc8e9d04763b9aba171cd1c607e4548eda38067902ded33a2120fc6ae2f",
+      "raw_sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "char_start": 868,
+      "char_end": 1887,
+      "quote_sha256": "db4da8309309b327682bb72bce0adb368ebfc7ede3a7662f6bde1ac63dc622e4",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 868,
+          "char_end": 1887,
+          "part_sha256": "db4da8309309b327682bb72bce0adb368ebfc7ede3a7662f6bde1ac63dc622e4"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/3/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0/c30b1b4dba2ef1c8476335e354e94731a41c5259ca51faf3ea6922453d9c7e07/page-11.txt",
+      "text_sha256": "0302e5564c16ec4e1ba2971e0f8fa5114cb908a7137b89eb8736ef646f03f993",
+      "raw_sha256": "c5e3e5df15eaac449cc25acd03a1988903fb13937ed5a77a3710a668f16fb9b0",
+      "char_start": 406,
+      "char_end": 612,
+      "quote_sha256": "a49c3f3657e57248a369faf69830f82717be717b9f96c62edfb49d1a10117959",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 406,
+          "char_end": 612,
+          "part_sha256": "a49c3f3657e57248a369faf69830f82717be717b9f96c62edfb49d1a10117959"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/4/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/aacf815d01c9c3d797d7c516d9ccddd1f723dc1a44e47f8899ba742d988e2127/page-163.txt",
+      "text_sha256": "5130a2138997fba1eea4b49169ff352b0890bde6b8b8051e694da8c5b43b561a",
+      "raw_sha256": "aacf815d01c9c3d797d7c516d9ccddd1f723dc1a44e47f8899ba742d988e2127",
+      "char_start": 1050,
+      "char_end": 2899,
+      "quote_sha256": "c78512568cc63dbf6985c27d23a2990d790eb33fcd75a3a7fe7778d88e265dca",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 1050,
+          "char_end": 2899,
+          "part_sha256": "c78512568cc63dbf6985c27d23a2990d790eb33fcd75a3a7fe7778d88e265dca"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/operative_clauses/0/later_events/4/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee/89eef548be7abfbe38aecf96522215d065989babf32c48f807e4ad3e2d0d2b62/page-20.txt",
+      "text_sha256": "e2c92b2b781e68a1a0cfc951779268361a3e5b18a0e957f4eafdfb55cb8f9184",
+      "raw_sha256": "78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee",
+      "char_start": 2768,
+      "char_end": 3476,
+      "quote_sha256": "48536b947304fbd62875f10408d67914b0589038aebe9e8436784c0384adf02b",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 2768,
+          "char_end": 3476,
+          "part_sha256": "48536b947304fbd62875f10408d67914b0589038aebe9e8436784c0384adf02b"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/original_representation",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_11022.txt",
+      "text_sha256": "427d93b0e3144cbd7fa0685db401914c278e2cc5facaa43a07ca4c33bd48ce03",
+      "raw_sha256": "56b46770ca89bc4f1e85cec8842eb0e28a4dd0cfb466a6513647bdeeb7dceba2",
+      "char_start": 545,
+      "char_end": 3577,
+      "quote_sha256": "f2383c4ab93a8d2fdba1089c99e3f119b68796da6db62e932a589f67c8ad0e73",
+      "quoted_part_spans": [],
+      "method": "Complete original from unique EO11022 heading through the filing line, excluding generated provenance/page metadata."
+    },
+    {
+      "pointer": "/savings_residuals/supporting_sources/0/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94/73bbfdb60a5d2f1818e49c9bb66677ec72f2a66d208d8a6e323690df7eace99e/page-5.txt",
+      "text_sha256": "14308b5c51e7ebe4c482ca12926925768d486369310e34b76536f2bc238cbe3b",
+      "raw_sha256": "958927407bf09446e5e678a91dd91b633d8bec4a4519900c422532e48d0bbf94",
+      "char_start": 534,
+      "char_end": 3751,
+      "quote_sha256": "5fa64bba38c0780e3d52b47e066c6a4d9f94da780e8a23d62ba04e2835516100",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 534,
+          "char_end": 1797,
+          "part_sha256": "184e01f3a1897101f6726e00e466c99777eb92aaffd047bd736516bf1ebb2d35"
+        },
+        {
+          "index": 1,
+          "char_start": 2466,
+          "char_end": 3751,
+          "part_sha256": "4673897055c6779e57f545a0f9cf2091844ec1b849f7ebd15741e3c7b644b88c"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/savings_residuals/supporting_sources/1/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "research/excavator/astra-production-2026-10-24/b01/acquisition/output/pages/78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee/89eef548be7abfbe38aecf96522215d065989babf32c48f807e4ad3e2d0d2b62/page-21.txt",
+      "text_sha256": "182c209301dfdd5d0aa5c235f0b6cc639095de270e683365cc33ac63ba4a49c6",
+      "raw_sha256": "78ed0072ef4c3dbf17a8eaf492d3afc07dd19d34c43044f8dab1d571ae761dee",
+      "char_start": 1578,
+      "char_end": 3220,
+      "quote_sha256": "b40172ebaeffeeeaad2c8b6afd6f3fd57de8dba13a810895997ea0233a97445b",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 1578,
+          "char_end": 3220,
+          "part_sha256": "b40172ebaeffeeeaad2c8b6afd6f3fd57de8dba13a810895997ea0233a97445b"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/savings_residuals/supporting_sources/2/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d/page-24.txt",
+      "text_sha256": "6a79441d1154fced46f5d3cc79bd3e40f1fa3a4f5777a644c9aa436eb8db7727",
+      "raw_sha256": "cea5509545c9944ce10a384a19d76e78abf6bbec0c66c2eff53880e09d06732d",
+      "char_start": 152,
+      "char_end": 923,
+      "quote_sha256": "100862bd7900bfa7b175e1cbb01b1e9c81cf556e8c1ad40801f47adc8759b114",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 152,
+          "char_end": 923,
+          "part_sha256": "100862bd7900bfa7b175e1cbb01b1e9c81cf556e8c1ad40801f47adc8759b114"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    },
+    {
+      "pointer": "/savings_residuals/supporting_sources/3/source",
+      "operation": "add_exact_quote_and_offsets",
+      "text_path": "jobs/astra-source-retention/output/pages/aacf815d01c9c3d797d7c516d9ccddd1f723dc1a44e47f8899ba742d988e2127/page-163.txt",
+      "text_sha256": "5130a2138997fba1eea4b49169ff352b0890bde6b8b8051e694da8c5b43b561a",
+      "raw_sha256": "aacf815d01c9c3d797d7c516d9ccddd1f723dc1a44e47f8899ba742d988e2127",
+      "char_start": 1050,
+      "char_end": 2899,
+      "quote_sha256": "c78512568cc63dbf6985c27d23a2990d790eb33fcd75a3a7fe7778d88e265dca",
+      "quoted_part_spans": [
+        {
+          "index": 0,
+          "char_start": 1050,
+          "char_end": 2899,
+          "part_sha256": "c78512568cc63dbf6985c27d23a2990d790eb33fcd75a3a7fe7778d88e265dca"
+        }
+      ],
+      "method": "Smallest exact contiguous held-text span enclosing all unchanged uniquely located quoted_parts; intervening held text retained verbatim."
+    }
+  ],
+  "changed_source_objects": 21,
+  "prior_fields_exactly_recovered_by_removing_declared_additions": true,
+  "existing_quoted_parts_unchanged": true,
+  "substantive_findings_changed": false,
+  "state_and_first_end_fields_changed": false,
+  "sources_acquired": 0,
+  "strict_check_function": "jobs/claim-kit/assemble.py:check_claim",
+  "strict_check_code": {
+    "path": "jobs/claim-kit/assemble.py",
+    "sha256": "2dadcf1fe62f1e5b8b50274e4e8b5a63b5af050b82fba3da7e5fd25b594ed5a4"
+  },
+  "strict_errors": [
+    "clause_0_first_end",
+    "clause_1_first_end",
+    "clause_2_first_end",
+    "clause_3_first_end",
+    "whole_order_end_evidence",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps"
+  ],
+  "gate_errors": [
+    "clause_0_first_end",
+    "clause_1_first_end",
+    "clause_2_first_end",
+    "clause_3_first_end",
+    "whole_order_end_evidence",
+    "savings_residuals_evidence",
+    "bounded_later_search",
+    "unresolved_material_gaps"
+  ],
+  "non_gate_strict_errors": [],
+  "savings_state": null,
+  "prior_failed_completion": {
+    "path": "research/excavator/astra-production-2026-10-24/b01/complete-v1/EXCEPTIONS.json",
+    "sha256": "d6f89b39b7dd90587547fe549286452b2a3b982307e768a48e94c53c90a9f786"
+  },
+  "review": "No producer legal approval. New exact-v3 independent after-reveal review required."
+}

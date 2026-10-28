@@ -1,5 +1,41 @@
 # Source ladder (job 1)
 
+## Optional institutional-series identity leads
+
+`record_series.py` reads pinned official NMB annual-report HTML/text and the
+existing board index. It connects an exact EO heading/date and original-bound
+entity terms to a bounded annual case narrative, then proposes the index's report
+URL through the existing request contract. This can bridge an order date to a
+later board-appointment date without widening `match_peb`'s date window or
+changing ordinary acquisition defaults. It does not fetch, enqueue, approve a
+fact, or infer receipt, exhaustion or legal effect. Source/identity review still
+governs use of each proposed route.
+
+```sh
+python -B jobs/source-ladder/record_series.py --repo . \
+  --manifest research/excavator/nmb-series-2026-10-25/SERIES_PLAN.v2.json \
+  --out research/excavator/nmb-series-2026-10-25/new-replay
+python -B -m unittest discover -s jobs/source-ladder -p test_record_series.py
+```
+
+Use a new output directory. The manifest pins raw/text source hashes and fiscal
+years, the raw index, and each original identity span, EO reference date and
+literal entity terms. Paths stay inside the repository; original headings must
+bind the exact EO. At most four annual sources/twelve questions, five MB per
+input, 1,400 characters for the EO-reference search and 20,000 characters per
+case are considered. Missing/ambiguous matches and oversized cases remain
+explicit; unrecognized headings are outside this narrow grammar. Annual report
+dates, dates of board reports, appointment dates and EO dates are distinct.
+
+The pilot adds two correct target routes to a native index-matcher replay and
+retains one existing-route control. Three original report PDFs and scoped dated
+transmittal-letter findings were independently AI-reviewed; they enter the
+existing NORTON registry and native claim-kit later-event bridge, with no legal
+promotion. See `research/excavator/nmb-series-2026-10-25/REPORT.md` for printed
+source conflicts, acquisition failures, exact limits and costs. No net agent-hour
+or campaign saving has been demonstrated. Normal jobs and the NORTON twelve-order
+pilot limit are unchanged.
+
 ## Request and carry-forward repair (Astra, 2026-10-20)
 
 Use the same request contract before appending and at execution. `request_contract.py`

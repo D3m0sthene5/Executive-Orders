@@ -1,0 +1,8 @@
+{
+  "recorded_utc": "2026-10-26T05:49:30.676155+00:00",
+  "initial_plan": "Restore previous completed16-request native manifest after source run.",
+  "final_decision": "Retain exact24-request manifest that actually produced published source generation; preserve prior16-request bytes inBASE_RETENTION_REQUESTS.json.",
+  "reason": "Restoring different default input immediately would make native runner input fingerprint stale. Keeping the executed input preserves coherent reproducible source generation. No newruntime/defaultmethod/service or DAILY schedule; all24requests alreadycompleted. Prior source/attempt prefixes retained.",
+  "queue": "Published requests remain append-only; no historical completed request deleted.",
+  "reservations": "All6 own reservations released; prior lockbytes restored exactly; other owners unchanged."
+}

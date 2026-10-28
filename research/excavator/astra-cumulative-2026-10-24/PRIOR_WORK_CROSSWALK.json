@@ -1,0 +1,978 @@
+{
+  "schema": "eo-research-crosswalk/v1",
+  "input_head": "9ecddf9fe82a1989c6133610a77308ec74454184",
+  "legal_cutoff": "2026-10-14",
+  "checkpoint": {
+    "path": "research/readiness/reviews/astra-2026-10-18/CHECKPOINT_BATCH1_AUDIT.json",
+    "sha256": "cc0ccaab142dd7c7c123598eb3dc91397b5a4a2bbfcf56fa09cfbd218effd5fd"
+  },
+  "selected_versions": {
+    "path": "research/readiness/reviews/astra-2026-10-18/BATCH1_SELECTION.json",
+    "sha256": "d1cb9abff19bf29469da4f35461a4b1bd4b5059ddb5d539c80f57e7816a7b66c"
+  },
+  "tracker_baseline": {
+    "path": "jobs/leverage-campaign-check/output/shared-source/readiness-tracker/READINESS_BY_ORDER.csv",
+    "sha256": "5346536dd9bc115ac075f318e8d59266a59b915ba72fdfbc413689513a572ac0"
+  },
+  "rows": [
+    {
+      "instrument_id": "EO:11022",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11022/claim.json",
+        "sha256": "b9ed075919cb41209d64a16f2649d053acc0bf5e96d4d04dccfa7ffd3391d2f4"
+      },
+      "selected_canonical_sha256": "d45716fb6af0d28b1e5f346bcdc6a105203bfd98cc2388e30025dc0ab750e89b",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "d45716fb6af0d28b1e5f346bcdc6a105203bfd98cc2388e30025dc0ab750e89b": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11022/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "ORIGINAL_IMAGE_NOT_HELD: full official EO 11022 extract is held and matches the source record whose PDF hash matches GPO PREMIS, but the cited PDF/page bytes were not found locally and were not visually inspected. No image-read claim is made.",
+        "EARLIER_PARTIAL_END: EO 11376 substitutes section 1(b), so 1982 cannot be the first end of the original membership text. Its official extract has medium location confidence, damaged order-number OCR and requires_page_check=true; the required page image is unavailable. Exact first-end evidence remains incomplete.",
+        "EARLIER_CESSATION: EO 12379 is a formal cleanup of establishing authorities for inactive or no-longer-necessary committees. No original sunset appears in EO 11022, but the held sources do not establish whether its council-related commands ceased earlier through a legally effective action or completed purpose. Formal revocation is recorded only as a later event; first_end dates remain null.",
+        "SECTION4_AND_SAVINGS: section 4 immediately abolished the prior Federal Council and superseded the March 7, 1959 letter. Execution of that change is not automatically an end of the provision or restoration of the prior body in 1982. Its lifecycle classification and any independently accrued or transferred effects remain unresolved.",
+        "EO12107_TARGET: OFR gives an amendment lead, while the held section 2-101(b) list has OCR damage and no unambiguous 11022 string. Its general redesignation applies to orders relating to transferred OPM functions; the exact target treatment and interaction with simultaneously effective EO 12106 require page review.",
+        "BOUNDED_SEARCH_NOT_ACCEPTED: the matching MACHINE_LATER_SEARCH row was read, but numbered-EO catalog/text searches and current-law mentions do not establish the first cessation of the council or close independent effects. The USC release is current only through 2026-10-09, not the 2026-10-14 cutoff. later_source_search remains empty."
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/astra-source-first-2026-10-24.jsonl",
+        "line": 1,
+        "claim_sha256": "9a40a689b98150de9214ffa35a8a48578f03d64dcbc1e42ce94d0e781a3f87ce",
+        "gaps": [
+          "Complete the remaining parent-clause history, including statutory succession and any later amendments; EO12106 identity, provision and effective date are now source-verified.",
+          "Determine clause-specific first cessation and savings, including any executed independent action; complete bounded counterevidence through 2026-10-14."
+        ]
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": true,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:11256",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11256/claim.json",
+        "sha256": "c1cded07fa11d18d27de65489996eb6d2f5d8c95af4408b8b16ffc4b79729405"
+      },
+      "selected_canonical_sha256": "8fe5d2111885aa5c76c0e0468fd78b5eb081285fcfaaf902434c38401142a53f",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "8fe5d2111885aa5c76c0e0468fd78b5eb081285fcfaaf902434c38401142a53f": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11256/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Official PDF page images for EO 11256 and EO 12379 were not available at the cited cache paths and were not inspected. Held complete text extracts and matching GPO fixity rows support a limited partial candidate, not page-verified text.",
+        "EO 11256 section 6 ends the Committee and Commission ninety days after submission of the Commission final report. The actual submission date and any earlier relevant cessation have not been established; section 4(c) is a deadline only. First ends and whole_order_end remain null.",
+        "EO 11256 section 7 immediately revokes EO 10472 and EO 10937. Its executed effect and any surviving or independently grounded effects require separate lifecycle treatment; no first-end date is inferred from execution or the 1982 cleanup.",
+        "Accrued compensation/travel reimbursement under section 3(d), reimbursable administrative support under section 5(c), and effects of section 7 remain unclosed; no blanket savings conclusion is asserted.",
+        "Bounded corpus searches do not establish final-report occurrence or full statutory coverage through 2026-10-14: the held U.S. Code search stops at 2026-10-09. later_source_search remains empty.",
+        "Claim-kit cross-actor chain entries attach EO 12379 section 18 to ten different named orders and their dates. These are rejected from the exact held actor text; they provide no earlier-ending evidence. Earlier amendments were not found in target EDGES rows, but absence there is not exhaustive."
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/astra-source-first-2026-10-24.jsonl",
+        "line": 2,
+        "claim_sha256": "f9d913863a00f3c4039bcc32e8964fca08e1337cf66ff9d9802e09c1efb5d283",
+        "gaps": [
+          "Establish actual final-report submission and the resulting section 6 termination date; publication or a deadline alone is insufficient.",
+          "Determine performance and residual compensation, support and report-transmission obligations; preserve the distinct section 7 executed revocations.",
+          "Complete amendment and bounded later-event/counterevidence review."
+        ]
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": true,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:11782",
+      "historical_checkpoint_verdict": "uphold",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v4/claim.json",
+        "sha256": "e078d60a5c6fe931f2faa8961f61c97a0a87025fe1b02b74ba7f982c9bd0185b"
+      },
+      "selected_canonical_sha256": "0e29f299ba3535ad7b7beb30f39bb7dafee9c709f537eb626239d475b35682dc",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 4,
+      "version_paths": {
+        "cfbaaceade9468e2cf302414850596948f5b782004da795349f6ef007f3c121c": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/claim.json"
+        ],
+        "0e29f299ba3535ad7b7beb30f39bb7dafee9c709f537eb626239d475b35682dc": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v4/claim.json"
+        ],
+        "0d10b4e89a1e87fa21ff2d49507a25e5eb202cb8c20534d4f5fb77b45704147c": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v2/claim.json"
+        ],
+        "e9c8b5f3773b1012ccea13fd07af2f7852cbf527d95e958e36dccb4cd7b6d95c": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11782/v3/claim.json"
+        ]
+      },
+      "historical_gaps": [],
+      "current_canonical": {
+        "path": "research/readiness/claims/astra-source-first-2026-10-24.jsonl",
+        "line": 4,
+        "claim_sha256": "4e58641c1d437da5c72a5d1c8b7a26b84e4f814367e1cdc361ecdc7e47c86634",
+        "gaps": [
+          "Complete the P.L.96-88 section 509 membership succession analysis, including transferred-function exception and section 601 effective-date instrument.",
+          "Finish the bounded earlier-ending and later-event search, then determine all first-end dates and savings from the full source chain; the statutory Bank is distinct from its advisory Council."
+        ]
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": true,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "current reconciliation and independent review",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:11829",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_11829/claim.json",
+        "sha256": "b3df5773c921b1cb5bca592693e98a5596560f50413520ac38f6b8090d1fdde2"
+      },
+      "selected_canonical_sha256": "b6e4fac686d6f2200e9ea707140269335f20dc84164671a5d8a43c1a9c56e731",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "b6e4fac686d6f2200e9ea707140269335f20dc84164671a5d8a43c1a9c56e731": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_11829/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Actual original, amending and revoking PDF page images were not present at the cited cache locations and were not inspected. GPO fixity rows match the recorded PDF hashes; exact held OCR is not an authenticated page transcription.",
+        "EO 11829 section 4 ties termination to completion of the Mediator duties as determined under Public Law 93-531 section 1(a). The controlling statute and evidence of actual completion are not held in the inspected packet/search results. No original clause first-end or whole_order_end date is asserted.",
+        "EO 11853 replaced section 2(a) on April 17, 1975 using immediate amendment wording. Earlier cessation under section 4 and the statute has not been ruled out; the amendment is a later event only, with the complete replacement text retained in its source.",
+        "Section 4 separately requires the Mediator to advise the Chairman when duties cease and directs transfer of Committee records to the Secretary of the Interior. Actual notice, transfer, and any independent continuing records obligations have not been established; these commands cannot be dismissed with committee termination.",
+        "The held machine searches do not determine the historical triggering occurrence or records transfer. U.S. Code coverage stops at 2026-10-09, leaving cutoff coverage through 2026-10-14 unclosed. later_source_search remains empty.",
+        "The claim-kit chain misattributes EO 12379 language to ten other orders and their dates. These associations are rejected from the full actor text; target EDGES rows identify only EO 11853 and EO 12379. No exhaustive negative earlier-history finding is made."
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/astra-source-first-2026-10-24.jsonl",
+        "line": 5,
+        "claim_sha256": "4fb6432534803345cbb5b23ca9e5f1214a77f4412fc69537642c9d886e34524c",
+        "gaps": [
+          "Establish Mediator completion under the governing statute and actual notice, and analyze separately the records-transfer command and performance evidence.",
+          "Finish statute, amendment, savings and bounded later-event review; no 1982 first-end substitution for the earlier conditional trigger."
+        ]
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": true,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12075",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v4/claim.json",
+        "sha256": "dcce3b63204c4a4dbda242d0638459d03c82f4dd682b01a25ca3b1e04d35496f"
+      },
+      "selected_canonical_sha256": "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 4,
+      "version_paths": {
+        "86ec647a9ee7722359cfb99439d8849c14649ec281167f1d9ec665c8f7e0c7cd": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/claim.json"
+        ],
+        "4ae77f8be21b16f4136da0f8de99487f32b6782bf5a7e53c2bb8b08c6de4cd28": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v4/claim.json"
+        ],
+        "1606b3b34a7f5e1f7e3e661ee88a159a9cdc183fc0b70714753a780d7c4f3cad": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v2/claim.json"
+        ],
+        "af03a1880467aa58f28d6d2b4b156cb23e7a27eb032b2d7dbce9268d6a7ca5ce": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12075/v3/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Section 1-102(g): actual P.L.96-88 / 20 USC3508(b) reorganization, reference/succession and savings text is not held/read. EO12212 establishes May4,1980 for the Act; the editorial redesignation lead does not establish seat cessation. Preserve first_end null until the original legal effect is resolved.",
+        "Section 1-102(l): actual P.L.97-35 abolition/transfer/savings and effective-date text around95Stat516-519 is not held/read. OFR editorial abolition lead is concrete, but neither its exact first-end date nor succession of this Council seat is established.",
+        "Overall savings/residuals closure and final adequate later-source-search acceptance remain pending the two narrow statutory roster investigations. Numeric and named-body search work is recorded separately; it is not universal exhaustion."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12095",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12095/claim.json",
+        "sha256": "d1c45d8b9fae07fa5de6292b96a04b8b43e269ee6ae03ca3424ded3212407adb"
+      },
+      "selected_canonical_sha256": "8a3271c392362c439ff697b488ddb4028130fafd6904159a1555fa9b8ea85393",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "8a3271c392362c439ff697b488ddb4028130fafd6904159a1555fa9b8ea85393": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12095/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Actual completion of this Wien Air Alaska board investigation and submission of its findings to the President has not been established. Section1-102 sets a 30-day reporting deadline, not a termination date or proof of a submitted report; first_end and whole_order_end remain null.",
+        "The order expressly invokes section44 of the Airline Deregulation Act of1978 (Public Law95-504) and section10 of the Railway Labor Act. The controlling statutory text governing this board and any post-report legal effects was not held in the inspected evidence. Its effect on first cessation and residuals therefore remains unclosed."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12159",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12159/claim.json",
+        "sha256": "d597e2f57d52901c6aeb810802a98530d6a5e17391b1f1a06805cf066e2e588b"
+      },
+      "selected_canonical_sha256": "ea10f2dd12af248f0d6cb1218c78536866ea9897a7430beb515fb4765d2bfa85",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "ea10f2dd12af248f0d6cb1218c78536866ea9897a7430beb515fb4765d2bfa85": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12159/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "ACTUAL_REPORT_NOT_HELD: section 1-102 requires a report within 30 days of September 20, 1979, but no held source establishes the actual report submission date, extension, completed investigation, or termination of board service. The deadline is not evidence of performance.",
+        "REPORT_DEPENDENT_END: section 1-103 extends the statutory no-change period for 30 days after the actual report, with changes allowed by agreement. Without the report and relevant agreement/extension record, neither its first end nor the last clause end can be dated. September 20 plus 60 days and August 17, 1982 cleanup are not substitutes.",
+        "RESIDUALS_AND_COUNTEREVIDENCE: the complete original and formal revoker have no express independent post-termination directive or saving, but completion/settlement records are absent. Numbered-EO catalog and saved-text searches identify formal revocation only and do not establish the actual board report or agreement-sensitive sequence; those missing actual events prevent closure of savings and bounded counterevidence."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12182",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12182/claim.json",
+        "sha256": "dfbca26129c5ba03cbf598c3b5f414dcff3edeb19f9c72a2364f95c1e58177c7"
+      },
+      "selected_canonical_sha256": "6a5a4a553a4872f78d58f3066189f92bd9075d7e873f98985d57d2171471d724",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "6a5a4a553a4872f78d58f3066189f92bd9075d7e873f98985d57d2171471d724": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12182/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Actual completion of the EO12182 board investigation and actual report to the President have not been established. Section1-102 imposes a30-day reporting deadline only. The report deadline is not proof of performance or a first-end date.",
+        "Section1-103 independently maintains the disputed conditions until30days after the board actually reports, with an express agreement exception. The missing actual report date and any relevant agreement/settlement defining earlier permitted changes leave its first end and substantive residual effects unresolved. Section10 of the Railway Labor Act (45USC160), expressly invoked for this rule, has not been read in a held historical statutory text. No whole_order_end is asserted."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12262",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12262/v2/claim.json",
+        "sha256": "382f6e3fdf31325ec099e1f286c77b2933c42830c85aac64241999b6c5987372"
+      },
+      "selected_canonical_sha256": "cea33288d4e1a013b9fa523263068b1fbe6bb41cf11c02943b2365c039903780",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 2,
+      "version_paths": {
+        "4e4ebd14e28426aedfc0de1f56c52c5315fbca82fba24232248a02b35b1f8da0": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12262/claim.json"
+        ],
+        "cea33288d4e1a013b9fa523263068b1fbe6bb41cf11c02943b2365c039903780": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12262/v2/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "EARLIER_MEMBER_END: section 1-102(i) seats the Executive Director of the President's Commission on Pension Policy. EO 12071 section 1-402 expressly sunsets that Commission one year after effectiveness; EO 12100 section 1-101 ratifies September 21, 1978 effectiveness. Dependency EDGES identifies Public Law 96-14 (May 24, 1979) extending the Commission. The extension statute and final Commission/staff termination record are not held, so neither a pre-original lapse nor a later first end of this membership seat may be inferred. Its first_end remains null.",
+        "DEPENDENCY_SEARCH_OPEN: direct EO12262 numbered-EO searches identify only EO12379, but that scope does not close the original express cross-reference to the Pension Policy Commission and its statutory extension. The matching machine scope and current-law historical revocation note were read; later_source_search remains empty pending this concrete dependency."
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl",
+        "line": 5,
+        "claim_sha256": "4165dda8d66ad1bbf1f0fdc4a3d574a21807be901b07b554df5597e2f4e6c546",
+        "gaps": []
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": false,
+      "baseline_steps_done": "6",
+      "baseline_blockers": "",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:12285",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12285/claim.json",
+        "sha256": "bb2ac50088069ff94ee84942c46baaa3f25d0472bb2fd57fbbc7f6792cda55d8"
+      },
+      "selected_canonical_sha256": "ec46982671fe549caebb8837c5b5fc5c355dbd7378c9f5a197a7d7fa667a5f58",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "ec46982671fe549caebb8837c5b5fc5c355dbd7378c9f5a197a7d7fa667a5f58": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_12285/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Actual submission of the Commission final report has not been established. Section1-402 terminates the Commission30days after submission. The original90-day deadline and amended August20/September21,1981 deadlines do not prove submission or termination; first_end and whole_order_end remain null.",
+        "Clause-specific completion and closeout remain unclosed: mandatory public hearings under original1-301 were made discretionary by EO12307; member compensation/travel1-303, State Department support/expenses1-304, and delegated FACA functions1-401 require treatment relative to actual performance and Commission termination. The text does not justify assigning every clause the later1982 cleanup date or declaring all accrued effects extinguished."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:9452",
+      "historical_checkpoint_verdict": "uphold",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/v2/claim.json",
+        "sha256": "d00306a9adbd3289d06cbf7b8e3c998c93fa22a7e0f4b59aea17fe53eee9c554"
+      },
+      "selected_canonical_sha256": "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 2,
+      "version_paths": {
+        "4953ecad04150a50f995970d6462564b1c891093636c4935ef366888e47a1dc5": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/claim.json"
+        ],
+        "9a66d8033979c5c5787dd62ffeae66ee654c50cbf01b4a01abb08d306885c90b": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9452/v2/claim.json"
+        ]
+      },
+      "historical_gaps": [],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "current reconciliation and independent review",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:9799",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9799/v2/claim.json",
+        "sha256": "6237780a8f328787f4ef442fc78b50dc3ce0c68fc64a88c1ef244b7a0712b8cf"
+      },
+      "selected_canonical_sha256": "014ea2124c6ee9b0c6536802b21a42a00cb345b2bea9428c37a0f7e2af080500",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 2,
+      "version_paths": {
+        "5e1e114f4987ad6add7be91bb52dbc3c0cf608ab042f40a3bcf09cd45f2d7fdc": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9799/claim.json"
+        ],
+        "014ea2124c6ee9b0c6536802b21a42a00cb345b2bea9428c37a0f7e2af080500": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9799/v2/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "scope_id": "EO:9799#classification-delegation",
+          "type": "incorporated_statutory_power_history_unread",
+          "specific_authority": "Foreign Service Act of 1946, Public Law 724, 79th Congress, 60 Stat. 999, section 411 four-class chief-of-mission classification power; related delegation/effective terms in the actual Act",
+          "concrete_transition": "EO12292 preamble identifies changes resulting from the Foreign Service Act of 1980, 94 Stat. 2071. Section 2(c) replaces section 411 of the 1946 Act with section 401 of the 1980 Act in the related leave authority.",
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+            "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+            "page_or_item": "46 FR 13967, PDF page 11, preamble and section 2 including paragraph (c)",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+            "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+            "read_method": "complete official EO extract read; no image verification claimed",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "quoted_parts": [
+              "By the authority vested in me as President by the Constitution and laws of the \nUnited States of America, including the Foreign Service Act of 1980 (94 Stat. \n2071; 22 U.S.C. 3901 et seq .), and in order to conform existing Executive Orders \nto changes resulting from that Act, it is hereby ordered as follows:",
+              "Sec. 2. Section 1 of Executive Order No. 10471 is amended as follows:\n(a) strike out “section 202(c) of the Annual and Sick Leave Act of 1951, as \nadded by the act of July 2, 1953, Public Law 102, 83rd Congress” and insert in \nlieu thereof “section 6305(b) of title 5 of the United States Code”;\n(b) strike out “said section 202(c)(2)” and insert in lieu thereof “said section \n6305(b)”;\n(c) strike out “section 411 of the Foreign Service Act of 1946” and insert in lieu \nthereof “section 401 of the Foreign Service Act of 1980 (22 U.S.C. 3961)”."
+            ]
+          },
+          "needed": "Actual section 411 text and relevant amendments/source history, and actual 1980 replacement/repeal, effective-date and savings/continuity terms. Determine whether the underlying power ended earlier, continued through replacement, or ended with the known formal revocation.",
+          "impact": "first_end, whole_order_end and savings_residuals are null; final adequate-search closure withheld. No earlier ending date or invalidity of completed classifications is asserted."
+        }
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:9837",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9837/claim.json",
+        "sha256": "d8c52cf4c3bc5496fc261923f0076d405d1534a31eb9d4f829fdd6f5d42e9069"
+      },
+      "selected_canonical_sha256": "414bc6094a4eb8a0c1918ff577f1249d4e2cc6070906eb5bbb9b715de4465104",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "414bc6094a4eb8a0c1918ff577f1249d4e2cc6070906eb5bbb9b715de4465104": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9837/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "scope_ids": [
+            "EO:9837#para1",
+            "EO:9837#para2",
+            "EO:9837#para3"
+          ],
+          "gap": "The operative Annual and Sick Leave Act of 1951 provisions on coverage, accrual, inter-system transfer, repeal of the 1946 Foreign Service leave provisions, effective date and savings are not held in the located source set. Official later texts establish that Act as the applicable leave-law framework and the 1963 Part 30 amendment regulates transfers between leave systems, but neither establishes whether/when each original EO9837 rule first ceased. Resolve the original statutory authorities, any repeal or replacement, and accrued-leave treatment before assigning first-end dates.",
+          "concrete_leads": [
+            "EO10471 paragraph 1: Annual and Sick Leave Act of 1951 section 202(c)(2)",
+            "EO10540 paragraphs 1-3: exclusions under the 1951 Act",
+            "Civil Service Commission Part 30 amendments, 28 FR 2023, effective March 17, 1963, section 206, 65 Stat. 681"
+          ],
+          "impact": "all three first_end values and earliest whole_order_end remain null; no specific earlier date asserted"
+        },
+        {
+          "scope_ids": [
+            "EO:9837#para1",
+            "EO:9837#para2",
+            "EO:9837#para3"
+          ],
+          "gap": "The 1980 Foreign Service Act transition text is not held among the twelve retained PDFs. EO12293 section 5 expressly refers to pay/benefits pending conversion under sections 2101 and 2107. Read that statutory transition and repeal/savings scope to distinguish accrued leave or preserved actions from continuing EO9837 commands.",
+          "impact": "savings_residuals remains null; formal revocation date is established independently"
+        }
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:9932",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_9932/claim.json",
+        "sha256": "614970df7a3c2e5bd8830e7e0035310d55630c53347e2df80effaf409f8de6c2"
+      },
+      "selected_canonical_sha256": "42c074fb935583b2ef95ae1bd6a5a3c3602a77514e668b27d19030e80caf11ec",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "42c074fb935583b2ef95ae1bd6a5a3c3602a77514e668b27d19030e80caf11ec": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_9932/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "scope_ids": [
+            "EO:9932#para1",
+            "EO:9932#para2",
+            "EO:9932#para3",
+            "EO:9932#para4",
+            "EO:9932#para5",
+            "EO:9932#para6"
+          ],
+          "type": "incorporated_statutory_categories_and_reinstatement_history_unread",
+          "specific_authority": "Foreign Service Act of 1946 sections 522(2) and 528, including the Reserve/Staff categories and reinstatement rights incorporated in EO9932.",
+          "concrete_transition": "EO12292 sections 5, 7(b) and 8(d) replace the related 1946 Act section 528 reference with 1980 Act section 310 (22 U.S.C. 3950). Actual statutory amendments, repeal, effective dates and transition/savings are not held in the inspected source-retention outputs.",
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+            "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+            "page_or_item": "46 FR 13967-13968, PDF pages 11-12, preamble and sections 5, 7(b), 8(d)",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+            "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+            "read_method": "held official text extract; no page image verification claimed",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "quoted_parts": [
+              "By the authority vested in me as President by the Constitution and laws of the \nUnited States of America, including the Foreign Service Act of 1980 (94 Stat. \n2071; 22 U.S.C. 3901 et seq .), and in order to conform existing Executive Orders \nto changes resulting from that Act, it is hereby ordered as follows:",
+              "Sec. 5. Executive Order No. 11034 is amended by striking out in Section 5(c) \nafter “provided by section” all that follows in that sentence and inserting in \nlieu thereof “310 of the Foreign Service Act of 1980 (22 U.S.C. 3950).”.",
+              "(b) Section 1-401 is amended by striking out “528 of the Foreign Service Act of \n1946 (22 U.S.C. 928)” and inserting in lieu thereof, “310 of the Foreign Service \nAct of 1980 (22 U.S.C. 3950)”.",
+              "(d) Section l-602(b) is amended by striking out “section 528 of the Foreign \nService Act of 1946” and inserting in lieu thereof “section 310 of the Foreign \nService Act of 1980 (22 U.S.C. 3950)”."
+            ]
+          },
+          "needed": "Read actual operative sections and material amendments, the 1980 replacement/repeal/effective and savings provisions, and determine their effect on each original command and accrued rights. No earlier cessation is inferred from the gap.",
+          "impact": "All first_end values, whole_order_end and savings_residuals remain null. Final adequate-search closure is withheld."
+        },
+        {
+          "scope_ids": [
+            "EO:9932#para1",
+            "EO:9932#para2"
+          ],
+          "type": "status_route_and_appointment_transition_effect_unresolved",
+          "specific_authority": "EO9932 paragraphs 1-2 incorporate Civil Service Rule III and eligibility tied to the appointment held at original Foreign Service assignment. EO10577 replaces the earlier Civil Service Rules and changes appointment systems; the actual 1950 conversion regulation also changes indefinite appointment categories.",
+          "needed": "Resolve the effect of those actual changes on pending versus already-acquired status, including implementing rules, without assuming that a changed appointment label or a closed appointment cohort proves exhaustion of all original duties.",
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1954-11-23/pdf/FR-1954-11-23.pdf",
+            "sha256": "ac22cfb587a1d6ee5f90cf9402b9d576cbdaad9ffa690cfc39b2e95bc84c3624",
+            "page_or_item": "19 FR 7525-7526, PDF pages 5-6, sections 201, 301 and 401",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10577.txt",
+            "text_sha256": "f698f5558d53ee2ba1e8480796e824c9c71513bc613a04530a93fc9ac84d6b5a",
+            "read_method": "held official text extract; no page image verification claimed",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "quoted_parts": [
+              "S ec. 301. The following-described ex­\necutive orders and parts of executive \norders are hereby revoked:\nPart II of Executive Order No. 9830 of Feb­\nruary 24, 1947, amending the Civil Service  \nRules: Provided,  That the positions listed in  \nSchedules A, B, and C as provided for in Civil  \nService Rule VI of that order, as amended,\n\n=== PDF page 6 of 30 ===\n7526 THE PRESIDENT\nshall be considered as being listed in Sched­\nules A, B, and C, respectively, as provided for  \nin Civil Service Rule VI of this order, unless  \nand until they are removed therefrom by the  \nCommission,\nExecutive Orders No. 9973 of June 28, 1948,  \nNo. 10440 of March 31, 1953, and No. 10463 of  \nJune 25, 1953, amending Civil Service Rule  \nVI.\nExecutive Order No. 10180 of November 13,  \n1950, establishing special personnel proce­\ndures in the interest of national defense.",
+              "S ec. 401. This order shall become effec­\ntive on the first Sunday after the sixtieth \nday after the date hereof."
+            ]
+          },
+          "impact": "No first-end date for the status-acquisition routes is assigned. The exact 1955 transition date is not used as an EO9932 end."
+        }
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:10249",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10249/claim.json",
+        "sha256": "6e8c6e321bbba45c3e52e6fedbef10d133a55d030d41b43cb7761ab72605c1d8"
+      },
+      "selected_canonical_sha256": "ea8849d58784a1c017ede953ca557e3278a8576a7619dfe89f353e22a0429ea5",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "ea8849d58784a1c017ede953ca557e3278a8576a7619dfe89f353e22a0429ea5": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10249/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "scope_ids": [
+            "EO:10249#sec4"
+          ],
+          "type": "material_original_text_damage",
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf",
+            "sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+            "page_or_item": "16 FR 5309, PDF page 1, opening of section 4",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+            "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "read_method": "held official extract; no page-image verification claimed",
+            "quoted_parts": [
+              "Sec. 4. The Department of State  \nassign priorities to requests for for  \no£ta, which priorities shall govern  \nService ^  connection with  \nfurnishing of the requested data;"
+            ]
+          },
+          "needed": "Retain and read official FR-1951-06-06 PDF page 1; verify the complete section 4 imperative, its subject and object. Existing fixity identifies the source bytes but does not repair the missing text. No page-image reading is claimed.",
+          "impact": "Exact scope and completeness of section 4 cannot be certified; inventory and whole-order closure remain partial."
+        },
+        {
+          "scope_ids": [
+            "EO:10249#sec2",
+            "EO:10249#sec3",
+            "EO:10249#sec4"
+          ],
+          "type": "specific_statutory_reporting_regime_history_unread",
+          "specific_authority": "Foreign Service Act of 1946 section 311, 60 Stat. 1002, then 22 U.S.C. 846, expressly implemented by EO10249 reporting regulations.",
+          "concrete_transition": "EO12292 says its amendments and revocations conform existing orders to changes resulting from the Foreign Service Act of 1980 and specifically revokes EO10249 in section 10(e). Actual section 311 history and the 1980 repeal/replacement/effective/continuity terms are not yet held in the inspected retention outputs. The exact replacement provision is not guessed.",
+          "source": {
+            "url": "https://www.govinfo.gov/content/pkg/FR-1981-02-25/pdf/FR-1981-02-25.pdf",
+            "sha256": "dfc3ee6cd4af326ebbcbbfd7f5cff1d170c8a5dee2905ffc0918b72ddc0bb665",
+            "page_or_item": "46 FR 13967-13968, PDF pages 11-12, preamble and section 10(e)",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12292.txt",
+            "text_sha256": "34121c9c0de65eebe40b9874528f43a13c368bb4765fd28945a8c43b31fe89b8",
+            "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+            "official_fixity_result": "match",
+            "read_method": "held official extract; no page-image verification claimed",
+            "quoted_parts": [
+              "By the authority vested in me as President by the Constitution and laws of the \nUnited States of America, including the Foreign Service Act of 1980 (94 Stat. \n2071; 22 U.S.C. 3901 et seq .), and in order to conform existing Executive Orders \nto changes resulting from that Act, it is hereby ordered as follows:",
+              "(e) Executive Order No. 10249 of June 4,1951;"
+            ]
+          },
+          "supporting_sources": [
+            {
+              "source": {
+                "url": "https://www.govinfo.gov/content/pkg/FR-1951-06-06/pdf/FR-1951-06-06.pdf",
+                "sha256": "41cef3c20ae57f45f737f380884b13831fc2aef89b2f4e3e0779d0814113028c",
+                "page_or_item": "16 FR 5309, PDF page 1, statutory recital",
+                "text_path": "jobs/fr-originals/data/full_run/texts/EO_10249.txt",
+                "text_sha256": "bc22bd8925aa7cf44d8ac2580519dd47521099f546fc81bea8d79b40f4376413",
+                "official_fixity_record": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+                "official_fixity_result": "match",
+                "read_method": "held official extract; no page-image verification claimed",
+                "quoted_parts": [
+                  "By virtue of the authority vested in  \nme by section 311 of the Foreign Service  \nAct of 1946, 60 Stat. 1002 (22 U. S. C.  \n846), and as President of the United  \nStates, I hereby prescribe the following  \nregulations with respect to the reporting  \nfunctions of the Foreign Service of the  \nUnited States:"
+                ]
+              }
+            }
+          ],
+          "needed": "Read actual section 311 and material amendments, and the actual 1980 change, repeal, commencement and savings provisions. Determine whether the original reporting regulations continued, were displaced earlier or ended with the known formal revocation.",
+          "impact": "All first_end values, whole_order_end and savings_residuals remain null, and final adequate-search closure is withheld. No earlier cessation is asserted from missing evidence."
+        }
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl",
+        "line": 1,
+        "claim_sha256": "1a29572339f43b48579c0113cd5ed600a9f5209e08595a167ef204d53ad4d9c2",
+        "gaps": []
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": false,
+      "baseline_steps_done": "6",
+      "baseline_blockers": "",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:10897",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10897/claim.json",
+        "sha256": "68129b58a94b0d576eb54ec203c57bff5442b06f8c443a63f86c404cc8e711cb"
+      },
+      "selected_canonical_sha256": "e768083de55efef2b51a3b948633631aa714c99cbe0191ff3ac9514982f8ca00",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "e768083de55efef2b51a3b948633631aa714c99cbe0191ff3ac9514982f8ca00": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10897/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "gap": "Read actual1946Act801(a),803(c)(1),881(a), their material amendments and1980Act801/repeal/savings/transition. The1960delegation expresslyreferences amendedparticipation and voluntary-contribution provisions; full operative statutoryhistory is not certified here. 1980sources arequeued.",
+          "impact": "fourdelegation/discretion firstends, whole_order_end,savingsremainnull"
+        },
+        {
+          "gap": "Executed supersessionof9941 insection2 takes effectOctober16,1960 but revocationof10897 doesnotautomaticallyrevive9941 ordateallconstitutiveeffects; separatefirstend/residualreasoning remainsopen.",
+          "impact": "section2state/firstend null"
+        },
+        {
+          "gap": "Subject search located retirementorders11434,11952,12145,12188,12272 andlaterregimes; only12145sections1-101through1-113/AnnexI were read as leads, notthecomplete annexes. Remainingbranchresolutionandstatutorychain areopen.",
+          "impact": "no final later_source_search or no-savings finding"
+        }
+      ],
+      "current_canonical": {
+        "path": "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl",
+        "line": 2,
+        "claim_sha256": "296ed857508ca72733bc0e7c936bc4821ce82bb2c39904ac06716f1f2ec2773b",
+        "gaps": []
+      },
+      "same_original_raw_versions": true,
+      "PR56_overlap": false,
+      "baseline_steps_done": "6",
+      "baseline_blockers": "",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:10152",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10152/v2/claim.json",
+        "sha256": "05edf1a5f5cd5632221e4682ebc698bf87a46e3b23ce9b1bc613002b974ead55"
+      },
+      "selected_canonical_sha256": "040d7861da194aa0a04fb46a59001b2686040fad98c592823d7b82f66b36369e",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 2,
+      "version_paths": {
+        "280bb679992b796d7e74304f3eb169f1e877b397e5121ef5fd654f24d5fdddd8": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10152/claim.json"
+        ],
+        "040d7861da194aa0a04fb46a59001b2686040fad98c592823d7b82f66b36369e": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10152/v2/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "gap": "Read actual Career Compensation Act1949 sections102/204/501(d), subsequent Title37 recodification and concrete1963 statutory amendments/effective/savings history. The original, EO11120 and EO11157 change statutory referents; continuity and accrued-pay effects cannot be decided from recital alone.",
+          "impact": "All first_end values, whole_order_end and savings_residuals remain null."
+        },
+        {
+          "gap": "Review remaining named/subject hits and current-law historical mentions. NAMED_SEARCH records actual located files and does not pretend each hit was read or resolved.",
+          "impact": "No final bounded later-source search or no-savings conclusion asserted."
+        },
+        {
+          "gap": "EO10681 operative added-tail OCR needs the queued official image before exact added-rule scope conclusions. EO11157 signature-year ambiguity was resolved by viewing retained PDF page14, but that does not close earlier cessation or savings.",
+          "impact": "Formal revocation is dated June22,1964; original clause states and first ends remain null pending substantive continuity review."
+        }
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:10168",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10168/claim.json",
+        "sha256": "bf64977bae9d6c5138c7a910280c10b80d593c4fc4ee4ccae68478c33cfb1d52"
+      },
+      "selected_canonical_sha256": "9bab59cc884915340875c45afcad8384129a5f13aa87eb6802d2fa6aec30a8d6",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "9bab59cc884915340875c45afcad8384129a5f13aa87eb6802d2fa6aec30a8d6": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10168/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        "Original section206 of the Career Compensation Act1949 authorizes sea/foreign-duty pay; EO10989 still cites37USC237 while EO11120/11157 cite37USC305. The relevant1962 recodification and1963 pay amendment, continuity/savings and effective provisions are not located in the enumerated held catalogs. These concrete replacement leads may preserve or alter the exact original eligibility and regulatory powers before formal1964 revocation. No statutory end date is inferred. The1949 section206 itself is held and read.",
+        "The1959 substitutions and1962/1963 changes preserve portions of original duties while changing others. Partial candidate records every supported event but has not closed the earliest-end allocation for every surviving portion or the status of supplementary regulations authorized by original section8 across the specifically located statutory transition. EO11157 sections201-208 re-prescribe corresponding rules and contain no express savings of the old order; continuity of legal authority and accrued pay is not settled merely by the revocation."
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    },
+    {
+      "instrument_id": "EO:10605",
+      "historical_checkpoint_verdict": "uphold_partial",
+      "selected_claim": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10605/claim.json",
+        "sha256": "13d874433da90ceee658f646fa4f07565db7d382cca915dca6f1bfd3aecbb281"
+      },
+      "selected_canonical_sha256": "3e9a507552e7c56c0f726df4136654d44f9834cf3a63a01bc21715abc64fc01c",
+      "matches_checkpoint_hash": true,
+      "distinct_historical_versions": 1,
+      "version_paths": {
+        "3e9a507552e7c56c0f726df4136654d44f9834cf3a63a01bc21715abc64fc01c": [
+          "research/readiness/reviews/astra-2026-10-18/producer/EO_10605/claim.json"
+        ]
+      },
+      "historical_gaps": [
+        {
+          "gap": "The actual1962Title37 recodification and any concrete intervening subsistence amendments, their preservation of earlier regulations, and accrued-pay savings remain unread. Original10605 cites1949Act301;1964replacement cites37USC402. The1949Act301 itself was read in held official extract and gives the subsistence structure/presidentialregulatorypower; this does not decide subsequent continuity.",
+          "impact": "all3firstends,whole_order_end,savings_residuals remainnull"
+        },
+        {
+          "gap": "Named/subject saved-text search has located additional leads not all resolved; machine numeric search is narrower than the meal-entitlement/office search.",
+          "impact": "later_source_search remains empty; no universal no-savings or exhaustive-search assertion"
+        }
+      ],
+      "current_canonical": {
+        "path": null,
+        "line": null,
+        "claim_sha256": null,
+        "gaps": []
+      },
+      "same_original_raw_versions": false,
+      "PR56_overlap": false,
+      "baseline_steps_done": "3",
+      "baseline_blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+      "active_reservation": null,
+      "action": "attributed prior research exposed; no closure inferred",
+      "qualification": "Historical whole-case AI verdict does not approve a component or override current rules; align scope/source/proposition before reuse."
+    }
+  ],
+  "additional_checkpoint_formats": [
+    {
+      "artifact": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10681/IN_PROGRESS.json",
+        "sha256": "2b05c14162123e4db1494bcd3852ea2e002e7a2763d35b26d2aa6165707518ba"
+      },
+      "schema": null,
+      "instrument_id": "EO:10681",
+      "keys": [
+        "actual_reads",
+        "claim_created",
+        "claim_frozen",
+        "current_files",
+        "elapsed_wall_seconds",
+        "exact_next_steps",
+        "exact_sources",
+        "instrument_id",
+        "model_usage",
+        "search_checkpoint",
+        "started_utc",
+        "status",
+        "stopped_utc",
+        "tentative_findings_not_claim",
+        "wall_note",
+        "write_boundary"
+      ],
+      "qualification": "unfinished producer work; no approval inferred"
+    },
+    {
+      "artifact": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_10739/IN_PROGRESS.json",
+        "sha256": "d740ceb6bac5430538827350887b0900ea9d0c5ee88272d440a5c460f9ee953f"
+      },
+      "schema": "astra-in-progress-checkpoint/v1",
+      "instrument_id": "EO:10739",
+      "keys": [
+        "actual_reads",
+        "claim_created",
+        "extractions",
+        "instrument_id",
+        "next",
+        "preliminary_findings",
+        "saved_utc",
+        "schema",
+        "telemetry",
+        "user_requested_stop"
+      ],
+      "qualification": "unfinished producer work; no approval inferred"
+    },
+    {
+      "artifact": {
+        "path": "research/readiness/reviews/astra-2026-10-18/producer/EO_12145/IN_PROGRESS.json",
+        "sha256": "6a5dc272c812915043431303183d11420da7b7724fc397ec137efc2df0bb1b3f"
+      },
+      "schema": null,
+      "instrument_id": "EO:12145",
+      "keys": [
+        "actual_model_usage",
+        "actual_reads_this_dossier",
+        "actual_token_usage",
+        "candidate_claim_exists",
+        "canonical_publication",
+        "claim_frozen",
+        "commits",
+        "elapsed_wall_seconds",
+        "exact_next_step_on_explicit_resume",
+        "external_fetch",
+        "file_hash_manifest",
+        "file_hash_manifest_sha256",
+        "instrument_id",
+        "page_images_read",
+        "preliminary_notes_not_findings",
+        "prior_read_context",
+        "protected_writes",
+        "sources",
+        "started_utc",
+        "status",
+        "stopped_utc"
+      ],
+      "qualification": "unfinished producer work; no approval inferred"
+    },
+    {
+      "artifact": {
+        "path": "research/excavator/astra-portfolio-repair-2026-10-20/lamm-resume-v1/CHECKPOINT.json",
+        "sha256": "0538c3481ff7fa8c8cc3893bf097f9972eb891702a277a17e8bd95ea704694da"
+      },
+      "schema": "eo-source-blocked-work/v1",
+      "instrument_id": "EO:11513",
+      "reason": "Actual report submission date remains unestablished; deadline is not the occurrence.",
+      "result_paths": [
+        "research/excavator/lamm-2026-10-20/sunsets3/batch_01/OWN_TERM_END_RECORDS.jsonl",
+        "research/excavator/lamm-2026-10-20/sunsets3/batch_01/review/REVIEW.jsonl"
+      ],
+      "qualification": "existing source-blocked resume checkpoint and retained negative finding; not a new search or permanent ownership"
+    }
+  ],
+  "automatic_approvals": 0,
+  "savings_hours_claimed": null,
+  "notice": "Prior-work reconciliation, not optimizer scoring or a count of completed obligations."
+}

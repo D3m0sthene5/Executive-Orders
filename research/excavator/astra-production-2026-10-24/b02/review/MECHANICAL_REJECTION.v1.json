@@ -1,0 +1,45 @@
+{
+  "schema": "eo-post-review-mechanical-rejection/v1",
+  "reviewer": "review-b02",
+  "recorded_utc": "2026-10-24T17:10:47.671169+00:00",
+  "producer_version": "b02-v3",
+  "actual_completion": "research/excavator/astra-production-2026-10-24/b02/review/complete-v1",
+  "actual_completion_tally_sha256": "1aa5594302fefa39ddee587f521c14db6d6f3c5d3508a981348d51e7ab866a03",
+  "publication_written": false,
+  "independent_substantive_reviews_preserved": [
+    "GENUINE_REVIEW.v1.json",
+    "AFTER_REVEAL.v1.json"
+  ],
+  "result": "Exact v3 objects are mechanically rejected and cannot file; substantive partial review does not waive actual consumer checks.",
+  "observed_failures": [
+    {
+      "instrument_id": "EO:11829",
+      "claim_sha256": "1510c8b1c43c6d33721fb5bdc42cf4dd2d255757a805d3729cf739ec56618e7e",
+      "mechanical_result": "fail",
+      "quote_counts": {
+        "fail": 16,
+        "pass": 29
+      }
+    },
+    {
+      "instrument_id": "EO:11853",
+      "claim_sha256": "b3507714b8b52c53aeb45903c9a34d27efc9725cb8253f6cc45d00a56f6b77ce",
+      "mechanical_result": "fail",
+      "quote_counts": {
+        "fail": 11,
+        "pass": 6
+      }
+    }
+  ],
+  "causes": [
+    "Unsupported legal_sources list makes the actual checker resolve embedded legal quotations against the sibling GAO factual source.",
+    "Unsupported research_sources list makes the checker resolve its citations against original_representation.",
+    "original_representation.quote includes generated source/extraction metadata absent from official page text; long research quotes also require inspection for synthetic page separators."
+  ],
+  "direct_span_audit_limit": "A string can exactly match held extraction characters yet include generated wrappers, or be in an unrecognized container that the actual checker associates with another source. The52/54 direct span checks did not constitute the actual mechanical consumer gate. These limits are now preserved with the failed run.",
+  "required_correction": "New producer version only: supported source/source_refs/sources containers and actual-page-body exact quoted spans, with all substantive statute/GAO/original evidence, legal judgments, dates and material gaps preserved. Independent review must bind new exact hash before fresh completion.",
+  "policy_changes_authorized": false,
+  "gate_waiver": false,
+  "completion_seconds": 75.40253877699979,
+  "source_legal_findings_unchanged_pending_representation_correction": true
+}

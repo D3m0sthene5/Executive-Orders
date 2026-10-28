@@ -1,0 +1,231 @@
+{
+  "schema": "eo-production-cost-ledger/v1",
+  "generated_utc": "2026-10-27T02:34:51.918235+00:00",
+  "coordinator_observed_envelope": {
+    "start_utc": "2026-10-26T23:35:01.603906+00:00",
+    "end_utc": "2026-10-27T02:34:51.918235+00:00",
+    "utc_elapsed_seconds": 10790.314329,
+    "scope": "Coordinator gross envelope includes acquisitions,preparation,engineering,test,corrections,integration,publishing,two workspace resets,waits and overlapping worker execution. Not exclusive active labor; final publication may extend beyond timestamp."
+  },
+  "observations": [
+    {
+      "phase": "batch1 initial producer",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/production-claims-v5/TIMING_RECOVERED_FACTS.json",
+      "receipt_sha256": "803085fc8ccacf888248a9e3c7a8e2a64f0e8f9ad806eda781eececbd3ec0bc4",
+      "observed_elapsed_seconds": 1106.511679879,
+      "value_key": "original_assignment.observed_elapsed_seconds",
+      "qualification": "Two members,shared research counted once; export272.8s is contained, not additional.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 EO8514 correction producer",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/production-claims-v5/TIMING_RECOVERED_FACTS.json",
+      "receipt_sha256": "803085fc8ccacf888248a9e3c7a8e2a64f0e8f9ad806eda781eececbd3ec0bc4",
+      "observed_elapsed_seconds": 120.275886263,
+      "value_key": "correction_v4.observed_elapsed_seconds",
+      "qualification": null,
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 initial source review through corrected version",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/recovered-production-review1/RECONSTRUCTED_PHASE_HISTORY.json",
+      "receipt_sha256": "3eebce5e28f71e47a09b3c0f53858871e0da83a980475bd1501a60dc2e6be0a6",
+      "observed_elapsed_seconds": 795.014373,
+      "value_key": null,
+      "qualification": "UTC envelope includes waits; disjoint phase details retained. Blind review465.492433s,after-reveal/source91.746099s,exact correction78.048452s are contained, not additional.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 producer first reset recovery",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/production-claims-v5/RECOVERY_DONE.json",
+      "receipt_sha256": "1153d36851621afe5be1928ecd0de5fe73f003603a926f87955b92f2cf176689",
+      "observed_elapsed_seconds": 803.436267981,
+      "value_key": "observed_worker_seconds",
+      "qualification": "Includes reconstruction,validation and coordination waits; additional cost, not saving.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 reviewer first reset recovery",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/recovered-production-review1/RECOVERY_COST.json",
+      "receipt_sha256": "223c4fb446dbfd2b26331cf0704ca87c82077c5f35ffd22b7bcb3f109ec07a48",
+      "observed_elapsed_seconds": 232.5886691429987,
+      "value_key": "observed_seconds",
+      "qualification": "Additional recovery; idle until final versions separately documented.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 exact new-version recovery review",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/review-v5/COST.new-v6.json",
+      "receipt_sha256": "8182e6b6379c9106065ff6e7e18e2f1bf636b9d31e4a67913925ff72249f5245",
+      "observed_elapsed_seconds": 354.7069886190002,
+      "value_key": "observed_seconds",
+      "qualification": "Additional exact-version review, includes72.360s alias correction.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch1 native completion",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/complete-b1-v1/TALLY.json",
+      "receipt_sha256": "748ad1c446569f4cf4ea7a7c9fa287b8218b43ee0a6d60861d2cf2dccc1c35bb",
+      "observed_elapsed_seconds": 61.63915563699993,
+      "value_key": "wall_seconds",
+      "qualification": "Machine execution inside coordinator envelope.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch2 initial producer",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/packet-b2-final-v8/producers/batch2/COST.v1.json",
+      "receipt_sha256": "48e979e2f7d0b2f80bbc6a5b3c7dca2f676b157f705eae8905d7cb74f6bfa252",
+      "observed_elapsed_seconds": 1391.012998615,
+      "value_key": "observed_worker_interval_seconds",
+      "qualification": "Two members;437.443s export/check/failure/retry/audit is contained,not additional.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch2 source review and second reset recovery",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery2/review2/COST.new.json",
+      "receipt_sha256": "7f3be985e3ab4164bba36083c9e32c1f945cbb2ea9200299db77a7863791945e",
+      "observed_elapsed_seconds": 1801.004563,
+      "value_key": "observed_utc_seconds_start_to_costannex",
+      "qualification": "Includes source findings,April hold,invalid/unscored control attempt,reset and preservation; source review seal1753.958195s is contained.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch2 April correction and second recovery timeline",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/packet-b2-correction-v9/producers/batch2/COST.corrected-v1.json",
+      "receipt_sha256": "6a61328140d23d2ce9fefd4c50d856a66c9bacd364ce25847c590269a8f0c6fa",
+      "observed_elapsed_seconds": 2032.758530601,
+      "value_key": "correction_recovery_timeline_elapsed_seconds",
+      "qualification": "Includes blocking and idle, not continuous active worker interval;311.420s new export is contained. Overlaps initial reviewer and root recovery.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch2 fresh independent final source/control/after-reveal review",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/packet-b2-correction-v9/review-final/COST.final.json",
+      "receipt_sha256": "5811ab138f71e34886b358c5a6d1688f90f48ae474db348514a98bf2c0b6dc39",
+      "observed_elapsed_seconds": 799.860351,
+      "value_key": "observed_artifact_interval_seconds",
+      "qualification": "Lower-bound occupancy;initial protocol reads unmeasured;633.302s blind interval is contained,not additional.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "batch2 native completion",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/packet-b2-correction-v9/complete-v1/TALLY.json",
+      "receipt_sha256": "e5c08089f6b87d3b7522423cdfa546f542e85f7c18b5e0d866265dac66ae265d",
+      "observed_elapsed_seconds": 94.58317694799916,
+      "value_key": "wall_seconds",
+      "qualification": "Machine execution inside coordinator envelope.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "combined four-case actual tracker replay",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/packet-b2-correction-v9/combined-four-replay-v1/RESULT.json",
+      "receipt_sha256": "35659f532f706ce79c43e46755a81d8386473d8a1a0bccc0bbfbb21f329455df",
+      "observed_elapsed_seconds": 15.579391628998565,
+      "value_key": "wall_seconds",
+      "qualification": "Machine execution inside coordinator envelope;isolated outputs.",
+      "active_agent_labor_seconds": null
+    },
+    {
+      "phase": "supplement engineering",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/engineering-v2/REVIEW.json",
+      "receipt_sha256": "8b06b674a5862b06eb3c1ae70dbba521577b3dbeaf98d991e6b1dc27fa64e4b2",
+      "recorded_timing_fields": {
+        "costs": {
+          "start": {
+            "utc": "2026-10-27T00:51:14.417105+00:00",
+            "monotonic_ns": 38889577581266
+          },
+          "end_utc": "2026-10-27T00:55:25.942384+00:00",
+          "end_monotonic_ns": 39141102757315,
+          "observed_occupancy_seconds": 251.525176049,
+          "functions_exec_calls": 7,
+          "exec_command_calls": 7,
+          "includes_wait_for_root_fix": true,
+          "not_active_labor": true,
+          "tokens_cash": null,
+          "scope": "Reconstructedv2 review only; separate from originallostclock, recoverywriting and parentproduction intervals."
+        }
+      },
+      "active_agent_labor_seconds": null,
+      "qualification": "Engineering/retests additional; no presumed amortization."
+    },
+    {
+      "phase": "source notes engineering",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/source-notes-review/REVIEW.json",
+      "receipt_sha256": "f1c3c7f1891bf34f5c1e6947b2d96a19722bce4d1ee6ae60e231ea4132ecd74d",
+      "recorded_timing_fields": {
+        "costs": {
+          "start": {
+            "utc": "2026-10-27T01:13:26.561920+00:00",
+            "monotonic_ns": 40221722309149
+          },
+          "end_utc": "2026-10-27T01:15:46.815530+00:00",
+          "end_monotonic_ns": 40361975902601,
+          "observed_occupancy_seconds": 140.253593452,
+          "functions_exec_calls": 5,
+          "exec_command_calls": 5,
+          "token_cash": null,
+          "not_active_labor": true,
+          "overlap": "Tests/toolwaiting are included, not additive to parentwalltime."
+        }
+      },
+      "active_agent_labor_seconds": null,
+      "qualification": "Engineering/retests additional; no presumed amortization."
+    },
+    {
+      "phase": "human citation coverage engineering",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/source-notes-human-gate-review/REVIEW.json",
+      "receipt_sha256": "27506811d3b70102eba2885c31685b307d6c08d78bfe237320f74cf715ce5e2f",
+      "recorded_timing_fields": {
+        "costs": {
+          "start": {
+            "utc": "2026-10-27T01:18:04.813733+00:00",
+            "monotonic_ns": 40499974122419
+          },
+          "end_utc": "2026-10-27T01:19:04.401392+00:00",
+          "end_monotonic_ns": 40559561765163,
+          "observed_occupancy_seconds": 59.587642744,
+          "functions_exec_calls": 3,
+          "exec_command_calls": 3,
+          "tokens_cash": null,
+          "not_active_labor": true,
+          "scope": "Human-citation-gate append only, separate from earlierengineering/source-notes clocks."
+        }
+      },
+      "active_agent_labor_seconds": null,
+      "qualification": "Engineering/retests additional; no presumed amortization."
+    },
+    {
+      "phase": "hash fix engineering",
+      "receipt": "research/excavator/production-cost-trace-2026-10-26/recovery/prior-hash-review/REVIEW.json",
+      "receipt_sha256": "a6c2ba4fcebb86f94847ac5d1716ad40c7089b275a3090a6dd7f2336562b1983",
+      "recorded_timing_fields": {
+        "costs": {
+          "start": {
+            "utc": "2026-10-27T01:10:29.583493+00:00",
+            "monotonic_ns": 40044743883124
+          },
+          "end_utc": "2026-10-27T01:12:10.990512+00:00",
+          "end_monotonic_ns": 40146150884710,
+          "observed_occupancy_seconds": 101.407001586,
+          "functions_exec_calls": 4,
+          "exec_command_calls": 4,
+          "after_collect_machine_seconds_included": 2.5903209230018547,
+          "token_cash": null,
+          "not_active_labor": true,
+          "overlap": "Machine replay included within revieweroccupancy; not additive to parentwalltime."
+        }
+      },
+      "active_agent_labor_seconds": null,
+      "qualification": "Engineering/retests additional; no presumed amortization."
+    }
+  ],
+  "tokens": null,
+  "cache_tokens": null,
+  "cash": null,
+  "exclusive_agent_hours": null,
+  "per_order_total_cost": null,
+  "aggregate_rule": "Do not sum coordinator envelope,worker envelopes and contained machine/subphase intervals as a labor total. Shared sources counted once per recorded phase. Original missing bytes,unmeasured gaps and different phase definitions remain explicit.",
+  "net_total_agent_hour_reduction_established": false,
+  "campaign_savings_established": false
+}

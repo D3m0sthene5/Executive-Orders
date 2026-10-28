@@ -1,0 +1,48 @@
+{
+  "schema": "neyman.production-import/1",
+  "cohort_kind": "retrospective_convenience",
+  "base_commit": "e21be540396c3c4cd5b5d62abc35f4a4aa9b0534",
+  "selection": {
+    "path": "research/excavator/codex-continuous-2026-10-24/final-consumers-v2/SELECTION.json",
+    "sha256": "7ef825355c26492ca9b591d0ca9f8bd152a4a3112f8e95484e4f34eeecdf389d"
+  },
+  "completion_index": {
+    "path": "research/excavator/codex-continuous-2026-10-24/COMPLETION_COSTS.json",
+    "sha256": "fa884fe55719701c378709385d512b021244602da9bb84a9776151c25f6076a7"
+  },
+  "checkpoints": [
+    {
+      "path": "research/excavator/codex-continuous-2026-10-24/b03/packet-v1/SOURCE_BLOCKED_CHECKPOINT.v1.json",
+      "sha256": "07b340203be21e8164825f1ac153f319bed4bff0423eb58cd63615bf9166b974"
+    }
+  ],
+  "questions": [
+    {
+      "path": "research/neyman/production-diagnostics/2026-10-25-pr60/QUESTION_10030.json",
+      "sha256": "818c433d4b1ae418306c51c35068a87fbd958a027f42fb02883596da56f65680"
+    }
+  ],
+  "repair_probes": [
+    {
+      "instrument_id": "EO:13975",
+      "before": {
+        "path": "research/excavator/codex-continuous-2026-10-24/b01/review/complete-v1/TALLY.json",
+        "sha256": "927eea5301dd325593194a53ca108f6d11be694636405bea18518215bcd06c1e"
+      },
+      "after": {
+        "path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v3/TALLY.json",
+        "sha256": "f9110d4d5d3f4dd0b80197efe3a6e90f5a88263d93d9725bce9d8cca4e4d86bc"
+      },
+      "before_dependencies": {
+        "path": "research/excavator/codex-continuous-2026-10-24/b01/review/complete-v1/INPUTS.json",
+        "sha256": "97f4dc7d5517aff54591223246045a6b632e35389117aafec5a04ca9249d3bda",
+        "pointer": "/dependency_sha256"
+      },
+      "after_dependencies": {
+        "path": "research/excavator/codex-continuous-2026-10-24/b01/complete-v3/INPUTS.json",
+        "sha256": "91dc081d426e5ba2459a08e1b38184afd952e8bfa40f17a8507817cd3ec2a386",
+        "pointer": "/dependency_sha256"
+      }
+    }
+  ]
+}

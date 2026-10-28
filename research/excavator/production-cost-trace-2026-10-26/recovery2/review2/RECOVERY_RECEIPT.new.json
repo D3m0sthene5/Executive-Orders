@@ -1,0 +1,119 @@
+{
+  "schema": "eo-review2-recovery-receipt/v1",
+  "created": {
+    "utc": "2026-10-27T01:57:13.334845+00:00",
+    "monotonic_ns": 42848495238719
+  },
+  "original_observed_clock_start": {
+    "utc": "2026-10-27T01:29:42.523194+00:00",
+    "monotonic_ns": 41197683587681,
+    "basis": "Exact first tool output visible in this separate reviewer context; original file bytes subsequently lost in second workspace reset."
+  },
+  "preservation_scope": "Explicit new recovery records based on actually performed source examination and surviving exact cards. No byte-exact reconstruction of lost review/audit files or old seal asserted.",
+  "card_hash_reverification": {
+    "H4": {
+      "instrument_id": "EO:8705",
+      "file_sha256": "de4807a62fb3ffac35bc4daedef44c9cb97f8cc0ce361e868b07ad1ca1dd9329",
+      "claim_sha256": "a2a2493b229c5ae706ccdda973d3f1d66c40a9c30678903a78e8d0d9bb8373ff",
+      "matches_original_frozen_file": true,
+      "matches_original_frozen_claim": true
+    },
+    "Q9": {
+      "instrument_id": "EO:8707",
+      "file_sha256": "99b95a32d5e9663bb4f4a848aec117deb5a4e61e22b2bfc044ac91dc8227a447",
+      "claim_sha256": "4b5c15c4d7b01504eec6fa5f9757f107da6c741574a0f781c94ee15fc343d4af",
+      "matches_original_frozen_file": true,
+      "matches_original_frozen_claim": true
+    },
+    "N2": {
+      "instrument_id": "EO:8705",
+      "file_sha256": "463b0e072cee584730fe5a75b8330cdf679e3c4a6eb7105ed49f28970217983b",
+      "claim_sha256": "f633b1409a2009f0ad95c7804b8dc19da1529712828c08cf4fa3dab9294afcf9",
+      "matches_original_frozen_file": true,
+      "matches_original_frozen_claim": true
+    }
+  },
+  "lost_artifacts": [
+    "CLOCK_START.json",
+    "SOURCE_SPAN_AUDIT.json",
+    "PAGE_MANIFEST.json and21renderedpages;18wereactuallyvisuallyinspected",
+    "INDEPENDENT_NUMBER_SCAN.json",
+    "INDEPENDENT_HOST_SCAN.json",
+    "PHASE_SHARED_START.json",
+    "PHASE_SHARED_END.json",
+    "PHASE_H4_START.json",
+    "PHASE_H4_END.json",
+    "H4.REVIEW.json"
+  ],
+  "old_blind_seal_existed": false,
+  "control_test": {
+    "status": "UNSCORED_CONTAMINATED",
+    "caught": null,
+    "reason": "Parent recovery message explicitly labeled genuine hashes and planted f633b140... before any reviewer blind seal. This prevents a valid blind-control catch. No preserved internal intention or preformed substantive judgment substitutes for sealed evidence.",
+    "exposure_event": "Parent message in current reviewer context beginning PrivateFROZEN_CARDS andall3exactcards SURVIVEDunder/tmp, then explicit parent admission Importantrootprocesserror. Exact delivery UTC not exposed.",
+    "exposure_timestamp_utc": null,
+    "receipt_timestamp_is_not_exposure_time": true
+  },
+  "observed_work": {
+    "source_occurrences_rehashed": 71,
+    "unique_raw_pdfs_rehashed": 10,
+    "unique_text_files_rehashed": 14,
+    "all_spans_quotes_raw_text_hashes_matched": true,
+    "basis": "Successful original SOURCE_SPAN_AUDIT tool output, not surviving old audit bytes.",
+    "primary_images_visually_inspected": 18,
+    "primary_pages_rendered": 21,
+    "independent_number_scan_files": 5614,
+    "independent_number_hit_files": 15,
+    "no_new_approval_from_lost_audit_inference": true
+  },
+  "telemetry": {
+    "observed_pre_reset_orchestration_exec_calls": 37,
+    "nested_exec_commands": 29,
+    "nested_image_views": 18,
+    "web_calls": 8,
+    "skill_reads": 1,
+    "counts_basis": "Manual recount of visible reviewer tool history through H4.REVIEW write; exclude recovery tool calls and parent work.",
+    "tokens": null,
+    "cache_tokens": null,
+    "cash": null,
+    "active_labor_seconds": null,
+    "per_member_exclusive_seconds": null,
+    "original_phase_file_bytes_lost": true,
+    "monotonic_continuity_after_reset": "unknown; do not subtract across reset",
+    "original_utc_start_known": true,
+    "elapsed_utc_to_recovery_includes_reset_interruption_and_parent_wait": true
+  },
+  "failures": [
+    {
+      "kind": "truncated_tool_output",
+      "count": 4,
+      "qualification": "Large initial Handoff/card/source combined outputs required focused follow-up reads. Exact initial whole-output files not preserved."
+    },
+    {
+      "kind": "missing_native_primary",
+      "path": "jobs/astra-source-retention/output/pdf/c4fe643f1fa08dd1cef1965e7db06aa436dcac0889b49dbbb2100c5372251578.pdf",
+      "command_exit_code": 1,
+      "detail": "PyMuPDF FileNotFoundError; no April page images extracted."
+    },
+    {
+      "kind": "web_pdf_fetch_rejected",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-04-16/pdf/FR-1946-04-16.pdf",
+      "detail": "Content length too large24225049; find then no matching text."
+    },
+    {
+      "kind": "web_pdf_fetch_rejected",
+      "url": "https://archives.federalregister.gov/issue_slice/1946/4/16/4143-4145.pdf",
+      "detail": "Content length too large14841425."
+    },
+    {
+      "kind": "workspace_reset",
+      "detail": "Parent reported second reset erased reviewer folder and source checkout while working; exact lost bytes not recovered."
+    }
+  ],
+  "boundaries": [
+    "No status/census/codebook/hold/humanreview/claimfiling changes by reviewer.",
+    "No private folder files other than FROZEN_CARDS and its3specifiedcards accessed. No private reveal/controlseed read.",
+    "Model familyOpenAI; same family separate context from producer androot.",
+    "Parent process contamination now prevents using this reviewer as fresh blind final-control reviewer."
+  ]
+}

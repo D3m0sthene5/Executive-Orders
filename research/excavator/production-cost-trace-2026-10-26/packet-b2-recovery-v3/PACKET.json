@@ -1,0 +1,2454 @@
+{
+  "agent": "codex-production-cost-trace",
+  "assembler_code_sha256": "2dadcf1fe62f1e5b8b50274e4e8b5a63b5af050b82fba3da7e5fd25b594ed5a4",
+  "codec_code_sha256": "d9d502940019c84951568a8fdb44e31180e79f524a62f28f9e816c96e3e48f7b",
+  "codec_issues": [
+    {
+      "kind": "held_source_not_loaded",
+      "path": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+      "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt'"
+    },
+    {
+      "kind": "text_not_compressed",
+      "path": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+      "reason": "source hash/span not exactly verified; original value retained"
+    },
+    {
+      "kind": "held_source_not_loaded",
+      "path": "jobs/fr-originals/output/texts/EO_8707.txt",
+      "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/fr-originals/output/texts/EO_8707.txt'"
+    },
+    {
+      "kind": "text_not_compressed",
+      "path": "jobs/fr-originals/output/texts/EO_8707.txt",
+      "reason": "source hash/span not exactly verified; original value retained"
+    },
+    {
+      "kind": "held_source_not_loaded",
+      "path": "jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt",
+      "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt'"
+    },
+    {
+      "kind": "text_not_compressed",
+      "path": "jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt",
+      "reason": "source hash/span not exactly verified; original value retained"
+    },
+    {
+      "kind": "text_not_compressed",
+      "path": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+      "reason": "source hash/span not exactly verified; original value retained"
+    }
+  ],
+  "dossiers": {
+    "EO:8705": {
+      "actor_contexts": {
+        "@eo:ref": "R3b419d03c656cd1327e56789"
+      },
+      "actor_provisions": [
+        "ACT:EO:8705>EO:9830"
+      ],
+      "chain": {
+        "confidence": "medium",
+        "events": [
+          {
+            "actor_id": "EO:9830",
+            "char_end": 90328,
+            "char_start": 90277,
+            "confidence": "agent_located_independently_upheld",
+            "how_named": "direct",
+            "id": "CHAIN:EO:8705#1",
+            "notes": "Change wording lead; chronology does not decide legal effect.",
+            "provision_text": "The following Executive orders are \nhereby revoked:",
+            "sections_touched": [
+              "whole"
+            ],
+            "signing_date": "1947-02-24",
+            "source": {
+              "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+            },
+            "verb": "revoke"
+          }
+        ],
+        "generic_refs_excluded": 234,
+        "id": "CHAIN:EO:8705",
+        "notes": {
+          "@eo:ref": "Re156921c71e03d12f624a4c4"
+        },
+        "target_id": "EO:8705"
+      },
+      "clauses": [
+        {
+          "@eo:ref": "Ra5ba0158e648b668a967f421"
+        },
+        {
+          "@eo:ref": "Rea3dbaa56b3b15b6d0f12797"
+        },
+        {
+          "@eo:ref": "R395f06fba93b9674d972b8a5"
+        }
+      ],
+      "conflicts": [],
+      "current_law_leads": [],
+      "draft_gate_errors": [
+        "clause_0_state",
+        "clause_1_state",
+        "whole_order_end_evidence",
+        "savings_residuals_evidence",
+        "bounded_later_search",
+        "unresolved_material_gaps",
+        "research_rationale"
+      ],
+      "draft_material_gaps": [
+        "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
+        "DRAFT: whole-order ending not established",
+        "DRAFT: savings and residual effects not closed",
+        {
+          "@eo:ref": "R409fe5ca1e25dfd82e16818c"
+        }
+      ],
+      "evidence": {
+        "ACT:EO:8705>EO:9830": {
+          "actor_id": "EO:9830",
+          "actor_source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "alternative_provisions": [],
+          "char_end": 90328,
+          "char_start": 90277,
+          "confidence": "agent_located_independently_upheld",
+          "earlier_cessation_obligation": {
+            "reason": "Located acting evidence does not establish first cessation; investigate earlier performance, sunsets, conditions and intervening law per clause.",
+            "state": "unresolved"
+          },
+          "effective_basis": "Express wording in the enacting clause: \"it is hereby ordered as follows, effective May 1, 1947:\" (span in effective_wording), which introduces Parts I, II and III alike; Part III (the revocation list) has no separate date. Signed \"February 24, 1947\" (signature block after the last Part III row); FR filed Feb. 24, 1947, published 12 FR 1259 of 1947-02-25. The OFR disposition note date 1947-02-24 is the signing date, not the effective date. Reading that the preamble date governs Part III is the natural one but the reviewer must accept or reject it.",
+          "effective_class": "stated_date",
+          "effective_date": "1947-05-01",
+          "effective_wording": [
+            {
+              "char_end": 2220,
+              "char_start": 2164,
+              "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+              "text": "it is hereby ordered as \nfollows, effective May 1, 1947:"
+            }
+          ],
+          "evidence_tier": "AI_reviewed_acting_provision",
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:8705>EO:9830",
+          "lifecycle_complete": false,
+          "names_target": true,
+          "notes": "EO 9830 Part III (OCR heading \"P art  H I\") is a single sentence \"The following Executive orders are hereby revoked:\" followed by a one-per-line list of 54 orders (52 numbered, 2 unnumbered), ending at the signature block; no savings, exception or 'nothing herein' wording found anywhere in the held text (searched nothing in/herein, shall not affect, heretofore, remain/continue in effect, saving, notwithstanding). The FR contents table on PDF page 2 also lists these numbers (\"Executive orders revoked\" finding aid); the naming span is taken from Part III itself, not the finding aid. Target row 'No. 8705 of March 6, 1941.': number matches; the date 'March 6, 1941' is the FR filing date, while the held original is signed 'March 5,1941' (White House date line; filed March 6, 1941). The reviewer must accept or reject the identity on number + subject (EO 9830 Part III revokes Civil Service Rules orders; EO 8705 amends Civil Service Rules I, XII and XV). Target text: jobs/fr-originals/data/full_run/texts/EO_8705.txt (6 FR 1313, PDF pages 1-1). DOSSIER NOTE: clause inventory labels '#1' (Rule I sec. 1) and '#5' (Rule XII sec. 5) and merges the Rule XV rewrite and the effective-as-of clause into '#5'; an inventory correction may be needed before any claim. EO 9830 Rule IV sec. 4.1 re-enacts similar political-activity wording (re-enactment under the new rules, not continuation). AI producer hypothesis; not a review, status or certification. Agent-located record (act_overrides); an independent AI review upheld it. Hypothesis only: not human certification and not a status.",
+          "override_id": "ACT:EO:8705>EO:9830@rastell",
+          "producer": "claude-r9830s2-producer",
+          "producer_d6": "Searched held FR texts (jobs/fr-originals full_run, EO_8706..EO_9829 files, whitespace-normalised regex) for the target number in any naming context and for later amendment of the specific rule/schedule paragraph the target set. Number hits: only EO 9354 (FR page numbers '8705' in a contents table, coincidental). No held instrument amends Rule I sec. 1, Rule XII sec. 5 or Rule XV between 1941-03-05 and 1947-05-01 (searched 'Rule I', 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no hits other than the target). Dossier chain empty; no own-term end (order is 'effective as of November 7, 1940', a retroactive start, no end term). UNHELD LEADS (not decided): (1) Veterans' Preference Act of June 27, 1944 (58 Stat. 387), sec. 12, statutory retention preference in reductions in force, may have overtaken the Rule XII sec. 5 text before EO 9830 (EO 9830 Part 20 replaces it with retention preference regulations); (2) EO 9063 (1942-02-16, held) authorises War Service Regulations binding on positions under the Act and Rules; it does not name or amend Rules I, XII or XV, and the Regulations themselves are not held. No earlier end found in held sources.",
+          "provenance": "agent_located",
+          "provision_label": "Part III (OCR heading 'P art  H I'), opening sentence before the list of revoked orders",
+          "provision_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+          "provision_text": "The following Executive orders are \nhereby revoked:",
+          "reaches_target_via": "",
+          "review": {
+            "d6_found": "No earlier end found in held sources. Disclosed UNHELD lead not ignored: Veterans' Preference Act of 1944 (58 Stat. 387) sec. 12 retention preference may have displaced the Rule XII sec. 5 text before 1947-05-01; statute text not held, so D6 for that clause is open. Conditional: also needs the dossier inventory correction (Rule XV rewrite and effective-as-of clause merged into '#5') before any claim.",
+            "d6_searched": "Searched every held FR text (jobs/fr-originals full_run) numbered after the target up to EO 9852 (inclusive of EO 9831-9852, i.e. through 1947-05-01, beyond the producer's EO 9829 bound) for the target number (word-bounded) and, whitespace-normalised, for amendments of the rule/schedule paragraph the target set; EO 9830 searched for savings. Number hits: EO 9354 only (coincidental). Subject: 'Rule I' section 1, 'Rule XII'/'Rule X II', 'Rule XV', 'military preference in appointment', 'Legal appointment necessary': no later held hits. Held target read: three rule texts plus 'This order shall be effective as of November 7, 1940' (retroactive start, no end term).",
+            "independent": true,
+            "review_kind": "AI review record (not eo-lifecycle-review/v1)",
+            "reviewer": "claude-r9830s2-reviewer (independent Opus, held sources, D6 step)",
+            "source_file": "research/excavator/rastell-2026-10-20/r9830/review/REVIEW.jsonl",
+            "verdict": "upheld"
+          },
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "1947-02-24",
+          "source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "target_id": "EO:8705",
+          "target_naming": {
+            "char_end": 91313,
+            "char_start": 91287,
+            "sha256": "eb9f057e96f7c4e047aa5d2069fa3fc44a7c073c3ec0f909876fb0107bfe1456",
+            "text": "No. 8705 of March 6, 1941."
+          },
+          "text": {
+            "@eo:span": [
+              "T0265ddf1e66412ea6d3f0e1b",
+              0,
+              51
+            ]
+          },
+          "verb": "revoke"
+        },
+        "ACT:EO:8705>EO:9830:effective#0": {
+          "actor_id": "EO:9830",
+          "char_end": 2220,
+          "char_start": 2164,
+          "id": "ACT:EO:8705>EO:9830:effective#0",
+          "sha256": "a4051244b16cfb37bbca39356d24db7169e59d927f30c4421e1f44a97db24b02",
+          "source": {
+            "@eo:source": "S08ebf2ad4e9036ab1f9417c5"
+          },
+          "text": {
+            "@eo:span": [
+              "Tf5d254c2eded124655075d16",
+              0,
+              56
+            ]
+          }
+        },
+        "CLAUSES:EO:8705#1": {
+          "@eo:ref": "Rea3dbaa56b3b15b6d0f12797"
+        },
+        "CLAUSES:EO:8705#5": {
+          "@eo:ref": "R395f06fba93b9674d972b8a5"
+        },
+        "CLAUSES:EO:8705#lead": {
+          "@eo:ref": "Ra5ba0158e648b668a967f421"
+        },
+        "ORIGINAL:EO:8705": {
+          "acceptable_as_original": true,
+          "actor_id": "EO:8705",
+          "char_end": 4427,
+          "char_start": 0,
+          "grade": "original_representation_unverified",
+          "id": "ORIGINAL:EO:8705",
+          "location_confidence": "high",
+          "requires_page_check": false,
+          "role": "original",
+          "signing_date": "1941-03-05",
+          "source": {
+            "@eo:source": "S19a35c69837bfe3824fe115b"
+          },
+          "text": {
+            "@eo:span": [
+              "T51ec825a509942a8c28056a1",
+              0,
+              4427
+            ]
+          }
+        },
+        "SUPPLEMENT:eo9830-effective": {
+          "@eo:ref": "R2ccb6ec7aa834da9aa27759d"
+        },
+        "SUPPLEMENT:eo9830-revocation": {
+          "@eo:ref": "R1247680a4d7dcc6ceadb2b24"
+        },
+        "SUPPLEMENT:prior-held-1": {
+          "@eo:ref": "R16fde6b7bf6bd2972b091da9"
+        },
+        "SUPPLEMENT:prior-held-2": {
+          "@eo:ref": "Rd2880aff8150bf8cddeee53a"
+        },
+        "SUPPLEMENT:prior-held-3": {
+          "@eo:ref": "R76f21a4037cacede29a72f89"
+        },
+        "SUPPLEMENT:prior-held-4": {
+          "@eo:ref": "R3cc1d1805f260c569216e43b"
+        },
+        "SUPPLEMENT:prior-held-5": {
+          "@eo:ref": "R37faffbd1e1c5283c1bddd66"
+        },
+        "SUPPLEMENT:prior-held-6": {
+          "@eo:ref": "Re1485fe9bc00fda969ae5dca"
+        },
+        "SUPPLEMENT:prior-held-7": {
+          "@eo:ref": "R5cc3d02ee47020daa45189db"
+        },
+        "SUPPLEMENT:prior-held-8": {
+          "@eo:ref": "R5ad84b1bc2cc1a49c566289a"
+        },
+        "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 14179,
+          "char_start": 13917,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T8b3437e483a8832d7ca55ec5",
+              0,
+              262
+            ]
+          }
+        },
+        "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 3462,
+          "char_start": 2906,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "condition",
+          "mechanism": "own_terms_condition",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#lead",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T40bb15fe5a02f1d850f9d544",
+              0,
+              556
+            ]
+          }
+        },
+        "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 7504,
+          "char_start": 6665,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T4ed3e8baa594404342b300e7",
+              0,
+              839
+            ]
+          }
+        },
+        "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 12497,
+          "char_start": 10921,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "condition",
+          "mechanism": "own_terms_condition",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T72334aa49142d5909bb69fff",
+              0,
+              1576
+            ]
+          }
+        },
+        "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 9843,
+          "char_start": 9403,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "condition",
+          "mechanism": "own_terms_condition",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T8950546b3e7c4d6e17048289",
+              0,
+              440
+            ]
+          }
+        },
+        "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 12897,
+          "char_start": 12498,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "condition",
+          "mechanism": "own_terms_condition",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "Tcb954071f728bde0857368e1",
+              0,
+              399
+            ]
+          }
+        },
+        "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 17633,
+          "char_start": 16192,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c-2",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T1ef65ad27627eaac1ce53c13",
+              0,
+              1441
+            ]
+          }
+        },
+        "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 2533,
+          "char_start": 2041,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#lead",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "Tb7caf3dfe34739257704a36f",
+              0,
+              492
+            ]
+          }
+        },
+        "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6": {
+          "actor_id": "EO:8705",
+          "char_end": 7504,
+          "char_start": 6665,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6",
+          "instrument_id": "EO:8705",
+          "kind": "emergency_duration",
+          "mechanism": "own_terms_emergency_duration",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8705#c",
+          "source": {
+            "@eo:source": "Sb57a33bcc8e7a9a013af7065"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": {
+            "@eo:span": [
+              "T4ed3e8baa594404342b300e7",
+              0,
+              839
+            ]
+          }
+        }
+      },
+      "fingerprint": "b75719b7d0be83d639ca3ea8f7eed98a7785c59d7dc448ec1d1a2a2514775c32",
+      "instrument_id": "EO:8705",
+      "legal_cutoff": "2026-10-14",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "ddff30cd8bba1a23fb38164556015e677bc188cc27d784831e86953506ed9541",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [
+            "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+            "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6"
+          ],
+          "questions": [
+            {
+              "@eo:ref": "R15292d6d3c2a6eda9a27d6bc"
+            },
+            {
+              "@eo:ref": "R139738a48011e493181ead12"
+            },
+            {
+              "@eo:ref": "R6b7277ff8ce08ab5730ead16"
+            }
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#lead",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "condition",
+            "fixed_term"
+          ]
+        },
+        {
+          "clause_sha256": "1c2f3db623c67625ed2eca93c235b4e38d0c51346c6f794ae73c72a54173b43b",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            {
+              "@eo:ref": "R15292d6d3c2a6eda9a27d6bc"
+            },
+            {
+              "@eo:ref": "R139738a48011e493181ead12"
+            }
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#1",
+          "state": "requires_clause_specific_research",
+          "wording_features": []
+        },
+        {
+          "clause_sha256": "e973d1ce06932f5cde244e60888cd80116f3a2ea1b7ceb20b73b67c57031e3e5",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            {
+              "@eo:ref": "R15292d6d3c2a6eda9a27d6bc"
+            },
+            {
+              "@eo:ref": "R139738a48011e493181ead12"
+            },
+            {
+              "@eo:ref": "R53c48a93accbf3ae86c45b7d"
+            }
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#5",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "deadline"
+          ]
+        }
+      ],
+      "machine_searches": {
+        "@eo:ref": "R7373610d76805cf2b952ca21"
+      },
+      "missing": [
+        "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings."
+      ],
+      "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
+      "original_source_id": "ORIGINAL:EO:8705",
+      "own_terms": [
+        "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+        "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+        "TERM:EO:8705:2ffa6a233544ad6b@02bf7f0aea9c91b6",
+        "TERM:EO:8705:d85979652c4d9815@02bf7f0aea9c91b6",
+        "TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+        "TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+        "TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+        "TERM:EO:8705:13a69351ee1929b0@02bf7f0aea9c91b6",
+        "TERM:EO:8705:c3dcc934d742645b@02bf7f0aea9c91b6"
+      ],
+      "schema": "eo-claim-kit-dossier/v1",
+      "source_supplement": {
+        "added_evidence_ids": {
+          "@eo:ref": "Ref32b085f265845cda07998b"
+        },
+        "declarations": {
+          "@eo:ref": "R3c0a00b3e7380f531eea45a3"
+        },
+        "parent_dossier_sha256": "81589a07fd5808f26c73e5833b8b0ec41be2364f28a99f2e6cc3d59461753b83",
+        "parent_packet": {
+          "@eo:ref": "Rda809a295621bd578f39aa71"
+        },
+        "preparation_code": {
+          "@eo:ref": "R111ae1d617d443e30653da9b"
+        },
+        "schema": "eo-source-excerpt-preparation/v1",
+        "scope": "Preparation only; all inherited dossier fields unchanged; no legal or source-grade approval."
+      },
+      "status_history": {
+        "event_count": 1,
+        "fingerprint": "c698a7a2a963c40ea047b9add5d835a906c9281148b8508e468286eca58cadad",
+        "flags": [],
+        "history_path": "jobs/status-history/output/histories/EO_8705.json",
+        "history_sha256": "d2691d96d6429decd36b9adf730c2cdf4623fb6f49ab0e822eec2b8655292131",
+        "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
+        "legal_cutoff": "2026-10-14",
+        "machine_lead": true,
+        "notice": {
+          "@eo:ref": "R78ee0fb99e37fb8b840d4cbe"
+        },
+        "observation_count": 2
+      },
+      "whole_order_status": "no"
+    },
+    "EO:8707": {
+      "actor_contexts": {
+        "@eo:ref": "R3b419d03c656cd1327e56789"
+      },
+      "actor_provisions": [],
+      "chain": {
+        "confidence": "medium",
+        "events": [],
+        "generic_refs_excluded": 234,
+        "id": "CHAIN:EO:8707",
+        "notes": {
+          "@eo:ref": "Re156921c71e03d12f624a4c4"
+        },
+        "target_id": "EO:8707"
+      },
+      "clauses": [
+        {
+          "@eo:ref": "Ra2c2c4c232e12c564c706729"
+        }
+      ],
+      "conflicts": [],
+      "current_law_leads": [],
+      "draft_gate_errors": [
+        "clause_0_state",
+        "whole_order_end_evidence",
+        "savings_residuals_evidence",
+        "bounded_later_search",
+        "unresolved_material_gaps",
+        "research_rationale"
+      ],
+      "draft_material_gaps": [
+        "DRAFT: state_at_cutoff not decided for 1 clause(s); clause inventory completeness not confirmed",
+        "DRAFT: whole-order ending not established",
+        "DRAFT: savings and residual effects not closed",
+        {
+          "@eo:ref": "R409fe5ca1e25dfd82e16818c"
+        }
+      ],
+      "evidence": {
+        "CLAUSES:EO:8707#whole": {
+          "@eo:ref": "Ra2c2c4c232e12c564c706729"
+        },
+        "ORIGINAL:EO:8707": {
+          "acceptable_as_original": true,
+          "actor_id": "EO:8707",
+          "char_end": 5351,
+          "char_start": 0,
+          "grade": "original_representation_unverified",
+          "id": "ORIGINAL:EO:8707",
+          "location_confidence": "high",
+          "requires_page_check": false,
+          "role": "original",
+          "signing_date": "1941-03-10",
+          "source": {
+            "@eo:source": "S67d200ea8354d5ce1ca35551"
+          },
+          "text": {
+            "@eo:span": [
+              "T61826d1260242bf354b7b34c",
+              0,
+              5351
+            ]
+          }
+        },
+        "SUPPLEMENT:eo9830-effective": {
+          "@eo:ref": "R2ccb6ec7aa834da9aa27759d"
+        },
+        "SUPPLEMENT:eo9830-revocation": {
+          "@eo:ref": "R1247680a4d7dcc6ceadb2b24"
+        },
+        "SUPPLEMENT:prior-held-1": {
+          "@eo:ref": "R16fde6b7bf6bd2972b091da9"
+        },
+        "SUPPLEMENT:prior-held-2": {
+          "@eo:ref": "Rd2880aff8150bf8cddeee53a"
+        },
+        "SUPPLEMENT:prior-held-3": {
+          "@eo:ref": "R76f21a4037cacede29a72f89"
+        },
+        "SUPPLEMENT:prior-held-4": {
+          "@eo:ref": "R3cc1d1805f260c569216e43b"
+        },
+        "SUPPLEMENT:prior-held-5": {
+          "@eo:ref": "R37faffbd1e1c5283c1bddd66"
+        },
+        "SUPPLEMENT:prior-held-6": {
+          "@eo:ref": "Re1485fe9bc00fda969ae5dca"
+        },
+        "SUPPLEMENT:prior-held-7": {
+          "@eo:ref": "R5cc3d02ee47020daa45189db"
+        },
+        "SUPPLEMENT:prior-held-8": {
+          "@eo:ref": "R5ad84b1bc2cc1a49c566289a"
+        },
+        "TERM:EO:8707:7e1f36b4d6f976b4@cbc460e8d7066dcb": {
+          "actor_id": "EO:8707",
+          "char_end": 1332,
+          "char_start": 923,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8707:7e1f36b4d6f976b4@cbc460e8d7066dcb",
+          "instrument_id": "EO:8707",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8707#whole",
+          "source": {
+            "@eo:source": "S16b402706fac59eac9f3dc70"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": "\"(a) Absolute appointment—Such person must have received absolute appointment, except that a probationer who has completed at least six months of satisfactory service in a position having a probationary period in excess of six months may be transferred to any part of the service: Provided, that transfer to another position having a probationary period in excess of six months will be to complete probation.\""
+        },
+        "TERM:EO:8707:9e4598cddea047d8@ccaf663f3459c735": {
+          "actor_id": "EO:8707",
+          "char_end": 2075,
+          "char_start": 681,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8707:9e4598cddea047d8@ccaf663f3459c735",
+          "instrument_id": "EO:8707",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8707#whole",
+          "source": {
+            "@eo:source": "S2022a867df330437b6ef1c03"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": "By virtue of the authority vested in  \nme by section 2 of the Civil Service Act  \n(22 Stat. 403, j!04), and by section 1753  \nof the Revised Statutes of the United  \nStates (U.S.C., title 5, sec. 631), the Civil  \nService Rules are hereby amended as  \nfollows:\nSection 2 of Civil Service Rule IX, gov­\nerning reinstatement, is amended by  \nadding thereto the following subdivision:\n“(c) If separated without prejudice  \neither voluntarily or involuntarily after  \nat least six months of satisfactory service  \nin a position having a probationary pe­\nriod in excess of six months, he may be  \nreinstated in any part of the service in  \nany position for which he is qualified or  \ncan qualify through non-competitive ex­\namination: Provided,  that reinstatement  \nto a position having a probationary pe­\nriod in excess of six months will be to  \ncomplete probation.”\nSubdivision (a) of section 6 of Civil  \nService Rule X, governing transfer, is  \namended to read:\n“(a) Absolute appointment —Such per­\nson must have received absolute appoint­\nment, except that a probationer who has  \ncompleted at least six months of satis­\nfactory service in a position having a  \nprobationary period in excess of six  \nmonths may be transferred to any part  \nof the service: Provided,  that transfer  \nto another position having a probation­\nary period in excess of six months will  \nbe to complete probation.”"
+        },
+        "TERM:EO:8707:b62838e9594cc37c@33616acfba2ec8e1": {
+          "actor_id": "EO:8707",
+          "char_end": 1419,
+          "char_start": 74,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8707:b62838e9594cc37c@33616acfba2ec8e1",
+          "instrument_id": "EO:8707",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8707#whole",
+          "source": {
+            "@eo:source": "S66af1a3eafe4ff6ddb445709"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": "By virtue of the authority vested in\nme by section 2 of the Civil Service Act\n(22 Stat. 403, j!04), and by section 1753\nof the Revised Statutes of the United\nStates (U.S.C., title 5, sec. 631), the Civil\nService Rules are hereby amended as\nfollows:\nSection 2 of Civil Service Rule IX, gov­\nerning reinstatement, is amended by\nadding thereto the following subdivision:\n“(c) If separated without prejudice\neither voluntarily or involuntarily after\nat least six months of satisfactory service\nin a position having a probationary pe­\nriod in excess of six months, he may be\nreinstated in any part of the service in\nany position for which he is qualified or\ncan qualify through non-competitive ex­\namination: Provided, that reinstatement\nto a position having a probationary pe­\nriod in excess of six months will be to\ncomplete probation.”\nSubdivision (a) of section 6 of Civil\nService Rule X, governing transfer, is\namended to read:\n“(a) Absolute appointment—Such per­\nson must have received absolute appoint­\nment, except that a probationer who has\ncompleted at least six months of satis­\nfactory service in a position having a\nprobationary period in excess of six\nmonths may be transferred to any part\nof the service: Provided, that transfer\nto another position having a probation­\nary period in excess of six months will\nbe to complete probation.”"
+        },
+        "TERM:EO:8707:f7ecace20f8e2414@cbc460e8d7066dcb": {
+          "actor_id": "EO:8707",
+          "char_end": 826,
+          "char_start": 367,
+          "computed_end_candidate": null,
+          "confidence": "medium",
+          "effective_date": null,
+          "id": "TERM:EO:8707:f7ecace20f8e2414@cbc460e8d7066dcb",
+          "instrument_id": "EO:8707",
+          "kind": "fixed_term",
+          "mechanism": "own_terms_fixed_term",
+          "note": {
+            "@eo:ref": "Rdbfd3551c41f4db44d2c11e5"
+          },
+          "notes": "Machine wording lead; no cessation or occurrence inferred.",
+          "scope_id": "EO:8707#whole",
+          "source": {
+            "@eo:source": "S16b402706fac59eac9f3dc70"
+          },
+          "start_date": null,
+          "stated_end_date": null,
+          "text": "\"(c) If separated without prejudice either voluntarily or involuntarily after at least six months of satisfactory service in a position having a probationary period in excess of six months, he may be reinstated in any part of the service in any position for which he is qualified or can qualify through non-competitive examination: Provided, that reinstatement to a position having a probationary period in excess of six months will be to complete probation.\""
+        }
+      },
+      "fingerprint": "fa0600ffa405fd0c55737ef8d02615f2319af0cde18b14546063e4a36ac4089e",
+      "instrument_id": "EO:8707",
+      "legal_cutoff": "2026-10-14",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "8da572b0d6ec6c8308dd65c6bc3093d740fbec4e0de80073ad6ab2b0d962cf91",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8707",
+          "later_actor_evidence_ids": [],
+          "own_term_evidence_ids": {
+            "@eo:ref": "R38ad654378ecb6ac096e3012"
+          },
+          "questions": [
+            {
+              "@eo:ref": "R15292d6d3c2a6eda9a27d6bc"
+            },
+            {
+              "@eo:ref": "R53c48a93accbf3ae86c45b7d"
+            },
+            {
+              "@eo:ref": "R6b7277ff8ce08ab5730ead16"
+            }
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8707#whole",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "actual_performance_lead",
+            "fixed_term"
+          ]
+        }
+      ],
+      "machine_searches": {
+        "@eo:ref": "R7373610d76805cf2b952ca21"
+      },
+      "missing": [
+        "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
+        "target provision not located: EO:9830"
+      ],
+      "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
+      "original_source_id": "ORIGINAL:EO:8707",
+      "own_terms": {
+        "@eo:ref": "R38ad654378ecb6ac096e3012"
+      },
+      "schema": "eo-claim-kit-dossier/v1",
+      "source_supplement": {
+        "added_evidence_ids": {
+          "@eo:ref": "Ref32b085f265845cda07998b"
+        },
+        "declarations": {
+          "@eo:ref": "R3c0a00b3e7380f531eea45a3"
+        },
+        "parent_dossier_sha256": "32766764cc76be4874ab5fe1419639e9ae530dd3954ea34a5399b07e1e8238c4",
+        "parent_packet": {
+          "@eo:ref": "Rda809a295621bd578f39aa71"
+        },
+        "preparation_code": {
+          "@eo:ref": "R111ae1d617d443e30653da9b"
+        },
+        "schema": "eo-source-excerpt-preparation/v1",
+        "scope": "Preparation only; all inherited dossier fields unchanged; no legal or source-grade approval."
+      },
+      "status_history": {
+        "event_count": 1,
+        "fingerprint": "eb260c81c1e577c1b515280bedc0ef8ac80f48dc3188735e7808620318db8f5f",
+        "flags": [],
+        "history_path": "jobs/status-history/output/histories/EO_8707.json",
+        "history_sha256": "446660e1e69f1d3e84f632a93dfe9f8b15c9871964fd0e15361a7cd3e0d009d0",
+        "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
+        "legal_cutoff": "2026-10-14",
+        "machine_lead": true,
+        "notice": {
+          "@eo:ref": "R78ee0fb99e37fb8b840d4cbe"
+        },
+        "observation_count": 2
+      },
+      "whole_order_status": "no"
+    }
+  },
+  "families": [
+    {
+      "family_id": "FAMILY:a7feaa144906b667f83e97de",
+      "members": [
+        {
+          "evidence_id": "ACT:EO:8705>EO:9830",
+          "instrument_id": "EO:8705",
+          "shared_evidence": {
+            "actor_id": "EO:9830",
+            "exception_terms": [],
+            "operative_pattern_sha256": "100fadfabf50f532f7666234f8c1f909e0296df6310f197823a660042853fcc2",
+            "reaches_target_via": "",
+            "scope": "whole",
+            "source_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+            "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+          }
+        }
+      ],
+      "notice": "Shared evidence only. Every target requires its own earlier-end/scope/independent-command/savings checks.",
+      "orders": 1
+    }
+  ],
+  "fingerprint": "4b8b8e398edaf92f9865ab3294cd70e41f3010e0ebcc765db9c8158ef92f9f4b",
+  "held_text_file_pins": {
+    "jobs/astra-source-retention/output/pages/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4/89b824ffa7e785b94871a9623103a0af1fa1b5c5db5c507b4d5ca6034fe64792/page-1.txt": "b1bd167ad1e9a335ad778ed20a96396cbc706c9b5bf74a0b0ddf85d8da67b640",
+    "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-10.txt": "21421f83faec2fcdad17c9c24d74ffbd5b32615ad7468ddbcac2bdc6740cef1c",
+    "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-11.txt": "f3b3816e2fc5e14dfe4b8092720600a5abdf90d5b1470018858b91e367651a8d",
+    "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-4.txt": "6510cb283725be2d00bf994a6ab628a2e722fd02d54fb8849e16bbbf9ee81d8f",
+    "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-7.txt": "b1c062bc4ad287f30481b137fffcf8adcb5f44c93d44e8f393c86a37decc0516",
+    "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-9.txt": "4d7f850ac1852cc1e1c8f053eae4544fc9ca5e35775829668990818458137f56",
+    "jobs/fr-originals/data/full_run/texts/EO_8514.txt": "73a578c61d75454fdd548a50b3c79e348bb237d68dabbd19aa0ddd5ca432522b",
+    "jobs/fr-originals/data/full_run/texts/EO_8705.txt": "6367de4f49fd8b729693179adc08831dea00ccbdba741771878ecdd8de5c6e20",
+    "jobs/fr-originals/data/full_run/texts/EO_8707.txt": "ccaf663f3459c735214991ec58f782e223373e46574f53af3a8320bebe707b20",
+    "jobs/fr-originals/data/full_run/texts/EO_9691.txt": "7de4a5554a608c60c23b48e6a59dd67e00469342eef5dc10f92de054a9f9faa0",
+    "jobs/fr-originals/data/full_run/texts/EO_9830.txt": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+    "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+  },
+  "input_pins": {
+    "EO:8705": {
+      "file_sha256": "98399fef1f03d11d776479ef3a6026aa09f27e899bb30d2a861f2024f7e46c91",
+      "fingerprint": "b75719b7d0be83d639ca3ea8f7eed98a7785c59d7dc448ec1d1a2a2514775c32",
+      "path": "research/excavator/production-cost-trace-2026-10-26/packet-b2-recovery-v3-source-dossiers/EO_8705.json"
+    },
+    "EO:8707": {
+      "file_sha256": "d5b42233510e1a914d7e347ee4d8a3d6da5b4bf3e9362b0c82edb0568ea33858",
+      "fingerprint": "fa0600ffa405fd0c55737ef8d02615f2319af0cde18b14546063e4a36ac4089e",
+      "path": "research/excavator/production-cost-trace-2026-10-26/packet-b2-recovery-v3-source-dossiers/EO_8707.json"
+    }
+  },
+  "legal_cutoff": "2026-10-14",
+  "ownership": {
+    "EO:8705": {
+      "route": "new_producer_proposal"
+    },
+    "EO:8707": {
+      "route": "new_producer_proposal"
+    }
+  },
+  "policy_code_sha256": {
+    "jobs/claim-kit/factual_events.py": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659",
+    "jobs/claim-kit/lifecycle_obligations.py": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
+    "jobs/claim-kit/prior_research.py": "db4ec6170f21b4a361945326bec52c6877ea8b1c010a6c9c35491a790329024b",
+    "jobs/claim-kit/status_overlay.py": "d8ab921fe43f7646ccf80f9f4044a5e63e7caf183106ad6f92a6779ff6dd1c7a",
+    "jobs/claim-kit/working_text.py": "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9",
+    "jobs/norton/model.py": "abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12"
+  },
+  "preflight": {
+    "EO:8705": {
+      "custody_validation": "required_from_actual_claim_checker",
+      "decisions_still_required": [
+        "complete original/inventory",
+        "earlier ending",
+        "partial scope and effective date",
+        "independent commands",
+        "savings/residuals",
+        "contrary evidence and cutoff predicate"
+      ],
+      "evidence_preflight": "blocked_or_research",
+      "held_text_receipts": {
+        "jobs/astra-source-retention/output/pages/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4/89b824ffa7e785b94871a9623103a0af1fa1b5c5db5c507b4d5ca6034fe64792/page-1.txt": {
+          "characters": 5149,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4",
+          "text_sha256": "b1bd167ad1e9a335ad778ed20a96396cbc706c9b5bf74a0b0ddf85d8da67b640"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-10.txt": {
+          "characters": 9374,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "21421f83faec2fcdad17c9c24d74ffbd5b32615ad7468ddbcac2bdc6740cef1c"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-11.txt": {
+          "characters": 9547,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "f3b3816e2fc5e14dfe4b8092720600a5abdf90d5b1470018858b91e367651a8d"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-4.txt": {
+          "characters": 9004,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "6510cb283725be2d00bf994a6ab628a2e722fd02d54fb8849e16bbbf9ee81d8f"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-7.txt": {
+          "characters": 9538,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "b1c062bc4ad287f30481b137fffcf8adcb5f44c93d44e8f393c86a37decc0516"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-9.txt": {
+          "characters": 9273,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "4d7f850ac1852cc1e1c8f053eae4544fc9ca5e35775829668990818458137f56"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_8514.txt": {
+          "characters": 5202,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "d18dc8f5621fe056733f17fe0b17e7a1513aac9ba46988826a046b51a06289ae",
+          "text_sha256": "73a578c61d75454fdd548a50b3c79e348bb237d68dabbd19aa0ddd5ca432522b"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_8705.txt": {
+          "characters": 4427,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "80ecf23fb79a14cdea416488d2f7b5ec8c51e6a22c356e83881ddd65814e1105",
+          "text_sha256": "6367de4f49fd8b729693179adc08831dea00ccbdba741771878ecdd8de5c6e20"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_9691.txt": {
+          "characters": 22537,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "66eea8c88ed91c1f37339b7146ce206d51700776d7f96b2e3997f003698936bc",
+          "text_sha256": "7de4a5554a608c60c23b48e6a59dd67e00469342eef5dc10f92de054a9f9faa0"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt": {
+          "characters": 92143,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+        },
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt": {
+          "characters": 21785,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+          "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+        }
+      },
+      "instrument_id": "EO:8705",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "ddff30cd8bba1a23fb38164556015e677bc188cc27d784831e86953506ed9541",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [
+            "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+            "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6"
+          ],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+            "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#lead",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "condition",
+            "fixed_term"
+          ]
+        },
+        {
+          "clause_sha256": "1c2f3db623c67625ed2eca93c235b4e38d0c51346c6f794ae73c72a54173b43b",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#1",
+          "state": "requires_clause_specific_research",
+          "wording_features": []
+        },
+        {
+          "clause_sha256": "e973d1ce06932f5cde244e60888cd80116f3a2ea1b7ceb20b73b67c57031e3e5",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8705",
+          "later_actor_evidence_ids": [
+            "ACT:EO:8705>EO:9830"
+          ],
+          "own_term_evidence_ids": [],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+            "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8705#5",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "deadline"
+          ]
+        }
+      ],
+      "mechanical_tasks": [
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:8705",
+          "kind": "load_actor_overflow",
+          "reason": "Read full overflow before scope/savings decision",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:55083671c28924b6a6474bda"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:8705",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:8705:TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+          "task_id": "TASK:6f02dd408da26b74ce963514"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:8705",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:8705:TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+          "task_id": "TASK:98f84e840c065a5e111887ad"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:8705",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:8705:TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+          "task_id": "TASK:843a0668272618cfef0a58c3"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:8705",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:8705:TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+          "task_id": "TASK:bcc71e46905a6b5c30bb28b4"
+        }
+      ],
+      "notice": "No known gap is not a legal-readiness finding. Review may expose new facts."
+    },
+    "EO:8707": {
+      "custody_validation": "required_from_actual_claim_checker",
+      "decisions_still_required": [
+        "complete original/inventory",
+        "earlier ending",
+        "partial scope and effective date",
+        "independent commands",
+        "savings/residuals",
+        "contrary evidence and cutoff predicate"
+      ],
+      "evidence_preflight": "blocked_or_research",
+      "held_text_receipts": {
+        "jobs/astra-source-retention/output/pages/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4/89b824ffa7e785b94871a9623103a0af1fa1b5c5db5c507b4d5ca6034fe64792/page-1.txt": {
+          "characters": 5149,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4",
+          "text_sha256": "b1bd167ad1e9a335ad778ed20a96396cbc706c9b5bf74a0b0ddf85d8da67b640"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-10.txt": {
+          "characters": 9374,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "21421f83faec2fcdad17c9c24d74ffbd5b32615ad7468ddbcac2bdc6740cef1c"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-11.txt": {
+          "characters": 9547,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "f3b3816e2fc5e14dfe4b8092720600a5abdf90d5b1470018858b91e367651a8d"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-4.txt": {
+          "characters": 9004,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "6510cb283725be2d00bf994a6ab628a2e722fd02d54fb8849e16bbbf9ee81d8f"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-7.txt": {
+          "characters": 9538,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "b1c062bc4ad287f30481b137fffcf8adcb5f44c93d44e8f393c86a37decc0516"
+        },
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-9.txt": {
+          "characters": 9273,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+          "text_sha256": "4d7f850ac1852cc1e1c8f053eae4544fc9ca5e35775829668990818458137f56"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_8514.txt": {
+          "characters": 5202,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "d18dc8f5621fe056733f17fe0b17e7a1513aac9ba46988826a046b51a06289ae",
+          "text_sha256": "73a578c61d75454fdd548a50b3c79e348bb237d68dabbd19aa0ddd5ca432522b"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_8707.txt": {
+          "characters": 5351,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "1857bded8258fdadb06b460c491f3d2624b0a1e858c65e8ff496a2f3ec0ea816",
+          "text_sha256": "ccaf663f3459c735214991ec58f782e223373e46574f53af3a8320bebe707b20"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_9691.txt": {
+          "characters": 22537,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "66eea8c88ed91c1f37339b7146ce206d51700776d7f96b2e3997f003698936bc",
+          "text_sha256": "7de4a5554a608c60c23b48e6a59dd67e00469342eef5dc10f92de054a9f9faa0"
+        },
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt": {
+          "characters": 92143,
+          "raw_custody": "requires_actual_claim_checker",
+          "source_sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+          "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+        }
+      },
+      "instrument_id": "EO:8707",
+      "lifecycle_obligations": [
+        {
+          "clause_sha256": "8da572b0d6ec6c8308dd65c6bc3093d740fbec4e0de80073ad6ab2b0d962cf91",
+          "established_ending": null,
+          "human_certified": false,
+          "instrument_id": "EO:8707",
+          "later_actor_evidence_ids": [],
+          "own_term_evidence_ids": [
+            "TERM:EO:8707:9e4598cddea047d8@ccaf663f3459c735",
+            "TERM:EO:8707:b62838e9594cc37c@33616acfba2ec8e1",
+            "TERM:EO:8707:f7ecace20f8e2414@cbc460e8d7066dcb",
+            "TERM:EO:8707:7e1f36b4d6f976b4@cbc460e8d7066dcb"
+          ],
+          "questions": [
+            "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+            "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+            "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+          ],
+          "schema": "eo-lifecycle-obligation/v1",
+          "scope_id": "EO:8707#whole",
+          "state": "requires_clause_specific_research",
+          "wording_features": [
+            "actual_performance_lead",
+            "fixed_term"
+          ]
+        }
+      ],
+      "mechanical_tasks": [
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:8707",
+          "kind": "load_actor_overflow",
+          "reason": "Read full overflow before scope/savings decision",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:55083671c28924b6a6474bda"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:8707",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:9830",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:5834506f3b22608fbc68e3b0"
+        },
+        {
+          "availability": "absent_or_unreadable",
+          "instrument_id": "EO:8707",
+          "kind": "held_text_unavailable",
+          "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt'",
+          "shared_key": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+          "task_id": "TASK:a0942dcb2e99192576d344e3"
+        },
+        {
+          "availability": "absent_or_unreadable",
+          "instrument_id": "EO:8707",
+          "kind": "held_text_unavailable",
+          "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/fr-originals/output/texts/EO_8707.txt'",
+          "shared_key": "jobs/fr-originals/output/texts/EO_8707.txt",
+          "task_id": "TASK:e939c824a2239644ccd5d121"
+        },
+        {
+          "availability": "absent_or_unreadable",
+          "instrument_id": "EO:8707",
+          "kind": "held_text_unavailable",
+          "reason": "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt'",
+          "shared_key": "jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt",
+          "task_id": "TASK:c90009dbdea8ad1f208e7acf"
+        },
+        {
+          "availability": "neighboring_documents_require_page_review",
+          "heading_offsets": [
+            591,
+            2209
+          ],
+          "instrument_id": "EO:8707",
+          "kind": "original_boundary",
+          "reason": "Multiple unnumbered Executive Order headings occur on the held pages. Metadata identity does not establish which document supplies the inventory.",
+          "shared_key": "ORIGINAL:EO:8707",
+          "task_id": "TASK:d469671d4d203a8e1dd32ef6"
+        }
+      ],
+      "notice": "No known gap is not a legal-readiness finding. Review may expose new facts."
+    }
+  },
+  "preflight_code_sha256": "0698661c59f5384fae99dac7586bbbc572793283abac5803f12482f4ae546242",
+  "preflight_dependency_sha256": {
+    "excavate.py": "4e887723d8908352349705bfa97549d93b692cf5a171de925672d18370ac028b"
+  },
+  "prior_research": {
+    "automatic_approvals": 0,
+    "current_rulings": [
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md",
+        "sha256": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-proquest-request.md",
+        "sha256": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-report-deadline.md",
+        "sha256": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md",
+        "sha256": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+        "sha256": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+        "sha256": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md",
+        "sha256": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md",
+        "sha256": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc",
+        "state": "unqualified"
+      }
+    ],
+    "discovery_issues": [],
+    "discovery_scope": "Current materialized research files; unmaterialized work is not inferred absent. No Git history read.",
+    "excluded_control_records": [],
+    "input_file_pins": {
+      "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+      "research/readiness/owner_rulings/2026-10-21-proquest-request.md": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+      "research/readiness/owner_rulings/2026-10-21-report-deadline.md": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+      "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+      "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+      "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+      "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+      "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc"
+    },
+    "notice": "Prior producer/reviewer assertions, not new findings or automatic approval. Reuse only after checking the exact version, source, proposition and scope. Rejected versions and contradictory assertions remain visible; whole-case review is still required.",
+    "orders": {
+      "EO:8705": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "b75719b7d0be83d639ca3ea8f7eed98a7785c59d7dc448ec1d1a2a2514775c32",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "ddff30cd8bba1a23fb38164556015e677bc188cc27d784831e86953506ed9541",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [
+                "ACT:EO:8705>EO:9830"
+              ],
+              "own_term_evidence_ids": [
+                "TERM:EO:8705:d276a13532c2a4df@02bf7f0aea9c91b6",
+                "TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:8705#lead",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "1c2f3db623c67625ed2eca93c235b4e38d0c51346c6f794ae73c72a54173b43b",
+              "dossier_pointer": "/lifecycle_obligations/1",
+              "later_actor_evidence_ids": [
+                "ACT:EO:8705>EO:9830"
+              ],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+              ],
+              "scope_id": "EO:8705#1",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "e973d1ce06932f5cde244e60888cd80116f3a2ea1b7ceb20b73b67c57031e3e5",
+              "dossier_pointer": "/lifecycle_obligations/2",
+              "later_actor_evidence_ids": [
+                "ACT:EO:8705>EO:9830"
+              ],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+                "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+              ],
+              "scope_id": "EO:8705#5",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:8707": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "fa0600ffa405fd0c55737ef8d02615f2319af0cde18b14546063e4a36ac4089e",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "8da572b0d6ec6c8308dd65c6bc3093d740fbec4e0de80073ad6ab2b0d962cf91",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:8707:9e4598cddea047d8@ccaf663f3459c735",
+                "TERM:EO:8707:b62838e9594cc37c@33616acfba2ec8e1",
+                "TERM:EO:8707:f7ecace20f8e2414@cbc460e8d7066dcb",
+                "TERM:EO:8707:7e1f36b4d6f976b4@cbc460e8d7066dcb"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:8707#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      }
+    },
+    "schema": "eo-claim-kit-prior-research/v1",
+    "whole_case_review_required": true
+  },
+  "schema": "eo-claim-kit-work-package/v1",
+  "shared_objects": {
+    "R0cf8c6ebe2cc6b2d58a1ad76": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "R1062272f6bc36741b76f4745": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "R111ae1d617d443e30653da9b": {
+      "path": "jobs/claim-kit/source_supplement.py",
+      "sha256": "4f50c6418a67c68b0edef34e6d87bf5763f479e23e2563cda4b1b41dc62368af"
+    },
+    "R112f081eb713ec4b7cbb2fac": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+    "R1247680a4d7dcc6ceadb2b24": {
+      "actor_id": "EO:9830",
+      "char_end": 91342,
+      "char_start": 90277,
+      "id": "SUPPLEMENT:eo9830-revocation",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": "Producer must independently establish named scope and operative date from complete order.",
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "Sde4b3b5543f57a236e9e4444"
+      },
+      "text": {
+        "@eo:span": [
+          "T0265ddf1e66412ea6d3f0e1b",
+          0,
+          1065
+        ]
+      }
+    },
+    "R139738a48011e493181ead12": "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end.",
+    "R15292d6d3c2a6eda9a27d6bc": "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+    "R16fde6b7bf6bd2972b091da9": {
+      "actor_id": "EO:8514",
+      "char_end": 1302,
+      "char_start": 597,
+      "id": "SUPPLEMENT:prior-held-1",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S7220a25cd8b4a3c71f133d71"
+      },
+      "text": {
+        "@eo:span": [
+          "Tcf7145c30a839a2adbbb3914",
+          0,
+          705
+        ]
+      }
+    },
+    "R2ccb6ec7aa834da9aa27759d": {
+      "actor_id": "EO:9830",
+      "char_end": 2220,
+      "char_start": 2164,
+      "id": "SUPPLEMENT:eo9830-effective",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": "Producer must independently establish named scope and operative date from complete order.",
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S693b17b39612b723fec0b246"
+      },
+      "text": {
+        "@eo:span": [
+          "Tf5d254c2eded124655075d16",
+          0,
+          56
+        ]
+      }
+    },
+    "R37faffbd1e1c5283c1bddd66": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 9273,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-5",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "Sc4a51485deb12426f2aa2490"
+      },
+      "text": {
+        "@eo:span": [
+          "T8d4f4836e07e04ad728da1bd",
+          0,
+          9273
+        ]
+      }
+    },
+    "R38ad654378ecb6ac096e3012": [
+      "TERM:EO:8707:9e4598cddea047d8@ccaf663f3459c735",
+      "TERM:EO:8707:b62838e9594cc37c@33616acfba2ec8e1",
+      "TERM:EO:8707:f7ecace20f8e2414@cbc460e8d7066dcb",
+      "TERM:EO:8707:7e1f36b4d6f976b4@cbc460e8d7066dcb"
+    ],
+    "R395f06fba93b9674d972b8a5": {
+      "char_end": 3331,
+      "char_start": 1502,
+      "id": "CLAUSES:EO:8705#5",
+      "kind": "item",
+      "label": "5.",
+      "pdf_page": 1,
+      "scope_id": "EO:8705#5",
+      "source": {
+        "@eo:source": "S19a35c69837bfe3824fe115b"
+      },
+      "text": {
+        "@eo:span": [
+          "T51ec825a509942a8c28056a1",
+          1502,
+          3331
+        ]
+      }
+    },
+    "R3b419d03c656cd1327e56789": [
+      {
+        "@eo:ref": "R5c8a2dae15a81588152d6599"
+      }
+    ],
+    "R3c0a00b3e7380f531eea45a3": {
+      "path": "research/excavator/production-cost-trace-2026-10-26/SOURCE_DECLARATIONS.b2.v3.json",
+      "sha256": "ff715121f8fc6a0d6767fcc96f8fe40faca0a7eeb026335a8fe543157dc9d32f"
+    },
+    "R3cc1d1805f260c569216e43b": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 9004,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-4",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "Seef4499dfb99199d37b0ea9c"
+      },
+      "text": {
+        "@eo:span": [
+          "T7341a2ce2b6362e7c36e12be",
+          0,
+          9004
+        ]
+      }
+    },
+    "R409fe5ca1e25dfd82e16818c": "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "R4268b2a2024f165e39b1d23a": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "R4fb38eab8c74b6c8576054b6": {
+      "checked_on": "2026-10-17",
+      "query_or_scope": {
+        "@eo:ref": "R0cf8c6ebe2cc6b2d58a1ad76"
+      },
+      "repository": {
+        "@eo:ref": "R1062272f6bc36741b76f4745"
+      },
+      "searched_by": "jobs/current-law (machine search)"
+    },
+    "R53c48a93accbf3ae86c45b7d": "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+    "R5ad84b1bc2cc1a49c566289a": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 9538,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-8",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "Sb75edf9ad3318c849093fe1b"
+      },
+      "text": {
+        "@eo:span": [
+          "Te1fe14404d5463aa28f7c39c",
+          0,
+          9538
+        ]
+      }
+    },
+    "R5c8a2dae15a81588152d6599": {
+      "actor_id": "EO:9830",
+      "overflow": "actor-texts/EO_9830.json",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+    },
+    "R5cc3d02ee47020daa45189db": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 9547,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-7",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S7ee1273b53124691de498bf1"
+      },
+      "text": {
+        "@eo:span": [
+          "T6d1a4f089652f1dc11c05eb5",
+          0,
+          9547
+        ]
+      }
+    },
+    "R6b7277ff8ce08ab5730ead16": "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate.",
+    "R7373610d76805cf2b952ca21": [
+      {
+        "@eo:ref": "Rc954ad8e6cb7efe1a43438c6"
+      },
+      {
+        "@eo:ref": "R739c02e779ac87cb846cb0ce"
+      },
+      {
+        "@eo:ref": "Ra689a7ace8bbe0456100e502"
+      }
+    ],
+    "R739c02e779ac87cb846cb0ce": {
+      "complete": true,
+      "entry": {
+        "@eo:ref": "R7e60a037fd8ed439d85fe7f1"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:ecfr"
+    },
+    "R76f21a4037cacede29a72f89": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 5149,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-3",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S334c5e6db72e0f74cf572141"
+      },
+      "text": {
+        "@eo:span": [
+          "T6f334f0836e07763b32bcfa3",
+          0,
+          5149
+        ]
+      }
+    },
+    "R78ee0fb99e37fb8b840d4cbe": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
+    "R7e60a037fd8ed439d85fe7f1": {
+      "checked_on": "2026-10-17",
+      "query_or_scope": {
+        "@eo:ref": "R4268b2a2024f165e39b1d23a"
+      },
+      "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+      "searched_by": "jobs/current-law (machine search)"
+    },
+    "Ra2c2c4c232e12c564c706729": {
+      "char_end": 2075,
+      "char_start": 681,
+      "id": "CLAUSES:EO:8707#whole",
+      "kind": "amendment_instruction",
+      "label": "sole paragraph",
+      "pdf_page": 1,
+      "scope_id": "EO:8707#whole",
+      "source": {
+        "@eo:source": "S67d200ea8354d5ce1ca35551"
+      },
+      "text": {
+        "@eo:span": [
+          "T61826d1260242bf354b7b34c",
+          681,
+          2075
+        ]
+      }
+    },
+    "Ra5ba0158e648b668a967f421": {
+      "char_end": 968,
+      "char_start": 697,
+      "id": "CLAUSES:EO:8705#lead",
+      "kind": "whole",
+      "label": "operative lead",
+      "pdf_page": 1,
+      "scope_id": "EO:8705#lead",
+      "source": {
+        "@eo:source": "S19a35c69837bfe3824fe115b"
+      },
+      "text": {
+        "@eo:span": [
+          "T51ec825a509942a8c28056a1",
+          697,
+          968
+        ]
+      }
+    },
+    "Ra689a7ace8bbe0456100e502": {
+      "complete": true,
+      "entry": {
+        "@eo:ref": "Rccd264b91b3da43505023105"
+      },
+      "machine_hits_for_this_order": 2,
+      "scope_note": "",
+      "search_id": "later-events:ofr_catalog"
+    },
+    "Rbb2540d2f02aee13ba012945": "Exact held excerpt only. Actor identity, scope, date, legal meaning and application require research and independent review.",
+    "Rc1833b3fe23f9ba8071db139": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "Rc954ad8e6cb7efe1a43438c6": {
+      "complete": true,
+      "entry": {
+        "@eo:ref": "R4fb38eab8c74b6c8576054b6"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "current-law:usc"
+    },
+    "Rccd264b91b3da43505023105": {
+      "checked_on": "2026-10-19",
+      "query_or_scope": {
+        "@eo:ref": "R112f081eb713ec4b7cbb2fac"
+      },
+      "repository": {
+        "@eo:ref": "Rc1833b3fe23f9ba8071db139"
+      },
+      "searched_by": "jobs/later-events (machine search)"
+    },
+    "Rd2880aff8150bf8cddeee53a": {
+      "actor_id": "EO:9691",
+      "char_end": 18248,
+      "char_start": 17889,
+      "id": "SUPPLEMENT:prior-held-2",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S523372ecf90db4e738c2c52c"
+      },
+      "text": {
+        "@eo:span": [
+          "Te4ce0e4679b465423ae17e79",
+          0,
+          359
+        ]
+      }
+    },
+    "Rd40d9de3c6e64feaee45f33d": "Qualified prior shared source examination; applicability to these new members remains unreviewed.",
+    "Rda809a295621bd578f39aa71": {
+      "path": "research/excavator/production-cost-trace-2026-10-26/packet-b2-recovery-base/PACKET.json",
+      "sha256": "22a8be2582efa6b3bffb2f4a8cd6c520e05bed7c41364c622d6884b1c5eaacd1"
+    },
+    "Rdbfd3551c41f4db44d2c11e5": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+    "Re1485fe9bc00fda969ae5dca": {
+      "actor_id": "Civil Service Commission regulations",
+      "char_end": 9374,
+      "char_start": 0,
+      "id": "SUPPLEMENT:prior-held-6",
+      "notice": {
+        "@eo:ref": "Rbb2540d2f02aee13ba012945"
+      },
+      "purpose": {
+        "@eo:ref": "Rd40d9de3c6e64feaee45f33d"
+      },
+      "role": "unreviewed_source_excerpt",
+      "source": {
+        "@eo:source": "S1563f3c65583a7d2d9bc2dac"
+      },
+      "text": {
+        "@eo:span": [
+          "T22c365ef76fe01855529fa05",
+          0,
+          9374
+        ]
+      }
+    },
+    "Re156921c71e03d12f624a4c4": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
+    "Rea3dbaa56b3b15b6d0f12797": {
+      "char_end": 1501,
+      "char_start": 969,
+      "id": "CLAUSES:EO:8705#1",
+      "kind": "item",
+      "label": "1.",
+      "pdf_page": 1,
+      "scope_id": "EO:8705#1",
+      "source": {
+        "@eo:source": "S19a35c69837bfe3824fe115b"
+      },
+      "text": {
+        "@eo:span": [
+          "T51ec825a509942a8c28056a1",
+          969,
+          1501
+        ]
+      }
+    },
+    "Ref32b085f265845cda07998b": [
+      "SUPPLEMENT:eo9830-effective",
+      "SUPPLEMENT:eo9830-revocation",
+      "SUPPLEMENT:prior-held-1",
+      "SUPPLEMENT:prior-held-2",
+      "SUPPLEMENT:prior-held-3",
+      "SUPPLEMENT:prior-held-4",
+      "SUPPLEMENT:prior-held-5",
+      "SUPPLEMENT:prior-held-6",
+      "SUPPLEMENT:prior-held-7",
+      "SUPPLEMENT:prior-held-8"
+    ]
+  },
+  "shared_tasks": [
+    {
+      "affected_orders": [
+        "EO:8705",
+        "EO:8707"
+      ],
+      "availability": "held_not_loaded",
+      "kind": "load_actor_overflow",
+      "reasons": [
+        "Read full overflow before scope/savings decision",
+        "Read full overflow before scope/savings decision"
+      ],
+      "shared_key": "EO:9830",
+      "task_id": "TASK:55083671c28924b6a6474bda"
+    },
+    {
+      "affected_orders": [
+        "EO:8705"
+      ],
+      "availability": "research_required",
+      "kind": "actual_event_fact",
+      "reasons": [
+        "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened"
+      ],
+      "shared_key": "EO:8705:TERM:EO:8705:145b7918eadef23c@02bf7f0aea9c91b6",
+      "task_id": "TASK:6f02dd408da26b74ce963514"
+    },
+    {
+      "affected_orders": [
+        "EO:8705"
+      ],
+      "availability": "research_required",
+      "kind": "actual_event_fact",
+      "reasons": [
+        "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened"
+      ],
+      "shared_key": "EO:8705:TERM:EO:8705:5e94ff4400ffc245@02bf7f0aea9c91b6",
+      "task_id": "TASK:98f84e840c065a5e111887ad"
+    },
+    {
+      "affected_orders": [
+        "EO:8705"
+      ],
+      "availability": "research_required",
+      "kind": "actual_event_fact",
+      "reasons": [
+        "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened"
+      ],
+      "shared_key": "EO:8705:TERM:EO:8705:5e2e5aa3d488171e@02bf7f0aea9c91b6",
+      "task_id": "TASK:843a0668272618cfef0a58c3"
+    },
+    {
+      "affected_orders": [
+        "EO:8705"
+      ],
+      "availability": "research_required",
+      "kind": "actual_event_fact",
+      "reasons": [
+        "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened"
+      ],
+      "shared_key": "EO:8705:TERM:EO:8705:749a301774bbb98b@02bf7f0aea9c91b6",
+      "task_id": "TASK:bcc71e46905a6b5c30bb28b4"
+    },
+    {
+      "affected_orders": [
+        "EO:8707"
+      ],
+      "availability": "held_not_loaded",
+      "kind": "locate_held_provision",
+      "reasons": [
+        "target provision not located: EO:9830"
+      ],
+      "shared_key": "EO:9830",
+      "task_id": "TASK:5834506f3b22608fbc68e3b0"
+    },
+    {
+      "affected_orders": [
+        "EO:8707"
+      ],
+      "availability": "absent_or_unreadable",
+      "kind": "held_text_unavailable",
+      "reasons": [
+        "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt'"
+      ],
+      "shared_key": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+      "task_id": "TASK:a0942dcb2e99192576d344e3"
+    },
+    {
+      "affected_orders": [
+        "EO:8707"
+      ],
+      "availability": "absent_or_unreadable",
+      "kind": "held_text_unavailable",
+      "reasons": [
+        "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/fr-originals/output/texts/EO_8707.txt'"
+      ],
+      "shared_key": "jobs/fr-originals/output/texts/EO_8707.txt",
+      "task_id": "TASK:e939c824a2239644ccd5d121"
+    },
+    {
+      "affected_orders": [
+        "EO:8707"
+      ],
+      "availability": "absent_or_unreadable",
+      "kind": "held_text_unavailable",
+      "reasons": [
+        "[Errno 2] No such file or directory: '/workspace/scratch/c478176c789b/eo-audit/jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt'"
+      ],
+      "shared_key": "jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt",
+      "task_id": "TASK:c90009dbdea8ad1f208e7acf"
+    },
+    {
+      "affected_orders": [
+        "EO:8707"
+      ],
+      "availability": "neighboring_documents_require_page_review",
+      "heading_offsets": [
+        591,
+        2209
+      ],
+      "kind": "original_boundary",
+      "reasons": [
+        "Multiple unnumbered Executive Order headings occur on the held pages. Metadata identity does not establish which document supplies the inventory."
+      ],
+      "shared_key": "ORIGINAL:EO:8707",
+      "task_id": "TASK:d469671d4d203a8e1dd32ef6"
+    }
+  ],
+  "sources": {
+    "S08ebf2ad4e9036ab1f9417c5": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "12 FR 1259, PDF pages 1-11",
+      "requires_page_check": false,
+      "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+      "signing_date": "1947-02-24",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+    },
+    "S1563f3c65583a7d2d9bc2dac": {
+      "local_path": "jobs/astra-source-retention/output/pdf/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a.pdf",
+      "page_or_item": "11 FR1430, PDFpage10, Part27§27.11promotion including probation and Commissionapproval",
+      "sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+      "text_path": "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-10.txt",
+      "text_sha256": "21421f83faec2fcdad17c9c24d74ffbd5b32615ad7468ddbcac2bdc6740cef1c",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-07/pdf/FR-1946-02-07.pdf"
+    },
+    "S16b402706fac59eac9f3dc70": {
+      "acceptable_as_original": false,
+      "filing_date": null,
+      "grade": "compiled_transcription_lead",
+      "instrument_id": "EO:8707",
+      "location_confidence": "medium",
+      "page_or_item": "Executive Order 8707—Amending Certain Provisions of the Civil Service Rules; March 10, 1941; APP node 368318; common-crawl capture 2025-06-13T20:31:25Z",
+      "requires_page_check": true,
+      "sha256": "0d843390d2e46919d21971de85a6aae0e27f90346618f71fcf9bc3b030d5d6af",
+      "signing_date": "1941-03-10",
+      "text_path": "jobs/app-executive-orders/output/texts/executive-order-8707-amending-certain-provisions-the-civil-service-rules.txt",
+      "text_sha256": "cbc460e8d7066dcb12dafdcb3231a9b04bd727e93d91144ab431ea639707b4fa",
+      "url": "https://www.presidency.ucsb.edu/documents/executive-order-8707-amending-certain-provisions-the-civil-service-rules"
+    },
+    "S19a35c69837bfe3824fe115b": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "6 FR 1313, PDF pages 1-1",
+      "requires_page_check": false,
+      "sha256": "80ecf23fb79a14cdea416488d2f7b5ec8c51e6a22c356e83881ddd65814e1105",
+      "signing_date": "1941-03-05",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8705.txt",
+      "text_sha256": "6367de4f49fd8b729693179adc08831dea00ccbdba741771878ecdd8de5c6e20",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1941-03-07/pdf/FR-1941-03-07.pdf"
+    },
+    "S2022a867df330437b6ef1c03": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "page_or_item": "6 FR 1399, PDF pages 1-1",
+      "requires_page_check": false,
+      "sha256": "1857bded8258fdadb06b460c491f3d2624b0a1e858c65e8ff496a2f3ec0ea816",
+      "signing_date": "1941-03-10",
+      "text_path": "jobs/fr-originals/output/texts/EO_8707.txt",
+      "text_sha256": "ccaf663f3459c735214991ec58f782e223373e46574f53af3a8320bebe707b20",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1941-03-13/pdf/FR-1941-03-13.pdf"
+    },
+    "S334c5e6db72e0f74cf572141": {
+      "local_path": "jobs/astra-source-retention/output/pdf/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4.pdf",
+      "page_or_item": "7 FR8007, PDFpage1, CivilServiceCommission Part18amendments signedSep28 1942/filedOct9; complete§18.11scope including postalexception",
+      "sha256": "2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4",
+      "text_path": "jobs/astra-source-retention/output/pages/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4/89b824ffa7e785b94871a9623103a0af1fa1b5c5db5c507b4d5ca6034fe64792/page-1.txt",
+      "text_sha256": "b1bd167ad1e9a335ad778ed20a96396cbc706c9b5bf74a0b0ddf85d8da67b640",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1942-10-10/pdf/FR-1942-10-10.pdf"
+    },
+    "S523372ecf90db4e738c2c52c": {
+      "local_path": "jobs/astra-source-retention/output/pdf/66eea8c88ed91c1f37339b7146ce206d51700776d7f96b2e3997f003698936bc.pdf",
+      "page_or_item": "11 FR1383, PDFpage3, EO9691§9 revocation and acquiredreemploymentrights saving",
+      "sha256": "66eea8c88ed91c1f37339b7146ce206d51700776d7f96b2e3997f003698936bc",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_9691.txt",
+      "text_sha256": "7de4a5554a608c60c23b48e6a59dd67e00469342eef5dc10f92de054a9f9faa0",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-06/pdf/FR-1946-02-06.pdf"
+    },
+    "S66af1a3eafe4ff6ddb445709": {
+      "acceptable_as_original": false,
+      "filing_date": null,
+      "grade": "held_text_lead",
+      "instrument_id": "EO:8707",
+      "page_or_item": "FR issue 1941-03-13, whole-issue PDF (Opus text extract): 6 FR 1399 (candidate FR page read from OCR page numbers; PDF p. 1)",
+      "requires_page_check": false,
+      "sha256": "1857bded8258fdadb06b460c491f3d2624b0a1e858c65e8ff496a2f3ec0ea816",
+      "signing_date": "1941-03-10",
+      "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-8707-1857bded82.txt",
+      "text_sha256": "33616acfba2ec8e190b9ba73ff24f8d658d8afdb5785a5c3b49294a28d1304ff",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1941-03-13/pdf/FR-1941-03-13.pdf"
+    },
+    "S67d200ea8354d5ce1ca35551": {
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "6 FR 1399, PDF pages 1-1",
+      "requires_page_check": false,
+      "sha256": "1857bded8258fdadb06b460c491f3d2624b0a1e858c65e8ff496a2f3ec0ea816",
+      "signing_date": "1941-03-10",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8707.txt",
+      "text_sha256": "ccaf663f3459c735214991ec58f782e223373e46574f53af3a8320bebe707b20",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1941-03-13/pdf/FR-1941-03-13.pdf"
+    },
+    "S693b17b39612b723fec0b246": {
+      "local_path": "jobs/astra-source-retention/output/pdf/e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519.pdf",
+      "page_or_item": "12 FR1259, global effective-date clause",
+      "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+    },
+    "S7220a25cd8b4a3c71f133d71": {
+      "local_path": "jobs/astra-source-retention/output/pdf/d18dc8f5621fe056733f17fe0b17e7a1513aac9ba46988826a046b51a06289ae.pdf",
+      "page_or_item": "5 FR 2857, PDF page 1, complete EO8514; signed August13, filed August14, published August16,1940; official target page inspected",
+      "sha256": "d18dc8f5621fe056733f17fe0b17e7a1513aac9ba46988826a046b51a06289ae",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_8514.txt",
+      "text_sha256": "73a578c61d75454fdd548a50b3c79e348bb237d68dabbd19aa0ddd5ca432522b",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1940-08-16/pdf/FR-1940-08-16.pdf"
+    },
+    "S7ee1273b53124691de498bf1": {
+      "local_path": "jobs/astra-source-retention/output/pdf/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a.pdf",
+      "page_or_item": "11 FR1431, PDFpage11, Part27§27.16(g) status/tenure and samebenefits under RuleIX; officialpageinspected",
+      "sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+      "text_path": "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-11.txt",
+      "text_sha256": "f3b3816e2fc5e14dfe4b8092720600a5abdf90d5b1470018858b91e367651a8d",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-07/pdf/FR-1946-02-07.pdf"
+    },
+    "Sb57a33bcc8e7a9a013af7065": {
+      "acceptable_as_original": false,
+      "filing_date": null,
+      "grade": "held_text_lead",
+      "instrument_id": "EO:8705",
+      "page_or_item": "58 Stat. 387; STATUTE-58-Pg387.pdf PDF pages 1-5 of 5 (page hint 1)",
+      "requires_page_check": false,
+      "sha256": "2dd452e4729c047f591da49120c070fb333a7ce41bd351e23ee4cf1eb88b3d42",
+      "signing_date": "1941-03-05",
+      "text_path": "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-58/pdf/STATUTE-58-Pg387.pdf"
+    },
+    "Sb75edf9ad3318c849093fe1b": {
+      "local_path": "jobs/astra-source-retention/output/pdf/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a.pdf",
+      "page_or_item": "11 FR1427, PDFpage7, Part27§27.7(c) merit/fitness selection from highest3 with objections/veteran preference",
+      "sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+      "text_path": "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-7.txt",
+      "text_sha256": "b1c062bc4ad287f30481b137fffcf8adcb5f44c93d44e8f393c86a37decc0516",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-07/pdf/FR-1946-02-07.pdf"
+    },
+    "Sc4a51485deb12426f2aa2490": {
+      "local_path": "jobs/astra-source-retention/output/pdf/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a.pdf",
+      "page_or_item": "11 FR1429, PDFpage9, Part27§§27.9reinstatement and27.10transfer",
+      "sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+      "text_path": "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-9.txt",
+      "text_sha256": "4d7f850ac1852cc1e1c8f053eae4544fc9ca5e35775829668990818458137f56",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-07/pdf/FR-1946-02-07.pdf"
+    },
+    "Sde4b3b5543f57a236e9e4444": {
+      "local_path": "jobs/astra-source-retention/output/pdf/e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519.pdf",
+      "page_or_item": "12 FR1269, PartIII opening and named revocations through8707",
+      "sha256": "e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_9830.txt",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf"
+    },
+    "Seef4499dfb99199d37b0ea9c": {
+      "local_path": "jobs/astra-source-retention/output/pdf/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a.pdf",
+      "page_or_item": "11 FR1424, PDFpage4, Part27intro/effective formulation and supersession of Part18",
+      "sha256": "5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a",
+      "text_path": "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-4.txt",
+      "text_sha256": "6510cb283725be2d00bf994a6ab628a2e722fd02d54fb8849e16bbbf9ee81d8f",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1946-02-07/pdf/FR-1946-02-07.pdf"
+    }
+  },
+  "text_blocks": {
+    "T0265ddf1e66412ea6d3f0e1b": {
+      "char_end": 91342,
+      "char_start": 90277,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt"
+      ],
+      "text": "The following Executive orders are \nhereby revoked:\nNo. 279 of November 29, 1904.\nNo. 283 of December 8, 1904.\nNo. 294 of February 15, 1905.\nNo. 314 of March 30, 1905.\nNo. 458 of June 13, 1906.\nNo. 715 of November 22, 1907.\nNo. 983 of November 30, 1908.\nNo. 1065 of AprU 21, 1909.\nNo. 1153 of January 12,1910.\nNo. 2357 of April 11, 1916.\nNo. 3108 of June 30, 1919.\nUnnumbered order of June 2, 1920, con­\ncerning reinstatement of persons nearing re­\ntirement age.\nNo. 4523 of October 18, 1926.\nNo. 5924 of September 20, 1932; \nUnnumbered order of February 19, 1934/  \nconcerning negotiations for transfer.\nNo. 7915 of June 24, 1938.\n•  No. 7916 of June 24, 1938.\nNo. 7975-A of September 16, 1938.\nNo. 8083 of April 10, 1939.\nNo. 8179 of June 21, 1939.\nNo. 8214 of July 25, 1939,\nNo. 8257 of September 21, 1939.\nNo. 8283 of November 9, 1939.\nNo, 8300 of December 12, 1939.\nNo. 8423 of May 28, 1940. ,\nNo. 8425 of May 29, 1940,\nNo. 8467 of July 1, 1940.\nNo. 8564 of October 8, 1940.\nNo. 8587 of November 7, 1940.\nNo. 8705 of March 6, 1941.\nNo. 8707 of March 10, 1941.\n",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+    },
+    "T1ef65ad27627eaac1ce53c13": {
+      "char_end": 17633,
+      "char_start": 16192,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "No permanent or indefinite preference eligible, who has \ncompleted a probationary or trial period employed in the civil service, \nor in any establishment, agency, bureau, administration, project, or \ndepartment, hereinbefore referred to shall be discharged, suspended \nfor more than thirty days, furloughed without pay, reduced in rank \nor compensation, or debarred for future appointment except for such \ncause as will promote the efficiency of the service and for reasons \ngiven in writing, and the person whose discharge, suspension for \nmore than thirty days, furlough without pay, or reduction in rank \nor compensation is sought shall have at least thirty days’ advance \nwritten notice (except where there is reasonable cause to believe the \nemployee to be guilty of a crime for which a sentence of imprison-\nment can be imposed), stating any and all reasons, specifically and \nin detail, for any such proposed action; such preference eligible shall be \nallowed a reasonable time for answering the same personally and in \nwriting, and for furnishing affidavits in support of such answer, and \nshall have the right to appeal to the Civil Service Commission from \nan adverse decision of the administrative officer so acting, such appeal \nto be made in writing within a reasonable length of time after the \ndate of receipt of notice of such adverse decision: Provided, That \nsuch preference eligible shall have the right to make a personal",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T22c365ef76fe01855529fa05": {
+      "char_end": 9374,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-10.txt"
+      ],
+      "text": "1430 FEDERAL REGISTER, Thursday , February  7, 1946\ntwo years in the Philippine classified \nservice and who has been separated by \nnecessary reduction of force or by dis­\nplacement by a Filipino, if he is espe­\ncially recommended by the Department \nof the Interior because of his efficiency \nand good character. In all cases of pro­\nposed transfer from the Philippine \nclassified service the Interior Depart­\nment shall furnish the Commission, for \nits consideration, all relevant informa­\ntion contained in its files, together with \nthe service record of the employee.\n(3) From the Puerto Rican service.  \nThe Commission may, in its discretion, \nauthorize the transfer of employees from \nthe civil service of Puerto Rico to that \nof the United States, subject to the limi­\ntations respecting transfer within the \ncivil service of the United States.\n(4) From the Panama Canal service.  \nA citizen of the United States in the \nservice of the Panama Canal on or before \nJanuary 1, 1916, in an excepted position \nmay, if recommended by the Panama \nCanal, be transferred to any position in \nthe classified service for which he can \nqualify: Provided,\n(1) This section shall not apply to a \nperson appointed to a competitive posi­\ntion in accordance with the civil service \nrules or regulations, the transfer of such \nperson to be governed by the general \nprovisions of the regulations.\n,  (ii) This section shall not apply to a \nperson appointed without examination \nto perform the duties of clerk of any \ngrade, bookkeeper, stenographer, typist, \nsurgeon, physician, trained nurse, or \ndraftsman.\n(iii) The transferee has rendered at \nleast two years of service in a position \nabove the grade of unskilled laborer in \nthe service of the Panama Canal 6r of \nthe Panama Railroad by transfer from \nthe Panama Canal.\n§  27.11 Promotion —(a) Requirement  \nfor promotion.  (1) No employee can be \npromoted or reassigned to a position in \nthe classified service unless he has a clas­\nsified status and unless he has the knowl­\nedge and abilities required for the per­\nformance of the duties of the position to \nwhich he is proposed for promotion or \nreassignment.\n(2) In making a promotion or reas­\nsignment from a nonapportioned posi­\ntion to an apportioned position, the ap­\nportionment shall be observed, unless \nwavied by the Commission upon the cer­\ntificate of the appointing officer showing \nthat in the interests of good administra­\ntion the promotion or reassignment is \nrequired without regard to apportion­\nment and setting forth in detail the rea­\nsons therefor. Any person proposed for \npromotion or reassignment from a non­\napportioned position to an apportioned \nposition shall be required to prove his \nresidence in the same mannei- as for \noriginal appointment to an apportioned \nposition.\n(b) Promotion during probationary  \nperiod. (1) No employee shall be eligi­\nble for promotion during the first si3f \nmonths of probation except upon prior \napproval of the Commission.\n(2) An employee promoted before the \ncompletion of probation shall be re­\nquired to serve a probationary period of\nsufficient duration to complete his orig­\ninal probationary period.\n(c) Promotion of substitutes.  Sub­\nstitutes shall be promoted to the first \nvacancies occurring in regular positions \nin the order of their original appoint­\nment, whenever there are substitutes of \nthe required sex who are eligible and \nwill accept, unless such vacancies are \nfilled by promotion, transfer, or rein­\nstatement. Whenever in the Postal \nService two or more substitutes are ap­\npointed on the same date, they shall be \npromoted to the regular force in the \norder in which their names appeared \non the civil service register from which \nthey were originally appointed, whenever \nthere are substitutes of the required sex \nwho are eligible and will accept, unless \nsuch vacancies are filled by transfer or \nreinstatement.\n(d) Promotion or reassignment with­\nout prior approval.  Subject to such \nstandards, limitations, or exceptions as \nmay be issued by the Commission, the \nhead of any department or agency or his \ndesignated representatives may make \npromotions or reassignments in individ­\nual cases without the prior approval of \nthe Civil Service Commission. In its \ndiscretion, the Commission may disap­\nprove any promotion or reassignment or \nsuspend or withdraw this delegation of \nauthority from any department or \nagency whenever it determines that the \npromulgated standards have not been \nobserved.\n§  27.12 Removals and reductions —(a) \nProcedure to be followed. No permanent \nor indefinite employee in the classified \n•civil service of the United States who has \ncompleted a probationary period shall be \nremoved therefrom except for such cause \nas will promote the efficiency of the serv­\ni c e  and in accordance with following \nprocedure:\n(1) Employees not entitled to military  \npreference. The person whose removal is \nsought shall be notified in writing of his \nproposed removal and shall be furnished \nwith a copy of the charges preferred \nagainst him. He shall be allowed a rea­\nsonable time for personally answering the \nsame in writing and to furnish affidavits \nin support of hig answer. No examina­\ntion of witnesses nor any trial or hearing \nshall be required except' in the discretion \nof the officer making the removal. Copies \nof the charges, notice of hearing, answer, \nreasons for removal, and of the order of \nremoval shall be made a part of the rec­\nords of the department or agency con­\ncerned. The reasons for reduction in \nrank or compensation shall also be made \na part of the records of the department \nor agency concerned. Copies of the fore­\ngoing records shall, upon request, be fur­\nnished to the person affected and to the \nCommission.\n(2) Employees entitled to military  \npreference. For the procedure to be fol­\nlowed in these cases see the regulations \ngoverning appeals to the United States \nCivil Service Commission under section \n14 of the Veterans’  Preference Act of 1944 \n(Part 22 of this chapter, 45 CFR, 1945 \nSupp., 10 F.R. 12181.)\n(b) Like penalties for like offenses.  In \nmaking removals or reductions, and in \nother punishment, like penalties shall be \nimposed for like offenses, and no discrimi­\nnation shall be exercised for political or \nreligious reasons, or because of race, \ncreed, color, or national origin.\n(c) Suspensions.  Pending action \nunder paragraph (a) (1) of this sec­\ntion, or for disciplinary reasons, an em­\nployee may be suspended for a period \nnot to exceed 90 days: Provided, That no \npermanent or indefinite employee en­\ntitled to military preference under these \nrules who has completed a probationary \nperiod shall be suspended for more than \nthirty days except in accordance with \nparagraph (a) (2) of this section. The \nreasons for such suspension shall at the \ntime of the suspension be filed in the \nrecords of the department or agency con­\ncerned and copies shall be furnished the \nCommission upon request. The period \nof suspension may be extended beyond \n90 days with the prior consent of the \nCommission.\n(d) Power to investigate.  Except as \nprovided in paragraph (b) (2) of this \nsection, the Commission shall have no \njurisdiction to review the findings of \na removing officer upon the charges and \nanswer provided for in paragraph (a) \nof this section, nor shall the Commission \nhave authority to investigate any re­\nmoval or reduction, unless it is alleged, \nwith offer of proof, that the procedure \nrequired by paragraph (a) of this sec­\ntion has not been followed, or that the \nremoval was made because of marital \nstatus, race, or for religious or political \nreasons. However, an employee who \nhas been removed on charges shall not \nfor that reason be ineligible for further \nemployment in the classified service but \nhis suitability for further employment \nshall be determined by the Commission \nupon receipt of an official request for his \nreinstatement, or when he files applica­\ntion for an examination.\n(e) Reduction in force.  For the pro­\ncedures to be followed see the Retention \nPreference regulations for use in reduc­\ntions in force. (Part 22 of this chapter, \n5 CFR, 1945 Supp., 10 F.R. 12181).\n§  27.13 Report of changes —(a) Re­\nport by appointing officer.  Every nomi­\nnating or appointing officer in the execu­\ntive civil service shall report to the Com­\nmission whenever and in such manner as \nit may prescribe, all changes in the serv­\nice under his authority, whether they \naffect positions or employees that are \nclassified, unclassified, excepted, perma­\nnent, temporary, or subject to contract.\n(b) List of positions.  Such officers \nshall also furnish to the Commission, \nwhen requested, and in such manner as \nit m af prescribe, information as to num­\nbers of employees, pay-roll data, and a \nlist of all the positions, and employments \nunder their authority, together with the \nnames, designations, compensations, du­\nties, and dates of appointment of employ­\nment of all persons serving therein.\n§  27.14 Testimony —(a) Duty of offi­\ncers and employees.  It shall be the duty \nof every officer and employee in the ex­\necutive civil service, and of every appli­\ncant or eligible for a position therein, to \ngive to the Commission or its authorized \nrepresentative all proper and competent \ninformation and testimony in regard to \nmatters inquired of arising under the\n",
+      "text_sha256": "21421f83faec2fcdad17c9c24d74ffbd5b32615ad7468ddbcac2bdc6740cef1c"
+    },
+    "T40bb15fe5a02f1d850f9d544": {
+      "char_end": 3462,
+      "char_start": 2906,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "When any \nagency or instrumentality is or has been prevented from using appro-\npriations by reason of this section, no part of any appropriation or \nfund made available by this or any other Act shall be used to pay \nthe expenses of the performance by any other agency or instru-\nmentality of functions which are substantially the same as or similar \nto the principal functions of the agency or instrumentality so pre-\nvented from using appropriations, unless the Congress has specifically \nauthorized the expenditure of funds for performing such functions.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T4ed3e8baa594404342b300e7": {
+      "char_end": 7504,
+      "char_start": 6665,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "In all examinations to determine the qualifications of appli-\ncants for entrance into the service ten points shall be added to the \nearned ratings of those persons included under section 2 (1), (2), \nand (3), and five points shall be added to the earned ratings of those \npersons included under section 2 (4) of this Act: Provided, That in \nexaminations for the positions of guards, elevator operators, mes-\nsengers, and custodians competition shall be restricted to persons \nentitled to preference under this Act as long as persons entitled to \npreference are available and during the present war and for a period \nof five years following the termination of the present war as pro-\nclaimed by the President or by a concurrent resolution of the Con-\ngress for such other positions as may from time to time be deter-\nmined by the President.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T51ec825a509942a8c28056a1": {
+      "char_end": 4427,
+      "char_start": 0,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_8705.txt"
+      ],
+      "text": "Instrument: EO:8705\nSource: https://www.govinfo.gov/content/pkg/FR-1941-03-07/pdf/FR-1941-03-07.pdf\nSHA-256 of the downloaded file: 80ecf23fb79a14cdea416488d2f7b5ec8c51e6a22c356e83881ddd65814e1105\nLocation: 6 FR 1313, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 20 ===\nJo\n&\nFEDERAL REGISTER\nVOLUME 6\n%  x<\n' V ,  '934\nc  ^ a/iteo %\n< ?\nNUMBER 46\nWashington, Friday, March 7, 1941\nThe President\nEXECUTIVE ORDER\nAmending Certain P rovisions  op the \nCivil  S ervice R ules\nBy virtue of and pursuant to the au­\nthority vested in me by the Civil Service \nAct (22 Stat. 403), and by section 1753 \nof the Revised Statutes (U.S.C., title 5, \nsec. 631), the Civil Service Rules are \nhereby amended as follows:\nSection 1 of Rule I is amended to \nread:\n1. No interference with elections.  No \nperson in the executive civil service shall \nuse his official authority or influence for \nthe purpose of interfering with an elec­\ntion or affecting the results thereof. \nPersons who by the provisions of these \nrules are in the competitive classified \nservice, while retaining the right to vote \nas they please and to express their opin­\nions on all political subjects, shall take \nno active part in political management \nor in political campaigns.\nSection 5 of Rule X II is amended to \nread:\n5. Retention of soldiers and sailors.  \nIn harmony with statutory provisions, \nwhen reductions are being made in the \nforce, in any part of the classified serv­\nice, no employee entitled to military pref­\nerence in appointment shall be dis­\ncharged, dropped, or reduced in rank or \nsalary before any employee not entitled \nto military preference in competition \nwith him if his record is good; nor shall \nany classified employee entitled to mili­\ntary preference in appointment be dis­\ncharged, dropped, or reduced in rank or \nsalary before any employee not entitled \nto military preference in competition \nwith him if his efficiency rating is less \nthan good but better than, or equal to, \nthat of any such non-preference em­\nployee.\nCivil Service Rule XV is amended to \nread:\nLegal appointment necessary to com ­\npensation.  Whenever the Commission \nfinds, after due notice and opportunity \nfor explanation, that any person has been \nappointed to or is holding any position, \nwhether by original appointment, pro­\nmotion, assignment, transfer, or rein­\nstatement, in violation of the Civil Serv­\nice Act or Rules, or of any Executive \norder or any regulation of the Commis­\nsion, or that any employee subject \nthereto has violated such Act, Rules, \norders, or regulations, it shall certify the \nfacts to the proper appointing officer with \nspecific instructions as to discipline or \ndismissal of the person or employee af­\nfected. If the appointing officer fails \nto carry out the instructions of the Com­\nmission within 10 days after receipt \nthereof, the Commission shall certify \nthe facts to the proper disbursing and \nauditing officers, and such officers shall \nmake no payment or allowance of the \nsalary or wages of any such person or \nemployee thereafter accruing.\nThis order shall be effective as of \nNovember 7, 1940.\nF ranklin D R oosevelt\nT he W hite  H ouse,\nMarch 5,1941.\n[No. 87051\n[F. R. Doc. 41-1697; Filed March 6, 1941;\n11:58 a. m.]\nCONTENTS \nTHE PRESIDENT\nExecutive Order: Pa8e\nCivil Service Rules, certain pro­\nvisions amended__________ 1313\nRULES, REGULATIONS, \nORDERS\nT itle  30—Mineral R esources : \nBituminous Coal Division:\nDistrict No. 13, minimum \nprice schedule; relief\ngranted________________ 1314\nT itle  47—T elecommunication :\nFederal Communications Com­\nmission:\nAmateur radio stations and \noperators, amendments\n(2 documents) _________ 1317\nStandard and high frequency \nbroadcast stations,\namendment ____________ 1317\nT itle  49—T ransportation an d \nR ailroads:\nInterstate Commerce Commis­\nsion:\nAnnual reports from lessors \nto steam railway com­\npanies_________________ 1318\nNOTICES\nDepartment of the Interior:\nBituminous Coal Division:\nBlue Bird Coal Co., correction\nof order of dismissal ------- 1326\nFay Collieries Co., order of\ndismissal_______________ 1322\nHearings:\nDistrict Board No. 7 (2\ndocuments) __________ 1325\nDistrict Board No. 8 ______ 1324\n(Continued on next page)\n1313\n",
+      "text_sha256": "6367de4f49fd8b729693179adc08831dea00ccbdba741771878ecdd8de5c6e20"
+    },
+    "T61826d1260242bf354b7b34c": {
+      "char_end": 5351,
+      "char_start": 0,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_8707.txt"
+      ],
+      "text": "Instrument: EO:8707\nSource: https://www.govinfo.gov/content/pkg/FR-1941-03-13/pdf/FR-1941-03-13.pdf\nSHA-256 of the downloaded file: 1857bded8258fdadb06b460c491f3d2624b0a1e858c65e8ff496a2f3ec0ea816\nLocation: 6 FR 1399, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 32 ===\nDEBAI\nVOLUME 6 1 9 3 4\n*  OAintO *\nNUMBER 50\nWashington, Thursday, March 13, 1941\nThe President\nEXECUTIVE ORDER\nAmending  C ertain  P r o v isio n s o f th e \nCivil  S ervice  R u l e s\nBy virtue of the authority vested in  \nme by section 2 of the Civil Service Act  \n(22 Stat. 403, j!04), and by section 1753  \nof the Revised Statutes of the United  \nStates (U.S.C., title 5, sec. 631), the Civil  \nService Rules are hereby amended as  \nfollows:\nSection 2 of Civil Service Rule IX, gov­\nerning reinstatement, is amended by  \nadding thereto the following subdivision:\n“(c) If separated without prejudice  \neither voluntarily or involuntarily after  \nat least six months of satisfactory service  \nin a position having a probationary pe­\nriod in excess of six months, he may be  \nreinstated in any part of the service in  \nany position for which he is qualified or  \ncan qualify through non-competitive ex­\namination: Provided,  that reinstatement  \nto a position having a probationary pe­\nriod in excess of six months will be to  \ncomplete probation.”\nSubdivision (a) of section 6 of Civil  \nService Rule X, governing transfer, is  \namended to read:\n“(a) Absolute appointment —Such per­\nson must have received absolute appoint­\nment, except that a probationer who has  \ncompleted at least six months of satis­\nfactory service in a position having a  \nprobationary period in excess of six  \nmonths may be transferred to any part  \nof the service: Provided,  that transfer  \nto another position having a probation­\nary period in excess of six months will  \nbe to complete probation.”\nF r a n k lin D R oosevelt\nT he  W h ite H ouse ,\nMarch 10, 1941.\n[No. 8707]\nIF. R. Doc. 41-1809; Piled, March 11, 1941;\n8:00 p. m.]\nEXECUTIVE ORDER\nR eserving  C ertain  P u b lic L ands  i n C o n­\nn e ct io n W it h t h e I n d e p e n d e n c e \nC o u n t y W ild l ife R efuge\nARKANSAS\nWHEREAS under the act of Septem­\nber 2, 1937, 50 Stat. 917 (U.S.C., title 16,  \nsecs. 669-669j), providing for Federal aid  \nto States in wildlife-restoration projects,  \nthe State of Arkansas is obtaining con­\ntrol of certain lands in Independence  \nCounty, which lands are to be adminis­\ntered by the State of Arkansas as the  \nIndependence County Wildlife Refuge;  \nand\nWHEREAS certain public lands of the  \nUnited States within this area possess  \ngreat wildlife value and can be admin­\nistered advantageously in connection  \nwith the refuge; and  \nWHEREAS the act of March 10, 1934,  \n48 Stat. 401 (U.S.C., title 16, secs. 661-  \n666), provides for cooperation with Fed­\neral, State, and other agencies in devel­\noping a Nation-wide program of wildlife  \nconservation and rehabilitation:\nNOW, THEREFORE, by virtue of the  \nauthority vested in me by the act of June  \n25, 1910, c. 421, 36 Stat. 847, as amended  \nby the act of August 24, 1912, c. 369, 37  \nStat. 497, it is ordered that, subject to  \nvalid rights, the public lands of the  \nUnited States hereinafter described, com­\nprising 1,008.29 acres, more or less, in  \nIndependence County, Arkansas, be, and  \nthey are hereby, reserved and set apart  \nunder the jurisdiction of the Department  \nof the Interior for use by the Game and  \nFish Commission of the State of Arkan­\nsas in connection with the Independence  \nCounty Wildlife Refuge, under such con­\nditions as may be prescribed by the Sec­\nretary of the Interior.\nF if t h P rincipal  M eridian\nT. 12 N., R. 7 W„  \nsec. 7, SW%SE%;  \nsec. 8, W%NE% and SE& SE& j  \nsec. 9, SE14NE14, Sy2SW%, and N E ^ S E ^ ;  \nsec. 10, S%NW}4;  \nsec. 14, 8 E y4NW %  and NE&SW%;  \nsec. 17, N W & NW ft and EyaS E ^ ;\nCONTENTS \nTHE PRESIDENT\nExecutive Orders: Pa* = e\nArkansas, certain lands re­\nserved in connection with  \nIndependence County Wild­\nlife Refuge________________ 1399\nCivil Service Rules, certain pro­\nvisions amended ---------------- 1399\nWyoming National Forest, name  \nchanged to Bridger Na­\ntional Forest_____________-  1400\nRULES, REGULATIONS  \nORDERS\nT itl e 46—S h ip p in g:\nBureau of Marine Inspection  \nand Navigation:\nGeneral rules and regulations,\namendments ---------------- 1400\nNOTICES\nDepartment of Agriculture:\nOffice of Secretary:\nAuthority of Under Secretary  \nand Assistant Secretary  \nin connection with pro­\ngrams dnd statutes ad­\nministered through:\nAgricultural Adjustment\nAdministration (in­\ncluding Sugar p ivi-\nsion) ________________ 1420\nAgricultural M arketing\nService ______________ 1420\nBureau of Agricultural  \nChemistry and Engi­\nneering, etc __________ 1421\nBureau of Animal In­\ndustry _______________ 1421\nBureau of Dairy Industry _1422\nBureau of Entomology and *\nPlant Quarantine ____ 1422\nCommodity Credit Corpora­\ntion _________________ 1422\nCommodity Exchange Ad­\nministration__________ 1423\nFarm Security Administra­\ntion _______._________ 1423\nFederal Crop Insurance\nCorporation __________ 1423\n(C ontinued on n ext page)\n1399\n",
+      "text_sha256": "ccaf663f3459c735214991ec58f782e223373e46574f53af3a8320bebe707b20"
+    },
+    "T6d1a4f089652f1dc11c05eb5": {
+      "char_end": 9547,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-11.txt"
+      ],
+      "text": "1431FEDERAL REGISTER, Thursday, February 7, 1946\nCivil Service Act and these regulations, \nand to subscribe such testimony and \nmake oath or affirmation thereto before \nan officer authorized by law to administer \noaths.\n§27.15 Withholding  salary —(a) \nLegal appointment necessary to compen­\nsation. Whenever the Commission finds, \nafter due notice and opportunity for ex­\nplanation, that any person has been ap­\npointed to or is holding any position, \nwhether by original appointment, pro­\nmotion, reassignment, transfer, or re­\ninstatement,- in violation of the Civil \nService Act or this part, or of any Exec­\nutive order or any regulation of the Com­\nmission, or that any employee subject \nthereto has violated such act, orders, or \nregulations, it shall certify the facts to \nthe proper appointing officer with specific \ninstructions as to discipline or dismissal \nof the person or employee affected. If \nthe appointing officer fails to carry out \nthe instructions of the Commission with­\nin ten days after receipt thereof, the \nCommission shall certify the facts to the \nproper disbursing and auditing officers, \nand such officers shall make no payment \nor allowance of the salary or wages of \nany such person or employee thereafter accruing.\n§  27.16 Transition promotions, trans­\nfers, reappointments —(a) Coverage with \nrespect to positions.  Positions for which \nno appropriate register of eligibles for \nprobational appointment has been estab­\nlished may be filled under this section. \nUpon establishment of a register of eligi­\nbles for probational appointment, the \nprovisions of paragraphs (b), (c) and\n(d) of this section will cease to be opera­\ntive with respect to the filling of all posi­\ntions for which the register is an appro­\npriate source of eligibles.\n(b) Promotion, intra-agency transfer,  \nand reassignment.  A civilian employee \nof an agency in the executive branch \nof the Federal Government, or in the \nGeneral Accounting Office, the Govern­\nment Printing Office, the District of Co­\nlumbia Government, or the Administra­\ntive Office of the U. S. Courts, who is \nserving under a war service indefinite, \nprobational or permanent civil service \nappointment, or under an appointment in \naccordance with §  27.8 (b) of this chapter \nmay be promoted, transferred, or reas­\nsigned within the same department or \nagency in accordance with standards and \nprocedures issued by the Commission for such action.\n(c) Inter-agency transfer.  A civilian \nemployee of an agency in the executive \nbranch of the Federal Government, or \nm the General Accounting Office, the \nGovernment Printing Office, the District \nof Columbia Government, or the Admin­\nistrative Office of the U. S. Courts, who \nis serving under a war service indefinite, \nprobational, or permanent civil service \nappointment may be transferred by a \ndepartment or agency without prior ap­\nproval of the Commission: Provided, \nThat (1) the employee presents an offi­\ncial notice of his actual or impending \nseparation because of reduction in force, \nan official notice of furlough, an official \nrelease granted by his agency or the \n.Commission stating that he is available \nlor employment elsewhere, and (2) he \n* s transferred to a position of the same\nor equivalent grade as, or a lower grade \nthan, the position he held prior to trans­\nfer, or to a higher grade position if he \nmeets the requirements for promotion.\n(d) Reappointment.  (1) a former \nFederal employee separated for less than \n30 calendar days who was eligible for \ntransfer under paragraph (c) of this \nsection prior to separation may be re­\nappointed without prior approval of the \nCommission under the same conditions \nthat would be required for transfer if he \nwere still serving in the agency from \nwhich separated.\n(2) A former Federal employee who has \nrestoration or reemployment rights in a \nFederal agency, who has not been re­\nstored or reemployed by such agency, \nmay be reappointed by another agency \nwithout prior approval of the Commis­\nsion: Provided, (1) He is reappointed to \na position of the same or equivalent grade \nas, or a lower grade than, the position he \nlast held or to a higher grade position if \nhe meets the requirements for promotion, \nand (2) he applied for such employment \nwithin the same period as would be re­\nquired for restoration or reemployment \nin the agency in which he has such right.\n(e) Reinstatement.  A former Federal \nemployee having a status for reinstate­\nment under §  27.9 who is not'eligible for \nreappointment under paragraph (d) (1) \nof this section may be reinstated in ac­\ncordance with §  27.9.\n(f) Trial period. Persons who are serv­\ning a trial or probationary period when \npromoted, reassigned, or transferred un­\nder this section will complete their trial \nor probationary period in the new posi­\ntion. Persons reappointed under this \nsection who were serving a trial or pro­\nbationary period at t-he time of separa­\ntion from their last positions will com­\nplete their trial or probationary period \nin the position to which reappointed. \nNo trial or probationary period will be \nrequired in other promotions, reassign­\nments, transfers, . and reappointments under this section.\n(g) Status of employees.  The civil \nservice status and tenure of an employee \nwill not be changed by virtue of promo­\ntion or reassignment under this section.\nIn all transfers under this section the \nemployee shall retain for all intents and \npurposes under the civil service laws and \nrules the same civil service status which \nhe had in the agency from which he was \noriginally transferred. No employee who \nhas been transferred from a probational \nor permanent civil service appointment \nduring the period the war service regu­\nlations were in effect, or who is trans­\nferred during the period this section is \nin effect, shall, by reason of any such \ntransfer made lose his right to perma­\nnent tenure as a classified civil service \nappointee. No indefinite time limit ad­\nministratively placed on the appointment \nto the position to which transferred shall \naffect the employee’ s rights to permanent \ntenure as a classified civil service ap­\npointee in the agency in which employed.\nAny employee who, on or after March \n16, 1942, has been appointed or reap­\npointed under the war service regulations \nwithin 30 calendar days after separation \nfrom a probational or permanent civil \nservice appointment, shall be entitled to \nthe same benefits he would have had\n\"under reinstatement in accordance with \nCivil Service Rule EX (Part 9 of this \nchapter). Such an employee has per­\nmanent tenure as a classified civil service \nemployee in the agency in which em­\nployed unless he was appointed or re­\nappointed with a time limitation of one \nyear or less.\nAn employee reappointed under this \nsection will have the same civil service \nstatus and tenure in the agency to which \nreappointed as he had in the agency in \nwhich he last served. An employee last \nseparated from a permanent or proba­\ntional civil service appointment shall \nupon reappointment under this regula­\ntion be entitled to the same benefits he \nWould have had under reinstatement in \naccordance Civil Service Rule IX (Part 9  \nof this chapter). Such an employee has \npermanent tenure as a classified civil \nservice appointee in the agency in which \nemployed unless he was reappointed \nwith a time limitation of one year or \nless.\nAny transfer or reappointment of an \nemployee who was originally appointed \n“subject to investigation” will be subject \nto the results of the investigation.\nAny transfer or reappointment of an \nemployee who has been recommended \nfor classification in his former position, \nand whose suitability for classification \nwas under investigation, shall be subject \nto the results of such investigation.\n(h) Reemployment benefits.  (1) Any \nperson, except one who was holding a \ntemporary position, who was transferred \nby the Commission with reemployment \nrights under authority of Executive Or­\nder 8973 (3 CFR, Cum. Supp., p. 1039) or \n9067 (3 CFR, Cum. Supp., p. 1093) or \nWar Manpower Commission Directive \nNo. 10, and who is subsequently involun­\ntarily furloughed or separated without \ncause as would reflect upon his suita­\nbility for employment in the Federal \nservice or who meets the conditions of \nsubparagraph (1) (vi) of this paragraph, \nshall be entitled to the rights specified \nbelow, provided he is still qualified to \nperform the duties of his position and \nthat he makes application for reem- \nloyment within forty days after the ter­\nmination of his services, but in no event \nlater than six months after the end of the war:\n(i) If his transfer was to another Fed­\neral department or agency, he shall be \nentitled to thirty days’  notice from the \ndepartment or agency to which he was \ntransferred, prior to the termination of \nhis services with such department or \nagency, unless such termination is for cause.\n(ii) He shall be reemployed within \nthirty days of his application in the same \ndepartment or agency and to the maxi­\nmum extent practicable, in the same \nlocality, in his former position, or in a \nposition of like seniority, status, and pay, \nin such manner, to the extent consistent \nwith law, that he does not lose any of the \nrights or benefits to which he would have \nbeen entitled had he not been transferred \nor released: Provided, That such a posi­\ntion then exists, that is not held by a \nperson having a higher retention pref­\nerence.\n(iii) In the event of the transfer of any \nemployee under a series of transfers, all\n",
+      "text_sha256": "f3b3816e2fc5e14dfe4b8092720600a5abdf90d5b1470018858b91e367651a8d"
+    },
+    "T6f334f0836e07763b32bcfa3": {
+      "char_end": 5149,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/2454cf4da7afa52140ac58ce5edfe1f190d34cb235ad42a026dbc2a9fb64d4e4/89b824ffa7e785b94871a9623103a0af1fa1b5c5db5c507b4d5ca6034fe64792/page-1.txt"
+      ],
+      "text": "A\n&\nFEDERAL\n%\nREGISTE\nVOLUME 7\nvit H  ^v' -\n% ,  '9 3 4  ^\n*  O fi/iTCO  %\nNUMBER 200\nWashington, Saturday , October 10, 1942\nRegulations\nTITLE 5 — ADMINISTRATIVE \nPERSONNEL\nChapter I— Civil Service Commission\nP art 18—W ar S ervice R egulations\nAPPOINTMENT, ETC., AM ENDM ENTS\nParagraph (d) (1) of §  18.5 Appoint­\nment  issued, as amended, on September \n26, 1942 (7 F.R. 7723), is amended to \nread as follows:\n§  18.5 Appointment.  *  *  *\n(d) Emergency appointment -without  \nexamination.  (1) In cases of extreme \nemergency, where positions must be filled \nwithout delay, and where time does not \npermit the securing of prior authority, \nemergency appointments for not to ex­\nceed thirty days may be made without \nexamination and without specific au­\nthority of the Commission. This author­\nity shall not apply to positions in Wash­\nington, D. C., or to positions in cities \nwhere regional offices or branch re­\ngional offices of the Commission are lo­\ncated. Such appointments may not be \nextended beyond the thirty-day period \nwithout the express prior approval of \nthe Commission. (E.O. 9063, February \n16, 1942, 7 F.R. 1075)\nSection 18.6 Promotion issued, as \namended, on September 26, 1942 (7 F.R. \n7723) is amended to read as follows:\n§  18.6 Promotion. Employees  ap­\npointed to indefinite positions under the \nprovisions of these regulations may be \npromoted within the same department or \nagency in the same manner and under \nthe same procedures and standards as \nemployees having a classified civil service \nstatus. Employees appointed  under \nthese regulations to temporary (limited) \npositions may be promoted within the \nsame department or agency only after \nprior approval of the Commission has \nbeen secured. (E.O. 9063, February 16, \n1942, 7 F.R. 1075)\nNote: For regulations relating to promo­\ntion of employees having a classified civil  \nservice status, see 6 CFR, Fart 11.\nParagraph (a) (1) of §  18.11 Extent of  \nregulations issued, as amended, on Sep­\ntember 26,1942 (7 F.R. 7723), is amended \nto read as follows:-^\n§  18.11 Extent of regulations, (a) \nThe foregoing regulations shall supersede \nCivil Service Rules HI, V, VI, VII, VIII, \nIX, X (5 CFR, Parts 3, 5, 6, 7, 8, 9, 10) \nand all provisions of joint regulations in­\nconsistent with these regulations, for all \npositions except:\n(1) Positions in the field service of the \npostal establishment (except as provided \nin §  18.9 (j) of this chapter). (E.O. \n9063, February 16, 1942, 7 F.R. 1075; E.O. \n9243, September 12, 1942, 7 F.R. 7213; \nDirective No. X, War Manpower Com­\nmission, September 14,1942, 7 F.R. 7298).\nBy the United States Civil Service \nCommission.\nH. B. M itchell , \nPresident.\nS eptember  28, 1942.\n[F. R. Doc. 42-10104; Filed, October 9, 1942;  \n11:05 a. m.]\nTITLE 6— AGRICULTURAL CREDIT\nChapter II— Commodity Credit \nCorporation\n[1942 C. C. C. Rice Form 1—Instructions]  \nP art 233—1942 R ice L oans\n1942 COM M ODITY CRED IT C O R PO R A TIO N  R IC E \nLOANS\nCommodity Credit Corporation has au­\nthorized the making of loans on, and the \npurchase of eligible paper secured by rice \nstored on farms or in approved public rice \nwarehouses. These instructions state the \nrequirements of Commodity Credit Cor­\nporation with reference to making such \nloans on rice and the purchase of notes \nsecured by rice.\nGENERAL INSTRUCTIONS\nSec.\n233.1 Definitions.\n233.2 Areas in which loans will be made.\n233.3 Separate loans on each variety of rice.\n233.4 Public warehouses.\n233.5 Warehouse receipts.\n233.6 Farm storage.\n233.7 Liens.\n233.8 Insurance.\n(Continued on next page)\nCONTENTS\nREGULATIONS AND NOTICES\nAgricultural  M arketing  A dm in­\nistration : Page\nMontevideo Live Stock Sales,\nInc., notice under Packers\nand Stockyards Act ____ 8014\nA lien  P roperty  C ustodian :\nMaywood Chemical Works, vest­\ning order _______________ 8072\nB itum inous C oal D iv isio n:\nDistrict 10, minimum price\nschedule amended________ 8014\nBaldwin Fuel Co___________ 8068\nNational Coal Co_._________ 8069\nPrushnok, John P _________ 8068\nVanceunebrock Coal Co., resto­\nration of code membership. 8070 \nWerner, C. E., Jr.; restoration of\nregistration _____________ 8070\nCivil  A eronautics  B oard:\nSuspension and revocation pro­\nceedings, rules of practice\ngoverning_______________ 8014\nCivil  S ervice C om m ission:\nWar service regulations; ap­\npointment, etc __________ 8007\nCoast G uard :\nSecurity of ports and control of \nvessels in navigable waters \nof United States;\nGeneral license ___________ 8065\nRevision of regulations _____ 8026\nCommodity  C redit C orporation :\nRice loans, 1942_____________ 8007\nEconomic  W arfare B oard:\nIron and steel, certificates of\nnecessity________________ 8015\nF ederal C ommunications  C om mis­\ns io n:\nHearings, etc.:\nBlack Hills Broadcast Co __ 8071\nOhio State University ______ 8071\nPostal Telegraph-Cable Co __ 8071\nWestern Union Telegraph Co_ 8072 \nF ish  and W ildlife  S ervice :\nWildlife refuges; hunting etc..\nregulations:\nLake Mason National Wild­\nlife Refuge, Montana ___ 8066\nReelfoot National Wildlife\nRefuge, Tennessee _____ 8067\nSantee National  Wildlife\nRefuge, South Carolina.. 8067 \n(Continued on next page)\n8007\n",
+      "text_sha256": "b1bd167ad1e9a335ad778ed20a96396cbc706c9b5bf74a0b0ddf85d8da67b640"
+    },
+    "T72334aa49142d5909bb69fff": {
+      "char_end": 12497,
+      "char_start": 10921,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "The \nnominating or appointing officer shall make selection for each vacancy \nfrom not more than the highest three names available for appointment \non such certification, unless objection shall be made, and sustained \nby the Commission, to one or more of the persons certified, for any \nproper and adequate reason, as may be prescribed in the rules promul-\ngated by the Civil Service Commission: Provided, That an appointing \nofficer who passes over a veteran eligible and selects a nonveteran shall \nfile with the Civil Service Commission his reasons in writing for so \ndoing, which shall become a part of the record of such veteran eligible, \nand shall be made available upon request to the veteran or his desig-\nnated representative; the Civil Service Commission is directed to \ndetermine the sufficiency of such submitted reasons and, if found \ninsufficient, shall require such appointing officer to submit more \ndetailed information in support thereof; the findings of the Civil \nService Commission as to the sufficiency or insufficiency of such \nreasons shall be transmitted to and considered by such appointing \nofficer, and a copy thereof shall be sent to the veteran eligible or to \nhis designated representative upon request therefor: Provided, \nfurther, That if, upon certification, reasons deemed sufficient by the \nCivil Service Commission for passing over his name shall three times \nhave been given by an appointing officer., certification of his name for \nappointment may thereafter be discontinued, prior notice of which \nshall be sent to the veteran eligible.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T7341a2ce2b6362e7c36e12be": {
+      "char_end": 9004,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-4.txt"
+      ],
+      "text": "1424 FEDERAL REGISTER, Thursday, February 7, 1946\nRegulations\nTITLE 5 — ADMINISTRATIVE \nPERSONNEL\nChapter I— Civil Service Commission\nP art 18—W ar S ervice R egulations\nCross R eference :  For supersedure of \nPart 18 see Part 27 of this chapter, infra.\nP art 27— T emporary  C ivil  S ervice \nR egulations\nPursuant to the authority conferred by \nExecutive Order No. 9691 of February 4, \n1946 (11 F.R. 1381), “Directing the Civil \nService Commission to resume opera­\ntions under the civil service rules, and \nauthorizing the adoption of special regu­\nlations during the transitional period”, \nand the Veterans’  Preference Act of \n1944, the Commission hereby prescribes \nthe following regulations to provide for \nthe transitional period until such time \nas the civil service rules are revised.\nThese regulations shall be effective \nthirty days from the date of the order \nand shall supersede the war service reg­\nulations (Part 18 of this chapter). On \nand after that date all appointments, \ntransfers, reinstatements, reappoint­\nments, changes in status, and other ac­\ntions involving the classified (competi­\ntive) civil service shall be made in ac­\ncordance with these regulations. Any \nagency may, in Its discretion, begin to \noperate under these regulations at any \ntime prior to that date.\nSec.\n27.1 Politics and religion.\n27.2 Classification of the service.\n27.3 Examinations.\n27.4 Boards of Examiners.\n27.5 Qualifications of applicants.\n27.6 Ratings and eligibility.\n27.7 Certification.\n27.8 Temporary appointments.\n27.9 Reinstatement.\n27.10 Transfer.\n27.11\n27.12\n27.13\n27.14\n27.15\n27.16\n27.17\nAu t h o r it y: §§27.1 t o  27.17, in c lu siv e , is ­\nsu ed  u n d er E.O. 9691, 11 F R . 1381.\n§  27.1 Politics and religion —(a) No \ninterference with elections.  No person \nin the executive civil service shall use his \nofficial authority or influence for the \npurpose of interfering with an election \nor affecting the results thereof. Persons \nwho by this part are in the competitive \nclassified service, while retaining the \nright to vote as they please and to ex­\npress their opinions on all political sub­\njects, shall take no active part in politi­\ncal management or in political cam­\npaigns.\n(b) No disclosure or discriminations.  \nNo question in any form of application \nor in any examination shall be so framed \nas to elicit information concerning the \npolitical or religious opinions or affilia­\ntions of any applicant, nor shall any in­\nquiry be made concerning such opinions \nor affiliations, and all disclosures thereof \nshall be discountenanced, except as to \nsuch membership in political parties ox \norganizations as constitutes by law a dis­\nqualification for Government employ­\nment. No discrimination shall be exer­\ncised, threatened, or promised by any \nperson in the executive civil service \nagainst or in favor of any applicant, \neligible, or employee in the classified \n•service because of race, or his political \nor religious opinions or affiliations, ex­\ncept as may be authorized or required by \nlaw.\n(c) Prohibited recommendations.  No \nrecommendation of an applicant, eligi­\nble, or employee in the classified serv­\nice involving disclosure of his political \nor religious opinions or affiliations shall \nbe considered or filed by the Commis­\nsion, or by an officer concerned in mak­\ning appointments or promotions.\n(d) Attempting to secure withdrawals.  \nNo applicant for competitive examina­\ntion, or eligible on any civil service reg­\nister, or officer or employee in the execu­\ntive civil service, shall directly or indi­\nrectly persuade, induce, or coerce, or \nattempt to persuade, induct, or coerce \nany prospective applicant, applicant, or \neligible to withhold filing application or \nto withdraw from competition or eligi­\nbility for positions in the competitive \nclassified civil service, for the purpose of \neither improving or injuring the pros­\npects or chances of any such applicant \nor eligible. The penalty for violation of \nthis paragraph by applicants or eligibles \nshall be cancellation of application or \neligibility, as the case may be, and such \nother penalty as the Commission may \ndeem appropriate. The penalty for vio­\nlation of this paragraph on the part of \nofficers or employees in the executive \ncivil service shall be such disciplinary \naction as the Commission shall direct.\n§  27.2 Classification of the service —\n(a) Extent of the classified service.  The \nclassified service shall include all per­\nsons who have heretofore or may here­\nafter be given a competitive status in \nthe classified civil service, with or with­\nout competitive examination, by legisla­\ntive enactment, or under the civil service \nrules or regulations, or by Executive or­\nders covering groups of employees with\nsifted service, or authorizing the appoint­\nment of individuals to positions within \nsuch service. It shall include all posi­\ntions now existing or hereafter created by \nlegislative N or Executive action, of what­\never function or designation, whether \ncompensated by a fixed salary or other­\nwise, unless excepted from classification \nby specific affirmative legislative or Exec­\nutive action. No right of classification \nshall accrue to persons whose appoint­\nment or assignment to classified duties \nis in violation of the civil service rules.\n(b) Examination required. No person \nshall be appointed, employed, promoted, \nor transferred in the classified service, or \nperform the duties of ,any position \ntherein, until he passes the examination \nprescribed by the Commission in his case, \nunless especially exempted.\n(c) Exemptions from classification.\n(1) Parts 50 and 51 are continued as a\npart of this chapter, and positions named \nin such parts are excepted from the clas­\nsified service.\n(2) Whenever the Commission and the \ndepartment or agency concerned agree \nthat any position or class of positions \nin the professional, scientific, or technical \nfields should be excepted from the classi­\nfied service, appointment to such posi­\ntions may be made under the authority \nof section 7 of Executive Order 9691 of \nFebruary 4, 1946, pending a general re­\nvision of Part 50. Unless specifically \nlimited to one year or less, appointments \nmade under this subparagraph shall not \nbe regarded as temporary appointments. \nPersons serving under war service, ap­\npointments in positions which the Com­\nmission has agreed to recommend for \ninclusion in Part 50 may be retained in \nsuch positions until such part is specifi­\ncally amended to include such positions.\n(3) Appointments to the excepted po­\nsitions nam^4Jn Part 50 may be made \nwithout examination or upon noncom­\npetitive examination.\n(4) Appointments to the excepted po­\nsitions named in Part 51 may be inade \nupon such noncompetitive examination \nas the Commission shall prescribe.\n(5) The proper appointing officer may\nfill any position named in Part 50 or Part \n51, or any other excepted position, as \nclassified positions are filled, in which \ncase the person so appointed shall be \neligible for transfer, reinstatement, or \npromotion to positions in the classified \nservice, subject to the provisions of this \npart. The incumbent of any excepted \nposition so filled will not be entitled to \nprotection against removal afforded by \nthis' part. I\n(d) Assignment of excepted employ­\nees. A person appointed without com­\npetitive examination under paragraph\n(c) of this section or by authority of an \nact of Congress shall not be assigned to \nthe work of a competitive classified po­\nsition without the approval of the Com­\nmission or specific provision of law.\n(e) Apportionment.  The appoint­\nments of persons covered into the clas­\nsified service under this section, by Ex­\necutive order, or otherwise, shall be ex­\nempted from the quota restrictions ap­\nplied in certification: Provided, That such \nappointments shall be included in the \napportionment figures in those cases \nwhich would be included if the position \nwere being filled in accordance with \n§  27.7 of this chapter.\n(f) Excepted employees; when classi­\nfied. Except as provided in paragraph\n(g) of this section, a person holding a \nposition when it is placed in the classi­\nfied (competitive) service or otherwise \nis made subject to competitive examina­\ntion shall, upon recommendation to the \nCommission by the head of the depart­\nment or agency in which he is employed, \nhave all the rights which he would have \nacquired if appointed thereto by com­\npetitive examination: Provided,\n(1) That he has rendered six months \nof satisfactory active service in such \nposition or in the civilian Executive \nbranch of the Federal Government im­\nmediately prior to the effective date of \nthe change in status of the position, and \ncontinues to serve in such position for \nsixty days thereafter;\nPromotion.\nRemovals and reductions.\nReport of changes.\nTestimony.\nW ithholding salary.\nTransition promotions, transfers, re­\nappointments.\nRestoration after return from military ' their positions into the competitive Clas- \nservice.\n",
+      "text_sha256": "6510cb283725be2d00bf994a6ab628a2e722fd02d54fb8849e16bbbf9ee81d8f"
+    },
+    "T8950546b3e7c4d6e17048289": {
+      "char_end": 9843,
+      "char_start": 9403,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "Preference eligibles shall not be subject to the provisions of \nsection 9 of the Civil Service Act concerning two or more members \nof a family in the service, or to the provisions of section 2 of that \nAct concerning apportionment of appointments in the Government \ndepartments in the District of Columbia among the several States and \nTerritories according to population, but may be required to furnish \nevidence of residence and domicile.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T8b3437e483a8832d7ca55ec5": {
+      "char_end": 14179,
+      "char_start": 13917,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "The Civil Service Commission is authorized and directed \nto hold an examination, during the next succeeding quarterly period, \nfor any position to which any appointment has been made within the \npreceding three years, for any person included under section 2 (1),",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "T8d4f4836e07e04ad728da1bd": {
+      "char_end": 9273,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-9.txt"
+      ],
+      "text": "1429FEDERAL REGISTER, Thursday, February  7, 1946\nmission for' the position to which ap­\npointed.\n(3) A person who is serving in another \nagency under an appointment other than \none limited to six months or less, or who \nhas within the 30 days preceding the date \nof appointment so served, may not be \nappointed under this paragraph unless \nhe presents an official notice of his actual \nor impending separation because of re­\nduction in force, an official notice of fur­\nlough, or an official release granted by \nthe agency or the Commission stating \nthat he is available for employment else­\nwhere.\n(g) The Commission is authorized to \ninspect the records of any department or \noffice to aid it in observing and enforcing \nof the operation of this section and re­\nporting thereon to the President.\n§  27.9 Reinstatement —(a) General\nrequirements for reinstatement.  A per­\nson separated from a civilian position in \nthe Federal service may be reinstated to \na position in the classified service if the \nfollowing requirements are met:\n(1) He must have had a classified \n(competitive) status at the time he was \nseparated, and have completed satisfac­\ntorily a probationary period or otherwise \nhave received an absolute appointment.\n(2) He must be reinstated within one \nyear of separation if his period of service \nwas less than two years, within two years \nif his period of service was two years or \nmore but less than three years, within \nthree years if his period of service was \nthree years or more but less than four \nyears, within four years If his period of \nservice was four years or more but less \nthan five years, but if his period of serv­\nice was five years or more he may be re­\ninstated without time limit after separa­\ntion: Provided, That (i) Thèse time lim­\nits shall be waived for former classified \nemployees either entitled to preference \nby the Veterans’  Preference Act of 1944, \nor whose war service appointments may \nbe converted to reinstatements under \nparagraph (d) of this section; (ii) the \nperson is otherwise eligible under the \nconditions of the Executive order of June \n8, 1920, which limits the reinstatement \nof persons who are within ten years of \nretirement age.\n(3) Reinstatement may not be made \nwithin 30 days of separation from the \nFederal service unless he presents an \nofficial notice of separation because of a \nreduction in force, or an official release \ngranted by his former department or \nagency or, upon appeal, by the Commis­sion.\n_J4) He must have the knowledge and \nabilities required for the performance \nof the duties of the position to which re­\ninstatement is proposed and he must \nIneet the current qualifications stand­ards.\n(5) If .  the proposed reinstatement is \nto a position in the apportioned service, \nhe must prove his residence in the same \njnanner as for original appointment and \nhe must meet the requirements of the \napportionment unless he has previously \nserved in the apportioned service or such \nrequirements are waived by the Commis­\nsion upon the certificate of the appoint­\ning officer showing that the reinstate­\nment is required in the interest of good \nadministration.\nNo. 28------2\n(b) Certificate required for reinstate - \nment.  A certificate issued by the Com­\nmission will be required for reinstate­\nment in the following cases:\n(1) When the residence of the em­\nployee proposed for reinstatement is in a \nstate which is in excess of its quota and \na waiver of the apportionment is nec­\nessary.\n(2) When the proposed reinstatement \nIs in a department or agency other than \nthe one from which the employee was \nseparated and more than one year has \npassed since such separation.\n(3) When the proposed reinstatement \ninvolves either a reassignment to a dif­\nferent line of work or a promotion to a \nposition of higher grade from that of the \nposition from which separated, unless \nstandards for promotion without prior \napproval of the Commission are met or \nthe employee has established by exami­\nnation his qualifications for the new po­\nsition with the appropriate office of the \nCommission subsequent to February 4, \n1946.\n(c) Certificate not required for rein­\nstatement.  Except as provided in para­\ngraph (b) of this section, reinstatements \nof employees who meet the requirements \nof paragraph (a) may be made by the \ndepartments and agencies without cer­\ntificate of the Commission. Such rein­\nstatements will be subject to postaudit \nby the Commission.\n(d) Conversion of war service appoint­\nment to reinstatement.  Any employee \neligible for reinstatement under this sec­\ntion who is serving under a war service \nindefinite appointment, may, in the dis­\ncretion of the head of the agency con­\ncerned and without the prior approval \nof the Commission, have his appointment \nconverted to a reinstatement in the posi­\ntion in which employed: Provided, That \nthe agency concerned determines that \nsuch employee has a civil service status \nfor reinstatement under this section. All \nconversions of appointments under this \nsection shall be reported to the Commis­\nsion on the regular report of personnel \naction and will be subject to post-audit \nby the Commission.\n' §  27.10 Transfer —(a) General re­\nquirements for transfer.  An employee \noccupying a position in the classified \nservice may be transferred to another \nposition In the classified service if the \nfollowing requirements are met:\n(1) He must have a classified (com­\npetitive) status at the time he is trans­\nferred, and have received an absolute \nappointment or have completed satisfac­\ntorily at least six months of service under \na probational appointment. If he is \ntransferred before the completion of his \nprobation, he shall serve a probationary \nperiod of sufficient duration to complete \nhis original probationary period.\n(2) He must have the knowledges and \nabilities required for the performance of \nthe duties of the position to which he is \ntransferred and meet the current quali­\nfications standards.\n(3) He must present an official notice \nof his actual or impending separation \nbecause of a reduction in force, an offi­\ncial notice or furlough, or an official re­\nlease granted by his department or \nagency or, upon appeal, by the Commis­\nsion.\n(4) If the transfer is from a nonap- \nportioned to an apportioned position, he \nmust prove his residence in the same \nmanner as for original appointment and \nhe must meet the requirements of the \napportionment unless he has previously \nserved in the apportioned service, or \nsuch requirements are waived by the \nCommission upon the certificate of the \nappointing officer showing that the \ntransfer is required in the interest of \ngood administration.\n(b) Certificate required for transfer.  \nA certificate issued by the Commission \nwill be required for transfer in the fol­\nlowing cases:\n(1) When the residence of the em­\nployee proposed for transfer is in a state \nwhich is in excess of its quota and a \nwaiver of the apportionment is neces­\nsary.\n(2) When the transfer is to a position \nin a higher grade than the position in \nwhich the employee is serving if the \nstandards for promotion without prior \napproval of the Commission are not met.\n(3) When the transfer also involves \na reassignment to a different line of work \nfrom that of the position in which the \nemployee is serving unless the employee \nhas established by examination his \nqualifications for the new position with \nthe appropriate office of the Commission \nsubsequent to February 4, 1946.\n(4) When a retransfer or a special \ntransfer as provided in paragraphs (d) \nand (e) of this section is involved.\n(c) Certificate not required for trans­\nfer. Except as provided in paragraph\n(b) of this section, transfers of em­\nployees who meet the requirements of \nparagraph (a) may be made by the de­\npartments and agencies without certifi­\ncate of the Commission. Such transfers \nwill be subject to post-audit by the Com­\nmission.\n(d) Retransfer.  Any person may be \nretransferred to a position in which he \nwas formerly employed or to any position \nto which transfer could be made there­\nfrom if, since his transfer, he has served \ncontinuously and satisfactorily under \nany of the following conditions:\n(1) In the Executive or judicial civil \nservice of the United States or of its \nInsular possessions.\n(2) In the legislative service.\n(3) In the service of an international \ngovernmental organization, or of a State, \ncounty, municipality or foreign govern­\nment in a position in which he has ac- \njquired valuable training and experience.\n(4) In a training course approved by \nthe Commission in any educational in­\nstitution of recognized standing.\n(e) Special transfers —(1) From the  \noffice of the President.  Any person who \nhas served for at least two years in the \nOffice of the President of the United \nStates may be transferred to a classified \nposition upon such tests of fitness as \nthe Commission may deem proper.\n(2) From the Philippine service.  An \nofficer or employee occupying a com­\npetitive position in the Philippine classi­\nfied service who has served three years \nor more therein, may be transferred to \nthe Federal classified service, subject to \nthe provisions of this part; but the Com­\nmission may authorize the transfer to \nan officer or employee who has served\n",
+      "text_sha256": "4d7f850ac1852cc1e1c8f053eae4544fc9ca5e35775829668990818458137f56"
+    },
+    "Tb7caf3dfe34739257704a36f": {
+      "char_end": 2533,
+      "char_start": 2041,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "After January 1, 1945, no part of any appropriation or \nfund made available by this or any other Act shall be allotted or \nmade available to, or used to pay the expenses of, any agency or \ninstrumentality including those established by Executive order after \nsuch agency or instrumentality has been in existence for more than \none year, if the Congress has not appropriated any money specifically \nfor such agency or instrumentality or specifically authorized the \nexpenditure of funds by it.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "Tcb954071f728bde0857368e1": {
+      "char_end": 12897,
+      "char_start": 12498,
+      "paths": [
+        "jobs/source-ladder/output/texts/queue_EO_8705_Veterans_Preference_Act_of_1944_Act_of_June_27_1944_ch._287_58_Stat._387_esp._sec._12__acc3668bc5.txt"
+      ],
+      "text": "Whenever in the Postal Service \ntwo or more substitutes are appointed on the same day, they shall be \npromoted to the regular force in the order in which their names \nappeared on the civil-service register from which they were originally \nappointed, whenever there are substitutes of the required sex who are \neligible and will accept, unless such vacancies are filled by transfer or \nreinstatement.",
+      "text_sha256": "02bf7f0aea9c91b64cb7f3139a62ed5e086781fbb125c28b42f55d189bc34606"
+    },
+    "Tcf7145c30a839a2adbbb3914": {
+      "char_end": 1302,
+      "char_start": 597,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_8514.txt"
+      ],
+      "text": "EXECUTIVE ORDER\nAuthorizing  the C ivil  S ervice C ommis ­\nsion  to P ermit T ransfers D uring P ro­\nbation to A ppropriate  P ositions  D i ­\nrectly C oncerned W ith  the N ational \nDefense  P rogram\nBy virtue of the authority vested in me  \nby section 1753 of the Revised Statutes  \n(U.S.C., title 5, sec. 631), by the Civil  \nService Act (22 Stat. 403), and as Presi­\ndent of the United States, the Civil Serv­\nice Commission is hereby authorized to  \npermit transfers during probation to  \nappropriate positions directly concerned  \nwith the national defense program.\nF ranklin  D  Roosevelt \nThe W hite  H ouse,\nAugust 13, 1940.\n[No. 8514]\n[F. R. Doc. 40-3394; Filed, August 14, 1940; \n12:59 p. m.]\n",
+      "text_sha256": "73a578c61d75454fdd548a50b3c79e348bb237d68dabbd19aa0ddd5ca432522b"
+    },
+    "Te1fe14404d5463aa28f7c39c": {
+      "char_end": 9538,
+      "char_start": 0,
+      "paths": [
+        "jobs/astra-source-retention/output/pages/5d30837b6eb02553bac4f96c5f403dd3b76933ced279d77b85f2c0d9cb18c45a/f40a1870980cf6578b7e921a851b2c9e5da554b2c08fc89524a33768f56b6ca9/page-7.txt"
+      ],
+      "text": "1427FEDERAL REGISTER, Thursday, February 7, 1946\n(3) The unmarried widows of honor­\nably discharged deceased ex-service men \nwho had served in any branch of the \narmed forces of the United States dur­\ning any war, or in any campaign or ex­\npedition (for which a campaign badge \nhas been authorized).\n(4) As used in this section “honorably \ndischarged” shall mean any separation \nfrom active duty in any branch of the \narmed forces under honorable conditions. \nA transfer to inactive status, a transfer \nto retired status, the acceptance of a \nresignation, or the issuance of a dis­\ncharge will be considered as covered by \nthe above definition if such separation \nwas Under honorable conditions.\n(c) Lists of eligible& .  All persons \nrated at 70 or more in open competitive \nand reopened examinations shall be \neligible for appointment and their names \nshall be entered on appropriate registers \nin accordance with their ratings; except \nthat the names of eligibles granted five- \nor ten-point preference under this part \nshall be entered on registers in accord­\nance with their respective augmented \nratings, and the name of a preference \neligible shall be entered ahead of all \nothers having the same rating: Pro­\nvided, That except on registers for posi­\ntions in the professional and scientific \nservices for which the basic entrance \nsalary is over $3000 per annum, the \nnames of eligibles granted ten-point \npreference under this part shall be \nplaced at the top of the appropriate \nregister: And provided further,  That \nwhen the Commission has established an \neligible register for probational appoint­\nment for a particular position as the \nresult of an open competitive examina­\ntion, the following classes of persons \nupon their application may be entered \non the register in accordance with their \nQualifications as rated by the same \nstandards applied to all other eligibles \non that register: (1) Persons having a \nclassified civil service status who fail of \nrestoration after military service or of \nreemployment after war transfer or \nafter their appeal from separation under \nsection 14 of the Veterans' Preference \nAct has been acted upon favorable to \nthem, and (2) persons having a classi­\nfied civil service status who since August \n14, 1945, have been, or are about to be, \nbecause of a reduction in force, separated \nor furloughed for 80 days or more from \na similar or higher grade position in the \nsame line of work. However, both before \nand after the establishment of proba­\ntional registers the names of persons in \nsubparagraph (1) who are eligible for \nreinstatement or reappointment will be \nsubmitted to the departments and \nagencies by the Commission on an indi­\nvidual basis and positive efforts will be \nmade to place them.\n(d) Termination of eligibility.  Eligi­\nbility on any list shall be terminated \nunder the following conditions:\n(1) By acceptance of appointment of \nother than temporary duration from such \nlist in accordance with §  27.7 of this \nchapter.\n(2) By action of the Commission ter­\nminating the eligibility of all eligibles on \nsuch list: Provided, That this provision \nshall not operate to terminate the eligi­\nbility in less than one year for the follow­\ning classes of persons, unless a new list \nis established on the basis of more exact­\ning requirements which have been deter­\nmined to be more appropriate for the \nposition concerned: (i) Preference eli­\ngibles entered on such list as a result of \nreopened examinations, or (ii) prefer­\nence eligibles restored to the list after \nseparation because of reduction in force \nor resignation.\n§  27.7 Certification—(a) Methods of  \nfilling vacancies. Vacancies in any posi­\ntion or employment not excepted from \nexamination shall be filled as follows:\n(1) Prior to establishment of register \nfor probational appointment, vacancies \nin any position for which an appropriate \nregister of eligibles for probational ap­\npointment has not been established may \nbe filled *in accordance with §§27.8 or \n27.16.\n(2) After establishment of register for \nprobational appointment, vacancies in \nany position for which an appropriate \nregister of eligibles for probational ap­\npointment has been established shall be \nfilled by noncompetitive action in ac­\ncordance with this part exclusive of \n§ 27.16 or by selection in accordance \nwith this section from open competitive \neligible registers: Provided, That when­\never public announcement is made of \nan open competitive examination for \nfilling a specific vacancy, such vacancy \n\"may not thereafter be filled noncom- \npetitively by transfer, promotion, reas­\nsignment, or reinstatement, except that \napplications may be accepted by the \nCommission from persons eligible for \npromotion, transfer, reassignment or re­\ninstatement who are recommended by \nthe appointing officer at any time before \nappointment is made to the vacancy in­\nvolved. The Qualifications of such per­\nsons will be rated in accordance with \nthe terms of the announcement and \nsuch persons may be reinstated, pro­\nmoted, transferred, or reassigned to the \nposition only if they are within reach \nfor certification.\n(b) Method of certification.  When­\never a nominating or appointing officer \nrequests the certification of eligibles, \nthe Commission shall certify, from the \ntop of the appropriate register a number \nof names sufficient to permit the nomi­\nnating or appointing officer to consider \nat least three names in connection with \nsuch vacancy. When so provided by the \nCommission, selection shall be made from \nthe register by the nominating or ap­\npointing officer without preliminary cer­\ntification of the Commission. Where \nthe Commission finds that there is no \nregister in existence appropriate as a \nwhole to fill a particular vacancy, the \nCommission at its discretion may certify \nfrom the most nearly appropriate exist­\ning register, in the order of their rank­\ning, the names of any individuals there­\non found by it to be adequately qualified \nto fulfill the particular requirements of \nthe vacant position. Certification of an \neligible for temporary appointment shall \nnot affect his eligibility for certification \nfor probational appointment. Certifica­\ntion shall be made without regard to sex \nunless the sex desired is specified in the \noriginal requisition.\n(c) Selection. (1) The nominating or \nappointing officer shall, with sole refer­\nence to merit and fitness, make selections \nfor appointment to each vacancy from \nnot more than the highest three names \navailable for appointment on the certifi­\ncate: Provided, That the appointing of­\nficer need not consider any eligible who \nhas been within his reach in connection \nwith three separate appointments or \nagainst whom objections shall be made \nand sustained for any of the reasons \nstated in §  27.5 (c). The second and any \nadditional vacancies shall be filled in like manner.\n(2) An appointing officer who passes \nOver an eligible granted five- or ten- \npoint preference under this part and \ntentatively selects a nonpreference elig­\nible, shall file with the Commission his \nreasons in writing for so doing and the \nCommission shall determine the suffi­\nciency or insufficiency of such submitted \nreasons and notify the appointing officer. \nIf th e reasons are found sufficient, the \nnonpreference eligible tentatively se­\nlected may be appointed. If the reasons \nare found insufficient and the appoint­\ning officer still intends to appoint the \nnonpreference eligible, he must in con­\nformity with the Veterans’  Preference \nAct of 1944 (58 Stat. 387) submit either \nmore detailed information concerning \nhis reasons for passing over the prefer­\nence eligibles or a statement that he has \nno more information in support of his \nselection. The nonpreference eligible \ntentatively selected may not be legally \nappointed except as provided in the fol­\nlowing paragraph until the appointing \nofficer has received notification from the \nCommission concerning his second state­\nment or until fifteen calendar days have \nelapsed from the date the second state­\nment was sent to the Commission, \nwhichever is earlier.\n(3) When a certificate has been issued \nfor filling several vacancies and the ap­\npointing officer submits reasons for pass­\ning over a preference eligible on such \ncertificate and selecting a nonpreference \neligible, he need not await receipt of the \nCommission’ s findings as to the suffi­\nciency of such reasons before making \nappointment to one or more of the re­\nmaining positions: Provided, That he \nholds open one of the vacancies for fur­\nther consideration of the preference eli­\ngible in case the reasons for passing him \nover are found insufficient by the Com­\nmission. Where a seniority system of \npromotion is established by law, such \nappointment shall be made on a tempo­\nrary basis until the vacancy held open is \nfilled by probational appointment.\n(4) A copy of the appointing officer’ s \nreasons and the Commission’ s findings \nshall, upon request, be sent to the eligi­\nble or his designated representative.\n(5) If upon certification, reasons \ndeemed sufficient by the Commission for \npassing over a preference eligible’ s name \nshall three times have been given by ap­\npointing officers, certification of his \nname for appointment will thereafter be \ndiscontinued, prior notice of which shall \nbe sent to the eligible. Any eligible who \nhas been within reach in connection with \nthree separate appointments in his turn, \nand any preference eligible who has been \npassed over three times for reasons\n",
+      "text_sha256": "b1c062bc4ad287f30481b137fffcf8adcb5f44c93d44e8f393c86a37decc0516"
+    },
+    "Te4ce0e4679b465423ae17e79": {
+      "char_end": 18248,
+      "char_start": 17889,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_9691.txt"
+      ],
+      "text": "9. Executive Orders Nos. 9063 of Feb­\nruary 16, 1942, 9378 of September 23, \n1943, and 8514 of August 13, 1940, are \nhereby revoked. Nothing in this order \nshall be construed to affect reemploy­\nment rights heretofore acquired by any \nperson under any law or Executive or­\nder, or under any regulation or adminis­\ntrative procedure of any Government \nagency.\n",
+      "text_sha256": "7de4a5554a608c60c23b48e6a59dd67e00469342eef5dc10f92de054a9f9faa0"
+    },
+    "Tf5d254c2eded124655075d16": {
+      "char_end": 2220,
+      "char_start": 2164,
+      "paths": [
+        "jobs/fr-originals/data/full_run/texts/EO_9830.txt"
+      ],
+      "text": "it is hereby ordered as \nfollows, effective May 1, 1947:",
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+    }
+  },
+  "valla_context": {
+    "automatic_approvals": 0,
+    "claims": {},
+    "notice": "Review lead only. Every case needs separate applicability, earlier-ending, scope, independent-command, savings and independent whole-case review.",
+    "package_scan": {
+      "causal_derivation_inferred": false,
+      "tracked_packages_loaded": 44,
+      "unmaterialized_packages": [
+        "research/production/astra-leverage-2026-10-22/mansfield-preflight/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-cab-v1/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-fcc-v1/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-v1/RATIONALES.json"
+      ]
+    },
+    "premise_library_sha256": "e0b9d0af27e8ef2d0461046d4801b9c2cb5a20529051aab8ddbfaf3af745cac3",
+    "protocol_pins": {
+      "jobs/claim-kit/AGENT_PROTOCOL.md": "d0577fa4ce10d15e137c7347ba25645c52711cc864d095e17714c2c00c0d67a6",
+      "jobs/claim-kit/BATCH.md": "73e1d684504a1fac4f3ceeb908cdca702c30c009fd8ad3cc5ac205f1509a0f87",
+      "research/stage15/LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json": null,
+      "research/stage19/CLAIM_SCHEMA.md": "9ff2bb08b8984ecef528c779fc3207ac9f7c815ac10b3dbc9158b559d2f8dd79",
+      "research/stage19/code/claim_gate.py": "d9e33806ff5e592ace5166ec8faa63bc3266f7a0b5d836967abe8b527f3b5dd8"
+    },
+    "review_queue": [],
+    "schema": "eo-valla-packet-context/v1",
+    "valla_code_sha256": "1841c6b79aa63dad4c80c1db280c6b892999bebfe5f50ddc9bdbeb9239787a45",
+    "whole_case_review_required": true
+  }
+}

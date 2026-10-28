@@ -1,0 +1,58 @@
+{
+  "schema": "eo-producer-cost-checkpoint/v1",
+  "producer": "codex-continuous-undecided",
+  "model_family": "OpenAI",
+  "instrument_ids": [
+    "EO:10014"
+  ],
+  "created_utc": "2026-10-25T16:06:08.354388+00:00",
+  "monotonic_seconds": 5469.462055192,
+  "preparation_machine_seconds": [
+    {
+      "packet": "packet-v1",
+      "seconds": 4.1444
+    },
+    {
+      "packet": "packet-v2",
+      "seconds": 5.9582
+    },
+    {
+      "packet": "packet-v3",
+      "seconds": 7.8514
+    }
+  ],
+  "ordinary_apply_seconds": 4.5778,
+  "acquisition": {
+    "route_requests": 2,
+    "http_requests": 3,
+    "download_bytes": 12487079,
+    "machine_seconds_reported": 17.1,
+    "failed_request_format_attempts": 1
+  },
+  "checker_machine_seconds_reported": [
+    {
+      "attempt": "checker-v1",
+      "seconds": 10.2,
+      "result": "metadata_proposal_key_misparsed_as_order"
+    },
+    {
+      "attempt": "checker-v2",
+      "seconds": 6.0,
+      "result": "same_failure_first_root_fix_did_not_include_real_prefix"
+    },
+    {
+      "attempt": "checker-v3",
+      "seconds": 6.4,
+      "result": "all_checks_pass"
+    }
+  ],
+  "status_review_wait_seconds": 117.98501900199972,
+  "lifecycle_review_wait": "in_progress_separate_interval",
+  "engineering_cost": "Root handles shared actual consumer prerequisite repair, tests, and raw-byte retention. Not included in producer-only machine totals.",
+  "producer_task_elapsed": "See PRODUCER_START.json, PRODUCER_CHECKPOINT_TELEMETRY.json and final telemetry after review. Includes waiting; not active labor. Initial required-rule reading predates recorded start.",
+  "tokens": null,
+  "cached_tokens": null,
+  "cash": null,
+  "active_labor_seconds": null,
+  "saving": "No estimate. Both outputs share one investigation and exact evidence; mechanical preparation, failed runs, review, corrections and integration remain costs."
+}

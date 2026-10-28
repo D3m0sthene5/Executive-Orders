@@ -1,0 +1,39 @@
+{
+  "schema": "coordinator-operational-failures/v1",
+  "recorded_utc": "2026-10-27T02:22:08.366126+00:00",
+  "events": [
+    {
+      "event": "first_workspace_reset",
+      "approximately_utc": "2026-10-27T00:38Z",
+      "effects": "Unpublished proposal/review/code bindings lost; recovered pinned committed work and created explicitly new claims/review attestations. Additional producer/reviewer recovery costs retained."
+    },
+    {
+      "event": "second_workspace_reset",
+      "approximately_utc": "2026-10-27T01:44Z",
+      "effects": "Committed producer/check/code artifacts survived; restored repository, raw store and original source metadata. Temporary private cards and correction notes survived. Independent original review bytes lost; new preservation records explicitly qualified."
+    },
+    {
+      "event": "control_identity_exposed",
+      "time_utc": null,
+      "effects": "Coordinator recovery message labeled old control before blind seal. Unscored invalid test retained; fresh final separate-context review/new control required. Never counts as a strict catch."
+    },
+    {
+      "event": "missing_recovery_directory_on_copy",
+      "time_utc": null,
+      "effects": "First latest-correction copy failed FileNotFoundError; created destination and copied exact surviving files. No approval inferred."
+    },
+    {
+      "event": "stale_process_ids_after_reset",
+      "time_utc": null,
+      "effects": "Polling old retained-source process id failed; inspected completed RESULTS/SUMMARY and verified exact acquisition output instead. No invented duration or HTTP telemetry."
+    },
+    {
+      "event": "large_unbounded_source_field_output",
+      "time_utc": null,
+      "effects": "A coordinator inspection printed a large source_notes object and truncated; replaced with bounded field/substring inspection. Included in coordinator envelope."
+    }
+  ],
+  "tokens": null,
+  "active_labor_seconds": null,
+  "cost_qualification": "These costs are inside gross coordinator elapsed or separately recorded worker envelopes. No additional invented timing or double-counted labor total."
+}

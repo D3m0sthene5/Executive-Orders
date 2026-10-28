@@ -1,0 +1,109 @@
+{
+  "complete_session_cost": null,
+  "events": [
+    {
+      "coverage": "partial",
+      "event_id": "nmb-series-20261025-root-shared-assignment",
+      "finished_utc": "2026-10-25T23:24:39.506982+00:00",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "kind": "worker_elapsed",
+      "measurement_method": "Shared engineering/acquisition/production assignment umbrella, not separable per-phase active effort. Includes tools/reasoning/waits; initial idea-document read precedes marker.",
+      "phase": "production",
+      "started_utc": "2026-10-25T23:01:04.388800+00:00",
+      "worker_id": "codex-root-series-20261025"
+    },
+    {
+      "coverage": "partial",
+      "event_id": "nmb-series-20261025-independent-source-and-engineering-review",
+      "finished_utc": "2026-10-25T23:29:46.800111+00:00",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "kind": "worker_elapsed",
+      "measurement_method": "Independent source, blind controls, corrected exact factual/application reviews, engineering/correction retests; initial tool call and final verification outside coverage.",
+      "phase": "review",
+      "started_utc": "2026-10-25T23:23:53.061413+00:00",
+      "worker_id": "codex-nmb-series-independent-review-20261025"
+    },
+    {
+      "coverage": "partial",
+      "event_id": "nmb-series-20261025-root-correction-and-integration",
+      "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+      "instrument_ids": [
+        "EO:10029",
+        "EO:10117",
+        "EO:10130"
+      ],
+      "kind": "worker_elapsed",
+      "measurement_method": "Root correction/reconciliation, native consumers, documentation and artifact integration; includes tool/wait intervals. Final validation/publication after this marker not measured.",
+      "phase": "integration",
+      "started_utc": "2026-10-25T23:24:39.506982+00:00",
+      "worker_id": "codex-root-series-20261025"
+    }
+  ],
+  "note": "Intervals unioned per worker/kind; kinds overlap and must not be added. Reasoning may be included in output.",
+  "observed_phase_seconds_by_kind": {
+    "acquisition": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": null
+    },
+    "coordination": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": null
+    },
+    "correction": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": null
+    },
+    "integration": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": 814.430104970932
+    },
+    "preparation": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": null
+    },
+    "production": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": 1415.118182182312
+    },
+    "review": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": 353.73869800567627
+    }
+  },
+  "observed_seconds_by_kind": {
+    "access_wait": null,
+    "active": null,
+    "machine": null,
+    "worker_elapsed": 2583.2869851589203
+  },
+  "observed_token_lower_bounds": {
+    "cache_read": null,
+    "cache_write": null,
+    "input_uncached": null,
+    "output": null,
+    "reasoning": null
+  },
+  "token_usage_records": 0
+}

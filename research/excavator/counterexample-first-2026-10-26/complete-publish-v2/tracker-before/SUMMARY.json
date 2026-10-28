@@ -1,0 +1,160 @@
+{
+  "orders_total": 14972,
+  "orders_with_provisional_status": 3403,
+  "ready_for_human_review": 277,
+  "ready_by_tier": {
+    "complete_claim": 277
+  },
+  "ready_by_text_evidence_tier": {
+    "original_supported": 277
+  },
+  "original_replacement_obligations": 0,
+  "quotation_recheck_obligations": 0,
+  "human_verified": "not counted here; see the Stage 19 tracker",
+  "opus_media_not_applicable": [],
+  "step_done_among_decided": {
+    "provisional_status": {
+      "done": 3403,
+      "applicable": 3403
+    },
+    "original_text": {
+      "done": 2328,
+      "applicable": 3403
+    },
+    "clause_inventory": {
+      "done": 344,
+      "applicable": 3403
+    },
+    "ending_or_current_basis": {
+      "done": 303,
+      "applicable": 3403
+    },
+    "savings_residuals": {
+      "done": 336,
+      "applicable": 3403
+    },
+    "counterevidence": {
+      "done": 326,
+      "applicable": 3403
+    },
+    "shared_sources": {
+      "done": 209,
+      "applicable": 236
+    },
+    "opus_media": {
+      "done": 0,
+      "applicable": 844
+    }
+  },
+  "decided_by_steps_done": {
+    "1/6": 1006,
+    "1/7": 56,
+    "1/8": 3,
+    "2/6": 1211,
+    "2/7": 541,
+    "2/8": 34,
+    "3/6": 19,
+    "3/8": 196,
+    "4/6": 10,
+    "5/6": 35,
+    "5/7": 1,
+    "5/8": 1,
+    "6/6": 278,
+    "6/7": 10,
+    "7/8": 2
+  },
+  "orders_blocked_by": {
+    "NO_PROVISIONAL_STATUS": 11569,
+    "NO_OFFICIAL_SOURCE_LOCATED": 8469,
+    "NO_CLAUSE_INVENTORY": 3006,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3006,
+    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3006,
+    "FIRST_END_UNPROVED": 2613,
+    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 267,
+    "CLAIM_INCOMPLETE": 88,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "CLAIM_NOT_YET_CHECKED": 9,
+    "OPEN_SOURCE_AUDIT": 6,
+    "CLAIM_CHECK_FAILED": 5
+  },
+  "decided_orders_blocked_by": {
+    "NO_CLAUSE_INVENTORY": 3006,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3006,
+    "LATER_SOURCE_SEARCH_NOT_RECORDED": 3006,
+    "FIRST_END_UNPROVED": 2613,
+    "NO_OFFICIAL_SOURCE_LOCATED": 985,
+    "OPUS_MEDIA_NOT_MATCHED_TO_ORDER": 844,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 90,
+    "CLAIM_INCOMPLETE": 88,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "CLAIM_NOT_YET_CHECKED": 9,
+    "OPEN_SOURCE_AUDIT": 6,
+    "CLAIM_CHECK_FAILED": 5,
+    "NO_PROVISIONAL_STATUS": 0
+  },
+  "shared_unlocks": [
+    {
+      "action": "Match the 496 Opus evidence images to orders by their contents (opus-media-match)",
+      "kind": "machine_job",
+      "orders_unblocked": 844,
+      "blocker": "OPUS_MEDIA_NOT_MATCHED_TO_ORDER"
+    },
+    {
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 267,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+    },
+    {
+      "action": "Retrieve shared source EO::4314",
+      "kind": "one_source",
+      "orders_unblocked": 10,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+    },
+    {
+      "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+      "kind": "machine_job",
+      "orders_unblocked": 9,
+      "blocker": "CLAIM_NOT_YET_CHECKED"
+    },
+    {
+      "action": "Retrieve shared source EO::6868",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
+    },
+    {
+      "action": "Retrieve shared source USC::48 U.S.C. 863)",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+    },
+    {
+      "action": "Retrieve shared source EO::6964",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964"
+    },
+    {
+      "action": "Retrieve shared source EO::6910",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
+    },
+    {
+      "action": "Retrieve shared source CFR::26 CFR 458.324",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    }
+  ],
+  "input_problems": [],
+  "inputs": {
+    "replay": "actual current canonical inputs"
+  }
+}

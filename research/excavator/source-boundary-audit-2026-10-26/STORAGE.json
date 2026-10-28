@@ -1,0 +1,13 @@
+{
+  "native_execution_snapshot": "acquisition/{SOURCES,RESULTS,SUMMARY}.json*",
+  "shared_store": "jobs/astra-source-retention/output",
+  "restore_command": "python -B research/excavator/source-boundary-audit-2026-10-26/restore_sample_views.py",
+  "intermediate_exclusions": [
+    "acquisition/cache",
+    "acquisition/pdf",
+    "acquisition/pages PNGs",
+    "empty-prior"
+  ],
+  "exact_sources": "16PDFs/texts insharedstore; raw15newblobs+1existing, expectedSHA256verified",
+  "page_images": "Retained localexecutionimages excluded; primaryPDFs/page refs sufficient, re-renderpixels dependonPoppler"
+}

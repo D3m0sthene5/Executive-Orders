@@ -1,5 +1,99 @@
 # NEYMAN
 
+## Optional real-production diagnosis
+
+`production_receipts.py` and `diagnose.py` adapt **actual** research/completion
+receipts. They complement the offline prerequisite pilot below. The historical
+`neyman.observation/1` format, frame sampler, pilot and default `job.py` are unchanged.
+This CLI performs no network calls, model dispatch, acquisition, canonical writes,
+tracker rebuild, or ledger mutation.
+
+```sh
+python -B jobs/neyman/diagnose.py --repo . \
+  --manifest research/neyman/production-diagnostics/2026-10-25-pr60/IMPORT.json \
+  --out research/neyman/production-diagnostics/2026-10-25-pr60/replay-NEW
+python -B -m unittest discover -s jobs/neyman -p 'test_*.py'
+```
+
+The output directory must be new. Inside the repository it must be a run beneath
+`research/neyman/production-diagnostics/` or `jobs/neyman/output/diagnostics/`.
+An external new scratch directory is also supported. Inputs are read through
+repository-confined SHA-256 references; symlink escapes, stale pins, duplicate JSON
+keys, nonfinite measurements and inconsistent target/version selections fail.
+Output includes `DIAGNOSIS.json`, `OBSERVATIONS.jsonl`, and `REPORT.md`, with input
+and implementation hashes. Reproducing a result requires its referenced metadata,
+not downloading its original PDFs again. The runner does not automatically launch
+this CLI on every frame refresh. Call it after ordinary bounded production or
+from a separately scoped consumer with these exact inputs materialized.
+
+The included PR60 manifest imports all nine final selections and all thirteen
+completion attempts, including failures. It distinguishes an eligible reviewed
+partial from a whole-case gate pass, and a complete isolated proposal from an
+adopted status. Multi-order invocations and byte-identical copied receipts are
+counted once. Occupied completion wall time is a union; summed machine durations
+are a different quantity. Neither is producer/reviewer labor. Source checkpoints
+carry author attribution, source requests and `no_route` results without implying
+that a document does not exist or a search is exhausted. Referenced claim versions
+must match before a checkpoint guides the selected case's diagnosis.
+
+### Input contract
+
+The `neyman.production-import/1` manifest has `base_commit`, `cohort_kind`, a pinned
+`selection` list and `completion_receipts` and/or a pinned `completion_index`
+(`COMPLETION_COSTS.json` with `invocations[].path/sha256`). Every referenced object
+uses `{ "path": "repo/relative/file.json", "sha256": "64 hex characters" }`, with
+an optional RFC6901 `pointer`. Selection rows use the existing PR60 fields:
+`instrument_id`, `claim_sha256`, `completion`, and `publication_kind`. Native final
+`TALLY.json`, `CLAIMS.selected.jsonl` and `TRACKER_REPLAY.json` are validated and
+pinned. Include unsuccessful invocations explicitly; filesystem absence is not
+evidence that an attempt never occurred. Only the supplied history is measured.
+
+For unfinished work, select `{ "instrument_id": "EO:123" }` and supply a pinned
+`research_attempts` record, schema `neyman.research-attempt/1`: `attempt_id`,
+`instrument_id`, `assessor`, `question`, `started_utc`, `finished_utc`, `basis`
+(pinned JSON references), and `outcome` (`blocked`, `censored`, `unfinished`, or
+`stage_result`). Such a record establishes a reported attempt, never independent
+approval or readiness. Censored and unsuccessful work stay in the cohort.
+`prospective_probability` additionally requires the original frozen NEYMAN
+`sample_manifest`; verify it with the existing sampler, retain unobserved members,
+and do not extrapolate a convenience cohort or incomplete sample into total cost.
+
+Optional adapters:
+
+- `checkpoints`: pinned existing `eo-source-blocked-work/v1` records.
+- `source_checks`: `{instrument_id, record: REF, raw?: REF, text?: REF,
+  edition_year?: YEAR, span?: {start, end, quote}}`. Metadata identity/edition,
+  bytes, hashes and exact spans are separate from source-content identity,
+  complete inventory, authentication and legal adequacy. Missing bytes mean
+  unavailable **in this checkout**. Reads are bounded to 32 MB per input.
+- `questions`: pinned `neyman.discriminating-question/1` records with instrument,
+  assessor, question, at least two distinct alternatives, `needed_observation`,
+  `suggested_existing_route`, and pinned `basis`. These are attributed research
+  recommendations. Reuse NORTON question references in the basis where available;
+  no new question registry or source queue is created.
+- `effort_receipts`: `neyman.production-effort/1` records with `events`. Each event
+  has stable `event_id`, `phase` (existing NEYMAN phases), `kind` (`worker_elapsed`,
+  `active`, `access_wait`, `machine`), `worker_id`, downstream `instrument_ids`,
+  timezone-aware start/end, `measurement_method`, and `coverage` (`partial` or
+  `complete_interval`). Optional tokens use existing NEYMAN categories and a
+  stable `usage_id`. Duplicate shared events/usage count once; conflicts fail.
+  Intervals union per worker/kind. Phase views can overlap and must not be summed.
+  Token subtotals are observed lower bounds; reasoning may be included in output.
+  Hamilton's observed usage can supply these records, but missing fields or
+  totals cannot be reconstructed by this importer.
+- `repair_probes`: instrument, pinned `before`/`after` native tallies, and pinned
+  `before_dependencies`/`after_dependencies` hash maps (such as native INPUTS
+  `/dependency_sha256`). Report eligibility transitions and changed dependencies.
+  Multiple changes are inconclusive. Even one declared change leaves causal
+  attribution unverified because supplied maps may omit other changes. This
+  retrospective probe does not run a repair or establish hours saved.
+
+No import earns Junto savings credit. The output is a diagnostic input to its
+existing candidate/test workflow, not its sanitized legacy aggregate schema.
+Do not pass it to the old finder as if it were `neyman.aggregate/1` or alter
+Junto's cost/quality rules. A substantive cause needs attributed source analysis;
+open tracker steps alone never establish the expensive bottleneck.
+
 NEYMAN surveys the **known unfinished inventory** and supplies domain-specific saver hypotheses to the existing Junto system. It changes no codebook, admission, provisional status, claim, exhaustion record or human certification. Sampling guides the campaign and does not replace exhaustive research.
 
 ## Current-state integration

@@ -13,3 +13,10 @@ The runner supplies its prior output via `JOB_PRIOR_OUTPUT_DIR`. Retention prese
 `RETENTION_MANIFEST` can select another explicitly declared repository input for bounded follow-up batches (still at most 30 URLs each). `RETENTION_RENDER_PAGES=0` skips new PNG rendering for exact-version restoration; it does not waive a required page review or confer a new source grade. Defaults continue to render where Poppler is available. `extractions_completed` is separate from raw PDFs retained, because a retained PDF may still have an extraction error.
 
 Bounds: 90 HTTP requests including robots/retries; 250 MB per response; 40 pages per PDF; one paced downloader for this small same-host batch. The standard runner's bounded cache and oversized-artifact policies apply. No DAILY or broad queue trigger is installed.
+
+This job opts into `MAX_OUTPUT_FILE_BYTES=104857599`, one byte below 100 MiB,
+through the existing runner. This permits the exact 104,612,053-byte PL 97-35 PDF
+(`aacf815d01c9c3d797d7c516d9ccddd1f723dc1a44e47f8899ba742d988e2127`)
+to remain in ordinary committed output instead of an expiring run artifact.
+The default for other jobs remains 95 MiB. Larger files are still moved to the
+run's oversized download and listed in `STATUS.json`; they are not discarded.

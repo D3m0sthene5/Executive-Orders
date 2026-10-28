@@ -1,0 +1,604 @@
+{
+  "applications": [
+    {
+      "id": "NA:12335:sec2-b",
+      "instrument_id": "EO:12335",
+      "scope_id": "EO:12335#sec2-b",
+      "state": "candidate"
+    },
+    {
+      "id": "NA:12335:sec4-b",
+      "instrument_id": "EO:12335",
+      "scope_id": "EO:12335#sec4-b",
+      "state": "candidate"
+    },
+    {
+      "id": "NA:12397:report-amendment",
+      "instrument_id": "EO:12397",
+      "scope_id": "EO:12397#report-amendment",
+      "state": "candidate"
+    },
+    {
+      "id": "NA:12402:report-amendment",
+      "instrument_id": "EO:12402",
+      "scope_id": "EO:12402#report-amendment",
+      "state": "candidate"
+    }
+  ],
+  "base_commit": "f8238af3fbbba158101b86e33dd1d6a60b5e7edb",
+  "cohort_kind": "named_convenience_family",
+  "decision": {
+    "full_arm_experiment_run": false,
+    "gate": "incremental_substantive_work",
+    "independently_established_investigations_eliminated": 0,
+    "legal_research_performed": false,
+    "measured_savings": null,
+    "new_source_requests": 0,
+    "observed_research_investigation_counts": {
+      "norton": null,
+      "ordinary": null
+    },
+    "population_beneficiaries": null,
+    "rationale": "A competent explicit ordinary batch already supports one common investigation and member-specific checks. Four candidate applications are not evidence of four investigations. No observed repeated NCSSR investigation was established.",
+    "result": "do_not_run_cost_arms_for_this_candidate",
+    "scope": "Local investment decision; not proof of global NORTON ineffectiveness.",
+    "source_acquisition_performed": false,
+    "whole_histories_added": 0
+  },
+  "existing_claim": {
+    "canonical_claim_sha256": "e152f01cc42619085188720cc8aeaecbb1145d9cb3b5b72c9fc849bbf576a73d",
+    "line": 14,
+    "path": "research/readiness/claims/claude-2026-10-18-codif-b1.jsonl",
+    "research_rationale": "EO 12335 (Dec. 16, 1981; 46 FR 61633) established the National Commission on Social Security Reform under FACA; its nine operative subsections all concern the Commission. Section 4(b) (printed '(h)' in the OCR) ends it 'thirty days after submitting its report'; the report deadline in sec. 2(b) moved from December 31, 1982 to January 15, 1983 (EO 12397) and January 20, 1983 (EO 12402). The order has no fixed termination date, so the Commission's end depends on the actual submission date, which no held source records. Every clause is terminated (EO 12534 sec. 3 lists the order among those whose committees had terminated, and revoked it effective September 30, 1985), but the first-end date is left open rather than inferred from the deadline. The draft's FULL_AND_PARTIAL_EVIDENCE_CONFLICT is resolved by reading EO 12534 sec. 3, which revokes each listed order as a whole; the 'partial' reading came only from the OFR catalog's acting-order phrasing 'Revokes advisory committees established by'. No human certification is asserted.",
+    "unresolved_material_gaps": [
+      "ending_or_current_basis: the first end of every clause (and so whole_order_end) is not established. Sec. 4(b) ends the Commission thirty days after it submitted its report (due by January 20, 1983 under sec. 2(b) as amended by EO 12402). No held source records the date the report was actually submitted, and a reporting deadline is not evidence of that date. EO 12534 sec. 3 (effective 1985-09-30) is a cleanup revocation of a body it describes as already terminated, so it cannot be used as the first end. Needed: an official record of the report's transmittal date (for example the Weekly Compilation of Presidential Documents or the report itself), queued through FETCH_QUEUE.jsonl."
+    ]
+  },
+  "input_pins": {
+    "AGENTS.md": "5edfcffd687e6880a0a450f7e356d9d81d25a0bc32b9c9e7efcadc5b625b6b84",
+    "HANDOFF/README.md": "4c7171f911a7d9f40c602085623f9a8717c39df6f8643bc39956cb8b4757ad52",
+    "jobs/app-executive-orders/output/texts/executive-order-12335-national-commission-social-security-reform.txt": "048e25579118d161c769e015b119b6da43a4b770080cd448faee9219472d39ef",
+    "jobs/app-executive-orders/output/texts/executive-order-12397-national-commission-social-security-reform.txt": "1d61c494ecc8ff5f015986423bac954da2552e1e12db4828b16d5bf2ac3e1be9",
+    "jobs/app-executive-orders/output/texts/executive-order-12402-national-commission-social-security-reform.txt": "41e7461faa9d87f871b5b4a24b26b1bc2d6721d469ad771a779f50cab8b13acb",
+    "jobs/app-executive-orders/output/texts/executive-order-12534-continuance-certain-federal-advisory-committees.txt": "7ebb6d0334f2fcf03b6fa67838807cab8f05a7d52523c6b9743a975d1e40e90f",
+    "jobs/claim-kit/AGENT_PROTOCOL.md": "d0577fa4ce10d15e137c7347ba25645c52711cc864d095e17714c2c00c0d67a6",
+    "jobs/claim-kit/BATCH.md": "570deca9ac7f21ecd2a09f75f7801227c7ac629dfd89b7a0362fb6ba8f4cedc4",
+    "jobs/claim-kit/batch.py": "c9a5230712e58963a0d4c88feee54053e6ca43484f8c3d789a939525b33958f1",
+    "jobs/claim-kit/output/dossiers/EO_12335.json": "3cb344f6fe53d7656fbb92d7d4514ba61c1d669ed43b74b9c462ce872a2564ff",
+    "jobs/claim-kit/output/dossiers/EO_12397.json": "a15c9e668b6c0325592dc7f25f3ccf2a473ac446bbbee59a5616e99ee2939022",
+    "jobs/claim-kit/output/dossiers/EO_12402.json": "a05da6d5c612fd99c9ffeda65fb892b0a4799b450363f2bfe0377ddf972431c4",
+    "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12402-74cbdaa6b1.txt": "749f9fd66e2a46309a17d1d047919f6733cb6bcf584e7a167b290006225e74cf",
+    "jobs/clause-drafts/output/texts/cd-job-fr-originals-12397-81ba12a369.txt": "b0d8cbe8be3eb89fa089571b2eee9bd45bb68e5ef949ddace65fc7d52d35baf8",
+    "jobs/clause-drafts/output/texts/cd-opus_zip-12534-505f9b4060.txt": "d8a00afe4a8c06164dc51b5481c3c941d0d045064cdde30989907ceef565b4f2",
+    "jobs/fr-originals/data/full_run/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+    "jobs/fr-originals/data/full_run/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+    "jobs/fr-originals/data/full_run/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+    "jobs/fr-originals/data/full_run/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+    "jobs/fr-originals/data/full_run/texts/EO_12553.txt": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+    "jobs/fr-originals/output/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+    "jobs/fr-originals/output/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+    "jobs/fr-originals/output/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+    "jobs/fr-originals/output/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+    "jobs/norton/README.md": "9ac09469c36ea1d298682c9314deeec0dd51086f6359ac8ac05f0704e9b917ee",
+    "jobs/source-ladder/output/texts/queue_EO_12402_48_FR_2311_c9e86d6555.txt": "48e8718f41bef954b5412d244f2155e3acd8eb111f69f1f1049e18e5844305ef",
+    "research/excavator/codex-continuous-2026-10-24/comparison/RESULTS.json": "6639da6d58e39708f517f8b9ccb248859e90a80403a597c8d2fa9c7a9343300d",
+    "research/excavator/norton-2026-10-20/PREREGISTRATION.json": "cda894ae7b590df0b44d08cde48c70b57df1f4b3ed43c6313f25b7e5c6b46106",
+    "research/excavator/norton-2026-10-20/REPORT.md": "2aa5fb30b983511dabd2ac768754d4b35b444f3a370c45fbb3abcf9dedff8f9f",
+    "research/readiness/CLAIM_KIT_LOCK.json": "2f3ce8b99254b2555b776fb8837081cba5962d1e6238fe3916764f366934d7f6",
+    "research/readiness/README.md": "2deddaa15ac0c6bccb6fec00309fa73f03381b925310077917e8cd3237d60c86",
+    "research/readiness/claims/astra-2026-10-17-p12553a.jsonl": "b3b4e784cc1822e2aa90e3191db43ec2c90887398b9477b23bb27abc1160dfe8",
+    "research/readiness/claims/astra-2026-10-17-p12553b.jsonl": "2c650f156a5961e1a290c472451ae143d9931aea300a1e3de97bc9ef71695c24",
+    "research/readiness/claims/astra-2026-10-17-p3originals.jsonl": "bb72c432d2e5e463bb4bd552b5f09654758ffee8031bc05b28897a29444ec55b",
+    "research/readiness/claims/astra-2026-10-17-pother.jsonl": "04178d56a1f25d785ef9dc859d6d1c9439256a55541bf155b17f5e8c53d01efe",
+    "research/readiness/claims/astra-2026-10-18-p3complete.jsonl": "1cf54964882321ba69cb623306bb9122f4a55983041a54863d4bae3926388894",
+    "research/readiness/claims/astra-cumulative-2026-10-24.jsonl": "8561b4e0edb35196a5e885ce76e6a70eb493ca7363cc4eb98f6e78ba00754b8a",
+    "research/readiness/claims/astra-source-first-2026-10-24.jsonl": "577a310974bec18286ee8bdc107118ac7dc2a3c20923e8764a52d2aae582c017",
+    "research/readiness/claims/claude-2026-10-18-codif-b0.jsonl": "1667184da881d742e468fe035aa3eedda6dd3be36949ac90faa4c368441ec29b",
+    "research/readiness/claims/claude-2026-10-18-codif-b1.jsonl": "ad802121f3908ab386762bda3f78303033544d5acb16d95de3ad9ca7443b417c",
+    "research/readiness/claims/claude-2026-10-18-codif-b2.jsonl": "eccaa5fe557d41c23befa0144c3b5ceb50a2ed590e11db57d7c67193c00b4610",
+    "research/readiness/claims/claude-2026-10-18-codif-b3.jsonl": "56540f4157563fc7590507546a8455fed2e3639e9900dd51644cc40e0d0fbb1d",
+    "research/readiness/claims/claude-2026-10-18-codif-b4.jsonl": "3d70d169c9e60afa9e57bda74275ac1302d2ff64141241bd999800b6157797c1",
+    "research/readiness/claims/claude-2026-10-18-codif-b5.jsonl": "1d2dc73c124011d77a11bcd12c3cbc5a52d599a5175ab8d1d2bd7ba004c3e6e7",
+    "research/readiness/claims/claude-2026-10-18-codif-b6.jsonl": "721d67c3f7fa07d4e94a6aa37d98bfce1f36b7a572bd7ade07a64a7f3ff03cb3",
+    "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl": "adb93481b83b0702ba3a46e9dc21c22956652540b102844fb5d2aa71cb53d4d7",
+    "research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl": "96fcf83d04d9a5950b567a96e735b8905cdf8d578da905541ee5c240273ad0cf",
+    "research/readiness/claims/claude-bowditch-y2-01-2026-10-20.jsonl": "b057707650d20d09ff326f37f3007a141508e7b28ac0db587397dde28b0ab4f4",
+    "research/readiness/claims/claude-bowditch-y2-02-2026-10-20.jsonl": "dbb0df83d958c2de069ffe925202c666e21644cf077bd959954847d21e467f24",
+    "research/readiness/claims/claude-lambertini-b02-2026-10-20.jsonl": "749132c0b0eb800e8d84846c99e19a8b55d82a5f86f8888179b945b50d8404ff",
+    "research/readiness/claims/claude-lambertini-i01-2026-10-20.jsonl": "eaddd412f6c7eb6bb23b91d28aa15193883a5c679b742e98152877e4277a9728",
+    "research/readiness/claims/claude-lambertini-i03-2026-10-20.jsonl": "3c808af1a5cf536fba2568209f7b7becc25941a41a1eb62a9b827a8a5dae45d0",
+    "research/readiness/claims/claude-lambertini-i04-2026-10-20.jsonl": "f1fe2cf8572aad9e0800c713c746bd21770d7e21aa533a714329e0ff62573c04",
+    "research/readiness/claims/claude-lambertini-i05-2026-10-20.jsonl": "823dafd027ac58895084dcd005b2fcb0966e0a7b960b6ed7af88f4cbb4a29350",
+    "research/readiness/claims/claude-lambertini-i06-2026-10-20.jsonl": "638033c43925f6bf0ef1c10e5929b40c51bcacba911da43a1fbf3f0242c79e3b",
+    "research/readiness/claims/claude-lambertini-i07-2026-10-20.jsonl": "6291aefc5ef1d8dda881b6a0b06db2f3f3be370eab1b79888ca1ce1275b8f4ee",
+    "research/readiness/claims/claude-lambertini-i08-2026-10-20.jsonl": "7945cf09ed2ae1bf31e916c69bd53efa90ff597dbb91877c26abc675239baeab",
+    "research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl": "977052d86a619732bb9ca65e2f35e083a4da44789b284af68b29cae7796f175c",
+    "research/readiness/claims/claude-lambertini-iv02b-2026-10-20.jsonl": "4e825aee5d235a9938a235fffb0a8e906a4587385ffe1721713b7f37609ce78e",
+    "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl": "f86f6a866f18e0bb1801ea30f7a5ab3f44dab59b853df877f7ea432ae3e01c2d",
+    "research/readiness/claims/claude-lambertini-rr4-2026-10-20.jsonl": "74ee6ff8e8cf48b49f2840d2f64b86e65d4e34ed2d025007d576b684668dfeb0",
+    "research/readiness/claims/claude-lambertini-s01-2026-10-20.jsonl": "15f24f5ff5aba016bee03e1bf4ef6a705e772f3e44fe40d569da86cbe0b1e886",
+    "research/readiness/claims/claude-lambertini-s02-2026-10-20.jsonl": "98e19d8ded8e07f657c96e600dea3541cb15bbc5e684f57ddb7f7d3db9233cb0",
+    "research/readiness/claims/claude-lambertini-s03-2026-10-20.jsonl": "7f711905369ddcb7389c423c6f91977142b2d534b4619901281ded4c68b233fa",
+    "research/readiness/claims/claude-lamm-s03-2026-10-20.jsonl": "854ca338659c8c5188f7ede1c151387d07627c86eba800bd4f3be5c0be682ea4",
+    "research/readiness/claims/claude-lamm-s04-2026-10-20.jsonl": "d47d78c927b7006866b71e4777086852d6625d9432f0094bbecf9a91ca1d8628",
+    "research/readiness/claims/claude-lamm-t01-2026-10-20.jsonl": "f21678a1ab5372a1af31e23c0037a27f933e1e44191889ebbef36d81d10368a8",
+    "research/readiness/claims/claude-lamm-t02-2026-10-20.jsonl": "88c9cb971b766698fa3913f0deabea2ab48e547d79ab0b824037d3b47239c9b4",
+    "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl": "f775ea3a68844679ef180f88438c3e66b55aa31bf58b2d41b7af93741094b21f",
+    "research/readiness/claims/claude-nearready-2026-10-20.jsonl": "adad549b5ddfbac3bdc688b0aaf14653a7b7e9bb2be4afbede6663e259575b7f",
+    "research/readiness/claims/claude-pagechk3-01-2026-10-20.jsonl": "ce56d3c1a4770064f42afc8c8e132bf831cbd3ccbde2152d80d0eb0efbed7451",
+    "research/readiness/claims/claude-r12553nb-01-2026-10-20.jsonl": "31fa86241151a2d0ea8acff280e6f25d91385bbc3b9f41ca02632e51ea0dbc7e",
+    "research/readiness/claims/claude-r12553nb-s2-2026-10-20.jsonl": "a39deb8e52eb37d40b2e9f0c97aaea72b797d92ec6b359a83dc5d4931708aa16",
+    "research/readiness/claims/claude-r12553nb-s3-2026-10-20.jsonl": "19524038776ebf49cb6789295f92e487623ad8c13e4e281fd0019d86f13a4bef",
+    "research/readiness/claims/claude-r12553nb-s4-2026-10-20.jsonl": "877e173a108dd62edb95fff2827fda78497458c0806b4e1634590a640d8e6797",
+    "research/readiness/claims/claude-r12553nb-s5-2026-10-20.jsonl": "97505d2e2e3af4996b2163abddabfc81687fae4002eaa95bceb273865092585b",
+    "research/readiness/claims/claude-r12553nb-s6-2026-10-20.jsonl": "48a9af669edeabcb324711b68d06f70d1d3402906494e985938c1466dc4c2f58",
+    "research/readiness/claims/claude-r9830-01-2026-10-20.jsonl": "0fd7ff75ce418a26676025ac89e21f29292b01f277217eb93876cbefc35a6de8",
+    "research/readiness/claims/claude-r9830-s1-2026-10-20.jsonl": "b4893fa1504ceb98c7d6f7d16d5c948b136a1ebf3f45e15a43544d523023a4dd",
+    "research/readiness/claims/claude-r9830-s2-2026-10-20.jsonl": "259423f0a4445f327beda0934aac22a26fd2f4fcccd3fefa02118307cd73624e",
+    "research/readiness/claims/claude-r9830-s3-2026-10-20.jsonl": "818b050d6f9e67d4e9c2fb7569a1aab5fbac1a411077d4a351347e110191e702",
+    "research/readiness/claims/claude-rastell-c01-2026-10-20.jsonl": "1efb0e00214f9eb89d3a2389eb751993d5f48989e378438abb0332087ada6d1f",
+    "research/readiness/claims/claude-rastell-c02-2026-10-20.jsonl": "0587d7897c1dbd8d42b7f3437cf9290d0283c205382a28e304f91a7faba74b50",
+    "research/readiness/claims/claude-viapar-m-2026-10-20.jsonl": "1f187aeae7f6a516e8a97caf0b715595ab83a1909cc90903c49abd101c3b15e3",
+    "research/readiness/claims/claude-viapar-p-2026-10-20.jsonl": "2cd90e66c2ddfc238acfbf79850119ea75ddfa4ef3cc3dfc30c7558f4f34f8b2",
+    "research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl": "4e848c8aaf4282e54b04c43702d6903bccb253e01ad82f34564e49a280585833",
+    "research/readiness/claims/claude-y2lead-02-2026-10-20.jsonl": "75836d784468a8a54940dad6465ea0d300d231b1f6d45dd5c1df6a1c727ebcea",
+    "research/readiness/claims/codex-continuous-prior-2026-10-25.jsonl": "7fb4a50a6a4cbbc755e6adb4a6860433cb221cb4d70c01bb11b4d63329260512",
+    "research/readiness/claims/codex-continuous-prior-b04-2026-10-25.jsonl": "ea65c152f54f3b6fbdfd0f9d8f91de8b7de19674c21143cbbfeacc347e4d77e9",
+    "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
+    "research/readiness/factual/sol-norton-20261020/answers.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/readiness/factual/sol-norton-20261020/applications.jsonl": "e6dd9cb793daec94fc17503f6c760d4e2de5471ff4c0045276b29382a3a31a3d",
+    "research/readiness/factual/sol-norton-20261020/evidence.jsonl": "6a486f3b13d197de626a4f4d9baf159d1cfa5a0a8141726f55617431a50d6d8a",
+    "research/readiness/factual/sol-norton-20261020/questions.jsonl": "69d32a5dbda6e1a30253cd5d628dff578c2d603cc2cbc489280924164b421114",
+    "research/readiness/factual/sol-norton-20261020/reviews.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "instrument_ids": [
+    "EO:12335",
+    "EO:12397",
+    "EO:12402"
+  ],
+  "limits": [
+    "encode/decode and family_groups were called directly on exact dossiers; no complete prepare, legal review, checker, tracker or corpus rebuild was run.",
+    "NORTON-omitted variant is an in-memory capability probe, not a historical baseline or a cost control arm.",
+    "Default actor-based family_groups does not join these three orders; explicit batching and shared rationale are supported. Discovery or routing improvements are unmeasured.",
+    "Text hashes/spans validate the codec; raw-source authenticity, legal adequacy and source-content identity are not established by this probe.",
+    "Sparse checkout was used; no unmaterialized raw source was declared globally absent.",
+    "PR60 competent comparator concerns different cases and corroborates a workflow capability, not observed NCSSR behavior."
+  ],
+  "main_commit": "76d256857784621343e13b5f80d8dbeaeccde0ee",
+  "observed_utc": "2026-10-25T22:22:44.896852+00:00",
+  "probe_machine_seconds": 0.19321823400241556,
+  "question_key": "NQ:cc42571b31f90f5a55bd07b79443c75cb919e25ebe51cf82fd703f539aa8e2fe",
+  "registry_answers": 0,
+  "registry_reviews": 0,
+  "schema": "norton-reuse-feasibility-observation/v1",
+  "variants": {
+    "current_dossiers": {
+      "codec_issues": [],
+      "exact_roundtrip": true,
+      "family_groups_multi_order": [],
+      "family_groups_total": 13,
+      "pairwise_source_text_sharing": [
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12397@1a30b78a8b28bb76",
+                  "TERM:EO:12397:cdf427de22e60363@2a8cf3486b930a2d"
+                ]
+              ],
+              "record_sha256": "01e5935e60dbda4819649213ec767942ea57f66af393a78332640cd4ce4f012f",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 259,
+              "text_path": "jobs/fr-originals/output/texts/EO_12397.txt",
+              "text_sha256": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12397@59f4a52649b7a440",
+                  "TERM:EO:12397:cdf427de22e60363@b0d8cbe8be3eb89f"
+                ]
+              ],
+              "record_sha256": "678e4d737c1afb720e7c3ae4c31ba93fc9d60dbfbd0f40dde72cb4cdbde93503",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 259,
+              "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12397-81ba12a369.txt",
+              "text_sha256": "b0d8cbe8be3eb89fa089571b2eee9bd45bb68e5ef949ddace65fc7d52d35baf8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12402",
+                  "ACT:EO:12397>EO:12402"
+                ],
+                [
+                  "ACT:EO:12335>EO:12402@6e15fe957d2b58f0",
+                  "ACT:EO:12397>EO:12402"
+                ]
+              ],
+              "record_sha256": "6ab285399e52aa6bc07f9f86430b131e3b3e5623815da3afe1c46545836e66d4",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 288,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12397",
+                  "ORIGINAL:EO:12397"
+                ]
+              ],
+              "record_sha256": "4b5b84a301da9f692dcafde8f58a898eec4c12b1342021bf963b48d6d3add23e",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 1260,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12397.txt",
+              "text_sha256": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ACTOR_TEXT:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ORIGINAL:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            }
+          ],
+          "orders": [
+            "EO:12335",
+            "EO:12397"
+          ]
+        },
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12402@3b07d8dcaa780e3a",
+                  "TERM:EO:12402:d35ab3a497a1dcf2@e59a7a9d5c548fe0"
+                ]
+              ],
+              "record_sha256": "6499da6d8fec88ff255811de4bd68f36b691e30e87d5a12e5db172ea43d224a1",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 288,
+              "text_path": "jobs/fr-originals/output/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ORIGINAL:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ORIGINAL:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            }
+          ],
+          "orders": [
+            "EO:12335",
+            "EO:12402"
+          ]
+        },
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ORIGINAL:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12553",
+                  "ACTOR_TEXT:EO:12553"
+                ]
+              ],
+              "record_sha256": "919e1882f654aa679ee01d9f73a440140236c4e9be75bce441bf3e7fdb49da54",
+              "source_sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+              "text_chars": 33227,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+              "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761"
+            }
+          ],
+          "orders": [
+            "EO:12397",
+            "EO:12402"
+          ]
+        }
+      ],
+      "shared_objects": 62,
+      "source_catalogue_entries": 17,
+      "text_blocks": 19,
+      "validated_text_paths": {
+        "jobs/app-executive-orders/output/texts/executive-order-12335-national-commission-social-security-reform.txt": "048e25579118d161c769e015b119b6da43a4b770080cd448faee9219472d39ef",
+        "jobs/app-executive-orders/output/texts/executive-order-12397-national-commission-social-security-reform.txt": "1d61c494ecc8ff5f015986423bac954da2552e1e12db4828b16d5bf2ac3e1be9",
+        "jobs/app-executive-orders/output/texts/executive-order-12402-national-commission-social-security-reform.txt": "41e7461faa9d87f871b5b4a24b26b1bc2d6721d469ad771a779f50cab8b13acb",
+        "jobs/app-executive-orders/output/texts/executive-order-12534-continuance-certain-federal-advisory-committees.txt": "7ebb6d0334f2fcf03b6fa67838807cab8f05a7d52523c6b9743a975d1e40e90f",
+        "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12402-74cbdaa6b1.txt": "749f9fd66e2a46309a17d1d047919f6733cb6bcf584e7a167b290006225e74cf",
+        "jobs/clause-drafts/output/texts/cd-job-fr-originals-12397-81ba12a369.txt": "b0d8cbe8be3eb89fa089571b2eee9bd45bb68e5ef949ddace65fc7d52d35baf8",
+        "jobs/clause-drafts/output/texts/cd-opus_zip-12534-505f9b4060.txt": "d8a00afe4a8c06164dc51b5481c3c941d0d045064cdde30989907ceef565b4f2",
+        "jobs/fr-originals/data/full_run/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+        "jobs/fr-originals/data/full_run/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+        "jobs/fr-originals/data/full_run/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+        "jobs/fr-originals/data/full_run/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+        "jobs/fr-originals/data/full_run/texts/EO_12553.txt": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "jobs/fr-originals/output/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+        "jobs/fr-originals/output/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+        "jobs/fr-originals/output/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+        "jobs/fr-originals/output/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+        "jobs/source-ladder/output/texts/queue_EO_12402_48_FR_2311_c9e86d6555.txt": "48e8718f41bef954b5412d244f2155e3acd8eb111f69f1f1049e18e5844305ef"
+      }
+    },
+    "norton_context_omitted_for_capability_probe": {
+      "codec_issues": [],
+      "exact_roundtrip": true,
+      "family_groups_multi_order": [],
+      "family_groups_total": 13,
+      "pairwise_source_text_sharing": [
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12397@1a30b78a8b28bb76",
+                  "TERM:EO:12397:cdf427de22e60363@2a8cf3486b930a2d"
+                ]
+              ],
+              "record_sha256": "01e5935e60dbda4819649213ec767942ea57f66af393a78332640cd4ce4f012f",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 259,
+              "text_path": "jobs/fr-originals/output/texts/EO_12397.txt",
+              "text_sha256": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12397@59f4a52649b7a440",
+                  "TERM:EO:12397:cdf427de22e60363@b0d8cbe8be3eb89f"
+                ]
+              ],
+              "record_sha256": "678e4d737c1afb720e7c3ae4c31ba93fc9d60dbfbd0f40dde72cb4cdbde93503",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 259,
+              "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12397-81ba12a369.txt",
+              "text_sha256": "b0d8cbe8be3eb89fa089571b2eee9bd45bb68e5ef949ddace65fc7d52d35baf8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12402",
+                  "ACT:EO:12397>EO:12402"
+                ],
+                [
+                  "ACT:EO:12335>EO:12402@6e15fe957d2b58f0",
+                  "ACT:EO:12397>EO:12402"
+                ]
+              ],
+              "record_sha256": "6ab285399e52aa6bc07f9f86430b131e3b3e5623815da3afe1c46545836e66d4",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 288,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12397",
+                  "ORIGINAL:EO:12397"
+                ]
+              ],
+              "record_sha256": "4b5b84a301da9f692dcafde8f58a898eec4c12b1342021bf963b48d6d3add23e",
+              "source_sha256": "81ba12a369fc9f902a6eb4fc09e2d1cb10c03e9015509b75d527617e3e17ba66",
+              "text_chars": 1260,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12397.txt",
+              "text_sha256": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ACTOR_TEXT:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ORIGINAL:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            }
+          ],
+          "orders": [
+            "EO:12335",
+            "EO:12397"
+          ]
+        },
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACT:EO:12335>EO:12402@3b07d8dcaa780e3a",
+                  "TERM:EO:12402:d35ab3a497a1dcf2@e59a7a9d5c548fe0"
+                ]
+              ],
+              "record_sha256": "6499da6d8fec88ff255811de4bd68f36b691e30e87d5a12e5db172ea43d224a1",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 288,
+              "text_path": "jobs/fr-originals/output/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ORIGINAL:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ORIGINAL:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            }
+          ],
+          "orders": [
+            "EO:12335",
+            "EO:12402"
+          ]
+        },
+        {
+          "exact_shared_source_text_records": [
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12335",
+                  "ACTOR_TEXT:EO:12335"
+                ]
+              ],
+              "record_sha256": "0a001a8087b8ad78f68680c86db52ee92366ba92c31e6d8fad69a423e14222d2",
+              "source_sha256": "567e6bd2abe39730015e384df28a7197905597e19d357cc798e9d6673158d977",
+              "text_chars": 4619,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12335.txt",
+              "text_sha256": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12402",
+                  "ORIGINAL:EO:12402"
+                ]
+              ],
+              "record_sha256": "d0a4cb9b0728557cd88337938fe4f0f5442d8d61cbb7da7ef4d2d30ff904ac9c",
+              "source_sha256": "17a00614d1f4f84556e115128f869f71acea393d168c9e273142b0e6d57e7a50",
+              "text_chars": 1306,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12402.txt",
+              "text_sha256": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884"
+            },
+            {
+              "pairs": [
+                [
+                  "ACTOR_TEXT:EO:12553",
+                  "ACTOR_TEXT:EO:12553"
+                ]
+              ],
+              "record_sha256": "919e1882f654aa679ee01d9f73a440140236c4e9be75bce441bf3e7fdb49da54",
+              "source_sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+              "text_chars": 33227,
+              "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+              "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761"
+            }
+          ],
+          "orders": [
+            "EO:12397",
+            "EO:12402"
+          ]
+        }
+      ],
+      "shared_objects": 54,
+      "source_catalogue_entries": 17,
+      "text_blocks": 19,
+      "validated_text_paths": {
+        "jobs/app-executive-orders/output/texts/executive-order-12335-national-commission-social-security-reform.txt": "048e25579118d161c769e015b119b6da43a4b770080cd448faee9219472d39ef",
+        "jobs/app-executive-orders/output/texts/executive-order-12397-national-commission-social-security-reform.txt": "1d61c494ecc8ff5f015986423bac954da2552e1e12db4828b16d5bf2ac3e1be9",
+        "jobs/app-executive-orders/output/texts/executive-order-12402-national-commission-social-security-reform.txt": "41e7461faa9d87f871b5b4a24b26b1bc2d6721d469ad771a779f50cab8b13acb",
+        "jobs/app-executive-orders/output/texts/executive-order-12534-continuance-certain-federal-advisory-committees.txt": "7ebb6d0334f2fcf03b6fa67838807cab8f05a7d52523c6b9743a975d1e40e90f",
+        "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12402-74cbdaa6b1.txt": "749f9fd66e2a46309a17d1d047919f6733cb6bcf584e7a167b290006225e74cf",
+        "jobs/clause-drafts/output/texts/cd-job-fr-originals-12397-81ba12a369.txt": "b0d8cbe8be3eb89fa089571b2eee9bd45bb68e5ef949ddace65fc7d52d35baf8",
+        "jobs/clause-drafts/output/texts/cd-opus_zip-12534-505f9b4060.txt": "d8a00afe4a8c06164dc51b5481c3c941d0d045064cdde30989907ceef565b4f2",
+        "jobs/fr-originals/data/full_run/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+        "jobs/fr-originals/data/full_run/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+        "jobs/fr-originals/data/full_run/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+        "jobs/fr-originals/data/full_run/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+        "jobs/fr-originals/data/full_run/texts/EO_12553.txt": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+        "jobs/fr-originals/output/texts/EO_12335.txt": "c05c33337cd819b8ce0af70e5cdd062a972686cc09b15c352ff4cb080ca17404",
+        "jobs/fr-originals/output/texts/EO_12397.txt": "2a8cf3486b930a2d59d7f76847a002263878c747ea2a6729c2242e96ac9e3ab8",
+        "jobs/fr-originals/output/texts/EO_12402.txt": "e59a7a9d5c548fe09bcc0c523ab298f5e6c9672d7e35524f3f11f17541538884",
+        "jobs/fr-originals/output/texts/EO_12534.txt": "2f7a5c13126573ec9fb7f10631df9e25cac3065f405355c469a0222363ab443c",
+        "jobs/source-ladder/output/texts/queue_EO_12402_48_FR_2311_c9e86d6555.txt": "48e8718f41bef954b5412d244f2155e3acd8eb111f69f1f1049e18e5844305ef"
+      }
+    }
+  }
+}

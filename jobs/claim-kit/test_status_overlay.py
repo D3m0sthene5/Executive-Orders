@@ -33,6 +33,7 @@ class OverlayTests(unittest.TestCase):
         code = self.repo / "jobs/claim-kit"
         code.mkdir(parents=True)
         for name in O.CODE_FILES:
+            (code / name).parent.mkdir(parents=True, exist_ok=True)
             (code / name).write_bytes((HERE / name).read_bytes())
         history = self.repo / "jobs/status-history/history.py"
         history.parent.mkdir(parents=True)

@@ -1,0 +1,120 @@
+{
+  "schema": "eo-legacy-producer-stage-receipt/v1",
+  "instrument_id": "EO:10016",
+  "recorded_utc": "2026-10-25T16:04:40.836817+00:00",
+  "producer_model_family": "OpenAI",
+  "model_usage": {
+    "tokens": null,
+    "cached_tokens": null,
+    "cash": null,
+    "reason": "No actual per-task usage counter exposed."
+  },
+  "shared_compiler_setup_charged_here": false,
+  "attempts": [
+    {
+      "stage": "initial_overlay_prepare",
+      "outcome": "rejected",
+      "error": "research_overlay_destination_requires_overlay_directory",
+      "retained": "run_legacy.v1.py; INVOCATION_CORRECTION.v1.json"
+    },
+    {
+      "stage": "initial_overlay_freeze",
+      "outcome": "superseded_invocation",
+      "retained": "overlay/freeze-v1",
+      "note": "Support-module sys.path side effect caused current status_overlay import; corrected freeze-v2 is object/byte-identical. No treatment continuous command used."
+    },
+    {
+      "stage": "source_acquisition",
+      "outcome": "2_found",
+      "retained": "source-v1/SUMMARY.json",
+      "http_requests": 3,
+      "downloaded_bytes": 48323415,
+      "reported_seconds": 39.5,
+      "two_pdf_hashes_match_frozen": true
+    },
+    {
+      "stage": "actual_snapshot_overlay_prepare",
+      "outcome": "passed",
+      "retained": "overlay/freeze-v2; INVOCATION_CORRECTION.v1.json"
+    },
+    {
+      "stage": "independent_status_review",
+      "outcome": "accept_status_only",
+      "retained": "review/STATUS_REVIEW.v2.json"
+    },
+    {
+      "stage": "actual_snapshot_overlay_propose",
+      "outcome": "passed_owner_unaccepted",
+      "retained": "overlay/proposal-v1"
+    },
+    {
+      "stage": "actual_snapshot_overlay_assemble",
+      "outcome": "rejected",
+      "errors": [
+        "bounded_later_search"
+      ],
+      "retained": "ASSEMBLY.v1.json"
+    },
+    {
+      "stage": "supported_direct_Stage19_completion",
+      "outcome": "overlay_check_pass",
+      "retained": "MANUAL_COMPLETION.v1.json; OVERLAY_CHECK.v1.json",
+      "note": "Existing full claim fields carry real manual bounded searches; dossier/source/policy checks unchanged."
+    },
+    {
+      "stage": "actual_checker_v1",
+      "outcome": "fail_metadata_order_identity",
+      "retained": "checker-v1/PER_CLAIM.json",
+      "error": "order_exists:not_in_universe@claim_kit.status_overlay.proposal_id",
+      "note": "Actual source/identity/quotes/dates/Stage19 gate pass. Coordinator correcting shared exact typed-key consumer; no claim altered to evade gate."
+    },
+    {
+      "stage": "shared_consumer_metadata_correction",
+      "outcome": "coordinator_reports_exact_claim_key_pass",
+      "note": "Root repaired exact status-overlay prefix/schema typed-key recognition for both comparator arms. No snapshot kit or claim content changed. Engineering cost is shared, not attributed to treatment packet."
+    },
+    {
+      "stage": "actual_checker_v2",
+      "outcome": "pass",
+      "claims_all_checks_passed": 1,
+      "held_bytes_verified_refs": 17,
+      "exact_quotes": 24,
+      "checker_reported_seconds": 7.0,
+      "retained": "checker-v2/PER_CLAIM.json",
+      "checker_sha256": "ecbce4dc669eac6cf6a7dd3c086eb19bc749bad3b14fb187206bd25388cc2a9d"
+    }
+  ],
+  "comparison_limitations": [
+    "Different target and actor from treatment: no matched legal-difficulty or random assignment inference.",
+    "Detected invocation correction and shared metadata-checker prerequisite must be disclosed; source research was preserved throughout.",
+    "Machine-search absence is a sparse-input property; manual bounded search completion is honest and does not establish full-universe coverage.",
+    "Status proposal, experimental lifecycle, AI review, human certification and canonical adoption are distinct."
+  ],
+  "runtime_note": "First ordinary checker invocation used unrecognized CLAIM_CHECKER_VERIFY=0; actual sources were all held_bytes_verified and no --fetch requested. Final replay uses documented CLAIM_CHECKER_VERIFY_DOWNLOADS=0. Do not infer a measured network count from the wrong first setting.",
+  "instrumented_intervals": [
+    {
+      "start_utc": "2026-10-25T15:46:21.854680+00:00",
+      "end_utc": "2026-10-25T15:58:37.166772+00:00",
+      "start_monotonic_seconds": 4282.962355713,
+      "end_monotonic_seconds": 5018.274443214,
+      "seconds": 735.312087501
+    },
+    {
+      "start_utc": "2026-10-25T15:59:42.647371+00:00",
+      "end_utc": "2026-10-25T16:02:40.479323+00:00",
+      "start_monotonic_seconds": 5083.75504319,
+      "end_monotonic_seconds": 5261.58698766,
+      "seconds": 177.83194447000005
+    },
+    {
+      "start_utc": "2026-10-25T16:02:47.534999+00:00",
+      "end_utc": "2026-10-25T16:04:40.836817+00:00",
+      "start_monotonic_seconds": 5268.642670416,
+      "end_monotonic_seconds": 5381.944542666,
+      "seconds": 113.30187225000009
+    }
+  ],
+  "instrumented_task_seconds": 1026.445904221,
+  "timing_limits": "Interval wall spans include tools and reasoning between exact timestamps; explicit external-review/checker-fix waits excluded. First discovery preceded instrumentation. Source acquisition and checker execution overlap these spans and must not be added again. Shared compiler/engineering setup charged only by coordinator; interval sum is not isolated human labor or causal workflow savings.",
+  "producer_outcome": "status independently accepted for proposal; whole-lifecycle experimental candidate mechanically passes and awaits independent whole-scope review"
+}

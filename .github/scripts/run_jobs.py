@@ -15,6 +15,18 @@ import time
 import result_freshness as freshness
 
 LIMIT = 95 * 1024 * 1024
+MAX_OUTPUT_FILE_BYTES = 100 * 1024 * 1024 - 1
+
+
+def output_file_limit(folder):
+    """Explicit per-job opt-in; never admit a GitHub-limit-sized output."""
+    path = folder / "MAX_OUTPUT_FILE_BYTES"
+    if not path.exists():
+        return LIMIT
+    value = path.read_text(encoding="utf-8").strip()
+    if not re.fullmatch(r"[0-9]+", value) or not 1 <= int(value) <= MAX_OUTPUT_FILE_BYTES:
+        raise ValueError(f"Invalid MAX_OUTPUT_FILE_BYTES for {folder.name}: require 1..{MAX_OUTPUT_FILE_BYTES}")
+    return int(value)
 
 
 def write(path, value):
@@ -72,6 +84,7 @@ def main():
         started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         inputs = repo / "oversized/runner-freshness" / (name + "-inputs.json")
         code, blocked, active, stopped, captured = 1, [], False, False, False
+        file_limit = LIMIT
         try:
             blocked = [dep for dep in freshness.lines(folder / "after.txt") if dep in failed]
             if blocked:
@@ -85,6 +98,7 @@ def main():
             freshness.prepare(name)
             freshness.capture(name, inputs)
             captured = True
+            file_limit = output_file_limit(folder)
             if backup.exists():
                 raise RuntimeError("previous generation backup already exists")
             backup.parent.mkdir(parents=True, exist_ok=True)
@@ -120,7 +134,7 @@ def main():
             result = out if active else scratch
             moved = []
             for path in sorted(result.rglob("*")):
-                if path.is_file() and path.stat().st_size > LIMIT:
+                if path.is_file() and path.stat().st_size > file_limit:
                     relative = path.relative_to(result)
                     target = repo / "oversized" / name / relative
                     target.parent.mkdir(parents=True, exist_ok=True)
@@ -133,6 +147,7 @@ def main():
                       "trigger": os.environ.get("TRIGGER"),
                       "run_url": os.environ.get("RUN_URL") or "/".join((os.environ.get("GITHUB_SERVER_URL", ""), os.environ.get("GITHUB_REPOSITORY", ""), "actions/runs", os.environ.get("GITHUB_RUN_ID", ""))),
                       "machine": f"{platform.platform()}, Python {platform.python_version()}",
+                      "max_output_file_bytes": file_limit,
                       "oversized_files_moved_to_run_download": moved, "blocked_by": blocked}
             write(result / "STATUS.json", status)
             if captured:

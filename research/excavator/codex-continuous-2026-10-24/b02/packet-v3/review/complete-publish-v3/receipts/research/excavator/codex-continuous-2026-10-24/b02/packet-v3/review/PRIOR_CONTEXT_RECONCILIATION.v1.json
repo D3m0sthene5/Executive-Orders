@@ -1,0 +1,21 @@
+{
+  "schema": "eo-review-context-reconciliation/v1",
+  "instrument_id": "EO:10014",
+  "reviewer": "codex-historical-independent",
+  "model_family": "OpenAI",
+  "recorded_utc": "2026-10-25T16:17:58.849330+00:00",
+  "delta": {
+    "path": "research/excavator/codex-continuous-2026-10-24/b02/packet-v3/review/PRIOR_CONTEXT_DELTA.v1.json",
+    "sha256": "a309fe5c15898000f46ea7ed3cc0cdc43dfd21340a62cda4267249ab03f30fcc"
+  },
+  "reviewed_claim_sha256": "08d839e6073453faf9886f7c87af596ecbad373fadff43bcd6386581cc6374e5",
+  "findings": [
+    "Newly discovered b02/STATUS_REVIEW.blank.json has no verdict, confirmations or source basis; it is not the exact accepted status review and confers no approval.",
+    "The original standalone STATUS_DECISION.v1.json is byte-identical; its inferred sibling b02/EVIDENCE.json was already absent in frozen context. Actual reviewed source is packet-v3/undecided/EO_10014/EVIDENCE.json and copied bundle EVIDENCE.json, pinned by selected overlay records.",
+    "New context fields expose existing lifecycle questions and an empty status-holds list, not new evidence. The questions were substantively addressed in the exact whole-case blind and after-reveal reviews.",
+    "No new source bytes, producer legal assertion, contrary review, authoritative status change, or source-hold content was identified in this delta."
+  ],
+  "route_limit": "Original PACKET remains stale for ordinary batch consumers; do not rewrite it or silence its error. A supported direct overlay completion route may validate the four exact bundle refs through existing status_overlay validation without using that optional ordinary packet. All exact claim fields/source metadata remain intact, owner acceptance false, isolated replacement proposal only.",
+  "legal_verdict_changed": false,
+  "owner_accepted": false
+}
