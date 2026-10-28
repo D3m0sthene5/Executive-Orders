@@ -1,0 +1,147 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:13975": {
+   "claim_key": "research/excavator/codex-continuous-2026-10-24/b01/PROPOSED_CLAIM.v1.jsonl:1",
+   "claim_sha256": "e982e25c9c85c3846d64386556d04c31edab7160fa2d660b0a93238ac2ece341",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "steps_checker_passed": {
+    "original_text": false,
+    "clause_inventory": false,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": false
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/excavator/codex-continuous-2026-10-24/b01/PROPOSED_CLAIM.v1.jsonl:1",
+   "file": "research/excavator/codex-continuous-2026-10-24/b01/PROPOSED_CLAIM.v1.jsonl",
+   "line": 1,
+   "instrument_id": "EO:13975",
+   "claim_sha256": "e982e25c9c85c3846d64386556d04c31edab7160fa2d660b0a93238ac2ece341",
+   "provisional_status": "no",
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass_with_unverified",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": false
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "fail": 8,
+     "skip": 23
+    },
+    "source_identity": {
+     "pass": 10
+    },
+    "quote_verbatim": {
+     "fail": 2,
+     "pass": 30,
+     "skip": 8
+    },
+    "date_valid": {
+     "pass": 26
+    },
+    "date_after_signing": {
+     "pass": 12
+    },
+    "order_exists": {
+     "pass": 6
+    },
+    "working_text_policy": {},
+    "factual_event_policy": {},
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [
+    "source_held:not_held@operative_clauses[4].later_events[0].source",
+    "source_held:not_held@operative_clauses[4].later_events[0].sources[0]",
+    "quote_verbatim:not_found@operative_clauses[4].original_operative_text",
+    "quote_verbatim:not_found@operative_clauses[4].original_source.quote",
+    "source_held:not_held@operative_clauses[5].later_events[0].source",
+    "source_held:not_held@operative_clauses[5].later_events[0].sources[0]",
+    "source_held:not_held@source_refs[0]",
+    "source_held:not_held@source_refs[1]",
+    "source_held:not_held@source_refs[2]",
+    "source_held:not_held@source_refs[3]"
+   ],
+   "failures_total": 10,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.source",
+    "source_held:custody_record_only@operative_clauses[0].original_source",
+    "source_held:custody_record_only@operative_clauses[1].first_end.source",
+    "source_held:custody_record_only@operative_clauses[1].original_source",
+    "source_held:custody_record_only@operative_clauses[2].first_end.source",
+    "source_held:custody_record_only@operative_clauses[2].original_source",
+    "source_held:custody_record_only@operative_clauses[3].first_end.source",
+    "source_held:custody_record_only@operative_clauses[3].original_source",
+    "source_held:custody_record_only@operative_clauses[4].first_end.source",
+    "quote_verbatim:source_text_not_available@operative_clauses[4].later_events[0].source.quote",
+    "quote_verbatim:source_text_not_available@operative_clauses[4].later_events[0].sources[0].quote",
+    "source_held:custody_record_only@operative_clauses[4].original_source",
+    "source_held:custody_record_only@operative_clauses[5].first_end.source",
+    "quote_verbatim:source_text_not_available@operative_clauses[5].later_events[0].source.quote",
+    "quote_verbatim:source_text_not_available@operative_clauses[5].later_events[0].sources[0].quote",
+    "source_held:custody_record_only@operative_clauses[5].original_source",
+    "source_held:custody_record_only@operative_clauses[6].first_end.source",
+    "source_held:custody_record_only@operative_clauses[6].original_source",
+    "source_held:custody_record_only@operative_clauses[7].first_end.source",
+    "source_held:custody_record_only@operative_clauses[7].original_source",
+    "source_held:custody_record_only@operative_clauses[8].first_end.source",
+    "source_held:custody_record_only@operative_clauses[8].original_source",
+    "source_held:custody_record_only@original_representation",
+    "source_held:custody_record_only@savings_residuals.source",
+    "source_held:custody_record_only@source_refs[4]",
+    "source_held:custody_record_only@source_refs[5]",
+    "quote_verbatim:source_text_not_available@source_refs[0].quote",
+    "quote_verbatim:source_text_not_available@source_refs[1].quote",
+    "quote_verbatim:source_text_not_available@source_refs[2].quote",
+    "quote_verbatim:source_text_not_available@source_refs[3].quote",
+    "source_held:custody_record_only@whole_order_end.source"
+   ],
+   "effective_for_tracker": true
+  }
+ ]
+}

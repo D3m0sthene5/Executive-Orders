@@ -1,0 +1,211 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:1547": {
+   "claim_key": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl:1",
+   "claim_sha256": "d75cb78d4831008ab4e140ac97544668bd0468e92f63587714e1bd7beee4f002",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "text_evidence_tier": "transcription_dependent",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "steps_checker_passed": {
+    "original_text": false,
+    "clause_inventory": false,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": true
+   }
+  },
+  "EO:4782": {
+   "claim_key": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl:2",
+   "claim_sha256": "9ed8e34746a8de093484653a72b0ca1d65f41d81bfbab113b0ba68e46fcb0ded",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "text_evidence_tier": "transcription_dependent",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "steps_checker_passed": {
+    "original_text": false,
+    "clause_inventory": false,
+    "ending_or_current_basis": false,
+    "savings_residuals": false,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl:1",
+   "file": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl",
+   "line": 1,
+   "instrument_id": "EO:1547",
+   "claim_sha256": "d75cb78d4831008ab4e140ac97544668bd0468e92f63587714e1bd7beee4f002",
+   "provisional_status": "no",
+   "text_evidence_tier": "transcription_dependent",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 5
+    },
+    "source_identity": {
+     "pass": 2
+    },
+    "quote_verbatim": {
+     "pass": 6
+    },
+    "date_valid": {
+     "fail": 5,
+     "pass": 5
+    },
+    "date_after_signing": {
+     "pass": 2
+    },
+    "order_exists": {
+     "pass": 6
+    },
+    "working_text_policy": {
+     "pass": 1
+    },
+    "factual_event_policy": {},
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [
+    "date_valid:not_exact_iso_date@operative_clauses[0].first_end.source.signing_date",
+    "date_valid:not_exact_iso_date@operative_clauses[0].original_source.signing_date",
+    "date_valid:not_exact_iso_date@original_representation.signing_date",
+    "date_valid:not_exact_iso_date@savings_residuals.source.signing_date",
+    "date_valid:not_exact_iso_date@whole_order_end.source.signing_date"
+   ],
+   "failures_total": 5,
+   "unverified": [],
+   "effective_for_tracker": true
+  },
+  {
+   "claim_key": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl:2",
+   "file": "research/excavator/claude-spent-probe-2026-10-28/packet/applied-v1/CLAIMS.proposed.jsonl",
+   "line": 2,
+   "instrument_id": "EO:4782",
+   "claim_sha256": "9ed8e34746a8de093484653a72b0ca1d65f41d81bfbab113b0ba68e46fcb0ded",
+   "provisional_status": "no",
+   "text_evidence_tier": "transcription_dependent",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 5
+    },
+    "source_identity": {
+     "pass": 2
+    },
+    "quote_verbatim": {
+     "pass": 6
+    },
+    "date_valid": {
+     "fail": 5,
+     "pass": 5
+    },
+    "date_after_signing": {
+     "pass": 2
+    },
+    "order_exists": {
+     "pass": 2
+    },
+    "working_text_policy": {
+     "pass": 1
+    },
+    "factual_event_policy": {},
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [
+    "date_valid:not_exact_iso_date@operative_clauses[0].first_end.source.signing_date",
+    "date_valid:not_exact_iso_date@operative_clauses[0].original_source.signing_date",
+    "date_valid:not_exact_iso_date@original_representation.signing_date",
+    "date_valid:not_exact_iso_date@savings_residuals.source.signing_date",
+    "date_valid:not_exact_iso_date@whole_order_end.source.signing_date"
+   ],
+   "failures_total": 5,
+   "unverified": [],
+   "effective_for_tracker": true
+  }
+ ]
+}

@@ -2,36 +2,51 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
-## 2026-10-22 22:25 UTC (Claude, dashboard refresh after PRs #52-#53 and the Pinakes-aware Lewis run)
+## 2026-10-28 ET (afternoon): spent-order probe filed 15 claims; waiver rule rewritten; Cotton
 
-- **Rebuilt** `research/progress/remaining-work/` from main `46a29e15` (tracker run 254: 3,403 statuses, 280 ready):
-  76,785 open steps on held orders (machine queued 481, ruled/drafted not wired 8,493, agent claim 18,215, owner ruling 0,
-  owner hand work 10, earlier step first 49,500, no route 86), 85,983 with the census gap, 15,427 model agent-hours.
-  `build_toolmap.py` now maps `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` (the owner's 2,750 ProQuest scans, ingested by
-  Pinakes) to the not-wired lane; without that rule they fell to "no route" after Lewis's scope shrank to 5,426.
-- **Fixed** `jobs/claim-kit/test_review_regressions.py`: it pinned the decided count at 3,359, so every "Run jobs" run
-  since the PR #51 adoption ended red (runs 248-254) even though results were committed. It now requires at least 3,359
-  and that claim-drafts cover exactly the current decided set (3,403 today). Test passes locally.
-- **Launched** Olney (Pullman and Blackstone remainder, branch `claude/olney-1`, started 22:11 UTC after a rate-limit
-  false start) and Mansfield (done: 14 claims filed, gate failed at 0.30 upheld per attempt, PR #54).
-- **Not verified:** the dashboard render in a browser; Olney's output. Nothing here changes a status or the 0 certified.
+- **Done:** PRs #69-#73 merged.
+  - **Spent-order probe:** 20 own-terms orders; 15 claims published in
+    `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl`. Ready for human review: 285 -> 300. The blind
+    review caught both planted controls. Record: `research/excavator/claude-spent-probe-2026-10-28/` (final packet
+    `packet-v6/supp`, completion `complete-v1`).
+  - **Held:** EO 7208, because its APP page was harvested live and has since changed, so custody cannot be shown;
+    its claim should be redone on the government printed copy (Commons DjVu 7082-7261) or a mirror capture.
+    Blocked: EO 2842, 2855, 2947, 2999 (no work-completion record; 1921 resolution text not held).
+  - **Fixes:** claim-kit takes the producer-registered working-text grade; the APP page check is defined in
+    AGENT_PROTOCOL.md; supplement excerpts are graded; claim-checker re-fetches archived captures and Commons
+    files; new job **Cotton** (`jobs/cotton-capture-custody`) commits the exact bytes of cited web sources.
+  - **TR-CS-WAIVER** rewritten under the owner's evidence ruling (research in
+    `research/excavator/claude-cs-waiver-research-2026-10-28/`) and approved after three independent review rounds.
+- **Measured:** about 79 producer-minutes and 9 reviewer-minutes for all 20 orders, including four re-runs caused
+  by now-fixed defects. That is about 5.5 agent-minutes per finished order, against the effort model's 88 minutes
+  per order for these types. Coordinator time was not measured. The result covers only simple own-terms types
+  (about 380 model hours); Kean F-20261028-7.
+- **Lesson:** keep every review and completion file inside the final packet folder; completion refuses a packet
+  whose prior research changed.
+- **Next:** scale the probe method to the other 230 retirement, closing and own-terms orders; probe one large
+  block (land withdrawals or the CS waivers with an Official Register fetch job); redo EO 7208.
+- **Owner questions:** none new. Open asks are in `HANDOFF/KEAN.md`.
 
-## 2026-10-22 (Claude, remaining-work dashboard refresh after the owner's merges)
+## 2026-10-28 ET: merged PRs #56 and #58-#66; Kean shared register built
 
-- **Rebuilt** `research/progress/remaining-work/` from main `20d4f4d4` (PR #48, the narrowed PR #51 and PR #50 merged).
-  The committed tracker there is PR #50's snapshot, 280 ready on 3,359 statuses: 76,876 open steps on held orders
-  (machine queued 485, ruled/drafted not wired 5,830, agent claim 18,130, owner ruling 0, owner hand work 2,655,
-  earlier step first 49,676, no route 100), 86,074 with the 1,314 census-gap orders, 15,439 model agent-hours
-  (15,698 before PR #50; the no-route lane fell from 803 because the ProQuest replica records give old orders a text lead). A local preview run of the tracker with the 3,374 statuses
-  (not committed) gives 76,875 open steps and the same 278 ready; GitHub run 248 on main will publish the real recount.
-- **Updated** `TOOLS.csv` (Bowditch adopted; Sinclair 31 held for a cross-family reviewer plus 6 parent-ending holds;
-  Pullman first run 11 upheld of 16 attempted on `claude/justinian-1`; Junto first measured test, thin packet, no saving;
-  new rows for Justinian and for PR #50's Pinakes readers) and re-pinned `SNAPSHOT.md`. The three-tab dashboard
-  (steps, effort, tool map) carries the same figures and an Oct 22 mission line; its tools table reads the new CSV.
-- **Not verified:** the post-adoption tracker recount (run 248 in progress) and PR #50's 280-ready figure, which
-  rests on 3,359 statuses on its own branch. Nothing here changes a status, a claim or the 0 certified count.
-- **Next:** when run 248 commits, rerun the three builders and refresh the dashboard datasets; when `claude/justinian-1`
-  merges, the transcription-only orders (5,081 steps) move out of "not wired".
+- **Done:** With the owner's express permission (`research/readiness/owner_rulings/2026-10-28-merge-permission.md`),
+  merged #56 and #58-#66 into main as `fef1c0d`. #57 and #54 stay open: #57's Junto candidate reuses the id
+  `C-20261024-2` that main already gives a different candidate; #54 conflicts with main across ~5,300 files.
+  Built **Kean** (`jobs/kean/`, brief at `HANDOFF/KEAN.md`, check in `.github/workflows/kean.yml`): one register of
+  owner decisions, owner questions and results, seeded with all 9 owner rulings, 9 open owner questions and 31 results,
+  and wired into AGENTS.md, CLAUDE.md, copilot instructions and HANDOFF/README.md. Start-up now reads the brief plus the
+  newest entry of each notes file instead of all notes.
+- **Runner:** added the Rattle Watch to `.github/scripts/run_jobs.py` (per-minute heartbeat; stops a job silent and
+  idle for 20 minutes; web-search jobs run only downstream of a push get 12 requests). Cause of slow runs: one owner-ruling
+  file selected 14 jobs including Clark's web search (Kean F-20261028-3).
+- **Finding:** the owner ruled on 2026-10-21 that his ProQuest scans count as provisional working text, but the tracker's
+  top unlock and the Pinakes README still call the grade an open codebook decision; no claim has used a scan. No
+  handwriting OCR comparison exists on record; only tesseract was used (Kean F-20261022-1, F-20261028-1).
+- **Next:** remove the stale ProQuest wording (Kean drift list); have the agent lines build claims on the ProQuest and
+  transcription texts; test AI page reading on 20 of the 310 handwritten scans.
+- **Asks:** `@Owner`: A-20261018-1, A-20261019-1, A-20261021-1, A-20261021-2, A-20261021-3, A-20261022-1,
+  A-20261028-1, A-20261028-2, A-20261028-3 (all in `HANDOFF/KEAN.md`).
+- **Do not:** hand-edit `HANDOFF/KEAN.md`; run `python3 -I jobs/kean/kean.py brief`.
 
 ## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
 
@@ -74,6 +89,7 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Reading:** the gap is not missing tools. 8,357 open steps wait on owner rulings (transcription-as-copy,
   report deadline), 13,480 on agent claim lines that already work, and 3,457 old texts have no free route.
 - **Do not:** treat lane counts as yields; they are reach, in the Polya sense.
+
 ## 2026-10-21 ET (~17:10Z): Lewis and Clark go online; Domesday register
 
 - **Done (same branch, PR #49):**
@@ -352,6 +368,7 @@ Newest entry first. See `README.md` in this folder for the format.
   sent. `@Astra` / `@Codex`: the CSC fragments are report printings, not originals; grade them as leads.
 - **Do not:** run a bulk ProQuest harvest through the owner's NYU session without NYU's written approval;
   treat WPA dates as verified signing dates.
+
 ## 2026-10-19 13:15 ET: X1 lifecycle class engine built, piloted on all 52 eligible old orders, recalibrated
 
 - **Done (branch `claude/x1-class-engine`, PR to main):** `jobs/x1-class-engine/` (zero-token job): type
@@ -487,6 +504,7 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Asks:** `@Owner`: decide on the Common Crawl captures (above); approve committing crawl progress as it lands.
   `@Astra` / `@Codex`: `MIRROR_FRAGMENTS.jsonl` is discovery material only, same as `FRAGMENTS.jsonl`.
 - **Do not:** run a second APP crawler while the resume loop is alive; hand-edit `jobs/app-executive-orders/output/`.
+
 ## 2026-10-18 17:15 ET: numbered-early-orders, printed texts for 184 of the 3,324 undecided orders 1-5075
 
 - **Done (branch `numbered-early-orders` from main `224fd70c`, PR to main):** `jobs/numbered-early-orders/`
@@ -759,3 +777,34 @@ Newest entry first. See `README.md` in this folder for the format.
     container, commit them as a job under `jobs/`.
   - `@Owner`: approve the pull request for this branch.
 - **Do not:** none.
+
+## 2026-10-22 22:25 UTC (Claude, dashboard refresh after PRs #52-#53 and the Pinakes-aware Lewis run)
+
+- **Rebuilt** `research/progress/remaining-work/` from main `46a29e15` (tracker run 254: 3,403 statuses, 280 ready):
+  76,785 open steps on held orders (machine queued 481, ruled/drafted not wired 8,493, agent claim 18,215, owner ruling 0,
+  owner hand work 10, earlier step first 49,500, no route 86), 85,983 with the census gap, 15,427 model agent-hours.
+  `build_toolmap.py` now maps `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` (the owner's 2,750 ProQuest scans, ingested by
+  Pinakes) to the not-wired lane; without that rule they fell to "no route" after Lewis's scope shrank to 5,426.
+- **Fixed** `jobs/claim-kit/test_review_regressions.py`: it pinned the decided count at 3,359, so every "Run jobs" run
+  since the PR #51 adoption ended red (runs 248-254) even though results were committed. It now requires at least 3,359
+  and that claim-drafts cover exactly the current decided set (3,403 today). Test passes locally.
+- **Launched** Olney (Pullman and Blackstone remainder, branch `claude/olney-1`, started 22:11 UTC after a rate-limit
+  false start) and Mansfield (done: 14 claims filed, gate failed at 0.30 upheld per attempt, PR #54).
+- **Not verified:** the dashboard render in a browser; Olney's output. Nothing here changes a status or the 0 certified.
+
+## 2026-10-22 (Claude, remaining-work dashboard refresh after the owner's merges)
+
+- **Rebuilt** `research/progress/remaining-work/` from main `20d4f4d4` (PR #48, the narrowed PR #51 and PR #50 merged).
+  The committed tracker there is PR #50's snapshot, 280 ready on 3,359 statuses: 76,876 open steps on held orders
+  (machine queued 485, ruled/drafted not wired 5,830, agent claim 18,130, owner ruling 0, owner hand work 2,655,
+  earlier step first 49,676, no route 100), 86,074 with the 1,314 census-gap orders, 15,439 model agent-hours
+  (15,698 before PR #50; the no-route lane fell from 803 because the ProQuest replica records give old orders a text lead). A local preview run of the tracker with the 3,374 statuses
+  (not committed) gives 76,875 open steps and the same 278 ready; GitHub run 248 on main will publish the real recount.
+- **Updated** `TOOLS.csv` (Bowditch adopted; Sinclair 31 held for a cross-family reviewer plus 6 parent-ending holds;
+  Pullman first run 11 upheld of 16 attempted on `claude/justinian-1`; Junto first measured test, thin packet, no saving;
+  new rows for Justinian and for PR #50's Pinakes readers) and re-pinned `SNAPSHOT.md`. The three-tab dashboard
+  (steps, effort, tool map) carries the same figures and an Oct 22 mission line; its tools table reads the new CSV.
+- **Not verified:** the post-adoption tracker recount (run 248 in progress) and PR #50's 280-ready figure, which
+  rests on 3,359 statuses on its own branch. Nothing here changes a status, a claim or the 0 certified count.
+- **Next:** when run 248 commits, rerun the three builders and refresh the dashboard datasets; when `claude/justinian-1`
+  merges, the transcription-only orders (5,081 steps) move out of "not wired".

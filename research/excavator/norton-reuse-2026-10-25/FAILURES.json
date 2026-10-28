@@ -1,0 +1,31 @@
+{
+  "schema": "norton-reuse-screen-failures/v1",
+  "failures": [
+    {
+      "action": "initial repository-wide git ls-tree -rl size inventory",
+      "result": "canceled, exit130",
+      "cause": "Blob size listing in a partial clone can trigger unwanted lazy materialization. Replaced with names-only bounded inventory and 134 explicitly selected code/metadata paths, then 80 bounded text/ownership/context paths.",
+      "cost": "Inside root measured preflight interval except initial unmeasured inventory call; no saving credited.",
+      "scientific_result": false
+    },
+    {
+      "action": "check guessed CLAIM_RESERVATIONS/CLAIM_LOCKS filenames",
+      "result": "not found at HEAD",
+      "resolution": "Read actual CLAIM_KIT_LOCK.json from protocol; no reservation was changed.",
+      "cost": "Inside preflight interval; no saving credited."
+    },
+    {
+      "action": "initial git add for new report files",
+      "result": "refused paths outside sparse-checkout definition",
+      "resolution": "Use git add --sparse for the authorized new report directory. No external publication occurred on this failed attempt.",
+      "cost": "After effort artifact seal; unmeasured integration/publication overhead."
+    }
+  ],
+  "missing_costs": [
+    "initial root inventory before marker",
+    "reviewer initial listing/final verification",
+    "root validation and GitHub publication after effort seal",
+    "model tokens/cache/reasoning/cash",
+    "complete active labor"
+  ]
+}

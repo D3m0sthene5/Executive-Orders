@@ -31,10 +31,16 @@ work that clears many orders at once.
 4. **Work in families.** When several orders share a source, a revoking order or
    a legal rule, do them together and cite the same source record. One proven
    rule should cost one analysis plus a short case-specific check per order.
-5. **Commit claims to `claims/<agent>-<YYYY-MM-DD>.jsonl`** (one file per agent
-   session, so agents never edit the same file). claim-checker and the tracker
-   rerun automatically. Read `jobs/claim-checker/output/REPORT.md` for your
-   claims and fix anything it fails.
+5. **Finish independently reviewed batches with `kit.py complete`.** Follow
+   [the batch contract](../../jobs/claim-kit/BATCH.md): pin exact producer lines,
+   explicit independent verdicts, semantic control adjudications and required
+   after-reveal reviews. The command selects eligible versions, runs existing
+   gates/checker/tracker, preserves receipts and prepares the publication. Use
+   its explicit publication option only for an authorized own-agent file or
+   isolated replacement proposal. Models resolve substantive exceptions; do
+   not assign a separate copying/tally/filing agent. Partial research retains
+   its exact disclosed completeness gaps and receives no complete-history
+   credit. Existing replacement ownership and human review remain unchanged.
 6. **Record a step as exhausted only with evidence** (see below), never because a
    site was slow, blocked or rate-limited.
 7. **Report telemetry in your HANDOFF note:** orders worked, steps lit, agent

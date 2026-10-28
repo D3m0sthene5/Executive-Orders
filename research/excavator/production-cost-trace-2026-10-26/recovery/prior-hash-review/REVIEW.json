@@ -1,0 +1,92 @@
+{
+  "schema": "eo-prior-research-file-hash-engineering-review/v1",
+  "reviewer": "boundary_review",
+  "family": "Same OpenAI family separate context AI engineering review; not legal/human/cross-family review.",
+  "verdict": "upheld_exact_single_hash_per_admitted_file_patch",
+  "scope": "Minimal local hoist of deterministic complete-file SHA256 out of record loop, plus regression. No source acquisition, legal routing, researchselection, approval or status changes.",
+  "exact_code_sha256": {
+    "jobs/claim-kit/prior_research.py": "3c6fd78ad67bf8a906f41d20e96def99acc08b89a4912bc3db9d2787c26f473b",
+    "jobs/claim-kit/test_prior_research.py": "cf9e76d0a9b567da682019105c96c238424f2c0fbd489fbf09283c46790387c7"
+  },
+  "findings": [
+    "Mechanically reversing only raw_sha hoist/references yields byte-identical HEADprior_research.py. No other production logic changed in reviewed module.",
+    "raw is immutable bytes loaded once perfile; SHA function is deterministic. Filepin, controlqualification, version/review/checkpoint/manifest recordhashes all use sameexactpayloadhash as before. No persistent caching or weakened change detection introduced.",
+    "New regression verifies exactly one fullfileSHA call for admittedJSONL with100irrelevantrows+1matchingclaim, exactinputpin, and changedfile/claim fingerprints after edit.",
+    "All9priorresearch tests independently pass, including changed-source/stalereview, controls, qualifiedscope, checkpoints and resume/freshness handling.",
+    "Independent replay of same frozen decodedv3dossiers and sameexcludefolder produced exactdict equality and equal canonicalcontexthash.",
+    "prior_research is an existing directpolicycode pin. Reprepare productionpacket after changedcodepin; outputequivalence does not license bypassing stale-code gates."
+  ],
+  "verification": {
+    "tests": {
+      "command": "python -m unittest discover -s jobs/claim-kit -p test_prior_research.py -v",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "reported_seconds": 0.023
+    },
+    "equivalence_replay": {
+      "exact_frozen_context_equal": true,
+      "current_collect_seconds": 2.5903209230018547,
+      "current_context_sha256": "4f29a73c13370a191fd6bd8f6846d92e65833e1f8b7370a133d6fbf5823a2acb",
+      "frozen_context_sha256": "4f29a73c13370a191fd6bd8f6846d92e65833e1f8b7370a133d6fbf5823a2acb",
+      "mechanically_reversed_patch_equals_HEAD_bytes": true,
+      "prior_code_HEAD_sha256": "db4ec6170f21b4a361945326bec52c6877ea8b1c010a6c9c35491a790329024b",
+      "current_code_sha256": "3c6fd78ad67bf8a906f41d20e96def99acc08b89a4912bc3db9d2787c26f473b",
+      "profile_before_independently_read": [
+        {
+          "file": "~",
+          "line": 0,
+          "name": "<built-in method _hashlib.openssl_sha256>",
+          "primitive_calls": 165363,
+          "calls": 165363,
+          "self_seconds": 197.00569568900002,
+          "cumulative_seconds": 197.00569568900002
+        },
+        {
+          "file": "/workspace/scratch/c478176c789b/eo-audit/jobs/claim-kit/prior_research.py",
+          "line": 226,
+          "name": "collect",
+          "primitive_calls": 2,
+          "calls": 2,
+          "self_seconds": 1.09967985,
+          "cumulative_seconds": 207.218849145
+        },
+        {
+          "file": "/workspace/scratch/c478176c789b/eo-audit/jobs/claim-kit/prior_research.py",
+          "line": 29,
+          "name": "sha",
+          "primitive_calls": 162374,
+          "calls": 162374,
+          "self_seconds": 0.164592598,
+          "cumulative_seconds": 197.13896956000002
+        }
+      ],
+      "packet_file_sha256": "d5c6d1d150266d78718049146f582eb46bd9b86ffb067df79c6615c80b41bcd1",
+      "method": "Same decoded frozen dossier objects and exact same exclusion folder. Current code replay only; no209secondoldprepare repeated; beforeprofile inspected from savedpstats. This is machine timing, not activeagentlabor."
+    },
+    "saved_before_profile_json_sha256": "0d5f5e3643b22dd98a1964578dadde747b25ea32d81112291500821cc0f1f651",
+    "saved_before_profile_pstats_sha256": "3912ed7ddc7f1d254251cd29d42711beadfb357e915a608b7158e25c84c684a0"
+  },
+  "measurement_limits": [
+    "Beforeprofile is saved wholeprepare with2collect calls; independentafterreplay is1unprofiledcollect call. Do not directly label207.219-to2.590seconds a fullprepare speedup or compute a comparable percentage.",
+    "Savedprofile independently shows165363OpenSSLSHA calls/197.006selfseconds and2collect/207.219cumulativeseconds. Currentonecollect replay observed2.590seconds. Cache/profiling/context timing differs.",
+    "This establishes a specific avoidable machine bottleneck and unchanged frozen output. It does not establish activeagenthours, totalresearchhour reduction, campaign/net savings or legal/scientific conclusions.",
+    "Root owns freshproductionprepare/fullsuite/end-to-endproduction results; old209secondprepare was not independently rerun."
+  ],
+  "preservation": "Originalbeforeprofile, priorrootequivalence and previoushelperhashfailures/timings untouched. New review scope and clocks separate from helperengineering.",
+  "costs": {
+    "start": {
+      "utc": "2026-10-27T01:10:29.583493+00:00",
+      "monotonic_ns": 40044743883124
+    },
+    "end_utc": "2026-10-27T01:12:10.990512+00:00",
+    "end_monotonic_ns": 40146150884710,
+    "observed_occupancy_seconds": 101.407001586,
+    "functions_exec_calls": 4,
+    "exec_command_calls": 4,
+    "after_collect_machine_seconds_included": 2.5903209230018547,
+    "token_cash": null,
+    "not_active_labor": true,
+    "overlap": "Machine replay included within revieweroccupancy; not additive to parentwalltime."
+  }
+}

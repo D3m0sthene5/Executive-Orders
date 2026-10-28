@@ -203,6 +203,44 @@ class CorpusTests(unittest.TestCase):
         self.assertTrue(record["source"]["requires_page_check"])
         self.assertEqual(record["source"]["location_confidence"], "medium")
 
+    def test_provisional_replica_keeps_exact_grade_with_page_debt(self):
+        self.write('jobs/pinakes-proquest-ingest/output/texts/one.txt','Held replica text.')
+        grade = 'archival_replica_scan_pending_codebook'
+        self.jsonl('jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl',[
+            self.original(grade=grade,acceptable_as_original=False,needs_page_check=True,
+                          location_confidence='medium',location_verified=False)])
+        record = inputs.load_corpus(self.repo)['texts'][0]
+        self.assertEqual(record['grade'],grade)
+        self.assertEqual(record['source']['grade'],grade)
+        self.assertFalse(record['source']['acceptable_as_original'])
+        self.assertTrue(record['source']['requires_page_check'])
+
+    def test_ungraded_wrapper_keeps_named_transcription_grade_for_working_text(self):
+        # A wrapper that names its provenance grade only in its notes must keep that exact grade; the
+        # catch-all "derivative_lead" is not an accepted working-text grade under the 2026-10-21 ruling.
+        for named, expected in (("mirror_transcription", "mirror_transcription"),
+                                ("compiled_transcription_lead", "compiled_transcription_lead"),
+                                ("as amended editorial text", "derivative_lead")):
+            self.assertEqual(inputs._grade({"confidence_note": f"APP copy ({named})"}, None, True, "x")[0], expected)
+            self.assertFalse(inputs._grade({"confidence_note": f"APP copy ({named})"}, None, True, "x")[1])
+        self.assertEqual(inputs._grade({"grade": "official"}, None, True, "x")[0], "official")
+
+    def test_downstream_relabel_yields_to_the_registered_working_text_grade(self):
+        # app-executive-orders registers its text as mirror_transcription; a later job that calls the same bytes
+        # "compiled_transcription_lead" must not change the grade the gate matches against.
+        self.write("jobs/app/output/texts/one.txt", "Order text.")
+        reg = {"instrument_id": "EO:1", "kind": "original_representation", "grade": "mirror_transcription",
+               "acceptable_as_original": False,
+               "data": {**self.source(), "text_path": "texts/one.txt", "grade": "mirror_transcription",
+                        "acceptable_as_original": False, "needs_page_check": True}}
+        self.jsonl("jobs/app/output/FRAGMENTS.jsonl", [reg])
+        relabel = {**self.source(), "instrument_ids": ["EO:1"], "text_path": "../../app/output/texts/one.txt",
+                   "grade": "compiled_transcription_lead", "acceptable_as_original": False}
+        self.jsonl("jobs/drafts/output/SOURCES.jsonl", [relabel])
+        records = inputs.load_corpus(self.repo)["texts"]
+        self.assertEqual({r["grade"] for r in records}, {"mirror_transcription"})
+        self.assertEqual({r["source"]["grade"] for r in records}, {"mirror_transcription"})
+
     def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
         self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
         fragment = {"instrument_id": "EO:1", "kind": "original_representation",

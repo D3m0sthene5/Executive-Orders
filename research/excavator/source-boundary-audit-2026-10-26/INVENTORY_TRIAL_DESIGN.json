@@ -1,0 +1,45 @@
+{
+  "schema": "eo-inventory-repair-paired-trial/v1",
+  "frozen_utc": "2026-10-26T21:56:38.404853+00:00",
+  "cases": [
+    "EO:7952",
+    "EO:8220"
+  ],
+  "selection": "first two frozen discrepancy sample entries, no replacement",
+  "scope": "complete printed original operative-command inventory ONLY; no lifecycle/end/negative-search result",
+  "arms": [
+    {
+      "worker": "A",
+      "case": "EO:7952",
+      "arm": "baseline"
+    },
+    {
+      "worker": "A",
+      "case": "EO:8220",
+      "arm": "patched"
+    },
+    {
+      "worker": "B",
+      "case": "EO:7952",
+      "arm": "patched"
+    },
+    {
+      "worker": "B",
+      "case": "EO:8220",
+      "arm": "baseline"
+    }
+  ],
+  "inputs": {
+    "A": {
+      "input_sha256": "fa97790ec9d523f249f5aea2ca8e56b8bf5492149d63cefa9d1227c8b24b58d9"
+    },
+    "B": {
+      "input_sha256": "a0925b5faf1cd20d7891a5fa2c4749df6dc0be9bf92a4a2afc64bbe024bd5289"
+    }
+  },
+  "budget_seconds_per_worker": 300,
+  "cost_rule": "separate worker occupancy plus independent source review and corrections; shared root/source preparation reported separately, no retrospective perarmallocation",
+  "success_rule": "all commands retained, no neighboring substantive text, exact held spans; compare both paired producer+review+correction costs; do not infer campaign hours from 2cases",
+  "model_family": "OpenAI separate contexts; same family",
+  "tokens": "unavailable"
+}

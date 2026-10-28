@@ -1,0 +1,90 @@
+{
+  "reviewer": "ce-review-pair3",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_engineering_source_registration_review",
+  "scope": "bounded_engineering_source_registration",
+  "verdict": "upheld",
+  "material_registration_defect_found": false,
+  "registration_path": "research/excavator/counterexample-first-2026-10-26/packet/DERIVATIVE_REGISTRATION.json",
+  "registration_sha256": "fc2e1d5210b165738d380f5bfe7f5f1b9652099b32a7f6ab3fd4504eaa74ab93",
+  "script_path": "/tmp/ce_register_derivatives.py",
+  "script_sha256": "e525e356c7a29dacd6da67d4f5eb63f65b347d50ee5a24094a51c9c1f4dd57f1",
+  "checks": {
+    "prior_source_prefix": {
+      "unchanged": true,
+      "before_sha256": "6731d9b97516e3cf4aa74c4bdaa858b0cd9d0842a363c2acada83a4ddde3170b",
+      "reported_before_matches": true,
+      "after_sha256": "878d451c79e7eb0cd40b08343715f9790c102469cea451b6fe930a751085a2c8",
+      "reported_after_matches": true,
+      "appended_records": 22
+    },
+    "hash_custody": {
+      "copies_checked": 22,
+      "raw_objects_checked": 18,
+      "all_source_copy_bytes_identical": true,
+      "all_registered_text_hashes_match": true,
+      "all_raw_pdf_hashes_match": true,
+      "all_row_paths_within_existing_output": true,
+      "registration_rows_match_copy_pins": true
+    },
+    "identity_grade_approval": {
+      "all_appended_instrument_ids_empty": true,
+      "no_appended_grade_or_original_acceptance_or_approval_fields": true,
+      "requested_targets_are_not_identity": true,
+      "note": "document_text tier states a text representation, not an authenticated original or legal approval. Descriptive already-reviewed notes are not proof of source truth."
+    },
+    "native_interface": {
+      "files_read": [
+        "jobs/claim-checker/sources.py",
+        "jobs/claim-checker/checker.py"
+      ],
+      "detail": "Existing _job_sources indexes each SOURCES row rawsha/url/cache/text_path; reader.texts consumes recorded_text_path and separately rehashes raw bytes for native extraction. check_quote still does exact/normalised matching and preserves not_found failures; no dummy or short-quote bypass added. Registration script invokes no runtime/gate edit. No Git comparison undertaken."
+    },
+    "derivation_provenance": {
+      "PLO1070": "Independently reproduced exact derivative from retained PDF page11 PyMuPDF blocks1\u20138,10\u201313 in column order. SHA60bb085b1670d23cbbc1e2222d166478d5c7b9ca74a915ab74b5916e13f4fd2d matches. Complete source page had already been independently read in blinded legal review. PLO1070-extraction.json supplies method/raw/page/source pins.",
+      "PLO1704_pypdf": "Independently reproduced PdfReader(pdf).pages[13].extract_text() byte-for-byte; SHAd3d6e792a4a4ef94d8328217d641cbb83129c7d1b512c3608ea80608856fd019 matches.",
+      "PLO1704_center": "Registered text read source-only and independently compared with actual retained PDFpage14 image: center-column1704 heading, four target tracts, non-public-lands sentence, signature/date/filing match. Header/trailing crop artifacts remain source extraction noise; no text silently rewritten. Did not assert exact crop command reproduction.",
+      "other_derivatives": "All byte/copy/raw bindings verified. This bounded engineering audit does not reperform other reviewers' whole-case source examinations or certify semantic fidelity of every passage in22files."
+    },
+    "existing_fr_identity_materialization": {
+      "output_sha256": "89da0af645ef64484b02e96d82144536c8648901cafb2247f9ac0490e129c831",
+      "equals_existing_full_run_source_bytes": true,
+      "note": "Byte-identical existing source records restore6497bindings; own8992/8915/9526 records retain prior2026-10-17 metadata and original rawsha. No new identity inference from empty derivative instrument_ids."
+    }
+  },
+  "native_checker_observation": {
+    "version": "selected-checker-v2",
+    "claims_checked": 5,
+    "mechanical_pass": 4,
+    "mechanical_fail": 1,
+    "unverified": 0,
+    "source_held_pass": 92,
+    "identity_pass": 18,
+    "quote_exact_pass": 107,
+    "quote_not_found_fail": 3,
+    "status_file_absent_when_read": true,
+    "own8992": "Exact genuine8992hash4f16c9dd\u2026 all_checks_passed=true,31heldrefs/4identities/34quotes; this is mechanical only.",
+    "root_diagnosis_not_independently_reperformed": "Coordinator reports8126 unsupported supporting_sources field caused wrong-original attribution for3quotes; clerical sources rename and separate exact-hash reviewer2 audit underway. v3 outcome requires separate append; no failed result waived."
+  },
+  "limits": [
+    "Registration establishes actual bytes/path association only; preserves genuine8992 legal verdict unchanged and confers no new approval on another source or claim.",
+    "Script additionally createsPROPOSED_SELECTION.v2.jsonl using selected8123v2; selection/version approval is outside this registration audit and requires its own exact review.",
+    "Do not infer completed whole-batch checker success from registration uphold or4/5v2 pass. Await actual v3 consumer result.",
+    "No experiment arms/design/key or other-case claim/reviewer files read. Source-only registered PLO1704 text and actual source image were read for extraction provenance."
+  ],
+  "time": {
+    "start": {
+      "utc": "2026-10-26T05:11:31.084096+00:00",
+      "monotonic": 52592.191770347,
+      "phase": "bounded engineering/source registration audit"
+    },
+    "end": {
+      "utc": "2026-10-26T05:14:13.774447+00:00",
+      "monotonic": 52754.882118655
+    },
+    "elapsed_seconds": 162.690348307995,
+    "allocation": "new engineering integration interval only; earlier source/legal/control clocks unchanged."
+  }
+}

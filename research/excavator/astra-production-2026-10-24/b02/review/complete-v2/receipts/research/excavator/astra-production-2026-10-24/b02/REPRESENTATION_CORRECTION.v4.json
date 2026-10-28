@@ -1,0 +1,188 @@
+{
+  "schema": "eo-producer-representation-correction/v1",
+  "prior_claim_file": {
+    "path": "research/excavator/astra-production-2026-10-24/b02/PROPOSED_CLAIMS.v3.jsonl",
+    "sha256": "f1952d090b8233269e179bb1b1a6e158b0168bb3bd4e98f9181ea60c650fb339"
+  },
+  "new_claim_file": {
+    "path": "research/excavator/astra-production-2026-10-24/b02/PROPOSED_CLAIMS.v4.jsonl",
+    "sha256": "ba66fc01ee902077730fa4e074f6da4d5bfeab0c62f06f0044c26ce231d5eb75"
+  },
+  "reason": "Actual complete-v1 failed closed: unsupported legal_sources/research_sources containers caused wrong-source fallback; whole original_representation quotation included generated extraction metadata. Generated PDF page separators also excluded from split statutory quotations. No checker or source policy changed.",
+  "actual_failure": {
+    "path": "research/excavator/astra-production-2026-10-24/b02/review/complete-v1/EXCEPTIONS.json",
+    "sha256": "37f7d026a9272a1e20c9136bd8a7f184c6600ae46610885cfecd3d294f5d18ec"
+  },
+  "actual_failure_csv": {
+    "path": "research/excavator/astra-production-2026-10-24/b02/review/complete-v1/checker/CLAIM_CHECKS.csv",
+    "sha256": "9ef236502dbbb37723bd96c215f45bbcfb6116fb671ebf4cf469602af0964ddf"
+  },
+  "supported_container_definition": {
+    "path": "jobs/claim-checker/checker.py",
+    "sha256": "0fad5889e9a1f1b1d9bd015bc64a6d925b73cb4c83753a7f754ffab853907842"
+  },
+  "claims": [
+    {
+      "instrument_id": "EO:11829",
+      "prior_claim_sha256": "1510c8b1c43c6d33721fb5bdc42cf4dd2d255757a805d3729cf739ec56618e7e",
+      "new_claim_sha256": "ab14f698b5b1b6eb9ece28d942de60dac231e47dafdad91c40a50c621bc1643a",
+      "changes": [
+        {
+          "path": "original_representation",
+          "operation": "Remove synthetic extraction metadata prefix from quotation; retain complete official page body, source URL, hash, full text path and page location.",
+          "old_char_start": 0,
+          "new_char_start": 501,
+          "char_end": 3061,
+          "removed_prefix": "Instrument: EO:11829\nSource: https://www.govinfo.gov/content/pkg/FR-1975-01-08/pdf/FR-1975-01-08.pdf\nSHA-256 of the downloaded file: ac8d200fd50f26761579d3a53b94eb1df435d7b7fce4d60b056996703f186663\nLocation: 40 FR 1497, PDF pages 11-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 11 of 180 ===\n"
+        },
+        {
+          "path": "research_sources[2]",
+          "operation": "Split into supported source_refs with exact per-page spans; exclude only generated PDF-page separator. All substantive text and provenance retained.",
+          "removed_separators": [
+            "=== PDF page 3 of 12 ===\n"
+          ],
+          "old_span": [
+            6253,
+            9463
+          ],
+          "new_spans": [
+            [
+              6253,
+              8760
+            ],
+            [
+              8785,
+              9463
+            ]
+          ]
+        },
+        {
+          "path": "research_sources[3]",
+          "operation": "Split into supported source_refs with exact per-page spans; exclude only generated PDF-page separator. All substantive text and provenance retained.",
+          "removed_separators": [
+            "=== PDF page 6 of 12 ===\n"
+          ],
+          "old_span": [
+            20258,
+            23013
+          ],
+          "new_spans": [
+            [
+              20258,
+              20659
+            ],
+            [
+              20684,
+              23013
+            ]
+          ]
+        },
+        {
+          "path": "research_sources",
+          "operation": "Rename to checker-supported source_refs; same references, with recorded generated-separator splits only."
+        },
+        {
+          "path": "operative_clauses[0].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        },
+        {
+          "path": "operative_clauses[1].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        },
+        {
+          "path": "operative_clauses[2].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        },
+        {
+          "path": "operative_clauses[3].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        },
+        {
+          "path": "operative_clauses[4].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        }
+      ],
+      "all_other_keys_exactly_unchanged": true,
+      "substantive_statutory_text_exactly_preserved_after_removing_generated_separators": true,
+      "checked_exact_reference_spans": 19,
+      "legal_judgments_dates_gaps_and_operative_inventory_unchanged": true
+    },
+    {
+      "instrument_id": "EO:11853",
+      "prior_claim_sha256": "b3507714b8b52c53aeb45903c9a34d27efc9725cb8253f6cc45d00a56f6b77ce",
+      "new_claim_sha256": "9bd04e1f78aa350cb2105b04adf500069f0b5870186aeeaaf1e64e63b01ab1f7",
+      "changes": [
+        {
+          "path": "original_representation",
+          "operation": "Remove synthetic extraction metadata prefix from quotation; retain complete official page body, source URL, hash, full text path and page location.",
+          "old_char_start": 0,
+          "new_char_start": 499,
+          "char_end": 1994,
+          "removed_prefix": "Instrument: EO:11853\nSource: https://www.govinfo.gov/content/pkg/FR-1975-04-21/pdf/FR-1975-04-21.pdf\nSHA-256 of the downloaded file: 82d8db2e7db11e843e0d32f791865b23dceb7ae2ca6835c15b725abf1169fc65\nLocation: 40 FR 17537, PDF pages 9-9 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 184 ===\n"
+        },
+        {
+          "path": "research_sources[2]",
+          "operation": "Split into supported source_refs with exact per-page spans; exclude only generated PDF-page separator. All substantive text and provenance retained.",
+          "removed_separators": [
+            "=== PDF page 3 of 12 ===\n"
+          ],
+          "old_span": [
+            6253,
+            9463
+          ],
+          "new_spans": [
+            [
+              6253,
+              8760
+            ],
+            [
+              8785,
+              9463
+            ]
+          ]
+        },
+        {
+          "path": "research_sources[3]",
+          "operation": "Split into supported source_refs with exact per-page spans; exclude only generated PDF-page separator. All substantive text and provenance retained.",
+          "removed_separators": [
+            "=== PDF page 6 of 12 ===\n"
+          ],
+          "old_span": [
+            20258,
+            23013
+          ],
+          "new_spans": [
+            [
+              20258,
+              20659
+            ],
+            [
+              20684,
+              23013
+            ]
+          ]
+        },
+        {
+          "path": "research_sources",
+          "operation": "Rename to checker-supported source_refs; same references, with recorded generated-separator splits only."
+        },
+        {
+          "path": "operative_clauses[0].first_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        },
+        {
+          "path": "whole_order_end.legal_sources",
+          "operation": "Rename to checker-supported sources; exact reference objects unchanged."
+        }
+      ],
+      "all_other_keys_exactly_unchanged": true,
+      "substantive_statutory_text_exactly_preserved_after_removing_generated_separators": true,
+      "checked_exact_reference_spans": 13,
+      "legal_judgments_dates_gaps_and_operative_inventory_unchanged": true
+    }
+  ],
+  "semantic_difference": false,
+  "original_full_source_availability_unchanged": true,
+  "full_checker_repeated": false,
+  "new_research_or_fetch": false
+}

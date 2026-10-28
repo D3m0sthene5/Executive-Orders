@@ -18,3 +18,4 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_result_freshness.p
 
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_pick_jobs.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_rattle_watch.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})

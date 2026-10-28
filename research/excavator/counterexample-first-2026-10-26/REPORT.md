@@ -1,0 +1,61 @@
+# Counterexample-first research: six-case comparison
+
+The experiment did **not establish a significant reduction in total agent-hours or tokens**. Keep the research and the optional technique; do not deploy this instruction as a demonstrated campaign accelerator or build another tool around this result.
+
+Six fixed unfinished orders received ordinary full lifecycle research, separate independent same-family OpenAI source review, planted controls and native validation. Five exact whole-case AI proposals were filed through claim-kit's completion contract. EO8915 remains source-blocked. The combined isolated tracker replay is **277 → 279 ready for human review**, with all existing source-audit holds preserved. This is a proposal replay on the unmerged branch, not a new published full-corpus tracker generation or human certification.
+
+## Research delivered
+
+| Order | Method | Reviewed result | Remaining tracker/research gate |
+|---|---|---|---|
+| EO7975-A | Counterexample first | Continuing personnel-division designation; express revocation effective1947-05-01. Actual parent amendments are8363/8467, not neighboring8364/8468. | Ready in isolated replay |
+| EO8083 | Ordinary | Three retirement-related clauses; formal ending1947-05-01,1942 earlier changes and acquired/transferred rights disclosed. | Ready in isolated replay |
+| EO8123 | Counterexample first | Three corrected refuge scopes end1958-08-05;1940name amendment,1939administration transfer and1950operational abandonment distinguished. | Historical image match remains open |
+| EO8126 | Ordinary | Three corrected refuge scopes end1958-08-05;1939transfer and1940name amendment retained. | Historical image match remains open |
+| EO8915 | Counterexample first | Named revocation by1955-02-11; actual earlier Interior-notice/return episode not dated. Bounded findings independently upheld. | Exact first-cessation episode remains open; native checkpoint retained |
+| EO8992 | Ordinary | Military jurisdiction ends1952-10-28; withdrawal/precedence ends1955-02-11. Independent reclamation withdrawals do not keep these EO commands operative. | Historical image match and existing EO6964 shared-source gate remain open |
+
+Five filed claims are **AI-reviewed research proposals**, with unchanged existing provisional statuses. Only two satisfy every current tracker gate. Do not describe the other three as newly ready, or turn the sixth into a complete history merely because its later revocation is known. The two new own-agent claim files are under `research/readiness/claims/codex-counterexample-20261026*`; exact selectors and controls are in the native completion manifests and receipts.
+
+## Fixed comparison and judgment
+
+`DESIGN.json` and its original hash freeze selection and assignment before substantive producer research. From the existing judgment worklist, we excluded existing claims/frozen owners/reservations and took the first three distinct candidate-ending groups with at least two metadata-eligible members. Each pair shared its proposed ending actor and draft clause count; one compiled inventory was larger than the draft implied. Random seed20261026 assigned one member per pair to the sequencing instruction. No failed case was replaced. These are simple, source-supported decided convenience cases, not a representative campaign sample.
+
+Six fresh producer contexts had equal15-minute initial budgets and access to the same existing programs/rules. One common native packet shared preparation; models performed substantive source examination, not clerical filing. The treatment identified and investigated the candidate ending's vulnerable premise before detailed drafting. It retained inconclusive tests and later primary-source followups. Ordinary workers chose a competent ordinary sequence and also examined contrary evidence before final drafting. Thus the behavioral contrast was modest: an explicit early-test record did not demonstrate a distinct research operation removed from the ordinary workflow. Missing sources were acquired through validated queues and the unchanged producers, with shared acquisition costs retained.
+
+Initial observed producer occupancy was2271.795seconds for treatment and2465.760seconds for ordinary. **That apparent difference cannot count as completion savings:** treatment includes the cheaper but incomplete EO8915 assignment, whose original notice condition differs materially from its pair. On the two pairs with upheld histories on both sides, initial producer totals differed by only**18.414seconds**, approximately1.1%, before review, corrections, acquisition and integration. The treatment then required155.162seconds of substantive producer correction on EO8123, plus exact corrected-source review. The ordinary EO8126 proposal required a clerical field correction and changed-hash review. These observations do not supply a causal end-to-end time estimate. The prespecified30% target at unchanged complete outcomes was not met; total recurring savings, tokens and campaign payback remain unestablished.
+
+The strongest repeated concrete problem here was **misassociated or incomplete source representations**. Four original inventories needed correction: EO8083 was truncated; EO8123/8126 contained neighboring refuge orders; EO8992 contained neighboring weather clauses. Related parent evidence also had neighboring-order identifiers, and the editorial August4 PLO date belonged to adjacent PLO1703; the actual1704 signature is August5. These are demonstrated defects in this fixed cohort, not a measured campaign-wide dominant cost. All were resolved from actual primary pages before accepting the affected proposals. This supports preserving the source corrections and scrutinizing that input class; it does not justify another broad accelerator build or an hours forecast.
+
+## Review, validation and actual failures
+
+Three blinded material controls tested savings, operative dates and jurisdiction/withdrawal separation. All three were rejected for the seeded substantive defect. One genuine treatment proposal was rejected for omitting the1939administrative transfer, corrected against held primary evidence and independently upheld at its new exact hash. All final selected versions have the required separate source review; genuine controls' identities received exact after-reveal approval. Raw planted claims and private mutation keys remain outside the repository. There is no human or different-model-family certification.
+
+Actual final native checker: **5/5 mechanical and structural passes;95 held references,18 identity checks,110 exact quotations, zero failures/unverified**. Both successful and failed native completion attempts remain. `packet/final-combined-tracker/` replays all five exact filed objects against the existing tracker together; its279 total is not obtained by adding partial replay totals.
+
+Integration failures were substantive execution costs, not hidden exclusions:
+
+- Sparse restoration initially omitted existing source catalogues and related texts; recovered files are not new archival discoveries.
+- New page/column text derivatives had not been registered in the source catalogue. We copied22 byte-exact attributed derivatives into the existing retention store, rehashed18 underlying PDFs, preserved the source-record prefix and used its existing `SOURCES.jsonl` interface. An independent audit upheld that binding. No core code, source grade, identity approval or checker rule was changed.
+- An unsupported `supporting_sources` field caused three quotations to be searched against the wrong original. Renaming it to existing `sources` preserved every nested source, quote and legal judgment; the new exact claim hash received review. Earlier failures remain.
+- A nonpublishing completion's receipts, written outside the packet exclusion, became newly discovered own prior research. Subsequent filing preserved four successes but stopped EO7975A on freshness. Native re-preparation reconciled that own history, reproduced the **identical** claim hash and unchanged dossier/source pins, and separately filed the remaining case. The context continuation was independently checked. No freshness guard was removed.
+- An initial unbounded worklist print, invalid sparse option, overbroad page selections, a robots-blocked archive slice and publication transport/setup failures are retained as costs/limits. Raw issue PDFs allowed exact later page inspection without refetching the same issue.
+
+## Sources, costs and publication
+
+The unchanged retention job acquired24 successful primary PDF versions locally. The robots-blocked alternative slice remains a failure; its full issue was already held. Two optional official HTML acquisitions were retained but became redundant after official FR sources were read. To publish the large primary bytes through the normal repository path, a source-only GitHub run repeated the24 exact expected versions: [40273017733](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/40273017733), result `be256a69858bb88e6327331d297e0597096e07d8`. All24 raw PDFs were independently checked against the remote Git blob identities and local SHA-256 pins. The run preserved157 prior source records and178 prior attempts. Its native metadata is retained, with22 explicitly attributed derivative rows added separately; its SUMMARY describes the actual native run, not those additional rows.
+
+Local PDF acquisition used30 HTTP requests,222070535downloaded bytes and410.178machine seconds. Remote durable retention used27requests,222070535bytes and96.328machine seconds. Optional HTML work used4requests and429.031machine seconds. These timers overlap worker intervals and are **not added again as agent labor**. Shared preparation, review/control work, source repair, correction, re-preparation, validation and publication are costs. EFFORT and NEYMAN record10575.700 observed worker-seconds (176.3worker-minutes) through the artifact-seal marker, with partial coverage. The publication extension brings the observed total to12056.699seconds (200.9worker-minutes) through verified scientific publication. Initial uninstrumented setup and the last small cost-receipt commit/PR edit remain outside that total. Active labor, complete model tokens/cache/cash and a complete competent end-to-end counterfactual are unavailable. Initial setup and final publication coverage limits are explicit. No net-savings or population estimate is asserted.
+
+Primary PDF bytes and exact source text are durable. PNG page renders and execution caches are intermediate artifacts; the primary PDFs and recorded page references allow human inspection. Their execution witnesses remain, while `PUBLICATION_STORAGE.json` identifies those intermediates and any losslessly compressed large tracker snapshots. Restore snapshots using `restore_snapshots.py` when replaying archived execution inputs. This storage choice changes no claim source bytes, quotations or review verdicts.
+
+Main remains pinned at76d256857784621343e13b5f80d8dbeaeccde0ee. The branch preserves PR63 ancestry; no merge, census/status/codebook/hold change, default research-method deployment or unattended continuation is performed. Completed queue records are preserved. The exact24-request native retention manifest remains configured to match its executed input fingerprint; the previous completed16-request manifest is archived byte-exact. This supersedes the initial restoration plan and avoids making the source generation stale immediately after publication. EO8915's existing checkpoint/resume path carries the exact remaining occurrence question without pretending a no-route result is exhaustion.
+
+## Reproduce the published integrity checks
+
+```sh
+python -B research/excavator/counterexample-first-2026-10-26/restore_snapshots.py
+python -B research/excavator/counterexample-first-2026-10-26/verify_trial.py
+```
+
+Use a checkout with the recorded source files materialized. The verifier rechecks the frozen cohort, five filed versions,24rawPDFs, exact passage spans, recorded native passes and controls. It neither changes legal statuses nor repeats research. `IMPORT.final.json` drives the existing NEYMAN replay; all earlier inputs and failed diagnostic adapters remain preserved.

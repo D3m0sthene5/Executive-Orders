@@ -1,0 +1,93 @@
+{
+  "after_contains_v4_path": true,
+  "after_packet": "preparation/after-final/PACKET.json",
+  "after_packet_sha256": "5581e731f5ef7bb1b47df1e0623410d830b44eb4716706a4fa0cfcea31709fec",
+  "after_prepare_metrics": {
+    "bounded_preparation_seconds": 1.0106,
+    "input_pretty_json_bytes": 222531,
+    "known_mechanical_tasks": 55,
+    "lossless_packet_json_bytes": 489557,
+    "model_tokens": null,
+    "no_legal_outcomes_inferred": true,
+    "orders": 1,
+    "readable_view_bytes": 253639,
+    "round_trip_exact": true,
+    "shared_text_blocks": 2,
+    "source_catalogue_entries": 16,
+    "source_files_validated": 2
+  },
+  "automatic_approvals": 0,
+  "before_after_decoded_dossier_equal": true,
+  "before_contains_v4_path": false,
+  "before_packet": "preparation/before/PACKET.json",
+  "before_packet_sha256": "5a455b7e978db5e3a20310834cd3ba404af6338ae1bfd0bee4f366ea8d6387bc",
+  "blank_decisions_preserved": true,
+  "control_records_excluded": [
+    {
+      "binding": "exact",
+      "expected_frozen_file_sha256": "6f913875b8ba65b25e736b2c3a6f25aa8b5e8143d5e413a8149ccc19ca687d53",
+      "file_sha256": "6f913875b8ba65b25e736b2c3a6f25aa8b5e8143d5e413a8149ccc19ca687d53",
+      "freeze_path": "research/excavator/astra-cumulative-2026-10-24/review/blind/FREEZE.json",
+      "path": "research/excavator/astra-cumulative-2026-10-24/review/blind/C.json",
+      "reason": "Material omission: Treasury support sec3 removed from operative inventory while complete-history conclusions retained.",
+      "reveal_path": "research/excavator/astra-cumulative-2026-10-24/review/CONTROL_REVEAL.json",
+      "state": "control_excluded_from_research_assertions"
+    }
+  ],
+  "current_canonical_partial_sha256": "4e58641c1d437da5c72a5d1c8b7a26b84e4f814367e1cdc361ecdc7e47c86634",
+  "default_prepare_function": "jobs/claim-kit/batch.py:prepare; no opt-in prior-research flag",
+  "dossier_sha256": "d05a5ca1c5322c61b73ace58eea524a18d66d6f721b9213eb80242c0e0b452ec",
+  "dossier_used": "research/excavator/astra-cumulative-2026-10-24/preparation/inputs/EO_11782.json",
+  "machine_wall_seconds": 2.2199,
+  "model_tokens": null,
+  "observed_current_load_passed": true,
+  "observed_utc": "2026-10-24T05:12:41.004400+00:00",
+  "prior_v3_rejection_preserved": true,
+  "prior_v4_claim_sha256": "0e29f299ba3535ad7b7beb30f39bb7dafee9c709f537eb626239d475b35682dc",
+  "prior_v4_review_bindings": [
+    {
+      "file_sha256": "1f142d70300a8038355ffade9206f5d33d1c9a1c805408dcd3c3f4449a7e3944",
+      "path": "research/readiness/reviews/astra-2026-10-18/reviewer/EO_11782/v4/REVIEW.json",
+      "verdict": "uphold",
+      "verdict_scope": "Substantive lifecycle assertions upheld based on this same independent source-review session; v4 repairs the sole frozen-v3 provenance defect. No human or full-readiness certification.",
+      "version_binding": "exact"
+    }
+  ],
+  "readiness_gain_claimed": false,
+  "schema": "eo-cumulative-preparation-proof/v1",
+  "selected_version_records": [
+    {
+      "file_sha256": "d1cb9abff19bf29469da4f35461a4b1bd4b5059ddb5d539c80f57e7816a7b66c",
+      "path": "research/readiness/reviews/astra-2026-10-18/BATCH1_SELECTION.json",
+      "pointer": "/EO:11782",
+      "record": {
+        "reason": "Independent substantive and corrected search-provenance review upheld; acquired-source offline checker now passes all checks.",
+        "version": "v4"
+      }
+    },
+    {
+      "file_sha256": "cc0ccaab142dd7c7c123598eb3dc91397b5a4a2bbfcf56fa09cfbd218effd5fd",
+      "path": "research/readiness/reviews/astra-2026-10-18/CHECKPOINT_BATCH1_AUDIT.json",
+      "pointer": "/rows/2",
+      "record": {
+        "claim_file_sha256": "e078d60a5c6fe931f2faa8961f61c97a0a87025fe1b02b74ba7f982c9bd0185b",
+        "claim_sha256": "0e29f299ba3535ad7b7beb30f39bb7dafee9c709f537eb626239d475b35682dc",
+        "clauses": 5,
+        "gaps": 0,
+        "instrument_id": "EO:11782",
+        "produced": true,
+        "reviewed": true,
+        "verdict": "uphold"
+      }
+    }
+  ],
+  "source_code_pins": {
+    "jobs/claim-kit/batch.py": "dd62616242a53bf1b5d5716d7bacdf7cb0312fd8f056f89e1be98070ab07fa88",
+    "jobs/claim-kit/lifecycle_obligations.py": "33ab889b015c6e8719d8e9ac8c9ac57758401c37a46112566385074679842266",
+    "jobs/claim-kit/prior_research.py": "e96f0e105ca0a69a4ac86e7ddf467dface894045dfa588fbe969674a73ba68e5"
+  },
+  "source_commit": "9ecddf9f",
+  "source_packet": "research/excavator/astra-source-first-2026-10-23/packet/PACKET.json",
+  "source_packet_sha256": "45c5daadfe7faa5ab1cafb079d769a5f9ec86ca60af318112d4664544fada024",
+  "tests_passed": 29
+}

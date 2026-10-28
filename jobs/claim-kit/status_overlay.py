@@ -371,6 +371,13 @@ def freeze_evidence(repo, output, packet, telemetry=None):
             telemetry.update(stats)
 
 
+def prepare_evidence(repo, output, iid, telemetry=None):
+    """Ordinary preparation uses the existing full, unset-status dossier."""
+    root = Path(repo).resolve()
+    packet = _history_module(root).show(root / "jobs/status-history/output", iid)
+    return freeze_evidence(root, output, packet, telemetry)
+
+
 def validate_evidence(repo, evidence):
     """Recheck bounded held sources/current history and authority; do not excavate."""
     _sealed(evidence, EVIDENCE_SCHEMA)
@@ -620,17 +627,46 @@ def _destination(repo, destination):
     return path
 
 
-def write_bundle(repo, destination, proposal, decision, review, evidence, telemetry=None):
+def write_bundle(repo, destination, proposal, decision, review, evidence, telemetry=None,
+                 lifecycle_sheet=None):
     """Write a new versioned isolated bundle; refuse any preexisting destination."""
     started = time.perf_counter()
     destination = _destination(repo, destination)
     dossier = experimental_dossier(repo, proposal, decision, review, evidence)
+    sheet = blank_sheet(dossier, decision["agent"])
+    if lifecycle_sheet is not None:
+        # Retain the producer's investigation across the status boundary. Only
+        # the reviewed working-status envelope changes; this grants no review.
+        if (not isinstance(lifecycle_sheet, dict)
+                or lifecycle_sheet.get("schema") != sheet["schema"]
+                or lifecycle_sheet.get("instrument_id") != evidence["instrument_id"]
+                or lifecycle_sheet.get("dossier_sha256") != evidence["base_dossier"]["fingerprint"]
+                or lifecycle_sheet.get("whole_order_status") not in (None, dossier["whole_order_status"])):
+            raise ValueError("lifecycle_sheet_must_match_frozen_base_dossier")
+        sheet = deepcopy(lifecycle_sheet)
+        sheet["dossier_sha256"] = dossier["fingerprint"]
+        # The new working status changes the exact decision version. Preserve
+        # its analysis, but require producer confirmation against that version.
+        sheet["approved"] = False
+        if "whole_order_status" in sheet:
+            sheet["whole_order_status"] = dossier["whole_order_status"]
     if destination.exists():
         raise ValueError("overlay_bundle_exists; use a new versioned destination")
     before = _authority(repo, evidence["instrument_id"])
     payloads = {"EVIDENCE.json": evidence, "STATUS_DECISION.json": decision,
                 "STATUS_REVIEW.json": review, "PROMOTION_PROPOSAL.json": proposal,
-                "DOSSIER.json": dossier, "LIFECYCLE_DECISION.json": blank_sheet(dossier, decision["agent"])}
+                "DOSSIER.json": dossier, "LIFECYCLE_DECISION.json": sheet}
+    if lifecycle_sheet is not None:
+        payloads["LIFECYCLE_SOURCE_DECISION.json"] = deepcopy(lifecycle_sheet)
+        payloads["LIFECYCLE_CONTINUITY.json"] = {
+            "instrument_id": evidence["instrument_id"],
+            "source_sheet_path": "LIFECYCLE_SOURCE_DECISION.json",
+            "source_sheet_sha256": canonical_sha(lifecycle_sheet),
+            "source_dossier_sha256": evidence["base_dossier"]["fingerprint"],
+            "working_sheet_sha256": canonical_sha(sheet),
+            "working_dossier_sha256": dossier["fingerprint"],
+            "producer_reconfirmation_required": True,
+            "independent_lifecycle_review_required": True}
     destination.mkdir(parents=True, exist_ok=False)
     for filename, value in payloads.items():
         (destination / filename).write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")

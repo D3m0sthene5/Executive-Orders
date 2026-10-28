@@ -1,0 +1,168 @@
+{
+  "cases": [
+    {
+      "case": "valid",
+      "expected_fail": false,
+      "failures": []
+    },
+    {
+      "case": "missing-pin",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "plain-id",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "not-id",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "null",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "short-pin",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "wrong-known-target",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "wrong-unknown-target",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "trailing-citation",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "wrong-schema",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "expected target-bound status-overlay proposal key and working-status schema",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "fail",
+          "status": "invalid_overlay_proposal_key",
+          "step": "claim_record"
+        }
+      ]
+    },
+    {
+      "case": "real-unknown-actor",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "'EO:999999' is not in the 14,972-order universe",
+          "field": "operative_clauses[0].first_end.actor",
+          "result": "fail",
+          "status": "not_in_universe",
+          "step": "ending_or_current_basis"
+        }
+      ]
+    },
+    {
+      "case": "misplaced-key",
+      "expected_fail": true,
+      "failures": [
+        {
+          "check": "order_exists",
+          "detail": "'EO:10014:aaaaaaaaaaaaaaaaaaaa' is not in the 14,972-order universe",
+          "field": "other_metadata.proposal_id",
+          "result": "fail",
+          "status": "not_in_universe",
+          "step": "claim_record"
+        }
+      ]
+    }
+  ],
+  "checker_sha256": "bf2ab277bed0e5d9e219a7b701396b5a6bc1ab6bd8b1d21cabd5408277d99dc8",
+  "initial_defect": "First typed exception allowed missing pin, plain existing EO, non-ID and null to fall through silently; repaired explicit typed-field rejection verified.",
+  "legal_or_review_approval": false,
+  "passed": 12,
+  "scope": "Independent typed-metadata/identity-boundary engineering probes only"
+}

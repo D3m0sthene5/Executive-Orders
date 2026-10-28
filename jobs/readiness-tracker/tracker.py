@@ -21,10 +21,14 @@ import hashlib
 import json
 import os
 import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "claim-kit"))
+import working_text as W
+import factual_events as F
 
 STEPS = [
     ("provisional_status", "Has a provisional YES/NO status"),
-    ("original_text", "Original text saved in the project"),
+    ("original_text", "Original or explicitly reviewed provisional working text saved"),
     ("clause_inventory", "Complete inventory of the order's operative clauses"),
     ("ending_or_current_basis", "When and how it ended (NO), or what keeps it operating now (YES)"),
     ("savings_residuals", "Savings clauses and surviving effects closed"),
@@ -111,6 +115,49 @@ OPUS_GAP_BLOCKER = {
     "originals_not_in_companion": "OPUS_MEDIA_ORIGINAL_NOT_KEPT",
     "none_cited": "OPUS_MEDIA_NONE_CITED",
 }
+
+
+# These are explicit integer-string counts in opus-media-match's CSV schema.
+# An absent/blank/malformed count is unknown, never an empty matching set.
+OPUS_EMPTY_COUNTS = (
+    "unique_supported_members", "ambiguous_members", "order_text_candidate_members",
+    "unique_supported_cited_source_members", "members_linked_by_opus_records",
+    "media_files_cited_in_case_records", "cited_media_not_packaged",
+    "media_urls_cited_in_case_records", "cited_media_urls_not_in_companion",
+    "cited_media_urls_not_packaged", "cited_media_kept_only_as_text",
+    "cited_media_only_excerpt_kept_for_other_order",
+)
+CLAIM_EVIDENCE_STEPS = (
+    "original_text", "clause_inventory", "ending_or_current_basis",
+    "savings_residuals", "counterevidence",
+)
+
+
+def empty_opus_matching_set(status, claim):
+    """Only an explicit empty historical set with no current Opus-media pointer."""
+    if (status.get("media_gap") != "none_cited"
+            or status.get("media_status") != "no_member_signal"
+            or not all(isinstance(status.get(k), str) and status[k].strip() == "0"
+                       for k in OPUS_EMPTY_COUNTS)):
+        return False
+
+    def has_media_pointer(value):
+        if isinstance(value, dict):
+            if "opus_media" in value or value.get("source_type") in (
+                    "opus_media", "opus_media_member_map", "opus_stage11_manifest",
+                    "opus_stage11_fetch_meta", "opus_stage11_evidence_originals"):
+                return True
+            return any(has_media_pointer(v) for v in value.values())
+        if isinstance(value, list):
+            return any(has_media_pointer(v) for v in value)
+        if isinstance(value, str):
+            value = value.replace("\\", "/").lower()
+            return any(marker in value for marker in (
+                "opus_stage11_evidence_originals:", "opus_stage11_manifest:", "opus-media-match",
+                "releases/opus_stage11_complete/"))
+        return False
+
+    return claim is not None and not has_media_pointer(claim)
 
 
 def read_csv(root, key):
@@ -362,11 +409,16 @@ def build(root, *, planning_closures=None):
 
     orders = []
     machine_searched = set()
+    working_index = W.Index(root)
     for i in universe:
         d = decided.get(i)
         status = d["provisional_substantive_status"] if d else None
         steps, blockers = {}, collections.defaultdict(list)
+        opus_media_note = ""
         claim = claims.get(i)
+        working_errors, dependent_texts = W.policy(claim, root, working_index) if claim else ([], [])
+        factual_errors = F.claim_errors(claim, root) if claim else []
+        policy_errors = working_errors + factual_errors
         gate_errors = claim_gate.validate_claim(claim, expected_status=status) if claim else None
         claim_steps_failing = {step_for_gate_error(e) for e in gate_errors or []}
         if "operative_clauses_empty" in (gate_errors or []):
@@ -380,7 +432,7 @@ def build(root, *, planning_closures=None):
         checked_current = bool(check) and check.get("claim_sha256") == claim_gate.claim_sha(claim)
 
         def from_claim(step):
-            if claim is None or step in claim_steps_failing:
+            if claim is None or step in claim_steps_failing or policy_errors:
                 return False
             return checked_current and bool((check.get("steps_checker_passed") or {}).get(step))
 
@@ -455,31 +507,46 @@ def build(root, *, planning_closures=None):
             for a in shared_missing.get(i, []):
                 blockers["shared_sources"].append(f"SHARED_SOURCE_NOT_RETRIEVED:{a}")
 
-        # 8. Opus media (Opus cases only)
+        # 8. Opus media (Opus cases only). Empty historical matching sets are
+        # optional under the owner's current campaign instruction, but only after
+        # the unchanged claim independently satisfies every required evidence role.
         if d and d["decision_origin"].startswith("opus"):
-            if jobs["opus_status"] is None:  # opus-media-match has not run: older audit
-                steps["opus_media"] = i in media_linked
-                if not steps["opus_media"]:
-                    blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
+            ms = (jobs["opus_status"] or {}).get(i) or {}
+            independently_complete = (
+                checked_current and not gate_errors and not policy_errors and i not in holds
+                and all(steps.values()) and check.get("gate_passed") is True
+                and check.get("all_checks_passed") is True and check.get("mechanical_result") == "pass"
+                and all((check.get("steps_checker_passed") or {}).get(s) is True
+                        for s in CLAIM_EVIDENCE_STEPS)
+            )
+            if (independently_complete and not jobs["opus_missing"].get(i)
+                    and empty_opus_matching_set(ms, claim)):
+                opus_media_note = ("Not applicable: historical Opus records cite no media; "
+                                   "the exact current claim independently passes required evidence checks. "
+                                   "No media matched or search exhausted.")
             else:
-                # Done only when every medium the Opus records cite is resolved.
-                ms = jobs["opus_status"].get(i) or {}
-                missing = jobs["opus_missing"].get(i, set())
-                refetched_all = bool(missing) and missing <= jobs["ladder_found"]
-                steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
-                    refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
-                    and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
-                if not steps["opus_media"]:
-                    gap = ms.get("media_gap", "")
-                    if gap in OPUS_GAP_BLOCKER:
-                        blockers["opus_media"].append(OPUS_GAP_BLOCKER[gap])
-                    elif ms.get("media_status") == "ambiguous_only":
-                        blockers["opus_media"].append("OPUS_MEDIA_MATCH_AMBIGUOUS")
-                    elif ms.get("media_status") == "unique_supported":
-                        blockers["opus_media"].append("OPUS_MEDIA_PARTLY_RESOLVED")
-                    else:
+                if jobs["opus_status"] is None:  # opus-media-match has not run: older audit
+                    steps["opus_media"] = i in media_linked
+                    if not steps["opus_media"]:
                         blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
-
+                else:
+                    # Done only when every medium the Opus records cite is resolved.
+                    ms = jobs["opus_status"].get(i) or {}
+                    missing = jobs["opus_missing"].get(i, set())
+                    refetched_all = bool(missing) and missing <= jobs["ladder_found"]
+                    steps["opus_media"] = ms.get("all_cited_media_resolved") == "yes" or (
+                        refetched_all and str(ms.get("ambiguous_members") or "0") == "0"
+                        and ms.get("media_gap") in ("cited_files_not_packaged", "originals_not_in_companion"))
+                    if not steps["opus_media"]:
+                        gap = ms.get("media_gap", "")
+                        if gap in OPUS_GAP_BLOCKER:
+                            blockers["opus_media"].append(OPUS_GAP_BLOCKER[gap])
+                        elif ms.get("media_status") == "ambiguous_only":
+                            blockers["opus_media"].append("OPUS_MEDIA_MATCH_AMBIGUOUS")
+                        elif ms.get("media_status") == "unique_supported":
+                            blockers["opus_media"].append("OPUS_MEDIA_PARTLY_RESOLVED")
+                        else:
+                            blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
         # Exhausted steps count as machine-finished.
         exhausted_steps = []
         for step, rec in exhausted.get(i, {}).items():
@@ -497,10 +564,15 @@ def build(root, *, planning_closures=None):
                     blockers.pop(step, None)
 
         claim_level = [e for e in gate_errors or [] if step_for_gate_error(e) is None]
-        complete_claim = claim is not None and not gate_errors
+        claim_level += policy_errors
+        complete_claim = claim is not None and not gate_errors and not policy_errors
         # An exhausted step may leave its gap listed in the claim; nothing else may fail.
         exhausted_ok = bool(exhausted_steps) and set(claim_level) <= {"unresolved_material_gaps"}
-        ready = all(steps.values()) and (complete_claim or exhausted_ok)
+        ready = all(steps.values()) and (complete_claim or exhausted_ok) and not policy_errors
+        if working_errors:
+            blockers['original_text'].append('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED')
+        if factual_errors:
+            blockers['counterevidence'].append('FACTUAL_EVENT_REVALIDATION_REQUIRED')
         if i in holds:
             ready = False
             steps['counterevidence'] = False
@@ -519,7 +591,13 @@ def build(root, *, planning_closures=None):
             "ready_tier": ("complete_claim" if complete_claim else "machine_exhausted") if ready else "",
             "exhausted_steps": "|".join(exhausted_steps),
             "claim_present": "yes" if claim else "no",
+            "text_evidence_tier": "transcription_dependent" if dependent_texts else ("original_supported" if steps['original_text'] else "missing"),
+            "original_copy_replacement_required": "yes" if dependent_texts else "no",
+            "quotation_recheck_required": "yes" if dependent_texts else "no",
+            "working_text_policy_errors": "|".join(working_errors),
+            "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
+            "opus_media_applicability_note": opus_media_note,
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
@@ -594,7 +672,8 @@ def summarise(orders, problems):
          "kind": "machine_job", "orders_unblocked": blocker_orders["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
          "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"},
         {"action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and "
-                   "decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+                   "use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, "
+                   "transcription-as-text), disclosed and rechecked against an original when one is held",
          "kind": "agent_check", "orders_unblocked": blocker_orders["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"],
          "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"},
         {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
@@ -612,7 +691,12 @@ def summarise(orders, problems):
         "orders_with_provisional_status": len(decided),
         "ready_for_human_review": len(ready),
         "ready_by_tier": dict(collections.Counter(o["ready_tier"] for o in ready)),
+        "ready_by_text_evidence_tier": dict(collections.Counter(o.get("text_evidence_tier", "unknown") for o in ready)),
+        "original_replacement_obligations": sum(o.get("original_copy_replacement_required") == "yes" for o in orders),
+        "quotation_recheck_obligations": sum(o.get("quotation_recheck_required") == "yes" for o in orders),
         "human_verified": "not counted here; see the Stage 19 tracker",
+        "opus_media_not_applicable": sorted(o["instrument_id"] for o in orders
+                                            if o.get("opus_media_applicability_note")),
         "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s]} for s in STEP_NAMES},
         "decided_by_steps_done": {f"{k[0]}/{k[1]}": v for k, v in sorted(ladder.items())},
         "orders_blocked_by": dict(blocker_orders.most_common()),
@@ -658,6 +742,9 @@ def write_outputs(out, orders, summary, inputs):
         "`research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.",
         "",
         f"Orders with a provisional YES/NO status: {dec:,}. The other {total - dec:,} have not been researched yet.",
+        "",
+        f"Ready by text evidence: {s['ready_by_text_evidence_tier']}. Provisional working texts do not authenticate originals.",
+        f"Outstanding original replacement obligations: {s['original_replacement_obligations']:,}; quotation rechecks: {s['quotation_recheck_obligations']:,}. These remain work after readiness.",
         "",
         "## Steps finished (orders with a provisional status)",
         "",

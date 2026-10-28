@@ -1,5 +1,4 @@
 """Independent regression cases for whole-head evidence and source boundaries."""
-import csv
 import hashlib
 import json
 from pathlib import Path
@@ -10,6 +9,7 @@ from unittest.mock import patch
 import build
 import current_evidence
 import inputs
+import population
 
 
 class WholeHeadReviewTests(unittest.TestCase):
@@ -148,26 +148,21 @@ class CurrentLawEvidenceReviewTests(unittest.TestCase):
 
 
 class CommittedBaselineReviewTests(unittest.TestCase):
-    def test_committed_identity_and_decided_population_pins(self):
+    def test_historical_fixture_and_current_accepted_population(self):
         repo = Path(__file__).resolve().parents[2]
         census, status = repo / inputs.UNIVERSE, repo / inputs.STATUSES
         if not census.is_file() or not status.is_file():
             self.skipTest("Full committed baseline metadata is absent from this synthetic checkout")
-        with census.open(encoding="utf-8-sig", newline="") as fh:
-            identities = [r.get("id") or r.get("instrument_id") for r in csv.DictReader(fh) if r.get("included_in_bibliography", "1") == "1"]
-        with status.open(encoding="utf-8-sig", newline="") as fh:
-            decided = {r.get("id") or r.get("instrument_id") for r in csv.DictReader(fh) if r.get("provisional_substantive_status") in {"yes", "no"}}
-        self.assertEqual(len(identities), 14972)
-        self.assertEqual(len(set(identities)), 14972)
-        # The decided population grows whenever the owner adopts AI-proposed statuses by pull
-        # request (3,359 at the Stage 11 baseline; 3,374 after PR #51; 3,403 after PR #52), so
-        # pin the floor and require claim-drafts to cover exactly the current decided set.
-        n_decided = len(decided & set(identities))
-        self.assertGreaterEqual(n_decided, 3359)
-        summary_path = repo / "jobs/claim-drafts/output/SUMMARY.json"
-        if summary_path.is_file():
-            summary = json.loads(summary_path.read_text())
-            self.assertEqual(summary["orders_with_draft"], n_decided)
+        checked = population.validate_inputs(repo)
+        # The historical 3,359 pin remains a fixture, not a ceiling on current
+        # owner-adopted inputs. The independent contract checks exact rows,
+        # census membership, duplicates, ruling/review pins and accepted deltas.
+        self.assertEqual(checked["historical_decided"], 3359)
+        self.assertEqual(checked["universe"], 14972)
+        self.assertEqual(checked["decided"],
+                         checked["historical_decided"] + checked["authorized_additions"])
+        # Existing outputs may be stale precisely because this pre-build test
+        # used to fail. job.py validates exact derived coverage after rebuilding.
 
 
 if __name__ == "__main__":

@@ -23,7 +23,8 @@ from collections import defaultdict
 
 UNIVERSE = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
 COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
-                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py")
+                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py", "working_text.py", "population.py", "factual_events.py",
+                  "../clause-drafts/segment.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")
 LFS_MAGIC = b"version https://git-lfs.github.com/spec/v1"
@@ -118,6 +119,10 @@ def _boolean(value):
     return None
 
 
+# Longest names first, so "compiled_transcription_lead" is not read as "compiled_transcription".
+SPECIFIC_DERIVATIVE_GRADES = ("compiled_transcription_lead", "compiled_transcription", "mirror_transcription")
+
+
 def _grade(node, inherited_grade, original_context, origin):
     grade = node.get("grade") or node.get("source_grade") or inherited_grade
     hints = " ".join(str(node.get(k) or "") for k in
@@ -127,8 +132,11 @@ def _grade(node, inherited_grade, original_context, origin):
         "compiled_transcription", "richardson", "as_amended_editorial",
         "as amended editorial", "ofr-codification", "derivative", "mirror_transcription"))
     if not grade:
-        grade = "derivative_lead" if derivative else (
-            "original_representation_unverified" if original_context else "held_text_lead")
+        # A wrapper without its own grade keeps the specific working-text grade its provenance names, so the
+        # owner's 2026-10-21 transcription ruling can apply; "derivative_lead" is only for unnamed derivatives.
+        specific = next((g for g in SPECIFIC_DERIVATIVE_GRADES if g in hints), None)
+        grade = specific or ("derivative_lead" if derivative else (
+            "original_representation_unverified" if original_context else "held_text_lead"))
     acceptable = _boolean(node.get("acceptable_as_original"))
     if derivative:
         acceptable = False
@@ -178,6 +186,7 @@ class _Collector:
         self.factual_obligations = defaultdict(list)
         self.factual_inputs_checked = {}
         self.hashes = {}
+        self._registry = None
         self.text_keys = set()
         self.pair_keys = set()
 
@@ -235,6 +244,12 @@ class _Collector:
         ref = {key: source.get(key) for key in ("url", "sha256", "page_or_item")}
         ref.update({key: source[key] for key in ("archival_id", "local_file_sha256") if source.get(key)})
         ref.update(text_path=rel, text_sha256=actual)
+        if acceptable is False:
+            # The 2026-10-21 transcription ruling requires the grade exactly as the producer's fragment records it.
+            # A downstream relabel (claim-drafts calls APP texts "compiled_transcription_lead") must not override it.
+            grade = self.registered_grade(iid, ref) or grade
+        if acceptable is False:
+            ref.update(grade=grade, acceptable_as_original=False, instrument_id=iid)
         quality = dict(quality or {})
         quality.setdefault("requires_page_check", False)
         ref.update(quality)
@@ -248,6 +263,20 @@ class _Collector:
         if key not in self.text_keys:
             self.text_keys.add(key)
             self.texts.append(row)
+
+    def registered_grade(self, iid, ref):
+        """The single working-text grade the producer registered for this exact text, if any."""
+        if self._registry is None:
+            import working_text
+            self._registry = working_text.Index(self.repo)
+            self._grades = working_text.GRADES
+        grades = {r["grade"] for r in self._registry.match(ref)
+                  if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))}
+        if len(grades) == 1:
+            (grade,) = grades
+            if grade in self._grades:
+                return grade
+        return None
 
     def walk_texts(self, node, base, origin, iid=None, source=None, grade=None,
                    original_context=False, dates=None, acceptable=None, provenance=False,
@@ -276,7 +305,10 @@ class _Collector:
         local_quality = _quality(node, quality)
         if "needs_page_check" in str(local_grade):
             local_quality["requires_page_check"] = True
-        if local_quality["requires_page_check"] and "needs_page_check" not in str(local_grade):
+        # A provisional representation must keep its producer's exact grade.
+        # Page debt has its own field; appending a grade would break attribution.
+        if (local_quality["requires_page_check"] and "needs_page_check" not in str(local_grade)
+                and local_acceptable is not False and acceptable is not False):
             local_grade = str(local_grade) + "_needs_page_check"
         explicit = _boolean(node.get("acceptable_as_original"))
         if acceptable is False or explicit is False:
@@ -346,7 +378,12 @@ class _Collector:
                             raise ValueError('NORTON code changed: ' + name)
                     self.factual_inputs_checked[base] = True
                 if iid and isinstance(data, dict) and data.get('legal_effect') == 'unresolved':
-                    self.factual_obligations[iid].append(dict(data, input_origin=origin, machine_lead=True))
+                    from factual_events import reviewed_events
+                    events, failures = reviewed_events(self.repo, iid, data)
+                    self.factual_obligations[iid].append(dict(data, input_origin=origin, machine_lead=True,
+                        citable_factual_events=events, factual_event_errors=failures))
+                    if failures:
+                        self.warnings.append(f'{origin}: factual event citations rejected: ' + ';'.join(failures))
             except (OSError, ValueError, KeyError, TypeError) as exc:
                 self.warnings.append(f'{origin}: factual obligation rejected: {exc}')
             return

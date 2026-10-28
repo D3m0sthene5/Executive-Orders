@@ -1,0 +1,51 @@
+{
+  "schema": "eo-claim-kit-batch-check/v1",
+  "packet_members": 6,
+  "claims_checked": 2,
+  "strict_claim_pass": 2,
+  "strict_claim_fail": 0,
+  "outcomes_including_blocked": {
+    "assembled_proposal": 2,
+    "unresolved": 1,
+    "blocked": 3
+  },
+  "actionable_failures": [
+    {
+      "instrument_id": "EO:7975A",
+      "errors": [],
+      "mechanical_failures": [
+        "quote_verbatim:not_found@original_representation.quote"
+      ],
+      "unverified": [],
+      "full_audit": "actual-checker/PER_CLAIM.json"
+    },
+    {
+      "instrument_id": "EO:8083",
+      "errors": [],
+      "mechanical_failures": [
+        "quote_verbatim:not_found@original_representation.quote",
+        "quote_verbatim:not_found@savings_residuals.source.quote"
+      ],
+      "unverified": [
+        "source_identity:text_does_not_name_this_order@operative_clauses[0].original_source",
+        "source_identity:text_does_not_name_this_order@operative_clauses[1].original_source",
+        "source_identity:text_does_not_name_this_order@operative_clauses[2].original_source",
+        "source_identity:text_does_not_name_this_order@original_representation"
+      ],
+      "full_audit": "actual-checker/PER_CLAIM.json"
+    }
+  ],
+  "requires_actual_claim_checker": false,
+  "independent_human_certifications": 0,
+  "actual_claim_checker": {
+    "claims_checked": 2,
+    "claims_all_checks_passed": 0,
+    "claims_mechanical_pass": 0,
+    "claims_mechanical_unverified": 0,
+    "claims_mechanical_fail": 2,
+    "claims_gate_passed": 2
+  },
+  "actual_checker_full_audit": "actual-checker/",
+  "actual_checker_network_downloads_enabled": false,
+  "check_code_sha256": "c9a5230712e58963a0d4c88feee54053e6ca43484f8c3d789a939525b33958f1"
+}

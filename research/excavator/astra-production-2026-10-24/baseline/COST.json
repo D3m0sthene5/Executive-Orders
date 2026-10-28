@@ -1,0 +1,49 @@
+{
+ "prices_per_million_list": {
+  "opus_5_5_input": 4.0,
+  "opus_5_5_output": 20.0,
+  "opus_5_5_cache_read": 0.2
+ },
+ "formula": "per agent: transcript T tokens (harness subagent_tokens), tool rounds U; re-reads = U*T/2 (10% uncached, 90% cache read); plus T uncached once; output 0.15*T. Upper bound prices every re-read uncached.",
+ "by_role": {
+  "producer": {
+   "tokens": 865279,
+   "tool_uses": 326,
+   "minutes": 60.107083333333335,
+   "agents": 3,
+   "est_usd": 33.46215832,
+   "upper_usd": 195.058369
+  },
+  "planter": {
+   "tokens": 344476,
+   "tool_uses": 43,
+   "minutes": 9.675933333333333,
+   "agents": 3,
+   "est_usd": 3.87817404,
+   "upper_usd": 12.527484
+  },
+  "reviewer": {
+   "tokens": 620333,
+   "tool_uses": 193,
+   "minutes": 31.33148333333334,
+   "agents": 6,
+   "est_usd": 14.58683881,
+   "upper_usd": 74.99410900000001
+  },
+  "tally": {
+   "tokens": 279431,
+   "tool_uses": 43,
+   "minutes": 7.094533333333333,
+   "agents": 5,
+   "est_usd": 2.90814442,
+   "upper_usd": 8.522413
+  }
+ },
+ "total": {
+  "tokens": 2109519,
+  "tool_uses": 605,
+  "minutes": 108.20903333333334,
+  "est_usd": 54.83531559,
+  "upper_usd": 291.102375
+ }
+}

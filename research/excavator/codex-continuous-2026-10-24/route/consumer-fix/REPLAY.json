@@ -1,0 +1,46 @@
+{
+  "schema": "eo-consumer-discontinuity-replay/v1",
+  "time_utc": "2026-10-25T16:02:52.320228+00:00",
+  "cause": "Existing status-overlay proposal key was parsed as another EO identity by generic order-citation checking.",
+  "change": "Only known matching claim instrument in correctly typed eo-claim-kit-working-status/v1 proposal_id with status-overlay: prefix and exact20hex suffix is metadata; malformed/wrong-target/other real cited EO identities still checked.",
+  "checker_sha256": "ecbce4dc669eac6cf6a7dd3c086eb19bc749bad3b14fb187206bd25388cc2a9d",
+  "initial_patch_failure": "First patch used token reported in failure rather than full status-overlay prefix. Actual replay failed, retained in producer checker-v2. Corrected only after inspecting actual stored metadata.",
+  "test_patch_failure": "First test insertion split existing test body; NameError detected and corrected before use.",
+  "same_fix_both_arms": true,
+  "approval_granted": false,
+  "results": [
+    {
+      "path": "research/excavator/codex-continuous-2026-10-24/b02/packet-v3/overlay/proposal-v1/CLAIMS.working.v1.jsonl",
+      "file_sha256": "816325b49334fba300656b02e8c51c1991b0d186bac3ee177614ceba12050b60",
+      "claim_sha256": "08d839e6073453faf9886f7c87af596ecbad373fadff43bcd6386581cc6374e5",
+      "failed_order_checks": [],
+      "typed_metadata_checks": [
+        {
+          "step": "claim_record",
+          "check": "order_exists",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "pass",
+          "status": "overlay_proposal_key",
+          "detail": "proposal metadata for EO:10014; not legal or review approval"
+        }
+      ]
+    },
+    {
+      "path": "research/excavator/codex-continuous-2026-10-24/comparison/legacy-10016/overlay/proposal-v1/CLAIMS.manual-v1.jsonl",
+      "file_sha256": "7d8664244e53227b2bcb61b5bbb0c5789a935239e9157373cc7251aa16d3ec8e",
+      "claim_sha256": "8cec62c902fd1b59063c54bfb9a9eb17a0ba7b1ddfb4598e981ea5b36a1fe4ed",
+      "failed_order_checks": [],
+      "typed_metadata_checks": [
+        {
+          "step": "claim_record",
+          "check": "order_exists",
+          "field": "claim_kit.status_overlay.proposal_id",
+          "result": "pass",
+          "status": "overlay_proposal_key",
+          "detail": "proposal metadata for EO:10016; not legal or review approval"
+        }
+      ]
+    }
+  ],
+  "token_usage": null
+}

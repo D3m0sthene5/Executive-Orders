@@ -81,6 +81,8 @@ def revise(repo, out, rev):
     if "outliers_replace" in rev:
         out["outlier_conditions"] = spec.COMMON_OUTLIERS + rev["outliers_replace"]
     out["outlier_conditions"] += rev.get("outliers_add", [])
+    if "required_evidence_replace" in rev:
+        out["required_evidence"] = list(rev["required_evidence_replace"])
     out["required_evidence"] += rev.get("required_evidence_add", [])
     if "note" in rev:
         out["note"] = rev["note"]

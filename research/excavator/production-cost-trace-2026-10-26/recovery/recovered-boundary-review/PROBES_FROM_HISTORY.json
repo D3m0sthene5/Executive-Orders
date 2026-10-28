@@ -1,0 +1,63 @@
+{
+  "schema": "eo-source-supplement-review-probes-from-history/v1",
+  "reconstruction_only": true,
+  "native_apply": {
+    "schema": "eo-claim-kit-batch-apply/v1",
+    "packet_fingerprint": "1838209ab68a11f223257d4794ffb63f22b83ac5f0580c961a977da6dd31d66d",
+    "apply_code_sha256": "c9a5230712e58963a0d4c88feee54053e6ca43484f8c3d789a939525b33958f1",
+    "counts": {
+      "rejected": 1
+    },
+    "total_packet_members": 1,
+    "wall_seconds": 0.0068,
+    "extraction_calls": 0,
+    "source_file_hashes_checked": 2,
+    "claims_published": 0,
+    "statuses_published": 0,
+    "owner_acceptance_required_for_replacements": true
+  },
+  "native_apply_audit_error": "Unknown: original probe attempted wrong APPLY_REPORT filename and gotNone. Followup to read correctAUDIT.json did not execute because cwd vanished. Do not invent exact rejection errors.",
+  "direct_assemble_same_derived_dossier": {
+    "explicit_mechanism": "revocation",
+    "errors": [],
+    "claim_generated": true
+  },
+  "fresh_helper_prepare_and_verify": {
+    "orders": 1,
+    "exact_lineage_and_source_bytes": true,
+    "legal_approval": false
+  },
+  "adversarial_verify": [
+    {
+      "mutation": "declarationbytes",
+      "refused": true,
+      "exception": "ValueError",
+      "reason": "changed input: research/declarations.json"
+    },
+    {
+      "mutation": "helpercodebytes",
+      "refused": true,
+      "exception": "ValueError",
+      "reason": "changed input: jobs/claim-kit/source_supplement.py"
+    },
+    {
+      "mutation": "parentPACKETbytes",
+      "refused": true,
+      "exception": "ValueError",
+      "reason": "changed input: research/experiment/packet/PACKET.json"
+    },
+    {
+      "mutation": "sourcebytes",
+      "refused": true,
+      "exception": "ValueError",
+      "reason": "text hash mismatch"
+    },
+    {
+      "mutation": "inheritedstatus in repacked/rehashed derivedpacket",
+      "refused": true,
+      "exception": "ValueError",
+      "reason": "changed supplement or inherited dossier"
+    }
+  ],
+  "probe_method": "Temporary actual test_batch.BuildIntegrationTests fixture; helpercode copied into temporary repo and module __file__ bound to that copy for prepare/verify. All temporary modifications restored/deleted. Production source/packet/core code never mutated."
+}

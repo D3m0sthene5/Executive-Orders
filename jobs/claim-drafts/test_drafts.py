@@ -65,6 +65,13 @@ def make_repo(root, *, cl_sample=True):
     if tracker_src.is_file():
         (root / "jobs/readiness-tracker").mkdir(parents=True)
         shutil.copy(tracker_src, root / "jobs/readiness-tracker/tracker.py")
+    # The actual tracker/checker share these policy dependencies. Keep the
+    # isolated fixture complete so tests cannot silently use a fallback mapping.
+    for relative in ("jobs/claim-kit/working_text.py", "jobs/claim-kit/factual_events.py",
+                     "jobs/norton/model.py"):
+        target = root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(REAL_REPO / relative, target)
     write_csv(root / D.P["universe"], [{"id": i, "included_in_bibliography": "1", "date_effective": y}
                                        for i, y in (("EO:100", "1950"), ("EO:200", "1990"), ("EO:300", "1960"),
                                                     ("EO:400", "1940"), ("EO:500", "1951"))])

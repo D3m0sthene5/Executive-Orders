@@ -1,0 +1,131 @@
+{
+  "result_commit": "612eb7f7575acde54c11e08a45cce2dc889769a5",
+  "status": {
+    "blocked_by": [],
+    "branch": "astra/leverage-campaign-20261022",
+    "commit_run": "0b20fea321a85d5546509617e59511ea2dffb18b",
+    "exit_code": 0,
+    "finished_utc": "2026-10-23T01:56:49Z",
+    "job": "leverage-campaign-check",
+    "machine": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39, Python 3.12.15",
+    "oversized_files_moved_to_run_download": [],
+    "result": "succeeded",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39885190210",
+    "started_utc": "2026-10-23T01:41:10Z",
+    "trigger": "push by D3m0sthene5"
+  },
+  "validation": {
+    "aggregate_agent_seconds": null,
+    "canonical_outputs_modified": false,
+    "cash_usd": null,
+    "commands": [
+      {
+        "exit_code": 0,
+        "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+        "job": "norton",
+        "network_verification_disabled": true,
+        "timed_out": false,
+        "wall_seconds": 61.213
+      },
+      {
+        "exit_code": 0,
+        "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+        "job": "claim-kit",
+        "network_verification_disabled": true,
+        "timed_out": false,
+        "wall_seconds": 626.62
+      },
+      {
+        "exit_code": 0,
+        "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+        "job": "claim-checker",
+        "network_verification_disabled": true,
+        "timed_out": false,
+        "wall_seconds": 202.569
+      },
+      {
+        "exit_code": 0,
+        "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+        "job": "readiness-tracker",
+        "network_verification_disabled": true,
+        "timed_out": false,
+        "wall_seconds": 15.303
+      },
+      {
+        "exit_code": 0,
+        "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+        "job": "polya",
+        "network_verification_disabled": true,
+        "timed_out": false,
+        "wall_seconds": 8.738
+      }
+    ],
+    "human_certifications": 0,
+    "input_commit": "0b20fea321a85d5546509617e59511ea2dffb18b",
+    "machine_wall_seconds": 916.536,
+    "model_tokens": null,
+    "new_claims": 0,
+    "notice": "Offline integrated replay; no canonical publication or legal approval.",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/39885190210",
+    "schema": "eo-bounded-offline-verification/v1",
+    "status_changes": 0,
+    "success": true
+  },
+  "population": {
+    "authorized_additions": 44,
+    "contract_sha256": "5b01a9f08fe423b9e2b14ae8ae05cc50d9dbfed34e5005839a281cfe27fe2eff",
+    "decided": 3403,
+    "derived": {
+      "decided": 3403,
+      "dossiers": "exact index/file coverage and statuses passed",
+      "drafts": "exact coverage and statuses passed"
+    },
+    "historical_decided": 3359,
+    "identity_sha256": "c56f8c77d2e1e503ebc974ad07a6a0ece335391ee3b3125cbce56045bf402b92",
+    "schema": "eo-validated-population/v1",
+    "status_sha256": "addebd2b7f3c11d98dc0d232f59d2c85ed5ffb14d2a745c48ebc28cd13bd9738",
+    "universe": 14972
+  },
+  "tracker": {
+    "orders_total": 14972,
+    "decided": 3403,
+    "ready": 219,
+    "ready_by_text_evidence_tier": {
+      "original_supported": 219
+    },
+    "original_replacement_obligations": 1,
+    "quotation_recheck_obligations": 1,
+    "input_problems": []
+  },
+  "checker": {
+    "schema": "eo-claim-check/v1",
+    "job": "claim-checker",
+    "legal_cutoff": "2026-10-14",
+    "claim_lines_found": 389,
+    "claims_checked": 389,
+    "claims_parse_errors": 0,
+    "claims_checker_errors": 0,
+    "orders_with_claim": 388,
+    "claims_all_checks_passed": 231,
+    "claims_mechanical_pass": 310,
+    "claims_mechanical_unverified": 77,
+    "claims_mechanical_fail": 2,
+    "claims_gate_passed": 304,
+    "held_distinct_sha256": 47574,
+    "opus_text_pack_texts": 0,
+    "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+    "pypdf_available": true,
+    "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+  },
+  "polya": {
+    "pool": {
+      "orders": 14972,
+      "ready": 219,
+      "not_ready": 14753,
+      "decided_not_ready": 3184,
+      "undecided": 11569
+    },
+    "input_snapshot_sha256": "000e56ebfcd2a79878b63f2395463b51e1dbe80a5fd605edd3ccac5e4eda036d"
+  },
+  "notice": "Executed code/input commit is fixed above. Later fixture/declaration/report-only changes are separately tested; no fresh core execution is claimed for them."
+}

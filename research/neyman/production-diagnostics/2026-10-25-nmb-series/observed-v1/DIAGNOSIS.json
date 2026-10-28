@@ -1,0 +1,372 @@
+{
+  "attempts": [],
+  "base_commit": "794f6e7db3bf728fd2d7480c449210940fb7f523",
+  "checkpoints": [],
+  "cohort_kind": "ordinary_production",
+  "duplicate_receipt_aliases": [],
+  "effort": {
+    "complete_session_cost": null,
+    "events": [
+      {
+        "coverage": "partial",
+        "event_id": "nmb-series-20261025-root-shared-assignment",
+        "finished_utc": "2026-10-25T23:24:39.506982+00:00",
+        "instrument_ids": [
+          "EO:10029",
+          "EO:10117",
+          "EO:10130"
+        ],
+        "kind": "worker_elapsed",
+        "measurement_method": "Shared engineering/acquisition/production assignment umbrella, not separable per-phase active effort. Includes tools/reasoning/waits; initial idea-document read precedes marker.",
+        "phase": "production",
+        "started_utc": "2026-10-25T23:01:04.388800+00:00",
+        "worker_id": "codex-root-series-20261025"
+      },
+      {
+        "coverage": "partial",
+        "event_id": "nmb-series-20261025-independent-source-and-engineering-review",
+        "finished_utc": "2026-10-25T23:29:46.800111+00:00",
+        "instrument_ids": [
+          "EO:10029",
+          "EO:10117",
+          "EO:10130"
+        ],
+        "kind": "worker_elapsed",
+        "measurement_method": "Independent source, blind controls, corrected exact factual/application reviews, engineering/correction retests; initial tool call and final verification outside coverage.",
+        "phase": "review",
+        "started_utc": "2026-10-25T23:23:53.061413+00:00",
+        "worker_id": "codex-nmb-series-independent-review-20261025"
+      },
+      {
+        "coverage": "partial",
+        "event_id": "nmb-series-20261025-root-correction-and-integration",
+        "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+        "instrument_ids": [
+          "EO:10029",
+          "EO:10117",
+          "EO:10130"
+        ],
+        "kind": "worker_elapsed",
+        "measurement_method": "Root correction/reconciliation, native consumers, documentation and artifact integration; includes tool/wait intervals. Final validation/publication after this marker not measured.",
+        "phase": "integration",
+        "started_utc": "2026-10-25T23:24:39.506982+00:00",
+        "worker_id": "codex-root-series-20261025"
+      }
+    ],
+    "note": "Intervals unioned per worker/kind; kinds overlap and must not be added. Reasoning may be included in output.",
+    "observed_phase_seconds_by_kind": {
+      "acquisition": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "coordination": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "correction": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "integration": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": 814.430104970932
+      },
+      "preparation": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "production": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": 1415.118182182312
+      },
+      "review": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": 353.73869800567627
+      }
+    },
+    "observed_seconds_by_kind": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": 2583.2869851589203
+    },
+    "observed_token_lower_bounds": {
+      "cache_read": null,
+      "cache_write": null,
+      "input_uncached": null,
+      "output": null,
+      "reasoning": null
+    },
+    "token_usage_records": 0
+  },
+  "implementation_pins": {
+    "diagnose.py": "aba82132ad518a3e69a7dceda83d932628b7ef114a470b1de3cf95c72adb96ca",
+    "production_receipts.py": "b43f5bfffee891afbb8ecd7b1c32a875f33a348b0f28c0b65911ae57f145f0c6",
+    "survey.py": "e16592067dfa8cfeb383d156057c231bd7abec3b9077b1afbafe4c001efedc14"
+  },
+  "input_pins": {
+    "research/excavator/nmb-series-2026-10-25/EFFORT.json": "7826daffc0c982a637c75c94074989ac53fb333b8c24c11a71de0100444fcabd",
+    "research/excavator/nmb-series-2026-10-25/EO_10029_ATTEMPT.json": "8e97124ea463e3d3781270797de719bacfc240d01a6a4e9affb299b2ccc7872a",
+    "research/excavator/nmb-series-2026-10-25/EO_10117_ATTEMPT.json": "aab56ece40de51b44a095058ea66597f4e68b846f1f4bd36b8f78137fb9f37bf",
+    "research/excavator/nmb-series-2026-10-25/EO_10130_ATTEMPT.json": "9f8b73248061aae3be5774f3ae79aefe5abd5d5124c41d933f95fc8bdfbf91f9",
+    "research/excavator/nmb-series-2026-10-25/IMPORT.json": "ef912c342d94df23c0686810cc05f7f22aedfdcc55d0280d514f69f18f7b64dc",
+    "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36",
+    "research/excavator/nmb-series-2026-10-25/SELECTION.json": "56b0d923c1d5e6f93c260e9b30ef8aece5d82f17b5ba12a69e5f0f72f41fb37f"
+  },
+  "measurement_gaps": [
+    "Completion timers measure machine invocation, not producer/reviewer effort.",
+    "No population cost or savings extrapolation from a convenience cohort.",
+    "Checkpoints and question explanations remain attributed hypotheses; no automatic legal findings.",
+    "Missing effort intervals and incomplete task attempts are not zero-cost work."
+  ],
+  "net_savings": null,
+  "observations": [
+    {
+      "attempt_ids": [
+        "nmb-series-20261025-EO:10029"
+      ],
+      "claim_sha256": null,
+      "diagnosis": "requires_scoped_assessment",
+      "execution_exceptions": [],
+      "gate_errors": [],
+      "human_certifications_added": 0,
+      "instrument_id": "EO:10029",
+      "next_action": "Inspect exact remaining gates; no root cause inferred from an open step alone.",
+      "next_questions": [],
+      "ready_in_isolated_replay": false,
+      "research_attempts": [
+        {
+          "assessment_authority": "reported research observation; not automatic review approval",
+          "assessor": "codex-nmb-series-20261025",
+          "attempt_id": "nmb-series-20261025-EO:10029",
+          "basis": [
+            {
+              "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+              "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+            }
+          ],
+          "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+          "instrument_id": "EO:10029",
+          "outcome": "stage_result",
+          "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+          "receipt": {
+            "path": "research/excavator/nmb-series-2026-10-25/EO_10029_ATTEMPT.json",
+            "sha256": "8e97124ea463e3d3781270797de719bacfc240d01a6a4e9affb299b2ccc7872a"
+          },
+          "schema": "neyman.research-attempt/1",
+          "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+          "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+          "started_utc": "2026-10-25T23:01:04.388800+00:00"
+        }
+      ],
+      "reviewed_output": "no_reviewed_result",
+      "right_censored": false,
+      "schema": "neyman.production-observation/1",
+      "source_checkpoints": [],
+      "tracker_blockers": [],
+      "whole_case_gate_pass": false
+    },
+    {
+      "attempt_ids": [
+        "nmb-series-20261025-EO:10117"
+      ],
+      "claim_sha256": null,
+      "diagnosis": "requires_scoped_assessment",
+      "execution_exceptions": [],
+      "gate_errors": [],
+      "human_certifications_added": 0,
+      "instrument_id": "EO:10117",
+      "next_action": "Inspect exact remaining gates; no root cause inferred from an open step alone.",
+      "next_questions": [],
+      "ready_in_isolated_replay": false,
+      "research_attempts": [
+        {
+          "assessment_authority": "reported research observation; not automatic review approval",
+          "assessor": "codex-nmb-series-20261025",
+          "attempt_id": "nmb-series-20261025-EO:10117",
+          "basis": [
+            {
+              "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+              "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+            }
+          ],
+          "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+          "instrument_id": "EO:10117",
+          "outcome": "stage_result",
+          "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+          "receipt": {
+            "path": "research/excavator/nmb-series-2026-10-25/EO_10117_ATTEMPT.json",
+            "sha256": "aab56ece40de51b44a095058ea66597f4e68b846f1f4bd36b8f78137fb9f37bf"
+          },
+          "schema": "neyman.research-attempt/1",
+          "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+          "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+          "started_utc": "2026-10-25T23:01:04.388800+00:00"
+        }
+      ],
+      "reviewed_output": "no_reviewed_result",
+      "right_censored": false,
+      "schema": "neyman.production-observation/1",
+      "source_checkpoints": [],
+      "tracker_blockers": [],
+      "whole_case_gate_pass": false
+    },
+    {
+      "attempt_ids": [
+        "nmb-series-20261025-EO:10130"
+      ],
+      "claim_sha256": null,
+      "diagnosis": "requires_scoped_assessment",
+      "execution_exceptions": [],
+      "gate_errors": [],
+      "human_certifications_added": 0,
+      "instrument_id": "EO:10130",
+      "next_action": "Inspect exact remaining gates; no root cause inferred from an open step alone.",
+      "next_questions": [],
+      "ready_in_isolated_replay": false,
+      "research_attempts": [
+        {
+          "assessment_authority": "reported research observation; not automatic review approval",
+          "assessor": "codex-nmb-series-20261025",
+          "attempt_id": "nmb-series-20261025-EO:10130",
+          "basis": [
+            {
+              "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+              "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+            }
+          ],
+          "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+          "instrument_id": "EO:10130",
+          "outcome": "stage_result",
+          "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+          "receipt": {
+            "path": "research/excavator/nmb-series-2026-10-25/EO_10130_ATTEMPT.json",
+            "sha256": "9f8b73248061aae3be5774f3ae79aefe5abd5d5124c41d933f95fc8bdfbf91f9"
+          },
+          "schema": "neyman.research-attempt/1",
+          "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+          "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+          "started_utc": "2026-10-25T23:01:04.388800+00:00"
+        }
+      ],
+      "reviewed_output": "no_reviewed_result",
+      "right_censored": false,
+      "schema": "neyman.production-observation/1",
+      "source_checkpoints": [],
+      "tracker_blockers": [],
+      "whole_case_gate_pass": false
+    }
+  ],
+  "population_cost_estimate": null,
+  "repair_probes": [],
+  "research_attempts": [
+    {
+      "assessment_authority": "reported research observation; not automatic review approval",
+      "assessor": "codex-nmb-series-20261025",
+      "attempt_id": "nmb-series-20261025-EO:10029",
+      "basis": [
+        {
+          "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+          "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+        }
+      ],
+      "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+      "instrument_id": "EO:10029",
+      "outcome": "stage_result",
+      "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+      "receipt": {
+        "path": "research/excavator/nmb-series-2026-10-25/EO_10029_ATTEMPT.json",
+        "sha256": "8e97124ea463e3d3781270797de719bacfc240d01a6a4e9affb299b2ccc7872a"
+      },
+      "schema": "neyman.research-attempt/1",
+      "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+      "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+      "started_utc": "2026-10-25T23:01:04.388800+00:00"
+    },
+    {
+      "assessment_authority": "reported research observation; not automatic review approval",
+      "assessor": "codex-nmb-series-20261025",
+      "attempt_id": "nmb-series-20261025-EO:10117",
+      "basis": [
+        {
+          "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+          "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+        }
+      ],
+      "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+      "instrument_id": "EO:10117",
+      "outcome": "stage_result",
+      "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+      "receipt": {
+        "path": "research/excavator/nmb-series-2026-10-25/EO_10117_ATTEMPT.json",
+        "sha256": "aab56ece40de51b44a095058ea66597f4e68b846f1f4bd36b8f78137fb9f37bf"
+      },
+      "schema": "neyman.research-attempt/1",
+      "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+      "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+      "started_utc": "2026-10-25T23:01:04.388800+00:00"
+    },
+    {
+      "assessment_authority": "reported research observation; not automatic review approval",
+      "assessor": "codex-nmb-series-20261025",
+      "attempt_id": "nmb-series-20261025-EO:10130",
+      "basis": [
+        {
+          "path": "research/excavator/nmb-series-2026-10-25/NATIVE_CONSUMER_CHECK.json",
+          "sha256": "d4795db895158d4b8451f020f1adc2a87b2cbf8054a13a01d364c5c0d24bdf36"
+        }
+      ],
+      "finished_utc": "2026-10-25T23:38:13.937087+00:00",
+      "instrument_id": "EO:10130",
+      "outcome": "stage_result",
+      "question": "Identify the board/report source and establish the date borne by its signed transmittal letter, retaining identity/receipt/legal-effect qualifications.",
+      "receipt": {
+        "path": "research/excavator/nmb-series-2026-10-25/EO_10130_ATTEMPT.json",
+        "sha256": "9f8b73248061aae3be5774f3ae79aefe5abd5d5124c41d933f95fc8bdfbf91f9"
+      },
+      "schema": "neyman.research-attempt/1",
+      "scope": "One shared source-series assignment; dated-letter factual step only, not a whole lifecycle or a claim completion.",
+      "shared_costs": "All root/reviewer effort events bind all3 instruments once; do not treat per-order attempt markers as separate billable intervals.",
+      "started_utc": "2026-10-25T23:01:04.388800+00:00"
+    }
+  ],
+  "sample_unobserved": [],
+  "schema": "neyman.production-imported/1",
+  "source_checks": [],
+  "summary": {
+    "censored_orders": 0,
+    "completion_machine_seconds_lower_bound": 0,
+    "completion_machine_seconds_total": null,
+    "completion_occupied_wall_seconds": null,
+    "diagnoses": {
+      "requires_scoped_assessment": 3
+    },
+    "failed_completion_invocations": 0,
+    "net_hours_saved": null,
+    "observed_orders": 3,
+    "population_inference_supported": false,
+    "primary_cost_bottleneck": "not_identified_with_available_effort_coverage",
+    "ready_in_isolated_replay": 0,
+    "research_attempts": 3,
+    "reviewed_partials": 0,
+    "reviewed_whole_case_proposals": 0,
+    "total_agent_hours": null,
+    "unique_completion_invocations": 0,
+    "verified_savings": false,
+    "worker_effort_coverage": "partial_observed_intervals"
+  }
+}

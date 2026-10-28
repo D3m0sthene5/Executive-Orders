@@ -1,0 +1,119 @@
+test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught) ... ok
+test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard) ... ok
+test_dates (test_checker.CheckerTests.test_dates) ... ok
+test_fetch_with_class_based_ladder (test_checker.CheckerTests.test_fetch_with_class_based_ladder) ... ok
+test_good_claim_passes_everything (test_checker.CheckerTests.test_good_claim_passes_everything) ... ok
+test_gpo_published_hash_counts_as_held (test_checker.CheckerTests.test_gpo_published_hash_counts_as_held) ... ok
+test_hash_spelling_and_archival_alias_cannot_hide_transcription (test_checker.CheckerTests.test_hash_spelling_and_archival_alias_cannot_hide_transcription) ... ok
+test_local_bytes_differ_from_record (test_checker.CheckerTests.test_local_bytes_differ_from_record) ... ok
+test_main_end_to_end_with_limit_and_fetch (test_checker.CheckerTests.test_main_end_to_end_with_limit_and_fetch) ... ok
+test_main_with_no_claims (test_checker.CheckerTests.test_main_with_no_claims) ... ok
+test_malformed_values_do_not_stop_the_run (test_checker.CheckerTests.test_malformed_values_do_not_stop_the_run)
+A list-valued scope_id makes claim_gate raise; that claim is reported and the run goes on. ... ok
+test_nested_source_lists_require_transcription_disclosure (test_checker.CheckerTests.test_nested_source_lists_require_transcription_disclosure) ... ok
+test_opus_hash_only_and_committed_index (test_checker.CheckerTests.test_opus_hash_only_and_committed_index) ... ok
+test_opus_text_pack (test_checker.CheckerTests.test_opus_text_pack) ... ok
+test_overlay_proposal_key_is_typed_metadata_not_a_second_order (test_checker.CheckerTests.test_overlay_proposal_key_is_typed_metadata_not_a_second_order) ... ok
+test_partial_claim_steps (test_checker.CheckerTests.test_partial_claim_steps) ... ok
+test_pdf_quote (test_checker.CheckerTests.test_pdf_quote) ... ok
+test_quote_inside_a_sources_list_item (test_checker.CheckerTests.test_quote_inside_a_sources_list_item) ... ok
+test_source_of_another_order (test_checker.CheckerTests.test_source_of_another_order) ... ok
+test_too_short_quotation (test_checker.CheckerTests.test_too_short_quotation) ... ok
+test_transcription_hash_cannot_be_laundered_through_text_path_alias (test_checker.CheckerTests.test_transcription_hash_cannot_be_laundered_through_text_path_alias) ... ok
+test_unknown_instrument_and_year_only_signing (test_checker.CheckerTests.test_unknown_instrument_and_year_only_signing) ... ok
+test_unlabeled_transcription_cannot_use_old_checker_success (test_checker.CheckerTests.test_unlabeled_transcription_cannot_use_old_checker_success) ... ok
+test_verify_by_download_uses_cache_and_budget (test_checker.CheckerTests.test_verify_by_download_uses_cache_and_budget) ... ok
+test_working_text_does_not_waive_custody_only_or_missing_ending (test_checker.CheckerTests.test_working_text_does_not_waive_custody_only_or_missing_ending) ... ok
+test_working_text_passes_separate_policy_without_original_upgrade (test_checker.CheckerTests.test_working_text_passes_separate_policy_without_original_upgrade) ... ok
+test_cited_orders (test_checker.PureFunctionTests.test_cited_orders) ... ok
+test_find_quote (test_checker.PureFunctionTests.test_find_quote) ... ok
+test_html_and_lfs (test_checker.PureFunctionTests.test_html_and_lfs) ... ok
+test_norm_url_and_sha (test_checker.PureFunctionTests.test_norm_url_and_sha) ... ok
+test_prepared_text_is_reused (test_checker.PureFunctionTests.test_prepared_text_is_reused) ... ok
+test_replica_bytes_are_indexed_without_original_authentication (test_checker.ReplicaFragmentTests.test_replica_bytes_are_indexed_without_original_authentication) ... ok
+test_replica_missing_bytes_remain_record_only_and_wrong_hash_fails (test_checker.ReplicaFragmentTests.test_replica_missing_bytes_remain_record_only_and_wrong_hash_fails) ... ok
+test_replica_path_escape_is_refused (test_checker.ReplicaFragmentTests.test_replica_path_escape_is_refused) ... ok
+test_committed_volume_behind_an_lfs_pointer_is_held (test_checker.SourceBookTests.test_committed_volume_behind_an_lfs_pointer_is_held) ... ok
+test_volume_bytes_on_this_machine_are_rehashed (test_checker.SourceBookTests.test_volume_bytes_on_this_machine_are_rehashed) ... ok
+test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.test_volume_missing_from_the_checkout_is_not_held) ... ok
+test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.243s
+
+OK
+  fetch https://example.gov/x.pdf: fetched_and_matches_claim
+Loading inputs from /tmp/claim-checker-test-e8ae7eea ...
+  universe: 5 orders; provisional statuses: 2
+  held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+  jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+  missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+  missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+  missing research/stage18/SOURCE_MANIFEST.json
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+  pypdf: 6.10.0
+  could not read claim research/readiness/claims/a.jsonl:2: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+  fetch https://www.govinfo.gov/x/EO_90001.pdf: fetched_different_bytes
+
+Checked 2 claim(s) from 2 file(s) (limited to 3 of 4 lines).
+  All checks passed: 1; mechanical fail: 1; gate passed: 2
+  Source references: {'held_but_different_hash': 3, 'held_bytes_verified': 11}
+  Source identity: {'recorded_for_this_order': 3}
+  Quotations: {'exact': 3, 'normalised': 1, 'other_copy_exact': 1, 'other_copy_normalised': 1}
+  Fetch attempts: {'fetched_different_bytes': 1}
+  Outputs in /tmp/claim-checker-test-e8ae7eea/out (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/claim-checker-test-ywi6pftl ...
+  universe: 5 orders; provisional statuses: 2
+  held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+  jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+  missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+  missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+  missing research/stage18/SOURCE_MANIFEST.json
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+  pypdf: 6.10.0
+
+Checked 0 claim(s) from 0 file(s).
+  No claim files yet in research/readiness/claims/ - nothing to check.
+  All checks passed: 0; mechanical fail: 0; gate passed: 0
+  Source references: none
+  Source identity: none
+  Quotations: none
+  Outputs in /tmp/claim-checker-test-ywi6pftl/out0 (0.0s). These are mechanical checks, not legal findings.
+  note: JOB_LIMIT='x' is not a whole number; checking every claim
+Loading inputs from /tmp/claim-checker-test-x76pim7q ...
+  universe: 5 orders; provisional statuses: 2
+  held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+  jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+  missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+  missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+  missing research/stage18/SOURCE_MANIFEST.json
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+  pypdf: 6.10.0
+  could not read claim research/readiness/claims/a.jsonl:2: line is not valid UTF-8 (invalid start byte at byte 0)
+  CHECKER ERROR on claim research/readiness/claims/b.jsonl:1: RuntimeError: simulated checker bug (reported; run continues)
+
+Checked 3 claim(s) from 2 file(s).
+  All checks passed: 1; mechanical fail: 1; gate passed: 1
+  Source references: {'held_bytes_verified': 14}
+  Source identity: {'recorded_for_this_order': 6}
+  Quotations: {'exact': 4, 'normalised': 2}
+  Checker errors: 1 claim(s) could not be fully checked; see REPORT.md
+  Outputs in /tmp/claim-checker-test-x76pim7q/out-bad (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /workspace/scratch/c478176c789b/eo-neyman ...
+  universe: 14972 orders; provisional statuses: 3403
+  held source copies indexed: 38101 (jobs/astra-source-retention/output/SOURCES.jsonl 181, jobs/source-ladder/output/SOURCES.jsonl 632, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
+  jobs/astra-source-retention/output/SOURCES.jsonl: 181 source records (24 with saved bytes on this machine)
+  jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+  pypdf: 6.10.0
+
+Checked 5 claim(s) from 1 file(s).
+  All checks passed: 0; mechanical fail: 4; gate passed: 5
+  Source references: {'held_bytes_verified': 83}
+  Source identity: {'recorded_for_this_order': 12, 'text_does_not_name_this_order': 4, 'text_names_this_order': 2}
+  Quotations: {'exact': 49, 'normalised': 13, 'not_found': 39}
+  Outputs in /workspace/scratch/c478176c789b/eo-neyman/research/excavator/counterexample-first-2026-10-26/packet/selected-checker-v1 (47.5s). These are mechanical checks, not legal findings.
