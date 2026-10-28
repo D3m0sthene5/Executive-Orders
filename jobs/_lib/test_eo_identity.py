@@ -29,5 +29,26 @@ class CscReaderTest(unittest.TestCase):
             self.assertEqual(Path(fragment['text_path']).read_text(), 'Historical report transcription.')
 
 
+class DateTest(unittest.TestCase):
+    def test_wpa_numbered_list_refines_a_bare_year_only_when_years_agree(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            wpa = root / eo_identity.WPA_NUMBERED
+            wpa.parent.mkdir(parents=True)
+            wpa.write_text('id,number,suffix,year,month_day,text\n'
+                           'EO:1547,1547,,1912,June 19,Eight-hour day suspended.\n'
+                           'EO:2000,2000,,1915,Jan 4,Disagreeing year.\n')
+            pq = root / 'jobs/pinakes-proquest-ingest/output'
+            pq.mkdir(parents=True)
+            (pq / 'FRAGMENTS.jsonl').write_text(''.join(json.dumps({
+                'instrument_id': i, 'kind': 'original_representation', 'produced_by': 'pinakes-proquest-ingest',
+                'grade': 'archival_replica_scan_pending_codebook', 'acceptable_as_original': False,
+                'data': {'signing_date': y, 'needs_page_check': True}}) + '\n' for i, y in (('EO:1547', '1912'), ('EO:2000', '1914'))))
+            dates = eo_identity.load_dates(str(root))
+            self.assertEqual(dates['EO:1547']['date'], '1912-06-19')
+            self.assertEqual(dates['EO:1547']['date_source'], 'wpa_numbered_list')
+            self.assertEqual(dates['EO:2000']['date'][:4], '1914')  # a disagreeing year is not overwritten
+
+
 if __name__ == '__main__':
     unittest.main()

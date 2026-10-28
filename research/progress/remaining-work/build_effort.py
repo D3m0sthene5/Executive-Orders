@@ -57,6 +57,15 @@ def assign():
             status_lead.add(x["instrument_id"])
     drafts = {r["instrument_id"]: r for r in
               csv.DictReader(open(JOBS / "claim-drafts/output/TODO_BY_ORDER.csv"))}
+    # The owner's ProQuest scans (Pinakes) are provisional working text under the 2026-10-21 rulings
+    # (research/readiness/owner_rulings/2026-10-21-proquest-request.md, -transcription-as-text.md).
+    proquest, proquest_text = set(), set()
+    pq_orders = JOBS / "pinakes-proquest-ingest/output/ORDERS.csv"
+    if pq_orders.is_file():
+        for r in csv.DictReader(open(pq_orders)):
+            proquest.add(r["instrument_id"])
+            if r.get("text_usable") == "yes":
+                proquest_text.add(r["instrument_id"])
 
     def modern(iid):
         n = brw.num(iid)
@@ -72,7 +81,7 @@ def assign():
         if step == "original_text":
             if "ORIGINAL_FOUND_NEEDS_PAGE_CHECK" in blockers:
                 return "OT1"
-            if iid in printed or "ONLY_COMPILED_TRANSCRIPTION_FOUND" in blockers:
+            if iid in printed or iid in proquest or "ONLY_COMPILED_TRANSCRIPTION_FOUND" in blockers:
                 return "OT2"
             if m:
                 return "OT3"
@@ -82,7 +91,7 @@ def assign():
         if step == "clause_inventory":
             if iid in clause_draft:
                 return "CI1"
-            return "CI2" if text_done or iid in not_segmented else "CI3"
+            return "CI2" if text_done or iid in not_segmented or iid in proquest_text else "CI3"
         if step == "ending_or_current_basis":
             return "EB1" if judged else "EB2" if hist else "EB3" if m else "EB4"
         if step == "savings_residuals":
