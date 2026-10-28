@@ -44,4 +44,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-24 F-20261024-4 **partly worked**: Carry status research through ordinary lifecycle production. Lesson: Ordinary production works; adopting statuses is the step that holds cases back.
 - 2026-10-24 F-20261024-3 **failed**: Campaign acceleration search across four mechanisms (PR #57, unmerged). Lesson: Orders of one 'type' differ legally; current tools already share what can safely be shared.
 
-Register: 9 owner decisions, 0 answered questions, 39 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 10 owner decisions, 0 answered questions, 39 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
