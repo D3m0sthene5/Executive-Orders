@@ -20,6 +20,7 @@ import collections
 import csv
 import datetime as dt
 import glob
+import gzip
 import importlib.util
 import inspect
 import io
@@ -433,6 +434,7 @@ class Context:
         self.index = index or S.build_index(self.repo, self.job_dir, roots, exclude_jobs=(JOB_NAME,))
         self.reader = S.TextReader(self.cache_dir, packed=self.index.packed_texts)
         self.gpo_matched = load_gpo_matched(self.repo)
+        self.archive_captures = load_archive_captures(self.repo)
         self._prepared = collections.OrderedDict()  # recently used source texts, normalised once
         self.today = today or dt.datetime.now(dt.timezone.utc).date()
         try:
@@ -468,7 +470,8 @@ GPO_MATCHED = "jobs/official-fixity/output/MATCHED_BY_SHA256.json"
 # Record-only govinfo sources (mostly 1995+ single-document PDFs, which GPO's PREMIS
 # records do not list) are re-downloaded once and re-hashed here; the cache persists
 # between GitHub runs. Bounded per run; set CLAIM_CHECKER_VERIFY_DOWNLOADS=0 to disable.
-VERIFY_HOSTS = ("www.govinfo.gov",)
+VERIFY_HOSTS = ("www.govinfo.gov", "commons.wikimedia.org")
+COMMONS_FILE = "https://commons.wikimedia.org/wiki/File:"
 _VERIFY = {"left": None, "last": 0.0}
 
 
@@ -481,6 +484,12 @@ def verify_by_download(url, sha, cache_dir):
     host = urllib.parse.urlsplit(url or "").hostname or ""
     if host not in VERIFY_HOSTS or not url.startswith("https://"):
         return None
+    if host == "commons.wikimedia.org":
+        # A Commons file page is cited; Special:FilePath serves that file's current bytes. A re-uploaded file
+        # hashes differently and stays unverified.
+        if not url.startswith(COMMONS_FILE):
+            return None
+        url = "https://commons.wikimedia.org/wiki/Special:FilePath/" + url[len(COMMONS_FILE):]
     store = pathlib.Path(cache_dir) / "verified" / (sha[:2] + "/" + sha + ".bin")
     if store.is_file():
         return hashlib.sha256(store.read_bytes()).hexdigest() == sha
@@ -503,6 +512,126 @@ def verify_by_download(url, sha, cache_dir):
     if ok:
         store.parent.mkdir(parents=True, exist_ok=True)
         store.write_bytes(data)
+    return ok
+
+
+# Web pages the project saved from a public web archive (American Presidency Project pages from Common Crawl or
+# the Wayback Machine) keep only their hash, but the archive record is fixed: re-fetching the same Common Crawl
+# byte range, or the Wayback raw capture, returns the same page bytes. Re-hashing them is a byte check, not a
+# record-only pass. Shares the download budget above.
+ARCHIVE_CAPTURE_FILES = ("jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",)
+CC_DATA = "https://data.commoncrawl.org/"
+
+
+def load_archive_captures(repo):
+    """sha256 -> archive capture pointer for pages saved from a public web archive."""
+    out = {}
+    for rel in ARCHIVE_CAPTURE_FILES:
+        try:
+            fh = open(pathlib.Path(repo) / rel, encoding="utf-8")
+        except OSError:
+            continue
+        with fh:
+            for line in fh:
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                cap = r.get("capture") if isinstance(r, dict) else None
+                sha = str(r.get("sha256") or "").lower() if isinstance(r, dict) else ""
+                if isinstance(cap, dict) and len(sha) == 64:
+                    out[sha] = dict(cap, url=r.get("url"))
+    return out
+
+
+def _warc_response_body(raw):
+    """The HTTP body of one gzip WARC response record, decoded the way the APP mirror decoded it."""
+    data = gzip.decompress(raw)
+    warc_block, rest = data.split(b"\r\n\r\n", 1)
+    http_block, body = rest.split(b"\r\n\r\n", 1)
+    warc = {k.strip().lower(): v.strip() for k, _, v in
+            (line.partition(":") for line in warc_block.decode("utf-8", "replace").splitlines()[1:])}
+    http = {k.strip().lower(): v.strip() for k, _, v in
+            (line.partition(":") for line in http_block.decode("latin-1").splitlines()[1:])}
+    if warc.get("warc-type") != "response" or "warc-truncated" in warc:
+        raise ValueError("not a complete WARC response record")
+    if http.get("transfer-encoding", "").lower() == "chunked":
+        out, i = [], 0
+        while True:
+            j = body.find(b"\r\n", i)
+            if j < 0:
+                break
+            size = int(body[i:j].split(b";")[0].strip() or b"0", 16)
+            if size == 0:
+                break
+            out.append(body[j + 2:j + 2 + size])
+            i = j + 2 + size + 2
+        body = b"".join(out)
+    if http.get("content-encoding", "").lower() in ("gzip", "x-gzip"):
+        body = gzip.decompress(body)
+    return (warc.get("warc-target-uri") or "").strip("<>"), body
+
+
+def _download(url, headers=None):
+    """Bytes of url within the per-run budget, or None (budget spent, offline, blocked, timeout)."""
+    import time
+    import urllib.request
+    if _VERIFY["left"] is None:
+        _VERIFY["left"] = int(os.environ.get("CLAIM_CHECKER_VERIFY_DOWNLOADS", "400") or 0)
+    if _VERIFY["left"] <= 0:
+        return None
+    _VERIFY["left"] -= 1
+    wait = 1.0 - (time.monotonic() - _VERIFY["last"])
+    if wait > 0:
+        time.sleep(wait)
+    _VERIFY["last"] = time.monotonic()
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "EO-afterlife-research/1.0 (claim-checker)",
+                                                   **(headers or {})})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return r.read(200_000_000)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def verify_by_archive(sha, capture, cache_dir):
+    """True if the archived capture's page bytes hash to sha; False if they differ; None if not tried."""
+    import hashlib
+    if not capture:
+        return None
+    store = pathlib.Path(cache_dir) / "verified" / (sha[:2] + "/" + sha + ".bin")
+    if store.is_file():
+        return hashlib.sha256(store.read_bytes()).hexdigest() == sha
+    archive = capture.get("archive")
+    if archive == "common-crawl":
+        try:
+            name, offset, length = capture["warc_filename"], int(capture["warc_offset"]), int(capture["warc_length"])
+        except (KeyError, TypeError, ValueError):
+            return None
+        if not isinstance(name, str) or not name.startswith("crawl-data/") or ".." in name or length <= 0:
+            return None
+        raw = _download(CC_DATA + name, {"Range": f"bytes={offset}-{offset + length - 1}"})
+        if raw is None or len(raw) != length:
+            return None
+        try:
+            uri, body = _warc_response_body(raw)
+        except (OSError, ValueError, EOFError):
+            return False
+        if capture.get("url") and uri != capture["url"]:
+            return False
+    elif archive == "wayback":
+        url = capture.get("wayback_url") or ""
+        if not url.startswith("https://web.archive.org/web/") or "id_/" not in url:
+            return None
+        body = _download(url)
+        if body is None:
+            return None
+    else:
+        return None
+    ok = hashlib.sha256(body).hexdigest() == sha
+    if ok:
+        store.parent.mkdir(parents=True, exist_ok=True)
+        store.write_bytes(body)
     return ok
 
 
@@ -559,6 +688,11 @@ def check_source(ref, field, ctx, rows):
                 f"checked {g.get('checked_utc')}); verifiable by re-fetching")
         elif verify_by_download(url, sha, ctx.cache_dir):
             status, detail = "held_bytes_verified", "re-downloaded from the cited URL and re-hashed on this machine; match"
+        elif verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
+            cap = ctx.archive_captures[sha]
+            status, detail = "held_bytes_verified", (
+                f"re-fetched from the archived capture ({cap.get('archive')} {cap.get('captured_utc', '')}) "
+                "and re-hashed on this machine; match")
         else:
             status, detail = "custody_record_only", (
                 "only a custody record (hash, perhaps extracted text) exists; the original bytes are in no "
