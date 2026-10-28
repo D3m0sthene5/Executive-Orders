@@ -1,5 +1,10 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:8995",
+      "evidence_id": "ACTOR_TEXT:EO:8995"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
@@ -56,6 +61,30 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:EO:8995": {
+      "actor_id": "EO:8995",
+      "char_end": 764,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:8995",
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "archival_id": "app:node/210742",
+        "filing_date": null,
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8995",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Executive Order 8995—Exemption of Miss Roberta L. Lindsey From Compulsory Retirement for Age; December 26, 1941; APP node 210742; common-crawl capture 2025-11-13T07:03:34Z",
+        "requires_page_check": true,
+        "sha256": "278bf9f233e9c425d527569136dad49af36af6f8d60abc5ac05eee4bbf59d13e",
+        "signing_date": "1941-12-26",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8995-exemption-miss-roberta-l-lindsey-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "3f45fde1e512f596f61de1748a1643d786823e677e30bfc60da402bf452dda86",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8995-exemption-miss-roberta-l-lindsey-from-compulsory-retirement-for-age"
+      },
+      "text": "Whereas, in my judgment, the public interest requires that Miss Roberta L. Lindsey, administrative officer, Division of Loans and Currency, Bureau of the Public Debt, Treasury Department, who was exempted from compulsory retirement for age for a period of one year by Executive Order No. 8610 of December 11, 1940, be further exempted from such compulsory retirement for a period of one year:\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat, 382, 404 (U.S.C., title 5, section 715a), I hereby further exempt the said Miss Roberta L. Lindsey from compulsory retirement for age for a period of one year ending December 31, 1942.\n\nFRANKLIN D ROOSEVELT\n\nThe White House,\n\nDecember 26, 1941.\n"
+    },
     "CLAUSES:EO:8610#whole": {
       "char_end": 716,
       "char_start": 0,
@@ -242,7 +271,7 @@
       "text": "Lindsey, administrative officer, Division of Loans and Currency, Bureau of the Public Debt, Treasury Department, who, during the current month, will reach the retirement age prescribed for automatic separation from the service, applicable to her, be exempted from compulsory retirement for age for a period of one year:"
     }
   },
-  "fingerprint": "258e63fb036da2dd5db6cff9e5a2552ae5267c9bab7949532fa05784ebc8ca9f",
+  "fingerprint": "68e536b97762523db7ab74c5f025d50a9e5d611fa23cd0f0b78b16dd6e26169b",
   "instrument_id": "EO:8610",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -306,11 +335,24 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
     "Official-source page location requires a separate page/image check before original confirmation.",
-    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+    "cited by number, no change provision located: EO:8995"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8610",

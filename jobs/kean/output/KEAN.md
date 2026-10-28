@@ -31,8 +31,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (10 of 42; `search` finds the rest)
+## Newest results (10 of 44; `search` finds the rest)
 
+- 2026-10-28 F-20261028-8 **worked**: Measured how many held texts cite an earlier order by number in their body without a revoke/amend/supersede/t… Lesson: Number-citation tools only see change verbs; an extension or a recital is a citation without one. Read the 'cited by number' actors before deciding an ending; nothing about them is an event.
+- 2026-10-28 F-20261028-7 **worked**: Namier (jobs/namier): parse the person each one-person order names and search every held order text once for… Lesson: A name match is a lead, not an identity: middle-initial conflicts, index pages, 60-year gaps and persons named in more than 40 orders are kept out of the packet; an empty result covers only the held…
 - 2026-10-28 F-20261028-6 **worked**: Research and rewrite of TR-CS-WAIVER (1,530 one-person civil-service waivers) under the owner's evidence ruli… Lesson: Four outcomes: exhausted on a date; within (order date, R]; not in force with use unknown as an interval to the reason date; open. Most waivers will stay open on use unless the Official Register is f…
 - 2026-10-28 F-20261028-5 **no record**: Diagnose main's failed daily runs of 2026-10-26 and 2026-10-27. Lesson: Read the run page on GitHub for the failing job; the Rattle Watch now prints per-job progress so the next failure names itself in the log.
 - 2026-10-28 F-20261028-4 **partly worked**: 20-order probe on spent pre-1937 orders with statuses (12 retirement exemptions, 5 eight-hour suspensions, 3… Lesson: Most blocks were tool defects, now fixed: claim-kit keeps named transcription grades and the shared date lookup reads the WPA numbered list. Re-prepare after Pinakes and claim-kit regenerate; supplem…
@@ -41,7 +43,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-28 F-20261028-1 **no record**: Search for a handwriting OCR comparison (bake-off). Lesson: Test AI page reading on a sample of the 310 handwritten scans before choosing a method.
 - 2026-10-26 F-20261026-3 **partly worked**: Trace production costs on four orders. Lesson: A machine-time fix, not an agent-hour saving.
 - 2026-10-26 F-20261026-2 **worked**: Fix claim-kit choosing neighboring documents on early Federal Register pages. Lesson: Recompile claim-kit to apply the repair.
-- 2026-10-26 F-20261026-1 **failed**: Counterexample-first research versus ordinary research on six orders. Lesson: The recurring defect is misassociated source text; check that a text is the right order before analysis.
-- 2026-10-25 F-20261025-2 **partly worked**: Institutional record series: National Mediation Board annual reports. Lesson: Annual reports are a good route to board report dates; keep the route, no new harvester.
 
-Register: 11 owner decisions, 0 answered questions, 42 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 11 owner decisions, 0 answered questions, 44 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

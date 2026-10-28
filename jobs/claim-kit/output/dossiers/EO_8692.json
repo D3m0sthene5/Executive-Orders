@@ -1,5 +1,10 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:9031",
+      "evidence_id": "ACTOR_TEXT:EO:9031"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
@@ -56,6 +61,30 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:EO:9031": {
+      "actor_id": "EO:9031",
+      "char_end": 746,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:9031",
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "archival_id": "app:node/368015",
+        "filing_date": null,
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:9031",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Executive Order 9031—Exemption of Edgar M. Cohee From Compulsory Retirement for Age; January 20, 1942; APP node 368015; common-crawl capture 2025-06-18T03:49:43Z",
+        "requires_page_check": true,
+        "sha256": "38304fa11a77287c61dca899a299c9fc16e06802412674d2a8c0da8b0544bbaa",
+        "signing_date": "1942-01-20",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-9031-exemption-edgar-m-cohee-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "de10936adb330566964c7c9a24cf4a3dd4815ef4bcb63d3b14ca38d2148b7df4",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-9031-exemption-edgar-m-cohee-from-compulsory-retirement-for-age"
+      },
+      "text": "Whereas, in my judgment, the public interest requires that Edgar M. Cohee, chief office clerk, Office of the Collector of Internal Revenue, Los Angeles, California, Treasury Department, who was exempted from compulsory retirement for age for a period of one year by Executive Order No. 8692 of February 21, 1941, be further exempted from such compulsory retirement for a period of one year:\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 (U.S.C., title 5, sec. 715a), I hereby further exempt the said Edgar M. Cohee from compulsory retirement for age for a period of one year ending April 30, 1943.\n\nFRANKLIN D ROOSEVELT\n\nThe White House,\n\nJanuary 20, 1942.\n"
+    },
     "CLAUSES:EO:8692#whole": {
       "char_end": 709,
       "char_start": 0,
@@ -242,7 +271,7 @@
       "text": "Cohee from compulsory retirement for age for a period of one year ending April 30, 1942."
     }
   },
-  "fingerprint": "04b87b210817414a4acdc5708cef307921fa1fdd6bfa7b98713c41b298b16531",
+  "fingerprint": "462401c4170da4383c064182b2896c21ceb5ccc36070ad4e18f4ff829631cd00",
   "instrument_id": "EO:8692",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -306,11 +335,24 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
     "Official-source page location requires a separate page/image check before original confirmation.",
-    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+    "cited by number, no change provision located: EO:9031"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8692",

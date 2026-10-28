@@ -1,5 +1,10 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:8690",
+      "evidence_id": "ACTOR_TEXT:EO:8690"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
@@ -56,6 +61,30 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:EO:8690": {
+      "actor_id": "EO:8690",
+      "char_end": 746,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:8690",
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "archival_id": "app:node/368290",
+        "filing_date": null,
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8690",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Executive Order 8690—Exemption of John M. Terwilliger From Compulsory Retirement for Age; February 19, 1941; APP node 368290; common-crawl capture 2025-09-12T15:54:33Z",
+        "requires_page_check": true,
+        "sha256": "865b089fa98a1cfd936104efe345c3719a80aaa4bd68471dd95689053975b2ca",
+        "signing_date": "1941-02-19",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8690-exemption-john-m-terwilliger-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "25b48d3ae4fc1e0e909ebe7798fb1fe1e1d7a56a60436cf429891eecaab4afe4",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8690-exemption-john-m-terwilliger-from-compulsory-retirement-for-age"
+      },
+      "text": "Whereas, in my judgment, the public interest requires that John M. Terwilliger, chief clerk, Office of the Collector of Internal Revenue, Detroit, Michigan, Treasury Department, who was exempted from compulsory retirement for age for a period of one year by Executive Order No. 8322 of January 15, 1940, be further exempted from such compulsory retirement for a period of one year:\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 (U.S.C., title 5, sec. 715a), I hereby further exempt the said John M. Terwilliger from compulsory retirement for age for a period of one year ending February 28, 1942.\n\nFRANKLIN D ROOSEVELT\n\nThe White House,\n\nFebruary 19, 1941.\n"
+    },
     "CLAUSES:EO:8322#whole": {
       "char_end": 712,
       "char_start": 0,
@@ -242,7 +271,7 @@
       "text": "Terwilliger, chief clerk, Office of the Collector of Internal Revenue, Detroit, Michigan, Treasury Department, who, during the month of February, 1940, will reach the retirement age prescribed for automatic separation from the service, applicable to him, be exempted from compulsory retirement for age for a period of one year:"
     }
   },
-  "fingerprint": "51dfbf0db88cb0f40d85d3fb151282b3782a13e481b8d6c1faea7a5c6c984c62",
+  "fingerprint": "cc663012797e9a977fd7550ed48652470487997efb7c24ae3c29d058164ccb83",
   "instrument_id": "EO:8322",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -306,11 +335,24 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
     "Official-source page location requires a separate page/image check before original confirmation.",
-    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+    "cited by number, no change provision located: EO:8690"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8322",

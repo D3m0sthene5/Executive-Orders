@@ -1,5 +1,10 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:9002",
+      "evidence_id": "ACTOR_TEXT:EO:9002"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
@@ -56,6 +61,30 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:EO:9002": {
+      "actor_id": "EO:9002",
+      "char_end": 745,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:9002",
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "archival_id": "app:node/371698",
+        "filing_date": null,
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:9002",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Executive Order 9002—Exemption of Frank Burke From Compulsory Retirement for Age; December 29, 1941; APP node 371698; common-crawl capture 2024-10-06T14:27:34Z",
+        "requires_page_check": true,
+        "sha256": "2caa6ee16fb66190edc76c285f91bb865f6b9839f94b872181b11c017ec63cc7",
+        "signing_date": "1941-12-29",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-9002-exemption-frank-burke-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "a732cdd52cba38bbb89432c5c6ef012fd45b19320092494808b45c0a81632c6d",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-9002-exemption-frank-burke-from-compulsory-retirement-for-age"
+      },
+      "text": "Whereas, in my judgment, the public interest requires that Frank Burke, agent, Secret Service Division, Treasury Department, who was exempted from compulsory retirement for age for periods totaling two years by Executive Orders No. 8302 of December 12, 1939, and No. 8584 of November 7, 1940, be further exempted from such compulsory retirement for a period of one year:\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 47 Stat. 382, 404 (U.S.C., title 5, sec. 715a), I hereby further exempt the said Frank Burke from compulsory retirement for age for a period of one year ending December 31, 1942.\n\nFRANKLIN D ROOSEVELT\n\nThe White House,\n\nDecember 29, 1941.\n"
+    },
     "CLAUSES:EO:8584#whole": {
       "char_end": 647,
       "char_start": 0,
@@ -242,7 +271,7 @@
       "text": "Now, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 (U.S.C., title 5, see. 715a), I hereby further exempt the said Frank Burke from compulsory retirement for age for a period of one year ending December 31, 1941."
     }
   },
-  "fingerprint": "648a9f6ebf7476e845d5aed5064c8edaf785b87abb8226e96f3132cee81f2dba",
+  "fingerprint": "67b6ddb89da5fd87b9c0109c26f007bb0963a99d235d81657970e1585a7f6c0f",
   "instrument_id": "EO:8584",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -307,11 +336,24 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
     "Official-source page location requires a separate page/image check before original confirmation.",
-    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+    "cited by number, no change provision located: EO:9002"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8584",

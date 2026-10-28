@@ -1,5 +1,10 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "EO:8919",
+      "evidence_id": "ACTOR_TEXT:EO:8919"
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
@@ -56,6 +61,30 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:EO:8919": {
+      "actor_id": "EO:8919",
+      "char_end": 749,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:8919",
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "archival_id": "app:node/368279",
+        "filing_date": null,
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8919",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Executive Order 8919—Exemption of David D. Caldwell From Compulsory Retirement for Age; October 21, 1941; APP node 368279; common-crawl capture 2025-06-22T12:29:21Z",
+        "requires_page_check": true,
+        "sha256": "bee4a4e0cd64c52353fabd08d5d6509a9b30ec65044596b897b632fb68ecfde7",
+        "signing_date": "1941-10-21",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8919-exemption-david-d-caldwell-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "80bd6eba0dc2204a2b46cde90767edbf34455503ac3788a7cdd092a039fde977",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8919-exemption-david-d-caldwell-from-compulsory-retirement-for-age"
+      },
+      "text": "Whereas, in my judgment, the public interest requires that David D. Caldwell, Special Assistant to the Attorney General, Department of Justice, who was exempted from compulsory retirement for age for periods totaling two years by Executive Orders No. 8312 of December 21, 1939, and No. 8630 of January 7, 1941, be further exempted from such compulsory retirement for a period of one year:\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 (U.S.C., title 5, sec. 715a), I hereby further exempt the said David D. Caldwell from compulsory retirement for age for a period of one year ending January 31, 1943.\n\nFRANKLIN D ROOSEVELT\n\nThe White House,\n\nOctober 21, 1941.\n"
+    },
     "CLAUSES:EO:8630#whole": {
       "char_end": 671,
       "char_start": 0,
@@ -242,7 +271,7 @@
       "text": "Caldwell from compulsory retirement for age for a period of one year ending January 31, 1942."
     }
   },
-  "fingerprint": "b24ab66effc36d1b2439df9ab7dc3adf70605e0e4d55c5ab8a517cefbf57cf84",
+  "fingerprint": "96fc93d5c7bf98d6289bc3c2740bdfa56e8c96e1fec8ec4e7eff4f4cf8cbb570",
   "instrument_id": "EO:8630",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -307,11 +336,24 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 1,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
     "Official-source page location requires a separate page/image check before original confirmation.",
-    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+    "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+    "cited by number, no change provision located: EO:8919"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:8630",
