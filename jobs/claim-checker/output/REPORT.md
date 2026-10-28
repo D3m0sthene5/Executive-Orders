@@ -4,23 +4,23 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 407 (parse errors: 0)
-- Orders with a claim (latest claim per order): 406
-- All checks passed: 312
-- Mechanical checks passed: 402; with unverifiable items: 3; failed: 2
-- Structural gate passed: 317
+- Claims checked: 422 (parse errors: 0)
+- Orders with a claim (latest claim per order): 421
+- All checks passed: 325
+- Mechanical checks passed: 415; with unverifiable items: 4; failed: 3
+- Structural gate passed: 332
 
 ## Source references
 
-- custody_record_only: 4
+- custody_record_only: 14
 - gpo_published_hash_match: 4208
 - held_bytes_in_release_or_repo: 67
-- held_bytes_verified: 5012
+- held_bytes_verified: 5082
 
 ## Quotations
 
-- exact: 11973
-- normalised: 9
+- exact: 12066
+- normalised: 11
 - not_found: 7
 
 ## Claims with problems (first 100)
@@ -117,6 +117,8 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:22` | EO:9057 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
+| `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1` | EO:1547 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source |
+| `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2` | EO:4782 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:2` | EO:12743 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:4` | EO:10494 | quote_verbatim:not_found@operative_clauses[1].original_operative_text; quote_verbatim:not_found@operative_clauses[1].original_source.quote; quote_verbatim:not_found@operative_clauses[2].original_operative_text; quote_verbatim:not_found@operative_clauses[2].original_source.quote; quote_verbatim:not_found@operative_clauses[3].original_operative_text; quote_verbatim:not_found@operative_clauses[3].original_source.quote ... |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source; working_text_policy:invalid_working_text@whole_order_end.source ... |
@@ -125,6 +127,6 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 3946
+- recorded_for_this_order: 3976
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.
