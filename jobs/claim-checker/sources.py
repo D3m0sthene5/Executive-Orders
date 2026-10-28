@@ -213,6 +213,24 @@ def _safe_child(base, rel):
         return None
 
 
+def _jobs_child(repo, base, rel):
+    """base/rel for a text path that may point into another job's output (for example
+    app-transcriptions' "../../app-executive-orders/output/texts/..."), as long as the resolved
+    path stays inside some jobs/<job>/output/ folder; None otherwise."""
+    simple = _safe_child(base, rel)
+    if simple is not None:
+        return simple
+    rel = _str(rel)
+    if rel is None or re.match(r"^[A-Za-z]:", rel) or pathlib.PurePosixPath(rel.replace("\\", "/")).is_absolute():
+        return None
+    try:
+        p = (base / pathlib.Path(*pathlib.PurePosixPath(rel.replace("\\", "/")).parts)).resolve()
+        parts = p.relative_to((pathlib.Path(repo) / "jobs").resolve()).parts
+        return p if len(parts) >= 3 and parts[1] == "output" else None
+    except (TypeError, ValueError, OSError):
+        return None
+
+
 def _local(repo, rel):
     if not rel:
         return None
@@ -243,7 +261,7 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
                 if not sha:
                     skipped += 1
                     continue
-                text = _safe_child(out_dir, rec.get("text_path"))
+                text = _jobs_child(repo, out_dir, rec.get("text_path"))
                 if rec.get("text_path") is not None and text is None:
                     bad_paths += 1
                 local = None
