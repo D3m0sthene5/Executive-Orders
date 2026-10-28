@@ -1,0 +1,33 @@
+name: Kean shared-register check
+# Fails a pull request that adds an owner ruling, an experiment report or an owner question without a
+# Kean entry, or whose HANDOFF/KEAN.md brief no longer matches the register. Runs offline on GitHub's
+# machines; it costs agents no tokens. See jobs/kean/README.md.
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: kean-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+            /jobs/
+            !/jobs/*/output/
+            /HANDOFF/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Kean tests
+        run: python -I jobs/kean/test_kean.py
+      - name: Kean check
+        run: python -I jobs/kean/kean.py check --strict

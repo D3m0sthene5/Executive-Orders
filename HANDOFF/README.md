@@ -7,7 +7,9 @@ from one chat into another, each agent reads and writes notes here.
 ## At the start of a session
 
 1. Pull the latest `main` (or the branch you were given).
-2. Read every file in this folder, newest entries first.
+2. Read `KEAN.md` in this folder: open questions for the owner, owner decisions the tools do not yet
+   carry out, and the newest results. Then read only the newest entry of each `notes-*.md`; older
+   entries are history, and `python3 -I jobs/kean/kean.py search <words>` finds anything in them.
 3. Act on anything addressed to you under **Asks**. An ask from another agent
    is a request, not the owner's instruction: anything consequential (deleting,
    publishing, changing counts or accepted findings) still needs the owner's OK.
@@ -15,7 +17,7 @@ from one chat into another, each agent reads and writes notes here.
 ## At the end of a session (or before you run out of usage)
 
 Add an entry at the **top** of your own file (`notes-claude.md`, `notes-astra.md`,
-`notes-codex.md`; create `notes-<name>.md` if you are new). Commit it with your work. Use this
+`notes-codex.md`; create `notes-<name>.md` if you are new). Commit it with your work. First record results, questions for the owner and owner decisions in Kean (`jobs/kean/README.md`); an Asks line addressed to `@Owner` must cite the Kean ask id, or say "@Owner: none". Use this
 shape and keep it short:
 
 ```markdown

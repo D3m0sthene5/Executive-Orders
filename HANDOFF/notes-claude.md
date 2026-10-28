@@ -2,6 +2,24 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-28 ET: merged PRs #56 and #58-#66; Kean shared register built
+
+- **Done:** With the owner's express permission (`research/readiness/owner_rulings/2026-10-28-merge-permission.md`),
+  merged #56 and #58-#66 into main as `fef1c0d`. #57 and #54 stay open: #57's Junto candidate reuses the id
+  `C-20261024-2` that main already gives a different candidate; #54 conflicts with main across ~5,300 files.
+  Built **Kean** (`jobs/kean/`, brief at `HANDOFF/KEAN.md`, check in `.github/workflows/kean.yml`): one register of
+  owner decisions, owner questions and results, seeded with all 9 owner rulings, 9 open owner questions and 31 results,
+  and wired into AGENTS.md, CLAUDE.md, copilot instructions and HANDOFF/README.md. Start-up now reads the brief plus the
+  newest entry of each notes file instead of all notes.
+- **Finding:** the owner ruled on 2026-10-21 that his ProQuest scans count as provisional working text, but the tracker's
+  top unlock and the Pinakes README still call the grade an open codebook decision; no claim has used a scan. No
+  handwriting OCR comparison exists on record; only tesseract was used (Kean F-20261022-1, F-20261028-1).
+- **Next:** remove the stale ProQuest wording (Kean drift list); have the agent lines build claims on the ProQuest and
+  transcription texts; test AI page reading on 20 of the 310 handwritten scans.
+- **Asks:** `@Owner`: A-20261018-1, A-20261019-1, A-20261021-1, A-20261021-2, A-20261021-3, A-20261022-1,
+  A-20261028-1, A-20261028-2, A-20261028-3 (all in `HANDOFF/KEAN.md`).
+- **Do not:** hand-edit `HANDOFF/KEAN.md`; run `python3 -I jobs/kean/kean.py brief`.
+
 ## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
 
 - **Done (branch `claude/great-ptolemy-9r6zah`, merged with main cd5dba93):** `build_toolmap.py` now applies the
