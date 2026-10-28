@@ -419,6 +419,16 @@ class CheckerTests(unittest.TestCase):
             self.assertIsNone(C.verify_by_archive("3" * 64, cap, cache))  # short read: not tried
         self.assertIsNone(C.verify_by_archive(sha, None, cache))
 
+    def test_source_text_path_may_point_into_another_jobs_output(self):
+        # app-transcriptions records its texts as ../../app-executive-orders/output/texts/...;
+        # following that path must not open anything outside jobs/.
+        base = self.repo / "jobs/app-transcriptions/output"
+        self.assertEqual(S._jobs_child(self.repo, base, "../../app-executive-orders/output/texts/a.txt"),
+                         (self.repo / "jobs/app-executive-orders/output/texts/a.txt").resolve())
+        self.assertIsNone(S._jobs_child(self.repo, base, "../../../research/a.txt"))
+        self.assertIsNone(S._jobs_child(self.repo, base, "/etc/passwd"))
+        self.assertEqual(S._jobs_child(self.repo, base, "texts/b.txt"), base / "texts/b.txt")
+
     def test_local_bytes_differ_from_record(self):
         (self.repo / "research/stage21/original_sources/EO_90003.txt").write_text("tampered", "utf-8")
         ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache2", today=C.dt.date(2026, 10, 17))
