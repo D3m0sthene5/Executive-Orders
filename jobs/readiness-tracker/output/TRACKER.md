@@ -32,6 +32,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 18 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -47,21 +48,22 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | `NO_PROVISIONAL_STATUS` | 0 | 11,569 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 944 | 5,347 |
-| `NO_CLAUSE_INVENTORY` | 3,015 | 3,015 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,015 | 3,015 |
+| `NO_CLAUSE_INVENTORY` | 2,997 | 2,997 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,997 | 2,997 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 77 | 2,750 |
-| `FIRST_END_UNPROVED` | 2,622 | 2,622 |
+| `FIRST_END_UNPROVED` | 2,604 | 2,604 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 687 | 687 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
 | `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
-| `CLAIM_INCOMPLETE` | 83 | 83 |
+| `CLAIM_INCOMPLETE` | 88 | 88 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
+| `CLAIM_NOT_YET_CHECKED` | 18 | 18 |
 | `OPEN_SOURCE_AUDIT` | 6 | 6 |
 | `CLAIM_CHECK_FAILED` | 5 | 5 |
 | `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 1 | 1 |
