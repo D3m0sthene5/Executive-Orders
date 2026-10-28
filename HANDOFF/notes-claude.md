@@ -2,6 +2,28 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-28 18:05 ET: Namier (name-based discovery for one-person orders) and the dropped-citation fix in claim-kit
+
+- **Done:** New job `jobs/namier/` (Kean F-20261028-7): parses the person each one-person order names and searches
+  every held text once; 2,231 subjects (1,695 X1 waivers/retirement exemptions + 536 title-detected, mostly 1937-50s),
+  243 with an unflagged later hit, 483 leads. Wired into claim-drafts (declared search `namier:held_texts_person_name`
+  with per-order `SEARCH_COVERAGE.csv`; matches as `names_same_person` later-event proposals, never an ending) and
+  claim-kit (matched orders are known actors; dossier line `names the same person (name-match lead, read before use)`).
+  Second fix (F-20261028-8): claim-kit dropped 1,157 citation pairs where a held text cites the target by number without
+  a change verb (serial exemptions, extensions, recitals); they are now known actors, reported as `cited by number, no
+  change provision located: EO:X`. Local rebuild: known_pairs 16,626 → 17,763; EO:6088's dossier now holds EO 6998 and
+  EO 7597. Tests: namier 8, claim-drafts 69, claim-kit 412 pass. After/trigger files order namier before claim-drafts
+  and claim-kit; AGENT_PROTOCOL.md documents the two new lines.
+- **Running:** the push runs namier, claim-drafts and claim-kit on the branch; check their `output/STATUS.json`, then
+  `SUMMARY.json` counts `printed_reference_only_pairs` and `known_pairs`.
+- **Next:** re-prepare the 2026-10-28 probe (12 retirement exemptions) and a serial waiver batch from the regenerated
+  dossiers; a producer should find the extension orders in the packet without searching. Namier's remaining gaps: 296
+  subjects with no parsable name (OCR-split surnames, class orders mistyped as one-person), common-name noise, and
+  nothing outside the held texts (no Official Register, no CSC report listing use).
+- **Asks:** `@Owner`: none.
+- **Do not:** edit `research/readiness/type-rules/*` to point at Namier without an independent re-review; the rules'
+  search step is unchanged in wording and now supplied by the dossier's machine search.
+
 ## 2026-10-28 ET: merged PRs #56 and #58-#66; Kean shared register built
 
 - **Done:** With the owner's express permission (`research/readiness/owner_rulings/2026-10-28-merge-permission.md`),

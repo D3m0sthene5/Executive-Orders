@@ -49,7 +49,7 @@ LEGAL_CUTOFF = "2026-10-14"
 # Jobs whose outputs are merged (any other jobs/*/output with FRAGMENTS.jsonl is merged too).
 KNOWN_JOBS = ["fr-originals", "source-ladder", "clause-drafts", "later-events", "current-law", "opus-media-match",
               "ofr-compilations", "isthmian-canal-1911", "indian-reservations-1912", "richardson-volumes",
-              "ofr-codification-1989"]
+              "ofr-codification-1989", "namier"]
 # Official government printings of the orders' texts (GPO / Office of the Federal Register compilations): their
 # original_representation fragments are graded like fr-originals (a find flagged needs_page_check is never strong).
 OFFICIAL_COMPILATION_JOBS = {
@@ -306,6 +306,13 @@ class InputDir:
         self.path = pathlib.Path(path)
         self.origin = origin  # never an absolute local path (it appears in committed output)
         self.summary = read_json(self.path / "SUMMARY.json")
+        # Per-order coverage of a job's own machine search (SEARCH_COVERAGE.csv: instrument_id, search_id,
+        # covered 1/0, note). A search listed there is entered only for the orders it covers; an order it lists
+        # as not covered gets the search with the note as its coverage warning; an unlisted order gets nothing.
+        self.search_coverage = {}
+        for row in read_csv(self.path / "SEARCH_COVERAGE.csv") or []:
+            if row.get("instrument_id") and row.get("search_id"):
+                self.search_coverage[(row["instrument_id"], row["search_id"])] = row
 
     def label(self):
         return f"{self.job}@{self.origin}"
@@ -486,6 +493,21 @@ def search_records_for(inp, records):
                                       "order",
                     "checked_on": checked_on,
                     "searched_by": "jobs/current-law (machine search)"}})
+    elif isinstance(s.get("machine_searches"), list):
+        # A job that declares its own complete search record (claim-kit reads the same declaration): the
+        # record needs search_id, complete, entry{repository, query_or_scope, checked_on, searched_by}.
+        for rec in s["machine_searches"]:
+            if not isinstance(rec, dict) or not isinstance(rec.get("search_id"), str):
+                continue
+            e = rec.get("entry") if isinstance(rec.get("entry"), dict) else {}
+            if not all(isinstance(e.get(k), str) and e.get(k) for k in ("repository", "query_or_scope", "checked_on")):
+                continue
+            out.append({"job": job, "complete": rec.get("complete") is True, "kind": "declared",
+                        "search_id": rec["search_id"], "scope_note": text_or_empty(rec.get("scope_note")),
+                        "entry": {"repository": e["repository"], "query_or_scope": e["query_or_scope"],
+                                  "checked_on": e["checked_on"],
+                                  "searched_by": e.get("searched_by") or f"jobs/{job} (machine search)"},
+                        "per_order_coverage": bool(inp.search_coverage)})
     elif job == "later-events":
         checked_on = date_part(s.get("generated_utc")) or first_date_of_sources(records)
         if checked_on and s.get("catalog_records_used"):
@@ -1425,12 +1447,20 @@ def build_draft(iid, merged, rd, gate, step_for):
         e = dict(s["entry"])
         hits = sum(len(f.get("data") or []) if isinstance(f.get("data"), list) else 1
                    for kind, lst in merged.frags.get(iid, {}).items() for inp, f in lst if inp.job == s["job"])
+        coverage_row = None
+        if s.get("per_order_coverage"):
+            inp = next((x for x in merged.inputs if x.job == s["job"]), None)
+            coverage_row = inp.search_coverage.get((iid, s["search_id"])) if inp else None
+            if coverage_row is None:
+                continue  # the search does not apply to this order (it searches for a person this order names)
         if s["complete"]:
             item = {"entry": e, "search_id": s["search_id"], "machine_hits_for_this_order": hits}
             if s["kind"] == "ofr_catalog" and year is not None and year < CATALOG_COVERAGE_START_YEAR:
                 item["coverage_warning"] = (f"order dated {year}: the OFR catalog starts in "
                                             f"{CATALOG_COVERAGE_START_YEAR}, so endings before then are not in it; "
                                             "not adequate on its own")
+            if coverage_row is not None and coverage_row.get("covered", "1").strip() not in ("1", "true", "yes"):
+                item["coverage_warning"] = coverage_row.get("note") or "this order was not searched"
             searches_machine.append(item)
         else:  # full wording and the reason are in SUMMARY.json machine_searches
             searches_prop.append({"search_id": s["search_id"], "machine_hits_for_this_order": hits,
