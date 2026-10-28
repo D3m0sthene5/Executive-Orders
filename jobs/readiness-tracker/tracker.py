@@ -672,7 +672,8 @@ def summarise(orders, problems):
          "kind": "machine_job", "orders_unblocked": blocker_orders["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
          "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"},
         {"action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and "
-                   "decide the custody grade; a replica scan counts only after that decision is written into the codebook",
+                   "use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, "
+                   "transcription-as-text), disclosed and rechecked against an original when one is held",
          "kind": "agent_check", "orders_unblocked": blocker_orders["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"],
          "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"},
         {"action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",

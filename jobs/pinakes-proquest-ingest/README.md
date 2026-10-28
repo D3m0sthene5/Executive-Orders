@@ -36,8 +36,9 @@ quality screen flags it (`text_usable: no`) rather than hiding it, and `REPORT.m
 
 - **The readiness tracker** reads `FRAGMENTS.jsonl` as a new lead class: an order with a replica scan and no counted
   original gets the blocker `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` and the shared-unlock action "compare the pages
-  and decide the custody grade". A replica scan never counts as the original here; letting one count after a page
-  check is a codebook decision for the owner and would be one more rule in `tracker.py`.
+  and use the scan as working text". A replica scan never counts as the original. Under the owner's 2026-10-21 rulings
+  (`research/readiness/owner_rulings/2026-10-21-proquest-request.md`, `-transcription-as-text.md`) it is provisional
+  working text, disclosed as such and rechecked against an original when one is held; no further owner decision is needed.
 - **Lewis** (`jobs/lewis-originals`) takes `ORDERS.csv` as the ProQuest authority: every order with a verified PDF is
   routed `proquest_local` / `file_verified_pages_unchecked`.
 - **Clark** (`jobs/clark-discovery`) reads the texts through the shared fragment loader and harvests every order
