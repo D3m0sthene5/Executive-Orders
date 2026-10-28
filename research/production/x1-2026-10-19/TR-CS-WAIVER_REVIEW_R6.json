@@ -1,0 +1,79 @@
+{
+  "rule_id": "TR-CS-WAIVER",
+  "rule_file_sha256": "ec6ba6970d1803d665d648b64720a9c4ce553a42b2ea683d8cbf07468dfdb268",
+  "previous_review": "TR-CS-WAIVER_REVIEW_R5.json",
+  "decision": "approve_with_changes",
+  "reviewer": "x1_type_rule_reviewer_r5",
+  "reviewer_role": "independent_agent",
+  "not_human_certification": true,
+  "quote_exact": true,
+  "text_hash_verified": true,
+  "required_changes": [
+    "EO 6179-A, in ending_pattern ('EO 6179-A did so for appointments made under ten waivers') and exceptions_savings ('unless a later order revokes the appointment itself (EO 6179-A)'): the order revokes 'appointments made by the President ... without regard to the requirements of the civil-service rules' and identifies each by the waiver order's own date, so it revokes the presidential authorizations; it does not show that any department made the appointment. Reword to: 'EO 6179-A (June 16, 1933) revoked, as \"appointments made by the President\", ten waiver orders identified by their own dates; it ends any unused permission under them and any appointment made under them, and is not evidence that an appointment was made.'",
+    "EO 3461 scope: replace 'a member is covered when it is in that list, or when its own text rests on the war emergency' with 'a member in that list is expressly revoked; a member not in the list whose own text rests on the war emergency is covered only on a reading of the general clause (the list could instead be read as exhaustive), so state that reading as the basis. The held copy (jobs/csc-annual-reports/output/texts/EO_3461.txt) stops at item 27 of 45, so absence from the held list is not absence from the list.'",
+    "Category (3) 1903 reason: delete 'and was unused by April 15, 1903'. Use is unknown in category (3); the interval (order date, 1903-04-15] already covers a used permission.",
+    "a_min: replace '(prior service, a professional degree, veteran status, \"widow of\")' with: 'a_min is the lowest age that the quoted fact allows, not a typical age (for example, \"widow of\" allows only the lowest lawful marriage age, not adulthood; dated earlier service fixes an age only if the earlier record states one); a position or professional title alone does not fix an adult age (the type includes a \"messenger boy\", EO 2661).'",
+    "Official Register (effective_date_basis (2)): add 'A match needs the full name, the office, and a position consistent with the order.'",
+    "Multi-person outlier: add 'the order is spent only when every person's permission has ended, and its end is the latest of them.'"
+  ],
+  "verified": [
+    {
+      "claim": "Rule file sha256 recomputed",
+      "source": "research/readiness/type-rules/TR-CS-WAIVER.json",
+      "result": "confirmed"
+    },
+    {
+      "claim": "Exemplar quote re-reads exactly at span [1014,1457], one occurrence; text sha256 matches 5ddc10a9...",
+      "source": "jobs/numbered-early-orders/output/texts/EO_1905__CSR_1914_i131.txt",
+      "result": "confirmed"
+    },
+    {
+      "claim": "EO 3461 quote ('all Executive orders and amendments ... because of war emergencies existing at the time') and date May 16, 1921 match the held text (after joining hyphenated line breaks)",
+      "source": "jobs/csc-annual-reports/output/texts/EO_3461.txt",
+      "result": "confirmed"
+    },
+    {
+      "claim": "EO 3461's list covers current members (EO 2600, 2617, 2628, 2734, 2741 matched by date)",
+      "source": "EO_3461.txt items 4, 8, 9, 14, 16; APP texts of those orders",
+      "result": "confirmed"
+    },
+    {
+      "claim": "EO 3461 items 28-45",
+      "source": "held copy truncated at item 27",
+      "result": "not_verified"
+    },
+    {
+      "claim": "EO 6179-A gives the waiver orders' own dates as 'the appointment on [date]' (EO 4528 Oct 23, 1926; EO 5058 Feb 26, 1929)",
+      "source": "jobs/app-executive-orders/output/texts/executive-order-6179-revocation-appointment-classified-positions-the-department-labor.txt; executive-order-5058-...txt; TYPES.csv",
+      "result": "confirmed"
+    },
+    {
+      "claim": "EO 6179-A revoked appointments actually made under ten waivers",
+      "source": "same EO 6179-A text",
+      "result": "contradicted"
+    },
+    {
+      "claim": "a_min arithmetic wording (subtract a_min whole years, add 122 years 164 days; state the smallest a_min at which the bound falls before the legal cutoff) is correct; 'legal cutoff' is an existing project field (legal_cutoff)",
+      "source": "rule text; research/excavator/claude-spent-probe-2026-10-28/packet-v5-supp/READ.md",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R5 changes 4 (CSC reports limited to four read in full), 5 (recital date caution), 9 (member lists marked as examples and extended) and 10 (1903 reason limited to person-naming special rules) are made correctly",
+      "source": "rule text",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R5 change 1 (EO 3461 added), change 2 (category 3 as intervals), change 6 (Register limits), change 7 (savings) and change 8 (multi-person) are made, with the residual defects listed in required_changes",
+      "source": "rule text",
+      "result": "confirmed"
+    },
+    {
+      "claim": "Official Register volumes dated July 1 (now labelled as from a secondary index)",
+      "source": "secondary index only",
+      "result": "not_verified"
+    }
+  ],
+  "notes": "All ten R5 changes are present. Six need a final correction. (1) The EO 6179-A statements overreach, a defect that R5's own wording introduced: the order revokes presidential authorizations that it dates by the orders' own dates, so it is not evidence that the appointments were made. (2) The EO 3461 scope condition treats the general clause as settled, though the list may be exhaustive and the held list is incomplete. (3) 'Unused by April 15, 1903' survives in category (3). (4) The a_min examples ('widow of', professional degree) invite an assumed adult age, contrary to owner ruling point 4. (5) The Register identity-match criterion is missing. (6) The multi-person outlier does not say when the order as a whole ends. Not required: EO 3461's retention provision for war-order appointees is known only from the WPA summary, so it is left as a lead. Nothing else new overreaches. Not human certification; decides no order; certified count 0.",
+  "start_utc": "2026-10-28T19:03:52Z",
+  "end_utc": "2026-10-28T19:05:04Z"
+}
