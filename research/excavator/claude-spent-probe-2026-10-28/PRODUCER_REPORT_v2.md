@@ -173,3 +173,10 @@ This cannot be fixed inside the packet, and nothing was weakened to pass. Two fi
 - or run the checker with download verification, where the captures can be re-fetched.
 
 **Hashes.** CLAIMS.proposed.jsonl sha256: `a20a0c26…25ce`. The per-claim sha256 values are in `applied-v1/AUDIT.json`.
+
+**v4 correction (2026-10-28, 18:57:42–19:02:34 UTC):**
+- **What changed.** The review found two false statements, which are now corrected:
+  - The savings reason for EO 7208, 6663, 7255 and 7278 said no later order names the order. It now names the later orders that recite it as a past grant. The member-check copy of the same sentence is corrected too.
+  - The rationales for EO 6663, 7255 and 7278 cited EO 7645, which concerns Hedgcock (the EO 7208 chain). Each now cites its own extension text instead.
+- **Why the directory moved.** packet-v4-supp could not be re-applied: new review files (`claude-blind-review-2026-10-28/BLIND_REVIEW.jsonl` and `completion/`) changed its pinned prior-research context. I therefore re-prepared it as packet-v5 → packet-v5-supp, using identical dossiers and the same declarations, with the corrected decisions carried over. The final directory is `packet-v5-supp/applied-v1`.
+- **Batch-check fails (exit 1), with the same cause as v4.** All 14 claims pass the gate and the strict check, with 0 mechanical failures. All 14 are unverified only because of `source_held:custody_record_only` (raw APP captures not committed).
