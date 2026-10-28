@@ -27,12 +27,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 ## Owner decisions not yet carried out by the tools (2)
 
 - **D-20261021-transcriptions** (partly wired): A labeled transcription (APP, Richardson, CSC reports, HathiTrust, Wikisource, or the owner's ProQuest scans) may satisfy the text step provisionally; originals remain the goal and nothing becomes acceptable_as_original. A claim-kit grade-inference bug labeled 1,824 of 3,403 dossiers' transcriptions 'derivative_lead', which the working-text gate rejects; fixed in jobs/claim-kit/inputs.py, effective after claim-kit regenerates.
-- **D-20261028-evidence-decides** (partly wired): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a com… TR-CS-WAIVER (type rule for the 1,530 one-person civil-service waivers) still tells agents an unrecorded appointment date leaves the end unresolved and that a not-later-than bound is not a first end; it is being revised under this ruling (round 4) after resea…
+- **D-20261021-proquest** (partly wired): No bulk-access request to NYU; the owner retrieves the scans himself, and scans he adds are graded under the transcription ruling (provisional working text) until compared with an original. No further grading decision is pending. Pinakes ingested 2,750 orders' scans on 2026-10-22, but the tracker's top unlock and the Pinakes README still describe the grade as an open codebook decision, and no claim has used a scan.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
 <!-- kean:drift -->
 **Old wording that contradicts an owner decision is still in these files; remove it:**
-- `research/readiness/type-rules/TR-CS-WAIVER.json` (D-20261028-evidence-decides): "a not-later-than bound is not an exact first end"
+- `jobs/readiness-tracker/tracker.py` (D-20261021-proquest): "decide the custody grade; a replica scan counts only after that decision is written into the codebook"
+- `jobs/pinakes-proquest-ingest/README.md` (D-20261021-proquest): "is a codebook decision for the owner"
 
 <!-- /kean:drift -->
 ## Newest results (10 of 41; `search` finds the rest)
