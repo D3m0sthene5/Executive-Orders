@@ -29,7 +29,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | Orders unblocked | Kind | Action |
 |---:|---|---|
 | 5,347 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and decide the custody grade; a replica scan counts only after that decision is written into the codebook |
+| 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 18 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
