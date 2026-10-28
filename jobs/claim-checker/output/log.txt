@@ -1,3 +1,4 @@
+test_archived_web_capture_is_refetched_and_rehashed (test_checker.CheckerTests.test_archived_web_capture_is_refetched_and_rehashed) ... ok
 test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught) ... ok
 test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard) ... ok
 test_dates (test_checker.CheckerTests.test_dates) ... ok
@@ -13,6 +14,7 @@ A list-valued scope_id makes claim_gate raise; that claim is reported and the ru
 test_nested_source_lists_require_transcription_disclosure (test_checker.CheckerTests.test_nested_source_lists_require_transcription_disclosure) ... ok
 test_opus_hash_only_and_committed_index (test_checker.CheckerTests.test_opus_hash_only_and_committed_index) ... ok
 test_opus_text_pack (test_checker.CheckerTests.test_opus_text_pack) ... ok
+test_overlay_proposal_key_is_typed_metadata_not_a_second_order (test_checker.CheckerTests.test_overlay_proposal_key_is_typed_metadata_not_a_second_order) ... ok
 test_partial_claim_steps (test_checker.CheckerTests.test_partial_claim_steps) ... ok
 test_pdf_quote (test_checker.CheckerTests.test_pdf_quote) ... ok
 test_quote_inside_a_sources_list_item (test_checker.CheckerTests.test_quote_inside_a_sources_list_item) ... ok
@@ -38,11 +40,11 @@ test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.
 test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held) ... ok
 
 ----------------------------------------------------------------------
-Ran 37 tests in 0.411s
+Ran 39 tests in 0.404s
 
 OK
   fetch https://example.gov/x.pdf: fetched_and_matches_claim
-Loading inputs from /tmp/claim-checker-test-623qvx9v ...
+Loading inputs from /tmp/claim-checker-test-37bsruvi ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -61,8 +63,8 @@ Checked 2 claim(s) from 2 file(s) (limited to 3 of 4 lines).
   Source identity: {'recorded_for_this_order': 3}
   Quotations: {'exact': 3, 'normalised': 1, 'other_copy_exact': 1, 'other_copy_normalised': 1}
   Fetch attempts: {'fetched_different_bytes': 1}
-  Outputs in /tmp/claim-checker-test-623qvx9v/out (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/claim-checker-test-upximq9n ...
+  Outputs in /tmp/claim-checker-test-37bsruvi/out (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/claim-checker-test-xcr9b8u3 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -79,9 +81,9 @@ Checked 0 claim(s) from 0 file(s).
   Source references: none
   Source identity: none
   Quotations: none
-  Outputs in /tmp/claim-checker-test-upximq9n/out0 (0.0s). These are mechanical checks, not legal findings.
+  Outputs in /tmp/claim-checker-test-xcr9b8u3/out0 (0.0s). These are mechanical checks, not legal findings.
   note: JOB_LIMIT='x' is not a whole number; checking every claim
-Loading inputs from /tmp/claim-checker-test-_c6n3xk8 ...
+Loading inputs from /tmp/claim-checker-test-b16k9zmj ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -100,14 +102,14 @@ Checked 3 claim(s) from 2 file(s).
   Source identity: {'recorded_for_this_order': 6}
   Quotations: {'exact': 4, 'normalised': 2}
   Checker errors: 1 claim(s) could not be fully checked; see REPORT.md
-  Outputs in /tmp/claim-checker-test-_c6n3xk8/out-bad (0.0s). These are mechanical checks, not legal findings.
+  Outputs in /tmp/claim-checker-test-b16k9zmj/out-bad (0.0s). These are mechanical checks, not legal findings.
 Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   universe: 14972 orders; provisional statuses: 3403
-  held source copies indexed: 94267 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 120, jobs/clark-discovery/output/SOURCES.jsonl 766, jobs/clause-drafts/output/SOURCES.jsonl 9761, jobs/current-law/output/SOURCES.jsonl 110, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 770, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/source-ladder/output/SOURCES.jsonl 632, jobs/wikisource-texts/output/SOURCES.jsonl 1639, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
+  held source copies indexed: 94457 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 258, jobs/clark-discovery/output/SOURCES.jsonl 746, jobs/clause-drafts/output/SOURCES.jsonl 9761, jobs/current-law/output/SOURCES.jsonl 110, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 842, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/source-ladder/output/SOURCES.jsonl 632, jobs/wikisource-texts/output/SOURCES.jsonl 1639, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
   jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)
   jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 9902 unusable text_path/cache_path values
-  jobs/astra-source-retention/output/SOURCES.jsonl: 120 source records (119 with saved bytes on this machine)
-  jobs/clark-discovery/output/SOURCES.jsonl: 766 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 140 records without a usable sha256, 0 unusable text_path/cache_path values
+  jobs/astra-source-retention/output/SOURCES.jsonl: 258 source records (258 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 13 unusable text_path/cache_path values
+  jobs/clark-discovery/output/SOURCES.jsonl: 746 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 104 records without a usable sha256, 0 unusable text_path/cache_path values
   jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)
   jobs/current-law/output/SOURCES.jsonl: 110 source records (0 with saved bytes on this machine)
   jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)
@@ -115,7 +117,7 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (0 with saved bytes on this machine)
   jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)
   jobs/later-events/output/SOURCES.jsonl: 17528 source records (0 with saved bytes on this machine)
-  jobs/lewis-originals/output/SOURCES.jsonl: 770 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 112 records without a usable sha256, 0 unusable text_path/cache_path values
+  jobs/lewis-originals/output/SOURCES.jsonl: 842 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 142 records without a usable sha256, 0 unusable text_path/cache_path values
   jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)
   jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)
   jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)
@@ -125,13 +127,13 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed
   jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed
   jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed
-  Opus manifest read from the complete Opus zip on this machine
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
   pypdf: 6.20.1
 
-Checked 389 claim(s) from 55 file(s).
-  All checks passed: 299; mechanical fail: 2; gate passed: 304
-  Source references: {'custody_record_only': 7, 'gpo_published_hash_match': 4282, 'held_bytes_in_release_or_repo': 67, 'held_bytes_verified': 4593}
-  Source identity: {'recorded_for_this_order': 3870}
-  Quotations: {'exact': 11551, 'normalised': 4, 'not_found': 7}
-  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (142.8s). These are mechanical checks, not legal findings.
+Checked 407 claim(s) from 63 file(s).
+  All checks passed: 312; mechanical fail: 2; gate passed: 317
+  Source references: {'custody_record_only': 4, 'gpo_published_hash_match': 4208, 'held_bytes_in_release_or_repo': 67, 'held_bytes_verified': 5012}
+  Source identity: {'recorded_for_this_order': 3946}
+  Quotations: {'exact': 11973, 'normalised': 9, 'not_found': 7}
+  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (594.4s). These are mechanical checks, not legal findings.
