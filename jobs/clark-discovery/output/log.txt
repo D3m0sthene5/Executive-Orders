@@ -20,7 +20,7 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 6.093s
+Ran 20 tests in 5.911s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -38,7 +38,7 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 16.042s
+Ran 13 tests in 16.041s
 
 OK
 {
@@ -55,8 +55,7 @@ OK
     "distinct_ids": 145,
     "rows": 295,
     "by_plausibility": {
-      "plausible": 59,
-      "citing_date_unknown": 1,
+      "plausible": 60,
       "rare_suffix_letter": 4,
       "exceeds_numbers_issued_by_citing_date": 1,
       "likely_ocr_letter_for_digit": 18,
@@ -67,59 +66,58 @@ OK
     "ofr_notes_scanned": 5063
   },
   "identity_unknown": {
-    "orders": 112,
+    "orders": 61,
     "by_year_group": {
-      "Unknown date": 77,
-      "1862\u20131906": 2,
-      "1907\u20131936": 33
+      "Unknown date": 60,
+      "1862\u20131906": 1
     },
-    "with_proquest_link": 37,
+    "with_proquest_link": 13,
     "with_proquest_pdf": 0,
-    "number_only": 75
+    "number_only": 48
   },
   "dated_unnumbered": {
-    "rows": 687,
-    "distinct_dates": 418
+    "rows": 226,
+    "distinct_dates": 127
   },
   "handoff_to_lewis": {
-    "rows": 79,
+    "rows": 55,
     "by_class": {
       "cited_but_unknown": 8,
       "number_gap": 34,
-      "identity_unknown": 37
+      "identity_unknown": 13
     }
   },
   "problems": []
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 80,
-  "requests_used": 801,
+  "advanced_this_run": 1,
+  "requests_used": 4,
   "hits_total": 2860,
   "leads_page_confirmed": 84,
   "engines": {
-    "duckduckgo_html": "http_403",
-    "duckduckgo_lite": "http_403",
-    "bing_rss": "blocked_by_robots_txt",
-    "mojeek_html": "blocked_by_robots_txt",
-    "brave_html": "blocked_by_robots_txt",
-    "marginalia": "error",
-    "yandex_html": "blocked_by_robots_txt",
+    "duckduckgo_html": "error",
+    "duckduckgo_lite": "ok",
+    "bing_rss": "not_tried",
+    "mojeek_html": "not_tried",
+    "brave_html": "not_tried",
+    "marginalia": "not_tried",
+    "yandex_html": "not_tried",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
     "brave_api": "needs_key",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "ok",
-    "loc_books": "ok",
-    "loc_manuscripts": "ok",
-    "internet_archive": "ok",
-    "google_books": "http_429",
-    "hathitrust_catalog": "blocked_by_robots_txt",
-    "federal_register_api": "ok",
-    "wikisource_search": "blocked_by_robots_txt",
-    "wikipedia_search": "blocked_by_robots_txt",
-    "presidency_project": "ok",
-    "govinfo_search_page": "ok",
+    "loc_newspapers": "not_tried",
+    "loc_books": "not_tried",
+    "loc_manuscripts": "not_tried",
+    "internet_archive": "not_tried",
+    "google_books": "not_tried",
+    "hathitrust_catalog": "not_tried",
+    "federal_register_api": "not_tried",
+    "wikisource_search": "not_tried",
+    "wikipedia_search": "not_tried",
+    "presidency_project": "not_tried",
+    "govinfo_search_page": "not_tried",
     "nara_catalog": "needs_key"
   }
 }

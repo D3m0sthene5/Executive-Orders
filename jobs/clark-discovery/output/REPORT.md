@@ -1,14 +1,14 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes.
+Generated 2026-10-28T23:34:14Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
 | Numbers with no census row (1 to 14435) | 46 | NUMBER_GAPS.csv |
-| Numbers cited in texts or OFR notes but absent from the census | 145 ids (59 plausible) | CITED_BUT_UNKNOWN.csv |
-| Census orders known by number only | 112 | IDENTITY_UNKNOWN.csv |
-| Dated unnumbered references matching nothing known | 687 | DATED_UNNUMBERED.csv |
-| Handed to Lewis with identity evidence | 79 | HANDOFF_TO_LEWIS.jsonl |
+| Numbers cited in texts or OFR notes but absent from the census | 145 ids (60 plausible) | CITED_BUT_UNKNOWN.csv |
+| Census orders known by number only | 61 | IDENTITY_UNKNOWN.csv |
+| Dated unnumbered references matching nothing known | 226 | DATED_UNNUMBERED.csv |
+| Handed to Lewis with identity evidence | 55 | HANDOFF_TO_LEWIS.jsonl |
 
 ## Number gaps
 
@@ -33,9 +33,9 @@ Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes
 | EO:53 | EO:50 1894-11-02 -> EO:54 1894-11-02 | cited |  |
 | EO:92 | EO:91 1896-11-02 -> EO:93 1896-12-23 | strong | cited_with_date:1896-11-02 |
 | EO:2103 | EO:2102 1914-12-07 -> EO:2105 1914-12-11 | number_only |  |
-| EO:2539 | EO:2537 1917-02-21 -> EO:2540 1917 | strong | cited_with_date:1917-02-26 |
+| EO:2539 | EO:2538 1917-02-26 -> EO:2540 1917-02-27 | strong | cited_with_date:1917-02-26 |
 | EO:2703 | EO:2702 1917 -> EO:2704 1917 | number_only |  |
-| EO:3493 | EO:3492 1921 -> EO:3495 1921 | number_only |  |
+| EO:3493 | EO:3492 1921-06-14 -> EO:3495 1921-06-14 | number_only |  |
 | EO:3733 | EO:3732 1922 -> EO:3734 1922 | number_only |  |
 | EO:5853 | EO:5852 1932-06-01 -> EO:5857 1932-06-16 | strong | app_index:1932-06-03:Executive Order 5853—Waiver of Maximum Age Limit, George H. Rolfe |
 | EO:5854 | EO:5852 1932-06-01 -> EO:5857 1932-06-16 | strong | app_index:1932-06-03:Executive Order 5854—Protection of the Northern Pacific Halibut Fishery |
@@ -63,7 +63,7 @@ Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes
 
 ## Cited but unknown (plausible rows first)
 
-295 (cited id, citing document) pairs from 30725 saved texts and 5063 OFR notes. By plausibility: citing_date_unknown 1, exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 59, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+295 (cited id, citing document) pairs from 30725 saved texts and 5063 OFR notes. By plausibility: exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 60, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -88,6 +88,7 @@ Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes
 | EO:92 |  | EO:93 | plausible | Executive Order 92 |
 | EO:130A |  | EO:130 | plausible | Executive Order 130-A |
 | EO:130A |  | EO:130B | plausible | Executive Order 130-A |
+| EO:130A | 1900-06-22 | EO:130D | plausible | Executive Order 130-A, June 22, 1900 |
 | EO:967A | 1914-06-23 | EO:3366 | plausible | Executive Orber. It is hereby ordered that the lands hereinaf ter described be, and the same are, eliminated from the operation of Executive |
 | EO:2539 | 1917-02-26 | EO:6972 | plausible | Executive Order No. 2539, of February 26, 1917, reserving certain lands for town-site purposes, and for other purposes in connection with th |
 | EO:2539 | 1917-02-26 | EO:6972 | plausible | REVOCATION IN Part oF EXECUTIVE ORDER No. 2539, oF FEBRUARY 26, 1917, WITHDRAWING Pustic Lanps |
@@ -106,41 +107,40 @@ Generated 2026-10-24T03:21:13Z. Leads only; no census, count or identity changes
 | EO:5856 |  | EO:5947 | plausible | The survey was made September 25 and 26 , 1928, using a plane table and telescopic alidade ; the bearings of the lines were determined by ne |
 | EO:5856 | 1932-06-11 | EO:5947 | plausible | And it is further ordered that Executive Order No. 5856, of June 11, 1932, excluding certain lands from the said national forest, be, and it |
 | EO:5856 | 1932-06-11 | EO:5947 | plausible | The survey was made September 25 and 26, 1928, using a plane table and telescopic alidade; the bearings of the lines were determined by need |
-| EO:5862 | 1932-06-23 | EO:6852 | plausible | 497), it is ordered that Executive Order No. 5862, dated June 23, 1932, withdrawing, with other lands, public lands in T. |
 
 ## Identity unknown
 
-112 census orders have an open original_text step, no transcription lead and no date or title in any index. 37 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 75 are a number and nothing else. By census era: 1862–1906 2, 1907–1936 33, Unknown date 77.
+61 census orders have an open original_text step, no transcription lead and no date or title in any index. 13 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 48 are a number and nothing else. By census era: 1862–1906 1, Unknown date 60.
 
 
 ## Web search (online stage)
 
-80 of 147 unknowns advanced this run (0 never searched yet); 801 of 1100 requests used. 2860 hits on file, 84 pages confirmed to name the order (39 unknowns): `WEB_LEADS.csv`. 45 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+1 of 96 unknowns advanced this run (0 never searched yet); 4 of 2 requests used. 2860 hits on file, 84 pages confirmed to name the order (39 unknowns): `WEB_LEADS.csv`. 45 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 60 read, 234 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 10 read, 67 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
-| bing_rss | blocked_by_robots_txt |
+| bing_rss | not_tried |
 | brave_api | needs_key |
-| brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
-| federal_register_api | ok |
-| google_books | http_429 |
+| brave_html | not_tried |
+| duckduckgo_html | error |
+| duckduckgo_lite | ok |
+| federal_register_api | not_tried |
+| google_books | not_tried |
 | google_cse | needs_key |
-| govinfo_search_page | ok |
-| hathitrust_catalog | blocked_by_robots_txt |
-| internet_archive | ok |
-| loc_books | ok |
-| loc_manuscripts | ok |
-| loc_newspapers | ok |
-| marginalia | error |
-| mojeek_html | blocked_by_robots_txt |
+| govinfo_search_page | not_tried |
+| hathitrust_catalog | not_tried |
+| internet_archive | not_tried |
+| loc_books | not_tried |
+| loc_manuscripts | not_tried |
+| loc_newspapers | not_tried |
+| marginalia | not_tried |
+| mojeek_html | not_tried |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | not_tried |
 | serpapi_google | needs_key |
-| wikipedia_search | blocked_by_robots_txt |
-| wikisource_search | blocked_by_robots_txt |
-| yandex_html | blocked_by_robots_txt |
+| wikipedia_search | not_tried |
+| wikisource_search | not_tried |
+| yandex_html | not_tried |

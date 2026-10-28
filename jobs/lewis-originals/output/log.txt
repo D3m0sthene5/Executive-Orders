@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-hdf_hy2a/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-gb5_vr98/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-hdf_hy2a/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-gb5_vr98/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -138,7 +138,7 @@ ok
 test_text_quality_screens_handwriting_noise (test_lewis.SyntheticRepo.test_text_quality_screens_handwriting_noise) ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 3.214s
+Ran 24 tests in 3.205s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -156,79 +156,79 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 16.042s
+Ran 13 tests in 16.040s
 
 OK
 {
   "scope": {
-    "orders": 5426,
+    "orders": 5388,
     "by_reason": {
-      "transcription_only": 5347,
+      "transcription_only": 5333,
       "clark_identified_not_in_universe": 42,
-      "clark_identified": 37
+      "clark_identified": 13
     }
   },
   "routes": {
-    "federal_register:fetch_request_proposed": 266,
-    "federal_register:fr_era_not_in_ofr_catalog": 215,
+    "federal_register:fetch_request_proposed": 265,
+    "federal_register:fr_era_not_in_ofr_catalog": 212,
     "federal_register:in_ofr_catalog_no_citation": 431,
-    "gpo_bound_volumes:in_volume_range_not_found": 1253,
+    "gpo_bound_volumes:in_volume_range_not_found": 1243,
     "ofr_hoover_compilation:in_volume_range_not_found": 474,
-    "proquest_local:pinakes_file_record_pages_unchecked": 114,
+    "proquest_local:pinakes_file_record_pages_unchecked": 98,
     "proquest_phrase_search:manual_lead": 2663,
-    "proquest_supplied_link:awaiting_acquisition": 10
+    "proquest_supplied_link:awaiting_acquisition": 2
   },
   "proquest_folder": {
     "pdf_files": 2750,
     "unique_files": 2750,
     "orders_with_recorded_pdf": 2750,
     "orders_with_verified_pdf": 0,
-    "orders_in_lewis_scope_with_pdf": 114,
-    "pdfs_for_orders_outside_lewis_scope": 2636,
+    "orders_in_lewis_scope_with_pdf": 98,
+    "pdfs_for_orders_outside_lewis_scope": 2652,
     "usable_text_layers": 2440,
     "bad_signature": 0,
     "signature_not_reported": 2750,
     "unparsed_names": 0,
     "name_parse_not_reported": 2750,
     "supplied_links_total": 2765,
-    "supplied_links_in_lewis_scope": 124
+    "supplied_links_in_lewis_scope": 100
   },
   "proposed_fetch_requests": {
-    "count": 266,
-    "contract_valid": 266,
+    "count": 265,
+    "contract_valid": 265,
     "contract_available": true
   },
   "problems": []
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 100,
-  "requests_used": 996,
+  "advanced_this_run": 1,
+  "requests_used": 17,
   "hits_total": 4147,
   "leads_page_confirmed": 41,
   "engines": {
-    "duckduckgo_html": "http_403",
-    "duckduckgo_lite": "http_403",
+    "duckduckgo_html": "error",
+    "duckduckgo_lite": "ok",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
-    "brave_html": "blocked_by_robots_txt",
+    "brave_html": "error",
     "marginalia": "error",
     "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
     "brave_api": "needs_key",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "ok",
-    "loc_books": "ok",
-    "loc_manuscripts": "ok",
+    "loc_newspapers": "http_403",
+    "loc_books": "http_403",
+    "loc_manuscripts": "http_403",
     "internet_archive": "ok",
     "google_books": "http_429",
-    "hathitrust_catalog": "blocked_by_robots_txt",
-    "federal_register_api": "ok",
-    "wikisource_search": "blocked_by_robots_txt",
-    "wikipedia_search": "blocked_by_robots_txt",
-    "presidency_project": "ok",
-    "govinfo_search_page": "ok",
+    "hathitrust_catalog": "not_tried",
+    "federal_register_api": "not_tried",
+    "wikisource_search": "not_tried",
+    "wikipedia_search": "not_tried",
+    "presidency_project": "not_tried",
+    "govinfo_search_page": "not_tried",
     "nara_catalog": "needs_key"
   }
 }

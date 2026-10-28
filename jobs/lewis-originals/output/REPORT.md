@@ -1,39 +1,39 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-24T04:12:10Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-28T23:50:57Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 5426 orders** (clark_identified 37, clark_identified_not_in_universe 42, transcription_only 5347).
+**Scope: 5388 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5333).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
 | proquest_phrase_search | manual_lead | 2663 |
-| gpo_bound_volumes | in_volume_range_not_found | 1253 |
+| gpo_bound_volumes | in_volume_range_not_found | 1243 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
-| federal_register | fetch_request_proposed | 266 |
-| federal_register | fr_era_not_in_ofr_catalog | 215 |
-| proquest_local | pinakes_file_record_pages_unchecked | 114 |
-| proquest_supplied_link | awaiting_acquisition | 10 |
+| federal_register | fetch_request_proposed | 265 |
+| federal_register | fr_era_not_in_ofr_catalog | 212 |
+| proquest_local | pinakes_file_record_pages_unchecked | 98 |
+| proquest_supplied_link | awaiting_acquisition | 2 |
 
 ## ProQuest folder
 
-2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 114 of them are in Lewis's scope and 2636 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 124 for orders in this scope.
+2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 98 of them are in Lewis's scope and 2652 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 100 for orders in this scope.
 
 Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2750 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
 
 ## Proposed fetch requests
 
-266 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
+265 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
 
 ## Next actions by owner
 
 | Owner | Orders |
 |---|---:|
-| owner | 2673 |
-| agent_check | 2487 |
-| machine_job | 266 |
+| owner | 2665 |
+| agent_check | 2458 |
+| machine_job | 265 |
 
 ## First twenty rows
 
@@ -62,30 +62,30 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 5426 targets advanced this run (5143 never searched yet); 996 of 1500 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+1 of 5388 targets advanced this run (5104 never searched yet); 17 of 12 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
 | brave_api | needs_key |
-| brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
-| federal_register_api | ok |
+| brave_html | error |
+| duckduckgo_html | error |
+| duckduckgo_lite | ok |
+| federal_register_api | not_tried |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | ok |
-| hathitrust_catalog | blocked_by_robots_txt |
+| govinfo_search_page | not_tried |
+| hathitrust_catalog | not_tried |
 | internet_archive | ok |
-| loc_books | ok |
-| loc_manuscripts | ok |
-| loc_newspapers | ok |
+| loc_books | http_403 |
+| loc_manuscripts | http_403 |
+| loc_newspapers | http_403 |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | not_tried |
 | serpapi_google | needs_key |
-| wikipedia_search | blocked_by_robots_txt |
-| wikisource_search | blocked_by_robots_txt |
+| wikipedia_search | not_tried |
+| wikisource_search | not_tried |
 | yandex_html | blocked_by_robots_txt |
