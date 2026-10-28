@@ -273,3 +273,67 @@ REVISIONS["TR-PROPERTY-TRANSFER"] = {**REVISIONS["TR-PROPERTY-TRANSFER"], "round
     "exemplar": {"id": "EO:206", "parts": [
         ("The historical archives in the Department of State, known as the Revolutionary archives", "prescribed by the Librarian of Congress."),
         ("The transfer here directed shall be made", "to the Department of State and the Library of Congress.")]}}
+
+# Round 4 for TR-CS-WAIVER (2026-10-28): the owner's ruling that evidence decides
+# (research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md) and the research in
+# research/excavator/claude-cs-waiver-research-2026-10-28/REPORT.md. The round-2 text treated every
+# unrecorded use as an unresolved gap and named the CSC annual report as a source for the action date;
+# the reports print and count the orders but never record whether an individual waiver was used.
+REVISIONS["TR-CS-WAIVER"] = {**REVISIONS["TR-CS-WAIVER"], "round": 4,
+    "ending_pattern": (
+        "The order authorizes one personnel action for one named person (appointment, reinstatement, transfer, "
+        "retention or examination without regard to a civil-service rule). Its permission is exhausted when the "
+        "action is taken; the resulting appointment or status survives as an accrued effect of the action, not of "
+        "the order. Decide each order on the held evidence: (1) exhausted on a date, when a dated record of the "
+        "action is held; (2) exhausted within an interval (order date, R], when a record shows the person in the "
+        "authorized position at date R and not in it at the order date; (3) not in force with use unknown, when no "
+        "use is shown but a reason ended the permission: a 1900-1902 special-rule order unused by April 15, 1903 "
+        "(EO 209 replaced the 1896 rules 'and the amendments thereof'), the named person's known death, or, as an "
+        "interval bound only, the latest possible death (order date + 122 years 164 days, the longest authenticated "
+        "life, minus the person's minimum possible age at the order date taken from the order's own facts and "
+        "disclosed, with a note when a defensible change of that age moves the bound past the claim's cutoff); "
+        "(4) open, naming the records that would settle it. Whether the action happened is a separate question from "
+        "when the permission ended: categories (3) and (4) keep the order open on use. No general civil-service "
+        "measure is an end for these orders: EO 7916 (1938), EO 8743 (1941), EO 9830 (1947) and EO 10577 (1954) "
+        "revoke only listed orders and schedules and list no one-person waiver; EO 209 (1903) is a reason only for "
+        "the 1900-1902 special-rule orders, and only a candidate for other waivers issued before April 15, 1903."),
+    "effective_date_basis": (
+        "(1) The date of the action from a dated record: a NARA St. Louis service record card or personnel folder, "
+        "an agency report, or a recital in a later order. (2) The interval (order date, R], stated as an interval "
+        "with the record that supplies R: the Official Register (all employees, July 1 of odd years, 1901-1921; "
+        "officials only from 1925), a later order naming the person in the authorized position, or an agency "
+        "report; presence alone does not show use of a retention or temporary-to-permanent order. (3) The reason's "
+        "date, or the latest-possible-death bound, with 'use unknown' stated. Civil Service Commission annual reports "
+        "print and count the orders but do not record whether or when an individual waiver was used; they are not a "
+        "source for the action date."),
+    "savings": (
+        "The appointment or status conferred is an accrued effect that continues independently of the order (state "
+        "transferred_or_accrued). The Act of March 27, 1922 and EO 9830 s.1.1(b) recognize competitive status "
+        "granted by executive order, which supports the status surviving later rewrites of the Civil Service Rules. "
+        "Later service rights flow from civil-service statutes, not from the order."),
+    "required_evidence_replace": [
+        "The order's own text naming the person, the action and the rule waived.",
+        "A dated record of the action, a record bounding it, or a stated reason the permission ended; otherwise the "
+        "order stays open, naming the records that would settle it (the next Official Register; the NARA St. Louis card).",
+        "A bounded later-law search for an order or statute naming this order or the person (revocation, "
+        "modification, confirmation, or a later order showing the person in the position).",
+    ],
+    "outliers_replace": [
+        "The order amends a Civil Service Rule or schedule for a class of positions (type cs_rules_amendment); among "
+        "current members EO 60, 95, 123, 158 and 164.",
+        "The order names a class of persons or positions rather than individuals (EO 203, 222), or is a general "
+        "authority (EO 715 on transfers and EO 983 on fourth-class postmasters, both revoked by EO 9830 effective "
+        "May 1, 1947).",
+        "A 1900-1902 'special rule' for a position rather than a person (EO 130, 141-143, 154, 174, 185).",
+        "The authority is continuing (for example 'may be appointed at any time').",
+        "The waiver is conditional (for example on a noncompetitive examination or probation) or limited to a "
+        "stated position or period.",
+        "The person is named again in a later order (serial waivers, retention or retirement orders, a later "
+        "modification such as EO 7472 of EO 7140): read both; the later order may supply use evidence or an end.",
+        "The order converts a temporary employee to permanent status or retains an employee: presence in the "
+        "position is not evidence of use.",
+        "The held text is printed in a Civil Service Commission annual report, so the report's commentary or "
+        "neighbouring orders can bleed into the slice.",
+    ],
+}
+REVISIONS["TR-CS-WAIVER"].pop("outliers_add", None)
