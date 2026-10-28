@@ -11,6 +11,9 @@ Newest entry first. See `README.md` in this folder for the format.
   owner decisions, owner questions and results, seeded with all 9 owner rulings, 9 open owner questions and 31 results,
   and wired into AGENTS.md, CLAUDE.md, copilot instructions and HANDOFF/README.md. Start-up now reads the brief plus the
   newest entry of each notes file instead of all notes.
+- **Runner:** added the Rattle Watch to `.github/scripts/run_jobs.py` (per-minute heartbeat; stops a job silent and
+  idle for 20 minutes; web-search jobs run only downstream of a push get 12 requests). Cause of slow runs: one owner-ruling
+  file selected 14 jobs including Clark's web search (Kean F-20261028-3).
 - **Finding:** the owner ruled on 2026-10-21 that his ProQuest scans count as provisional working text, but the tracker's
   top unlock and the Pinakes README still call the grade an open codebook decision; no claim has used a scan. No
   handwriting OCR comparison exists on record; only tesseract was used (Kean F-20261022-1, F-20261028-1).

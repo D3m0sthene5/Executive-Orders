@@ -106,6 +106,38 @@ class SchedulerTest(unittest.TestCase):
         self.assertEqual(picker.all_jobs(), ['consumer'])
         self.assertEqual(picker.ordered(picker.with_consumers(['consumer'])), ['consumer'])
 
+    def run_main(self, **env):
+        output = Path('outputs.txt')
+        output.write_text('')
+        with patch.dict(os.environ, GITHUB_OUTPUT=str(output), **env):
+            picker.main()
+        return dict(line.split('=', 1) for line in output.read_text().splitlines())
+
+    def test_push_runs_only_edited_jobs_and_nothing_downstream(self):
+        self.job('producer', triggers=['inputs/*'])
+        self.job('consumer', after=['producer'])
+        with patch.object(picker, 'changed_files', return_value=['inputs/data.csv', 'jobs/consumer/job.py']):
+            out = self.run_main(EVENT='push', AFTER='x')
+        self.assertEqual(out, {'jobs': 'consumer'})
+        with patch.object(picker, 'changed_files', return_value=['inputs/data.csv', 'HANDOFF/notes-claude.md']):
+            out = self.run_main(EVENT='push', AFTER='x')
+        self.assertEqual(out, {'jobs': ''})
+
+    def test_sweep_runs_triggered_jobs_and_consumers_and_marks_downstream(self):
+        self.job('producer', triggers=['inputs/*'])
+        self.job('consumer', after=['producer'])
+        self.job('unrelated')
+        with patch.object(picker, 'recent_changes', return_value=['inputs/data.csv']):
+            out = self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *')
+        self.assertEqual(out, {'jobs': 'producer consumer', 'downstream': 'consumer'})
+
+    def test_daily_run_runs_daily_jobs_with_consumers_at_full_strength(self):
+        self.job('producer')
+        Path('jobs/producer/DAILY').touch()
+        self.job('consumer', after=['producer'])
+        out = self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON)
+        self.assertEqual(out, {'jobs': 'producer consumer'})
+
     def test_dispatch_deduplicates_and_orders_consumers(self):
         self.job('producer')
         self.job('consumer', after=['producer'])
@@ -142,16 +174,16 @@ class RepositoryWiringTest(unittest.TestCase):
                     missing.append(f'{name}: {dep}')
         self.assertEqual(missing, [], '\n'.join(missing))
 
-    def test_outer_workflow_covers_declared_inputs(self):
-        # The outer filter intentionally uses directory-wide **. The selector
-        # retains the precise fnmatch patterns, so irrelevant changes run no jobs.
+    def test_pushes_stay_light_and_the_sweep_is_scheduled(self):
+        # Pushes start a run only for job folders and the runner; triggers.txt patterns are honored by the
+        # three-hour sweep, which reads recent history and so needs no push filter.
         workflow = (ROOT / '.github/workflows/run-jobs.yml').read_text()
         section = workflow.split('    paths:\n', 1)[1].split('  schedule:', 1)[0]
         patterns = re.findall(r'^\s+- "([^"]+)"', section, flags=re.M)
-        for name in picker.all_jobs():
-            for trigger in picker.job_list(name, 'triggers.txt'):
-                self.assertTrue(any(trigger == pattern or (pattern.endswith('/**') and trigger.startswith(pattern[:-2]))
-                                    for pattern in patterns), f'{name}: outer workflow excludes {trigger}')
+        self.assertEqual(sorted(patterns), ['.github/scripts/**', '.github/workflows/run-jobs.yml', 'jobs/**'])
+        self.assertIn(f'cron: "{picker.DAILY_CRON}"', workflow)
+        self.assertIn('cron: "47 */3 * * *"', workflow)
+        self.assertIn('SCHEDULE: ${{ github.event.schedule }}', workflow)
 
     def test_real_uploads_select_pinakes(self):
         for path in ['ProQuest Pre-1937 Orders/1873-EO-10.pdf',
