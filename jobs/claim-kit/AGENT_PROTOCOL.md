@@ -153,7 +153,16 @@ unmapped provenance stays blocked rather than acquiring an invented grade.
 these sources. Independently inspect the source before setting each source's
 `identity_confirmed` and `complete_text_confirmed` to true, plus `pages_confirmed`
 when its fragment calls for a page check. This confirms the held representation,
-not original authentication. A confirmed original is still required on the
+not original authentication. A web transcription has no printed pages: for an
+American Presidency Project text (`app-executive-orders`, `app-transcriptions`),
+the page check means checking the page record held in
+`jobs/app-executive-orders/output/DOCUMENTS.jsonl` or `MIRROR_DOCUMENTS.jsonl`
+(the row with the same `sha256`) against the order and the held text: its
+heading or listing title names this order's number, its date and subject agree
+with the text, and its `text_sha256` is the held text's. Set `pages_confirmed`
+only when all three agree; a mismatch blocks the source. The raw capture is not
+committed, but each mirror row records the archive and WARC location so anyone
+can re-fetch it. A confirmed original is still required on the
 original-supported route. The batch CSV carries the same `working_text` JSON.
 The assembler retains only confirmations for sources actually cited by the claim.
 

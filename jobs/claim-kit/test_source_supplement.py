@@ -164,6 +164,24 @@ class SourceSupplementTests(unittest.TestCase):
             with self.subTest(e=e),self.assertRaises(ValueError):
                 S.derive(self.repo,self.ds,{'schema':S.SCHEMA,'sources':[e]}, {})
 
+    def test_registered_working_text_excerpt_keeps_its_registered_grade_and_hash(self):
+        # An excerpt from a registered provisional working text is cited in its registered form, so the
+        # working-text gate requires disclosure; without a registration the declared source is kept as is.
+        plain = S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[self.entry]}, {})
+        self.assertEqual(plain['EO:1']['evidence']['SUPPLEMENT:held-revocation']['source'], self.entry['source'])
+        src = self.entry['source']
+        reg = {'kind':'original_representation','instrument_id':'EO:5','grade':'mirror_transcription',
+               'acceptable_as_original':False,'data':{'grade':'mirror_transcription','acceptable_as_original':False,
+               'sha256':'c'*64,'url':'https://example.test/app','text_path':src['text_path'],
+               'text_sha256':src['text_sha256'],'needs_page_check':True}}
+        path = self.repo/'jobs/app-executive-orders/output/FRAGMENTS.jsonl'
+        path.parent.mkdir(parents=True, exist_ok=True); path.write_text(json.dumps(reg)+'\n')
+        out = S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[self.entry]}, {})
+        got = out['EO:1']['evidence']['SUPPLEMENT:held-revocation']['source']
+        self.assertEqual((got['grade'], got['sha256'], got['acceptable_as_original'], got['instrument_id']),
+                         ('mirror_transcription', 'c'*64, False, 'EO:5'))
+        self.assertNotIn('local_path', got)
+
     def test_foreign_target_alias_and_duplicate_refused(self):
         for change in [{'instrument_ids':['EO:2']},{'alias':'ACT:EO:1>EO:5'}]:
             e={**self.entry,**change}

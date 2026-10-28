@@ -6,6 +6,7 @@ loaded (not copied) through a two-line shim in the fixture repo.
 
 import csv
 import gzip
+import io
 import hashlib
 import json
 import os
@@ -373,6 +374,50 @@ class CheckerTests(unittest.TestCase):
         self.assertTrue(C.verify_by_download(url, sha, cache))             # cached bytes re-hashed
         self.assertFalse(C.verify_by_download(url, "0" * 64, cache) or False)
         self.assertIsNone(C.verify_by_download("https://example.org/x.pdf", sha, cache))  # other hosts: never
+        seen = []
+
+        class Resp(io.BytesIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        def opener(req, timeout=0):
+            seen.append(req.full_url)
+            return Resp(b"djvu bytes")
+
+        with mock.patch.dict(C._VERIFY, {"left": 5, "last": 0.0}), mock.patch("urllib.request.urlopen", opener):
+            djvu = hashlib.sha256(b"djvu bytes").hexdigest()
+            self.assertTrue(C.verify_by_download("https://commons.wikimedia.org/wiki/File:Executive_Orders_7082-7261.djvu",
+                                                 djvu, cache))
+            self.assertIsNone(C.verify_by_download("https://commons.wikimedia.org/wiki/Main_Page", djvu, cache))
+        self.assertEqual(seen, ["https://commons.wikimedia.org/wiki/Special:FilePath/Executive_Orders_7082-7261.djvu"])
+
+    def test_archived_web_capture_is_refetched_and_rehashed(self):
+        page = b"<html>Executive Order 7310</html>"
+        # app_mirror.split_warc hashed everything after the HTTP headers, including the record's closing CRLFs.
+        sha = hashlib.sha256(page + b"\r\n\r\n").hexdigest()
+        url = "https://www.presidency.ucsb.edu/documents/executive-order-7310"
+        http = b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + page
+        record = (b"WARC/1.0\r\nWARC-Type: response\r\nWARC-Target-URI: " + url.encode() +
+                  b"\r\nContent-Length: " + str(len(http)).encode() + b"\r\n\r\n" + http + b"\r\n\r\n")
+        raw = gzip.compress(record)
+        cap = {"archive": "common-crawl", "warc_filename": "crawl-data/CC-MAIN-2025-47/x.warc.gz",
+               "warc_offset": 100, "warc_length": len(raw), "url": url, "captured_utc": "2025-12-16T00:59:36Z"}
+        cache = pathlib.Path(self.tmp) / "acache"
+        with mock.patch.object(C, "_download", return_value=raw) as fetch:
+            self.assertTrue(C.verify_by_archive(sha, cap, cache))
+            self.assertEqual(fetch.call_args[0][0], C.CC_DATA + cap["warc_filename"])
+            self.assertEqual(fetch.call_args[0][1], {"Range": f"bytes=100-{100 + len(raw) - 1}"})
+        self.assertTrue(C.verify_by_archive(sha, cap, cache))           # cached page, no download
+        with mock.patch.object(C, "_download", return_value=raw):
+            self.assertFalse(C.verify_by_archive("0" * 64, cap, cache))  # different bytes: not verified
+            self.assertFalse(C.verify_by_archive("1" * 64, dict(cap, url=url + "-other"), cache))  # wrong page
+            self.assertIsNone(C.verify_by_archive("2" * 64, dict(cap, warc_filename="../x"), cache))
+        with mock.patch.object(C, "_download", return_value=raw[:-1]):
+            self.assertIsNone(C.verify_by_archive("3" * 64, cap, cache))  # short read: not tried
+        self.assertIsNone(C.verify_by_archive(sha, None, cache))
 
     def test_local_bytes_differ_from_record(self):
         (self.repo / "research/stage21/original_sources/EO_90003.txt").write_text("tampered", "utf-8")

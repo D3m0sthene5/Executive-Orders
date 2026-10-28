@@ -225,6 +225,22 @@ class CorpusTests(unittest.TestCase):
             self.assertFalse(inputs._grade({"confidence_note": f"APP copy ({named})"}, None, True, "x")[1])
         self.assertEqual(inputs._grade({"grade": "official"}, None, True, "x")[0], "official")
 
+    def test_downstream_relabel_yields_to_the_registered_working_text_grade(self):
+        # app-executive-orders registers its text as mirror_transcription; a later job that calls the same bytes
+        # "compiled_transcription_lead" must not change the grade the gate matches against.
+        self.write("jobs/app/output/texts/one.txt", "Order text.")
+        reg = {"instrument_id": "EO:1", "kind": "original_representation", "grade": "mirror_transcription",
+               "acceptable_as_original": False,
+               "data": {**self.source(), "text_path": "texts/one.txt", "grade": "mirror_transcription",
+                        "acceptable_as_original": False, "needs_page_check": True}}
+        self.jsonl("jobs/app/output/FRAGMENTS.jsonl", [reg])
+        relabel = {**self.source(), "instrument_ids": ["EO:1"], "text_path": "../../app/output/texts/one.txt",
+                   "grade": "compiled_transcription_lead", "acceptable_as_original": False}
+        self.jsonl("jobs/drafts/output/SOURCES.jsonl", [relabel])
+        records = inputs.load_corpus(self.repo)["texts"]
+        self.assertEqual({r["grade"] for r in records}, {"mirror_transcription"})
+        self.assertEqual({r["source"]["grade"] for r in records}, {"mirror_transcription"})
+
     def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
         self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
         fragment = {"instrument_id": "EO:1", "kind": "original_representation",
