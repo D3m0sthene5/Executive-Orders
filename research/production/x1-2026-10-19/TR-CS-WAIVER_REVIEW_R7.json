@@ -1,0 +1,62 @@
+{
+  "rule_id": "TR-CS-WAIVER",
+  "rule_file_sha256": "a03f616d40dc2b493c227d3d980a29816b49a969ca5fdd942730980a88fcd4dc",
+  "previous_review": "TR-CS-WAIVER_REVIEW_R6.json",
+  "decision": "approve_pattern_lead_only",
+  "reviewer": "x1_type_rule_reviewer_r5",
+  "reviewer_role": "independent_agent",
+  "not_human_certification": true,
+  "quote_exact": true,
+  "text_hash_verified": true,
+  "required_changes": [],
+  "verified": [
+    {
+      "claim": "Rule file sha256 recomputed: a03f616d40dc2b493c227d3d980a29816b49a969ca5fdd942730980a88fcd4dc",
+      "source": "research/readiness/type-rules/TR-CS-WAIVER.json; git 62b592ed in /home/claude/executive-orders",
+      "result": "confirmed"
+    },
+    {
+      "claim": "Exemplar quote re-reads exactly at span [1014,1457], one occurrence; text sha256 matches 5ddc10a9...",
+      "source": "jobs/numbered-early-orders/output/texts/EO_1905__CSR_1914_i131.txt",
+      "result": "confirmed"
+    },
+    {
+      "claim": "Field-by-field diff against the ec6ba697 version (git aa8e1fbb) shows changes only in ending_pattern, exceptions_savings.assessment, effective_date_basis, outlier_conditions[6] and review_round (5 to 6)",
+      "source": "git show aa8e1fbb:research/readiness/type-rules/TR-CS-WAIVER.json",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 1 (EO 6179-A reworded in ending_pattern and exceptions_savings; quoted phrase 'appointments made by the President' is in the held text)",
+      "source": "jobs/app-executive-orders/output/texts/executive-order-6179-revocation-appointment-classified-positions-the-department-labor.txt",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 2 (EO 3461 list versus general-clause reading; held copy stops at item 27 of 45)",
+      "source": "rule text; jobs/csc-annual-reports/output/texts/EO_3461.txt",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 3 ('and was unused by April 15, 1903' deleted)",
+      "source": "rule text",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 4 (a_min is the lowest age the quoted fact allows; EO 2661 'messenger boy' example matches the TYPES.csv WPA summary)",
+      "source": "rule text; jobs/x1-class-engine/output/TYPES.csv",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 5 (Register match needs full name, office and a consistent position)",
+      "source": "rule text",
+      "result": "confirmed"
+    },
+    {
+      "claim": "R6 change 6 (multi-person order spent only when every permission has ended; end is the latest)",
+      "source": "rule text",
+      "result": "confirmed"
+    }
+  ],
+  "notes": "All six round-6 corrections are made with the requested wording. The diff shows no other content change. The R5 and R6 findings that remain open are outside the rule text: EO 3461 items 28-45 are not held, the July 1 dating of the Register rests on a secondary index (the rule says so), and EO 3461's retention provision is known only from its WPA summary (a lead). Approval is as a research pattern only. It is not human certification, decides no order, and leaves the certified count at 0.",
+  "start_utc": "2026-10-28T19:11:09Z",
+  "end_utc": "2026-10-28T19:11:47Z"
+}
