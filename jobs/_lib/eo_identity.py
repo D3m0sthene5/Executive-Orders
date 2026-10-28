@@ -23,6 +23,9 @@ READINESS = "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
 OFR_CATALOG = "jobs/later-events/output/CATALOG_INDEX.csv"
 APP_INDEX = "jobs/app-executive-orders/output/INDEX.csv"
 WPA_PRE1900 = "jobs/census-completeness/data/WPA_NUMBERED_pre1900.csv"
+# The complete 1944 WPA numbered list (orders 1 to about 8400, with month and day). It dates the ProQuest scans
+# whose other indexes hold only a year.
+WPA_NUMBERED = "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
 PROQUEST_DIR = "research/pre-1937-sources/ProQuest Pre-1937 Orders"
 PROQUEST_LINKS = PROQUEST_DIR + "/_resume/proquest_download_links.html"
 FIRST_FEDERAL_REGISTER = _dt.date(1936, 3, 14)
@@ -206,6 +209,9 @@ def load_dates(root, fragments=None):
             return
         if not cur["date"] and date:
             cur["date"], cur["date_source"] = date, source
+        elif (date and len(cur["date"]) == 4 and len(date) >= 10 and date[:4] == cur["date"]):
+            # A full date may refine a bare year only when both sources agree on the year.
+            cur["date"], cur["date_source"] = date, source
         if not cur["title"] and title:
             cur["title"] = title
         if not cur["president"] and president:
@@ -223,14 +229,15 @@ def load_dates(root, fragments=None):
     for iid, fs in frags.items():
         for f in fs:
             put(iid, f["date"], f["title"], f["produced_by"])
-    for r in read_csv(os.path.join(root, WPA_PRE1900)):
-        iid = r.get("id") or (canon_id(r["number"], r.get("suffix", "")) if r.get("number") else None)
-        md = (r.get("month_day") or "").strip()
-        date = None
-        if r.get("year"):
-            date = parse_date(f"{md}, {r['year']}") if md else None
-            date = date.isoformat() if date else r["year"]
-        put(iid, date, (r.get("text") or "")[:160], "wpa_pre1900_list")
+    for path, label in ((WPA_PRE1900, "wpa_pre1900_list"), (WPA_NUMBERED, "wpa_numbered_list")):
+        for r in read_csv(os.path.join(root, path)):
+            iid = r.get("id") or (canon_id(r["number"], r.get("suffix", "")) if r.get("number") else None)
+            md = (r.get("month_day") or "").strip()
+            date = None
+            if r.get("year"):
+                date = parse_date(f"{md}, {r['year']}") if md else None
+                date = date.isoformat() if date else r["year"]
+            put(iid, date, (r.get("text") or "")[:160], label)
     for r in load_proquest_rows(root):
         put(canon_id(*parse_eo_id(str(r["id"]))), str(r["y"]) if r.get("y") else None, None, "proquest_list_year")
     for iid, r in load_universe(root).items():

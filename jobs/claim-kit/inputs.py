@@ -119,6 +119,10 @@ def _boolean(value):
     return None
 
 
+# Longest names first, so "compiled_transcription_lead" is not read as "compiled_transcription".
+SPECIFIC_DERIVATIVE_GRADES = ("compiled_transcription_lead", "compiled_transcription", "mirror_transcription")
+
+
 def _grade(node, inherited_grade, original_context, origin):
     grade = node.get("grade") or node.get("source_grade") or inherited_grade
     hints = " ".join(str(node.get(k) or "") for k in
@@ -128,8 +132,11 @@ def _grade(node, inherited_grade, original_context, origin):
         "compiled_transcription", "richardson", "as_amended_editorial",
         "as amended editorial", "ofr-codification", "derivative", "mirror_transcription"))
     if not grade:
-        grade = "derivative_lead" if derivative else (
-            "original_representation_unverified" if original_context else "held_text_lead")
+        # A wrapper without its own grade keeps the specific working-text grade its provenance names, so the
+        # owner's 2026-10-21 transcription ruling can apply; "derivative_lead" is only for unnamed derivatives.
+        specific = next((g for g in SPECIFIC_DERIVATIVE_GRADES if g in hints), None)
+        grade = specific or ("derivative_lead" if derivative else (
+            "original_representation_unverified" if original_context else "held_text_lead"))
     acceptable = _boolean(node.get("acceptable_as_original"))
     if derivative:
         acceptable = False

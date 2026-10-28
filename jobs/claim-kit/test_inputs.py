@@ -215,6 +215,16 @@ class CorpusTests(unittest.TestCase):
         self.assertFalse(record['source']['acceptable_as_original'])
         self.assertTrue(record['source']['requires_page_check'])
 
+    def test_ungraded_wrapper_keeps_named_transcription_grade_for_working_text(self):
+        # A wrapper that names its provenance grade only in its notes must keep that exact grade; the
+        # catch-all "derivative_lead" is not an accepted working-text grade under the 2026-10-21 ruling.
+        for named, expected in (("mirror_transcription", "mirror_transcription"),
+                                ("compiled_transcription_lead", "compiled_transcription_lead"),
+                                ("as amended editorial text", "derivative_lead")):
+            self.assertEqual(inputs._grade({"confidence_note": f"APP copy ({named})"}, None, True, "x")[0], expected)
+            self.assertFalse(inputs._grade({"confidence_note": f"APP copy ({named})"}, None, True, "x")[1])
+        self.assertEqual(inputs._grade({"grade": "official"}, None, True, "x")[0], "official")
+
     def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
         self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
         fragment = {"instrument_id": "EO:1", "kind": "original_representation",
