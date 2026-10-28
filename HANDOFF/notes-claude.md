@@ -2,6 +2,31 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-28 ET (afternoon): spent-order probe filed 15 claims; waiver rule rewritten; Cotton
+
+- **Done:** PRs #69-#73 merged.
+  - **Spent-order probe:** 20 own-terms orders; 15 claims published in
+    `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl`. Ready for human review: 285 -> 300. The blind
+    review caught both planted controls. Record: `research/excavator/claude-spent-probe-2026-10-28/` (final packet
+    `packet-v6/supp`, completion `complete-v1`).
+  - **Held:** EO 7208, because its APP page was harvested live and has since changed, so custody cannot be shown;
+    its claim should be redone on the government printed copy (Commons DjVu 7082-7261) or a mirror capture.
+    Blocked: EO 2842, 2855, 2947, 2999 (no work-completion record; 1921 resolution text not held).
+  - **Fixes:** claim-kit takes the producer-registered working-text grade; the APP page check is defined in
+    AGENT_PROTOCOL.md; supplement excerpts are graded; claim-checker re-fetches archived captures and Commons
+    files; new job **Cotton** (`jobs/cotton-capture-custody`) commits the exact bytes of cited web sources.
+  - **TR-CS-WAIVER** rewritten under the owner's evidence ruling (research in
+    `research/excavator/claude-cs-waiver-research-2026-10-28/`) and approved after three independent review rounds.
+- **Measured:** about 79 producer-minutes and 9 reviewer-minutes for all 20 orders, including four re-runs caused
+  by now-fixed defects. That is about 5.5 agent-minutes per finished order, against the effort model's 88 minutes
+  per order for these types. Coordinator time was not measured. The result covers only simple own-terms types
+  (about 380 model hours); Kean F-20261028-7.
+- **Lesson:** keep every review and completion file inside the final packet folder; completion refuses a packet
+  whose prior research changed.
+- **Next:** scale the probe method to the other 230 retirement, closing and own-terms orders; probe one large
+  block (land withdrawals or the CS waivers with an Official Register fetch job); redo EO 7208.
+- **Owner questions:** none new. Open asks are in `HANDOFF/KEAN.md`.
+
 ## 2026-10-28 ET: merged PRs #56 and #58-#66; Kean shared register built
 
 - **Done:** With the owner's express permission (`research/readiness/owner_rulings/2026-10-28-merge-permission.md`),
