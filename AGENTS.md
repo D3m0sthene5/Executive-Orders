@@ -1,5 +1,7 @@
 # Repository-wide standing instructions for research agents
 
+**Kean, first and last (owner, 2026-10-28):** at the start of every session read `HANDOFF/KEAN.md`, a short brief of open questions for the owner, owner decisions the tools do not yet carry out, and the newest results; then read only the newest entry of each `HANDOFF/notes-*.md`, not the whole files. Before proposing a tool, pilot, test or speed-up, run `python3 -I jobs/kean/kean.py search <words>`. Before stopping, record each result, each question for the owner and each owner decision with `jobs/kean/kean.py` (see `jobs/kean/README.md`), cite ask ids in your notes, and commit the register with the regenerated brief. A result that stays only in a chat is lost to every other session.
+
 Before doing project work in any session, read `HANDOFF/README.md` and the latest relevant notes in `HANDOFF/`, beginning with the newest entries. Check the current GitHub `main` state; do not rely on an older conversational summary.
 
 **Standing rule from the project owner (2026-10-17):** Read `HANDOFF/README.md` in the Executive-Orders repo at the start of every session, and leave your notes in `HANDOFF/notes-astra.md` before you stop. Run scripts that are too big for your container as jobs under `jobs/`.
