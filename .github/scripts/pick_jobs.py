@@ -1,13 +1,17 @@
 """Decide which jobs/<name>/ folders the runner should run.
 
-A push runs every job whose folder had a file changed outside output/.
-A push also runs every job whose triggers.txt has a pattern (fnmatch, e.g.
-"research/readiness/claims/*") matching a changed path. A manual run runs the
-named job(s), separated by spaces or commas. The daily scheduled run runs every
-job whose folder contains a file named DAILY. Picked jobs are ordered so that
-any job listed in a job's after.txt runs before it. Folders starting with "_" (the
-template) are never run. The result goes to the step output "jobs" as a
-space-separated list.
+Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the pipeline):
+- A push runs only the jobs whose own folder had a file changed outside output/, and nothing
+  downstream of them. Data, claims, notes, research and rulings start no jobs on push.
+- The sweep (scheduled every three hours) runs every job whose triggers.txt has a pattern
+  (fnmatch, e.g. "research/readiness/claims/*") matching a path changed on the default branch
+  since the previous sweep, plus every job that reads their outputs (after.txt).
+- The daily scheduled run (09:17 UTC) runs every job whose folder contains a file named DAILY,
+  plus their consumers.
+- A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
+Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
+starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
+space-separated list; jobs a sweep runs only as consumers go to "downstream".
 """
 
 import fnmatch
@@ -20,6 +24,10 @@ NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 ZERO = "0" * 40
 RUNNER_FILES = {".github/workflows/run-jobs.yml"}
 SMOKE_TEST = "example-hello"
+DAILY_CRON = "17 9 * * *"
+# A sweep looks back a little further than its 3-hour interval, so a commit is never missed between
+# sweeps; a file changed twice in the overlap only reruns the same jobs once more.
+SWEEP_WINDOW = "3 hours 20 minutes ago"
 
 
 def git(*args):
@@ -90,7 +98,15 @@ def with_consumers(picked):
         selected |= more
 
 
-def for_changes(changed):
+def recent_changes(since=SWEEP_WINDOW):
+    """Paths changed on this branch's first-parent history since a time (merge commits count in full)."""
+    out = git("log", "--first-parent", "-m", "--name-only", "--format=", f"--since={since}", "HEAD")
+    if out.returncode != 0:
+        sys.exit(f"Could not list recent changes: {out.stderr}")
+    return sorted({line for line in out.stdout.splitlines() if line.strip()})
+
+
+def for_changes(changed, triggers=True):
     """Select direct consumers of code/data edits; outputs never start feedback loops.
 
     Shared-library consumers declare exact files in triggers.txt, including
@@ -111,6 +127,8 @@ def for_changes(changed):
         if name.startswith("_") or name in picked or not runnable(name):
             continue
         picked.append(name)
+    if not triggers:
+        return picked
     # Jobs that asked to rerun when these paths change (job outputs never count).
     inputs = [p for p in changed if not re.match(r"^jobs/[^/]+/output/", p)]
     for name in all_jobs():
@@ -126,7 +144,12 @@ def downstream_only(direct, picked):
 
 
 def main():
-    if os.environ.get("EVENT") == "schedule":
+    event, schedule = os.environ.get("EVENT"), os.environ.get("SCHEDULE") or ""
+    sweep = event == "schedule" and schedule not in ("", DAILY_CRON)
+    consumers = True
+    if sweep:
+        picked = for_changes(recent_changes())
+    elif event == "schedule":
         picked = sorted(
             name for name in os.listdir("jobs")
             if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
@@ -143,14 +166,16 @@ def main():
         if not picked:
             sys.exit("Type at least one job name.")
     else:
-        picked = for_changes(changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]))
+        # A push: only jobs whose own code changed, nothing downstream. The next sweep does the rest.
+        picked = for_changes(changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]), triggers=False)
+        consumers = False
 
     direct = list(picked)
     try:
-        picked = ordered(with_consumers(picked))
+        picked = ordered(with_consumers(picked) if consumers else picked)
     except ValueError as exc:
         sys.exit(str(exc))
-    downstream = downstream_only(direct, picked) if os.environ.get("EVENT") == "push" else []
+    downstream = downstream_only(direct, picked) if sweep else []
     print("Jobs to run:", ", ".join(picked) or "none")
     if downstream:
         print("Running only because a job they read changed:", ", ".join(downstream))

@@ -1,6 +1,8 @@
 name: Road system offline tests
 on:
+  # Once per change: pull requests, and pushes to main. A pull-request commit no longer runs twice.
   push:
+    branches: [main]
     paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**', 'research/stage19/code/**']
   pull_request:
     paths: ['jobs/**', '.github/**', 'research/readiness/rules/**', 'research/stage19/code/**']

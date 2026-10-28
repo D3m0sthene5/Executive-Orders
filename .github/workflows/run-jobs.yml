@@ -11,21 +11,16 @@
 name: Run jobs
 
 on:
+  # Pushes stay light: only a change to a job's own folder (or to the runner) starts a run, and that run
+  # runs only the edited job. Data, claims, notes, research and rulings are picked up by the sweep below.
   push:
     paths:
       - "jobs/**"
-      # Changing the runner reruns jobs/example-hello as a check.
       - ".github/workflows/run-jobs.yml"
       - ".github/scripts/**"
-      # Claims, fetch requests and EXHAUSTED records rerun the jobs that read them
-      # (each job lists what it reads in triggers.txt).
-      - "research/**"
-      - "releases/**"
-      - "ProQuest Pre-1937 Orders/**"
-      # Keep this outer filter broad enough for every jobs/*/triggers.txt.
-      # pick_jobs.py applies each job's narrow patterns before any job runs.
   schedule:
-    - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file
+    - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file, and their consumers
+    - cron: "47 */3 * * *" # every 3 hours: jobs whose triggers.txt matched recent changes, and their consumers
   workflow_dispatch:
     inputs:
       job:
@@ -77,6 +72,7 @@ jobs:
         id: pick
         env:
           EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
           INPUT_JOB: ${{ github.event.inputs.job }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}

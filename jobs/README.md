@@ -16,15 +16,19 @@ to the same branch, so the next agent can read them.
    `job.sh` runs.
 3. Optional: `requirements.txt` for Python packages to install, and
    `needs.txt` for the repo folders the script reads (see below).
-4. Commit and push. The run starts by itself.
+4. Commit and push. The run starts by itself and runs only your job.
 
 To run a job every day, add an empty file named `DAILY` to its folder. It then
 runs once a day (09:17 UTC) on `main`, and commits only if its results changed.
 
-To rerun a job when files outside its folder change, list fnmatch patterns in
-`triggers.txt` (for example `research/readiness/claims/*`). Committed job outputs
-never trigger. To make a job run after others when they run together, list
-their names in `after.txt`. A manual run can name several jobs at once.
+**Pushes stay light (owner, 2026-10-28).** A push starts a run only when it changes a job's own folder
+or the runner, and that run runs only the edited job. Uploads, claims, notes, research files and rulings
+start nothing on push. To rerun a job when files outside its folder change, list fnmatch patterns in
+`triggers.txt` (for example `research/readiness/claims/*`): the **sweep**, every three hours on `main`
+(at 00:47, 03:47, ... UTC), runs every job whose patterns match a path changed since the previous sweep,
+plus every job that lists it in `after.txt`. Committed job outputs never trigger. To make a job run after
+others when they run together, list their names in `after.txt`. When you need a result sooner than the
+next sweep, start the job by hand (below); a manual run can name several jobs at once.
 
 To run a job again without changing it, open the **Actions** tab, choose
 **Run jobs**, then **Run workflow**, pick the branch and type the job name.
@@ -64,10 +68,9 @@ nothing. A job that prints nothing and uses neither CPU nor network for 20 minut
 and recorded as failed, instead of running to the workflow's 350-minute limit. A job that legitimately waits
 longer in silence can raise its limit with a `STALL_MINUTES` file (1-340).
 
-When a push changes a job's input, the runner also runs every job that reads that job's output. Web-search jobs
-(those whose `triggers.txt` lists `jobs/_lib/eo_websearch.py`, such as Clark and Lewis) that run only for that
-reason get 12 web requests instead of their full budget; their daily run and any change to their own inputs still
-search in full.
+When the sweep runs a job only because a job it reads changed, web-search jobs among them (those whose
+`triggers.txt` lists `jobs/_lib/eo_websearch.py`, such as Clark and Lewis) get 12 web requests instead of
+their full budget; their daily run and any change to their own code still search in full.
 
 ## What comes back
 
