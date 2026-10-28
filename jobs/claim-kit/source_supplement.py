@@ -12,6 +12,7 @@ import time
 
 import assemble as A
 import batch as B
+import working_text as W
 
 SCHEMA = 'eo-source-excerpt-declarations/v1'
 SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
@@ -34,6 +35,27 @@ def checked(repo, record):
     return path
 
 
+def registered(repo, source, index=None):
+    """The producer-registered working-text form of a held excerpt, or None.
+
+    An excerpt from a text a producer registered as a provisional working text (an American Presidency Project
+    transcription, say) is cited the way ordinary dossiers cite it: the registered source hash, exact grade and
+    acceptable_as_original false, so the working-text gate requires its disclosure. A declaring agent cannot
+    choose the grade; it comes only from the registry, and an ambiguous registration is left ungraded."""
+    rel = B.safe(repo, source['text_path']).relative_to(Path(repo).resolve()).as_posix()
+    index = index or W.Index(repo)
+    found = {(r['instrument_id'], r['grade'], r['sha256'], r['url']) for rows in index.by_sha.values() for r in rows
+             if r['text_path'] == rel and r.get('text_sha256') == source['text_sha256'] and r['grade'] in W.GRADES}
+    if len(found) != 1:
+        return None
+    (iid, grade, sha, url), = found
+    form = {k: v for k, v in source.items() if k != 'local_path'}
+    form.update(sha256=sha, grade=grade, acceptable_as_original=False, instrument_id=iid, text_path=rel)
+    if url:
+        form['url'] = url
+    return form
+
+
 def derive(repo, dossiers, declaration, provenance):
     if not isinstance(declaration, dict) or set(declaration) != {'schema', 'sources'} or declaration['schema'] != SCHEMA:
         raise ValueError('invalid source declaration schema')
@@ -47,6 +69,7 @@ def derive(repo, dossiers, declaration, provenance):
         if d.get('whole_order_status') is None:
             raise ValueError('undecided dossiers require their existing status-overlay route')
     aliases = set()
+    index = W.Index(repo)
     for entry in entries:
         if not isinstance(entry, dict) or set(entry) != ENTRY_KEYS:
             raise ValueError('invalid source declaration fields')
@@ -74,12 +97,13 @@ def derive(repo, dossiers, declaration, provenance):
         start, end = entry['char_start'], entry['char_end']
         if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(text):
             raise ValueError('invalid source excerpt span')
+        held = registered(repo, source, index)
         eid = 'SUPPLEMENT:' + alias
         for iid in ids:
             if eid in result[iid]['evidence']:
                 raise ValueError('source evidence ID collision')
             result[iid]['evidence'][eid] = {
-                'id': eid, 'source': deepcopy(source), 'text': text[start:end],
+                'id': eid, 'source': deepcopy(held or source), 'text': text[start:end],
                 'char_start': start, 'char_end': end, 'actor_id': entry['actor_id'],
                 'role': 'unreviewed_source_excerpt', 'purpose': entry['reason'],
                 'notice': 'Exact held excerpt only. Actor identity, scope, date, legal meaning and application require research and independent review.'}

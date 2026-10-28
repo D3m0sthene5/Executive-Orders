@@ -186,6 +186,7 @@ class _Collector:
         self.factual_obligations = defaultdict(list)
         self.factual_inputs_checked = {}
         self.hashes = {}
+        self._registry = None
         self.text_keys = set()
         self.pair_keys = set()
 
@@ -244,6 +245,10 @@ class _Collector:
         ref.update({key: source[key] for key in ("archival_id", "local_file_sha256") if source.get(key)})
         ref.update(text_path=rel, text_sha256=actual)
         if acceptable is False:
+            # The 2026-10-21 transcription ruling requires the grade exactly as the producer's fragment records it.
+            # A downstream relabel (claim-drafts calls APP texts "compiled_transcription_lead") must not override it.
+            grade = self.registered_grade(iid, ref) or grade
+        if acceptable is False:
             ref.update(grade=grade, acceptable_as_original=False, instrument_id=iid)
         quality = dict(quality or {})
         quality.setdefault("requires_page_check", False)
@@ -258,6 +263,20 @@ class _Collector:
         if key not in self.text_keys:
             self.text_keys.add(key)
             self.texts.append(row)
+
+    def registered_grade(self, iid, ref):
+        """The single working-text grade the producer registered for this exact text, if any."""
+        if self._registry is None:
+            import working_text
+            self._registry = working_text.Index(self.repo)
+            self._grades = working_text.GRADES
+        grades = {r["grade"] for r in self._registry.match(ref)
+                  if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))}
+        if len(grades) == 1:
+            (grade,) = grades
+            if grade in self._grades:
+                return grade
+        return None
 
     def walk_texts(self, node, base, origin, iid=None, source=None, grade=None,
                    original_context=False, dates=None, acceptable=None, provenance=False,
