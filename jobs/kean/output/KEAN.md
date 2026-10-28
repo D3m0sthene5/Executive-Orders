@@ -24,8 +24,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 
-## Owner decisions not yet carried out by the tools (1)
+## Owner decisions not yet carried out by the tools (2)
 
+- **D-20261021-transcriptions** (partly wired): A labeled transcription (APP, Richardson, CSC reports, HathiTrust, Wikisource, or the owner's ProQuest scans) may satisfy the text step provisionally; originals remain the goal and nothing becomes acceptable_as_original. A claim-kit grade-inference bug labeled 1,824 of 3,403 dossiers' transcriptions 'derivative_lead', which the working-text gate rejects; fixed in jobs/claim-kit/inputs.py, effective after claim-kit regenerates.
 - **D-20261021-proquest** (partly wired): No bulk-access request to NYU; the owner retrieves the scans himself, and scans he adds are graded under the transcription ruling (provisional working text) until compared with an original. No further grading decision is pending. Pinakes ingested 2,750 orders' scans on 2026-10-22, but the tracker's top unlock and the Pinakes README still describe the grade as an open codebook decision, and no claim has used a scan.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
@@ -35,8 +36,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - `jobs/pinakes-proquest-ingest/README.md` (D-20261021-proquest): "is a codebook decision for the owner"
 
 <!-- /kean:drift -->
-## Newest results (10 of 39; `search` finds the rest)
+## Newest results (10 of 41; `search` finds the rest)
 
+- 2026-10-28 F-20261028-5 **no record**: Diagnose main's failed daily runs of 2026-10-26 and 2026-10-27. Lesson: Read the run page on GitHub for the failing job; the Rattle Watch now prints per-job progress so the next failure names itself in the log.
+- 2026-10-28 F-20261028-4 **partly worked**: 20-order probe on spent pre-1937 orders with statuses (12 retirement exemptions, 5 eight-hour suspensions, 3… Lesson: Most blocks were tool defects, now fixed: claim-kit keeps named transcription grades and the shared date lookup reads the WPA numbered list. Re-prepare after Pinakes and claim-kit regenerate; supplem…
 - 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
 - 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
 - 2026-10-28 F-20261028-1 **no record**: Search for a handwriting OCR comparison (bake-off). Lesson: Test AI page reading on a sample of the 310 handwritten scans before choosing a method.
@@ -45,7 +48,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-26 F-20261026-1 **failed**: Counterexample-first research versus ordinary research on six orders. Lesson: The recurring defect is misassociated source text; check that a text is the right order before analysis.
 - 2026-10-25 F-20261025-2 **partly worked**: Institutional record series: National Mediation Board annual reports. Lesson: Annual reports are a good route to board report dates; keep the route, no new harvester.
 - 2026-10-25 F-20261025-1 **stopped at gate**: Norton: answer a shared factual question once for several orders. Lesson: Check what the existing workflow already does before testing a new mechanism.
-- 2026-10-24 F-20261024-4 **partly worked**: Carry status research through ordinary lifecycle production. Lesson: Ordinary production works; adopting statuses is the step that holds cases back.
-- 2026-10-24 F-20261024-3 **failed**: Campaign acceleration search across four mechanisms (PR #57, unmerged). Lesson: Orders of one 'type' differ legally; current tools already share what can safely be shared.
 
-Register: 11 owner decisions, 0 answered questions, 39 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 11 owner decisions, 0 answered questions, 41 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
