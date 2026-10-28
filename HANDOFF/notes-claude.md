@@ -2,6 +2,19 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-28 (Claude, Capcom: the Apollo mission tracker)
+
+- **Added** `research/progress/remaining-work/build_mission_log.py` (Capcom), `APOLLO11_MILESTONES.csv` (NASA KSC times)
+  and the frozen weights `MISSION_WEIGHTS.csv`. It walks main's first-parent history of the tracker's
+  READINESS_BY_ORDER.csv, keeps the last snapshot per UTC day, and writes `MISSION_LOG.csv`: ready, statuses, done and
+  open steps, and the effort-weighted share of all readiness work done (census-gap orders included), mapped onto Apollo
+  11's 109h 24m clock. Rerun it on every dashboard refresh; it is idempotent and needs only git history.
+- **Dashboard:** new Mission tab (rocket on the Earth-Moon arc, daily breadcrumbs, two history charts, flight log) and
+  a data-driven header line. Today: translunar coast, T+11h 29m, 10.5% of the work, 285 ready, 0 certified.
+- **Read with care:** the Oct 17 to 18 jump is the tracker first counting held originals and machine searches; pace is
+  measured from Oct 18. Tracked steps did not move Oct 22 to 28 because the tracker has not re-run on today's merges
+  (PR #69 to #75); the spent-order probe expects 285 to 300 when it does.
+
 ## 2026-10-28 ET (afternoon): spent-order probe filed 15 claims; waiver rule rewritten; Cotton
 
 - **Done:** PRs #69-#73 merged.
