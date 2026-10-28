@@ -55,6 +55,20 @@ one per line, for example `research/stage19`. Git LFS files (such as the
 archive `.part` files and `releases/**/*.zip`) arrive as small pointer files;
 a script that needs one runs `git lfs pull --include "<path>"` itself.
 
+## Telling a slow job from a stuck one (Rattle Watch)
+
+While a job runs, the run log prints one line a minute, for example
+`[Rattle Watch] clark-discovery: 22m elapsed (last successful run 47m), last output 20m ago, CPU 31.0s in the
+last 60s, network 4.2 MB in the last 60s`. Rising CPU or network means the job is working even when it prints
+nothing. A job that prints nothing and uses neither CPU nor network for 20 minutes is stopped with exit code 124
+and recorded as failed, instead of running to the workflow's 350-minute limit. A job that legitimately waits
+longer in silence can raise its limit with a `STALL_MINUTES` file (1-340).
+
+When a push changes a job's input, the runner also runs every job that reads that job's output. Web-search jobs
+(those whose `triggers.txt` lists `jobs/_lib/eo_websearch.py`, such as Clark and Lewis) that run only for that
+reason get 12 web requests instead of their full budget; their daily run and any change to their own inputs still
+search in full.
+
 ## What comes back
 
 After the run, `jobs/<name>/output/` is committed to the branch with:

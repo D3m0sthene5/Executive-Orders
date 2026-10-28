@@ -285,6 +285,13 @@ def render_brief(repo, reg=None):
     if not open_asks:
         w("Nothing.")
     w("")
+    pinned = [d for d in decisions if d.get("pinned")]
+    if pinned:
+        w("## Standing owner requirements")
+        w("")
+        for d in pinned:
+            w(f"- **{d['title']}** ({d['id']}): {_one(d['ruling'], 900)}")
+        w("")
     w(f"## Owner decisions not yet carried out by the tools ({len(needs_work)})")
     w("")
     for d in needs_work:
@@ -375,6 +382,7 @@ def main(argv=None):
     d.add_argument("--source", action="append", required=True); d.add_argument("--wiring", default="not_verified", choices=WIRING)
     d.add_argument("--implemented-by", action="append", default=[]); d.add_argument("--wiring-note", default="")
     d.add_argument("--stale-text", action="append", default=[], help="PATH::TEXT that contradicts the decision")
+    d.add_argument("--pinned", action="store_true", help="show the full ruling in every brief")
     d.add_argument("--date"); d.add_argument("--id")
     wi = sub.add_parser("wire")
     wi.add_argument("--id", required=True); wi.add_argument("--wiring", required=True, choices=WIRING)
@@ -435,7 +443,7 @@ def main(argv=None):
             stale.append({"path": path, "text": text})
         rec = {"id": args.id or next_id(rows, "D", day), "rev": 0, "date": day, "title": args.title, "ruling": args.ruling,
                "sources": args.source, "wiring": args.wiring, "implemented_by": args.implemented_by,
-               "wiring_note": args.wiring_note, "stale_text": stale}
+               "wiring_note": args.wiring_note, "stale_text": stale, "pinned": args.pinned}
         append(repo, "decisions", rec)
     elif args.cmd == "wire":
         cur = {r["id"]: r for r in current(load(repo, "decisions"))}

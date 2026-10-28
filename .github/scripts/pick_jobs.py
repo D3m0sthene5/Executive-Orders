@@ -120,6 +120,11 @@ def for_changes(changed):
     return picked
 
 
+def downstream_only(direct, picked):
+    """Jobs selected only as consumers of a selected job, not by a change to their own folder or triggers."""
+    return [name for name in picked if name not in set(direct)]
+
+
 def main():
     if os.environ.get("EVENT") == "schedule":
         picked = sorted(
@@ -140,13 +145,19 @@ def main():
     else:
         picked = for_changes(changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]))
 
+    direct = list(picked)
     try:
         picked = ordered(with_consumers(picked))
     except ValueError as exc:
         sys.exit(str(exc))
+    downstream = downstream_only(direct, picked) if os.environ.get("EVENT") == "push" else []
     print("Jobs to run:", ", ".join(picked) or "none")
+    if downstream:
+        print("Running only because a job they read changed:", ", ".join(downstream))
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")
+        if downstream:
+            fh.write(f"downstream={' '.join(downstream)}\n")
 
 
 if __name__ == "__main__":

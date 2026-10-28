@@ -31,8 +31,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - `jobs/pinakes-proquest-ingest/README.md` (D-20261021-proquest): "is a codebook decision for the owner"
 
 <!-- /kean:drift -->
-## Newest results (10 of 31; `search` finds the rest)
+## Newest results (10 of 39; `search` finds the rest)
 
+- 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
 - 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
 - 2026-10-28 F-20261028-1 **no record**: Search for a handwriting OCR comparison (bake-off). Lesson: Test AI page reading on a sample of the 310 handwritten scans before choosing a method.
 - 2026-10-26 F-20261026-3 **partly worked**: Trace production costs on four orders. Lesson: A machine-time fix, not an agent-hour saving.
@@ -42,6 +43,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-25 F-20261025-1 **stopped at gate**: Norton: answer a shared factual question once for several orders. Lesson: Check what the existing workflow already does before testing a new mechanism.
 - 2026-10-24 F-20261024-4 **partly worked**: Carry status research through ordinary lifecycle production. Lesson: Ordinary production works; adopting statuses is the step that holds cases back.
 - 2026-10-24 F-20261024-3 **failed**: Campaign acceleration search across four mechanisms (PR #57, unmerged). Lesson: Orders of one 'type' differ legally; current tools already share what can safely be shared.
-- 2026-10-24 F-20261024-2 **worked**: Load earlier research into case preparation (cumulative research). Lesson: Earlier sessions' work is lost unless preparation loads it; check prior proposals before researching.
 
-Register: 9 owner decisions, 0 answered questions, 31 results; 17 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 9 owner decisions, 0 answered questions, 39 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

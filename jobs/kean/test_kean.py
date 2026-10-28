@@ -168,6 +168,15 @@ class KeanTest(unittest.TestCase):
         hits, _ = kean.search(kean.Repo(self.root), ["lesson"])
         self.assertEqual(len(hits), 8)  # search output is capped too
 
+    def test_pinned_requirements_appear_in_every_brief(self):
+        self.write("research/readiness/owner_rulings/r.md", "# r\n")
+        self.run_cli("add-decision", "--title", "Standing requirements", "--ruling", "Never count a label as a history.",
+                     "--source", "research/readiness/owner_rulings/r.md", "--wiring", "no_wiring_needed", "--pinned",
+                     "--date", "2026-10-28")
+        brief = open(os.path.join(self.root, kean.BRIEF), encoding="utf-8").read()
+        self.assertIn("## Standing owner requirements", brief)
+        self.assertIn("Never count a label as a history.", brief)
+
     def test_ids_increment_per_day(self):
         for q in ("a", "b"):
             self.run_cli("add-ask", "--question", q, "--why", "w", "--asked-by", "Claude", "--date", "2026-10-28")

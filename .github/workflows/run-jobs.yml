@@ -87,6 +87,8 @@ jobs:
         if: steps.pick.outputs.jobs != ''
         env:
           JOBS: ${{ steps.pick.outputs.jobs }}
+          # Jobs running only because a job they read changed; web-search jobs among them get a small budget.
+          DOWNSTREAM_ONLY: ${{ steps.pick.outputs.downstream }}
           TRIGGER: ${{ github.event_name }} by ${{ github.actor }}
           # Optional search keys for the Lewis/Clark web search (jobs/_lib/eo_websearch.py). Each is
           # empty unless the owner adds the secret under Settings -> Secrets and variables -> Actions;
