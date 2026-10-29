@@ -8,7 +8,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (10)
+## Waiting for the owner (11)
 
 - **A-20261018-1** (2026-10-18, Claude): Send the drafted archival reference and scan requests (National Archives letters-received series and others)? *Pre-1862 orders have no other route to an original; none of the drafted requests has been sent.*
 - **A-20261019-1** (2026-10-19, Claude): Approve, trial or reject risk-tiered review (a lighter independent review for low-risk cases)? *X1's model projected it would cut the post-series remainder from 11,256 to 10,027 agent-hours; that figure is an assumption, never measured.*
@@ -20,6 +20,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **A-20261028-2** (2026-10-28, Claude): Make the Kean check a required status check for main (GitHub Settings > Branches)? *Without it a failing Kean check is visible but does not stop a merge.*
 - **A-20261028-3** (2026-10-28, Claude): Add to ChatGPT's custom instructions: 'For the Executive-Orders project, first read HANDOFF/KEAN.md in D3m0sthene5/Executive-Orders and record results there before ending'? *Kean reaches only sessions that open the repository; this line brings ChatGPT chats that do not.*
 - **A-20261028-4** (2026-10-28, Claude): For orders with no provisional status, may a separate-context Claude reviewer with planted controls adopt the status when it also reviews the order's full lifecycle claim, or must status adoption keep waiting for a diff… *About 200 simple spent orders (retirement exemptions, closings, own-terms orders, allotments) and about 2,980 land orders have no status, so no claim can be filed for them through Claude's route; their reviewed research can only be held as…*
+- **A-20261029-1** (2026-10-29, Claude): Approve a Valla change so a packet's context excludes its own and unrelated committed packages, and raise the 100-package limit? *Committing any packet now stales every packet in flight, and 76 of the 100-package hard limit are tracked; the permission layer refused the change because it relaxes an integrity check.*
 
 ## Standing owner requirements
 
@@ -32,8 +33,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (10 of 47; `search` finds the rest)
+## Newest results (8 of 48; `search` finds the rest)
 
+- 2026-10-29 F-20261029-2 **worked**: One independently reviewed shared legal analysis (S.J. Res. 113 sec. 2 repeal, June 14, 1935) for NIRA code-a… Lesson: Shared analysis earns its saving once per batch; next blocker is conditions, stays and committees attached to approvals (about 20 blocked). Never commit in-flight packets (Valla pins tracked RATIONAL…
 - 2026-10-29 F-20261029-1 **worked**: Refresh the original rocket dashboard with current published data Lesson: Preserve the original artifact and frozen weights; readiness and modeled progress never imply human certification.
 - 2026-10-28 F-20261028-9 **worked**: Audit the spent-order probe effort denominator for the current dashboard Lesson: Use 5.90 recorded worker-minutes per filed claim for this probe. Keep coordinator time unmeasured and the 88-minute comparison modeled; no project-wide net saving follows.
 - 2026-10-28 F-20261028-8 **worked**: Fixes found by the probe: claim-kit uses the producer-registered working-text grade; APP page check defined;… Lesson: APP pages harvested live (DOCUMENTS.jsonl) cannot be re-proven once the site changes; prefer mirror captures or government printed copies for claims, and let Cotton run on every claims change.
@@ -41,8 +43,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-28 F-20261028-6 **worked**: Research and rewrite of TR-CS-WAIVER (1,530 one-person civil-service waivers) under the owner's evidence ruli… Lesson: Four outcomes: exhausted on a date; within (order date, R]; not in force with use unknown as an interval to the reason date; open. Most waivers will stay open on use unless the Official Register is f…
 - 2026-10-28 F-20261028-5 **no record**: Diagnose main's failed daily runs of 2026-10-26 and 2026-10-27. Lesson: Read the run page on GitHub for the failing job; the Rattle Watch now prints per-job progress so the next failure names itself in the log.
 - 2026-10-28 F-20261028-4 **partly worked**: 20-order probe on spent pre-1937 orders with statuses (12 retirement exemptions, 5 eight-hour suspensions, 3… Lesson: Most blocks were tool defects, now fixed: claim-kit keeps named transcription grades and the shared date lookup reads the WPA numbered list. Re-prepare after Pinakes and claim-kit regenerate; supplem…
-- 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
-- 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
-- 2026-10-28 F-20261028-10 **worked**: Refresh the dashboard against the combined October 28 production claims Lesson: Use published generations and exact receipts; filed claims and isolated replay gains never establish readiness.
 
-Register: 11 owner decisions, 0 answered questions, 47 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 11 owner decisions, 0 answered questions, 48 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
