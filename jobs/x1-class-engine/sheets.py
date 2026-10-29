@@ -21,7 +21,7 @@ import csv, hashlib, json, os
 BATCH_MAX = 50
 AUDIT_RATE = 0.20
 COLUMNS = ["batch_id", "row", "instrument_id", "type", "type_confidence", "type_evidence", "rule_id", "rule_state",
-           "cluster_id", "cluster_role", "clone_status", "cloned_clauses", "clone_dropout_reason", "event_candidates",
+           "cluster_id", "cluster_role", "clone_status", "cloned_clauses", "clone_dropout_reason", "event_candidates", "event_source_details",
            "provisional_status", "has_dossier", "text_grade", "route", "review_tier",
            "agent_decision", "agent_reason", "reviewer_decision", "reviewer_reason"]
 
@@ -50,7 +50,7 @@ def build(repo, types, members, cloned, events, rule_state):
         ncl[c["instrument_id"]] = ncl.get(c["instrument_id"], 0) + 1
     ev = {}
     for e in events:
-        ev.setdefault(e["instrument_id"], []).append(e["event_id"])
+        ev.setdefault(e["instrument_id"], []).append(e)
 
     def row(iid):
         t = types[iid]
@@ -64,7 +64,12 @@ def build(repo, types, members, cloned, events, rule_state):
              "rule_id": t["rule_id"], "rule_state": rule_state.get(t["rule_id"], ""),
              "cluster_id": m.get("cluster_id", ""), "cluster_role": m.get("role", ""),
              "clone_status": m.get("clone_status", ""), "cloned_clauses": ncl.get(iid, 0),
-             "clone_dropout_reason": m.get("dropout_reason", ""), "event_candidates": "|".join(ev.get(iid, [])),
+             "clone_dropout_reason": m.get("dropout_reason", ""), "event_candidates": "|".join(e["event_id"] for e in ev.get(iid, [])),
+             "event_source_details": json.dumps([{
+                 "event_id": e["event_id"], "role": e.get("role", ""),
+                 "sources_state": e.get("sources_state", "not_recorded"),
+                 "records": json.loads(e.get("source_records") or "[]")
+             } for e in ev.get(iid, [])], sort_keys=True),
              "provisional_status": st, "has_dossier": "yes" if has_d else "no", "text_grade": t["text_grade"],
              "route": route, "agent_decision": "", "agent_reason": "", "reviewer_decision": "", "reviewer_reason": ""}
         r["review_tier"] = review_tier(r)
