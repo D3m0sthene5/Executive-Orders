@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-d8webz1v/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-ppc7ydpo/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-d8webz1v/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-ppc7ydpo/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -136,9 +136,19 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 ok
 test_text_quality_screens_handwriting_noise (test_lewis.SyntheticRepo.test_text_quality_screens_handwriting_noise) ... ok
+test_budget_deferment_preserved (test_handoff.HandoffTests.test_budget_deferment_preserved) ... ok
+test_contradictory_results_stay_explicit (test_handoff.HandoffTests.test_contradictory_results_stay_explicit) ... ok
+test_found_receipt_is_review_work_not_a_new_request (test_handoff.HandoffTests.test_found_receipt_is_review_work_not_a_new_request) ... ok
+test_found_without_current_receipt_needs_revalidation (test_handoff.HandoffTests.test_found_without_current_receipt_needs_revalidation) ... ok
+test_missing_result_never_means_unattempted (test_handoff.HandoffTests.test_missing_result_never_means_unattempted) ... ok
+test_native_refresh_is_idempotent_and_preserves_original_proposals (test_handoff.HandoffTests.test_native_refresh_is_idempotent_and_preserves_original_proposals) ... ok
+test_not_queued_stays_proposal (test_handoff.HandoffTests.test_not_queued_stays_proposal) ... ok
+test_other_target_never_matches (test_handoff.HandoffTests.test_other_target_never_matches) ... ok
+test_qualified_request_not_conflated (test_handoff.HandoffTests.test_qualified_request_not_conflated) ... ok
+test_shared_result_matches_each_exact_target (test_handoff.HandoffTests.test_shared_result_matches_each_exact_target) ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 3.204s
+Ran 34 tests in 3.247s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -156,7 +166,7 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 16.040s
+Ran 13 tests in 16.042s
 
 OK
 {
@@ -200,15 +210,16 @@ OK
   },
   "problems": []
 }
+{"acquisition_handoff": {"queued_not_attempted_budget": 22, "queued_result_not_published": 128, "retrieval_recorded_needs_review": 115}}
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 1,
-  "requests_used": 17,
-  "hits_total": 4147,
-  "leads_page_confirmed": 41,
+  "advanced_this_run": 100,
+  "requests_used": 1052,
+  "hits_total": 5824,
+  "leads_page_confirmed": 79,
   "engines": {
-    "duckduckgo_html": "error",
-    "duckduckgo_lite": "ok",
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
     "brave_html": "blocked_by_robots_txt",
@@ -223,12 +234,12 @@ Offline stage done; starting the web search stage
     "loc_manuscripts": "ok",
     "internet_archive": "ok",
     "google_books": "http_429",
-    "hathitrust_catalog": "not_tried",
-    "federal_register_api": "not_tried",
-    "wikisource_search": "not_tried",
-    "wikipedia_search": "not_tried",
-    "presidency_project": "not_tried",
-    "govinfo_search_page": "not_tried",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "federal_register_api": "ok",
+    "wikisource_search": "blocked_by_robots_txt",
+    "wikipedia_search": "blocked_by_robots_txt",
+    "presidency_project": "ok",
+    "govinfo_search_page": "ok",
     "nara_catalog": "needs_key"
   }
 }
