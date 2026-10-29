@@ -32,8 +32,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (10 of 46; `search` finds the rest)
+## Newest results (10 of 47; `search` finds the rest)
 
+- 2026-10-29 F-20261029-1 **worked**: Refresh the original rocket dashboard with current published data Lesson: Preserve the original artifact and frozen weights; readiness and modeled progress never imply human certification.
 - 2026-10-28 F-20261028-9 **worked**: Audit the spent-order probe effort denominator for the current dashboard Lesson: Use 5.90 recorded worker-minutes per filed claim for this probe. Keep coordinator time unmeasured and the 88-minute comparison modeled; no project-wide net saving follows.
 - 2026-10-28 F-20261028-8 **worked**: Fixes found by the probe: claim-kit uses the producer-registered working-text grade; APP page check defined;… Lesson: APP pages harvested live (DOCUMENTS.jsonl) cannot be re-proven once the site changes; prefer mirror captures or government printed copies for claims, and let Cotton run on every claims change.
 - 2026-10-28 F-20261028-7 **worked**: Spent-order probe: 20 pre-1937 own-terms orders (retirement exemptions, closing days, eight-hour suspensions)… Lesson: For simple own-terms orders the effort model overstates per-order work by roughly an order of magnitude. These types hold about 380 model hours; the large blocks (land, unclassified, standing, CS wai…
@@ -43,6 +44,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
 - 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
 - 2026-10-28 F-20261028-10 **worked**: Refresh the dashboard against the combined October 28 production claims Lesson: Use published generations and exact receipts; filed claims and isolated replay gains never establish readiness.
-- 2026-10-28 F-20261028-1 **no record**: Search for a handwriting OCR comparison (bake-off). Lesson: Test AI page reading on a sample of the 310 handwritten scans before choosing a method.
 
-Register: 11 owner decisions, 0 answered questions, 46 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 11 owner decisions, 0 answered questions, 47 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
