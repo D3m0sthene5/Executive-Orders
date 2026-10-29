@@ -72,6 +72,28 @@ class BatchTests(T.BuildIntegrationTests):
         with self.assertRaisesRegex(ValueError,'changed Valla review context'):
             batch.load_packet(folder,self.repo)
 
+    def test_shared_policy_index_is_scoped_and_never_replaces_an_explicit_index(self):
+        from unittest.mock import patch
+        import working_text,fragment_cache
+        original=working_text.policy;seen=[]
+        def fake(claim,repo,index=None):seen.append(index);return [],[]
+        working_text.policy=fake
+        try:
+            with patch.object(fragment_cache,'shared',return_value='SHARED') as shared:
+                with fragment_cache.policy_index(self.repo):
+                    working_text.policy({},self.repo);working_text.policy({},self.repo,'EXPLICIT')
+                self.assertIs(working_text.policy,fake)
+            self.assertEqual(seen,['SHARED','EXPLICIT']);self.assertEqual(shared.call_count,1)
+        finally:
+            working_text.policy=original
+        # With the real accessor, policy results equal those from a freshly constructed index.
+        p=self.packet();self.fill(p);batch.apply(self.repo,p,p/'applied')
+        claims=[json.loads(l) for l in (p/'applied/CLAIMS.proposed.jsonl').read_text().splitlines() if l.strip()]
+        self.assertTrue(claims)
+        fresh=[working_text.policy(c,self.repo,working_text.Index(self.repo)) for c in claims]
+        with fragment_cache.policy_index(self.repo):
+            self.assertEqual([working_text.policy(c,self.repo) for c in claims],fresh)
+
     def test_supplement_parent_is_own_work_only_for_the_same_agent(self):
         parent=self.repo/'research/excavator/scope/packet';parent.mkdir(parents=True)
         child=parent/'supp'

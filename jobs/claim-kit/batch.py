@@ -18,6 +18,7 @@ import time
 
 from assemble import blank_sheet,assemble,check_claim,canonical_sha
 from build import filename
+import fragment_cache
 from lifecycle_obligations import obligations
 
 SCHEMA='eo-claim-kit-work-package/v1'
@@ -538,6 +539,19 @@ def apply(repo,folder,write):
         if c['instrument_id'] not in dossiers:raise ValueError('clause row outside packet')
         by[c['instrument_id']].append(c)
     write.mkdir(parents=True);report=[];claims=[]
+    with fragment_cache.policy_index(repo):
+        _apply_rows(repo,write,packet,dossiers,order_rows,by,shared,report,claims)
+    with (write/'CLAIMS.proposed.jsonl').open('w',encoding='utf-8',newline='\n') as f:
+        for c in claims:f.write(canon(c)+'\n')
+    summary={'schema':'eo-claim-kit-batch-apply/v1','packet_fingerprint':packet['fingerprint'],
+        'apply_code_sha256':file_sha(Path(__file__)),
+        'counts':dict(Counter(r['outcome'] for r in report)),'total_packet_members':len(dossiers),
+        'wall_seconds':round(time.monotonic()-started,4),'extraction_calls':0,'source_file_hashes_checked':len(packet['held_text_file_pins']),
+        'claims_published':0,'statuses_published':0,'owner_acceptance_required_for_replacements':True}
+    dump(write/'AUDIT.json',report);dump(write/'SUMMARY.json',summary);return summary
+
+
+def _apply_rows(repo,write,packet,dossiers,order_rows,by,shared,report,claims):
     for r in order_rows:
         iid=r['instrument_id'];errors=[];claim=None;sheet=None
         try:
@@ -581,24 +595,17 @@ def apply(repo,folder,write):
         outcome=('rejected' if errors else 'awaiting_status_review' if dossiers[iid].get('whole_order_status') is None else 'assembled_proposal')
         report.append({'instrument_id':iid,'outcome':outcome,
             'errors':errors,'ownership':packet['ownership'][iid],'claim_sha256':canonical_sha(claim) if claim and not errors else None})
-    with (write/'CLAIMS.proposed.jsonl').open('w',encoding='utf-8',newline='\n') as f:
-        for c in claims:f.write(canon(c)+'\n')
-    summary={'schema':'eo-claim-kit-batch-apply/v1','packet_fingerprint':packet['fingerprint'],
-        'apply_code_sha256':file_sha(Path(__file__)),
-        'counts':dict(Counter(r['outcome'] for r in report)),'total_packet_members':len(dossiers),
-        'wall_seconds':round(time.monotonic()-started,4),'extraction_calls':0,'source_file_hashes_checked':len(packet['held_text_file_pins']),
-        'claims_published':0,'statuses_published':0,'owner_acceptance_required_for_replacements':True}
-    dump(write/'AUDIT.json',report);dump(write/'SUMMARY.json',summary);return summary
 
 
 def check(repo,folder,applied,actual=True):
     repo=Path(repo).resolve();folder=Path(folder).resolve();applied=Path(applied).resolve();packet,dossiers=load_packet(folder,repo)
     audit=json.loads((applied/'AUDIT.json').read_bytes());claim_rows=[];errors=[]
-    for n,l in enumerate((applied/'CLAIMS.proposed.jsonl').read_text('utf-8').splitlines(),1):
-        if not l.strip():continue
-        c=json.loads(l);iid=c['instrument_id'];es=check_claim(c,repo,dossiers.get(iid))
-        claim_rows.append({'instrument_id':iid,'line':n,'errors':es,'claim_sha256':canonical_sha(c)})
-        errors.extend(es)
+    with fragment_cache.policy_index(repo):
+        for n,l in enumerate((applied/'CLAIMS.proposed.jsonl').read_text('utf-8').splitlines(),1):
+            if not l.strip():continue
+            c=json.loads(l);iid=c['instrument_id'];es=check_claim(c,repo,dossiers.get(iid))
+            claim_rows.append({'instrument_id':iid,'line':n,'errors':es,'claim_sha256':canonical_sha(c)})
+            errors.extend(es)
     result={'schema':'eo-claim-kit-batch-check/v1','packet_members':len(dossiers),'claims_checked':len(claim_rows),
         'strict_claim_pass':sum(not r['errors'] for r in claim_rows),'strict_claim_fail':sum(bool(r['errors']) for r in claim_rows),
         'outcomes_including_blocked':dict(Counter(r['outcome'] for r in audit)),

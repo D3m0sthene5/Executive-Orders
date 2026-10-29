@@ -14,6 +14,7 @@ CLAIM_KIT_INDEX_CACHE=0 disables both the disk cache and in-process reuse.
 """
 import hashlib
 import io
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -300,3 +301,25 @@ def shared(repo):
         del _SHARED[stale]
     _SHARED[key] = (result, witness)
     return result
+
+
+@contextmanager
+def policy_index(repo):
+    """Let working_text.policy use one verified index instead of building one per checked claim.
+
+    assemble.check_claim calls working_text.policy(claim, repo) without an index, so every checked
+    claim rebuilt the complete provider index (about 8 s each). Inside this context the default index
+    is shared(repo), which re-hashes the complete provider inventory and re-checks every consulted
+    text path on each call, so the result equals a fresh construction. assemble.py and
+    working_text.py stay byte-identical (both are in the compiler fingerprint); an explicit index
+    argument is never replaced, and the original function is restored on exit.
+    """
+    original = W.policy
+
+    def policy(claim, repo_arg, index=None):
+        return original(claim, repo_arg, index if index is not None else shared(repo_arg))
+    W.policy = policy
+    try:
+        yield
+    finally:
+        W.policy = original

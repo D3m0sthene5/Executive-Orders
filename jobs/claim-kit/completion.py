@@ -18,6 +18,7 @@ import sys
 import time
 
 import batch
+import fragment_cache
 from assemble import _gate, check_claim
 
 SCHEMA = 'eo-claim-kit-completion/v1'
@@ -653,7 +654,8 @@ def complete(repo, manifest_path, dest, publish=False):
                     owner = existing[iid]['owner']
                     require(owner == manifest['agent'] or owner.startswith(manifest['agent'] + '-'), 'existing claim belongs to another owner; explicit replacement proposal required')
                     require(target.name > Path(existing[iid]['path']).name, 'own replacement would be shadowed by an existing claim filename')
-                claim, raw, detail = selected_claim(inputs, member, manifest, planted, held)
+                with fragment_cache.policy_index(repo):  # one verified fragment index, not one per claim
+                    claim, raw, detail = selected_claim(inputs, member, manifest, planted, held)
                 selected[iid] = (claim, raw)
                 row.update(detail, outcome='selected')
         except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:

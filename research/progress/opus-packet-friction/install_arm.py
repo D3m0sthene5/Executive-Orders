@@ -29,6 +29,10 @@ def main():
                            cwd=branch, check=True, capture_output=True, text=True).stdout.split()
     untracked = subprocess.run(['git', 'ls-files', '--others', '--exclude-standard', '--', 'jobs/claim-kit/*.py', 'jobs/valla/*.py'],
                                cwd=branch, check=True, capture_output=True, text=True).stdout.split()
+    # Files absent at the base are copied whole from the branch rather than patched.
+    added = subprocess.run(['git', 'diff', '--name-only', '--diff-filter=A', a.base_ref, '--', 'jobs/claim-kit/*.py', 'jobs/valla/*.py'],
+                           cwd=branch, check=True, capture_output=True, text=True).stdout.split()
+    untracked = sorted(set(untracked) | set(added))
     files = sorted(n for n in set(names) | set(untracked) if not Path(n).name.startswith('test_'))
     if a.only:
         files = [f for f in files if Path(f).name in a.only]
@@ -41,7 +45,8 @@ def main():
         if rel in untracked:
             raw = (branch / rel).read_bytes()
         else:
-            raw = target.read_bytes() if target.exists() else b''
+            # Start from the tree's committed bytes, so reinstalling never applies a patch twice.
+            raw = subprocess.run(['git', 'show', 'HEAD:' + rel], cwd=tree, check=True, capture_output=True).stdout
         if target.exists():
             target.unlink()
         target.write_bytes(raw)
