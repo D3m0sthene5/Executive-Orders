@@ -241,6 +241,16 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual({r["grade"] for r in records}, {"mirror_transcription"})
         self.assertEqual({r["source"]["grade"] for r in records}, {"mirror_transcription"})
 
+    def test_non_executive_order_actors_are_kept_as_leads(self):
+        # A Public Land Order or proclamation revoking a census order is a later-event lead; a malformed
+        # or unprefixed non-census actor is still dropped.
+        c = inputs._Collector(self.repo, {"EO:1": {}}, [])
+        c.add_pair("EO:1", {"target_id": "EO:1", "acting_id": "PLO:7330"}, "x")
+        c.add_pair("EO:1", {"target_id": "EO:1", "acting_id": "PROC:2318"}, "x")
+        c.add_pair("EO:1", {"target_id": "EO:1", "acting_id": "somebody"}, "x")
+        c.add_pair("EO:2", {"target_id": "EO:2", "acting_id": "PLO:1"}, "x")
+        self.assertEqual(sorted(p["actor_id"] for p in c.pairs), ["PLO:7330", "PROC:2318"])
+
     def test_fr_original_low_locator_inherits_through_nested_wrapper(self):
         self.write("jobs/fr-originals/output/texts/one.txt", "Located OCR text.")
         fragment = {"instrument_id": "EO:1", "kind": "original_representation",
