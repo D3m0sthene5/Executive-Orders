@@ -8,3 +8,4 @@
 | blind reviewer, rehearsal r1 (5 lines incl. 1 plant) | opus | 130996 | 27 | 218 | reviews/BLIND_REVIEW.jsonl |
 | after-reveal, control adjudication, block check (same reviewer, continued) | opus | 54881 increment (185877 cumulative) | 20 | 187 | AFTER_REVEAL.jsonl, CONTROL_ADJUDICATION_NOTE.json, BLOCK_CHECK.jsonl |
 | coordinator | opus | not exposed in this session | - | - | integration, fixes, receipts |
+| final engineering review (fresh context, read-only) | opus | 146791 | 29 | 255 | findings 1-9; all fixed except the flagged adjudication policy question |
