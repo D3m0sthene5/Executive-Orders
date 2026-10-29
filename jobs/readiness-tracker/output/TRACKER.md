@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 285 of 14,972 orders (1.9%)**
+**Ready for human review: 310 of 14,972 orders (2.1%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -8,19 +8,19 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,403. The other 11,569 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 285}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 1; quotation rechecks: 1. These remain work after readiness.
+Ready by text evidence: {'original_supported': 297, 'transcription_dependent': 13}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 16; quotation rechecks: 16. These remain work after readiness.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,403 | 3,403 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 2,356 | 3,403 | 69.2% |
-| Complete inventory of the order's operative clauses | 344 | 3,403 | 10.1% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 303 | 3,403 | 8.9% |
-| Savings clauses and surviving effects closed | 336 | 3,403 | 9.9% |
-| Search for later contrary sources recorded, no open conflicts | 2,534 | 3,403 | 74.5% |
+| Original or explicitly reviewed provisional working text saved | 2,370 | 3,403 | 69.6% |
+| Complete inventory of the order's operative clauses | 375 | 3,403 | 11.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 329 | 3,403 | 9.7% |
+| Savings clauses and surviving effects closed | 362 | 3,403 | 10.6% |
+| Search for later contrary sources recorded, no open conflicts | 2,548 | 3,403 | 74.9% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 839 | 14.9% |
 
@@ -28,11 +28,10 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 5,347 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 5,333 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 2,750 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
-| 286 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
-| 18 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
+| 285 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
@@ -46,16 +45,16 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,569 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 959 | 7,814 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 944 | 5,347 |
-| `NO_CLAUSE_INVENTORY` | 2,997 | 2,997 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,997 | 2,997 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 946 | 7,801 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 930 | 5,333 |
+| `NO_CLAUSE_INVENTORY` | 2,982 | 2,982 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,982 | 2,982 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 77 | 2,750 |
-| `FIRST_END_UNPROVED` | 2,604 | 2,604 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 687 | 687 |
+| `FIRST_END_UNPROVED` | 2,589 | 2,589 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 672 | 672 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 88 | 286 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 87 | 285 |
 | `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 88 | 88 |
@@ -63,10 +62,9 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
-| `CLAIM_NOT_YET_CHECKED` | 18 | 18 |
+| `CLAIM_CHECK_FAILED` | 7 | 7 |
 | `OPEN_SOURCE_AUDIT` | 6 | 6 |
-| `CLAIM_CHECK_FAILED` | 5 | 5 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 1 | 1 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 2 | 2 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -96,7 +94,7 @@ Outstanding original replacement obligations: 1; quotation rechecks: 1. These re
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - opus-media-match status: 1,155
 - source-ladder: 632
-- claim-checker: 388
+- claim-checker: 421
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities

@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `4b61d54ce7bb478aa579dff66ca1627c9304acfb886ea90c41e0c6b12eee1855`.
+Legal cutoff: 2026-10-14. Inputs: `9e3da5ca97b725dbf03fdf8bc9109b3de2cc519c22a9e1a349e6a563b0aa43b8`.
 
-Verified committed tracker: 14,972 identities; 11,569 undecided; 285 ready for human review.
+Verified committed tracker: 14,972 identities; 11,569 undecided; 310 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -18,8 +18,8 @@ Verified committed tracker: 14,972 identities; 11,569 undecided; 285 ready for h
 | 8 | opus-refetch:https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf#page=148 | 4 | 12 |
 | 9 | opus-refetch:aea3833bb2b39688fce6c33ec34f43248c0988ca2c7567d67ccd364abaf92280 | 4 | 14 |
 | 10 | opus-refetch:ab64c96b48cbb719c8846af963c0ec88a53dd633681934148d46adc0b5b7f366 | 4 | 15 |
-| 11 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
-| 12 | opus-refetch:https://www.govinfo.gov/link/statute/90/1667 | 3 | 9 |
+| 11 | EO::6964 | 3 | 9 |
+| 12 | opus-refetch:cc52050686e783d1744d9b3ddbef91b5d5b8c0161237673eed3f1ed9bc80859c | 3 | 9 |
 
 Readiness ceiling if the entire pass succeeds: 2; demonstrated readiness gain before execution: 0.
 
