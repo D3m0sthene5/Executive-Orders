@@ -1,0 +1,7 @@
+{
+ "instrument_id": "EO:6310",
+ "caught": true,
+ "scoring": "strict",
+ "adjudicator": "claude-blind-reviewer-r1-2026-10-29",
+ "rationale": "Caught for the right reason. The blind review rejected the planted EO 6310 line (claim_sha256 4f6ac4e2d193...) only for the two fields the coordinator mutated: operative_clauses[0].first_end.date and whole_order_end.date, each 1935-06-16. Each defect cites the source: the held S.J. Res. 113 span reads 'Approved, June 14, 1935' and states no other effective date. Section 1 of the resolution displaced the June 16, 1935 expiry with April 1, 1936. The review also notes that the claim's own judgment_reason and rationale give June 14 and reject June 16. The review raised no defect in any unmutated field. A field-by-field diff of the genuine line confirms that only those two dates changed. The detection did not depend on knowing it was a control: the four genuine lines with 1935-06-14 were upheld under the same procedure."
+}
