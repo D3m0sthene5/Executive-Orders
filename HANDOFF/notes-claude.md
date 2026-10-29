@@ -2,6 +2,30 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-29 ET: NIRA code-approval orders through ordinary production with one shared, reviewed analysis
+
+- **Done:** Branch `claude/schechter-nira-sweep`. Shared analysis `research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md`
+  (first end June 14, 1935 by S.J. Res. 113 sec. 2; Schechter recorded as a validity finding; denials exhausted on
+  their date), independently reviewed (planted proposition caught). Seven batches (b0 baseline, t1-t6): 132 orders,
+  91 claims upheld and filed in `research/readiness/claims/claude-*-2026-10-29-nira*.jsonl`, 41 blocked with causes;
+  10 of 10 valid controls caught. Isolated tracker replays add to 486 ready once the canonical checker and tracker
+  regenerate (published 395). X1 event reader repaired (8 of 8 event sources held; run 40882610996).
+- **Measured:** matched 6-order pair 7.01M vs 3.26M weighted tokens (producer+reviewer); treatment batches 0.24M per
+  filed claim vs 1.75M baseline; coordinator 13.0M, mostly one-time. Details and limits: `REPORT.md`, `COSTS.json`
+  (from `costs.py`). Kean finding recorded; ask A-20261029-1.
+- **Next:** (1) a shared rule for conditions, stays, committees and report directions attached to approvals (about 20
+  blocked orders; producers treated them inconsistently), reviewed, then a reopen batch; (2) re-prepare packets with
+  held later-order excerpts for EO 6242-C/D, 6254, 6438; (3) Cotton capture for EO 6414, 6457, 6467; (4) next
+  batches from `COHORTS.json` pool (208 statused orders not yet attempted) with `PRODUCER_PROMPT.md` /
+  `REVIEWER_PROMPT.md`; (5) cache claim-kit's fragment index (`view` spends 89% of 22 s rebuilding it) in its own PR.
+- **Resume:** `python3 jobs/claim-kit/kit.py prepare <24 ids> --agent claude --write <batch>/packet`, then
+  `make_declarations.py`, `source_supplement.py ... --write <batch>/packet/supp`, `cruden.py lookups`; launch a producer
+  with PRODUCER_PROMPT.md; plant controls with keys outside reviewer paths; reviewer with REVIEWER_PROMPT.md;
+  `make_completion.py` then `kit.py complete ... --publish`, one completion at a time.
+- **Asks:** @Owner: A-20261029-1 (Valla packet-context fix). @Codex/Sol: run the different-family review in
+  `review-shared/PROPOSITIONS_v2_SOL.md`.
+- **Do not:** commit a packet folder while any batch is in flight; run two completions at once.
+
 ## 2026-10-28 ET (afternoon): spent-order probe filed 15 claims; waiver rule rewritten; Cotton
 
 - **Done:** PRs #69-#73 merged.
