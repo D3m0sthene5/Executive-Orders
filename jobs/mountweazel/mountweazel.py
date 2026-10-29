@@ -312,6 +312,19 @@ def _resync_whole(claim):
 PROVENANCE_ONLY = ("claim_kit",)
 
 
+def claim_card(claim):
+    """Reviewer presentation only; never use this view as a canonical claim.
+
+    Preserve substantive working-text disclosures and source-grade labels. An
+    absent disclosure is shown as null in every card, so the optional key alone
+    cannot identify a real item. Pool, fixture and review fingerprints retain
+    their original payloads, including the absent/present distinction.
+    """
+    body = {k: v for k, v in claim.items() if k not in PROVENANCE_ONLY}
+    body.setdefault("working_text", None)
+    return body
+
+
 def _retitle(claim, old_date, new_date, old_actor=None, new_actor=None):
     olds = date_variants(old_date)
     news = date_variants(new_date)
@@ -678,7 +691,7 @@ def seed_cmd(args):
         if track == "C":
             # Assembly provenance (claim-kit's block) is not claim content, and only some real
             # claims carry it, so showing it would let a reviewer tell plants from real items.
-            body = {k: v for k, v in body.items() if k not in PROVENANCE_ONLY}
+            body = claim_card(body)
             packet = {"item_id": item_id, "track": "C", "claim": body}
         else:
             packet = {"item_id": item_id, "track": "S", **body}
@@ -717,6 +730,8 @@ def seed_cmd(args):
                 "verdict_format": {"item_id": "id", "decision": list(VERDICTS), "locus": "field path or quote span the verdict rests on",
                                    "reason": "text", "confidence": "0-1"},
                 "item_sha256": item_files}
+    if track == "C":
+        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. Source-grade labels are unchanged."
     (batch_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
@@ -1251,6 +1266,8 @@ def check(repo, fixtures_dir):
             problems.append({"where": str(fp), "problem": "claim gate does not reject the flagged payload", "gate_errors": errs[:5]})
         plant_hashes.add(sha(payload))
         plant_hashes.add(sha(_deflag(payload)))
+        if fx.get("track", "C") == "C":
+            plant_hashes.add(sha(claim_card(_deflag(payload))))
         plant_hashes.add(sha({k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}))
         if isinstance(fx.get("leak_needles"), list):
             needles.update(n.encode("utf-8") for n in fx["leak_needles"])
