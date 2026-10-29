@@ -277,7 +277,10 @@ def mirror_covered(out, audit_every):
     audited = {a["path"] for a in lines(out / "MIRROR_AUDIT.jsonl")}
     audit = {}
     if audit_every:
-        for i, path in enumerate(sorted(covered)):
+        # Backfill rows (app_mirror.py backfill-documents) back pages already fetched live and carry their own
+        # live comparison; leaving them out keeps the sample, and so the live requests it costs, unchanged.
+        sampled = sorted(p for p, d in covered.items() if not d.get("live_backfill"))
+        for i, path in enumerate(sampled):
             if i % audit_every == 0 and path not in audited:
                 audit[path] = covered[path]
     # A capture whose page parsed but holds no text (APP's "[Not Published.]") is a finding, not a fetch problem.

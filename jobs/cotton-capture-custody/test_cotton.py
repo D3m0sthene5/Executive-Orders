@@ -61,7 +61,7 @@ class CottonTests(unittest.TestCase):
         summary = cotton.run(self.repo, self.job, self.out, get=get)
         self.assertEqual((summary["published"], summary["failed"]), (0, 1))
         fail = json.loads((self.out / "FAILURES.jsonl").read_text())
-        self.assertEqual([e.split(":")[0] for e in fail["errors"]], ["capture", "live"])
+        self.assertEqual([e.split(":")[0] for e in fail["errors"]], ["capture"])  # never the live APP site
         self.assertEqual(list((self.out / "captures").iterdir()), [])
 
     def test_wrong_page_in_capture_is_refused(self):
@@ -85,6 +85,37 @@ class CottonTests(unittest.TestCase):
         (self.job / "data/WANTED.jsonl").write_text(json.dumps({"sha256": "a" * 64, "url": None, "instrument_id": "EO:1"}) + "\n")
         summary = cotton.run(self.repo, self.job, self.out, get=lambda url, headers=None: self.raw)
         self.assertEqual((summary["wanted_hashes"], summary["published"], summary["not_web_sources"]), (2, 1, 1))
+
+
+    def test_unmerged_backfill_capture_is_preserved_as_successor_of_a_live_hash(self):
+        live_url = "https://www.presidency.ucsb.edu/documents/executive-order-7208-x"
+        live_sha = "c" * 64
+        (self.repo / "jobs/app-executive-orders/output/DOCUMENTS.jsonl").write_text(
+            json.dumps({"sha256": live_sha, "url": live_url}) + "\n")
+        claim = {"instrument_id": "EO:7208", "original_representation": {"url": live_url, "sha256": live_sha}}
+        (self.repo / "research/readiness/claims/x.jsonl").write_text(json.dumps(claim) + "\n")
+        raw = warc(b"<html>7208 capture</html>", uri=live_url)
+        _, body = cotton.warc_response_body(raw)
+        succ = hashlib.sha256(body).hexdigest()
+        cap = {"archive": "common-crawl", "warc_filename": "crawl-data/CC/y.warc.gz", "warc_offset": 0,
+               "warc_length": len(raw), "captured_utc": "2025-09-05T00:00:00Z"}
+        delta = self.repo / "jobs/poggio-archive-backfill/output"
+        delta.mkdir(parents=True)
+        (delta / "MIRROR_DOCUMENTS.jsonl").write_text(
+            json.dumps({"sha256": succ, "url": live_url, "heading": "Executive Order 7208", "capture": cap}) + "\n")
+        calls = []
+
+        def get(url, headers=None):
+            calls.append(url)
+            return raw if headers else b"<html>live page, changed since</html>"
+
+        summary = cotton.run(self.repo, self.job, self.out, get=get)
+        self.assertEqual((summary["wanted_hashes"], summary["archive_successors"]), (1, 1))
+        self.assertEqual((summary["published"], summary["failed"], summary["not_web_sources"]), (1, 0, 1))  # the live hash has no route
+        rec = json.loads((self.out / "SOURCES.jsonl").read_text())
+        self.assertEqual((rec["sha256"], rec["successor_of"], rec["instrument_ids"]), (succ, live_sha, ["EO:7208"]))
+        self.assertEqual((self.out / "FAILURES.jsonl").read_text(), "")
+        self.assertEqual(calls.count(live_url), 0)  # Cotton never requests the live APP site
 
 
 if __name__ == "__main__":

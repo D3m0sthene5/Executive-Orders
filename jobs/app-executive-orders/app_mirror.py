@@ -23,6 +23,23 @@ never fetch the same page. Once this lane is done, app_harvest.py's documents
 phase skips every path in MIRROR_DOCUMENTS.jsonl (except an audit sample) and
 only the residue costs 10 s a page.
 
+Live-only backfill (see CHANGE_NOTES.md): pages the live lane saved first have a
+page hash that can never be re-proven, because the live page changes. These
+phases find and read archive captures of exactly those pages and only append:
+
+  seed                print the numbered orders in DOCUMENTS.jsonl whose instrument
+                      id has no MIRROR_DOCUMENTS.jsonl row (offline)
+  backfill-index      for seed pages with no capture pointer at all, ask older Common
+                      Crawl crawls, then the Wayback CDX one URL at a time
+  backfill-documents  read the capture of each seed page and append MIRROR_* rows; the
+                      capture text goes to texts/<slug>.capture.txt so the live text
+                      is never overwritten
+  merge               append a backfill output folder (--from) to --out (offline)
+
+Every request goes through http_get, which refuses any host but the three archive
+hosts (also on redirects); lock_to_archives() additionally refuses DNS lookups of
+any other host for the whole process. Nothing here can request APP.
+
 A capture is the APP editorial page as it was on the capture date, not an
 original: every record carries acceptable_as_original=false, the archive, crawl
 and capture date, and no legal or status finding.
@@ -34,8 +51,10 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import os
 import random
 import re
+import socket
 import sys
 import threading
 import time
@@ -59,10 +78,59 @@ WAYBACK_RAW = "https://web.archive.org/web/{ts}id_/{url}"
 PATTERN = "www.presidency.ucsb.edu/documents/executive-order-*"
 MIRROR_FILES = ("MIRROR_DOCUMENTS.jsonl", "MIRROR_SOURCES.jsonl", "MIRROR_FRAGMENTS.jsonl",
                 "MIRROR_ATTEMPTS.jsonl", "MIRROR_FAILURES.jsonl")
+# The only hosts this lane may contact. APP (live.HOST) is deliberately absent.
+ARCHIVE_HOSTS = frozenset({"index.commoncrawl.org", "data.commoncrawl.org", "web.archive.org"})
+assert live.HOST not in ARCHIVE_HOSTS
+CAPTURE_TEXT_SUFFIX = ".capture.txt"  # backfill: capture text beside the live text, never over it
 
 
 class ArchiveError(RuntimeError):
     pass
+
+
+class ArchiveRefused(RuntimeError):
+    """A request to a host outside ARCHIVE_HOSTS. Never retried, never caught as a network error."""
+
+
+def require_archive_host(url):
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https" or (parts.hostname or "").lower() not in ARCHIVE_HOSTS:
+        raise ArchiveRefused("request refused, not an archive host: " + url[:200])
+    return url
+
+
+class _ArchiveOnlyRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        require_archive_host(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+_OPENER = urllib.request.build_opener(_ArchiveOnlyRedirects)
+
+
+def lock_to_archives():
+    """Refuse DNS lookups of every host but the archives (and a configured proxy) for this process.
+
+    Returns the original socket.getaddrinfo so a test can restore it. With this in place even code that
+    bypasses http_get cannot reach APP directly.
+    """
+    allowed = set(ARCHIVE_HOSTS)
+    for var in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
+        value = os.environ.get(var) or ""
+        if value:
+            host = urllib.parse.urlsplit(value if "://" in value else "http://" + value).hostname
+            if host and host.lower() != live.HOST:
+                allowed.add(host.lower())
+    original = socket.getaddrinfo
+
+    def guarded(host, *args, **kwargs):
+        name = (host.decode() if isinstance(host, bytes) else str(host or "")).lower().rstrip(".")
+        if name not in allowed:
+            raise ArchiveRefused("DNS lookup refused, not an archive host: " + name)
+        return original(host, *args, **kwargs)
+
+    socket.getaddrinfo = guarded
+    return original
 
 
 class Throttle:
@@ -81,14 +149,19 @@ class Throttle:
 
 
 def http_get(url, headers=None, timeout=90, tries=6, throttle=None):
-    """GET with backoff on 429/5xx and network errors. Returns (status, headers, bytes)."""
+    """GET with backoff on 429/5xx and network errors. Returns (status, headers, bytes).
+
+    Only https URLs on ARCHIVE_HOSTS are requested; anything else (and any redirect elsewhere) raises
+    ArchiveRefused before a connection is made.
+    """
+    require_archive_host(url)
     last = None
     for attempt in range(tries):
         if throttle:
             throttle.wait()
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            with _OPENER.open(req, timeout=timeout) as r:
                 return r.status, {k.lower(): v for k, v in r.headers.items()}, r.read()
         except urllib.error.HTTPError as e:
             if e.code in (404, 410):
@@ -312,6 +385,76 @@ def read_wayback(cap, cache, throttle):
 
 
 # --------------------------------------------------------------------------
+# Shared by the documents and backfill-documents phases
+# --------------------------------------------------------------------------
+
+def read_capture(cap, cache, throttle):
+    reader = read_cc if cap["archive"] == "common-crawl" else read_wayback
+    return reader(cap, cache, throttle)
+
+
+def parse_capture(body, row):
+    """(parsed page, instrument id) of a capture; PageFailure when it has no text or names another order."""
+    doc = live.parse_document(live.check_page(body))
+    if len(doc["text"]) < 40:
+        raise live.PageFailure("no_usable_text")
+    iid, _ = live.instrument_id(doc["heading"])
+    if row["instrument_id"] and iid != row["instrument_id"]:
+        raise live.PageFailure(f"identity_mismatch: listing {row['instrument_id']} page {iid}; heading={doc['heading']}")
+    return doc, iid
+
+
+def append_capture(out, cap, row, body, prov, doc, iid, text_rel, extra=None):
+    """Write the capture text and append its MIRROR_DOCUMENTS, MIRROR_SOURCES and MIRROR_FRAGMENTS rows.
+
+    `extra` adds fields to the MIRROR_DOCUMENTS row only (the backfill marks its rows there).
+    """
+    page_sha = live.sha(body)
+    fetch_ladder.write_text_lf(out / text_rel, doc["text"] + "\n")
+    text_sha = live.sha((out / text_rel).read_bytes())
+    retrieved = live.stamp()
+    record = {"instrument_id": iid, "path": cap["path"], "url": cap["url"], "final_url": cap["url"],
+              "sha256": page_sha, "bytes": len(body), "retrieved_utc": retrieved,
+              "route": "archive/" + cap["archive"], "capture": prov,
+              "text_path": text_rel, "text_sha256": text_sha, "text_chars": len(doc["text"]),
+              "listing_title": row["title"], "listing_date": row["date"],
+              **{k: v for k, v in doc.items() if k != "text"}, **(extra or {})}
+    live.append(out / "MIRROR_DOCUMENTS.jsonl", record)
+    item = (doc["heading"] + "; " + doc["date_display"] + "; APP node " + doc["app_node"] +
+            "; " + cap["archive"] + " capture " + prov["captured_utc"])
+    source = {"source_id": "app-executive-orders:" + (iid or "node/" + doc["app_node"]) + ":" +
+              cap["archive"] + ":" + page_sha[:12],
+              "instrument_ids": [iid] if iid else [], "url": cap["url"],
+              "archival_id": "app:node/" + doc["app_node"] if doc["app_node"] else "",
+              "sha256": page_sha, "bytes": len(body), "retrieved_utc": retrieved,
+              "captured_utc": prov["captured_utc"], "content_type": "text/html",
+              "route": "archive/" + cap["archive"] + "/american-presidency-project",
+              "page_or_item": item, "text_path": text_rel, "text_sha256": text_sha,
+              "grade": "mirror_transcription", "representation_type": "secondary_compilation_transcription",
+              "acceptable_as_original": False, "capture": prov,
+              "notes": "American Presidency Project editorial transcription as captured by " + cap["archive"] +
+                       " on " + prov["captured_utc"][:10] + "; not an original and possibly older than the live "
+                       "APP page. Raw capture bytes are hashed but not committed; APP footnotes kept separately "
+                       "in MIRROR_DOCUMENTS.jsonl. No legal finding."}
+    live.append(out / "MIRROR_SOURCES.jsonl", source)
+    if iid:
+        data = {k: source[k] for k in ("source_id", "url", "sha256", "text_path", "text_sha256", "page_or_item",
+                                       "archival_id", "grade", "representation_type", "acceptable_as_original",
+                                       "captured_utc", "route")}
+        data.update(needs_page_check=True, location_verified=False, location_confidence="medium",
+                    app_date=doc["date"], app_footnote=doc["footnote"])
+        live.append(out / "MIRROR_FRAGMENTS.jsonl", {
+            "kind": "original_representation", "instrument_id": iid, "produced_by": "app-executive-orders",
+            "grade": "mirror_transcription", "representation_type": "secondary_compilation_transcription",
+            "acceptable_as_original": False, "data": data,
+            "sources": [{k: source[k] for k in ("url", "sha256", "page_or_item", "archival_id")}],
+            "confidence_note": "Listing and page headings agree on the EO number. Web-archive capture of an "
+                               "APP editorial transcription; not an authenticated original, identity "
+                               "authentication or legal conclusion."})
+    return record
+
+
+# --------------------------------------------------------------------------
 # Documents phase
 # --------------------------------------------------------------------------
 
@@ -360,62 +503,14 @@ def run_documents(out, cache, max_new, ids_file, workers, interval, archives):
         entry = {"kind": "document", "path": cap["path"], "instrument_id": row["instrument_id"],
                  "archive": cap["archive"], "capture_timestamp": cap["timestamp"], "attempted_utc": live.stamp()}
         try:
-            reader = read_cc if cap["archive"] == "common-crawl" else read_wayback
-            body, prov = reader(cap, cache, throttles[cap["archive"]])
-            text = live.check_page(body)
-            doc = live.parse_document(text)
-            if len(doc["text"]) < 40:
-                raise live.PageFailure("no_usable_text")
-            iid, _ = live.instrument_id(doc["heading"])
-            if row["instrument_id"] and iid != row["instrument_id"]:
-                raise live.PageFailure(f"identity_mismatch: listing {row['instrument_id']} page {iid}; heading={doc['heading']}")
-            page_sha = live.sha(body)
+            body, prov = read_capture(cap, cache, throttles[cap["archive"]])
+            doc, iid = parse_capture(body, row)
             text_rel = "texts/" + live.text_name(cap["path"]) + ".txt"
             with write_lock:
                 if cap["path"] in live_done:
                     counts["skipped_live"] += 1
                     return
-                fetch_ladder.write_text_lf(out / text_rel, doc["text"] + "\n")
-                text_sha = live.sha((out / text_rel).read_bytes())
-                retrieved = live.stamp()
-                record = {"instrument_id": iid, "path": cap["path"], "url": cap["url"], "final_url": cap["url"],
-                          "sha256": page_sha, "bytes": len(body), "retrieved_utc": retrieved,
-                          "route": "archive/" + cap["archive"], "capture": prov,
-                          "text_path": text_rel, "text_sha256": text_sha, "text_chars": len(doc["text"]),
-                          "listing_title": row["title"], "listing_date": row["date"],
-                          **{k: v for k, v in doc.items() if k != "text"}}
-                live.append(out / "MIRROR_DOCUMENTS.jsonl", record)
-                item = (doc["heading"] + "; " + doc["date_display"] + "; APP node " + doc["app_node"] +
-                        "; " + cap["archive"] + " capture " + prov["captured_utc"])
-                source = {"source_id": "app-executive-orders:" + (iid or "node/" + doc["app_node"]) + ":" +
-                          cap["archive"] + ":" + page_sha[:12],
-                          "instrument_ids": [iid] if iid else [], "url": cap["url"],
-                          "archival_id": "app:node/" + doc["app_node"] if doc["app_node"] else "",
-                          "sha256": page_sha, "bytes": len(body), "retrieved_utc": retrieved,
-                          "captured_utc": prov["captured_utc"], "content_type": "text/html",
-                          "route": "archive/" + cap["archive"] + "/american-presidency-project",
-                          "page_or_item": item, "text_path": text_rel, "text_sha256": text_sha,
-                          "grade": "mirror_transcription", "representation_type": "secondary_compilation_transcription",
-                          "acceptable_as_original": False, "capture": prov,
-                          "notes": "American Presidency Project editorial transcription as captured by " + cap["archive"] +
-                                   " on " + prov["captured_utc"][:10] + "; not an original and possibly older than the live "
-                                   "APP page. Raw capture bytes are hashed but not committed; APP footnotes kept separately "
-                                   "in MIRROR_DOCUMENTS.jsonl. No legal finding."}
-                live.append(out / "MIRROR_SOURCES.jsonl", source)
-                if iid:
-                    data = {k: source[k] for k in ("source_id", "url", "sha256", "text_path", "text_sha256", "page_or_item",
-                                                   "archival_id", "grade", "representation_type", "acceptable_as_original",
-                                                   "captured_utc", "route")}
-                    data.update(needs_page_check=True, location_verified=False, location_confidence="medium",
-                                app_date=doc["date"], app_footnote=doc["footnote"])
-                    live.append(out / "MIRROR_FRAGMENTS.jsonl", {
-                        "kind": "original_representation", "instrument_id": iid, "produced_by": "app-executive-orders",
-                        "grade": "mirror_transcription", "representation_type": "secondary_compilation_transcription",
-                        "acceptable_as_original": False, "data": data,
-                        "sources": [{k: source[k] for k in ("url", "sha256", "page_or_item", "archival_id")}],
-                        "confidence_note": "Listing and page headings agree on the EO number. Web-archive capture of an "
-                                           "APP editorial transcription; not an authenticated original, identity "
-                                           "authentication or legal conclusion."})
+                append_capture(out, cap, row, body, prov, doc, iid, text_rel)
                 done.add(cap["path"])
                 counts["saved"] += 1
                 entry["result"] = "saved"
@@ -443,9 +538,260 @@ def run_documents(out, cache, max_new, ids_file, workers, interval, archives):
     print(f"done in {time.monotonic() - started:.0f}s: {counts}", flush=True)
 
 
+# --------------------------------------------------------------------------
+# Live-only backfill: archive captures of pages the live lane saved first
+# --------------------------------------------------------------------------
+# `base` is the app-executive-orders output folder, only read. `out` receives appended rows; it may be
+# `base` itself (local run) or a separate folder (the runner job), later appended to base by `merge`.
+
+def live_only_ids(base):
+    """Numbered orders in DOCUMENTS.jsonl whose instrument id has no MIRROR_DOCUMENTS.jsonl row, sorted."""
+    mirrored = {d.get("instrument_id") for d in live.lines(base / "MIRROR_DOCUMENTS.jsonl")}
+    ids = {d["instrument_id"] for d in live.lines(base / "DOCUMENTS.jsonl")
+           if d.get("instrument_id") and d["instrument_id"] not in mirrored}
+    return sorted(ids, key=lambda i: live.sort_key({"instrument_id": i, "path": ""}))
+
+
+def read_ids(ids_file):
+    return {s.strip() for s in Path(ids_file).read_text(encoding="utf-8").split() if s.strip()}
+
+
+def _both(base, out, name):
+    rows = live.lines(base / name)
+    if out.resolve() != base.resolve():
+        rows += live.lines(out / name)
+    return rows
+
+
+def backfill_targets(base, out, ids):
+    """INDEX rows of seed orders whose page was saved live, has no capture saved yet and no permanent failure."""
+    live_done = {d["path"] for d in live.lines(base / "DOCUMENTS.jsonl")}
+    mirrored = {d["path"] for d in _both(base, out, "MIRROR_DOCUMENTS.jsonl")}
+    failed = {f["path"] for f in _both(base, out, "MIRROR_FAILURES.jsonl")}
+    return [r for r in live.lines(base / "INDEX.jsonl")
+            if r.get("instrument_id") in ids and r["path"] in live_done
+            and r["path"] not in mirrored and r["path"] not in failed]
+
+
+def wayback_cdx_one_url(url):
+    bare = re.sub(r"^https?://", "", url)
+    return (f"{WAYBACK_CDX}?url={urllib.parse.quote(bare, safe='/')}&output=json&filter=statuscode:200"
+            "&filter=mimetype:text/html&fl=original,timestamp,digest")
+
+
+def run_backfill_index(base, out, ids, crawls, cc_throttle, wb_throttle, archives=("common-crawl", "wayback")):
+    """Find a capture pointer for seed pages that have none. Appends to out/MIRROR_INDEX.jsonl only.
+
+    Common Crawl first (newest crawl first, crawls already present in MIRROR_INDEX are skipped because the
+    original cc-index run read them in full), stopping as soon as every target is covered; then one Wayback
+    CDX request per page still uncovered. No request at all when every target already has a pointer.
+    """
+    targets = {r["path"]: r for r in backfill_targets(base, out, ids)}
+    known = _both(base, out, "MIRROR_INDEX.jsonl")
+    missing = set(targets) - {c["path"] for c in known}
+    found, asked = {}, {"common-crawl": 0, "wayback": 0}
+    print(f"backfill-index: {len(targets)} seed pages without a saved capture, {len(missing)} without any pointer",
+          flush=True)
+    if missing and "common-crawl" in archives:
+        queried = {c["crawl"] for c in known if c["archive"] == "common-crawl"}
+        for crawl in crawls() if callable(crawls) else crawls:
+            if not missing:
+                break
+            if crawl in queried:
+                continue
+            asked["common-crawl"] += 1
+            try:
+                records = cc_query(crawl, cc_throttle)
+            except ArchiveError as exc:
+                print(f"{crawl}: skipped ({exc})", flush=True)
+                continue
+            hit = {}
+            for r in records:
+                path = normalise_path(r.get("url", ""))
+                if path not in missing or r.get("mime", "text/html") != "text/html" or r.get("status") != "200":
+                    continue
+                cap = {"path": path, "archive": "common-crawl", "crawl": crawl, "timestamp": r["timestamp"],
+                       "url": r["url"], "digest": r.get("digest", ""), "warc_filename": r["filename"],
+                       "warc_offset": int(r["offset"]), "warc_length": int(r["length"])}
+                if path not in hit or cap["timestamp"] > hit[path]["timestamp"]:
+                    hit[path] = cap
+            found.update(hit)
+            missing -= set(hit)
+            print(f"{crawl}: {len(records)} captures, {len(hit)} seed pages found; {len(missing)} still missing", flush=True)
+    if missing and "wayback" in archives:
+        for path in sorted(missing):
+            asked["wayback"] += 1
+            try:
+                status, _, raw = http_get(wayback_cdx_one_url(targets[path]["url"]), throttle=wb_throttle)
+                rows = json.loads(raw.decode("utf-8"))[1:] if status == 200 and raw.lstrip().startswith(b"[") else []
+            except (ArchiveError, ValueError) as exc:
+                print(f"wayback {path}: skipped ({exc})", flush=True)
+                continue
+            best = None
+            for original, ts, digest in rows:
+                if normalise_path(original) == path and (best is None or ts > best["timestamp"]):
+                    best = {"path": path, "archive": "wayback", "crawl": "", "timestamp": ts, "url": original,
+                            "digest": digest, "warc_filename": "", "warc_offset": 0, "warc_length": 0}
+            if best:
+                found[path] = best
+        missing -= set(found)
+    (out / "MIRROR_INDEX.jsonl").touch(exist_ok=True)
+    have = {(c["path"], c["archive"]) for c in known}
+    added = [c for p, c in sorted(found.items()) if (p, c["archive"]) not in have]
+    for c in added:
+        live.append(out / "MIRROR_INDEX.jsonl", c)
+    result = {"targets": len(targets), "pointers_added": len(added), "requests_by_archive": asked,
+              "no_capture_found": sorted(targets[p]["instrument_id"] for p in missing)}
+    print(json.dumps(result), flush=True)
+    return result
+
+
+def run_backfill_documents(base, out, cache, ids, workers, interval, archives, max_new=100000):
+    """Read the capture of every seed page and append MIRROR_* rows to `out`. Never touches the live rows.
+
+    The identity check is the archive lane's own (listing number must equal the capture's heading number).
+    The capture text goes to texts/<slug>.capture.txt; the live text at texts/<slug>.txt stays as it is.
+    Each row also records whether the capture's text and page bytes agree with the live harvest.
+    """
+    for name in MIRROR_FILES:
+        (out / name).touch(exist_ok=True)
+    live_docs = {d["path"]: d for d in live.lines(base / "DOCUMENTS.jsonl")}
+    targets = {r["path"]: r for r in backfill_targets(base, out, ids)}
+    pointers = {}
+    for c in _both(base, out, "MIRROR_INDEX.jsonl"):
+        if c["path"] in targets and c["archive"] in archives:
+            old = pointers.get(c["path"])
+            # One capture per page: Common Crawl (exact WARC range) before Wayback, then the newest.
+            rank = (c["archive"] == "common-crawl", c["timestamp"])
+            if old is None or rank > (old["archive"] == "common-crawl", old["timestamp"]):
+                pointers[c["path"]] = c
+    queue = sorted(pointers.values(), key=lambda c: live.sort_key(targets[c["path"]]))[:max_new]
+    throttles = {"common-crawl": Throttle(interval), "wayback": Throttle(max(interval, 1.5))}
+    lock = threading.Lock()
+    counts = {"saved": 0, "failed": 0, "retry_next_run": 0}
+
+    def one(cap):
+        row = targets[cap["path"]]
+        entry = {"kind": "document", "path": cap["path"], "instrument_id": row["instrument_id"],
+                 "archive": cap["archive"], "capture_timestamp": cap["timestamp"], "attempted_utc": live.stamp(),
+                 "live_backfill": True}
+        try:
+            body, prov = read_capture(cap, cache, throttles[cap["archive"]])
+            doc, iid = parse_capture(body, row)
+            prior = live_docs[cap["path"]]
+            if prior.get("instrument_id") != iid:
+                raise live.PageFailure(f"identity_mismatch: live page {prior.get('instrument_id')} capture {iid}")
+            text_rel = "texts/" + live.text_name(cap["path"]) + CAPTURE_TEXT_SUFFIX
+            # write_text_lf writes these exact UTF-8 bytes, so this is the capture text's file hash.
+            text_sha = live.sha((doc["text"] + "\n").encode("utf-8"))
+            compare = {"live_retrieved_utc": prior.get("retrieved_utc", ""), "live_page_sha256": prior.get("sha256", ""),
+                       "live_text_sha256": prior.get("text_sha256", ""), "page_agrees": prior.get("sha256") == live.sha(body),
+                       "text_agrees": prior.get("text_sha256") == text_sha}
+            with lock:
+                record = append_capture(out, cap, row, body, prov, doc, iid, text_rel,
+                                        extra={"live_backfill": True, "live_comparison": compare})
+                if record["text_sha256"] != text_sha:
+                    raise RuntimeError("capture text hash changed on write")
+                counts["saved"] += 1
+                entry.update(result="saved", text_agrees=compare["text_agrees"])
+        except ArchiveRefused:
+            raise
+        except Exception as exc:
+            entry.update(result="failed", reason=str(exc)[:500], error_type=type(exc).__name__)
+            with lock:
+                if isinstance(exc, live.PageFailure) or "truncated" in str(exc):
+                    counts["failed"] += 1
+                    live.append(out / "MIRROR_FAILURES.jsonl", entry)
+                else:
+                    counts["retry_next_run"] += 1
+        with lock:
+            live.append(out / "MIRROR_ATTEMPTS.jsonl", entry)
+
+    started = time.monotonic()
+    print(f"backfill-documents: {len(targets)} seed pages to back, {len(queue)} with a capture pointer", flush=True)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
+        list(ex.map(one, queue))
+    remaining = backfill_targets(base, out, ids)
+    state = {"updated_utc": live.stamp(), "seed_ids": len(ids), "targets_at_start": len(targets),
+             "with_pointer": len(queue), "this_run": counts, "seconds": round(time.monotonic() - started),
+             "still_without_capture": sorted(r["instrument_id"] for r in remaining)}
+    live.write_json(out / "BACKFILL_STATE.json", state)
+    print(json.dumps({k: v for k, v in state.items() if k != "still_without_capture"}), flush=True)
+    return state
+
+
+def _hash_file(path, size=None):
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        h.update(fh.read() if size is None else fh.read(size))
+    return h.hexdigest()
+
+
+def run_merge(src, base):
+    """Append a backfill folder's rows and capture texts to base. Offline, idempotent, append-only.
+
+    Every row is checked first (listing number = record number = heading number, capture route, text hash,
+    no text overwritten); a single problem aborts before anything is written. Afterwards each base file is
+    verified to begin with exactly its previous bytes.
+    """
+    index = {r["path"]: r for r in live.lines(base / "INDEX.jsonl")}
+    have_docs = {d["path"] for d in live.lines(base / "MIRROR_DOCUMENTS.jsonl")}
+    docs, seen = [], set()
+    for d in live.lines(src / "MIRROR_DOCUMENTS.jsonl"):
+        if d["path"] in have_docs or d["path"] in seen:
+            continue
+        seen.add(d["path"])
+        listed = (index.get(d["path"]) or {}).get("instrument_id")
+        heading = live.instrument_id(d.get("heading", ""))[0]
+        problems = []
+        if not d.get("route", "").startswith("archive/") or not isinstance(d.get("capture"), dict):
+            problems.append("not an archive capture")
+        if not (listed and listed == d.get("instrument_id") == heading):
+            problems.append(f"identity: listing {listed} record {d.get('instrument_id')} heading {heading}")
+        text = src / d.get("text_path", "")
+        if not (d.get("text_path", "").endswith(CAPTURE_TEXT_SUFFIX) and text.is_file()
+                and live.sha(text.read_bytes()) == d.get("text_sha256")):
+            problems.append("capture text missing, misnamed or not matching its hash")
+        elif (base / d["text_path"]).exists() and (base / d["text_path"]).read_bytes() != text.read_bytes():
+            problems.append("would overwrite a different text")
+        if problems:
+            raise SystemExit(f"merge refused, nothing written: {d['path']}: {'; '.join(problems)}")
+        docs.append(d)
+    texts = {d["text_path"] for d in docs}
+    have_index = {(c["path"], c["archive"]) for c in live.lines(base / "MIRROR_INDEX.jsonl")}
+    seen_keys = lambda name: {(r.get("path"), r.get("attempted_utc")) for r in live.lines(base / name)}
+    plan = {
+        "MIRROR_INDEX.jsonl": [c for c in live.lines(src / "MIRROR_INDEX.jsonl") if (c["path"], c["archive"]) not in have_index],
+        "MIRROR_DOCUMENTS.jsonl": docs,
+        "MIRROR_SOURCES.jsonl": [s for s in live.lines(src / "MIRROR_SOURCES.jsonl") if s.get("text_path") in texts],
+        "MIRROR_FRAGMENTS.jsonl": [f for f in live.lines(src / "MIRROR_FRAGMENTS.jsonl")
+                                   if (f.get("data") or {}).get("text_path") in texts],
+    }
+    for name in ("MIRROR_ATTEMPTS.jsonl", "MIRROR_FAILURES.jsonl"):
+        keys = seen_keys(name)
+        plan[name] = [r for r in live.lines(src / name) if (r.get("path"), r.get("attempted_utc")) not in keys]
+    before = {name: ((base / name).stat().st_size, _hash_file(base / name)) for name in plan if (base / name).is_file()}
+    for rel in sorted(texts):
+        (base / rel).parent.mkdir(parents=True, exist_ok=True)
+        (base / rel).write_bytes((src / rel).read_bytes())
+    for name, rows in plan.items():
+        for r in rows:
+            live.append(base / name, r)
+    for name, (size, digest) in before.items():
+        if _hash_file(base / name, size) != digest:
+            raise SystemExit(f"merge broke append-only on {name}")
+    counts = {name: len(rows) for name, rows in plan.items()}
+    print(json.dumps({"merged_from": str(src), "texts": len(texts), "rows_appended": counts}), flush=True)
+    return counts
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("phase", choices=["cc-index", "wayback-index", "documents"])
+    ap.add_argument("phase", choices=["cc-index", "wayback-index", "documents", "seed", "backfill-index",
+                                      "backfill-documents", "merge"])
+    ap.add_argument("--base", type=Path, default=HERE / "output",
+                    help="backfill/merge: the app-executive-orders output folder (only read by backfill phases)")
+    ap.add_argument("--from", dest="src", type=Path, help="merge: backfill output folder to append to --out")
     ap.add_argument("--download", action="store_true", help="Required to authorize network acquisition from the archives")
     ap.add_argument("--cache-dir", type=Path, help="Raw capture cache (not committed); reruns reuse it without new requests")
     ap.add_argument("--out", type=Path, default=HERE / "output")
@@ -457,6 +803,14 @@ def main():
     ap.add_argument("--interval", type=float, default=0.25, help="Minimum seconds between request starts per archive")
     ap.add_argument("--archives", default="common-crawl,wayback")
     args = ap.parse_args()
+    if args.phase == "seed":
+        print("\n".join(live_only_ids(args.base)))
+        return
+    if args.phase == "merge":
+        if not args.src:
+            ap.error("merge needs --from <backfill output folder>")
+        run_merge(args.src, args.out)
+        return
     if not args.download or not args.cache_dir:
         ap.error("Use --download and --cache-dir explicitly; there is no automatic acquisition")
     args.out.mkdir(parents=True, exist_ok=True)
@@ -466,6 +820,16 @@ def main():
         run_cc_index(args.out, crawls, Throttle(1.0))
     elif args.phase == "wayback-index":
         run_wayback_index(args.out, args.cache_dir, Throttle(1.5))
+    elif args.phase in ("backfill-index", "backfill-documents"):
+        if not args.ids_file:
+            ap.error(args.phase + " needs --ids-file (python app_mirror.py seed > ids.txt)")
+        ids, archives = read_ids(args.ids_file), set(args.archives.split(","))
+        if args.phase == "backfill-index":
+            crawls = args.crawl_ids.split(",") if args.crawl_ids else (lambda: cc_collections(args.crawls))
+            run_backfill_index(args.base, args.out, ids, crawls, Throttle(1.0), Throttle(1.5), archives)
+        else:
+            run_backfill_documents(args.base, args.out, args.cache_dir, ids, max(1, min(args.workers, 8)),
+                                   args.interval, archives, args.max_new)
     else:
         run_documents(args.out, args.cache_dir, args.max_new, args.ids_file, max(1, min(args.workers, 8)),
                       args.interval, set(args.archives.split(",")))
