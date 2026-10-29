@@ -1094,3 +1094,52 @@ class OfflineVerificationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DeclaredSearchWithCoverage(Fixture):
+    """A job that declares its own complete search in SUMMARY.json machine_searches and lists per-order
+    coverage in SEARCH_COVERAGE.csv (Namier): the search is entered only for covered orders, with the
+    coverage note as a warning where the job could not search, and its leads count as machine hits."""
+
+    def setUp(self):
+        super().setUp()
+        nm = self.repo / "jobs/namier/output"
+        nm.mkdir(parents=True)
+        entry = {"repository": "held order texts in this repository (synthetic)",
+                 "query_or_scope": "the full name of the person this order concerns in every other held order text",
+                 "checked_on": "2026-10-29", "searched_by": "jobs/namier (machine search)"}
+        (nm / "SUMMARY.json").write_text(json.dumps({"job": "namier", "machine_searches": [
+            {"search_id": "namier:held_texts_person_name", "complete": True, "scope_note": "", "entry": entry}]}),
+            encoding="utf-8")
+        write_csv(nm / "SEARCH_COVERAGE.csv", [
+            {"instrument_id": "EO:100", "search_id": "namier:held_texts_person_name", "covered": "1", "note": "searched for Ada M. Nolan"},
+            {"instrument_id": "EO:400", "search_id": "namier:held_texts_person_name", "covered": "0", "note": "no personal name parsed"}])
+        item = {"actor": "EO:150", "date_candidate": "1955-03-01", "mechanism": "names_same_person",
+                "qualifier": "names Ada M. Nolan; does not cite this order by number; relation by date: later",
+                "edge_ids": ["NM-1"], "evidence_types": ["held_text_name_match"], "flags": ["name_match_lead"],
+                "quote": "Ada M. Nolan may be reinstated", "quote_kind": "verbatim_text_snippet",
+                "source": {"sha256": SHA["d"], "url": "https://example.gov/EO_150", "page_or_item": "page 1",
+                           "text_path": "jobs/x/texts/EO_150.txt", "text_sha256": SHA["d"]}}
+        write_jsonl(nm / "FRAGMENTS.jsonl", [frag("EO:100", "later_event_candidates", [item], "namier")])
+        self.reload()
+
+    def machine(self, iid):
+        m = self.draft(iid)["_draft"]["proposals"]["later_source_search_machine"]
+        return [x for x in m if x["search_id"] == "namier:held_texts_person_name"]
+
+    def test_declared_search_entered_only_where_covered(self):
+        self.assertIn("namier:held_texts_person_name", {s["search_id"] for s in self.merged.searches})
+        covered = self.machine("EO:100")
+        self.assertEqual(len(covered), 1)
+        self.assertNotIn("coverage_warning", covered[0])
+        self.assertEqual(covered[0]["machine_hits_for_this_order"], 1)
+        not_searched = self.machine("EO:400")
+        self.assertEqual(len(not_searched), 1)
+        self.assertEqual(not_searched[0]["coverage_warning"], "no personal name parsed")
+        self.assertEqual(self.machine("EO:200"), [])  # not a one-person order: the search does not apply
+        # The name match is a later-event proposal, never an ending.
+        props = self.draft("EO:100")["_draft"]["proposals"]
+        names = [c for c in props["later_events"] if c["proposal"]["mechanism"] == "names_same_person"]
+        self.assertEqual(len(names), 1)
+        self.assertEqual(names[0]["proposal"]["actor"], "EO:150")
+        self.assertNotIn("names_same_person", [w.get("mechanism") for w in props.get("whole_order_end", [])])

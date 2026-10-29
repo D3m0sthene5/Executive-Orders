@@ -1,0 +1,25 @@
+{
+ "schema": "eo-control-adjudication/v1",
+ "instrument_id": "EO:6615",
+ "planted_claim_sha256": "18b221e8b76f524979f51520498f712f872364000ebb289b20905b74a7a602bb",
+ "review": {
+  "path": "research/excavator/namier-serial-exemptions-2026-10-28/packet/review/BLIND_REVIEW.jsonl",
+  "sha256": "228b4ea0836b8022c72fd2e52d6757096fa7161a5f81dc7b6bdbaaf1d02680fa",
+  "line": 4
+ },
+ "adjudicator": "claude-namier-reviewer-20261028",
+ "model_family": "Anthropic",
+ "independent": true,
+ "separate_context": true,
+ "review_kind": "independent_ai_source_review",
+ "scope": "whole_case",
+ "control_label": "K4",
+ "caught": true,
+ "scoring": "strict",
+ "actual_blind_verdict": "rejected",
+ "expected_verdict": "rejected",
+ "mutation": "whole_order_end.date and first_end.date set to 1935-02-26 (recited birthday) against a source quote and reasons saying until February 28, 1935",
+ "rationale": "The sealed K4 record (line 4 of BLIND_REVIEW.jsonl, file sha256 228b4ea0...) rejected the card and named the exact mutated fields: 'Defect in whole_order_end.date and operative_clauses[0].first_end.date: both read 1935-02-26, but the cited source quote (held APP text of EO 6615, chars 1226-1316) reads until February 28, 1935', adding that the card's own judgment_reason and rationale say 1935-02-28 and that 1935-02-26 matches nothing in the order except the signing day-month (February 26, 1934) and the recited birthday (February 26, 1933). The rejection rested on the mutated dates themselves, not on any other ground; every other field was reported as checking out. Under strict scoring the control was caught. Recomputed after reveal: claim_gate.claim_sha of the K4 card equals the planted sha 18b221e8..., and of the K7 card equals 27756daf....",
+ "control_identity_disclosed_only_after_seal": true,
+ "blind_seal_file": "research/excavator/namier-serial-exemptions-2026-10-28/packet/review/BLIND_SEAL.json"
+}

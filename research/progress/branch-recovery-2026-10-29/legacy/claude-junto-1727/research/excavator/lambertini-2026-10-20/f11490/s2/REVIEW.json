@@ -1,0 +1,46 @@
+{
+ "schema": "lambertini-iii-ai-review/v1",
+ "record_kind": "AI review record (hypothesis; not eo-lifecycle-review/v1; not certification)",
+ "batch": "f11490/s2",
+ "reviewed_on": "2026-10-21",
+ "reviewer": "independent Opus reviewer (scratch review_copy; held repo sources; explicit D6 step)",
+ "review_target": "scratch review_copy containing one planted defect; the EO:11093 rejection is the plant catch (whole_order_end.date planted as 1969-10-30); the genuine producer line carries 1969-10-28",
+ "verdicts": [
+  {
+   "order": "EO:11091",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "All quoted spans re-sliced exactly from the held texts and the text_sha256 values match (EO 11490: jobs/source-ladder/output/texts/queue_EO_11490_..._6c215ad6d9.txt; target: jobs/fr-originals/data/full_run/texts/EO_11091.txt). Who ended it: EO 11490 sec. 3015 item (18) 'Executive Order No. 11091 of February 26,1963.' (PDF p.95 = 34 FR 17599). EO 11490 has no effective-date wording, so the end is the signing date, 1969-10-28, and whole_order_end and all 7 first_end entries agree on it. Inventory: 7 contiguous section clauses. Signing date 1963-02-26 (F.R. Doc. 63-2215) and pages 28 FR 1843-1845 checked. The rationale details (Sec. 2 (a)-(p), Sec. 4(a) EO 11000, Sec. 7 revoking EPO 12) all appear in the text. Savings: the sec. 101 quote is verbatim, sec. 3014 is 'Except as provided in Section 3015', and Part 28 is the Civil Service Commission, so transferred_or_accrued holds. D6: the OFR EDGES show only the EO 11490 revocation; my own by-number scan of the held texts found only the order itself and unrelated page or docket numbers. I found no earlier end, no pre-1969 amendment and no strike-and-reinsert. kit.py check passes."
+  },
+  {
+   "order": "EO:11092",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Quotes and hashes match the held texts exactly. Who ended it: EO 11490 sec. 3015 item (19), verbatim. The span also covers item (20), and the claim says so. End date 1969-10-28, consistent in whole_order_end and all 9 first_end entries. Signing 1963-02-26 (F.R. Doc. 63-2216) and pages 28 FR 1847-1849 checked. Sec. 6(a) names EO 10705, 10995 and 11051; Sec. 4 names EO 10952. Sec. 9 is quoted correctly as non-derogation for other instruments, so it does not save this order. Part 18 is the FCC, so savings transferred_or_accrued holds. D6: the OFR EDGES show only the EO 11490 revocation; the by-number hits are FR index pages in EO 9367, 9478 and 9479. I found no earlier end or pre-1969 amendment. kit.py check passes."
+  },
+  {
+   "order": "EO:11093",
+   "verdict": "rejected",
+   "savings_overturned": false,
+   "reason": "Defects: (1) whole_order_end.date is 1969-10-30, which is the date the Federal Register printed the order, not its effective date. EO 11490 has no effective-date wording, so it took effect on signing, 1969-10-28 ('The White House, October 28,1969'; F.R. Doc. 69-13005 filed Oct. 28, 1969). (2) That date contradicts the claim's own mechanism text ('took effect on signing, October 28, 1969'), all 11 per-clause first_end dates (1969-10-28), source.signing_date 1969-10-28 and the research_rationale ('effective on signing 1969-10-28'). (3) kit.py check fails line 3 with whole_order_end_not_last_clause_end. Everything else checks out: who ended it (EO 11490 sec. 3015 item (20), printed '..(20) Executive Order No. 11093 of February 26,1963.'), the verbatim quotes and hashes, the 11-clause inventory (the gap between Sec. 9 and Sec. 10 is only an FR page break), signing 1963-02-26 (F.R. Doc. 63-2217) and 28 FR 1851-1854, the OFR note's '1993' typo, savings via Part 20 (GSA) as transferred_or_accrued, and D6 (no earlier end or pre-1969 amendment). Fix: set whole_order_end.date to 1969-10-28."
+  },
+  {
+   "order": "EO:11094",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Quotes and hashes match the held texts exactly. Who ended it: EO 11490 sec. 3015 item (21), verbatim. End date 1969-10-28, consistent in whole_order_end and all 14 first_end entries. The signature prints as 'February M, 1963'; F.R. Doc. 63-2219 (filed Feb. 27, 1963) and item (21) fix it as 1963-02-26, and the claim discloses this. Sec. 14 supersedes and revokes EPO 10 and DMO I-20, I-22 and I-24, as stated. Inventory: 14 clauses; the Sec. 11/12 gap is only a page break. Savings: Parts 16, 17 (Federal Bank Supervisory Agencies, which covers FRB, FHLBB, FCA and FDIC), 25, 26 and 29 exist in EO 11490, so transferred_or_accrued holds. D6: the OFR EDGES show only the EO 11490 revocation (its '1993' typo is disclosed). I found no earlier end, pre-1969 amendment or strike-and-reinsert. kit.py check passes."
+  },
+  {
+   "order": "EO:11095",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Quotes and hashes match the held texts exactly. Who ended it: EO 11490 sec. 3015 item (22), verbatim. End date 1969-10-28, consistent in whole_order_end and all 14 first_end entries. Signing 1963-02-26 (F.R. Doc. 63-2218) and pages 28 FR 1859-1862 checked. The corrected inventory ends at Sec. 14, and the Federal Crop Insurance rules on PDF pages 35-37 are correctly excluded. Sec. 14 revokes EPO 11, 13 and 14, as stated. Savings: Parts 19, 22, 23, 24 and 27 exist in EO 11490, so transferred_or_accrued holds. D6: the OFR EDGES show only the EO 11490 revocation; the by-number hits are only '90 FR 11095' page cites. I found no earlier end or pre-1969 amendment. kit.py check passes."
+  },
+  {
+   "order": "EO:11310",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "Quotes and hashes match the held texts exactly. Who ended it: EO 11490 sec. 3015 item (23) 'Executive Order No. 11310 of October 11,1966.', verbatim. End date 1969-10-28, consistent in whole_order_end and all 10 first_end entries. Signing 1966-10-11 (Lyndon B. Johnson; F.R. Doc. 66-11227) and pages 31 FR 13199-13201 checked. Inventory: 10 clauses; the Sec. 5/6 gap is only a page break. Sec. 7 mentions Title III of the Federal Civil Defense Act, and Sec. 9 is a construction clause preserving other assignments, so it does not save this order. Part 5 is the Department of Justice, so savings transferred_or_accrued holds. D6: the OFR EDGES show only the EO 11490 revocation; the by-number hits are only the 37 FR 11310 page with EO 11671. I found no earlier end or pre-1969 amendment. One cosmetic issue: the rationale repeats the OLRC/OFR sentence. kit.py check passes."
+  }
+ ]
+}

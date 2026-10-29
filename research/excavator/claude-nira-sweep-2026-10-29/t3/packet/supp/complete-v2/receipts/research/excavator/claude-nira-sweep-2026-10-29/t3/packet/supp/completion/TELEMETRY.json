@@ -1,0 +1,96 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "t3_producer": {
+   "models": {
+    "claude-sonnet-5-5": 74
+   },
+   "api_calls": 74,
+   "tokens": {
+    "input_tokens": 150,
+    "cache_creation_input_tokens": 434249,
+    "cache_read_input_tokens": 13908449,
+    "output_tokens": 81355
+   },
+   "total_input_tokens": 14342848,
+   "total_tokens": 14424203,
+   "first_utc": "2026-10-29T14:16:40.853Z",
+   "last_utc": "2026-10-29T14:37:51.357Z",
+   "tool_calls": {
+    "bash:grep": 31,
+    "bash:python3": 10,
+    "bash:cat": 9,
+    "kit.py view": 7,
+    "bash:ls": 6,
+    "Grep": 4,
+    "bash:date": 2,
+    "Read": 2,
+    "bash:sed": 2,
+    "Write": 2,
+    "Monitor": 2,
+    "bash:other": 1,
+    "bash:claim-checker": 1,
+    "kit.py apply": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 103969,
+    "bash:cat": 77347,
+    "kit.py view": 41428,
+    "bash:python3": 38305,
+    "bash:sed": 26663,
+    "Read": 14590,
+    "bash:ls": 11162,
+    "Grep": 5480,
+    "bash:other": 1852,
+    "Monitor": 604,
+    "kit.py batch-check": 475,
+    "Write": 391,
+    "kit.py apply": 258,
+    "SubagentHandback": 61,
+    "bash:date": 40,
+    "bash:claim-checker": 31
+   }
+  },
+  "t3_reviewer": {
+   "models": {
+    "claude-opus-5-5": 30
+   },
+   "api_calls": 30,
+   "tokens": {
+    "input_tokens": 60,
+    "cache_creation_input_tokens": 110887,
+    "cache_read_input_tokens": 3665445,
+    "output_tokens": 27565
+   },
+   "total_input_tokens": 3776392,
+   "total_tokens": 3803957,
+   "first_utc": "2026-10-29T14:39:19.955Z",
+   "last_utc": "2026-10-29T14:47:25.281Z",
+   "tool_calls": {
+    "bash:grep": 12,
+    "bash:python3": 11,
+    "Grep": 3,
+    "bash:cat": 2,
+    "Read": 1,
+    "ToolSearch": 1,
+    "TaskStop": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "Read": 69373,
+    "bash:python3": 67247,
+    "bash:grep": 23660,
+    "bash:cat": 16720,
+    "Grep": 11361,
+    "TaskStop": 1005,
+    "SubagentHandback": 61,
+    "ToolSearch": 0
+   }
+  }
+ }
+}

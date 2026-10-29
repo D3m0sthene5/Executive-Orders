@@ -10,18 +10,23 @@ SOURCES.jsonl record whose cache_path points at the committed copy. The claim ch
 Routes, tried in this order for each wanted hash:
 - archive capture: the exact Common Crawl WARC byte range, or the Wayback raw capture, recorded in
   jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl, decoded exactly as app_mirror.split_warc did;
-- live page: the cited https URL, for pages harvested live (DOCUMENTS.jsonl); kept only if unchanged;
 - Commons file: a https://commons.wikimedia.org/wiki/File: URL via Special:FilePath, up to MAX_BYTES.
 A hash that no route reproduces is listed in FAILURES.jsonl and nothing is published for it.
 
 Wanted hashes: every source sha256 cited in research/readiness/claims/*.jsonl, plus data/WANTED.jsonl
 (hash and URL pairs for claims awaiting completion). No legal finding; no status or count changes.
+
+Archive successors: a wanted hash that is a live APP page (DOCUMENTS.jsonl) cannot be re-proven once the page
+changes. When the archive lane holds a capture of the same page (MIRROR_DOCUMENTS.jsonl, including rows the
+poggio-archive-backfill job has not yet merged), Cotton also preserves that capture and marks it successor_of
+the live hash, so a claim can be re-cited to bytes that stay provable. The live hash itself is unchanged.
 """
 import gzip
 import hashlib
 import json
 import os
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -29,7 +34,9 @@ CC_DATA = "https://data.commoncrawl.org/"
 COMMONS_FILE = "https://commons.wikimedia.org/wiki/File:"
 MAX_BYTES = 60_000_000
 AGENT = "EO-afterlife-research/1.0 (cotton-capture-custody)"
-LIVE_HOSTS = ("www.presidency.ucsb.edu",)
+# Archive-lane captures: the APP job's own file, then rows the Poggio backfill job has not yet merged into it.
+CAPTURE_FILES = ("jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+                 "jobs/poggio-archive-backfill/output/MIRROR_DOCUMENTS.jsonl")
 
 
 def sha256(data):
@@ -64,11 +71,25 @@ def warc_response_body(raw):
     return (warc.get("warc-target-uri") or "").strip("<>"), body
 
 
+def refuse_live_app(url):
+    host = (urllib.parse.urlsplit(url).hostname or "").lower().rstrip(".")
+    if host == "presidency.ucsb.edu" or host.endswith(".presidency.ucsb.edu"):
+        raise ValueError("live APP requests are disabled; use a fixed archive capture")
+
+
+class CaptureRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        refuse_live_app(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def http_get(url, headers=None, tries=3):
+    refuse_live_app(url)
+    opener = urllib.request.build_opener(CaptureRedirects)
     for attempt in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": AGENT, **(headers or {})})
-            with urllib.request.urlopen(req, timeout=120) as r:
+            with opener.open(req, timeout=120) as r:
                 return r.read(MAX_BYTES + 1)
         except Exception:  # noqa: BLE001  (offline, blocked, timeout: retried, then a recorded failure)
             if attempt + 1 == tries:
@@ -116,15 +137,36 @@ def wanted(repo, job_dir):
 
 
 def captures(repo):
-    """sha256 -> archive capture pointer (APP mirror)."""
+    """sha256 -> archive capture pointer (APP mirror, including unmerged Poggio backfill rows)."""
     out = {}
-    path = Path(repo) / "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl"
-    if path.is_file():
+    for rel in CAPTURE_FILES:
+        path = Path(repo) / rel
+        if not path.is_file():
+            continue
         for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
             r = json.loads(line)
-            if isinstance(r.get("capture"), dict) and r.get("sha256"):
+            if isinstance(r.get("capture"), dict) and r.get("sha256") and r["sha256"] not in out:
                 out[r["sha256"]] = dict(r["capture"], url=r.get("url"), page_or_item=r.get("heading"))
     return out
+
+
+def add_archive_successors(want, caps, live):
+    """Add the archive capture of each wanted live APP page (same URL) to want; returns how many were added."""
+    by_url = {}
+    for sha, cap in sorted(caps.items()):
+        by_url.setdefault(cap.get("url"), []).append(sha)
+    added = 0
+    for sha, w in sorted(want.items()):
+        url = live.get(sha)
+        if not url or sha in caps:
+            continue
+        for succ in by_url.get(url, []):
+            if succ not in want:
+                want[succ] = {"url": url, "instrument_ids": set(w["instrument_ids"]), "successor_of": sha}
+                added += 1
+    return added
 
 
 def live_pages(repo):
@@ -166,8 +208,8 @@ def candidates(sha, want, caps, live):
         out.append(("capture", lambda get: fetch_capture(caps[sha], get)))
     url = live.get(sha) or want.get("url") or ""
     host = url.split("/")[2] if url.startswith("https://") else ""
-    if host in LIVE_HOSTS:
-        out.append(("live", lambda get: (get(url), "live " + url)))
+    # No live route: APP asks crawlers for a 10-second delay and a live page that has changed can never be
+    # re-proven, so Cotton reads only fixed archive captures and Commons files.
     if url.startswith(COMMONS_FILE):
         file_url = "https://commons.wikimedia.org/wiki/Special:FilePath/" + url[len(COMMONS_FILE):]
         out.append(("commons", lambda get: (get(file_url), "commons " + file_url)))
@@ -179,6 +221,8 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
     (out_dir / "captures").mkdir(parents=True, exist_ok=True)
     want = wanted(repo, job_dir)
     caps, live = captures(repo), live_pages(repo)
+    cited = len(want)
+    successors = add_archive_successors(want, caps, live)
     # Bytes already committed by an earlier run are re-hashed and kept without a new download. The shared
     # runner moves output/ aside before a run and names it JOB_PRIOR_OUTPUT_DIR; without reading it, every run
     # re-downloaded everything and a transient network failure dropped a committed custody copy.
@@ -189,7 +233,7 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
         if limit is not None and n >= limit:
             break
         routes = candidates(sha, w, caps, live)
-        if not routes:
+        if not routes and sha not in live:
             continue  # not a web source Cotton can reproduce (held PDFs, scans, books)
         dest = out_dir / "captures" / (sha + ".bin")
         kept = prior / (sha + ".bin")
@@ -198,7 +242,7 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
             dest.write_bytes(kept.read_bytes())
             how = "kept from an earlier Cotton run"
         else:
-            errors = []
+            errors = [] if routes else ["archive: no fixed capture reproduces the cited live bytes"]
             for label, fetch in routes:
                 try:
                     body, how = fetch(get)
@@ -218,7 +262,7 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
                 how = None
             if how is None:
                 failures.append({"sha256": sha, "url": w["url"], "instrument_ids": sorted(w["instrument_ids"]),
-                                 "errors": errors})
+                                 "errors": errors, **({"successor_of": w["successor_of"]} if "successor_of" in w else {})})
                 continue
         cap = caps.get(sha, {})
         sources.append({"sha256": sha, "url": w["url"] or cap.get("url") or live.get(sha), "bytes": dest.stat().st_size,
@@ -226,10 +270,12 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
                         "page_or_item": cap.get("page_or_item") or "web page bytes re-fetched and re-hashed",
                         "instrument_ids": sorted(w["instrument_ids"]),
                         "note": "Exact bytes whose SHA-256 equals the recorded source hash. Custody copy only; no "
-                                "legal finding."})
+                                "legal finding.",
+                        **({"successor_of": w["successor_of"]} if "successor_of" in w else {})})
     write_jsonl(out_dir / "SOURCES.jsonl", sources)
     write_jsonl(out_dir / "FAILURES.jsonl", failures)
-    summary = {"wanted_hashes": len(want), "published": len(sources), "failed": len(failures),
+    summary = {"wanted_hashes": cited, "archive_successors": successors,
+               "published": len(sources), "failed": len(failures),
                "not_web_sources": len(want) - len(sources) - len(failures) if limit is None else None}
     (out_dir / "SUMMARY.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return summary

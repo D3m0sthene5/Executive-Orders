@@ -189,6 +189,8 @@ def preflight(d,repo):
     for text in d.get('missing',[]):
         if 'acting text absent:' in text:add('acting_original',text.split(': ',1)[-1],text,'absent_from_packet')
         elif 'target provision not located:' in text:add('locate_held_provision',text.split(': ',1)[-1],text,'held_not_loaded')
+        elif 'cited by number, no change provision located:' in text:add('read_citing_order',text.split(': ',1)[-1],text,'held_not_loaded')
+        elif 'name-match lead' in text:add('read_name_match_lead',text.split(': ',1)[-1],text,'held_not_loaded')
     for eid in d.get('own_terms',[]):
         r=d['evidence'].get(eid,{})
         if r.get('kind') in ('report_deadline','condition'):

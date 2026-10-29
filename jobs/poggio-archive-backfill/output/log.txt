@@ -1,0 +1,78 @@
+ok test_instrument_id
+ok test_listing
+ok test_document
+ok test_challenge_stops
+ok test_mirror_warc_record
+ok test_mirror_covered_and_audit
+
+
+nd; 0 still missing
+{"targets": 2, "pointers_added": 1, "requests_by_archive": {"common-crawl": 1, "wayback": 0}, "no_capture_found": []}
+backfill-index: 2 seed pages without a saved capture, 0 without any pointer
+{"targets": 2, "pointers_added": 0, "requests_by_archive": {"common-crawl": 0, "wayback": 0}, "no_capture_found": []}
+backfill-index: 1 seed pages without a saved capture, 1 without any pointer
+{"targets": 1, "pointers_added": 1, "requests_by_archive": {"common-crawl": 0, "wayback": 1}, "no_capture_found": []}
+backfill-documents: 1 seed pages to back, 1 with a capture pointer
+{"updated_utc": "2026-10-29T02:19:30.925217+00:00", "seed_ids": 1, "targets_at_start": 1, "with_pointer": 1, "this_run": {"saved": 1, "failed": 0, "retry_next_run": 0}, "seconds": 0}
+backfill-documents: 1 seed pages to back, 1 with a capture pointer
+{"updated_utc": "2026-10-29T02:19:30.928918+00:00", "seed_ids": 1, "targets_at_start": 1, "with_pointer": 1, "this_run": {"saved": 1, "failed": 0, "retry_next_run": 0}, "seconds": 0}
+{"merged_from": "/tmp/tmp0r2pnkd9/out", "texts": 1, "rows_appended": {"MIRROR_INDEX.jsonl": 0, "MIRROR_DOCUMENTS.jsonl": 1, "MIRROR_SOURCES.jsonl": 1, "MIRROR_FRAGMENTS.jsonl": 1, "MIRROR_ATTEMPTS.jsonl": 1, "MIRROR_FAILURES.jsonl": 0}}
+{"merged_from": "/tmp/tmp0r2pnkd9/out", "texts": 0, "rows_appended": {"MIRROR_INDEX.jsonl": 0, "MIRROR_DOCUMENTS.jsonl": 0, "MIRROR_SOURCES.jsonl": 0, "MIRROR_FRAGMENTS.jsonl": 0, "MIRROR_ATTEMPTS.jsonl": 0, "MIRROR_FAILURES.jsonl": 0}}
+
+t (__main__.Backfill.test_documents_append_capture_beside_live_text) ... ok
+test_identity_mismatch_is_a_permanent_failure_without_rows (__main__.Backfill.test_identity_mismatch_is_a_permanent_failure_without_rows) ... ok
+test_index_asks_only_for_pages_without_a_pointer_and_only_appends (__main__.Backfill.test_index_asks_only_for_pages_without_a_pointer_and_only_appends) ... ok
+test_index_falls_back_to_one_wayback_query_per_page (__main__.Backfill.test_index_falls_back_to_one_wayback_query_per_page) ... ok
+test_local_run_into_base_is_append_only (__main__.Backfill.test_local_run_into_base_is_append_only) ... ok
+test_merge_appends_once_and_refuses_bad_rows (__main__.Backfill.test_merge_appends_once_and_refuses_bad_rows) ... ok
+test_seed_is_live_ids_minus_mirrored_ids (__main__.Backfill.test_seed_is_live_ids_minus_mirrored_ids) ... ok
+test_app_and_other_hosts_are_refused_before_any_connection (__main__.HostGuard.test_app_and_other_hosts_are_refused_before_any_connection) ... ok
+test_app_host_is_not_an_archive_host (__main__.HostGuard.test_app_host_is_not_an_archive_host) ... ok
+test_process_lock_refuses_app_dns (__main__.HostGuard.test_process_lock_refuses_app_dns) ... ok
+test_redirect_to_app_is_refused (__main__.HostGuard.test_redirect_to_app_is_refused) ... ok
+test_incomplete_read_is_retried_not_fatal (__main__.TruncatedReadRetry.test_incomplete_read_is_retried_not_fatal) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.155s
+
+OK
+
+{"seed_ids": 516, "live_only_now": 516, "seed_already_mirrored": 0, "live_only_not_in_seed": []}
+backfill-index: 516 seed pages without a saved capture, 60 without any pointer
+CC-MAIN-2026-43: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-39: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-34: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-30: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-25: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-21: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-17: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-12: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-08: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2025-33: 1865 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2025-30: skipped (HTTP 400)
+CC-MAIN-2025-18: 1095 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2025-08: 1810 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2024-38: skipped (HTTP 400)
+CC-MAIN-2024-30: 1791 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2024-26: 1908 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2023-50: 2173 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2023-40: 1806 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2023-23: skipped (HTTP 400)
+CC-MAIN-2023-14: 887 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2023-06: 1080 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-49: 961 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-40: 666 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-33: 517 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-27: 266 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-21: 216 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2022-05: 218 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2021-49: 253 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2021-43: 432 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2021-39: 262 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2021-31: 144 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2021-25: 103 captures, 0 seed pages found; 60 still missing
+wayback /documents/executive-order-7221-establishing-rice-lake-migratory-waterfowl-refuge: skipped (gave up after retries: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>)
+{"targets": 516, "pointers_added": 0, "requests_by_archive": {"common-crawl": 32, "wayback": 60}, "no_capture_found": ["EO:1216", "EO:12577", "EO:14393", "EO:14403", "EO:14407", "EO:14409", "EO:14415", "EO:14416", "EO:14418", "EO:14419", "EO:14424", "EO:14427", "EO:14428", "EO:14431", "EO:14432", "EO:14435", "EO:6179", "EO:6258", "EO:7058", "EO:7059", "EO:7059A", "EO:7060", "EO:7077", "EO:7078", "EO:7080", "EO:7082", "EO:7083", "EO:7084", "EO:7085", "EO:7085A", "EO:7088", "EO:7123", "EO:7192", "EO:7202", "EO:7203", "EO:7204", "EO:7205", "EO:7207", "EO:7208", "EO:7209", "EO:7210", "EO:7211", "EO:7212", "EO:7213", "EO:7214", "EO:7215", "EO:7216", "EO:7217", "EO:7218", "EO:7219", "EO:7220", "EO:7221", "EO:7221A", "EO:7222", "EO:7223", "EO:7224", "EO:7242", "EO:7251", "EO:7284A", "EO:7284B"]}
+backfill-documents: 516 seed pages to back, 456 with a capture pointer
+{"updated_utc": "2026-10-29T03:09:48.117179+00:00", "seed_ids": 516, "targets_at_start": 516, "with_pointer": 456, "this_run": {"saved": 456, "failed": 0, "retry_next_run": 0}, "seconds": 311}
+{"saved": {"saved": 456, "failed": 0, "retry_next_run": 0}, "still_without_capture": 60}

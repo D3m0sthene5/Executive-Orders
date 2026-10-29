@@ -1,3 +1,22 @@
+## 2026-10-29 ET: EO PR integration and branch recovery
+
+- **Done:** Prepared `codex/integrate-eo-20261029` with all twelve open PRs (54,83,90–99 except already-merged89), final QA/bot tips, Namier/Cassiodorus and land research. Exact recovery/report/validation: `research/progress/branch-recovery-2026-10-29/`. HTR machine hypotheses, Capcom originals and51 inactive historical artifacts recovered; no historical workflow, ledger candidate or unreviewed status was activated.
+- **Repairs:** X1 provider/provenance overlap and fixtures combined; Cotton prior-output custody preserved with live-APP redirect refusal; Namier name-index bug fixed; Cassiodorus archive-only; Namier X1/Lewis same-run cycle removed for explicit frozen discovery/preparation phases. Kean ID collisions remapped without overwriting results; complete Astra histories retained.
+- **Evidence:** All103 new canonical claims structurally valid; four exact Mansfield versions (10622,11040,11078,9922) held through the existing source-audit mechanism. Separate review checked25 source text/hash pairs. Land and seven Namier proposals remain unfiled/held; HTR agreement is not verified accuracy. No status, census, grade, codebook or human-certification adoption.
+- **Validation:** Full claim-kit421 tests passed (five existing skips), affected component suites and runner/freshness checks; final receipts in VALIDATION.json. Whole-run timings/tokens/cash unavailable. No new per-order production or measured savings. Initial local environment/sparse/temporary-path failures were resolved. Independent bounded OpenAI contexts reviewed Mansfield, wiring, archive/Names and residual work; artifacts retained.
+- **Authorization:** Current owner explicitly authorized integration and merges (`D-20261029-integration-permission`); this supersedes the earlier no-merge instruction for the separate stack task. Unrelated standing future-merge permission is not inferred. Kean F-20261029-94/95/96 record this work.
+- **Next:** Publish the integration for final CI, merge with ancestry intact, and run the native checker→tracker→digest on integrated inputs. Use published outputs for readiness, not isolated NIRA/Mansfield arithmetic. Original PR metadata records actual main adoption.
+- **Asks:** @Owner: none.
+- **Do not:** release the four source-audit holds without fresh reconciliation/review, treat historical VLM text as evidence, or adopt pending Sol statuses without cross-family review.
+
+## 2026-10-29 ET: production-line audit and specific integration gaps
+
+- **Done:** Inspected main f4fc326a1a and October 26-29 research, job contracts, dependency files and current outputs. Audit and source pins: `research/excavator/production-line-audit-2026-10-29/REPORT.md` and `EVIDENCE.json`; Kean F-20261029-2. Documentation only; no scientific/code/source/production changes or independent delegated review.
+- **Findings:** X1 event lookup reads only source-ladder, while Astra retains seven specified event URLs. Five selected texts pass the stated phrase screen; the 1921 resolution and Schechter selection need source-based phrase review. Shepard reports ending candidates for 617/3,547 land targets; fr-pages bounded auto-selection is disabled. Missing consumption edges require explicit discovery/acquisition then preparation: naive claim-kit-after-Shepard would cycle through X1. The 85-ready combined increase is published; complete campaign savings remain unmeasured.
+- **Next:** Repair provider/role handoffs and mechanical packet defects, use the existing bounded land-acquisition route, and measure all production/review/correction/coordination costs on a large cohort. Preserve individual legal review and evidence gaps.
+- **Running:** None dispatched by this audit.
+- **Asks:** @Owner: none.
+
 ## 2026-10-27 UTC: four filed histories and a measured recurring preparation fix, PR66
 
 - **Done:** Native completion filed EO8179/8300 and corrected EO8705/8707 in two own-agent claim files. Separate OpenAI source contexts upheld exact versions; two valid material controls caught strictly, one exposed control attempt explicitly invalid/unscored. Material unplanted EO8514 and April1946 CSC exceptions corrected; old versions, holds/findings, failures and reset qualifications retained. Report/results: `research/excavator/production-cost-trace-2026-10-26/`.

@@ -1,0 +1,109 @@
+{
+ "batch": "b02",
+ "stratum": "NO",
+ "attempted": 10,
+ "submitted": 5,
+ "submitted_ids": [
+  "EO:10972",
+  "EO:11005",
+  "EO:13032",
+  "EO:10622",
+  "EO:11310"
+ ],
+ "blocked": 5,
+ "blocked_ids": [
+  "EO:12810",
+  "EO:8505",
+  "EO:9333",
+  "EO:12607",
+  "EO:12921"
+ ],
+ "blocks_justified": 5,
+ "blocks_unjustified": 0,
+ "claims_reviewed": 5,
+ "plants_placed": 2,
+ "plants_caught": 1,
+ "plants_caught_strict": 1,
+ "plants_caught_lenient": 1,
+ "plants": [
+  {
+   "instrument_id": "EO:13032",
+   "defect_type": "date_swap",
+   "field_path": "operative_clauses[0].first_end.date and whole_order_end.date",
+   "caught": true,
+   "catch_scoring": "strict",
+   "reviewer_code": "DATE",
+   "why": "reviewer named first_end.date and whole_order_end.date, gave the correct 1997-09-30 and quoted EO 13062 sec. 7 'This order shall be effective September 30, 1997.' (EO_13062.txt 5345-5402); suspected_plant was false (reviewer thought it might be a genuine producer error)"
+  },
+  {
+   "instrument_id": "EO:10972",
+   "defect_type": "D6",
+   "field_path": "operative_clauses[2].later_events[0]",
+   "caught": false,
+   "catch_scoring": "noticed_but_accepted",
+   "lenient": false,
+   "strict": false,
+   "reviewer_code": null,
+   "why": "plant removed the EO 11036 (1962-07-11) later event; reviewer's D6 list noted EO 11036 was 'listed as read; claim does not characterize it individually', ruled it out as no date/state change and upheld with a non-fatal note; not a rejection, so not caught"
+  }
+ ],
+ "genuine_reviewed": 3,
+ "genuine_upheld": 3,
+ "genuine_upheld_ids": [
+  "EO:10622",
+  "EO:11005",
+  "EO:11310"
+ ],
+ "genuine_rejected": [],
+ "rejected_mechanical": [],
+ "filed": [
+  "EO:10622",
+  "EO:11005",
+  "EO:11310",
+  "EO:13032",
+  "EO:10972"
+ ],
+ "filed_file": "research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl",
+ "gate": {
+  "EO:10622": [],
+  "EO:11005": [],
+  "EO:11310": [],
+  "EO:13032": [],
+  "EO:10972": []
+ },
+ "checker": {
+  "claims_checked": 5,
+  "all_checks_passed": 4,
+  "pass_with_unverified": 1,
+  "fail": 0,
+  "gate_passed": 5,
+  "unverified": {
+   "EO:10622": [
+    "source_held:custody_record_only@operative_clauses[0].later_events[0].source",
+    "source_held:custody_record_only@operative_clauses[1].later_events[0].source",
+    "source_held:custody_record_only@operative_clauses[2].later_events[0].source"
+   ]
+  },
+  "unverified_note": "EO 10622: the three later-event sources are the PEB 111 report (PEB-111-Report.pdf, front matter and transmittal letter), held only as a custody record; the reviewer read the held PEB-111 text copies under jobs/source-ladder and jobs/clause-drafts. Quotations 208/208 exact across the five filed claims (rerun after the two after-reveal lines were appended)."
+ },
+ "fetch_lines_enqueued": 2,
+ "fetch_lines_enqueued_ids": [
+  "mansfield-b02:EO:8505:PublicLandOrder1649,23FR3967",
+  "mansfield-b02:EO:12810:Pub.L.103-160,sec.1511(50U.S.C.1701note)"
+ ],
+ "upheld_after_reveal": [
+  "EO:13032",
+  "EO:10972"
+ ],
+ "upheld_per_attempt": 0.3,
+ "genuine_rejection_share": 0.0,
+ "notes": [
+  "EO 13032 and EO 10972 were the planted orders. Their genuine (unplanted) lines were re-reviewed after the reveal by the same independent reviewer (REVIEW_AFTER_REVEAL.jsonl, AFTER_REVEAL.json), both upheld with no code, and filed; they are counted separately as upheld_after_reveal and not in genuine_upheld.",
+  "Reviewer non-fatal notes for the re-review: EO 13032's genuine line should keep the sec. 7 effective date 1997-09-30 (signing-date alternative 1997-09-29 may be noted); EO 10972's genuine line attaches EO 11036 (II) as a distinct insertion of a new paragraph (5), not a restoration, which is what the reviewer asked for.",
+  "The EO 10972 D6 plant was noticed but accepted: the reviewer saw EO 11036 was not characterized and upheld anyway, judging it date- and state-neutral. Scored not caught (lenient no, strict no).",
+  "All 5 blocks judged justified. Three blocks carry no fetch line: EO 9333 (EO 9830 held but no dossier evidence record), EO 12607 (dossier original span ends after sec. 2(d)), EO 12921 (method question not ruled by the owner).",
+  "No duplicate queue lines existed for the two fetch requests (FETCH_QUEUE.jsonl 849 -> 851 lines, after b01's 4).",
+  "All filed lines are AI hypotheses; the human-certified whole-lifecycle count stays 0."
+ ],
+ "upheld_per_attempt_with_reveal": 0.5
+}

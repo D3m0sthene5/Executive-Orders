@@ -1,0 +1,98 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "b0_producer": {
+   "models": {
+    "claude-sonnet-5-5": 179
+   },
+   "api_calls": 179,
+   "tokens": {
+    "input_tokens": 360,
+    "cache_creation_input_tokens": 765917,
+    "cache_read_input_tokens": 36911651,
+    "output_tokens": 207498
+   },
+   "total_input_tokens": 37677928,
+   "total_tokens": 37885426,
+   "first_utc": "2026-10-29T13:27:31.642Z",
+   "last_utc": "2026-10-29T14:11:16.076Z",
+   "tool_calls": {
+    "bash:grep": 57,
+    "bash:python3": 53,
+    "bash:cat": 23,
+    "bash:sed": 13,
+    "kit.py view": 6,
+    "Monitor": 6,
+    "bash:ls": 4,
+    "bash:claim-checker": 4,
+    "bash:source_supplement.py": 3,
+    "kit.py prepare": 3,
+    "Write": 3,
+    "kit.py apply": 3,
+    "SubagentHandback": 2,
+    "bash:other": 1,
+    "ToolSearch": 1,
+    "kit.py batch-check": 1,
+    "bash:date": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 168778,
+    "bash:python3": 164929,
+    "bash:cat": 122466,
+    "bash:sed": 94560,
+    "kit.py view": 44928,
+    "bash:source_supplement.py": 9900,
+    "bash:claim-checker": 7576,
+    "bash:ls": 7415,
+    "kit.py apply": 3547,
+    "bash:other": 3500,
+    "Monitor": 3093,
+    "kit.py prepare": 1654,
+    "kit.py batch-check": 1407,
+    "Write": 573,
+    "SubagentHandback": 122,
+    "bash:date": 20,
+    "ToolSearch": 0
+   }
+  },
+  "b0_reviewer": {
+   "models": {
+    "claude-opus-5-5": 39
+   },
+   "api_calls": 39,
+   "tokens": {
+    "input_tokens": 80,
+    "cache_creation_input_tokens": 193921,
+    "cache_read_input_tokens": 5309245,
+    "output_tokens": 60209
+   },
+   "total_input_tokens": 5503246,
+   "total_tokens": 5563455,
+   "first_utc": "2026-10-29T14:17:21.619Z",
+   "last_utc": "2026-10-29T14:33:50.206Z",
+   "tool_calls": {
+    "bash:python3": 14,
+    "bash:grep": 14,
+    "bash:cat": 3,
+    "kit.py view": 3,
+    "SubagentHandback": 2,
+    "Read": 1,
+    "bash:sed": 1,
+    "bash:ls": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 127254,
+    "bash:grep": 55475,
+    "Read": 41613,
+    "bash:cat": 19586,
+    "kit.py view": 4297,
+    "bash:sed": 603,
+    "SubagentHandback": 122,
+    "bash:ls": 20
+   }
+  }
+ }
+}

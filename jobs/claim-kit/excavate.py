@@ -498,16 +498,30 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
     return {"id": "ACT:" + target_id + ">" + actor_id, "target_id": target_id, "actor_id": actor_id, "actor_source": source, "provision_label": next((h.group().strip() for h in reversed(list(HEADING.finditer(text[:a or 0]))) if h["section"]), ""), "provision_text": provision, "char_start": a, "char_end": b, "verb": verb, "scope": "partial" if partial else "whole_via_parent" if via else "whole", "names_target": not via, "reaches_target_via": parent_id + " as amended" if via else "", "signing_date": signing_date, "filing_date": filing_date, "effective_wording": effective, "effective_class": effective_class, "effective_date": effective_date, "exceptions_text": exceptions, "savings_phrases": savings, "confidence": "medium" if candidates else "low", "notes": " ".join(notes)}
 
 
-def discover_mentions(actor_id, text, source, signing_date=None, filing_date=None):
-    """One pass over actor text; caller must filter printed IDs to its census."""
-    result = []
+def discover_mentions(actor_id, text, source, signing_date=None, filing_date=None, with_references=False):
+    """One pass over actor text; caller must filter printed IDs to its census.
+
+    With ``with_references`` the second value lists printed references for which no
+    change provision was located (``'exempted ... by Executive Order No. 6088 ... be
+    further exempted'``, ``'the boundaries created by Executive Order No. 2230 ... are
+    modified'``). They name the target by number, so the citing order belongs in the
+    target's packet as a known actor, though no quoted provision or event is asserted."""
+    result, references = [], []
     start, end = _extent(actor_id, text)
-    for target in sorted({r[0] for r in _references(text) if start <= r[1] < end}):
+    refs = [r for r in _references(text) if start <= r[1] < end]
+    for target in sorted({r[0] for r in refs}):
         if target != actor_id:
             record = acting_provision(target, actor_id, text, source, signing_date, filing_date)
             if record and record["provision_text"]:
                 result.append(record)
-    return result
+            elif record and with_references:
+                first = next(r for r in refs if r[0] == target)
+                a, b = max(start, first[1] - 200), min(end, first[2] + 200)
+                references.append({"target_id": target, "actor_id": actor_id, "ref_char_start": first[1],
+                                   "ref_char_end": first[2], "context": text[a:b], "context_char_start": a,
+                                   "context_char_end": b, "signing_date": signing_date, "filing_date": filing_date,
+                                   "notes": "Printed reference without a located change provision; machine lead only."})
+    return (result, references) if with_references else result
 
 
 def generic_reference_count(text):

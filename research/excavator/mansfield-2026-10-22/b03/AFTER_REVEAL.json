@@ -1,0 +1,28 @@
+{
+ "batch": "b03",
+ "review_stage": "after_reveal",
+ "schema": "mansfield-ai-review/v1 (AI review record, never eo-lifecycle-review/v1)",
+ "reviewer": "claude-mansfield-b03-reviewer",
+ "opened_additionally": [
+  "SCRATCH/work/b03/CLAIMS.proposed.jsonl (lines EO:10312 and EO:5825 only, copied to review_out/b03/after_reveal/GENUINE.jsonl)"
+ ],
+ "not_opened": [
+  "SCRATCH/plant_keys",
+  "any other file under SCRATCH/work"
+ ],
+ "checks": [
+  "kit.py check on copy: 0 errors on both lines",
+  "all structured quotes and text_sha256 verified",
+  "D6 repeated from saved dossiers",
+  "field diff against planted copy"
+ ],
+ "upheld_after_reveal": [
+  "EO:10312",
+  "EO:5825"
+ ],
+ "rejected_after_reveal": [],
+ "telemetry": {
+  "wall_minutes": 4,
+  "tool_calls": 6
+ }
+}
