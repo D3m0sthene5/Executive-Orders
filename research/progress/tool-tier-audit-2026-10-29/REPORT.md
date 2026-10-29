@@ -114,6 +114,10 @@ Favor bounded production pools with held evidence and demonstrated conversion. P
 
 The best demonstrated speed improvement here is a small, specific preparation fix. The biggest production improvement is a successful ordinary research route. There is no basis in these records for a sweeping percentage reduction in the remaining project's actual cost.
 
+## Follow-up: lightweight wiring
+
+The [code-level wiring assessment](LIGHTWEIGHT_WIRING.md) identifies five bounded opportunities and corrects Cotton's failure diagnosis: its observed stop was reproduced as an inherited test-environment defect, not defective runtime reuse. No production fixes have been applied.
+
 ## Reproducibility and sources
 
 The included `CATEGORY_TOTALS.csv`, `CLAIM_READINESS_ASSOCIATIONS.csv`, `STATUS_READINESS_ASSOCIATIONS.csv`, `SOURCE_PINS.json` and `RESULTS.json` document the complete current association calculation. All **67 claim-file Git blob identities** and the exact tracker blob were checked. The sole duplicate, EO13306, appears within the initial Astra category and is counted once. There are no cross-category overlaps or unassociated ready identities.

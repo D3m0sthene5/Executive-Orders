@@ -1,3 +1,12 @@
+## 2026-10-29 UTC: lightweight wiring opportunities diagnosed
+
+- **Done:** Answered the owner's follow-up about small unblocks, pinned to unchanged main `73d99f6`. Details, primary links and receipts: `research/progress/tool-tier-audit-2026-10-29/LIGHTWEIGHT_WIRING.md`; Kean `F-20261029-4`.
+- **Evidence:** Exact pinned Cotton test fails with inherited JOB_PRIOR_OUTPUT_DIR and passes with it cleared (stub downloader, no network); fix test environment and order Cotton before checker when selected. X1 misses five held passing event texts and its sheet drops source pointers. All 265 Lewis proposals are queued; exact source-result join finds 115 found and 22 budget-deferred. Shepard has held PLO excerpts for a small native source-supplement handoff; adding a global predecessor would make a cycle. Early Ranger needs an all-failure publication guard.
+- **Limits:** Recommendations only; no production patches, jobs or scientific changes. Cotton failure is now traced to test isolation, not demonstrated runtime reuse breakage. Poggio needs branch reconciliation; portfolio missing-prior-context remains a separate blocker. Three bounded delegated inspections supported the diagnosis; no complete effort/token/cash telemetry or savings estimate.
+- **Running:** None.
+- **Next:** The smallest implementation priorities are the Cotton test/order repair, X1 reader/sheet pointers and Lewis result-state feedback. Preserve exact source roles and normal review.
+- **Asks:** @Owner: none.
+
 ## 2026-10-29 11:28 ET: whole-project effectiveness tier audit
 
 - **Done:** At the owner's request, ranked jobs, named processes and excavator campaigns against main `73d99f666573ee10f5b1ff2ada60f7d9331c3952`. The assessment and pinned evidence are in `research/progress/tool-tier-audit-2026-10-29/REPORT.md`; Kean result `F-20261029-3`. Mapped all 66 substantive job directories. This is an editorial evidence assessment, not a change to scientific grades.
