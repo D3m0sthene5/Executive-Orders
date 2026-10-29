@@ -67,6 +67,17 @@ No held source continues any code approval after June 14, 1935.
 - **Later statutes.** Statutes that later regulated an industry (for example the Bituminous Coal Conservation
   Act of 1935) are independent laws and do not continue the order.
 
+## Denials of exemption and other one-time determinations
+
+An order that denies an application for an exemption from a code, or dismisses a complaint, commands
+nothing after it issues. Its command is exhausted by performance on the date it is signed (or on a later
+stated effective date). The applicant's continuing obligation after the denial is the code's own operation,
+which the approving order governs and which ended with the repeal; it is not a surviving command of the
+denial. Record such a clause as exhausted on its date, with the June 14, 1935 repeal as a later event. A stay
+or exception inside the same order (for example "except as stayed by the Administrator") is a separate
+clause with its own end. This rule was added after the first independent review, so each batch reviewer
+tests it on the orders it reaches.
+
 ## Events that do not end a code approval
 
 - **April 1, 1936.** The expiry of Title I as amended ended what remained of Title I (for example section 4(a)
