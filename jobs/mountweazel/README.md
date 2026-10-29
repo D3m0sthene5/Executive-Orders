@@ -29,6 +29,10 @@ python3 -I jobs/mountweazel/test_mountweazel.py
   the repository**. Seeded share is 20 to 30 percent, derived from the seed, and is not stated in the batch.
   Each order appears at most once per batch; pass the other batch's orders to `--exclude-orders` so an order is
   real in one batch and a plant in another.
+  Track C cards always show `working_text`: JSON null means the source claim supplied no disclosure;
+  an existing disclosure and all source-grade labels remain unchanged. This is a presentation copy,
+  not a canonical claim: original claims, fixture payloads, review hashes and base fingerprints retain
+  their original bytes and fields. The leak checker also recognizes this presentation form.
 - **score** reads reviewer verdicts (a JSON list or JSONL of `item_id`, `decision`, `locus`, `reason`,
   `confidence`; decision is `accept`, `reject`, `block_justified` or `block_not_justified`). It reports, per
   defect type and pooled: strict catch (a flag that matches the material issue and affected clause), lenient catch

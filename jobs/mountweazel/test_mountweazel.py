@@ -7,7 +7,8 @@ Core claims proved here:
   4. every flagged fixture is rejected by the production claim gate, while the de-flagged copy passes it;
   5. scoring gives catch rate per defect type, false-alarm bounds and Wilson intervals, and refuses an edited key.
 """
-import contextlib, hashlib, io, json, shutil, sys, tempfile, unittest
+import contextlib, copy, hashlib, io, json, shutil, sys, tempfile, unittest
+from unittest import mock
 sys.dont_write_bytecode = True
 from pathlib import Path
 
@@ -48,6 +49,62 @@ class Base(unittest.TestCase):
 
 
 class SeedTests(Base):
+    def test_optional_disclosure_is_preserved_without_a_layout_tell(self):
+        # Deliberately mixed source claims, independent of the live corpus.
+        source = {"url": "https://example.invalid/test", "sha256": "a" * 64,
+                  "page_or_item": "synthetic fixture page", "grade": "compiled_transcription",
+                  "acceptable_as_original": False,
+                  "quote": "This synthetic instrument gives sufficiently long test wording before it revoked the temporary authority."}
+        end = {"date": "1935-06-14", "actor": "EO:99999", "mechanism": "fixture revocation", "source": source}
+        claim = {"schema": "eo-lifecycle-claim/v1", "instrument_id": "EO:90001", "whole_order_status": "no",
+                 "original_representation": source, "whole_order_end": end,
+                 "operative_clauses": [{"scope_id": "fixture", "original_operative_text": "Synthetic fixture command.",
+                                        "original_source": source, "state_at_cutoff": "terminated", "first_end": end,
+                                        "later_events": []}],
+                 "savings_residuals": {"state": "none_after_bounded_search", "reason": "Synthetic fixture only.", "source": source},
+                 "later_source_search": [{"repository": "synthetic fixture", "query_or_scope": "fixture only", "checked_on": "2026-10-14"}],
+                 "unresolved_material_gaps": [], "research_rationale": "This is synthetic test wording and establishes no actual legal result.",
+                 "claim_kit": {"fixture": True}}
+        pool = {f"EO:{90001 + i}": {"claim": dict(json.loads(json.dumps(claim)), instrument_id=f"EO:{90001 + i}"),
+                                         "path": "synthetic-fixture.jsonl", "line": i + 1} for i in range(4)}
+        self.assertTrue(all(mw.load_gate().validate_claim(r["claim"]) == [] for r in pool.values()))
+        with mock.patch.object(mw, "load_claim_pool", return_value=pool):
+            first, _ = self.seed("first", n=4, extra=("--codes", "D3", "--share", "0.25"))
+        old_key = json.loads((first / "key/KEY.sealed.json").read_text())
+        real = next(i["base_order"] for i in old_key["items"] if not i["is_seeded"])
+        disclosure = {"ruling": "synthetic fixture disclosure", "replacement_required": True,
+                      "quotation_recheck_required": True,
+                      "confirmations": [{"grade": "compiled_transcription", "identity_confirmed": True,
+                                         "complete_text_confirmed": True, "pages_confirmed": True}]}
+        pool[real]["claim"]["working_text"] = copy.deepcopy(disclosure)
+        frozen = copy.deepcopy(pool)
+        with mock.patch.object(mw, "load_claim_pool", return_value=pool):
+            out, fx = self.seed("mixed", n=4, extra=("--codes", "D3", "--share", "0.25"))
+        self.assertEqual(pool, frozen)  # neither card normalization nor operators mutate originals
+        key = json.loads((out / "key/KEY.sealed.json").read_text())
+        shapes = set()
+        for item in key["items"]:
+            card = json.loads((out / f"batch/items/{item['item_id']}.json").read_text())["claim"]
+            shapes.add(tuple(sorted(card)))
+            self.assertEqual(card["working_text"], disclosure if item["base_order"] == real else None)
+            self.assertEqual(card["original_representation"], source)
+            self.assertNotIn("claim_kit", card)
+            if item["is_seeded"]:
+                fixture = json.loads((fx / (item["item_id"] + ".seeded.json")).read_text())
+                self.assertEqual(fixture["base"]["sha256"], mw.sha(pool[item["base_order"]]["claim"]))
+                self.assertNotIn("working_text", fixture["seeded_payload"])
+                # The raw payload remains the original plus its one documented mutation.
+                raw = mw._deflag(fixture["seeded_payload"])
+                expected = copy.deepcopy(pool[item["base_order"]]["claim"])
+                operator = next(apply for spec, apply in mw.ops_c("D3", expected, pool, "t1")
+                                if "D3." + spec == fixture["mutation"]["operator"])
+                operator(expected)
+                self.assertEqual(raw, expected)
+        self.assertEqual(len(shapes), 1)
+        self.assertEqual([i["base_sha256"] for i in key["items"] if i["is_seeded"]],
+                         [i["base_sha256"] for i in old_key["items"] if i["is_seeded"]])
+        self.assertIn("null means no disclosure", json.loads((out / "batch/MANIFEST.json").read_text())["claim_presentation"])
+
     def test_deterministic(self):
         a_out, a_fx = self.seed("a")
         b_out, b_fx = self.seed("b")
@@ -136,6 +193,26 @@ class FixtureGateTests(Base):
 
 
 class CheckTests(Base):
+    def test_normalized_claim_card_copy_is_still_a_leak(self):
+        # No markers, practice item ID or novel text needed: the exact card form
+        # is also forbidden when copied into an ordinary job's inputs.
+        payload = {"schema": "eo-lifecycle-claim/v1", "instrument_id": "EO:90001",
+                   "claim_kit": {"fixture": True}, "research_rationale": "synthetic fixture only"}
+        fx = self.tmp / "fx"; fx.mkdir()
+        flagged = dict(payload, schema="SEEDED-eo-lifecycle-claim/v1", instrument_id="SEEDED:EO:90001")
+        (fx / "control.seeded.json").write_text(json.dumps({"SEEDED": True, "instrument_id": "SEEDED:EO:90001",
+            "track": "C", "seeded_payload": flagged, "leak_needles": []}))
+        repo = self.make_repo(fx)
+        # The fixture is mechanically incomplete, which is immaterial to this
+        # isolated exact-copy check: both required marker errors still apply.
+        self.assertTrue(mw.check(repo, fx)["ok"])
+        target = repo / "jobs/other/claims.jsonl"
+        target.write_text(json.dumps(mw.claim_card(payload)) + "\n")
+        result = mw.check(repo, fx)
+        self.assertTrue(any(p["problem"] == "exact copy of a planted item" for p in result["problems"]), result)
+        target.write_text(json.dumps(dict(mw.claim_card(payload), research_rationale="different real fixture")) + "\n")
+        self.assertTrue(mw.check(repo, fx)["ok"])
+
     def make_repo(self, fx):
         repo = self.tmp / "repo"
         for d in ("research/readiness/claims", "jobs/other/output", "jobs/mountweazel/output"):

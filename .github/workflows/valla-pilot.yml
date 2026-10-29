@@ -38,6 +38,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r jobs/claim-checker/requirements.txt
+      - name: Fetch the frozen pilot comparison code
+        run: |
+          git fetch --no-tags --filter=blob:none --depth=1 origin 91116f879978902343dafa88490b9b19587b10da
+          git cat-file -e 91116f879978902343dafa88490b9b19587b10da:jobs/claim-kit/batch.py
       - name: Unit and consumer tests
         run: |
           python -m unittest discover -s jobs/valla -p 'test_*.py'
