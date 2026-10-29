@@ -84,5 +84,52 @@ class Review(unittest.TestCase):
         self.assertEqual(sheets.review_tier({"clone_status": "cloned", "instrument_id": "EO:1"}), "full")
 
 
+class EventSources(unittest.TestCase):
+    """X1 sees a source held by any job, not only source-ladder, and reports the provider."""
+
+    def _repo(self, tmp, records):
+        import json
+        for job, recs in records.items():
+            out = Path(tmp) / "jobs" / job / "output"
+            out.mkdir(parents=True)
+            with open(out / "SOURCES.jsonl", "w") as fh:
+                for name, url, text in recs:
+                    (out / name).write_text(text)
+                    fh.write(json.dumps({"url": url, "sha256": name, "text_path": name}) + "\n")
+        return Path(tmp)
+
+    def test_other_provider_and_best_copy(self):
+        import tempfile, events
+        ev = [{"event_id": "E", "sources": [{"citation": "c", "url": "u", "verify_phrases": ["are hereby re-\npealed"]}]}]
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = self._repo(tmp, {"astra-source-retention": [("a.txt", "u", "selected pages only")],
+                                    "source-ladder": [("b.txt", "u", "codes ... are hereby repealed")]})
+            row = events.source_state(repo, ev)["E"][0]
+            self.assertEqual(row["state"], "held_phrases_found")
+            self.assertEqual(row["provider"], "jobs/source-ladder/output/SOURCES.jsonl")
+            self.assertEqual(row["sha256"], "b.txt")
+
+    def test_missing_phrase_and_pending(self):
+        import tempfile, events
+        ev = [{"event_id": "E", "sources": [{"citation": "c", "url": "u", "verify_phrases": ["absent words"]},
+                                             {"citation": "d", "url": "v", "verify_phrases": ["x"]}]}]
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = self._repo(tmp, {"astra-source-retention": [("a.txt", "u", "other words")]})
+            rows = events.source_state(repo, ev)["E"]
+            self.assertEqual(rows[0]["state"], "held_phrases_missing")
+            self.assertEqual(rows[0]["phrases_missing"], ["absent words"])
+            self.assertEqual(rows[1]["state"], "source_pending")
+
+    def test_text_path_outside_job_is_ignored(self):
+        import tempfile, events, json
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "jobs" / "j" / "output"
+            out.mkdir(parents=True)
+            (Path(tmp) / "secret.txt").write_text("x")
+            (out / "SOURCES.jsonl").write_text(json.dumps({"url": "u", "sha256": "s", "text_path": "../../../secret.txt"}) + "\n")
+            held = events.held_sources(Path(tmp))
+            self.assertEqual(held["u"][0][2], "")
+
+
 if __name__ == "__main__":
     unittest.main()

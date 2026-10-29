@@ -1,9 +1,13 @@
 """X1 step 3: map orders to candidate mass-ending events (data/EVENTS.json).
 
-An event's source counts as held only when the source-ladder job has a record
-for its URL (jobs/source-ladder/output/SOURCES.jsonl) and every verification
-phrase is found in that record's extracted text. Until then every mapping says
-source_pending. A mapping is always a candidate: it fills no claim field.
+An event's source counts as held when any job publishes a record for its URL
+in the shared source-record format (jobs/*/output/SOURCES.jsonl, the same files
+claim-kit and claim-checker read) and every verification phrase is found in that
+record's extracted text. When several jobs hold the URL, the first record (in
+job-name order) whose text carries every phrase is used and its provider is
+reported; otherwise the first record with text is reported with the missing
+phrases. Until a record exists every mapping says source_pending. A mapping is
+always a candidate: it fills no claim field.
 """
 import csv, json, re
 
@@ -13,23 +17,26 @@ MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", 
 
 
 def held_sources(repo):
-    """{url: (sha256, text)} from the source-ladder output."""
+    """{url: [(provider, sha256, text), ...]} from every job's published source records."""
     out = {}
-    p = repo / "jobs/source-ladder/output/SOURCES.jsonl"
-    if not p.exists():
-        return out
-    for line in open(p):
-        try:
-            r = json.loads(line)
-        except ValueError:
-            continue
-        for u in {r.get("url"), r.get("requested_url")} - {None}:
+    for p in sorted((repo / "jobs").glob("*/output/SOURCES.jsonl")):
+        base = p.parent
+        provider = "jobs/%s/output/SOURCES.jsonl" % p.parent.parent.name
+        for line in open(p, encoding="utf-8", errors="replace"):
+            try:
+                r = json.loads(line)
+            except ValueError:
+                continue
+            if not isinstance(r, dict):
+                continue
             text = ""
-            if r.get("text_path"):
-                tp = repo / "jobs/source-ladder/output" / r["text_path"]
-                if tp.exists():
-                    text = tp.read_text(encoding="utf-8", errors="replace")
-            out[u] = (r.get("sha256", ""), text)
+            tp = r.get("text_path")
+            if isinstance(tp, str) and tp and not tp.startswith("/") and ".." not in tp.replace("\\", "/").split("/"):
+                f = base / tp
+                if f.is_file():
+                    text = f.read_text(encoding="utf-8", errors="replace")
+            for u in {r.get("url"), r.get("requested_url"), r.get("final_url")} - {None, ""}:
+                out.setdefault(u, []).append((provider, r.get("sha256", ""), text))
     return out
 
 
@@ -39,14 +46,19 @@ def source_state(repo, events):
     for e in events:
         rows = []
         for s in e["sources"]:
-            h = held.get(s["url"])
-            if not h:
+            copies = held.get(s["url"])
+            if not copies:
                 rows.append({"citation": s["citation"], "url": s["url"], "state": "source_pending", "sha256": ""})
                 continue
-            sha, text = h
-            flat = tx.compact(text)
-            missing = [p for p in s["verify_phrases"] if tx.compact(p) not in flat]
-            rows.append({"citation": s["citation"], "url": s["url"], "sha256": sha,
+            best = None
+            for provider, sha, text in copies:
+                flat = tx.compact(text)
+                missing = [p for p in s["verify_phrases"] if tx.compact(p) not in flat] if text else list(s["verify_phrases"])
+                cand = (len(missing), not text, provider, sha, missing)
+                if best is None or cand[:2] < best[:2]:
+                    best = cand
+            _, _, provider, sha, missing = best
+            rows.append({"citation": s["citation"], "url": s["url"], "sha256": sha, "provider": provider,
                          "state": "held_phrases_found" if not missing else "held_phrases_missing",
                          "phrases_missing": missing})
         states[e["event_id"]] = rows
