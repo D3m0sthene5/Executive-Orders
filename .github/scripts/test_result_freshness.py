@@ -201,7 +201,12 @@ class FreshnessTests(unittest.TestCase):
         self.commit(self.repo, "add conflict fixture")
         oid = self.cmd("git", "hash-object", "inputs/conflict.txt").stdout.strip()
         self.cmd("git", "update-index", "--force-remove", "inputs/conflict.txt")
-        self.cmd("git", "update-index", "--index-info", input=f"100644 {oid} 1\tinputs/conflict.txt\n")
+        # NUL-delimited records avoid Git-for-Windows line-ending ambiguity.
+        # Use a complete unmerged entry rather than a lone ancestor stage.
+        records = "".join(f"100644 {oid} {stage}\tinputs/conflict.txt\0" for stage in (1, 2, 3))
+        self.cmd("git", "update-index", "-z", "--index-info", input=records)
+        staged = self.cmd("git", "ls-files", "--stage", "--", "inputs/conflict.txt").stdout
+        self.assertEqual([line.split()[2] for line in staged.splitlines()], ["1", "2", "3"])
         declared = {"roots": ["inputs"], "patterns": [], "exclude": "jobs/consumer/output"}
         with self.assertRaisesRegex(ValueError, "Unmerged input: inputs/conflict.txt"):
             freshness.working(declared)
