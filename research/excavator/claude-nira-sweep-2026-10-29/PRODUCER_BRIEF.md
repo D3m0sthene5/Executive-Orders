@@ -11,7 +11,16 @@ every packet.
 python3 jobs/claim-kit/kit.py prepare EO:A EO:B ... --agent claude --write research/excavator/claude-nira-sweep-2026-10-29/<batch>/packet
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/make_declarations.py <batch>/packet <batch>/packet/SUPPLEMENT_DECLARATIONS.json
 python3 jobs/claim-kit/source_supplement.py --repo . prepare --parent <batch>/packet --sources <batch>/packet/SUPPLEMENT_DECLARATIONS.json --agent claude --write <batch>/packet/supp
+python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py lookups <batch>/packet/supp
 ```
+
+Do not commit a packet folder until its batch is completed. A committed `RATIONALES.json` joins the tracked
+package inventory that every packet's Valla context pins, so a mid-batch commit stales every packet in flight
+("changed Valla review context").
+
+Controls: keep the private control key and the seed receipts outside every path a reviewer is given (not in
+the review-set folder and not in the packet) until the blind review is written; then copy the seed receipts
+into `completion/`. One reviewer that read a key in the same folder as its review set had to be re-run.
 
 Select members from provisional-NO orders that X1 types `nra_code_approval` and whose titles name a code
 (`COHORTS.json` records the rule). Exclude the outliers listed in SHARED_ANALYSIS.md section "What each order
@@ -20,6 +29,10 @@ fills the sheets; a separate reviewer reviews blind with planted controls; `kit.
 
 ## Producer rules
 
+0. Start from `LOOKUPS.md` in the packet: register and WPA rows, the APP page check, own-text wording signals,
+   and held texts that cite the order or name its code. It replaces writing your own search and page-check
+   scripts. For any other search use `python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py search REGEX`.
+   Do not read claim-kit source code to learn the sheet format; the example below passed every check.
 1. Read `SHARED_ANALYSIS.md` and `review-shared/ADJUDICATION.json` first. Apply the
    reviewed analysis; do not re-derive it. If an order's text or a held source contradicts it, block that order
    and say why.
@@ -48,3 +61,22 @@ fills the sheets; a separate reviewer reviews blind with planted controls; `kit.
    earlier-end, scope, independent-command and savings explanation.
 9. Record start and end UTC, and per order one line on what took the time. Run apply and batch-check in the
    background; never overwrite an applied directory.
+
+## Sheet fields for a plain code approval (this combination passed batch-check and the actual checker)
+
+`decisions.csv`: `outcome` submit; `approved` true; `original_confirmed` false; `original_pages_confirmed` true
+(after the page check); `inventory_confirmed` true; `savings_state` transferred_or_accrued; `savings_source_id`
+SUPPLEMENT:SJRES113 or SUPPLEMENT:NIRA5; `search_ids` ["current-law:usc","current-law:ecfr","later-events:ofr_catalog"]
+after reading their coverage notes; `conflict_resolutions` {}; `unresolved_material_gaps` [];
+`working_text` {"confirmations":[{"complete_text_confirmed":true,"grade":"mirror_transcription","identity_confirmed":true,
+"instrument_id":"EO:N","pages_confirmed":true,"sha256":"<original sha256>","text_path":"<registered text path>",
+"text_sha256":"<text sha256>"}],"quotation_recheck_required":true,"replacement_required":true,
+"ruling":"research/readiness/owner_rulings/2026-10-21-transcription-as-text.md","standing_note":"original not yet held;
+replace and re-check quotes when an official copy is retrieved."}; `source_notes`
+[{"id":"SUPPLEMENT:SCHECHTERJDG","reason":"...","date_qualification":"1935-05-27: ..."}].
+
+`clauses.csv`: `state` terminated; `end_id` SUPPLEMENT:SJRES113; `effective_date` 1935-06-14;
+`effective_date_confirmed` true; `mechanism` statutory_repeal_of_code_approval_and_enforcement_provisions;
+`later_event_ids` [] and `later_events` [] unless a held later order applies; `reason` in full sentences quoting
+the order and S.J. Res. 113 section 2. For an inventory correction fill `inventory_source_id` (the ORIGINAL id),
+absolute `inventory_char_start` / `inventory_char_end` and `inventory_reason`, with a new `scope_id` per clause.

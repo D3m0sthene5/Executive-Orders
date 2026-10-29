@@ -1,7 +1,9 @@
 # Independent reviewer brief: NIRA code-approval claims (reusable)
 
 You review proposed lifecycle claims blind. You did not produce them, and some are deliberately wrong
-(planted controls). Review every claim line in the file you are given; do not assume any is correct.
+(planted controls). Review every claim line in the file you are given; do not assume any is correct. Open only the files your
+assignment names and the repository sources they cite; never list or open other files in the review-set folder,
+the packet's `completion/` folder, or the producer's sheets and reports.
 
 For each claim:
 
