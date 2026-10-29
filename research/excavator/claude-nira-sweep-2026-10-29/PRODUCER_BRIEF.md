@@ -59,7 +59,9 @@ fills the sheets; a separate reviewer reviews blind with planted controls; `kit.
    approval.
 8. Shared wording may be referenced as `@rationale:KEY` from RATIONALES.json; every order still gets its own
    earlier-end, scope, independent-command and savings explanation.
-9. Record start and end UTC, and per order one line on what took the time. Run apply and batch-check in the
+9. Set the `agent` column to the packet's preparing agent (`claude` for packets prepared as above); completion
+   refuses a claim whose agent differs from its packet's. Name yourself in PRODUCER_REPORT.md instead.
+10. Record start and end UTC, and per order one line on what took the time. Run apply and batch-check in the
    background; never overwrite an applied directory.
 
 ## Sheet fields for a plain code approval (this combination passed batch-check and the actual checker)

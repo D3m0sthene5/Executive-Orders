@@ -2,7 +2,10 @@
 
 Usage:
   python3 -I make_completion.py PACKET APPLIED BLIND_REVIEW.jsonl [AFTER_REVEAL.jsonl|-] KEY.json PUBLICATION_PATH \
-      ADJUDICATOR "EO:N=caught|RATIONALE" [...] [--receipt PATH ...]
+      ADJUDICATOR "EO:N=caught|RATIONALE" [...] [--planted-review BLIND.jsonl] [--receipt PATH ...]
+
+--planted-review names the blind review file holding the planted-version verdicts when the genuine versions
+were attested in a later exact-version review file (passed as BLIND_REVIEW above).
 
 KEY.json is the coordinator's private control key (kept outside the repository); only hashes from it are
 copied. Each control needs one "EO:N=caught|rationale" or "EO:N=missed|rationale" argument: that semantic
@@ -42,6 +45,11 @@ def lines(p):
 
 def main(a):
     receipts = []
+    planted_review = None
+    if "--planted-review" in a:
+        i = a.index("--planted-review")
+        planted_review = a[i + 1]
+        a = a[:i] + a[i + 2:]
     if "--receipt" in a:
         i = a.index("--receipt")
         receipts = a[i + 1:]
@@ -100,17 +108,19 @@ def main(a):
     controls = []
     outdir = packet / "completion"
     outdir.mkdir(exist_ok=True)
+    planted_path = planted_review or blind
+    planted_l = lines(planted_path)
     for k in key:
         iid = k["instrument_id"]
-        hit = blind_l.get(k["planted"])
+        hit = planted_l.get(k["planted"])
         caught, why = judgments[iid]
-        adj = {"instrument_id": iid, "planted_claim_sha256": k["planted"], "review": ref(blind, hit[0]),
+        adj = {"instrument_id": iid, "planted_claim_sha256": k["planted"], "review": ref(planted_path, hit[0]),
                "adjudicator": adjudicator, "caught": caught, "scoring": "strict", "rationale": why}
         ap = outdir / ("CONTROL_ADJUDICATION_" + iid.replace(":", "_") + ".json")
         ap.write_text(json.dumps(adj, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         sp = outdir / ("SEED_RECEIPT_" + iid.replace(":", "_") + ".json")
         controls.append({"instrument_id": iid, "planted_claim_sha256": k["planted"],
-                         "seed": {"path": rel(sp), "sha256": fsha(sp)}, "review": ref(blind, hit[0]),
+                         "seed": {"path": rel(sp), "sha256": fsha(sp)}, "review": ref(planted_path, hit[0]),
                          "adjudication": {"path": rel(ap), "sha256": fsha(ap)}})
     manifest = {"schema": "eo-claim-kit-completion/v1", "agent": agent, "producer_model_family": "Anthropic",
                 "independence_requirement": "same_family_separate_context",
