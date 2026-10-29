@@ -2,6 +2,25 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-29 ET: packet-friction repairs H01-H07 (branch opus/packet-friction, PR unmerged)
+
+- **Done:** Valla packet context scoped to requested IDs (own packet and same-agent supplement parent excluded;
+  per-query bounds replace the 100-package raise); completion verifies each packet once, rechecks before writing,
+  tolerates disjoint concurrent claim files under a short lock in the Git common dir; one-pass prior-research
+  discovery (completion `TRACKER_CLAIMS.jsonl` union copies no longer bind); content-keyed fragment index reused
+  across checked claims (`fragment_cache.py`; `assemble.py`/`working_text.py` unchanged, no compiler rebuild);
+  batch-level undecided freezing. Report and receipts: `research/progress/opus-packet-friction/`. Kean F-20261029-7001.
+- **Measured (same inputs, commit 1d112ff):** real t6 completion with a mid-run publication 506 s/0 filed -> 122 s/16
+  filed (bytes identical to production); view 28.6 -> 3.7 s; apply 143.7 -> 8.8 s; batch-check 158.8 -> 29.3 s;
+  7 false invalidations gone, 18 relevant perturbations still invalidate.
+- **Next:** after merge, re-prepare in-flight packets once (pinned code changed) and re-attest re-versioned claims;
+  for NRA, declare held EO 6730 (for 6254) and EO 6620-B (for 6438) through `source_supplement.py` (replay shows the
+  route works; no code gap); run claim-kit on main (main's compiled outputs are stale for build.py/excavate.py, which
+  blocks undecided preparation).
+- **Asks:** @Owner: A-20261029-1 (this branch is the proposed Valla repair; merging is yours). @Sol: when combining,
+  keep both Kean findings and regenerate the brief; claim-kit/valla jobs still need `research/**` and FRAGMENTS inputs.
+- **Do not:** run two completions in one checkout without this branch; commit packets in flight on main until merged.
+
 ## 2026-10-29 ET: NIRA code-approval orders through ordinary production with one shared, reviewed analysis
 
 - **Done:** Branch `claude/schechter-nira-sweep`. Shared analysis `research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md`
