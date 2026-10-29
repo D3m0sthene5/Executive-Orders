@@ -6,11 +6,36 @@ step the order needs. Output: [`output/TRACKER.md`](output/TRACKER.md) (read thi
 `output/READINESS_BY_ORDER.csv` (all 14,972 orders, one row each) and
 `output/SUMMARY.json`.
 
-Runs daily (the `DAILY` file), whenever this folder or `research/readiness/` changes
-(`triggers.txt`), after the jobs it reads when they run together (`after.txt`), or by
-hand from the Actions tab. `SUMMARY.json` → `inputs.job_outputs_used` shows which job
+Runs daily (the `DAILY` file), on a push that edits this job's folder, during the
+three-hour sweep when its declared inputs change (`triggers.txt`), after the jobs
+it reads when they run together (`after.txt`), or by hand from the Actions tab.
+`SUMMARY.json` → `inputs.job_outputs_used` shows which job
 outputs it read. The tests in `test_tracker.py` run first; the tracker does not run if
 they fail.
+
+## Keeping the dashboard current
+
+The published total belongs to the successful generation identified by
+`output/STATUS.json` (`finished_utc`, `commit_run`, and `run_url`). New claim files
+can be merged before that generation is refreshed. Run **claim-checker before
+readiness-tracker** on the same checkout so each current claim has its exact-hash
+receipt. A tracker-only rerun cannot credit a new or revised claim using an old
+checker receipt. Preserve a dated last-successful total when either job fails.
+
+Batch-local replays are scoped evidence. Their baseline may omit claims filed by
+another batch, so their endpoints and gains must not be added into a current
+repository total. The combined tracker supplies that total. The moving dashboard
+at `research/progress/README.md` links the current generated view and keeps filed
+claims, provisional statuses, ready dossiers, and human certification distinct.
+
+The owner's October 21 working-text ruling allows an explicitly reviewed,
+disclosed transcription or ProQuest scan to satisfy the text step provisionally.
+`ready_by_text_evidence_tier` separates `original_supported` from
+`transcription_dependent`; `original_replacement_obligations` and
+`quotation_recheck_obligations` remain visible. This does not change a source's
+`acceptable_as_original` grade. The original-source descriptions below describe
+the original-supported route; `jobs/claim-kit/working_text.py` implements the
+separate provisional working-text gate.
 
 ## Steps per order
 
@@ -18,7 +43,7 @@ they fail.
 |---|---|
 | `provisional_status` | It has a provisional YES/NO (`research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv`) |
 | `original_text` | Stage 19 marks a locally preserved original, Stage 21 captured the official PDF, fr-originals or an official compilation job (ofr-compilations, isthmian-canal-1911, indian-reservations-1912) found it without `needs_page_check` (otherwise `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`), opus-media-match matched an Opus copy to it, or its claim's original passes the gate and claim-checker. A find only in a compiled transcription, Richardson (richardson-volumes) or the American Presidency Project (app-executive-orders, live `FRAGMENTS.jsonl` and archive-capture `MIRROR_FRAGMENTS.jsonl`), never counts; it adds the lead blocker `ONLY_COMPILED_TRANSCRIPTION_FOUND` (lead available, original still needed) |
-| (ProQuest replica scans) | A ProQuest "Replica of Original" scan ingested by pinakes-proquest-ingest (`FRAGMENTS.jsonl`, `acceptable_as_original: false`) never counts either; it adds the lead blocker `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` (a person compares the pages; the codebook decides whether a replica scan may then count, which would be a new rule here) |
+| (ProQuest replica scans) | A ProQuest "Replica of Original" scan ingested by pinakes-proquest-ingest (`FRAGMENTS.jsonl`, `acceptable_as_original: false`) does not count as an authenticated original. It adds `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` until an applicable page check and explicit provisional working-text review satisfy the current gates. The October 21 ruling permits that disclosed text use while retaining original-replacement and quotation-recheck obligations. |
 | `clause_inventory`, `ending_or_current_basis`, `savings_residuals` | That part of its claim in `research/readiness/claims/` passes `claim_gate.py` **and** claim-checker passed that step for this exact claim (`jobs/claim-checker/output/PER_CLAIM.json`, matched by claim sha256) |
 | `counterevidence` | Either the claim's later-source search passes as above, **or** the machines' bounded searches covered the order and found nothing contrary: later-events read the whole OFR catalog (the order must be in it, so 1937 on) and every saved text, current-law scanned the whole U.S. Code and eCFR, and neither `COUNTEREVIDENCE_LEADS.csv` nor `POSSIBLE_CONFLICTS.csv` names the order. Never from a sample run; never with a quarantined relationship conflict. `output/MACHINE_LATER_SEARCH.jsonl` gives the claim-shaped `later_source_search` for each such order, ready to copy into its claim. Blockers say why not: `MACHINE_SEARCH_FOUND_CONTRARY_LEAD:<job>` (an agent must resolve it) or `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` (pre-1937) |
 | `shared_sources` | Only for orders citing a Stage 20 shared source: all of them retrieved (Stage 20 records or `jobs/source-ladder/output/SOURCES.jsonl`) |
@@ -90,3 +115,4 @@ The 1989 snapshot is still excluded from legal/current-status proof.
 ## Historical census candidate track
 
 The separately run census-candidates job publishes an item-level register for the early rangers and Lord's index appearances. Its counts are appended in a separate section of TRACKER.md and SUMMARY.json when the job output exists. They are excluded from the 14,972 working-EO denominator. No catalog hit or scanned document is automatically admitted.
+

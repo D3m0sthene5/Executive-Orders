@@ -1,70 +1,76 @@
-# Moving whole-lifecycle research progress and effort tracker
+# Executive Orders — research progress dashboard
 
-Updated 2026-10-17. Legal cutoff: 2026-10-14 (America/New_York). **Correction:** The previous headline **22.435212%** measured provisional YES/NO labels. It did **not** mean that we knew each order's complete operative footprint, whether and when it ended, how it ended, and why that legal conclusion holds. The headline now counts **independently reviewed, source-linked whole-lifecycle dossiers** on the 14,972-identity *working* bibliography. [Stage 19's progress file](../stage19/output/PROGRESS.json) generates the current count. This is a documented lower bound; it is not an estimate of the historical national universe or proof that no other case can be resolved.
+**[Open the current generated dashboard](../../jobs/daily-digest/output/DASHBOARD.md)** · [Exact data and input hashes](../../jobs/daily-digest/output/DASHBOARD.json) · [Per-order readiness](../../jobs/readiness-tracker/output/READINESS_BY_ORDER.csv) · [Daily changes](../../jobs/daily-digest/output/DIGEST.md)
+
+Updated October 28, 2026 (America/New_York). Legal cutoff: **October 14, 2026**. The working bibliography contains **14,972 identities**; the historical census is still incomplete. The generated dashboard reads the current status and claim registers, retains each producer's published generation date, and checks exact claim versions against the mechanical checker.
 
 ## Current readout
 
-| Metric | Verified value | What it measures |
+The combined checker → tracker → dashboard refresh finished **October 28 at 11:09 p.m. EDT**. It reports **395 ready for human review**, including **298 original-supported** and **97 transcription-dependent** cases: a net increase of **85** from the previous 310-ready generation. All **510 current claim lines covering 509 distinct orders** now have exact matching checker receipts. Readiness comes from this combined run; the separate batch replays are not added together. [Validation run and generation receipt](../../jobs/readiness-tracker/output/STATUS.json).
+
+| Measure | Verified checkpoint | Source and definition |
 |---|---:|---|
-| **Headline: complete whole-lifecycle dossiers** | **0 / 14,972 = 0.000000%** | Source-linked whole-order status, original footprint, first end date and mechanism for a NO or current legal predicate for a YES, savings/residuals and counterevidence, plus recorded independent human review |
-| Structurally complete research claims awaiting or including review | 0 | No whole-order causal claim in the current release passes the new full field gate |
-| Additional **complete dossiers** needed for 25% of working bibliography | **3,743** | `ceil(0.25 × 14,972) − 0`; this replaces the former 384-label headline milestone |
-| Prepared lifecycle audit packets | 80, drawn from a 3,359-case queue | Stage 19 batch excavator, spread across early, contradictory, relation-rich, scoped and unmapped cases; packets are research work, not completed cases |
-| Working identities | 14,972 | Deduplicated Stage 17 working bibliography; historical universe remains unknown |
-| Stage 17 canonical provisional YES / NO / UNKNOWN | 268 / 2,787 / 11,917 | Legacy v2 overlay actually inside the released SQLite |
-| Stage 17 canonical provisional status coverage | 3,055 / 14,972 = 20.404756% | Status labels within the working bibliography |
-| Complete Opus Stage 11 accepted overlay on GitHub | 844: 212 YES, 632 NO | Includes all 540 Opus decisions already imported into Stage 17 and all 597 in the earlier Opus ZIP |
-| Complete Opus worklist disposition | 1,155 reviewed: 844 accepted, 311 held; 6 Stage 9 overlaps excluded | Held and excluded cases do not advance status coverage |
-| Reconciled provisional YES / NO / UNKNOWN, **not yet rebuilt into canonical SQLite** | 405 / 2,954 / 11,613 | 2,515 prior decisions plus 844 complete Opus decisions on the Stage 17 denominator |
-| Secondary: reconciled provisional YES/NO label coverage | 3,359 / 14,972 = 22.435212% | Status-label inventory only, pending canonical rebuild and source audit; **not** lifecycle progress |
-| Additional provisional labels needed to reach a *label-only* 25% | 384 | Historical diagnostic retained solely for comparison; not the project milestone |
-| Canonical decided cases with a Stage 16 or 17 structured scoped episode/provision | 14 of 3,055 | Presence of structured causal records, **not** whole-order causal completion |
-| Canonical decided cases without those structured records | 3,041 of 3,055 | Audit queue; some may contain narrative in raw legacy records |
-| Reconciled decided cases without those structured records | 3,345 of 3,359 | Includes 304 new complete-Opus cases; some may contain narrative in Opus or raw records |
-| Stage 17 scoped prospective first-sunset assertions | 13 | Provision-level claims; none is automatically whole-order first cessation |
-| Opus complete historical first-cause results | 0 of 844 | Its accepted status records explicitly leave this field unknown |
-| Original PDF/image entries housed in separate companion | 496 / 496 manifest-matched | Absent from main complete ZIP, but companion is now uploaded to Git LFS and each listed media entry has passed bytes/SHA-256 verification; legal authentication remains outstanding |
-| Stage 20 recovered complete Opus AI reviewer narratives | 844 / 844 | Complete AI research records, still requiring source and legal verification |
-| Opus reported footprint-complete AI claims | 836 / 844 | Claimed research completeness, not independent clause verification |
-| Stage 20 cases with unclassified ISO date mentions | 323 / 844 | Textual date leads; not first-cessation events |
-| Stage 20 repeated authority-reference clusters | 98 | Shared source-recovery families; citations do not imply common legal effect |
-| Stage 20 case-specific source–authority tasks | 352 across 236 distinct orders | [Source-once, per-case review workbench](../stage20/output/SHARED_SOURCE_WORKBENCH.html) tracks separate impact, pages, dates and savings |
-| Downloaded GovInfo statutory source candidates | 7 of 10 attempted references; 18 source–EO links across 14 EOs | [Statute source-custody review packets](../stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv); downloaded bytes, hashes, legal scope and causal effect remain distinct evidence tiers |
-| Original-media members uniquely attributable to one accepted case from archive paths | 0 / 496 | Every shared-batch source image has multiple candidate-case paths; exact instrument and page still need direct documentary evidence |
-| Production human review rows | 0 | No independent human-certified conclusions |
-| Early included proxies, 1789–1861 | 3 | Too few to estimate historical coverage |
-| Early included proxies, 1862–1906 | 617 | Original recovery and census crosswalk needed |
-| Stage 18 direct printed-page crosswalk | 14 cases, 13 scoped provisions, 26 transition records | Official Federal Register pages locally preserved and mapped to the Stage 17 pilot; no signed originals or human certification |
-| Stage 18 early source pilot | 5 of 5 Lord candidates have located primary historical representations | June 1789 letterbook, St. Clair congressional printing, Knox pension broadside, two distinct August 1790 letterbook documents; all remain outside denominator |
-| Stage 18 EO 1 causal pilot | 1 newly documented actual institutional cessation | Court operation ended July 28, 1866 under statute as construed by Supreme Court; not integrated into legacy coverage |
-| Stage 19 early ranger | 1,041 uncounted lead/survey rows; 3,403 catalog search routes | 1,023 Lord OCR markers, six curated candidates and 12 1789–1800 blank-space survey cells; 0 live catalog hits established |
-| Stage 20 systematic early-history expansion | 73 annual survey cells covering 1789–1861, 438 planned routes | Adds systematic coverage for 61 previously unsurveyed years (1801–1861); these are unsearched route plans, not retrieved or included orders |
+| Working identities | **14,972** | [Identity register](../stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv); bibliographic coverage, with the historical universe still unknown |
+| Provisional present-status decisions | **3,403 / 14,972 = 22.73%** | [Current status register](DECIDED_CASE_COMPLETENESS_RECONCILED.csv); adopted AI status hypotheses |
+| Provisional YES / NO / without an adopted status | **405 / 2,998 / 11,569** | Absence of an adopted status does not mean absence of research |
+| Ready for human review, last published generation | **395 / 14,972 = 2.64%** | [Tracker summary](../../jobs/readiness-tracker/output/SUMMARY.json) and [generation receipt](../../jobs/readiness-tracker/output/STATUS.json); all applicable machine steps passed or were documented exhausted |
+| Ready by text-evidence tier | **298 original-supported / 97 transcription-dependent** | The transcription tier retains explicit source limitations |
+| Filed claim lines / distinct orders | **510 / 509** | [Current claims](../readiness/claims/); includes partial claims and one replacement/repeated line |
+| Current claim lines with exact matching checker receipts | **510 / 510** | All 509 effective order claims also match; a matching receipt can still record a failed or unverified check |
+| Published human-certified whole histories | **0** | [Separate human-review register](../stage19/output/PROGRESS.json); no AI or mechanical pass confers certification |
+| Original replacement / quotation recheck obligations | **103 / 103** | Published tracker obligations, overlapping with other work |
 
-As of the subsequent Stage 20 recovery workflow, the [complete Opus ZIP](../../releases/opus_stage11_complete/README.md) was fully retrieved from GitHub and passed SHA-256, ZIP, and included-file manifest checks. [`OPUS_COMPLETE_RECONCILIATION.json`](OPUS_COMPLETE_RECONCILIATION.json) verifies that all 540 Stage 17 Opus decisions and all 597 decisions in the earlier [interim final ZIP](../../releases/opus_stage11/README.md) are unchanged; the complete release adds 304 beyond canonical Stage 17 and 247 beyond the interim final ZIP. Do not add all 844 again to Stage 17's 3,055. The complete package has text extractions and review metadata; its 496 original PDF/image manifest entries belong to a separate 358,846,280-byte Git LFS companion now on GitHub. The [Stage 20 verification report](../stage20/output/OPUS_ORIGINAL_MEDIA_INTEGRITY.json) records all 496 media member sizes and SHA-256 values matching the manifest; this verifies archived bytes, not presidential attribution, first cessation, or the completeness of an individual EO dossier. Seven included filenames have a ZIP encoding alias; their bytes match the manifest.
+The historical Stage 19 progress file remains the published human-certification record. Its old structural-claim and provisional-status totals are not used as current research counts. Readiness and filed claims are read from their current dedicated registers.
 
-The [reconciled decision completeness CSV](DECIDED_CASE_COMPLETENESS_RECONCILED.csv) audits all **3,359 currently decided cases**. Its [Stage 17 canonical subset](DECIDED_CASE_COMPLETENESS_STAGE17.csv) has 3,055 rows; [`DECISION_COMPLETENESS_SUMMARY_STAGE17.json`](DECISION_COMPLETENESS_SUMMARY_STAGE17.json) gives reproducible canonical counts. The [additional 304 Opus decisions](OPUS_COMPLETE_304_PENDING_CANONICAL_INTEGRATION.csv) remain in the complete Opus release until an additive, idempotent integration is built and tested. The older [57-case inventory](OPUS_FINAL_57_PENDING_INTEGRATION.csv) documents the interim release. Generate the current reconciliation with `python research/progress/reconcile_opus_complete.py STAGE17.sqlite COMPLETE_OPUS.zip INTERIM_OPUS.zip`.
+## Work added on October 28
 
-[Stage 18](../stage18/README.md) makes tangible progress on the **quality and historical-cause axes** without advancing the complete-lifecycle numerator: it preserves official printed pages behind all 14 Stage 17 pilot orders, links 13 clauses and 26 transitions to those pages, identifies source errors, and traces EO 1's provisional court to a judicially identified statutory dissolution. EO 1's surviving legal consequences and an earlier scoped change remain open. [Stage 19](../stage19/README.md) turns the reconciliation into a reusable batch queue, reviewer packets and early-source ranger. [Stage 20](../stage20/README.md) now restores 844 complete Opus reviewer narratives, audits 496 original-media members, and creates 98 multi-case shared-reference clusters with a conversion workbench; no case is promoted to human-reviewed lifecycle status. Its [funnel](../stage19/FUNNEL.md) records ten distinct concepts for each tool and the selected build. No catalog match or graph edge promotes itself to a legal finding.
+The three merged production batches cover **106 attempted orders**, **99 source-review-upheld submissions**, and **88 filed claims**. Seven orders were blocked and eleven upheld submissions remained on mechanical hold. Their six planted controls were caught. The exact tallies and claims remain independently inspectable:
 
-## Remaining effort and planning windows
+| Batch | Attempted | Source review upheld | Filed | Evidence blocks | Mechanical holds | Records |
+|---|---:|---:|---:|---:|---:|---|
+| b1a | 36 | 33 | 24 | 3 | 9 | [Tally](../excavator/claude-production-2026-10-28/b1a/packet/supp/complete-v1/TALLY.json) · [Claims](../readiness/claims/claude-2026-10-28-production-b1a.jsonl) |
+| b1b | 35 | 34 | 33 | 1 | 1 | [Tally](../excavator/claude-production-2026-10-28/b1b/packet/supp/complete-v1/TALLY.json) · [Claims](../readiness/claims/claude-2026-10-28-production-b1b.jsonl) |
+| b1c | 35 | 32 | 31 | 3 | 1 | [Tally](../excavator/claude-production-2026-10-28/b1c/packet/supp/complete-v1/TALLY.json) · [Claims](../readiness/claims/claude-2026-10-28-production-b1c.jsonl) |
+| **Total** | **106** | **99** | **88** | **7** | **11** | All 88 filed instrument IDs are distinct |
 
-| Workstream | Known remaining work | Next measurable gate | Planning window from 2026-10-17 |
-|---|---|---|---|
-| Reconcile complete Opus Stage 11 into a new canonical release | 304 additional decisions with unchanged verdicts for prior 540 | Additive migration, source limitation flags, clean rebuild, 304-row diff and rollback test | 1–3 working days after input freeze |
-| Complete whole-lifecycle dossiers to 25% | 3,743 source-linked, independently reviewed dossiers on the current working denominator | Establish throughput and disagreement rate on the first 80 prepared packets; only then estimate the remaining effort | **No defensible finish date yet** |
-| Audit decided cases for “how” and first cessation | 3,345 reconciled determined cases without linked Stage 16/17 structured scoped records; Opus's 844 historical causes still explicitly unknown | Reuse the now materialized 844 AI reviewer narratives and 98 authority clusters, verify entire original footprint and legally first effective causes, savings and counterevidence, then blind-review a stratified pilot | Pilot capacity must be measured; total completion not estimable yet |
-| Independent legal quality check | 0 production human reviews; existing 120-case sample awaits actual review | Blind independent review with disagreement adjudication and interval estimate | Start in 1–2 weeks if qualified reviewers are available |
-| Early historical census | All five initial 1789–1790 Lord references have primary representations but no inclusion decision; only nine inherited leads point to the 18th century; 1,023 Lord OCR markers and 12 systematic 1789–1800 survey cells remain leads | Run and inspect the ranger's multiple search routes; adjudicate a stratified 50-marker/survey sample, including misses and same-date splits | Source-recovery pilot achieved; identity/legal pilot remains in 1–3 weeks |
-| Full 1789–2026 historical universe and causal timeline | Unknown denominator, missing archival originals, and most causal histories open | Estimate source capture and adjudication rates from the pilots before projecting a finish date | **No defensible completion date yet** |
+The combined refresh makes **85 of the 88 newly filed claims ready**: **23/24** from b1a, **32/33** from b1b, and **30/31** from b1c. All **310 previously ready orders remain ready**. **EO 254, EO 2171, and EO 4354** await source-byte verification in the full workflow. Each passes its structural gate and six quotation checks, but its ProQuest scan is recorded only through custody metadata in the standard sparse checkout. These are source-custody holds, not substantive rejections. The [per-claim receipts](../../jobs/claim-checker/output/PER_CLAIM.json), [check details](../../jobs/claim-checker/output/CLAIM_CHECKS.csv), and [per-order tracker](../../jobs/readiness-tracker/output/READINESS_BY_ORDER.csv) retain the exact reasons.
 
-The windows are planning assumptions, not measured throughput forecasts. A later batch advances the **headline** only after identity, source, full operative scope, causal/current-predicate, residual and independent-review gates pass. The legacy 22.435212% label bar remains visible as a secondary inventory of leads for that work.
+The earlier **20-order spent-order probe filed 15 claims** and retained four evidence blocks plus one mechanical hold. Its [completion tally](../excavator/claude-spent-probe-2026-10-28/packet-v6/supp/complete-v1/TALLY.json) records two of two controls caught. Those filings precede the three batches above.
 
-## Scientific gates for a decided case
+The separate [blinded status-review packet](../excavator/claude-status-proposals-2026-10-28/batch-1/) contains **143 review rows, including planted controls**. Merging the packet did not adopt those statuses. The current 3,403-row status register adds the previously adopted **15 Bowditch and 29 Sinclair** rows to the older 3,359-row inventory. Status adoption remains governed by the [October 21 ruling](../readiness/owner_rulings/2026-10-21-status-proposal-adoption.md).
 
-1. Preserve the historical document or identify exactly which representation was reviewed, with URL or archival location, retrieval time, bytes/hash if available, signer/capacity, and date conflicts.
-2. Identify every operative clause for a NO; for a YES, show at least one continuing legal predicate and test relevant later changes. Track enduring consequences, formal disposition, and successor policy separately.
-3. Link every asserted transition to an actor, affected clause, legal mechanism, effective date or interval, and original evidence. An editorial successor link or later formal revocation is not automatically the first cessation.
-4. Record unresolved extensions, savings, accrued rights, host amendments, and contrary evidence. Keep “unknown” rather than filling a causal field by inference.
-5. Keep AI assessment and human certification separate. A reviewer must check the source and claim fingerprint before certification.
+## Source recovery
 
-See [`SCIENTIFIC_STATUS_2026-10-17.md`](SCIENTIFIC_STATUS_2026-10-17.md) for the validity audit and [`EARLY_ORDERS_SOURCE_PLAN.md`](EARLY_ORDERS_SOURCE_PLAN.md) for historical recovery.
+| Measure | Published result | Source |
+|---|---:|---|
+| ProQuest PDF files / distinct census orders with PDFs | **2,807 / 2,750** | [Pinakes summary](../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
+| Usable ProQuest machine texts | **2,440** | Same summary; text availability is separate from a page check |
+| Low-quality, probably handwritten texts | **310** | Same summary; these still need a usable reading |
+| Supplied ProQuest links without a matching PDF | **15** | Same summary |
+| Published web-source capture hashes / failed captures | **526 / 2** | [Cotton summary](../../jobs/cotton-capture-custody/output/SUMMARY.json); source-copy counts, not completed orders |
+
+Under the [October 21 working-text ruling](../readiness/owner_rulings/2026-10-21-transcription-as-text.md), an explicitly reviewed and disclosed transcription can support provisional research while original replacement and quotation rechecking remain obligations. The source's original-authentication grade is unchanged.
+
+## Measured effort
+
+The spent-order probe records **79.40 producer minutes + 9.05 reviewer minutes = 88.45 worker-minutes**, including the recorded reruns and corrections. With **15 filed claims**, that is **5.90 recorded worker-minutes per filed claim**. Dividing by the sixteen source-review-upheld submissions gives 5.53 minutes per upheld submission. These denominators measure different outcomes. See the [session telemetry](../excavator/claude-spent-probe-2026-10-28/packet-v6/supp/completion/PRODUCER_TELEMETRY.json) and [completion tally](../excavator/claude-spent-probe-2026-10-28/packet-v6/supp/complete-v1/TALLY.json).
+
+Coordinator time and tokens were not measured. The deterministic completion run's 910.64 machine seconds are recorded separately. The earlier 88-minute-per-order comparison is a model assumption, and this probe covers simple own-terms orders. A project-wide net labor saving or a new completion forecast has not been established by these observations.
+
+The [remaining-work snapshot](remaining-work/SNAPSHOT.md), [effort model](remaining-work/EFFORT.json), and [model notes](remaining-work/EFFORT_NOTES.md) preserve earlier planning assumptions. Their dates, inputs, and denominators differ; these historical planning records are not silently revised by the dashboard.
+
+## How to interpret and refresh the counts
+
+1. **Status decisions** answer the provisional present-effect question within the working bibliography.
+2. **Filed claims** contain research, including partial histories and replacements. Filing alone does not make an order ready.
+3. **Ready for human review** is the readiness tracker's result after its applicable gates and exact claim-checker receipts.
+4. **Human certification** requires a separately recorded review of the whole lifecycle and its sources.
+
+The existing daily-digest job generates the current dashboard from those records. It detects new files and changed claims, shows missing exact receipts, and preserves producer timestamps. A combined refresh runs **claim-checker → readiness-tracker → daily-digest**. A failed or older producer generation remains labeled; new filings are never added arithmetically to its ready count.
+
+The [scientific gates](SCIENTIFIC_STATUS_2026-10-17.md) require a supported operative footprint, a first-ending explanation or continuing legal predicate, surviving consequences, counterevidence, and review. The [October 28 evidence ruling](../readiness/owner_rulings/2026-10-28-evidence-not-convenience.md) distinguishes a demonstrated event within an interval from an event whose occurrence remains unknown.
+
+## Historical releases
+
+The [Stage 17 dashboard](../stage17/reports/DASHBOARD_STAGE17.html), Stage 12–17 releases, and [October 17 progress snapshot](https://github.com/D3m0sthene5/Executive-Orders/blob/e1b9300dd3430f3a7b8c57695bbedb68ab94e88e/research/progress/README.md) retain their historical figures. They document earlier work and are not the current operational readout. [PROGRESS.md](../../PROGRESS.md) preserves the release history; [MIGRATION_STATUS.md](../../MIGRATION_STATUS.md) provides archive recovery instructions.
+

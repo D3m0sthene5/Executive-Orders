@@ -6,6 +6,22 @@ their time only on legal judgment.
 
 It costs no model tokens: it is an ordinary Python script.
 
+## Dashboard refreshes and receipt freshness
+
+Check the combined `research/readiness/claims/` directory before regenerating the
+readiness tracker. A successful saved batch replay only checked its selected
+claims; it cannot establish a combined total after other batches are merged.
+`output/PER_CLAIM.json` binds receipts to exact claim SHA-256 values, and
+`output/STATUS.json` identifies the successful generation and input commit.
+New or revised claims need matching receipts before they can advance readiness.
+
+Use the shared runner with the complete declared source inputs for this refresh.
+A partial local checkout can lack held source bytes and produce different custody
+results. Report the published generation's date and any newer unprocessed filings
+until a combined checker and tracker run succeeds. Mechanical checks establish
+custody, quotations, identity, dates, and structure; human certification remains a
+separate measure.
+
 ## What it checks
 
 For every claim (Stage 19 format, see `research/stage19/CLAIM_SCHEMA.md`) and every
@@ -218,3 +234,4 @@ universe).
   against the page where it was found (the detail reports the page).
 - Cited order numbers are found by pattern. Unnumbered orders cited by date,
   and unusual spellings, are not checked.
+

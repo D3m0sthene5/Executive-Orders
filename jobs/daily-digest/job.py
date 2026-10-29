@@ -60,10 +60,16 @@ def build(root,day,old):
 
 def main():
     root=Path(os.environ['REPO_ROOT']);out=Path(os.environ['OUTPUT_DIR'])
+    tests=subprocess.run([__import__('sys').executable,'-m','unittest','-v','test_dashboard'],cwd=Path(__file__).resolve().parent)
+    if tests.returncode:
+        raise SystemExit('Dashboard tests failed; digest not published.')
     from zoneinfo import ZoneInfo
     day=dt.datetime.now(ZoneInfo('America/New_York')).date()
     text,snapshot=build(root,day,previous(root,day))
     out.mkdir(parents=True,exist_ok=True)
     (out/'DIGEST.md').write_text(text,encoding='utf-8',newline='\n')
     (out/'SNAPSHOT.json').write_text(json.dumps(snapshot,sort_keys=True,indent=2)+'\n',encoding='utf-8',newline='\n')
+    import dashboard
+    dashboard.write(root,out)
 if __name__=='__main__':main()
+
