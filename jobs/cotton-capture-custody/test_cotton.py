@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -23,6 +24,11 @@ def warc(body, uri=URL):
 
 class CottonTests(unittest.TestCase):
     def setUp(self):
+        # A real runner variable must never redirect a synthetic test fixture.
+        env = mock.patch.dict(os.environ)
+        env.start()
+        self.addCleanup(env.stop)
+        os.environ.pop("JOB_PRIOR_OUTPUT_DIR", None)
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.repo = Path(self.tmp.name) / "repo"
@@ -100,6 +106,17 @@ class CottonTests(unittest.TestCase):
             else:
                 os.environ["JOB_PRIOR_OUTPUT_DIR"] = old
         self.assertEqual((summary["published"], summary["failed"]), (1, 0))
+
+    def test_corrupt_committed_bytes_are_not_reused(self):
+        (self.job / "output/captures").mkdir(parents=True)
+        (self.job / "output/captures" / (self.sha + ".bin")).write_bytes(b"changed")
+
+        def get(url, headers=None):
+            raise OSError("network down")
+
+        summary = cotton.run(self.repo, self.job, self.out, get=get)
+        self.assertEqual((summary["published"], summary["failed"]), (0, 1))
+        self.assertEqual(list((self.out / "captures").iterdir()), [])
 
     def test_wanted_file_and_non_web_sources(self):
         (self.job / "data/WANTED.jsonl").write_text(json.dumps({"sha256": "a" * 64, "url": None, "instrument_id": "EO:1"}) + "\n")
