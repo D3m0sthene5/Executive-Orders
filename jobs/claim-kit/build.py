@@ -53,11 +53,108 @@ def filename(iid):
         return 'ID_'+hashlib.sha256(iid.encode()).hexdigest()[:24]
     return 'EO_'+iid[3:]
 
-def rank_text(r):
+def text_tier(r, registered=None):
+    """0: declared original candidate; 1: registered working text; 2: unverified lead.
+
+    A lead (held_text_lead, derivative_lead, an ungraded text layer) never outranks
+    a working text registered under the 2026-10-21 ruling: the assembler cannot
+    cite a lead as an original, and a lead's identity is unconfirmed. `registered`
+    holds (instrument_id, text_path, grade) of producer-registered working texts
+    (inputs.load_corpus); without it a working-text grade label is taken as given."""
+    if r.get('acceptable_as_original'):
+        return 0
+    if r.get('grade') in W.GRADES and (registered is None or
+            (r.get('instrument_id'),r.get('text_path'),r.get('grade')) in registered):
+        return 1
+    return 2
+
+def rank_text(r, registered=None):
     grade=str(r.get('grade') or '').lower()
-    return (not bool(r.get('acceptable_as_original')), 'needs_page_check' in grade,
+    return (text_tier(r,registered), 'needs_page_check' in grade,
             'mirror' in grade or 'transcription' in grade, 'codification' in grade,
             r['text_path'])
+
+# File names of statute, public-law, Code and court-report printings. Research on an
+# order cites these, but none of them is an executive order's own printing.
+LAW_PRINTING = re.compile(r'(?i)^(?:STATUTE-|STAT[-_]?\d|PLAW-|PUBL\d|USCODE-|USREPORTS-)')
+# A first line that heads the text as a statute or public law. Only the first line is
+# read: EO texts cite "Public Law ..." and "Act of Congress" throughout their bodies.
+LAW_HEADING = re.compile(r'(?i)^(?:PUBLIC|PRIVATE)[ \t]+LAW[ \t]+\d|^[A-Z]+(?:-[A-Z]+)?[ \t]+CONGRESS\.?[ \t]+Sess|^\[[ \t]*(?:Public|Private),?[ \t]+No\.')
+# Federal Register issue or page printings (a whole issue, a page range or a page citation).
+FR_PRINTING = re.compile(r'(?i)(?:^|[/:])(?:FR-\d{4}-\d\d-\d\d|fr_\d{4}-\d\d-\d\d)|\b\d+[ \t]+FR[ \t]+\d+')
+
+def _names(source):
+    for key in ('url','archival_id','upstream_url'):
+        value=source.get(key)
+        if isinstance(value,str) and value:
+            path=value.split('#')[0].split('?')[0].rstrip('/')
+            yield path.rsplit('/',1)[-1]
+            package=re.search(r'/pkg/([^/]+)/',path)  # govinfo package, e.g. /pkg/STATUTE-45/
+            if package:yield package.group(1)
+
+def _law_printing(source):
+    return next((name for name in _names(source) if LAW_PRINTING.match(name)),None)
+
+def _fr_printing(source):
+    return any(FR_PRINTING.search(name) for name in _names(source)) or bool(
+        FR_PRINTING.search(str(source.get('page_or_item') or '')))
+
+_EXEC_ORDER=r'(?:E ?x ?e ?c ?u ?t ?i ?v ?e[ \t\n]+O ?r ?d ?e ?r|Exec\.[ \t]*Order|E\.[ \t]?O\.)'
+# Producer header lines (source-ladder, fr-originals) name the wanted order; they are not printing.
+# A mirror's statement that it holds no text, e.g. APP's "(this executive order was not published)".
+_PLACEHOLDER=re.compile(r'(?is)\(?\s*this\s+executive\s+order\s+was\s+not\s+published\s*\.?\s*\)?\.?')
+# A lone date line (a failed extraction that kept only the order's date).
+_DATE_ONLY=re.compile(r'(?i)[A-Z][a-z]{2,8}\.?[ \t]+\d{1,2},?[ \t]+\d{4}\.?')
+_PREAMBLE=re.compile(r'(?im)^(?:Wanted|Cited by|Instrument|Source|Location|SHA-256 of the downloaded file):[^\n]*$')
+
+def prints_order(iid, text):
+    """True when the text prints or names this order's number.
+
+    Tolerates the OCR seen in held FR scans: letter-spaced words ("Executive O rder"),
+    spaced digits, and a closing bracket read as a digit ("[No. 78571" for [No. 7857]).
+    A producer's own "Instrument: EO:n" preamble does not count."""
+    from excavate import _clause_locator
+    loc=_clause_locator();number=iid[3:]
+    try:
+        if loc.locate_order(text,number):return True
+    except re.error:
+        return False
+    digits='[ ]?'.join(re.escape(ch) for ch in number)
+    body=_PREAMBLE.sub('',text)
+    if re.search(r'(?i)'+_EXEC_ORDER+r'[ \t\n]*(?:N ?o ?s?\.?[ \t\n]*)?'+digits+r'(?![0-9])',body):
+        return True
+    if re.search(r'(?im)^[ \t]*[\[(|tJIl1]?[ \t]*N ?o ?[.,\'’]*[ \t]*'+digits+r'(?:\]|[1l3I|)\]]?[ \t]*$)',body):
+        return True
+    # FR issue OCR garbles headings ("Executive Urder 12500"); a four- or five-digit
+    # order number standing alone (a heading, closing line or contents entry) is
+    # enough not to contradict identity. Shorter numbers need an explicit form.
+    return len(re.sub(r'\D','',number))>=4 and bool(re.search(r'(?<![\d:/.,-])'+digits+r'(?![\d])',body))
+
+def identity_conflict(iid, r, text, registered=None):
+    """Why this held text cannot be the dossier original of iid, or None.
+
+    Only contradictions are tested; nothing here confirms identity. Every tier is
+    refused for a text that prints no order at all (empty, a lone date line, or a
+    mirror's "not published" placeholder), and every EO for a
+    statute/public-law/Code printing, by file name or by the text's
+    first line. An unverified lead from a Federal Register issue or page must, in
+    addition, print or name the order: an extract that does not is other documents
+    on a cited page (for example pages 1-6 of a 66-page issue)."""
+    body=_PREAMBLE.sub('',text).strip()
+    if not body or _PLACEHOLDER.fullmatch(body) or _DATE_ONLY.fullmatch(body):
+        return 'held text prints no order ('+(body[:40] or 'empty')+'): placeholder or failed extraction'
+    if not re.fullmatch(r'EO:\d+[A-Za-z]?',iid):
+        return None
+    source=r.get('source') or {}
+    law=_law_printing(source)
+    if law:
+        return 'statute/public-law/Code printing ('+law+') is not an executive order'
+    first=next((ln.strip() for ln in text.splitlines() if ln.strip()),'')
+    if LAW_HEADING.search(first):
+        return 'text is headed as a statute or public law ('+first[:40]+')'
+    if text_tier(r,registered)==2 and _fr_printing(source) and not prints_order(iid,text):
+        return 'unverified Federal Register lead does not print or name '+iid+' (other documents on the cited issue/pages)'
+    return None
 
 def safe_read(repo, rel):
     p=(repo/rel).resolve()
@@ -197,8 +294,10 @@ def build(repo, out, cache=None):
     cache_path=Path(cache).resolve() if cache else None
     if cache_path:cache_path.mkdir(parents=True,exist_ok=True)
     cache_hits=0
-    declared=sorted(corpus['texts'],key=lambda r:(rank_text(r),r['instrument_id']))
-    text_records=[];seen_texts=set()
+    registered={tuple(k) for k in corpus.get('registered_working_texts',[])}
+    rank=lambda r:rank_text(r,registered)
+    declared=sorted(corpus['texts'],key=lambda r:(rank(r),r['instrument_id']))
+    text_records=[];seen_texts=set();refused=collections.defaultdict(list)
     # Clause-level citations often declare the same file hundreds of times with
     # different page labels. Preserve every declaration, parse each actual held
     # order/artifact/text once, and choose its best original/locator candidate.
@@ -231,17 +330,26 @@ def build(repo, out, cache=None):
                 data={'clauses':c,'terms':ts,'mentions':ms}
                 if cp:dump(cp,data)
             line(all_clauses,data['clauses'])
+            counts['held_texts_scanned']+=1
+            if counts['held_texts_scanned']%250==0:print(f"claim-kit: scanned {counts['held_texts_scanned']}/{len(text_records)} held representations",flush=True)
+            refusal=identity_conflict(iid,r,text,registered)
+            if refusal:
+                # Contradicted identity: keep the declaration and its inventory, but the text is
+                # neither this order's original nor a source of its terms or acting provisions.
+                refused[iid].append(r['text_path']+': '+refusal);counts['texts_refused_as_order_text']+=1
+                continue
             for term in data['terms']:
                 term=dict(term)
                 term['id']=(term.get('id') or f'TERM:{iid}#'+str(term['char_start']))+'@'+source['text_sha256'][:16]
                 all_terms[iid][term['id']]=term
             if generic_reference_count(text):generic_refs.add((iid,source['text_sha256'],generic_reference_count(text)))
-            counts['held_texts_scanned']+=1
-            if counts['held_texts_scanned']%250==0:print(f"claim-kit: scanned {counts['held_texts_scanned']}/{len(text_records)} held representations",flush=True)
             if iid not in selected:
                 selected[iid]=dict(r,source=source,text=text)
                 segments[iid]=data['clauses']
-            all_mentions.extend(dict(a,_representation_rank=rank_text(r)) for a in data['mentions'])
+            all_mentions.extend(dict(a,_representation_rank=rank(r)) for a in data['mentions'])
+    for iid,reasons in sorted(refused.items()):
+        if iid not in selected:
+            missing_by[iid].append('No held text accepted as this order\'s original; refused: '+'; '.join(sorted(set(reasons))))
     terms={iid:list(values.values()) for iid,values in all_terms.items()}
     for iid,rec in sorted(selected.items()):
         if len(rec['text'].encode('utf-8'))>50000:

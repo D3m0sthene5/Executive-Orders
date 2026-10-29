@@ -190,6 +190,7 @@ class _Collector:
         self._registry = None
         self.text_keys = set()
         self.pair_keys = set()
+        self.registered = set()
 
     def identity(self, value):
         # Exact census forms only; never rewrite suffixes or infer identities.
@@ -248,7 +249,11 @@ class _Collector:
         if acceptable is False:
             # The 2026-10-21 transcription ruling requires the grade exactly as the producer's fragment records it.
             # A downstream relabel (claim-drafts calls APP texts "compiled_transcription_lead") must not override it.
-            grade = self.registered_grade(iid, ref) or grade
+            registered = self.registered_grade(iid, ref)
+            if registered:
+                # Original selection ranks a registered working text above an unverified lead.
+                self.registered.add((iid, rel, registered))
+            grade = registered or grade
         if acceptable is False:
             ref.update(grade=grade, acceptable_as_original=False, instrument_id=iid)
         quality = dict(quality or {})
@@ -598,6 +603,7 @@ def load_corpus(repo):
     collector.pairs.sort(key=lambda r: (r["target_id"], r["actor_id"], _canonical(r)))
     return {"universe": universe, "statuses": statuses, "drafts": drafts,
             "texts": collector.texts, "pairs": collector.pairs,
+            "registered_working_texts": sorted(collector.registered),
             "current_law": dict(collector.current), "machine_searches": searches,
             "status_histories": collector.status_histories,
             "factual_obligations": dict(collector.factual_obligations),
