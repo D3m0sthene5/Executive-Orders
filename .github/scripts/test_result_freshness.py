@@ -83,9 +83,9 @@ class FreshnessTests(unittest.TestCase):
         self.cmd("git", "config", "user.email", "fixture@example.invalid", cwd=repo)
         self.cmd("git", "config", "core.autocrlf", "false", cwd=repo)
 
-    def cmd(self, *args, cwd=None, env=None, check=True):
+    def cmd(self, *args, cwd=None, env=None, check=True, input=None):
         result = subprocess.run(args, cwd=cwd or getattr(self, "repo", None),
-                                env={**os.environ, "GIT_ALLOW_PROTOCOL": "file", **(env or {})},
+                                env={**os.environ, "GIT_ALLOW_PROTOCOL": "file", **(env or {})}, input=input,
                                 capture_output=True, text=True)
         if check and result.returncode:
             raise AssertionError(f"{args}: {result.returncode}\n{result.stdout}\n{result.stderr}")
@@ -150,6 +150,61 @@ class FreshnessTests(unittest.TestCase):
         oid = self.cmd("git", "hash-object", "inputs/request.json").stdout.strip()
         self.assertEqual(manifest["inputs"]["inputs/request.json"], "100644:" + oid)
         self.assertNotEqual(self.check()[0], 0)
+
+    def test_capture_manifest_matches_full_tree_baseline_input_digest(self):
+        manifest = self.capture()
+        baseline = freshness.select(freshness.tree(manifest["base_commit"]), manifest["scope"])
+        self.assertEqual(manifest["inputs"], baseline)
+        self.assertEqual(manifest["inputs_sha256"], freshness.digest(baseline))
+
+    def test_scoped_tree_matches_full_tree_for_fnmatch_cross_directory_patterns(self):
+        paths = {
+            "HANDOFF/notes-astra.md": "note\n",
+            "HANDOFF/other.md": "other\n",
+            "catalog/a/nested/item1.txt": "one\n",
+            "catalog/b/item2.txt": "two\n",
+            "catalog/c/nested/itemx.txt": "exclude\n",
+            "rootmatch.md": "root\n",
+            "other/rootmatch.md": "other root\n",
+        }
+        for path, data in paths.items():
+            self.put(path, data)
+        self.commit(self.repo, "add scoped path fixtures")
+        cases = [("HANDOFF/notes-*.md", ["HANDOFF"]),
+                 ("catalog/[ab]/**/item?.txt", ["catalog"]),
+                 ("*.md", ["."])]
+        for pattern, expected_prefixes in cases:
+            with self.subTest(pattern=pattern):
+                declared = {"roots": [], "patterns": [pattern], "exclude": "\0"}
+                expected = freshness.select(freshness.tree("HEAD"), declared)
+                self.assertEqual(freshness.literal_prefixes(declared), expected_prefixes)
+                self.assertEqual(freshness.tracked_entries("HEAD", declared), expected)
+                self.assertEqual(freshness.tree("HEAD", declared), expected)
+
+    def test_scoped_working_set_preserves_added_modified_deleted_and_untracked_inputs(self):
+        self.put("inputs/change.txt", "old\n")
+        self.put("inputs/delete.txt", "remove\n")
+        self.commit(self.repo, "add scoped working fixtures")
+        self.put("inputs/change.txt", "modified\n")
+        (self.repo / "inputs/delete.txt").unlink()
+        self.put("inputs/new/deep/item.txt", "untracked\n")
+        declared = {"roots": ["inputs"], "patterns": [], "exclude": "jobs/consumer/output"}
+        result = freshness.working(declared)
+        self.assertNotIn("inputs/delete.txt", result)
+        self.assertIn("inputs/change.txt", result)
+        self.assertIn("inputs/new/deep/item.txt", result)
+        self.assertEqual(result["inputs/change.txt"].split(":", 1)[1],
+                         self.cmd("git", "hash-object", "inputs/change.txt").stdout.strip())
+
+    def test_scoped_working_set_rejects_stage_conflicts(self):
+        self.put("inputs/conflict.txt", "base\n")
+        self.commit(self.repo, "add conflict fixture")
+        oid = self.cmd("git", "hash-object", "inputs/conflict.txt").stdout.strip()
+        self.cmd("git", "update-index", "--force-remove", "inputs/conflict.txt")
+        self.cmd("git", "update-index", "--index-info", input=f"100644 {oid} 1\tinputs/conflict.txt\n")
+        declared = {"roots": ["inputs"], "patterns": [], "exclude": "jobs/consumer/output"}
+        with self.assertRaisesRegex(ValueError, "Unmerged input: inputs/conflict.txt"):
+            freshness.working(declared)
 
     def test_output_cap_is_per_job_keeps_boundary_and_moves_oversized_bytes(self):
         self.put("jobs/source/MAX_OUTPUT_FILE_BYTES", "16\n")

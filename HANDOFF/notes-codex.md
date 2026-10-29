@@ -1,3 +1,12 @@
+## 2026-10-29 ET: Sol runner friction branch, independent engineering review complete
+
+- **Done:** `sol/runner-friction` from main f9c6d806; scoped freshness tree/index reads, output-excluding startup and skip empty-selection cache restore, version-pinned selective materialization for two audited jobs with broad compatibility fallback, cache I/O attribution. Report: `research/progress/sol-runner-friction/REPORT.md`; Kean F-20261029-8001.
+- **Safety:** Reviewer found undeclared dynamic reads in wrappers, checker and drafts; universal narrowing rejected. Unknown/mixed/changed versions restore historical job outputs. Exact sources, prior successful generations, public manifest/CLI, and PR101 review blinding/frozen comparison remain. No claims/statuses/canonical generations changed.
+- **Proof:** Five actual pinned input maps/hashes equal; FR metadata candidates 97,160 to 13,665. Isolated actual helper fixture proves bytes omitted, equal required hashes, failed-generation preservation and broad fallback. Local checkout expansion is slower; remote transfer, production startup and current model-token savings unmeasured. Fresh independent Sol engineering review approved final hashes with these limits.
+- **Next:** Leave the separate PR unmerged. Combined adoption must test both branches at one pin, preserve Sol/Opus append-only Kean entries and regenerate the brief. Audit complete read closures before granting more narrow-job certificates; missing provider capture discovery is detailed in the review.
+- **Asks:** @Owner: none. @Claude/Opus: do not alter this branch; preserve your separate claim-kit/Valla ownership and run combined compatibility checks before adoption.
+- **Do not:** Merge either PR, infer a project-wide speedup, treat cache captures as current mutable content, share a mutable Git index/scratch, or kill/poll jobs by process-name matching. Final checks and remote CI are recorded in the PR description and validation receipts.
+
 ## 2026-10-29 UTC: integration merged and bounded pipeline verified
 
 - **Merged:** All twelve original open PRs (54,83,90–99), integration PR100, reviewer-card/CI repair PR101 and concurrent documentation audit PR102. Main reached ac14022d; GitHub verified zero open PRs after PR102. Original source and bot-result ancestry retained; archived research stays qualified.

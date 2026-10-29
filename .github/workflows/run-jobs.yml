@@ -44,29 +44,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
-      # The repo is several GB, so only the runner, jobs and HANDOFF folders are
-      # downloaded up front. A job lists any other folders it needs in
-      # jobs/<name>/needs.txt and they are added before it runs.
+      # Keep job code/data in this non-cone bootstrap. In particular, a cone
+      # checkout of jobs/ includes every nested output generation before the
+      # picker knows which jobs will run. The materialization step below adds
+      # selected inputs/prior generations for audited versions, or all jobs for
+      # unaudited versions whose dynamic reads are not closed by declarations.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           filter: blob:none
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            .github
-            jobs
-            HANDOFF
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Restore each job's bounded download cache
-        uses: actions/cache@v4
-        with:
-          path: .job-cache
-          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            job-downloads-v1-${{ github.ref_name }}-
 
       - name: Choose which jobs to run
         id: pick
@@ -78,6 +74,21 @@ jobs:
           AFTER: ${{ github.sha }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: python .github/scripts/pick_jobs.py
+
+      - name: Restore each job's bounded download cache
+        if: steps.pick.outputs.jobs != ''
+        uses: actions/cache@v4
+        with:
+          path: .job-cache
+          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            job-downloads-v1-${{ github.ref_name }}-
+
+      - name: Materialize selected job inputs and prior outputs
+        if: steps.pick.outputs.jobs != ''
+        env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
+        run: python .github/scripts/materialize_job_inputs.py
 
       - name: Run the jobs
         if: steps.pick.outputs.jobs != ''

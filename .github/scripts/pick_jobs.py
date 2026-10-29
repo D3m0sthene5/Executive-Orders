@@ -12,6 +12,10 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
 starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
 space-separated list; jobs a sweep runs only as consumers go to "downstream".
+
+The runner's initial sparse checkout contains job code/data but omits outputs.
+The picker reads root entrypoints and selector manifests. The selected-job
+materializer runs afterward; do not add reads of output generations here.
 """
 
 import fnmatch
@@ -66,6 +70,8 @@ def job_list(name, filename):
 
 
 def all_jobs():
+    # The non-cone runner bootstrap includes these root entrypoints for every
+    # job, but omits nested data and output generations until after selection.
     return sorted(n for n in os.listdir("jobs") if not n.startswith("_") and runnable(n))
 
 
