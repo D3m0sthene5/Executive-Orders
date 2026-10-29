@@ -33,6 +33,19 @@ orders was added after preparation outside the packet's own folder. So:
   internal inconsistencies even when dates are right.
 - Record start and end UTC and, per order, a short note of what took the time (one line; no timing system).
 
+## Added after the NRA pilots (nra1, nra2; 2026-10-28)
+
+- Text in quotation marks reproduces the held wording exactly, including capitalisation and punctuation. A
+  paraphrase is written without quotation marks. Reviewers rejected claims for a single changed capital.
+- Name the archive a capture came from as its record does: a Wayback capture is not a Common Crawl capture.
+- When an order is stayed or suspended and then ended, trace each step to its own instrument (the stay, any
+  extension of the stay, the ending) rather than citing the last one alone.
+- For an NRA code approval, follow `research/excavator/claude-nra-shared-2026-10-28/ANALYSIS.json`: Schechter
+  (1935-05-27) is a structured later event with its own source, and void-from-the-start is a disclosed alternative.
+- Reviewers write only their own files (`reviews/BLIND_REVIEW.jsonl`, `AFTER_REVEAL.jsonl`,
+  `CORRECTION_REVIEW.jsonl`); a corrected claim is reviewed again at its new hash, including a genuine control
+  claim whose wording changed after reveal.
+
 ## Coordinator steps per batch
 
 1. Prepare the packet; add the batch's web-source hashes to Cotton (`jobs/cotton-capture-custody/data/WANTED.jsonl`)
