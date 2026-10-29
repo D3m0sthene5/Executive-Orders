@@ -1,3 +1,11 @@
+## 2026-10-29 UTC: integration merged and bounded pipeline verified
+
+- **Merged:** All twelve original open PRs (54,83,90–99), integration PR100, reviewer-card/CI repair PR101 and concurrent documentation audit PR102. Main reached ac14022d; GitHub verified zero open PRs after PR102. Original source and bot-result ancestry retained; archived research stays qualified.
+- **Verified:** Road Linux+Windows, Kean and NEYMAN CI passed. Full bounded Valla run40938235516 succeeded:421 claim-kit,46 Mountweazel,2 paired,25 Valla,36 Junto,40 checker and36 tracker tests; repository isolation and real bounded checker/tracker pilot passed. Five frozen claims checked, all original correction holds retained, no replacement claims published and no independent whole-case reviews inferred. The subsequent rerun40939483588 additionally checks the explicit frozen-baseline fetch and remains in progress at this receipt.
+- **Running:** Main production run40936391182 and canonical checker→tracker→digest refresh40936647222 continue. The latter has advanced from checker to claim-drafts rebuilding; published395 is still the old generation, not a new integrated result. No new readiness/savings/certification total claimed. Cancelled superseded integration-branch run40935100379 after main took over; retained cancellation artifact remains available. No future monitor was scheduled.
+- **Preserved:** Four exact Mansfield holds (10622,11040,11078,9922), historical failures, pending land/Namier/status proposals, original source-grade disclosures and all inactive recovery artifacts. Audit102 is a diagnosis and acceptance plan, not an implemented optimization or legal ruling.
+- **Handoff:** All requested merging is complete. Read current native outputs only after successful publication; use the existing freshness guards. Keep unrelated owner asks open and do not infer standing future merge authority.
+
 ## 2026-10-29 UTC: post-integration diagnosis and hidden workflow friction
 
 - **Done:** Read main a6faab34 after PR100, current Kean and agent handoffs; audited remaining coverage and hidden operational costs. Report: `research/progress/hidden-friction-2026-10-29/REPORT.md`; finding F-20261029-98. Sixteen issues distinguish production observations, code mechanisms and untested risks. No repair, source acquisition, legal adjudication or workflow dispatch.
