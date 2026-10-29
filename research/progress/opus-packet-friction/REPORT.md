@@ -166,14 +166,63 @@ match current compiler code. Replay compute was about 2 CPU-hours locally.
   build. CI containers start cold.
 - **Main is blocked for undecided preparation.** On current main this preparation fails until the claim-kit
   job runs with current compiler code. That job belongs to the runner, not to this branch.
-- **Lock scope.** The lock serializes completions within one checkout and its linked worktrees. Separate clones
-  rely on Git merging distinct new files, as before.
+- **Lock scope.** The lock serializes completions within one checkout and its linked worktrees, because it lives
+  in the shared Git common directory. Separate clones are not serialized. When their publications meet in Git:
+  - **Same filename:** an add/add conflict.
+  - **Different filenames:** a silent clean merge in which the later filename wins. Phase 2 adds
+    `kit.py publication-audit` to report that case at merge time; wiring it into CI is Sol's call.
+- **Same-packet split.** Completing one packet's members in two separate completions makes the second see its
+  packet-mates' new claims and refuse ("changed prior research"). Complete a packet in one run; use separate
+  packets for parallel work.
 - **Not done.**
-  - No end-to-end completion under the full repaired code with real reviews: the re-versioned claims would
-    need new exact reviews. The real-review completion replay used repaired `completion.py` and
-    `fragment_cache.py` with the packet's original code.
   - H08–H12 belong to Sol.
   - The NRA auxiliary-command rule (H14) is not adjudicated.
+
+## Phase 2: native full-code validation (2026-10-29, after the owner's follow-up)
+
+- **Evidence gap closed.** Batch r1 (`research/excavator/opus-native-rehearsal-2026-10-29/REPORT.md`) ran the
+  whole native path with the full repaired code in an isolated tree:
+  - fresh prepare and supplements (including the held EO 6730 / 6620-B excerpts for H13);
+  - a Sonnet producer and a blind Opus reviewer with a planted control, which was caught;
+  - `apply`, `batch-check` and `complete`.
+
+  Result: 5 claims eligible and published into the isolated tree, 2 blocks retained with reviewer-checked
+  reasons, and no canonical write. An adoption dry run on the branch checkout reproduces the same publishable
+  bytes.
+- **Same inputs, both code arms.** The machine path from prepare through batch-check took 214.0 s on the
+  baseline and 53.5 s repaired, with identical claims and outcomes. Completion took 60.8 s. The slowest
+  remaining step is `cruden.py lookups` (113.6 s), NRA research tooling outside this assignment.
+- **Model work** (harness totals; not comparable to NRA weighted totals):
+  - producer: Sonnet, 111,493 tokens, 207 s;
+  - reviewer: Opus, 130,996 tokens for the blind pass plus 54,881 for the reveal;
+  - one-time selection screen: Sonnet, 123,374 tokens;
+  - coordinator usage is not exposed.
+
+  No token saving is claimed.
+- **Retries and false invalidations.**
+  - One refused completion, caused by the coordinator placing the blind review set outside the packet. It
+    cost 27 s of machine time. The rule is now documented in `jobs/claim-kit/COMPLETION.md`.
+  - The first t5/t6 concurrency run was contaminated by debris from earlier replays. The base
+    `prior_research` bound a completion union copy (the H06 defect, which the branch fixes), and 13 members
+    each re-verified the failed packet (347 s). Completion now verifies a failed packet once.
+  - The clean rerun reproduced production's disjoint race with both batches published byte-identically.
+- **New code.**
+  - Failed packet verification is recorded once per completion.
+  - `kit.py publication-audit --base <ref>` covers the separate-clone boundary.
+  - 475 claim-kit tests.
+- **Cache.** 16 real-tree perturbation states, including same-size edits with mtime restored and text-file
+  existence flips, all equal a fresh index (`receipts/phase2/CACHE_CHECK.json`).
+- **Input closure for Sol.** `INPUT_CLOSURE.md` / `.json`. Sol owns any declaration change.
+- **CI.**
+  - At 78eecc1, Road (Linux and Windows), Kean, the runner and the Valla bounded pilot all passed.
+  - Automatic runner rebuilds on this branch:
+    - 40946575823: 12.3 min.
+    - 40949028950: 6.8 min.
+    - 40952123524: 7.0 min, rejected as stale because a later push changed `research/**` inputs; this is the
+      runner's freshness guard, not a failure.
+    - 40952915668: 4.0 min, Kean.
+  - Bot-authored result commits leave the PR head's workflows in `action_required` until a maintainer
+    approves them.
 
 ## Combining with Sol's runner PR
 

@@ -372,6 +372,23 @@ class CompletionTests(B.BatchTests):
         self.assertEqual(receipt[0]['packet_sha256'], self.manifest['members'][0]['packet']['sha256'])
         self.assertIn('preserved_receipts', json.loads((self.dest / 'INPUTS.json').read_bytes()))
 
+    def test_failed_packet_verification_is_not_repeated_for_every_member(self):
+        self.setup_two()
+        calls = []
+        def failing(*args, **kwargs):
+            calls.append(args[0])
+            raise ValueError('changed prior research; prepare a new version')
+        with patch.object(batch, 'load_packet', side_effect=failing):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])
+        self.assertEqual(len(calls), 1, 'one failed verification, raised again for the second member')
+        errors = [e['error'] for e in json.loads((self.dest / 'EXCEPTIONS.json').read_bytes()) if e.get('instrument_id')]
+        self.assertEqual(errors, ['changed prior research; prepare a new version'] * 2)
+        self.assertFalse(self.target.exists())
+        receipt = json.loads((self.dest / 'PACKETS.json').read_bytes())
+        self.assertEqual((receipt[0]['loads'], receipt[0]['rechecks']), (1, 0))
+        self.assertIn('changed prior research', receipt[0]['verification_error'])
+
     def test_cached_packet_dossier_is_not_mutated_by_member_checks(self):
         self.setup_two()
         cached = []
@@ -482,6 +499,19 @@ class CompletionTests(B.BatchTests):
         else:
             self.assertEqual(result['eligible'], [])
 
+    def test_dead_holder_is_not_removed_while_another_waiter_breaks_it(self):
+        import socket, subprocess
+        self.setup_two()
+        dead = subprocess.Popen([sys.executable, '-c', 'pass']); dead.wait()
+        self.lock.parent.mkdir(parents=True, exist_ok=True)
+        self.lock.write_text(json.dumps({'pid': dead.pid, 'host': socket.gethostname(), 'started_utc': 'x', 'dest': 'crashed'}))
+        breaker = self.lock.with_name(self.lock.name + '.break'); breaker.write_text('')  # another waiter is removing it
+        with patch.dict(os.environ, {C.LOCK_TIMEOUT_ENV: '0.2'}):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])  # waits and fails closed instead of racing the other waiter
+        self.assertTrue(self.lock.exists()); self.assertTrue(breaker.exists())
+        self.assertFalse(self.target.exists())
+
     def test_lock_lives_in_git_common_dir_when_available(self):
         import subprocess
         self.assertEqual(C.lock_path(self.repo), self.repo / C.LOCK_REL)
@@ -545,6 +575,66 @@ for base in (B.BatchTests, B.T.BuildIntegrationTests):
         if name.startswith('test_') and name not in CompletionTests.__dict__:
             setattr(CompletionTests, name, None)
 del base
+
+class PublicationAuditTests(unittest.TestCase):
+    """Separate clones bypass the lock; the merge-time audit must see what Git merges silently."""
+    def setUp(self):
+        import subprocess, tempfile
+        self.temp = tempfile.TemporaryDirectory(); self.repo = Path(self.temp.name)
+        self.git = lambda *a: subprocess.run(['git', *a], cwd=self.repo, check=True, capture_output=True)
+        self.git('init', '-q', '-b', 'main'); self.git('config', 'user.email', 't@t'); self.git('config', 'user.name', 't')
+        self.claims = self.repo / 'research/readiness/claims'; self.claims.mkdir(parents=True)
+        (self.claims / 'old-2026-01-01.jsonl').write_text(json.dumps({'instrument_id': 'EO:1'}) + '\n')
+        self.git('add', '-A'); self.git('commit', '-qm', 'base')
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def publish(self, branch, name, *iids):
+        self.git('checkout', '-qb', branch, 'main')
+        (self.claims / name).write_text(''.join(json.dumps({'instrument_id': i, 'v': branch}) + '\n' for i in iids))
+        self.git('add', '-A'); self.git('commit', '-qm', branch)
+
+    def test_competing_publications_from_separate_clones_are_reported(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:2', 'EO:3')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'clone-a'); self.git('merge', '-q', '--no-edit', 'clone-b')  # Git merges silently
+        result = C.publication_audit(self.repo, 'main')
+        self.assertFalse(result['ok'])
+        self.assertEqual(sorted(w['path'] for w in result['duplicate_instruments']['EO:3']),
+                         ['research/readiness/claims/a-2026-10-29.jsonl', 'research/readiness/claims/b-2026-10-29.jsonl'])
+
+    def test_race_where_one_publication_landed_first_is_reported_both_ways(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:3')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-a')  # A lands first
+        self.git('checkout', '-q', 'clone-b')
+        before = C.publication_audit(self.repo, 'main')  # B's pull request against main
+        self.assertFalse(before['ok']); self.assertEqual({w['side'] for w in before['duplicate_instruments']['EO:3']}, {'left', 'right'})
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-b')  # merged silently
+        after = C.publication_audit(self.repo, merge_commit='HEAD')
+        self.assertFalse(after['ok']); self.assertIn('EO:3', after['duplicate_instruments'])
+
+    def test_disjoint_publications_pass_and_other_changes_fail(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:2')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-a')
+        self.git('checkout', '-q', 'clone-b')
+        self.assertTrue(C.publication_audit(self.repo, 'main')['ok'])
+        nested = self.claims / 'archive'; nested.mkdir()
+        (nested / 'copy.jsonl').write_text(json.dumps({'instrument_id': 'EO:3'}) + '\n')  # not a canonical file
+        self.git('add', '-A'); self.git('commit', '-qm', 'nested copy')
+        self.assertTrue(C.publication_audit(self.repo, 'main')['ok'])
+        cases = {'edited': lambda: (self.claims / 'old-2026-01-01.jsonl').write_text(json.dumps({'instrument_id': 'EO:1', 'x': 1}) + '\n'),
+                 'deleted': lambda: (self.claims / 'old-2026-01-01.jsonl').unlink(),
+                 'malformed': lambda: (self.claims / 'c-2026-10-29.jsonl').write_text('[1]\n{"no_id": true}\n')}
+        for name, change in cases.items():
+            with self.subTest(change=name):
+                self.git('checkout', '-q', '-B', 'case-' + name, 'clone-b'); change()
+                self.git('add', '-A'); self.git('commit', '-qm', name)
+                result = C.publication_audit(self.repo, 'main')
+                self.assertFalse(result['ok']); self.assertTrue(result['problems'])
+
 
 if __name__ == '__main__':
     unittest.main()

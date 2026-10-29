@@ -1,0 +1,1502 @@
+{
+  "_meta": {
+    "task": "Exact input-closure inventory for jobs/claim-kit and jobs/valla; documentation only.",
+    "checkout": "/home/user/opus-pf branch opus/packet-friction, HEAD 71b06f9ffe3520d0ddbf46485745e8c8337773e3",
+    "contexts": {
+      "A_runner_job_py": "what GitHub Actions runs: claim-kit job.py (unit tests, then population check, build, derived check) and valla job.py (valla.build(repo))",
+      "B_agent_cli": "claim-kit kit.py prepare/view/apply/batch-check/complete, source_supplement prepare/verify, valla attach (jobs/claim-kit and jobs/valla as invoked from a working checkout)"
+    },
+    "needed_labels": {
+      "GENUINELY_NEEDED": "read on the normal path of that context",
+      "NEEDED_ONLY_FOR_SUBCOMMAND": "read only by the listed subcommand(s)",
+      "HISTORICAL_BLANKET": "declared but not read by current code; evidence given",
+      "OPTIONAL_PERFORMANCE_CACHE": "extra label for caches that affect time, never results"
+    },
+    "method": "Full read of the listed modules plus runner scripts. Empirical confirmation by audit-hook trace (sys.addaudithook 'open') of inputs.load_corpus, act_overrides.load, population.validate_inputs, working_text.Index, current_evidence.enrich_current (claim-kit A; 142,532 text declarations) and valla.build (valla A), then comparing the opened set with result_freshness.scope(job) and needs.txt roots. The full claim-kit build() was NOT executed (it would write into jobs/claim-kit/output); the build-time reads (safe_read of the declared texts, decision-sheet assembly) are derived from load_corpus output and static reading.",
+    "unverified": [
+      "Reads of ingest() (REVIEW.jsonl/UPHELD_ACT_RECORDS.jsonl) are static, not traced.",
+      "Norton pin verification stops at the first changed pin in this checkout, so the per-file reads of the 20,399 pins are taken from INPUTS.json, not from the trace.",
+      "claim-checker and readiness-tracker internals were listed from constants and globs only.",
+      "kit.py subcommands outside the requested list (build, next, dossier, sheet, history, status-sheet, overlay-*, assemble, check, status, release) are not inventoried except where they share modules.",
+      "Future records may point at any repo path; coverage for such pointers is only as good as the record values observed today."
+    ]
+  },
+  "claim-kit": {
+    "A_runner_job_py": [
+      {
+        "path_or_glob": "jobs/claim-kit/** (job.py, build.py, inputs.py, excavate.py, current_evidence.py, assemble.py, act_overrides.py, lifecycle_obligations.py, working_text.py, population.py, factual_events.py, population_contract.json, test_*.py, and the batch/completion/kit/status_overlay/prior_research/source_supplement/fragment_cache/evidence_preflight modules the tests import)",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "job.py:7-14",
+          "build.py:540-541 (sha256 of COMPILER_FILES)",
+          "inputs.py:25-27",
+          "population.py:21-22,68",
+          "job.py:9 (unittest discover of every test_*.py)"
+        ],
+        "declared_in": [
+          "runner scope root jobs/claim-kit (result_freshness.py:43)"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/clause-drafts/segment.py",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "excavate.py:121-127 (loaded as module)",
+          "excavate.py:130-134 (cache-key hash)",
+          "inputs.py:25-27 (COMPILER_FILES entry, hashed at build.py:540-541)",
+          "build.py:309"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:9"
+        ],
+        "note": "A file path in needs.txt is a version root (result_freshness.py:44,68). In cone mode git treats it as a directory name and materializes the immediate files of its parent directories (tested on a scratch repo, git 2.43.0), non-recursively. Harmless because jobs/ is always checked out."
+      },
+      {
+        "path_or_glob": "research/stage19/code/claim_gate.py",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "assemble.py:139-144 (_gate), assemble.py:281",
+          "test_assemble.py:24",
+          "test_build.py:55",
+          "readiness-tracker/test_tracker.py:53 (copytree of the whole research/stage19/code, minus test_*)"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:4"
+        ],
+        "note": "Only 1 of the 5 files in research/stage19/code is read; the other 4 are copied, never executed."
+      },
+      {
+        "path_or_glob": "jobs/norton/model.py",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "factual_events.py:13-16 (exec_module at import, so every context)",
+          "inputs.py:392 -> factual_events.reviewed_events",
+          "assemble.py:19,360"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "UNDECLARED. claim-checker and readiness-tracker both list it in inputs.txt/triggers.txt; claim-kit does not (after.txt 'norton' covers only jobs/norton/output)."
+      },
+      {
+        "path_or_glob": "jobs/valla/valla.py, jobs/valla/premises.json  [tests only]",
+        "discovery": "static",
+        "category": "code fingerprint (test fixture)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "test_batch.py:35-37",
+          "test_batch.py:53-55 (copied into a temp repo)"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "UNDECLARED. jobs/valla/valla.py is outside claim-kit's freshness scope (verified with result_freshness.select)."
+      },
+      {
+        "path_or_glob": "jobs/claim-checker/checker.py, sources.py, data/opus_manifest_index.csv.gz  [tests only]",
+        "discovery": "static",
+        "category": "code fingerprint (test fixture)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "test_factual_events.py:210-221 (import checker; Context(job_dir=real jobs/claim-checker))",
+          "claim-checker/checker.py:34-39 (imports claim-kit working_text, factual_events)",
+          "claim-checker/sources.py:524-529 (job_dir/data/opus_manifest_index.csv.gz)"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "UNDECLARED. Circular code coupling: checker imports claim-kit, claim-kit tests import checker."
+      },
+      {
+        "path_or_glob": "jobs/readiness-tracker/tracker.py, test_tracker.py  [tests only]",
+        "discovery": "static",
+        "category": "code fingerprint (test fixture)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "test_factual_events.py:235-239",
+          "readiness-tracker/test_tracker.py:17,53",
+          "readiness-tracker/tracker.py:25-27"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "UNDECLARED."
+      },
+      {
+        "path_or_glob": "research/plans/claim_kit_contract/fixtures/*.example.jsonl (4 files; optional text_path targets they name)",
+        "discovery": "static",
+        "category": "canonical records (test fixture)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "test_assemble.py:402-407 (hard-asserts 4 files)",
+          "test_excavate.py:333-348"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:5",
+          "claim-kit/triggers.txt:2"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/fr-originals/output/texts/EO_{10222,12462,13101,12692,12869,12649}.txt ; jobs/fr-originals/data/full_run/texts/EO_{8083,8123,8126,8992}.txt  [tests only]",
+        "discovery": "static",
+        "category": "referenced text files",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "test_excavate.py:255-263,276-283,316-319",
+          "test_legacy_extent.py:51-54"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7"
+        ],
+        "note": "Optional: each test calls skipTest when the file is absent, so absence lowers regression coverage but cannot fail the job."
+      },
+      {
+        "path_or_glob": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+        "discovery": "static",
+        "category": "canonical records (authority CSV)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:24,469-478 (load_corpus)",
+          "population.py:70-76 (contract census.path)"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:1"
+        ],
+        "note": "Only 1 of 6 files in the directory is read."
+      },
+      {
+        "path_or_glob": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+        "discovery": "static",
+        "category": "canonical records (authority CSV)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:28,481-491",
+          "population.py:78-100 (frozen byte prefix + current rows)"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:2"
+        ],
+        "note": "Only 1 of 154 files in research/progress is read."
+      },
+      {
+        "path_or_glob": "population_contract.json pins: research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md; research/excavator/bowditch-2026-10-20/Y1_RECHECK_OPUS_SOURCES.json; research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/{ADOPTION_ROWS.csv,CROSS_FAMILY_ADOPTION_ROWS.csv,CROSS_FAMILY_REVIEW.json,CROSS_FAMILY_VALIDATION.json}; research/diagnostics/pr-merge-20261022/MERGE_AUDIT.json",
+        "discovery": "static",
+        "category": "canonical records (pinned owner authorization)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "population.py:59-62,85-96",
+          "job.py:12 (validate_inputs)"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:14-20"
+        ],
+        "note": "Named by sha in population_contract.json, not discovered. MERGE_AUDIT.json is outside every needs.txt root; result_freshness.prepare materializes its parent directory because inputs.txt matches it."
+      },
+      {
+        "path_or_glob": "research/readiness/act_overrides/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "act_overrides.py:51-63 (glob *.jsonl)",
+          "build.py:445-456"
+        ],
+        "declared_in": [
+          "claim-kit/triggers.txt:3",
+          "claim-kit/needs.txt:3"
+        ],
+        "note": "OUTCOME_INGEST.json in the same directory is not read."
+      },
+      {
+        "path_or_glob": "research/**/REVIEW.jsonl and sibling UPHELD_ACT_RECORDS.jsonl, named by each act_override record's review.source_file",
+        "discovery": "dynamic",
+        "category": "canonical records (reviewer ledgers)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "act_overrides.py:103-129 (L105 source_file, L118-123 reads)",
+          "build.py:447-448"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:10-11",
+          "claim-kit/needs.txt:6",
+          "claim-kit/needs.txt:7"
+        ],
+        "note": "Today: 10 directories research/excavator/rastell-2026-10-20/{batch_01..08,r12553nb,r9830}/review/ (20 files; static reading, ingest was not executed in the trace). The code refuses any source_file that is not named REVIEW.jsonl under research/ (act_overrides.py:108-115)."
+      },
+      {
+        "path_or_glob": "research/readiness/decisions/*/*.json",
+        "discovery": "dynamic",
+        "category": "canonical records (decision sheets)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "build.py:519-536 (glob at L522)"
+        ],
+        "declared_in": [
+          "claim-kit/triggers.txt:1",
+          "claim-kit/needs.txt:3"
+        ],
+        "note": "Directory does not exist in this checkout; read when present."
+      },
+      {
+        "path_or_glob": "research/readiness/factual/*/{questions,answers,applications,evidence,reviews}.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records (NORTON registry)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "factual_events.py:21-30 (L24)",
+          "factual_events.py:174-196 (L195)",
+          "inputs.py:391-394",
+          "assemble.py:360"
+        ],
+        "declared_in": [
+          "claim-kit/triggers.txt:4",
+          "claim-kit/needs.txt:3"
+        ]
+      },
+      {
+        "path_or_glob": "Paths inside registry records: source.text_path, clause_evidence.source.text_path, source.raw_path (today: jobs/fr-originals/data/**, jobs/astra-source-retention/output/{texts,pdf}/**, jobs/source-ladder/output/texts/**, research/excavator/nmb-series-2026-10-25/ocr/*.txt)",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "norton/model.py:42-50,53-88 (text L65-68, raw_path L83)",
+          "norton/model.py:148 (clause evidence)"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7 (jobs/*/...)",
+          "claim-kit/needs.txt:7 (research/excavator)"
+        ],
+        "note": "Rows under jobs/ are covered by the output/data blankets. The research/excavator row is versioned only through the needs.txt root."
+      },
+      {
+        "path_or_glob": ".job-cache/source-ladder/ladder/blobs/<xx>/<sha>.pdf (2 evidence records use these as raw_path)",
+        "discovery": "dynamic",
+        "category": "environment (untracked runner cache)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "norton/model.py:83 via factual_events.py:83",
+          "registry: research/readiness/factual/*/evidence.jsonl"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "UNDECLARED and not a tracked file. result_freshness works from git ls-files, so it can neither version nor materialize this. Missing bytes yield error source_bytes_not_held and the factual event is dropped (model.py:84-86; inputs.py:396-397 logs it)."
+      },
+      {
+        "path_or_glob": "jobs/*/output/FRAGMENTS*.jsonl; jobs/*/data/**/FRAGMENTS*.jsonl; jobs/*/output/SOURCES.jsonl; jobs/*/data/**/SOURCES.jsonl (all jobs except claim-kit)",
+        "discovery": "dynamic",
+        "category": "provider records (FRAGMENTS, SOURCES)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:496-509 (L503,505,508,509)",
+          "inputs.py:516-522",
+          "working_text.py:61-110 (Index; L66-67)",
+          "inputs.py:273-285 (registered_grade)",
+          "assemble.py:358 -> working_text.policy"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7"
+        ],
+        "note": "Today 22 jobs publish FRAGMENTS* and 20 publish SOURCES.jsonl (output or data). Names are conventions; any new producer is picked up with no registration (inputs.py:7-8)."
+      },
+      {
+        "path_or_glob": "jobs/*/data/PROVENANCE.json (9 jobs: census-completeness, csc-annual-reports, early-orders-hunt, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-codification-1989, ofr-compilations, richardson-volumes) plus .jsonl pointers under keys fragments, fragments_path, fragment_files, sources_path, source_files",
+        "discovery": "dynamic",
+        "category": "provider records (PROVENANCE)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:510-515",
+          "inputs.py:445-459 (_declared_files)"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6"
+        ]
+      },
+      {
+        "path_or_glob": "Held texts named by provider text_path / path (142,532 declarations; all today under jobs/{app-executive-orders,clause-drafts,csc-annual-reports,family-rule-*,fr-originals,hathi-gpo-orders,indian-reservations-1912,isthmian-canal-1911,numbered-early-orders,ofr-compilations,opus-media-match,pinakes-proquest-ingest,richardson-volumes,source-ladder,wikisource-texts}/{output,data}/**)",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:73-92 (_path), 199-248 (add_text, open at L227)",
+          "build.py:159-163,331 (safe_read)",
+          "assemble.py:156-190 (_source_errors, L168)",
+          "evidence_preflight.py:52-58",
+          "working_text.py:120,186,227"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7"
+        ],
+        "note": "_path() also accepts anchors progress/ and releases/ (inputs.py:86) and current_evidence._safe accepts releases/ (current_evidence.py:22); neither is declared. No current record points there (checked all 142,532 text_paths)."
+      },
+      {
+        "path_or_glob": "jobs/claim-drafts/output/{DRAFT_CLAIMS.jsonl,DRAFT_CLAIMS_N.jsonl,SUMMARY.json} and the output folders named by draft proposals' 'from' fields",
+        "discovery": "dynamic",
+        "category": "output of another job: claim-drafts",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:533-586",
+          "population.py:125-148 (validate_derived, post-build)"
+        ],
+        "declared_in": [
+          "claim-kit/after.txt:1",
+          "claim-kit/inputs.txt:7"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/*/output/EDGES.csv (app-footnote-leads, later-events, namier, shepard-citations); jobs/*/output/CATALOG_INDEX.csv (later-events)",
+        "discovery": "dynamic",
+        "category": "output of another job: later-events, namier, shepard-citations, app-footnote-leads",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:525-532"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:7",
+          "claim-kit/after.txt:5 (namier)"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/*/output/SUMMARY.json (45 jobs; only the machine_searches key is used)",
+        "discovery": "dynamic",
+        "category": "output of another job (generic glob)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:587-597"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:7"
+        ],
+        "note": "The glob includes jobs/claim-kit/output/SUMMARY.json (no job exclusion, unlike L499-500). In the runner that file does not exist (output is emptied first: run_jobs.py:282-285) and the freshness scope excludes it (result_freshness.py:58). It has no machine_searches key either way."
+      },
+      {
+        "path_or_glob": "jobs/status-history/output/{FRAGMENTS.jsonl, STATUS.json, FAILED.json, histories/EO_*.json (7,650 files)}",
+        "discovery": "dynamic",
+        "category": "output of another job: status-history",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:401-416 (history_path from record, L405-409; STATUS.json L410-411)"
+        ],
+        "declared_in": [
+          "claim-kit/after.txt:2",
+          "claim-kit/inputs.txt:7"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/norton/output/{FRAGMENTS.jsonl, STATUS.json, INPUTS.json} and every path in INPUTS.json consumer_sha256 (20,399 files today) and code_sha256 names (jobs/norton/{job,model,norton,test_norton}.py)",
+        "discovery": "dynamic",
+        "category": "output of another job: norton (+ whatever norton consumed)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "inputs.py:373-390 (L380-386 hash every pinned path; L387-389 code pins)"
+        ],
+        "declared_in": [
+          "claim-kit/after.txt:4",
+          "claim-kit/inputs.txt:7"
+        ],
+        "note": "Pinned paths today: jobs/*/output/{SOURCES.jsonl,STATUS.json,texts/**} of ~19 jobs, 12 files in jobs/fr-originals/data, research/readiness/{reviews 79, claims 64, factual 15}, research/excavator/nmb-series-2026-10-25 (1), research/stage15/CENSUS (1), jobs/source-ladder/{embedded_cites,fetch_ladder,ladder_queue,report_dates}.py (4, UNDECLARED). A missing pinned file is caught as OSError (L398) and the obligation is dropped with a warning, silently. Verification stops at the first changed pin; in this checkout 8 pins already differ (for example jobs/astra-source-retention, jobs/clark-discovery and jobs/cotton-capture-custody SOURCES.jsonl and STATUS.json), so shared_factual_obligations are rejected here."
+      },
+      {
+        "path_or_glob": "jobs/current-law/output/SOURCES.jsonl and the .txt/.xml/.html/.htm files named by its text_path/cache_path or by current-law fragments",
+        "discovery": "dynamic",
+        "category": "output of another job: current-law (+ referenced text)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "current_evidence.py:27-40,62-74",
+          "build.py:303"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:7"
+        ],
+        "note": "The after.txt does not list current-law; the file is read from whatever generation is on the branch."
+      },
+      {
+        "path_or_glob": "local_path / local_file / download_path of any cited source (original bytes)",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "assemble.py:183-190",
+          "norton/model.py:83",
+          "status_overlay.py:200-231"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "Used only when a decision sheet (research/readiness/decisions) or packet claim cites one. None exist now. Coverage is whatever the record's path happens to be."
+      },
+      {
+        "path_or_glob": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md (working_text.RULING) and owner_rulings/2026-10-21-report-deadline.md (evidence_preflight owner_rule)",
+        "discovery": "static",
+        "category": "canonical records (owner ruling)",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "working_text.py:12 and evidence_preflight.py:156 are string constants compared or echoed, never opened (no open/read of these paths anywhere in claim-kit)"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3"
+        ],
+        "note": "Evidence of non-read: grep of every non-test claim-kit module for owner_rulings finds only prior_research.py:485 (B) and these two constants."
+      },
+      {
+        "path_or_glob": "research/production (whole tree, 677 files, 42 MB)",
+        "discovery": "dynamic",
+        "category": "canonical records / prior research",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "No reader in job.py's import closure. Only batch.py:161-163 (FREEZE_MANIFEST.json), completion.py:633 and prior_research.collect (B)."
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:8"
+        ],
+        "note": "No pin in population_contract.json or norton INPUTS.json points into research/production; tests build temp repos."
+      },
+      {
+        "path_or_glob": "research/excavator (whole tree, 11,577 files, 70 MB) and research/excavator/rastell-2026-10-20 (subset of the former)",
+        "discovery": "dynamic",
+        "category": "canonical records / prior research",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Real reads in A are only: the 6 population pins, the 20 ledger files above, and the norton-pinned nmb-series OCR file."
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:6-7"
+        ],
+        "note": "needs.txt:6 is fully subsumed by :7. inputs.txt:10-11 and :15-19 already name every other real read, and prepare() materializes their parent directories."
+      },
+      {
+        "path_or_glob": "research/readiness (whole tree, 645 files, 67 MB)",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Real reads in A: act_overrides (3 of 4 files), owner_rulings (1 of 13), factual (15), decisions (0), plus norton-pinned reviews/astra-2026-10-18/** (79) and claims/*.jsonl (64)."
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3"
+        ],
+        "note": "Never read in A: rules/ (25), type-rules/ (22), method_reviews/, component_attestations/, EXHAUSTED.jsonl, FETCH_QUEUE.jsonl, SOURCE_AUDIT_HOLDS.jsonl, CLAIM_KIT_LOCK.json, README.md. Caveat: the norton pin list can name other files."
+      },
+      {
+        "path_or_glob": "jobs/valla/output (after.txt 'valla')",
+        "discovery": "static",
+        "category": "output of another job: valla",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Only the generic SUMMARY.json glob (inputs.py:587) touches jobs/valla/output/SUMMARY.json. batch.py:299-304 loads valla CODE, not its output (valla.py header and README state it never reads claim-kit output either)."
+        ],
+        "declared_in": [
+          "claim-kit/after.txt:3"
+        ],
+        "note": "Ordering-only declaration; no data dependency in A."
+      },
+      {
+        "path_or_glob": "jobs/claim-kit/CACHE_MB=1024 -> .job-cache/claim-kit/<sha256>.json (segmentation results keyed by parser code hash + text hash)",
+        "discovery": "dynamic",
+        "category": "environment (runner cache restored by actions/cache)",
+        "needed": "OPTIONAL_PERFORMANCE_CACHE",
+        "readers": [
+          "build.py:308-311,336-347",
+          "run_jobs.py:286-307",
+          ".github/workflows/run-jobs.yml (actions/cache, restore-keys)"
+        ],
+        "declared_in": [
+          "claim-kit/CACHE_MB"
+        ],
+        "note": "build.py:308: 'never an output/provenance substitute'. Safe to be absent."
+      },
+      {
+        "path_or_glob": "~/.cache/eo-claim-kit/fragment-index-*.json (CLAIM_KIT_CACHE_DIR, CLAIM_KIT_INDEX_CACHE=0 disables)",
+        "discovery": "dynamic",
+        "category": "environment",
+        "needed": "OPTIONAL_PERFORMANCE_CACHE",
+        "readers": [
+          "fragment_cache.py:94-100,141-176",
+          "test_batch.py:77-94 (unit tests exercise it with the default dir)"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "Not used by build/job.py; reached in A only by unit tests. Optional and self-verifying (inventory hashes)."
+      }
+    ],
+    "B_agent_cli": [
+      {
+        "path_or_glob": "Same code files as A (kit.py imports assemble -> working_text, factual_events -> jobs/norton/model.py; build -> inputs, excavate -> jobs/clause-drafts/segment.py)",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "kit.py:16-17",
+          "factual_events.py:14",
+          "excavate.py:123"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:9 (segment.py only)"
+        ]
+      },
+      {
+        "path_or_glob": "Code pins checked by apply/batch-check/complete: jobs/claim-kit/{batch,assemble,evidence_preflight,excavate,completion,kit,working_text,factual_events,lifecycle_obligations,prior_research,status_overlay}.py, jobs/norton/model.py, research/stage19/code/claim_gate.py, jobs/claim-checker/{checker,sources}.py, jobs/readiness-tracker/tracker.py",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:33-41 (POLICY_CODE_FILES, policy_code_pins)",
+          "batch.py:469-473,529-533",
+          "completion.py:621-629"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "prepare (writes the pins)",
+          "apply (compares batch/assemble/evidence_preflight/excavate/policy pins)",
+          "complete (compares and re-pins)"
+        ],
+        "note": "Packets seal these hashes at prepare time; a code edit forces a new packet."
+      },
+      {
+        "path_or_glob": "jobs/claim-kit/output/{INDEX.json, dossiers/EO_*.json, actor-texts/*.json}",
+        "discovery": "dynamic",
+        "category": "compiled prior output of this job",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:423,451 (prepare)",
+          "batch.py:183-184 (overflow existence)",
+          "kit.py:26-34 (load_dossier)"
+        ],
+        "declared_in": [
+          "(excluded from runner scope by design: result_freshness.py:58)"
+        ],
+        "subcommands": [
+          "prepare"
+        ],
+        "note": "Fingerprint of each dossier is checked against INDEX.json (batch.py:452)."
+      },
+      {
+        "path_or_glob": "jobs/claim-kit/output/{OVERLAY_INPUTS,STATUS_LEADS,OWN_TERMS,ACTING_PROVISIONS,CHAINS,CLAUSES,TEXT_REPRESENTATIONS}*.jsonl, SUMMARY.json, STATUS.json, FAILED.json",
+        "discovery": "dynamic",
+        "category": "compiled prior output of this job",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "status_overlay.py:111-175 (_manifest, _read_records)",
+          "status_overlay.py:417-505 (prepare_evidence_many)",
+          "status_overlay.py:546-580 (validate_evidence)"
+        ],
+        "declared_in": [
+          "(excluded by design)"
+        ],
+        "subcommands": [
+          "prepare (undecided ids)",
+          "view/apply/batch-check/complete (packets with undecided_evidence)"
+        ],
+        "note": "Only when an instrument id is absent from INDEX.json (undecided orders) or a packet carries undecided_evidence."
+      },
+      {
+        "path_or_glob": "jobs/status-history/history.py and jobs/status-history/output/{INDEX.json, STATUS.json, histories/**, observations/**, events/**}; history sources jobs/fr-originals/data/ofr_index/*.gz, jobs/ofr-codification-1989/data/*.jsonl",
+        "discovery": "dynamic",
+        "category": "output of another job: status-history (+ its code)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "status_overlay.py:66-71,258,442,508,571",
+          "status-history/history.py:352-360,375-420",
+          "kit.py:205-209"
+        ],
+        "declared_in": [
+          "output: after.txt:2; history.py: (not declared)"
+        ],
+        "subcommands": [
+          "prepare (undecided ids)",
+          "view/apply/batch-check/complete (undecided packets)"
+        ],
+        "note": "history.py is loaded as a module from the repo (code, undeclared)."
+      },
+      {
+        "path_or_glob": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv + research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv (authority tables, hashed)",
+        "discovery": "static",
+        "category": "canonical records",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "status_overlay.py:74-82",
+          "prior_research.py:487-493 (conditional)"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:1-2"
+        ],
+        "subcommands": [
+          "prepare (undecided ids)",
+          "complete (overlay)"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness/claims/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records (claims)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:153-168 (owners; L155-156)",
+          "kit.py:55-63",
+          "completion.py:26,114,470-481"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3"
+        ],
+        "subcommands": [
+          "prepare",
+          "complete",
+          "kit next/status"
+        ]
+      },
+      {
+        "path_or_glob": "research/production/claim-kit-pilot-2026-10-18/FREEZE_MANIFEST.json",
+        "discovery": "static",
+        "category": "canonical records (frozen proposals)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:161-165",
+          "completion.py:633"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:8"
+        ],
+        "subcommands": [
+          "prepare",
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness/CLAIM_KIT_LOCK.json (read); research/readiness/CLAIM_KIT_LOCK.guard (write)",
+        "discovery": "static",
+        "category": "canonical records (reservations)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:421",
+          "kit.py:38-53,242"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3"
+        ],
+        "subcommands": [
+          "prepare",
+          "kit next/release/status"
+        ]
+      },
+      {
+        "path_or_glob": "Held texts: every evidence/clause source.text_path in the packet's dossiers; PACKET.json held_text_file_pins",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:56-92 (encode; L76)",
+          "evidence_preflight.py:45-74",
+          "batch.py:269-271 (pins)",
+          "assemble.py:168"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7"
+        ],
+        "subcommands": [
+          "prepare",
+          "view",
+          "apply",
+          "batch-check",
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "jobs/valla/valla.py + premises.json (loaded as code) and everything valla.attach reads (see valla section, context B)",
+        "discovery": "dynamic",
+        "category": "output/code of another job: valla",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:299-304,465-467 (prepare)",
+          "batch.py:272-273 (load_packet)",
+          "valla.py:523-534"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "prepare",
+          "view",
+          "apply",
+          "batch-check",
+          "complete",
+          "source_supplement prepare/verify"
+        ],
+        "note": "A new packet or a changed Valla input invalidates PACKET.json (batch.py:272-273)."
+      },
+      {
+        "path_or_glob": "research/**/*.json and research/**/*.jsonl (all of them, minus PACKET.json and EVIDENCE.json and the packet's own folder), plus every path/sha pair they cite, plus research/readiness/owner_rulings/*.md (13), plus the authority CSV",
+        "discovery": "dynamic",
+        "category": "prior research (research/**)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "prior_research.py:82-125 (scan_research, os.scandir at L99)",
+          "prior_research.py:332-340,401 (read every candidate)",
+          "prior_research.py:342-361 (pin: arbitrary path, hashlib.file_digest)",
+          "prior_research.py:485-493",
+          "batch.py:274-277 (load_packet), 474-475 (prepare)"
+        ],
+        "declared_in": [
+          "(only needs.txt roots research/readiness, research/progress, research/excavator, research/production overlap)"
+        ],
+        "subcommands": [
+          "prepare",
+          "view",
+          "apply",
+          "batch-check",
+          "complete",
+          "source_supplement prepare/verify"
+        ],
+        "note": "Files are read in full before the id filter (L401-403), so any narrowing of research/ changes packet['prior_research'] and fails load_packet('changed prior research'). discovery_scope text states: 'Current materialized research files; unmaterialized work is not inferred absent.'"
+      },
+      {
+        "path_or_glob": "jobs/*/output/FRAGMENTS*.jsonl and jobs/*/data/**/FRAGMENTS*.jsonl (all provider files, hashed in full on every call; about 230 MB) and the text files they name",
+        "discovery": "dynamic",
+        "category": "provider records (FRAGMENTS)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "fragment_cache.py:24,45-86 (provider_inventory)",
+          "working_text.py:61-110",
+          "batch.py:542,603",
+          "completion.py:657",
+          "source_supplement.py:47,73"
+        ],
+        "declared_in": [
+          "claim-kit/inputs.txt:6-7"
+        ],
+        "subcommands": [
+          "apply",
+          "batch-check",
+          "complete",
+          "source_supplement prepare"
+        ],
+        "note": "SOURCES.jsonl and PROVENANCE.json are NOT read on this path (only FRAGMENTS globs)."
+      },
+      {
+        "path_or_glob": "~/.cache/eo-claim-kit/fragment-index-<repo-tag>-<key>.json (read and write)",
+        "discovery": "dynamic",
+        "category": "environment (~/.cache)",
+        "needed": "OPTIONAL_PERFORMANCE_CACHE",
+        "readers": [
+          "fragment_cache.py:94-100,136-176"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "apply",
+          "batch-check",
+          "complete",
+          "source_supplement"
+        ],
+        "note": "Keyed by the complete provider inventory hash; optional."
+      },
+      {
+        "path_or_glob": "research/stage19/code/claim_gate.py, research/readiness/factual/*/*.jsonl, the norton raw/text paths, local_path files",
+        "discovery": "dynamic",
+        "category": "code + canonical records + custody",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "assemble.py:139-144,183-190,263-361",
+          "factual_events.py:24,195"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3-4"
+        ],
+        "subcommands": [
+          "apply",
+          "batch-check",
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "decisions.csv, clauses.csv, RATIONALES.json in the packet folder; applied/{CLAIMS.proposed.jsonl, AUDIT.json}",
+        "discovery": "dynamic",
+        "category": "other (agent work files)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:534",
+          "batch.py:602-604"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "apply",
+          "batch-check"
+        ]
+      },
+      {
+        "path_or_glob": "SUBPROCESS jobs/claim-checker/checker.py --claims applied/CLAIMS.proposed.jsonl (REPO_ROOT=repo, OUTPUT_DIR=applied/actual-checker, JOB_CACHE_DIR=<packet>/.validation-cache, CLAIM_CHECKER_VERIFY_DOWNLOADS=0)",
+        "discovery": "static",
+        "category": "code fingerprint + everything the checker reads (see claim_checker_reached below)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "batch.py:613-624"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "batch-check",
+          "complete (completion.py:393-405)"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness/SOURCE_AUDIT_HOLDS.jsonl and each hold's review_path; completion manifest and every ref{path,sha256} it cites (review, seed, adjudication, overlay bundle files, receipts); claim lines; research/stage19/code/claim_gate.py",
+        "discovery": "dynamic",
+        "category": "canonical records + prior research",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "completion.py:267-282",
+          "completion.py:53-200 (Inputs)",
+          "completion.py:226-264,285-328,331-390"
+        ],
+        "declared_in": [
+          "claim-kit/needs.txt:3"
+        ],
+        "subcommands": [
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "Everything claim-checker would read for the selected claims (pin_checker_inputs) and the tracker module (run_tracker)",
+        "discovery": "dynamic",
+        "category": "reached through claim-checker / readiness-tracker (see claim_checker_reached and readiness_tracker_reached)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "completion.py:415-453 (pin_checker_inputs)",
+          "completion.py:456-506 (run_tracker)"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "git metadata: 'git rev-parse --git-common-dir' -> <common-dir>/claim-kit-publication.lock (fallback research/readiness/.claim-publication.lock)",
+        "discovery": "dynamic",
+        "category": "environment (git metadata)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "completion.py:509-519,540-585"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "complete"
+        ]
+      },
+      {
+        "path_or_glob": "Source-supplement files: declarations JSON, each source.local_path and source.text_path, parent PACKET.json, jobs/claim-kit/source_supplement.py itself (hashed)",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files + prior research",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "source_supplement.py:23-36,60-118 (L92 hashes both paths, L97 reads text)",
+          "source_supplement.py:121-165"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "source_supplement prepare",
+          "source_supplement verify"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness/claims/*.jsonl, research/readiness/method_reviews/*.jsonl, research/readiness/component_attestations/*.jsonl ... (valla attach inputs): see valla.B",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "valla.py:523-534"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "valla attach (via prepare/view/apply/batch-check/complete)"
+        ]
+      }
+    ]
+  },
+  "valla": {
+    "A_runner_job_py": [
+      {
+        "path_or_glob": "jobs/valla/{job.py,valla.py,premises.json}",
+        "discovery": "static",
+        "category": "code fingerprint",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "job.py:4,8",
+          "valla.py:459,510"
+        ],
+        "declared_in": [
+          "runner scope root jobs/valla"
+        ],
+        "note": "job.py does not run the test suite (unlike claim-kit); tests are not an input of the runner job."
+      },
+      {
+        "path_or_glob": "research/readiness/claims/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records (claims)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:92-114 (glob L98, read L99)"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:1",
+          "valla/triggers.txt:1",
+          "valla/needs.txt:1"
+        ],
+        "note": "612 active claims in 77 files today. A non-production claim line aborts the whole job (valla.py:109-110)."
+      },
+      {
+        "path_or_glob": "research/readiness/method_reviews/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records (method_reviews)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:416-450 (glob L419)"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:3",
+          "valla/triggers.txt:3"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness/component_attestations/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records (component_attestations)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:475"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:2",
+          "valla/triggers.txt:2"
+        ]
+      },
+      {
+        "path_or_glob": "review_ref.path files (must start research/, not research/readiness/claims/): today research/valla/pilot-2026-10-20/{METHOD_REVIEWS,COMPONENT_REVIEWS}.jsonl",
+        "discovery": "dynamic",
+        "category": "prior research (explicit review records)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:308-318 (reviewed_record)",
+          "valla.py:378,430"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:5-6",
+          "valla/triggers.txt:5-6",
+          "valla/needs.txt:6"
+        ],
+        "note": "A future review_ref with another name or directory is not covered by inputs.txt (only research/valla/**/METHOD_REVIEWS.jsonl and COMPONENT_REVIEWS.jsonl)."
+      },
+      {
+        "path_or_glob": "reviewed_claim_ref.path (must be under research/): today research/readiness/claims/*.jsonl",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:359-366"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:1 (only when the target is in claims/)"
+        ]
+      },
+      {
+        "path_or_glob": "dependencies[].key files (kind file|rule) and component_selector.artifact_path / text_path: today jobs/fr-originals/data/full_run/texts/EO_{13101,13148,13783,13792,13807}.txt, jobs/claim-kit/BATCH.md, research/valla/pilot-2026-10-20/METHOD.md",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:321-339 (L333)",
+          "valla.py:393-407 (L399,402)"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:13,8,4",
+          "valla/triggers.txt:10,8,4"
+        ],
+        "note": "In this checkout the trace opened the 5 EO texts but not METHOD.md (all 5 reviews and attestations are refused before the rule dependency is reached). The declaration is correct for the case where they validate."
+      },
+      {
+        "path_or_glob": "PROTOCOLS pins: jobs/claim-kit/AGENT_PROTOCOL.md, jobs/claim-kit/BATCH.md, research/stage19/CLAIM_SCHEMA.md, research/stage19/code/claim_gate.py, research/stage15/LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json",
+        "discovery": "static",
+        "category": "canonical records / rules (hashed pins)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:16-18",
+          "valla.py:150-151 (an absent file pins as null, silently)",
+          "valla.py:459"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:7,8,10,11,12"
+        ]
+      },
+      {
+        "path_or_glob": "git ls-files -- research/excavator/**/RATIONALES.json research/production/**/RATIONALES.json (tracked inventory; works under sparse checkout because it reads the index)",
+        "discovery": "dynamic",
+        "category": "environment (git metadata)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:181-188",
+          "valla.py:191-207 (91 tracked packages today)"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "note": "Needs a full git index (the runner clones with fetch-depth 0 and filter blob:none; sparse only limits the worktree). Tracked but unmaterialized packages are recorded in package_scan.unmaterialized_packages (valla.py:203-205,465) instead of failing, so a too-narrow checkout silently changes INDEX.json."
+      },
+      {
+        "path_or_glob": "research/excavator/**/{RATIONALES.json,decisions.csv,clauses.csv} and research/production/**/same three names, one set per tracked package (91 today)",
+        "discovery": "dynamic",
+        "category": "prior research (rationale packages)",
+        "needed": "GENUINELY_NEEDED",
+        "readers": [
+          "valla.py:237-280 (shared_lineage; L253 RATIONALES.json, L255-266 sheets)"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:14-19",
+          "valla/triggers.txt:11-16",
+          "valla/needs.txt:7-8"
+        ],
+        "note": "Exactly these three file names are read. The other ~12,000 files in the two trees are not."
+      },
+      {
+        "path_or_glob": "jobs/claim-drafts/AGENT_GUIDE.md",
+        "discovery": "static",
+        "category": "canonical records / rules",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "No reader: the string AGENT_GUIDE appears in no valla or claim-kit .py file"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:9"
+        ]
+      },
+      {
+        "path_or_glob": "research/stage19 (whole directory incl. output/, ranger_output/, FUNNEL.md, LOC_LIVE_TRIAL.json; 18 files, 5 MB) and triggers 'research/stage19/**'",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Only CLAIM_SCHEMA.md and code/claim_gate.py are read (valla.py:17-18)."
+        ],
+        "declared_in": [
+          "valla/needs.txt:2",
+          "valla/triggers.txt:9"
+        ]
+      },
+      {
+        "path_or_glob": "research/readiness (whole tree, 645 files)",
+        "discovery": "dynamic",
+        "category": "canonical records",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Only claims/, method_reviews/, component_attestations/ are read (valla.py:98,419,475)."
+        ],
+        "declared_in": [
+          "valla/needs.txt:1"
+        ],
+        "note": "inputs.txt:1-3 already name the three subdirectories; their parent directories are materialized by prepare()."
+      },
+      {
+        "path_or_glob": "research/stage15/LEGAL (5 files) and research/valla (12 files)",
+        "discovery": "dynamic",
+        "category": "canonical records / prior research",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Read: 1 file in LEGAL (valla.py:18), 2-3 files in research/valla/pilot-2026-10-20 (METHOD_REVIEWS.jsonl, COMPONENT_REVIEWS.jsonl, METHOD.md)."
+        ],
+        "declared_in": [
+          "valla/needs.txt:3,6",
+          "valla/inputs.txt:4-6,12"
+        ]
+      },
+      {
+        "path_or_glob": "research/excavator (11,577 files) and research/production (677 files) as whole roots",
+        "discovery": "dynamic",
+        "category": "prior research",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "Only the 3 file names per package are read (valla.py:224,255)."
+        ],
+        "declared_in": [
+          "valla/needs.txt:7-8"
+        ],
+        "note": "inputs.txt:14-19 already match them; needs.txt entries only enlarge the freshness fingerprint (result_freshness.scope adds roots)."
+      },
+      {
+        "path_or_glob": "jobs/fr-originals/data/** (6,667 files; inputs.txt L13, triggers L10)",
+        "discovery": "dynamic",
+        "category": "referenced text/custody files",
+        "needed": "HISTORICAL_BLANKET",
+        "readers": [
+          "5 files read (dependency keys above)"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:13",
+          "valla/triggers.txt:10"
+        ],
+        "note": "jobs/ is always checked out, so this only widens the fingerprint to 6,667 hash entries. It is the only declared way to cover a future dependency key under jobs/fr-originals/data."
+      }
+    ],
+    "B_agent_cli": [
+      {
+        "path_or_glob": "valla.attach(repo, ids, exclude) via batch.valla_context: jobs/valla/valla.py + premises.json (code, sha in packet), research/readiness/claims/*.jsonl (lines filtered by id before parsing), method_reviews/*.jsonl and component_attestations/*.jsonl (all rows read, filtered by id), PROTOCOLS pins, dependency/review files of matching records",
+        "discovery": "dynamic",
+        "category": "canonical records + code",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "valla.py:523-534",
+          "valla.py:453-520 (build with ids)",
+          "batch.py:299-304"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:1-3,7-13"
+        ],
+        "subcommands": [
+          "valla attach (called by prepare, view, apply, batch-check, complete)"
+        ]
+      },
+      {
+        "path_or_glob": "Scoped package scan: for EVERY tracked package under research/excavator and research/production, decisions.csv and clauses.csv are read in full to look for the requested ids (bound 256 MB); RATIONALES.json only for relevant packages",
+        "discovery": "dynamic",
+        "category": "prior research (rationale packages)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "valla.py:210-234 (L231 read_bytes of each sheet)",
+          "valla.py:237-280"
+        ],
+        "declared_in": [
+          "valla/inputs.txt:14-19"
+        ],
+        "note": "The packet's own folder and the parent packet folder are excluded (batch.py:282-296). A package that is tracked but not materialized is reported, not read (valla.py:226-227)."
+      },
+      {
+        "path_or_glob": "git ls-files (tracked RATIONALES inventory)",
+        "discovery": "dynamic",
+        "category": "environment (git metadata)",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "valla.py:184-188,214"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "valla attach"
+        ]
+      },
+      {
+        "path_or_glob": "valla pilot.py / `valla.py correction` (outside the requested list): research/valla/pilot-2026-10-20/SAMPLE.json, research/readiness/SOURCE_AUDIT_HOLDS.jsonl, git object 91116f87:jobs/claim-kit/batch.py (git history), jobs/mountweazel/paired.py pin, subprocess checker.py and tracker.py",
+        "discovery": "dynamic",
+        "category": "mixed",
+        "needed": "NEEDED_ONLY_FOR_SUBCOMMAND",
+        "readers": [
+          "pilot.py:18,36,64,82-85,138-147,162"
+        ],
+        "declared_in": [
+          "(not declared)"
+        ],
+        "subcommands": [
+          "valla pilot",
+          "valla correction"
+        ]
+      }
+    ]
+  },
+  "claim_checker_reached": {
+    "note": "Invoked as a subprocess by batch.check (batch.py:612-624) and completion.run_checker (completion.py:393-405) with REPO_ROOT=repo. Only path constants and globs are listed; checker internals were not audited line by line.",
+    "own_declarations": {
+      "needs.txt": "research/readiness; research/stage15/CENSUS; research/progress; research/stage19/code; research/stage21/sources_index; research/stage21/original_sources; research/stage20/output; research/stage20/sources; research/stage18; research/stage14/QUEUES; releases/opus_stage11_complete; releases/source_books",
+      "inputs.txt": "jobs/claim-kit/working_text.py; jobs/*/output/FRAGMENTS*.jsonl; jobs/*/data/**/FRAGMENTS*.jsonl; jobs/*/output/texts/**; jobs/*/data/**; jobs/claim-kit/factual_events.py; jobs/norton/model.py; research/readiness/factual/*"
+    },
+    "paths": [
+      {
+        "path_or_glob": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+        "reader": "checker.py:68,311-312"
+      },
+      {
+        "path_or_glob": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+        "reader": "checker.py:69,315-317"
+      },
+      {
+        "path_or_glob": "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv",
+        "reader": "checker.py:70,320-338"
+      },
+      {
+        "path_or_glob": "research/stage14/QUEUES/OFFICIAL_DIRECT_DOCUMENT_FETCH_MANIFEST.csv",
+        "reader": "checker.py:71,320-345"
+      },
+      {
+        "path_or_glob": "research/readiness/claims/*.jsonl (default; batch/complete pass --claims <file>)",
+        "reader": "checker.py:72,1325-1326"
+      },
+      {
+        "path_or_glob": "research/stage19/code/claim_gate.py",
+        "reader": "checker.py:73,360-365 (load_gate)"
+      },
+      {
+        "path_or_glob": "jobs/readiness-tracker/tracker.py (step mapper)",
+        "reader": "checker.py:74,368-386"
+      },
+      {
+        "path_or_glob": "jobs/*/output/*.csv (signing dates, 50 MB cap, skips claim-checker)",
+        "reader": "checker.py:339-352 (inside load_signing, L320-357)"
+      },
+      {
+        "path_or_glob": "jobs/*/output/SOURCES.jsonl; jobs/*/data/PROVENANCE.json; releases/source_books/*.pdf named by PROVENANCE pdf fields; jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl (+ raw 'file' PDFs)",
+        "reader": "sources.py:241-315 (SOURCES.jsonl glob L243), 317-380 (PROVENANCE glob L324), 582-621 (pinakes replica fragments)"
+      },
+      {
+        "path_or_glob": "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv; research/stage21/original_sources/ACQUISITION_LOG.jsonl; research/stage20/output/STATUTE_FETCH_INDEX.csv; research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv; research/stage18/SOURCE_MANIFEST.json",
+        "reader": "sources.py:48-54 (INPUTS); loaders at 382-512"
+      },
+      {
+        "path_or_glob": "releases/opus_stage11_complete/*.zip (LFS pointers on the runner) and jobs/claim-checker/data/opus_manifest_index.csv.gz, data/opus_text_pack.jsonl.gz",
+        "reader": "sources.py:43-45,514-580"
+      },
+      {
+        "path_or_glob": "jobs/official-fixity/output/MATCHED_BY_SHA256.json",
+        "reader": "checker.py:469,638 (GPO_MATCHED, load_gpo_matched)"
+      },
+      {
+        "path_or_glob": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+        "reader": "checker.py:522-541 (load_archive_captures, L526)"
+      },
+      {
+        "path_or_glob": "jobs/*/output/FRAGMENTS*.jsonl, jobs/*/data/**/FRAGMENTS*.jsonl (working_text.Index)",
+        "reader": "checker.py:446 (W.Index(self.repo))"
+      },
+      {
+        "path_or_glob": "research/readiness/factual/*/*.jsonl (via factual_events)",
+        "reader": "checker.py:39 -> factual_events.py:195"
+      }
+    ]
+  },
+  "readiness_tracker_reached": {
+    "note": "Reached only via completion.run_tracker (module load, completion.py:457) and as the step mapper imported by the checker. P and J constants listed; tracker.build internals not audited.",
+    "paths": [
+      "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv; research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv; research/stage19/output/CAUSAL_QUEUE.csv; research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv; research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv; research/stage20/output/{SHARED_SOURCE_CASE_REVIEW_QUEUE,STATUTE_CASE_REVIEW_QUEUE,MEDIA_BATCH_ASSOCIATION_AUDIT}.csv (tracker.py:58-69; completion.py:459-461 requires each to be a file)",
+      "research/readiness/claims/*.jsonl; research/readiness/EXHAUSTED.jsonl; research/readiness/SOURCE_AUDIT_HOLDS.jsonl (tracker.py:67-68,609-617); research/stage19/code (gate)",
+      "J: jobs/fr-originals/{data/full_run,output}/FRAGMENTS.jsonl; jobs/opus-media-match/output/{FRAGMENTS.jsonl,OPUS_CASE_MEDIA_STATUS.csv,REFETCH_LIST.jsonl}; jobs/{ofr-compilations,isthmian-canal-1911,indian-reservations-1912,richardson-volumes,app-executive-orders,hathi-gpo-orders,numbered-early-orders,wikisource-texts,csc-annual-reports,pinakes-proquest-ingest}/output/FRAGMENTS.jsonl; jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl; jobs/source-ladder/output/SOURCES.jsonl; jobs/claim-checker/output/PER_CLAIM.json; jobs/later-events/output/{SUMMARY.json,CATALOG_INDEX.csv,COUNTEREVIDENCE_LEADS.csv,STATUS.json}; jobs/current-law/output/{SUMMARY.json,POSSIBLE_CONFLICTS.csv,STATUS.json} (tracker.py:74-110)",
+      "its own needs.txt also lists jobs/census-candidates/output, research/excavator, research/valla (not traced to a line)."
+    ]
+  },
+  "mismatches": [
+    {
+      "id": "R1",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "jobs/norton/model.py",
+      "evidence": "factual_events.py:13-16 executes it at import; batch.py:33-34 and completion.py:624-626 pin it. claim-kit freshness scope has no entry for it (result_freshness.select, checked). claim-checker and readiness-tracker declare it in inputs.txt/triggers.txt."
+    },
+    {
+      "id": "R2",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "jobs/valla/{valla.py,premises.json}; jobs/claim-checker/{checker.py,sources.py,data/opus_manifest_index.csv.gz}; jobs/readiness-tracker/{tracker.py,test_tracker.py}",
+      "evidence": "Exercised by job.py:9 (unit tests): test_batch.py:35-37,53-55; test_factual_events.py:210-221,235-239. Always present because jobs/ is always checked out, but changes do not change claim-kit's RUNNER_INPUTS manifest or trigger it."
+    },
+    {
+      "id": "R3",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "jobs/source-ladder/{embedded_cites,fetch_ladder,ladder_queue,report_dates}.py and jobs/norton/{job,model,norton,test_norton}.py",
+      "evidence": "Hashed through jobs/norton/output/INPUTS.json (inputs.py:380-389); consumer_sha256 lists the four source-ladder files, code_sha256 lists the four norton files."
+    },
+    {
+      "id": "R4",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": ".job-cache/source-ladder/ladder/blobs/**/*.pdf (untracked runner cache)",
+      "evidence": "research/readiness/factual/*/evidence.jsonl raw_path (2 records) -> norton/model.py:83. Not a tracked file, so neither prepare() nor capture() can see it."
+    },
+    {
+      "id": "R5",
+      "kind": "read_but_undeclared_potential",
+      "job": "claim-kit",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "paths under releases/ and progress/ (and any jobs/X/** outside output/ and data/)",
+      "evidence": "inputs.py:86 and current_evidence.py:22 anchor these at the repo root. Verified: none of 142,532 current text_paths uses them. Unverified for other pointer fields (draft 'from', current-law cache_path, assemble local_path)."
+    },
+    {
+      "id": "R6",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "B"
+      ],
+      "item": "jobs/status-history/history.py (code) and jobs/valla/valla.py (code)",
+      "evidence": "status_overlay.py:66-71; batch.py:299-304. Outputs are declared; the code is not."
+    },
+    {
+      "id": "R7",
+      "kind": "read_but_undeclared",
+      "job": "claim-kit",
+      "contexts": [
+        "B"
+      ],
+      "item": "All of research/**/*.json and *.jsonl, plus owner_rulings/*.md and arbitrary dependency pins",
+      "evidence": "prior_research.scan_research/collect (prior_research.py:82-125, 332-401). Only four research subtrees appear in needs.txt, and none of this is in inputs.txt. Absence changes packet['prior_research'] and is rejected as 'changed prior research' (batch.py:277)."
+    },
+    {
+      "id": "R8",
+      "kind": "read_but_undeclared_potential",
+      "job": "valla",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "review_ref.path, reviewed_claim_ref.path and dependencies[].key targets outside research/valla/**/{METHOD.md,METHOD_REVIEWS.jsonl,COMPONENT_REVIEWS.jsonl}, jobs/fr-originals/data/**, jobs/claim-kit/{BATCH,AGENT_PROTOCOL}.md",
+      "evidence": "valla.py:308-318, 333, 361-364, 399, 402. Today's records stay inside the declared set."
+    },
+    {
+      "id": "R9",
+      "kind": "read_by_generic_glob",
+      "job": "claim-kit",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "jobs/claim-kit/output/SUMMARY.json (self)",
+      "evidence": "inputs.py:587 does not exclude claim-kit (L499-500 does). Absent in the runner (output emptied first), excluded from the fingerprint, and has no machine_searches key; present in B after a local build."
+    },
+    {
+      "id": "U1",
+      "kind": "declared_but_unread",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "needs.txt:8 research/production (677 files, 42 MB)",
+      "evidence": "No A-path reader. Only batch.py:161, completion.py:633 and prior_research (all B)."
+    },
+    {
+      "id": "U2",
+      "kind": "declared_but_mostly_unread",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "needs.txt:6-7 research/excavator (11,577 files, 70 MB); :6 is a subset of :7",
+      "evidence": "A reads the 6 pinned population files, the 20 act-override ledger files and one norton-pinned OCR text; inputs.txt:10-11,15-19 already name them."
+    },
+    {
+      "id": "U3",
+      "kind": "declared_but_mostly_unread",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "needs.txt:3 research/readiness (645 files, 67 MB)",
+      "evidence": "Never read in A: rules/, type-rules/, method_reviews/, component_attestations/, EXHAUSTED.jsonl, FETCH_QUEUE.jsonl, SOURCE_AUDIT_HOLDS.jsonl, CLAIM_KIT_LOCK.json, README.md."
+    },
+    {
+      "id": "U4",
+      "kind": "declared_but_mostly_unread",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "needs.txt:1,2,4 (CENSUS 1/6, progress 1/154, stage19/code 1/5 files read)",
+      "evidence": "inputs.py:24,28; assemble.py:140. Directory granularity is the finest recursive cone-mode materialization; a file line only pulls the parent directory's direct files."
+    },
+    {
+      "id": "U5",
+      "kind": "declared_but_mostly_unread",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "inputs.txt:6-7 jobs/*/data/** and jobs/*/output/** (72,102 tracked files in the fingerprint)",
+      "evidence": "About 35,000 of the 85,247 files in claim-kit's freshness scope are not touched by the traced read set plus the norton pins (largest: jobs/case-bundles/output 6,813; early-orders-hunt/output 4,124; research/excavator subtrees 3,700+). The blanket is deliberate for future producers (inputs.txt:1-5)."
+    },
+    {
+      "id": "U6",
+      "kind": "declared_but_no_data_dependency",
+      "job": "claim-kit",
+      "contexts": [
+        "A"
+      ],
+      "item": "after.txt:3 valla",
+      "evidence": "No claim-kit code reads valla's output except the generic SUMMARY.json glob; orders-only."
+    },
+    {
+      "id": "U7",
+      "kind": "declared_but_unread",
+      "job": "valla",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "inputs.txt:9 jobs/claim-drafts/AGENT_GUIDE.md",
+      "evidence": "valla.py:16-18 lists the protocol files; AGENT_GUIDE appears in no .py file of valla or claim-kit."
+    },
+    {
+      "id": "U8",
+      "kind": "declared_but_mostly_unread",
+      "job": "valla",
+      "contexts": [
+        "A",
+        "B"
+      ],
+      "item": "needs.txt:1,2,3,6,7,8 and triggers.txt:9 (research/readiness, stage19, stage15/LEGAL, valla, excavator, production)",
+      "evidence": "Reads are 3 readiness subdirs, 2 stage19 files, 1 LEGAL file, 2-3 research/valla files and 3 file names per tracked package (91). inputs.txt already names them."
+    },
+    {
+      "id": "U9",
+      "kind": "declared_but_mostly_unread",
+      "job": "valla",
+      "contexts": [
+        "A"
+      ],
+      "item": "inputs.txt:13 jobs/fr-originals/data/** (6,667 files, 5 read)",
+      "evidence": "valla.py:333,402 dependency keys; kept for future keys."
+    },
+    {
+      "id": "N1",
+      "kind": "note",
+      "job": "both",
+      "contexts": [
+        "A"
+      ],
+      "item": "How the runner scopes inputs",
+      "evidence": "result_freshness.scope (L40-58): roots = jobs/<name>, jobs/_lib, .github/scripts, run-jobs.yml, every needs.txt line, jobs/<dep>/output for after.txt; patterns = triggers.txt UNION inputs.txt. So triggers.txt entries also materialize and fingerprint. prepare() (L82-100) adds the parent directory of each matching skip-worktree file. run_jobs.py:270-274 adds needs.txt via 'git sparse-checkout add --stdin' (cone mode: a directory line materializes its whole subtree; a file line materializes only the immediate files of its parent directories; tested on a scratch repo)."
+    }
+  ]
+}

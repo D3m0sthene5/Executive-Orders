@@ -1,0 +1,1532 @@
+{
+ "tree": "$SCRATCH/opus/replay/cachecheck",
+ "cache_dir": "$SCRATCH/w-cache/cache",
+ "python": "3.13.17",
+ "started": "2026-10-29 21:07:44",
+ "manifest_before": {
+  "files": 97189,
+  "dirs": 4258
+ },
+ "fixed_claims": [
+  [
+   "claude-2026-10-28-production-b1a.jsonl",
+   0
+  ],
+  [
+   "claude-2026-10-28-production-b1a.jsonl",
+   1
+  ],
+  [
+   "claude-2026-10-28-spent-probe.jsonl",
+   7
+  ],
+  [
+   "claude-2026-10-19-x1-pilot.jsonl",
+   0
+  ],
+  [
+   "astra-2026-10-17-p12553a.jsonl",
+   0
+  ]
+ ],
+ "fixed_claims_baseline": {
+  "claude-2026-10-28-production-b1a.jsonl:0": {
+   "errors": 0,
+   "dependent": 5
+  },
+  "claude-2026-10-28-production-b1a.jsonl:1": {
+   "errors": 0,
+   "dependent": 5
+  },
+  "claude-2026-10-28-spent-probe.jsonl:7": {
+   "errors": 0,
+   "dependent": 6
+  },
+  "claude-2026-10-19-x1-pilot.jsonl:0": {
+   "errors": 0,
+   "dependent": 0
+  },
+  "astra-2026-10-17-p12553a.jsonl:0": {
+   "errors": 0,
+   "dependent": 0
+  }
+ },
+ "step0": {
+  "seconds_fresh": 8.76,
+  "seconds_build_1": 14.176,
+  "seconds_build_2": 1.132,
+  "status_1": "miss_stored",
+  "status_2": "hit",
+  "equal_1": true,
+  "equal_2": true,
+  "key": "11a9977df8c3fcf5e051a8997a224ef1b0282df9d734985f8f1e53109375e2b3",
+  "order_equal": true,
+  "tuple_equal": true,
+  "seconds_shared_first": 2.302,
+  "shared_status_first": "hit",
+  "seconds_shared_reuse": 0.727,
+  "shared_status_second": "process_reuse",
+  "equal_shared": true,
+  "cache_files": [
+   "fragment-index-574f9cb1d1-11a9977df8c3fcf5e051a8997a224ef1b0282df9d734985f8f1e53109375e2b3.json"
+  ],
+  "cache_bytes": 9957885,
+  "seconds_policy_index_one_claim_warm": 0.716
+ },
+ "P5_real_rows_with_missing_text_file": 0,
+ "files_over_10MB": [
+  [
+   "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+   20301612
+  ],
+  [
+   "jobs/clause-drafts/output/FRAGMENTS.jsonl",
+   67542089
+  ],
+  [
+   "jobs/clause-drafts/output/FRAGMENTS_APP.jsonl",
+   56104110
+  ],
+  [
+   "jobs/current-law/output/FRAGMENTS.jsonl",
+   16255476
+  ],
+  [
+   "jobs/later-events/output/FRAGMENTS.jsonl",
+   39162375
+  ]
+ ],
+ "perturbations": [
+  {
+   "perturbation": "P1_add_provider_file",
+   "detail": {
+    "new_file": "jobs/zz-cachecheck/output/FRAGMENTS.jsonl",
+    "copied_from": "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
+    "orig_instrument_id": "EO:7084",
+    "new_instrument_id": "ZZ-CACHECHECK-1",
+    "sha256": "10b7e443418bbb4f0807495d9f84e6f1057b62fd259b58753e6045b302146cc9"
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0"
+   ],
+   "applied": {
+    "label": "P1_add_provider_file:applied",
+    "seconds_fresh": 9.744,
+    "shape": [
+     14638,
+     17068,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 13.856,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 13.529,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.525,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 1.086,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted": {
+    "label": "P1_add_provider_file:reverted",
+    "seconds_fresh": 8.973,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 1.044,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 13.204,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.411,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.851,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  },
+  {
+   "perturbation": "P2_delete_provider_numbered-early-orders",
+   "detail": {
+    "deleted": "jobs/numbered-early-orders/output/FRAGMENTS.jsonl",
+    "index_rows_contributed": 197,
+    "size": 381983
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0"
+   ],
+   "applied": {
+    "label": "P2_delete_provider_numbered-early-orders:applied",
+    "seconds_fresh": 8.392,
+    "shape": [
+     14623,
+     16870,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 12.264,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 12.725,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.418,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.893,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted": {
+    "label": "P2_delete_provider_numbered-early-orders:reverted",
+    "seconds_fresh": 8.834,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.891,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.662,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.478,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.895,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  },
+  {
+   "perturbation": "P2b_delete_provider_hathi-gpo-orders",
+   "detail": {
+    "deleted": "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
+    "index_rows_contributed": 1531,
+    "size": 2028845
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0"
+   ],
+   "applied": {
+    "label": "P2b_delete_provider_hathi-gpo-orders:applied",
+    "seconds_fresh": 8.562,
+    "shape": [
+     14584,
+     15536,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 11.885,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 11.995,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.435,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.905,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 1,
+      "dependent": 6,
+      "differs_from_unperturbed": true
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 1
+   },
+   "reverted": {
+    "label": "P2b_delete_provider_hathi-gpo-orders:reverted",
+    "seconds_fresh": 8.641,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 1.02,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 13.056,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.406,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.948,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  },
+  {
+   "perturbation": "P3_same_size_edit_text_sha256_mtime_restored",
+   "detail": {
+    "file": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
+    "instrument_id": "EO:254",
+    "field": "text_sha256",
+    "old": "47bce54caa52b06cc38852fd84da3f8c60b1228e031b8131d6db90b3368fb242",
+    "new": "47bce54caa52b06cc38852fd84da3f8c60b1228e031b8131d6db90b3368fb240",
+    "byte_offset": 61032,
+    "size": 5315010,
+    "size_unchanged": true,
+    "mtime_ns_restored": true,
+    "new_inode": true,
+    "sha256_changed": true
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0",
+    "claude-2026-10-28-production-b1b.jsonl:0"
+   ],
+   "applied": {
+    "label": "P3_same_size_edit_text_sha256_mtime_restored:applied",
+    "seconds_fresh": 8.651,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 12.33,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 12.838,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.379,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.89,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1b.jsonl:0",
+      "equal": true,
+      "errors": 5,
+      "dependent": 5,
+      "differs_from_unperturbed": true
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 1
+   },
+   "reverted": {
+    "label": "P3_same_size_edit_text_sha256_mtime_restored:reverted",
+    "seconds_fresh": 8.894,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.993,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.486,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.413,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 1.103,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1b.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  },
+  {
+   "perturbation": "P4_delete_text_file_of_official_row",
+   "detail": {
+    "deleted_text_file": "jobs/ofr-compilations/output/texts/EO_5550.txt",
+    "row_instrument_id": "EO:5550",
+    "declared_in": "jobs/ofr-compilations/output/FRAGMENTS.jsonl",
+    "size": 2469,
+    "provider_inventory_unchanged": true
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0",
+    "claude-2026-10-19-x1-pilot.jsonl:1"
+   ],
+   "applied": {
+    "label": "P4_delete_text_file_of_official_row:applied",
+    "seconds_fresh": 8.593,
+    "shape": [
+     14638,
+     17067,
+     6867,
+     4743,
+     13096
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 0.953,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.937,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.434,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.91,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted": {
+    "label": "P4_delete_text_file_of_official_row:reverted",
+    "seconds_fresh": 8.674,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.908,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.88,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.39,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.874,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  },
+  {
+   "perturbation": "P5_create_text_file_for_row_with_missing_text",
+   "note": "Real rows whose text file is absent: 0 (every parsed provider row resolves to an existing file). A synthetic official-eligible provider (jobs/zz-cachecheck, acceptable_as_original=true, needs_page_check=false) references one provider-relative and one repo-relative absent text path; the text files are then created/removed.",
+   "setup_equal_to_original": true,
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0"
+   ],
+   "provider_added_text_absent": {
+    "label": "P5_0_provider_added_text_absent",
+    "seconds_fresh": 8.407,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 12.174,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 12.171,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.486,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 1.033,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "created_provider_relative": {
+    "label": "P5_1_create_provider_relative_text",
+    "seconds_fresh": 8.506,
+    "shape": [
+     14638,
+     17067,
+     6869,
+     4744,
+     13098
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 0.832,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.758,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.505,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.974,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "created_both": {
+    "label": "P5_2_create_repo_relative_text_too",
+    "seconds_fresh": 8.526,
+    "shape": [
+     14638,
+     17067,
+     6870,
+     4745,
+     13099
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 0.869,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 13.163,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.518,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.97,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "removed_provider_relative": {
+    "label": "P5_3_remove_provider_relative_text",
+    "seconds_fresh": 8.55,
+    "shape": [
+     14638,
+     17067,
+     6869,
+     4744,
+     13098
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 1.017,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.902,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.498,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 1.057,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "removed_both": {
+    "label": "P5_4_remove_repo_relative_text",
+    "seconds_fresh": 8.63,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.886,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.945,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.322,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.851,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted": {
+    "label": "P5_5_provider_removed",
+    "seconds_fresh": 8.685,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.956,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.369,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.432,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.842,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   }
+  },
+  {
+   "perturbation": "P6_same_size_edit_grade_on_gt10MB_file_mtime_restored",
+   "detail": {
+    "file": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+    "instrument_id": "EO:7945",
+    "field": "grade",
+    "old": "mirror_transcription",
+    "new": "mirror_transcriptiox",
+    "byte_offset": 256563,
+    "size": 20301612,
+    "size_unchanged": true,
+    "mtime_ns_restored": true,
+    "new_inode": true,
+    "sha256_changed": true
+   },
+   "claims_used": [
+    "claude-2026-10-28-production-b1a.jsonl:0",
+    "claude-2026-10-28-production-b1a.jsonl:1",
+    "claude-2026-10-28-spent-probe.jsonl:7",
+    "claude-2026-10-19-x1-pilot.jsonl:0",
+    "astra-2026-10-17-p12553a.jsonl:0",
+    "claude-2026-10-28-production-b1c.jsonl:23"
+   ],
+   "applied": {
+    "label": "P6_same_size_edit_grade_on_gt10MB_file_mtime_restored:applied",
+    "seconds_fresh": 8.303,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": true,
+    "seconds_build": 12.449,
+    "status": "miss_stored",
+    "equal_build": true,
+    "seconds_shared_first": 11.985,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.407,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.84,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1c.jsonl:23",
+      "equal": true,
+      "errors": 1,
+      "dependent": 8,
+      "differs_from_unperturbed": true
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 1
+   },
+   "reverted": {
+    "label": "P6_same_size_edit_grade_on_gt10MB_file_mtime_restored:reverted",
+    "seconds_fresh": 8.38,
+    "shape": [
+     14638,
+     17067,
+     6868,
+     4743,
+     13097
+    ],
+    "perturbation_effective": false,
+    "seconds_build": 0.816,
+    "status": "hit",
+    "equal_build": true,
+    "seconds_shared_first": 12.425,
+    "shared_status_first": "miss_stored",
+    "equal_shared": true,
+    "seconds_shared_reuse": 0.446,
+    "shared_status_second": "process_reuse",
+    "equal_shared_reuse": true,
+    "shared_reuse_same_object": true,
+    "inprocess_entries_before": 1,
+    "seconds_build_hit": 0.834,
+    "status_after_shared": "hit",
+    "equal_build_hit": true,
+    "policy_equal": true,
+    "policy_claims": [
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1a.jsonl:1",
+      "equal": true,
+      "errors": 0,
+      "dependent": 5,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-spent-probe.jsonl:7",
+      "equal": true,
+      "errors": 0,
+      "dependent": 6,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-19-x1-pilot.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "astra-2026-10-17-p12553a.jsonl:0",
+      "equal": true,
+      "errors": 0,
+      "dependent": 0,
+      "differs_from_unperturbed": false
+     },
+     {
+      "claim": "claude-2026-10-28-production-b1c.jsonl:23",
+      "equal": true,
+      "errors": 0,
+      "dependent": 8,
+      "differs_from_unperturbed": false
+     }
+    ],
+    "policy_results_changed_vs_unperturbed": 0
+   },
+   "reverted_equals_original": true
+  }
+ ],
+ "restoration": [
+  {
+   "path": "jobs/zz-cachecheck/output/FRAGMENTS.jsonl",
+   "kind": "create",
+   "expected": "absent",
+   "ok": true
+  },
+  {
+   "path": "jobs/numbered-early-orders/output/FRAGMENTS.jsonl",
+   "kind": "delete",
+   "sha256": "477028f1525b651c578ce0049ae482af8ac19759ecd32aac7fa3dd256409f429",
+   "ok": true,
+   "same_inode_size_mtime_mode": true
+  },
+  {
+   "path": "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl",
+   "kind": "delete",
+   "sha256": "638ee7a61fd2ffdf2f33e99726375aa3c856c6450d753c5cc4384a40602154a8",
+   "ok": true,
+   "same_inode_size_mtime_mode": true
+  },
+  {
+   "path": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
+   "kind": "edit",
+   "sha256": "5cd4502e5e261bfe0ec7803c4673707a7dbb4da6dec424a8bfab055f7a38639c",
+   "ok": true,
+   "same_inode_size_mtime_mode": true
+  },
+  {
+   "path": "jobs/ofr-compilations/output/texts/EO_5550.txt",
+   "kind": "delete",
+   "sha256": "8cb05a75ea1e0f778f2d6fd0107f4d5427101601c7c7b486c24d77fbf95fea93",
+   "ok": true,
+   "same_inode_size_mtime_mode": true
+  },
+  {
+   "path": "jobs/zz-cachecheck/output/FRAGMENTS.jsonl",
+   "kind": "create",
+   "expected": "absent",
+   "ok": true
+  },
+  {
+   "path": "jobs/zz-cachecheck/output/zz_missing_provider_relative.txt",
+   "kind": "create",
+   "expected": "absent",
+   "ok": true
+  },
+  {
+   "path": "zz_missing_repo_relative.txt",
+   "kind": "create",
+   "expected": "absent",
+   "ok": true
+  },
+  {
+   "path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+   "kind": "edit",
+   "sha256": "eac05f43623d1b5ded37dd6526f78a87cad07ae97966da041e9a46e1833ca64b",
+   "ok": true,
+   "same_inode_size_mtime_mode": true
+  }
+ ],
+ "manifest_identical_after": true,
+ "all_restored": true,
+ "finished": "2026-10-29 21:18:55",
+ "elapsed_seconds": 671.3,
+ "inequalities": [],
+ "log": [
+  "[   10.7s] fresh baseline 8.76 [14638, 17067, 6868, 4743, 13097]",
+  "[   31.2s] step0 {'seconds_fresh': 8.76, 'seconds_build_1': 14.176, 'seconds_build_2': 1.132, 'status_1': 'miss_stored', 'status_2': 'hit', 'equal_1': True, 'equal_2': True, 'key': '11a9977df8c3fcf5e051a8997a224ef1b0282df9d734985f8f1e53109375e2b3', 'order_equal': True, 'tuple_equal': True, 'seconds_shared_first': 2.302, 'shared_status_first': 'hit', 'seconds_shared_reuse': 0.727, 'shared_status_second': 'process_reuse', 'equal_shared': True, 'cache_files': ['fragment-index-574f9cb1d1-11a9977df8c3fcf5e051a8997a224ef1b0282df9d734985f8f1e53109375e2b3.json'], 'cache_bytes': 9957885, 'seconds_policy_index_one_claim_warm': 0.716}",
+  "[   74.0s] P1_add_provider_file:applied miss_stored build True shared True True policy True effective True",
+  "[  102.6s] P1_add_provider_file:reverted hit build True shared True True policy True effective False",
+  "[  149.9s] P2_delete_provider_numbered-early-orders:applied miss_stored build True shared True True policy True effective True",
+  "[  177.7s] P2_delete_provider_numbered-early-orders:reverted hit build True shared True True policy True effective False",
+  "[  223.9s] P2b_delete_provider_hathi-gpo-orders:applied miss_stored build True shared True True policy True effective True",
+  "[  252.0s] P2b_delete_provider_hathi-gpo-orders:reverted hit build True shared True True policy True effective False",
+  "[  300.0s] P3_same_size_edit_text_sha256_mtime_restored:applied miss_stored build True shared True True policy True effective True",
+  "[  328.2s] P3_same_size_edit_text_sha256_mtime_restored:reverted hit build True shared True True policy True effective False",
+  "[  364.9s] P4_delete_text_file_of_official_row:applied hit build True shared True True policy True effective True",
+  "[  393.2s] P4_delete_text_file_of_official_row:reverted hit build True shared True True policy True effective False",
+  "[  456.5s] P5_0_provider_added_text_absent miss_stored build True shared True True policy True effective False",
+  "[  484.0s] P5_1_create_provider_relative_text hit build True shared True True policy True effective True",
+  "[  512.4s] P5_2_create_repo_relative_text_too hit build True shared True True policy True effective True",
+  "[  540.5s] P5_3_remove_provider_relative_text hit build True shared True True policy True effective True",
+  "[  568.0s] P5_4_remove_repo_relative_text hit build True shared True True policy True effective False",
+  "[  595.4s] P5_5_provider_removed hit build True shared True True policy True effective False",
+  "[  633.4s] P6_same_size_edit_grade_on_gt10MB_file_mtime_restored:applied miss_stored build True shared True True policy True effective True",
+  "[  660.9s] P6_same_size_edit_grade_on_gt10MB_file_mtime_restored:reverted hit build True shared True True policy True effective False"
+ ]
+}

@@ -79,6 +79,8 @@ class Inputs:
 
         Later members reuse the verified (packet, dossiers). Callers must treat the
         returned objects as read-only; selected_claim deep-copies a member dossier.
+        A failed verification is also recorded once and raised again for every later
+        member of the same exact packet, rather than re-verifying a packet that failed.
         """
         require(isinstance(ref, dict), 'packet reference must be an object')
         require(Path(ref['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
@@ -88,16 +90,24 @@ class Inputs:
         entry = self.packets.get(key)
         if entry is None:
             started = time.monotonic()
-            packet, dossiers = batch.load_packet(folder, self.repo)
-            entry = self.packets[key] = {'folder': folder, 'packet': packet, 'dossiers': dossiers,
-                                         'fingerprint': packet.get('fingerprint'), 'loads': 1,
-                                         'load_seconds': time.monotonic() - started, 'rechecks': 0,
+            entry = self.packets[key] = {'folder': folder, 'packet': None, 'dossiers': None, 'fingerprint': None,
+                                         'error': None, 'loads': 1, 'load_seconds': 0.0, 'rechecks': 0,
                                          'recheck_seconds': 0.0}
+            try:
+                entry['packet'], entry['dossiers'] = batch.load_packet(folder, self.repo)
+                entry['fingerprint'] = entry['packet'].get('fingerprint')
+            except Exception as exc:
+                entry['error'] = exc
+            entry['load_seconds'] = time.monotonic() - started
+        if entry['error'] is not None:
+            raise entry['error']
         return entry['packet'], entry['dossiers']
 
     def recheck_packets(self):
         """Reverify every cached packet's dynamic dependencies right before publication."""
         for entry in self.packets.values():
+            if entry['error'] is not None:
+                continue  # its members already failed selection; nothing from it is published
             rel = entry['folder'].relative_to(self.repo).as_posix()
             started = time.monotonic()
             try:
@@ -199,7 +209,8 @@ class Inputs:
         batch.dump(dest / 'PACKETS.json', [
             {'packet': e['folder'].relative_to(self.repo).as_posix() + '/PACKET.json', 'fingerprint': e['fingerprint'],
              'packet_sha256': key[1], 'loads': e['loads'], 'load_seconds': e['load_seconds'],
-             'rechecks': e['rechecks'], 'recheck_seconds': e['recheck_seconds']}
+             'rechecks': e['rechecks'], 'recheck_seconds': e['recheck_seconds'],
+             'verification_error': None if e['error'] is None else str(e['error'])}
             for key, e in sorted(self.packets.items(), key=lambda item: str(item[0][0]))])
 
 
@@ -560,12 +571,7 @@ class PublicationLock:
             try:
                 fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
             except FileExistsError:
-                if holder_dead(self.path):
-                    try:
-                        self.broken.append(json.loads(self.path.read_bytes()))
-                        self.path.unlink()
-                    except (OSError, ValueError):
-                        pass
+                if holder_dead(self.path) and self.break_stale():
                     continue
                 if time.monotonic() >= deadline:
                     raise ValueError('publication lock held by another completion (a lock is removed automatically only '
@@ -577,6 +583,28 @@ class PublicationLock:
                 json.dump({'pid': os.getpid(), 'host': socket.gethostname(),
                            'started_utc': datetime.now(timezone.utc).isoformat(), 'dest': str(self.dest)}, stream)
             return self
+
+    def break_stale(self):
+        """Remove a dead holder's lock under a second exclusive file, so two waiters cannot both decide
+        the holder is dead and one of them delete the other's new, live lock. Only a breaker holder (or a
+        lock's own live owner) removes a lock, so the dead holder's file cannot change while we hold it.
+        A breaker left by a crash only disables automatic removal; waiting then fails closed."""
+        breaker = self.path.with_name(self.path.name + '.break')
+        try:
+            os.close(os.open(breaker, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+        except FileExistsError:
+            return False
+        try:
+            if not holder_dead(self.path):
+                return False
+            raw = self.path.read_bytes()
+            self.path.unlink()
+            self.broken.append(json.loads(raw))
+            return True
+        except (OSError, ValueError):
+            return False
+        finally:
+            breaker.unlink()
 
     def release(self):
         if self.held:
@@ -755,3 +783,80 @@ def complete(repo, manifest_path, dest, publish=False):
         return tally
     finally:
         lock.release()
+
+
+CANONICAL_CLAIM_FILE = re.compile(r'research/readiness/claims/[^/]+\.jsonl')
+
+
+def _claim_changes(git, old, new):
+    """Canonical claim lines added between two commits, plus every change that is not a pure addition."""
+    added, problems = [], []
+    for row in git('diff', '--name-status', '--no-renames', old, new, '--', 'research/readiness/claims/').decode().splitlines():
+        status, path = row.split('\t', 1)
+        if not CANONICAL_CLAIM_FILE.fullmatch(path):
+            continue  # only top-level *.jsonl files are canonical claims
+        if status == 'D':
+            problems.append({'path': path, 'problem': 'canonical claims file deleted'})
+            continue
+        if status not in ('A', 'M'):
+            problems.append({'path': path, 'problem': 'unexpected change status ' + status})
+            continue
+        before = git('show', old + ':' + path).splitlines() if status == 'M' else []
+        after = git('show', new + ':' + path).splitlines()
+        remaining = list(after)
+        for line in before:
+            if line in remaining:
+                remaining.remove(line)
+            elif line.strip():
+                problems.append({'path': path, 'problem': 'existing canonical line changed or removed'})
+                break
+        for line in remaining:
+            if not line.strip():
+                continue
+            try:
+                record = read_json(line)
+            except ValueError:
+                record = None
+            if not isinstance(record, dict) or not isinstance(record.get('instrument_id'), str):
+                problems.append({'path': path, 'problem': 'added line is not a claim object with an instrument_id'})
+                continue
+            added.append((record['instrument_id'], path))
+    return added, problems
+
+
+def publication_audit(repo, base=None, merge_commit=None):
+    """Merge-time check for what the publication lock cannot see: separate clones.
+
+    The lock serializes completions in one checkout and its linked worktrees. Separate clones can each
+    publish the same instrument; under different file names Git merges both silently and the later
+    filename wins. Two modes:
+      base:          the branch HEAD against the target `base` (a PR check). Lines added on HEAD's side
+                     since the merge base are compared with lines added on base's side since then.
+      merge_commit:  a merge commit's two parents, each side since their merge base (a post-merge check).
+    Fails on an instrument added more than once across both sides (or twice on one side), on any change
+    to existing canonical lines, deleted claims files, and malformed added lines. Nothing is changed.
+    """
+    repo = Path(repo).resolve()
+    def git(*args):
+        run = subprocess.run(['git', *args], cwd=repo, capture_output=True)
+        require(run.returncode == 0, 'git ' + ' '.join(args[:2]) + ' failed: ' + run.stderr.decode(errors='replace')[-300:])
+        return run.stdout
+    if merge_commit is not None:
+        left, right = merge_commit + '^1', merge_commit + '^2'
+    else:
+        left, right = base, 'HEAD'
+    left, right = (git('rev-parse', '--verify', x + '^{commit}').decode().strip() for x in (left, right))
+    merge_base = git('merge-base', left, right).decode().strip()
+    occurrences, problems = {}, []
+    for side, tip in (('left', left), ('right', right)):
+        added, side_problems = _claim_changes(git, merge_base, tip)
+        problems.extend(dict(p, side=side) for p in side_problems)
+        for iid, path in added:
+            occurrences.setdefault(iid, []).append({'side': side, 'path': path})
+    duplicates = {iid: where for iid, where in sorted(occurrences.items()) if len(where) > 1}
+    return {'schema': 'eo-claim-kit-publication-audit/v2', 'left': left, 'right': right, 'merge_base': merge_base,
+            'mode': 'merge_commit' if merge_commit is not None else 'branch_against_base',
+            'instruments_added': len(occurrences), 'duplicate_instruments': duplicates, 'problems': problems,
+            'ok': not duplicates and not problems,
+            'notice': 'Concurrent or repeated publications of one instrument merge silently in Git when file names '
+                      'differ; resolve by keeping one exact reviewed version.'}
