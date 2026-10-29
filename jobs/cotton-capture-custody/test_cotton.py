@@ -2,6 +2,7 @@
 import gzip
 import hashlib
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -80,6 +81,25 @@ class CottonTests(unittest.TestCase):
             raise AssertionError("no download expected")
 
         self.assertEqual(cotton.run(self.repo, self.job, self.out, get=get)["published"], 1)
+
+    def test_bytes_in_the_runners_prior_output_are_reused(self):
+        prior = Path(self.tmp.name) / "prior"
+        (prior / "captures").mkdir(parents=True)
+        (prior / "captures" / (self.sha + ".bin")).write_bytes(self.page)
+
+        def get(url, headers=None):
+            raise OSError("network down")
+
+        old = os.environ.get("JOB_PRIOR_OUTPUT_DIR")
+        os.environ["JOB_PRIOR_OUTPUT_DIR"] = str(prior)
+        try:
+            summary = cotton.run(self.repo, self.job, self.out, get=get)
+        finally:
+            if old is None:
+                os.environ.pop("JOB_PRIOR_OUTPUT_DIR", None)
+            else:
+                os.environ["JOB_PRIOR_OUTPUT_DIR"] = old
+        self.assertEqual((summary["published"], summary["failed"]), (1, 0))
 
     def test_wanted_file_and_non_web_sources(self):
         (self.job / "data/WANTED.jsonl").write_text(json.dumps({"sha256": "a" * 64, "url": None, "instrument_id": "EO:1"}) + "\n")

@@ -179,8 +179,11 @@ def run(repo, job_dir, out_dir, get=http_get, limit=None):
     (out_dir / "captures").mkdir(parents=True, exist_ok=True)
     want = wanted(repo, job_dir)
     caps, live = captures(repo), live_pages(repo)
-    # Bytes already committed by an earlier run are re-hashed and kept without a new download.
-    prior = Path(job_dir) / "output" / "captures"
+    # Bytes already committed by an earlier run are re-hashed and kept without a new download. The shared
+    # runner moves output/ aside before a run and names it JOB_PRIOR_OUTPUT_DIR; without reading it, every run
+    # re-downloaded everything and a transient network failure dropped a committed custody copy.
+    prior_root = os.environ.get("JOB_PRIOR_OUTPUT_DIR")
+    prior = (Path(prior_root) if prior_root else Path(job_dir) / "output") / "captures"
     sources, failures = [], []
     for n, (sha, w) in enumerate(sorted(want.items())):
         if limit is not None and n >= limit:

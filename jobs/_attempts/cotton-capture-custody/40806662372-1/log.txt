@@ -1,0 +1,21 @@
+test_bytes_in_the_runners_prior_output_are_reused (__main__.CottonTests.test_bytes_in_the_runners_prior_output_are_reused) ... ok
+test_changed_bytes_are_never_published_and_live_route_is_tried (__main__.CottonTests.test_changed_bytes_are_never_published_and_live_route_is_tried) ... ok
+test_committed_bytes_are_reused_without_download (__main__.CottonTests.test_committed_bytes_are_reused_without_download) ... FAIL
+test_matching_capture_is_published_with_cache_path (__main__.CottonTests.test_matching_capture_is_published_with_cache_path) ... ok
+test_wanted_file_and_non_web_sources (__main__.CottonTests.test_wanted_file_and_non_web_sources) ... ok
+test_wrong_page_in_capture_is_refused (__main__.CottonTests.test_wrong_page_in_capture_is_refused) ... ok
+
+======================================================================
+FAIL: test_committed_bytes_are_reused_without_download (__main__.CottonTests.test_committed_bytes_are_reused_without_download)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/cotton-capture-custody/test_cotton.py", line 83, in test_committed_bytes_are_reused_without_download
+    self.assertEqual(cotton.run(self.repo, self.job, self.out, get=get)["published"], 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.014s
+
+FAILED (failures=1)
+
+Cotton tests failed
