@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-gb5_vr98/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-d8webz1v/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-gb5_vr98/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-d8webz1v/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -138,7 +138,7 @@ ok
 test_text_quality_screens_handwriting_noise (test_lewis.SyntheticRepo.test_text_quality_screens_handwriting_noise) ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 3.205s
+Ran 24 tests in 3.204s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -161,18 +161,18 @@ Ran 13 tests in 16.040s
 OK
 {
   "scope": {
-    "orders": 5388,
+    "orders": 5306,
     "by_reason": {
-      "transcription_only": 5333,
+      "transcription_only": 5251,
       "clark_identified_not_in_universe": 42,
       "clark_identified": 13
     }
   },
   "routes": {
     "federal_register:fetch_request_proposed": 265,
-    "federal_register:fr_era_not_in_ofr_catalog": 212,
+    "federal_register:fr_era_not_in_ofr_catalog": 185,
     "federal_register:in_ofr_catalog_no_citation": 431,
-    "gpo_bound_volumes:in_volume_range_not_found": 1243,
+    "gpo_bound_volumes:in_volume_range_not_found": 1188,
     "ofr_hoover_compilation:in_volume_range_not_found": 474,
     "proquest_local:pinakes_file_record_pages_unchecked": 98,
     "proquest_phrase_search:manual_lead": 2663,
@@ -211,16 +211,16 @@ Offline stage done; starting the web search stage
     "duckduckgo_lite": "ok",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
-    "brave_html": "error",
+    "brave_html": "blocked_by_robots_txt",
     "marginalia": "error",
     "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
     "brave_api": "needs_key",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "http_403",
-    "loc_books": "http_403",
-    "loc_manuscripts": "http_403",
+    "loc_newspapers": "ok",
+    "loc_books": "ok",
+    "loc_manuscripts": "ok",
     "internet_archive": "ok",
     "google_books": "http_429",
     "hathitrust_catalog": "not_tried",

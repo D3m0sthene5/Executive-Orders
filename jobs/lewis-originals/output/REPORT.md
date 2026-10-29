@@ -1,19 +1,19 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-28T23:50:57Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-29T07:26:45Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 5388 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5333).
+**Scope: 5306 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5251).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
 | proquest_phrase_search | manual_lead | 2663 |
-| gpo_bound_volumes | in_volume_range_not_found | 1243 |
+| gpo_bound_volumes | in_volume_range_not_found | 1188 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
 | federal_register | fetch_request_proposed | 265 |
-| federal_register | fr_era_not_in_ofr_catalog | 212 |
+| federal_register | fr_era_not_in_ofr_catalog | 185 |
 | proquest_local | pinakes_file_record_pages_unchecked | 98 |
 | proquest_supplied_link | awaiting_acquisition | 2 |
 
@@ -32,7 +32,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | Owner | Orders |
 |---|---:|
 | owner | 2665 |
-| agent_check | 2458 |
+| agent_check | 2376 |
 | machine_job | 265 |
 
 ## First twenty rows
@@ -62,14 +62,14 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-1 of 5388 targets advanced this run (5104 never searched yet); 17 of 12 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+1 of 5306 targets advanced this run (5021 never searched yet); 17 of 12 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
 | brave_api | needs_key |
-| brave_html | error |
+| brave_html | blocked_by_robots_txt |
 | duckduckgo_html | error |
 | duckduckgo_lite | ok |
 | federal_register_api | not_tried |
@@ -78,9 +78,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | govinfo_search_page | not_tried |
 | hathitrust_catalog | not_tried |
 | internet_archive | ok |
-| loc_books | http_403 |
-| loc_manuscripts | http_403 |
-| loc_newspapers | http_403 |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |

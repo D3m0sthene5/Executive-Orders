@@ -14,7 +14,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:1209",
+          "instrument_id": "EO:2263",
           "residual_blockers": [
             "NO_PROVISIONAL_STATUS"
           ],
@@ -34,16 +34,14 @@
           "conditional_machine_ready": false,
           "instrument_id": "EO:254",
           "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "FIRST_END_UNPROVED",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+            "CLAIM_CHECK_FAILED:clause_inventory",
+            "CLAIM_CHECK_FAILED:ending_or_current_basis",
+            "CLAIM_CHECK_FAILED:savings_residuals"
           ],
           "residual_open_steps": [
             "clause_inventory",
             "ending_or_current_basis",
-            "savings_residuals",
-            "counterevidence"
+            "savings_residuals"
           ]
         },
         {
@@ -110,7 +108,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:6458",
+          "instrument_id": "EO:6329",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "FIRST_END_UNPROVED",
@@ -185,24 +183,6 @@
             "counterevidence",
             "opus_media"
           ]
-        },
-        {
-          "assumed_steps": [
-            "original_text"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:7730",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "FIRST_END_UNPROVED",
-            "SAVINGS_RESIDUALS_NOT_CLOSED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "ending_or_current_basis",
-            "savings_residuals"
-          ]
         }
       ],
       "human_certifications": 0,
@@ -242,9 +222,17 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:11409",
-          "residual_blockers": [],
-          "residual_open_steps": []
+          "instrument_id": "EO:10577",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
         },
         {
           "assumed_steps": [
@@ -269,63 +257,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:11552",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "OPUS_MEDIA_NONE_CITED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "savings_residuals",
-            "opus_media"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:1209",
-          "residual_blockers": [
-            "NO_PROVISIONAL_STATUS",
-            "NO_OFFICIAL_SOURCE_LOCATED",
-            "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
-          ],
-          "residual_open_steps": [
-            "provisional_status",
-            "original_text",
-            "clause_inventory",
-            "savings_residuals",
-            "counterevidence"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:12160",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "OPUS_MEDIA_NONE_CITED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "savings_residuals",
-            "opus_media"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:12917",
+          "instrument_id": "EO:12891",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "SAVINGS_RESIDUALS_NOT_CLOSED"
@@ -374,6 +306,22 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
+          "instrument_id": "EO:13553",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
           "instrument_id": "EO:13573",
           "residual_blockers": [
             "NO_PROVISIONAL_STATUS"
@@ -391,7 +339,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:13664",
+          "instrument_id": "EO:14177",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "SAVINGS_RESIDUALS_NOT_CLOSED"
@@ -407,14 +355,18 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:13694",
+          "instrument_id": "EO:2263",
           "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED"
+            "NO_PROVISIONAL_STATUS",
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND"
           ],
           "residual_open_steps": [
+            "provisional_status",
+            "original_text",
             "clause_inventory",
-            "savings_residuals"
+            "savings_residuals",
+            "counterevidence"
           ]
         },
         {
@@ -427,15 +379,13 @@
           "residual_blockers": [
             "NO_OFFICIAL_SOURCE_LOCATED",
             "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+            "CLAIM_CHECK_FAILED:clause_inventory",
+            "CLAIM_CHECK_FAILED:savings_residuals"
           ],
           "residual_open_steps": [
             "original_text",
             "clause_inventory",
-            "savings_residuals",
-            "counterevidence"
+            "savings_residuals"
           ]
         },
         {
@@ -557,7 +507,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:6458",
+          "instrument_id": "EO:6329",
           "residual_blockers": [
             "NO_OFFICIAL_SOURCE_LOCATED",
             "ONLY_COMPILED_TRANSCRIPTION_FOUND",
@@ -643,17 +593,54 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:7730",
+          "instrument_id": "EO:7680",
           "residual_blockers": [
-            "NO_OFFICIAL_SOURCE_LOCATED",
-            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
             "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED"
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
           ],
           "residual_open_steps": [
-            "original_text",
             "clause_inventory",
-            "savings_residuals"
+            "savings_residuals",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8033",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "shared_sources",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8468",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
           ]
         }
       ],
@@ -661,6 +648,41 @@
       "planning_only": true,
       "prerequisites": [
         "basis"
+      ],
+      "production_problems": []
+    },
+    {
+      "assumptions": [
+        "Assume shared_sources is satisfied for listed sampled orders; planning only, not evidence."
+      ],
+      "assumptions_are_not_evidence": true,
+      "canonical_changes": 0,
+      "changes": [
+        {
+          "assumed_steps": [
+            "shared_sources"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8033",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "opus_media"
+          ]
+        }
+      ],
+      "human_certifications": 0,
+      "planning_only": true,
+      "prerequisites": [
+        "shared"
       ],
       "production_problems": []
     },
@@ -695,9 +717,17 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:11409",
-          "residual_blockers": [],
-          "residual_open_steps": []
+          "instrument_id": "EO:10577",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
         },
         {
           "assumed_steps": [
@@ -722,61 +752,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:11552",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "OPUS_MEDIA_NONE_CITED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "savings_residuals",
-            "opus_media"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis",
-            "original_text"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:1209",
-          "residual_blockers": [
-            "NO_PROVISIONAL_STATUS"
-          ],
-          "residual_open_steps": [
-            "provisional_status",
-            "clause_inventory",
-            "savings_residuals",
-            "counterevidence"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:12160",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "OPUS_MEDIA_NONE_CITED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "savings_residuals",
-            "opus_media"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:12917",
+          "instrument_id": "EO:12891",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "SAVINGS_RESIDUALS_NOT_CLOSED"
@@ -825,6 +801,22 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
+          "instrument_id": "EO:13553",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
           "instrument_id": "EO:13573",
           "residual_blockers": [
             "NO_PROVISIONAL_STATUS"
@@ -842,23 +834,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:13664",
-          "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED"
-          ],
-          "residual_open_steps": [
-            "clause_inventory",
-            "savings_residuals"
-          ]
-        },
-        {
-          "assumed_steps": [
-            "ending_or_current_basis"
-          ],
-          "before_machine_ready": false,
-          "conditional_machine_ready": false,
-          "instrument_id": "EO:13694",
+          "instrument_id": "EO:14177",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "SAVINGS_RESIDUALS_NOT_CLOSED"
@@ -875,16 +851,32 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:254",
+          "instrument_id": "EO:2263",
           "residual_blockers": [
-            "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED",
-            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+            "NO_PROVISIONAL_STATUS"
           ],
           "residual_open_steps": [
+            "provisional_status",
             "clause_inventory",
             "savings_residuals",
             "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis",
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:254",
+          "residual_blockers": [
+            "CLAIM_CHECK_FAILED:clause_inventory",
+            "CLAIM_CHECK_FAILED:savings_residuals"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
           ]
         },
         {
@@ -1001,7 +993,7 @@
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:6458",
+          "instrument_id": "EO:6329",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
             "SAVINGS_RESIDUALS_NOT_CLOSED",
@@ -1074,19 +1066,58 @@
         },
         {
           "assumed_steps": [
-            "ending_or_current_basis",
-            "original_text"
+            "ending_or_current_basis"
           ],
           "before_machine_ready": false,
           "conditional_machine_ready": false,
-          "instrument_id": "EO:7730",
+          "instrument_id": "EO:7680",
           "residual_blockers": [
             "NO_CLAUSE_INVENTORY",
-            "SAVINGS_RESIDUALS_NOT_CLOSED"
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
           ],
           "residual_open_steps": [
             "clause_inventory",
-            "savings_residuals"
+            "savings_residuals",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8033",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "shared_sources",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8468",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
           ]
         }
       ],
@@ -1095,6 +1126,679 @@
       "prerequisites": [
         "original",
         "basis"
+      ],
+      "production_problems": []
+    },
+    {
+      "assumptions": [
+        "Assume original_text is satisfied for listed sampled orders; planning only, not evidence.",
+        "Assume shared_sources is satisfied for listed sampled orders; planning only, not evidence."
+      ],
+      "assumptions_are_not_evidence": true,
+      "canonical_changes": 0,
+      "changes": [
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:2263",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:254",
+          "residual_blockers": [
+            "CLAIM_CHECK_FAILED:clause_inventory",
+            "CLAIM_CHECK_FAILED:ending_or_current_basis",
+            "CLAIM_CHECK_FAILED:savings_residuals"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:26",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:5237",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:5549",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6329",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6646",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6910",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "CURRENT_BASIS_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:later-events"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "original_text"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:7509",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "CURRENT_BASIS_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "counterevidence",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "shared_sources"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8033",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "FIRST_END_UNPROVED",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "ending_or_current_basis",
+            "savings_residuals",
+            "opus_media"
+          ]
+        }
+      ],
+      "human_certifications": 0,
+      "planning_only": true,
+      "prerequisites": [
+        "original",
+        "shared"
+      ],
+      "production_problems": []
+    },
+    {
+      "assumptions": [
+        "Assume ending_or_current_basis is satisfied for listed sampled orders; planning only, not evidence.",
+        "Assume shared_sources is satisfied for listed sampled orders; planning only, not evidence."
+      ],
+      "assumptions_are_not_evidence": true,
+      "canonical_changes": 0,
+      "changes": [
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:10484",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:10577",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:11476",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:12891",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:12945",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:13225",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:13553",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:13573",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:14177",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:2263",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS",
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:254",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+            "CLAIM_CHECK_FAILED:clause_inventory",
+            "CLAIM_CHECK_FAILED:savings_residuals"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:26",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:384",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:412",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:5237",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS",
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:5549",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:5860",
+          "residual_blockers": [
+            "NO_PROVISIONAL_STATUS"
+          ],
+          "residual_open_steps": [
+            "provisional_status",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6329",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6646",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:6910",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:later-events"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:7509",
+          "residual_blockers": [
+            "NO_OFFICIAL_SOURCE_LOCATED",
+            "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "original_text",
+            "clause_inventory",
+            "savings_residuals",
+            "counterevidence",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:7680",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis",
+            "shared_sources"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8033",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
+        },
+        {
+          "assumed_steps": [
+            "ending_or_current_basis"
+          ],
+          "before_machine_ready": false,
+          "conditional_machine_ready": false,
+          "instrument_id": "EO:8468",
+          "residual_blockers": [
+            "NO_CLAUSE_INVENTORY",
+            "SAVINGS_RESIDUALS_NOT_CLOSED",
+            "OPUS_MEDIA_REFETCH_NEEDED"
+          ],
+          "residual_open_steps": [
+            "clause_inventory",
+            "savings_residuals",
+            "opus_media"
+          ]
+        }
+      ],
+      "human_certifications": 0,
+      "planning_only": true,
+      "prerequisites": [
+        "basis",
+        "shared"
       ],
       "production_problems": []
     }
