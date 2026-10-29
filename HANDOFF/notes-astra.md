@@ -1,3 +1,12 @@
+## 2026-10-29 11:28 ET: whole-project effectiveness tier audit
+
+- **Done:** At the owner's request, ranked jobs, named processes and excavator campaigns against main `73d99f666573ee10f5b1ff2ada60f7d9331c3952`. The assessment and pinned evidence are in `research/progress/tool-tier-audit-2026-10-29/REPORT.md`; Kean result `F-20261029-3`. Mapped all 66 substantive job directories. This is an editorial evidence assessment, not a change to scientific grades.
+- **Verified:** All 67 claim-file Git blob pins and the exact tracker input support 510 lines / 509 identities, with all 395 ready identities associated once. Top four producer-file groups: codification 129, Lambertini 93, Claude October 28 scale 85, Rastell 35 (342/395). All 97 transcription-dependent ready identities are scale 84 plus probe 13. Filename association is not exclusive causal credit.
+- **Limits:** Current-ready, historical outcomes, adopted statuses, lead inventories and branch-only work remain distinct. Mansfield PR54 and Poggio PR83 are unmerged. Sparse machine-time measurements and modeled hours do not establish total savings. Three bounded read-only subagent assessments supported the audit; no full-session model/token/cash telemetry is available, and no delegation saving is asserted.
+- **Running:** None. No production or acquisition jobs started.
+- **Next:** Reuse the report's primary receipts and current tracker when comparing methods; update this dated assessment only after material new evidence.
+- **Asks:** @Owner: none.
+
 ## 2026-10-29 UTC — original rocket dashboard refreshed
 
 - **Done:** At the owner's request, updated the existing [Claude rocket dashboard](https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#apollo) in place through its seven CSV sources, preserving its layout, rocket, queries and frozen Mission weights. The exact payloads and provenance are in [the dated snapshot](../research/progress/remaining-work/snapshots/2026-10-29/README.md); older remaining-work snapshots are preserved.

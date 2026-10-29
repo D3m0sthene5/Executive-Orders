@@ -1,0 +1,210 @@
+{
+  "schema": "eo-production-file-association-audit/v1",
+  "commit": "73d99f666573ee10f5b1ff2ada60f7d9331c3952",
+  "tracker_rows": 14972,
+  "tracker_ready": 395,
+  "claim_files": 67,
+  "claim_lines": 510,
+  "distinct_claim_ids": 509,
+  "category_ready_sum": 395,
+  "unassociated_ready_ids": [],
+  "multiple_category_cases": {},
+  "duplicate_claim_cases": {
+    "EO:13306": [
+      {
+        "file": "research/readiness/claims/astra-2026-10-17-p3originals.jsonl",
+        "line": 1,
+        "category": "Astra Oct17-18 sprint"
+      },
+      {
+        "file": "research/readiness/claims/astra-2026-10-18-p3complete.jsonl",
+        "line": 1,
+        "category": "Astra Oct17-18 sprint"
+      }
+    ]
+  },
+  "duplicate_rule": "Each (category, instrument_id) counted once; row marker uses lexicographic path then physical line. This is association deduplication, not selection of the governing claim version.",
+  "category_totals": [
+    {
+      "category": "Astra Oct17-18 sprint",
+      "files": 5,
+      "claim_lines": 42,
+      "distinct_claim_ids": 41,
+      "currently_ready_associated": 1,
+      "currently_not_ready_associated": 40
+    },
+    {
+      "category": "Astra cumulative",
+      "files": 1,
+      "claim_lines": 1,
+      "distinct_claim_ids": 1,
+      "currently_ready_associated": 1,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Astra source first",
+      "files": 1,
+      "claim_lines": 6,
+      "distinct_claim_ids": 6,
+      "currently_ready_associated": 1,
+      "currently_not_ready_associated": 5
+    },
+    {
+      "category": "Bowditch Y2",
+      "files": 2,
+      "claim_lines": 3,
+      "distinct_claim_ids": 3,
+      "currently_ready_associated": 3,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Claude Oct28 scale",
+      "files": 3,
+      "claim_lines": 88,
+      "distinct_claim_ids": 88,
+      "currently_ready_associated": 85,
+      "currently_not_ready_associated": 3
+    },
+    {
+      "category": "Claude spent probe",
+      "files": 1,
+      "claim_lines": 15,
+      "distinct_claim_ids": 15,
+      "currently_ready_associated": 13,
+      "currently_not_ready_associated": 2
+    },
+    {
+      "category": "Codex continuous",
+      "files": 2,
+      "claim_lines": 2,
+      "distinct_claim_ids": 2,
+      "currently_ready_associated": 2,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Codex swarm",
+      "files": 1,
+      "claim_lines": 2,
+      "distinct_claim_ids": 2,
+      "currently_ready_associated": 2,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Codification swarm",
+      "files": 8,
+      "claim_lines": 176,
+      "distinct_claim_ids": 176,
+      "currently_ready_associated": 129,
+      "currently_not_ready_associated": 47
+    },
+    {
+      "category": "Counterexample trial",
+      "files": 2,
+      "claim_lines": 5,
+      "distinct_claim_ids": 5,
+      "currently_ready_associated": 4,
+      "currently_not_ready_associated": 1
+    },
+    {
+      "category": "Lambertini",
+      "files": 18,
+      "claim_lines": 102,
+      "distinct_claim_ids": 102,
+      "currently_ready_associated": 93,
+      "currently_not_ready_associated": 9
+    },
+    {
+      "category": "Lamm",
+      "files": 4,
+      "claim_lines": 12,
+      "distinct_claim_ids": 12,
+      "currently_ready_associated": 9,
+      "currently_not_ready_associated": 3
+    },
+    {
+      "category": "Mansfield main subset",
+      "files": 1,
+      "claim_lines": 2,
+      "distinct_claim_ids": 2,
+      "currently_ready_associated": 0,
+      "currently_not_ready_associated": 2
+    },
+    {
+      "category": "Near-ready",
+      "files": 1,
+      "claim_lines": 3,
+      "distinct_claim_ids": 3,
+      "currently_ready_associated": 3,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Production cost trace",
+      "files": 2,
+      "claim_lines": 4,
+      "distinct_claim_ids": 4,
+      "currently_ready_associated": 4,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Rastell",
+      "files": 12,
+      "claim_lines": 35,
+      "distinct_claim_ids": 35,
+      "currently_ready_associated": 35,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "X1 pilot",
+      "files": 1,
+      "claim_lines": 5,
+      "distinct_claim_ids": 5,
+      "currently_ready_associated": 5,
+      "currently_not_ready_associated": 0
+    },
+    {
+      "category": "Y2LEAD",
+      "files": 2,
+      "claim_lines": 7,
+      "distinct_claim_ids": 7,
+      "currently_ready_associated": 5,
+      "currently_not_ready_associated": 2
+    }
+  ],
+  "status_associations": [
+    {
+      "method": "bowditch",
+      "adopted_status_rows": 15,
+      "currently_ready": 0,
+      "ready_ids": []
+    },
+    {
+      "method": "sinclair",
+      "adopted_status_rows": 29,
+      "currently_ready": 2,
+      "ready_ids": [
+        "EO:10704",
+        "EO:13975"
+      ]
+    }
+  ],
+  "spent_probe": {
+    "historical_filed": 15,
+    "historical_reported_ready_gain": 15,
+    "current_associated_ready": 13,
+    "current_not_ready": [
+      {
+        "instrument_id": "EO:1547",
+        "blockers": "NO_OFFICIAL_SOURCE_LOCATED|ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK|WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED|CLAIM_CHECK_FAILED:clause_inventory|CLAIM_CHECK_FAILED:ending_or_current_basis|CLAIM_CHECK_FAILED:savings_residuals|CLAIM_CHECK_FAILED:counterevidence",
+        "working_text_policy_errors": "operative_clauses[0].first_end.source:working_text_fragment_identity_or_grade_mismatch|operative_clauses[0].original_source:working_text_fragment_identity_or_grade_mismatch|original_representation:working_text_fragment_identity_or_grade_mismatch|savings_residuals.source:working_text_fragment_identity_or_grade_mismatch|whole_order_end.source:working_text_fragment_identity_or_grade_mismatch"
+      },
+      {
+        "instrument_id": "EO:4782",
+        "blockers": "NO_OFFICIAL_SOURCE_LOCATED|ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK|CLAIM_CHECK_FAILED:clause_inventory|CLAIM_CHECK_FAILED:ending_or_current_basis|CLAIM_CHECK_FAILED:savings_residuals",
+        "working_text_policy_errors": ""
+      }
+    ],
+    "interpretation": "Current verification/working-text holds; these are not established substantive legal rejections."
+  },
+  "no_cost_estimates_added": true,
+  "no_science_runs": true
+}
