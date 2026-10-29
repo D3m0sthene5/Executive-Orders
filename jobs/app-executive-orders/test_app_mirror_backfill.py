@@ -241,5 +241,27 @@ class Backfill(Base):
         self.assertTrue(all(r["path"] in skip for r in extra))
 
 
+class TruncatedReadRetry(unittest.TestCase):
+    def test_incomplete_read_is_retried_not_fatal(self):
+        import http.client
+        from unittest import mock
+        calls = {"n": 0}
+
+        class Resp:
+            status = 200
+            headers = {}
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+            def read(self):
+                calls["n"] += 1
+                if calls["n"] == 1:
+                    raise http.client.IncompleteRead(b"")
+                return b"ok"
+
+        with mock.patch.object(m._OPENER, "open", return_value=Resp()), mock.patch.object(m.time, "sleep"):
+            status, _, body = m.http_get("https://index.commoncrawl.org/collinfo.json")
+        self.assertEqual((status, body, calls["n"]), (200, b"ok", 2))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

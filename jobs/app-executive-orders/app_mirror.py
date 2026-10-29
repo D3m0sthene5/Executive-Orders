@@ -49,6 +49,7 @@ import concurrent.futures
 from datetime import datetime, timezone
 import gzip
 import hashlib
+import http.client
 import json
 from pathlib import Path
 import os
@@ -169,7 +170,8 @@ def http_get(url, headers=None, timeout=90, tries=6, throttle=None):
             last = f"HTTP {e.code}"
             if e.code not in (429, 500, 502, 503, 504):
                 raise ArchiveError(last)
-        except (urllib.error.URLError, TimeoutError, OSError, ConnectionError) as e:
+        except (urllib.error.URLError, TimeoutError, OSError, ConnectionError, http.client.HTTPException) as e:
+            # IncompleteRead (a response cut short by the archive server) is an HTTPException, not an OSError.
             last = type(e).__name__ + ": " + str(e)[:120]
         time.sleep(min(60, 3 * 2 ** attempt) + random.random())
     raise ArchiveError("gave up after retries: " + str(last))
