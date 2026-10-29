@@ -20,6 +20,12 @@ class HandoffTests(unittest.TestCase):
         self.assertEqual(d[0]["route_status"], "retrieval_recorded_needs_review")
         self.assertEqual(d[0]["result_records"][0]["sources"][0]["custody"], "record_only_not_rehashed_by_Lewis")
 
+    def test_physical_lines_and_csv_record_indices_are_explicit(self):
+        d, _ = h.annotate([self.p], [self.p], [self.r], [self.s], queue_lines=[4], source_lines=[7])
+        self.assertEqual(d[0]["queue_records"], [h.QUEUE + ":4"])
+        self.assertEqual(d[0]["result_records"][0]["record"], h.RESULTS + "#data-record=1")
+        self.assertEqual(d[0]["result_records"][0]["sources"][0]["record"], h.SOURCES + ":7")
+
     def test_not_queued_stays_proposal(self):
         d, remaining = self.result(queue=[])
         self.assertEqual(remaining, [self.p])

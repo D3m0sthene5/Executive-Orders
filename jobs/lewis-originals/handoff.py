@@ -36,13 +36,13 @@ def key(row, iid=None):
     return identity, step, " ".join(cite.upper().split())
 
 
-def annotate(proposals, queue, results, sources):
+def annotate(proposals, queue, results, sources, queue_lines=None, source_lines=None):
     queued = collections.defaultdict(list)
     found = collections.defaultdict(list)
     for n, row in enumerate(queue, 1):
         k = key(row)
         if k:
-            queued[k].append(n)
+            queued[k].append(queue_lines[n - 1] if queue_lines is not None else n)
     for n, row in enumerate(results, 2):
         for iid in re.split(r"\s*\|\s*", row.get("instrument_ids") or ""):
             k = key(row, iid)
@@ -61,11 +61,11 @@ def annotate(proposals, queue, results, sources):
                 if (source.get("sha256") and source.get("sha256") == result.get("sha256")
                         and source.get("url") == result.get("url")
                         and (not source.get("wanted_id") or source["wanted_id"] == result.get("wanted_id"))):
-                    receipts.append({"record": SOURCES + ":" + str(line), "sha256": source["sha256"],
+                    receipts.append({"record": SOURCES + ":" + str(source_lines[line - 1] if source_lines is not None else line), "sha256": source["sha256"],
                                      "url": source.get("url"), "text_path": source.get("text_path"),
                                      "cache_path": source.get("cache_path"), "page_or_item": source.get("page_or_item"),
                                      "custody": "record_only_not_rehashed_by_Lewis"})
-            refs.append({"record": RESULTS + ":" + str(n), "result": result.get("result"),
+            refs.append({"record": RESULTS + "#data-record=" + str(n - 1), "result": result.get("result"),
                          "why": result.get("why"), "sources": receipts})
         states = {r.get("result") for _, r in matches}
         if k not in queued:
@@ -117,7 +117,9 @@ def refresh(repo, out, write_report):
     if not inputs[QUEUE]:
         raise ValueError("queue unavailable/empty; refusing to invent unqueued requests")
     results = list(csv.DictReader(io.StringIO(inputs[RESULTS].decode("utf-8"))))
-    decisions, remaining = annotate(jsonlines(raw), jsonlines(inputs[QUEUE]), results, jsonlines(inputs[SOURCES]))
+    decisions, remaining = annotate(jsonlines(raw), jsonlines(inputs[QUEUE]), results, jsonlines(inputs[SOURCES]),
+        queue_lines=[n for n, line in enumerate(inputs[QUEUE].splitlines(), 1) if line.strip()],
+        source_lines=[n for n, line in enumerate(inputs[SOURCES].splitlines(), 1) if line.strip()])
     all_path.write_bytes(raw)
     kept = "".join(json.dumps(r, sort_keys=True) + "\n" for r in remaining).encode()
     proposal_path.write_bytes(kept)

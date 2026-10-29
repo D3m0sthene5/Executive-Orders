@@ -15,7 +15,7 @@ class LandHandoffTests(unittest.TestCase):
         self.out = self.repo / 'jobs/fr-pages/output'; self.out.mkdir(parents=True)
         self.raw, self.text = b'%PDF-1.4\nfixture\n', 'Unreviewed PLO excerpt.\n'
         (self.out / 'extract.pdf').write_bytes(self.raw)
-        (self.out / 'text.txt').write_text(self.text)
+        (self.out / 'text.txt').write_bytes(self.text.encode('utf-8'))
         self.row = {'url': 'https://example.invalid/issue.pdf#page=2',
                     'sha256': h.sha(self.raw), 'text_sha256': h.sha(self.text.encode()),
                     'cache_path': 'extract.pdf', 'text_path': 'text.txt', 'page_or_item': 'test page',
