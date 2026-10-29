@@ -1,0 +1,708 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "shared_review": {
+   "models": {
+    "claude-opus-5-5": 13
+   },
+   "api_calls": 13,
+   "tokens": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 118279,
+    "cache_read_input_tokens": 1055819,
+    "output_tokens": 28517
+   },
+   "total_input_tokens": 1174124,
+   "total_tokens": 1202641,
+   "first_utc": "2026-10-29T13:24:13.683Z",
+   "last_utc": "2026-10-29T13:29:15.525Z",
+   "tool_calls": {
+    "Read": 6,
+    "bash:grep": 3,
+    "bash:python3": 2,
+    "bash:ls": 1,
+    "bash:sed": 1,
+    "bash:date": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "Read": 79592,
+    "bash:grep": 19814,
+    "bash:sed": 2172,
+    "bash:python3": 632,
+    "bash:ls": 255,
+    "SubagentHandback": 61,
+    "bash:date": 20
+   }
+  },
+  "b0_producer": {
+   "models": {
+    "claude-sonnet-5-5": 181
+   },
+   "api_calls": 181,
+   "tokens": {
+    "input_tokens": 366,
+    "cache_creation_input_tokens": 948248,
+    "cache_read_input_tokens": 37192341,
+    "output_tokens": 207670
+   },
+   "total_input_tokens": 38140955,
+   "total_tokens": 38348625,
+   "first_utc": "2026-10-29T13:27:31.642Z",
+   "last_utc": "2026-10-29T14:34:19.289Z",
+   "tool_calls": {
+    "bash:grep": 57,
+    "bash:python3": 53,
+    "bash:cat": 23,
+    "bash:sed": 13,
+    "kit.py view": 6,
+    "Monitor": 6,
+    "bash:ls": 4,
+    "bash:claim-checker": 4,
+    "bash:source_supplement.py": 3,
+    "kit.py prepare": 3,
+    "Write": 3,
+    "kit.py apply": 3,
+    "SubagentHandback": 3,
+    "bash:other": 1,
+    "ToolSearch": 1,
+    "kit.py batch-check": 1,
+    "bash:date": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 168778,
+    "bash:python3": 164929,
+    "bash:cat": 122466,
+    "bash:sed": 94560,
+    "kit.py view": 44928,
+    "bash:source_supplement.py": 9900,
+    "bash:claim-checker": 7576,
+    "bash:ls": 7415,
+    "kit.py apply": 3547,
+    "bash:other": 3500,
+    "Monitor": 3093,
+    "kit.py prepare": 1654,
+    "kit.py batch-check": 1407,
+    "Write": 573,
+    "SubagentHandback": 183,
+    "bash:date": 20,
+    "ToolSearch": 0
+   }
+  },
+  "b0_reviewer": {
+   "models": {
+    "claude-opus-5-5": 39
+   },
+   "api_calls": 39,
+   "tokens": {
+    "input_tokens": 80,
+    "cache_creation_input_tokens": 193921,
+    "cache_read_input_tokens": 5309245,
+    "output_tokens": 60209
+   },
+   "total_input_tokens": 5503246,
+   "total_tokens": 5563455,
+   "first_utc": "2026-10-29T14:17:21.619Z",
+   "last_utc": "2026-10-29T14:33:50.206Z",
+   "tool_calls": {
+    "bash:python3": 14,
+    "bash:grep": 14,
+    "bash:cat": 3,
+    "kit.py view": 3,
+    "SubagentHandback": 2,
+    "Read": 1,
+    "bash:sed": 1,
+    "bash:ls": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 127254,
+    "bash:grep": 55475,
+    "Read": 41613,
+    "bash:cat": 19586,
+    "kit.py view": 4297,
+    "bash:sed": 603,
+    "SubagentHandback": 122,
+    "bash:ls": 20
+   }
+  },
+  "t1_producer": {
+   "models": {
+    "claude-sonnet-5-5": 125
+   },
+   "api_calls": 125,
+   "tokens": {
+    "input_tokens": 252,
+    "cache_creation_input_tokens": 2008721,
+    "cache_read_input_tokens": 27990639,
+    "output_tokens": 137562
+   },
+   "total_input_tokens": 29999612,
+   "total_tokens": 30137174,
+   "first_utc": "2026-10-29T13:30:34.550Z",
+   "last_utc": "2026-10-29T15:41:39.217Z",
+   "tool_calls": {
+    "bash:grep": 43,
+    "bash:python3": 33,
+    "bash:cat": 18,
+    "bash:sed": 8,
+    "bash:claim-checker": 7,
+    "kit.py view": 4,
+    "kit.py apply": 4,
+    "bash:ls": 3,
+    "bash:other": 3,
+    "SubagentHandback": 3,
+    "kit.py unchanged": 1,
+    "bash:date": 1,
+    "Write": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 154346,
+    "bash:cat": 126536,
+    "bash:grep": 102940,
+    "kit.py view": 43684,
+    "bash:sed": 37001,
+    "bash:claim-checker": 9709,
+    "bash:other": 7530,
+    "bash:ls": 3401,
+    "kit.py apply": 1195,
+    "kit.py unchanged": 913,
+    "Write": 207,
+    "SubagentHandback": 183,
+    "bash:date": 20
+   }
+  },
+  "t1_reviewer_exposed": {
+   "models": {
+    "claude-opus-5-5": 38
+   },
+   "api_calls": 38,
+   "tokens": {
+    "input_tokens": 76,
+    "cache_creation_input_tokens": 167758,
+    "cache_read_input_tokens": 5884465,
+    "output_tokens": 89676
+   },
+   "total_input_tokens": 6052299,
+   "total_tokens": 6141975,
+   "first_utc": "2026-10-29T14:20:37.289Z",
+   "last_utc": "2026-10-29T14:37:17.423Z",
+   "tool_calls": {
+    "bash:grep": 16,
+    "bash:python3": 14,
+    "bash:cat": 3,
+    "Read": 3,
+    "bash:ls": 2,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 117670,
+    "Read": 96711,
+    "bash:grep": 77663,
+    "bash:cat": 8991,
+    "bash:ls": 7689,
+    "SubagentHandback": 61
+   }
+  },
+  "t1_reviewer": {
+   "models": {
+    "claude-opus-5-5": 51
+   },
+   "api_calls": 51,
+   "tokens": {
+    "input_tokens": 106,
+    "cache_creation_input_tokens": 647298,
+    "cache_read_input_tokens": 8104565,
+    "output_tokens": 80752
+   },
+   "total_input_tokens": 8751969,
+   "total_tokens": 8832721,
+   "first_utc": "2026-10-29T15:06:22.825Z",
+   "last_utc": "2026-10-29T15:40:31.586Z",
+   "tool_calls": {
+    "bash:python3": 26,
+    "bash:grep": 16,
+    "SubagentHandback": 3,
+    "bash:cat": 2,
+    "bash:date": 1,
+    "Read": 1,
+    "bash:ls": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 182857,
+    "bash:grep": 97315,
+    "Read": 34276,
+    "bash:cat": 20214,
+    "bash:ls": 626,
+    "bash:date": 341,
+    "SubagentHandback": 183
+   }
+  },
+  "t2_producer": {
+   "models": {
+    "claude-sonnet-5-5": 125
+   },
+   "api_calls": 125,
+   "tokens": {
+    "input_tokens": 250,
+    "cache_creation_input_tokens": 623899,
+    "cache_read_input_tokens": 22789742,
+    "output_tokens": 139720
+   },
+   "total_input_tokens": 23413891,
+   "total_tokens": 23553611,
+   "first_utc": "2026-10-29T14:13:22.946Z",
+   "last_utc": "2026-10-29T15:02:28.141Z",
+   "tool_calls": {
+    "bash:grep": 46,
+    "bash:python3": 38,
+    "bash:cat": 19,
+    "bash:sed": 7,
+    "bash:ls": 6,
+    "kit.py view": 3,
+    "bash:rg": 2,
+    "bash:claim-checker": 2,
+    "Write": 2,
+    "kit.py apply": 2,
+    "Read": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 190089,
+    "bash:cat": 133557,
+    "bash:python3": 129681,
+    "bash:sed": 38059,
+    "kit.py view": 30591,
+    "bash:rg": 17282,
+    "bash:ls": 14091,
+    "Read": 4146,
+    "bash:claim-checker": 3152,
+    "kit.py apply": 890,
+    "kit.py batch-check": 445,
+    "Write": 386,
+    "SubagentHandback": 61
+   }
+  },
+  "t2_reviewer": {
+   "models": {
+    "claude-opus-5-5": 56
+   },
+   "api_calls": 56,
+   "tokens": {
+    "input_tokens": 114,
+    "cache_creation_input_tokens": 218642,
+    "cache_read_input_tokens": 8520019,
+    "output_tokens": 61071
+   },
+   "total_input_tokens": 8738775,
+   "total_tokens": 8799846,
+   "first_utc": "2026-10-29T15:06:22.868Z",
+   "last_utc": "2026-10-29T15:20:33.928Z",
+   "tool_calls": {
+    "bash:python3": 27,
+    "bash:grep": 21,
+    "bash:cat": 3,
+    "bash:ls": 2,
+    "SubagentHandback": 2,
+    "bash:other": 1,
+    "bash:sed": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 174017,
+    "bash:grep": 88902,
+    "bash:cat": 41166,
+    "bash:other": 6105,
+    "bash:sed": 1748,
+    "bash:ls": 1171,
+    "SubagentHandback": 122
+   }
+  },
+  "t3_producer": {
+   "models": {
+    "claude-sonnet-5-5": 74
+   },
+   "api_calls": 74,
+   "tokens": {
+    "input_tokens": 150,
+    "cache_creation_input_tokens": 434249,
+    "cache_read_input_tokens": 13908449,
+    "output_tokens": 81355
+   },
+   "total_input_tokens": 14342848,
+   "total_tokens": 14424203,
+   "first_utc": "2026-10-29T14:16:40.853Z",
+   "last_utc": "2026-10-29T14:37:51.357Z",
+   "tool_calls": {
+    "bash:grep": 31,
+    "bash:python3": 10,
+    "bash:cat": 9,
+    "kit.py view": 7,
+    "bash:ls": 6,
+    "Grep": 4,
+    "bash:date": 2,
+    "Read": 2,
+    "bash:sed": 2,
+    "Write": 2,
+    "Monitor": 2,
+    "bash:other": 1,
+    "bash:claim-checker": 1,
+    "kit.py apply": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 103969,
+    "bash:cat": 77347,
+    "kit.py view": 41428,
+    "bash:python3": 38305,
+    "bash:sed": 26663,
+    "Read": 14590,
+    "bash:ls": 11162,
+    "Grep": 5480,
+    "bash:other": 1852,
+    "Monitor": 604,
+    "kit.py batch-check": 475,
+    "Write": 391,
+    "kit.py apply": 258,
+    "SubagentHandback": 61,
+    "bash:date": 40,
+    "bash:claim-checker": 31
+   }
+  },
+  "t3_reviewer": {
+   "models": {
+    "claude-opus-5-5": 34
+   },
+   "api_calls": 34,
+   "tokens": {
+    "input_tokens": 70,
+    "cache_creation_input_tokens": 278272,
+    "cache_read_input_tokens": 4152183,
+    "output_tokens": 30837
+   },
+   "total_input_tokens": 4430525,
+   "total_tokens": 4461362,
+   "first_utc": "2026-10-29T14:39:19.955Z",
+   "last_utc": "2026-10-29T14:54:40.689Z",
+   "tool_calls": {
+    "bash:python3": 13,
+    "bash:grep": 12,
+    "Grep": 3,
+    "SubagentHandback": 3,
+    "bash:cat": 2,
+    "Read": 1,
+    "ToolSearch": 1,
+    "TaskStop": 1
+   },
+   "tool_result_chars": {
+    "Read": 69373,
+    "bash:python3": 69127,
+    "bash:grep": 23660,
+    "bash:cat": 16720,
+    "Grep": 11361,
+    "TaskStop": 1005,
+    "SubagentHandback": 183,
+    "ToolSearch": 0
+   }
+  },
+  "t4_producer": {
+   "models": {
+    "claude-sonnet-5-5": 66
+   },
+   "api_calls": 66,
+   "tokens": {
+    "input_tokens": 132,
+    "cache_creation_input_tokens": 242246,
+    "cache_read_input_tokens": 11609854,
+    "output_tokens": 97777
+   },
+   "total_input_tokens": 11852232,
+   "total_tokens": 11950009,
+   "first_utc": "2026-10-29T14:33:06.668Z",
+   "last_utc": "2026-10-29T14:59:29.512Z",
+   "tool_calls": {
+    "bash:python3": 24,
+    "bash:grep": 22,
+    "bash:cat": 8,
+    "bash:sed": 6,
+    "bash:ls": 1,
+    "bash:other": 1,
+    "Write": 1,
+    "Edit": 1,
+    "kit.py apply": 1,
+    "kit.py batch-check": 1,
+    "bash:claim-checker": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 79177,
+    "bash:python3": 76362,
+    "bash:cat": 74556,
+    "bash:sed": 67293,
+    "bash:ls": 6796,
+    "bash:other": 1615,
+    "kit.py batch-check": 768,
+    "kit.py apply": 540,
+    "Edit": 192,
+    "Write": 182,
+    "SubagentHandback": 61,
+    "bash:claim-checker": 4
+   }
+  },
+  "t4_reviewer": {
+   "models": {
+    "claude-opus-5-5": 45
+   },
+   "api_calls": 45,
+   "tokens": {
+    "input_tokens": 92,
+    "cache_creation_input_tokens": 448587,
+    "cache_read_input_tokens": 6564709,
+    "output_tokens": 81915
+   },
+   "total_input_tokens": 7013388,
+   "total_tokens": 7095303,
+   "first_utc": "2026-10-29T15:06:23.157Z",
+   "last_utc": "2026-10-29T15:31:09.094Z",
+   "tool_calls": {
+    "bash:grep": 20,
+    "bash:python3": 15,
+    "bash:cat": 3,
+    "bash:ls": 3,
+    "SubagentHandback": 2,
+    "bash:claim-checker": 1,
+    "bash:find": 1,
+    "bash:sed": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 176642,
+    "bash:grep": 152822,
+    "bash:cat": 22163,
+    "bash:sed": 1906,
+    "bash:ls": 1564,
+    "bash:find": 1366,
+    "bash:claim-checker": 1204,
+    "SubagentHandback": 122
+   }
+  },
+  "t5_producer": {
+   "models": {
+    "claude-sonnet-5-5": 77
+   },
+   "api_calls": 77,
+   "tokens": {
+    "input_tokens": 154,
+    "cache_creation_input_tokens": 287400,
+    "cache_read_input_tokens": 15229831,
+    "output_tokens": 92271
+   },
+   "total_input_tokens": 15517385,
+   "total_tokens": 15609656,
+   "first_utc": "2026-10-29T15:16:31.222Z",
+   "last_utc": "2026-10-29T15:38:58.084Z",
+   "tool_calls": {
+    "bash:python3": 23,
+    "bash:grep": 23,
+    "Read": 10,
+    "bash:cat": 7,
+    "Monitor": 7,
+    "bash:sed": 4,
+    "bash:ls": 3,
+    "bash:other": 2,
+    "kit.py batch-check": 2,
+    "kit.py apply": 1,
+    "Write": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 114717,
+    "bash:python3": 74752,
+    "Read": 57287,
+    "bash:sed": 24089,
+    "bash:cat": 13436,
+    "bash:other": 7370,
+    "bash:ls": 2679,
+    "Monitor": 2124,
+    "kit.py batch-check": 1230,
+    "kit.py apply": 445,
+    "Write": 207,
+    "SubagentHandback": 61
+   }
+  },
+  "t5_reviewer": {
+   "models": {
+    "claude-opus-5-5": 45
+   },
+   "api_calls": 45,
+   "tokens": {
+    "input_tokens": 92,
+    "cache_creation_input_tokens": 156377,
+    "cache_read_input_tokens": 6656608,
+    "output_tokens": 66593
+   },
+   "total_input_tokens": 6813077,
+   "total_tokens": 6879670,
+   "first_utc": "2026-10-29T15:39:27.242Z",
+   "last_utc": "2026-10-29T15:53:13.917Z",
+   "tool_calls": {
+    "bash:python3": 18,
+    "bash:grep": 17,
+    "Read": 9,
+    "SubagentHandback": 2,
+    "bash:ls": 1,
+    "bash:claim-checker": 1
+   },
+   "tool_result_chars": {
+    "Read": 134687,
+    "bash:python3": 107962,
+    "bash:grep": 30573,
+    "bash:claim-checker": 5600,
+    "bash:ls": 459,
+    "SubagentHandback": 122
+   }
+  },
+  "t6_producer": {
+   "models": {
+    "claude-sonnet-5-5": 69
+   },
+   "api_calls": 69,
+   "tokens": {
+    "input_tokens": 138,
+    "cache_creation_input_tokens": 266820,
+    "cache_read_input_tokens": 13563163,
+    "output_tokens": 75910
+   },
+   "total_input_tokens": 13830121,
+   "total_tokens": 13906031,
+   "first_utc": "2026-10-29T15:16:30.803Z",
+   "last_utc": "2026-10-29T15:35:07.811Z",
+   "tool_calls": {
+    "bash:python3": 20,
+    "bash:grep": 16,
+    "bash:cat": 8,
+    "bash:sed": 6,
+    "Monitor": 5,
+    "bash:ls": 4,
+    "kit.py apply": 4,
+    "TaskStop": 4,
+    "Read": 3,
+    "ToolSearch": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 138658,
+    "bash:cat": 88277,
+    "bash:grep": 25261,
+    "bash:sed": 16719,
+    "bash:ls": 6725,
+    "Read": 3550,
+    "kit.py apply": 3206,
+    "TaskStop": 1892,
+    "Monitor": 1508,
+    "kit.py batch-check": 445,
+    "SubagentHandback": 61,
+    "ToolSearch": 0
+   }
+  },
+  "t6_reviewer": {
+   "models": {
+    "claude-opus-5-5": 48
+   },
+   "api_calls": 48,
+   "tokens": {
+    "input_tokens": 98,
+    "cache_creation_input_tokens": 134398,
+    "cache_read_input_tokens": 6031791,
+    "output_tokens": 73652
+   },
+   "total_input_tokens": 6166287,
+   "total_tokens": 6239939,
+   "first_utc": "2026-10-29T15:35:39.061Z",
+   "last_utc": "2026-10-29T15:52:35.467Z",
+   "tool_calls": {
+    "bash:python3": 22,
+    "bash:grep": 21,
+    "Read": 4,
+    "bash:ls": 2,
+    "SubagentHandback": 2
+   },
+   "tool_result_chars": {
+    "bash:python3": 122689,
+    "bash:grep": 83994,
+    "Read": 17664,
+    "bash:ls": 1786,
+    "SubagentHandback": 122
+   }
+  },
+  "coordinator": {
+   "models": {
+    "claude-opus-5-5": 267
+   },
+   "api_calls": 267,
+   "tokens": {
+    "input_tokens": 576,
+    "cache_creation_input_tokens": 486507,
+    "cache_read_input_tokens": 113985255,
+    "output_tokens": 201475
+   },
+   "total_input_tokens": 114472338,
+   "total_tokens": 114673813,
+   "first_utc": "2026-10-29T12:58:59.526Z",
+   "last_utc": "2026-10-29T16:05:16.721Z",
+   "tool_calls": {
+    "bash:grep": 57,
+    "bash:python3": 50,
+    "bash:cat": 16,
+    "bash:sed": 16,
+    "Agent": 16,
+    "bash:other": 14,
+    "SendMessage": 14,
+    "bash:ls": 12,
+    "kit.py complete": 10,
+    "Write": 9,
+    "kit.py prepare": 8,
+    "kit.py view": 5,
+    "bash:source_supplement.py": 5,
+    "kit.py apply": 5,
+    "TaskCreate": 4,
+    "bash:claim-checker": 4,
+    "Monitor": 3,
+    "mcp__claude-code-remote__add_repo": 2,
+    "bash:date": 2,
+    "ToolSearch": 2,
+    "mcp__memory__memory_read": 1,
+    "SendUserMessage": 1,
+    "kit.py batch-check": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 95417,
+    "bash:grep": 82511,
+    "bash:cat": 79202,
+    "bash:sed": 78482,
+    "bash:ls": 32455,
+    "bash:other": 24541,
+    "Agent": 16560,
+    "kit.py view": 14408,
+    "bash:claim-checker": 11166,
+    "bash:source_supplement.py": 8432,
+    "kit.py complete": 5507,
+    "mcp__claude-code-remote__add_repo": 4266,
+    "kit.py prepare": 2824,
+    "SendMessage": 2550,
+    "mcp__memory__memory_read": 2358,
+    "kit.py apply": 2028,
+    "Write": 1708,
+    "bash:date": 1045,
+    "Monitor": 906,
+    "kit.py batch-check": 807,
+    "TaskCreate": 300,
+    "SendUserMessage": 26,
+    "ToolSearch": 0
+   }
+  }
+ }
+}

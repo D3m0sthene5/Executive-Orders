@@ -1,0 +1,88 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "t2_producer": {
+   "models": {
+    "claude-sonnet-5-5": 125
+   },
+   "api_calls": 125,
+   "tokens": {
+    "input_tokens": 250,
+    "cache_creation_input_tokens": 623899,
+    "cache_read_input_tokens": 22789742,
+    "output_tokens": 139720
+   },
+   "total_input_tokens": 23413891,
+   "total_tokens": 23553611,
+   "first_utc": "2026-10-29T14:13:22.946Z",
+   "last_utc": "2026-10-29T15:02:28.141Z",
+   "tool_calls": {
+    "bash:grep": 46,
+    "bash:python3": 38,
+    "bash:cat": 19,
+    "bash:sed": 7,
+    "bash:ls": 6,
+    "kit.py view": 3,
+    "bash:rg": 2,
+    "bash:claim-checker": 2,
+    "Write": 2,
+    "kit.py apply": 2,
+    "Read": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 190089,
+    "bash:cat": 133557,
+    "bash:python3": 129681,
+    "bash:sed": 38059,
+    "kit.py view": 30591,
+    "bash:rg": 17282,
+    "bash:ls": 14091,
+    "Read": 4146,
+    "bash:claim-checker": 3152,
+    "kit.py apply": 890,
+    "kit.py batch-check": 445,
+    "Write": 386,
+    "SubagentHandback": 61
+   }
+  },
+  "t2_reviewer": {
+   "models": {
+    "claude-opus-5-5": 56
+   },
+   "api_calls": 56,
+   "tokens": {
+    "input_tokens": 114,
+    "cache_creation_input_tokens": 218642,
+    "cache_read_input_tokens": 8520019,
+    "output_tokens": 61071
+   },
+   "total_input_tokens": 8738775,
+   "total_tokens": 8799846,
+   "first_utc": "2026-10-29T15:06:22.868Z",
+   "last_utc": "2026-10-29T15:20:33.928Z",
+   "tool_calls": {
+    "bash:python3": 27,
+    "bash:grep": 21,
+    "bash:cat": 3,
+    "bash:ls": 2,
+    "SubagentHandback": 2,
+    "bash:other": 1,
+    "bash:sed": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 174017,
+    "bash:grep": 88902,
+    "bash:cat": 41166,
+    "bash:other": 6105,
+    "bash:sed": 1748,
+    "bash:ls": 1171,
+    "SubagentHandback": 122
+   }
+  }
+ }
+}

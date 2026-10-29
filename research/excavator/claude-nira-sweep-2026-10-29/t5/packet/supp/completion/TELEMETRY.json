@@ -1,0 +1,84 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "t5_producer": {
+   "models": {
+    "claude-sonnet-5-5": 77
+   },
+   "api_calls": 77,
+   "tokens": {
+    "input_tokens": 154,
+    "cache_creation_input_tokens": 287400,
+    "cache_read_input_tokens": 15229831,
+    "output_tokens": 92271
+   },
+   "total_input_tokens": 15517385,
+   "total_tokens": 15609656,
+   "first_utc": "2026-10-29T15:16:31.222Z",
+   "last_utc": "2026-10-29T15:38:58.084Z",
+   "tool_calls": {
+    "bash:python3": 23,
+    "bash:grep": 23,
+    "Read": 10,
+    "bash:cat": 7,
+    "Monitor": 7,
+    "bash:sed": 4,
+    "bash:ls": 3,
+    "bash:other": 2,
+    "kit.py batch-check": 2,
+    "kit.py apply": 1,
+    "Write": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:grep": 114717,
+    "bash:python3": 74752,
+    "Read": 57287,
+    "bash:sed": 24089,
+    "bash:cat": 13436,
+    "bash:other": 7370,
+    "bash:ls": 2679,
+    "Monitor": 2124,
+    "kit.py batch-check": 1230,
+    "kit.py apply": 445,
+    "Write": 207,
+    "SubagentHandback": 61
+   }
+  },
+  "t5_reviewer": {
+   "models": {
+    "claude-opus-5-5": 45
+   },
+   "api_calls": 45,
+   "tokens": {
+    "input_tokens": 92,
+    "cache_creation_input_tokens": 156377,
+    "cache_read_input_tokens": 6656608,
+    "output_tokens": 66593
+   },
+   "total_input_tokens": 6813077,
+   "total_tokens": 6879670,
+   "first_utc": "2026-10-29T15:39:27.242Z",
+   "last_utc": "2026-10-29T15:53:13.917Z",
+   "tool_calls": {
+    "bash:python3": 18,
+    "bash:grep": 17,
+    "Read": 9,
+    "SubagentHandback": 2,
+    "bash:ls": 1,
+    "bash:claim-checker": 1
+   },
+   "tool_result_chars": {
+    "Read": 134687,
+    "bash:python3": 107962,
+    "bash:grep": 30573,
+    "bash:claim-checker": 5600,
+    "bash:ls": 459,
+    "SubagentHandback": 122
+   }
+  }
+ }
+}

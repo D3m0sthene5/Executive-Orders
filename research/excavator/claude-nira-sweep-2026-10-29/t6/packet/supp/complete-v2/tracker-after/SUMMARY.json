@@ -1,0 +1,205 @@
+{
+  "orders_total": 14972,
+  "orders_with_provisional_status": 3403,
+  "ready_for_human_review": 411,
+  "ready_by_tier": {
+    "complete_claim": 411
+  },
+  "ready_by_text_evidence_tier": {
+    "original_supported": 298,
+    "transcription_dependent": 113
+  },
+  "original_replacement_obligations": 176,
+  "quotation_recheck_obligations": 176,
+  "human_verified": "not counted here; see the Stage 19 tracker",
+  "opus_media_not_applicable": [
+    "EO:11423",
+    "EO:11649",
+    "EO:12073",
+    "EO:12391",
+    "EO:12504"
+  ],
+  "step_done_among_decided": {
+    "provisional_status": {
+      "done": 3403,
+      "applicable": 3403
+    },
+    "original_text": {
+      "done": 2468,
+      "applicable": 3403
+    },
+    "clause_inventory": {
+      "done": 476,
+      "applicable": 3403
+    },
+    "ending_or_current_basis": {
+      "done": 430,
+      "applicable": 3403
+    },
+    "savings_residuals": {
+      "done": 463,
+      "applicable": 3403
+    },
+    "counterevidence": {
+      "done": 2652,
+      "applicable": 3403
+    },
+    "shared_sources": {
+      "done": 209,
+      "applicable": 236
+    },
+    "opus_media": {
+      "done": 125,
+      "applicable": 839
+    }
+  },
+  "decided_by_steps_done": {
+    "1/6": 517,
+    "1/7": 14,
+    "1/8": 2,
+    "2/6": 474,
+    "2/7": 82,
+    "2/8": 6,
+    "3/6": 1102,
+    "3/7": 430,
+    "3/8": 34,
+    "4/6": 29,
+    "4/7": 69,
+    "4/8": 166,
+    "5/6": 35,
+    "5/8": 25,
+    "6/6": 406,
+    "6/7": 5,
+    "6/8": 1,
+    "7/7": 5,
+    "8/8": 1
+  },
+  "orders_blocked_by": {
+    "NO_PROVISIONAL_STATUS": 11569,
+    "NO_OFFICIAL_SOURCE_LOCATED": 7703,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 5235,
+    "NO_CLAUSE_INVENTORY": 2821,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 2821,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2750,
+    "FIRST_END_UNPROVED": 2428,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 511,
+    "OPUS_MEDIA_REFETCH_NEEDED": 431,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 285,
+    "OPUS_MEDIA_NONE_CITED": 212,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+    "CLAIM_INCOMPLETE": 88,
+    "CLAIM_NOT_YET_CHECKED": 57,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+    "CLAIM_CHECK_FAILED": 10,
+    "OPEN_SOURCE_AUDIT": 6,
+    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
+  },
+  "decided_orders_blocked_by": {
+    "NO_CLAUSE_INVENTORY": 2821,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 2821,
+    "FIRST_END_UNPROVED": 2428,
+    "NO_OFFICIAL_SOURCE_LOCATED": 848,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 832,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 511,
+    "OPUS_MEDIA_REFETCH_NEEDED": 431,
+    "CURRENT_BASIS_UNPROVED": 393,
+    "OPUS_MEDIA_NONE_CITED": 212,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+    "CLAIM_INCOMPLETE": 88,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 87,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 77,
+    "CLAIM_NOT_YET_CHECKED": 57,
+    "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+    "SHARED_SOURCE_NOT_RETRIEVED": 27,
+    "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+    "CLAIM_CHECK_FAILED": 10,
+    "OPEN_SOURCE_AUDIT": 6,
+    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2,
+    "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+    "NO_PROVISIONAL_STATUS": 0
+  },
+  "shared_unlocks": [
+    {
+      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+      "kind": "machine_job",
+      "orders_unblocked": 5235,
+      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+    },
+    {
+      "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
+      "kind": "agent_check",
+      "orders_unblocked": 2750,
+      "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
+    },
+    {
+      "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+      "kind": "machine_job",
+      "orders_unblocked": 431,
+      "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+    },
+    {
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 285,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+    },
+    {
+      "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+      "kind": "machine_job",
+      "orders_unblocked": 57,
+      "blocker": "CLAIM_NOT_YET_CHECKED"
+    },
+    {
+      "action": "Retrieve shared source EO::4314",
+      "kind": "one_source",
+      "orders_unblocked": 10,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+    },
+    {
+      "action": "Retrieve shared source EO::6868",
+      "kind": "one_source",
+      "orders_unblocked": 6,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
+    },
+    {
+      "action": "Retrieve shared source USC::48 U.S.C. 863)",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+    },
+    {
+      "action": "Retrieve shared source EO::6964",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964"
+    },
+    {
+      "action": "Retrieve shared source EO::6910",
+      "kind": "one_source",
+      "orders_unblocked": 3,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
+    },
+    {
+      "action": "Retrieve shared source CFR::26 CFR 458.324",
+      "kind": "one_source",
+      "orders_unblocked": 2,
+      "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+    },
+    {
+      "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+      "kind": "agent_check",
+      "orders_unblocked": 1,
+      "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
+    }
+  ],
+  "input_problems": [],
+  "inputs": {
+    "replay": "selected proposed bytes; no canonical write"
+  }
+}

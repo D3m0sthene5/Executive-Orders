@@ -1,0 +1,82 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "t6_producer": {
+   "models": {
+    "claude-sonnet-5-5": 69
+   },
+   "api_calls": 69,
+   "tokens": {
+    "input_tokens": 138,
+    "cache_creation_input_tokens": 266820,
+    "cache_read_input_tokens": 13563163,
+    "output_tokens": 75910
+   },
+   "total_input_tokens": 13830121,
+   "total_tokens": 13906031,
+   "first_utc": "2026-10-29T15:16:30.803Z",
+   "last_utc": "2026-10-29T15:35:07.811Z",
+   "tool_calls": {
+    "bash:python3": 20,
+    "bash:grep": 16,
+    "bash:cat": 8,
+    "bash:sed": 6,
+    "Monitor": 5,
+    "bash:ls": 4,
+    "kit.py apply": 4,
+    "TaskStop": 4,
+    "Read": 3,
+    "ToolSearch": 1,
+    "kit.py batch-check": 1,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 138658,
+    "bash:cat": 88277,
+    "bash:grep": 25261,
+    "bash:sed": 16719,
+    "bash:ls": 6725,
+    "Read": 3550,
+    "kit.py apply": 3206,
+    "TaskStop": 1892,
+    "Monitor": 1508,
+    "kit.py batch-check": 445,
+    "SubagentHandback": 61,
+    "ToolSearch": 0
+   }
+  },
+  "t6_reviewer": {
+   "models": {
+    "claude-opus-5-5": 47
+   },
+   "api_calls": 47,
+   "tokens": {
+    "input_tokens": 96,
+    "cache_creation_input_tokens": 132746,
+    "cache_read_input_tokens": 5849781,
+    "output_tokens": 73217
+   },
+   "total_input_tokens": 5982623,
+   "total_tokens": 6055840,
+   "first_utc": "2026-10-29T15:35:39.061Z",
+   "last_utc": "2026-10-29T15:52:28.007Z",
+   "tool_calls": {
+    "bash:python3": 22,
+    "bash:grep": 21,
+    "Read": 4,
+    "bash:ls": 2,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 122689,
+    "bash:grep": 83994,
+    "Read": 17664,
+    "bash:ls": 1786,
+    "SubagentHandback": 61
+   }
+  }
+ }
+}

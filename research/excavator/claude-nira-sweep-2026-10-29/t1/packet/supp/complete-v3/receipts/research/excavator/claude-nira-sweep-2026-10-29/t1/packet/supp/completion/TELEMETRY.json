@@ -1,0 +1,120 @@
+{
+ "schema": "claude-transcript-costs/v1",
+ "since": null,
+ "until": null,
+ "notice": "Harness transcript usage, deduplicated by message id. Cache reads are billed at a fraction of uncached input; report them separately. Tool-result characters are not tokens.",
+ "agents": {
+  "t1_producer": {
+   "models": {
+    "claude-sonnet-5-5": 125
+   },
+   "api_calls": 125,
+   "tokens": {
+    "input_tokens": 252,
+    "cache_creation_input_tokens": 2008721,
+    "cache_read_input_tokens": 27990639,
+    "output_tokens": 137562
+   },
+   "total_input_tokens": 29999612,
+   "total_tokens": 30137174,
+   "first_utc": "2026-10-29T13:30:34.550Z",
+   "last_utc": "2026-10-29T15:41:39.217Z",
+   "tool_calls": {
+    "bash:grep": 43,
+    "bash:python3": 33,
+    "bash:cat": 18,
+    "bash:sed": 8,
+    "bash:claim-checker": 7,
+    "kit.py view": 4,
+    "kit.py apply": 4,
+    "bash:ls": 3,
+    "bash:other": 3,
+    "SubagentHandback": 3,
+    "kit.py unchanged": 1,
+    "bash:date": 1,
+    "Write": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 154346,
+    "bash:cat": 126536,
+    "bash:grep": 102940,
+    "kit.py view": 43684,
+    "bash:sed": 37001,
+    "bash:claim-checker": 9709,
+    "bash:other": 7530,
+    "bash:ls": 3401,
+    "kit.py apply": 1195,
+    "kit.py unchanged": 913,
+    "Write": 207,
+    "SubagentHandback": 183,
+    "bash:date": 20
+   }
+  },
+  "t1_reviewer_exposed": {
+   "models": {
+    "claude-opus-5-5": 38
+   },
+   "api_calls": 38,
+   "tokens": {
+    "input_tokens": 76,
+    "cache_creation_input_tokens": 167758,
+    "cache_read_input_tokens": 5884465,
+    "output_tokens": 89676
+   },
+   "total_input_tokens": 6052299,
+   "total_tokens": 6141975,
+   "first_utc": "2026-10-29T14:20:37.289Z",
+   "last_utc": "2026-10-29T14:37:17.423Z",
+   "tool_calls": {
+    "bash:grep": 16,
+    "bash:python3": 14,
+    "bash:cat": 3,
+    "Read": 3,
+    "bash:ls": 2,
+    "SubagentHandback": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 117670,
+    "Read": 96711,
+    "bash:grep": 77663,
+    "bash:cat": 8991,
+    "bash:ls": 7689,
+    "SubagentHandback": 61
+   }
+  },
+  "t1_reviewer": {
+   "models": {
+    "claude-opus-5-5": 51
+   },
+   "api_calls": 51,
+   "tokens": {
+    "input_tokens": 106,
+    "cache_creation_input_tokens": 647298,
+    "cache_read_input_tokens": 8104565,
+    "output_tokens": 80752
+   },
+   "total_input_tokens": 8751969,
+   "total_tokens": 8832721,
+   "first_utc": "2026-10-29T15:06:22.825Z",
+   "last_utc": "2026-10-29T15:40:31.586Z",
+   "tool_calls": {
+    "bash:python3": 26,
+    "bash:grep": 16,
+    "SubagentHandback": 3,
+    "bash:cat": 2,
+    "bash:date": 1,
+    "Read": 1,
+    "bash:ls": 1
+   },
+   "tool_result_chars": {
+    "bash:python3": 182857,
+    "bash:grep": 97315,
+    "Read": 34276,
+    "bash:cat": 20214,
+    "bash:ls": 626,
+    "bash:date": 341,
+    "SubagentHandback": 183
+   }
+  }
+ }
+}
