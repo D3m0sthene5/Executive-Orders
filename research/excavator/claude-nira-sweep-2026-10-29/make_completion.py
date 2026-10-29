@@ -72,7 +72,13 @@ def main(a):
     if len(agents) != 1:
         raise SystemExit("claims name more than one producer agent: %s" % sorted(map(str, agents)))
     agent = agents.pop()
-    blind_l = lines(blind)
+    # BLIND_REVIEW may name several files separated by commas (e.g. a batch review plus a later
+    # exact-version review of a corrected claim); each record keeps its own file and line.
+    blind_files = blind.split(",")
+    blind_l = {}
+    for bf in blind_files:
+        for sha_, (ln, rec) in lines(bf).items():
+            blind_l[sha_] = (ln, rec, bf)
     after_l = lines(after) if after != "-" else {}
     ref = lambda p, line: {"path": rel(p), "sha256": fsha(p), "line": line}
     pk = {"path": rel(packet / "PACKET.json"), "sha256": fsha(packet / "PACKET.json")}
@@ -98,7 +104,7 @@ def main(a):
         else:
             hit = blind_l.get(sha)
             if hit and hit[1].get("verdict") == "upheld":
-                m["review"] = ref(blind, hit[0])
+                m["review"] = ref(hit[2], hit[0])
             else:
                 why = json.dumps(hit[1].get("defects"), ensure_ascii=False) if hit else "no review record for this exact version"
                 members.append({"instrument_id": iid, "outcome": "blocked",
@@ -108,7 +114,7 @@ def main(a):
     controls = []
     outdir = packet / "completion"
     outdir.mkdir(exist_ok=True)
-    planted_path = planted_review or blind
+    planted_path = planted_review or blind_files[0]
     planted_l = lines(planted_path)
     for k in key:
         iid = k["instrument_id"]
