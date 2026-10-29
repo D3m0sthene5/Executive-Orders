@@ -1,5 +1,7 @@
 # Executive Orders — research progress dashboard
 
+**[Original rocket dashboard](https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#apollo)** · [October 29 visual data and provenance](remaining-work/snapshots/2026-10-29/README.md)
+
 **[Open the current generated dashboard](../../jobs/daily-digest/output/DASHBOARD.md)** · [Exact data and input hashes](../../jobs/daily-digest/output/DASHBOARD.json) · [Per-order readiness](../../jobs/readiness-tracker/output/READINESS_BY_ORDER.csv) · [Daily changes](../../jobs/daily-digest/output/DIGEST.md)
 
 Updated October 28, 2026 (America/New_York). Legal cutoff: **October 14, 2026**. The working bibliography contains **14,972 identities**; the historical census is still incomplete. The generated dashboard reads the current status and claim registers, retains each producer's published generation date, and checks exact claim versions against the mechanical checker.
