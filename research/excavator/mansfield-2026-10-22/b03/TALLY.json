@@ -1,0 +1,107 @@
+{
+ "batch": "b03",
+ "stratum": "NO",
+ "attempted": 10,
+ "submitted": 7,
+ "submitted_ids": [
+  "EO:10312",
+  "EO:9922",
+  "EO:11135",
+  "EO:11040",
+  "EO:11078",
+  "EO:13997",
+  "EO:5825"
+ ],
+ "blocked": 3,
+ "blocked_ids": [
+  "EO:8915",
+  "EO:12393",
+  "EO:11877"
+ ],
+ "blocks_justified": 3,
+ "blocks_unjustified": 0,
+ "claims_reviewed": 7,
+ "plants_placed": 2,
+ "plants_caught": 2,
+ "plants_caught_strict": 2,
+ "plants_caught_lenient": 2,
+ "plants": [
+  {
+   "instrument_id": "EO:10312",
+   "defect_type": "D6",
+   "field_path": "operative_clauses[3,4,8].later_events[3]; research_rationale",
+   "caught": true,
+   "catch_scoring": "strict",
+   "reviewer_code": "D6_OMISSION",
+   "why": "reviewer named the omitted event EO 11051 sec. 601(2) (1962-09-27), quoted it (EO_11051.txt 21962-22419), and named the affected clauses secs. 1(c), 2 and 6(a) and the officer change (OCDM Director to OEP Director); suspected_plant: reviewer could not tell plant from producer miss"
+  },
+  {
+   "instrument_id": "EO:5825",
+   "defect_type": "date_swap",
+   "field_path": "operative_clauses[0,1].first_end.date; whole_order_end.date; mechanisms; research_rationale; judgment_reason",
+   "caught": true,
+   "catch_scoring": "strict",
+   "reviewer_code": "DATE",
+   "why": "reviewer named whole_order_end and both clause first_end dates (1939-07-01), gave the correct 1939-07-05 (EO 8189 effective on signing) and showed the effective sentence at EO_8189.txt 18505-18556 belongs to EO 8190; flagged as suspected plant"
+  }
+ ],
+ "genuine_reviewed": 5,
+ "genuine_upheld": 5,
+ "genuine_upheld_ids": [
+  "EO:11040",
+  "EO:11078",
+  "EO:11135",
+  "EO:13997",
+  "EO:9922"
+ ],
+ "genuine_rejected": [],
+ "rejected_mechanical": [],
+ "filed": [
+  "EO:11040",
+  "EO:11078",
+  "EO:11135",
+  "EO:13997",
+  "EO:9922",
+  "EO:10312",
+  "EO:5825"
+ ],
+ "filed_file": "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl",
+ "gate": {
+  "EO:11040": [],
+  "EO:11078": [],
+  "EO:11135": [],
+  "EO:13997": [],
+  "EO:9922": [],
+  "EO:10312": [],
+  "EO:5825": []
+ },
+ "checker": {
+  "claims_checked": 7,
+  "all_checks_passed": 7,
+  "pass_with_unverified": 0,
+  "fail": 0,
+  "gate_passed": 7,
+  "unverified": {},
+  "unverified_note": "none; rerun after the two after-reveal lines were appended: quotations 156/156 exact; source references 63 gpo_published_hash_match, 49 held_bytes_verified, 3 held_bytes_in_release_or_repo"
+ },
+ "fetch_lines_enqueued": 2,
+ "fetch_lines_enqueued_ids": [
+  "mansfield-b03:EO:8915:PublicLandOrder1070,20FR1055",
+  "mansfield-b03:EO:12393:PEB199report"
+ ],
+ "upheld_after_reveal": [
+  "EO:10312",
+  "EO:5825"
+ ],
+ "upheld_per_attempt": 0.5,
+ "genuine_rejection_share": 0.0,
+ "notes": [
+  "EO 10312 and EO 5825 were the planted orders; both plants were rejected by the blind reviewer with strict catches. Their genuine (unplanted) lines were re-reviewed after the reveal by the same independent reviewer (REVIEW_AFTER_REVEAL.jsonl, AFTER_REVEAL.json), both upheld with no code, and filed; they are counted separately as upheld_after_reveal and not in genuine_upheld.",
+  "The genuine EO 10312 line attaches EO 11051 (the plant removed it); the genuine EO 5825 line dates the EO 8189 revocation 1939-07-05 (the plant changed it to 1939-07-01).",
+  "Reviewer non-fatal notes on upheld lines: EO 11040 report deadline disclosed in the rationale only (ruling asks for a later_event record) and an EO_12593 grep hit misattributed; EO 11078 table-entry offsets cover only the first OCR line and a template sentence about a status-quo recital does not fit an LMRA order; EO 11135 List A outside the clause span, explained as a party schedule; EO 9922 subject column of the EO 12553 table cannot be paired by position from the OCR alone (OFR note and 1989 Codification corroborate).",
+  "All 3 blocks judged justified. EO 11877 carries no fetch line (unruled method question: EO 12076 revokes 'EO 11861, as amended' without naming EO 11877).",
+  "No duplicate queue lines existed for the two fetch requests (FETCH_QUEUE.jsonl 851 -> 853 lines, after b01 and b02).",
+  "All filed lines are AI hypotheses; the human-certified whole-lifecycle count stays 0."
+ ],
+ "upheld_per_attempt_with_reveal": 0.7
+}

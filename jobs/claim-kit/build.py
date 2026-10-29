@@ -162,6 +162,22 @@ def safe_read(repo, rel):
         raise ValueError('text path escapes repository')
     return p.read_bytes().decode('utf-8')
 
+PRINTED_REFERENCE_KIND='printed_reference_without_change_provision'
+NAME_MATCH_MECHANISM='names_same_person'
+TARGET_NOT_LOCATED='target provision not located'
+CITED_NO_PROVISION='cited by number, no change provision located'
+NAME_MATCH_LEAD='names the same person (name-match lead, read before use)'
+
+def unlocated_reason(source_event):
+    """How an unlocated known pair is reported: a plain number citation and a Namier name match are
+    leads of different kinds from a provision the scanner expected and failed to find."""
+    ev=source_event if isinstance(source_event,dict) else {}
+    if ev.get('kind')==PRINTED_REFERENCE_KIND:return CITED_NO_PROVISION
+    if ev.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
+    proposal=ev.get('proposal') if isinstance(ev.get('proposal'),dict) else {}
+    if proposal.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
+    return TARGET_NOT_LOCATED
+
 def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
@@ -287,7 +303,7 @@ def build(repo, out, cache=None):
     law_enriched=enrich_current(repo,law_flat)
     corpus['current_law']={}
     for iid,lead in zip(law_keys,law_enriched):corpus['current_law'].setdefault(iid,[]).append(lead)
-    selected={};segments={};terms={};primary_acts={};all_mentions=[];all_variants=collections.defaultdict(dict);all_terms=collections.defaultdict(dict);generic_refs=set();missing_by=collections.defaultdict(list)
+    selected={};segments={};terms={};primary_acts={};all_mentions=[];all_references=[];all_variants=collections.defaultdict(dict);all_terms=collections.defaultdict(dict);generic_refs=set();missing_by=collections.defaultdict(list)
     counts=collections.Counter(universe_orders=len(universe),decided_orders=len(corpus['statuses']))
     # Persistent cache is optional, never an output/provenance substitute. Hash includes parser code.
     code_hash=segmentation_code_sha256()
@@ -326,8 +342,8 @@ def build(repo, out, cache=None):
             if data is None:
                 c=segment(iid,text,source)
                 ts=own_terms(iid,text,source,c.get('clauses',[]))
-                ms=discover_mentions(iid,text,source,r.get('signing_date'),r.get('filing_date'))
-                data={'clauses':c,'terms':ts,'mentions':ms}
+                ms,refs=discover_mentions(iid,text,source,r.get('signing_date'),r.get('filing_date'),with_references=True)
+                data={'clauses':c,'terms':ts,'mentions':ms,'references':refs}
                 if cp:dump(cp,data)
             line(all_clauses,data['clauses'])
             counts['held_texts_scanned']+=1
@@ -347,6 +363,7 @@ def build(repo, out, cache=None):
                 selected[iid]=dict(r,source=source,text=text)
                 segments[iid]=data['clauses']
             all_mentions.extend(dict(a,_representation_rank=rank(r)) for a in data['mentions'])
+            all_references.extend(dict(a,text_path=r['text_path'],text_sha256=source['text_sha256']) for a in data.get('references',[]))
     for iid,reasons in sorted(refused.items()):
         if iid not in selected:
             missing_by[iid].append('No held text accepted as this order\'s original; refused: '+'; '.join(sorted(set(reasons))))
@@ -365,6 +382,23 @@ def build(repo, out, cache=None):
         key=(target,actor,None);pairs.setdefault(key,{'target_id':target,'actor_id':actor})
         if key not in primary_acts or a['_representation_rank']<primary_acts[key]['_representation_rank']:
             primary_acts[key]=a
+    # A printed reference with no located change provision still makes the citing order a known
+    # actor: its text enters the target's packet, and the pair is reported as unlocated. Known
+    # pairs from other producers keep their own source_event.
+    for a in all_references:
+        target,actor=a['target_id'],a['actor_id']
+        if target not in universe or actor not in universe or target==actor:continue
+        key=(target,actor,None)
+        event={'kind':PRINTED_REFERENCE_KIND,'input_origin':'jobs/claim-kit (held-text scan)',**{k:a[k] for k in ('ref_char_start','ref_char_end','context','context_char_start','context_char_end','text_path','text_sha256','signing_date','filing_date','notes')}}
+        if key in pairs:
+            # A name-match lead for the same pair is weaker than the printed number: report the citation
+            # and keep the name match beside it.
+            if unlocated_reason(pairs[key].get('source_event'))==NAME_MATCH_LEAD:
+                event['also_names_same_person']=pairs[key]['source_event']
+                pairs[key]['source_event']=event
+            continue
+        pairs[key]={'target_id':target,'actor_id':actor,'source_event':event}
+        counts['printed_reference_only_pairs']+=1
     generic_total=sum(n for _,_,n in generic_refs)
     # Parent-as-amended is a separately identified indirect LEAD, never a legal inference of target termination.
     parents=collections.defaultdict(set)
@@ -403,18 +437,18 @@ def build(repo, out, cache=None):
             if pair not in located_pairs or (not parent and not a.get('reaches_target_via')):
                 located_pairs[pair]=a
         else:
-            row={'target_id':target,'actor_id':actor,'parent_id':parent,'reason':'acting text absent' if not ar else 'target provision not located','source_event':p.get('source_event')}
+            row={'target_id':target,'actor_id':actor,'parent_id':parent,'reason':'acting text absent' if not ar else unlocated_reason(p.get('source_event')),'source_event':p.get('source_event')}
             missing_sources.append(row);missing_by[target].append(row['reason']+': '+actor)
     # Agent-located, independently upheld ACT records (research/readiness/act_overrides) fill only
     # pairs the scanner could not locate; act_overrides.verify refuses anything else.
     # With no override lines the build is unchanged: no report file and no extra counts.
     override_rows=act_overrides.load(repo)
     if override_rows:
-        unlocated={(r['target_id'],r['actor_id']) for r in missing_sources if r['reason']=='target provision not located' and not r.get('parent_id')}-set(located_pairs)
+        unlocated={(r['target_id'],r['actor_id']) for r in missing_sources if r['reason'] in (TARGET_NOT_LOCATED,CITED_NO_PROVISION) and not r.get('parent_id')}-set(located_pairs)
         ingested,override_report=act_overrides.ingest(repo,selected,universe,unlocated,override_rows)
         for (target,actor),a in ingested.items():
             located_pairs[(target,actor)]=a
-            missing_by[target]=[m for m in missing_by[target] if m!='target provision not located: '+actor]
+            missing_by[target]=[m for m in missing_by[target] if m not in (TARGET_NOT_LOCATED+': '+actor,CITED_NO_PROVISION+': '+actor)]
         missing_sources=[r for r in missing_sources if (r['target_id'],r['actor_id']) not in ingested]
         counts['act_overrides_ingested']=len(ingested);counts['act_overrides_refused']=sum(r['status']=='refused' for r in override_report)
         dump(out/'ACT_OVERRIDES_REPORT.json',override_report)

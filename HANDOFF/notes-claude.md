@@ -2,6 +2,74 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-29 ET: NIRA code-approval orders through ordinary production with one shared, reviewed analysis
+
+- **Done:** Branch `claude/schechter-nira-sweep`. Shared analysis `research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md`
+  (first end June 14, 1935 by S.J. Res. 113 sec. 2; Schechter recorded as a validity finding; denials exhausted on
+  their date), independently reviewed (planted proposition caught). Seven batches (b0 baseline, t1-t6): 132 orders,
+  91 claims upheld and filed in `research/readiness/claims/claude-*-2026-10-29-nira*.jsonl`, 41 blocked with causes;
+  10 of 10 valid controls caught. Isolated tracker replays add to 486 ready once the canonical checker and tracker
+  regenerate (published 395). X1 event reader repaired (8 of 8 event sources held; run 40882610996).
+- **Measured:** matched 6-order pair 7.01M vs 3.26M weighted tokens (producer+reviewer); treatment batches 0.24M per
+  filed claim vs 1.75M baseline; coordinator 13.0M, mostly one-time. Details and limits: `REPORT.md`, `COSTS.json`
+  (from `costs.py`). Kean finding recorded; ask A-20261029-1.
+- **Next:** (1) a shared rule for conditions, stays, committees and report directions attached to approvals (about 20
+  blocked orders; producers treated them inconsistently), reviewed, then a reopen batch; (2) re-prepare packets with
+  held later-order excerpts for EO 6242-C/D, 6254, 6438; (3) Cotton capture for EO 6414, 6457, 6467; (4) next
+  batches from `COHORTS.json` pool (208 statused orders not yet attempted) with `PRODUCER_PROMPT.md` /
+  `REVIEWER_PROMPT.md`; (5) cache claim-kit's fragment index (`view` spends 89% of 22 s rebuilding it) in its own PR.
+- **Resume:** `python3 jobs/claim-kit/kit.py prepare <24 ids> --agent claude --write <batch>/packet`, then
+  `make_declarations.py`, `source_supplement.py ... --write <batch>/packet/supp`, `cruden.py lookups`; launch a producer
+  with PRODUCER_PROMPT.md; plant controls with keys outside reviewer paths; reviewer with REVIEWER_PROMPT.md;
+  `make_completion.py` then `kit.py complete ... --publish`, one completion at a time.
+- **Asks:** @Owner: A-20261029-1 (Valla packet-context fix). @Codex/Sol: run the different-family review in
+  `review-shared/PROPOSITIONS_v2_SOL.md`.
+- **Do not:** commit a packet folder while any batch is in flight; run two completions at once.
+
+## 2026-10-28 22:30 ET: Namier batch produced and reviewed; custody of APP page bytes is the next blocker
+
+- **Done:** Runner regenerated namier → claim-drafts → claim-kit on the branch (run 40770547716; known_pairs 18,068,
+  printed_reference_only_pairs 1,074). Prepared nine serial retirement exemptions (three Namier chains) in
+  `research/excavator/namier-serial-exemptions-2026-10-28/`: every extension order was already in the packet, no
+  search needed. 7 claims assembled and gate-passed; blind review in a separate Claude context upheld 7/7 genuine,
+  caught the planted control (strict); EO 6615 upheld after reveal. `kit.py complete`: 0 eligible, all 7
+  `rejected_mechanical` on `source_held: custody_record_only` only (Kean F-20261028-14). Two members blocked by a
+  clause-drafts date-line defect that hits 76 APP pages (F-20261028-13; list in that folder). New job
+  `jobs/cassiodorus/` keeps the APP page bytes from the recorded captures so the checker can re-hash them; wired
+  before claim-checker, claim-kit and claim-drafts; it cannot fetch from the agents' container (archives refused).
+- **Running:** the push runs cassiodorus on the branch; check `jobs/cassiodorus/output/SUMMARY.json` (`kept`,
+  `hash_mismatch`, `no_capture_record`) and the claim-checker rerun.
+- **Next:** rerun `kit.py complete research/excavator/namier-serial-exemptions-2026-10-28/COMPLETION.json --write
+  .../complete-v2` once Cassiodorus has kept the 13 pages; if eligible, `--publish` to the manifest's own-agent
+  file. Then apply the tolerant DATE_LINE (patch and test drafted; changes the claim-kit compiler hash, so do it
+  between batches) and re-prepare EO 6773/6577. Then the remaining 46 X1 retirement exemptions with later hits.
+- **Asks:** `@Owner`: none.
+- **Do not:** publish from `complete-v1` (nothing eligible); edit `packet/review/BLIND_REVIEW.jsonl` (sealed).
+
+
+## 2026-10-28 18:05 ET: Namier (name-based discovery for one-person orders) and the dropped-citation fix in claim-kit
+
+- **Done:** New job `jobs/namier/` (Kean F-20261028-11): parses the person each one-person order names and searches
+  every held text once; 2,231 subjects (1,695 X1 waivers/retirement exemptions + 536 title-detected, mostly 1937-50s),
+  243 with an unflagged later hit, 483 leads. Wired into claim-drafts (declared search `namier:held_texts_person_name`
+  with per-order `SEARCH_COVERAGE.csv`; matches as `names_same_person` later-event proposals, never an ending) and
+  claim-kit (matched orders are known actors; dossier line `names the same person (name-match lead, read before use)`).
+  Second fix (F-20261028-12): claim-kit dropped 1,157 citation pairs where a held text cites the target by number without
+  a change verb (serial exemptions, extensions, recitals); they are now known actors, reported as `cited by number, no
+  change provision located: EO:X`. Local rebuild: known_pairs 16,626 → 17,763; EO:6088's dossier now holds EO 6998 and
+  EO 7597. Tests: namier 8, claim-drafts 69, claim-kit 412 pass. After/trigger files order namier before claim-drafts
+  and claim-kit; AGENT_PROTOCOL.md documents the two new lines.
+- **Running:** the push runs namier, claim-drafts and claim-kit on the branch; check their `output/STATUS.json`, then
+  `SUMMARY.json` counts `printed_reference_only_pairs` and `known_pairs`.
+- **Next:** re-prepare the 2026-10-28 probe (12 retirement exemptions) and a serial waiver batch from the regenerated
+  dossiers; a producer should find the extension orders in the packet without searching. Namier's remaining gaps: 296
+  subjects with no parsable name (OCR-split surnames, class orders mistyped as one-person), common-name noise, and
+  nothing outside the held texts (no Official Register, no CSC report listing use).
+- **Asks:** `@Owner`: none.
+- **Do not:** edit `research/readiness/type-rules/*` to point at Namier without an independent re-review; the rules'
+  search step is unchanged in wording and now supplied by the dossier's machine search.
+
+
 ## 2026-10-28 ET (afternoon): spent-order probe filed 15 claims; waiver rule rewritten; Cotton
 
 - **Done:** PRs #69-#73 merged.
@@ -47,6 +115,28 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Asks:** `@Owner`: A-20261018-1, A-20261019-1, A-20261021-1, A-20261021-2, A-20261021-3, A-20261022-1,
   A-20261028-1, A-20261028-2, A-20261028-3 (all in `HANDOFF/KEAN.md`).
 - **Do not:** hand-edit `HANDOFF/KEAN.md`; run `python3 -I jobs/kean/kean.py brief`.
+
+## 2026-10-22 ET: Mansfield, judgment-only claims for modern NO orders (branch `claude/mansfield-1`)
+
+- **Done:** 30 "only judgment left" NO orders attempted in 3 seeded batches (seed 20261022); **14 claims filed**
+  (`research/readiness/claims/claude-mansfield-b0{1,2,3}-2026-10-22.jsonl`), all passing the gate and the checker;
+  0 genuine rejections; 16 blocks, all judged justified; plants 4 of 5 caught (one D6 omission missed). Upheld per
+  attempt 0.30 blind, 0.47 with after-reveal re-reviews, against a 0.45 forecast (Llull L-20261022-1, O-20261022-1)
+  and the 0.5 gate, so the run stopped; the YES stratum was not attempted. Report:
+  `research/excavator/mansfield-2026-10-22/REPORT.md`; cost about $55 estimated (`COST.md`). 8 fetch lines enqueued.
+- **Why the pool did not convert:** 6 blocks where the ending text is held but the claim-kit dossier has no evidence
+  span for it (needs act_overrides or a kit fix: EO 10915, 11927, 12975, 9333, 12607, 8072); 4 unheld emergency-board
+  report dates (10319, 12370, 12414, 12393); 3 unheld Public Land Orders (8173, 8505, 8915); 1 unheld statute (12810);
+  2 open method questions (11877, 12921).
+- **Next:** wire held acting texts into dossiers (the single largest block class); fetch the PLOs and board reports;
+  owner rulings on "parent revoked as amended" for amending orders (10915, 11927, 11877) and on a parent's unnamed
+  sunset (12921). Expected tracker change: up to 14 more ready (AI-upheld tier), 0 certified.
+- **Asks:** `@Owner`: 1. the two method questions above; 2. whether the 5 after-reveal-upheld lines (10926, 13032,
+  10972, 10312, 5825) may stay filed; they were re-reviewed in full by the same independent reviewer after the plant
+  key was opened, which Y2LEAD did not do. `@Codex`: dossier evidence spans for acting provisions the scanner already
+  located but did not slice (EO 11976 for 11927, EO 13137 for 12975, EO 9830 for 9333, EO 12220 for 10915).
+- **Do not:** promote any of these claims; re-attempt the 16 blocked orders before their sources land.
+
 
 ## 2026-10-21 ET (evening): tool map updated for the rulings and for Lewis and Clark
 

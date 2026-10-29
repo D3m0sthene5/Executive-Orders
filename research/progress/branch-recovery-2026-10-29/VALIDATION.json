@@ -1,0 +1,112 @@
+{
+  "schema": "eo-integration-validation/1",
+  "date": "2026-10-29",
+  "new_canonical_claim_files": 9,
+  "new_claims_structurally_valid": 103,
+  "exact_version_Mansfield_holds_verified": 4,
+  "archival_original_hashes_verified": 51,
+  "component_tests": [
+    {
+      "target": "claim-kit",
+      "returncode": 0,
+      "summary": [
+        "Ran421 tests; OK(skipped5). Final repeat used TMPDIR=/private/tmp to resolve macOS /var alias fixtures."
+      ]
+    },
+    {
+      "target": "claim-drafts",
+      "returncode": 0,
+      "summary": [
+        "Ran 69 tests in 1.627s",
+        "OK"
+      ]
+    },
+    {
+      "target": "claim-checker",
+      "returncode": 0,
+      "summary": [
+        "Ran 50 tests in 0.950s",
+        "OK"
+      ]
+    },
+    {
+      "target": "namier",
+      "returncode": 0,
+      "summary": [
+        "Ran 9 tests in 0.005s",
+        "OK"
+      ]
+    },
+    {
+      "target": "cassiodorus",
+      "returncode": 0,
+      "summary": [
+        "Ran 6 tests in 0.082s",
+        "OK"
+      ]
+    },
+    {
+      "target": "cotton-capture-custody",
+      "returncode": 0,
+      "summary": [
+        "Ran 9 tests in 0.037s",
+        "OK"
+      ]
+    },
+    {
+      "target": "x1-class-engine",
+      "returncode": 0,
+      "summary": [
+        "Ran 25 tests in 0.091s",
+        "OK"
+      ]
+    },
+    {
+      "target": "fr-pages",
+      "returncode": 0,
+      "summary": [
+        "Ran 22 tests in 0.116s",
+        "OK"
+      ]
+    },
+    {
+      "target": "lewis-originals",
+      "returncode": 0,
+      "summary": [
+        "Ran 34 tests in 3.290s",
+        "OK"
+      ]
+    },
+    {
+      "target": "neyman",
+      "returncode": 0,
+      "summary": [
+        "Ran 50 tests in 0.288s",
+        "OK (skipped=2)"
+      ]
+    },
+    {
+      "target": "kean",
+      "returncode": 0,
+      "summary": [
+        "Ran 13 tests in 0.890s",
+        "OK"
+      ]
+    },
+    {
+      "target": "pinakes-htr",
+      "returncode": 0,
+      "summary": [
+        "Ran 16 tests in 0.618s",
+        "OK"
+      ]
+    }
+  ],
+  "latest_QA_rechecks": "All Lewis and fr-pages tests passed after final PR99 QA update.",
+  "runner": "All road component suites,33 freshness tests and corrected graph tests are checked separately; CI validates final merge head.",
+  "limitations": [
+    "Five existing claim-kit skips and two existing NEYMAN skips; no human/source-policy promotions.",
+    "Historical HTR reference readings and complete token/labor/cash telemetry absent.",
+    "Canonical production refresh must use integrated inputs; isolated replay totals are not current readiness."
+  ]
+}

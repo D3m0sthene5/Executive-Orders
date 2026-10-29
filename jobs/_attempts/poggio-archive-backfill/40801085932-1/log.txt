@@ -1,0 +1,89 @@
+ok test_instrument_id
+ok test_listing
+ok test_document
+ok test_challenge_stops
+ok test_mirror_warc_record
+ok test_mirror_covered_and_audit
+
+
+nd; 0 still missing
+{"targets": 2, "pointers_added": 1, "requests_by_archive": {"common-crawl": 1, "wayback": 0}, "no_capture_found": []}
+backfill-index: 2 seed pages without a saved capture, 0 without any pointer
+{"targets": 2, "pointers_added": 0, "requests_by_archive": {"common-crawl": 0, "wayback": 0}, "no_capture_found": []}
+backfill-index: 1 seed pages without a saved capture, 1 without any pointer
+{"targets": 1, "pointers_added": 1, "requests_by_archive": {"common-crawl": 0, "wayback": 1}, "no_capture_found": []}
+backfill-documents: 1 seed pages to back, 1 with a capture pointer
+{"updated_utc": "2026-10-29T01:55:59.664686+00:00", "seed_ids": 1, "targets_at_start": 1, "with_pointer": 1, "this_run": {"saved": 1, "failed": 0, "retry_next_run": 0}, "seconds": 0}
+backfill-documents: 1 seed pages to back, 1 with a capture pointer
+{"updated_utc": "2026-10-29T01:55:59.669836+00:00", "seed_ids": 1, "targets_at_start": 1, "with_pointer": 1, "this_run": {"saved": 1, "failed": 0, "retry_next_run": 0}, "seconds": 0}
+{"merged_from": "/tmp/tmpcm7u3qk3/out", "texts": 1, "rows_appended": {"MIRROR_INDEX.jsonl": 0, "MIRROR_DOCUMENTS.jsonl": 1, "MIRROR_SOURCES.jsonl": 1, "MIRROR_FRAGMENTS.jsonl": 1, "MIRROR_ATTEMPTS.jsonl": 1, "MIRROR_FAILURES.jsonl": 0}}
+{"merged_from": "/tmp/tmpcm7u3qk3/out", "texts": 0, "rows_appended": {"MIRROR_INDEX.jsonl": 0, "MIRROR_DOCUMENTS.jsonl": 0, "MIRROR_SOURCES.jsonl": 0, "MIRROR_FRAGMENTS.jsonl": 0, "MIRROR_ATTEMPTS.jsonl": 0, "MIRROR_FAILURES.jsonl": 0}}
+
+ill_rows (__main__.Backfill.test_audit_sample_ignores_backfill_rows) ... ok
+test_documents_append_capture_beside_live_text (__main__.Backfill.test_documents_append_capture_beside_live_text) ... ok
+test_identity_mismatch_is_a_permanent_failure_without_rows (__main__.Backfill.test_identity_mismatch_is_a_permanent_failure_without_rows) ... ok
+test_index_asks_only_for_pages_without_a_pointer_and_only_appends (__main__.Backfill.test_index_asks_only_for_pages_without_a_pointer_and_only_appends) ... ok
+test_index_falls_back_to_one_wayback_query_per_page (__main__.Backfill.test_index_falls_back_to_one_wayback_query_per_page) ... ok
+test_local_run_into_base_is_append_only (__main__.Backfill.test_local_run_into_base_is_append_only) ... ok
+test_merge_appends_once_and_refuses_bad_rows (__main__.Backfill.test_merge_appends_once_and_refuses_bad_rows) ... ok
+test_seed_is_live_ids_minus_mirrored_ids (__main__.Backfill.test_seed_is_live_ids_minus_mirrored_ids) ... ok
+test_app_and_other_hosts_are_refused_before_any_connection (__main__.HostGuard.test_app_and_other_hosts_are_refused_before_any_connection) ... ok
+test_app_host_is_not_an_archive_host (__main__.HostGuard.test_app_host_is_not_an_archive_host) ... ok
+test_process_lock_refuses_app_dns (__main__.HostGuard.test_process_lock_refuses_app_dns) ... ok
+test_redirect_to_app_is_refused (__main__.HostGuard.test_redirect_to_app_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.058s
+
+OK
+
+{"seed_ids": 516, "live_only_now": 516, "seed_already_mirrored": 0, "live_only_not_in_seed": []}
+backfill-index: 516 seed pages without a saved capture, 60 without any pointer
+CC-MAIN-2026-43: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-39: skipped (gave up after retries: HTTP 504)
+CC-MAIN-2026-34: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-30: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-25: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-21: 0 captures, 0 seed pages found; 60 still missing
+CC-MAIN-2026-17: skipped (gave up after retries: HTTP 504)
+CC-MAIN-2026-12: 0 captures, 0 seed pages found; 60 still missing
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 603, in _get_chunk_left
+    chunk_left = self._read_next_chunk_size()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 561, in _read_next_chunk_size
+    return int(line, 16)
+           ^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 621, in _read_chunked
+    while (chunk_left := self._get_chunk_left()) is not None:
+                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 605, in _get_chunk_left
+    raise IncompleteRead(b'')
+http.client.IncompleteRead: IncompleteRead(0 bytes read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/poggio-archive-backfill/job.py", line 60, in <module>
+    index = app_mirror.run_backfill_index(base, out, ids, lambda: app_mirror.cc_collections(CRAWLS),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/app-executive-orders/app_mirror.py", line 604, in run_backfill_index
+    records = cc_query(crawl, cc_throttle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/app-executive-orders/app_mirror.py", line 191, in cc_query
+    status, _, raw = http_get(base + "&showNumPages=true", throttle=throttle)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/app-executive-orders/app_mirror.py", line 165, in http_get
+    return r.status, {k.lower(): v for k, v in r.headers.items()}, r.read()
+                                                                   ^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 488, in read
+    return self._read_chunked(amt)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/http/client.py", line 633, in _read_chunked
+    raise IncompleteRead(b''.join(value)) from exc
+http.client.IncompleteRead: IncompleteRead(40 bytes read)

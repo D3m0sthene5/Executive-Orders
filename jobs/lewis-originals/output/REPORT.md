@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-29T07:26:45Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-29T16:51:19Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 5306 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5251).
 
@@ -12,9 +12,11 @@ Generated 2026-10-29T07:26:45Z. Leads and verified file facts; no count or grade
 | gpo_bound_volumes | in_volume_range_not_found | 1188 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
-| federal_register | fetch_request_proposed | 265 |
 | federal_register | fr_era_not_in_ofr_catalog | 185 |
+| federal_register | queued_result_not_published | 128 |
+| federal_register | retrieval_recorded_needs_review | 115 |
 | proquest_local | pinakes_file_record_pages_unchecked | 98 |
+| federal_register | queued_not_attempted_budget | 22 |
 | proquest_supplied_link | awaiting_acquisition | 2 |
 
 ## ProQuest folder
@@ -25,15 +27,15 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Proposed fetch requests
 
-265 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
+0 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
 
 ## Next actions by owner
 
 | Owner | Orders |
 |---|---:|
 | owner | 2665 |
-| agent_check | 2376 |
-| machine_job | 265 |
+| agent_check | 2491 |
+| machine_job | 150 |
 
 ## First twenty rows
 
@@ -62,7 +64,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-1 of 5306 targets advanced this run (5021 never searched yet); 17 of 12 requests used. 4147 hits on file, 41 pages confirmed to name the order (29 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 5306 targets advanced this run (4921 never searched yet); 1038 of 1500 requests used. 5821 hits on file, 78 pages confirmed to name the order (52 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -70,13 +72,13 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | bing_rss | blocked_by_robots_txt |
 | brave_api | needs_key |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | error |
-| duckduckgo_lite | ok |
-| federal_register_api | not_tried |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
+| federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | not_tried |
-| hathitrust_catalog | not_tried |
+| govinfo_search_page | ok |
+| hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
 | loc_books | ok |
 | loc_manuscripts | ok |
@@ -84,8 +86,8 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | not_tried |
+| presidency_project | ok |
 | serpapi_google | needs_key |
-| wikipedia_search | not_tried |
-| wikisource_search | not_tried |
+| wikipedia_search | blocked_by_robots_txt |
+| wikisource_search | blocked_by_robots_txt |
 | yandex_html | blocked_by_robots_txt |

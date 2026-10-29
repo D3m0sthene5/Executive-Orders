@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 here = pathlib.Path(__file__).resolve().parent
-tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_frpages"], cwd=here)
+tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_frpages", "test_land_handoff"], cwd=here)
 if tests.returncode:
     sys.exit("Unit tests failed; fr-pages did not run.")
 

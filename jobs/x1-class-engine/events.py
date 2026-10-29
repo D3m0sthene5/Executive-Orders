@@ -1,56 +1,23 @@
-"""X1 step 3: map orders to candidate mass-ending events (data/EVENTS.json).
+"""Map orders to candidate events using existing retained source representations.
 
-An event's source counts as held only when the source-ladder job has a record
-for its URL (jobs/source-ladder/output/SOURCES.jsonl) and every verification
-phrase is found in that record's extracted text. Until then every mapping says
-source_pending. A mapping is always a candidate: it fills no claim field.
+Panizzi and Astra retention are read independently. Phrase screens, raw-custody
+facts, and alternative excerpts remain distinct. Mappings fill no claim fields.
 """
 import csv, json, re
 
 import taxonomy as tx
+import event_sources
 
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 
 
 def held_sources(repo):
-    """{url: (sha256, text)} from the source-ladder output."""
-    out = {}
-    p = repo / "jobs/source-ladder/output/SOURCES.jsonl"
-    if not p.exists():
-        return out
-    for line in open(p):
-        try:
-            r = json.loads(line)
-        except ValueError:
-            continue
-        for u in {r.get("url"), r.get("requested_url")} - {None}:
-            text = ""
-            if r.get("text_path"):
-                tp = repo / "jobs/source-ladder/output" / r["text_path"]
-                if tp.exists():
-                    text = tp.read_text(encoding="utf-8", errors="replace")
-            out[u] = (r.get("sha256", ""), text)
-    return out
+    """URL -> distinct held-text representations with provenance and validation."""
+    return event_sources.read_sources(repo)
 
 
 def source_state(repo, events):
-    held = held_sources(repo)
-    states = {}
-    for e in events:
-        rows = []
-        for s in e["sources"]:
-            h = held.get(s["url"])
-            if not h:
-                rows.append({"citation": s["citation"], "url": s["url"], "state": "source_pending", "sha256": ""})
-                continue
-            sha, text = h
-            flat = tx.compact(text)
-            missing = [p for p in s["verify_phrases"] if tx.compact(p) not in flat]
-            rows.append({"citation": s["citation"], "url": s["url"], "sha256": sha,
-                         "state": "held_phrases_found" if not missing else "held_phrases_missing",
-                         "phrases_missing": missing})
-        states[e["event_id"]] = rows
-    return states
+    return event_sources.evaluate(repo, events, tx.compact)
 
 
 def order_date(wpa_row, year):
@@ -97,6 +64,7 @@ def map_events(repo, job, types, wpa):
             out.append({"instrument_id": iid, "event_id": e["event_id"], "role": e["role"], "order_date": date,
                         "basis": basis, "type": r["type"], "type_confidence": r["confidence"],
                         "event_candidate_date": e["candidate_date"],
+                        "source_records": json.dumps(st, sort_keys=True),
                         "sources_state": "all_held_phrases_found" if all(s["state"] == "held_phrases_found" for s in st)
                         else "source_pending" if any(s["state"] == "source_pending" for s in st) else "held_check_failed",
                         "agent_must_check": "scope of the event; earlier end; savings; the order's own terms"})

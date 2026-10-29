@@ -43,7 +43,7 @@ LEGACY = "legacy_reports.txt"
 # Agent notes entries dated on or after this day must cite a Kean ask id when they ask the owner something.
 KEAN_START = "2026-10-28"
 # The brief is read at the start of every session, so it stays small: the newest findings only, the rest by search.
-BRIEF_FINDINGS = 10
+BRIEF_FINDINGS = 8
 BRIEF_MAX_BYTES = 8192
 DRIFT_BEGIN, DRIFT_END = "<!-- kean:drift -->", "<!-- /kean:drift -->"
 RULINGS_DIR = "research/readiness/owner_rulings/"

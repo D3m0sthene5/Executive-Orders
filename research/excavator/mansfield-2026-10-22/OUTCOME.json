@@ -1,0 +1,104 @@
+{
+ "workflow": "MANSFIELD",
+ "date": "2026-10-22",
+ "pool": "MANSFIELDNO 564 (POOL.csv; 179 YES not attempted)",
+ "seed": 20261022,
+ "probe": {
+  "attempted": 30,
+  "submitted": 14,
+  "blocked": 16,
+  "blocks_justified": 16,
+  "blocks_unjustified": 0,
+  "plants_placed": 5,
+  "plants_caught": 4,
+  "genuine_reviewed": 9,
+  "genuine_upheld": 9,
+  "genuine_rejected": 0,
+  "rejected_mechanical": 0,
+  "upheld_after_reveal": 5,
+  "fetch_lines_enqueued": 8,
+  "upheld_per_attempt": 0.3,
+  "upheld_per_attempt_with_reveal": 0.4667,
+  "genuine_rejection_share": 0.0,
+  "plants_caught_share": 0.8
+ },
+ "gate": {
+  "rule": "after 30 attempts: upheld genuine per attempt >= 0.5 and genuine rejections <= 25% of genuine reviewed",
+  "upheld_per_attempt_passes": false,
+  "with_reveal_passes": false,
+  "rejection_passes": true
+ },
+ "filed_claims": [
+  "EO:10390",
+  "EO:10926",
+  "EO:10622",
+  "EO:11005",
+  "EO:11310",
+  "EO:13032",
+  "EO:10972",
+  "EO:11040",
+  "EO:11078",
+  "EO:11135",
+  "EO:13997",
+  "EO:9922",
+  "EO:10312",
+  "EO:5825"
+ ],
+ "per_batch": [
+  {
+   "batch": "b01",
+   "attempted": 10,
+   "submitted": 2,
+   "blocked": 8,
+   "plants": "1/1",
+   "genuine_upheld": 1,
+   "genuine_rejected": 0,
+   "upheld_after_reveal": 1,
+   "filed": [
+    "EO:10390",
+    "EO:10926"
+   ]
+  },
+  {
+   "batch": "b02",
+   "attempted": 10,
+   "submitted": 5,
+   "blocked": 5,
+   "plants": "1/2",
+   "genuine_upheld": 3,
+   "genuine_rejected": 0,
+   "upheld_after_reveal": 2,
+   "filed": [
+    "EO:10622",
+    "EO:11005",
+    "EO:11310",
+    "EO:13032",
+    "EO:10972"
+   ]
+  },
+  {
+   "batch": "b03",
+   "attempted": 10,
+   "submitted": 7,
+   "blocked": 3,
+   "plants": "2/2",
+   "genuine_upheld": 5,
+   "genuine_rejected": 0,
+   "upheld_after_reveal": 2,
+   "filed": [
+    "EO:11040",
+    "EO:11078",
+    "EO:11135",
+    "EO:13997",
+    "EO:9922",
+    "EO:10312",
+    "EO:5825"
+   ]
+  }
+ ],
+ "certified_whole_lifecycle": 0,
+ "probe_gate_passed": false,
+ "gate_failure": "upheld genuine per attempt 0.3 (with after-reveal re-reviews 0.4667) is under 0.5; genuine rejections 0.0",
+ "upheld_per_attempt": 0.3,
+ "plants_caught_share": 0.8
+}

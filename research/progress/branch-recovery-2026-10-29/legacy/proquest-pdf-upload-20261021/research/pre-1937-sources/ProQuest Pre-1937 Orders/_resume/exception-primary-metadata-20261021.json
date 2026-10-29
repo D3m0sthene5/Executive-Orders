@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-10-21",
+  "purpose": "Verified public-source metadata for resuming native catalog searches for acquisition exceptions. This is not a download manifest or a determination of archival acceptance.",
+  "scope": {
+    "primary_source_exception_count": 14,
+    "captured_catalog_review_count": 1,
+    "original_inventory": "inventory.json",
+    "captured_review_source": "automatic-progress.json",
+    "captured_review_source_updated": "2026-10-21T15:04:48.305504+00:00",
+    "sanitization": "Only public official-source URLs and descriptive catalog metadata are retained. No browser sessions, authentication data, account identifiers, Windows paths, expiring catalog URLs, or inferred PDF URLs are included.",
+    "limitations": [
+      "A zero-result native search does not establish that an order or catalog record is absent.",
+      "Historical publication or classification notes do not establish present classification or catalog availability.",
+      "Keyword and number candidates require live catalog number, date, and subject verification before a supplied ID is marked downloaded.",
+      "No progress state was modified while preparing this support file."
+    ]
+  },
+  "exceptions": [
+    {
+      "supplied_id": "EO:2656A",
+      "supplied_number": "2656A",
+      "supplied_year": 1917,
+      "verification_status": "official_metadata_unresolved",
+      "official_number": null,
+      "date": null,
+      "title_or_subject": null,
+      "native_keywords": [],
+      "sources": [],
+      "notes": ["The bounded official-source search produced numerical false positives. No alternative spelling, date, or subject was verified. The supplied year is inventory metadata, not independently verified official metadata."]
+    },
+    {
+      "supplied_id": "EO:2859A",
+      "supplied_number": "2859A",
+      "supplied_year": 1918,
+      "verification_status": "verified_official_full_text",
+      "official_number": "2859–A",
+      "date": "1918-05-11",
+      "title_or_subject": "Authorizing the Taking Over of the Martha Washington",
+      "native_keywords": ["Martha Washington"],
+      "sources": [{"url": "https://history.state.gov/historicaldocuments/frus1918Supp02/d537", "publisher": "U.S. Department of State, Office of the Historian", "publication": "Foreign Relations of the United States, 1918, Supplement 2", "locator": "Document 537; printed page 456", "verification_method": "Opened official HTML full text", "supports": ["number", "date", "subject", "Woodrow Wilson signature"]}],
+      "notes": ["The order directs the U.S. Shipping Board to take possession and title of the passenger steamship Martha Washington at New York.", "The official display uses an en dash. Unsuffixed EO2859 concerns the National Research Council and is a different order."]
+    },
+    {
+      "supplied_id": "EO:3001",
+      "supplied_number": "3001",
+      "supplied_year": 1918,
+      "verification_status": "verified_official_catalog_scan",
+      "official_number": "3001",
+      "date": "1918-11-19",
+      "title_or_subject": "Penalty envelops: allotting $5,000 for government penalty envelopes under the Postmaster General",
+      "native_keywords": ["penalty envelops", "penalty envelopes", "Postmaster General"],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/GOVPUB-GP3-56bd83a6f3f5149ff331b95fcb260bda/pdf/GOVPUB-GP3-56bd83a6f3f5149ff331b95fcb260bda.pdf", "publisher": "U.S. Government Printing Office", "publication": "Monthly catalogue, United States public documents, December 1918", "pdf_page_1_based": 51, "printed_page": "299", "locator": "Penalty envelops entry", "verification_method": "Rendered and visually inspected the actual official PDF page because OCR was corrupt", "supports": ["number", "date", "subject"]}],
+      "notes": ["The $5,000 was allotted from the appropriation for national security to prepare government penalty envelopes. The printed catalogue spells the heading envelops."]
+    },
+    {
+      "supplied_id": "EO:3278A",
+      "supplied_number": "3278A",
+      "supplied_year": null,
+      "verification_status": "official_numbering_conflict_subject_and_date_verified",
+      "official_number": null,
+      "official_number_candidates": ["3278-A", "3287A"],
+      "date": "1920-06-02",
+      "title_or_subject": "Reinstatement of persons nearing retirement age",
+      "native_keywords": ["reinstatement", "retirement age"],
+      "native_number_candidates": ["3278-A", "3287-A"],
+      "sources": [
+        {"url": "https://www.archives.gov/federal-register/executive-orders/1947.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1947", "locator": "EO9830 revocation list", "verification_method": "Opened official HTML", "supports": ["3278-A number", "June 2, 1920 date"]},
+        {"url": "https://www.archives.gov/federal-register/codification/executive-order/09830.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Order 9830", "locator": "Part III, June 2, 1920 unnumbered order; editorial footnote 2", "verification_method": "Opened official HTML", "supports": ["subject", "date", "editorial note assigning number 3287A"]}
+      ],
+      "ambiguity": "NARA's disposition table lists 3278-A. NARA's full EO9830 text describes the same June 2, 1920 order by subject, but its footnote says the order was subsequently numbered 3287A. Do not silently select or normalize either number. Verify live catalog date and subject for both candidates.",
+      "notes": ["The original inventory row supplies no year, title, PDF URL, or record URL."]
+    },
+    {
+      "supplied_id": "EO:4477",
+      "supplied_number": "4477",
+      "supplied_year": 1926,
+      "verification_status": "verified_official_catalog",
+      "official_number": "4477",
+      "date": "1926-07-14",
+      "title_or_subject": "Order of precedence for performing the Secretary of War's duties during absences",
+      "native_keywords": ["Secretary of War", "chief of staff", "order of precedence"],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/GOVPUB-GP3-f2b134f617420fb8d178fdbb8bb9e830/pdf/GOVPUB-GP3-f2b134f617420fb8d178fdbb8bb9e830.pdf", "publisher": "U.S. Government Printing Office", "publication": "Monthly catalogue, United States public documents, July 1926", "pdf_page_1_based": 66, "printed_page": "64", "locator": "War Department entry; SuDoc Pr30.5:W195/3", "verification_method": "Opened official PDF text", "supports": ["number", "date", "subject", "distinction from 4477A"]}],
+      "notes": ["Lists the assistant Secretary of War appointed under the July 2, 1926 act, chief of staff, deputy chief of staff, and adjutant general in that order of precedence.", "EO4477A is separately listed for Henry H. Morgan's retirement on the same date. The captured native 4477 review opened 4477-A; that record must not satisfy supplied EO4477."]
+    },
+    {
+      "supplied_id": "EO:4630",
+      "supplied_number": "4630",
+      "supplied_year": 1927,
+      "verification_status": "verified_official_catalog",
+      "official_number": "4630",
+      "date": "1927-04-13",
+      "title_or_subject": "Quarters and subsistence allowances for enlisted men not furnished quarters or rations in kind",
+      "native_keywords": ["quarters", "subsistence", "enlisted men"],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/GOVPUB-GP3-641b6c204870e363a48e2d5fa1cff15b/pdf/GOVPUB-GP3-641b6c204870e363a48e2d5fa1cff15b.pdf", "publisher": "U.S. Government Printing Office", "publication": "Monthly catalogue, United States public documents", "pdf_page_1_based": 65, "locator": "Pay, Army entry; SuDoc Pr30.5:Su16/7", "verification_method": "Fetched actual official PDF in memory and extracted its text", "supports": ["number", "date", "subject", "two-page original"]}],
+      "notes": ["Applies to enlisted men in the Army, Navy, Marine Corps, Coast Guard, Coast and Geodetic Survey, and Public Health Service."]
+    },
+    {
+      "supplied_id": "EO:4935",
+      "supplied_number": "4935",
+      "supplied_year": 1928,
+      "verification_status": "verified_official_catalog",
+      "official_number": "4935",
+      "date": "1928-07-16",
+      "title_or_subject": "Appointment of Madge Herron to an appropriate position in the Department of Commerce",
+      "native_keywords": ["Madge Herron"],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/GOVPUB-GP3-80b374038431ab37993e9eec8656753c/pdf/GOVPUB-GP3-80b374038431ab37993e9eec8656753c.pdf", "publisher": "U.S. Government Printing Office", "publication": "Monthly catalogue, United States public documents, July 1928", "pdf_page_1_based": 54, "printed_page": "52", "locator": "Herron, Madge entry; SuDoc Pr30.5:H436", "verification_method": "Opened official PDF text", "supports": ["number", "date", "subject", "one-page original"]}]
+    },
+    {
+      "supplied_id": "EO:4978",
+      "supplied_number": "4978",
+      "supplied_year": 1928,
+      "verification_status": "verified_official_catalog",
+      "official_number": "4978",
+      "date": "1928-10-16",
+      "title_or_subject": "Appointment of Mrs. Grace G. Baldwin to an appropriate clerical position in the Department of Commerce",
+      "native_keywords": ["Grace G. Baldwin", "Grace Baldwin"],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/GOVPUB-GP3-c8fcd4573e5d65c88e1366d6eedb5c91/pdf/GOVPUB-GP3-c8fcd4573e5d65c88e1366d6eedb5c91.pdf", "publisher": "U.S. Government Printing Office", "publication": "Monthly catalogue, United States public documents, October 1928", "pdf_page_1_based": 63, "printed_page": "257", "locator": "Baldwin, Mrs. Grace G. entry; SuDoc Pr30.5:B193", "verification_method": "Opened official PDF text", "supports": ["number", "date", "subject", "one-page original"]}]
+    },
+    {
+      "supplied_id": "EO:9132A",
+      "supplied_number": "9132A",
+      "supplied_year": 1942,
+      "verification_status": "verified_official_disposition_metadata",
+      "official_number": "9132-A",
+      "date": "1942-04-13",
+      "title_or_subject": "Assignment of Frequencies to Government Radio Stations (Confidential)",
+      "native_keywords": ["Assignment of Frequencies", "Government Radio Stations"],
+      "sources": [{"url": "https://www.archives.gov/federal-register/executive-orders/1942.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1942", "locator": "Executive Order 9132-A entry", "verification_method": "Opened official HTML", "supports": ["number", "date", "title", "publication note"]}],
+      "notes": ["NARA states it was not received for Federal Register publication and was superseded by EO9427-A of February 29, 1944. Historical confidentiality wording does not establish present classification."]
+    },
+    {
+      "supplied_id": "EO:9427A",
+      "supplied_number": "9427A",
+      "supplied_year": 1944,
+      "verification_status": "verified_official_disposition_metadata",
+      "official_number": "9427-A",
+      "date": "1944-02-29",
+      "title_or_subject": "Assignment of Frequencies to Government Radio Stations",
+      "native_keywords": ["Assignment of Frequencies", "Government Radio Stations"],
+      "sources": [{"url": "https://www.archives.gov/federal-register/executive-orders/1944.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1944", "locator": "Executive Order 9427-A entry", "verification_method": "Opened official HTML", "supports": ["number", "date", "title", "publication note"]}],
+      "notes": ["NARA describes this order as classified and not received for Federal Register publication. This historical note does not establish present classification."]
+    },
+    {
+      "supplied_id": "EO:10026A",
+      "supplied_number": "10026A",
+      "supplied_year": 1949,
+      "verification_status": "verified_official_disposition_and_historical_metadata",
+      "official_number": "10026-A",
+      "date": "1949-01-05",
+      "effective_date": "1949-01-01",
+      "title_or_subject": "Korea",
+      "native_keywords": ["Korea", "relief and rehabilitation", "Economic Cooperation Administrator"],
+      "sources": [
+        {"url": "https://www.archives.gov/federal-register/executive-orders/1949.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1949", "locator": "Executive Order 10026-A entry", "verification_method": "Opened official HTML", "supports": ["number", "date", "title", "publication note"]},
+        {"url": "https://history.state.gov/historicaldocuments/frus1949v07p2/d189", "publisher": "U.S. Department of State, Office of the Historian", "publication": "Foreign Relations of the United States, 1949, The Far East and Australasia, Volume VII, Part 2", "locator": "Document 189, Editorial Note", "verification_method": "Opened official HTML", "supports": ["number", "date", "effective date", "subject context"]}
+      ],
+      "notes": ["NARA states it was not received for Federal Register publication. State Department explains that it continued U.S. assistance to Korea and transferred the Army's relief and rehabilitation program to the Economic Cooperation Administrator. State Department calls the order confidential in its historical account; present classification is not established."]
+    },
+    {
+      "supplied_id": "EO:10369A",
+      "supplied_number": "10369A",
+      "supplied_year": null,
+      "verification_status": "official_number_and_date_verified_subject_unknown",
+      "official_number": "10369-A",
+      "date": "1952-07-01",
+      "title_or_subject": null,
+      "native_keywords": [],
+      "sources": [{"url": "https://www.govinfo.gov/content/pkg/CPRT-93SPRT37998O/pdf/CPRT-93SPRT37998O.pdf", "publisher": "U.S. Senate / U.S. Government Printing Office", "publication": "Senate committee print, govinfo package CPRT-93SPRT37998O", "pdf_page_1_based": 38, "printed_page": "32 / CRS-11", "verification_method": "Fetched actual official PDF in memory and extracted its text after web rendering exceeded size limits", "supports": ["number", "date"]}],
+      "notes": ["The passage explicitly dates Executive Order 10369-A to July 1, 1952 but supplies no subject. It says the original was then in White House files and refers to page 40 of the 1957 House Government Operations print Executive Orders and Proclamations. These are historical statements, not present availability findings.", "The original inventory row supplies only the number and a null year."]
+    },
+    {
+      "supplied_id": "EO:10571A",
+      "supplied_number": "10571A",
+      "supplied_year": 1954,
+      "verification_status": "verified_official_disposition_metadata",
+      "official_number": "10571-A",
+      "date": "1954-10-26",
+      "title_or_subject": "Assignment of Frequencies to Government Radio Stations",
+      "native_keywords": ["Assignment of Frequencies", "Government Radio Stations"],
+      "sources": [{"url": "https://www.archives.gov/federal-register/executive-orders/1954.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1954", "locator": "Entry after unsuffixed EO10571 and before EO10572; number split across lines as 10571 then -A", "verification_method": "Opened official HTML", "supports": ["number", "date", "title", "publication note"]}],
+      "notes": ["The NARA display splits the number across lines. It says this confidential order was not received for Federal Register publication. Present classification is not established."]
+    },
+    {
+      "supplied_id": "EO:10695A",
+      "supplied_number": "10695A",
+      "supplied_year": 1957,
+      "verification_status": "verified_official_disposition_metadata",
+      "official_number": "10695-A",
+      "date": "1957-01-16",
+      "title_or_subject": "Radio Frequencies",
+      "native_keywords": ["Radio Frequencies"],
+      "sources": [{"url": "https://www.archives.gov/federal-register/executive-orders/1957.html", "publisher": "National Archives, Office of the Federal Register", "publication": "Executive Orders Disposition Tables, 1957", "locator": "Executive Order 10695-A entry", "verification_method": "Opened official HTML", "supports": ["number", "date", "title", "publication note"]}],
+      "notes": ["NARA says this confidential order was not received for Federal Register publication; the entry is based on references in EO10995 and EO11556. It records amendment by EO10995 and revocation by EO11556. Present classification is not established."]
+    }
+  ],
+  "captured_catalog_reviews": [
+    {
+      "supplied_id": "EO:343A",
+      "catalog_query": "343-A",
+      "source": "Captured native result-list UI in automatic-progress.json; inspected offline only",
+      "confirmed_in_source_checkpoint": false,
+      "result_count": 2,
+      "date": "1905-07-21",
+      "administration": "Theodore Roosevelt (1901-1909)",
+      "common_title": "Acting Interior Secretary's recommendation of July 20 that additional lands within the Uinta Indian Reservation, Utah, be reserved to protect the water rights of the Indians",
+      "results": [
+        {"observed_result_number": 1, "title_suffix": "[related correspondence]", "catalog_classification": "Not signed by the President; Numbered Executive Orders", "pages": 1, "displayed_pdf_size": "57KB", "role_assessment": "Related correspondence, explicitly identified by catalog title"},
+        {"observed_result_number": 2, "title_suffix": null, "catalog_classification": "Not signed by the President; Numbered Executive Orders", "pages": 2, "displayed_pdf_size": "216KB", "role_assessment": "Strongest main-document candidate because it lacks the related-correspondence suffix; not yet verified at record level"}
+      ],
+      "signed_filter_guidance": "The captured facet says Not signed by the President (2). No Signed by the President filter was displayed. A signed-only rule would incorrectly exclude both observed results.",
+      "resume_action": "Open the title without the related-correspondence suffix (observed result 2), inspect Summary/Details for Item No. 343-A, date and accession, then use its visible native PDF control if verified. Identify by title rather than assuming the result order remains stable.",
+      "limitations": ["No accession number or record-level Item No. was captured for either result.", "Displayed PDF sizes and controls do not prove a saved file or downloaded bytes.", "No source-checkpoint confirmation was added."]
+    }
+  ]
+}

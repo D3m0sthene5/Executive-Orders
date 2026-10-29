@@ -1,0 +1,22 @@
+{
+ "schema": "lambertini-iii-ai-review/v1",
+ "record_kind": "AI review record (hypothesis; not eo-lifecycle-review/v1; not certification)",
+ "batch": "f11490/s1",
+ "reviewed_on": "2026-10-21",
+ "reviewer": "independent Opus reviewer (scratch review_copy; held repo sources; explicit D6 step)",
+ "review_target": "scratch review_copy containing one planted defect; the EO:11089 rejection is the plant catch (sec3 first_end.date planted as 1969-10-30); the genuine producer line carries 1969-10-28",
+ "verdicts": [
+  {
+   "order": "EO:11087",
+   "verdict": "upheld",
+   "savings_overturned": false,
+   "reason": "No defect found. All 8 clause quotes and the original_representation quote match the held text exactly (jobs/fr-originals/data/full_run/texts/EO_11087.txt, text_sha256 matches). The inventory runs from Sec. 1 at char 851 to the end of Sec. 8 Prior Actions with no gap or overlap, and each clause span equals its override. The ending quote matches the held official EO 11490 FR text exactly (jobs/source-ladder/output/texts/queue_EO_11490_..._6c215ad6d9.txt, sha matches; this is the official FR-1969-10-30.pdf text, not the APP transcription). Sec. 3015 item (14) revokes the whole order with no qualifier. Date 1969-10-28 is correct: 'The White House, October 28,1969'; F.R. Doc. 69-13005 filed Oct. 28, 1969; the 10-30 date is only when it was printed. Every clause ends on 1969-10-28 by EO:11490. Savings transferred_or_accrued holds up. The sec. 101 quote ('21 Executive orders and 2 Defense Mobilization orders') is verbatim. Sec. 3014 is limited by 'Except as provided in Section 3015'. Part 2 / sec. 201 (printed '2Q1') re-assigns the State functions. D6: the OFR EDGES.csv shows only the EO 11490 revocation (LE-0cb2dfb3b2fe, LE-cc166427d8c8). My own by-number scan of the held FR texts finds only non-references (the $11,087 pay figure in EO 12578 and an index page in EO 9479). No earlier end, no amendment before 1969, no strike-and-reinsert, and no pending-ruling issue arises."
+  },
+  {
+   "order": "EO:11089",
+   "verdict": "rejected",
+   "savings_overturned": false,
+   "reason": "Defects: (1) In clause EO:11089#sec3 (Resources Evaluation), first_end.date is '1969-10-30'. That is the Federal Register printing date ('THURSDAY, OCTOBER 30, 1969'), not the effective date. EO 11490 has no effective-date wording and took effect on signing: 'The White House, October 28,1969'; F.R. Doc. 69-13005 filed Oct. 28, 1969. The correct per-item first end is 1969-10-28. (2) Within the same item, that date contradicts its own first_end.mechanism, which says 'took effect on signing, October 28, 1969 ... printed October 30, 1969, which is not the effective date'. It also contradicts its own judgment_reason ('effective on signing 1969-10-28'). (3) It is inconsistent with whole_order_end.date (1969-10-28) and with the other six clauses (all 1969-10-28). A clause cannot end two days after the whole-order revocation that ends it. Everything else checks out. All 7 clause quotes match the held EO_11089.txt exactly (sha matches), and the inventory runs from char 853 to the end of Sec. 7 with no gap. The ending quote (sec. 3015 item (16)) matches the held official EO 11490 FR text exactly. Part 14 / sec. 1401 (AEC) re-assigns the functions, so savings transferred_or_accrued is upheld. D6: EDGES.csv shows only the EO 11490 revocation (LE-2cf2d7f5e047, LE-5e97da18883f). My own scan of the held FR texts finds only FR page-number hits (EO 13720, EO 14016) and index pages (EO 9367, EO 9479). No earlier end, no amendment before 1969, no strike-and-reinsert and no pending-ruling issue. The fix is to set sec3 first_end.date to 1969-10-28."
+  }
+ ]
+}

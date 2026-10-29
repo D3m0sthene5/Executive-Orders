@@ -289,3 +289,73 @@ class BuildIntegrationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PrintedReferenceTests(unittest.TestCase):
+    """A later order that cites the target by number but changes nothing it can quote (an extension,
+    a confirmation, a boundary modification) still becomes a known actor whose text enters the packet."""
+
+    def setUp(self):
+        BuildIntegrationTests.setUp(self)
+        text = ("EXECUTIVE ORDER 7\nWhereas John T. Crowley was exempted from compulsory retirement for one year by "
+                "Executive Order No. 4, dated January 1, 1990, he is hereby further exempted until May 31, 1993.\n")
+        rel = "jobs/future-source/data/texts/EO_7.txt"
+        path = self.repo / rel
+        path.write_bytes(text.encode("utf-8"))
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        prov = self.repo / "jobs/future-source/data/PROVENANCE.json"
+        data = json.loads(prov.read_text(encoding="utf-8"))
+        data["representations"].append({"instrument_id": "EO:7", "text_path": rel, "kind": "original_representation",
+                                        "acceptable_as_original": True, "signing_date": "1992-01-01",
+                                        "source": {"url": "https://example.gov/EO_7", "sha256": digest,
+                                                   "text_sha256": digest, "page_or_item": "PDF page 1"}})
+        write_json(prov, data)
+        census = self.repo / "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
+        with census.open("a", encoding="utf-8", newline="") as fh:
+            fh.write("EO:7,1\n")
+        self.status.write_text(self.status.read_text(encoding="utf-8") + "EO:4,no\nEO:7,no\n", encoding="utf-8")
+
+    run_build, dossier = BuildIntegrationTests.run_build, BuildIntegrationTests.dossier
+
+    def test_citation_without_change_provision_is_a_known_actor(self):
+        self.run_build()
+        d = self.dossier("EO:4")
+        self.assertIn(B.CITED_NO_PROVISION + ": EO:7", d["missing"])
+        self.assertNotIn(B.TARGET_NOT_LOCATED + ": EO:7", d["missing"])
+        self.assertEqual([a["actor_id"] for a in d["actor_contexts"]], ["EO:7"])
+        self.assertIn("ACTOR_TEXT:EO:7", d["evidence"])
+        self.assertIn("further exempted", d["evidence"]["ACTOR_TEXT:EO:7"]["text"])
+        # No provision, no event: the chain stays empty and nothing is asserted.
+        self.assertEqual(d["chain"]["events"], [])
+        self.assertEqual(d["actor_provisions"], [])
+        rows = read_jsonl(self.out / "MISSING_SOURCES.jsonl")
+        row = next(r for r in rows if r["target_id"] == "EO:4" and r["actor_id"] == "EO:7")
+        self.assertEqual(row["reason"], B.CITED_NO_PROVISION)
+        self.assertEqual(row["source_event"]["kind"], B.PRINTED_REFERENCE_KIND)
+        self.assertIn("Executive Order No. 4", row["source_event"]["context"])
+
+    def test_name_match_lead_reason(self):
+        self.assertEqual(B.unlocated_reason({"mechanism": "names_same_person"}), B.NAME_MATCH_LEAD)
+        self.assertEqual(B.unlocated_reason({"proposal": {"mechanism": "names_same_person"}}), B.NAME_MATCH_LEAD)
+        self.assertEqual(B.unlocated_reason({"kind": B.PRINTED_REFERENCE_KIND}), B.CITED_NO_PROVISION)
+        self.assertEqual(B.unlocated_reason(None), B.TARGET_NOT_LOCATED)
+
+    def test_printed_reference_outranks_a_name_match_for_the_same_pair(self):
+        nm = self.repo / "jobs/namier/output"
+        nm.mkdir(parents=True)
+        with (nm / "EDGES.csv").open("w", encoding="utf-8", newline="") as fh:
+            writer = csv.DictWriter(fh, fieldnames=["edge_id", "acting_id", "target_id", "mechanism", "qualifier"])
+            writer.writeheader()
+            writer.writerow({"edge_id": "NM-1", "acting_id": "EO:7", "target_id": "EO:4", "mechanism": "names_same_person",
+                             "qualifier": "names John T. Crowley; cites this order by number; relation by date: later"})
+            writer.writerow({"edge_id": "NM-2", "acting_id": "EO:7", "target_id": "EO:2", "mechanism": "names_same_person",
+                             "qualifier": "names John T. Crowley; does not cite this order by number; relation by date: later"})
+        self.run_build()
+        d4 = self.dossier("EO:4")
+        self.assertIn(B.CITED_NO_PROVISION + ": EO:7", d4["missing"])
+        self.assertNotIn(B.NAME_MATCH_LEAD + ": EO:7", d4["missing"])
+        row = next(r for r in read_jsonl(self.out / "MISSING_SOURCES.jsonl") if r["target_id"] == "EO:4" and r["actor_id"] == "EO:7")
+        self.assertEqual(row["source_event"]["also_names_same_person"]["mechanism"], "names_same_person")
+        d2 = self.dossier("EO:2")
+        self.assertIn(B.NAME_MATCH_LEAD + ": EO:7", d2["missing"])
+        self.assertIn("ACTOR_TEXT:EO:7", d2["evidence"])

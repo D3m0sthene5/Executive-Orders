@@ -114,6 +114,17 @@ with no override lines no report is written and the build output is unchanged.
 An accepted record enters `ACTING_PROVISIONS` as `ACT:<target>><actor>` with provenance
 `agent_located`; it is an AI-review hypothesis, never a certification, and never a status.
 
+Two other `missing` lines name known actors whose text is in the dossier (`actor_contexts`)
+without a located provision. `cited by number, no change provision located: EO:X` means the
+held text of EO:X cites this order by number in a sentence with no revoke, amend, supersede,
+transfer, abolish, terminate or rescind verb: an extension ("was exempted ... by Executive
+Order No. 6088 ... be further exempted"), a confirmation, a boundary modification, or a mere
+mention. `names the same person (name-match lead, read before use): EO:X` comes from
+`jobs/namier`: the held text of EO:X contains the full name of the person this one-person
+order concerns, whether or not it cites the number. Both are leads to read, never events;
+an act override (above) may locate a provision for the first kind but not the second, which
+names no order.
+
 A source marked `requires_page_check` also requires explicit
 `original_pages_confirmed: true` after the official pages/images were inspected;
 confirming an extracted OCR text alone does not satisfy that flag.

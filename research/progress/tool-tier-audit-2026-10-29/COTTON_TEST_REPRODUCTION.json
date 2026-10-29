@@ -1,0 +1,32 @@
+{
+  "pin": "73d99f666573ee10f5b1ff2ada60f7d9331c3952",
+  "files": [
+    {
+      "path": "/tmp/cotton-audit-xc1PUs/cotton.py",
+      "git_blob_sha1": "95dc3c8bf36c10baecf74a4012b558e9769bf7fc",
+      "expected_git_blob_sha1": "95dc3c8bf36c10baecf74a4012b558e9769bf7fc",
+      "sha256": "e4c85d25b13c73da3a13e01196ba9f8eb36e610b8116a33a8ef9eda6b2daf14b"
+    },
+    {
+      "path": "/tmp/cotton-audit-xc1PUs/test_cotton.py",
+      "git_blob_sha1": "52dfbfde52a121cf11b12f7af89c2a189ccfe8f7",
+      "expected_git_blob_sha1": "52dfbfde52a121cf11b12f7af89c2a189ccfe8f7",
+      "sha256": "320f8c93a614d718450eda2b04cbeb68a980950a9d13bd0d77e0768f154f308d"
+    }
+  ],
+  "tests": [
+    {
+      "case": "inherited_empty_prior",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_committed_bytes_are_reused_without_download (__main__.CottonTests.test_committed_bytes_are_reused_without_download) ... FAIL\n\n======================================================================\nFAIL: test_committed_bytes_are_reused_without_download (__main__.CottonTests.test_committed_bytes_are_reused_without_download)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/cotton-audit-xc1PUs/test_cotton.py\", line 83, in test_committed_bytes_are_reused_without_download\n    self.assertEqual(cotton.run(self.repo, self.job, self.out, get=get)[\"published\"], 1)\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "case": "variable_cleared",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_committed_bytes_are_reused_without_download (__main__.CottonTests.test_committed_bytes_are_reused_without_download) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+    }
+  ],
+  "network": "Test passes a stub getter; no HTTP or downloads executed."
+}

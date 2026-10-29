@@ -122,4 +122,9 @@ def main():
 
 
 if __name__ == "__main__":
+    import unittest
+    suite = unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(name)
+                               for name in ("test_x1", "test_event_sources"))
+    if not unittest.TextTestRunner(verbosity=1).run(suite).wasSuccessful():
+        sys.exit("X1 tests failed; outputs were not regenerated.")
     main()

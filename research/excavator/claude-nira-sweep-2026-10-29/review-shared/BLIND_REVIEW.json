@@ -1,0 +1,105 @@
+{
+  "reviewer": "independent Claude reviewer, separate context",
+  "model": "claude-opus-5-5 (Opus 5.5)",
+  "propositions_sha256": "6adedd77cb1fbdbebda3c6c0dcadbed928c477bf6a86145150780c8edc1b866e",
+  "propositions_sha256_matches_expected": true,
+  "pdf_sha256_verified": {
+    "98e35c567ea86208eadc55548eb7a5ea5f1edd92d8116c9e4c4847da1bab0305": true,
+    "c9fcb1910615c2d9b677700a8fa96edc8da2cfdca204ed04f51e5f8dde99ebe7": true,
+    "881859243da21bea9a6026dd5895230e0d8c3c4416afdbe41e50ad21eee10015": true
+  },
+  "verdicts": [
+    {
+      "id": "P1",
+      "verdict": "upheld",
+      "reason": "Page 375 of 49 Stat. prints chapter 246 as S.J. Res. 113, Pub. Res. No. 26, approved June 14, 1935. Section 1 strikes the two-year phrase from section 2(c) of Title I and inserts \"on April 1, 1936\". The proposition paraphrases strike-and-insert as replacing, which is accurate.",
+      "correction": null,
+      "evidence": "49 Stat. 375: \"is amended by striking out 'at the expiration of two years after the date of enactment of this Act' and inserting in lieu thereof 'on April 1, 1936'\"; margin \"[S. J. Res. 113.] [Pub. Res., No. 26.]\"; \"Approved, June 14, 1935.\""
+    },
+    {
+      "id": "P2",
+      "verdict": "upheld",
+      "reason": "The quoted repeal language is exact. The printed resolution contains no effective-date clause, deferral, or condition, so under the ordinary rule that a federal statute takes effect on its approval date unless it provides otherwise, the repeal operated from June 14, 1935. That ordinary rule is general law and is not itself printed in the held sources; no held source suggests any other date.",
+      "correction": null,
+      "evidence": "49 Stat. 375, sec. 2: \"All the provisions of Title I of such Act delegating power to the President to approve or prescribe codes of fair competition and providing for the enforcement of such codes are hereby repealed\"; \"Approved, June 14, 1935.\""
+    },
+    {
+      "id": "P3",
+      "verdict": "upheld_with_correction",
+      "reason": "Sections 3(b), 3(c) and 3(f) are described correctly. Two statements need correction. First, section 3 was not the only source of legal consequences: section 5 gave an approved code, and action complying with it, an exemption from the antitrust laws. Second, section 3(d) let the President prescribe a code only where no code had already been approved for that trade or industry, and section 7(c) separately let him prescribe limited labor codes with the same effect as an approved code.",
+      "correction": "Under NIRA as enacted, the enforcement consequences of a presidential code approval came from section 3: 3(b) (the code's provisions become the standards of fair competition for the trade or industry, and a violation in any transaction in or affecting interstate or foreign commerce is an unfair method of competition under the Federal Trade Commission Act), 3(c) (district-court equity jurisdiction to prevent and restrain violations, with district attorneys directed to sue) and 3(f) (each violation in or affecting interstate or foreign commerce is a misdemeanor, fine up to $500 per offense, each day a separate offense). Section 5 added an exemption from the antitrust laws for an approved code in effect and for action complying with it. Section 3(d) let the President, where no code had been approved for a trade or industry, prescribe a code with the same effect as one approved under 3(a); section 7(c) let him prescribe a limited code of hours, wages and working conditions with the same effect.",
+      "evidence": "48 Stat. 196, sec. 3(d): \"if no code of fair competition therefor has theretofore been approved by the President\"; 48 Stat. 198, sec. 5: \"any code ... approved, prescribed ... and in effect under this title ... shall be exempt from the provisions of the antitrust laws\""
+    },
+    {
+      "id": "P4",
+      "verdict": "upheld_with_correction",
+      "reason": "The legal conclusion is sound: once the provisions conferring approval power and the enforcement provisions were repealed, an approval order had no remaining statutory consequence to carry, so the repeal itself shows extinction of the command and supplies a reason, not only a date. Three corrections are needed. (1) Section 2 does not repeal provisions by name; it repeals them by description, which leaves an interpretive question about which subsections the description covers (3(a), 3(b), 3(c), 3(d), 3(f) clearly; section 7(b) agreements and 7(c) limited codes arguably). (2) The general savings statute (Rev. Stat. sec. 13, then 1 U.S.C. sec. 29, now 1 U.S.C. sec. 109) preserves penalties and liabilities already incurred under a repealed statute; this is an accrued-liability effect that does not keep the command operative, but the record should not say the repeal extinguished every legal consequence. That statute is not among the held sources. (3) An order that amends, stays or exempts from a code ends with the code only as to its prospective operation; any separate command in a mixed order needs its own analysis.",
+      "correction": "Because S.J. Res. 113 section 2 repealed, by description rather than by section number, all Title I provisions delegating power to approve or prescribe codes and providing for their enforcement, it removed every statutory consequence on which a code approval operated. It therefore extinguished the prospective operative effect of every executive order whose only operative command approves, prescribes, amends, modifies, stays or exempts from a section 3 code, and supplies a reason (not merely a later date) for recording June 14, 1935 as the end of such a command, unless the order ended earlier by its own terms or by cancellation or modification under section 10(b). Liabilities already incurred for earlier violations were preserved by the general savings statute, which is not a held source; that preservation is an accrued effect and does not keep the command operative.",
+      "evidence": "49 Stat. 375, sec. 2: \"All the provisions of Title I of such Act delegating power to the President to approve or prescribe codes ... are hereby repealed\" (no section numbers named)."
+    },
+    {
+      "id": "P5",
+      "verdict": "upheld_with_correction",
+      "reason": "The date and the delegation holding are correct, and the Court did hold the code provisions in question invalid. The proposition omits that the invalidity holding rested on two independent grounds, the second being that the provisions regulated intrastate transactions affecting interstate commerce only indirectly. The omission matters because only the delegation ground reaches every section 3 code; the commerce ground was applied to the defendants' local transactions.",
+      "correction": "Schechter Poultry Corp. v. United States, 295 U.S. 495, was decided May 27, 1935. The Court held that the code-making authority conferred by section 3 is an unconstitutional delegation of legislative power, and, on that ground and on the separate ground that the provisions attempted to regulate intrastate transactions affecting interstate commerce only indirectly, held the Live Poultry Code provisions in question invalid and reversed the convictions (No. 854 reversed; No. 864 affirmed).",
+      "evidence": "295 U.S. at 551: \"On both the grounds we have discussed, the attempted delegation of legislative power, and the attempted regulation of intrastate transactions ... we hold the code provisions here in question to be invalid\""
+    },
+    {
+      "id": "P6",
+      "verdict": "rejected",
+      "reason": "Nothing in S.J. Res. 113 defers section 2. The same resolution's section 1 struck the two-year expiry from section 2(c) and substituted April 1, 1936, so Title I would not otherwise have expired on June 16, 1935; that date ceased to be an expiry date on June 14. EO 7075 (June 15, 1935) already acts under Title I 'as amended by' the resolution and 'subject to the limitations' it imposes, which is consistent with the repeal operating before June 16. A code approval therefore did not end on June 16, 1935.",
+      "correction": null,
+      "evidence": "49 Stat. 375, sec. 1: \"inserting in lieu thereof 'on April 1, 1936'\"; sec. 2 \"are hereby repealed\"; \"Approved, June 14, 1935.\""
+    },
+    {
+      "id": "P7",
+      "verdict": "upheld_with_correction",
+      "reason": "The first sentence is right: the judgment ran between the parties and did not withdraw any other approving order. The ranking of June 14 over May 27 is also right, but May 27 is mischaracterized as an earlier end date. Schechter's delegation holding is not limited to the Live Poultry Code; it condemns the section 3 code-making authority itself, including prescription on the President's own motion. A holding of that kind does not end a valid command on the decision date; it declares that the authority never validly existed. May 27 is therefore evidence for the void-from-issuance alternative and the date the invalidity was judicially declared, not a date on which a command ended. May 27 could become an end date for a particular code only with a held record of cancellation or suspension under section 10(b) or an equivalent act on that date. Under then-prevailing doctrine an unconstitutional delegation conferred no authority (Norton v. Shelby County, 1886); later doctrine treats such an act's prior existence as an operative fact (Chicot County Drainage Dist. v. Baxter State Bank, 1940). Neither case is a held source.",
+      "correction": "For codes other than the Live Poultry Code, the Schechter judgment did not itself vacate or withdraw the approving order; its holding that the section 3 code-making authority is an unconstitutional delegation applies by its terms to every section 3 approval or prescription and operates as precedent. Schechter therefore supports the view that the approval never had valid force, and May 27, 1935 is the date that invalidity was judicially declared, not a date on which the command ended. Without a held record that the government cancelled or suspended a given code between May 27 and June 14, 1935, June 14, 1935 (repeal by S.J. Res. 113 sec. 2) is the best supported first end of the approval's operative effect, with invalidity from issuance (Schechter's delegation holding) stated as the alternative characterization of its validity.",
+      "evidence": "295 U.S. at 542: \"We think that the code-making authority thus conferred is an unconstitutional delegation of legislative power.\" 295 U.S. at 539: \"he has no less liberty when he prescribes a code on his own motion\""
+    },
+    {
+      "id": "P8",
+      "verdict": "upheld_with_correction",
+      "reason": "Section 5 is summarized correctly except that licenses ran on a separate clock tied to section 4(a) and the exempt action is action 'taken during such period'. The proviso summary is inaccurate in three respects. It names 'agreements and action thereunder', not codes. Its second category also covers practices that constitute unfair methods of competition under the FTC Act, not only practices unlawful under existing law. It contains no word such as 'continuing' and no temporal limit, so the held text does not settle whether the exemption for action taken under codes before June 14, 1935 survived. The final sentence (an accrued exemption does not keep a code approval operative) is correct. Because section 1 extended Title I to April 1, 1936, the sixty-day tail ran from that date, not from June 16, 1935.",
+      "correction": "NIRA section 5 exempted from the antitrust laws any code, agreement or license approved, prescribed or issued and in effect under Title I, and any action complying with it taken during that period, while the title was in effect (for a license, while section 4(a) was in effect) and for sixty days thereafter. S.J. Res. 113's proviso states that the section 5 exemption 'shall extend only to agreements and action thereunder' that (1) put into effect the requirements of section 7(a), including minimum wages, maximum hours and prohibition of child labor, or (2) prohibit unfair competitive practices which offend against existing law, including the antitrust laws, or which constitute unfair methods of competition under the Federal Trade Commission Act. The proviso names agreements, not codes, and states no temporal limit; the held text does not settle whether it narrowed the exemption for action taken under codes before June 14, 1935. Whatever exemption survives for past action is an accrued effect and does not keep a code approval operative.",
+      "evidence": "49 Stat. 375: \"the exemption provided in section 5 of such title shall extend only to agreements and action thereunder\"; 48 Stat. 198, sec. 5: \"(or in the case of a license, while section 4 (a) is in effect)\""
+    },
+    {
+      "id": "P9",
+      "verdict": "upheld",
+      "reason": "EO 7075 terminates the National Industrial Recovery Board created by EO 6859 and creates the office of Administrator of the NRA. EO 7252, dated December 21, 1935, terminates the NRA and the office of Administrator, effective January 1, 1936. Neither revokes or modifies a code approval; EO 7075 instead describes trades 'heretofore subject to codes', which presupposes that code coverage had already ended. Its section 7 modifies prior orders 'concerning the administration of Title I' only to the extent needed to make EO 7075 effective, which does not reach the substance of code approvals. Two source limits: the held EO 7075 transcription carries no date, so its June 15, 1935 date rests on EO 7252's reference to 'Executive Order No. 7075 of June 15, 1935'; and the transcription is elided and omits section 6.",
+      "correction": null,
+      "evidence": "EO 7075 sec. 3: \"various trades and industries heretofore subject to codes of fair competition\"; EO 7252 sec. 1: \"The National Recovery Administration and the office of Administrator thereof are hereby terminated.\" sec. 6: \"effective on January 1, 1936.\""
+    },
+    {
+      "id": "P10",
+      "verdict": "upheld",
+      "reason": "Section 1 of S.J. Res. 113 fixed April 1, 1936 as the date Title I ceased to be in effect, and section 2 removed only the code provisions, so section 4(a) agreement authority, the section 2 agencies and the section 10 rule-making power survived to that date (EO 7075 sec. 4 and EO 7252 sec. 2, which requires termination of the transferred functions 'not later than April 1, 1936', are consistent). For a code approval already extinguished on June 14, 1935, April 1, 1936 is a later event, not its end. Section 2(c) still allowed earlier termination by proclamation or joint resolution; no held source shows one, and the April 1, 1936 date stands because the statute fixed it, not because an event was observed.",
+      "correction": null,
+      "evidence": "EO 7252 sec. 2: \"to terminate the functions and duties of the said agencies not later than April 1, 1936.\""
+    }
+  ],
+  "overall_A": "Yes, with one change in how the alternatives are labelled. For an order whose only operative command approves a section 3 code and which did not end earlier (by its own terms, by cancellation or modification under section 10(b), or by a superseding order), the best supported first end is June 14, 1935, by repeal under S.J. Res. 113 sec. 2. June 14 meets the project rule. Section 2 is a later general rule, but it shows extinction: it repealed the power to approve codes and every provision through which an approved code had legal effect (3(b), 3(c), 3(f)), and it took effect on approval, June 14, 1935, a date the printed statute states. June 16, 1935 is wrong. Section 1 of the same resolution replaced the two-year expiry with April 1, 1936, and nothing in the resolution defers section 2. May 27, 1935 should not be recorded as an end date. Schechter's delegation holding condemns the section 3 code-making authority as a whole; it declares the approval invalid from issuance rather than ending a valid command on May 27, and the judgment withdrew no other order. May 27 belongs in the record as the date that invalidity was declared, and it becomes an end date for a specific code only if a held record shows cancellation or suspension on that date. Invalidity from issuance is the stronger statement about validity and should be recorded beside the June 14 end, as a validity characterization rather than as a competing end date. Two reasons keep it from displacing June 14 as the recorded end. It is an inference from doctrine (Norton v. Shelby County), not an act ending the command. Later doctrine (Chicot County, 1940) treats the order's prior existence as an operative fact. Neither case is a held source. Recommended record: first end June 14, 1935, by statutory repeal (S.J. Res. 113 sec. 2, 49 Stat. 375); validity: invalid under Schechter's holding that section 3 is an unconstitutional delegation (declared May 27, 1935), so void from issuance under then-prevailing doctrine; accrued liabilities and any surviving section 5 antitrust exemption for past action noted as accrued effects, not continued operation. The June 14 conclusion does not flip under any of the readings considered; only a code-specific cancellation record would move the end earlier.",
+  "overall_B": "Separate analysis is required for these categories. (1) Section 4(a) agreements, including presidential agreements such as the President's Reemployment Agreement: they are not codes, they were not repealed on June 14, and they ran to April 1, 1936 unless ended earlier. (2) Section 7(b) approvals of labor agreements and section 7(c) limited codes: whether S.J. Res. 113's description reaches them is an interpretive question. (3) Section 4(b) licensing orders: section 4(b) expired by its own terms one year after enactment, on June 16, 1934. (4) Section 3(e) import-limitation orders, which run 'until the President shall find' the conditions no longer exist. (5) Section 9(c) petroleum orders, which are governed by Panama Refining (January 1935) and later petroleum legislation, together with mixed petroleum-code orders. (6) Orders delegating functions to the Secretary of Agriculture under section 8(b), and any instrument actually issued under the Agricultural Adjustment Act rather than NIRA. (7) Organizational and administrative orders made under sections 2, 6 and 10, such as those creating agencies, delegating power, setting fees or issuing rules; EO 7075 and EO 7252 belong here. (8) Orders issued on or after June 14, 1935 under Title I as amended. (9) Mixed orders, in which a code approval sits alongside appointments, delegations or other commands. (10) Code approvals that ended before June 14, 1935, by their own terms, by cancellation or modification under section 10(b), or by a superseding code or amendment. (11) Title II public works orders, which S.J. Res. 113 did not touch and which section 201(d) governs. (12) Labor-board orders resting on section 7(a) or on other statutes, such as Pub. Res. 44 of 1934 or the National Labor Relations Act.",
+  "outside_held_sources_relied_on": [
+    "ordinary rule that a statute takes effect on approval absent a stated date",
+    "general savings statute, Rev. Stat. sec. 13 (1 U.S.C. sec. 109)",
+    "Norton v. Shelby County, 118 U.S. 425 (1886)",
+    "Chicot County Drainage Dist. v. Baxter State Bank, 308 U.S. 371 (1940)",
+    "Panama Refining Co. v. Ryan, 293 U.S. 388 (cited within Schechter)"
+  ],
+  "started_utc": "2026-10-29T13:24:14Z",
+  "ended_utc": "2026-10-29T13:29:01Z",
+  "sources_read": [
+    "research/excavator/claude-nira-sweep-2026-10-29/review-shared/PROPOSITIONS.md",
+    "jobs/astra-source-retention/output/pages/98e35c567ea86208eadc55548eb7a5ea5f1edd92d8116c9e4c4847da1bab0305/d19d25fe35e98a1ade9b1fd03ed8751743502c5d1005a61ca97974657cf08386/selected-pages.txt",
+    "jobs/astra-source-retention/output/pages/c9fcb1910615c2d9b677700a8fa96edc8da2cfdca204ed04f51e5f8dde99ebe7/6fca72c4672ad8ad9a53ad398017a587b67e2950dd8f5bec674c7a0f3c25b446/selected-pages.txt",
+    "jobs/astra-source-retention/output/pages/881859243da21bea9a6026dd5895230e0d8c3c4416afdbe41e50ad21eee10015/ad2b3136c546eeb5f588d031acb575049be56b5341b922af2fe2e152787e4fa2/selected-pages.txt",
+    "jobs/app-executive-orders/output/texts/executive-order-7075-reorganizing-the-nra.txt",
+    "jobs/app-executive-orders/output/texts/executive-order-7252-terminating-the-national-recovery-administration-and-transferring.txt",
+    "jobs/astra-source-retention/output/pdf/98e35c567ea86208eadc55548eb7a5ea5f1edd92d8116c9e4c4847da1bab0305.pdf (hash only)",
+    "jobs/astra-source-retention/output/pdf/c9fcb1910615c2d9b677700a8fa96edc8da2cfdca204ed04f51e5f8dde99ebe7.pdf (hash only)",
+    "jobs/astra-source-retention/output/pdf/881859243da21bea9a6026dd5895230e0d8c3c4416afdbe41e50ad21eee10015.pdf (hash only)"
+  ]
+}
