@@ -59,6 +59,7 @@ def main():
         (source / ".github/workflows").mkdir(parents=True)
         shutil.copy2(ROOT / ".github/workflows/run-jobs.yml", source / ".github/workflows/run-jobs.yml")
         put(source, "HANDOFF/README.md", "fixture\n")
+        put(source, "README.md", "root-file-compatibility\n")
         put(source, "jobs/consumer/job.py", "from pathlib import Path\nimport os,sys\n"
             "Path(os.environ['OUTPUT_DIR'],'new.txt').write_text('failed candidate')\nsys.exit(9)\n")
         put(source, "jobs/consumer/after.txt", "producer\n")
@@ -188,6 +189,7 @@ def main():
             },
             "required_file_hashes": hashes,
             "unrelated_output_materialized_in_narrow_mode": False,
+            "implicit_root_file_preserved": (after / "README.md").read_bytes() == (baseline / "README.md").read_bytes(),
             "compatibility_fallback": {"jobs": fallback_receipt["compatibility_fallback_jobs"],
                                        "historical_dynamic_output_preserved": fallback_preserved,
                                        "accounted_materialized_bytes": fallback_receipt["materialized_bytes"]},

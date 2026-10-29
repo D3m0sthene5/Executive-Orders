@@ -14,9 +14,9 @@ The two embedded fingerprints bind each audited job's nonoutput tree and all `jo
 
 | Case | Files | Materialized bytes | Local elapsed |
 |---|---:|---:|---:|
-| Original cone checkout | 36 | 2,310,540 | 0.0099 s |
-| Output-excluding bootstrap | 31 | 213,225 | 0.0069 s |
-| Final narrow checkout, excluding receipt | 35 | 213,388 | 0.0618 s including helper |
+| Original cone checkout | 37 | 2,311,073 | 0.0126 s |
+| Output-excluding bootstrap | 32 | 213,758 | 0.0100 s |
+| Final narrow checkout, excluding receipt | 36 | 213,921 | 0.0644 s including helper |
 
 All 32 selected file hashes match. The unrelated 2 MiB output is absent in narrow mode. The induced failure retains its candidate attempt and the prior successful output/status. Unknown-job fallback restores that same omitted output. These local clones share available Git objects: remote transfer bytes and production startup time are unmeasured. Local selective expansion is slower in this fixture despite reducing bytes; no 180-second production reduction is claimed.
 
@@ -25,3 +25,5 @@ All 32 selected file hashes match. The unrelated 2 MiB output is absent in narro
 ## H09
 
 Full history remains. New-branch selection requires a merge base, sweeps inspect first-parent time history, publication checks resolve captured base commits, and reconciliation rebases against branch history. A smaller verified ancestry closure was not established. PR101's explicit frozen comparison fetch remains untouched.
+
+The final fixture also verifies `implicit_root_file_preserved=true`: standard `/*` then `!/*/` bootstrap rules retain the root files that cone mode included implicitly. Later positive subtree rules restore the named folders. LFS smudge remains disabled.

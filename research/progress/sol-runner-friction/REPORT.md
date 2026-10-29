@@ -8,7 +8,7 @@ Baseline main is `f9c6d806ad059dcad7875ab3708715f20ea386df`. PR102's audit and t
 
 | Cost | Evidence | Result |
 |---|---|---|
-| Materialization | Isolated same-pin runner fixture | 2,310,540 to 213,388 bytes; all required hashes equal; failure preserves prior success. Local elapsed 0.0099 to 0.0618 seconds, so no startup-time saving established. |
+| Materialization | Isolated same-pin runner fixture | 2,311,073 to 213,921 bytes; all required hashes equal; failure preserves prior success. Local elapsed 0.0126 to 0.0644 seconds, so no startup-time saving established. |
 | Freshness metadata | Five actual job scopes at pinned baseline | Exact selected entries/hashes equal for all. FR originals candidates 97,160 to 13,665; local tree time 273.8 to 25.9 ms. |
 | Broad declarations | Claim-kit/digest metadata comparisons | Candidates remain 94,286/80,592; modest measured benefit. No dependency narrowing in these jobs. |
 | Remote transfer | No instrumented cold remote comparison | Bytes and avoidable portion of audit's 180 seconds remain unmeasured. |
@@ -46,3 +46,5 @@ Final local/remote checks and exact review pins are retained in `validation/`, `
 Opus should continue its separate claim-kit/Valla work. This branch changes no implementation there. Before combining, preserve both append-only Kean additions (Sol F-20261029-8001 and Opus 7001–7099), regenerate the brief, and test the combined source at one exact commit. Run road tests on both OSes, Kean strict, Opus's packet/publication regressions, PR101 reviewer-card/frozen-baseline checks, and the isolated materializer fallback/failure fixture. Recheck actual declared scopes for any proposed additional narrow-job certificate; in particular audit checker/provider capture discovery, claim-draft dynamic outputs and source-ladder wrapper inputs. Do not infer combined compatibility from two separately green branches, and do not merge either PR without the requested adoption step.
 
 The first PR CI passed Linux/Kean but failed the new Windows index-conflict fixture. The initial lone-ancestor/newline setup was replaced with NUL-delimited ancestor/ours/theirs records plus an explicit three-stage assertion. This is a test-only portability correction; the focused local check passed and final branch CI is recorded in the PR description. The initial failed job40944689784/123696845829 remains retained.
+
+Final compatibility review also preserved cone mode's implicit root files using standard non-cone root-file rules. The fixture inserts a root README and proves identical bytes under both modes; the bootstrap still excludes job outputs. Both OS/Kean checks passed at1730d6c before this workflow/test-only correction; final checks are linked from the PR.

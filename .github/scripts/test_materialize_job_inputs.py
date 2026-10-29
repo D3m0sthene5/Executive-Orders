@@ -45,6 +45,7 @@ class MaterializeInputsTests(unittest.TestCase):
     def test_workflow_picks_before_cache_and_uses_narrow_bootstrap(self):
         workflow = (ROOT / ".github/workflows/run-jobs.yml").read_text(encoding="utf-8")
         self.assertIn("sparse-checkout-cone-mode: false", workflow)
+        self.assertIn("            /*\n            !/*/\n", workflow)
         self.assertIn("            /jobs/**\n", workflow)
         self.assertIn("            !/jobs/*/output/**\n", workflow)
         self.assertNotIn("/jobs/*/job.py", workflow)
