@@ -3,12 +3,20 @@ import csv
 import json
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 import dashboard
 
 
 class DashboardTests(unittest.TestCase):
+    def test_render_without_an_installed_timezone_database(self):
+        with mock.patch.object(dashboard, "ZoneInfo", side_effect=dashboard.ZoneInfoNotFoundError("missing database")):
+            report = dashboard.build(self.root, generated_utc="2026-10-28T23:27:36Z")
+            rendered = dashboard.render_markdown(report)
+        self.assertIn("Generated 2026-10-28 23:27 UTC", rendered)
+        self.assertIn("2026-10-28 10:00 UTC", rendered)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)

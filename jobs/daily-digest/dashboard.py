@@ -15,7 +15,7 @@ import json
 import os
 import subprocess
 from pathlib import Path
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 LEGAL_CUTOFF = "2026-10-14"
 PATHS = {
@@ -245,7 +245,13 @@ def display_time(value):
         timestamp = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
         if timestamp.tzinfo is None:
             return value
-        return timestamp.astimezone(ZoneInfo("America/New_York")).strftime("%Y-%m-%d %H:%M %Z")
+        try:
+            zone = ZoneInfo("America/New_York")
+        except ZoneInfoNotFoundError:
+            # Windows may have no IANA database. Keep an explicit accurate zone
+            # instead of making an optional display conversion stop the report.
+            zone = dt.timezone.utc
+        return timestamp.astimezone(zone).strftime("%Y-%m-%d %H:%M %Z")
     except (TypeError, ValueError):
         return str(value)
 
