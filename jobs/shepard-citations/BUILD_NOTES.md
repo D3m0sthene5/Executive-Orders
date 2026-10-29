@@ -100,7 +100,7 @@ Tests: `python -I -m unittest -v test_shepard` (in `jobs/shepard-citations`) and
 | Requests | about 27 on the first run (robots.txt, listing page, 24 PDFs); 2 on later runs (PDFs cached) | about 2 a page (link service and PDF) plus robots.txt: about 45 the first time (about 61 with all 30), 0 for pages carried forward |
 | Download | BLM PDFs, likely 5-40 MB in all (sizes unverified) | about 0.5-1.5 GB the first time (1949-1983 daily issues; the 1998 page is a small document PDF) |
 | Run time | about 2-3 minutes for the text scan and 1-3 minutes for the BLM downloads and pypdf reading | download is a few minutes at 20-50 MB/s; reading the issue text without a page hint can take up to about 1 minute an issue, so up to about 30 minutes in the worst case |
-| Committed output | EDGES.csv about 6 MB measured without the BLM tables, likely 10-15 MB with them; PLO_TABLE.csv about 3-5 MB; BLM texts a few MB; PDFs only if at most 2 MB each | texts a few KB each; PDFs at most 16 MB each and 200 MB a run (likely 10-15 issues of the 1940s-1950s, roughly 50-120 MB) |
+| Committed output | EDGES.csv about 6 MB measured without the BLM tables, likely 10-15 MB with them; PLO_TABLE.csv about 3-5 MB; BLM texts a few MB; PDFs only if at most 2 MB each | texts a few KB each; one page extract per wanted page (a scanned FR page is usually tens to a few hundred KB; caps 4 MB each and 100 MB a run). Whole issues are never committed. The first GitHub run committed 19 whole issues (148 MB for 30 pages) before this change; the next run converts them to extracts from the committed bytes with no request, and they drop out of the output (git history keeps them). |
 
 ## Open risks
 
@@ -130,12 +130,18 @@ Tests: `python -I -m unittest -v test_shepard` (in `jobs/shepard-citations`) and
    present. The PLO is added before them so that `claim-kit/inputs.py` never treats a PLO page wanted for a single
    order as that order's own text. A consumer that requires `instrument_ids` to contain only census orders would
    need to skip the first element (`printed_instrument_id` names it).
-8. **Official-copy registration.** The probe found that `source_supplement` registers an FR text as official only
-   when the raw issue PDF is held. fr-pages records with `cache_path` carry held bytes; record-only records (large
-   issues) will not pass that gate unless the checker re-downloads and compares sha256. Committing larger PDFs would
-   need a higher `commit_max_bytes`, or a release asset for the big issues.
-9. **Repository growth.** Committed issue PDFs accumulate across runs, because pages carried forward keep their
-   bytes. `auto_from_shepard` is off by default for this reason. Turning it on adds up to `max_items` issues a run.
+8. **Extract custody.** fr-pages commits a pypdf extract of the instrument's pages, whose sha256 differs from the
+   issue's. `jobs/claim-checker` counts the extract as held bytes (`load_job_sources` finds `cache_path` under the
+   job's output and re-hashes it; the test `ClaimCheckerHeld` runs the checker's own code). The issue's sha256 is
+   recorded (`issue_sha256`) but is not held. A consumer that insists on the issue PDF's own hash (for example a
+   gate that registers an FR text as official only when the raw issue PDF is held, as the probe described for
+   `source_supplement`) would need to accept `derivation` plus `issue_sha256`; this was not tested. An extract is
+   re-provable only with the same pypdf version (pinned in `requirements.txt`, recorded in `extract_tool`); after a
+   pypdf upgrade, re-deriving may give other bytes, so the job keeps an earlier extract whenever the issue's sha256
+   and pages match.
+9. **Repository growth.** One extract per wanted page, usually well under 1 MB, so about 1,500 ending instruments
+   would add on the order of 0.2-0.5 GB (an estimate; extract sizes on real scans are not yet measured).
+   `auto_from_shepard` is still off by default; turning it on adds up to `max_items` pages a run.
 
 ## Changes other jobs would need (not made)
 

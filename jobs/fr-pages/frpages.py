@@ -6,15 +6,18 @@ Input: data/WANTED.jsonl, one wanted instrument per line:
 A bare citation (no "plo", "printed_id" optional) is fetched as a page.
 
 Route, cheapest stable official file first:
-  1. the previous run's committed capture and text (JOB_PRIOR_OUTPUT_DIR), re-hashed: no request;
+  1. the previous run's committed page extract and text (JOB_PRIOR_OUTPUT_DIR), re-hashed: no request. A record of
+     the first runs, which committed the whole issue, is converted from those committed bytes, also with no request;
   2. govinfo's link service https://www.govinfo.gov/link/fr/<vol>/<page>, read without following the redirect, which
      names the daily-issue PDF (1936-1993) or the single document's PDF (1994 on) and sometimes a #page= hint;
   3. optional (settings try_issue_slice): archives.federalregister.gov/issue_slice/<y>/<m>/<d>/<p>-<p>.pdf, kept
      only if two downloads give the same sha256 (a slice that is regenerated on request cannot be re-proven);
   4. the PDF the link service named (content/pkg/FR-YYYY-MM-DD/pdf/...), downloaded whole, sha256 kept.
-Only the pages holding the instrument are extracted to texts/. The PDF's bytes are committed (captures/<sha>.pdf)
-only when it is at most commit_max_bytes; otherwise the record keeps url + sha256 + bytes, which a re-download
-re-proves. Every fetch goes through jobs/_lib/fetch_pool.py (robots.txt, pacing, bounded size, sha256 cache).
+Only the pages holding the instrument are kept: their text in texts/, and a PDF of just those pages written by pypdf
+(captures/<sha256 of the extract>.pdf). The whole issue is never committed. Its url, sha256 and size are recorded
+(issue_url, issue_sha256, issue_bytes, issue_pdf_pages), so anyone can re-download the issue, check its sha256 and
+re-derive the identical extract (extract_pdf is deterministic for a pinned pypdf version). Every fetch goes through
+jobs/_lib/fetch_pool.py (robots.txt, pacing, bounded size, sha256 cache).
 
 Outputs: texts/FR_<vol>_<page>.txt, captures/, SOURCES.jsonl (shared source-record format), FAILURES.jsonl,
 SUMMARY.json. A located page is a location lead with a confidence label, not an authenticated transcription.
@@ -49,7 +52,7 @@ ISSUE_RE = re.compile(r"/FR-(\d{4})-(\d{2})-(\d{2})/")
 FR_CITE = re.compile(r"^\s*(\d{1,3})\s*F\.?\s?R\.?\s*(\d{1,6})\s*$")
 MAX_DOC_PAGES = 6
 DEFAULTS = {"max_requests": 120, "max_download_bytes": 4_000_000_000, "max_issue_bytes": 450_000_000,
-            "commit_max_bytes": 16_000_000, "commit_total_bytes": 200_000_000, "min_interval_seconds": 1.0,
+            "commit_max_bytes": 4_000_000, "commit_total_bytes": 100_000_000, "min_interval_seconds": 1.0,
             "try_issue_slice": False, "auto_from_shepard": {"enabled": False, "max_items": 25}}
 
 
@@ -223,13 +226,32 @@ def pdf_pages(raw, wanted=None):
     return out
 
 
+def extract_pdf(raw, first, last):
+    """(bytes, tool) of a new PDF holding PDF pages first..last (0-based) of `raw`, written by pypdf.
+
+    Deterministic for a given pypdf version and input: pages are copied in order, the only metadata is
+    /Producer 'pypdf <version>', and pypdf writes no random /ID or timestamp. Re-running this on a re-downloaded
+    issue whose sha256 matches gives the same bytes."""
+    import pypdf
+    reader = pypdf.PdfReader(io.BytesIO(raw))
+    writer = pypdf.PdfWriter()
+    for i in range(first, last + 1):
+        writer.add_page(reader.pages[i])
+    tool = "pypdf " + pypdf.__version__
+    writer.add_metadata({"/Producer": tool})
+    buf = io.BytesIO()
+    writer.write(buf)
+    return buf.getvalue(), tool
+
+
 class Fetcher:
-    def __init__(self, cache, settings, transport=None, extract=pdf_pages, log=print):
+    def __init__(self, cache, settings, transport=None, extract=pdf_pages, log=print, make_pdf=extract_pdf):
         self.s = settings
         self.pool = fetch_pool.FetchPool(cache, workers=1, per_host=1, transport=transport,
                                          max_bytes=settings["max_issue_bytes"], user_agent=USER_AGENT,
                                          min_interval=settings["min_interval_seconds"])
         self.extract = extract
+        self.make_pdf = make_pdf
         self.log = log
         self.slice_failures = 0
 
@@ -289,57 +311,86 @@ class Fetcher:
         return got, att
 
 
-def text_header(job, url, sha, pages_note):
+def text_header(job, url, sha, issue_sha, pages_note):
     return (f"Wanted: {', '.join(job['want_ids'])}\nPrinted instrument: {job['printed_id']}\n"
             f"Wanted for: {', '.join(job['targets']) or '(no target named)'}\nSource: {url}\n"
-            f"SHA-256 of the downloaded file: {sha}\nLocation: {job['vol']} FR {job['page']}; {pages_note}\n"
+            f"SHA-256 of the committed page extract: {sha}\nSHA-256 of the downloaded issue PDF: {issue_sha}\n"
+            f"Location: {job['vol']} FR {job['page']}; {pages_note}\n"
             "Machine-extracted text layer (OCR for 1936-1993 scans). Not an authenticated transcription; "
             "it may include parts of neighbouring documents. Check the PDF pages.\n")
 
 
+def _file_sha(path):
+    try:
+        with open(path, "rb") as fh:
+            return sha256(fh.read())
+    except OSError:
+        return None
+
+
+def _carry_forward(job, old, out_dir):
+    """Copy a previous run's page extract and text when the extract still re-hashes to its recorded sha256."""
+    pdir = old["_prior_dir"]
+    tsrc = os.path.join(pdir, old.get("text_path", ""))
+    cap = os.path.join(pdir, old["cache_path"]) if old.get("cache_path") else None
+    if not os.path.isfile(tsrc) or (cap and _file_sha(cap) != old.get("sha256")):
+        return None
+    rec = {k: v for k, v in old.items() if k != "_prior_dir"}
+    os.makedirs(os.path.join(out_dir, "texts"), exist_ok=True)
+    shutil.copyfile(tsrc, os.path.join(out_dir, rec["text_path"]))
+    if cap:
+        dst = os.path.join(out_dir, rec["cache_path"])
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        if not os.path.exists(dst):
+            shutil.copyfile(cap, dst)
+    rec["instrument_ids"] = [job["printed_id"]] + [t for t in job["targets"] if t != job["printed_id"]]
+    rec["wanted_ids"] = job["want_ids"]
+    rec["carried_forward"] = True
+    return rec
+
+
 def process(job, fetcher, out_dir, prior, committed_bytes, log=print):
-    """One wanted page. Returns (source record or None, failure or None, bytes newly committed)."""
+    """One wanted page. Returns (source record or None, failure or None, bytes newly committed).
+
+    Only a PDF of the instrument's own pages is committed (captures/<sha256 of the extract>.pdf). The whole issue's
+    url and sha256 are recorded so the extract can be re-derived from a re-download."""
     vol, page = job["vol"], job["page"]
     text_rel = f"texts/FR_{vol}_{page}.txt"
     old = prior.get((vol, page))
-    if old and not os.environ.get("FR_PAGES_REFRESH"):
-        pdir = old["_prior_dir"]
-        tsrc = os.path.join(pdir, old.get("text_path", ""))
-        ok = os.path.isfile(tsrc)
-        cap = os.path.join(pdir, old["cache_path"]) if old.get("cache_path") else None
-        if ok and cap:
-            with open(cap, "rb") as fh:
-                ok = sha256(fh.read()) == old.get("sha256")
-        if ok:
-            rec = {k: v for k, v in old.items() if k != "_prior_dir"}
-            os.makedirs(os.path.join(out_dir, "texts"), exist_ok=True)
-            shutil.copyfile(tsrc, os.path.join(out_dir, rec["text_path"]))
-            if cap:
-                os.makedirs(os.path.join(out_dir, "captures"), exist_ok=True)
-                dst = os.path.join(out_dir, rec["cache_path"])
-                if not os.path.exists(dst):
-                    shutil.copyfile(cap, dst)
-            rec["instrument_ids"] = [job["printed_id"]] + [t for t in job["targets"] if t != job["printed_id"]]
-            rec["wanted_ids"] = job["want_ids"]
-            rec["carried_forward"] = True
-            return rec, None, 0
-    if not fetcher.budget_left():
-        return None, {"want_ids": job["want_ids"], "fr": f"{vol} FR {page}", "reason": "request_or_byte_budget_exhausted",
-                      "permanent": False}, 0
-    attempts = []
+    refresh = bool(os.environ.get("FR_PAGES_REFRESH"))
+    got, hint, route, attempts = None, None, "", []
+    if old and not refresh:
+        if old.get("issue_sha256"):
+            rec = _carry_forward(job, old, out_dir)  # an extract record from an earlier run
+            if rec:
+                return rec, None, 0
+        elif old.get("cache_path"):
+            # A record of the first runs, which committed the whole issue: derive the extract from those committed
+            # bytes (re-hashed) without any request.
+            cap = os.path.join(old["_prior_dir"], old["cache_path"])
+            if _file_sha(cap) == old.get("sha256"):
+                with open(cap, "rb") as fh:
+                    body = fh.read()
+                got = {"url": urllib.parse.urldefrag(old["url"])[0], "sha256": old["sha256"], "bytes": len(body), "body": body}
+                hint, route = old.get("link_page_hint"), old.get("route") or "official/govinfo_link_fr"
+                attempts.append({"route": "prior_committed_issue_pdf", "sha256": old["sha256"]})
     try:
-        target, hint, att = fetcher.link(vol, page)
-        attempts.append(att)
-        if not target:
-            raise fetch_pool.FetchError(att.get("error") or "link service gave no target")
-        m = ISSUE_RE.search(target)
-        issue_date = "-".join(m.groups()) if m else ""
-        got, satt = fetcher.slice(issue_date, page)
-        attempts.append(satt)
-        route = "official/archives_issue_slice" if got else "official/govinfo_link_fr"
         if got is None:
-            got, datt = fetcher.download(target)
-            attempts.append(datt)
+            if not fetcher.budget_left():
+                return None, {"want_ids": job["want_ids"], "fr": f"{vol} FR {page}",
+                              "reason": "request_or_byte_budget_exhausted", "permanent": False}, 0
+            target, hint, att = fetcher.link(vol, page)
+            attempts.append(att)
+            if not target:
+                raise fetch_pool.FetchError(att.get("error") or "link service gave no target")
+            m = ISSUE_RE.search(target)
+            issue_date = "-".join(m.groups()) if m else ""
+            got, satt = fetcher.slice(issue_date, page)
+            attempts.append(satt)
+            route = "official/archives_issue_slice" if got else "official/govinfo_link_fr"
+            if got is None:
+                got, datt = fetcher.download(target)
+                attempts.append(datt)
         raw = got["body"]
         window = range(max(0, hint - 6), hint + 8) if hint else None  # read the hinted pages first
         pages = fetcher.extract(raw, window)
@@ -350,45 +401,67 @@ def process(job, fetcher, out_dir, prior, committed_bytes, log=print):
         if first is None:
             return None, {"want_ids": job["want_ids"], "fr": f"{vol} FR {page}", "url": got["url"], "sha256": got["sha256"],
                           "reason": "printed_page_not_found_in_pdf", "notes": notes, "attempts": attempts, "permanent": False}, 0
+        extract, tool = fetcher.make_pdf(raw, first, last)
     except Exception as exc:
         return None, {"want_ids": job["want_ids"], "fr": f"{vol} FR {page}", "reason": f"{type(exc).__name__}: {exc}",
                       "attempts": attempts, "permanent": False}, 0
+    span = (first + 1, last + 1)
+    # The same issue bytes and pages as an earlier extract: keep the earlier extract's bytes, so its sha256 stays put
+    # even if the pypdf version has changed since.
+    if old and old.get("issue_sha256") == got["sha256"] and old.get("cache_path") and \
+            tuple(old.get("issue_pdf_pages") or ()) == span:
+        prev = os.path.join(old["_prior_dir"], old["cache_path"])
+        if _file_sha(prev) == old.get("sha256"):
+            with open(prev, "rb") as fh:
+                extract = fh.read()
+            tool = old.get("extract_tool") or tool
+    ext_sha = sha256(extract)
+    page_map = L.printed_page_map(pages)
+    printed = [page_map.get(i) for i in range(first, last + 1)]
     name = urllib.parse.urlsplit(got["url"]).path.rsplit("/", 1)[-1]
-    pages_note = f"{name} PDF pages {first + 1}-{last + 1} of {len(pages)}"
-    body = text_header(job, got["url"], got["sha256"], pages_note)
+    pages_note = f"{name} PDF pages {span[0]}-{span[1]} of {len(pages)}"
+    url = f"{got['url']}#page={span[0]}"
+    body = text_header(job, url, ext_sha, got["sha256"], pages_note)
     for i in range(first, last + 1):
         body += f"\n=== PDF page {i + 1} of {len(pages)} ===\n{(pages[i] or '').rstrip()}\n"
     os.makedirs(os.path.join(out_dir, "texts"), exist_ok=True)
     with open(os.path.join(out_dir, text_rel), "w", encoding="utf-8") as fh:
         fh.write(body)
-    with open(os.path.join(out_dir, text_rel), "rb") as fh:
-        text_sha = sha256(fh.read())
-    rec = {"url": got["url"], "requested_url": LINK.format(vol=vol, page=page), "sha256": got["sha256"],
-           "bytes": got["bytes"], "content_type": "application/pdf", "retrieved_utc": now(), "route": route,
+    text_sha = _file_sha(os.path.join(out_dir, text_rel))
+    rec = {"url": url, "requested_url": LINK.format(vol=vol, page=page), "sha256": ext_sha,
+           "bytes": len(extract), "content_type": "application/pdf", "retrieved_utc": now(), "route": route,
+           "issue_url": got["url"], "issue_sha256": got["sha256"], "issue_bytes": got["bytes"],
+           "issue_pdf_pages": list(span), "issue_page_count": len(pages),
+           "issue_printed_pages": printed, "extract_tool": tool,
+           "derivation": (f"PDF pages {span[0]}-{span[1]} extracted with {tool} from the issue PDF whose sha256 is "
+                          "issue_sha256; re-download the issue to re-derive"),
            "text_path": text_rel, "text_sha256": text_sha,
-           "page_or_item": f"{vol} FR {page}; {pages_note}",
+           "page_or_item": f"{vol} FR {page}; {pages_note} (committed as a page extract)",
            "instrument_ids": [job["printed_id"]] + [t for t in job["targets"] if t != job["printed_id"]],
            "printed_instrument_id": job["printed_id"], "wanted_ids": job["want_ids"],
            "fr_volume": vol, "fr_page": page, "location_confidence": conf, "location_notes": notes,
            "needs_page_check": conf != "high", "flags": job["flags"],
            "role": "official_federal_register_page_of_a_later_instrument",
-           "note": ("Official Federal Register PDF. instrument_ids lists the printed instrument first, then the orders it "
-                    "is wanted for (so the page is never taken as an order's own original text). Not a legal finding.")}
+           "note": ("Pages of the official Federal Register PDF. instrument_ids lists the printed instrument first, then "
+                    "the orders it is wanted for (so the page is never taken as an order's own original text). "
+                    "Not a legal finding.")}
     if hint:
         rec["link_page_hint"] = hint
+    if any(a.get("route") == "prior_committed_issue_pdf" for a in attempts):
+        rec["issue_bytes_from"] = "previous run's committed issue PDF (re-hashed); no request"
     added = 0
-    if got["bytes"] <= fetcher.s["commit_max_bytes"] and committed_bytes + got["bytes"] <= fetcher.s["commit_total_bytes"]:
-        rel = f"captures/{got['sha256']}.pdf"
+    if len(extract) <= fetcher.s["commit_max_bytes"] and committed_bytes + len(extract) <= fetcher.s["commit_total_bytes"]:
+        rel = f"captures/{ext_sha}.pdf"
         dst = os.path.join(out_dir, rel)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         if not os.path.exists(dst):
             with open(dst, "wb") as fh:
-                fh.write(got["body"])
-            added = got["bytes"]
+                fh.write(extract)
+            added = len(extract)
         rec["cache_path"] = rel
     else:
-        rec["custody"] = "record_only: bytes above the commit cap; re-download the url and compare sha256"
-    log(f"{vol} FR {page} ({job['printed_id']}): {conf}, {pages_note}, {got['bytes']} bytes"
+        rec["custody"] = "record_only: extract above the commit cap; re-download the issue and re-derive"
+    log(f"{vol} FR {page} ({job['printed_id']}): {conf}, {pages_note}, extract {len(extract)} of {got['bytes']} bytes"
         + (" committed" if rec.get("cache_path") else " not committed"))
     return rec, None, added
 
@@ -402,7 +475,8 @@ def load_prior(prior_dir):
     return out
 
 
-def run(root, job_dir, out_dir, cache_dir, prior_dir="", transport=None, extract=pdf_pages, log=print):
+def run(root, job_dir, out_dir, cache_dir, prior_dir="", transport=None, extract=pdf_pages, log=print,
+        make_pdf=extract_pdf):
     settings = load_settings(job_dir)
     plos = plo_index(root)
     wanted = read_jsonl(os.path.join(job_dir, "data", "WANTED.jsonl"))
@@ -410,7 +484,7 @@ def run(root, job_dir, out_dir, cache_dir, prior_dir="", transport=None, extract
     if auto.get("enabled"):
         wanted += auto_wanted(root, plos, int(auto.get("max_items", 25)))
     jobs, failures = resolve(wanted, plos)
-    fetcher = Fetcher(cache_dir, settings, transport=transport, extract=extract, log=log)
+    fetcher = Fetcher(cache_dir, settings, transport=transport, extract=extract, log=log, make_pdf=make_pdf)
     prior = load_prior(prior_dir)
     records, committed = [], 0
     for job in jobs:
