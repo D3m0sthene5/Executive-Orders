@@ -120,6 +120,7 @@ def _boolean(value):
 
 
 # Longest names first, so "compiled_transcription_lead" is not read as "compiled_transcription".
+NON_EO_ACTOR = re.compile(r"(?:PLO|PROC|STAT|PL|PUBRES|ACT|NOTICE|MEMORANDUM|PRES_DETERMINATION):[A-Za-z0-9_.:/ -]{1,60}")
 SPECIFIC_DERIVATIVE_GRADES = ("compiled_transcription_lead", "compiled_transcription", "mirror_transcription")
 
 
@@ -340,8 +341,13 @@ class _Collector:
         proposal = event.get("proposal") if isinstance(event.get("proposal"), dict) else event
         meta = event.get("meta") if isinstance(event.get("meta"), dict) else event
         target = self.identity(proposal.get("target_id") or event.get("target_id") or target)
-        actor = self.identity(proposal.get("actor_id") or proposal.get("actor") or
-                              proposal.get("acting_id") or meta.get("acting_instrument_id"))
+        raw_actor = (proposal.get("actor_id") or proposal.get("actor") or
+                     proposal.get("acting_id") or meta.get("acting_instrument_id"))
+        # A later event's acting instrument is often not an executive order: a Public Land Order, a
+        # proclamation or a statute. Those are kept as leads under their own prefixed ids; the target
+        # must still be a census order.
+        actor = self.identity(raw_actor) or (raw_actor if isinstance(raw_actor, str)
+                                             and NON_EO_ACTOR.fullmatch(raw_actor) else None)
         if not target or not actor or actor == target:
             return
         row = {"target_id": target, "actor_id": actor,
