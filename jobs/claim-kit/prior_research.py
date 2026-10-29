@@ -4,9 +4,11 @@ Discovery uses current research artifacts, never Git history or directory recenc
 A hash-matched review is a recorded assessment, not approval of a new claim.
 """
 import csv
+import fnmatch
 import hashlib
 import json
-from pathlib import Path
+import os
+from pathlib import Path, PurePath
 import re
 
 from assemble import canonical_sha
@@ -26,8 +28,110 @@ REVIEW_KEYS = ('artifact_type', 'schema', 'reviewer', 'reviewer_role', 'review_k
     'remaining_gaps_preserved', 'errors', 'reviewed_changes_from_v2', 'v2_rejection_resolved')
 
 
+COMPLETION_SCHEMA = 'eo-claim-kit-completion/v1'
+UNION_COPY = 'TRACKER_CLAIMS.jsonl'
+
+
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def id_matcher(ids):
+    """One-pass bytes test that is True exactly when ``any(i.encode() in raw for i in ids)``.
+
+    A regex search succeeds iff some alternative matches at some offset, which is
+    the same predicate as a substring test per id; the longest-first order only
+    affects which alternative wins, never whether one matches. No ids: never match.
+    """
+    encoded = sorted({str(i).encode() for i in ids}, key=lambda b: (-len(b), b))
+    if not encoded:
+        return lambda raw: False
+    search = re.compile(b'|'.join(re.escape(e) for e in encoded)).search
+    return lambda raw: search(raw) is not None
+
+
+def is_completion_union_copy(directory, name, cache):
+    """True for TRACKER_CLAIMS.jsonl inside a completion result folder.
+
+    completion.py run_tracker writes that file as a byte copy of the UNION of all
+    canonical claims (the claims already discovered in research/readiness/claims
+    plus the selected lines present in CLAIMS.selected.jsonl). Binding it would tie
+    every target that has a canonical claim to every unrelated batch's completion.
+    Only the file with this name beside a TALLY.json of the completion schema is
+    skipped; CLAIMS.selected.jsonl, CLAIMS.publishable.jsonl, receipts and the same
+    name elsewhere are still discovered.
+    """
+    if name != UNION_COPY:
+        return False
+    if directory not in cache:
+        try:
+            with open(os.path.join(directory, 'TALLY.json'), 'rb') as handle:
+                tally = json.loads(handle.read())
+            cache[directory] = isinstance(tally, dict) and tally.get('schema') == COMPLETION_SCHEMA
+        except (ValueError, OSError):
+            cache[directory] = False
+    return cache[directory]
+
+
+def under(resolved, roots):
+    return any(resolved == r or resolved.startswith(r.rstrip('/') + '/') for r in roots)
+
+
+def scan_research(repo, excluded):
+    """Single traversal of repo/research: (candidate files, REVEAL files, FREEZE files).
+
+    Directory symlinks are not followed (as rglob did); file symlinks are listed and
+    resolved. Excluded folders are pruned. Each list holds (repo-relative posix path,
+    resolved absolute path string) sorted in Path order (by components), so discovery
+    is deterministic and ordered exactly as sorted(Path.rglob) was.
+    """
+    root = repo / 'research'
+    resolved_root = str(root.resolve())
+    excluded_text = [str(p) for p in excluded]
+    candidates, reveals, freezes = [], [], []
+    union_cache = {}
+    stack = [('', str(root))]
+    while stack:
+        rel_dir, directory = stack.pop()
+        try:
+            entries = list(os.scandir(directory))
+        except OSError:
+            continue
+        for entry in entries:
+            rel = rel_dir + '/' + entry.name if rel_dir else entry.name
+            try:
+                symlink = entry.is_symlink()
+                is_dir = entry.is_dir(follow_symlinks=False)
+            except OSError:
+                continue
+            if is_dir:
+                if excluded_text and under(os.path.join(resolved_root, rel), excluded_text):
+                    continue
+                stack.append((rel, entry.path))
+                continue
+            name = entry.name
+            lower = name.lower()
+            is_reveal = fnmatch.fnmatchcase(name, '*REVEAL*.json')
+            if not (is_reveal or name == 'FREEZE.json' or lower.endswith(('.json', '.jsonl'))):
+                continue
+            try:
+                if not entry.is_file():
+                    continue
+                resolved = os.path.realpath(entry.path) if symlink else os.path.join(resolved_root, rel)
+            except OSError:
+                continue
+            item = ('research/' + rel, resolved, entry.path)
+            # The control pass never honoured `exclude`; only pruned directories hide controls.
+            if is_reveal:
+                reveals.append(item)
+            if name == 'FREEZE.json':
+                freezes.append(item)
+            if (PurePath(name).suffix.lower() in ('.json', '.jsonl') and name not in ('PACKET.json', 'EVIDENCE.json')
+                    and not (excluded_text and under(resolved, excluded_text))
+                    and not is_completion_union_copy(entry.path.rsplit('/', 1)[0], name, union_cache)):
+                candidates.append(item)
+    order = lambda item: item[0].split('/')
+    return sorted(candidates, key=order), sorted(reveals, key=order), sorted(freezes, key=order)
 
 
 def walk(value, pointer=''):
@@ -257,14 +361,20 @@ def collect(repo, dossiers, exclude=None):
 
     # Existing blinded controls are identified by their reveal plus frozen file
     # hashes, not by treating every blinded/reviewed proposal as a control.
-    for reveal_path in sorted((repo / 'research').rglob('*REVEAL*.json')):
+    files, reveal_files, freeze_files = scan_research(repo, excluded)
+    for reveal_rel, _, reveal_full in reveal_files:
+        reveal_path = repo / reveal_rel
         try:
             reveal = json.loads(reveal_path.read_bytes())
         except (ValueError, OSError):
             continue
         if not isinstance(reveal, dict) or not isinstance(reveal.get('controls'), dict):
             continue
-        for freeze_path in sorted(reveal_path.parent.rglob('FREEZE.json')):
+        prefix = reveal_rel.rsplit('/', 1)[0] + '/'
+        for freeze_rel, _, _ in freeze_files:
+            if not freeze_rel.startswith(prefix):
+                continue
+            freeze_path = repo / freeze_rel
             try:
                 freeze = json.loads(freeze_path.read_bytes())
             except (ValueError, OSError):
@@ -283,22 +393,18 @@ def collect(repo, dossiers, exclude=None):
     # Existing claims, reviews, selected-version manifests and unfinished producer
     # checkpoints can live in any research session. Do not consume generated packet
     # copies or recurse through arbitrary nested claims in reports.
-    for path in sorted((repo / 'research').rglob('*')):
-        if any(path.resolve().is_relative_to(p) for p in excluded):
-            continue
-        if path.suffix.lower() not in ('.json', '.jsonl') or not path.is_file():
-            continue
-        if path.name in ('PACKET.json', 'EVIDENCE.json'):
-            continue
+    mentions = id_matcher(ids)
+    for rel, resolved, full in files:
+        path = Path(full)
         raw = path.read_bytes()
-        if not any(iid.encode() in raw for iid in ids):
+        if not mentions(raw):
             continue
-        rel = path.relative_to(repo).as_posix()
         # One file pin covers every JSONL record. Rehashing the entire payload
         # for each line turns large research histories into quadratic work.
         raw_sha = sha(raw)
-        if path.resolve() in control_paths:
-            qualification = control_paths[path.resolve()]
+        resolved = Path(resolved)
+        if resolved in control_paths:
+            qualification = control_paths[resolved]
             for key in ('reveal_path', 'freeze_path'):
                 pin(qualification[key])
             pins[rel] = raw_sha

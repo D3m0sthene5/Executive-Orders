@@ -18,6 +18,12 @@ PROTOCOLS = ['jobs/claim-kit/AGENT_PROTOCOL.md', 'jobs/claim-kit/BATCH.md',
              'research/stage15/LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json']
 NOTICE = ('Review lead only. Every case needs separate applicability, earlier-ending, scope, '
           'independent-command, savings and independent whole-case review.')
+# Per-query work bounds. A request-scoped context reads only packages that mention a
+# requested ID; the full index (ids=None) has its own explicit package bound.
+MAX_PACKAGES_PER_QUERY = 100
+MAX_SCAN_BYTES = 256 * 1024 * 1024
+MAX_INDEX_PACKAGES = 2000
+PACKAGE_SHEETS = ('decisions.csv', 'clauses.csv')
 REASON_FIELDS = {'research_rationale', 'rationale', 'reason', 'mechanism', 'legal_basis',
                  'earlier_end_check', 'scope_check', 'independent_command_check', 'savings_check'}
 
@@ -83,14 +89,23 @@ def production_claim(c):
             and not any(c.get(k) for k in ('SEEDED', 'seeded', 'synthetic')))
 
 
-def active_claims(repo):
-    """Exactly the existing filename/line winner convention; retain old version refs."""
+def active_claims(repo, ids=None):
+    """Exactly the existing filename/line winner convention; retain old version refs.
+
+    With ids, lines that cannot concern a requested ID are not parsed or validated; the
+    winner and exact claim_ref of every requested ID are unchanged."""
     active = {}; history = []
     for p in sorted((Path(repo) / 'research/readiness/claims').glob('*.jsonl')):
         for line, text in enumerate(p.read_text('utf-8').splitlines(), 1):
             if not text.strip():
                 continue
+            # Cheap superset prefilter; a line with JSON unicode escapes is always parsed.
+            if ids is not None and '\\u' not in text and not any(i in text for i in ids):
+                continue
             c = json.loads(text)
+            if ids is not None and not (isinstance(c, dict) and isinstance(c.get('instrument_id'), str)
+                                        and c['instrument_id'] in ids):
+                continue
             if not production_claim(c):
                 raise ValueError('nonproduction claim in canonical claims: ' + str(p))
             ref = {'path': p.relative_to(repo).as_posix(), 'line': line, 'claim_sha256': sha(c)}
@@ -136,50 +151,130 @@ def pins(repo, paths):
     return {p: file_sha(safe(repo, p)) if safe(repo, p).is_file() else None for p in sorted(set(paths))}
 
 
-def package_paths(repo):
-    # The tracked registry is stable across sparse checkouts. Runtime correction
-    # packets are deliberately excluded, preventing self-input and output cycles.
-    result=subprocess.run(['git','ls-files','--','research/excavator/**/RATIONALES.json',
-                           'research/production/**/RATIONALES.json'],cwd=repo,capture_output=True,text=True)
+def excluded_folders(repo, exclude=()):
+    """Sorted repo-relative POSIX folders to skip. Pure path arithmetic: it never depends on
+    whether a folder exists or is tracked. Folders outside the repository cannot hold a
+    tracked package and are ignored."""
+    root = Path(repo).resolve(); result = set()
+    for e in exclude or ():
+        p = Path(e); p = (p if p.is_absolute() else root / p).resolve()
+        if p == root:
+            raise ValueError('cannot exclude the repository root')
+        if p.is_relative_to(root):
+            result.add(p.relative_to(root).as_posix())
+    return sorted(result)
+
+
+def inside(folder, excluded):
+    return any(folder == x or folder.startswith(x + '/') for x in excluded)
+
+
+def is_excluded(rel, excluded):
+    return inside(Path(rel).parent.as_posix(), excluded)
+
+
+def within(repo, folder, excluded):
+    p = Path(folder).resolve(); root = Path(repo).resolve()
+    return p.is_relative_to(root) and inside(p.relative_to(root).as_posix(), excluded)
+
+
+def tracked_rationales(repo):
+    """Tracked package registry (stable across sparse checkouts); None if git is unavailable.
+    Runtime correction packets are deliberately excluded, preventing self-input cycles."""
+    result = subprocess.run(['git', 'ls-files', '--', 'research/excavator/**/RATIONALES.json',
+                             'research/production/**/RATIONALES.json'], cwd=repo, capture_output=True, text=True)
     if result.returncode:
+        return None
+    return sorted(set(result.stdout.splitlines()))
+
+
+def package_paths(repo, excluded=(), limit=None):
+    """Full inventory of tracked packages, bounded by MAX_INDEX_PACKAGES."""
+    limit = MAX_INDEX_PACKAGES if limit is None else limit
+    paths = tracked_rationales(repo)
+    if paths is None:
         return [], ['tracked package inventory unavailable']
-    paths=sorted(set(result.stdout.splitlines()))
-    if len(paths)>100:
-        raise ValueError('package inventory exceeds bounded 100-package limit')
-    loaded=[];missing=[]
+    paths = [p for p in paths if not is_excluded(p, excluded)]
+    if len(paths) > limit:
+        raise ValueError('package inventory exceeds bounded %d-package limit' % limit)
+    loaded = []; missing = []
     for rel in paths:
-        folder=Path(repo)/Path(rel).parent
-        if not (folder/'RATIONALES.json').is_file():missing.append(rel)
-        else:loaded.append(folder)
+        folder = Path(repo) / Path(rel).parent
+        if not (folder / 'RATIONALES.json').is_file():
+            missing.append(rel)
+        else:
+            loaded.append(folder)
     return loaded, missing
 
 
-def shared_lineage(repo, packages):
-    """Observed references only; a package reference never proves claim derivation."""
-    result = []
-    folders=sorted(set(Path(p).resolve() for p in packages))
-    if len(folders)>100:
-        raise ValueError('at most 100 packages per index')
+def scoped_package_paths(repo, ids, excluded=()):
+    """Tracked packages whose sheets mention a requested ID (superset; shared_lineage decides
+    relevance exactly), plus tracked-but-absent packages whose relevance cannot be ruled out.
+    Bounded by MAX_SCAN_BYTES of sheet bytes read."""
+    paths = tracked_rationales(repo)
+    if paths is None:
+        return [], ['tracked package inventory unavailable']
+    needles = [i.encode() for i in sorted(ids)]; scanned = 0; candidates = []; missing = []
+    for rel in paths:
+        if is_excluded(rel, excluded):
+            continue
+        folder = Path(repo) / Path(rel).parent
+        if not (folder / 'RATIONALES.json').is_file():
+            missing.append(rel); continue
+        for name in PACKAGE_SHEETS:
+            sheet = folder / name
+            if not sheet.is_file():
+                continue
+            scanned += sheet.stat().st_size
+            if scanned > MAX_SCAN_BYTES:
+                raise ValueError('package sheets exceed bounded %d-byte scan limit' % MAX_SCAN_BYTES)
+            raw = sheet.read_bytes()
+            if any(n in raw for n in needles):
+                candidates.append(folder); break
+    return candidates, missing
+
+
+def shared_lineage(repo, packages, ids=None, limit=100):
+    """Observed references only; a package reference never proves claim derivation.
+
+    Without ids every package is read and `limit` bounds the number of folders. With ids
+    only references whose instrument_id is a requested ID are kept and `limit` bounds the
+    number of packages that contribute one."""
+    result = []; relevant = set()
+    folders = sorted(set(Path(p).resolve() for p in packages))
+    if ids is None and len(folders) > limit:
+        raise ValueError('at most %d packages per index' % limit)
     for folder in folders:
         if not folder.is_relative_to(Path(repo).resolve() / 'research'):
             raise ValueError('packages must be under research')
         rp = folder / 'RATIONALES.json'
         if not rp.exists():
             continue
-        shared = json.loads(rp.read_bytes())
-        for name in ('decisions.csv', 'clauses.csv'):
+        shared = json.loads(rp.read_bytes()) if ids is None else None
+        hashes = {}
+        for name in PACKAGE_SHEETS:
             p = folder / name
             if not p.exists():
                 continue
             with p.open(encoding='utf-8-sig', newline='') as f:
                 for line, r in enumerate(csv.DictReader(f), 2):
+                    if ids is not None and r.get('instrument_id') not in ids:
+                        continue
                     for field, value in r.items():
                         if isinstance(value, str) and value.startswith('@rationale:'):
+                            if shared is None:
+                                shared = json.loads(rp.read_bytes())
+                            if ids is not None and rp not in relevant:
+                                relevant.add(rp)
+                                if len(relevant) > limit:
+                                    raise ValueError('more than %d relevant packages for one query' % limit)
+                            for q in (p, rp):
+                                hashes.setdefault(q, file_sha(q))
                             result.append({'instrument_id': r.get('instrument_id'), 'scope_id': r.get('scope_id'),
-                                           'path': p.relative_to(repo).as_posix(), 'file_sha256': file_sha(p),
+                                           'path': p.relative_to(repo).as_posix(), 'file_sha256': hashes[p],
                                            'line': line, 'field': field, 'reference': value,
                                            'rationales_path': rp.relative_to(repo).as_posix(),
-                                           'rationales_sha256': file_sha(rp), 'resolved_text': shared.get(value[11:]),
+                                           'rationales_sha256': hashes[rp], 'resolved_text': shared.get(value[11:]),
                                            'causal_derivation_established': False})
     return result
 
@@ -317,10 +412,14 @@ def validate_attestation(repo, a, c, invalidated=()):
         return {'valid': False, 'attestation_id': a.get('attestation_id'), 'reason': str(exc)}
 
 
-def confirmed_findings(repo, active):
+def confirmed_findings(repo, active, ids=None):
+    """With ids, reviews of other instruments are not examined, validated or refused."""
     good = []; refused = []
     for p in sorted((Path(repo) / 'research/readiness/method_reviews').glob('*.jsonl')):
         for f in rows(p):
+            if ids is not None and not (isinstance(f, dict) and isinstance(f.get('instrument_id'), str)
+                                        and f['instrument_id'] in ids):
+                continue
             try:
                 if f.get('schema') != 'eo-method-dependency-review/v1' or f.get('independent') is not True or f.get('verdict') != 'revalidate':
                     raise ValueError('explicit revalidation review required')
@@ -350,16 +449,28 @@ def confirmed_findings(repo, active):
     return good, refused
 
 
-def build(repo, packages=(), ids=None):
-    repo = Path(repo).resolve(); active, history = active_claims(repo)
-    all_active = active
-    if ids is not None:
-        active = {i: v for i, v in active.items() if i in ids}
+def build(repo, packages=(), ids=None, exclude=()):
+    """ids=None: the full index. ids: only what concerns those instruments, with request-scoped
+    package lineage, so unrelated packages, claims and reviews cannot change the result."""
+    repo = Path(repo).resolve(); ids = None if ids is None else frozenset(ids)
+    excluded = excluded_folders(repo, exclude)
+    active, history = active_claims(repo, ids)
     library = json.loads((HERE / 'premises.json').read_bytes()); protocol_pins = pins(repo, PROTOCOLS)
-    discovered, missing_packages = package_paths(repo)
-    shared = shared_lineage(repo, [*discovered, *packages])
-    # Findings for other IDs are filtered without treating them as bad records.
-    findings, refused = confirmed_findings(repo, all_active)
+    explicit = [p for p in packages if not within(repo, p, excluded)]
+    if ids is None:
+        discovered, missing_packages = package_paths(repo, excluded)
+        shared = shared_lineage(repo, [*discovered, *explicit], limit=MAX_INDEX_PACKAGES)
+        package_scan = {'scope': 'full_index', 'tracked_packages_loaded': len(discovered),
+                        'excluded_folders': excluded, 'unmaterialized_packages': missing_packages,
+                        'causal_derivation_inferred': False}
+    else:
+        discovered, missing_packages = scoped_package_paths(repo, ids, excluded)
+        shared = shared_lineage(repo, [*discovered, *explicit], ids, MAX_PACKAGES_PER_QUERY)
+        package_scan = {'scope': 'requested_instruments',
+                        'relevant_packages': sorted({x['rationales_path'] for x in shared}),
+                        'excluded_folders': excluded, 'unmaterialized_packages': missing_packages,
+                        'causal_derivation_inferred': False}
+    findings, refused = confirmed_findings(repo, active, ids)
     attestations = [a for p in sorted((repo / 'research/readiness/component_attestations').glob('*.jsonl')) for a in rows(p)]
     claims = {}; groups = {}; queue = []
     for iid, entry in sorted(active.items()):
@@ -396,8 +507,7 @@ def build(repo, packages=(), ids=None):
            'shared_rationale_references': shared,
            'protocol_pins': protocol_pins, 'controlling_codebook_version': 'not separately located; protocol pins do not amend the codebook',
            'premise_library_sha256': file_sha(HERE / 'premises.json'),
-           'package_scan': {'tracked_packages_loaded': len(discovered), 'unmaterialized_packages': missing_packages,
-                            'causal_derivation_inferred': False},
+           'package_scan': package_scan,
            'textual_groups': [v for v in groups.values() if len({x['instrument_id'] for x in v}) > 1],
            'review_queue': queue, 'refused_method_reviews': refused,
            'summary': {'active_claims': len(claims), 'textual_leads': sum(x['state'] == 'textual_review_lead' for x in queue),
@@ -409,9 +519,12 @@ def build(repo, packages=(), ids=None):
     return doc
 
 
-def attach(repo, ids):
-    """Fresh bounded packet context, without cached-output dependency cycles."""
-    index = build(repo, ids=ids)
+def attach(repo, ids, exclude=()):
+    """Fresh bounded packet context, without cached-output dependency cycles.
+
+    Depends only on the requested instruments: unrelated packages, claims and reviews cannot
+    change it. `exclude` lists folders (the packet's own) whose packages are skipped."""
+    index = build(repo, ids=ids, exclude=exclude)
     return {'schema': 'eo-valla-packet-context/v1', 'notice': NOTICE,
             'valla_code_sha256': file_sha(HERE / 'valla.py'),
             'package_scan': index['package_scan'],

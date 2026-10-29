@@ -48,6 +48,30 @@ class BatchTests(T.BuildIntegrationTests):
         with self.assertRaisesRegex(ValueError,'changed Valla review context'):
             batch.load_packet(folder,self.repo)
 
+    def test_valla_context_ignores_own_and_unrelated_packages_but_not_relevant_ones(self):
+        import shutil,subprocess
+        source=Path(__file__).resolve().parents[1]/'valla'
+        target=self.repo/'jobs/valla';target.mkdir(parents=True)
+        for name in ('valla.py','premises.json'):shutil.copyfile(source/name,target/name)
+        git=lambda *a:subprocess.run(['git',*a],cwd=self.repo,check=True,capture_output=True)
+        git('init','-q')
+        self.run_build();folder=self.repo/'research/excavator/valla-scope/packet'
+        batch.prepare(self.repo,self.out,folder,['EO:1'],'producer')
+        def package(where,iid):
+            where.mkdir(parents=True,exist_ok=True)
+            (where/'RATIONALES.json').write_text(json.dumps({'r':'A shared rationale for this order.'}))
+            batch.csv_write(where/'decisions.csv',['instrument_id','research_rationale'],[{'instrument_id':iid,'research_rationale':'@rationale:r'}])
+            (where/'clauses.csv').write_text('instrument_id,reason\n')
+            git('add','-f','--',*(str((where/n).relative_to(self.repo)) for n in ('RATIONALES.json','decisions.csv','clauses.csv')))
+        # The producer's own sheets, committed while the packet is in flight, and another batch's package.
+        package(folder,'EO:1');package(self.repo/'research/excavator/other/packet','EO:2')
+        packet,_=batch.load_packet(folder,self.repo)
+        self.assertEqual(packet['valla_context']['package_scan']['relevant_packages'],[])
+        # Another package citing a shared rationale for this member is relevant lineage.
+        package(self.repo/'research/excavator/third/packet','EO:1')
+        with self.assertRaisesRegex(ValueError,'changed Valla review context'):
+            batch.load_packet(folder,self.repo)
+
     def test_lossless_roundtrip_shares_sources_and_full_text(self):
         p=self.packet();packet,dossiers=batch.load_packet(p,self.repo)
         self.assertEqual(dossiers,{iid:self.dossier(iid) for iid in ('EO:1','EO:2')})

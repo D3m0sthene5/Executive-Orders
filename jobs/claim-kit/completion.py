@@ -7,10 +7,12 @@ from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import importlib.util
+from copy import deepcopy
 import json
 import os
 from pathlib import Path
 import re
+import socket
 import subprocess
 import sys
 import time
@@ -20,6 +22,11 @@ from assemble import _gate, check_claim
 
 SCHEMA = 'eo-claim-kit-completion/v1'
 SHA = re.compile(r'[0-9a-f]{64}')
+CLAIMS_PATTERN = 'research/readiness/claims/*.jsonl'
+LOCK_REL = 'research/readiness/.claim-publication.lock'
+LOCK_TIMEOUT_ENV = 'CLAIM_KIT_PUBLICATION_LOCK_TIMEOUT'
+LOCK_TIMEOUT_DEFAULT = 900.0
+LOCK_POLL_SECONDS = 0.5
 
 
 def require(condition, message):
@@ -45,6 +52,9 @@ class Inputs:
         self.pins = {}
         self.absent = set()
         self.file_sets = {}
+        self.additive = set()       # patterns where disjoint NEW files are tolerated
+        self.concurrent = []        # permitted additions seen by the last unchanged()
+        self.packets = {}           # (folder, PACKET.json sha256) -> verified snapshot
 
     def pin(self, rel, sha=None):
         path = batch.safe(self.repo, rel)
@@ -60,7 +70,44 @@ class Inputs:
             self.absent.add(rel)
 
     def claim_files(self):
-        self.pattern('research/readiness/claims/*.jsonl')
+        self.pattern(CLAIMS_PATTERN)
+        self.additive.add(CLAIMS_PATTERN)
+
+    def packet(self, ref):
+        """Pin PACKET.json and verify it once per (folder, sha256) per invocation.
+
+        Later members reuse the verified (packet, dossiers). Callers must treat the
+        returned objects as read-only; selected_claim deep-copies a member dossier.
+        """
+        require(isinstance(ref, dict), 'packet reference must be an object')
+        require(Path(ref['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
+        self.pin(ref['path'], ref['sha256'])
+        folder = batch.safe(self.repo, ref['path']).parent
+        key = (folder, ref['sha256'])  # pin() just proved the file has exactly this digest
+        entry = self.packets.get(key)
+        if entry is None:
+            started = time.monotonic()
+            packet, dossiers = batch.load_packet(folder, self.repo)
+            entry = self.packets[key] = {'folder': folder, 'packet': packet, 'dossiers': dossiers,
+                                         'fingerprint': packet.get('fingerprint'), 'loads': 1,
+                                         'load_seconds': time.monotonic() - started, 'rechecks': 0,
+                                         'recheck_seconds': 0.0}
+        return entry['packet'], entry['dossiers']
+
+    def recheck_packets(self):
+        """Reverify every cached packet's dynamic dependencies right before publication."""
+        for entry in self.packets.values():
+            rel = entry['folder'].relative_to(self.repo).as_posix()
+            started = time.monotonic()
+            try:
+                packet, _ = batch.load_packet(entry['folder'], self.repo)
+                same = packet.get('fingerprint') == entry['fingerprint']
+            except Exception:
+                same = False
+            entry['loads'] += 1
+            entry['rechecks'] += 1
+            entry['recheck_seconds'] += time.monotonic() - started
+            require(same, 'packet dependencies changed during completion: ' + rel)
 
     def pattern(self, pattern):
         paths = sorted(p.relative_to(self.repo).as_posix() for p in self.repo.glob(pattern) if p.is_file())
@@ -98,17 +145,41 @@ class Inputs:
         require(isinstance(value, dict), 'referenced record must be an object')
         return value
 
-    def unchanged(self):
+    def unchanged(self, selected_ids=None):
+        """Strictly recheck every pin; the claims pattern alone tolerates disjoint new files."""
+        self.concurrent = []
         for rel, raw in self.files.items():
             require(batch.safe(self.repo, rel).read_bytes() == raw, 'input changed during completion: ' + rel)
         for rel, sha in self.pins.items():
-            with batch.safe(self.repo, rel).open('rb') as stream:
+            path = batch.safe(self.repo, rel)
+            require(path.is_file(), 'dependency removed during completion: ' + rel)
+            with path.open('rb') as stream:
                 require(hashlib.file_digest(stream, 'sha256').hexdigest() == sha, 'dependency changed during completion: ' + rel)
         for rel in self.absent:
             require(not batch.safe(self.repo, rel).exists(), 'dependency appeared during completion: ' + rel)
         for pattern, paths in self.file_sets.items():
-            require(sorted(p.relative_to(self.repo).as_posix() for p in self.repo.glob(pattern) if p.is_file()) == paths,
-                    'input file set changed during completion: ' + pattern)
+            current = sorted(p.relative_to(self.repo).as_posix() for p in self.repo.glob(pattern) if p.is_file())
+            if current == paths:
+                continue
+            if pattern in self.additive and selected_ids is not None and set(paths) <= set(current):
+                self.disjoint_additions(set(current) - set(paths), set(selected_ids))
+                continue
+            raise ValueError('input file set changed during completion: ' + pattern)
+
+    def disjoint_additions(self, added, selected_ids):
+        for rel in sorted(added):
+            raw = batch.safe(self.repo, rel).read_bytes()
+            ids = []
+            for line in raw.splitlines():
+                if not line.strip():
+                    continue
+                row = read_json(line)
+                require(isinstance(row, dict), 'concurrent claims file has a non-object line: ' + rel)
+                if row.get('instrument_id') is not None:
+                    ids.append(row['instrument_id'])
+            for iid in ids:
+                require(iid not in selected_ids, 'concurrent publication for selected instrument %s: %s' % (iid, rel))
+            self.concurrent.append({'path': rel, 'sha256': batch.digest(raw), 'instrument_ids': sorted(set(map(str, ids)))})
 
     def save(self, dest):
         for rel, raw in self.files.items():
@@ -117,7 +188,15 @@ class Inputs:
             path.write_bytes(raw)
         batch.dump(dest / 'INPUTS.json', {'preserved_receipts': {rel: batch.digest(raw) for rel, raw in sorted(self.files.items())},
                                         'dependency_sha256': dict(sorted(self.pins.items())),
-                                        'absent_dependencies': sorted(self.absent), 'file_sets': self.file_sets})
+                                        'absent_dependencies': sorted(self.absent), 'file_sets': self.file_sets,
+                                        'concurrent_disjoint_claim_files': self.concurrent,
+                                        'tracker_replay_basis': 'start snapshot of canonical claims; excludes concurrent_disjoint_claim_files'
+                                                                if self.concurrent else 'start snapshot (no concurrent additions)'})
+        batch.dump(dest / 'PACKETS.json', [
+            {'packet': e['folder'].relative_to(self.repo).as_posix() + '/PACKET.json', 'fingerprint': e['fingerprint'],
+             'packet_sha256': key[1], 'loads': e['loads'], 'load_seconds': e['load_seconds'],
+             'rechecks': e['rechecks'], 'recheck_seconds': e['recheck_seconds']}
+            for key, e in sorted(self.packets.items(), key=lambda item: str(item[0][0]))])
 
 
 def review_record(inputs, ref, member, manifest, after_reveal=False):
@@ -279,10 +358,7 @@ def selected_claim(inputs, member, manifest, planted, held):
         strict_errors = working_overlay(inputs, member, manifest, claim)
     elif 'claim_kit' in claim:
         packet_ref = member['packet']
-        require(Path(packet_ref['path']).name == 'PACKET.json', 'packet reference must pin PACKET.json')
-        inputs.pin(packet_ref['path'], packet_ref['sha256'])
-        folder = batch.safe(inputs.repo, packet_ref['path']).parent
-        packet, dossiers = batch.load_packet(folder, inputs.repo)
+        packet, dossiers = inputs.packet(packet_ref)
         require(packet['agent'] == manifest['agent'], 'packet belongs to another producer')
         require(packet.get('codec_code_sha256') == batch.file_sha(Path(batch.__file__)) and
                 packet.get('policy_code_sha256') == batch.policy_code_pins() and
@@ -290,7 +366,7 @@ def selected_claim(inputs, member, manifest, planted, held):
                 packet.get('preflight_code_sha256') == batch.file_sha(Path(batch.__file__).with_name('evidence_preflight.py')) and
                 packet.get('preflight_dependency_sha256') == {'excavate.py': batch.file_sha(Path(batch.__file__).with_name('excavate.py'))},
                 'packet code changed; prepare and review a new version')
-        dossier = dossiers[iid]
+        dossier = deepcopy(dossiers[iid])  # the cached packet snapshot is shared and immutable
     gate_errors = _gate(inputs.repo).validate_claim(claim, expected_status=claim.get('whole_order_status'))
     if not is_overlay:
         strict_errors = check_claim(claim, inputs.repo, dossier)
@@ -385,7 +461,9 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
         rels = [v for k, v in tracker.P.items() if k not in ('claims', 'claim_gate_dir')]
         for value in tracker.J.values():
             rels.extend(value if isinstance(value, list) else [value])
-        rels.extend(p.relative_to(repo).as_posix() for p in (repo / 'research/readiness/claims').glob('*.jsonl'))
+        snapshot = inputs.file_sets.get(CLAIMS_PATTERN)  # files added since the start are judged by unchanged()
+        rels.extend(snapshot if snapshot is not None else
+                    (p.relative_to(repo).as_posix() for p in (repo / 'research/readiness/claims').glob('*.jsonl')))
         for rel in sorted(set(rels)):
             inputs.optional(rel)
     before, problems = tracker.build(str(repo))
@@ -393,7 +471,9 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
     tracker.write_outputs(dest / 'tracker-before', before, before_summary, {'replay': 'actual current canonical inputs'})
     union = dest / 'TRACKER_CLAIMS.jsonl'
     canonical = []
-    for path in sorted((repo / 'research/readiness/claims').glob('*.jsonl')):
+    snapshot = inputs.file_sets.get(CLAIMS_PATTERN) if inputs is not None else None
+    for path in (sorted(repo / rel for rel in snapshot) if snapshot is not None else
+                 sorted((repo / 'research/readiness/claims').glob('*.jsonl'))):
         for line in path.read_bytes().splitlines(keepends=True):
             if line.strip() and read_json(line).get('instrument_id') not in selected:
                 canonical.append(line if line.endswith(b'\n') else line + b'\n')
@@ -420,6 +500,47 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
     return {'before': before_summary, 'after': after_summary,
             'selected': {iid: {'before': before_by.get(iid), 'after': after_by.get(iid)} for iid in selected},
             'canonical_outputs_modified': False}
+
+
+class PublicationLock:
+    """Exclusive O_EXCL lock file for the short recheck-and-write transaction.
+
+    A stale lock is never deleted automatically: the batch fails closed and names it.
+    """
+    def __init__(self, repo, dest):
+        self.path = repo / LOCK_REL
+        self.dest = dest
+        self.held = False
+
+    def acquire(self):
+        try:
+            timeout = float(os.environ.get(LOCK_TIMEOUT_ENV, LOCK_TIMEOUT_DEFAULT))
+        except ValueError:
+            raise ValueError('invalid %s' % LOCK_TIMEOUT_ENV)
+        deadline = time.monotonic() + timeout
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        while True:
+            try:
+                fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            except FileExistsError:
+                if time.monotonic() >= deadline:
+                    raise ValueError('publication lock held by another completion (stale locks are never removed '
+                                     'automatically): ' + self.path.as_posix())
+                time.sleep(min(LOCK_POLL_SECONDS, max(0.0, deadline - time.monotonic())))
+                continue
+            self.held = True
+            with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+                json.dump({'pid': os.getpid(), 'host': socket.gethostname(),
+                           'started_utc': datetime.now(timezone.utc).isoformat(), 'dest': str(self.dest)}, stream)
+            return self
+
+    def release(self):
+        if self.held:
+            self.held = False
+            try:
+                self.path.unlink()
+            except FileNotFoundError:
+                pass
 
 
 def complete(repo, manifest_path, dest, publish=False):
@@ -451,6 +572,7 @@ def complete(repo, manifest_path, dest, publish=False):
     dest.mkdir(parents=True)
     outcomes, exceptions, selected, control_results = [], [], {}, []
     blocked_batch = False
+    lock = PublicationLock(repo, dest)
     try:
         for rel in ('research/stage19/code/claim_gate.py', 'jobs/claim-kit/completion.py',
                     'jobs/claim-kit/kit.py', 'jobs/claim-kit/batch.py',
@@ -528,47 +650,61 @@ def complete(repo, manifest_path, dest, publish=False):
                 allowed = next(row['gate_errors'] for row in outcomes if row['instrument_id'] == iid)
                 require(not [error for error in working_overlay(inputs, member, manifest, selected[iid][0]) if error not in allowed],
                         'overlay changed during completion: ' + iid)
-        inputs.unchanged()
+        # The final recheck is the start of the publication transaction: lock first,
+        # then re-verify packet dependencies and every pin before anything is written.
+        if publish and selected:
+            lock.acquire()
+        inputs.recheck_packets()
+        inputs.unchanged(set(selected))
     except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
         exceptions.append({'scope': 'batch', 'error': str(exc)})
         for row in outcomes:
             if row['outcome'] in ('selected', 'eligible'):
                 row.update(outcome='exception', error=str(exc))
         selected = {}
-    raw = b''.join(value[1] for value in selected.values())
-    artifact = dest / 'CLAIMS.publishable.jsonl'
-    artifact.write_bytes(raw)
-    publication.update(artifact=artifact.relative_to(repo).as_posix(), sha256=batch.digest(raw),
-                       claims=len(selected), owner_acceptance_required=mode == 'replacement_proposal',
-                       independent_human_certifications=0)
-    overlay_ids = [iid for iid,(claim,_) in selected.items() if 'status_overlay' in claim.get('claim_kit', {})]
-    if overlay_ids:
-        publication.update(status_adoption_required=overlay_ids, canonical_filing_allowed=False,
-                           tracker_uses_authoritative_statuses=True)
-    inputs.save(dest)
-    tally = {'schema': SCHEMA, 'attempted': len(members), 'counts': dict(Counter(r['outcome'] for r in outcomes)),
-             'submitted': sum(m['outcome'] == 'submit' for m in members), 'controls': control_results,
-             'plants_placed': len(manifest['controls']), 'plants_caught': sum(c['caught'] for c in control_results),
-             'eligible': list(selected), 'claims_published': 0,
-             'source_review_upheld': sum(r.get('source_review_upheld', False) for r in outcomes),
-             'eligible_per_attempt': len(selected) / len(members),
-             'independent_human_certifications': 0, 'exceptions': len(exceptions), 'outcomes': outcomes,
-             'started_utc': start_utc, 'finished_utc': datetime.now(timezone.utc).isoformat(),
-             'wall_seconds': time.monotonic() - started, 'model_tokens': None, 'model_cost': None,
-             'usage_note': 'Completion is deterministic. Agent/research token and cost telemetry is not supplied.'}
-    batch.dump(dest / 'PUBLICATION.json', publication)
-    batch.dump(dest / 'EXCEPTIONS.json', exceptions)
-    batch.dump(dest / 'TALLY.json', tally)
-    publication['written'] = False
-    batch.dump(dest / 'PUBLICATION.json', publication)
-    # Preserve all receipts before the sole externally visible write. Exclusive
-    # creation refuses races and never appends or overwrites another claim file.
-    if publish and raw:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        with target.open('xb') as stream:
-            stream.write(raw)
-        publication['written'] = True
+        lock.release()  # nothing will be published
+    except BaseException:
+        lock.release()
+        raise
+    try:
+        raw = b''.join(value[1] for value in selected.values())
+        artifact = dest / 'CLAIMS.publishable.jsonl'
+        artifact.write_bytes(raw)
+        publication.update(artifact=artifact.relative_to(repo).as_posix(), sha256=batch.digest(raw),
+                           claims=len(selected), owner_acceptance_required=mode == 'replacement_proposal',
+                           independent_human_certifications=0)
+        overlay_ids = [iid for iid,(claim,_) in selected.items() if 'status_overlay' in claim.get('claim_kit', {})]
+        if overlay_ids:
+            publication.update(status_adoption_required=overlay_ids, canonical_filing_allowed=False,
+                               tracker_uses_authoritative_statuses=True)
+        inputs.save(dest)
+        tally = {'schema': SCHEMA, 'attempted': len(members), 'counts': dict(Counter(r['outcome'] for r in outcomes)),
+                 'submitted': sum(m['outcome'] == 'submit' for m in members), 'controls': control_results,
+                 'plants_placed': len(manifest['controls']), 'plants_caught': sum(c['caught'] for c in control_results),
+                 'eligible': list(selected), 'claims_published': 0,
+                 'source_review_upheld': sum(r.get('source_review_upheld', False) for r in outcomes),
+                 'eligible_per_attempt': len(selected) / len(members),
+                 'independent_human_certifications': 0, 'exceptions': len(exceptions), 'outcomes': outcomes,
+                 'concurrent_disjoint_claim_files': inputs.concurrent,
+                 'packet_loads': {e['folder'].relative_to(repo).as_posix(): e['loads'] for e in inputs.packets.values()},
+                 'started_utc': start_utc, 'finished_utc': datetime.now(timezone.utc).isoformat(),
+                 'wall_seconds': time.monotonic() - started, 'model_tokens': None, 'model_cost': None,
+                 'usage_note': 'Completion is deterministic. Agent/research token and cost telemetry is not supplied.'}
         batch.dump(dest / 'PUBLICATION.json', publication)
-        tally['claims_published'] = len(selected) if mode == 'own_claims' else 0
+        batch.dump(dest / 'EXCEPTIONS.json', exceptions)
         batch.dump(dest / 'TALLY.json', tally)
-    return tally
+        publication['written'] = False
+        batch.dump(dest / 'PUBLICATION.json', publication)
+        # Preserve all receipts before the sole externally visible write. Exclusive
+        # creation refuses races and never appends or overwrites another claim file.
+        if publish and raw:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open('xb') as stream:
+                stream.write(raw)
+            publication['written'] = True
+            batch.dump(dest / 'PUBLICATION.json', publication)
+            tally['claims_published'] = len(selected) if mode == 'own_claims' else 0
+            batch.dump(dest / 'TALLY.json', tally)
+        return tally
+    finally:
+        lock.release()

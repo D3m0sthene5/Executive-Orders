@@ -178,3 +178,42 @@ Each run reports elapsed time and explicit unknown model tokens/cash. Mansfield'
 receipt retention and arithmetic belong here. Its semantic plant scoring remains
 an independent recorded judgment. The `COST.md` transcript-token and cost estimates
 are historical assumptions, not measured token savings from this implementation.
+
+## Packet reuse, concurrent filings and the publication transaction
+
+**One packet verification per run.** Each `PACKET.json` (pinned by path and sha256)
+is verified with `batch.load_packet` once per completion invocation; every member
+from that packet reuses the verified packet and gets its own deep copy of its
+dossier. Every per-claim check is unchanged. Immediately before publication each
+distinct packet is verified again; a different fingerprint or any error (changed
+held source, Valla context, prior research, supplement) makes the whole batch an
+exception, `packet dependencies changed during completion: <packet folder>`.
+`PACKETS.json` records, per packet, its fingerprint, `loads`, `load_seconds`,
+`rechecks` and `recheck_seconds`; `TALLY.json` repeats `packet_loads`. Note that
+a packet's prior-research scope includes every order in that packet, so filing
+one order of a packet legitimately invalidates a later completion from the same
+packet (`changed prior research`); disjoint completions should use disjoint packets.
+
+**Disjoint concurrent filings.** The run still snapshots `research/readiness/claims/*.jsonl`
+at the start. Files present then must stay byte-identical (modified or deleted
+is a batch exception). For this one pattern, files that are new since the
+snapshot are permitted only if every nonblank line is a JSON object and none has
+an `instrument_id` among this run's eligible instruments; otherwise the batch
+fails with `concurrent publication for selected instrument <iid>: <path>`.
+Permitted files are listed as `concurrent_disjoint_claim_files` (`path`, `sha256`,
+`instrument_ids`) in `INPUTS.json` and `TALLY.json`. `TRACKER_REPLAY.json`
+and the tracker union reflect the start snapshot (selected rows read only their own
+instrument's claims); `INPUTS.json` states this in `tracker_replay_basis`. Every other
+pattern, pin and absent-file check remains strict.
+
+**Serialized publication.** With `--publish` and something to write, the run takes
+an exclusive lock, `research/readiness/.claim-publication.lock` (created with
+`O_CREAT|O_EXCL`, containing `pid`, `host`, `started_utc`, `dest`), before the final
+packet recheck and pin recheck, and holds it through the exclusive `xb` creation of
+the claims file and the final `PUBLICATION.json`/`TALLY.json` update. It is released in
+`finally`. If another holder has it, the run polls every 0.5 s for
+`CLAIM_KIT_PUBLICATION_LOCK_TIMEOUT` seconds (default 900), then fails closed with
+a batch exception naming the lock path. A stale lock is never deleted
+automatically: after confirming no completion is running, remove the file by hand.
+Without `--publish` the same rechecks run without the lock. The target must still
+not exist.

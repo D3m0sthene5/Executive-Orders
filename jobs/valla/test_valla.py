@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import subprocess
+from unittest import mock
 import unittest
 import valla as V
 
@@ -177,9 +178,9 @@ class VallaTests(unittest.TestCase):
         d = V.build(self.repo); self.assertEqual(d['summary']['examined_dependencies'], 0)
         self.assertEqual(len(d['refused_method_reviews']), 1)
 
-    def test_reviewed_dependency_targets_only_conclusions_and_preserves_quote(self):
+    def method_review(self, record_id='M1', iid='EO:1', write=True):
         text=self.claim['research_rationale']
-        f={'schema':'eo-method-dependency-review/v1','record_id':'M1','instrument_id':'EO:1',
+        f={'schema':'eo-method-dependency-review/v1','record_id':record_id,'instrument_id':iid,
            'claim_sha256':V.sha(self.claim),'independent':True,'verdict':'revalidate',
            'review_kind':'independent_ai_method_review','reviewed_on':'2026-10-20',
            'producer':'original-producer','reviewer':'separate-reviewer',
@@ -188,10 +189,15 @@ class VallaTests(unittest.TestCase):
            'dependencies':self.a['dependencies']}
         for key in ('applicability','earlier_ending','scope','independent_commands','savings','unresolved_question','analysis'):
             f[key]='This case-specific question remains for independently reviewed correction.'
-        p=self.repo/'research/reviews/method.jsonl';p.write_text(V.canon(f)+'\n')
-        f['review_ref']={'path':p.relative_to(self.repo).as_posix(),'file_sha256':V.file_sha(p),'record_id':'M1'}
-        target=self.repo/'research/readiness/method_reviews';target.mkdir()
-        (target/'one.jsonl').write_text(V.canon(f)+'\n')
+        p=self.repo/('research/reviews/method-%s.jsonl'%record_id);p.write_text(V.canon(f)+'\n')
+        f['review_ref']={'path':p.relative_to(self.repo).as_posix(),'file_sha256':V.file_sha(p),'record_id':record_id}
+        if write:
+            target=self.repo/'research/readiness/method_reviews';target.mkdir(exist_ok=True)
+            (target/('%s.jsonl'%record_id)).write_text(V.canon(f)+'\n')
+        return f
+
+    def test_reviewed_dependency_targets_only_conclusions_and_preserves_quote(self):
+        self.method_review()
         target=self.repo/'research/readiness/component_attestations';target.mkdir()
         (target/'one.jsonl').write_text(V.canon(self.a)+'\n')
         d=V.build(self.repo);c=d['claims']['EO:1']
@@ -205,6 +211,155 @@ class VallaTests(unittest.TestCase):
         self.a['component_selector']={'kind':'source_identity'}
         self.a['component_sha256']=V.sha(self.claim['original_representation']);self.commit_review()
         self.assertFalse(self.valid()['valid'])
+
+
+    # ---- request-scoped packet context (attach) ----
+    IDS = ['EO:1']
+
+    def git_init(self):
+        subprocess.run(['git', 'init', '-q'], cwd=self.repo, check=True)
+        subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+
+    def package(self, name, iids, base='research/excavator', track=True):
+        p = self.repo / base / name; p.mkdir(parents=True, exist_ok=True)
+        V.dump(p / 'RATIONALES.json', {'k': 'Shared %s.' % name})
+        (p / 'decisions.csv').write_text('instrument_id,research_rationale\n' + ''.join('%s,@rationale:k\n' % i for i in iids))
+        if track:
+            subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+        return p
+
+    def ctx(self, ids=None, **kw):
+        return V.canon(V.attach(self.repo, ids or self.IDS, **kw))
+
+    def add_claim(self, iid, name='other.jsonl', **extra):
+        p = self.repo / 'research/readiness/claims' / name
+        with p.open('a') as f:
+            f.write(V.canon({'schema': 'eo-lifecycle-claim/v1', 'instrument_id': iid, **extra}) + '\n')
+
+    def test_unrelated_tracked_packages_do_not_change_context(self):
+        self.git_init(); base = self.ctx()
+        self.package('other', ['EO:2']); self.package('near', ['EO:10', 'EO:11'])
+        self.assertEqual(self.ctx(), base)
+        for n in range(101):
+            self.package('bulk%03d' % n, ['EO:%d' % (500 + n)], track=False)
+        subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+        self.assertEqual(self.ctx(), base)
+        scan = V.attach(self.repo, self.IDS)['package_scan']
+        self.assertEqual(scan, {'scope': 'requested_instruments', 'relevant_packages': [], 'excluded_folders': [],
+                                'unmaterialized_packages': [], 'causal_derivation_inferred': False})
+
+    def test_own_packet_folder_excluded_only_when_passed(self):
+        self.git_init(); folder = self.repo / 'research/excavator/packet'
+        base = self.ctx(exclude=[folder])
+        self.package('packet', ['EO:1'])
+        self.assertEqual(self.ctx(exclude=[folder]), base)
+        self.assertEqual(self.ctx(exclude=['research/excavator/packet/']), base)
+        self.assertNotEqual(self.ctx(), base)
+        self.assertNotEqual(V.attach(self.repo, self.IDS)['claims'], V.attach(self.repo, self.IDS, exclude=[folder])['claims'])
+        self.assertEqual(V.attach(self.repo, self.IDS, exclude=[folder])['package_scan']['excluded_folders'],
+                         ['research/excavator/packet'])
+        # Exclusion is recorded even when the folder neither exists nor is tracked; nested packages are skipped too.
+        self.assertEqual(V.attach(self.repo, self.IDS, exclude=['nowhere/x'])['package_scan']['excluded_folders'], ['nowhere/x'])
+        self.package('packet/sub', ['EO:1'])
+        self.assertEqual(self.ctx(exclude=[folder]), base)
+
+    def test_relevant_package_add_edit_delete_change_context(self):
+        self.git_init(); base = self.ctx()
+        p = self.package('rel', ['EO:1']); added = self.ctx(); self.assertNotEqual(added, base)
+        self.assertEqual(V.attach(self.repo, self.IDS)['package_scan']['relevant_packages'],
+                         ['research/excavator/rel/RATIONALES.json'])
+        ref = V.attach(self.repo, self.IDS)['claims']['EO:1']['shared_rationale_references'][0]
+        self.assertEqual(ref['resolved_text'], 'Shared rel.')
+        V.dump(p / 'RATIONALES.json', {'k': 'Edited.'}); edited = self.ctx(); self.assertNotEqual(edited, added)
+        (p / 'decisions.csv').write_text('instrument_id,research_rationale\nEO:1,@rationale:k\nEO:1,@rationale:k\n')
+        self.assertNotEqual(self.ctx(), edited)
+        (p / 'RATIONALES.json').unlink()
+        self.assertNotEqual(self.ctx(), edited)
+        self.assertEqual(V.attach(self.repo, self.IDS)['package_scan']['unmaterialized_packages'],
+                         ['research/excavator/rel/RATIONALES.json'])
+        subprocess.run(['git', 'rm', '-q', '-f', '--cached', '-r', 'research/excavator/rel'], cwd=self.repo, check=True)
+        self.assertEqual(self.ctx(), base)
+
+    def test_more_than_bound_of_relevant_packages_refused(self):
+        self.git_init()
+        for n in range(V.MAX_PACKAGES_PER_QUERY + 1):
+            self.package('rel%03d' % n, ['EO:1'], track=False)
+        subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+        with self.assertRaises(ValueError):
+            V.attach(self.repo, self.IDS)
+        subprocess.run(['git', 'rm', '-q', '-f', '--cached', '-r', 'research/excavator/rel100'], cwd=self.repo, check=True)
+        self.assertEqual(len(V.attach(self.repo, self.IDS)['package_scan']['relevant_packages']), V.MAX_PACKAGES_PER_QUERY)
+
+    def test_scan_bytes_bound_refused(self):
+        self.git_init(); self.package('other', ['EO:2'])
+        with mock.patch.object(V, 'MAX_SCAN_BYTES', 10), self.assertRaises(ValueError):
+            V.attach(self.repo, self.IDS)
+
+    def test_canonical_claim_changes_only_for_requested_ids(self):
+        self.git_init(); base = self.ctx()
+        self.add_claim('EO:9', research_rationale='Unrelated.'); self.assertEqual(self.ctx(), base)
+        (self.repo / 'research/readiness/claims/bad.jsonl').write_text('{"schema":"x","instrument_id":"EO:8","synthetic":true}\n')
+        self.assertEqual(self.ctx(), base)
+        with self.assertRaises(ValueError):
+            V.build(self.repo)
+        self.add_claim('EO:1', name='zzz.jsonl', research_rationale='A new winner.')
+        changed = V.attach(self.repo, self.IDS)
+        self.assertNotEqual(V.canon(changed), base)
+        self.assertEqual(changed['claims']['EO:1']['claim_ref']['path'], 'research/readiness/claims/zzz.jsonl')
+        self.assertEqual(changed['claims']['EO:1']['claim_ref']['line'], 1)
+
+    def test_scoped_claim_refs_match_full_build(self):
+        self.add_claim('EO:2', name='aaa.jsonl'); self.add_claim('EO:1', name='zzz.jsonl', research_rationale='Later.')
+        (self.repo / 'research/readiness/claims/zzz.jsonl').write_text(
+            '\n' + V.canon({'schema': 'eo-lifecycle-claim/v1', 'instrument_id': 'EO:2'}) + '\n'
+            + V.canon({'schema': 'eo-lifecycle-claim/v1', 'instrument_id': 'EO:1', 'research_rationale': 'Later.'}) + '\n')
+        full, _ = V.active_claims(self.repo); scoped, history = V.active_claims(self.repo, frozenset(['EO:1']))
+        self.assertEqual(scoped['EO:1']['ref'], full['EO:1']['ref']); self.assertEqual(scoped['EO:1']['ref']['line'], 3)
+        self.assertEqual(set(scoped), {'EO:1'})
+
+    def test_attestation_and_method_review_for_requested_id_change_context(self):
+        self.git_init(); base = self.ctx()
+        self.method_review('M1', 'EO:1'); with_review = self.ctx(); self.assertNotEqual(with_review, base)
+        self.assertEqual(V.attach(self.repo, self.IDS)['claims']['EO:1']['invalidated_conclusion_pointers'].count('/whole_order_end'), 1)
+        target = self.repo / 'research/readiness/component_attestations'; target.mkdir()
+        (target / 'one.jsonl').write_text(V.canon(self.a) + '\n')
+        self.assertNotEqual(self.ctx(), with_review)
+
+    def test_invalid_method_review_for_unrelated_id_is_ignored_when_scoped(self):
+        self.git_init(); self.add_claim('EO:2'); base = self.ctx()
+        p = self.repo / 'research/readiness/method_reviews'; p.mkdir()
+        (p / 'bad.jsonl').write_text(V.canon({'schema': 'eo-method-dependency-review/v1', 'instrument_id': 'EO:2',
+                                              'independent': True, 'verdict': 'revalidate'}) + '\n')
+        self.assertEqual(self.ctx(), base)
+        d = V.build(self.repo, ids=self.IDS); self.assertEqual(d['refused_method_reviews'], [])
+        self.assertEqual(len(V.build(self.repo)['refused_method_reviews']), 1)
+        self.assertEqual(len(V.build(self.repo, ids=['EO:2'])['refused_method_reviews']), 1)
+
+    def test_protocol_premise_and_code_pins_change_context(self):
+        self.git_init(); base = self.ctx()
+        self.rule.write_text('changed protocol'); changed = self.ctx(); self.assertNotEqual(changed, base)
+        self.assertEqual(V.attach(self.repo, self.IDS)['protocol_pins']['jobs/claim-kit/BATCH.md'], V.file_sha(self.rule))
+        stage = self.repo / 'valla-copy'; stage.mkdir()
+        for name in ('premises.json', 'valla.py'):
+            (stage / name).write_bytes((V.HERE / name).read_bytes())
+        with mock.patch.object(V, 'HERE', stage):
+            same = self.ctx()
+            (stage / 'premises.json').write_text((stage / 'premises.json').read_text() + '\n')
+            self.assertNotEqual(self.ctx(), same)
+            same = self.ctx(); (stage / 'valla.py').write_text((stage / 'valla.py').read_text() + '\n#\n')
+            self.assertNotEqual(self.ctx(), same)
+
+    def test_full_build_reports_all_packages_and_keeps_bound(self):
+        self.git_init(); self.package('a', ['EO:1']); self.package('b', ['EO:2'])
+        d = V.build(self.repo); scan = d['package_scan']
+        self.assertEqual((scan['scope'], scan['tracked_packages_loaded']), ('full_index', 2))
+        self.assertEqual(d['summary']['shared_rationale_references'], 2)
+        with mock.patch.object(V, 'MAX_INDEX_PACKAGES', 1), self.assertRaises(ValueError):
+            V.build(self.repo)
+        # The per-query path is not limited by the index bound.
+        with mock.patch.object(V, 'MAX_INDEX_PACKAGES', 1):
+            self.assertEqual(len(V.attach(self.repo, self.IDS)['package_scan']['relevant_packages']), 1)
+        self.assertEqual(V.build(self.repo, exclude=[self.repo / 'research/excavator/a'])['package_scan']['tracked_packages_loaded'], 1)
 
 
 if __name__ == '__main__':
