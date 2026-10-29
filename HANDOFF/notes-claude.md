@@ -2,6 +2,26 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-28 22:30 ET: Namier batch produced and reviewed; custody of APP page bytes is the next blocker
+
+- **Done:** Runner regenerated namier → claim-drafts → claim-kit on the branch (run 40770547716; known_pairs 18,068,
+  printed_reference_only_pairs 1,074). Prepared nine serial retirement exemptions (three Namier chains) in
+  `research/excavator/namier-serial-exemptions-2026-10-28/`: every extension order was already in the packet, no
+  search needed. 7 claims assembled and gate-passed; blind review in a separate Claude context upheld 7/7 genuine,
+  caught the planted control (strict); EO 6615 upheld after reveal. `kit.py complete`: 0 eligible, all 7
+  `rejected_mechanical` on `source_held: custody_record_only` only (Kean F-20261028-10). Two members blocked by a
+  clause-drafts date-line defect that hits 76 APP pages (F-20261028-9; list in that folder). New job
+  `jobs/cassiodorus/` keeps the APP page bytes from the recorded captures so the checker can re-hash them; wired
+  before claim-checker, claim-kit and claim-drafts; it cannot fetch from the agents' container (archives refused).
+- **Running:** the push runs cassiodorus on the branch; check `jobs/cassiodorus/output/SUMMARY.json` (`kept`,
+  `hash_mismatch`, `no_capture_record`) and the claim-checker rerun.
+- **Next:** rerun `kit.py complete research/excavator/namier-serial-exemptions-2026-10-28/COMPLETION.json --write
+  .../complete-v2` once Cassiodorus has kept the 13 pages; if eligible, `--publish` to the manifest's own-agent
+  file. Then apply the tolerant DATE_LINE (patch and test drafted; changes the claim-kit compiler hash, so do it
+  between batches) and re-prepare EO 6773/6577. Then the remaining 46 X1 retirement exemptions with later hits.
+- **Asks:** `@Owner`: none.
+- **Do not:** publish from `complete-v1` (nothing eligible); edit `packet/review/BLIND_REVIEW.jsonl` (sealed).
+
 ## 2026-10-28 18:05 ET: Namier (name-based discovery for one-person orders) and the dropped-citation fix in claim-kit
 
 - **Done:** New job `jobs/namier/` (Kean F-20261028-7): parses the person each one-person order names and searches
