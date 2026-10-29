@@ -24,6 +24,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 ## Standing owner requirements
 
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
+- **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 
 ## Owner decisions not yet carried out by the tools (1)
 
@@ -32,7 +33,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (10 of 47; `search` finds the rest)
+## Newest results (8 of 47; `search` finds the rest)
 
 - 2026-10-29 F-20261029-1 **worked**: Refresh the original rocket dashboard with current published data Lesson: Preserve the original artifact and frozen weights; readiness and modeled progress never imply human certification.
 - 2026-10-28 F-20261028-9 **worked**: Audit the spent-order probe effort denominator for the current dashboard Lesson: Use 5.90 recorded worker-minutes per filed claim for this probe. Keep coordinator time unmeasured and the 88-minute comparison modeled; no project-wide net saving follows.
@@ -42,7 +43,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-28 F-20261028-5 **no record**: Diagnose main's failed daily runs of 2026-10-26 and 2026-10-27. Lesson: Read the run page on GitHub for the failing job; the Rattle Watch now prints per-job progress so the next failure names itself in the log.
 - 2026-10-28 F-20261028-4 **partly worked**: 20-order probe on spent pre-1937 orders with statuses (12 retirement exemptions, 5 eight-hour suspensions, 3… Lesson: Most blocks were tool defects, now fixed: claim-kit keeps named transcription grades and the shared date lookup reads the WPA numbered list. Re-prepare after Pinakes and claim-kit regenerate; supplem…
 - 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
-- 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
-- 2026-10-28 F-20261028-10 **worked**: Refresh the dashboard against the combined October 28 production claims Lesson: Use published generations and exact receipts; filed claims and isolated replay gains never establish readiness.
 
-Register: 11 owner decisions, 0 answered questions, 47 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 12 owner decisions, 0 answered questions, 47 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
