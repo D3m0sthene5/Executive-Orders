@@ -1,6 +1,7 @@
 """Exact reviewed versions, control judgments, holds, bytes, and replay routing."""
 from copy import deepcopy
 import json
+import sys
 import os
 from pathlib import Path
 import unittest
@@ -412,7 +413,7 @@ class CompletionTests(B.BatchTests):
         self.assertEqual(result['concurrent_disjoint_claim_files'], [row])
         inputs = json.loads((self.dest / 'INPUTS.json').read_bytes())
         self.assertEqual(inputs['concurrent_disjoint_claim_files'], [row])
-        self.assertIn('excludes', inputs['tracker_replay_basis'])
+        self.assertIn('excluded from the union', inputs['tracker_replay_basis'])
         self.assertFalse(self.lock.exists())
 
     def test_new_claims_file_for_selected_id_or_unparseable_blocks_publication(self):
@@ -465,22 +466,46 @@ class CompletionTests(B.BatchTests):
         self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
         self.assertFalse(self.target.exists())
 
+    def test_dead_holder_on_this_host_is_removed_and_receipted(self):
+        import socket, subprocess
+        self.setup_two()
+        dead = subprocess.Popen([sys.executable, '-c', 'pass']); dead.wait()
+        holder = {'pid': dead.pid, 'host': socket.gethostname(), 'started_utc': 'x', 'dest': 'crashed'}
+        self.lock.parent.mkdir(parents=True, exist_ok=True)
+        self.lock.write_text(json.dumps(holder))
+        with patch.dict(os.environ, {C.LOCK_TIMEOUT_ENV: '0.2'}):
+            result = self.complete_with()
+        if os.name == 'posix':
+            self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+            self.assertEqual(result['stale_publication_locks_removed'], [holder])
+            self.assertFalse(self.lock.exists())
+        else:
+            self.assertEqual(result['eligible'], [])
+
+    def test_lock_lives_in_git_common_dir_when_available(self):
+        import subprocess
+        self.assertEqual(C.lock_path(self.repo), self.repo / C.LOCK_REL)
+        subprocess.run(['git', 'init', '-q'], cwd=self.repo, check=True)
+        self.assertEqual(C.lock_path(self.repo), (self.repo / '.git').resolve() / 'claim-kit-publication.lock')
+
     def test_lock_is_released_after_success(self):
         self.setup_two()
         result = self.complete_with()
         self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
         self.assertFalse(self.lock.exists())
 
-    def test_lock_holds_during_checks_records_holder_and_is_released_after_failed_write(self):
+    def test_lock_holds_during_checks_records_holder_and_is_released_after_conflicting_target(self):
         self.setup_two()
         seen = {}
         real = C.Inputs.unchanged
         def racing(inputs, selected_ids=None):
             seen.update(json.loads(self.lock.read_text()))
             real(inputs, selected_ids)
-            self.target.write_text('raced')  # appears after the last check, before the exclusive create
-        with patch.object(C.Inputs, 'unchanged', racing), self.assertRaises(FileExistsError):
-            self.complete_with()
+            self.target.write_text('raced')  # appears after the pin checks, before the exclusive create
+        with patch.object(C.Inputs, 'unchanged', racing):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])
+        self.assertTrue(any('publication target appeared' in e for e in self.batch_error(result)), self.batch_error(result))
         self.assertFalse(self.lock.exists())
         self.assertEqual(self.target.read_text(), 'raced')
         self.assertEqual(set(seen), {'pid', 'host', 'started_utc', 'dest'})

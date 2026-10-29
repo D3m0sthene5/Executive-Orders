@@ -72,6 +72,14 @@ class BatchTests(T.BuildIntegrationTests):
         with self.assertRaisesRegex(ValueError,'changed Valla review context'):
             batch.load_packet(folder,self.repo)
 
+    def test_supplement_parent_is_own_work_only_for_the_same_agent(self):
+        parent=self.repo/'research/excavator/scope/packet';parent.mkdir(parents=True)
+        child=parent/'supp'
+        dossiers={'EO:1':{'source_supplement':{'parent_packet':{'path':'research/excavator/scope/packet/PACKET.json'}}}}
+        (parent/'PACKET.json').write_text(json.dumps({'agent':'producer'}))
+        self.assertEqual(batch.own_folders(self.repo,child,dossiers,'producer'),sorted([child.resolve(),parent.resolve()]))
+        self.assertEqual(batch.own_folders(self.repo,child,dossiers,'other'),[child.resolve()])
+
     def test_lossless_roundtrip_shares_sources_and_full_text(self):
         p=self.packet();packet,dossiers=batch.load_packet(p,self.repo)
         self.assertEqual(dossiers,{iid:self.dossier(iid) for iid in ('EO:1','EO:2')})

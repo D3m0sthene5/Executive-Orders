@@ -269,7 +269,8 @@ def shared_lineage(repo, packages, ids=None, limit=100):
                                 if len(relevant) > limit:
                                     raise ValueError('more than %d relevant packages for one query' % limit)
                             for q in (p, rp):
-                                hashes.setdefault(q, file_sha(q))
+                                if q not in hashes:
+                                    hashes[q] = file_sha(q)
                             result.append({'instrument_id': r.get('instrument_id'), 'scope_id': r.get('scope_id'),
                                            'path': p.relative_to(repo).as_posix(), 'file_sha256': hashes[p],
                                            'line': line, 'field': field, 'reference': value,

@@ -74,7 +74,9 @@ def is_completion_union_copy(directory, name, cache):
 
 
 def under(resolved, roots):
-    return any(resolved == r or resolved.startswith(r.rstrip('/') + '/') for r in roots)
+    resolved = os.path.normcase(os.path.normpath(resolved))
+    return any(resolved == r or resolved.startswith(r.rstrip(os.sep) + os.sep)
+               for r in (os.path.normcase(os.path.normpath(x)) for x in roots))
 
 
 def scan_research(repo, excluded):
@@ -128,7 +130,7 @@ def scan_research(repo, excluded):
                 freezes.append(item)
             if (PurePath(name).suffix.lower() in ('.json', '.jsonl') and name not in ('PACKET.json', 'EVIDENCE.json')
                     and not (excluded_text and under(resolved, excluded_text))
-                    and not is_completion_union_copy(entry.path.rsplit('/', 1)[0], name, union_cache)):
+                    and not is_completion_union_copy(os.path.dirname(entry.path), name, union_cache)):
                 candidates.append(item)
     order = lambda item: item[0].split('/')
     return sorted(candidates, key=order), sorted(reveals, key=order), sorted(freezes, key=order)

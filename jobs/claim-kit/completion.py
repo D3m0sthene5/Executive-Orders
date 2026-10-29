@@ -190,8 +190,11 @@ class Inputs:
                                         'dependency_sha256': dict(sorted(self.pins.items())),
                                         'absent_dependencies': sorted(self.absent), 'file_sets': self.file_sets,
                                         'concurrent_disjoint_claim_files': self.concurrent,
-                                        'tracker_replay_basis': 'start snapshot of canonical claims; excludes concurrent_disjoint_claim_files'
-                                                                if self.concurrent else 'start snapshot (no concurrent additions)'})
+                                        'tracker_replay_basis': ('after-replay union: start snapshot of canonical claims plus selected lines; '
+                                                                 'before-replay: canonical claims present when the tracker ran. Selected '
+                                                                 'rows depend only on their own claims.' + (
+                                                                 ' Concurrent disjoint files are excluded from the union.'
+                                                                 if self.concurrent else ''))})
         batch.dump(dest / 'PACKETS.json', [
             {'packet': e['folder'].relative_to(self.repo).as_posix() + '/PACKET.json', 'fingerprint': e['fingerprint'],
              'packet_sha256': key[1], 'loads': e['loads'], 'load_seconds': e['load_seconds'],
@@ -502,15 +505,48 @@ def run_tracker(repo, selected, checker, dest, inputs=None):
             'canonical_outputs_modified': False}
 
 
+def lock_path(repo):
+    """Outside the working tree when Git is available (the shared common directory, so linked
+    worktrees serialize too and the lock can never be committed); otherwise LOCK_REL."""
+    try:
+        run = subprocess.run(['git', 'rev-parse', '--git-common-dir'], cwd=repo, capture_output=True, text=True)
+    except OSError:
+        run = None
+    if run is not None and run.returncode == 0 and run.stdout.strip():
+        common = (Path(repo) / run.stdout.strip()).resolve()
+        if common.is_dir():
+            return common / 'claim-kit-publication.lock'
+    return Path(repo) / LOCK_REL
+
+
+def holder_dead(path):
+    """True only when the recorded holder is a process on this host that no longer exists (POSIX)."""
+    if os.name != 'posix':
+        return False
+    try:
+        holder = json.loads(path.read_bytes())
+        pid = holder['pid']
+        if holder.get('host') != socket.gethostname() or type(pid) is not int or pid <= 0:
+            return False
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return True
+    except (OSError, ValueError, KeyError, TypeError):
+        return False
+    return False
+
+
 class PublicationLock:
     """Exclusive O_EXCL lock file for the short recheck-and-write transaction.
 
-    A stale lock is never deleted automatically: the batch fails closed and names it.
+    A lock whose recorded holder is a dead process on this host is removed (and receipted);
+    any other held lock is waited for and then fails closed, naming the lock.
     """
     def __init__(self, repo, dest):
-        self.path = repo / LOCK_REL
+        self.path = lock_path(repo)
         self.dest = dest
         self.held = False
+        self.broken = []
 
     def acquire(self):
         try:
@@ -523,9 +559,16 @@ class PublicationLock:
             try:
                 fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
             except FileExistsError:
+                if holder_dead(self.path):
+                    try:
+                        self.broken.append(json.loads(self.path.read_bytes()))
+                        self.path.unlink()
+                    except (OSError, ValueError):
+                        pass
+                    continue
                 if time.monotonic() >= deadline:
-                    raise ValueError('publication lock held by another completion (stale locks are never removed '
-                                     'automatically): ' + self.path.as_posix())
+                    raise ValueError('publication lock held by another completion (a lock is removed automatically only '
+                                     'when its holder is a dead process on this host): ' + self.path.as_posix())
                 time.sleep(min(LOCK_POLL_SECONDS, max(0.0, deadline - time.monotonic())))
                 continue
             self.held = True
@@ -656,6 +699,7 @@ def complete(repo, manifest_path, dest, publish=False):
             lock.acquire()
         inputs.recheck_packets()
         inputs.unchanged(set(selected))
+        require(not target.exists(), 'publication target appeared during completion: ' + publication['path'])
     except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
         exceptions.append({'scope': 'batch', 'error': str(exc)})
         for row in outcomes:
@@ -687,6 +731,7 @@ def complete(repo, manifest_path, dest, publish=False):
                  'independent_human_certifications': 0, 'exceptions': len(exceptions), 'outcomes': outcomes,
                  'concurrent_disjoint_claim_files': inputs.concurrent,
                  'packet_loads': {e['folder'].relative_to(repo).as_posix(): e['loads'] for e in inputs.packets.values()},
+                 'stale_publication_locks_removed': lock.broken,
                  'started_utc': start_utc, 'finished_utc': datetime.now(timezone.utc).isoformat(),
                  'wall_seconds': time.monotonic() - started, 'model_tokens': None, 'model_cost': None,
                  'usage_note': 'Completion is deterministic. Agent/research token and cost telemetry is not supplied.'}

@@ -268,7 +268,7 @@ def load_packet(folder,repo,check_sources=True):
         for rel,sha in packet['held_text_file_pins'].items():
             if file_sha(safe(repo,rel))!=sha:raise ValueError('changed held source: '+rel)
         if packet.get('valla_context') is not None:
-            if valla_context(repo,list(dossiers),own_folders(repo,folder,dossiers))!=packet['valla_context']:
+            if valla_context(repo,list(dossiers),own_folders(repo,folder,dossiers,packet.get('agent')))!=packet['valla_context']:
                 raise ValueError('changed Valla review context; prepare a new version')
         from prior_research import collect
         if packet.get('prior_research') is None:
@@ -278,15 +278,20 @@ def load_packet(folder,repo,check_sources=True):
     return packet,dossiers
 
 
-def own_folders(repo,folder,dossiers):
-    """The packet's own work: its folder and any source-supplement parent packet folder.
+def own_folders(repo,folder,dossiers,agent):
+    """The packet's own work: its folder and a source-supplement parent packet of the same agent.
 
-    Derived only from the packet location and its dossiers, so prepare and load agree and
-    committing (tracking) the batch's own sheets cannot change its Valla context."""
+    Derived only from the packet location, its dossiers and the pinned parent packet, so prepare
+    and load agree and committing (tracking) the batch's own sheets cannot change its Valla
+    context. Another agent's parent packet stays visible as ordinary lineage."""
     folders={Path(folder).resolve()}
     for d in dossiers.values():
         parent=(d.get('source_supplement') or {}).get('parent_packet') or {}
-        if isinstance(parent.get('path'),str):folders.add(safe(Path(repo),parent['path']).parent)
+        if not isinstance(parent.get('path'),str):continue
+        path=safe(Path(repo),parent['path'])
+        try:same=json.loads(path.read_bytes()).get('agent')==agent
+        except (OSError,ValueError,AttributeError):same=False
+        if same:folders.add(path.parent)
     return sorted(folders)
 
 
@@ -458,7 +463,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     prepared_context=None
     valla_path=repo/'jobs/valla/valla.py'
     if valla_path.exists():
-        prepared_context=valla_context(repo,ids,own_folders(repo,dest,dossiers))
+        prepared_context=valla_context(repo,ids,own_folders(repo,dest,dossiers,agent))
     packet={'schema':SCHEMA,'legal_cutoff':'2026-10-14','agent':agent,'input_pins':pins,
         'codec_code_sha256':file_sha(Path(__file__)),'assembler_code_sha256':file_sha(Path(__file__).with_name('assemble.py')),
         'preflight_code_sha256':file_sha(Path(__file__).with_name('evidence_preflight.py')),

@@ -193,7 +193,7 @@ def resolve(repo, paths, files):
     was consulted to its answer."""
     repo = Path(repo).resolve()
     root = str(repo)
-    prefix = root.rstrip('/') + '/'
+    prefix = root.rstrip(os.sep) + os.sep
     by_sha, official, official_by_sha = {}, {}, {}
     real, isfile = {}, {}
 
@@ -225,7 +225,7 @@ def resolve(repo, paths, files):
                     text_path = child(raw_text_path, root)
             except (ValueError, TypeError):
                 continue
-            rel = '.' if text_path == root else text_path[len(prefix):]
+            rel = '.' if text_path == root else text_path[len(prefix):].replace(os.sep, '/')
             rec = {'instrument_id': iid, 'grade': grade, 'acceptable_as_original': acceptable,
                    'sha256': sha, 'text_sha256': text_sha, 'text_path': rel,
                    'declaration_path': decl, 'requires_page_check': requires,

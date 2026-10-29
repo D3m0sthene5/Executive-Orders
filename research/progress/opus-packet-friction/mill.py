@@ -160,7 +160,7 @@ def perturbations(tree, folder, ids):
         # The producer's filled sheets of the real t5 batch, committed while the packet is in flight.
         rels = []
         for name in ('RATIONALES.json', 'decisions.csv', 'clauses.csv'):
-            src = tree.p(NRA + '/t5/packet/supp/' + name).read_bytes() if 'nira' in rel_folder or True else b''
+            src = tree.p(NRA + '/t5/packet/supp/' + name).read_bytes()
             tree.write(rel_folder + '/' + name, src); rels.append(rel_folder + '/' + name)
         tree.track(*rels)
 
@@ -230,13 +230,12 @@ def perturbations(tree, folder, ids):
         tree.write(rel, tree.p(rel).read_bytes() + b'\n')
 
     def relevant_fragment_registration():
-        # Register the first supplemented excerpt's held text as a graded working text.
-        dossier_sources = [json.dumps(s) for s in packet['sources'].values()]
-        text = next(json.loads(s) for s in dossier_sources if 'text_path' in json.loads(s))
+        # Register a declared supplement excerpt's held text as a graded working text: the
+        # supplement's derived source form (registry hash and grade) must then change.
+        declared = json.loads(tree.p(NRA + '/t5/packet/SUPPLEMENT_DECLARATIONS.json').read_bytes())['sources'][0]['source']
         row = {'kind': 'original_representation', 'instrument_id': ids[0], 'produced_by': 'mill-fixture',
-               'data': {'sha256': text.get('sha256') or '2' * 64, 'text_path': text['text_path'],
-                        'text_sha256': text.get('text_sha256'), 'grade': 'compiled_transcription',
-                        'acceptable_as_original': False, 'url': text.get('url')}}
+               'data': {'sha256': '2' * 64, 'text_path': declared['text_path'], 'text_sha256': declared['text_sha256'],
+                        'grade': 'compiled_transcription', 'acceptable_as_original': False, 'url': declared['url']}}
         tree.write('jobs/mill-provider/output/FRAGMENTS.mill.jsonl', json.dumps(row).encode() + b'\n')
 
     cases = [
@@ -250,7 +249,9 @@ def perturbations(tree, folder, ids):
         ('R2 new canonical claim for a member', 'invalid', relevant_claim),
         ('R3 competing version of a member claim', 'invalid', competing_version),
         ('R4 review record for a member', 'invalid', review_record),
-        ('R5 component attestation for a member', 'invalid', attestation),
+        # Valla consults component attestations only for members with an active canonical claim;
+        # these replay members have none at the pinned commit, so both arms must ignore it.
+        ('N1 attestation for a member without an active claim', 'valid', attestation),
         ('R6 held source text edited', 'invalid', held_text_edit),
         ('R7 owner ruling added', 'invalid', owner_ruling),
         ('R8 protocol file edited', 'invalid', protocol_edit),
@@ -263,7 +264,7 @@ def perturbations(tree, folder, ids):
     return cases
 
 
-def run(tree_path, label, out, batches):
+def run(tree_path, label, out, batches, only=()):
     tree = Tree(tree_path)
     dest_root = tree.p('research/excavator/mill-' + label)
     if dest_root.exists():
@@ -278,6 +279,8 @@ def run(tree_path, label, out, batches):
         batch['view_order'], _ = kit(tree, 'view', folder, '--order', ids[0])
         batch['cases'] = []
         for case, expected, apply in perturbations(tree, folder, ids):
+            if only and not any(case.startswith(o + ' ') for o in only):
+                continue
             try:
                 apply()
                 outcome, _ = kit(tree, 'view', folder)
@@ -296,5 +299,6 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('tree'); ap.add_argument('label'); ap.add_argument('out')
     ap.add_argument('--batches', default='supp,undecided')
+    ap.add_argument('--only', nargs='*', default=(), help='case ids such as R12')
     a = ap.parse_args()
-    run(a.tree, a.label, a.out, a.batches.split(','))
+    run(a.tree, a.label, a.out, a.batches.split(','), a.only)
