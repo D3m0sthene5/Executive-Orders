@@ -2,8 +2,9 @@
 
 The land probe of 2026-10-28 found that most blocked land orders were ended by a Public Land Order (PLO) or a later
 order printed in the Federal Register, and that the project held none of those pages. This job fetches the official
-Federal Register PDF for each wanted page, records its sha256, keeps the text of the instrument's own pages, and
-commits the PDF bytes when they are small, so a claim can quote the page as a held source. It costs no model tokens.
+Federal Register PDF for each wanted page, records the issue's sha256, keeps the text of the instrument's own pages,
+and commits a small PDF of just those pages, so a claim can quote the page as a held source. It costs no model
+tokens.
 
 A located page is a location lead with a confidence label, not an authenticated transcription. Nothing here changes
 a status, count or the codebook.
@@ -27,7 +28,9 @@ orders first.
 ## Route for each page
 
 1. **The previous run's copy.** If the prior output (`JOB_PRIOR_OUTPUT_DIR`) holds this page's text and its committed
-   PDF still has the recorded sha256, both are carried forward with no request (`FR_PAGES_REFRESH=1` disables this).
+   page extract still has the recorded sha256, both are carried forward with no request (`FR_PAGES_REFRESH=1`
+   disables this). A record from the first runs, which committed the whole issue, is converted with no request: the
+   committed issue bytes are re-hashed against the record and the extract is made from them.
 2. **govinfo's link service**, `https://www.govinfo.gov/link/fr/<volume>/<page>`, read without following the
    redirect. The redirect names the daily-issue PDF for 1936-1993 (`/content/pkg/FR-1954-02-10/pdf/FR-1954-02-10.pdf`)
    or the single document's PDF for 1994 on, and sometimes a `#page=` hint.
@@ -47,18 +50,28 @@ Only those pages' text is written. `location_confidence` is `high` when the prin
 heading and the filing line were found, `medium` when one check is weaker (the notes say which), `low` when the page
 was estimated. `needs_page_check` is true unless `high`.
 
-The PDF's bytes are committed as `captures/<sha256>.pdf` when the file is at most `commit_max_bytes` (16 MB) and the
-run has committed at most `commit_total_bytes` (200 MB); otherwise the record keeps url, sha256 and size, which a
-re-download re-proves (`custody: record_only`). 1950s daily issues are usually small enough; 1970s-1980s issues
-usually are not.
+**What is committed.** The whole issue PDF is never committed. For the located pages the job writes a new PDF
+holding just those pages (`extract_pdf`: pypdf copies the pages in order and sets only `/Producer` to
+`pypdf <version>`; pypdf writes no random file id or timestamp, so the same issue bytes and the same pypdf version
+give the same extract). It is committed as `captures/<sha256 of the extract>.pdf` when it is at most
+`commit_max_bytes` (4 MB) and the run has committed at most `commit_total_bytes` (100 MB); otherwise the record is
+record-only. The record keeps the issue's url, sha256 and size and the PDF page numbers taken, so anyone can
+re-download the issue, check its sha256 and re-derive the extract. `requirements.txt` pins the pypdf version. When a
+refresh (`FR_PAGES_REFRESH=1`) downloads an issue whose sha256 equals the previous record's `issue_sha256` and the
+same pages are located, the previous extract's bytes are kept, so its sha256 does not change if pypdf has changed.
+
+`jobs/claim-checker/sources.py` (`load_job_sources`) counts the extract as held: it indexes the record by its
+`sha256`, finds `cache_path` under `jobs/fr-pages/output/`, marks the copy `job_cache`, and the checker re-hashes
+the file (`held_bytes_verified`). The issue's sha256 is not indexed as held, because its bytes are not committed. The
+test `ClaimCheckerHeld` checks this against the checker's own code.
 
 ## Outputs (`output/`)
 
 | File | Contents |
 |---|---|
 | `texts/FR_<vol>_<page>.txt` | Header (wanted ids, printed instrument, target orders, source URL, sha256, PDF pages) and the text layer of the instrument's pages with "=== PDF page N of M ===" markers. |
-| `captures/<sha256>.pdf` | The official PDF, when small enough. |
-| `SOURCES.jsonl` | Shared source-record format: `url`, `sha256`, `bytes`, `cache_path` (when committed), `text_path`, `text_sha256`, `page_or_item` ("19 FR 769; FR-1954-02-10.pdf PDF pages 9-9 of 40"), `instrument_ids`, plus `printed_instrument_id`, `wanted_ids`, `fr_volume`, `fr_page`, `location_confidence`, `location_notes`, `needs_page_check`, `route`, `requested_url`. |
+| `captures/<sha256>.pdf` | The page extract: a PDF of only the instrument's pages of the official issue. |
+| `SOURCES.jsonl` | Shared source-record format: `url` (the issue URL with `#page=N`), `sha256`, `bytes` and `cache_path` of the committed extract, `text_path`, `text_sha256`, `page_or_item` ("19 FR 769; FR-1954-02-10.pdf PDF pages 9-9 of 40 (committed as a page extract)"), `instrument_ids`; the issue: `issue_url`, `issue_sha256`, `issue_bytes`, `issue_pdf_pages` (first and last PDF page taken), `issue_page_count`, `issue_printed_pages`; `extract_tool` and `derivation` ("PDF pages 9-9 extracted with pypdf 6.20.1 from the issue PDF whose sha256 is issue_sha256; re-download the issue to re-derive"); plus `printed_instrument_id`, `wanted_ids`, `fr_volume`, `fr_page`, `location_confidence`, `location_notes`, `needs_page_check`, `route`, `requested_url`. |
 | `FAILURES.jsonl` | Wanted lines that could not be resolved or fetched, with the reason and every attempt. |
 | `SUMMARY.json` | Counts, requests and bytes used, settings. |
 
