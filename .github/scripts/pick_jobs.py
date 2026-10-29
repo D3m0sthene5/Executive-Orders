@@ -2,7 +2,8 @@
 
 Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the pipeline):
 - A push runs only the jobs whose own folder had a file changed outside output/, and nothing
-  downstream of them. Data, claims, notes, research and rulings start no jobs on push.
+  downstream of them. An exact audited claim-kit runtime-only push runs tests in the existing runner
+  workflow and leaves the compiler for the normal sweep; unknown versions rebuild. Data, claims, notes, research and rulings start no jobs on push.
 - The sweep (scheduled every three hours) runs every job whose triggers.txt has a pattern
   (fnmatch, e.g. "research/readiness/claims/*") matching a path changed on the default branch
   since the previous sweep, plus every job that reads their outputs (after.txt).
@@ -19,6 +20,8 @@ materializer runs afterward; do not add reads of output generations here.
 """
 
 import fnmatch
+import hashlib
+from pathlib import Path
 import os
 import re
 import subprocess
@@ -32,6 +35,61 @@ DAILY_CRON = "17 9 * * *"
 # A sweep looks back a little further than its 3-hour interval, so a commit is never missed between
 # sweeps; a file changed twice in the overlap only reruns the same jobs once more.
 SWEEP_WINDOW = "3 hours 20 minutes ago"
+
+
+# Audited at bc65c165 / Opus 71b06f9f. Include every COMPILER_FILES entry,
+# entrypoint, conservative local imports and literal dynamic imports. Unknown
+# versions rebuild; adding a compiler import invalidates its importing file pin.
+CLAIM_KIT_COMPILER_SHA256 = {
+    'jobs/claim-kit/act_overrides.py': ('8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280',),
+    'jobs/claim-kit/assemble.py': ('3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb',),
+    'jobs/claim-kit/build.py': ('e662bc493ce6bb07d5b550e05c0af2843d82ae61311ae416e7191f1ce074d281',),
+    'jobs/claim-kit/current_evidence.py': ('b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c',),
+    'jobs/claim-kit/excavate.py': ('d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d',),
+    'jobs/claim-kit/factual_events.py': ('f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659',),
+    'jobs/claim-kit/inputs.py': ('6ca64e4c65479bd1f363386981e25f390e38295eb3b5a38f9ca316deca60f2dd',),
+    'jobs/claim-kit/job.py': ('67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37',),
+    'jobs/claim-kit/lifecycle_obligations.py': ('61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab',),
+    'jobs/claim-kit/population.py': ('299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859',),
+    'jobs/claim-kit/prior_research.py': ('3c6fd78ad67bf8a906f41d20e96def99acc08b89a4912bc3db9d2787c26f473b', '971946c180a91015c46904c030ad513e76d81671a6dc9cb49d0788cab3a7cc14'),
+    'jobs/claim-kit/working_text.py': ('81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9',),
+    'jobs/clause-drafts/segment.py': ('0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573',),
+    'jobs/norton/model.py': ('abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12',),
+    'research/stage19/code/claim_gate.py': ('709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875',),
+}
+# Exact runtime files and their tests only. In particular prior_research.py is
+# conservatively compiler code (lifecycle_obligations imports it inside main).
+CLAIM_KIT_RUNTIME_ONLY = frozenset('jobs/claim-kit/' + name for name in (
+    'batch.py', 'completion.py', 'fragment_cache.py', 'source_supplement.py',
+    'status_overlay.py', 'kit.py', 'test_batch.py', 'test_completion.py',
+    'test_source_supplement.py', 'test_status_overlay.py',
+    'test_overlay_completion.py', 'test_continuous_route.py',
+    'test_working_text_index.py',
+))
+
+
+def claim_kit_runtime_only(changed):
+    """A push exemption, never an assertion that generated outputs are fresh.
+
+    The sparse bootstrap omits research code. Read its committed blob without
+    expanding checkout; missing files/blobs or any changed compiler pin rebuild.
+    """
+    if not changed or not set(changed) <= CLAIM_KIT_RUNTIME_ONLY:
+        return False
+    for path, expected in CLAIM_KIT_COMPILER_SHA256.items():
+        try:
+            if Path(path).is_file():
+                raw = Path(path).read_bytes()
+            else:
+                result = subprocess.run(['git', 'show', 'HEAD:' + path], capture_output=True)
+                if result.returncode:
+                    return False
+                raw = result.stdout
+            if hashlib.sha256(raw).hexdigest() not in expected:
+                return False
+        except OSError:
+            return False
+    return True
 
 
 def git(*args):
@@ -112,13 +170,14 @@ def recent_changes(since=SWEEP_WINDOW):
     return sorted({line for line in out.stdout.splitlines() if line.strip()})
 
 
-def for_changes(changed, triggers=True):
+def for_changes(changed, triggers=True, runtime_push=False):
     """Select direct consumers of code/data edits; outputs never start feedback loops.
 
     Shared-library consumers declare exact files in triggers.txt, including
     transitive imports. This keeps docs/test-only library edits from refetching
     the corpus and makes non-Python or dynamic dependencies explicit too.
     """
+    skip_claim_kit = runtime_push and claim_kit_runtime_only(changed)
     picked = []
     for path in changed:
         # A change to the runner itself reruns the smoke test.
@@ -130,6 +189,8 @@ def for_changes(changed, triggers=True):
         if len(parts) < 3 or parts[0] != "jobs" or parts[2] == "output":
             continue
         name = parts[1]
+        if name == "claim-kit" and skip_claim_kit:
+            continue
         if name.startswith("_") or name in picked or not runnable(name):
             continue
         picked.append(name)
@@ -153,6 +214,7 @@ def main():
     event, schedule = os.environ.get("EVENT"), os.environ.get("SCHEDULE") or ""
     sweep = event == "schedule" and schedule not in ("", DAILY_CRON)
     consumers = True
+    runtime_tests = False
     if sweep:
         picked = for_changes(recent_changes())
     elif event == "schedule":
@@ -173,7 +235,9 @@ def main():
             sys.exit("Type at least one job name.")
     else:
         # A push: only jobs whose own code changed, nothing downstream. The next sweep does the rest.
-        picked = for_changes(changed_files(os.environ.get("BEFORE"), os.environ["AFTER"]), triggers=False)
+        changed = changed_files(os.environ.get("BEFORE"), os.environ["AFTER"])
+        runtime_tests = claim_kit_runtime_only(changed)
+        picked = for_changes(changed, triggers=False, runtime_push=runtime_tests)
         consumers = False
 
     direct = list(picked)
@@ -183,10 +247,14 @@ def main():
         sys.exit(str(exc))
     downstream = downstream_only(direct, picked) if sweep else []
     print("Jobs to run:", ", ".join(picked) or "none")
+    if runtime_tests:
+        print("Claim-kit runtime-only push: running unit tests; compiler refresh remains scheduled/manual.")
     if downstream:
         print("Running only because a job they read changed:", ", ".join(downstream))
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")
+        if runtime_tests:
+            fh.write("runtime_tests=claim-kit\n")
         if downstream:
             fh.write(f"downstream={' '.join(downstream)}\n")
 

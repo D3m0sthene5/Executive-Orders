@@ -77,6 +77,28 @@ jobs:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: python .github/scripts/pick_jobs.py
 
+      # A certified runtime-only push still runs claim-kit tests. Do not run the
+      # compiler or restore old output generations merely to execute unit tests.
+      - name: Materialize claim-kit test fixtures
+        if: steps.pick.outputs.runtime_tests == 'claim-kit'
+        run: git sparse-checkout add '/research/stage19/code/**' '/research/plans/claim_kit_contract/**'
+
+      - name: Offline claim-kit runtime tests
+        if: steps.pick.outputs.runtime_tests == 'claim-kit'
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python - <<'PY'
+          import socket, sys, unittest
+          socket.create_connection = lambda *a, **k: (_ for _ in ()).throw(AssertionError('network forbidden in tests'))
+          class NoNetworkSocket(socket.socket):
+              def connect(self, *a, **k):
+                  raise AssertionError('network forbidden in tests')
+          socket.socket = NoNetworkSocket
+          suite = unittest.defaultTestLoader.discover('jobs/claim-kit', pattern='test_*.py')
+          sys.exit(not unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful())
+          PY
+
       - name: Restore each job's bounded download cache
         if: steps.pick.outputs.jobs != ''
         uses: actions/cache@v4

@@ -1,3 +1,11 @@
+## 2026-10-29 ET: production closure continuation, combined handoff pending
+
+- **Done:** Source-only PR103 continuation in separate `sol-runner-next` checkout: checked provider/custody declarations, rejected tracker wildcard, guarded claim-kit runtime-only push tests in existing runner. Exact source review and available costs in `research/progress/sol-runner-friction/production/`; Kean F-20261029-8002.
+- **Proof/limits:** 22 picker,421 baseline unit tests (5 existing skips),257 independent adversarial checks; partial actual matched projection318,427,714 bytes each arm, no savings. No new production narrow certificate, complete matched production run, compiler-freshness approval or combined compatibility claimed.
+- **Next:** Await requested frozen PR104 ready/input-closure handoff (comment6508226006). Observed head71b06f9 is not presumed frozen. Separate combined checkout is prepared from mainf9c6d806 only. Integrate exact source pins there, combine append-only Kean records/regenerate brief, run both OS road/Kean/claim-kit/Valla/PR101 plus isolated native retained rehearsal and matched materialization; publish result separately.
+- **Asks:** @Owner: none. @Opus: provide frozen ready source/closure/rehearsal artifact handoff; Sol owns declarations and combined testing.
+- **Do not:** merge either PR/main, share mutable indices, broaden certificates from an incomplete trace, or describe synthetic/partial projection as complete production savings.
+
 ## 2026-10-29 ET: Sol runner friction branch, independent engineering review complete
 
 - **Done:** `sol/runner-friction` from main f9c6d806; scoped freshness tree/index reads, output-excluding startup and skip empty-selection cache restore, version-pinned selective materialization for two audited jobs with broad compatibility fallback, cache I/O attribution. Report: `research/progress/sol-runner-friction/REPORT.md`; Kean F-20261029-8001.

@@ -1,0 +1,437 @@
+{
+  "actual_native_code_hashes": [
+    {
+      "path": ".github/workflows/run-jobs.yml",
+      "sha256": "0e3aa1069a2cf4f2be76a365fdceb730fb169d18e0f8f1588eaeddbeff32dc2a"
+    },
+    {
+      "path": "jobs/readiness-tracker/tracker.py",
+      "sha256": "e2157f17982ff6a427cf8a4ab66f913866e416f0f8ef72252f81b7db75809596"
+    },
+    {
+      "path": "jobs/claim-kit/working_text.py",
+      "sha256": "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9"
+    },
+    {
+      "path": "jobs/claim-kit/factual_events.py",
+      "sha256": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659"
+    },
+    {
+      "path": "jobs/norton/model.py",
+      "sha256": "abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12"
+    }
+  ],
+  "actual_tracker_and_native_imports": "passed in both matched worktrees",
+  "comparison_pin": "e2386318ff70bf6b7a0225234dd87c332a2c3c30",
+  "condition": "same local object pool; no remotes; no job cache; autocrlf=false",
+  "failure_after_prior_success": {
+    "attempt_status": "failed",
+    "candidate_retained": true,
+    "prior_bytes_equal": true,
+    "prior_status": "succeeded",
+    "runner_exit": 1
+  },
+  "fixture_certificate_only": true,
+  "freshness_input_sha256": "a5e93db538c51472903e0ed8f52a29eaa5bde5f652e4c11ef211c5e5800ca41e",
+  "freshness_manifest_equal": true,
+  "inventory": {
+    "all_tracked": {
+      "local_blob_bytes": 2405831,
+      "local_path_count": 55,
+      "missing_blob_bytes": null,
+      "missing_path_count": 0,
+      "path_count": 55
+    },
+    "job_outputs": {
+      "local_blob_bytes": 2099683,
+      "local_path_count": 11,
+      "missing_blob_bytes": null,
+      "missing_path_count": 0,
+      "path_count": 11
+    },
+    "jobs": {
+      "local_blob_bytes": 2280617,
+      "local_path_count": 37,
+      "missing_blob_bytes": null,
+      "missing_path_count": 0,
+      "path_count": 37
+    },
+    "research": {
+      "local_blob_bytes": 814,
+      "local_path_count": 4,
+      "missing_blob_bytes": null,
+      "missing_path_count": 0,
+      "path_count": 4
+    },
+    "size_semantics": "Local uncompressed Git blob bytes by path; not transfer bytes. Missing object sizes unknown."
+  },
+  "limits": "Local warm-object worktree materialization. No cold transfer, GitHub startup, model token/cost, legal review or scientific readiness saving measured.",
+  "materializer_receipt": {
+    "base_commit": "e2386318ff70bf6b7a0225234dd87c332a2c3c30",
+    "compatibility_fallback_jobs": {},
+    "input_objects_sha256": "86b776f003c290ae97f45b9a98251b6a6781dc1f12ec763b6f95238a504856b1",
+    "jobs": [
+      "readiness-tracker"
+    ],
+    "materialized_bytes": 308540,
+    "path_count": 48,
+    "per_job": {
+      "readiness-tracker": {
+        "inputs_sha256": "86b776f003c290ae97f45b9a98251b6a6781dc1f12ec763b6f95238a504856b1",
+        "path_count": 48,
+        "sparse_pattern_count": 16
+      }
+    },
+    "schema": 1,
+    "sparse_pattern_count": 16
+  },
+  "model": "gpt-6.1-sol",
+  "model_cost_usd": null,
+  "model_tokens": null,
+  "narrow_status": "audited_narrow",
+  "native_consumer_probe": {
+    "old": {
+      "dependent_refs": 1,
+      "expected_body_sha256": "0a63034e53865e932e0bed16ac03db7c8d325cfee9b84a7c075ae07b9647f22d",
+      "indexed_candidates": 1,
+      "policy_errors": [
+        "working_text:disclosure_required"
+      ],
+      "reads": [
+        {
+          "path": "jobs/provider/output/FRAGMENTS.jsonl",
+          "stage": "index"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "policy"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "source_span"
+        },
+        {
+          "path": "research/valla/held/EO-FIXTURE.pdf",
+          "stage": "source_span"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "verify"
+        }
+      ],
+      "scope": "fixture byte/identity/quote checks only; mandatory disclosure hold retained",
+      "source_span_errors": []
+    },
+    "repaired": {
+      "dependent_refs": 1,
+      "expected_body_sha256": "0a63034e53865e932e0bed16ac03db7c8d325cfee9b84a7c075ae07b9647f22d",
+      "indexed_candidates": 1,
+      "policy_errors": [
+        "working_text:disclosure_required"
+      ],
+      "reads": [
+        {
+          "path": "jobs/provider/output/FRAGMENTS.jsonl",
+          "stage": "index"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "policy"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "source_span"
+        },
+        {
+          "path": "research/valla/held/EO-FIXTURE.pdf",
+          "stage": "source_span"
+        },
+        {
+          "path": "jobs/provider/output/texts/EO-FIXTURE.txt",
+          "stage": "verify"
+        }
+      ],
+      "scope": "fixture byte/identity/quote checks only; mandatory disclosure hold retained",
+      "source_span_errors": []
+    }
+  },
+  "old": {
+    "bytes": 2405831,
+    "elapsed_seconds": 0.040023288998781936,
+    "files": 55,
+    "job_output_bytes": 2099683,
+    "job_output_files": 11
+  },
+  "production_pin": "e2386318ff70bf6b7a0225234dd87c332a2c3c30",
+  "production_source_pin": "bc65c165a2d192a6949f16b5ebf5ab5e545d61f5",
+  "remote_transfer_bytes": null,
+  "repaired": {
+    "bytes": 308679,
+    "elapsed_seconds": 0.047411896999619785,
+    "files": 54,
+    "job_output_bytes": 2531,
+    "job_output_files": 10
+  },
+  "required_file_hashes": {
+    ".github/scripts/commit_results.sh": {
+      "oid": "a1c5c79cd888e362c6351e34699fe57adabda0a5",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/materialize_job_inputs.py": {
+      "oid": "eaeec1285bc2ecdbfab5e65ba7278f2673cfe61e",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/pick_jobs.py": {
+      "oid": "eb0b06a306bf57221d04276c395e47020e2053f3",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/result_freshness.py": {
+      "oid": "764d44e193c7b04d9daa94ef0d9e9408421c0bc5",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/run_jobs.py": {
+      "oid": "0682d1a3fd791210ef6040883561035e50825f1b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/run_jobs.sh": {
+      "oid": "9328239f03edad873982dba9de1ed212236e917b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/test_materialize_job_inputs.py": {
+      "oid": "1480ffa5a6a8269ba8bc7cd6017e0be99791df00",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/test_pick_jobs.py": {
+      "oid": "f3fc51e8f13eb33b8764ede13bff02305c5f3d7b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/test_rattle_watch.py": {
+      "oid": "cefda29e24ccda979022d627abacb5c6441ed41e",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/test_result_freshness.py": {
+      "oid": "ee76c81abf6c7b43e2a454ac7db31dad00459265",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/scripts/test_roads.py": {
+      "oid": "ec5035d0eac1052ea818789b3e8a3bab49df806b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    ".github/workflows/run-jobs.yml": {
+      "oid": "71b2e2f8fbb96301a0930f77ec60e2c19f052f25",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/FETCH_BENCHMARK.json": {
+      "oid": "cb51d98b980c8d8d1b738e703ce87f1b41999aae",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/README.md": {
+      "oid": "a39b04d3edf844c50e2f7a5be7fd018afacf09ba",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/benchmark_fetch.py": {
+      "oid": "1a4d2c00f10eab734de08f1514c46ec3ee451980",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/cache_cap.py": {
+      "oid": "4b5a96cb8ba4349ea4a43b5247c1cb2f55632b85",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/eo_identity.py": {
+      "oid": "f0628d8ab9ff620c3b8fd0040789593192ca4c5a",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/eo_pdf.py": {
+      "oid": "7a1ee626135b1a02bca46007143b6b1fac466870",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/eo_websearch.py": {
+      "oid": "c84297cd596ba5505e27218d018d61aa3fc735fa",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/fetch_pool.py": {
+      "oid": "74354b042c293eb781434d8a53aadc0dcad76a07",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/search_engines.json": {
+      "oid": "6a65fd09eee4f6a0785277b05cd6bd3e5fee1b9d",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/test_eo_identity.py": {
+      "oid": "85f56757fd56174c6ab35b566311a3936925f629",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/test_eo_websearch.py": {
+      "oid": "0efda06fdb78f1c1c156b1c4ed5b3971d16817ad",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/test_fetch_pool.py": {
+      "oid": "091a004772a553626e4a29bddc1202e6a99da806",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/_lib/test_runner.py": {
+      "oid": "b56e132b4eb1b9aac4a809f02de09667e2376709",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/claim-checker/output/PER_CLAIM.json": {
+      "oid": "dd3b88c9aa001d1136caf58ea3cf5bb69517811e",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/claim-checker/output/STATUS.json": {
+      "oid": "193710c7560e18d051925c4dfd211dce67616a4b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/claim-kit/factual_events.py": {
+      "oid": "6d6e83bd746265cb677910b49234412857038bf8",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/claim-kit/working_text.py": {
+      "oid": "f3886bf2f62f479142a0ada60b3f223fd8b31447",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/norton/model.py": {
+      "oid": "26b80ceefc4609d6e9c9d71e2959e20075b41a1b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/provider/output/CAPTURES.jsonl": {
+      "oid": "38a0aa4d3c6d210d3a102736e322209b03084264",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/provider/output/FRAGMENTS.jsonl": {
+      "oid": "3f6706f3d692d732779c8f18f0d50611628db854",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/provider/output/SOURCES.jsonl": {
+      "oid": "fd240989e6b88106a12f05d9c659be6280a9c7b6",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/provider/output/texts/EO-FIXTURE.txt": {
+      "oid": "ec9d6c7d5d7e5c503dd0d79e5c3351b2384fd540",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/README.md": {
+      "oid": "b787ed96d312f7820de9adc4de8d5ed4d421b20b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/after.txt": {
+      "oid": "8ed14e6c3a1233784e759b528be4872f5287a1e2",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/inputs.txt": {
+      "oid": "85f5749a5cd653151bed22da486c2005e3e6beca",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/job.py": {
+      "oid": "18587792e5e63981c22ac04117865d953ddfd5b2",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/needs.txt": {
+      "oid": "ceffdd6548d3676a38cf7b60df8d2026f7e633bd",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/output/PRIOR.txt": {
+      "oid": "cd1677c3c6cf2247378572767eb315f15b9155d5",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/output/STATUS.json": {
+      "oid": "211cd5deb800423693180ae270a2d4d0a0b35564",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/readiness-tracker/tracker.py": {
+      "oid": "ba52805bb4ffa64ad5885f09cbc8af35d1bb35bb",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/source-ladder/output/SOURCES.jsonl": {
+      "oid": "cf93617c0069222a1702841f4d7c1a1afa3b9094",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "jobs/source-ladder/output/STATUS.json": {
+      "oid": "193710c7560e18d051925c4dfd211dce67616a4b",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "research/readiness/claims/fixture.jsonl": {
+      "oid": "95bf4afbbb85a0225362eaa47a85fdcb29398746",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "research/readiness/reviews/EO-FIXTURE.json": {
+      "oid": "c28a19972e2af7a693b4bb740166ff179338ec4c",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "research/stage15/CENSUS/fixture.csv": {
+      "oid": "450f86633aa61124003e365ff2438f0aff655aff",
+      "old_matches": true,
+      "repaired_matches": true
+    },
+    "research/valla/held/EO-FIXTURE.pdf": {
+      "oid": "ce2bc08ff3d5ad1c1c71a43e4a76149303022785",
+      "old_matches": true,
+      "repaired_matches": true
+    }
+  },
+  "required_reference_shapes": [
+    "provider FRAGMENTS.data -> text_path/raw_path/review_path",
+    "provider SOURCES -> local_path and CAPTURES custody",
+    "claim source_refs",
+    "after.txt predecessor generations",
+    "selected previous successful output"
+  ],
+  "same_required_bytes": true,
+  "schema": 1,
+  "scientific_job_executed": false,
+  "scope": "bounded synthetic payloads; actual working-text Index/policy and NORTON source_span reads in both arms",
+  "selected_jobs": [
+    "readiness-tracker"
+  ],
+  "working_changes": {
+    "delete": true,
+    "edit": true,
+    "staged_add": true,
+    "untracked_add": true
+  }
+}

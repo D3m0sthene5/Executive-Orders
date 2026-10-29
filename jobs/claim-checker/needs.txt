@@ -1,15 +1,7 @@
-# Repo folders the claim checker reads (jobs/ is always checked out).
-research/readiness
-research/stage15/CENSUS
-research/progress
-research/stage19/code
-research/stage21/sources_index
-research/stage21/original_sources
-research/stage20/output
-research/stage20/sources
-research/stage18
-research/stage14/QUEUES
-# Opus release folder: only small Git LFS pointers arrive; the checker uses data/opus_manifest_index.csv.gz instead.
-releases/opus_stage11_complete
-# Printed volumes named by jobs/*/data/PROVENANCE.json (Git LFS pointers on GitHub; held by the pointer's sha256).
-releases/source_books
+# Repo folders the claim checker reads. `jobs/` is always checked out, but its
+# generated outputs are now listed in inputs.txt because provider records select
+# individual files dynamically.
+research
+releases
+# Output/data provider records may name source bytes or attributed text at paths
+# outside their own folder. See production/checker/REPORT.md for the exact scope.

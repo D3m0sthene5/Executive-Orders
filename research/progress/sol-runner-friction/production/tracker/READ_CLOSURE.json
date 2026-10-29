@@ -1,0 +1,100 @@
+{
+  "schema": "sol-runner-readiness-tracker-read-closure/v1",
+  "audited_commit": "bc65c165a2d192a6949f16b5ebf5ab5e545d61f5",
+  "scope": "jobs/readiness-tracker production tracker and required pre-run test stage; no production generation was run",
+  "model": "gpt-6-luna",
+  "occupancy": {
+    "tokens": null,
+    "cash": null,
+    "note": "Token and cash telemetry unavailable; no proxy estimate used."
+  },
+  "closure_conclusion": {
+    "status": "NOT_CLOSED",
+    "basis": "The current workspace is sparse: the HEAD path listing showed 24 provider declaration files, but only jobs/fr-originals/data/full_run/FRAGMENTS.jsonl was materialized for content inspection. Other providers\u2019 metadata bodies and their pointed-to custody bytes were not read. No active claim, factual registry, or source-audit hold files were visible in this worktree.",
+    "existing_declarations": "No declaration changes retained. Existing explicit P/J paths, provider FRAGMENTS globs, jobs/*/data/** and jobs/*/output/texts/** remain. The locally observed 6,497 body paths are under jobs/fr-originals/data/full_run/texts and are covered by the existing jobs/*/data/** pattern. No missing concrete path was established from available evidence.",
+    "rejected_broad_declaration": "A temporary ** input pattern and needs roots jobs/research/releases were considered, then removed at root direction because they would globally invalidate/materialize unrelated content without distinguishing active references.",
+    "remaining_requirement": "A future bounded materializer needs to inventory and pin the provider metadata set and dynamic reference records, detect added/changed records, then materialize and hash exact pointed-to bodies and review files. Do not treat this static artifact as a certificate."
+  },
+  "transitive_code_files": [
+    "jobs/claim-kit/factual_events.py",
+    "jobs/claim-kit/working_text.py",
+    "jobs/norton/model.py",
+    "jobs/readiness-tracker/job.py",
+    "jobs/readiness-tracker/test_tracker.py",
+    "jobs/readiness-tracker/tracker.py",
+    "research/stage19/code/claim_gate.py",
+    "research/stage19/code/early_ranger.py",
+    "research/stage19/code/lifecycle_excavator.py",
+    "research/stage19/code/test_excavators.py",
+    "research/stage19/code/validate_worksheet.py"
+  ],
+  "declared_roots": [
+    "research/stage15/CENSUS",
+    "research/progress",
+    "research/stage19/output",
+    "research/stage19/code",
+    "research/stage20/output",
+    "research/stage21/sources_index",
+    "research/stage21/original_sources",
+    "research/readiness",
+    "jobs/census-candidates/output",
+    "research/excavator",
+    "research/valla"
+  ],
+  "declaration_hashes": {
+    "jobs/readiness-tracker/needs.txt": "93faa9dbd1a73cba6d38214ecd0c10301faa6b9300f84cefda56dd590d639453",
+    "jobs/readiness-tracker/inputs.txt": "5bbc6845b9d71fb0707460d4a6d3624c34e7192f041e5cd55e22f919bee5c530"
+  },
+  "static_branch_enumeration": [
+    {
+      "path": "job.py -> test_tracker.py -> tracker.py",
+      "condition": "always before tracker",
+      "reads": "Code and tests under jobs/readiness-tracker; tests copy research/stage19/code into a temporary fixture. The latter is declared in needs.txt."
+    },
+    {
+      "path": "tracker import -> working_text.Index",
+      "condition": "always in build",
+      "metadata_inventory": "jobs/*/output/FRAGMENTS*.jsonl; jobs/*/data/**/FRAGMENTS*.jsonl; select kind=original_representation and data.text_path. Relative resolution starts at declaration directory, then repo root. data.sha256 and data.text_sha256 are identity fields. Pointed body bytes can be read by policy/exact_official."
+    },
+    {
+      "path": "tracker import -> factual_events -> Norton model",
+      "condition": "claim validation per claim; path reads only when FACT marker citations exist",
+      "metadata_inventory": "research/readiness/factual/*/{questions,applications,answers,evidence,reviews}.jsonl; source.text_path and source.raw_path. None visible locally."
+    },
+    {
+      "path": "claim-gate import and validation",
+      "condition": "always imported during build; validates each claim",
+      "reads": "research/stage19/code/claim_gate.py; transitive imports standard library only."
+    },
+    {
+      "path": "load_source_audit_holds",
+      "condition": "optional research/readiness/SOURCE_AUDIT_HOLDS.jsonl exists",
+      "metadata_inventory": "review_path paired with review_sha256. The file was not visible locally; referenced review data is therefore unenumerated."
+    },
+    {
+      "path": "load_job_outputs J optional paths",
+      "condition": "each fixed J input exists",
+      "reads": "Exact optional files listed in jobs/readiness-tracker/inputs.txt; missing files produce fallback/visible missing-job state."
+    },
+    {
+      "path": "main census candidate annotation",
+      "condition": "jobs/census-candidates/output/SUMMARY.json exists",
+      "reads": "Fixed optional summary; outside readiness denominator."
+    },
+    {
+      "path": "same-run output",
+      "condition": "claim-checker in after.txt runs before tracker; other producers may be selected in the same invocation",
+      "reads": "Checker receipt is fixed. Dynamic provider fragments and custody references from other producers require a per-run pinned inventory; this audit did not establish the complete same-run producer set."
+    }
+  ],
+  "runtime_trace": "WORKING_TEXT_TRACE.json",
+  "runtime_trace_sha256": "35d0dbb040f46235ad5eafaa54bd8bef87386a236fe6029899ec369e378f924c",
+  "claim_drafts_read_only_assessment": {
+    "status": "closure risk confirmed; no declaration edited",
+    "mechanism": "drafts.py walks jobs/*/output and merges folders with FRAGMENTS.jsonl or SOURCES.jsonl; CLAIM_DRAFTS_INPUTS can add folders. Embedded claim-checker sources scans jobs/*/output/SOURCES.jsonl, jobs/*/data/PROVENANCE.json, provider fragments/output CSVs, APP MIRROR_DOCUMENTS.jsonl and record-referenced source bodies.",
+    "handoff": "Keep broad compatibility materialization for claim-drafts. A future bounded resolver must inventory and pin provider/source metadata and pointed-to bodies before narrowing."
+  },
+  "git_status_preservation": "Pre-existing Hathi TARGETS and concurrent claim-checker/pick_jobs edits were left untouched.",
+  "inventory_artifact": "ACTIVE_PATH_REFERENCES.json",
+  "inventory_sha256": "f4cff59446fdfad075913de7a16604c75d71597b43ad26286918458a938acdc4"
+}
