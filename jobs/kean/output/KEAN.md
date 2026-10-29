@@ -31,8 +31,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (10 of 44; `search` finds the rest)
+## Newest results (10 of 46; `search` finds the rest)
 
+- 2026-10-28 F-20261028-9 **partly worked**: Compared every clause-drafts re-cut of an American Presidency Project text with the app-executive-orders text… Lesson: Loosen DATE_LINE (optional comma, ordinal suffix, OCR 'l' for 1, 'Jany.') in jobs/clause-drafts/segment.py; it is in claim-kit's compiler hash, so both jobs recompute and open packets must be re-prep…
 - 2026-10-28 F-20261028-8 **worked**: Measured how many held texts cite an earlier order by number in their body without a revoke/amend/supersede/t… Lesson: Number-citation tools only see change verbs; an extension or a recital is a citation without one. Read the 'cited by number' actors before deciding an ending; nothing about them is an event.
 - 2026-10-28 F-20261028-7 **worked**: Namier (jobs/namier): parse the person each one-person order names and search every held order text once for… Lesson: A name match is a lead, not an identity: middle-initial conflicts, index pages, 60-year gaps and persons named in more than 40 orders are kept out of the packet; an empty result covers only the held…
 - 2026-10-28 F-20261028-6 **worked**: Research and rewrite of TR-CS-WAIVER (1,530 one-person civil-service waivers) under the owner's evidence ruli… Lesson: Four outcomes: exhausted on a date; within (order date, R]; not in force with use unknown as an interval to the reason date; open. Most waivers will stay open on use unless the Official Register is f…
@@ -40,8 +41,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-28 F-20261028-4 **partly worked**: 20-order probe on spent pre-1937 orders with statuses (12 retirement exemptions, 5 eight-hour suspensions, 3… Lesson: Most blocks were tool defects, now fixed: claim-kit keeps named transcription grades and the shared date lookup reads the WPA numbered list. Re-prepare after Pinakes and claim-kit regenerate; supplem…
 - 2026-10-28 F-20261028-3 **analysis**: Diagnosis of slow and opaque GitHub runs; Rattle Watch added to the runner. Lesson: Watch the per-minute Rattle Watch lines in the run log; a silent idle job is stopped after 20 minutes, and web searches run in full only on their daily schedule or when their own inputs change.
 - 2026-10-28 F-20261028-2 **analysis**: Diagnosis of why the agent-hour estimate stalled. Lesson: Ask the owner for decisions and act on rulings before building speed-up tools.
+- 2026-10-28 F-20261028-10 **partly worked**: Produced nine serial retirement exemptions (EO 6088/6998/7597, 6013/6615/6974, 6577/6773/7217) from the regen… Lesson: Namier and the printed-reference fix removed the search; the next blocker for every transcription-dependent claim is custody of the APP page bytes. jobs/cassiodorus keeps them from the recorded Commo…
 - 2026-10-28 F-20261028-1 **no record**: Search for a handwriting OCR comparison (bake-off). Lesson: Test AI page reading on a sample of the 310 handwritten scans before choosing a method.
-- 2026-10-26 F-20261026-3 **partly worked**: Trace production costs on four orders. Lesson: A machine-time fix, not an agent-hour saving.
-- 2026-10-26 F-20261026-2 **worked**: Fix claim-kit choosing neighboring documents on early Federal Register pages. Lesson: Recompile claim-kit to apply the repair.
 
-Register: 11 owner decisions, 0 answered questions, 44 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 11 owner decisions, 0 answered questions, 46 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
