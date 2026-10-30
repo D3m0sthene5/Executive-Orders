@@ -112,3 +112,11 @@ claimed. Checkout/setup and initial replay correction are additional session cos
 The correction is submitted through a separate PR, without merging or altering
 main. A complete, fresh canonical checker/tracker publication is still required
 before changing the project dashboard. **395 is not automatically changed to 398.**
+
+## Additive effective-claim census follow-on
+
+The separate follow-on branch preserves this three-case result. See
+[follow-on/REPORT.md](follow-on/REPORT.md) for the 612-effective-claim census,
+two additional exact retained PDFs, bounded selection/resumption, independent
+review and native outcomes: EO4782 newly ready, EO1547 still held by working-text
+policy. Original evidence above is unchanged; no global count is inferred.
