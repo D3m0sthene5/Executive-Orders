@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "owner": "Codex final integration coordinator",
+  "authorization": "D-20261029-final-cross-stream-integration",
+  "state": "observed engineering streams merged and production verified; scientific holds retained",
+  "supersedes_checkpoint": "research/progress/final-integration-2026-10-29/MANIFEST.json",
+  "pr": 107,
+  "source_head": "d0d07a777c79257926e1cee1c3dcd03e916606f4",
+  "merge_commit": "3c21be6f109278be15e68181d050cc788014bc19",
+  "reviewed_tested_tree": "7d1fd9d23d24215ec56548abeed44dc825de102b",
+  "streams": [
+    {
+      "stream": "runner",
+      "owner": "Sol",
+      "pr": 103,
+      "source_head": "1cdef3d0c87c57a3f8bd68a6d772fb2458b16563",
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": []
+    },
+    {
+      "stream": "packet/completion/Valla runtime",
+      "owner": "Opus",
+      "pr": 104,
+      "source_head": "b1890d7a0cc5329cec387b804a4e88962262b5d0",
+      "current_head": "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c",
+      "generated_output_heads": [
+        "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c",
+        "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": [],
+      "native_rehearsal": "5 changed-prior-research exceptions and2 preserved blocks;zero current eligible/published"
+    },
+    {
+      "stream": "ProQuest custody",
+      "owner": "Codex custody session",
+      "pr": 105,
+      "source_head": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
+      "generated_output_heads": [
+        "e87c9ad658a6708705f83a6dd43fd238f472926d"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": []
+    },
+    {
+      "stream": "lifecycle assurance",
+      "owner": "lifecycle-assurance session",
+      "pr": 106,
+      "source_head": "f750886a008c09010abc0ab4ae15e4eded6fa7c2",
+      "current_head": "0252e3ca5449322310483308434a9b00fa5fb027",
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": []
+    },
+    {
+      "stream": "ProQuest measured expansion",
+      "owner": "Codex custody session",
+      "pr": 109,
+      "source_head": "4d2448360a42dca9c3556d128ad1721d0a4eeb0c",
+      "current_head": "884eda59025652c6935cb2d22f54cc2298f7d79f",
+      "generated_output_heads": [
+        "884eda59025652c6935cb2d22f54cc2298f7d79f"
+      ],
+      "dependencies": [
+        105
+      ],
+      "review_evidence": [
+        "research/progress/proquest-custody-2026-10-29/follow-on/ENGINEERING_REVIEW.json"
+      ],
+      "required_tests": [
+        "69 checker/materializer",
+        "bounded cursor/budget/malformed controls",
+        "five-source native replay",
+        "ordinary job consumption"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": [],
+      "reconciliation": "closed as incorporated; exact implementation/tests adopted; old3-case validator explicitly selects IDS; generated branch receipts not adopted"
+    },
+    {
+      "stream": "Valla production reasoning dependency",
+      "state": "unobserved assignment",
+      "blockers": [
+        "No new source/PR or frozen implementation handoff found"
+      ]
+    },
+    {
+      "stream": "Cruden retrieval optimization",
+      "owner": "Sol retrieval session",
+      "pr": 108,
+      "source_head": "f3d9fad88e7d0288967b2674d3ef64fba1db3010",
+      "dependencies": [],
+      "review_evidence": [
+        "research/progress/corpus-evidence-retrieval/challenge/FINAL_REVIEW.json"
+      ],
+      "required_tests": [
+        "11 focused",
+        "61 challenge checks",
+        "identical-input legacy/cold/warm",
+        "changed-corpus invalidation"
+      ],
+      "state": "engineering adopted and verified",
+      "blockers": []
+    },
+    {
+      "stream": "shared substantive research continuation",
+      "pr": 110,
+      "source_head": "bbc66a83f4f2343d57f5fb4b840200c7a08f8058",
+      "current_head": "4b4f0c0d892dd644ef413912b9d085dc8ae02da7",
+      "generated_output_heads": [
+        "8d5259aadd56703981e3ae204994cae92d9cb882"
+      ],
+      "review_evidence": [
+        "review/research-handoff-check.json"
+      ],
+      "required_tests": [
+        "native combined completion dry-run",
+        "exact manifest/review hashes",
+        "preserved historical owner routes"
+      ],
+      "state": "qualified research retained; no canonical filing",
+      "blockers": [
+        "2 changed-prior-research exceptions,8 blocked,4 owner routes;zero current eligible/published"
+      ]
+    }
+  ],
+  "production": {
+    "run_id": 40987576100,
+    "published_commit": "35b9a7585d83529cfe7287fb30094273db8cd449",
+    "commit_run": "3c21be6f109278be15e68181d050cc788014bc19",
+    "finished_utc": "2026-10-30T02:18:57Z",
+    "ready": 498,
+    "original_supported": 306,
+    "transcription_dependent": 192,
+    "denominator": 14972,
+    "matching_effective_claim_receipts": 612,
+    "same_run_checker_consumed_by_tracker": true,
+    "same_run_valla_consumed_by_claimkit": true,
+    "fingerprints": {
+      "example-hello": "a71f467b40f96a93feb5dfbabd90c42a28e8b7b2673a29f3cd73652cb4dd6bc5",
+      "claim-checker": "2701f514189e0f6db95e7df9d360ad31740bdbb1af91dada7ade450e942f6b52",
+      "valla": "c2072d98f1f10eff4ae699cba7fed6082f47423b4b69ca67243f70c58ad6f1d2",
+      "claim-kit": "9bf9241348f7ef87bf967ea6db82ec44745853260bad4f6f9842b4e72e8151fd",
+      "kean": "b5b7fc6d02605db6339364c060c66bb5a121bd53039c96460fad50e1032854f9",
+      "readiness-tracker": "4a6755b5938d0bcf9089ab07116bc9b04c46acaaf92dfea43f91ac66b4ae47cb"
+    },
+    "generation_comparison": {
+      "previous_ready": 395,
+      "became_ready": 103,
+      "ceased_ready": 0,
+      "newly_ready_without_old_checker_receipts": 99,
+      "same_claim_custody_repairs": [
+        "EO:254",
+        "EO:2171",
+        "EO:4354",
+        "EO:4782"
+      ],
+      "not_additive_replay_arithmetic": true
+    }
+  },
+  "evidence": "HANDOFF/final-integration-evidence-2026-10-30.json",
+  "review_directory": "research/progress/final-integration-2026-10-29/review/",
+  "validation_runs": {
+    "Road_Linux_Windows": 40985195505,
+    "Kean": 40985195455,
+    "publication_audit": 40985195474,
+    "native_Valla": 40985195492,
+    "main_Road": 40987576096,
+    "main_Kean": 40987576104,
+    "main_publication_audit": 40987576106
+  },
+  "remaining": [
+    "New Valla production reasoning-dependency implementation was not observed; production has zero examined dependencies/valid components.",
+    "Seven retained submissions refuse changed prior research; new packet versions and exact reviews are required. PR110 remains qualified research, with eight blocked and four historical owner routes.",
+    "EO1547 working-text identity/grade mismatch and all ten distinct exact-version source-audit holds remain. Scientific adoption/census/source grading/human certification authority is unchanged.",
+    "Future ProQuest selections exceeding one bounded batch require explicit cursor resumption; current five fit one call.",
+    "No global runner or Valla efficiency saving is established. Full main refresh retained safe broad fallback for five unaudited selections."
+  ],
+  "watcher": {
+    "active": false,
+    "reason": "All exact observed runs completed; no background monitoring asserted."
+  },
+  "performance": {
+    "Cruden_seven_order_retrieval_seconds": {
+      "legacy": 90.903141051,
+      "cold": 13.988817142,
+      "warm": 8.847323063
+    },
+    "exact_JSON_and_MD_equivalence": true,
+    "held_text_count": 33118,
+    "held_text_bytes": 200530096,
+    "limitations": "More bytes read; cache/sidecar costs retained. Excludes default packet validation and full research/review/model costs. Valla correction efficiency remains unverified."
+  }
+}
