@@ -34,8 +34,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 63; `search` finds the rest)
+## Newest results (8 of 64; `search` finds the rest)
 
+- 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Exact version pins prove which review was scored, not which task it reviewed; bind the task from the coordinator's manifest, not the reviewer's own label
 - 2026-10-29 F-20261029-98 **analysis**: Audit hidden production friction Lesson: Scope dependencies; reuse verified snapshots; retain review gates.
 - 2026-10-29 F-20261029-97 **partly worked**: Merge EO integration and check complete reviewer pipeline Lesson: Run complete consumers after integration; presentation normalization must preserve source qualifications and exact-copy isolation.
 - 2026-10-29 F-20261029-96 **partly worked**: Recover all current PRs and residual EO branch work Lesson: Merge code and qualified research; preserve historical failures without adopting their counts.
@@ -43,6 +44,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-29 F-20261029-94 **partly worked**: Review and integrate Mansfield under current evidence rules Lesson: A historical review pass does not erase later evidence requirements.
 - 2026-10-29 F-20261029-93 **partly worked**: Implement six lightweight wiring repairs as unmerged PRs Lesson: Use existing contracts; component tests do not establish production gains.
 - 2026-10-29 F-20261029-7002 **worked**: Native full-code rehearsal of the PR104 repairs: fresh prepare and supplements (incl. held EO 6730/6620-B), S… Lesson: Validate on fresh packets with fresh exact reviews before claiming a speedup; keep planted sets and keys outside the repository and genuine batch copies inside the packet; the local lock cannot prote…
-- 2026-10-29 F-20261029-7001 **worked**: Repair audit H01-H07 in Valla/claim-kit: request-scoped Valla context excluding own packet, per-query package… Lesson: Scope dependencies to the requested instruments, verify a snapshot once and recheck it before writing, and profile the full native path: the largest cost (a fragment index rebuilt per checked claim)…
 
-Register: 13 owner decisions, 0 answered questions, 63 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 13 owner decisions, 0 answered questions, 64 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
