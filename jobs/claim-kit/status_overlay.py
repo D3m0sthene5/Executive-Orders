@@ -71,8 +71,8 @@ def _history_module(repo):
     return mod
 
 
-def _authority(repo, iid):
-    """Pin the existing identity/status tables; admit no identities or statuses."""
+def _authority_tables(repo):
+    """Read and hash the existing identity/status tables once; admit no identities or statuses."""
     rows = {}
     paths = {}
     for rel in (UNIVERSE, STATUSES):
@@ -81,6 +81,11 @@ def _authority(repo, iid):
         paths[rel] = _sha(raw)
         with path.open(encoding="utf-8-sig", newline="") as fh:
             rows[rel] = list(csv.DictReader(fh))
+    return paths, rows
+
+
+def _authority_for(tables, iid):
+    paths, rows = tables
     identity = [r for r in rows[UNIVERSE]
                 if (r.get("id") or r.get("instrument_id")) == iid
                 and r.get("included_in_bibliography", "1") == "1"]
@@ -91,14 +96,19 @@ def _authority(repo, iid):
               and r.get("provisional_substantive_status") in {"yes", "no"}]
     if status:
         raise ValueError("already_has_authoritative_provisional_status:" + iid)
-    return {"files": paths, "identity": identity[0], "provisional_status": None}
+    return {"files": dict(paths), "identity": dict(identity[0]), "provisional_status": None}
+
+
+def _authority(repo, iid):
+    """Pin the existing identity/status tables; admit no identities or statuses."""
+    return _authority_for(_authority_tables(repo), iid)
 
 
 def _current_code(repo):
     return {name: _sha(_child(repo, "jobs/claim-kit/" + name).read_bytes()) for name in CODE_FILES}
 
 
-def _manifest(repo, output):
+def _manifest(repo, output, code=None):
     """Reject stale compiler formats, omitted shards and noncontiguous parts."""
     out = Path(output).resolve()
     root = Path(repo).resolve()
@@ -111,7 +121,7 @@ def _manifest(repo, output):
     summary = _json(out / "SUMMARY.json")
     if summary.get("overlay_input_schema") != INPUT_SCHEMA:
         raise ValueError("old_compiled_outputs:overlay_input_schema; run claim-kit build once")
-    if summary.get("compiled_code_sha256") != _current_code(repo):
+    if summary.get("compiled_code_sha256") != (code if code is not None else _current_code(repo)):
         raise ValueError("old_compiled_outputs:code_fingerprint; run claim-kit build once")
     names = summary.get("jsonl_shards")
     hashes = summary.get("jsonl_shard_sha256")
@@ -227,6 +237,131 @@ def _source_pins(repo, dossier, pins, telemetry=None):
                 pins[rel] = digest
 
 
+def _new_stats():
+    return {"compiled_shards_read": 0, "compiled_bytes_read": 0, "compiled_records_read": 0,
+            "selected_text_opens": 0, "selected_text_bytes": 0,
+            "span_validation_file_opens": 0, "span_validation_file_bytes": 0,
+            "history_pin_file_opens": 0, "history_pin_file_bytes": 0,
+            "history_validator_source_opens": None, "corpus_rebuilds": 0,
+            "billed_input_tokens": None, "billed_output_tokens": None}
+
+
+def _precheck(root, packet, authority_for=None, history=None):
+    """Packet, authority and status-history checks for one undecided order; returns (iid, authority, history)."""
+    if not isinstance(packet, dict) or not isinstance(packet.get("history"), dict):
+        raise ValueError("full_status_history_packet_required")
+    iid = packet["history"].get("instrument_id")
+    if not isinstance(iid, str):
+        raise ValueError("instrument_id_required")
+    authority = authority_for(iid) if authority_for else _authority(root, iid)
+    history = history or _history_module(root)
+    current = history.show(root / "jobs/status-history/output", iid)
+    if canonical_sha(current) != canonical_sha(packet):
+        raise ValueError("stale_or_incomplete_history_packet")
+    if (packet["history"].get("legal_cutoff") != CUTOFF
+            or packet["history"].get("provisional_status") is not None):
+        raise ValueError("history_authority_status_or_cutoff_mismatch")
+    errors = history.validate_packet(root, packet)
+    if errors:
+        raise ValueError("history_source_validation_failed:" + ";".join(errors))
+    return iid, authority, history
+
+
+def _actor_ids(inputs, acts):
+    actor_ids = sorted(set(inputs.get("known_actor_ids", [])) | {a["actor_id"] for a in acts})
+    if any(not isinstance(actor, str) for actor in actor_ids):
+        raise ValueError("actor_identity_malformed")
+    return actor_ids
+
+
+def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads, clause, terms, acts, chain,
+                       actor_clauses, declared, stats):
+    """Everything after record selection: pure in the selected records, shared by single and batch freezing."""
+    actor_ids = _actor_ids(inputs, acts)
+    # A target's source is explicitly frozen by the compiler; select the same
+    # sources for actors by their primary CLAUSES source, never by guessing.
+    selected, pins = {}, {}
+    target = inputs.get("selected")
+    if target:
+        if target.get("instrument_id") != iid:
+            raise ValueError("selected_identity_mismatch")
+        selected[iid] = _held(root, target, pins, stats)
+        if clause and clause.get("source") != target.get("source"):
+            raise ValueError("selected_clause_source_mismatch")
+        if not any(r.get("instrument_id") == iid and r.get("text_path") == target.get("text_path")
+                   for r in declared):
+            raise ValueError("selected_text_representation_missing")
+    elif clause:
+        raise ValueError("selected_text_missing_for_compiled_clause")
+    missing = list(leads.get("missing", []))
+    for actor in actor_ids:
+        source = actor_clauses.get(actor, {}).get("source")
+        if source is None:
+            missing.append("No compiled selected actor text located: " + actor)
+            continue
+        choices = [r for r in declared if r.get("instrument_id") == actor
+                   and r.get("text_path") == source.get("text_path")]
+        if not choices:
+            raise ValueError("compiled_actor_representation_missing:" + actor)
+        # Multiple page declarations can represent the same held artifact.
+        # The normalized compiled source is authoritative for exact spans.
+        actor_record = deepcopy(choices[0])
+        actor_record["source"] = deepcopy(source)
+        selected[actor] = _held(root, actor_record, pins, stats)
+    corpus = {"drafts": {iid: deepcopy(inputs.get("draft", {}))}, "statuses": {},
+              "machine_searches": deepcopy(inputs.get("machine_searches", {})),
+              "current_law": {iid: deepcopy(leads.get("current_law_leads", []))},
+              "status_histories": {iid: deepcopy(leads.get("status_history"))}}
+    dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids)
+    # package() uses paths relative to the canonical compiler output for
+    # large actor contexts. Qualify those pointers before moving a dossier
+    # into an isolated bundle, and pin the actual shared context record.
+    for context in dossier["actor_contexts"]:
+        if context.get("overflow"):
+            old = context["overflow"]
+            path = (out / old).resolve()
+            if not path.is_relative_to(out):
+                raise ValueError("unsafe_actor_context_overflow")
+            raw = path.read_bytes()
+            record = json.loads(raw)
+            actor = context["actor_id"]
+            if (record.get("instrument_id") != actor or record.get("text") != selected[actor]["text"]
+                    or record.get("source") != selected[actor]["source"]):
+                raise ValueError("compiled_actor_context_mismatch:" + actor)
+            rel = path.relative_to(root).as_posix()
+            pins[rel] = _sha(raw)
+            context["overflow"] = rel
+            context["held_text_path"] = selected[actor]["text_path"]
+            dossier["missing"] = [m.replace("at " + old + " before", "at " + rel + " before")
+                                  for m in dossier["missing"]]
+            stats["span_validation_file_opens"] += 1
+            stats["span_validation_file_bytes"] += len(raw)
+    dossier["fingerprint"] = canonical_sha(dossier)
+    _source_pins(root, dossier, pins, stats)
+    # Pin the actual held history sources as well as their typed records.
+    for observation in packet["observations"] + packet.get("supporting_observations", []):
+        source = observation["source"]
+        for key in ("compressed_path", "text_path", "path"):
+            if source.get(key):
+                rel = source[key]
+                if rel not in pins:
+                    raw = _child(root, rel).read_bytes()
+                    pins[rel] = _sha(raw)
+                    stats["history_pin_file_opens"] += 1
+                    stats["history_pin_file_bytes"] += len(raw)
+    rel_out = out.relative_to(root).as_posix()
+    return _seal({"schema": EVIDENCE_SCHEMA, "instrument_id": iid, "legal_cutoff": CUTOFF,
+                  "authority": authority, "history_packet": deepcopy(packet),
+                  "history_sha256": packet["history"]["fingerprint"],
+                  "source_fingerprints": dict(sorted(pins.items())),
+                  "compiled": {"output": rel_out, "summary_sha256": _sha((out / "SUMMARY.json").read_bytes()),
+                               "code_sha256": summary["compiled_code_sha256"],
+                               "consumed_shard_sha256": {n: h for n, h in summary["jsonl_shard_sha256"].items()
+                                  if any(n == s + ".jsonl" or n.startswith(s + ".part") for s in COMPILED_STEMS)}},
+                  "base_dossier": dossier,
+                  "notice": "Frozen machine evidence, not a provisional status or a lifecycle conclusion."})
+
+
 def freeze_evidence(repo, output, packet, telemetry=None):
     """Reconstruct one undecided order from current compiler outputs, then freeze it.
 
@@ -235,30 +370,10 @@ def freeze_evidence(repo, output, packet, telemetry=None):
     No files are written. All corpus iteration occurs only in this first step.
     """
     started = time.perf_counter()
-    stats = {"compiled_shards_read": 0, "compiled_bytes_read": 0, "compiled_records_read": 0,
-             "selected_text_opens": 0, "selected_text_bytes": 0,
-             "span_validation_file_opens": 0, "span_validation_file_bytes": 0,
-             "history_pin_file_opens": 0, "history_pin_file_bytes": 0,
-             "history_validator_source_opens": None, "corpus_rebuilds": 0,
-             "billed_input_tokens": None, "billed_output_tokens": None}
+    stats = _new_stats()
     try:
         root = Path(repo).resolve()
-        if not isinstance(packet, dict) or not isinstance(packet.get("history"), dict):
-            raise ValueError("full_status_history_packet_required")
-        iid = packet["history"].get("instrument_id")
-        if not isinstance(iid, str):
-            raise ValueError("instrument_id_required")
-        authority = _authority(root, iid)
-        history = _history_module(root)
-        current = history.show(root / "jobs/status-history/output", iid)
-        if canonical_sha(current) != canonical_sha(packet):
-            raise ValueError("stale_or_incomplete_history_packet")
-        if (packet["history"].get("legal_cutoff") != CUTOFF
-                or packet["history"].get("provisional_status") is not None):
-            raise ValueError("history_authority_status_or_cutoff_mismatch")
-        errors = history.validate_packet(root, packet)
-        if errors:
-            raise ValueError("history_source_validation_failed:" + ";".join(errors))
+        iid, authority, _ = _precheck(root, packet)
         out, summary = _manifest(root, output)
         inputs = _unique([r for r in _read_records(out, summary, "OVERLAY_INPUTS", stats)
                           if r.get("instrument_id") == iid], "OVERLAY_INPUTS:" + iid)
@@ -276,99 +391,115 @@ def freeze_evidence(repo, output, packet, telemetry=None):
                 if r.get("target_id") == iid]
         chain = _unique([r for r in _read_records(out, summary, "CHAINS", stats)
                          if r.get("target_id") == iid], "CHAINS:" + iid)
-        actor_ids = sorted(set(inputs.get("known_actor_ids", [])) | {a["actor_id"] for a in acts})
-        if any(not isinstance(actor, str) for actor in actor_ids):
-            raise ValueError("actor_identity_malformed")
-        # A target's source is explicitly frozen by the compiler; select the same
-        # sources for actors by their primary CLAUSES source, never by guessing.
+        actor_ids = _actor_ids(inputs, acts)
         actor_clauses = {r["instrument_id"]: r for r in _read_records(out, summary, "CLAUSES", stats)
                          if r.get("instrument_id") in actor_ids}
         declared = [r for r in _read_records(out, summary, "TEXT_REPRESENTATIONS", stats)
                     if r.get("instrument_id") in set(actor_ids + [iid])]
-        selected, pins = {}, {}
-        target = inputs.get("selected")
-        if target:
-            if target.get("instrument_id") != iid:
-                raise ValueError("selected_identity_mismatch")
-            selected[iid] = _held(root, target, pins, stats)
-            if clause and clause.get("source") != target.get("source"):
-                raise ValueError("selected_clause_source_mismatch")
-            if not any(r.get("instrument_id") == iid and r.get("text_path") == target.get("text_path")
-                       for r in declared):
-                raise ValueError("selected_text_representation_missing")
-        elif clause:
-            raise ValueError("selected_text_missing_for_compiled_clause")
-        missing = list(leads.get("missing", []))
-        for actor in actor_ids:
-            source = actor_clauses.get(actor, {}).get("source")
-            if source is None:
-                missing.append("No compiled selected actor text located: " + actor)
-                continue
-            choices = [r for r in declared if r.get("instrument_id") == actor
-                       and r.get("text_path") == source.get("text_path")]
-            if not choices:
-                raise ValueError("compiled_actor_representation_missing:" + actor)
-            # Multiple page declarations can represent the same held artifact.
-            # The normalized compiled source is authoritative for exact spans.
-            actor_record = deepcopy(choices[0])
-            actor_record["source"] = deepcopy(source)
-            selected[actor] = _held(root, actor_record, pins, stats)
-        corpus = {"drafts": {iid: deepcopy(inputs.get("draft", {}))}, "statuses": {},
-                  "machine_searches": deepcopy(inputs.get("machine_searches", {})),
-                  "current_law": {iid: deepcopy(leads.get("current_law_leads", []))},
-                  "status_histories": {iid: deepcopy(leads.get("status_history"))}}
-        dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids)
-        # package() uses paths relative to the canonical compiler output for
-        # large actor contexts. Qualify those pointers before moving a dossier
-        # into an isolated bundle, and pin the actual shared context record.
-        for context in dossier["actor_contexts"]:
-            if context.get("overflow"):
-                old = context["overflow"]
-                path = (out / old).resolve()
-                if not path.is_relative_to(out):
-                    raise ValueError("unsafe_actor_context_overflow")
-                raw = path.read_bytes()
-                record = json.loads(raw)
-                actor = context["actor_id"]
-                if (record.get("instrument_id") != actor or record.get("text") != selected[actor]["text"]
-                        or record.get("source") != selected[actor]["source"]):
-                    raise ValueError("compiled_actor_context_mismatch:" + actor)
-                rel = path.relative_to(root).as_posix()
-                pins[rel] = _sha(raw)
-                context["overflow"] = rel
-                context["held_text_path"] = selected[actor]["text_path"]
-                dossier["missing"] = [m.replace("at " + old + " before", "at " + rel + " before")
-                                      for m in dossier["missing"]]
-                stats["span_validation_file_opens"] += 1
-                stats["span_validation_file_bytes"] += len(raw)
-        dossier["fingerprint"] = canonical_sha(dossier)
-        _source_pins(root, dossier, pins, stats)
-        # Pin the actual held history sources as well as their typed records.
-        for observation in packet["observations"] + packet.get("supporting_observations", []):
-            source = observation["source"]
-            for key in ("compressed_path", "text_path", "path"):
-                if source.get(key):
-                    rel = source[key]
-                    if rel not in pins:
-                        raw = _child(root, rel).read_bytes()
-                        pins[rel] = _sha(raw)
-                        stats["history_pin_file_opens"] += 1
-                        stats["history_pin_file_bytes"] += len(raw)
-        rel_out = out.relative_to(root).as_posix()
-        return _seal({"schema": EVIDENCE_SCHEMA, "instrument_id": iid, "legal_cutoff": CUTOFF,
-                      "authority": authority, "history_packet": deepcopy(packet),
-                      "history_sha256": packet["history"]["fingerprint"],
-                      "source_fingerprints": dict(sorted(pins.items())),
-                      "compiled": {"output": rel_out, "summary_sha256": _sha((out / "SUMMARY.json").read_bytes()),
-                                   "code_sha256": summary["compiled_code_sha256"],
-                                   "consumed_shard_sha256": {n: h for n, h in summary["jsonl_shard_sha256"].items()
-                                      if any(n == s + ".jsonl" or n.startswith(s + ".part") for s in COMPILED_STEMS)}},
-                      "base_dossier": dossier,
-                      "notice": "Frozen machine evidence, not a provisional status or a lifecycle conclusion."})
+        return _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads, clause, terms, acts,
+                                  chain, actor_clauses, declared, stats)
     finally:
         stats["wall_seconds"] = round(time.perf_counter() - started, 6)
         if telemetry is not None:
             telemetry.update(stats)
+
+
+def _collect(out, summary, stem, stats, field, wanted):
+    """One verified pass over a stem's shards; {key: [(sequence, record)]} for records whose ``field`` is wanted."""
+    found = {}
+    for sequence, row in enumerate(_read_records(out, summary, stem, stats)):
+        key = row.get(field)
+        if isinstance(key, str) and key in wanted:
+            found.setdefault(key, []).append((sequence, row))
+    return found
+
+
+def prepare_evidence_many(repo, output, ids, telemetry_by_id=None):
+    """Freeze several undecided orders from ONE verified load of the compiled shards and authority tables.
+
+    Returns {instrument_id: evidence}; each evidence is byte-identical (canonical JSON) to
+    ``prepare_evidence(repo, output, iid)`` for that ID alone, and any ID that the single function would
+    reject raises the same error. Each compiled stem is streamed and hash-verified once and every ID is
+    selected from that snapshot. ``telemetry_by_id`` ({iid: dict}) receives per-ID fields; the shared scan is
+    recorded under ``shared_snapshot`` (its compiled_* counters are then zero per ID, never double counted).
+    """
+    started = time.perf_counter()
+    ids = list(ids)
+    if not ids or len(set(ids)) != len(ids) or any(not isinstance(i, str) for i in ids):
+        raise ValueError("distinct_instrument_ids_required")
+    root = Path(repo).resolve()
+    shared = _new_stats()
+    stats = {iid: _new_stats() for iid in ids}
+    own_seconds = dict.fromkeys(ids, 0.0)
+    result = {}
+    try:
+        tables = _authority_tables(root)
+        history = _history_module(root)
+        packets, authorities = {}, {}
+        for iid in ids:
+            t = time.perf_counter()
+            try:
+                packet = history.show(root / "jobs/status-history/output", iid)
+                packets[iid] = packet
+                got, authorities[iid], _ = _precheck(root, packet, lambda i: _authority_for(tables, i), history)
+                if got != iid:
+                    raise ValueError("history_packet_instrument_mismatch:" + iid)
+            finally:
+                own_seconds[iid] += time.perf_counter() - t
+        out, summary = _manifest(root, output)
+        want = set(ids)
+
+        def one(found, iid, label, required=True):
+            return _unique([row for _, row in found.get(iid, [])], label + ":" + iid, required)
+        found = _collect(out, summary, "OVERLAY_INPUTS", shared, "instrument_id", want)
+        inputs = {}
+        for iid in ids:
+            inputs[iid] = one(found, iid, "OVERLAY_INPUTS")
+            if inputs[iid].get("schema") != INPUT_SCHEMA:
+                raise ValueError("old_overlay_input_record")
+        found = _collect(out, summary, "STATUS_LEADS", shared, "instrument_id", want)
+        leads = {}
+        for iid in ids:
+            leads[iid] = one(found, iid, "STATUS_LEADS")
+            if leads[iid].get("status") is not None:
+                raise ValueError("status_lead_must_be_undecided")
+        found = _collect(out, summary, "OWN_TERMS", shared, "instrument_id", want)
+        terms = {iid: [row for _, row in found.get(iid, [])] for iid in ids}
+        found = _collect(out, summary, "ACTING_PROVISIONS", shared, "target_id", want)
+        acts = {iid: [row for _, row in found.get(iid, [])] for iid in ids}
+        found = _collect(out, summary, "CHAINS", shared, "target_id", want)
+        chain = {iid: one(found, iid, "CHAINS") for iid in ids}
+        actors = {iid: _actor_ids(inputs[iid], acts[iid]) for iid in ids}
+        wanted = want.union(*[set(a) for a in actors.values()])
+        clauses = _collect(out, summary, "CLAUSES", shared, "instrument_id", wanted)
+        represented = _collect(out, summary, "TEXT_REPRESENTATIONS", shared, "instrument_id", wanted)
+        for iid in ids:
+            t = time.perf_counter()
+            try:
+                clause = one(clauses, iid, "CLAUSES", required=False)
+                # Last compiled row wins, as in the single-order dictionary comprehension.
+                actor_clauses = {a: clauses[a][-1][1] for a in actors[iid] if a in clauses}
+                keep = set(actors[iid] + [iid])
+                declared = [row for _, row in sorted((pair for k in keep for pair in represented.get(k, [])),
+                                                     key=lambda pair: pair[0])]
+                # Selected rows are shared across orders; each evidence gets private copies.
+                result[iid] = _assemble_evidence(
+                    root, out, summary, packets[iid], iid, authorities[iid], *deepcopy((
+                        inputs[iid], leads[iid], clause, terms[iid], acts[iid], chain[iid], actor_clauses,
+                        declared)), stats[iid])
+            finally:
+                own_seconds[iid] += time.perf_counter() - t
+        return result
+    finally:
+        wall = round(time.perf_counter() - started, 6)
+        snapshot = {"member_count": len(ids), "compiled_shards_read": shared["compiled_shards_read"],
+                    "compiled_bytes_read": shared["compiled_bytes_read"],
+                    "compiled_records_read": shared["compiled_records_read"], "wall_seconds": wall}
+        for iid in ids:
+            stats[iid]["wall_seconds"] = round(own_seconds[iid], 6)
+            stats[iid]["shared_snapshot"] = dict(snapshot)
+            if telemetry_by_id is not None:
+                telemetry_by_id.setdefault(iid, {}).update(stats[iid])
 
 
 def prepare_evidence(repo, output, iid, telemetry=None):
@@ -378,16 +509,51 @@ def prepare_evidence(repo, output, iid, telemetry=None):
     return freeze_evidence(root, output, packet, telemetry)
 
 
-def validate_evidence(repo, evidence):
+class _ValidationContext:
+    """Loads shared across several evidences: each is read/hashed once, on first use, then reused."""
+    def __init__(self, repo):
+        self.repo = repo
+        self._tables = self._code = self._history = None
+        self._manifests, self._shas = {}, {}
+
+    def authority(self, iid):
+        if self._tables is None:
+            self._tables = _authority_tables(self.repo)
+        return _authority_for(self._tables, iid)
+
+    def code(self):
+        if self._code is None:
+            self._code = _current_code(self.repo)
+        return self._code
+
+    def manifest(self, rel):
+        if rel not in self._manifests:
+            self._manifests[rel] = _manifest(self.repo, _child(self.repo, rel), self.code())
+        return self._manifests[rel]
+
+    def sha(self, rel):
+        path = _child(self.repo, rel)
+        if rel not in self._shas:
+            self._shas[rel] = _sha(path.read_bytes())
+        return self._shas[rel]
+
+    def history(self):
+        if self._history is None:
+            self._history = _history_module(self.repo)
+        return self._history
+
+
+def validate_evidence(repo, evidence, _context=None):
     """Recheck bounded held sources/current history and authority; do not excavate."""
+    ctx = _context or _ValidationContext(repo)
     _sealed(evidence, EVIDENCE_SCHEMA)
     iid = evidence["instrument_id"]
-    if _authority(repo, iid) != evidence.get("authority"):
+    if ctx.authority(iid) != evidence.get("authority"):
         raise ValueError("stale_authority_snapshot")
     compiled = evidence["compiled"]
-    if _current_code(repo) != compiled["code_sha256"]:
+    if ctx.code() != compiled["code_sha256"]:
         raise ValueError("stale_compiler_code")
-    out, summary = _manifest(repo, _child(repo, compiled["output"]))
+    out, summary = ctx.manifest(compiled["output"])
     # Keep the exact original SUMMARY hash as a receipt. A runner may update its
     # input commit/timing without changing any consumed compiler record; that
     # alone must not force a new extraction and independent legal review.
@@ -400,10 +566,9 @@ def validate_evidence(repo, evidence):
     if (out / "STATUS.json").exists() and _json(out / "STATUS.json").get("result") != "succeeded":
         raise ValueError("compiled_runner_did_not_succeed")
     for rel, digest in evidence["source_fingerprints"].items():
-        if _sha(_child(repo, rel).read_bytes()) != digest:
+        if ctx.sha(rel) != digest:
             raise ValueError("stale_held_source:" + rel)
-    mod = _history_module(repo)
-    current = mod.show(Path(repo).resolve() / "jobs/status-history/output", iid)
+    current = ctx.history().show(Path(repo).resolve() / "jobs/status-history/output", iid)
     if canonical_sha(current) != canonical_sha(evidence["history_packet"]):
         raise ValueError("stale_status_history")
     dossier = evidence["base_dossier"]
@@ -411,6 +576,17 @@ def validate_evidence(repo, evidence):
             or dossier.get("fingerprint") != canonical_sha(dossier)):
         raise ValueError("invalid_frozen_base_dossier")
     _source_pins(repo, dossier, {})
+    return True
+
+
+def validate_evidence_many(repo, evidences):
+    """validate_evidence for several evidences with one load of the authority tables, compiler code,
+    manifest, status-history module and each distinct held source hash. Raises exactly when
+    validate_evidence would raise for any member (first failing member, in order)."""
+    items = evidences.values() if isinstance(evidences, dict) else evidences
+    ctx = _ValidationContext(repo)
+    for evidence in items:
+        validate_evidence(repo, evidence, ctx)
     return True
 
 

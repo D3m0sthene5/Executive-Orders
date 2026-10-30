@@ -1,0 +1,42 @@
+# Lifecycle transition probes (2026-10-30)
+
+**Baseline:** `f9c6d806ad059dcad7875ab3708715f20ea386df`. **Scope:** read-only review of exact-version review, completion/publication, readiness, exhaustion, holds, replacement routing and Mountweazel control contracts. No implementation, canonical output, index, sparse setting or Git state was changed by this investigation. The exhaustion reproducer loads the tracker source from the frozen Git blob, so it continues to show baseline behavior if a repair is present in the current working tree. Scripts and deterministic result JSON are saved in this folder.
+
+## Findings
+
+### 1. Exhaustion can report an order ready with no provisional status and no claim
+
+**Reproduced.** The real `readiness-tracker.tracker.build()` ran against its existing tiny-repository fixture (`jobs/readiness-tracker/test_tracker.py::TrackerTest`). For `EO:4`, which has no adopted status and no claim, the baseline is not ready. Adding valid-shaped exhaustion rows for the seven steps other than `provisional_status` leaves it not ready. Adding one more row for `provisional_status` changes readiness to `yes`, tier `machine_exhausted`, while the emitted `provisional_status` and `claim_present` fields remain empty/`no`. Thus an exhaustion receipt supplies readiness credit for the status step even though it does not adopt a status.
+
+Reproduce from the repository root: `python3 research/progress/lifecycle-assurance/transitions/probe_exhaustion.py`. It loads the frozen tracker via `git show f9c6d806ad059dcad7875ab3708715f20ea386df:jobs/readiness-tracker/tracker.py`. Output: `research/progress/lifecycle-assurance/transitions/exhaustion-result.json`.
+
+**Code path:** `jobs/readiness-tracker/tracker.py:30-38` includes `provisional_status` in `STEP_NAMES`; `:190-204` accepts any member of `STEP_NAMES` as an exhaustion record; `:550-556` turns any still-false step into done; `:571` permits `machine_exhausted` readiness once all steps are true. The code itself excludes status from planning assumptions at `build()` entry (baseline `:369-374`), so this receipt path undermines that explicit restriction. The tracker README says exhaustion can close steps and readiness requires all steps done (`jobs/readiness-tracker/README.md:83-86`), but it does not authorize adopting status; the status-step label and blank status in the reproduced output make this an inconsistent readiness transition, not actual status adoption.
+
+**Repair:** define the exhaustible set as `STEP_NAMES - {'provisional_status'}` and reject (or report as invalid, never count) status exhaustion rows in `load_exhausted`; keep `NO_PROVISIONAL_STATUS` active until an adopted status exists. Add a regression that reproduces the seven-versus-eight receipt contrast and asserts no-ready for the eight-row version.
+
+### 2. A wrong-scope control review can count as caught and allow completion eligibility
+
+**Reproduced at the completion gate; scope requirement is under-specified.** In the real tiny completion fixture, the selected genuine member had `publication_kind: whole_case`. I changed only the planted-control review's scope to `status_only_unrelated_scope`, kept its exact planted instrument/hash and rejected verdict, and updated the exact review/adjudication refs. `completion.complete()` reported `plants_caught: 1` and `eligible: ["EO:1"]`. The fixture stubs the checker and tracker consumers, so this demonstrates the completion/control validation behavior; it does not establish live corpus publication or a canonical write. The docs require control reviews to carry the same independence fields, but do not explicitly define an expected control scope. This is a confirmed scope-unbound control-credit path; whether it violates the stated protocol depends on whether lifecycle-scope sensitivity is required for these controls.
+
+Reproduce from the repository root: `python3 research/progress/lifecycle-assurance/transitions/probe_control_scope.py`. Output: `research/progress/lifecycle-assurance/transitions/control-scope-result.json`.
+
+**Code path:** member review validation requires exact instrument, claim hash, and `review.scope == member.publication_kind` in `jobs/claim-kit/completion.py:123-140`. The control path in `:143-176` validates exact instrument/hash, independence, adjudication binding and rejected verdict, but never validates a control scope. `jobs/claim-kit/COMPLETION.md:116-135` says the control review has the same independence fields as the selected review, but is not explicit whether that includes scope (`:83-101`). `jobs/claim-kit/AGENT_PROTOCOL.md:68` says status review approves only its stated scope. Treat a matching-scope requirement as the recommended repair if the control is meant to measure lifecycle reviewer sensitivity; otherwise document the narrower intended control scope.
+
+**Repair:** if lifecycle-scope sensitivity is intended, make expected scope explicit on each control record and require the pinned control review's scope to equal it. Add a completion regression with an unrelated scope that records a control failure and blocks the batch, plus a matching-scope control that remains a legitimate passing control.
+
+## Controls and boundaries
+
+- **Exact selected review:** member review is bound to selected instrument/hash and publication scope; producer family/context/verdict requirements are enforced at `completion.py:123-140`. Selected claim bytes are rehashed at `:252-260`; current checker must return exactly one matching claim hash and pass the applicable mechanical gate at `:505-517`.
+- **Partial-to-ready guard:** partial review must disclose exact gate errors, and completion rejects it if tracker replay says ready (`completion.py:300-310`, `:518-524`). The existing completion regression explicitly plants `ready_tier: machine_exhausted` and checks rejection (`test_completion.py::test_partial_cannot_supply_ready_credit_through_exhaustion`).
+- **Active exact hold:** completion blocks the exact held `(instrument_id, claim_sha256)` (`completion.py:185-200`, `:252`). Tracker reopens counterevidence, removes its exhaustion credit and withholds readiness after exhaustion (`tracker.py:576-582`). Existing focused regressions cover both paths.
+- **Changed-version hold:** an old hold is exact-version-scoped. A different claim hash yields `STALE_SOURCE_AUDIT_HOLD` rather than an active hold (`tracker.py:610-632`); README explicitly describes that changed claims receive a stale-hold warning for rereview (`jobs/readiness-tracker/README.md:93-102`), and completion docs preserve old holds while allowing a different corrected version (`jobs/claim-kit/COMPLETION.md:173-174`). This is a documented limitation/transition, not treated here as an unreported bypass. The stale warning is not itself a new source audit.
+- **Replacement route:** another owner's claim can only be proposed outside canonical readiness under `replacement_proposal`; it is explicitly owner-acceptance-required and noncanonical (`completion.py:442-450`, `:541-546`; `COMPLETION.md:55-80`). No replacement-to-canonical shortcut was reproduced.
+- **Mountweazel:** it measures reviewer defect-catch sensitivity. Track C “upheld” is expressly limited to a claim in readiness that passes `validate_claim`; the tool is not whole-lifecycle or human certification (`jobs/mountweazel/README.md:100-101`). Mountweazel itself has no publication path. The actual completion control review path is the one in Finding 2.
+- **Generation mismatch:** no stale or wrong-version selected claim review was credited in the inspected completion chain; exact claim hashes are rechecked at member review, selected bytes, checker receipt and tracker selection. The tracker does not attach source-generation fingerprints to `EXHAUSTED.jsonl` rows; freshness of historical exhaustion receipts remains a separate limitation and was not promoted to a third counterexample here.
+
+## Execution record
+
+- Model: `gpt-6-luna` (configured orchestration model).
+- Token and cost telemetry are unavailable.
+- Runtime: each isolated reproduction completed in under one second of reported command wall time. Total task occupancy is not exposed accurately enough for a precise end-to-end duration.
+- No network, source acquisition, model reviewer, Git operation, or canonical publication was used. Kean register update and any integration/legal judgment remain with the coordinator under the bounded assignment.

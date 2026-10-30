@@ -1,0 +1,33 @@
+{
+  "baseline_commit": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "model": "gpt-6-luna",
+  "token_and_cash_telemetry": "not exposed",
+  "new_regression_tests": {
+    "command": "python unittest runner over four FreshnessTests methods",
+    "passed": 4,
+    "failed": 0,
+    "elapsed_seconds": 1.38,
+    "cases": [
+      "capture manifest equals full-tree baseline entries and digest",
+      "scoped tree preserves fnmatch across directories, partial basenames, character classes, question marks, and leading wildcards",
+      "scoped working-set preserves modified, deleted, and untracked input behavior",
+      "scoped working-set rejects index stage conflicts"
+    ]
+  },
+  "existing_regressions_post_change": {
+    "passed": [
+      "changed declared input rejects stale publication",
+      "same-run predecessor chain accepts exact captured bytes",
+      "concurrent output advance is rejected",
+      "later producer preserves consumer captured-base snapshot"
+    ],
+    "started_but_not_counted": [
+      "later producer concurrent output advance remains rejected; command yielded before result returned"
+    ]
+  },
+  "pre_change_suite": {
+    "reported_by_parent": "33 tests passed in 112.478 seconds",
+    "worker_verified": false
+  },
+  "fixture_capture_limitation": "Current sparse checkout omits research/gap-census/census.csv, so a direct capture in this checkout fails closed before materialization. Pinned metadata comparison is recorded separately."
+}

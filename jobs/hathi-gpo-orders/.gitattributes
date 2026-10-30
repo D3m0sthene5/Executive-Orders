@@ -1,6 +1,8 @@
 *.py text eol=lf
 *.md text eol=lf
-data/*.json text eol=lf
+# These are source inputs pinned by byte hash, including historical CRLF blobs.
+# Keep the root evidence-byte policy; text normalization breaks runner freshness.
+data/*.json -text !eol
 output/*.json text eol=lf
 output/*.jsonl text eol=lf
 output/*.csv text eol=lf

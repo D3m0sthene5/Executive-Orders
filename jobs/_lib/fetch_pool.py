@@ -35,6 +35,15 @@ class FetchPool:
         self.max_cache_bytes=max_cache_bytes or int(os.environ.get('JOB_CACHE_MB','1024'))*1024*1024
         self.lock=threading.RLock();self.hosts={};self.urls={};self.robots={};self.robots_locks={};self.next_start={}
         self.requests=0;self.bytes_downloaded=0;self.cache_hits=0
+        self.cache_disk_reads=0;self.cache_disk_read_bytes=0;self.cache_hash_bytes=0
+        self.cache_misses={}
+    def cache_stats(self):
+        with self.lock:
+            return {'cache_hits':self.cache_hits,'cache_disk_reads':self.cache_disk_reads,
+                    'cache_disk_read_bytes':self.cache_disk_read_bytes,
+                    'cache_hash_bytes':self.cache_hash_bytes,
+                    'bytes_downloaded':self.bytes_downloaded,'requests':self.requests,
+                    'cache_misses':dict(sorted(self.cache_misses.items()))}
     def url_lock(self,url):
         with self.lock:return self.urls.setdefault(url,threading.Lock())
     def _origin(self,url):
@@ -84,12 +93,18 @@ class FetchPool:
             meta,bodypath,part,resume=self._paths(url)
             if meta.is_file() and bodypath.is_file():
                 try:
-                    m=json.loads(meta.read_text(encoding='utf-8'));raw=bodypath.read_bytes()
-                    if sha(raw)==m['sha256']:
+                    m=json.loads(meta.read_text(encoding='utf-8'))
+                    raw=bodypath.read_bytes()
+                    with self.lock:self.cache_disk_reads+=1;self.cache_disk_read_bytes+=len(raw);self.cache_hash_bytes+=len(raw)
+                    if sha(raw)==m['sha256'] and m.get('url')==url:
                         with self.lock:self.cache_hits+=1
                         return m['status'],m['headers'],io.BytesIO(raw)
                 except (OSError,ValueError,KeyError):pass
+                with self.lock:self.cache_misses['invalid'] = self.cache_misses.get('invalid',0)+1
                 meta.unlink(missing_ok=True);bodypath.unlink(missing_ok=True)
+            else:
+                cause='body_missing' if meta.is_file() else ('metadata_missing' if bodypath.is_file() else 'cold')
+                with self.lock:self.cache_misses[cause]=self.cache_misses.get(cause,0)+1
             if self.offline:raise FetchError('offline_and_not_cached')
             delay=self.allowed(url) if not urllib.parse.urlsplit(url).path=='/robots.txt' else 0
             hs={'User-Agent':self.user_agent,**(headers or {})};start=0;etag=''

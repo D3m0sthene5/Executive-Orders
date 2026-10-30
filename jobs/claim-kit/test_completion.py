@@ -1,6 +1,8 @@
 """Exact reviewed versions, control judgments, holds, bytes, and replay routing."""
 from copy import deepcopy
 import json
+import sys
+import os
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -258,7 +260,7 @@ class CompletionTests(B.BatchTests):
         result = self.run_completion()
         self.assertIn('explicit nonempty expected_gate_errors', result['outcomes'][0]['error'])
 
-    def test_new_canonical_claim_or_hold_during_replay_stops_filing(self):
+    def test_new_canonical_claim_for_selected_id_or_hold_during_replay_stops_filing(self):
         for kind in ('claim', 'hold'):
             with self.subTest(kind=kind):
                 if not hasattr(self, 'folder'):
@@ -269,7 +271,7 @@ class CompletionTests(B.BatchTests):
                 def changed(repo, claims, dest):
                     result = self.checker(repo, claims, dest)
                     path.parent.mkdir(parents=True, exist_ok=True)
-                    path.write_text('{}\n')
+                    path.write_text('{"instrument_id": "EO:1"}\n' if kind == 'claim' else '{}\n')
                     return result
                 with patch.object(C, 'run_checker', side_effect=changed), patch.object(C, 'run_tracker', return_value={}):
                     result = C.complete(self.repo, self.manifest_path, self.dest, True)
@@ -299,6 +301,273 @@ class CompletionTests(B.BatchTests):
         saved = self.dest / 'receipts' / self.review_path.relative_to(self.repo)
         self.assertEqual(json.loads(saved.read_bytes()), self.review)
 
+    # ---- packet snapshot reuse, publication transaction, concurrent disjoint filings ----
+    def setup_two(self):
+        """EO:1 and EO:2 are both selectable from ONE packet; EO:3 is the planted control identity."""
+        self.folder = self.packet(('EO:1', 'EO:2'))
+        for iid in ('EO:1', 'EO:2'):
+            self.fill(self.folder, iid)
+        batch.apply(self.repo, self.folder, self.folder / 'applied')
+        claims = {c['instrument_id']: c for c in map(json.loads, (self.folder / 'applied/CLAIMS.proposed.jsonl').read_bytes().splitlines())}
+        self.assertEqual(sorted(claims), ['EO:1', 'EO:2'])
+        self.claim = claims['EO:1']
+        self.producer = self.folder / 'PRODUCER.jsonl'
+        self.producer.write_bytes(b''.join((json.dumps(claims[i], ensure_ascii=False) + '\n').encode() for i in ('EO:1', 'EO:2')))
+        self.review = {'instrument_id': 'EO:1', 'claim_sha256': C.claim_sha(self.claim), 'reviewer': 'reviewer',
+                       'model_family': 'OpenAI', 'independent': True, 'separate_context': True,
+                       'review_kind': 'independent_ai_source_review', 'scope': 'whole_case', 'verdict': 'upheld'}
+        members = []
+        for line, iid in enumerate(('EO:1', 'EO:2'), 1):
+            review_path = self.folder / ('REVIEW-%d.json' % line)
+            batch.dump(review_path, dict(self.review, instrument_id=iid, claim_sha256=C.claim_sha(claims[iid])))
+            members.append({'instrument_id': iid, 'claim_sha256': C.claim_sha(claims[iid]), 'outcome': 'submit',
+                            'claim': self.ref(self.producer, line=line), 'publication_kind': 'whole_case',
+                            'review': self.ref(review_path), 'packet': self.ref(self.folder / 'PACKET.json')})
+        self.manifest = {'schema': C.SCHEMA, 'agent': 'producer', 'producer_model_family': 'OpenAI',
+                         'independence_requirement': 'same_family_separate_context', 'controls': [], 'members': members,
+                         'publication': {'mode': 'own_claims', 'path': 'research/readiness/claims/producer-2026-10-24.jsonl'}}
+        self.manifest_path = self.folder / 'COMPLETION.json'
+        self.dest = self.folder / 'complete'
+        self.add_control(after=False, iid='EO:3')
+        self.manifest['members'].append({'instrument_id': 'EO:3', 'outcome': 'blocked', 'reason': 'Synthetic control-only member.'})
+        self.target = self.repo / self.manifest['publication']['path']
+        self.lock = self.repo / C.LOCK_REL
+        self.target.parent.mkdir(parents=True, exist_ok=True)
+
+    def complete_with(self, checker=None, publish=True):
+        batch.dump(self.manifest_path, self.manifest)
+        with patch.object(C, 'run_checker', side_effect=checker or self.checker), patch.object(C, 'run_tracker', return_value={}):
+            return C.complete(self.repo, self.manifest_path, self.dest, publish)
+
+    def after_checker(self, action):
+        def run(repo, claims, dest):
+            result = self.checker(repo, claims, dest)
+            action()
+            return result
+        return run
+
+    def batch_error(self, result):
+        return [e['error'] for e in json.loads((self.dest / 'EXCEPTIONS.json').read_bytes()) if e.get('scope') == 'batch']
+
+    def disjoint_file(self, name='other-agent-2026-10-24.jsonl', iid='EO:99'):
+        path = self.repo / 'research/readiness/claims' / name
+        return path, (json.dumps({'instrument_id': iid}) + '\n')
+
+    def test_one_packet_load_for_many_members_plus_one_recheck(self):
+        self.setup_two()
+        calls = []
+        real = batch.load_packet
+        def counting(*args, **kwargs):
+            calls.append(args[0])
+            return real(*args, **kwargs)
+        with patch.object(batch, 'load_packet', side_effect=counting):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+        self.assertEqual(len(calls), 2, 'one verification during selection plus one before publication')
+        self.assertEqual(self.target.read_bytes(), self.producer.read_bytes())
+        receipt = json.loads((self.dest / 'PACKETS.json').read_bytes())
+        self.assertEqual(len(receipt), 1)
+        self.assertEqual((receipt[0]['loads'], receipt[0]['rechecks']), (2, 1))
+        self.assertGreaterEqual(receipt[0]['load_seconds'], 0)
+        self.assertEqual(receipt[0]['packet_sha256'], self.manifest['members'][0]['packet']['sha256'])
+        self.assertIn('preserved_receipts', json.loads((self.dest / 'INPUTS.json').read_bytes()))
+
+    def test_failed_packet_verification_is_not_repeated_for_every_member(self):
+        self.setup_two()
+        calls = []
+        def failing(*args, **kwargs):
+            calls.append(args[0])
+            raise ValueError('changed prior research; prepare a new version')
+        with patch.object(batch, 'load_packet', side_effect=failing):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])
+        self.assertEqual(len(calls), 1, 'one failed verification, raised again for the second member')
+        errors = [e['error'] for e in json.loads((self.dest / 'EXCEPTIONS.json').read_bytes()) if e.get('instrument_id')]
+        self.assertEqual(errors, ['changed prior research; prepare a new version'] * 2)
+        self.assertFalse(self.target.exists())
+        receipt = json.loads((self.dest / 'PACKETS.json').read_bytes())
+        self.assertEqual((receipt[0]['loads'], receipt[0]['rechecks']), (1, 0))
+        self.assertIn('changed prior research', receipt[0]['verification_error'])
+
+    def test_cached_packet_dossier_is_not_mutated_by_member_checks(self):
+        self.setup_two()
+        cached = []
+        real_packet = C.Inputs.packet
+        def spy(inputs, ref):
+            packet, dossiers = real_packet(inputs, ref)
+            if not cached:
+                cached.extend([dossiers, deepcopy(dossiers)])
+            return packet, dossiers
+        real = C.check_claim
+        def mutating(claim, repo, dossier):
+            errors = real(claim, repo, dossier)
+            dossier['evidence'] = {}
+            dossier['mutated'] = True
+            return errors
+        with patch.object(C.Inputs, 'packet', spy), patch.object(C, 'check_claim', side_effect=mutating):
+            result = self.complete_with(publish=False)
+        self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+        self.assertEqual(cached[0], cached[1])
+
+    def test_held_source_changed_after_selection_blocks_publication(self):
+        self.setup_two()
+        packet, _ = batch.load_packet(self.folder, self.repo)
+        rel = next(iter(packet['held_text_file_pins']))
+        original = (self.repo / rel).read_bytes()
+        result = self.complete_with(self.after_checker(lambda: (self.repo / rel).write_bytes(original + b' changed')))
+        self.assertEqual(result['eligible'], [])
+        self.assertTrue(any('packet dependencies changed during completion' in e for e in self.batch_error(result)))
+        self.assertFalse(self.target.exists())
+        self.assertFalse(self.lock.exists())
+
+    def test_disjoint_claims_file_during_run_publishes_and_is_receipted(self):
+        self.setup_two()
+        path, text = self.disjoint_file()
+        result = self.complete_with(self.after_checker(lambda: path.write_text(text)))
+        self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+        self.assertEqual(self.target.read_bytes(), self.producer.read_bytes())
+        row = {'path': path.relative_to(self.repo).as_posix(), 'sha256': batch.digest(text.encode()), 'instrument_ids': ['EO:99']}
+        self.assertEqual(result['concurrent_disjoint_claim_files'], [row])
+        inputs = json.loads((self.dest / 'INPUTS.json').read_bytes())
+        self.assertEqual(inputs['concurrent_disjoint_claim_files'], [row])
+        self.assertIn('excluded from the union', inputs['tracker_replay_basis'])
+        self.assertFalse(self.lock.exists())
+
+    def test_new_claims_file_for_selected_id_or_unparseable_blocks_publication(self):
+        for name, text, message in (('other.jsonl', json.dumps({'instrument_id': 'EO:2'}) + '\n',
+                                     'concurrent publication for selected instrument EO:2: research/readiness/claims/other.jsonl'),
+                                    ('bad.jsonl', '{"instrument_id": "EO:99"}\nnot json\n', 'Expecting value'),
+                                    ('list.jsonl', '[1]\n', 'non-object')):
+            with self.subTest(name=name):
+                if hasattr(self, 'folder'):
+                    self.dest = self.folder / ('complete-' + name)
+                else:
+                    self.setup_two()
+                path = self.repo / 'research/readiness/claims' / name
+                result = self.complete_with(self.after_checker(lambda: path.write_text(text)))
+                self.assertEqual(result['eligible'], [])
+                self.assertTrue(any(message in e for e in self.batch_error(result)), self.batch_error(result))
+                self.assertFalse(self.target.exists())
+                self.assertFalse(self.lock.exists())
+                path.unlink()
+
+    def test_preexisting_claims_file_modified_or_deleted_blocks_publication(self):
+        self.setup_two()
+        existing = self.repo / 'research/readiness/claims/old-agent-2026-01-01.jsonl'
+        existing.parent.mkdir(parents=True, exist_ok=True)
+        original = json.dumps({'instrument_id': 'EO:99'}) + '\n'
+        for kind in ('modified', 'deleted'):
+            with self.subTest(kind=kind):
+                existing.write_text(original)
+                self.dest = self.folder / ('complete-' + kind)
+                action = (lambda: existing.write_text(original + original)) if kind == 'modified' else existing.unlink
+                result = self.complete_with(self.after_checker(action))
+                self.assertEqual(result['eligible'], [])
+                self.assertTrue(any('old-agent-2026-01-01.jsonl' in e for e in self.batch_error(result)), self.batch_error(result))
+                self.assertFalse(self.target.exists())
+                self.assertFalse(self.lock.exists())
+
+    def test_publication_lock_held_by_another_fails_closed_and_is_never_removed(self):
+        self.setup_two()
+        self.lock.parent.mkdir(parents=True, exist_ok=True)
+        self.lock.write_text('{"pid": 1}')
+        with patch.dict(os.environ, {C.LOCK_TIMEOUT_ENV: '0.2'}):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])
+        self.assertTrue(any(C.LOCK_REL in e for e in self.batch_error(result)), self.batch_error(result))
+        self.assertFalse(self.target.exists())
+        self.assertEqual(self.lock.read_text(), '{"pid": 1}')
+        # Without publication no lock is needed: the same rechecks run lock-free.
+        self.dest = self.folder / 'complete-nopublish'
+        result = self.complete_with(publish=False)
+        self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+        self.assertFalse(self.target.exists())
+
+    def test_dead_holder_on_this_host_is_removed_and_receipted(self):
+        import socket, subprocess
+        self.setup_two()
+        dead = subprocess.Popen([sys.executable, '-c', 'pass']); dead.wait()
+        holder = {'pid': dead.pid, 'host': socket.gethostname(), 'started_utc': 'x', 'dest': 'crashed'}
+        self.lock.parent.mkdir(parents=True, exist_ok=True)
+        self.lock.write_text(json.dumps(holder))
+        with patch.dict(os.environ, {C.LOCK_TIMEOUT_ENV: '0.2'}):
+            result = self.complete_with()
+        if os.name == 'posix':
+            self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+            self.assertEqual(result['stale_publication_locks_removed'], [holder])
+            self.assertFalse(self.lock.exists())
+        else:
+            self.assertEqual(result['eligible'], [])
+
+    def test_dead_holder_is_not_removed_while_another_waiter_breaks_it(self):
+        import socket, subprocess
+        self.setup_two()
+        dead = subprocess.Popen([sys.executable, '-c', 'pass']); dead.wait()
+        self.lock.parent.mkdir(parents=True, exist_ok=True)
+        self.lock.write_text(json.dumps({'pid': dead.pid, 'host': socket.gethostname(), 'started_utc': 'x', 'dest': 'crashed'}))
+        breaker = self.lock.with_name(self.lock.name + '.break'); breaker.write_text('')  # another waiter is removing it
+        with patch.dict(os.environ, {C.LOCK_TIMEOUT_ENV: '0.2'}):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])  # waits and fails closed instead of racing the other waiter
+        self.assertTrue(self.lock.exists()); self.assertTrue(breaker.exists())
+        self.assertFalse(self.target.exists())
+
+    def test_lock_lives_in_git_common_dir_when_available(self):
+        import subprocess
+        self.assertEqual(C.lock_path(self.repo), self.repo / C.LOCK_REL)
+        subprocess.run(['git', 'init', '-q'], cwd=self.repo, check=True)
+        self.assertEqual(C.lock_path(self.repo), (self.repo / '.git').resolve() / 'claim-kit-publication.lock')
+
+    def test_lock_is_released_after_success(self):
+        self.setup_two()
+        result = self.complete_with()
+        self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
+        self.assertFalse(self.lock.exists())
+
+    def test_lock_holds_during_checks_records_holder_and_is_released_after_conflicting_target(self):
+        self.setup_two()
+        seen = {}
+        real = C.Inputs.unchanged
+        def racing(inputs, selected_ids=None):
+            seen.update(json.loads(self.lock.read_text()))
+            real(inputs, selected_ids)
+            self.target.write_text('raced')  # appears after the pin checks, before the exclusive create
+        with patch.object(C.Inputs, 'unchanged', racing):
+            result = self.complete_with()
+        self.assertEqual(result['eligible'], [])
+        self.assertTrue(any('publication target appeared' in e for e in self.batch_error(result)), self.batch_error(result))
+        self.assertFalse(self.lock.exists())
+        self.assertEqual(self.target.read_text(), 'raced')
+        self.assertEqual(set(seen), {'pid', 'host', 'started_utc', 'dest'})
+        self.assertEqual((seen['pid'], seen['dest']), (os.getpid(), str(self.dest.resolve())))
+
+    def test_two_sequential_completions_for_disjoint_ids_both_publish(self):
+        self.setup_two()
+        self.manifest['members'][1] = {'instrument_id': 'EO:2', 'outcome': 'blocked', 'reason': 'Left for the second run.'}
+        first = self.complete_with()
+        self.assertEqual(first['eligible'], ['EO:1'])
+        # A second packet for EO:2 only (a packet's own prior-research scope sees its mates' filings).
+        folder = self.repo / 'research/experiment/packet2'
+        batch.prepare(self.repo, self.out, folder, ['EO:2'], 'producer')
+        self.fill(folder, 'EO:2')
+        batch.apply(self.repo, folder, folder / 'applied')
+        line = (folder / 'applied/CLAIMS.proposed.jsonl').read_bytes()
+        claim = json.loads(line)
+        producer = folder / 'PRODUCER.jsonl'
+        producer.write_bytes(line)
+        review = folder / 'REVIEW.json'
+        batch.dump(review, dict(self.review, instrument_id='EO:2', claim_sha256=C.claim_sha(claim)))
+        self.manifest['members'][1] = {'instrument_id': 'EO:2', 'claim_sha256': C.claim_sha(claim), 'outcome': 'submit',
+                                       'claim': self.ref(producer, line=1), 'publication_kind': 'whole_case',
+                                       'review': self.ref(review), 'packet': self.ref(folder / 'PACKET.json')}
+        self.manifest['members'][0] = {'instrument_id': 'EO:1', 'outcome': 'blocked', 'reason': 'Already filed.'}
+        self.manifest['publication']['path'] = 'research/readiness/claims/producer-2026-10-26.jsonl'
+        self.dest = folder / 'complete'
+        second = self.complete_with()
+        self.assertEqual(second['eligible'], ['EO:2'], second['outcomes'])
+        self.assertEqual(len(list((self.repo / 'research/readiness/claims').glob('producer-*.jsonl'))), 2)
+        self.assertFalse(self.lock.exists())
+
 
 # Reuse the corpus fixture and packet helpers, not their tests.
 for base in (B.BatchTests, B.T.BuildIntegrationTests):
@@ -306,6 +575,86 @@ for base in (B.BatchTests, B.T.BuildIntegrationTests):
         if name.startswith('test_') and name not in CompletionTests.__dict__:
             setattr(CompletionTests, name, None)
 del base
+
+class PublicationAuditTests(unittest.TestCase):
+    """Separate clones bypass the lock; the merge-time audit must see what Git merges silently."""
+    def setUp(self):
+        import subprocess, tempfile
+        self.temp = tempfile.TemporaryDirectory(); self.repo = Path(self.temp.name)
+        self.git = lambda *a: subprocess.run(['git', *a], cwd=self.repo, check=True, capture_output=True)
+        self.git('init', '-q', '-b', 'main'); self.git('config', 'user.email', 't@t'); self.git('config', 'user.name', 't')
+        self.claims = self.repo / 'research/readiness/claims'; self.claims.mkdir(parents=True)
+        (self.claims / 'old-2026-01-01.jsonl').write_text(json.dumps({'instrument_id': 'EO:1'}) + '\n')
+        self.git('add', '-A'); self.git('commit', '-qm', 'base')
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def publish(self, branch, name, *iids):
+        self.git('checkout', '-qb', branch, 'main')
+        (self.claims / name).write_text(''.join(json.dumps({'instrument_id': i, 'v': branch}) + '\n' for i in iids))
+        self.git('add', '-A'); self.git('commit', '-qm', branch)
+
+    def test_competing_publications_from_separate_clones_are_reported(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:2', 'EO:3')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'clone-a'); self.git('merge', '-q', '--no-edit', 'clone-b')  # Git merges silently
+        result = C.publication_audit(self.repo, 'main')
+        self.assertFalse(result['ok'])
+        self.assertEqual(sorted(w['path'] for w in result['duplicate_instruments']['EO:3']),
+                         ['research/readiness/claims/a-2026-10-29.jsonl', 'research/readiness/claims/b-2026-10-29.jsonl'])
+
+    def test_race_where_one_publication_landed_first_is_reported_both_ways(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:3')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-a')  # A lands first
+        self.git('checkout', '-q', 'clone-b')
+        before = C.publication_audit(self.repo, 'main')  # B's pull request against main
+        self.assertFalse(before['ok']); self.assertEqual({w['side'] for w in before['duplicate_instruments']['EO:3']}, {'left', 'right'})
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-b')  # merged silently
+        after = C.publication_audit(self.repo, merge_commit='HEAD')
+        self.assertFalse(after['ok']); self.assertIn('EO:3', after['duplicate_instruments'])
+
+    def test_disjoint_publications_pass_and_other_changes_fail(self):
+        self.publish('clone-a', 'a-2026-10-29.jsonl', 'EO:2')
+        self.publish('clone-b', 'b-2026-10-29.jsonl', 'EO:3')
+        self.git('checkout', '-q', 'main'); self.git('merge', '-q', '--no-edit', 'clone-a')
+        self.git('checkout', '-q', 'clone-b')
+        self.assertTrue(C.publication_audit(self.repo, 'main')['ok'])
+        nested = self.claims / 'archive'; nested.mkdir()
+        (nested / 'copy.jsonl').write_text(json.dumps({'instrument_id': 'EO:3'}) + '\n')  # not a canonical file
+        self.git('add', '-A'); self.git('commit', '-qm', 'nested copy')
+        self.assertTrue(C.publication_audit(self.repo, 'main')['ok'])
+        cases = {'edited': lambda: (self.claims / 'old-2026-01-01.jsonl').write_text(json.dumps({'instrument_id': 'EO:1', 'x': 1}) + '\n'),
+                 'deleted': lambda: (self.claims / 'old-2026-01-01.jsonl').unlink(),
+                 'malformed': lambda: (self.claims / 'c-2026-10-29.jsonl').write_text('[1]\n{"no_id": true}\n')}
+        for name, change in cases.items():
+            with self.subTest(change=name):
+                self.git('checkout', '-q', '-B', 'case-' + name, 'clone-b'); change()
+                self.git('add', '-A'); self.git('commit', '-qm', name)
+                result = C.publication_audit(self.repo, 'main')
+                self.assertFalse(result['ok']); self.assertTrue(result['problems'])
+
+    def test_reordering_old_versions_cannot_change_the_effective_claim(self):
+        path = self.claims / 'old-2026-01-01.jsonl'
+        records = [json.dumps({'instrument_id': 'EO:1', 'version': v}) for v in (1, 2)]
+        path.write_text('\n'.join(records) + '\n')
+        self.git('add', '-A'); self.git('commit', '-qm', 'two historical versions')
+        self.git('checkout', '-qb', 'reordered')
+        path.write_text('\n'.join(reversed(records)) + '\n')
+        self.git('add', '-A'); self.git('commit', '-qm', 'reverse effective version')
+        result = C.publication_audit(self.repo, 'main')
+        self.assertFalse(result['ok'])
+        self.assertTrue(any('sequence changed' in p['problem'] for p in result['problems']))
+
+    def test_new_reviewed_version_appended_to_existing_file_passes(self):
+        self.git('checkout', '-qb', 'append')
+        path = self.claims / 'old-2026-01-01.jsonl'
+        with path.open('a') as stream:
+            stream.write(json.dumps({'instrument_id': 'EO:1', 'version': 2}) + '\n')
+        self.git('add', '-A'); self.git('commit', '-qm', 'append reviewed version')
+        self.assertTrue(C.publication_audit(self.repo, 'main')['ok'])
+
 
 if __name__ == '__main__':
     unittest.main()

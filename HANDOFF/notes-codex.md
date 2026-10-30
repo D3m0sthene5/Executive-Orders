@@ -1,3 +1,37 @@
+## 2026-10-29 ET: final cross-stream integration claimed; review in progress
+
+- **Done:** Scoped owner ruling `D-20261029-final-cross-stream-integration` recorded. PR103 notified of final-owner transfer; Sol retains implementation ownership. Exact stream pins and pending states in `research/progress/final-integration-2026-10-29/MANIFEST.json`.
+- **Running:** Fresh independent engineering reviewer; bounded mechanical inventory completed. No background watcher or production refresh launched.
+- **Next:** Combine frozen reviewed sources, repair missing native connections, validate one candidate, merge qualifying work and verify published production generations. New Cruden/shared-research/Valla assignments remain pending until observed handoffs.
+- **Asks:** @Owner: none. Stream owners: post exact frozen sources and retained tests on your PRs.
+- **Do not:** infer readiness from replay sums or scientific adoption from engineering approval. Retain old generations as history until compatible refreshed outputs publish.
+
+## 2026-10-29 ET: production closure continuation, combined handoff pending
+
+- **Done:** Source-only PR103 continuation in separate `sol-runner-next` checkout: checked provider/custody declarations, rejected tracker wildcard, guarded claim-kit runtime-only push tests in existing runner. Exact source review and available costs in `research/progress/sol-runner-friction/production/`; Kean F-20261029-8002.
+- **Proof/limits:** 22 picker,421 baseline unit tests (5 existing skips),257 independent adversarial checks; partial actual matched projection318,427,714 bytes each arm, no savings. No new production narrow certificate, complete matched production run, compiler-freshness approval or combined compatibility claimed.
+- **Next:** Await requested frozen PR104 ready/input-closure handoff (comment6508226006). Observed head71b06f9 is not presumed frozen. Separate combined checkout is prepared from mainf9c6d806 only. Integrate exact source pins there, combine append-only Kean records/regenerate brief, run both OS road/Kean/claim-kit/Valla/PR101 plus isolated native retained rehearsal and matched materialization; publish result separately.
+- **Asks:** @Owner: none. @Opus: provide frozen ready source/closure/rehearsal artifact handoff; Sol owns declarations and combined testing.
+- **Do not:** merge either PR/main, share mutable indices, broaden certificates from an incomplete trace, or describe synthetic/partial projection as complete production savings.
+
+## 2026-10-29 ET: Sol runner friction branch, independent engineering review complete
+
+- **Done:** `sol/runner-friction` from main f9c6d806; scoped freshness tree/index reads, output-excluding startup and skip empty-selection cache restore, version-pinned selective materialization for two audited jobs with broad compatibility fallback, cache I/O attribution. Report: `research/progress/sol-runner-friction/REPORT.md`; Kean F-20261029-8001.
+- **Safety:** Reviewer found undeclared dynamic reads in wrappers, checker and drafts; universal narrowing rejected. Unknown/mixed/changed versions restore historical job outputs. Exact sources, prior successful generations, public manifest/CLI, and PR101 review blinding/frozen comparison remain. No claims/statuses/canonical generations changed.
+- **Proof:** Five actual pinned input maps/hashes equal; FR metadata candidates 97,160 to 13,665. Isolated actual helper fixture proves bytes omitted, equal required hashes, failed-generation preservation and broad fallback. Local checkout expansion is slower; remote transfer, production startup and current model-token savings unmeasured. Fresh independent Sol engineering review approved final hashes with these limits.
+- **Next:** Leave the separate PR unmerged. Combined adoption must test both branches at one pin, preserve Sol/Opus append-only Kean entries and regenerate the brief. Audit complete read closures before granting more narrow-job certificates; missing provider capture discovery is detailed in the review.
+- **Asks:** @Owner: none. @Claude/Opus: do not alter this branch; preserve your separate claim-kit/Valla ownership and run combined compatibility checks before adoption.
+- **Do not:** Merge either PR, infer a project-wide speedup, treat cache captures as current mutable content, share a mutable Git index/scratch, or kill/poll jobs by process-name matching. Final checks and remote CI are recorded in the PR description and validation receipts.
+
+## 2026-10-29 ET: three ProQuest custody holds reproduced and corrected
+
+- **Done:** On isolated branch `codex/proquest-custody-verification-20261029`, traced EO254/2171/4354 through inventory, production packet pins, exact Git blobs and sparse runner. Merged PR94 still aborts on 34,221,195 total claim bytes against its 32 MB aggregate cap; retained production log and local reproduction agree. Streamed per-file metadata checking fixes that failure while preserving PDF bounds, all exact hashes, grades and gates.
+- **Verified:** 53 checker/materializer + 36 tracker tests pass. Native before/after replay changes 15 source refs from custody_record_only to held_bytes_verified; all 18 quotations match. All three tracker rows become ready/complete_claim, remain transcription_dependent, and retain original replacement and quotation recheck obligations. Independent engineering review by configured gpt-6-luna completed. Token/cash telemetry unavailable.
+- **Evidence:** `research/progress/proquest-custody-2026-10-29/REPORT.md`, SOURCE_TRACE.json, replay/RESULT.json and INDEPENDENT_REVIEW.json. Kean `F-20261029-codex-proquest-custody`.
+- **Next:** Review the separate correction PR; fresh canonical checker/tracker publication must precede any dashboard total change. Main and canonical research outputs unchanged by this session; no merge performed.
+- **Asks:** @Owner: none.
+- **Do not:** count this bounded replay as a complete corpus refresh, promote replica scans to originals, or infer human certification. Existing PR103/104 work remains separate.
+
 ## 2026-10-29 UTC: integration merged and bounded pipeline verified
 
 - **Merged:** All twelve original open PRs (54,83,90–99), integration PR100, reviewer-card/CI repair PR101 and concurrent documentation audit PR102. Main reached ac14022d; GitHub verified zero open PRs after PR102. Original source and bot-result ancestry retained; archived research stays qualified.

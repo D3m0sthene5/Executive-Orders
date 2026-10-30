@@ -10,6 +10,26 @@ class PoolTests(unittest.TestCase):
             self.assertEqual(p.fetch('https://test/a')['body'],b'body');self.assertEqual(len(calls),2)
             q=FetchPool(d,offline=True);self.assertEqual(q.fetch('https://test/a')['body'],b'body')
             with self.assertRaises(FetchError):q.fetch('https://test/missing')
+    def test_cache_stats_attribute_persistent_verification_and_miss(self):
+        calls=[]
+        def net(u,h,t):
+            calls.append(u)
+            return (404,{},io.BytesIO(b'')) if u.endswith('robots.txt') else (200,{'last-modified':'Wed, 01 Jan 2020 00:00:00 GMT'},io.BytesIO(b'body'))
+        with tempfile.TemporaryDirectory() as d:
+            first=FetchPool(d,transport=net,min_interval=0)
+            self.assertEqual(first.fetch('https://test/a')['body'],b'body')
+            self.assertEqual(first.fetch('https://test/a')['body'],b'body')
+            stats=first.cache_stats()
+            self.assertEqual(stats['cache_hits'],1)
+            self.assertEqual(stats['cache_disk_reads'],1)
+            self.assertEqual(stats['cache_disk_read_bytes'],4)
+            self.assertEqual(stats['cache_hash_bytes'],4)
+            self.assertEqual(stats['bytes_downloaded'],4)
+            self.assertEqual(stats['cache_misses'],{'cold':1})
+            second=FetchPool(d,offline=True)
+            self.assertEqual(second.fetch('https://test/a')['body'],b'body')
+            self.assertEqual(second.cache_stats()['cache_hash_bytes'],4)
+            self.assertEqual(calls.count('https://test/a'),1)
     def test_robots_blocks_and_failure_closed(self):
         for status,raw in [(200,b'User-agent: *\nDisallow: /private'),(503,b'')]:
             with tempfile.TemporaryDirectory() as d:

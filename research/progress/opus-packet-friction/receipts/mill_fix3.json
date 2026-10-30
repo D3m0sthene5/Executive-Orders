@@ -1,0 +1,547 @@
+{
+ "label": "fix3",
+ "tree": "$SCRATCH/replay/mill-fix",
+ "head": "1d112ff21e2686478dde99cef599432d7f1766f2",
+ "batches": {
+  "supp": {
+   "packet": "research/excavator/mill-fix3/supp/packet/supp",
+   "ids": [
+    "EO:6254",
+    "EO:6271",
+    "EO:6292",
+    "EO:6322",
+    "EO:6394",
+    "EO:6422",
+    "EO:6429",
+    "EO:6436",
+    "EO:6438",
+    "EO:6444A",
+    "EO:6481",
+    "EO:6513A",
+    "EO:6513B",
+    "EO:6521",
+    "EO:6522",
+    "EO:6647B",
+    "EO:6653",
+    "EO:6685",
+    "EO:6711A",
+    "EO:6756E",
+    "EO:6767",
+    "EO:6871",
+    "EO:6955",
+    "EO:7018"
+   ],
+   "prepare": {
+    "prepare": {
+     "ok": true,
+     "error": null,
+     "seconds": 2.86,
+     "read_bytes": 583203369,
+     "read_calls": 17168,
+     "max_rss_kb": 51992
+    },
+    "supplement": {
+     "seconds": 18.92,
+     "read_bytes": 2148707288,
+     "read_calls": 63820,
+     "max_rss_kb": 206476
+    }
+   },
+   "first_view": {
+    "ok": true,
+    "error": null,
+    "seconds": 3.69,
+    "read_bytes": 1096141216,
+    "read_calls": 17337,
+    "max_rss_kb": 163096
+   },
+   "second_view": {
+    "ok": true,
+    "error": null,
+    "seconds": 3.64,
+    "read_bytes": 1096141216,
+    "read_calls": 17336,
+    "max_rss_kb": 160052
+   },
+   "view_order": {
+    "ok": true,
+    "error": null,
+    "seconds": 3.64,
+    "read_bytes": 1096141216,
+    "read_calls": 17337,
+    "max_rss_kb": 165876
+   },
+   "cases": [
+    {
+     "case": "U1 unrelated package tracked",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.73,
+     "read_bytes": 1096287908,
+     "read_calls": 17343,
+     "max_rss_kb": 163824
+    },
+    {
+     "case": "U2 own packet sheets tracked",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.91,
+     "read_bytes": 1096141278,
+     "read_calls": 17337,
+     "max_rss_kb": 163708
+    },
+    {
+     "case": "U3 12 more unrelated packages (>100 tracked)",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.51,
+     "read_bytes": 1097901544,
+     "read_calls": 17409,
+     "max_rss_kb": 162984
+    },
+    {
+     "case": "U4 unrelated canonical claims file",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.74,
+     "read_bytes": 1096154190,
+     "read_calls": 17341,
+     "max_rss_kb": 163956
+    },
+    {
+     "case": "U5 unrelated completion receipt folder",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.79,
+     "read_bytes": 1096216520,
+     "read_calls": 17345,
+     "max_rss_kb": 164040
+    },
+    {
+     "case": "U6 unrelated fragment provider file",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 16.36,
+     "read_bytes": 1565665282,
+     "read_calls": 46691,
+     "max_rss_kb": 195172
+    },
+    {
+     "case": "R1 relevant package tracked",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 2.5,
+     "read_bytes": 577375266,
+     "read_calls": 1081,
+     "max_rss_kb": 157888
+    },
+    {
+     "case": "R2 new canonical claim for a member",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 2.42,
+     "read_bytes": 577381247,
+     "read_calls": 1071,
+     "max_rss_kb": 155784
+    },
+    {
+     "case": "R3 competing version of a member claim",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 3.86,
+     "read_bytes": 1096153095,
+     "read_calls": 17342,
+     "max_rss_kb": 163320
+    },
+    {
+     "case": "R4 review record for a member",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 3.43,
+     "read_bytes": 1096141415,
+     "read_calls": 17339,
+     "max_rss_kb": 163132
+    },
+    {
+     "case": "N1 attestation for a member without an active claim",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 3.69,
+     "read_bytes": 1096141408,
+     "read_calls": 17341,
+     "max_rss_kb": 163576
+    },
+    {
+     "case": "R6 held source text edited",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed parent held source: jobs/app-executive-orders/output/texts/executive-order-6254-code-fair-competition-for-the-iron-and-steel-industry.txt",
+     "seconds": 0.18,
+     "read_bytes": 4733442,
+     "read_calls": 110,
+     "max_rss_kb": 50280
+    },
+    {
+     "case": "R7 owner ruling added",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 3.76,
+     "read_bytes": 1096141249,
+     "read_calls": 17340,
+     "max_rss_kb": 163584
+    },
+    {
+     "case": "R8 protocol file edited",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 2.51,
+     "read_bytes": 577374888,
+     "read_calls": 1069,
+     "max_rss_kb": 160732
+    },
+    {
+     "case": "R9 bound prior-research file corrected",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 3.4,
+     "read_bytes": 1096141217,
+     "read_calls": 17337,
+     "max_rss_kb": 163152
+    },
+    {
+     "case": "R10 bound prior-research file removed",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 3.68,
+     "read_bytes": 1095870089,
+     "read_calls": 17335,
+     "max_rss_kb": 163280
+    },
+    {
+     "case": "R11 supplement declarations edited",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed source supplement pin: research/excavator/claude-nira-sweep-2026-10-29/t5/packet/SUPPLEMENT_DECLARATIONS.json",
+     "seconds": 0.19,
+     "read_bytes": 3923180,
+     "read_calls": 104,
+     "max_rss_kb": 50280
+    },
+    {
+     "case": "R12 member source registered as working text",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed supplemented dossier or inherited field",
+     "seconds": 13.73,
+     "read_bytes": 995437071,
+     "read_calls": 29832,
+     "max_rss_kb": 203224
+    }
+   ],
+   "after_revert": {
+    "ok": true,
+    "error": null,
+    "seconds": 3.6,
+    "read_bytes": 1096141216,
+    "read_calls": 17337,
+    "max_rss_kb": 163544
+   }
+  },
+  "undecided": {
+   "packet": "research/excavator/mill-fix3/undecided/packet",
+   "ids": [
+    "EO:10673",
+    "EO:10740",
+    "EO:10772",
+    "EO:10785"
+   ],
+   "prepare": {
+    "prepare": {
+     "ok": true,
+     "error": null,
+     "seconds": 8.69,
+     "read_bytes": 1086663622,
+     "read_calls": 128510,
+     "max_rss_kb": 64012
+    }
+   },
+   "first_view": {
+    "ok": true,
+    "error": null,
+    "seconds": 2.01,
+    "read_bytes": 585236861,
+    "read_calls": 17876,
+    "max_rss_kb": 60612
+   },
+   "second_view": {
+    "ok": true,
+    "error": null,
+    "seconds": 1.84,
+    "read_bytes": 585236861,
+    "read_calls": 17876,
+    "max_rss_kb": 60612
+   },
+   "view_order": {
+    "ok": true,
+    "error": null,
+    "seconds": 2.07,
+    "read_bytes": 585236861,
+    "read_calls": 17876,
+    "max_rss_kb": 60640
+   },
+   "cases": [
+    {
+     "case": "U1 unrelated package tracked",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.95,
+     "read_bytes": 585383553,
+     "read_calls": 17882,
+     "max_rss_kb": 60624
+    },
+    {
+     "case": "U2 own packet sheets tracked",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.94,
+     "read_bytes": 585236923,
+     "read_calls": 17876,
+     "max_rss_kb": 60568
+    },
+    {
+     "case": "U3 12 more unrelated packages (>100 tracked)",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.89,
+     "read_bytes": 586997189,
+     "read_calls": 17948,
+     "max_rss_kb": 60604
+    },
+    {
+     "case": "U4 unrelated canonical claims file",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.88,
+     "read_bytes": 585249835,
+     "read_calls": 17880,
+     "max_rss_kb": 60628
+    },
+    {
+     "case": "U5 unrelated completion receipt folder",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.91,
+     "read_bytes": 585312165,
+     "read_calls": 17884,
+     "max_rss_kb": 60620
+    },
+    {
+     "case": "U6 unrelated fragment provider file",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.93,
+     "read_bytes": 585236861,
+     "read_calls": 17876,
+     "max_rss_kb": 60620
+    },
+    {
+     "case": "R1 relevant package tracked",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 0.72,
+     "read_bytes": 59248737,
+     "read_calls": 1323,
+     "max_rss_kb": 60620
+    },
+    {
+     "case": "R2 new canonical claim for a member",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 0.74,
+     "read_bytes": 59254716,
+     "read_calls": 1313,
+     "max_rss_kb": 60608
+    },
+    {
+     "case": "R3 competing version of a member claim",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 1.87,
+     "read_bytes": 585248741,
+     "read_calls": 17881,
+     "max_rss_kb": 60616
+    },
+    {
+     "case": "R4 review record for a member",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 1.96,
+     "read_bytes": 585237061,
+     "read_calls": 17878,
+     "max_rss_kb": 60636
+    },
+    {
+     "case": "N1 attestation for a member without an active claim",
+     "expected": "valid",
+     "observed": "valid",
+     "as_expected": true,
+     "ok": true,
+     "error": null,
+     "seconds": 1.92,
+     "read_bytes": 585237055,
+     "read_calls": 17880,
+     "max_rss_kb": 60716
+    },
+    {
+     "case": "R6 held source text edited",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: stale_held_source:jobs/app-executive-orders/output/texts/executive-order-10673-fitness-american-youth.txt",
+     "seconds": 0.24,
+     "read_bytes": 9882156,
+     "read_calls": 529,
+     "max_rss_kb": 51444
+    },
+    {
+     "case": "R7 owner ruling added",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 1.96,
+     "read_bytes": 585236894,
+     "read_calls": 17879,
+     "max_rss_kb": 60584
+    },
+    {
+     "case": "R8 protocol file edited",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed Valla review context; prepare a new version",
+     "seconds": 0.73,
+     "read_bytes": 59248356,
+     "read_calls": 1311,
+     "max_rss_kb": 60656
+    },
+    {
+     "case": "R9 bound prior-research file corrected",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: changed prior research; prepare a new version",
+     "seconds": 1.9,
+     "read_bytes": 585236863,
+     "read_calls": 17876,
+     "max_rss_kb": 60644
+    },
+    {
+     "case": "R10 bound prior-research file removed",
+     "expected": "invalid",
+     "observed": "invalid",
+     "as_expected": true,
+     "ok": false,
+     "error": "claim-kit: [Errno 2] No such file or directory: '$SCRATCH/replay/mill-fix/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv'",
+     "seconds": 0.21,
+     "read_bytes": 8096354,
+     "read_calls": 403,
+     "max_rss_kb": 51444
+    }
+   ],
+   "after_revert": {
+    "ok": true,
+    "error": null,
+    "seconds": 1.9,
+    "read_bytes": 585236861,
+    "read_calls": 17876,
+    "max_rss_kb": 60644
+   }
+  }
+ }
+}

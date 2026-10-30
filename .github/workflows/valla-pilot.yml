@@ -33,6 +33,7 @@ jobs:
             research/valla
             research/plans/claim_kit_contract
             research/excavator
+            research/production
             research/diagnostics/pr-merge-20261022
       - uses: actions/setup-python@v5
         with:
@@ -42,6 +43,8 @@ jobs:
         run: |
           git fetch --no-tags --filter=blob:none --depth=1 origin 91116f879978902343dafa88490b9b19587b10da
           git cat-file -e 91116f879978902343dafa88490b9b19587b10da:jobs/claim-kit/batch.py
+          git fetch --no-tags --filter=blob:none --depth=1 origin f9c6d806ad059dcad7875ab3708715f20ea386df
+          git cat-file -e f9c6d806ad059dcad7875ab3708715f20ea386df:jobs/readiness-tracker/tracker.py
       - name: Unit and consumer tests
         run: |
           python -m unittest discover -s jobs/valla -p 'test_*.py'
@@ -50,12 +53,39 @@ jobs:
           python -m unittest discover -s jobs/mountweazel -p 'test_paired.py'
           python -I jobs/junto/test_junto.py
           python -I jobs/junto/junto.py check
-          python -m unittest discover -s jobs/claim-checker -p 'test_checker.py'
+          python -m unittest discover -s jobs/claim-checker -p 'test_*.py'
           python -m unittest discover -s jobs/readiness-tracker -p 'test_tracker.py'
       - name: Synthetic isolation
         run: python -I jobs/mountweazel/mountweazel.py check
       - name: Real bounded pilot and actual consumers
         run: python jobs/valla/pilot.py --output '${{ runner.temp }}/valla-pilot' --run-id 'github-${{ github.run_id }}-${{ github.run_attempt }}'
+      - name: Native lifecycle-assurance replay
+        run: python research/progress/lifecycle-assurance/replay.py --out '${{ runner.temp }}/integration-validation/lifecycle'
+      - name: Native three-source custody replay
+        env:
+          REPLAY_OUTPUT: ${{ runner.temp }}/integration-validation/custody
+        run: |
+          python - <<'PY'
+          import importlib.util, os
+          from pathlib import Path
+          path = Path('research/progress/proquest-custody-2026-10-29/validate.py')
+          spec = importlib.util.spec_from_file_location('custody_replay', path)
+          replay = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(replay)
+          replay.OUT = Path(os.environ['REPLAY_OUTPUT'])
+          replay.main()
+          PY
+      - name: Compile complete Valla package inventory
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}/integration-validation/valla-index
+        run: |
+          python jobs/valla/job.py
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          doc = json.loads((Path(os.environ['OUTPUT_DIR']) / 'INDEX.json').read_text())
+          assert not doc['package_scan']['unmaterialized_packages'], doc['package_scan']
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -63,3 +93,4 @@ jobs:
           path: |
             ${{ runner.temp }}/valla-pilot
             research/valla/pilot-runtime
+            ${{ runner.temp }}/integration-validation

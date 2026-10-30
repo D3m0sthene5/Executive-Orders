@@ -12,6 +12,7 @@ import time
 
 import assemble as A
 import batch as B
+import fragment_cache
 import working_text as W
 
 SCHEMA = 'eo-source-excerpt-declarations/v1'
@@ -43,7 +44,7 @@ def registered(repo, source, index=None):
     acceptable_as_original false, so the working-text gate requires its disclosure. A declaring agent cannot
     choose the grade; it comes only from the registry, and an ambiguous registration is left ungraded."""
     rel = B.safe(repo, source['text_path']).relative_to(Path(repo).resolve()).as_posix()
-    index = index or W.Index(repo)
+    index = index or fragment_cache.shared(repo)
     found = {(r['instrument_id'], r['grade'], r['sha256'], r['url']) for rows in index.by_sha.values() for r in rows
              if r['text_path'] == rel and r.get('text_sha256') == source['text_sha256'] and r['grade'] in W.GRADES}
     if len(found) != 1:
@@ -69,7 +70,7 @@ def derive(repo, dossiers, declaration, provenance):
         if d.get('whole_order_status') is None:
             raise ValueError('undecided dossiers require their existing status-overlay route')
     aliases = set()
-    index = W.Index(repo)
+    index = fragment_cache.shared(repo)
     for entry in entries:
         if not isinstance(entry, dict) or set(entry) != ENTRY_KEYS:
             raise ValueError('invalid source declaration fields')

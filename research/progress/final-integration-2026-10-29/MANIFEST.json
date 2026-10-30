@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "owner": "Codex final integration coordinator",
+  "branch": "codex/final-integration-20261029",
+  "base": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "state": "integration_in_progress",
+  "authorization": "D-20261029-final-cross-stream-integration",
+  "streams": [
+    {
+      "stream": "runner",
+      "owner": "Sol",
+      "pr": 103,
+      "source_head": "1cdef3d0c87c57a3f8bd68a6d772fb2458b16563",
+      "state": "review_pending",
+      "blockers": [
+        "combined validation",
+        "CRLF TARGETS.json freshness failure in run40956514088"
+      ]
+    },
+    {
+      "stream": "packet/completion/Valla runtime",
+      "owner": "Opus",
+      "pr": 104,
+      "source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
+      "current_head": "9fa8432a7a0c3550901c5d2acd23e72ae1eab50a",
+      "generated_output_heads": [
+        "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c"
+      ],
+      "state": "frozen_review_pending",
+      "blockers": [
+        "combined validation",
+        "publication-audit CI connection"
+      ],
+      "pin_discrepancy": "PR comment expanded SHA is wrong; actual Git object and CI pin used."
+    },
+    {
+      "stream": "ProQuest custody",
+      "owner": "Codex custody session",
+      "pr": 105,
+      "source_head": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
+      "state": "review_pending",
+      "blockers": [
+        "combined validation",
+        "production refresh"
+      ]
+    },
+    {
+      "stream": "lifecycle assurance",
+      "owner": "lifecycle-assurance session",
+      "pr": 106,
+      "source_head": "f750886a008c09010abc0ab4ae15e4eded6fa7c2",
+      "current_head": "0252e3ca5449322310483308434a9b00fa5fb027",
+      "state": "frozen_review_pending",
+      "blockers": [
+        "combined validation"
+      ]
+    },
+    {
+      "stream": "ProQuest measured expansion",
+      "owner": "Codex custody session",
+      "state": "announced_unfinished",
+      "branch": "codex/proquest-custody-census-20261029"
+    },
+    {
+      "stream": "Valla production reasoning dependency",
+      "state": "unobserved_new_assignment",
+      "note": "PR104 runtime context repair does not establish completion of the separate production reasoning assignment."
+    },
+    {
+      "stream": "Cruden retrieval optimization",
+      "state": "unobserved_new_assignment",
+      "note": "Existing merged cruden.py is a baseline, not proof that the new assignment is complete."
+    },
+    {
+      "stream": "shared substantive research continuation",
+      "state": "unobserved_new_assignment",
+      "note": "Prior merged NRA work is baseline, not proof the new assignment is complete."
+    }
+  ],
+  "production": {
+    "state": "pending",
+    "main_refresh_failure_run": 40951108674,
+    "latest_verified_generation": {
+      "ready": 395,
+      "run_id": 40829686426,
+      "commit_run": "adcf881ef7eb897e6bec8a8bd7717f4eb3629039",
+      "finished_utc": "2026-10-29T07:09:13Z",
+      "fresh_for_candidate": false
+    }
+  },
+  "watcher": {
+    "active": false,
+    "note": "No background monitoring claimed."
+  },
+  "integration_fixes": [
+    "nested Hathi byte-preservation attributes and regression",
+    "ordinary PR/main publication audit workflow",
+    "canonical publication sequence preservation",
+    "explicit claim-kit cross-job code dependencies",
+    "native lifecycle/custody/Valla combined CI"
+  ]
+}

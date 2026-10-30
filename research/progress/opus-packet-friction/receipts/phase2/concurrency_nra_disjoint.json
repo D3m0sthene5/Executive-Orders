@@ -1,0 +1,126 @@
+{
+ "plan": {
+  "cases": [
+   {
+    "name": "disjoint_t5_t6",
+    "runs": [
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/conc-disjoint",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl",
+      "submitted": null
+     },
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-disjoint",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+      "submitted": null
+     }
+    ]
+   }
+  ]
+ },
+ "results": [
+  {
+   "case": "disjoint_t5_t6",
+   "wall_seconds": 125.8,
+   "runs": [
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl",
+     "returncode": 0,
+     "seconds": 103.97,
+     "read_bytes": 7151278732,
+     "read_calls": 239325,
+     "max_rss_kb": 340276,
+     "counts": {
+      "blocked": 11,
+      "eligible": 13
+     },
+     "eligible": [
+      "EO:6322",
+      "EO:6394",
+      "EO:6422",
+      "EO:6429",
+      "EO:6436",
+      "EO:6444A",
+      "EO:6481",
+      "EO:6513A",
+      "EO:6521",
+      "EO:6522",
+      "EO:6685",
+      "EO:6711A",
+      "EO:7018"
+     ],
+     "claims_published": 13,
+     "published_file_exists": true,
+     "published_sha256": "c3936fcd8fa6d43dc87908a6ee07984f5c5efb5a88aca4e480a04679e73dbcd3",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    },
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+     "returncode": 0,
+     "seconds": 125.64,
+     "read_bytes": 8050770589,
+     "read_calls": 240336,
+     "max_rss_kb": 348316,
+     "counts": {
+      "blocked": 8,
+      "eligible": 16
+     },
+     "eligible": [
+      "EO:6242A",
+      "EO:6317",
+      "EO:6330",
+      "EO:6379",
+      "EO:6416A",
+      "EO:6428",
+      "EO:6529",
+      "EO:6543E",
+      "EO:6543K",
+      "EO:6557A",
+      "EO:6600",
+      "EO:6631A",
+      "EO:6678",
+      "EO:6756F",
+      "EO:6794",
+      "EO:6921"
+     ],
+     "claims_published": 16,
+     "published_file_exists": true,
+     "published_sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+     "concurrent_disjoint_claim_files": [
+      {
+       "instrument_ids": [
+        "EO:6322",
+        "EO:6394",
+        "EO:6422",
+        "EO:6429",
+        "EO:6436",
+        "EO:6444A",
+        "EO:6481",
+        "EO:6513A",
+        "EO:6521",
+        "EO:6522",
+        "EO:6685",
+        "EO:6711A",
+        "EO:7018"
+       ],
+       "path": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl",
+       "sha256": "c3936fcd8fa6d43dc87908a6ee07984f5c5efb5a88aca4e480a04679e73dbcd3"
+      }
+     ],
+     "exceptions": [],
+     "stderr_tail": []
+    }
+   ]
+  }
+ ]
+}

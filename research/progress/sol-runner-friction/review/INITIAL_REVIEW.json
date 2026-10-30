@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "phase": "integrated engineering review, initial pinned version",
+  "result": "changes_required",
+  "model": "gpt-6.1-sol",
+  "baseline_commit": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "review_inputs_file": "research/progress/sol-runner-friction/REVIEW_INPUTS.json",
+  "initial_pin_verification": {
+    ".github/scripts/materialize_job_inputs.py": {
+      "expected": "d4b86bfb5db9eced2620c6f16cdad68cb6a28fa8c8abe2717741bd52c7e223bf",
+      "observed": "06b05015a65f86e30ca0575de4e6c9d12462d9f2c52ca91cd40ff6492b16f99d"
+    },
+    ".github/scripts/pick_jobs.py": {
+      "expected": "b71eb02397306271f9636e8c0ce20c0d68fff3017a79afe565a722dd89bcb111",
+      "observed": "b71eb02397306271f9636e8c0ce20c0d68fff3017a79afe565a722dd89bcb111"
+    },
+    ".github/scripts/result_freshness.py": {
+      "expected": "cd4ba5220fe744371d07873be52c888c7ad7288687b52711a61a5516c4ed2b2c",
+      "observed": "cd4ba5220fe744371d07873be52c888c7ad7288687b52711a61a5516c4ed2b2c"
+    },
+    ".github/scripts/test_materialize_job_inputs.py": {
+      "expected": "ab73ebc8bae4fc903914b7bed632b4d61604c8cc3d88eddc9b639db71802c84d",
+      "observed": "d4ef147fff7fb8e9cc82d8a503b1fd5d8d4df82b7b98848a017b7a7aca77d118"
+    },
+    ".github/scripts/test_result_freshness.py": {
+      "expected": "6f20d48b0395ef4017990bb756afdfa98eb56f12f7576b0abbd863ca88f081bd",
+      "observed": "6f20d48b0395ef4017990bb756afdfa98eb56f12f7576b0abbd863ca88f081bd"
+    },
+    ".github/scripts/test_roads.py": {
+      "expected": "8a3f01141d8a153f400011bbf7c7d31fde9023b7f2a3a8b72713b51ade097115",
+      "observed": "8a3f01141d8a153f400011bbf7c7d31fde9023b7f2a3a8b72713b51ade097115"
+    },
+    ".github/workflows/run-jobs.yml": {
+      "expected": "bda082e0e1e523f79d9fbd91481b4936022d09b195e8fa2ada3a3be24ce8a39b",
+      "observed": "bda082e0e1e523f79d9fbd91481b4936022d09b195e8fa2ada3a3be24ce8a39b"
+    },
+    "jobs/_lib/README.md": {
+      "expected": "96d165251a8fa5214350d33ba6a5459b1b02835f52997b38037b26faf86c1621",
+      "observed": "96d165251a8fa5214350d33ba6a5459b1b02835f52997b38037b26faf86c1621"
+    },
+    "jobs/_lib/fetch_pool.py": {
+      "expected": "92d848845a245cc97e90b4c264e62894b70f06a2bbe991fe49bd4fcc23ef37a2",
+      "observed": "92d848845a245cc97e90b4c264e62894b70f06a2bbe991fe49bd4fcc23ef37a2"
+    },
+    "jobs/_lib/test_fetch_pool.py": {
+      "expected": "f693785974ae69442e35b116c3b78cc129583b001ba305b970cefb02cc98813b",
+      "observed": "f693785974ae69442e35b116c3b78cc129583b001ba305b970cefb02cc98813b"
+    }
+  },
+  "blockers": [
+    {
+      "id": "R1",
+      "path": ".github/workflows/run-jobs.yml",
+      "line": 59,
+      "severity": "high",
+      "problem": "The bootstrap removes implicit cross-job code and data that existing jobs assume is present. family-rule-tail/job.py:7 executes source-ladder/job.py, but its declared closure does not contain fetch_ladder.py, ladder_queue.py, ofr_index.py or plan.py, so it cannot run. source-ladder/job.py:157-160 also silently loses OFR routes because jobs/fr-originals/data/ofr_index is omitted.",
+      "smallest_safe_correction": "Retain historical jobs availability for unproven selections. Narrow only an explicitly audited allowlist (example-hello and early-ranger-transcriptions); materialize all jobs for any other selection until existing job dependencies are declared. Code/data-only bootstrap alone does not fix R2."
+    },
+    {
+      "id": "R2",
+      "path": "jobs/claim-checker/sources.py",
+      "line": 243,
+      "severity": "high",
+      "problem": "Existing dynamic output discovery is broader than declarations. Claim-checker iterates every jobs/*/output/SOURCES.jsonl, while its closure omits committed fr-pages/output/SOURCES.jsonl and app-executive-orders/output/SOURCES.jsonl. checker.py:522 also reads omitted app-executive-orders/output/MIRROR_DOCUMENTS.jsonl. claim-drafts/drafts.py:398-420 dynamically merges every available output folder. Sparse omission can silently reduce evidence.",
+      "smallest_safe_correction": "Use broad jobs fallback for these jobs and unproven selections, or complete and test dynamic custody closure before enabling narrow checkout."
+    }
+  ],
+  "advisories": [
+    {
+      "id": "R3",
+      "path": "jobs/_lib/README.md",
+      "line": 30,
+      "severity": "low",
+      "problem": "bytes_downloaded is successful 200/206 body bytes written to partial cache; it excludes robots, redirects, non-success bodies, rejected oversized blocks and HTTP overhead. requests counts robots as well as payload requests. Do not present these as total remote transfer.",
+      "observed_probe": {
+        "requests": 4,
+        "bytes_downloaded": 4,
+        "responses": "nonempty robots body + redirect body + 4-byte successful body + 503 error body"
+      },
+      "correction": "Clarify metric semantics in documentation and report; no change to counter contract required."
+    }
+  ],
+  "independent_checks": [
+    "All 10 initial SHA-256 pins matched before review.",
+    "Read AGENTS, HANDOFF/KEAN, HANDOFF/README, newest handoff entries and H08-H12/H15-H16 audit passages; targeted Kean search returned no exact earlier match.",
+    "Scoped/full HEAD-tree fnmatch parity for leading wildcard, nested *, partial basename/classes and ./ prefix patterns passed.",
+    "Cache corrupted-body recovery and exact URL mismatch offline rejection passed against injected transport.",
+    "Resume probe appended only 3 new bytes to an existing 3-byte partial, returned the complete 6-byte body and re-read it successfully offline.",
+    "Public result_freshness main() and scope() ASTs equal baseline; claim-kit and Valla have no working diff.",
+    "Static inspection confirmed metadata-only ls-tree in new materializer and stat-only post-materialization byte accounting; no blob-size preflight added.",
+    "Read retained local fixture and performance reports. Report admits local narrow case slower and remote transfer unknown."
+  ],
+  "limitations": [
+    "Root owns the running Road suite; reviewer did not duplicate it.",
+    "No full live workflow or remote transfer benchmark; all cache probes injected deterministic local bodies.",
+    "No legal, human, different-family or combined-Opus compatibility certification.",
+    "PR101 control artifacts were not read; preservation inferred only from changed-path boundary and must be pinned by root.",
+    "A reviewer existence-check command used git cat-file -e HEAD:path before switching to ls-tree-only checks. On a partial clone cat-file can lazily fetch a missing object; no transfer quantity was instrumented, so review-time commands are not claimed network-free.",
+    "Independent baseline branch availability and final unmerged PR state remain root integration responsibilities."
+  ],
+  "cost": {
+    "tokens": null,
+    "cash": null,
+    "first_explicit_utc_marker": "2026-10-29T19:45:18Z",
+    "marker_is_late": true,
+    "work_began_before_marker": true,
+    "written_utc": "2026-10-29T19:46:16.022178+00:00",
+    "occupancy_is_not_exclusive_labor": true
+  }
+}

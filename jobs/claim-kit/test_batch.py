@@ -48,6 +48,60 @@ class BatchTests(T.BuildIntegrationTests):
         with self.assertRaisesRegex(ValueError,'changed Valla review context'):
             batch.load_packet(folder,self.repo)
 
+    def test_valla_context_ignores_own_and_unrelated_packages_but_not_relevant_ones(self):
+        import shutil,subprocess
+        source=Path(__file__).resolve().parents[1]/'valla'
+        target=self.repo/'jobs/valla';target.mkdir(parents=True)
+        for name in ('valla.py','premises.json'):shutil.copyfile(source/name,target/name)
+        git=lambda *a:subprocess.run(['git',*a],cwd=self.repo,check=True,capture_output=True)
+        git('init','-q')
+        self.run_build();folder=self.repo/'research/excavator/valla-scope/packet'
+        batch.prepare(self.repo,self.out,folder,['EO:1'],'producer')
+        def package(where,iid):
+            where.mkdir(parents=True,exist_ok=True)
+            (where/'RATIONALES.json').write_text(json.dumps({'r':'A shared rationale for this order.'}))
+            batch.csv_write(where/'decisions.csv',['instrument_id','research_rationale'],[{'instrument_id':iid,'research_rationale':'@rationale:r'}])
+            (where/'clauses.csv').write_text('instrument_id,reason\n')
+            git('add','-f','--',*(str((where/n).relative_to(self.repo)) for n in ('RATIONALES.json','decisions.csv','clauses.csv')))
+        # The producer's own sheets, committed while the packet is in flight, and another batch's package.
+        package(folder,'EO:1');package(self.repo/'research/excavator/other/packet','EO:2')
+        packet,_=batch.load_packet(folder,self.repo)
+        self.assertEqual(packet['valla_context']['package_scan']['relevant_packages'],[])
+        # Another package citing a shared rationale for this member is relevant lineage.
+        package(self.repo/'research/excavator/third/packet','EO:1')
+        with self.assertRaisesRegex(ValueError,'changed Valla review context'):
+            batch.load_packet(folder,self.repo)
+
+    def test_shared_policy_index_is_scoped_and_never_replaces_an_explicit_index(self):
+        from unittest.mock import patch
+        import working_text,fragment_cache
+        original=working_text.policy;seen=[]
+        def fake(claim,repo,index=None):seen.append(index);return [],[]
+        working_text.policy=fake
+        try:
+            with patch.object(fragment_cache,'shared',return_value='SHARED') as shared:
+                with fragment_cache.policy_index(self.repo):
+                    working_text.policy({},self.repo);working_text.policy({},self.repo,'EXPLICIT')
+                self.assertIs(working_text.policy,fake)
+            self.assertEqual(seen,['SHARED','EXPLICIT']);self.assertEqual(shared.call_count,1)
+        finally:
+            working_text.policy=original
+        # With the real accessor, policy results equal those from a freshly constructed index.
+        p=self.packet();self.fill(p);batch.apply(self.repo,p,p/'applied')
+        claims=[json.loads(l) for l in (p/'applied/CLAIMS.proposed.jsonl').read_text().splitlines() if l.strip()]
+        self.assertTrue(claims)
+        fresh=[working_text.policy(c,self.repo,working_text.Index(self.repo)) for c in claims]
+        with fragment_cache.policy_index(self.repo):
+            self.assertEqual([working_text.policy(c,self.repo) for c in claims],fresh)
+
+    def test_supplement_parent_is_own_work_only_for_the_same_agent(self):
+        parent=self.repo/'research/excavator/scope/packet';parent.mkdir(parents=True)
+        child=parent/'supp'
+        dossiers={'EO:1':{'source_supplement':{'parent_packet':{'path':'research/excavator/scope/packet/PACKET.json'}}}}
+        (parent/'PACKET.json').write_text(json.dumps({'agent':'producer'}))
+        self.assertEqual(batch.own_folders(self.repo,child,dossiers,'producer'),sorted([child.resolve(),parent.resolve()]))
+        self.assertEqual(batch.own_folders(self.repo,child,dossiers,'other'),[child.resolve()])
+
     def test_lossless_roundtrip_shares_sources_and_full_text(self):
         p=self.packet();packet,dossiers=batch.load_packet(p,self.repo)
         self.assertEqual(dossiers,{iid:self.dossier(iid) for iid in ('EO:1','EO:2')})

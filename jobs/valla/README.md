@@ -40,13 +40,34 @@ held-text/artifact references. Producer and explicit template metadata are index
 missing template lineage is reported as unknown, never inferred from a filename.
 `--package` indexes exact `@rationale:KEY` references in existing CSVs and
 `RATIONALES.json`. Those observed references do not establish that a published
-claim was derived from that package. The compiler also indexes up to 100 tracked packages under research/excavator
-and research/production, reporting any unmaterialized paths. Runtime correction
-packets are excluded; --package permits additional explicit bounded selection.
+claim was derived from that package. The full index (`build`) also indexes every tracked package under research/excavator
+and research/production (bounded by `MAX_INDEX_PACKAGES` = 2000), reporting any
+unmaterialized paths. Runtime correction packets are excluded; --package permits
+additional explicit selection.
 Protocol files and the available operational draft are hashed. These pins describe
 the current revalidation contract; producer-time protocol versions absent from
 claims remain unknown. The controlling
 frozen codebook was not separately located; the draft is not substituted for it.
+
+## Packet context (`attach(repo, ids, exclude=())`)
+
+The context sealed in `PACKET.json` depends only on the requested instruments, so adding,
+editing or tracking an unrelated package, claim or review (or the packet's own folder,
+passed as `exclude`) never invalidates a packet in flight. It changes when any of these
+change: a tracked package whose `decisions.csv`/`clauses.csv` carry an `@rationale:`
+reference for a requested ID (file and RATIONALES hashes are pinned per reference); a
+canonical claim, component attestation or method review for a requested ID; the protocol
+pins, `premises.json` or `valla.py`. `package_scan` is
+`{scope: requested_instruments, relevant_packages, excluded_folders,
+unmaterialized_packages, causal_derivation_inferred: false}`. Tracked-but-absent packages
+(sparse checkout) stay listed because their relevance cannot be ruled out. Excluded
+folders are recorded as given, whether or not they exist or are tracked.
+
+Work is bounded per query, not by repository size: at most `MAX_PACKAGES_PER_QUERY` = 100
+relevant packages and `MAX_SCAN_BYTES` = 256 MB of package sheets read by the byte
+prefilter (a superset test for the ID string; exact `instrument_id` match decides
+relevance). Other IDs' claim lines and method reviews are skipped, not validated; the
+full build still checks every canonical claim and method review.
 
 ## Explicit revalidation and component reviews
 

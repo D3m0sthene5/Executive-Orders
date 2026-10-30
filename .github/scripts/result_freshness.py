@@ -62,6 +62,64 @@ def under(path, root):
     return path == root or path.startswith(root + "/")
 
 
+def literal_prefixes(declared):
+    """Return conservative Git pathspec prefixes for a declared scope.
+
+    Git is only asked to enumerate below these literal prefixes; ``select``
+    remains the authority for fnmatch semantics (where ``*`` also spans ``/``).
+    """
+    prefixes = set(declared["roots"])
+    for pattern in declared["patterns"]:
+        wildcard = re.search(r"[*?\[]", pattern)
+        prefix = pattern[:wildcard.start()] if wildcard else pattern
+        if prefix.endswith("/"):
+            prefix = prefix[:-1]
+        elif wildcard and "/" in prefix:
+            # A partial basename is not a literal path prefix (e.g. notes-*
+            # cannot be passed as HANDOFF/notes- with :(literal)). Keep its
+            # enclosing directory instead. With no slash, scope from the root.
+            prefix = prefix.rsplit("/", 1)[0]
+        elif wildcard:
+            prefix = "."
+        if prefix:
+            prefixes.add(prefix)
+        else:
+            prefixes.add(".")
+    # An ancestor prefix already covers all descendants.
+    result = []
+    for prefix in sorted(prefixes, key=lambda value: (value.count("/"), value)):
+        if not any(parent == "." or under(prefix, parent) for parent in result):
+            result.append(prefix)
+    return result
+
+
+def _pathspec(prefix):
+    return ":(literal)" + prefix
+
+
+def tracked_paths(ref, declared):
+    """List exact tracked paths that may belong to a declared scope.
+
+    Candidate enumeration is bounded by literal prefixes. The final result is
+    still filtered by ``select`` so Git pathspec details cannot broaden scope.
+    """
+    return sorted(tracked_entries(ref, declared))
+
+
+def tracked_entries(ref, declared):
+    """Return matching tracked ``path -> mode:oid`` entries from Git metadata."""
+    prefixes = literal_prefixes(declared)
+    candidates = {}
+    if prefixes:
+        records = git("ls-tree", "-r", "-z", ref, "--", *(_pathspec(p) for p in prefixes))
+        for record in records.split(b"\0"):
+            if record:
+                header, raw_path = record.split(b"\t", 1)
+                mode, kind, oid = header.decode().split()
+                candidates[raw_path.decode("utf-8")] = mode + ":" + oid
+    return select(candidates, declared)
+
+
 def select(entries, declared):
     return {p: value for p, value in entries.items()
             if not under(p, declared["exclude"])
@@ -69,14 +127,20 @@ def select(entries, declared):
                  or any(fnmatch.fnmatchcase(p, pat) for pat in declared["patterns"]))}
 
 
-def tree(ref):
+def tree(ref, declared=None):
     entries = {}
-    for record in git("ls-tree", "-r", "-z", ref).split(b"\0"):
+    if declared is None:
+        records = git("ls-tree", "-r", "-z", ref).split(b"\0")
+    else:
+        prefixes = literal_prefixes(declared)
+        records = (git("ls-tree", "-r", "-z", ref, "--", *(_pathspec(p) for p in prefixes)).split(b"\0")
+                   if prefixes else [])
+    for record in records:
         if record:
             header, path = record.split(b"\t", 1)
             mode, kind, oid = header.decode().split()
             entries[path.decode("utf-8")] = mode + ":" + oid
-    return entries
+    return entries if declared is None else select(entries, declared)
 
 
 def prepare(name):
@@ -86,13 +150,15 @@ def prepare(name):
     if sparse.stdout.strip() != b"true":
         return
     directories = set()
-    for record in git("ls-files", "-t", "-z").split(b"\0"):
-        if not record:
-            continue
-        tag, raw = record.split(b" ", 1)
-        path = raw.decode("utf-8")
-        if tag == b"S" and select({path: ""}, declared):
-            directories.add(str(PurePosixPath(path).parent))
+    prefixes = literal_prefixes(declared)
+    if prefixes:
+        for record in git("ls-files", "-t", "-z", "--", *(_pathspec(p) for p in prefixes)).split(b"\0"):
+            if not record:
+                continue
+            tag, raw = record.split(b" ", 1)
+            path = raw.decode("utf-8")
+            if tag == b"S" and select({path: ""}, declared):
+                directories.add(str(PurePosixPath(path).parent))
     if directories:
         # --stdin keeps a broad dynamic catalogue below Windows/Unix argv
         # limits. Cone mode intentionally includes each matched parent folder.
@@ -103,7 +169,11 @@ def prepare(name):
 def working(declared=None):
     entries = {}
     forced = []
-    for record in git("ls-files", "--stage", "-t", "-z").split(b"\0"):
+    prefixes = None if declared is None else literal_prefixes(declared)
+    args = ["ls-files", "--stage", "-t", "-z"]
+    if prefixes is not None and prefixes:
+        args += ["--", *(_pathspec(p) for p in prefixes)]
+    for record in git(*args).split(b"\0") if prefixes is None or prefixes else []:
         if not record:
             continue
         header, path = record.split(b"\t", 1)
@@ -118,8 +188,17 @@ def working(declared=None):
                 raise ValueError(f"Declared input is absent from sparse checkout: {p}; run result_freshness.py prepare before capture")
             forced.append(p)
         entries[p] = mode + ":" + oid
-    changed = git("ls-files", "--modified", "--deleted", "--others", "--exclude-standard", "-z")
-    paths = sorted(set([p.decode("utf-8") for p in changed.split(b"\0") if p] + forced))
+    changed_paths = set()
+    if prefixes is None:
+        args = ["ls-files", "--modified", "--deleted", "--others", "--exclude-standard", "-z"]
+        changed = git(*args)
+        changed_paths.update(p.decode("utf-8") for p in changed.split(b"\0") if p)
+    elif prefixes:
+        args = ["ls-files", "--modified", "--deleted", "--others", "--exclude-standard", "-z", "--",
+                *(_pathspec(p) for p in prefixes)]
+        changed = git(*args)
+        changed_paths.update(p.decode("utf-8") for p in changed.split(b"\0") if p)
+    paths = sorted(changed_paths | set(forced))
     if declared is not None:
         paths = [p for p in paths if select({p: ""}, declared)]
     files = []
@@ -154,18 +233,19 @@ def capture(name, destination):
     declared = scope(name)
     inputs = working(declared)
     base = git("rev-parse", "HEAD").decode().strip()
+    base_output_scope = {"roots": [f"jobs/{name}/output"], "patterns": [], "exclude": "\0"}
     manifest = {"schema": 1, "job": name, "base_commit": base,
                 "run_url": os.environ.get("RUN_URL") or
                 f"{os.environ.get('GITHUB_SERVER_URL', '')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}",
                 "scope": declared, "inputs_sha256": digest(inputs), "inputs": inputs,
-                "base_output_sha256": digest(output(tree(base), name))}
+                "base_output_sha256": digest(output(tree(base, base_output_scope), name))}
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def check(ref, names, report):
-    latest = tree(ref)
     candidate = working({"roots": [f"jobs/{name}/output" for name in names], "patterns": [], "exclude": "\0"})
+    base_output_scope = {"roots": [f"jobs/{name}/output" for name in names], "patterns": [], "exclude": "\0"}
     problems, manifests, bases = [], {}, {}
     for name in names:
         p = Path("jobs") / name / "output" / MANIFEST
@@ -183,13 +263,22 @@ def check(ref, names, report):
             if not isinstance(base, str) or not re.fullmatch(r"[0-9a-f]{40,64}", base):
                 raise ValueError("Invalid provenance base commit")
             if base not in bases:
-                bases[base] = tree(base)
+                bases[base] = tree(base, base_output_scope)
             if digest(output(bases[base], name)) != m["base_output_sha256"]:
                 raise ValueError("Provenance output baseline does not match its commit")
             manifests[name] = m
         except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as exc:
             problems.append({"job": name, "reason": "missing_or_invalid_manifest", "detail": str(exc)})
             continue
+    if manifests:
+        combined = {"roots": sorted({p for m in manifests.values() for p in m["scope"]["roots"]}
+                                     | {f"jobs/{name}/output" for name in names}),
+                    "patterns": sorted({p for m in manifests.values() for p in m["scope"]["patterns"]}),
+                    "exclude": "\0"}
+        latest = tree(ref, combined)
+    else:
+        latest = {}
+    for name, m in manifests.items():
         branch_output = digest(output(latest, name))
         if branch_output not in (m["base_output_sha256"], digest(output(candidate, name))):
             problems.append({"job": name, "reason": "concurrent_output_advanced",

@@ -1,0 +1,150 @@
+{
+  "baseline": "bc65c165a2d192a6949f16b5ebf5ab5e545d61f5",
+  "changed_compiler_files": [
+    "jobs/claim-kit/prior_research.py"
+  ],
+  "closure_edges": {
+    "jobs/claim-kit/assemble.py": [
+      "jobs/claim-kit/working_text.py",
+      "jobs/claim-kit/factual_events.py",
+      "research/stage19/code/claim_gate.py"
+    ],
+    "jobs/claim-kit/build.py": [
+      "jobs/claim-kit/act_overrides.py",
+      "jobs/claim-kit/inputs.py",
+      "jobs/claim-kit/current_evidence.py",
+      "jobs/claim-kit/excavate.py",
+      "jobs/claim-kit/assemble.py",
+      "jobs/claim-kit/lifecycle_obligations.py",
+      "jobs/claim-kit/working_text.py"
+    ],
+    "jobs/claim-kit/excavate.py": [
+      "jobs/clause-drafts/segment.py"
+    ],
+    "jobs/claim-kit/factual_events.py": [
+      "jobs/norton/model.py"
+    ],
+    "jobs/claim-kit/inputs.py": [
+      "jobs/claim-kit/working_text.py",
+      "jobs/claim-kit/factual_events.py"
+    ],
+    "jobs/claim-kit/job.py": [
+      "jobs/claim-kit/build.py",
+      "jobs/claim-kit/population.py"
+    ],
+    "jobs/claim-kit/lifecycle_obligations.py": [
+      "jobs/claim-kit/prior_research.py"
+    ],
+    "jobs/claim-kit/prior_research.py": [
+      "jobs/claim-kit/assemble.py"
+    ]
+  },
+  "compiler_seeds": "every inputs.COMPILER_FILES entry plus job.py",
+  "compiler_sha256": {
+    "jobs/claim-kit/act_overrides.py": [
+      "8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280"
+    ],
+    "jobs/claim-kit/assemble.py": [
+      "3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb"
+    ],
+    "jobs/claim-kit/build.py": [
+      "e662bc493ce6bb07d5b550e05c0af2843d82ae61311ae416e7191f1ce074d281"
+    ],
+    "jobs/claim-kit/current_evidence.py": [
+      "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c"
+    ],
+    "jobs/claim-kit/excavate.py": [
+      "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+    ],
+    "jobs/claim-kit/factual_events.py": [
+      "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659"
+    ],
+    "jobs/claim-kit/inputs.py": [
+      "6ca64e4c65479bd1f363386981e25f390e38295eb3b5a38f9ca316deca60f2dd"
+    ],
+    "jobs/claim-kit/job.py": [
+      "67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37"
+    ],
+    "jobs/claim-kit/lifecycle_obligations.py": [
+      "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab"
+    ],
+    "jobs/claim-kit/population.py": [
+      "299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859"
+    ],
+    "jobs/claim-kit/prior_research.py": [
+      "3c6fd78ad67bf8a906f41d20e96def99acc08b89a4912bc3db9d2787c26f473b",
+      "971946c180a91015c46904c030ad513e76d81671a6dc9cb49d0788cab3a7cc14"
+    ],
+    "jobs/claim-kit/working_text.py": [
+      "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9"
+    ],
+    "jobs/clause-drafts/segment.py": [
+      "0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573"
+    ],
+    "jobs/norton/model.py": [
+      "abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12"
+    ],
+    "research/stage19/code/claim_gate.py": [
+      "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875"
+    ]
+  },
+  "dynamic_imports": {
+    "jobs/claim-kit/assemble.py": "research/stage19/code/claim_gate.py",
+    "jobs/claim-kit/excavate.py": "jobs/clause-drafts/segment.py",
+    "jobs/claim-kit/factual_events.py": "jobs/norton/model.py"
+  },
+  "failures_retained": {
+    "first_local_ci_fixture": "Missing jobs/status-history/history.py caused 129 errors; actual runner contains all job code. Added omitted code to isolated fixture and reran, 421 pass/5 skip.",
+    "first_sparse_command": "git sparse-checkout add --no-cone rejected (129). Removed unsupported option; exact explicit ** patterns verified in throwaway repo."
+  },
+  "limitations": [
+    "No remote Actions dispatch or production compiler regeneration performed by this worker.",
+    "No claim/output freshness assertion is created by compiler suppression.",
+    "Full Opus diff includes conservative compiler prior_research.py, so that push is not runtime-only and still rebuilds.",
+    "Unknown compiler hashes fall back to historical scheduling; no automatic pin update.",
+    "Unit tests with corpus-only fixtures absent skip five existing tests."
+  ],
+  "opus": "71b06f9ffe3520d0ddbf46485745e8c8337773e3",
+  "opus_claim_kit_changed_paths": [
+    "jobs/claim-kit/COMPLETION.md",
+    "jobs/claim-kit/batch.py",
+    "jobs/claim-kit/completion.py",
+    "jobs/claim-kit/fragment_cache.py",
+    "jobs/claim-kit/prior_research.py",
+    "jobs/claim-kit/source_supplement.py",
+    "jobs/claim-kit/status_overlay.py",
+    "jobs/claim-kit/test_batch.py",
+    "jobs/claim-kit/test_completion.py",
+    "jobs/claim-kit/test_prior_research.py",
+    "jobs/claim-kit/test_source_supplement.py",
+    "jobs/claim-kit/test_status_overlay.py",
+    "jobs/claim-kit/test_working_text_index.py"
+  ],
+  "schema": "eo-claim-kit-runtime-trigger-audit/v1",
+  "validation": {
+    "baseline_runtime_ci_fixture": {
+      "network_socket_connect": "forbidden",
+      "output_generations_present": false,
+      "result": "pass",
+      "skipped": 5,
+      "tests": 421,
+      "wall_seconds_reported_by_unittest": 9.165
+    },
+    "picker_tests": {
+      "result": "pass",
+      "tests": 22
+    },
+    "sparse_add_fixture": {
+      "initial_fixture_roots_absent": true,
+      "restored_outputs": 0,
+      "restored_unrelated_research": false,
+      "result": "pass"
+    }
+  },
+  "worker": {
+    "cash": null,
+    "model": "gpt-6.1-sol",
+    "time_note": "No prospective active-labor timer; unittest timings are test wall time only.",
+    "tokens": null
+  }
+}

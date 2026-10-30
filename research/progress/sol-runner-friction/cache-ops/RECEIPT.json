@@ -1,0 +1,55 @@
+{
+  "baseline": {
+    "elapsed_seconds": 0.004867,
+    "label": "baseline source at f9c6d806ad059dcad7875ab3708715f20ea386df",
+    "network_body_bytes": 12288,
+    "network_requests": 3,
+    "outputs": 4,
+    "persistent_body_reads_for_validation": {
+      "bytes": 12288,
+      "count": 2
+    },
+    "pool_counters": null,
+    "unique_body_hashes": 2
+  },
+  "benchmark": "two local deterministic bodies; 2 cold misses + 2 repeated reads",
+  "conclusion": "No optimization or production saving measured; counters expose persistent verification work.",
+  "custody_check": [
+    {
+      "bytes": 4096,
+      "exact_url": true,
+      "last_modified": "Wed, 01 Jan 2020 00:00:00 GMT",
+      "sha256": "6896d9ea3f73a4434f5832bc65714e7d066f177373f36f34dc8a6f735daa41b1"
+    },
+    {
+      "bytes": 8192,
+      "exact_url": true,
+      "last_modified": "Wed, 01 Jan 2020 00:00:00 GMT",
+      "sha256": "766c00ba277e84ef9550596c7eda86bad4d66a3fee2255924e6388ee9c272792"
+    }
+  ],
+  "instrumented": {
+    "elapsed_seconds": 0.003758,
+    "label": "working tree instrumentation",
+    "network_body_bytes": 12288,
+    "network_requests": 3,
+    "outputs": 4,
+    "persistent_body_reads_for_validation": {
+      "bytes": 12288,
+      "count": 2
+    },
+    "pool_counters": {
+      "bytes_downloaded": 12288,
+      "cache_disk_read_bytes": 12288,
+      "cache_disk_reads": 2,
+      "cache_hash_bytes": 12288,
+      "cache_hits": 2,
+      "cache_misses": {
+        "cold": 2
+      },
+      "requests": 3
+    },
+    "unique_body_hashes": 2
+  },
+  "network": "loopback only through injected HTTP transport; no public requests"
+}

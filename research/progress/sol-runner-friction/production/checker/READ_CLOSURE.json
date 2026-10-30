@@ -1,0 +1,63 @@
+{
+  "schema": "sol-runner-friction-checker-read-closure/v1",
+  "scope": "static provider/import audit plus bounded temporary-repository probes; no corpus build",
+  "implementation_closure": [
+    "jobs/claim-checker/job.py",
+    "jobs/claim-checker/checker.py",
+    "jobs/claim-checker/sources.py",
+    "jobs/claim-checker/proquest_inputs.py",
+    "jobs/claim-kit/working_text.py",
+    "jobs/claim-kit/factual_events.py",
+    "jobs/norton/model.py",
+    "jobs/readiness-tracker/tracker.py",
+    "research/stage19/code/claim_gate.py",
+    "jobs/source-ladder/fetch_ladder.py (optional --fetch)",
+    "jobs/source-ladder/embedded_cites.py (optional --fetch, transitive)",
+    "jobs/source-ladder/report_dates.py (optional --fetch, transitive)",
+    "jobs/source-ladder/request_contract.py (optional --fetch, transitive)"
+  ],
+  "static_inputs": [
+    "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+    "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+    "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv",
+    "research/stage14/QUEUES/OFFICIAL_DIRECT_DOCUMENT_FETCH_MANIFEST.csv",
+    "research/readiness/claims/*.jsonl",
+    "research/stage19/code/claim_gate.py",
+    "jobs/readiness-tracker/tracker.py",
+    "jobs/source-ladder/fetch_ladder.py"
+  ],
+  "provider_patterns": [
+    {
+      "pattern": "jobs/*/output/**",
+      "why": "All SOURCES.jsonl providers are discovered dynamically; records can direct source text_path to any file in any jobs/*/output subtree; signing-date discovery scans arbitrary jobs/*/output/*.csv; working_text scans FRAGMENTS*.jsonl; app archive captures are read from jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl."
+    },
+    {
+      "pattern": "jobs/*/data/**",
+      "why": "All jobs/*/data/PROVENANCE.json providers are scanned, nested FRAGMENTS*.jsonl are discovered by working_text, and records can name arbitrary nested data."
+    },
+    {
+      "pattern": "research/**",
+      "why": "Stage 18/20/21 custody records contain path-valued local files; Norton factual registries can name repository-root-relative raw_path and text_path; Pinakes replica fragments can name repository-root-relative raw file paths. The current code does not constrain these paths to a narrower research subdirectory."
+    },
+    {
+      "pattern": "releases/**",
+      "why": "Nested PROVENANCE.json records select arbitrary paths beginning releases/ (the loader does not limit them to releases/source_books); Opus release and media ZIPs are also read here."
+    }
+  ],
+  "provider_details": {
+    "sources_jsonl": "Every jobs/*/output/SOURCES.jsonl; fields sha256,url,bytes,text_path,cache_path,instrument_ids. text_path is confined to some jobs/<job>/output by _jobs_child. cache_path resolves only in sibling/out/cache roots and is non-repository runtime cache state.",
+    "documents_jsonl": "No checker path reads a DOCUMENTS.jsonl file. Generic source custody is consumed from SOURCES.jsonl; the distinct archive adapter reads only the fixed MIRROR_DOCUMENTS.jsonl path below.",
+    "mirror_documents_jsonl": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl, exact literal ARCHIVE_CAPTURE_FILES entry, supplies Common Crawl/Wayback capture pointers for re-fetch verification.",
+    "fragments": "working_text.Index scans jobs/*/output/FRAGMENTS*.jsonl and jobs/*/data/**/FRAGMENTS*.jsonl. sources.load_source_books scans each data/PROVENANCE.json-selected job's output/FRAGMENTS.jsonl for per-order volume text; sources.load_replica_fragments reads Pinakes output/FRAGMENTS.jsonl.",
+    "source_books": "Every jobs/*/data/PROVENANCE.json recursively contributes pdf/pdf_sha256 records; current path check accepts any safe path under releases/. Current known records use releases/source_books; code permits a broader release subtree.",
+    "stage18": "research/stage18/SOURCE_MANIFEST.json recursively discovers sha256/path pairs; local paths are resolved relative to research/stage18 and rejected if they escape that folder.",
+    "stage21": "CASE_ORIGINAL_SOURCE_CUSTODY.csv and ACQUISITION_LOG.jsonl resolve source_repository_path/repository_path from repo root without a subdirectory whitelist.",
+    "stage20": "STATUTE_FETCH_INDEX.csv and OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv; statute local_relpath is repo-root-relative and media companions point into releases/opus_stage11_complete ZIP.",
+    "official_fixity": "jobs/official-fixity/output/MATCHED_BY_SHA256.json is an additional literal checker provider for GPO hash matches.",
+    "opus": "jobs/claim-checker/data/opus_manifest_index.csv.gz and optional data/opus_text_pack.jsonl.gz; otherwise releases/opus_stage11_complete ZIPs."
+  },
+  "certificate_closure_status": "NOT_CLOSED_FOR_NARROW_MATERIALIZATION",
+  "unavoidable_breadth": "The declarations now cover all observed dynamic provider trees (jobs outputs/data, research, releases). A complete static certificate still cannot bound repo-root-relative Stage 20/21, Pinakes, and Norton factual raw_path/text_path references: current implementation accepts any in-repository path. Closing this without a full-checkout declaration requires implementation-level path constraints or an exact run-specific scan of all active provider records and every referenced body. No implementation change or full-corpus scan was authorized in this worker scope.",
+  "fixture": "runtime_fixture.py",
+  "fixture_result": "5/5 passed in a temporary repository; no corpus files were materialized or changed"
+}

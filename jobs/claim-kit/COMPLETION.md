@@ -178,3 +178,77 @@ Each run reports elapsed time and explicit unknown model tokens/cash. Mansfield'
 receipt retention and arithmetic belong here. Its semantic plant scoring remains
 an independent recorded judgment. The `COST.md` transcript-token and cost estimates
 are historical assumptions, not measured token savings from this implementation.
+
+## Packet reuse, concurrent filings and the publication transaction
+
+**One packet verification per run.** Each `PACKET.json` (pinned by path and sha256)
+is verified with `batch.load_packet` once per completion invocation; every member
+from that packet reuses the verified packet and gets its own deep copy of its
+dossier. Every per-claim check is unchanged. Immediately before publication each
+distinct packet is verified again; a different fingerprint or any error (changed
+held source, Valla context, prior research, supplement) makes the whole batch an
+exception, `packet dependencies changed during completion: <packet folder>`.
+`PACKETS.json` records, per packet, its fingerprint, `loads`, `load_seconds`,
+`rechecks` and `recheck_seconds`; `TALLY.json` repeats `packet_loads`. Note that
+a packet's prior-research scope includes every order in that packet, so filing
+one order of a packet legitimately invalidates a later completion from the same
+packet (`changed prior research`); disjoint completions should use disjoint packets.
+
+**Disjoint concurrent filings.** The run still snapshots `research/readiness/claims/*.jsonl`
+at the start. Files present then must stay byte-identical (modified or deleted
+is a batch exception). For this one pattern, files that are new since the
+snapshot are permitted only if every nonblank line is a JSON object and none has
+an `instrument_id` among this run's eligible instruments; otherwise the batch
+fails with `concurrent publication for selected instrument <iid>: <path>`.
+Permitted files are listed as `concurrent_disjoint_claim_files` (`path`, `sha256`,
+`instrument_ids`) in `INPUTS.json` and `TALLY.json`. `TRACKER_REPLAY.json`
+and the tracker union reflect the start snapshot (selected rows read only their own
+instrument's claims); `INPUTS.json` states this in `tracker_replay_basis`. Every other
+pattern, pin and absent-file check remains strict.
+
+**Serialized publication.** With `--publish` and something to write, the run takes
+an exclusive lock before the final packet recheck and pin recheck. It holds the lock through the exclusive
+`xb` creation of the claims file and the final `PUBLICATION.json`/`TALLY.json` update. The lock is a file created
+with `O_CREAT|O_EXCL`, containing `pid`, `host`, `started_utc` and `dest`. It lives in the Git common
+directory (`git rev-parse --git-common-dir`/`claim-kit-publication.lock`), so linked worktrees of one clone share
+it and it can never be committed. Without Git it falls back to `research/readiness/.claim-publication.lock`.
+It is released in `finally`. If another live holder has it, the run polls every 0.5 s for
+`CLAIM_KIT_PUBLICATION_LOCK_TIMEOUT` seconds (default 900), then fails closed with a batch exception naming the
+lock. A lock is removed automatically only when its recorded holder is a dead process on the same host (POSIX).
+That removal is receipted as `stale_publication_locks_removed`. Without `--publish` the same rechecks run
+without the lock. The target must still not exist; a target that appears during the run is a batch exception.
+
+**What the lock does not cover.** Separate clones have separate Git directories, so their completions are not
+serialized:
+
+- **Same filename.** Two clones that publish the same instrument under the same filename meet as a Git add/add
+  conflict.
+- **Different filenames.** They merge silently, and the later filename wins.
+
+`kit.py publication-audit` checks that case at merge time. It changes nothing; its exit status is the signal.
+
+- **`--base <ref>` (a pull-request check).** Compares canonical claim lines added on HEAD's side since the merge
+  base with lines added on the base's side since then. This catches the usual race, where the other clone's file
+  already landed.
+- **`--merge-commit <sha>` (a post-merge check).** Compares the two parents of a merge commit.
+
+Either mode fails when:
+
+- an instrument is added more than once;
+- an existing canonical line is changed or removed;
+- a claims file is deleted;
+- an added line is not a claim object with an `instrument_id`.
+
+Only top-level `research/readiness/claims/*.jsonl` files count. Replacing an older canonical version through
+completion is not flagged, because the older line predates the merge base.
+
+**A failed verification is verified once.** If a packet fails verification, its error is recorded in
+`PACKETS.json` (`verification_error`) and raised for every member of that exact packet. The packet is not
+re-verified per member.
+
+**Copies of the batch's own claims.** Raw planted claims, review sets that contain them, and the private
+mutation key stay outside the repository, as the planted-controls section says. Keep any other copy of the batch's
+genuine proposed claims (scratch exports, review subsets) inside the packet folder. Prior research excludes only
+the packet's own folder (`collect(..., exclude=folder)`); the same-agent supplement-parent exclusion applies to
+the Valla context alone. A copy elsewhere under `research/` is a new version of a member's claim, and it correctly
+invalidates the packet with `changed prior research`.

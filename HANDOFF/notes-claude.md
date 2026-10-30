@@ -2,6 +2,48 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-29 ET (later): PR104 native full-code rehearsal, concurrency/clone checks, handoff to Sol
+
+- **Done:** Rehearsal r1 (`research/excavator/opus-native-rehearsal-2026-10-29/`) ran on fresh packets and
+  supplements with the full repaired code, then producer (Sonnet), blind reviewer (Opus) with a caught plant, and
+  native apply/batch-check/complete in an isolated tree. 5 claims completed; EO 6254 (6730 supersede vs amend
+  undecided) and EO 6438 (Wayback-only custody) stay blocked. The adoption dry run on the branch reproduces the
+  publishable bytes. No canonical write. Kean F-20261029-7002.
+- **Measured:** same inputs, machine path 214.0 s base vs 53.5 s repaired; complete 60.8 s. Production's t5/t6
+  race now publishes both byte-identically; a same-instrument race publishes once. Cache matched a fresh index in
+  16 real perturbation states.
+- **New code:** a failed packet verification is run once; `kit.py publication-audit` covers separate clones,
+  which Git merges silently; a breaker guards stale-lock removal. The independent Opus review's findings are
+  fixed. 477 tests.
+- **Next:** combined testing is Sol's (`research/progress/opus-packet-friction/SOL_HANDOFF.md`, frozen pin on
+  PR104); filing r1 is an adoption decision; run claim-kit on main (its compiled outputs are stale); declare 6730 /
+  6620-B for future NRA batches.
+- **Asks:** @Owner: A-20261029-1 (PR104 is the proposed repair; merging is yours); whether planted-control
+  adjudication may stay with the reviewer (flagged in the rehearsal report, not a Kean ask). @Sol: own any
+  `needs.txt`/`inputs.txt` change from `INPUT_CLOSURE.md`; consider wiring `kit.py publication-audit --base main`
+  into PR CI.
+- **Do not:** commit planted review sets or control keys; place copies of a batch's claims under `research/`
+  outside its packet; split one packet across two completions.
+
+## 2026-10-29 ET: packet-friction repairs H01-H07 (branch opus/packet-friction, PR unmerged)
+
+- **Done:** Valla packet context scoped to requested IDs (own packet and same-agent supplement parent excluded;
+  per-query bounds replace the 100-package raise); completion verifies each packet once, rechecks before writing,
+  tolerates disjoint concurrent claim files under a short lock in the Git common dir; one-pass prior-research
+  discovery (completion `TRACKER_CLAIMS.jsonl` union copies no longer bind); content-keyed fragment index reused
+  across checked claims (`fragment_cache.py`; `assemble.py`/`working_text.py` unchanged, no compiler rebuild);
+  batch-level undecided freezing. Report and receipts: `research/progress/opus-packet-friction/`. Kean F-20261029-7001.
+- **Measured (same inputs, commit 1d112ff):** real t6 completion with a mid-run publication 506 s/0 filed -> 122 s/16
+  filed (bytes identical to production); view 28.6 -> 3.7 s; apply 143.7 -> 8.8 s; batch-check 158.8 -> 29.3 s;
+  7 false invalidations gone, 18 relevant perturbations still invalidate.
+- **Next:** after merge, re-prepare in-flight packets once (pinned code changed) and re-attest re-versioned claims;
+  for NRA, declare held EO 6730 (for 6254) and EO 6620-B (for 6438) through `source_supplement.py` (replay shows the
+  route works; no code gap); run claim-kit on main (main's compiled outputs are stale for build.py/excavate.py, which
+  blocks undecided preparation).
+- **Asks:** @Owner: A-20261029-1 (this branch is the proposed Valla repair; merging is yours). @Sol: when combining,
+  keep both Kean findings and regenerate the brief; claim-kit/valla jobs still need `research/**` and FRAGMENTS inputs.
+- **Do not:** run two completions in one checkout without this branch; commit packets in flight on main until merged.
+
 ## 2026-10-29 ET: NIRA code-approval orders through ordinary production with one shared, reviewed analysis
 
 - **Done:** Branch `claude/schechter-nira-sweep`. Shared analysis `research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md`
