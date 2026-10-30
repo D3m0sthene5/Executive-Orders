@@ -1,0 +1,536 @@
+{
+  "schema": "independent-reconciliation-application-review/v1",
+  "reviewer": "shared-research-independent-reviewer",
+  "model": "gpt-6-astra",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "input_path": "research/excavator/shared-research-production/reconcile-v1/packet/APPLICATIONS.json",
+  "input_sha256": "a09f2e4de76a784da4b5470132bff2e3703315544a14772c9bf231df6a10bda3",
+  "reviewed_utc": "2026-10-30T00:36:05.941504+00:00",
+  "reviews": [
+    {
+      "instrument_id": "EO:6686",
+      "application_sha256": "e4128437e05768f8da875ae3dd2e26fca07282cdb62ad2fcca2010402938b177",
+      "verdict": "upheld",
+      "outcome_upheld": "route_owner",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "The original two operative commands are paragraph 6 submission and final approval. The exact old claim admits no actual study or code effective-date evidence yet asserts that nothing obliges submission after repeal. Section 3(a) permits report conditions but does not itself prove this particular study duty extinguished; EO7075/7076 are concrete continuation counterevidence. The application correctly routes both dates and whole end for source-based reconciliation while retaining the useful inventory correction.",
+      "source_checks": [
+        {
+          "source_key": "EO6686",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6686-approval-code-fair-competition-for-the-linseed-oil-manufacturing.txt",
+          "text_sha256": "24663521810b58c36731265eba185b03e213c5db6c8ad753edc28b5f3c301bd1",
+          "char_start": 1701,
+          "char_end": 2016,
+          "quote": "6. Three months after the effective date of this Code, the Code Authority shall submit to the Administrator a study of the hours of labor, rates of pay, and other conditions of employment within this Industry, with the view of revising the wages, hours, and other conditions of employment as set forth in this Code.",
+          "quote_sha256": "5310b72cb5a3b3edda49d16cdf79f5da3fce060188a588d6e4a9dd9b2e069ea2",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6686",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6686-approval-code-fair-competition-for-the-linseed-oil-manufacturing.txt",
+          "text_sha256": "24663521810b58c36731265eba185b03e213c5db6c8ad753edc28b5f3c301bd1",
+          "char_start": 2018,
+          "char_end": 2313,
+          "quote": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do hereby approve said Code of Fair Competition for the Linseed Oil Manufacturing Industry.",
+          "quote_sha256": "a1b3bd7fd8d7b313795b89c79808368d566aa6d99f13ec6214427f5b14d89638",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": {
+        "path": "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl",
+        "line": 14,
+        "claim_sha256": "aa1fc1f72efdb9df9a84ec8620bb78025641304207abab83989b215c812f21ac",
+        "exact_input_verified": true,
+        "owner": "claude-2026-10-29-nira-t2",
+        "no_mutation": true
+      },
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Actual code effective date and complete code terms not read.",
+        "Whether and when the paragraph 6 study was submitted remains unknown.",
+        "Individual legal effect of repeal/continuation orders on this report duty and the approval's first cessation remains unresolved."
+      ]
+    },
+    {
+      "instrument_id": "EO:6729",
+      "application_sha256": "51311b8fd652821d02d4835394804877188e8b231f44a65db030aa7d8fa8fb57",
+      "verdict": "upheld",
+      "outcome_upheld": "route_owner",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "The original lead adopts the report and approves the code subject to separate committee/standards-recommendation and operation-report conditions. The exact old claim expressly lacks evidence of committee designation or report performance. Industry addressee and code linkage do not establish cessation of those acts. The ninety-day and December 1 deadlines prove neither occurrence nor cancellation. Route all first-end fields and whole end as proposed; preserve adoption within the combined lead inventory.",
+      "source_checks": [
+        {
+          "source_key": "EO6729",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
+          "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2",
+          "char_start": 709,
+          "char_end": 1114,
+          "quote": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do adopt and approve the report, recommendations and findings of the Administrator and do order that the said Code of Fair Competition be and it is hereby approved, subject to the following conditions:",
+          "quote_sha256": "2b67f9c0133dd9d8ca89629d2ecb40f4987dbf761ae3f88ca3b69c87060874df",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6729",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
+          "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2",
+          "char_start": 1116,
+          "char_end": 1532,
+          "quote": "(1) That the Industry shall designate a committee whose membership shall be subject to the approval of the Administrator and who shall cooperate with the Administrator in the formulation of standards of quality for products of the Industry and to make recommendations to the Administrator within ninety (90) days for the inclusion in said Code of provisions with respect to such standards and labelling requirements.",
+          "quote_sha256": "5c36382c5616905a513340378bfeb2de9fecefd804403df6f2ece17d04742d49",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6729",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
+          "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2",
+          "char_start": 1534,
+          "char_end": 1726,
+          "quote": "(a) That the Industry shall report not later than December 1, 1934 on the operation of the provisions of Articles III and IV with a view to improving the hour and wage provisions of this Code.",
+          "quote_sha256": "6f885031f4f460c946dbef84fcc1d157eb8685549642f936e41004c63845fb0c",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": {
+        "path": "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl",
+        "line": 15,
+        "claim_sha256": "86869148f2a9e367596c435ef372fd7d1ef36cc5be4400295945da90b9510853",
+        "exact_input_verified": true,
+        "owner": "claude-2026-10-29-nira-t2",
+        "no_mutation": true
+      },
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Committee designation and Administrator membership approval not established.",
+        "Recommendations and December 1 operation-report performance not established.",
+        "Complete code terms and individual first-cessation histories not established."
+      ]
+    },
+    {
+      "instrument_id": "EO:6870A",
+      "application_sha256": "5efd91fcb434a6e7b038116715bd3ff0e9cc8715c7b664b375a79af00f3faeed",
+      "verdict": "upheld_with_required_qualification",
+      "outcome_upheld": "route_owner",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "The replaced quotation is only the constitutive part of parent condition 4. Four members, changed appointment actor and voting weights replace the three-person composition; the ten-day phrase is removed. Parent condition 4 study/recommendations and condition 5 rate recommendations remain relevant. The recital reports failed nominee agreement, not completed appointment. Exact old June14 claims need reconciliation. The approved attached Board report is missing and must remain a gap, including any incorporated recommendation scope.",
+      "source_checks": [
+        {
+          "source_key": "EO6870A",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6870-modifying-order-approving-code-fair-competition-for-the-needlework.txt",
+          "text_sha256": "345cdc63dd918bf2027362900dc6d0e925a0bd2b4109f5b439ee0acdcfa592f9",
+          "char_start": 1165,
+          "char_end": 1460,
+          "quote": "Now, Therefore, I, Franklin Delano Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do order that the abovequoted provision be and it is hereby revised to read as follows:",
+          "quote_sha256": "4d417f37c99196d36a954b1d1d2aaec749527aca5111b808cedc56eb10298d1b",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6870A",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6870-modifying-order-approving-code-fair-competition-for-the-needlework.txt",
+          "text_sha256": "345cdc63dd918bf2027362900dc6d0e925a0bd2b4109f5b439ee0acdcfa592f9",
+          "char_start": 1462,
+          "char_end": 2102,
+          "quote": "\"That there shall be established a Puerto Rican Needlework Commission consisting of four members who shall be appointed by the National Industrial Recovery Board as follow's: one member to represent the Needlework Industry in Puerto Rico, on the nomination of the Code Authority for that industry, who shall have one vote; two members to represent the related industries in the continental United States, to be selected by the National Industrial Recovery Board from the nominations made by the Code Authorities for such industries, each of whom shall have one-half vote; one member to serve as impartial chairman, who shall have one vote.\"",
+          "quote_sha256": "4a2a5cd60b38689e60caa7be2d7b490716c520a16b6bb4c16b91184ba45fd588",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6756B",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6756-b-code-fair-competition-for-the-needlework-industry-puerto-rico.txt",
+          "text_sha256": "c1ae3e7b68982e339660104598d526d56f1b395cf74b77eea85fe19ce3544d87",
+          "char_start": 3417,
+          "char_end": 4643,
+          "quote": "4. That there shall be appointed by the Administrator for the Industrial Recovery, within ten (10) days after the effective date hereof, a Puerto Rican Needlework Commission consisting of three persons: one of whom shall be nominated by the Code Authority for the Needlework Industry in Puerto Rico, another of whom shall be nominated by the several Code Authorities of related industries in continental United States, and a third person to serve as chairman, shall be nominated by the National Recovery Administration. This commission shall study the operation of this Code together with the operation of such codes as have jurisdiction over the manufacture of competitive products in the United States with a view to determining the relative effect of the operation of this Code upon the manufacture of such items in the several States and in Puerto Rico. Such Commission shall be empowered to make recommendations to the Administrator for such modifications in this Code as may, in the opinion of the commission, be necessary in order to maintain fair competition in the needlework trade in the several States and on the Island of Puerto Rico and in order to effectuate the purposes of the National Industrial Recovery Act.",
+          "quote_sha256": "327ce6ecd6311f18444abc1f86c105a0a76cb21ce254b45b131db113b67d6b27",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6756B",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6756-b-code-fair-competition-for-the-needlework-industry-puerto-rico.txt",
+          "text_sha256": "c1ae3e7b68982e339660104598d526d56f1b395cf74b77eea85fe19ce3544d87",
+          "char_start": 4645,
+          "char_end": 5600,
+          "quote": "5. That the choice of the impartial chairman of the Piece Rates Commission, shall be subject to the approval of the Administrator and that the piece rates established pursuant to the provisions of Section 5 of Article IV of the code shall be binding upon members of the Industry, for not more than a period of ninety days, from the effective date of this code. The Needlework Commission and the Piece Rates Commission shall, either jointly or severally, within ninety days after the effective date of this Code, recommend the continuation of said established minimum piecework rates or changes in such rates, or recommend a point system or other system for adjusting the minimum compensation of employees to the minimum wage rates provided in this Code. Such recommendations shall, upon approval of the Administrator, after such notice and hearing as he may prescribe, be binding upon all members of the Industry, as the rates provided for in said section",
+          "quote_sha256": "071e9f434351fcc3005ae1a0e236297ce36c2027d655ecda730f6f7985174362",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": {
+        "path": "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl",
+        "line": 19,
+        "claim_sha256": "85c19a52f221b0fa2aff94433921ebf76b44e1d7eb40c1296e7eac83526c38e0",
+        "exact_input_verified": true,
+        "owner": "claude-2026-10-29-nira-t2",
+        "no_mutation": true
+      },
+      "required_qualifications": [
+        {
+          "field": "scope_check / operative_clause_analysis",
+          "reason": "Express report approval occurs in the recital as well as revision in the operative paragraph.",
+          "reviewer_corrected_wording": "Also retain the present approval of the Board report (which the text says is attached). The attachment is absent from the held representation; full inventory cannot be certified until its scope is checked. This reinforces, rather than alters, the route for reconciliation."
+        }
+      ],
+      "unresolved_material_gaps_retained": [
+        "Actual four-member appointments, roster, nomination/selection and subsequent commission history not established.",
+        "Parent code effective date, full code and condition 5 recommendation history not established.",
+        "Attached Board report mentioned in EO6870A is not contained in its held text.",
+        "Individual applicability of continuation/transfers and first-ending evidence unresolved."
+      ]
+    },
+    {
+      "instrument_id": "EO:6861",
+      "application_sha256": "83618f5e1559506c082fea5cf2a5b673d7306dcd7d8669e56ebe63aac0806bf4",
+      "verdict": "upheld",
+      "outcome_upheld": "route_owner",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "EO6871 affirmatively recites the Board appointment, hearing and investigation and October10 report, adopts that report October12, expressly revokes paragraph1 and continues the committee for further work. The application correctly distinguishes performance from institutional dissolution and receipt inference from exact transmission. The whole-order latest date may remain October12 because the stay ends exactly then, but its mechanism must not imply revocation of paragraphs2/3. All three old later_events arrays are empty despite narrative mentions, so committee continuation/new stay must be represented when a revised exact claim is assembled.",
+      "source_checks": [
+        {
+          "source_key": "EO6861",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6861-staying-certain-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "4bc04962998798ec73fd00ee544d797ee14648f5f6988fc01a5604b55c44b4f9",
+          "char_start": 1122,
+          "char_end": 1280,
+          "quote": "1. That said amendments to Articles III and IV of the Code of Fair Competition for the Cotton Garment Industry be stayed up to and including October 15, 1934.",
+          "quote_sha256": "40e32bd9b574ef2460b07069d79549f14cf5108ae3a3fcccaa3e1d2e33a00a82",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6861",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6861-staying-certain-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "4bc04962998798ec73fd00ee544d797ee14648f5f6988fc01a5604b55c44b4f9",
+          "char_start": 1282,
+          "char_end": 1609,
+          "quote": "2. That the National Industrial Recovery Board shall forthwith appoint a committee of three impartial persons who have not heretofore formed an opinion concerning the subject matter of said amendments, which committee shall hear said protests, investigate the facts and report its recommendations on or before October 10, 1934.",
+          "quote_sha256": "fad7fa60aed9ad496cd84c55ca7b446243a7f2ed9034cae73e7b0a673183567e",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6861",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6861-staying-certain-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "4bc04962998798ec73fd00ee544d797ee14648f5f6988fc01a5604b55c44b4f9",
+          "char_start": 1611,
+          "char_end": 1712,
+          "quote": "3. That the National Industrial Recovery Board shall immediately transmit said recommendations to me.",
+          "quote_sha256": "91523481f2b1b12d65c3e2960e07d227699b305b18e3f0c47551754fd55d495a",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 1030,
+          "char_end": 1462,
+          "quote": "Whereas the National Industrial Recovery Board, pursuant to said Executive Order duly appointed Willard E. Hotchkiss, W. Jett Lauck and Donald M. Nelson, three impartial persons who had not theretofore formed an opinion concerning the subject matter of said amendments, as such committee, which said committee thereafter heard protests, investigated the facts and on October 10, 1934, did report its recommendations in the premises:",
+          "quote_sha256": "29f89e64de0d15f506a8bba909c131f1a395fc4720925a3f598c98647e4f89f9",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 1464,
+          "char_end": 1897,
+          "quote": "Now, Therefore, by virtue of and pursuant to the authority vested in me by Title I of the National Industrial Recovery Act of June 16, 1933 (ch. 90, 48 Stat. 195), and in order to effectuate the purposes of said title and of my said Executive Order No. 6861, dated September 28, 1934, I, FRANKLIN D. ROOSEVELT, President of the United States, do hereby approve and adopt the report and recommendations of said committee and do order:",
+          "quote_sha256": "e91c34981936f0e531f2b3398635d5f685f7768329c3af44aa8a8f5c730ca923",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 2209,
+          "char_end": 2627,
+          "quote": "3. That the committee heretofore appointed and constituted by the National Industrial Recovery Board, consisting of Willard E. Hotchkiss, Chairman, W. Jett Lauck, and Donald M. Nelson, be continued, with instructions further to investigate the protests of the Sheep Lined and Leather Garment Subdivision of the Cotton Garment Industry and report its findings and recommendations therein on or before November 15, 1934.",
+          "quote_sha256": "00c0fd9755bb2062fdb754f7609eaff603537dc34aaf3271effc73f308f36212",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": {
+        "path": "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl",
+        "line": 18,
+        "claim_sha256": "842c4f846e2baceee962b209ebd96aaa499f1ef1442e19154eabf7185ffc2dd6",
+        "exact_input_verified": true,
+        "owner": "claude-2026-10-29-nira-t2",
+        "no_mutation": true
+      },
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Exact date and direct documentation of Board transmission are not stated; old first_end date October 12 is an upper bound, not demonstrated exact event date.",
+        "Old whole_order_end mechanism describes express revocation but only paragraph 1 is expressly revoked; completed mission and inferred receipt supply the other components.",
+        "Fresh complete source identity/custody confirmation and bounded earlier-actor search are still needed before any replacement claim."
+      ]
+    },
+    {
+      "instrument_id": "EO:6601",
+      "application_sha256": "8a8a853f44a53f5d06c6912e06114b65e4f1ee6816a11f76f8e7447ee554718f",
+      "verdict": "upheld",
+      "outcome_upheld": "blocked",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "The report is directed to the President within120 days of code effectiveness and concerns the first90 days, especially ArticleV. Neither signature nor deadline establishes the trigger or performance. Presidential modification is reserved power, not an accomplished or mandatory decision. Retain block until actual report/code and cessation evidence exist.",
+      "source_checks": [
+        {
+          "source_key": "EO6601",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6601-code-fair-competition-for-the-retail-solid-fuel-industry.txt",
+          "text_sha256": "76a03b7ca273d84ae12ed6031322ee561c42f06799ded3446c0c654a4a8901a1",
+          "char_start": 732,
+          "char_end": 1139,
+          "quote": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do approve the report and recommendations and adopt the findings of the Administrator and do order that the said Code of Fair Competition be and it is hereby approved, subject to the following condition:",
+          "quote_sha256": "8a8eb73cb0b0c3423d848c6d4589cbf11bca11c9037832f3b8d1ed86315c690a",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6601",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6601-code-fair-competition-for-the-retail-solid-fuel-industry.txt",
+          "text_sha256": "76a03b7ca273d84ae12ed6031322ee561c42f06799ded3446c0c654a4a8901a1",
+          "char_start": 1141,
+          "char_end": 1770,
+          "quote": "Within 120 days after the effective date of this Code the Administrator shall make a report to the President showing the effect of the Code, and particularly the effect of the provisions of Article V thereof, during the period of 90 days following its effective date, in such detail as to permit the President to determine within said 120 days whether, in order to effectuate the policy of the Act, any of the provisions of the Code should be modified or eliminated. The Code is approved with the specific reservation of the power of the President to make such a determination and to modify this approval in accordance therewith.",
+          "quote_sha256": "96001ebfd112c4fd561f993768e64134ec93ed0b966b90be4c460fc1be1aa5b2",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": null,
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Code effective date and complete Article V/code terms not established.",
+        "Whether report was made and received, and whether President modified or eliminated provisions, remain unknown.",
+        "First cessation of approval and report, and individual later administrative continuation, remain unresolved."
+      ]
+    },
+    {
+      "instrument_id": "EO:6271",
+      "application_sha256": "9c1ea50a02f723579bfba7d7777f3883eb7392afb6ce6b72f5c90a6bd89b97e4",
+      "verdict": "upheld",
+      "outcome_upheld": "blocked",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "Five elected representatives and three nonvoting appointees are a substantive constitutive condition plus ongoing planning/cooperation. EO6543O recites Executive Committee applications on two dates, which is actual activity evidence but does not expressly identify that body as the required eight-member agency. Retain qualified lead and whole-case block; amendments do not by themselves end the body.",
+      "source_checks": [
+        {
+          "source_key": "EO6271",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6271-code-fair-competition-for-the-wall-paper-manufacturing-industry.txt",
+          "text_sha256": "f52fb7e349667615f38014be01b4b6e5aa36d7cc16c938b508ddc7ce47b4ea55",
+          "char_start": 738,
+          "char_end": 1140,
+          "quote": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do adopt and approve the report, recommendations, and findings of the Administrator and do order that the said code of fair competition be and is hereby approved, subject to the following condition:",
+          "quote_sha256": "2fc1853a02e4136c5847b6a2b1af04e251fb3420e9611c709bee8ebf4bdb98af",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6271",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6271-code-fair-competition-for-the-wall-paper-manufacturing-industry.txt",
+          "text_sha256": "f52fb7e349667615f38014be01b4b6e5aa36d7cc16c938b508ddc7ce47b4ea55",
+          "char_start": 1142,
+          "char_end": 1601,
+          "quote": "(1) To effectuate further the policies of the act, a wall paper manufacturing industry committee be created to cooperate with the Administrator as a Planning and Fair Practice Agency for the Wall Paper Manufacturing Industry, which committee shall consist of five representatives of the wall paper manufacturing industry elected by a fair method of selection, to be approved by the Administrator, and three members without vote appointed by the Administrator.",
+          "quote_sha256": "6005ee15a5d092f95e88f374c7452bafc362a913c98d555014024f68e44ad498",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6543O",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6543-o-amendment-code-fair-competition-for-the-wall-paper-manufacturing.txt",
+          "text_sha256": "80f16e3e555e43cf61ae2a7d9d0b8fedd744fa6f56d2b7bb336ab80e1752d557",
+          "char_start": 0,
+          "char_end": 971,
+          "quote": "Applications having been duly made by the Executive Committee of the Wall Paper Manufacturing Industry under date of September 27, and October 7, 1933, pursuant to and in full compliance with the provisions of Title I of the National Industrial Recovery Act, approved June 16, 1933, and pursuant to Article XIV of the Code of Fair Competition for the Wall Paper Manufacturing Industry approved by me in my Executive Order of September 7, 1933, for my approval of amendments to said Code proposed in said applications, and full hearings having been held thereon and the Administrator having rendered his report containing an analysis of said amendments, together with his recommendations and findings with respect thereto, and the Administrator having found, as set forth in said report, that the said Amendments comply in all respects with the pertinent provisions of Title 1 of said Act and that the requirements of Clause 2 of subsection (a) of Section 3 have been met:",
+          "quote_sha256": "099c4c18ac03d5a07ed730702ec961e561b6812970a474b5c442d5d098a820d5",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": null,
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Identity of Executive Committee in EO6543O with EO6271's planning body not established.",
+        "Actual five elected/three appointed composition and dates unknown.",
+        "Full amended code text, ongoing functions and first-ending/transfer facts not established."
+      ]
+    },
+    {
+      "instrument_id": "EO:6292",
+      "application_sha256": "cf9b240b1b9728174ab7db7a3efd9d18cbfb5741ee08fc20d4664745d0a94261",
+      "verdict": "upheld_with_required_qualification",
+      "outcome_upheld": "blocked",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "EO6320 affirmatively recites an Oil Burner Code Authority duly constituted under ArticleVII and a request by a letter dated September29. This is actual existence/activity evidence and cannot be replaced by unknown-whether formation. Exact composition, ArticleVII identity, ongoing functions and cessation remain unproved. Conditional ten-day amendment effectiveness and thirty-day stock savings do not date the body ending.",
+      "source_checks": [
+        {
+          "source_key": "EO6292",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6292-code-fair-competition-for-the-oil-burner-industry.txt",
+          "text_sha256": "7ecba78f83644ae8f9634fb949c9ea9b1debb993dff4d4b5b06f133a2800b475",
+          "char_start": 724,
+          "char_end": 1125,
+          "quote": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do adopt and approve the report, recommendations and findings of the Administrator and do order that the said Code of Fair Competition be and is hereby approved, subject to the following condition:",
+          "quote_sha256": "1e2c4337ae1e34b88876a0ee2b9bafa33cf0ee2fefac1e1f200811d04f807031",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6292",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6292-code-fair-competition-for-the-oil-burner-industry.txt",
+          "text_sha256": "7ecba78f83644ae8f9634fb949c9ea9b1debb993dff4d4b5b06f133a2800b475",
+          "char_start": 1127,
+          "char_end": 1535,
+          "quote": "(1) To effectuate further the policies of the act, a Code Authority be created to cooperate with the Administrator as a Planning and Fair Practice Agency for the Oil Burner Industry, which Code Authority shall consist of nine representatives, of the Oil Burner Industry elected by a fair method of selection, to be approved by the Administrator, and three members without vote appointed by the Administrator.",
+          "quote_sha256": "b369465dfb86e87986464f5cefdb044962937689312bb05fd70b9c77e40ee81d",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6320",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6320-amending-code-fair-competition-for-oil-burner-industry.txt",
+          "text_sha256": "bd9caa86afe8a00f1b6652285b7a0cb9d4937945ca5bc5c157654c2bec566476",
+          "char_start": 1772,
+          "char_end": 2206,
+          "quote": "By letter of application dated September 29, 1933, the code authority for the Oil Burner Industry, as duly constituted under article VII of said code as approved, has requested that said code as approved be amended by adding thereto, as a new section 12 of article VI thereof, the following provision, hereinafter designated 14909-33 provision A, which is substantially identical with the provision inadvertently omitted as aforesaid:",
+          "quote_sha256": "f3836c6b46b49005db4d70a5183c7cc734ce4f6e49512164441f515073f68ebf",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6320",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6320-amending-code-fair-competition-for-oil-burner-industry.txt",
+          "text_sha256": "bd9caa86afe8a00f1b6652285b7a0cb9d4937945ca5bc5c157654c2bec566476",
+          "char_start": 4296,
+          "char_end": 4978,
+          "quote": "I, Franklin D. Roosevelt, President of the United States, do hereby Order that the application of the code authority of the Oil Biirner Industry hereinabove considered, be approved, and that, effective 10 days from the date hereof, Unless just cause to the contrary shoiild be shown by any interested person before Deputy Administrator R. B. Paddock, New Commerce Building, Washington, D.b., at or before 12 o'clock, noon, October 13, 1933, the Code of Fair Competition for the Oil Burner Industry as approved September 18, 1933 be and it hereby is amended by adding thereto, as a new section 12 of article VI thereof, the provision hereinabove set forth and designated provision A.",
+          "quote_sha256": "673bc1d245c8588e83dcf0466a6401461fb27deb42071ca3ce9ed138213355ff",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": null,
+      "required_qualifications": [
+        {
+          "field": "supported_facts_not_whole_case_approval and earlier_end_check",
+          "reason": "A letter date is not a separately established submission/receipt date. The by-September29 formation statement is a reasonable dated-letter inference, not expressly dated constitution or observed submission.",
+          "reviewer_corrected_wording": "EO6320 of October3 expressly records a duly constituted Code Authority and a request by a letter dated September29. Existence by the date of that letter is a reasonable inference; actual sending/receipt and exact constitution dates are not stated. Constitution/activity is established by the October3 recital, subject to identification of the ArticleVII body with the mandated authority; all twelve seats are not individually documented."
+        }
+      ],
+      "unresolved_material_gaps_retained": [
+        "Article VII and records confirming all nine elected and three Administrator-appointed members not read.",
+        "Exact constitution date and complete ongoing authority/administrative history remain unestablished.",
+        "Code approval first cessation, conditional EO6320 amendment effect and accrued consequences need complete code/later sources."
+      ]
+    },
+    {
+      "instrument_id": "EO:6871",
+      "application_sha256": "67f915a9035866aa6974cbae2c31409877225b126edb0908f160a0d7763837db",
+      "verdict": "upheld",
+      "outcome_upheld": "blocked",
+      "scope": "substantive reconciliation application and routing/block only; no old or replacement whole-case approval",
+      "reason": "The October10 recital proves the earlier mission, whereas paragraphs3–5 require new work: continued committee sheep/leather investigation, a newly appointed prison-labor/sheltered-workshops committee, and a Board exemptions report. The December1 stay term is distinct from report deadlines. No source here proves those new missions performed or extinguished; retain block and separate parent continuations/transfers.",
+      "source_checks": [
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 1464,
+          "char_end": 1897,
+          "quote": "Now, Therefore, by virtue of and pursuant to the authority vested in me by Title I of the National Industrial Recovery Act of June 16, 1933 (ch. 90, 48 Stat. 195), and in order to effectuate the purposes of said title and of my said Executive Order No. 6861, dated September 28, 1934, I, FRANKLIN D. ROOSEVELT, President of the United States, do hereby approve and adopt the report and recommendations of said committee and do order:",
+          "quote_sha256": "e91c34981936f0e531f2b3398635d5f685f7768329c3af44aa8a8f5c730ca923",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 1899,
+          "char_end": 2011,
+          "quote": "1. That paragraph numbered 1 of Executive Order No. 6861, dated September 28, 1934, be and it is hereby revoked.",
+          "quote_sha256": "50323f640381b6cc8e3cc78e6863d1c496181dda91f698166328e4605c98f25d",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 2013,
+          "char_end": 2207,
+          "quote": "2. That the effective date of said amendments to Articles III and IV of said Code be stayed to and including December 1, 1934, after which date said amendments shall be in full force and effect.",
+          "quote_sha256": "a3e471fe32ad46d9f0670221f3a8a1735b99b32dc3c2fb0de057feba1012db52",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 2209,
+          "char_end": 2627,
+          "quote": "3. That the committee heretofore appointed and constituted by the National Industrial Recovery Board, consisting of Willard E. Hotchkiss, Chairman, W. Jett Lauck, and Donald M. Nelson, be continued, with instructions further to investigate the protests of the Sheep Lined and Leather Garment Subdivision of the Cotton Garment Industry and report its findings and recommendations therein on or before November 15, 1934.",
+          "quote_sha256": "00c0fd9755bb2062fdb754f7609eaff603537dc34aaf3271effc73f308f36212",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 2629,
+          "char_end": 3186,
+          "quote": "4. That the National Industrial Recovery Board forthwith appoint a committee of three impartial persons, which committee shall investigate the effects of competition between the products of prison labor and sheltered workshops on the one hand and of the cotton garment industry on the other, study the operation of the Prison Labor Compact especially as to the enforcement of the standards of competition with private industry established therein, and report to the National Industrial Recovery Board concerning said matters not later than December 1, 1934.",
+          "quote_sha256": "e381d021c445bd333be367a4547ea77fdb42bff9df01364a5a8dd6e8e7126a05",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 3188,
+          "char_end": 3480,
+          "quote": "5. That on or before January 15, 1935, the National Industrial Recovery Board report to me as to exceptions to and exemptions from the Code of Fair Competition for the Cotton Garment Industry, as amended, which may have been granted under the provisions of Article XV of said Code as amended.",
+          "quote_sha256": "badf9f51c4797ebaa3ef3f3d0b9808e57066fd4cd0a960b00cbb3f8bc65c707d",
+          "exact_span_verified": true
+        },
+        {
+          "source_key": "EO6871",
+          "path": "jobs/app-executive-orders/output/texts/executive-order-6871-concerning-amendments-the-code-fair-competition-for-the-cotton.txt",
+          "text_sha256": "3793b457c7396e1e6604a4b2e9e8f10df7b9de41634686b138c76c050e3e5cda",
+          "char_start": 3482,
+          "char_end": 3555,
+          "quote": "6. That this Order shall be subject to my further orders in the premises.",
+          "quote_sha256": "1654d1120323e9c5e2969df8b006c075a8ed2a319d3b92c7617d4f0e3aebbee0",
+          "exact_span_verified": true
+        }
+      ],
+      "old_canonical_claim_checked": null,
+      "required_qualifications": [],
+      "unresolved_material_gaps_retained": [
+        "Further sheep/leather report, new prison-labor committee appointment/report and exemptions report performance unknown.",
+        "Prison Labor Compact text and its authority not read; independent reach cannot be assumed or excluded.",
+        "Further orders affecting stay or committees and actual administrative transfer/cessation unresolved."
+      ]
+    }
+  ],
+  "verification": {
+    "full_working_texts_read": [
+      "EO6686",
+      "EO6729",
+      "EO6870A",
+      "EO6861",
+      "EO6601",
+      "EO6271",
+      "EO6292",
+      "EO6871",
+      "EO6756B",
+      "EO6320",
+      "EO6543O",
+      "EO7075",
+      "EO7076",
+      "EO7252"
+    ],
+    "source_file_hashes_verified": 17,
+    "exact_application_quote_spans_verified": 31,
+    "shared_primary_spans_read_and_verified": 8,
+    "packet_fingerprint": "b118ed009a1b983dce06dc30f531089993c75769eab2666cff73eaa43fc8cbda",
+    "native_source_file_pins_verified": 16,
+    "native_APP_page_records_checked": 8
+  },
+  "shared_source_findings": "S.J.Res.113 is an express repeal of code powers and a separate amendment of TitleI sunset. Schechter reaches the section3 delegation. EO7075/7076/7252 show compatible administrative continuation/transfer, not any individual mission completion or universal April1 first end. No general savings-law conclusion is made.",
+  "limits": [
+    "Provisional APP working texts, not original authentication; EO7075 is visibly abridged.",
+    "Primary-source statutory/judgment extractions read and exact spans/hash checked; no new PDF page-image authentication.",
+    "No complete industry codes or administrative archives acquired or exhaustively searched; missing performance evidence remains missing.",
+    "Original replacement and quote recheck obligation retained.",
+    "Routing is to the prior producer/owner of exact claims; no request for a convenient new owner methodology ruling."
+  ],
+  "canonical_mutation": false,
+  "complete_claim_approval": false,
+  "human_certification": false
+}

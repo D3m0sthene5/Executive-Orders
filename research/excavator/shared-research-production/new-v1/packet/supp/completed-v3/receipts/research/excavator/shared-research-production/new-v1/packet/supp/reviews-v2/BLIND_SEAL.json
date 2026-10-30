@@ -1,0 +1,58 @@
+{
+  "schema": "blind-independent-source-review-seal/v1",
+  "sealed_at": "2026-10-30T00:38:49.607934+00:00",
+  "reviewer": "shared-research-independent-reviewer-v2",
+  "review_file": {
+    "path": "research/excavator/shared-research-production/new-v1/packet/supp/reviews-v2/BLIND_REVIEW.jsonl",
+    "sha256": "757145e4c4623e57357dd4ab730890f9c2913c9df62bce7a78280fd9115114be"
+  },
+  "timing_file": {
+    "path": "research/excavator/shared-research-production/new-v1/packet/supp/reviews-v2/REVIEW_TIMING.json",
+    "sha256": "ff612bde0fcb12c8347d59a272940ae1a7700020a8af3296f91e85436177fd5f"
+  },
+  "claim_input": {
+    "path": "/workspace/scratch/641bfd572419/shared-research-review-inputs-v2/CLAIMS.jsonl",
+    "sha256": "cef1f6a1d5168e4180bc9f92d03aed1e9f58d905b987aeebd83ceb069f81fc56"
+  },
+  "claim_hash_method": "SHA256(json.dumps(claim,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode())",
+  "claim_sha256": [
+    "d9b58fdc13144e42a59dab92e9377ef44dc0de4a4ba257f904ac00b17a5425dd",
+    "6979917a117bae4ceebee17e34191b92168de2eefa36c285e62c122ca50630e3"
+  ],
+  "authorized_packet_pins": [
+    {
+      "path": "research/excavator/shared-research-production/new-v1/packet/supp/PACKET.json",
+      "sha256": "ed91eec3fbc48c2755314924ba4e35e54c4f475d6a524ec8b9a6a9f5aa1d90e5"
+    },
+    {
+      "path": "research/excavator/shared-research-production/new-v1/packet/supp/READ.md",
+      "sha256": "0bed6a468f040a3e8cbf1af187ee615b2c657e379cffb31f130382a0d26f1eab"
+    },
+    {
+      "path": "research/excavator/shared-research-production/SHARED_RESEARCH.md",
+      "sha256": "e41cc085189094183c40ff95485ec08375a6eb2550a7df93b566062f7c1f7e66"
+    },
+    {
+      "path": "research/excavator/shared-research-production/FREEZE.json",
+      "sha256": "b1e9beb1528ad2107923dd52945c1813106efb0806b2a40af8392fdbfc863034"
+    },
+    {
+      "path": "research/excavator/shared-research-production/review-existing/SHARED_BRIEF_REVIEW.json",
+      "sha256": "93c1dbddcbd6dce77086e257d3f2b3d012f79292e20009b5a3d3eb56fc312042"
+    }
+  ],
+  "blinding": {
+    "instructions_followed": true,
+    "separate_context": true,
+    "technical_os_isolation": false,
+    "private_keys_or_seed_receipts_opened": false,
+    "case_review_contents_opened": false,
+    "applied_outputs_or_producer_report_opened": false,
+    "disclosure": "Initial broad filename inventory exposed repository paths, including case-review filenames; no contents were opened. Review confined thereafter to assigned claims, frozen packet/shared propositions, applicable protocols/rulings and underlying source records. HANDOFF review summaries deliberately excluded under assignment blinding. No expected answers sought."
+  },
+  "human_certification": false,
+  "canonical_changes": false,
+  "source_or_code_changes": false,
+  "git_changes": false,
+  "sealed_before_reveal": true
+}
