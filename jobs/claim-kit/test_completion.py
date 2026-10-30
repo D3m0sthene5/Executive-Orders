@@ -58,7 +58,7 @@ class CompletionTests(B.BatchTests):
         with patch.object(C, 'run_checker', side_effect=self.checker), patch.object(C, 'run_tracker', return_value={'actual_fixture': True}):
             return C.complete(self.repo, self.manifest_path, self.dest, publish)
 
-    def add_control(self, caught=True, after=True, iid='EO:1'):
+    def add_control(self, caught=True, after=True, iid='EO:1', review_scope=None):
         planted = deepcopy(self.claim)
         planted['instrument_id'] = iid
         planted['research_rationale'] += ' Seeded defect for this fixture.'
@@ -66,6 +66,8 @@ class CompletionTests(B.BatchTests):
         plant_path.write_bytes((json.dumps(planted) + '\n').encode())
         plant_review = dict(self.review, instrument_id=iid, claim_sha256=C.claim_sha(planted), verdict='rejected',
                             rationale='No keyword matching can establish whether this names the defect.')
+        if review_scope is not None:
+            plant_review['scope'] = review_scope
         review_path = self.folder / 'PLANT_REVIEW.json'
         batch.dump(review_path, plant_review)
         adjudication = {'instrument_id': iid, 'planted_claim_sha256': C.claim_sha(planted),
@@ -146,6 +148,24 @@ class CompletionTests(B.BatchTests):
         self.assertEqual(result['plants_caught'], 1)
         self.assertEqual(result['eligible'], ['EO:1'])
         self.assertTrue(result['outcomes'][0]['after_reveal'])
+
+    def control_scope_refused(self, scope, message):
+        # Reproduction from the lifecycle-assurance handoff (PR106 f750886a): a review of the planted version
+        # in another task scope must not count as catching it; exact pins alone do not bind the task.
+        self.setup_completion()
+        self.add_control(review_scope=scope)
+        result = self.run_completion(publish=True)
+        self.assertEqual(result['eligible'], [])
+        self.assertEqual(result['plants_caught'], 0)
+        errors = json.loads((self.dest / 'EXCEPTIONS.json').read_bytes())
+        self.assertTrue(any(message in e['error'] for e in errors), errors)
+        self.assertFalse((self.repo / self.manifest['publication']['path']).exists())
+
+    def test_control_review_of_an_unrelated_task_does_not_count(self):
+        self.control_scope_refused('status_only_unrelated_scope', 'must review the planted lifecycle claim task')
+
+    def test_control_review_scope_must_match_the_seeded_member(self):
+        self.control_scope_refused('partial_research', 'differs from the seeded member task')
 
     def test_control_false_stops_batch_even_with_upheld_after_reveal(self):
         self.setup_completion()

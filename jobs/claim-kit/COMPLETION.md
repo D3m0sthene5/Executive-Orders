@@ -123,6 +123,11 @@ The seed reference must select a standalone JSON object, without line/pointer
 selectors, so retaining its complete bytes cannot copy an enclosing private key.
 The seed object has exactly these fields: `schema: eo-claim-kit-control-seed/v1`,
 `instrument_id`, `planted_claim_sha256`, `genuine_claim_sha256`, and `seeded_by`.
+The control review must review the planted lifecycle-claim task. Its `scope` must be `whole_case` or
+`partial_research`. When the planted instrument is a submitted member, the scope must equal that member's
+`publication_kind`, which comes from the manifest, so the reviewer's self-declared scope cannot change the task.
+A review in any other scope (for example a status-only review) does not count as catching the control, and the
+batch stops.
 It records exact version provenance without exposing the planted content. The control
 review has the same independence fields above, its planted claim hash, and the
 recorded verdict. The semantic adjudicator's object must contain:
