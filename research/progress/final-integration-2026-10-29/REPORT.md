@@ -29,3 +29,11 @@ Pending: exact-candidate CI/review, ordinary retained rehearsal, qualifying merg
 ## Costs and limits
 
 Mechanical inventory: gpt-6-luna. Cache fix: gpt-6-luna, two implementation iterations (first incomplete witness proposal rejected by coordinator). Fresh engineering review: separate inherited coordinator-model context. Tokens, cash and complete active labor are unavailable. All review, setup failures, corrections and integration belong to cost; no net savings claimed. PR104 historical timings are retained as source-stream measurements and have not yet been remeasured with final corrections. Git shell push lacks credentials; publication uses the connected GitHub API preserving source parents and exact tree bytes.
+
+## Final source review and first remote candidate
+
+Fresh independent final review approved source2fbc45654acedf94ace1c46ace616ecb0b7bee06 with combined/native/production conditions; exact hashes and64 focused tests (63pass,1existing corpus skip) are in review/final-fix-review.json. It also caught and corrected omitted production-package checkout, missing explicit lifecycle-baseline fetch and failure to inspect merge-result changes after parent-only publication audit. Previous review and counterexamples remain retained.
+
+PR104 explicitly superseded its source pin with b1890d7a0cc5329cec387b804a4e88962262b5d0: completion control review scopes now match lifecycle tasks and submitted member scope. Its2new regressions and unchanged genuine rehearsal result were independently examined. Final combined completion suite:40passing. Initial combined candidate b8c40e97 tree exactly matched local25ba05dd; final update adds the reviewed scope/merge-tree corrections and review receipts. Road Linux/Windows, Kean and publication audit passed on that first candidate.
+
+PR105 run40976840282 succeeded and published branch outputs at e87c9ad6. This is an actual branch checker result, not a new canonical tracker generation. Its source is unchanged; combined/main fingerprints still require verification. Runs40979721659 and40979725966 predate the control-scope supersession and are preliminary. Manual workflow controls are unavailable without browser sign-in; no cancellation or dispatch claimed. Automatic runs and bounded exact-ID watcher remain usable.

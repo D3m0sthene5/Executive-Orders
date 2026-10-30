@@ -30,13 +30,14 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 ## Owner decisions not yet carried out by the tools (2)
 
 - **D-20261021-transcriptions** (partly wired): A labeled transcription (APP, Richardson, CSC reports, HathiTrust, Wikisource, or the owner's ProQuest scans) may satisfy the text step provisionally; originals remain the goal and nothing becomes acceptable_as_original. A claim-kit grade-inference bug labeled 1,824 of 3,403 dossiers' transcriptions 'derivative_lead', which the working-text gate rejects; fixed in jobs/claim-kit/inputs.py, effective after claim-kit regenerates.
-- **D-20261029-final-cross-stream-integration** (partly wired): Owner authorizes this coordinator to integrate, review, approve permitted runs/PRs, merge qualifying named streams and verify production. Final integration transfers from Sol. Scope excludes unrelated future work; scientific authority and platform restrictions remain unchanged. PR103 ownership-transfer notice posted; final integration and production verification pending.
+- **D-20261029-final-cross-stream-integration** (partly wired): Owner authorizes this coordinator to integrate, review, approve permitted runs/PRs, merge qualifying named streams and verify production. Final integration transfers from Sol. Scope excludes unrelated future work; scientific authority and platform restrictions remain unchanged. PR107 review and production pending.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 69; `search` finds the rest)
+## Newest results (8 of 70; `search` finds the rest)
 
+- 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Exact version pins prove which review was scored, not which task it reviewed; bind the task from the coordinator's manifest, not the reviewer's own label
 - 2026-10-29 F-20261029-final-integration-1 **partly worked**: Combine concurrent engineering streams and review actual native handoffs Lesson: Test actual cache policy and publication order; preserve historical results until refreshed inputs match.
 - 2026-10-29 F-20261029-codex-proquest-custody **worked**: Verify and repair custody for EO254, EO2171 and EO4354 Lesson: A corpus-wide metadata budget can silently prevent narrow source materialization; test production-size selection and downstream readiness separately.
 - 2026-10-29 F-20261029-98 **analysis**: Audit hidden production friction Lesson: Scope dependencies; reuse verified snapshots; retain review gates.
@@ -44,6 +45,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-29 F-20261029-96 **partly worked**: Recover all current PRs and residual EO branch work Lesson: Merge code and qualified research; preserve historical failures without adopting their counts.
 - 2026-10-29 F-20261029-95 **stopped at gate**: Preserve unmerged land probe research Lesson: Preserve source and review holds; omitted structured later events require reconciliation.
 - 2026-10-29 F-20261029-94 **partly worked**: Review and integrate Mansfield under current evidence rules Lesson: A historical review pass does not erase later evidence requirements.
-- 2026-10-29 F-20261029-93 **partly worked**: Implement six lightweight wiring repairs as unmerged PRs Lesson: Use existing contracts; component tests do not establish production gains.
 
-Register: 14 owner decisions, 0 answered questions, 69 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 14 owner decisions, 0 answered questions, 70 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

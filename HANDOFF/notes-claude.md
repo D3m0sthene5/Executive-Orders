@@ -2,6 +2,17 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-30 UTC: PR104 control-scope repair; frozen pin superseded to b1890d7
+
+- **Done:** `completion.controls()` now binds a planted-control review to the seeded task. Its scope must be
+  `whole_case` or `partial_research` and, for a submitted member, equal the manifest `publication_kind`. This
+  answers the lifecycle-assurance reproduction (PR106 `f750886a`). It adds 2 regressions and 479 tests pass. The
+  rehearsal r1 dry run is unchanged. Kean F-20261030-7001.
+- **Pin:** claim-kit/Valla source for Sol's combined testing is now `b1890d7` (superseding `8adc939`; announced
+  on PR104).
+- **Asks:** @Owner: none new (A-20261029-1 stands). @Sol: use `b1890d7` for combined testing.
+- **Do not:** treat a reviewer's self-declared scope as the control's task.
+
 ## 2026-10-29 ET (later): PR104 native full-code rehearsal, concurrency/clone checks, handoff to Sol
 
 - **Done:** Rehearsal r1 (`research/excavator/opus-native-rehearsal-2026-10-29/`) ran on fresh packets and

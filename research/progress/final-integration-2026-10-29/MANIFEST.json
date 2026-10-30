@@ -21,17 +21,19 @@
       "stream": "packet/completion/Valla runtime",
       "owner": "Opus",
       "pr": 104,
-      "source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
-      "current_head": "9fa8432a7a0c3550901c5d2acd23e72ae1eab50a",
+      "source_head": "b1890d7a0cc5329cec387b804a4e88962262b5d0",
+      "current_head": "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c",
       "generated_output_heads": [
-        "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c"
+        "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c",
+        "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c"
       ],
       "state": "frozen_review_pending",
       "blockers": [
         "combined validation",
         "publication-audit CI connection"
       ],
-      "pin_discrepancy": "PR comment expanded SHA is wrong; actual Git object and CI pin used."
+      "pin_discrepancy": "PR comment expanded SHA is wrong; actual Git object and CI pin used.",
+      "prior_source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a"
     },
     {
       "stream": "ProQuest custody",
@@ -89,8 +91,17 @@
     }
   },
   "watcher": {
-    "active": false,
-    "note": "No background monitoring claimed."
+    "active": true,
+    "mechanism": "bounded functions exec cell61",
+    "run_ids": [
+      40979725898,
+      40979725966,
+      40979725988,
+      40979725923,
+      40979721659
+    ],
+    "interval_seconds": 45,
+    "maximum_polls": 25
   },
   "integration_fixes": [
     "nested Hathi byte-preservation attributes and regression",
@@ -98,5 +109,11 @@
     "canonical publication sequence preservation",
     "explicit claim-kit cross-job code dependencies",
     "native lifecycle/custody/Valla combined CI"
-  ]
+  ],
+  "pr": 107,
+  "candidate_source_local": "2fbc45654acedf94ace1c46ace616ecb0b7bee06",
+  "platform": {
+    "git_shell_push": "no credentials; using GitHub connector exact trees/parents",
+    "manual_workflow_controls": "connector lacks dispatch/cancel; connected local browser unavailable; cloud browser signed out. Automatic runs remain available."
+  }
 }

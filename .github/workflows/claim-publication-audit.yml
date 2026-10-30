@@ -38,7 +38,13 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
             python jobs/claim-kit/kit.py publication-audit --base "$PR_BASE" > publication-audit.json
           elif [ "$(git rev-list --parents -n 1 HEAD | wc -w)" -eq 3 ]; then
-            python jobs/claim-kit/kit.py publication-audit --merge-commit HEAD > publication-audit.json
+            # The parent audit catches separate-clone races; the tree audit
+            # also checks changes introduced during merge conflict resolution.
+            parent_status=0
+            tree_status=0
+            python jobs/claim-kit/kit.py publication-audit --merge-commit HEAD > publication-audit.json || parent_status=$?
+            python jobs/claim-kit/kit.py publication-audit --base HEAD^1 > publication-tree-audit.json || tree_status=$?
+            test "$parent_status" -eq 0 && test "$tree_status" -eq 0
           else
             python jobs/claim-kit/kit.py publication-audit --base "$PUSH_BEFORE" > publication-audit.json
           fi
@@ -46,4 +52,4 @@ jobs:
         if: always()
         with:
           name: claim-publication-audit-${{ github.run_id }}
-          path: publication-audit.json
+          path: publication*-audit.json

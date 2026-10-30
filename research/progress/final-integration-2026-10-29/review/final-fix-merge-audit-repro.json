@@ -1,0 +1,35 @@
+{
+  "merge_commit_audit": {
+    "schema": "eo-claim-kit-publication-audit/v2",
+    "left": "59a9f1f9fe72d8bcab8268017493c0aa918945a4",
+    "right": "8fa6147f7886110af2762ff539439cd68154ad29",
+    "merge_base": "6ee26d73542a8df6c6b7c8c50d5dbee52b521e78",
+    "mode": "merge_commit",
+    "instruments_added": 0,
+    "duplicate_instruments": {},
+    "problems": [],
+    "ok": true,
+    "notice": "Concurrent or repeated publications of one instrument merge silently in Git when file names differ; resolve by keeping one exact reviewed version."
+  },
+  "merged_tree_audit": {
+    "schema": "eo-claim-kit-publication-audit/v2",
+    "left": "59a9f1f9fe72d8bcab8268017493c0aa918945a4",
+    "right": "7537196728de378cf8a9ed51ca7a4fdaee855f92",
+    "merge_base": "59a9f1f9fe72d8bcab8268017493c0aa918945a4",
+    "mode": "branch_against_base",
+    "instruments_added": 0,
+    "duplicate_instruments": {},
+    "problems": [
+      {
+        "path": "research/readiness/claims/old.jsonl",
+        "problem": "existing canonical sequence changed; only appends are permitted",
+        "side": "right"
+      }
+    ],
+    "ok": false,
+    "notice": "Concurrent or repeated publications of one instrument merge silently in Git when file names differ; resolve by keeping one exact reviewed version."
+  },
+  "baseline_version": 2,
+  "merged_version": 1,
+  "scope": "temporary fixture only"
+}

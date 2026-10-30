@@ -238,6 +238,11 @@ def controls(inputs, manifest):
     """Validate a person's recorded semantic adjudication; never parse reasons."""
     result = []
     keys = set()
+    # The planted task is the lifecycle claim completion would file: its review must be a review of that task.
+    # When the planted instrument is a submitted member, the coordinator's manifest fixes the scope
+    # (publication_kind); the reviewer's self-declared scope alone cannot widen or change it.
+    task_scope = {m.get('instrument_id'): m.get('publication_kind') for m in manifest['members']
+                  if isinstance(m, dict) and m.get('outcome') == 'submit'}
     for control in manifest['controls']:
         iid, sha = control['instrument_id'], control['planted_claim_sha256']
         require(SHA.fullmatch(sha) is not None and (iid, sha) not in keys, 'duplicate/invalid planted version')
@@ -256,6 +261,9 @@ def controls(inputs, manifest):
                 review['model_family'].strip(), 'independent control source review required')
         if manifest['independence_requirement'] == 'different_family':
             require(review['model_family'].strip().casefold() != manifest['producer_model_family'].strip().casefold(), 'different control reviewer family required')
+        require(review.get('scope') in ('whole_case', 'partial_research'), 'control review must review the planted lifecycle claim task')
+        require(iid not in task_scope or review['scope'] == task_scope[iid],
+                'control review scope differs from the seeded member task: ' + iid)
         adjudication = inputs.object(control['adjudication'])
         require(adjudication.get('instrument_id') == iid and adjudication.get('planted_claim_sha256') == sha,
                 'control adjudication version mismatch')
