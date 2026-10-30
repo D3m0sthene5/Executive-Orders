@@ -27,10 +27,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 
-## Owner decisions not yet carried out by the tools (2)
+## Owner decisions not yet carried out by the tools (1)
 
 - **D-20261021-transcriptions** (partly wired): A labeled transcription (APP, Richardson, CSC reports, HathiTrust, Wikisource, or the owner's ProQuest scans) may satisfy the text step provisionally; originals remain the goal and nothing becomes acceptable_as_original. A claim-kit grade-inference bug labeled 1,824 of 3,403 dossiers' transcriptions 'derivative_lead', which the working-text gate rejects; fixed in jobs/claim-kit/inputs.py, effective after claim-kit regenerates.
-- **D-20261029-final-cross-stream-integration** (partly wired): Owner authorizes this coordinator to integrate, review, approve permitted runs/PRs, merge qualifying named streams and verify production. Final integration transfers from Sol. Scope excludes unrelated future work; scientific authority and platform restrictions remain unchanged. PR107 review and production pending.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
 <!-- kean:drift -->
@@ -39,7 +38,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 - 2026-10-30 shared-research-production-2026-10-30 **partly worked**: Independent shared NRA source research, eight outlier/block reconciliations, six fresh native case assignment… Lesson: Preserve exact reviews, blocks and historical owner routes.
 - 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Bind planted controls to the assigned scope as well as the exact version.
-- 2026-10-29 F-20261029-final-integration-1 **partly worked**: Combine concurrent engineering streams and review actual native handoffs Lesson: Verify native consumers and current fingerprints before adoption.
+- 2026-10-30 F-20261029-final-integration-1 **partly worked**: Combine concurrent engineering streams and review actual native handoffs Lesson: Verify published generations; retain scientific holds.
 - 2026-10-29 F-20261029-cruden-retrieval **worked**: Profile and repair repeated Cruden corpus lookups with a source-bound feature cache Lesson: Reuse content-verified features; preserve legacy matching and contrary-source access.
 - 2026-10-29 F-20261029-cruden-producer **analysis**: Fresh bounded native EO10673 and EO10772 retrieval assignment with number and literal routes Lesson: Retrieval leads require source review; no scientific approval follows.
 - 2026-10-29 F-20261029-codex-proquest-custody **worked**: Verify and repair custody for EO254, EO2171 and EO4354 Lesson: A corpus-wide metadata budget can silently prevent narrow source materialization; test production-size selection and downstream readiness separately.
