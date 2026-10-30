@@ -34,7 +34,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 61; `search` finds the rest)
+## Newest results (8 of 63; `search` finds the rest)
 
 - 2026-10-29 F-20261029-98 **analysis**: Audit hidden production friction Lesson: Scope dependencies; reuse verified snapshots; retain review gates.
 - 2026-10-29 F-20261029-97 **partly worked**: Merge EO integration and check complete reviewer pipeline Lesson: Run complete consumers after integration; presentation normalization must preserve source qualifications and exact-copy isolation.
@@ -42,7 +42,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-29 F-20261029-95 **stopped at gate**: Preserve unmerged land probe research Lesson: Preserve source and review holds; omitted structured later events require reconciliation.
 - 2026-10-29 F-20261029-94 **partly worked**: Review and integrate Mansfield under current evidence rules Lesson: A historical review pass does not erase later evidence requirements.
 - 2026-10-29 F-20261029-93 **partly worked**: Implement six lightweight wiring repairs as unmerged PRs Lesson: Use existing contracts; component tests do not establish production gains.
-- 2026-10-29 F-20261029-5 **worked**: One independently reviewed shared legal analysis (S.J. Res. 113 sec. 2 repeal, June 14, 1935) for NIRA code-a… Lesson: Shared analysis earns its saving once per batch; next blocker is conditions, stays and committees attached to approvals (about 20 blocked). Never commit in-flight packets (Valla pins tracked RATIONAL…
-- 2026-10-29 F-20261029-4 **analysis**: Find lightweight repairs and source handoffs Lesson: Repair concrete handoffs; preserve source roles and unresolved research.
+- 2026-10-29 F-20261029-9102 **analysis**: Bounded disjoint investigations of admission, source identity, omitted commands, unsupported occurrence infer… Lesson: Mechanical ready, disclosed machine exhaustion, independently AI-reviewed and human-certified are distinct; route owner-specific defects without widening ownership.
+- 2026-10-29 F-20261029-9101 **worked**: Trace actual census-source-claim-review-readiness obligations; reproduce exhaustion violations through native… Lesson: Enforce existing exception eligibility and disclosure at the actual readiness transition; exact metadata is insufficient for semantic source or lifecycle truth.
 
-Register: 13 owner decisions, 0 answered questions, 61 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 13 owner decisions, 0 answered questions, 63 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
