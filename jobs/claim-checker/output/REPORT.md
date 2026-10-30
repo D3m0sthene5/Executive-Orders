@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 510 (parse errors: 0)
-- Orders with a claim (latest claim per order): 509
-- All checks passed: 410
-- Mechanical checks passed: 500; with unverifiable items: 7; failed: 3
-- Structural gate passed: 420
+- Claims checked: 613 (parse errors: 0)
+- Orders with a claim (latest claim per order): 612
+- All checks passed: 516
+- Mechanical checks passed: 606; with unverifiable items: 4; failed: 3
+- Structural gate passed: 523
 
 ## Source references
 
-- custody_record_only: 29
-- gpo_published_hash_match: 4208
-- held_bytes_in_release_or_repo: 82
-- held_bytes_verified: 5525
+- custody_record_only: 7
+- gpo_published_hash_match: 4408
+- held_bytes_in_release_or_repo: 85
+- held_bytes_verified: 6430
 
 ## Quotations
 
-- exact: 12627
+- exact: 13944
 - normalised: 11
 - not_found: 7
 
@@ -117,19 +117,16 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:22` | EO:9057 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1` | EO:2171 | unverifiable items |
-| `research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1` | EO:254 | unverifiable items |
-| `research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1` | EO:4354 | unverifiable items |
 | `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1` | EO:1547 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source |
-| `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2` | EO:4782 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:2` | EO:12743 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:4` | EO:10494 | quote_verbatim:not_found@operative_clauses[1].original_operative_text; quote_verbatim:not_found@operative_clauses[1].original_source.quote; quote_verbatim:not_found@operative_clauses[2].original_operative_text; quote_verbatim:not_found@operative_clauses[2].original_source.quote; quote_verbatim:not_found@operative_clauses[3].original_operative_text; quote_verbatim:not_found@operative_clauses[3].original_source.quote ... |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source; working_text_policy:invalid_working_text@whole_order_end.source ... |
 | `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2` | EO:10926 | unverifiable items |
+| `research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl:1` | EO:10622 | unverifiable items |
 | `research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl:1` | EO:10631 | unverifiable items |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 4152
+- recorded_for_this_order: 4486
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.
