@@ -152,10 +152,27 @@
     },
     {
       "stream": "shared substantive research continuation",
-      "state": "announced_in_progress",
-      "note": "Handoff only; independent research in progress. No frozen result or PR yet.",
+      "state": "qualified_research_integrated_no_scientific_adoption",
+      "note": "Two frozen eligible, eight blocked, four owner routes; no canonical claims/status changes.",
       "branch": "codex/shared-research-production",
-      "source_head": "7f653c20ed1340e8f49a0e55b37a1a1096849873"
+      "source_head": "bbc66a83f4f2343d57f5fb4b840200c7a08f8058",
+      "pr": 110,
+      "current_head": "4b4f0c0d892dd644ef413912b9d085dc8ae02da7",
+      "generated_output_heads": [
+        "8d5259aadd56703981e3ae204994cae92d9cb882"
+      ],
+      "review_evidence": [
+        "review/research-handoff-check.json"
+      ],
+      "required_tests": [
+        "native combined completion dry-run",
+        "exact manifest/review hashes",
+        "preserved historical owner routes"
+      ],
+      "blockers": [
+        "combined runtime outcome pending",
+        "canonical publication not authorized by engineering review"
+      ]
     }
   ],
   "production": {
@@ -171,14 +188,12 @@
   },
   "watcher": {
     "active": false,
-    "mechanism": "prior bounded watcher retired after tracked candidates completed; next exact IDs will be recorded in PR comment",
-    "completed_candidate": "07280bbf779550c4d868b07f5bc0ec3a1bb5e3e1",
-    "completed_run_ids": [
-      40980382026,
-      40980382068,
-      40980382117,
-      40980382074,
-      40980376557
+    "note": "Watcher cell147 interrupted/disappeared; no backgroundwatch asserted. Replacement exact IDs will be posted after corrected sourcepublication.",
+    "prior_candidate": "4ef71ff4cc494112602ff3c77d8cbf10700e501f",
+    "prior_runs": [
+      40982822620,
+      40982822629,
+      40982817717
     ]
   },
   "integration_fixes": [
@@ -189,7 +204,7 @@
     "native lifecycle/custody/Valla combined CI"
   ],
   "pr": 107,
-  "candidate_source_local": "d56ba86ca703c14395bd13852aa62f514fc19465",
+  "candidate_source_local": "8bd150ec3066973e4b12c03c421c87e9d2bf6035",
   "platform": {
     "git_shell_push": "no credentials; using GitHub connector exact trees/parents",
     "manual_workflow_controls": "connector lacks dispatch/cancel; connected local browser unavailable; cloud browser signed out. Automatic runs remain available."

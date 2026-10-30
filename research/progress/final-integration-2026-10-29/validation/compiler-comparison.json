@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "task": "claim-kit compiler pin and retained summary comparison",
+  "date_utc": "2026-10-30",
+  "source_hash_method": "Read existing local Git blobs only, with GIT_NO_LAZY_FETCH=1; no fetch, checkout, or native build.",
+  "scope": {
+    "pick_jobs_whitelist": "The 15 paths under .github/scripts/pick_jobs.py:CLAIM_KIT_COMPILER_SHA256.",
+    "input_closure_distinction": {
+      "build_COMPILER_FILES": 11,
+      "cli_code_pins_documented_in_INPUT_CLOSURE": 16,
+      "note": "These sets are distinct. The 15-entry pick_jobs whitelist is a conservative job-selection exemption map; it is not the same as the build compiler fingerprint or the complete CLI code-pin set."
+    }
+  },
+  "commits": {
+    "local_candidate": "9dcb451e343742eedea99ae315e948bdf08b4578",
+    "pr104_source": "b1890d7a0cc5329cec387b804a4e88962262b5d0",
+    "requested_current_candidate": {
+      "short": "4ef71ff4",
+      "available_in_existing_local_git": false,
+      "note": "Not present in the object database of integration or the other existing review worktrees. Its 15 source hashes were not derived; no network fetch was used."
+    }
+  },
+  "compiler_whitelist_15": [
+    {"path":"jobs/claim-kit/act_overrides.py","local_9dcb451e_sha256":"8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280","pr104_b1890d7_sha256":"8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/assemble.py","local_9dcb451e_sha256":"3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb","pr104_b1890d7_sha256":"3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/build.py","local_9dcb451e_sha256":"e662bc493ce6bb07d5b550e05c0af2843d82ae61311ae416e7191f1ce074d281","pr104_b1890d7_sha256":"e662bc493ce6bb07d5b550e05c0af2843d82ae61311ae416e7191f1ce074d281","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/current_evidence.py","local_9dcb451e_sha256":"b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c","pr104_b1890d7_sha256":"b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/excavate.py","local_9dcb451e_sha256":"d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d","pr104_b1890d7_sha256":"d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/factual_events.py","local_9dcb451e_sha256":"f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659","pr104_b1890d7_sha256":"f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/inputs.py","local_9dcb451e_sha256":"6ca64e4c65479bd1f363386981e25f390e38295eb3b5a38f9ca316deca60f2dd","pr104_b1890d7_sha256":"6ca64e4c65479bd1f363386981e25f390e38295eb3b5a38f9ca316deca60f2dd","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/job.py","local_9dcb451e_sha256":"67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37","pr104_b1890d7_sha256":"67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/lifecycle_obligations.py","local_9dcb451e_sha256":"61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab","pr104_b1890d7_sha256":"61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/population.py","local_9dcb451e_sha256":"299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859","pr104_b1890d7_sha256":"299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859","local_matches_whitelist":true},
+    {"path":"jobs/claim-kit/prior_research.py","local_9dcb451e_sha256":"971946c180a91015c46904c030ad513e76d81671a6dc9cb49d0788cab3a7cc14","pr104_b1890d7_sha256":"971946c180a91015c46904c030ad513e76d81671a6dc9cb49d0788cab3a7cc14","local_matches_whitelist":true,"note":"Whitelist also allows historical hash 3c6fd78a…; current 971946c1… is the other listed permitted version."},
+    {"path":"jobs/claim-kit/working_text.py","local_9dcb451e_sha256":"81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9","pr104_b1890d7_sha256":"81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9","local_matches_whitelist":true},
+    {"path":"jobs/clause-drafts/segment.py","local_9dcb451e_sha256":"0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573","pr104_b1890d7_sha256":"0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573","local_matches_whitelist":true},
+    {"path":"jobs/norton/model.py","local_9dcb451e_sha256":"abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12","pr104_b1890d7_sha256":"abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12","local_matches_whitelist":true},
+    {"path":"research/stage19/code/claim_gate.py","local_9dcb451e_sha256":"709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875","pr104_b1890d7_sha256":"709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875","local_matches_whitelist":true}
+  ],
+  "summary_comparison": {
+    "pr104_output": {
+      "commit": "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c",
+      "github_blob_sha": "aa74d1186e0aaa6b9c38c49d07c3d3d2b5a28c70",
+      "input_commit": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a"
+    },
+    "combined_ordinary_output": {
+      "commit": "a27af5b1181da240bbcc2db31ddcb7de8441518f",
+      "github_blob_sha": "846d2afd906a7178c1c9e48afd0e5c1c7149f1a0",
+      "input_commit": "07280bbf779550c4d868b07f5bc0ec3a1bb5e3e1"
+    },
+    "compiled_code_sha256_equal": true,
+    "jsonl_shard_sha256_equal": true,
+    "all_summary_counts_equal": true,
+    "selected_counts": {
+      "decided_orders": 3403,
+      "universe_orders": 14972,
+      "dossiers": 3403,
+      "assembled_claims": 0,
+      "held_texts_scanned": 41564,
+      "status_leads": 11569,
+      "families": 4515
+    },
+    "population_hashes_equal": true,
+    "warnings_equal": true,
+    "interpretation": "The outputs report identical compiled-code hashes, all 16 JSONL shard hashes, counts, population hashes, and warnings. The recorded input_commit changed from 8adc9396… to 07280bbf…. SUMMARY.json has no aggregate hash of all noncompiler inputs, so this is exact equality of the reported output hashes and counters, not proof that every consumed input byte was identical."
+  },
+  "commands": [
+    "GIT_NO_LAZY_FETCH=1: git show/rev-parse/cat-file blobs for the 15 .github/scripts/pick_jobs.py whitelist paths at 9dcb451e and b1890d7",
+    "GitHub fetch_file: jobs/claim-kit/output/SUMMARY.json at b8881afb18f2019ad784cbe6d2dd6f6e55cd948c",
+    "GitHub fetch_file: jobs/claim-kit/output/SUMMARY.json at a27af5b1181da240bbcc2db31ddcb7de8441518f"
+  ],
+  "limitations": [
+    "The requested 4ef71ff4 commit is absent from all existing local Git object databases checked; its source pins remain unverified.",
+    "INPUT_CLOSURE.json distinguishes 11 build COMPILER_FILES from 16 CLI code pins; neither count should be mislabeled as the 15-entry pick_jobs whitelist.",
+    "No build, test, native command, checkout, or repository mutation was performed."
+  ]
+}

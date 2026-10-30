@@ -35,8 +35,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 73; `search` finds the rest)
+## Newest results (8 of 74; `search` finds the rest)
 
+- 2026-10-30 shared-research-production-2026-10-30 **partly worked**: Independent shared NRA source research, eight outlier/block reconciliations, six fresh native case assignment… Lesson: Preserve exact reviews, blocks and historical owner routes.
 - 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Bind planted controls to the assigned scope as well as the exact version.
 - 2026-10-29 F-20261029-final-integration-1 **partly worked**: Combine concurrent engineering streams and review actual native handoffs Lesson: Verify native consumers and current fingerprints before adoption.
 - 2026-10-29 F-20261029-cruden-retrieval **worked**: Profile and repair repeated Cruden corpus lookups with a source-bound feature cache Lesson: Reuse content-verified features; preserve legacy matching and contrary-source access.
@@ -44,6 +45,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-29 F-20261029-codex-proquest-custody **worked**: Verify and repair custody for EO254, EO2171 and EO4354 Lesson: A corpus-wide metadata budget can silently prevent narrow source materialization; test production-size selection and downstream readiness separately.
 - 2026-10-29 F-20261029-codex-proquest-census **partly worked**: Census effective claims and scale retained ProQuest restoration after PR105 Lesson: Use effective versions and pinned bytes; expose bounded deferred tails; preserve scientific holds.
 - 2026-10-29 F-20261029-98 **analysis**: Audit hidden production friction Lesson: Scope dependencies; reuse verified snapshots; retain review gates.
-- 2026-10-29 F-20261029-97 **partly worked**: Merge EO integration and check complete reviewer pipeline Lesson: Run complete consumers after integration; presentation normalization must preserve source qualifications and exact-copy isolation.
 
-Register: 14 owner decisions, 0 answered questions, 73 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 14 owner decisions, 0 answered questions, 74 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

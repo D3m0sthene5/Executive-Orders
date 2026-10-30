@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
@@ -35,7 +36,7 @@ claims = {str(p.relative_to(ROOT)): sha(p)
           for p in (ROOT / "research/readiness/claims").glob("*.jsonl")}
 try:
     packet = "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp"
-    manifest = "research/excavator/opus-native-rehearsal-2026-10-29/r1/completion/COMPLETION.json"
+    manifest = packet + "/completion/COMPLETION.json"
     dest = ROOT / "research/integration-native-rehearsal"
     # A frozen historical packet may be stale after integration. Retain the
     # native refusal rather than repinning it or borrowing old reviewer approval.
@@ -61,6 +62,35 @@ try:
         complete["matches_retained_five"] = (
             len(tally["eligible"]) == 5 and complete["publishable_sha256"] ==
             "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897")
+    shared_dest = ROOT / "research/integration-shared-rehearsal"
+    shared = run("shared-complete", ["-I", "jobs/claim-kit/kit.py", "complete",
+        "research/excavator/shared-research-production/completion-v2/COMPLETION.json",
+        "--write", shared_dest], allowed=(0, 1, 2))
+    log = (OUT / "shared-complete.log").read_text()
+    assert "Traceback (most recent call last)" not in log, log
+    if shared["returncode"] == 2:
+        assert "claim-kit:" in log and any(x in log.lower() for x in ("stale", "changed", "mismatch")), log
+        shared["outcome"] = "native_frozen_input_refusal_requires_review"
+    else:
+        tally = json.loads((shared_dest / "TALLY.json").read_text())
+        assert tally["claims_published"] == 0
+        shared["tally"] = tally
+        artifact = shared_dest / "CLAIMS.publishable.jsonl"
+        shared["publishable_sha256"] = sha(artifact) if artifact.exists() else None
+        shared["matches_retained_two"] = (
+            len(tally["eligible"]) == 2 and shared["publishable_sha256"] ==
+            "fe5c3fafc4dacbe86e867450d457b94b043182b9f16bf72bd7c15be83e986a6a")
+    for label, folder in [("retained-receipts", dest), ("shared-receipts", shared_dest)]:
+        saved = OUT / label
+        saved.mkdir()
+        for name in ("INPUTS.json", "PACKETS.json", "TALLY.json", "PUBLICATION.json",
+                     "EXCEPTIONS.json", "TRACKER_REPLAY.json", "CLAIMS.publishable.jsonl",
+                     "checker/PER_CLAIM.json", "checker/SUMMARY.json"):
+            source = folder / name
+            if source.is_file():
+                target = saved / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source, target)
     cruden = ROOT / "research/progress/corpus-evidence-retrieval"
     source = ROOT / "research/excavator/claude-nira-sweep-2026-10-29/cruden.py"
     for script, label, extra in [("fixture_challenge.py", "fixture", []),

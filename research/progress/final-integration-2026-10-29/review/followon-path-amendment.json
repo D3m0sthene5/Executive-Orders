@@ -1,0 +1,164 @@
+{
+  "schema": "eo-followon-engineering-path-amendment/v1",
+  "completed_utc": "2026-10-30T01:05:04.530680+00:00",
+  "reviewed_candidate": "cb69b0b29839cf5677cb709cdf72189d41e575ca",
+  "verdict": "APPROVE_CORRECTED_PATH_CONDITIONAL_ON_EXACT_NATIVE_CI",
+  "supersedes_harness_path_approval_at": "d56ba86ca703c14395bd13852aa62f514fc19465",
+  "prior_review_sha256": "83bdb4b45c1e34ea9bcb77d9933b7f33be643f16352997907edfd10b8d4e9a37",
+  "finding": {
+    "id": "FOLLOWON-4",
+    "discoverer": "coordinator",
+    "state": "fixed_and_independently_verified",
+    "initial_review_limitation": "Initial reviewer did not check retained manifest existence; previous candidate referenced nonexistent r1/completion/COMPLETION.json. Do not treat earlier harness approval or any run at the wrong path as successful native validation.",
+    "repair": "Manifest now derives from supplemented packet path plus /completion/COMPLETION.json; no runtime implementation change."
+  },
+  "exact_source": {
+    "path": "research/progress/final-integration-2026-10-29/validate_native.py",
+    "sha256": "7ca5a77f1206b201326bc50902e4f9f3851c94a98f1b99a4b5deec22183ba49a",
+    "git_blob": "ac49a8bbd456e7bac9e73b329bac0d622c1f6287"
+  },
+  "path_verification": {
+    "commit": "cb69b0b29839cf5677cb709cdf72189d41e575ca",
+    "checks": {
+      "root_resolves_to_repository": true,
+      "wrong_previous_manifest_is_absent": true,
+      "correct_manifest_under_packet": true,
+      "rehearsal_output_absent_from_tree": true,
+      "all19_harness_inputs_tracked_regular_blobs": true,
+      "manifest_sha_matches_retained_adoption_receipt": true,
+      "native_packet_exact_copy_of_retained_packet": true,
+      "all_manifest_pinned_references_match": true,
+      "expected_five_claim_sha_matches_retained_artifact": true,
+      "dry_run_has_no_publish_argument": true
+    },
+    "all_checks_pass": true,
+    "source_pins": {
+      "research/progress/final-integration-2026-10-29/validate_native.py": {
+        "git_tree_entry": "100644 blob ac49a8bbd456e7bac9e73b329bac0d622c1f6287\tresearch/progress/final-integration-2026-10-29/validate_native.py",
+        "sha256": "7ca5a77f1206b201326bc50902e4f9f3851c94a98f1b99a4b5deec22183ba49a"
+      },
+      "jobs/claim-kit/kit.py": {
+        "git_tree_entry": "100644 blob b9267a0be8057e061f0a02e6b030b62ae5a42c02\tjobs/claim-kit/kit.py"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json": {
+        "git_tree_entry": "100644 blob 0d433977194748598c5dfc6563f2b612550311f4\tresearch/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+        "sha256": "3f7406f03bb0b16ab48149538b4d34e03d3a424b70f5e313d000eb7abfba0867"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/PACKET.json": {
+        "git_tree_entry": "100644 blob aaf789f2d19c420279726208f0716b35fb5275b0\tresearch/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/PACKET.json",
+        "sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+      },
+      "research/excavator/claude-nira-sweep-2026-10-29/cruden.py": {
+        "git_tree_entry": "100644 blob 4ca5a3f89a94b67adae74e59c6742fa13456bf30\tresearch/excavator/claude-nira-sweep-2026-10-29/cruden.py"
+      },
+      "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py": {
+        "git_tree_entry": "100644 blob bd79a136c7e5534f150b20e7098afb8632399e5b\tresearch/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py"
+      },
+      "research/progress/corpus-evidence-retrieval/profile/profile_cruden.py": {
+        "git_tree_entry": "100644 blob 58e30b0f0a48df6c61b49407b03d608d9bfe46ca\tresearch/progress/corpus-evidence-retrieval/profile/profile_cruden.py"
+      },
+      "research/progress/corpus-evidence-retrieval/challenge/BASELINE_CRUDEN.py": {
+        "git_tree_entry": "100644 blob 0687d85e6d378d9a12fa15a379eb2feaeb6563a4\tresearch/progress/corpus-evidence-retrieval/challenge/BASELINE_CRUDEN.py"
+      },
+      "research/progress/corpus-evidence-retrieval/native/r1-input/PACKET.json": {
+        "git_tree_entry": "100644 blob aaf789f2d19c420279726208f0716b35fb5275b0\tresearch/progress/corpus-evidence-retrieval/native/r1-input/PACKET.json",
+        "sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+      },
+      "research/progress/corpus-evidence-retrieval/native/r1-input/ORIGIN.json": {
+        "git_tree_entry": "100644 blob d9f1097847607d1bb17fc53253260b05dfca4595\tresearch/progress/corpus-evidence-retrieval/native/r1-input/ORIGIN.json",
+        "sha256": "d4855232e3ba992687749b088617f15eb464a670f21097a607033163e554a806"
+      },
+      "jobs/claim-kit/batch.py": {
+        "git_tree_entry": "100644 blob 33519837ee30a9ffe14bbf4d278e52353e2032b5\tjobs/claim-kit/batch.py"
+      },
+      "jobs/domesday-register/output/REGISTER.csv": {
+        "git_tree_entry": "100644 blob 8574d9f5a5d5c5e9389795dd43299774d621579b\tjobs/domesday-register/output/REGISTER.csv"
+      },
+      "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv": {
+        "git_tree_entry": "100644 blob 60bd3403531b12b2e598d88b99c277b1e60c6c70\tjobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+      },
+      "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl": {
+        "git_tree_entry": "100644 blob 8cf7f0b2eb85b0bf178c1cffcd93749df49f8fcf\tjobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl"
+      },
+      "jobs/app-executive-orders/output/DOCUMENTS.jsonl": {
+        "git_tree_entry": "100644 blob d4b24cf9caaa8400aebead78c86bbfa024a7a744\tjobs/app-executive-orders/output/DOCUMENTS.jsonl"
+      },
+      "research/progress/corpus-evidence-retrieval/challenge/fixture_challenge.py": {
+        "git_tree_entry": "100644 blob f6f9ef5f5c476986be75ebc6532bdbecc6fac62b\tresearch/progress/corpus-evidence-retrieval/challenge/fixture_challenge.py"
+      },
+      "research/progress/corpus-evidence-retrieval/challenge/staleness_challenge.py": {
+        "git_tree_entry": "100644 blob becd13583d325aa1e52d59241e137f38d3e427cc\tresearch/progress/corpus-evidence-retrieval/challenge/staleness_challenge.py"
+      },
+      "research/progress/corpus-evidence-retrieval/challenge/deep_challenge.py": {
+        "git_tree_entry": "100644 blob 3d73612d063c980fc67c6b3b214dfba474dfbcf3\tresearch/progress/corpus-evidence-retrieval/challenge/deep_challenge.py"
+      },
+      "research/progress/corpus-evidence-retrieval/challenge/final_contract_challenge.py": {
+        "git_tree_entry": "100644 blob 67bffa53a12fdb76ae4ed906ef95b25221d2de18\tresearch/progress/corpus-evidence-retrieval/challenge/final_contract_challenge.py"
+      }
+    },
+    "manifest_expected_sha256": "3f7406f03bb0b16ab48149538b4d34e03d3a424b70f5e313d000eb7abfba0867",
+    "retained_manifest_receipt": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/adoption-dryrun-d13766a/INPUTS.json",
+    "manifest_reference_checks": {
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/applied-v1/CLAIMS.proposed.jsonl": {
+        "expected": "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897",
+        "actual": "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/PACKET.json": {
+        "expected": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d",
+        "actual": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/reviews/BLIND_REVIEW.jsonl": {
+        "expected": "9d9eba9bdb7fd976412f3625cd0230f91d066d7eb9c189a1d72950275236860f",
+        "actual": "9d9eba9bdb7fd976412f3625cd0230f91d066d7eb9c189a1d72950275236860f"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/reviews/AFTER_REVEAL.jsonl": {
+        "expected": "1ff86aaeb65e2ab11ccff6c7f2787330af017c4cf726693e282aa4c3113a45f6",
+        "actual": "1ff86aaeb65e2ab11ccff6c7f2787330af017c4cf726693e282aa4c3113a45f6"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/SEED_RECEIPT_EO_6310.json": {
+        "expected": "c196e5b79ba73cd559a172766491757d5db2c32bd27646ce560393589fbee828",
+        "actual": "c196e5b79ba73cd559a172766491757d5db2c32bd27646ce560393589fbee828"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/CONTROL_ADJUDICATION_EO_6310.json": {
+        "expected": "3631ca288704adda208f6608a78235e1b36954c5f0b4964290b9aed4e8552c02",
+        "actual": "3631ca288704adda208f6608a78235e1b36954c5f0b4964290b9aed4e8552c02"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/PRODUCER_REPORT.md": {
+        "expected": "354821337e1514be466f009b6b5f34f84f909b9f97ef86ae316eeafb706056f1",
+        "actual": "354821337e1514be466f009b6b5f34f84f909b9f97ef86ae316eeafb706056f1"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/reviews/BLOCK_CHECK.jsonl": {
+        "expected": "7635ca55696f258a213dc2bed3cb0bb60d73006647e65db38efbbc136c917f4a",
+        "actual": "7635ca55696f258a213dc2bed3cb0bb60d73006647e65db38efbbc136c917f4a"
+      },
+      "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/reviews/CONTROL_ADJUDICATION_NOTE.json": {
+        "expected": "7c4fabc452dfba3aa0e07988c2b66d562e6de1f9f1cd944c3e7a3a87c307e37d",
+        "actual": "7c4fabc452dfba3aa0e07988c2b66d562e6de1f9f1cd944c3e7a3a87c307e37d"
+      }
+    },
+    "scope": "Read-only Git tree and bounded blob checks; no native execution or refresh of historical pins."
+  },
+  "conditions": [
+    "Require corrected exact-source native CI and inspect retained results/refusals. Earlier wrong-path runs remain historical failures, not acceptance.",
+    "All scientific/source/review holds and original report conditions remain unchanged. No full native execution or runtime retest performed for one-line path repair."
+  ],
+  "costs": {
+    "observed_elapsed_seconds": null,
+    "active_labor_seconds": null,
+    "tokens": null,
+    "cash": null,
+    "note": "Follow-up clock state unavailable after interruption; no estimate fabricated. Initial report-write attempt failed on unavailable elapsed variable before file write; corrected here."
+  },
+  "artifacts": {
+    "path-check.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/path-check.json",
+      "sha256": "1c2b629e07948eace3f0cab17a8f0f6cdf92c8c8deb4ad65d157a39bda8f0500"
+    },
+    "path_check.py": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/path_check.py",
+      "sha256": "b60de9e8e1dd9e1e6862dead1ed7a42aea70d2785a0cb8b772c554567dc8df04"
+    }
+  },
+  "blockers": [],
+  "owner_asks": []
+}

@@ -1,9 +1,9 @@
 ## 2026-10-30 UTC: final integration PR107 includes six reviewed engineering streams
 
-- **Done:** PR103/104/105/106 plus frozenPR108 Cruden andPR109 custody expansion combined with source ancestry and append-only findings. Owner authorization D-20261029-final-cross-stream-integration remains scoped. PR107 is sole final branch; Sol retains implementation ownership.
+- **Done:** PR103/104/105/106 plus frozenPR108 Cruden,PR109 custody expansion andPR110 qualified research combined with source ancestry and append-only findings. Owner authorization D-20261029-final-cross-stream-integration remains scoped. PR107 is sole final branch; Sol retains implementation ownership.
 - **Verified:** Priorcandidate07280 fullCI/native consumers and ordinary claim-kit build passed;93Valla packages materialized. Currentlocal487claim-kit (4skips),69checker/materializer pass; seven native lifecycle controls preserve expected outcomes. Fresh follow-on reviewer tests source/wiring; final exactCI pending.
 - **Running/next:** Publish final reviewed pin, watch exact CI IDs, merge only qualifying work, then verify currentmain checker→tracker and receipt fingerprints. Native rehearsal/Cruden comparison moved to existing CI due local source-context bound. Manifest/report: research/progress/final-integration-2026-10-29/.
-- **Pending:** Shared research announced but unfinished; newValla reasoning source unobserved. FivePDF restoration fits one bounded call; future deferred tails require explicit cursor resumption. EO1547 text mismatch remains.
+- **Pending:** PR110 research retained without canonical publication; combined native replay pending. NewValla reasoning source unobserved. FivePDF restoration fits one bounded call; future deferred tails require explicit cursor resumption. EO1547 text mismatch remains.
 - **Asks:** @Owner: none. No canonical scientific adoption or readiness arithmetic from isolated replays.
 
 ## 2026-10-29 ET: final cross-stream integration claimed; review in progress

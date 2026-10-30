@@ -1,0 +1,54 @@
+{
+  "schema": "producer-timing/v1",
+  "start_utc": "2026-10-30T00:22:38.750215+00:00",
+  "scope": "Prospective measured production after initial protocol/brief reads; initial reads not timed",
+  "model": "gpt-6-astra",
+  "family": "OpenAI",
+  "tokens": null,
+  "runs": [
+    {
+      "phase": "native_apply_v1",
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "apply",
+        "research/excavator/shared-research-production/new-v1/packet/supp",
+        "--write",
+        "research/excavator/shared-research-production/new-v1/packet/supp/applied-v1"
+      ],
+      "start_utc": "2026-10-30T00:27:01.653538+00:00",
+      "end_utc": "2026-10-30T00:27:03.969853+00:00",
+      "elapsed_seconds": 2.3165262380025524,
+      "returncode": 0,
+      "stdout": "{\n  \"schema\": \"eo-claim-kit-batch-apply/v1\",\n  \"packet_fingerprint\": \"7ed1c406bc3a2fa044d257b9a0d3c1e1d3c5cdccd72631a132b9443b54333898\",\n  \"apply_code_sha256\": \"17534b3bc415d1df0e85571f686a0da2998b754e84559a65d2ee8748ba01eb55\",\n  \"counts\": {\n    \"blocked\": 4,\n    \"assembled_proposal\": 2\n  },\n  \"total_packet_members\": 6,\n  \"wall_seconds\": 2.2391,\n  \"extraction_calls\": 0,\n  \"source_file_hashes_checked\": 13,\n  \"claims_published\": 0,\n  \"statuses_published\": 0,\n  \"owner_acceptance_required_for_replacements\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "phase": "native_batch_check_v1",
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "batch-check",
+        "research/excavator/shared-research-production/new-v1/packet/supp",
+        "research/excavator/shared-research-production/new-v1/packet/supp/applied-v1"
+      ],
+      "start_utc": "2026-10-30T00:27:19.460462+00:00",
+      "end_utc": "2026-10-30T00:27:34.463952+00:00",
+      "elapsed_seconds": 15.003708853997523,
+      "returncode": 0,
+      "stdout": "{\n  \"schema\": \"eo-claim-kit-batch-check/v1\",\n  \"packet_members\": 6,\n  \"claims_checked\": 2,\n  \"strict_claim_pass\": 2,\n  \"strict_claim_fail\": 0,\n  \"outcomes_including_blocked\": {\n    \"blocked\": 4,\n    \"assembled_proposal\": 2\n  },\n  \"actionable_failures\": [],\n  \"requires_actual_claim_checker\": false,\n  \"independent_human_certifications\": 0,\n  \"actual_claim_checker\": {\n    \"claims_checked\": 2,\n    \"claims_all_checks_passed\": 2,\n    \"claims_mechanical_pass\": 2,\n    \"claims_mechanical_unverified\": 0,\n    \"claims_mechanical_fail\": 0,\n    \"claims_gate_passed\": 2\n  },\n  \"actual_checker_full_audit\": \"actual-checker/\",\n  \"actual_checker_network_downloads_enabled\": false,\n  \"check_code_sha256\": \"17534b3bc415d1df0e85571f686a0da2998b754e84559a65d2ee8748ba01eb55\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "end_utc": "2026-10-30T00:28:37.538382+00:00",
+  "elapsed_seconds": 358.788167,
+  "exclusive_active_time_available": false,
+  "token_usage": null,
+  "cash_cost": null,
+  "notes": [
+    "Initial protocol/brief reads precede prospective timer and are not included; do not interpret measured interval as complete cost.",
+    "Measured wall interval includes research, tool waits, preparation and validation; not exclusive active labor.",
+    "Read-only rg command with nonexistent packet*.py returned exit 2; full SUMMARY/RUNNER_INPUTS concatenation was excessively large and truncated. Neither affected source decisions; bounded reads followed.",
+    "No native apply or batch-check failure occurred; no net savings inferred."
+  ]
+}
