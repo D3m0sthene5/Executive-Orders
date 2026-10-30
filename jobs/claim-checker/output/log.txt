@@ -39,13 +39,42 @@ test_committed_volume_behind_an_lfs_pointer_is_held (test_checker.SourceBookTest
 test_volume_bytes_on_this_machine_are_rehashed (test_checker.SourceBookTests.test_volume_bytes_on_this_machine_are_rehashed) ... ok
 test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.test_volume_missing_from_the_checkout_is_not_held) ... ok
 test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held) ... ok
+test_association_hash_normalization_matches_source_adapter (test_proquest_inputs.ProQuestInputsTests.test_association_hash_normalization_matches_source_adapter) ... ok
+test_automatic_effective_selection_extends_beyond_three (test_proquest_inputs.ProQuestInputsTests.test_automatic_effective_selection_extends_beyond_three) ... ok
+test_batch_deferral_and_resume_do_not_reverify_prefix (test_proquest_inputs.ProQuestInputsTests.test_batch_deferral_and_resume_do_not_reverify_prefix) ... ok
+test_budget_refused (test_proquest_inputs.ProQuestInputsTests.test_budget_refused) ... ok
+test_byte_budget_deferred_and_resumed (test_proquest_inputs.ProQuestInputsTests.test_byte_budget_deferred_and_resumed) ... ok
+test_changed_selection_refuses_resume_before_writes (test_proquest_inputs.ProQuestInputsTests.test_changed_selection_refuses_resume_before_writes) ... ok
+test_confirmations_are_not_source_references (test_proquest_inputs.ProQuestInputsTests.test_confirmations_are_not_source_references) ... ok
+test_conflicting_path_hash_association_refused (test_proquest_inputs.ProQuestInputsTests.test_conflicting_path_hash_association_refused) ... ok
+test_cross_identity_reference_refused (test_proquest_inputs.ProQuestInputsTests.test_cross_identity_reference_refused) ... ok
+test_evidence_grade_and_association_required (test_proquest_inputs.ProQuestInputsTests.test_evidence_grade_and_association_required) ... ok
+test_existing_wrong_bytes_never_overwritten (test_proquest_inputs.ProQuestInputsTests.test_existing_wrong_bytes_never_overwritten) ... ok
+test_explicit_selection_preserves_three_case_compatibility (test_proquest_inputs.ProQuestInputsTests.test_explicit_selection_preserves_three_case_compatibility) ... ok
+test_growing_corpus_does_not_exhaust_per_file_bound (test_proquest_inputs.ProQuestInputsTests.test_growing_corpus_does_not_exhaust_per_file_bound) ... ok
+test_invocation_bounds_cannot_be_raised (test_proquest_inputs.ProQuestInputsTests.test_invocation_bounds_cannot_be_raised) ... ok
+test_last_filename_and_physical_line_are_effective (test_proquest_inputs.ProQuestInputsTests.test_last_filename_and_physical_line_are_effective) ... ok
+test_lfs_pointer_never_counts_as_bytes (test_proquest_inputs.ProQuestInputsTests.test_lfs_pointer_never_counts_as_bytes) ... ok
+test_local_matching_hash_must_match_pinned_blob (test_proquest_inputs.ProQuestInputsTests.test_local_matching_hash_must_match_pinned_blob) ... ok
+test_malformed_association_identity_does_not_crash_job (test_proquest_inputs.ProQuestInputsTests.test_malformed_association_identity_does_not_crash_job) ... ok
+test_malformed_claim_file_fails_before_restoration (test_proquest_inputs.ProQuestInputsTests.test_malformed_claim_file_fails_before_restoration) ... ok
+test_missing_pinned_object_is_reported_without_writing (test_proquest_inputs.ProQuestInputsTests.test_missing_pinned_object_is_reported_without_writing) ... ok
+test_oversized_claim_file_fails_before_restoration (test_proquest_inputs.ProQuestInputsTests.test_oversized_claim_file_fails_before_restoration) ... ok
+test_path_escape_refused_before_git (test_proquest_inputs.ProQuestInputsTests.test_path_escape_refused_before_git) ... ok
+test_restores_exact_cited_blob (test_proquest_inputs.ProQuestInputsTests.test_restores_exact_cited_blob) ... ok
+test_shared_pdf_deduplicated_with_every_claim_reference (test_proquest_inputs.ProQuestInputsTests.test_shared_pdf_deduplicated_with_every_claim_reference) ... ok
+test_symlink_refused (test_proquest_inputs.ProQuestInputsTests.test_symlink_refused) ... ok
+test_tracked_lfs_pointer_is_not_materialized_as_pdf (test_proquest_inputs.ProQuestInputsTests.test_tracked_lfs_pointer_is_not_materialized_as_pdf) ... ok
+test_uncited_scan_not_materialized (test_proquest_inputs.ProQuestInputsTests.test_uncited_scan_not_materialized) ... ok
+test_untracked_path_refused (test_proquest_inputs.ProQuestInputsTests.test_untracked_path_refused) ... ok
+test_wrong_git_hash_refused (test_proquest_inputs.ProQuestInputsTests.test_wrong_git_hash_refused) ... ok
 
 ----------------------------------------------------------------------
-Ran 40 tests in 0.430s
+Ran 69 tests in 1.093s
 
 OK
   fetch https://example.gov/x.pdf: fetched_and_matches_claim
-Loading inputs from /tmp/claim-checker-test-s9r46vva ...
+Loading inputs from /tmp/claim-checker-test-fo16b8op ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -64,8 +93,8 @@ Checked 2 claim(s) from 2 file(s) (limited to 3 of 4 lines).
   Source identity: {'recorded_for_this_order': 3}
   Quotations: {'exact': 3, 'normalised': 1, 'other_copy_exact': 1, 'other_copy_normalised': 1}
   Fetch attempts: {'fetched_different_bytes': 1}
-  Outputs in /tmp/claim-checker-test-s9r46vva/out (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/claim-checker-test-cmwhjphn ...
+  Outputs in /tmp/claim-checker-test-fo16b8op/out (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/claim-checker-test-waizcmi_ ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -82,9 +111,9 @@ Checked 0 claim(s) from 0 file(s).
   Source references: none
   Source identity: none
   Quotations: none
-  Outputs in /tmp/claim-checker-test-cmwhjphn/out0 (0.0s). These are mechanical checks, not legal findings.
+  Outputs in /tmp/claim-checker-test-waizcmi_/out0 (0.0s). These are mechanical checks, not legal findings.
   note: JOB_LIMIT='x' is not a whole number; checking every claim
-Loading inputs from /tmp/claim-checker-test-4fch700s ...
+Loading inputs from /tmp/claim-checker-test-z2y3aqtl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -103,13 +132,15 @@ Checked 3 claim(s) from 2 file(s).
   Source identity: {'recorded_for_this_order': 6}
   Quotations: {'exact': 4, 'normalised': 2}
   Checker errors: 1 claim(s) could not be fully checked; see REPORT.md
-  Outputs in /tmp/claim-checker-test-4fch700s/out-bad (0.0s). These are mechanical checks, not legal findings.
+  Outputs in /tmp/claim-checker-test-z2y3aqtl/out-bad (0.0s). These are mechanical checks, not legal findings.
+{"proquest_materialization": [{"instrument_id": "EO:254", "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1", "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "operative_clauses[0].original_source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "original_representation", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "savings_residuals.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "whole_order_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}]}, {"instrument_id": "EO:1547", "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1", "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "operative_clauses[0].original_source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "original_representation", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "savings_residuals.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "whole_order_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}]}, {"instrument_id": "EO:2171", "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1", "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "operative_clauses[0].original_source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "original_representation", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "savings_residuals.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "whole_order_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}]}, {"instrument_id": "EO:4354", "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1", "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "operative_clauses[0].original_source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "original_representation", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "savings_residuals.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "whole_order_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}]}, {"instrument_id": "EO:4782", "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2", "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "operative_clauses[0].original_source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "original_representation", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "savings_residuals.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "whole_order_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}]}], "errors": []}
 Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   universe: 14972 orders; provisional statuses: 3403
-  held source copies indexed: 93474 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 265, jobs/clark-discovery/output/SOURCES.jsonl 11, jobs/clause-drafts/output/SOURCES.jsonl 9761, jobs/cotton-capture-custody/output/SOURCES.jsonl 526, jobs/current-law/output/SOURCES.jsonl 110, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/fr-pages/output/SOURCES.jsonl 30, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 7, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/shepard-citations/output/SOURCES.jsonl 24, jobs/source-ladder/output/SOURCES.jsonl 632, jobs/wikisource-texts/output/SOURCES.jsonl 1639, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
+  held source copies indexed: 94333 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 265, jobs/cassiodorus/output/SOURCES.jsonl 10, jobs/clark-discovery/output/SOURCES.jsonl 11, jobs/clause-drafts/output/SOURCES.jsonl 9761, jobs/cotton-capture-custody/output/SOURCES.jsonl 526, jobs/current-law/output/SOURCES.jsonl 110, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/fr-pages/output/SOURCES.jsonl 30, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 856, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/shepard-citations/output/SOURCES.jsonl 24, jobs/source-ladder/output/SOURCES.jsonl 632, jobs/wikisource-texts/output/SOURCES.jsonl 1639, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
   jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)
   jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)
   jobs/astra-source-retention/output/SOURCES.jsonl: 265 source records (265 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values
+  jobs/cassiodorus/output/SOURCES.jsonl: 10 source records (10 with saved bytes on this machine)
   jobs/clark-discovery/output/SOURCES.jsonl: 11 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 17 records without a usable sha256, 0 unusable text_path/cache_path values
   jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)
   jobs/cotton-capture-custody/output/SOURCES.jsonl: 526 source records (526 with saved bytes on this machine)
@@ -120,7 +151,7 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)
   jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)
   jobs/later-events/output/SOURCES.jsonl: 17528 source records (0 with saved bytes on this machine)
-  jobs/lewis-originals/output/SOURCES.jsonl: 7 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 11 records without a usable sha256, 0 unusable text_path/cache_path values
+  jobs/lewis-originals/output/SOURCES.jsonl: 856 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 157 records without a usable sha256, 0 unusable text_path/cache_path values
   jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)
   jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)
   jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)
@@ -135,9 +166,9 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
   pypdf: 6.20.1
 
-Checked 510 claim(s) from 67 file(s).
-  All checks passed: 410; mechanical fail: 3; gate passed: 420
-  Source references: {'custody_record_only': 29, 'gpo_published_hash_match': 4208, 'held_bytes_in_release_or_repo': 82, 'held_bytes_verified': 5525}
-  Source identity: {'recorded_for_this_order': 4152}
-  Quotations: {'exact': 12627, 'normalised': 11, 'not_found': 7}
-  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (864.4s). These are mechanical checks, not legal findings.
+Checked 613 claim(s) from 76 file(s).
+  All checks passed: 516; mechanical fail: 3; gate passed: 523
+  Source references: {'custody_record_only': 7, 'gpo_published_hash_match': 4408, 'held_bytes_in_release_or_repo': 85, 'held_bytes_verified': 6430}
+  Source identity: {'recorded_for_this_order': 4486}
+  Quotations: {'exact': 13944, 'normalised': 11, 'not_found': 7}
+  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (1338.7s). These are mechanical checks, not legal findings.
