@@ -40,8 +40,8 @@ try:
     dest = ROOT / "research/integration-native-rehearsal"
     # A frozen historical packet may be stale after integration. Retain the
     # native refusal rather than repinning it or borrowing old reviewer approval.
-    view = run("retained-view", ["-I", "jobs/claim-kit/kit.py", "view", packet], allowed=(0, 2))
-    complete = run("retained-complete", ["-I", "jobs/claim-kit/kit.py", "complete", manifest,
+    view = run("retained-view", ["jobs/claim-kit/kit.py", "view", packet], allowed=(0, 2))
+    complete = run("retained-complete", ["jobs/claim-kit/kit.py", "complete", manifest,
                                         "--write", dest], allowed=(0, 1, 2))
     for record in (view, complete):
         log = (OUT / (record["label"] + ".log")).read_text()
@@ -63,7 +63,7 @@ try:
             len(tally["eligible"]) == 5 and complete["publishable_sha256"] ==
             "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897")
     shared_dest = ROOT / "research/integration-shared-rehearsal"
-    shared = run("shared-complete", ["-I", "jobs/claim-kit/kit.py", "complete",
+    shared = run("shared-complete", ["jobs/claim-kit/kit.py", "complete",
         "research/excavator/shared-research-production/completion-v2/COMPLETION.json",
         "--write", shared_dest], allowed=(0, 1, 2))
     log = (OUT / "shared-complete.log").read_text()
