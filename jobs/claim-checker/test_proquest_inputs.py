@@ -93,6 +93,36 @@ class ProQuestInputsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             p.materialize(self.repo, self.out, ("EO:1", "EO:2", "EO:3", "EO:4"))
 
+    def test_growing_corpus_does_not_exhaust_per_file_bound(self):
+        claims = self.repo / "research/readiness/claims"
+        # The target is in the last file, after unrelated metadata has already
+        # exceeded the individual-file limit. No corpus-wide budget is valid.
+        for name in ("a.jsonl", "b.jsonl"):
+            (claims / name).write_bytes(json.dumps({
+                "instrument_id": "EO:999", "padding": "x" * 650,
+                "source": {"sha256": "0" * 64},
+            }).encode() + b"\r\n\n")
+        with mock.patch.object(p, "MAX_INPUT_BYTES", 1024):
+            r = self.run_it()
+        self.assertFalse(r["errors"])
+        self.assertEqual(r["receipts"][0]["state"], "restored_exact_blob")
+        for path in claims.glob("*.jsonl"):
+            self.assertEqual(r["input_sha256"][str(path.relative_to(self.repo))],
+                             hashlib.sha256(path.read_bytes()).hexdigest())
+
+    def test_oversized_claim_file_fails_before_restoration(self):
+        cp = self.repo / "research/readiness/claims/z.jsonl"
+        cp.write_text(json.dumps({"instrument_id": "EO:254", "padding": "x" * 1024}))
+        with mock.patch.object(p, "MAX_INPUT_BYTES", 1024):
+            r = self.run_it()
+        self.assertIn("oversized metadata", r["errors"][0])
+        self.assertFalse((self.repo / self.rel).exists())
+
+    def test_malformed_claim_file_fails_before_restoration(self):
+        (self.repo / "research/readiness/claims/z.jsonl").write_text("{broken\n")
+        self.assertTrue(self.run_it()["errors"])
+        self.assertFalse((self.repo / self.rel).exists())
+
 
 if __name__ == "__main__":
     unittest.main()

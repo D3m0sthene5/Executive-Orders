@@ -25,18 +25,28 @@ def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
-def rows(path):
+def rows(path, *, input_hashes=None, repo=None):
     if not path.is_file():
         return
     if path.stat().st_size > MAX_INPUT_BYTES:
         raise ValueError("oversized metadata: " + str(path))
-    with path.open(encoding="utf-8") as stream:
-        for line in stream:
+    # Bound each metadata file, not the growing claims corpus. Stream both the
+    # parse and provenance hash; unrelated claims must not consume a shared
+    # allowance that prevents the three cited inputs from being considered.
+    digest, total = hashlib.sha256(), 0
+    with path.open("rb") as stream:
+        while line := stream.readline(MAX_INPUT_BYTES + 1):
+            total += len(line)
+            if total > MAX_INPUT_BYTES:
+                raise ValueError("oversized metadata: " + str(path))
+            digest.update(line)
             if line.strip():
-                row = json.loads(line)
+                row = json.loads(line.decode("utf-8"))
                 if not isinstance(row, dict):
                     raise ValueError("metadata row is not an object")
                 yield row
+    if input_hashes is not None:
+        input_hashes[str(path.relative_to(repo))] = digest.hexdigest()
 
 
 def hashes(value):
@@ -116,13 +126,8 @@ def materialize(repo, out_dir, ids=DEFAULT_IDS):
     except (OSError, subprocess.SubprocessError):
         commit = None
     try:
-        total = 0
         for path in sorted((repo / "research/readiness/claims").glob("*.jsonl")):
-            total += path.stat().st_size
-            if total > MAX_INPUT_BYTES:
-                raise ValueError("claim input byte bound exceeded")
-            pins[str(path.relative_to(repo))] = sha(path.read_bytes())
-            for row in rows(path):
+            for row in rows(path, input_hashes=pins, repo=repo):
                 if row.get("instrument_id") in cited:
                     cited[row["instrument_id"]].update(hashes(row))
         source = repo / FRAGMENTS

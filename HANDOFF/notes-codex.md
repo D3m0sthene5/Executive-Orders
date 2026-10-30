@@ -1,3 +1,12 @@
+## 2026-10-29 ET: three ProQuest custody holds reproduced and corrected
+
+- **Done:** On isolated branch `codex/proquest-custody-verification-20261029`, traced EO254/2171/4354 through inventory, production packet pins, exact Git blobs and sparse runner. Merged PR94 still aborts on 34,221,195 total claim bytes against its 32 MB aggregate cap; retained production log and local reproduction agree. Streamed per-file metadata checking fixes that failure while preserving PDF bounds, all exact hashes, grades and gates.
+- **Verified:** 53 checker/materializer + 36 tracker tests pass. Native before/after replay changes 15 source refs from custody_record_only to held_bytes_verified; all 18 quotations match. All three tracker rows become ready/complete_claim, remain transcription_dependent, and retain original replacement and quotation recheck obligations. Independent engineering review by configured gpt-6-luna completed. Token/cash telemetry unavailable.
+- **Evidence:** `research/progress/proquest-custody-2026-10-29/REPORT.md`, SOURCE_TRACE.json, replay/RESULT.json and INDEPENDENT_REVIEW.json. Kean `F-20261029-codex-proquest-custody`.
+- **Next:** Review the separate correction PR; fresh canonical checker/tracker publication must precede any dashboard total change. Main and canonical research outputs unchanged by this session; no merge performed.
+- **Asks:** @Owner: none.
+- **Do not:** count this bounded replay as a complete corpus refresh, promote replica scans to originals, or infer human certification. Existing PR103/104 work remains separate.
+
 ## 2026-10-29 UTC: integration merged and bounded pipeline verified
 
 - **Merged:** All twelve original open PRs (54,83,90–99), integration PR100, reviewer-card/CI repair PR101 and concurrent documentation audit PR102. Main reached ac14022d; GitHub verified zero open PRs after PR102. Original source and bot-result ancestry retained; archived research stays qualified.
