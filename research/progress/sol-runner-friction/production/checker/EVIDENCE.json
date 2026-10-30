@@ -1,0 +1,53 @@
+{
+  "schema": "sol-runner-friction-checker-closure-evidence/v1",
+  "worker_model": "gpt-6-luna",
+  "time_markers": {
+    "start_utc": null,
+    "start_note": "The delegated worker did not capture a start clock at task entry; no retrospective start time or total duration is inferred.",
+    "finished_utc": "2026-10-29T21:01:30Z",
+    "exclusive_labor_seconds": null,
+    "tokens": null,
+    "cash": null,
+    "unavailable": "Worker token and billing telemetry were not exposed."
+  },
+  "repository_state": {
+    "branch": "sol/runner-friction-next",
+    "base_pin": "bc65c165a2d1",
+    "index_branch_sparse_state_touched": false,
+    "preexisting_or_concurrent_out_of_scope_diffs_observed": [
+      "jobs/hathi-gpo-orders/data/TARGETS.json (pre-existing checkout-created CRLF change)",
+      "jobs/readiness-tracker/inputs.txt (concurrent/out-of-scope change)",
+      "jobs/readiness-tracker/needs.txt (concurrent/out-of-scope change)"
+    ]
+  },
+  "evidence": [
+    {
+      "kind": "mocked_dynamic_provider_fixture",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 research/progress/sol-runner-friction/production/checker/runtime_fixture.py",
+      "result": "PASS",
+      "checks": 5,
+      "cases": [
+        "dynamic SOURCES.jsonl text_path to nested cross-job output file",
+        "FRAGMENTS*.jsonl discovery and nested text path",
+        "nested releases path selected by arbitrary PROVENANCE.json record",
+        "MIRROR_DOCUMENTS.jsonl archive capture discovery",
+        "repo-root-relative Norton factual raw_path/text_path validation"
+      ],
+      "scope": "temporary synthetic repository only"
+    },
+    {
+      "kind": "existing_unit_suites",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_checker test_proquest_inputs",
+      "working_directory": "jobs/claim-checker",
+      "result": "PASS",
+      "tests": 50,
+      "reported_runtime_seconds": 0.502
+    },
+    {
+      "kind": "static_closure_review",
+      "result": "PASS_WITH_BOUNDARY",
+      "evidence": "READ_CLOSURE.json and REPORT.md enumerate imports, runtime providers, read paths, patterns, and remaining arbitrary repo-root path risk.",
+      "production_corpus_build": false
+    }
+  ]
+}

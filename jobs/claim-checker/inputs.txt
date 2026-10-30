@@ -1,5 +1,9 @@
 
 # Provisional working-text policy and its actual source declarations / held texts.
+jobs/claim-checker/job.py
+jobs/claim-checker/checker.py
+jobs/claim-checker/sources.py
+jobs/claim-checker/proquest_inputs.py
 jobs/claim-kit/working_text.py
 jobs/*/output/FRAGMENTS*.jsonl
 jobs/*/data/**/FRAGMENTS*.jsonl
@@ -7,4 +11,17 @@ jobs/*/output/texts/**
 jobs/*/data/**
 jobs/claim-kit/factual_events.py
 jobs/norton/model.py
-research/readiness/factual/*
+jobs/readiness-tracker/tracker.py
+research/stage19/code/claim_gate.py
+# Optional --fetch implementation closure (network work remains opt-in).
+jobs/source-ladder/fetch_ladder.py
+jobs/source-ladder/embedded_cites.py
+jobs/source-ladder/report_dates.py
+jobs/source-ladder/request_contract.py
+# Providers discovered by checker/sources.py and the imported policy modules.
+# These files contain dynamic path references, so retain the provider trees and
+# every output path to which those references may resolve.
+jobs/*/output/**
+jobs/*/data/**
+research/**
+releases/**

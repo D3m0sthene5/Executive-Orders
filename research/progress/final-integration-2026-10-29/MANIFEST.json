@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "owner": "Codex final integration coordinator",
+  "branch": "codex/final-integration-20261029",
+  "base": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "state": "follow_on_review_and_native_CI_pending",
+  "authorization": "D-20261029-final-cross-stream-integration",
+  "streams": [
+    {
+      "stream": "runner",
+      "owner": "Sol",
+      "pr": 103,
+      "source_head": "1cdef3d0c87c57a3f8bd68a6d772fb2458b16563",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
+      "blockers": [
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ]
+    },
+    {
+      "stream": "packet/completion/Valla runtime",
+      "owner": "Opus",
+      "pr": 104,
+      "source_head": "b1890d7a0cc5329cec387b804a4e88962262b5d0",
+      "current_head": "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c",
+      "generated_output_heads": [
+        "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c",
+        "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c"
+      ],
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
+      "blockers": [
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "pin_discrepancy": "PR comment expanded SHA is wrong; actual Git object and CI pin used.",
+      "prior_source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ]
+    },
+    {
+      "stream": "ProQuest custody",
+      "owner": "Codex custody session",
+      "pr": 105,
+      "source_head": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
+      "blockers": [
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "generated_output_heads": [
+        "e87c9ad658a6708705f83a6dd43fd238f472926d"
+      ]
+    },
+    {
+      "stream": "lifecycle assurance",
+      "owner": "lifecycle-assurance session",
+      "pr": 106,
+      "source_head": "f750886a008c09010abc0ab4ae15e4eded6fa7c2",
+      "current_head": "0252e3ca5449322310483308434a9b00fa5fb027",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
+      "blockers": [
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ]
+    },
+    {
+      "stream": "ProQuest measured expansion",
+      "owner": "Codex custody session",
+      "state": "integrated_review_pending",
+      "branch": "codex/proquest-custody-census-20261029",
+      "pr": 109,
+      "source_head": "4d2448360a42dca9c3556d128ad1721d0a4eeb0c",
+      "dependencies": [
+        105
+      ],
+      "review_evidence": [
+        "research/progress/proquest-custody-2026-10-29/follow-on/ENGINEERING_REVIEW.json"
+      ],
+      "required_tests": [
+        "69 checker/materializer",
+        "bounded cursor/budget/malformed controls",
+        "five-source native replay",
+        "ordinary job consumption"
+      ],
+      "blockers": [
+        "combined native validation",
+        "main refresh"
+      ]
+    },
+    {
+      "stream": "Valla production reasoning dependency",
+      "state": "unobserved_new_assignment",
+      "note": "No new source branch or PR found across130branches; shared research names Valla ownership but does not establish implementation completion."
+    },
+    {
+      "stream": "Cruden retrieval optimization",
+      "owner": "Sol retrieval session",
+      "pr": 108,
+      "source_head": "f3d9fad88e7d0288967b2674d3ef64fba1db3010",
+      "state": "integrated_review_pending",
+      "dependencies": [],
+      "review_evidence": [
+        "research/progress/corpus-evidence-retrieval/challenge/FINAL_REVIEW.json"
+      ],
+      "required_tests": [
+        "11 focused",
+        "61 challenge checks",
+        "identical-input legacy/cold/warm",
+        "changed-corpus invalidation"
+      ],
+      "blockers": [
+        "combined native validation"
+      ]
+    },
+    {
+      "stream": "shared substantive research continuation",
+      "state": "qualified_research_integrated_no_scientific_adoption",
+      "note": "Two frozen eligible, eight blocked, four owner routes; no canonical claims/status changes.",
+      "branch": "codex/shared-research-production",
+      "source_head": "bbc66a83f4f2343d57f5fb4b840200c7a08f8058",
+      "pr": 110,
+      "current_head": "4b4f0c0d892dd644ef413912b9d085dc8ae02da7",
+      "generated_output_heads": [
+        "8d5259aadd56703981e3ae204994cae92d9cb882"
+      ],
+      "review_evidence": [
+        "review/research-handoff-check.json"
+      ],
+      "required_tests": [
+        "native combined completion dry-run",
+        "exact manifest/review hashes",
+        "preserved historical owner routes"
+      ],
+      "blockers": [
+        "combined runtime outcome pending",
+        "canonical publication not authorized by engineering review"
+      ]
+    }
+  ],
+  "production": {
+    "state": "pending",
+    "main_refresh_failure_run": 40951108674,
+    "latest_verified_generation": {
+      "ready": 395,
+      "run_id": 40829686426,
+      "commit_run": "adcf881ef7eb897e6bec8a8bd7717f4eb3629039",
+      "finished_utc": "2026-10-29T07:09:13Z",
+      "fresh_for_candidate": false
+    }
+  },
+  "watcher": {
+    "active": false,
+    "note": "Watcher cell147 interrupted/disappeared; no backgroundwatch asserted. Replacement exact IDs will be posted after corrected sourcepublication.",
+    "prior_candidate": "4ef71ff4cc494112602ff3c77d8cbf10700e501f",
+    "prior_runs": [
+      40982822620,
+      40982822629,
+      40982817717
+    ]
+  },
+  "integration_fixes": [
+    "nested Hathi byte-preservation attributes and regression",
+    "ordinary PR/main publication audit workflow",
+    "canonical publication sequence preservation",
+    "explicit claim-kit cross-job code dependencies",
+    "native lifecycle/custody/Valla combined CI"
+  ],
+  "pr": 107,
+  "candidate_source_local": "8bd150ec3066973e4b12c03c421c87e9d2bf6035",
+  "platform": {
+    "git_shell_push": "no credentials; using GitHub connector exact trees/parents",
+    "manual_workflow_controls": "connector lacks dispatch/cancel; connected local browser unavailable; cloud browser signed out. Automatic runs remain available."
+  },
+  "generated_output_heads": [
+    "a27af5b1181da240bbcc2db31ddcb7de8441518f"
+  ],
+  "validation": {
+    "claimkit": {
+      "tests": 487,
+      "passed": true,
+      "skips": 4,
+      "seconds": 13.28
+    },
+    "checker_materializer": {
+      "tests": 69,
+      "passed": true
+    },
+    "local_lifecycle": "validation/local-lifecycle-results.json",
+    "prior_remote": "validation/candidate-07280-ci.json",
+    "local_rehearsal_block": "validation/local-rehearsal-block.json"
+  }
+}

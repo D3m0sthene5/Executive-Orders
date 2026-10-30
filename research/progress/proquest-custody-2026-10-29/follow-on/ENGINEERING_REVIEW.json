@@ -1,0 +1,235 @@
+{
+  "schema": "eo-proquest-follow-on-engineering-review/v1",
+  "status": "upheld_bounded_engineering_change_and_current_corpus_replay_with_disclosed_runner_resume_limit",
+  "reviewer": {
+    "agent": "/root/followon_review",
+    "role": "independent engineering reviewer; separate context; read-only except this report",
+    "model": "Codex, GPT-6 family; exact inherited model deployment identifier not exposed to reviewer",
+    "same_family_review": true,
+    "token_usage": null,
+    "cost": null,
+    "timing": {
+      "started_at": null,
+      "updated_at": "2026-10-30T00:39:36.048246+00:00",
+      "elapsed_seconds": null,
+      "limitation": "No initial clock marker or billing/token telemetry available; no elapsed labor estimate invented.",
+      "completed_at": "2026-10-30T00:34:34.140344+00:00"
+    }
+  },
+  "repository_revision": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
+  "reviewed_sha256": {
+    "jobs/claim-checker/proquest_inputs.py": "df104d1faea2c4a029c24c64a6ef3fbc47d6bbe55ed26441c6f9eff4fbb3c660",
+    "jobs/claim-checker/test_proquest_inputs.py": "56bab420443547019f0e6bc8655f0aae5163c184b42110c4b25fdc92c41e02ea",
+    "jobs/claim-checker/checker.py": "3efe68a525f07a959b8267c17884999deb85aac7ae6333dfadfd4d2922a81133",
+    "jobs/claim-checker/sources.py": "444faa08777b2e83ec3ce7ba5d56d25390e4c9c42381ac722d5d7b9c1063a319",
+    "jobs/readiness-tracker/tracker.py": "e2157f17982ff6a427cf8a4ab66f913866e416f0f8ef72252f81b7db75809596",
+    "research/stage19/code/claim_gate.py": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+    "research/progress/proquest-custody-2026-10-29/follow-on/CLAIM_CENSUS.json": "a948c96f83e2bbada723482e15cb5ca057c74573c5cbd06a5acd1a1a4aefd39a",
+    "research/progress/proquest-custody-2026-10-29/follow-on/SOURCE_ASSOCIATIONS.json": "13524bac289bf0566f8ec24562f8713f2f6b876f4f522b83e49509f9f0ee68d0",
+    "research/progress/proquest-custody-2026-10-29/follow-on/EFFECTIVE_REFERENCES.json": "b451c4b0bdbdfc33e6713003ec7649cd9c48f1c31d5942c4bda535dbf3c0242e",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay.py": "89c2e30bcdf9712cd6c48ef84ddce49c053583306baf16394c6395adc4834196",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/RESULT.json": "2e4c453ac8d9f0f9e64079d18bbb2e51228bd397f0081c02e2572f45e8f37d04",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/baseline-checker/PER_CLAIM.json": "8fb475a7de7e71b2ad6a9037377b68c784b7bcedeaaac35e08d592e8d3c7a872",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/baseline-checker/CLAIM_CHECKS.csv": "7854be97d852a70e52681d8ed26a60d46f94b73ef257171f035dca8834f7b2b9",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/corrected-checker/PER_CLAIM.json": "1f3442cb8c8c89c4d3ca8adfe6ef7eae87044b08c32437b44ebec5484b32c99a",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/corrected-checker/CLAIM_CHECKS.csv": "3c970e61ae6c3bf1ac88d8b3395fe1e3ff4f3749f454b05c3e2bb10d4713950d",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/baseline-tracker.json": "55bc0d799da3ffa258358545dec1e36a4db8743b4866cb90c459ba163744db4a",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/corrected-tracker.json": "ef989d59180f2888b649ac2d9d78824595e67928e1e1545908f1d64e755157d3",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/batch-1/PROQUEST_MATERIALIZATION.json": "98f38b668307c58212c7276ab6f5a12773310a05f039684da91cc64cdf635949",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/batch-2/PROQUEST_MATERIALIZATION.json": "852b963cd5c0f026b7bc1291354a63fcdf8f69a413b4786cf49d137794514ed4",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay/batch-3/PROQUEST_MATERIALIZATION.json": "832c99ff4134a7f553b3e6f7da1a100d879da1a80b0492fb744fe6916cc4f323",
+    "research/progress/proquest-custody-2026-10-29/follow-on/native-replay.log": "d92ef23ec191e0a8fe082f6251e56b4d659149545eff1a5c7e7e15173220b0a8",
+    "research/progress/proquest-custody-2026-10-29/follow-on/native-replay-initial-input-drift.log": "ce2f11023765fd1ef97927da321be95497fa0c0c160e0fd26a0511b86c659b70",
+    "research/progress/proquest-custody-2026-10-29/follow-on/native-replay-initial-source-drift.log": "1f160976d2ebc5257734d1eb9052b10b337d072507c40adbcb83d949865768ae",
+    "research/progress/proquest-custody-2026-10-29/follow-on/source_census.py": "0876c0e40d6c141877e2e17fd4f97913cb0a6c9dbb760abc4233953e8eb74a44"
+  },
+  "findings": [
+    {
+      "id": "ER-1",
+      "severity": "medium",
+      "state": "fixed_and_retested",
+      "issue": "Malformed Pinakes instrument_id array caused unhandled TypeError, blocking materialization and ordinary checker job.",
+      "reproduction": "Set fixture fragment instrument_id=[]; previous helper raised TypeError: unhashable type: list.",
+      "resolution": "Root added string-identity guard matching source adapter; final 29 focused tests pass."
+    },
+    {
+      "id": "ER-2",
+      "severity": "integration_limit",
+      "state": "explicitly_disclosed_and_delegated",
+      "issue": "Ordinary job.py invokes helper without resume; repeated jobs with more than eight artifacts or invocation bytes can revisit prefix and defer same tail indefinitely.",
+      "current_impact": "None for five artifacts totaling 271942 bytes. API resume works in tests.",
+      "resolution": "Root reports separate Sol handoff via PR103 comment6511840662; no automatic tail completion claim. Operator/helper cursor use must remain explicit."
+    },
+    {
+      "id": "ER-3",
+      "severity": "low",
+      "state": "fixed_and_retested",
+      "issue": "Raw Pinakes SHA compared to normalized claim SHA; uppercase valid metadata SHA recognized by native source adapter is missed by helper.",
+      "current_impact": "No current-corpus effect; eligible current metadata is lowercase.",
+      "reproduction": "Uppercase fixture data.sha256 with unchanged claim SHA yields no_matching_cited_replica.",
+      "recommended_action": "Normalize and validate fragment digest using native sha_hex semantics, or explicitly document strict lowercase requirement.",
+      "resolution": "Root normalizes and validates fragment SHA before association matching/path hash conflict checks; whitespace/uppercase regression passes."
+    },
+    {
+      "id": "ER-4",
+      "severity": "replay_validity",
+      "state": "failed_attempts_retained_clean_exclusive_rerun_verified",
+      "issue": "Second visible baseline already held EO4782 bytes, so it could not support incremental benefit; independently flagged to root. Earlier run also rejected input drift while tests were edited.",
+      "resolution": "Both failed attempts retained. Final exclusive replay asserts both additional PDFs absent before and after baseline; final baseline shows ten custody-only references and corrected shows ten held references. All 699 pinned inputs independently match current files.",
+      "causality_limit": "Cause of earlier concurrent source change remains unidentified; no claim it was fixed by a code change."
+    }
+  ],
+  "checks": {
+    "focused_test_command": "python3 -m unittest discover -s jobs/claim-checker -p test_proquest_inputs.py -v",
+    "focused_tests_passed": 29,
+    "focused_test_runtime_seconds": 0.794,
+    "effective_claims_compared": 612,
+    "effective_claim_keys_match_native_checker": true,
+    "canonical_claim_hashes_match_native_gate": true,
+    "effective_reference_tuples_compared": 10928,
+    "reference_tuples_missing_or_extra": 0,
+    "census_artifact_partition_sum": 802,
+    "census_reference_partition_sum": 10928,
+    "selected_artifacts": 5,
+    "selected_source_references": 25,
+    "selected_instrument_ids": [
+      "EO:254",
+      "EO:1547",
+      "EO:2171",
+      "EO:4354",
+      "EO:4782"
+    ],
+    "additional_eligible_instrument_ids": [
+      "EO:1547",
+      "EO:4782"
+    ],
+    "additional_custody_reference_holds": 10,
+    "independently_rehashed_cached_git_objects": 5,
+    "all_objects_match_sha256_and_pdf_prefix": true,
+    "total_selected_pdf_bytes": 271942
+  },
+  "assessed_controls": [
+    "Last filename/physical-line valid claim selection and canonical hashes match current native checker/tracker corpus.",
+    "Only native recognized source/source-list fields enter selection; confirmation hashes do not.",
+    "Pinakes exact producer, kind, grade and acceptable_as_original=False required.",
+    "Selected claim identity, reference identity and allowed path checked; conflicting associations refused.",
+    "Selected bytes must match both source SHA256 and exact pinned Git blob, including already-present files.",
+    "PDF count, per-PDF and per-invocation byte bounds are enforced for normal immutable inputs; deferrals retain cursor.",
+    "Shared identical PDF within explicit same-path associations read once and every selected claim reference retained.",
+    "Resume binds commit, all claim/association input hashes and selected artifacts; prefix states expressly not reverified.",
+    "Traversal, symlink, missing path/object, wrong hash/format, LFS pointer and local overwrite refusals covered by code/tests."
+  ],
+  "qualifications": [
+    "No legal review, original authentication, grade promotion, human certification or source website acquisition performed.",
+    "Census eligibility is five retained artifacts, not five additional beneficiaries; only two additional current ProQuest custody holds beyond original three.",
+    "Generic malformed claim handling is intentionally stricter than native checker: helper aborts selection before restoration rather than skipping malformed records. Current census has zero malformed records.",
+    "Tracker BOM behavior differs from checker outside current corpus; BOM test validates helper/checker parsing and physical line tracking, not universal tracker parser equivalence.",
+    "EO254 inventory duplicate has same Git blob; current Pinakes association chooses one path, so selected artifact is deduplicated.",
+    "Pins describe worktree versions; parent owns register/handoff integration and commit."
+  ],
+  "native_replay": {
+    "status": "verified_from_final_native_receipts_and_699_input_pins",
+    "result_sha256": "2e4c453ac8d9f0f9e64079d18bbb2e51228bd397f0081c02e2572f45e8f37d04",
+    "inputs_unchanged": true,
+    "pinned_inputs_rehashed": 699,
+    "input_hash_mismatches": 0,
+    "helper_pin_matches_reviewed_code": true,
+    "source_held_before": {
+      "held_bytes_verified": 15,
+      "custody_record_only": 10
+    },
+    "source_held_after": {
+      "held_bytes_verified": 25,
+      "custody_record_only": 0
+    },
+    "quotation_passes_before": 30,
+    "quotation_passes_after": 30,
+    "per_instrument": [
+      {
+        "instrument_id": "EO:254",
+        "ready_before": "yes",
+        "ready_after": "yes"
+      },
+      {
+        "instrument_id": "EO:1547",
+        "ready_before": "no",
+        "ready_after": "no"
+      },
+      {
+        "instrument_id": "EO:2171",
+        "ready_before": "yes",
+        "ready_after": "yes"
+      },
+      {
+        "instrument_id": "EO:4354",
+        "ready_before": "yes",
+        "ready_after": "yes"
+      },
+      {
+        "instrument_id": "EO:4782",
+        "ready_before": "no",
+        "ready_after": "yes"
+      }
+    ],
+    "remaining_hold": {
+      "instrument_id": "EO:1547",
+      "status": "invalid_working_text",
+      "detail": "working_text_fragment_identity_or_grade_mismatch on all five source references; source custody repair does not waive this policy."
+    },
+    "batch_attempts": [
+      2,
+      2,
+      1
+    ],
+    "batch_bytes_read": [
+      112209,
+      108738,
+      50995
+    ],
+    "resume_same_selection_sha256": true,
+    "final_next_cursor": null,
+    "additional_pdf_bytes": 84609,
+    "boundaries": "Five-case isolated native checker/tracker overlay only. EO4782 is one additional ready row in this replay; EO1547 remains held. No canonical tracker publication or global readiness delta claimed."
+  },
+  "source_census_final_amendment": {
+    "reviewed_at": "2026-10-30T00:39:36.048246+00:00",
+    "scope": "Updated source_census.py and SOURCE_ASSOCIATIONS.json only; no native replay rerun; helper/tests/replay review unchanged.",
+    "outcome": "upheld_qualified_metadata_classification_and_counts",
+    "previous_associations_sha256": "e99f984a7a7a8394c820e5267fef3363d65927b795e5f9a00a8090541dda6854",
+    "current_associations_sha256": "13524bac289bf0566f8ec24562f8713f2f6b876f4f522b83e49509f9f0ee68d0",
+    "source_census_sha256": "0876c0e40d6c141877e2e17fd4f97913cb0a6c9dbb760abc4233953e8eb74a44",
+    "checks": [
+      "Non-ProQuest classifier return is outside copy/path loops and handles no-copy metadata; four small metadata-only classification probes pass.",
+      "Repository-file routes are now explicitly repository_copy_reported_unhashed; a pinned/visible path is not labeled an independently rehashed local file.",
+      "Artifact-row recount equals 802 unique hashes; reference-row weights sum to 10928 and equal all category totals.",
+      "Five ProQuest PDFs are local_exact_available only in current post-restoration state; earlier five-absent retained-Git baseline remains separately labeled.",
+      "Receipt basis explicitly pins e87c9ad658a6708705f83a6dd43fd238f472926d.",
+      "Only original five ProQuest identities appear as eligible candidates; additional IDs remain EO1547 and EO4782. No additional non-ProQuest beneficiary or readiness claim is introduced."
+    ],
+    "counts_by_category": {
+      "local_exact_available": {
+        "artifacts": 5,
+        "references": 25,
+        "unique_effective_claims": 5
+      },
+      "repository_copy_reported_unhashed": {
+        "artifacts": 26,
+        "references": 622,
+        "unique_effective_claims": 35
+      },
+      "lfs_or_release_pointer": {
+        "artifacts": 3,
+        "references": 243,
+        "unique_effective_claims": 91
+      },
+      "metadata_unresolved": {
+        "artifacts": 768,
+        "references": 10038,
+        "unique_effective_claims": 596
+      }
+    },
+    "count_qualification": "Per-category distinct claim counts 5/35/91/596 overlap; they must not be summed as distinct beneficiaries. Artifact/reference totals were independently recounted; distinct-claim aggregation was reviewed in code, not rerun against every reference during this small amendment.",
+    "native_outcome_unchanged": "Two additional custody repairs; one additional ready row (EO4782) in isolated replay, with EO1547 still held.",
+    "historical_facts_qualification": "Historical baseline and two lazy-fetch receipts embedded by source_census.py describe this retained experiment; they are not newly measured by every future script rerun."
+  }
+}

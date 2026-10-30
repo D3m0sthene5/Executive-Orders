@@ -26,6 +26,14 @@ SHA-256 and disk writes, versus one worker and then a warm offline cache. It doe
 not predict production network latency. `test_fetch_pool.py` uses injected byte
 responses, and the road test runner disables sockets.
 
+Each persistent cache hit still reads and SHA-256 verifies the complete body.
+`cache_stats()` reports request attempts and successful 200/206 payload bytes, persistent body
+read count, read bytes, checksum bytes, and miss causes so future production measurements can
+establish whether repeated cache validation merits an optimization. It changes
+no cache freshness or reuse behavior; mutable URLs retain their existing
+no-TTL semantics. Downloaded bytes exclude robots, redirect and error-response
+bodies; they are not total network transfer.
+
 Optional matrix sharding was deferred: the existing runner orders dependent jobs
 and reconciles one commit; changing that commit model needs its own design and
 stale-output protections. No fr-originals source file is modified.

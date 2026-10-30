@@ -1,0 +1,11 @@
+{"cases": [
+ {"name": "disjoint_t5_t6", "runs": [
+   {"tree": "$SCRATCH/replay/nra-pre", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/conc-disjoint", "target": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl", "submitted": null},
+   {"tree": "$SCRATCH/replay/nra-pre", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-disjoint", "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl", "submitted": null}]},
+ {"name": "same_id_t6_twice", "runs": [
+   {"tree": "$SCRATCH/replay/nra-pre", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-same-a", "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl", "submitted": null},
+   {"tree": "$SCRATCH/replay/nra-pre", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-same-b", "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl", "submitted": null}]},
+ {"name": "same_id_separate_clones", "cleanup": false, "runs": [
+   {"tree": "$SCRATCH/replay/nra-pre", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-clone-a", "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl", "submitted": null},
+   {"tree": "$SCRATCH/replay/nra-clone", "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json", "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-clone-b", "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl", "submitted": null}]}
+]}

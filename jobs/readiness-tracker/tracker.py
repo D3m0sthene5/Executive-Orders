@@ -20,6 +20,7 @@ import glob
 import hashlib
 import json
 import os
+import re
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "claim-kit"))
@@ -37,6 +38,9 @@ STEPS = [
     ("opus_media", "Opus evidence images matched to this order (Opus cases only)"),
 ]
 STEP_NAMES = [s for s, _ in STEPS]
+# research/readiness/README.md permits exhaustion for research steps only.
+# An adopted status is a prerequisite, never a failed search that can be waived.
+EXHAUSTIBLE_STEPS = frozenset(STEP_NAMES) - {"provisional_status"}
 
 # Which step each claim_gate error belongs to.
 GATE_ERROR_STEP = [
@@ -193,12 +197,23 @@ def load_exhausted(root):
     rows, problems = read_jsonl([path]) if os.path.exists(path) else ([], [])
     out = collections.defaultdict(dict)
     for r in rows:
+        if not isinstance(r, dict):
+            problems.append("EXHAUSTED.jsonl: record must be an object")
+            continue
         i, step = r.get("instrument_id"), r.get("step")
         searched = r.get("searched")
-        if step not in STEP_NAMES or not isinstance(i, str):
+        if not isinstance(step, str) or step not in EXHAUSTIBLE_STEPS or not isinstance(i, str):
             problems.append(f"EXHAUSTED.jsonl: bad instrument_id/step in {json.dumps(r)[:120]}")
-        elif not isinstance(searched, list) or not searched or not r.get("recorded_by") or not r.get("recorded_on"):
-            problems.append(f"EXHAUSTED.jsonl: {i} {step} needs a non-empty 'searched' list, 'recorded_by' and 'recorded_on'")
+        elif (not isinstance(searched, list) or not searched
+              or any(not isinstance(s, str) or not s.strip() for s in searched)
+              or not r.get("recorded_by") or not r.get("recorded_on")):
+            problems.append(f"EXHAUSTED.jsonl: {i} {step} needs non-blank search routes, 'recorded_by' and 'recorded_on'")
+        elif (re.search(r"\bWEAK\s*:", str(r.get("note", "")), re.IGNORECASE)
+              or any(r.get(k) in ("retry_later", "no_route") for k in ("result", "outcome"))):
+            # The documented ladder exclusions apply even when its proposed row
+            # has been copied here. Route thoroughness still needs examination;
+            # a string alone is not a proof that the search was sufficient.
+            problems.append(f"EXHAUSTED.jsonl: {i} {step} has explicitly ineligible search evidence")
         else:
             out[i][step] = r
     return out, problems
@@ -549,8 +564,14 @@ def build(root, *, planning_closures=None):
                             blockers["opus_media"].append("OPUS_MEDIA_NOT_MATCHED_TO_ORDER")
         # Exhausted steps count as machine-finished.
         exhausted_steps = []
+        gaps = claim.get("unresolved_material_gaps") if claim else None
+        exhaustion_disclosed = (isinstance(gaps, list) and bool(gaps)
+                                and all(isinstance(g, str) and g.strip() for g in gaps))
         for step, rec in exhausted.get(i, {}).items():
             if step in steps and not steps[step]:
+                if not exhaustion_disclosed:
+                    blockers[step].append("EXHAUSTION_GAP_NOT_DISCLOSED_IN_CLAIM")
+                    continue
                 steps[step] = True
                 blockers.pop(step, None)
                 exhausted_steps.append(step)
@@ -567,7 +588,8 @@ def build(root, *, planning_closures=None):
         claim_level += policy_errors
         complete_claim = claim is not None and not gate_errors and not policy_errors
         # An exhausted step may leave its gap listed in the claim; nothing else may fail.
-        exhausted_ok = bool(exhausted_steps) and set(claim_level) <= {"unresolved_material_gaps"}
+        exhausted_ok = (exhaustion_disclosed and bool(exhausted_steps)
+                        and set(claim_level) <= {"unresolved_material_gaps"})
         ready = all(steps.values()) and (complete_claim or exhausted_ok) and not policy_errors
         if working_errors:
             blockers['original_text'].append('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED')
@@ -588,7 +610,7 @@ def build(root, *, planning_closures=None):
             "steps_applicable": len(steps),
             "steps_done": sum(steps.values()),
             "ready_for_human_review": "yes" if ready else "no",
-            "ready_tier": ("complete_claim" if complete_claim else "machine_exhausted") if ready else "",
+            "ready_tier": ("machine_exhausted" if exhausted_steps else "complete_claim") if ready else "",
             "exhausted_steps": "|".join(exhausted_steps),
             "claim_present": "yes" if claim else "no",
             "text_evidence_tier": "transcription_dependent" if dependent_texts else ("original_supported" if steps['original_text'] else "missing"),

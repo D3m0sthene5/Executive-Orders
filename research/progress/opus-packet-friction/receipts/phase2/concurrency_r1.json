@@ -1,0 +1,89 @@
+{
+ "plan": {
+  "cases": [
+   {
+    "name": "same_id_full_code",
+    "cleanup": false,
+    "runs": [
+     {
+      "tree": "$SCRATCH/replay/rehearsal",
+      "manifest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/conc-same-a",
+      "target": "research/readiness/claims/claude-2026-10-29-rehearsal-r1.jsonl",
+      "submitted": null
+     },
+     {
+      "tree": "$SCRATCH/replay/rehearsal",
+      "manifest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/conc-same-b",
+      "target": "research/readiness/claims/claude-2026-10-29-rehearsal-r1-dup.jsonl",
+      "submitted": null
+     }
+    ]
+   }
+  ]
+ },
+ "results": [
+  {
+   "case": "same_id_full_code",
+   "wall_seconds": 62.4,
+   "runs": [
+    {
+     "tree": "rehearsal",
+     "manifest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-rehearsal-r1.jsonl",
+     "returncode": 0,
+     "seconds": 61.13,
+     "read_bytes": 5251821051,
+     "read_calls": 177043,
+     "max_rss_kb": 343436,
+     "counts": {
+      "blocked": 2,
+      "eligible": 5
+     },
+     "eligible": [
+      "EO:6242B",
+      "EO:6309",
+      "EO:6310",
+      "EO:6311",
+      "EO:6314"
+     ],
+     "claims_published": 5,
+     "published_file_exists": true,
+     "published_sha256": "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    },
+    {
+     "tree": "rehearsal",
+     "manifest": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-rehearsal-r1-dup.jsonl",
+     "returncode": 1,
+     "seconds": 62.25,
+     "read_bytes": 4326261836,
+     "read_calls": 158619,
+     "max_rss_kb": 343092,
+     "counts": {
+      "blocked": 2,
+      "exception": 5
+     },
+     "eligible": [],
+     "claims_published": 0,
+     "published_file_exists": false,
+     "published_sha256": null,
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [
+      {
+       "error": "packet dependencies changed during completion: research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp",
+       "scope": "batch"
+      }
+     ],
+     "stderr_tail": [
+      "IO_RUN {\"seconds\": 62.25, \"read_bytes\": 4326261836, \"read_calls\": 158619, \"max_rss_kb\": 343092}"
+     ]
+    }
+   ]
+  }
+ ]
+}

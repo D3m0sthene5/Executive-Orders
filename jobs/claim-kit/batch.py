@@ -18,6 +18,7 @@ import time
 
 from assemble import blank_sheet,assemble,check_claim,canonical_sha
 from build import filename
+import fragment_cache
 from lifecycle_obligations import obligations
 
 SCHEMA='eo-claim-kit-work-package/v1'
@@ -254,17 +255,21 @@ def load_packet(folder,repo,check_sources=True):
                     for eid,record in d.get('evidence',{}).items()) for d in dossiers.values())):
             import source_supplement
             source_supplement.verify(repo, folder)
+        frozen={}
         for iid,entry in packet.get('undecided_evidence',{}).items():
-            import status_overlay
             path=safe(repo,entry['path'])
             if file_sha(path)!=entry['file_sha256']:raise ValueError('changed frozen undecided evidence: '+iid)
-            evidence=json.loads(path.read_bytes())
-            status_overlay.validate_evidence(repo,evidence)
+            frozen[iid]=json.loads(path.read_bytes())
+        if frozen:
+            # One shared load of authority tables, compiler code and history for every member.
+            import status_overlay
+            status_overlay.validate_evidence_many(repo,frozen)
+        for iid,evidence in frozen.items():
             if evidence['base_dossier']!=dossiers.get(iid):raise ValueError('undecided evidence dossier mismatch: '+iid)
         for rel,sha in packet['held_text_file_pins'].items():
             if file_sha(safe(repo,rel))!=sha:raise ValueError('changed held source: '+rel)
         if packet.get('valla_context') is not None:
-            if valla_context(repo,list(dossiers))!=packet['valla_context']:
+            if valla_context(repo,list(dossiers),own_folders(repo,folder,dossiers,packet.get('agent')))!=packet['valla_context']:
                 raise ValueError('changed Valla review context; prepare a new version')
         from prior_research import collect
         if packet.get('prior_research') is None:
@@ -274,12 +279,29 @@ def load_packet(folder,repo,check_sources=True):
     return packet,dossiers
 
 
-def valla_context(repo,ids):
+def own_folders(repo,folder,dossiers,agent):
+    """The packet's own work: its folder and a source-supplement parent packet of the same agent.
+
+    Derived only from the packet location, its dossiers and the pinned parent packet, so prepare
+    and load agree and committing (tracking) the batch's own sheets cannot change its Valla
+    context. Another agent's parent packet stays visible as ordinary lineage."""
+    folders={Path(folder).resolve()}
+    for d in dossiers.values():
+        parent=(d.get('source_supplement') or {}).get('parent_packet') or {}
+        if not isinstance(parent.get('path'),str):continue
+        path=safe(Path(repo),parent['path'])
+        try:same=json.loads(path.read_bytes()).get('agent')==agent
+        except (OSError,ValueError,AttributeError):same=False
+        if same:folders.add(path.parent)
+    return sorted(folders)
+
+
+def valla_context(repo,ids,exclude=()):
     path=repo/'jobs/valla/valla.py'
     if not path.exists():raise ValueError('Valla context compiler missing')
     spec=importlib.util.spec_from_file_location('claim_kit_valla',path)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    return module.attach(repo,ids)
+    return module.attach(repo,ids,exclude=exclude)
 
 
 def render(packet,dossiers):
@@ -402,14 +424,21 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     for iid in ids:
         if iid in locks and locks[iid].get('agent')!=agent:raise ValueError('reservation belongs to '+str(locks[iid].get('agent'))+': '+iid)
         if iid in owned and not replacement_proposal:raise ValueError('route existing claim to owner or explicitly prepare replacement proposal: '+iid)
-        if not dossier_paths and iid not in index:
-            import status_overlay
-            stats={};evidence=status_overlay.prepare_evidence(repo,out,iid,stats)
+    # Undecided members are frozen from one verified load of the compiled shards and
+    # authority tables; each evidence is identical to a single-order freeze.
+    pending=[iid for iid in ids if not dossier_paths and iid not in index];evidences={}
+    if pending:
+        import status_overlay
+        freeze_stats={iid:{} for iid in pending}
+        evidences=status_overlay.prepare_evidence_many(repo,out,pending,freeze_stats)
+    for iid in ids:
+        if iid in evidences:
+            stats=freeze_stats[iid];evidence=evidences[iid]
             lock=locks.get(iid,{})
             if (lock.get('history_sha256') and lock['history_sha256']!=evidence['history_sha256']
                     or lock.get('compiled_summary_sha256') and lock['compiled_summary_sha256']!=evidence['compiled']['summary_sha256']):
                 raise ValueError('changed undecided reservation inputs; release and reselect: '+iid)
-            d=evidence['base_dossier'];frozen[iid]=evidence;freeze_stats[iid]=stats
+            d=evidence['base_dossier'];frozen[iid]=evidence
             p=dest/'undecided'/filename(iid)/'EVIDENCE.json'
             raw=(json.dumps(evidence,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
             undecided[iid]={'path':str(p.relative_to(repo)),'file_sha256':digest(raw),
@@ -435,7 +464,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     prepared_context=None
     valla_path=repo/'jobs/valla/valla.py'
     if valla_path.exists():
-        prepared_context=valla_context(repo,ids)
+        prepared_context=valla_context(repo,ids,own_folders(repo,dest,dossiers,agent))
     packet={'schema':SCHEMA,'legal_cutoff':'2026-10-14','agent':agent,'input_pins':pins,
         'codec_code_sha256':file_sha(Path(__file__)),'assembler_code_sha256':file_sha(Path(__file__).with_name('assemble.py')),
         'preflight_code_sha256':file_sha(Path(__file__).with_name('evidence_preflight.py')),
@@ -510,6 +539,19 @@ def apply(repo,folder,write):
         if c['instrument_id'] not in dossiers:raise ValueError('clause row outside packet')
         by[c['instrument_id']].append(c)
     write.mkdir(parents=True);report=[];claims=[]
+    with fragment_cache.policy_index(repo):
+        _apply_rows(repo,write,packet,dossiers,order_rows,by,shared,report,claims)
+    with (write/'CLAIMS.proposed.jsonl').open('w',encoding='utf-8',newline='\n') as f:
+        for c in claims:f.write(canon(c)+'\n')
+    summary={'schema':'eo-claim-kit-batch-apply/v1','packet_fingerprint':packet['fingerprint'],
+        'apply_code_sha256':file_sha(Path(__file__)),
+        'counts':dict(Counter(r['outcome'] for r in report)),'total_packet_members':len(dossiers),
+        'wall_seconds':round(time.monotonic()-started,4),'extraction_calls':0,'source_file_hashes_checked':len(packet['held_text_file_pins']),
+        'claims_published':0,'statuses_published':0,'owner_acceptance_required_for_replacements':True}
+    dump(write/'AUDIT.json',report);dump(write/'SUMMARY.json',summary);return summary
+
+
+def _apply_rows(repo,write,packet,dossiers,order_rows,by,shared,report,claims):
     for r in order_rows:
         iid=r['instrument_id'];errors=[];claim=None;sheet=None
         try:
@@ -553,24 +595,17 @@ def apply(repo,folder,write):
         outcome=('rejected' if errors else 'awaiting_status_review' if dossiers[iid].get('whole_order_status') is None else 'assembled_proposal')
         report.append({'instrument_id':iid,'outcome':outcome,
             'errors':errors,'ownership':packet['ownership'][iid],'claim_sha256':canonical_sha(claim) if claim and not errors else None})
-    with (write/'CLAIMS.proposed.jsonl').open('w',encoding='utf-8',newline='\n') as f:
-        for c in claims:f.write(canon(c)+'\n')
-    summary={'schema':'eo-claim-kit-batch-apply/v1','packet_fingerprint':packet['fingerprint'],
-        'apply_code_sha256':file_sha(Path(__file__)),
-        'counts':dict(Counter(r['outcome'] for r in report)),'total_packet_members':len(dossiers),
-        'wall_seconds':round(time.monotonic()-started,4),'extraction_calls':0,'source_file_hashes_checked':len(packet['held_text_file_pins']),
-        'claims_published':0,'statuses_published':0,'owner_acceptance_required_for_replacements':True}
-    dump(write/'AUDIT.json',report);dump(write/'SUMMARY.json',summary);return summary
 
 
 def check(repo,folder,applied,actual=True):
     repo=Path(repo).resolve();folder=Path(folder).resolve();applied=Path(applied).resolve();packet,dossiers=load_packet(folder,repo)
     audit=json.loads((applied/'AUDIT.json').read_bytes());claim_rows=[];errors=[]
-    for n,l in enumerate((applied/'CLAIMS.proposed.jsonl').read_text('utf-8').splitlines(),1):
-        if not l.strip():continue
-        c=json.loads(l);iid=c['instrument_id'];es=check_claim(c,repo,dossiers.get(iid))
-        claim_rows.append({'instrument_id':iid,'line':n,'errors':es,'claim_sha256':canonical_sha(c)})
-        errors.extend(es)
+    with fragment_cache.policy_index(repo):
+        for n,l in enumerate((applied/'CLAIMS.proposed.jsonl').read_text('utf-8').splitlines(),1):
+            if not l.strip():continue
+            c=json.loads(l);iid=c['instrument_id'];es=check_claim(c,repo,dossiers.get(iid))
+            claim_rows.append({'instrument_id':iid,'line':n,'errors':es,'claim_sha256':canonical_sha(c)})
+            errors.extend(es)
     result={'schema':'eo-claim-kit-batch-check/v1','packet_members':len(dossiers),'claims_checked':len(claim_rows),
         'strict_claim_pass':sum(not r['errors'] for r in claim_rows),'strict_claim_fail':sum(bool(r['errors']) for r in claim_rows),
         'outcomes_including_blocked':dict(Counter(r['outcome'] for r in audit)),

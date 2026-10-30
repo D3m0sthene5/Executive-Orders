@@ -585,5 +585,102 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
 
 
+
+class ExhaustionAssuranceTests(unittest.TestCase):
+    setUp = TrackerTest.setUp
+    tearDown = TrackerTest.tearDown
+    run_tracker = TrackerTest.run_tracker
+    write = TrackerTest.write
+
+    def record(self, step="savings_residuals", **changes):
+        return {"instrument_id": "EO:2", "step": step,
+                "searched": ["govinfo FR/Statutes: EO 2; APP; NARA and presidential-library catalog routes: no usable item"],
+                "recorded_by": "independent-searcher", "recorded_on": "2026-10-17", **changes}
+
+    def partial(self, gaps=None):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        del claim["savings_residuals"]
+        claim["unresolved_material_gaps"] = (["Savings sources unavailable after documented route search"]
+                                               if gaps is None else gaps)
+        return claim
+
+    def test_adopted_status_cannot_be_exhausted(self):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["instrument_id"] = "EO:4"
+        claim["unresolved_material_gaps"] = ["Status remains unadopted"]
+        orders, summary = self.run_tracker([claim], [self.record("provisional_status", instrument_id="EO:4")])
+        row = orders["EO:4"]
+        self.assertEqual(row["ready_for_human_review"], "no")
+        self.assertEqual(row["step_provisional_status"], "open")
+        self.assertIn("NO_PROVISIONAL_STATUS", row["blockers"])
+        self.assertTrue(any("bad instrument_id/step" in p for p in summary["input_problems"]))
+
+    def test_no_claim_cannot_disclose_exhaustion(self):
+        records = [self.record(s) for s in ("clause_inventory", "ending_or_current_basis", "savings_residuals", "counterevidence")]
+        orders, _ = self.run_tracker(exhausted=records, checked=None)
+        self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+        self.assertIn("EXHAUSTION_GAP_NOT_DISCLOSED_IN_CLAIM", orders["EO:2"]["blockers"])
+
+    def test_missing_or_malformed_gap_disclosure_cannot_earn_credit(self):
+        for gaps in ([], "missing savings", [None], [" "], {"savings": "missing"}):
+            with self.subTest(gaps=gaps):
+                orders, _ = self.run_tracker([self.partial(gaps)], [self.record()])
+                self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+                self.assertEqual(orders["EO:2"]["step_savings_residuals"], "open")
+
+    def test_documented_disclosed_exhaustion_remains_ready(self):
+        orders, _ = self.run_tracker([self.partial()], [self.record()])
+        self.assertEqual(orders["EO:2"]["ready_for_human_review"], "yes")
+        self.assertEqual(orders["EO:2"]["ready_tier"], "machine_exhausted")
+
+    def test_explicitly_ineligible_ladder_evidence_stays_open(self):
+        for fields in ({"note": "WEAK: only mirrors were tried"},
+                       {"note": "prefix weak : no official route"},
+                       {"result": "retry_later"}, {"outcome": "no_route"}):
+            with self.subTest(fields=fields):
+                orders, summary = self.run_tracker([self.partial()], [self.record(**fields)])
+                self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+                self.assertTrue(any("ineligible search evidence" in p for p in summary["input_problems"]))
+
+    def test_prior_retry_discussion_is_not_an_ineligible_marker(self):
+        orders, _ = self.run_tracker([self.partial()], [self.record(note="Earlier retry_later was followed by completed definitive route searches.")])
+        self.assertEqual(orders["EO:2"]["ready_tier"], "machine_exhausted")
+
+    def test_non_routes_are_rejected_without_crashing(self):
+        for searched in ([None], [""], [" "], [{"route": "govinfo"}]):
+            with self.subTest(searched=searched):
+                orders, _ = self.run_tracker([self.partial()], [self.record(searched=searched)])
+                self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+        orders, summary = self.run_tracker([self.partial()], [None])
+        self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+        self.assertTrue(any("must be an object" in p for p in summary["input_problems"]))
+        for step in ([], {}):
+            with self.subTest(step=step):
+                orders, summary = self.run_tracker([self.partial()], [self.record(step=step)])
+                self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+                self.assertTrue(any("bad instrument_id/step" in p for p in summary["input_problems"]))
+
+    def test_unused_exception_does_not_downgrade_complete_claim(self):
+        orders, _ = self.run_tracker([COMPLETE_NO_CLAIM], [self.record()])
+        self.assertEqual(orders["EO:2"]["ready_tier"], "complete_claim")
+        self.assertEqual(orders["EO:2"]["exhausted_steps"], "")
+
+    def test_all_exhaustion_subsets_preserve_status_and_claim_prerequisites(self):
+        # Bounded exhaustive transition check, not a proof of arbitrary inputs
+        # or historical truth. Include the prohibited status step in mutations.
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["instrument_id"] = "EO:4"
+        claim["unresolved_material_gaps"] = ["Unadopted status; isolated engineering fixture"]
+        for mask in range(1 << len(tracker.STEP_NAMES)):
+            steps = [s for bit, s in enumerate(tracker.STEP_NAMES) if mask & (1 << bit)]
+            with self.subTest(mask=mask):
+                records = [self.record(s, instrument_id="EO:4") for s in steps]
+                orders, _ = self.run_tracker([claim], records)
+                self.assertEqual(orders["EO:4"]["ready_for_human_review"], "no")
+                self.assertEqual(orders["EO:4"]["step_provisional_status"], "open")
+                orders, _ = self.run_tracker(exhausted=[self.record(s) for s in steps], checked=None)
+                self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+
+
 if __name__ == "__main__":
     unittest.main()

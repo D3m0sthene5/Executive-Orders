@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "phase": "final corrected integrated engineering review",
+  "result": "approved_for_reviewable_unmerged_pr_with_stated_limits",
+  "model": "gpt-6.1-sol",
+  "baseline_commit": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "head_during_review": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "review_inputs_file": "research/progress/sol-runner-friction/REVIEW_INPUTS.json",
+  "reviewed_sha256": {
+    ".github/scripts/materialize_job_inputs.py": "2c89d58ffc6b27f127c384a2021f6724180e808456c5409da1923f17463b2df4",
+    ".github/scripts/pick_jobs.py": "6bd4227e62aa8efe8f18d2a20c9538dae6fe8c6c4f771bb16f566e95caa8f251",
+    ".github/scripts/result_freshness.py": "cd4ba5220fe744371d07873be52c888c7ad7288687b52711a61a5516c4ed2b2c",
+    ".github/scripts/test_materialize_job_inputs.py": "466db9cd758ce07e7e2235f55585ca9e1b2bd7879f8d1c1a200aabf53a57ef80",
+    ".github/scripts/test_result_freshness.py": "6f20d48b0395ef4017990bb756afdfa98eb56f12f7576b0abbd863ca88f081bd",
+    ".github/scripts/test_roads.py": "8a3f01141d8a153f400011bbf7c7d31fde9023b7f2a3a8b72713b51ade097115",
+    ".github/workflows/run-jobs.yml": "975c4743c15d6a13566c0d41323f7c293a19240d4f68cae611e51bffcbd33f02",
+    "jobs/_lib/README.md": "a2f5d5cb07934da310da79b128287d0eb11ab3d7bec307a167cef0d402caf4f6",
+    "jobs/_lib/fetch_pool.py": "92d848845a245cc97e90b4c264e62894b70f06a2bbe991fe49bd4fcc23ef37a2",
+    "jobs/_lib/test_fetch_pool.py": "f693785974ae69442e35b116c3b78cc129583b001ba305b970cefb02cc98813b"
+  },
+  "pins_matched_before_final_checks": true,
+  "pins_matched_after_final_checks": true,
+  "initial_review_preserved": "research/progress/sol-runner-friction/review/INITIAL_REVIEW.json",
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "status": "resolved",
+      "resolution": "Workflow bootstrap retains all jobs code/data outside direct output generations. Helper restricts selective output materialization to exact own nonoutput + complete shared-library signatures for example-hello and early-ranger-transcriptions. All other or changed versions restore historical jobs availability."
+    },
+    {
+      "id": "R2",
+      "status": "resolved",
+      "resolution": "An unaudited job in any selected union adds /jobs/** and includes all tracked jobs files in accounted path/byte totals. The dynamic claim-checker/claim-drafts reads therefore retain baseline availability. Mixed-selection tests cover omitted SOURCES and MIRROR_DOCUMENTS paths. The isolated fixture actually invokes sparse-add fallback and verifies the unrelated 2 MiB output becomes available."
+    },
+    {
+      "id": "R3",
+      "status": "resolved",
+      "resolution": "Shared-library README now calls counters successful 200/206 payload bytes and explicitly excludes robots, redirect and error bodies; no total network-transfer claim is justified."
+    }
+  ],
+  "blocking_findings": [],
+  "independent_checks": [
+    {
+      "check": "Initial and final pins",
+      "result": "All 10 initial pins matched; all 10 final pins matched before and after final review/checks."
+    },
+    {
+      "check": "Final materializer targeted suite",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_materialize_job_inputs.py",
+      "result": "6 tests passed in 1.220 s. Earlier corrected-version pass: 6 tests in 1.331 s."
+    },
+    {
+      "check": "Anticipated final committed narrow signatures",
+      "result": "Read-only Git tree metadata plus git hash-object of final changed shared-lib blobs reproduces both embedded signature constants exactly. Current old HEAD safely falls back. Root must verify the actual commit tree before publication."
+    },
+    {
+      "check": "Scoped tree parity",
+      "result": "Scoped/full HEAD-tree fnmatch parity passed for leading wildcard, cross-directory *, partial basename/classes, and ./ prefix patterns."
+    },
+    {
+      "check": "Public contracts",
+      "result": "result_freshness main() and scope() ASTs unchanged from baseline; manifest schema remains 1. Existing generation and output conflict logic retained."
+    },
+    {
+      "check": "Cache adversarial probes",
+      "result": "Corrupted body triggers re-fetch; valid hash with wrong URL rejects offline; resumed 3-byte suffix returns and caches complete 6-byte body, readable offline. Nonempty robots/redirect/error probe confirms requests=4 and bytes_downloaded=4 successful payload bytes."
+    },
+    {
+      "check": "Protected implementation boundaries",
+      "result": "No working diff under jobs/claim-kit or jobs/valla. Reviewer did not access PR101 control keys or blinded packets."
+    },
+    {
+      "check": "Transfer side effects",
+      "result": "New helper obtains tree object IDs with ls-tree, adds sparse paths once, then counts existing disk bytes with stat/readlink. It does not query missing blob sizes before materialization. History and branch-local cache restore remain unchanged."
+    }
+  ],
+  "retained_fixture_evidence": {
+    "source": "research/progress/sol-runner-friction/checkout/fixture-receipt.json",
+    "fixture_commit": "702b7e6a33b87535229159ca644a17295296376f",
+    "verification": "Reviewer read source/receipt; root confirmed actual final helper execution, sparse-add fallback and failed-generation rollback. Reviewer did not duplicate fixture sparse/index operations.",
+    "narrow_unrelated_output_absent": true,
+    "prior_output_and_status_preserved": {
+      "attempt_candidate_retained": true,
+      "attempt_status": "failed",
+      "prior_output_preserved": true,
+      "prior_status_result": "succeeded"
+    },
+    "actual_fallback": {
+      "accounted_materialized_bytes": 2310532,
+      "historical_dynamic_output_preserved": true,
+      "jobs": {
+        "distractor": "unaudited_job"
+      }
+    },
+    "local_baseline_seconds": 0.00990023300073517,
+    "local_narrow_seconds": 0.06176866700116079,
+    "interpretation": "The final synthetic narrow case is slower locally (~61.8 ms versus ~9.9 ms), while it avoids the unrelated 2 MiB checkout body. The earlier synthetic run also had slower narrow timing (94 ms versus 33 ms). No remote transfer or production speedup is established."
+  },
+  "limitations": [
+    "Root owns the running Road suite; reviewer did not duplicate it.",
+    "No full live workflow or remote transfer benchmark; all cache probes injected deterministic local bodies.",
+    "No legal, human, different-family or combined-Opus compatibility certification.",
+    "PR101 control artifacts were not read; preservation inferred only from changed-path boundary and must be pinned by root.",
+    "A reviewer existence-check command used git cat-file -e HEAD:path before switching to ls-tree-only checks. On a partial clone cat-file can lazily fetch a missing object; no transfer quantity was instrumented, so review-time commands are not claimed network-free.",
+    "Independent baseline branch availability and final unmerged PR state remain root integration responsibilities.",
+    "Existing declarations remain incomplete. Selective output narrowing is approved only for the two audited exact signatures; the fallback intentionally gives other jobs no output-checkout byte saving.",
+    "Bootstrap retains all job-local data and historical attempts, so this is not an all-code-only or minimal-byte checkout.",
+    "Materializer receipt byte/path counts cover the accounted input/compatibility closure; they are neither total bootstrap bytes nor network wire bytes.",
+    "Root reports the full Road suite passed before the final compatibility correction. This reviewer independently ran the final focused materializer suite, not the full Road suite.",
+    "Actual commit signature verification, final unmerged PR state and independent baseline branch usability remain root integration checks. Combined compatibility with separate Opus changes is deferred."
+  ],
+  "cost": {
+    "tokens": null,
+    "cash": null,
+    "first_explicit_utc_marker": "2026-10-29T19:45:18Z",
+    "marker_is_late": true,
+    "work_began_before_marker": true,
+    "end_utc": "2026-10-29T19:52:40.174955+00:00",
+    "observed_lower_bound_occupancy_seconds": 442.174955,
+    "occupancy_includes_waits_and_is_not_exclusive_labor": true
+  },
+  "certification_boundary": "Engineering review only; no legal, scientific-output, human or cross-family certification. Approval binds only exact reviewed code hashes and stated scope."
+}

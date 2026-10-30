@@ -15,7 +15,9 @@ sys.exit(not unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful())
 """
     subprocess.run([sys.executable,'-c',code,str(folder)],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_result_freshness.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_materialize_job_inputs.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_pick_jobs.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_rattle_watch.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_input_attributes.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})

@@ -1,0 +1,75 @@
+{
+  "schema": "eo-proquest-independent-review/1",
+  "reviewed_at_utc": "2026-10-29T23:57:41Z",
+  "reviewer": {
+    "model": "gpt-6-luna",
+    "elapsed_seconds": 55,
+    "tokens": "unavailable"
+  },
+  "scope": "Engineering verification of bounded replay artifacts, qualification preservation, and UTF-8 metadata parsing; no legal adjudication.",
+  "replay_commit": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "validator": "research/progress/proquest-custody-2026-10-29/validate.py",
+  "observations": {
+    "validator_scope": "Three exact claim identities; native checker and tracker gates; overlays only those three receipts onto the previously published checker receipt; no global count publication.",
+    "claims_unchanged": true,
+    "baseline": {
+      "claims_checked": 3,
+      "mechanical_pass": 0,
+      "mechanical_pass_with_unverified": 3,
+      "source_held_status": "custody_record_only",
+      "tracker_ready_for_human_review": 0,
+      "tracker_steps_done": "2/6"
+    },
+    "corrected": {
+      "claims_checked": 3,
+      "mechanical_pass": 3,
+      "all_checks_passed": 3,
+      "gate_passed": 3,
+      "source_held_status": "held_bytes_verified",
+      "source_held_checks": 15,
+      "source_identity_passes": 6,
+      "exact_quotes": 18,
+      "tracker_ready_for_human_review": 3,
+      "tracker_steps_done": "6/6",
+      "tracker_input_problems": 0
+    },
+    "scans": [
+      {
+        "instrument_id": "EO:2171",
+        "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf",
+        "bytes": 42225,
+        "recorded_sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+        "actual_sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7"
+      },
+      {
+        "instrument_id": "EO:254",
+        "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf",
+        "bytes": 78595,
+        "recorded_sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+        "actual_sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732"
+      },
+      {
+        "instrument_id": "EO:4354",
+        "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf",
+        "bytes": 66513,
+        "recorded_sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+        "actual_sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da"
+      }
+    ],
+    "qualifications_preserved": {
+      "text_evidence_tier": "transcription_dependent for all three",
+      "original_copy_replacement_required": "yes for all three",
+      "quotation_recheck_required": "yes for all three",
+      "provisional_status": "no for all three, unchanged",
+      "human_certification": "none inferred"
+    },
+    "global_counts": "No repository-wide claim or readiness total is present in the replay result; the reported three are the isolated target subset only.",
+    "utf8_change": "Reviewed rows() decoding with line.decode('utf-8') before json.loads; this preserves strict UTF-8 behavior of the prior text-mode reader.",
+    "tests": {
+      "command": "python -m unittest -v test_checker test_proquest_inputs",
+      "passed": 53,
+      "failed": 0
+    }
+  },
+  "conclusion": "Replay and code review support a bounded three-claim source-byte custody repair. The corrected checker passes all selected mechanical checks, the tracker marks the three records ready for human review, and transcription/original-copy/quotation qualifications remain in force. No broader totals or legal conclusions are established."
+}

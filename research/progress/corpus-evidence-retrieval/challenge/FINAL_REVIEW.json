@@ -1,0 +1,65 @@
+{
+  "schema": "cruden-independent-final-review/v1",
+  "verdict": "No blocking engineering issue found in the exact pinned candidate for the bounded tested contract.",
+  "source_sha256": {
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden.py": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be",
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+  },
+  "baseline_sha256": "075ab70f7b312a9b87a106f279502dfd695da0dcaddff49f1eae6bbae9170867",
+  "reports": [
+    {
+      "path": "research/progress/corpus-evidence-retrieval/challenge/FINAL_FIXTURE.json",
+      "sha256": "7cfc5e5ad6645af6e106d487049df819fc96b16c954b0b4d5593be18977dc74c",
+      "checks": 15,
+      "elapsed_seconds": 0.028416664001269965
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/challenge/FINAL_OVERFLOW.json",
+      "sha256": "b478a77b921cc5b6aa9115918a66c2d2719883104522547d6d86abb0307f97a4",
+      "checks": 17,
+      "elapsed_seconds": 0.132028618001641
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/challenge/FINAL_STALENESS.json",
+      "sha256": "23ca31a09d27f2fd5d3e5842460b1b3fdbddebee5b802e0915a17b8797382a1f",
+      "checks": 5,
+      "elapsed_seconds": 0.09040077600002405
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/challenge/FINAL_DEEP.json",
+      "sha256": "d3f645e6f7324d226f9aa42a1e245308c66dfc83c0c927b14e52f6d748c315e5",
+      "checks": 12,
+      "elapsed_seconds": 0.13184746300248662
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/challenge/FINAL_CONTRACT.json",
+      "sha256": "045dc88aa4e0f3294b2321b629fca67534373330a190be2c03389f90df324705",
+      "checks": 12,
+      "elapsed_seconds": 0.08992372800275916
+    }
+  ],
+  "passing_boolean_checks": 61,
+  "checks_are_overlapping_not_unique": true,
+  "scope": "Separate-context same OpenAI-family AI engineering review; no human/cross-family/legal approval, corpus completeness or savings claim. No production corpus/source writes, Git mutation or source acquisition by this worker.",
+  "limits": [
+    "The existing exact matcher semantics are preserved, including known list-continuation and code-phrase limitations; negative lookups remain bounded to explicit patterns and available held sources.",
+    "Envelope hash detects accidental corruption, not a malicious writer who coherently rewrites both payload and digest.",
+    "Two observed byte passes plus inventory checks are not an atomic filesystem snapshot against arbitrary concurrent writers.",
+    "All fixtures are synthetic and temporary. Real OCR identity, neighboring-order effect attribution and underlying source authenticity require source review.",
+    "Prior initial candidate reports remain historical artifacts and do not replace this final pin."
+  ],
+  "costs": {
+    "worker_model": "OpenAI-family Codex; exact runtime model identifier is not exposed in this worker tool interface",
+    "prospective_start_utc": "2026-10-30T00:08:30.603326+00:00",
+    "end_utc": "2026-10-30T00:21:48.453521+00:00",
+    "observed_wall_seconds_since_clock": 797.8501935919994,
+    "active_labor_seconds": null,
+    "tokens": null,
+    "cache_tokens": null,
+    "cash": null,
+    "functions_exec_calls_through_receipt": 32,
+    "nested_exec_command_calls_through_receipt": 44,
+    "unmeasured": "Four setup exec calls and the start of the fifth preceded the first prospective timestamp. Recorded wall includes waits; no worker-exclusive labor or parent allocation inferred. Collaboration messages/waits are not included in shell tool counts."
+  },
+  "owner_asks": []
+}

@@ -1,0 +1,72 @@
+{
+  "source_sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be",
+  "helper_sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873",
+  "checks": {
+    "aux_register_refused": true,
+    "aux_own_refused": true,
+    "aux_page_refused": true,
+    "aux_packet_add_refused": true,
+    "schema_mismatch_rebuild": true,
+    "algorithm_mismatch_rebuild": true,
+    "write_compact_summary_hash_size": true,
+    "duplicate_queries_deduplicated": true,
+    "negative_query_bound_to_exact_regex_and_snapshot": true,
+    "tracked_missing_disclosed": true,
+    "clause_drafts_missing_explicitly_excluded": true,
+    "compiler_bytes_invalidate_cache": true
+  },
+  "all_checks_pass": true,
+  "events": [
+    {
+      "label": "register",
+      "error": "lookup resource or own/page-check text changed during search; retry"
+    },
+    {
+      "label": "own",
+      "error": "lookup resource or own/page-check text changed during search; retry"
+    },
+    {
+      "label": "page",
+      "error": "lookup resource or own/page-check text changed during search; retry"
+    },
+    {
+      "label": "packet_add",
+      "error": "lookup resource or own/page-check text changed during search; retry"
+    },
+    {
+      "label": "write_summary",
+      "summary": {
+        "result": "/tmp/cruden-contract-5kadl8gy/number-results.json",
+        "sha256": "6233012312d9b5f4ec0aed17b88fb01bddfea72d9c7fd88c62f83829fb328a13",
+        "bytes": 7563,
+        "snapshot_sha256": "e10d8dfabdba89b55f13e61676145bde3281d95a2a8cc4c1234861bdc14ba0cf",
+        "queries": {
+          "EO:6242": {
+            "matches": 6,
+            "matching_files": 6,
+            "returned_hits": 6,
+            "truncated": false
+          },
+          "EO:7777": {
+            "matches": 0,
+            "matching_files": 0,
+            "returned_hits": 0,
+            "truncated": false
+          }
+        },
+        "coverage": {
+          "discovered_count": 12,
+          "readable_count": 12,
+          "source_bytes": 1133
+        },
+        "skipped": {
+          "unreadable_sources": 0,
+          "directory_errors": 0,
+          "tracked_not_discovered": 0
+        }
+      }
+    }
+  ],
+  "elapsed_seconds": 0.08992372800275916,
+  "scope": "Temporary synthetic corpus, same-family independent engineering; static/own/page/PACKET change refusal, schema/algorithm/compiler-byte invalidation, compact artifact descriptor and bounded missing-source disclosures."
+}

@@ -1,0 +1,224 @@
+{
+  "source_sha256": "705f65674312249da6431bfda3f9e595bfb62b2e2dc0a65900de9928e5daaac1",
+  "checks": {
+    "every_projection_equal": true,
+    "addition_detected": true,
+    "deletion_detected": true,
+    "same_size_edit_detected": true,
+    "old_target_removed_after_edit": true
+  },
+  "all_checks_pass": true,
+  "steps": [
+    {
+      "label": "cold",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/01-base.txt",
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "unchanged_warm",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/01-base.txt",
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "add_file",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/01-base.txt",
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [
+          "jobs/held/output/texts/added.txt"
+        ],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "delete_file",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/01-base.txt",
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "same_size_edit_preserved_mtime",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [
+          "jobs/held/output/texts/01-base.txt"
+        ],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "unicode_crlf_invalid_utf8",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt",
+          "jobs/held/output/texts/12-crlf.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [
+          "jobs/held/output/texts/01-base.txt"
+        ],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    },
+    {
+      "label": "delete_unicode_file",
+      "legacy_projection_equal": true,
+      "number_files": {
+        "EO:1234": [],
+        "EO:6242": [
+          "jobs/held/output/texts/04-code.txt",
+          "jobs/held/output/texts/05-duplicate.txt",
+          "jobs/held/output/texts/06-neighbor.txt",
+          "jobs/held/output/texts/11-unicode-prefix.txt"
+        ],
+        "EO:6242C": [
+          "jobs/held/output/texts/02-suffix-c.txt",
+          "jobs/held/output/texts/08-spaces.txt"
+        ],
+        "EO:6242D": [
+          "jobs/held/output/texts/03-suffix-d.txt"
+        ],
+        "EO:7777": [
+          "jobs/held/output/texts/01-base.txt"
+        ],
+        "EO:9999": [
+          "jobs/held/output/texts/06-neighbor.txt"
+        ]
+      },
+      "metadata": {
+        "schema": "cruden-lookups/v1",
+        "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status."
+      }
+    }
+  ],
+  "elapsed_seconds": 0.09146390499881818,
+  "scope": "Seven black-box fixture runs; source add/delete/same-length mtime-preserved edit and decoding edge cases; not an atomic filesystem-snapshot guarantee."
+}

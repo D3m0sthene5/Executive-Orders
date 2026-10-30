@@ -1,0 +1,1028 @@
+{
+  "schema": "bounded-cruden-retrieval-audit/v1",
+  "scope": {
+    "targets": [
+      "EO:10673",
+      "EO:10772"
+    ],
+    "task": "Research producer exercises held-text retrieval only. No legal claim/status adoption, human approval, source-grade promotion or current production freshness approval.",
+    "query_invocations": 2,
+    "maximum_authorized": 3,
+    "additional_lookup_invocation_by_producer": false,
+    "packet_load_count": 1,
+    "legacy_loader_call": "batch.load_packet(Path(packet_dir).resolve(), REPO, check_sources=False)",
+    "coordinator_GO_before_queries": true,
+    "coordinator_GO_received_approx_utc": "2026-10-30T00:23Z"
+  },
+  "packet_inspection": {
+    "path": "research/progress/corpus-evidence-retrieval/producer/packet-inspection.json",
+    "bytes": 26819,
+    "sha256": "99c8a6b8eff32cbaec1468708ae175d774905a6a19bf8305f74c8b11f6377c77"
+  },
+  "packet_fingerprint": "6605100b54f5e39cfc9d41a656c93ccfa3e30ca2cd6a20546af2ed10e06b4a53",
+  "packet_pin": {
+    "path": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/PACKET.json",
+    "bytes": 171355,
+    "sha256": "ebefffa09fd363174a647d80ed0fec8b582e2e61d5cbc0ed7a6b3b02fffa4158"
+  },
+  "native_original_evidence_labels": {
+    "EO:10673": {
+      "grade": "original_representation_unverified",
+      "acceptable_as_original": true,
+      "char_start": 0,
+      "char_end": 7751
+    },
+    "EO:10772": {
+      "grade": "original_representation_unverified",
+      "acceptable_as_original": true,
+      "char_start": 0,
+      "char_end": 5702
+    }
+  },
+  "tool_pins": [
+    {
+      "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+      "bytes": 18570,
+      "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+    },
+    {
+      "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+      "bytes": 12368,
+      "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+    },
+    {
+      "path": "research/excavator/claude-nira-sweep-2026-10-29/CRUDEN.md",
+      "bytes": 4613,
+      "sha256": "97c3487a0822cf17ae70fa48b45606d6e86c56c75bc763bc4de819827512a262"
+    },
+    {
+      "path": "jobs/claim-kit/batch.py",
+      "bytes": 41745,
+      "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+    }
+  ],
+  "lookup_inputs_and_leads": {
+    "path": "research/progress/corpus-evidence-retrieval/producer/lookup-audit-extract.json",
+    "bytes": 14201,
+    "sha256": "e61555f6f9d9058f9eae519e45402b8667e69b90ca6d8c701c9c79764146d8d2"
+  },
+  "lookup_files": [
+    {
+      "path": "research/progress/corpus-evidence-retrieval/profile/b06-repaired-reuse/LOOKUPS.json",
+      "bytes": 6576,
+      "sha256": "4aa983d5b38e58cb00d0332f46799f56a7df3cac493c751a2f024a7219bad82f"
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/profile/b06-repaired-reuse/LOOKUPS.md",
+      "bytes": 5270,
+      "sha256": "b2a907595354f0371c31f9b8e7886b075622bd6853b0214172941f33852f962f"
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/profile/b06-repaired-reuse/LOOKUPS.details.json",
+      "bytes": 7549462,
+      "sha256": "4d4208cfad99d3e1bceb4e1cefad9e3cbe04390e94881370d734e1d446257dcb"
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/profile/b06-legacy/LOOKUPS.json",
+      "bytes": 6576,
+      "sha256": "4aa983d5b38e58cb00d0332f46799f56a7df3cac493c751a2f024a7219bad82f"
+    },
+    {
+      "path": "research/progress/corpus-evidence-retrieval/profile/b06-legacy/LOOKUPS.md",
+      "bytes": 5270,
+      "sha256": "b2a907595354f0371c31f9b8e7886b075622bd6853b0214172941f33852f962f"
+    }
+  ],
+  "comparison": {
+    "legacy_member_payload_equal": true,
+    "json_byte_equal": true,
+    "md_byte_equal": true,
+    "saving_inference": null
+  },
+  "queries": {
+    "number": {
+      "artifact": {
+        "path": "research/progress/corpus-evidence-retrieval/producer/number.json",
+        "bytes": 7549550,
+        "sha256": "95f7a01f9da67c552fe21f959de23c3b2d745d328ea4205750c31925e37ca510"
+      },
+      "run_receipt": {
+        "path": "research/progress/corpus-evidence-retrieval/producer/query-1-run.json",
+        "bytes": 1312,
+        "sha256": "96b98f6e744e204dcb9f9e18f972ec1b0a14bd48333c59e70a1f42b3f56e1a34"
+      },
+      "summary": {
+        "EO:10673": {
+          "matching_files": 11,
+          "matches": 15,
+          "per_file_limit": 3,
+          "truncated": false,
+          "number_regex": "(?:Executive\\s+Orders?\\s+(?:No\\.?\\s*)?|\\bOrders?\\s+No\\.?\\s*|E\\.\\s?O\\.\\s*)10673(?![-\\s]?[A-Z]\\b)\\b",
+          "returned_hits": 15
+        },
+        "EO:10772": {
+          "matching_files": 3,
+          "matches": 3,
+          "per_file_limit": 3,
+          "truncated": false,
+          "number_regex": "(?:Executive\\s+Orders?\\s+(?:No\\.?\\s*)?|\\bOrders?\\s+No\\.?\\s*|E\\.\\s?O\\.\\s*)10772(?![-\\s]?[A-Z]\\b)\\b",
+          "returned_hits": 3
+        }
+      }
+    },
+    "literal": {
+      "artifact": {
+        "path": "research/progress/corpus-evidence-retrieval/producer/literal.json",
+        "bytes": 7565069,
+        "sha256": "8ec2c14d8a516f957867a1b40465e8c6807b921bca72d8b28b7c98afea1ac878"
+      },
+      "run_receipt": {
+        "path": "research/progress/corpus-evidence-retrieval/producer/query-2-run.json",
+        "bytes": 1546,
+        "sha256": "04e32ee6457b80d571f81e51e2235da0975c6d55638f557f2e2db2bc52b044f7"
+      },
+      "summary": {
+        "Fitness of American Youth": {
+          "matching_files": 6,
+          "matches": 12,
+          "per_file_limit": 3,
+          "truncated": true,
+          "literal_lower": "fitness of american youth",
+          "returned_hits": 10
+        },
+        "Council on Youth Fitness": {
+          "matching_files": 15,
+          "matches": 29,
+          "per_file_limit": 3,
+          "truncated": true,
+          "literal_lower": "council on youth fitness",
+          "returned_hits": 26
+        },
+        "Advisory Committee on the Fitness": {
+          "matching_files": 2,
+          "matches": 3,
+          "per_file_limit": 3,
+          "truncated": false,
+          "literal_lower": "advisory committee on the fitness",
+          "returned_hits": 3
+        }
+      }
+    }
+  },
+  "coverage_summary": {
+    "scope": "Exactly held_texts(): sorted jobs/*/output/texts recursive *.txt, excluding clause-drafts; no acquisition or legal completeness claim.",
+    "tracked_inventory_status": "available",
+    "tracked_not_discovered": 0,
+    "excluded_clause_drafts": 9761,
+    "directory_errors": 0,
+    "unreadable_sources": 0,
+    "discovered_count": 33118,
+    "readable_count": 33118,
+    "source_bytes": 200530096
+  },
+  "snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+  "sources_read": [
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10673-fitness-american-youth.txt",
+      "bytes": 3796,
+      "sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+      "instrument_number_in_filename": "10673",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 94,
+          "char_end": 119,
+          "match": "fitness of American youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 1645,
+          "char_end": 1670,
+          "match": "fitness of American youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 2385,
+          "char_end": 2410,
+          "match": "FITNESS OF AMERICAN YOUTH"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 1094,
+          "char_end": 1118,
+          "match": "COUNCIL ON YOUTH FITNESS"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 1175,
+          "char_end": 1199,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Advisory Committee on the Fitness",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 2359,
+          "char_end": 2392,
+          "match": "ADVISORY COMMITTEE ON THE FITNESS"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Advisory Committee on the Fitness",
+          "raw_sha256": "533fe470c6326e7aa348d87682d507a5c70f25f583758cc27182b581f9de21cc",
+          "char_start": 2473,
+          "char_end": 2506,
+          "match": "Advisory Committee on the Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Retained native ORIGINAL evidence grade original_representation_unverified; acceptable_as_original=true is existing provenance, not new approval.",
+        "data/full_run original and output copy byteequal; alias must not count as independent corroboration."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10704-change-membership-the-presidents-council-youth-fitness.txt",
+      "bytes": 661,
+      "sha256": "1b478e2635fcd095bc1261f159010b6ddb4b3af179dc58b7d6cdb675da9d04fa",
+      "instrument_number_in_filename": "10704",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "1b478e2635fcd095bc1261f159010b6ddb4b3af179dc58b7d6cdb675da9d04fa",
+          "char_start": 441,
+          "char_end": 466,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "1b478e2635fcd095bc1261f159010b6ddb4b3af179dc58b7d6cdb675da9d04fa",
+          "char_start": 121,
+          "char_end": 145,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "1b478e2635fcd095bc1261f159010b6ddb4b3af179dc58b7d6cdb675da9d04fa",
+          "char_start": 519,
+          "char_end": 543,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10740-change-the-membership-the-presidents-council-youth-fitness.txt",
+      "bytes": 701,
+      "sha256": "719a945997a9365516f27785d1af9966485c52f6dd6178dba68784a884b5bdbf",
+      "instrument_number_in_filename": "10740",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "719a945997a9365516f27785d1af9966485c52f6dd6178dba68784a884b5bdbf",
+          "char_start": 400,
+          "char_end": 425,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "719a945997a9365516f27785d1af9966485c52f6dd6178dba68784a884b5bdbf",
+          "char_start": 121,
+          "char_end": 145,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "719a945997a9365516f27785d1af9966485c52f6dd6178dba68784a884b5bdbf",
+          "char_start": 478,
+          "char_end": 502,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10772-amendment-executive-order-no-10673-relating-the-fitness-american.txt",
+      "bytes": 696,
+      "sha256": "68d1d03138a306eaaab2c9e13f3a33192ebae059f9d6dc067b811cc367295123",
+      "instrument_number_in_filename": "10772",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "68d1d03138a306eaaab2c9e13f3a33192ebae059f9d6dc067b811cc367295123",
+          "char_start": 107,
+          "char_end": 132,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "68d1d03138a306eaaab2c9e13f3a33192ebae059f9d6dc067b811cc367295123",
+          "char_start": 161,
+          "char_end": 186,
+          "match": "Fitness of American Youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "68d1d03138a306eaaab2c9e13f3a33192ebae059f9d6dc067b811cc367295123",
+          "char_start": 328,
+          "char_end": 353,
+          "match": "Fitness of American Youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Advisory Committee on the Fitness",
+          "raw_sha256": "68d1d03138a306eaaab2c9e13f3a33192ebae059f9d6dc067b811cc367295123",
+          "char_start": 302,
+          "char_end": 335,
+          "match": "Advisory Committee on the Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Retained native ORIGINAL evidence grade original_representation_unverified; acceptable_as_original=true is existing provenance, not new approval.",
+        "data/full_run original and output copy byteequal; alias must not count as independent corroboration.",
+        "Own heading appears in number lookup because own data/full_run path differs from corpus output path. until/terminat signals at3827/3833 belong neighboring farm-storage regulation."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10785-change-the-membership-the-presidents-council-youth-fitness.txt",
+      "bytes": 808,
+      "sha256": "47b3953e2c117697dc899f3ebeff089a4a39463d55d76b4a696640e69dd18643",
+      "instrument_number_in_filename": "10785",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "47b3953e2c117697dc899f3ebeff089a4a39463d55d76b4a696640e69dd18643",
+          "char_start": 471,
+          "char_end": 496,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "47b3953e2c117697dc899f3ebeff089a4a39463d55d76b4a696640e69dd18643",
+          "char_start": 121,
+          "char_end": 145,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "47b3953e2c117697dc899f3ebeff089a4a39463d55d76b4a696640e69dd18643",
+          "char_start": 549,
+          "char_end": 573,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10830-establishing-seal-for-the-presidents-council-youth-fitness.txt",
+      "bytes": 1116,
+      "sha256": "95729176035ba8e0cd64ef989e35f00c3b74567b04cd82e102130c739b78bee5",
+      "instrument_number_in_filename": "10830",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "95729176035ba8e0cd64ef989e35f00c3b74567b04cd82e102130c739b78bee5",
+          "char_start": 40,
+          "char_end": 64,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "95729176035ba8e0cd64ef989e35f00c3b74567b04cd82e102130c739b78bee5",
+          "char_start": 161,
+          "char_end": 185,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "95729176035ba8e0cd64ef989e35f00c3b74567b04cd82e102130c739b78bee5",
+          "char_start": 657,
+          "char_end": 681,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "FR extraction interleaves agricultural text before the presidential concluding paragraph; seal image not inspected."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-10931-amendment-section-1-executive-order-no-10673-establishing-the.txt",
+      "bytes": 983,
+      "sha256": "40566e42ca13eb791f8e586a888eb3daea2f1a74801b96c965a0e28e88087f21",
+      "instrument_number_in_filename": "10931",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "40566e42ca13eb791f8e586a888eb3daea2f1a74801b96c965a0e28e88087f21",
+          "char_start": 126,
+          "char_end": 151,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "40566e42ca13eb791f8e586a888eb3daea2f1a74801b96c965a0e28e88087f21",
+          "char_start": 742,
+          "char_end": 767,
+          "match": "Executive Order No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "40566e42ca13eb791f8e586a888eb3daea2f1a74801b96c965a0e28e88087f21",
+          "char_start": 285,
+          "char_end": 309,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Read full section2 named list; a number mention in section1/title must not be promoted into an instrument-wide revocation attachment."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-11074-establishing-the-presidents-council-physical-fitness.txt",
+      "bytes": 3267,
+      "sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+      "instrument_number_in_filename": "11074",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+          "char_start": 3070,
+          "char_end": 3091,
+          "match": "Executive Order 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10772",
+          "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+          "char_start": 3110,
+          "char_end": 3131,
+          "match": "Executive Order 10772"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+          "char_start": 103,
+          "char_end": 128,
+          "match": "fitness of American youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+          "char_start": 2799,
+          "char_end": 2823,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+          "char_start": 2919,
+          "char_end": 2943,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Read continuity and independent-authority passages with explicit named revocations; institutional continuation does not itself resolve instrument status. FR has OCR March29,1901/Jarmary."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-11398-establishing-the-presidents-council-physical-fitness-and-sports.txt",
+      "bytes": 6414,
+      "sha256": "2c1b8ce79d611378ad513c97c3aee0d1efb4de26247d706decd67650b03763dd",
+      "instrument_number_in_filename": "11398",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "2c1b8ce79d611378ad513c97c3aee0d1efb4de26247d706decd67650b03763dd",
+          "char_start": 6083,
+          "char_end": 6107,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Later institutional/seal/history text is access evidence only; no continuing authority of either target order inferred."
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-14327-presidents-council-sports-fitness-and-nutrition-and-the.txt",
+      "bytes": 9441,
+      "sha256": "4dbf85bb099aa6f57556f8d0402982192ffae35631e0620efd6a3428900191ed",
+      "instrument_number_in_filename": "14327",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "4dbf85bb099aa6f57556f8d0402982192ffae35631e0620efd6a3428900191ed",
+          "char_start": 1674,
+          "char_end": 1698,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "4dbf85bb099aa6f57556f8d0402982192ffae35631e0620efd6a3428900191ed",
+          "char_start": 2881,
+          "char_end": 2905,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "APP held transcription: no source-grade upgrade or independent original authentication from retrieval.",
+        "Later institutional/seal/history text is access evidence only; no continuing authority of either target order inferred."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10673.txt",
+      "bytes": 7827,
+      "sha256": "9cdf476ceea91928d4929c8dd90cce687220586c967e73b58b91c951dd0ac08d",
+      "instrument_number_in_filename": "10673",
+      "full_held_text_read": true,
+      "read_note": "Read full data/full_run alias before GO; output bytes independently checked identical.",
+      "already_read_alias": "jobs/fr-originals/data/full_run/texts/EO_10673.txt",
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "9cdf476ceea91928d4929c8dd90cce687220586c967e73b58b91c951dd0ac08d",
+          "char_start": 4324,
+          "char_end": 4349,
+          "match": "Fitness of American Youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "9cdf476ceea91928d4929c8dd90cce687220586c967e73b58b91c951dd0ac08d",
+          "char_start": 2939,
+          "char_end": 2963,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "Retained native ORIGINAL evidence grade original_representation_unverified; acceptable_as_original=true is existing provenance, not new approval.",
+        "data/full_run original and output copy byteequal; alias must not count as independent corroboration."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10704.txt",
+      "bytes": 5360,
+      "sha256": "cad5a13f680a6ebaa0897344c81448a855fedbc4a942bca56858bb8c5eb7e976",
+      "instrument_number_in_filename": "10704",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "cad5a13f680a6ebaa0897344c81448a855fedbc4a942bca56858bb8c5eb7e976",
+          "char_start": 1206,
+          "char_end": 1233,
+          "match": "Executive Order No.  \n10673"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10740.txt",
+      "bytes": 5436,
+      "sha256": "16749bb0eedda3865bdb705f50d8020df4dc231799774779f0c50fca1a3695d2",
+      "instrument_number_in_filename": "10740",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "16749bb0eedda3865bdb705f50d8020df4dc231799774779f0c50fca1a3695d2",
+          "char_start": 1106,
+          "char_end": 1133,
+          "match": "Executive Order No.  \n10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "16749bb0eedda3865bdb705f50d8020df4dc231799774779f0c50fca1a3695d2",
+          "char_start": 1189,
+          "char_end": 1213,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10772.txt",
+      "bytes": 5769,
+      "sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+      "instrument_number_in_filename": "10772",
+      "full_held_text_read": true,
+      "read_note": "Read full data/full_run alias before GO; output bytes independently checked identical.",
+      "already_read_alias": "jobs/fr-originals/data/full_run/texts/EO_10772.txt",
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+          "char_start": 849,
+          "char_end": 876,
+          "match": "Executive  \nOrder No. 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+          "char_start": 4410,
+          "char_end": 4437,
+          "match": "Executive Order  \nNo. 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10772",
+          "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+          "char_start": 622,
+          "char_end": 643,
+          "match": "EXECUTIVE ORDER 10772"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+          "char_start": 907,
+          "char_end": 932,
+          "match": "Fitness of American Youth"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+          "char_start": 1081,
+          "char_end": 1106,
+          "match": "Fitness of American Youth"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "Retained native ORIGINAL evidence grade original_representation_unverified; acceptable_as_original=true is existing provenance, not new approval.",
+        "data/full_run original and output copy byteequal; alias must not count as independent corroboration.",
+        "Own heading appears in number lookup because own data/full_run path differs from corpus output path. until/terminat signals at3827/3833 belong neighboring farm-storage regulation."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10785.txt",
+      "bytes": 8008,
+      "sha256": "90f641f7253647aeccc572b32f0f5f019663fc2747ecd65fa2877bc833c4aff9",
+      "instrument_number_in_filename": "10785",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "90f641f7253647aeccc572b32f0f5f019663fc2747ecd65fa2877bc833c4aff9",
+          "char_start": 2159,
+          "char_end": 2185,
+          "match": "Executive Order No. \n10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "90f641f7253647aeccc572b32f0f5f019663fc2747ecd65fa2877bc833c4aff9",
+          "char_start": 2239,
+          "char_end": 2263,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10830.txt",
+      "bytes": 4795,
+      "sha256": "7931ddf27da2e8f18594940501990e8d78f1140fcf4263a742f84f689d32fac5",
+      "instrument_number_in_filename": "10830",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "7931ddf27da2e8f18594940501990e8d78f1140fcf4263a742f84f689d32fac5",
+          "char_start": 751,
+          "char_end": 775,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "7931ddf27da2e8f18594940501990e8d78f1140fcf4263a742f84f689d32fac5",
+          "char_start": 878,
+          "char_end": 902,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "7931ddf27da2e8f18594940501990e8d78f1140fcf4263a742f84f689d32fac5",
+          "char_start": 1401,
+          "char_end": 1425,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "FR extraction interleaves agricultural text before the presidential concluding paragraph; seal image not inspected."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_10931.txt",
+      "bytes": 1825,
+      "sha256": "e9c71e580e2e42976267f3e66c1f756631420b96d2472472a87d8a020bb934e3",
+      "instrument_number_in_filename": "10931",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "e9c71e580e2e42976267f3e66c1f756631420b96d2472472a87d8a020bb934e3",
+          "char_start": 594,
+          "char_end": 619,
+          "match": "EXECUTIVE ORDER NO. 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "e9c71e580e2e42976267f3e66c1f756631420b96d2472472a87d8a020bb934e3",
+          "char_start": 813,
+          "char_end": 839,
+          "match": "Executive \nOrder No. 10673"
+        },
+        {
+          "result_file": "number.json",
+          "query": "EO:10673",
+          "raw_sha256": "e9c71e580e2e42976267f3e66c1f756631420b96d2472472a87d8a020bb934e3",
+          "char_start": 1493,
+          "char_end": 1519,
+          "match": "Executive \nOrder No. 10673"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "e9c71e580e2e42976267f3e66c1f756631420b96d2472472a87d8a020bb934e3",
+          "char_start": 655,
+          "char_end": 679,
+          "match": "COUNCIL ON YOUTH FITNESS"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "Read full section2 named list; a number mention in section1/title must not be promoted into an instrument-wide revocation attachment."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_11074.txt",
+      "bytes": 4133,
+      "sha256": "11f8c39352acebe9eec23e6ed49d22abac6bf542f21a3892441c241a13631243",
+      "instrument_number_in_filename": "11074",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "number.json",
+          "query": "EO:10772",
+          "raw_sha256": "11f8c39352acebe9eec23e6ed49d22abac6bf542f21a3892441c241a13631243",
+          "char_start": 3884,
+          "char_end": 3905,
+          "match": "Executive Order 10772"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Fitness of American Youth",
+          "raw_sha256": "11f8c39352acebe9eec23e6ed49d22abac6bf542f21a3892441c241a13631243",
+          "char_start": 732,
+          "char_end": 757,
+          "match": "fitness of American youth"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "Read continuity and independent-authority passages with explicit named revocations; institutional continuation does not itself resolve instrument status. FR has OCR March29,1901/Jarmary."
+      ]
+    },
+    {
+      "path": "jobs/fr-originals/output/texts/EO_14327.txt",
+      "bytes": 11488,
+      "sha256": "ac3f5d4e29f39cfe5c9510a691a3736a988e06e43ccab09a53c08841433e47cf",
+      "instrument_number_in_filename": "14327",
+      "full_held_text_read": true,
+      "read_note": "Read complete held text after GO, including neighboring text where present.",
+      "already_read_alias": null,
+      "query_hits": [
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "ac3f5d4e29f39cfe5c9510a691a3736a988e06e43ccab09a53c08841433e47cf",
+          "char_start": 2466,
+          "char_end": 2490,
+          "match": "Council on Youth Fitness"
+        },
+        {
+          "result_file": "literal.json",
+          "query": "Council on Youth Fitness",
+          "raw_sha256": "ac3f5d4e29f39cfe5c9510a691a3736a988e06e43ccab09a53c08841433e47cf",
+          "char_start": 3694,
+          "char_end": 3718,
+          "match": "Council on Youth Fitness"
+        }
+      ],
+      "cautions": [
+        "Machine-extracted official PDF text layer; recognition errors and neighboring documents possible. PDF pages not inspected in this retrieval task.",
+        "Later institutional/seal/history text is access evidence only; no continuing authority of either target order inferred."
+      ]
+    }
+  ],
+  "source_count": 19,
+  "key_context_spans": [
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-10931-amendment-section-1-executive-order-no-10673-establishing-the.txt",
+      "raw_sha256": "40566e42ca13eb791f8e586a888eb3daea2f1a74801b96c965a0e28e88087f21",
+      "char_start": 680,
+      "char_end": 931,
+      "text": "SEC. 2. The following-described orders, amending section 1 of Executive Order No. 10673, are hereby revoked:\n\nExecutive Order No. 10704 of March 25, 1957.\n\nExecutive Order No. 10740 of November 21, 1957.\n\nExecutive Order No. 10785 of October 17, 1958."
+    },
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-11074-establishing-the-presidents-council-physical-fitness.txt",
+      "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+      "char_start": 2132,
+      "char_end": 2692,
+      "text": "SEC. 3. Federal Agencies. (a) Nothing in this order shall be construed to abrogate, modify, or restrict any function vested by law in, or assigned pursuant to law to, any executive department or other agency of the Government or any officer thereof.\n\n(b) Each executive department the head of which is referred to in section 1 of this order shall, as may be necessary for the purpose of effectuating the provisions of this order, furnish assistance to the Council in accordance with section 214 of the act of May 3, 1945, 59 Stat. 134 (31 U.S.C. 691).\n\nSEC. 4."
+    },
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-11074-establishing-the-presidents-council-physical-fitness.txt",
+      "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+      "char_start": 2685,
+      "char_end": 2833,
+      "text": "SEC. 4. Continuity. The Council established by this order shall be deemed to be a continuation of the President's Council on Youth Fitness.\n\nSEC. 5."
+    },
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-11074-establishing-the-presidents-council-physical-fitness.txt",
+      "raw_sha256": "4245c6ab0b536562797659d9b8026522177b62de9a8de34d09bd332079d64f85",
+      "char_start": 3049,
+      "char_end": 3214,
+      "text": "SEC. 6. Revocations. Executive Order 10673 of July 16, 1956, Executive Order 10772 of June 30, 1958, and Executive Order 10931 of March 29, 1961, are hereby revoked."
+    },
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-11398-establishing-the-presidents-council-physical-fitness-and-sports.txt",
+      "raw_sha256": "2c1b8ce79d611378ad513c97c3aee0d1efb4de26247d706decd67650b03763dd",
+      "char_start": 5846,
+      "char_end": 6358,
+      "text": "SEC. 7. Continuity. The Council established by this order shall be deemed to be a continuation of the President's Council on Physical Fitness.\n\nSEC. 8. Seal. Executive Order 10830 of July 24, 1959, prescribing a seal for the President's Council on Youth Fitness, as amended by Executive Order 11074 of January 8, 1963, is further amended by adding the words \"and Sports\" after the word \"Fitness\" wherever it appears in said order.\n\nSEC. 9. Revocation. Executive Order 11074 of January 8, 1963, is hereby revoked."
+    },
+    {
+      "file": "jobs/app-executive-orders/output/texts/executive-order-14327-presidents-council-sports-fitness-and-nutrition-and-the.txt",
+      "raw_sha256": "4dbf85bb099aa6f57556f8d0402982192ffae35631e0620efd6a3428900191ed",
+      "char_start": 1599,
+      "char_end": 1768,
+      "text": "President Eisenhower recognized this issue when he created the President's Council on Youth Fitness in response to reports on the poor state of youth fitness in America."
+    },
+    {
+      "file": "jobs/fr-originals/output/texts/EO_10772.txt",
+      "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+      "char_start": 1526,
+      "char_end": 1554,
+      "text": "TITLE 6\u2014 AGRICULTURAL CREDIT"
+    },
+    {
+      "file": "jobs/fr-originals/output/texts/EO_10772.txt",
+      "raw_sha256": "dc89b5011eecda10fcc98b9f1fb897e1266f94f76fc34d5a79b03ee37c4273a2",
+      "char_start": 3827,
+      "char_end": 3861,
+      "text": "until termination  \nof the program"
+    },
+    {
+      "file": "jobs/fr-originals/output/texts/EO_11074.txt",
+      "raw_sha256": "11f8c39352acebe9eec23e6ed49d22abac6bf542f21a3892441c241a13631243",
+      "char_start": 3842,
+      "char_end": 3882,
+      "text": "Executive Order 10673 o f July 16, 1956,"
+    }
+  ],
+  "retrieval_observations": [
+    "Companion paths, source hashes and exact spans make each existing lookup snippet directly auditable; legacy member payload is unchanged.",
+    "New general literal route reaches seal EO10830 and later institutional/history sources EO11398/14327 beyond number citations for target2. These are new routes to held texts, not newly acquired evidence.",
+    "Full EO10931 and EO11074 access preserved counterevidence to broad number-based ending attachments and institutional-continuity assumptions; no legal ruling made.",
+    "Own-text signal until/terminat for10772 is neighboring agricultural text; output10772 heading is an alias self-hit, not a later citation.",
+    "Number10673 misses the FR11074 citation containing 10673 o f: legacy suffix exclusion can reject OCR single-letter words. Literal family wording returns FR11074, retaining access to that source."
+  ],
+  "limits": [
+    "Exact number regex inherits legacy suffix and list limitations; literal lower() matching does not normalize whitespace, hyphenation or OCR.",
+    "Literal Fitness of American Youth and Council on Youth Fitness truncate per-file matches at3; full sources were read, and match totals remain in results.",
+    "Corpus universe is only sorted jobs/*/output/texts/**/*.txt excluding clause-drafts; full_run originals are outside discovery, though pinned separately.",
+    "No negative result supports absence outside declared snapshot and literal/number queries.",
+    "All sources read and hit spans were rehashed/checked after query results; no filesystem lock or future freshness guarantee.",
+    "Retained sources may duplicate one instrument; source counts are not independent corroboration.",
+    "APP page authentication and PDF visual source inspection are outside this exercise.",
+    "No token, billing, cache-token, active-labor or exact runtime-SKU telemetry exposed; no time/token saving inferred from one assignment.",
+    "Startup output mistakenly printed large packet/coverage structures and was tool-truncated; this cost is included, and full source reads were later performed separately.",
+    "One audit-assembly attempt failed on an exact phrase crossing an OCR linebreak; corrected to source-specific start/end phrases, then rebuilt successfully. Included in session occupancy/tool counts."
+  ],
+  "costs": {
+    "model_configured": "gpt-6.1-sol per parent",
+    "exact_runtime_sku": null,
+    "tokens": null,
+    "cash": null,
+    "clock_start": {
+      "utc": "2026-10-30T00:20:31.426432+00:00",
+      "monotonic_ns": 25865656814614,
+      "clock_note": "Prospective work timing starts here after two orientation tool calls; these are counted, not excluded.",
+      "model_configured": "gpt-6.1-sol per parent; exact runtime SKU unavailable",
+      "baseline_commit_requested": "f9c6d806",
+      "tool_turns_at_start": 2
+    },
+    "query_wall_seconds": 11.102604686,
+    "tool_turn_count_note": "Final counts and walltime in completion-clock.json. Two orientation function exec turns preceded prospective clock. Waiting time included in occupancy, not active labor."
+  }
+}

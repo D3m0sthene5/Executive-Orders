@@ -1,0 +1,558 @@
+{
+  "schema": "cruden-benchmark-summary/v1",
+  "arms": [
+    {
+      "arm": "r1-legacy-unprofiled",
+      "members": 7,
+      "wall_seconds": 71.00994605099913,
+      "rchar": 232327605,
+      "setup_seconds": 2.2811253750005562,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 11214,
+          "sha256": "7f99a446c7edc4479f9222f97843be7110933ad2e7937a56711349045bb6ae8f"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 6449,
+          "sha256": "fa7c8d74f170be2d071b860532826ccb91dc8187c1921b41a42ac5d5270a9fa1"
+        }
+      ],
+      "cache_bytes": null,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": null,
+      "candidate_files": null,
+      "search_seconds": null,
+      "corpus_timings": null,
+      "corpus_snapshot_sha256": null,
+      "input_pins": [
+        {
+          "path": "research/progress/corpus-evidence-retrieval/profile/legacy_cruden.py",
+          "bytes": 8606,
+          "sha256": "075ab70f7b312a9b87a106f279502dfd695da0dcaddff49f1eae6bbae9170867"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/progress/corpus-evidence-retrieval/native/r1-input/PACKET.json",
+          "bytes": 156645,
+          "sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        }
+      ]
+    },
+    {
+      "arm": "r1-repaired-cold",
+      "members": 7,
+      "wall_seconds": 11.569403632001922,
+      "rchar": 511480650,
+      "setup_seconds": 2.2603930919976847,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 11214,
+          "sha256": "7f99a446c7edc4479f9222f97843be7110933ad2e7937a56711349045bb6ae8f"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 6449,
+          "sha256": "fa7c8d74f170be2d071b860532826ccb91dc8187c1921b41a42ac5d5270a9fa1"
+        },
+        {
+          "path": "LOOKUPS.details.json",
+          "bytes": 7547966,
+          "sha256": "84b8eb0252e0eeb8972fa1dcaaf04a11bb1545ae718e79d3fa4b006d9a0586ee"
+        }
+      ],
+      "cache_bytes": 15449266,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": {
+        "LOOKUPS.json": true,
+        "LOOKUPS.md": true
+      },
+      "candidate_files": 506,
+      "search_seconds": 0.8562970279999718,
+      "corpus_timings": {
+        "cache_state": "miss",
+        "cache_errors": [],
+        "bytes_read": 200530096,
+        "candidate_bytes_read": 9582220,
+        "validation_bytes_read": 200530096,
+        "reused_sources": 0,
+        "recomputed_sources": 33118,
+        "cache_load_seconds": 5.111700011184439e-05,
+        "source_read_hash_features_seconds": 6.642316795001534,
+        "feature_build_seconds": 4.6438019397246535,
+        "coverage_seconds": 0.10954131499966024,
+        "construction_seconds": 7.728412741002103,
+        "final_validation_seconds": 1.6342463040018629,
+        "cache_write_seconds": 0.6441344330014545
+      },
+      "corpus_snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+      "input_pins": [
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+          "bytes": 18570,
+          "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/progress/corpus-evidence-retrieval/native/r1-input/PACKET.json",
+          "bytes": 156645,
+          "sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+          "bytes": 12368,
+          "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+        }
+      ]
+    },
+    {
+      "arm": "r1-repaired-warm",
+      "members": 7,
+      "wall_seconds": 5.5408607270001085,
+      "rchar": 526929916,
+      "setup_seconds": 2.0327053719993273,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 11214,
+          "sha256": "7f99a446c7edc4479f9222f97843be7110933ad2e7937a56711349045bb6ae8f"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 6449,
+          "sha256": "fa7c8d74f170be2d071b860532826ccb91dc8187c1921b41a42ac5d5270a9fa1"
+        },
+        {
+          "path": "LOOKUPS.details.json",
+          "bytes": 7547905,
+          "sha256": "c8aacab6c62056a8c647cadfb61b8df65445260999167df9500d22cfceba18f6"
+        }
+      ],
+      "cache_bytes": 15449266,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": {
+        "LOOKUPS.json": true,
+        "LOOKUPS.md": true
+      },
+      "candidate_files": 506,
+      "search_seconds": 0.7735130179971748,
+      "corpus_timings": {
+        "cache_state": "verified",
+        "cache_errors": [],
+        "bytes_read": 200530096,
+        "candidate_bytes_read": 9582220,
+        "validation_bytes_read": 200530096,
+        "reused_sources": 33118,
+        "recomputed_sources": 0,
+        "cache_load_seconds": 0.7995315760017547,
+        "source_read_hash_features_seconds": 1.4479762599985406,
+        "feature_build_seconds": 0.0,
+        "coverage_seconds": 0.1025489439998637,
+        "construction_seconds": 2.983564641999692,
+        "final_validation_seconds": 1.2583480729990697
+      },
+      "corpus_snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+      "input_pins": [
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+          "bytes": 18570,
+          "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/progress/corpus-evidence-retrieval/native/r1-input/PACKET.json",
+          "bytes": 156645,
+          "sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+          "bytes": 12368,
+          "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+        }
+      ]
+    },
+    {
+      "arm": "t5-repaired-reuse",
+      "members": 24,
+      "wall_seconds": 6.537882344000536,
+      "rchar": 540228062,
+      "setup_seconds": 1.9078648750000866,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 51786,
+          "sha256": "344bff61cda8bb682256c8757fe85614d0e9f591f731f4e57fc8c50ef5c3178a"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 33648,
+          "sha256": "e393be09f6ff96772ac63c685e027a2ddb4ea19011755a5bfba8d06e68736a54"
+        },
+        {
+          "path": "LOOKUPS.details.json",
+          "bytes": 7594282,
+          "sha256": "b281d19139dbe2ec0b9d82bc3d1f848e11951c59e2c5eca0394da969377ea17f"
+        }
+      ],
+      "cache_bytes": 15449266,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": {
+        "LOOKUPS.json": true,
+        "LOOKUPS.md": true
+      },
+      "candidate_files": 626,
+      "search_seconds": 1.801874292003049,
+      "corpus_timings": {
+        "cache_state": "verified",
+        "cache_errors": [],
+        "bytes_read": 200530096,
+        "candidate_bytes_read": 21688925,
+        "validation_bytes_read": 200530096,
+        "reused_sources": 33118,
+        "recomputed_sources": 0,
+        "cache_load_seconds": 0.7630595109985734,
+        "source_read_hash_features_seconds": 1.3916932309984986,
+        "feature_build_seconds": 0.0,
+        "coverage_seconds": 0.11266218699893216,
+        "construction_seconds": 2.879630258998077,
+        "final_validation_seconds": 1.2772986210002273
+      },
+      "corpus_snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+      "input_pins": [
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+          "bytes": 18570,
+          "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/PACKET.json",
+          "bytes": 514169,
+          "sha256": "8f7310b72611d5f6e6691c725f0b3b5d3d41d003d8498bb5c19e74153b85e3e1"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+          "bytes": 12368,
+          "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+        }
+      ]
+    },
+    {
+      "arm": "t6-repaired-reuse",
+      "members": 24,
+      "wall_seconds": 6.5443922099984775,
+      "rchar": 538267018,
+      "setup_seconds": 1.9556203989995993,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 46911,
+          "sha256": "ebdde9c3b7ed8547ada16b284c38f98231cd9ab9127020ac483061488d918329"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 28053,
+          "sha256": "7d1d77f7008ee8d72eb6980645eac6e08db070361311393ccaf2cb1f8902e5ff"
+        },
+        {
+          "path": "LOOKUPS.details.json",
+          "bytes": 7581106,
+          "sha256": "ca4d326e800371894c7e3d7987fd506d1eb6409bcc7c0684a1d6b0eca2dd4298"
+        }
+      ],
+      "cache_bytes": 15449266,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": {
+        "LOOKUPS.json": true,
+        "LOOKUPS.md": true
+      },
+      "candidate_files": 657,
+      "search_seconds": 1.5988546490007138,
+      "corpus_timings": {
+        "cache_state": "verified",
+        "cache_errors": [],
+        "bytes_read": 200530096,
+        "candidate_bytes_read": 19523804,
+        "validation_bytes_read": 200530096,
+        "reused_sources": 33118,
+        "recomputed_sources": 0,
+        "cache_load_seconds": 0.8663114880000649,
+        "source_read_hash_features_seconds": 1.4544964130000153,
+        "feature_build_seconds": 0.0,
+        "coverage_seconds": 0.11875219499779632,
+        "construction_seconds": 3.0561636370002816,
+        "final_validation_seconds": 1.2943213420003303
+      },
+      "corpus_snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+      "input_pins": [
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+          "bytes": 18570,
+          "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/PACKET.json",
+          "bytes": 574975,
+          "sha256": "e59e5510bf8d1eefd37383b02aaa2c98abdbf2456e913f42b7d4e7486c1ed741"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+          "bytes": 12368,
+          "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+        }
+      ]
+    },
+    {
+      "arm": "b06-repaired-reuse",
+      "members": 2,
+      "wall_seconds": 4.933348685997771,
+      "rchar": 518182003,
+      "setup_seconds": 1.96963642099945,
+      "outputs": [
+        {
+          "path": "LOOKUPS.json",
+          "bytes": 6576,
+          "sha256": "4aa983d5b38e58cb00d0332f46799f56a7df3cac493c751a2f024a7219bad82f"
+        },
+        {
+          "path": "LOOKUPS.md",
+          "bytes": 5270,
+          "sha256": "b2a907595354f0371c31f9b8e7886b075622bd6853b0214172941f33852f962f"
+        },
+        {
+          "path": "LOOKUPS.details.json",
+          "bytes": 7549462,
+          "sha256": "4d4208cfad99d3e1bceb4e1cefad9e3cbe04390e94881370d734e1d446257dcb"
+        }
+      ],
+      "cache_bytes": 15449266,
+      "source_manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632",
+      "reference_equivalence": {
+        "LOOKUPS.json": true,
+        "LOOKUPS.md": true
+      },
+      "candidate_files": 21,
+      "search_seconds": 0.08085020699945744,
+      "corpus_timings": {
+        "cache_state": "verified",
+        "cache_errors": [],
+        "bytes_read": 200530096,
+        "candidate_bytes_read": 787116,
+        "validation_bytes_read": 200530096,
+        "reused_sources": 33118,
+        "recomputed_sources": 0,
+        "cache_load_seconds": 0.8090574540001398,
+        "source_read_hash_features_seconds": 1.5596503429987933,
+        "feature_build_seconds": 0.0,
+        "coverage_seconds": 0.10054673199920217,
+        "construction_seconds": 3.05588378000175,
+        "final_validation_seconds": 1.2455673760014179
+      },
+      "corpus_snapshot_sha256": "ecae627ec90255b1fd2ef4853712e546df15d6eda29c4a30aa7148ad2244e73c",
+      "input_pins": [
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+          "bytes": 18570,
+          "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be"
+        },
+        {
+          "path": "jobs/claim-kit/batch.py",
+          "bytes": 41745,
+          "sha256": "2f559c0de28a874497e75d27e008e621531a016eaeec71d431c524d94373d3ae"
+        },
+        {
+          "path": "research/excavator/codex-continuous-2026-10-24/b06/packet-v1/PACKET.json",
+          "bytes": 171355,
+          "sha256": "ebefffa09fd363174a647d80ed0fec8b582e2e61d5cbc0ed7a6b3b02fffa4158"
+        },
+        {
+          "path": "jobs/domesday-register/output/REGISTER.csv",
+          "bytes": 6156258,
+          "sha256": "6c435040b77f54037cef275b89933a9b0fee60ab89b5d714e261a08993273b94"
+        },
+        {
+          "path": "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv",
+          "bytes": 1808195,
+          "sha256": "5c85b1282914232be6b46e3e5d32823fe1e6203f2e252360d90a8c7a43249e64"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+          "bytes": 22346593,
+          "sha256": "f1be5e618e7631b09245dfe8485c9b1ecb19042cb707286a92962539216bd413"
+        },
+        {
+          "path": "jobs/app-executive-orders/output/DOCUMENTS.jsonl",
+          "bytes": 1310845,
+          "sha256": "5692c5ba2072513d809ab8559a5d3084338b744978c9f826875baccb48b87a45"
+        },
+        {
+          "path": "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py",
+          "bytes": 12368,
+          "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873"
+        }
+      ]
+    }
+  ],
+  "matched_comparison": "Only serialized, unprofiled r1 arms establish this measured timing comparison. One trial each.",
+  "r1_cold_ratio": 6.137736076091232,
+  "r1_warm_ratio": 12.815688671793202,
+  "corpus": {
+    "texts": 33118,
+    "bytes": 200530096,
+    "manifest_sha256": "7a87fb985fcf53f96a9e7087d56bb15a9c4dc6fae311c9834bd62b1b7f183632"
+  },
+  "model": "OpenAI Codex; exact runtime model SKU unavailable in worker context",
+  "tokens": null,
+  "cash": null,
+  "cost_clock": {
+    "first_explicit_utc": "2026-10-30T00:08:10+00:00",
+    "summary_utc": "2026-10-30T00:25:14.482615+00:00",
+    "initial_setup_before_first_clock": "unmetered",
+    "code_mode_calls_at_least": 76,
+    "call_count_method": "Manual transcript count through final packaging verification/update, including wait invocations; nested calls and collaboration calls excluded because complete automatic session telemetry is unavailable. Initial setup before first explicit clock remains unmetered.",
+    "final_packaging_utc": "2026-10-30T00:27:17.682504+00:00",
+    "observed_wall_seconds_from_first_explicit_clock": 1200.053837,
+    "final_completed_utc": "2026-10-30T00:28:10.053837+00:00"
+  },
+  "limits": [
+    "No legal, readiness, source-grade, or review conclusion.",
+    "Cruden intentionally uses native load_packet(check_sources=False); full gate tested separately and fails.",
+    "No comparison to the attributed prior Opus 113.6-second measurement.",
+    "Diagnostic cProfile t5/t6/b06 runs overlapped and are not matched speed comparisons."
+  ],
+  "packaging": {
+    "archive": "RAW_ARTIFACTS.tar.xz",
+    "bytes": 1913804,
+    "sha256": "5913b4948a2fdf6270dff6577ed96e7a80ee9c49e1c994491b15bd7160808b86",
+    "members": 14,
+    "raw_bytes": 69964293,
+    "start_utc": "2026-10-30T00:26:38.438144+00:00",
+    "end_utc": "2026-10-30T00:27:17.682504+00:00",
+    "wall_seconds": 39.24440806799976,
+    "all_member_sha256_and_bytes_verified": true,
+    "benchmarks_rerun": false
+  }
+}

@@ -1,6 +1,7 @@
 """Offline regression tests for scheduling and the repository's wiring contract."""
 import ast
 import fnmatch
+import hashlib
 import importlib.util
 import os
 from pathlib import Path
@@ -147,6 +148,55 @@ class SchedulerTest(unittest.TestCase):
         self.assertEqual(output.read_text(), 'jobs=producer consumer\n')
 
 
+    def test_runtime_push_exemption_is_exact_and_push_only(self):
+        self.job('claim-kit')
+        runtime = ['jobs/claim-kit/batch.py', 'jobs/claim-kit/completion.py']
+        with patch.object(picker, 'claim_kit_runtime_only', wraps=picker.claim_kit_runtime_only) as guard:
+            self.assertEqual(picker.for_changes(runtime), ['claim-kit'])
+            guard.assert_not_called()
+        with patch.object(picker, 'claim_kit_runtime_only', return_value=True):
+            self.assertEqual(picker.for_changes(runtime, triggers=False, runtime_push=True), [])
+        for extra in ('jobs/claim-kit/build.py', 'jobs/claim-kit/prior_research.py',
+                      'jobs/claim-kit/inputs.txt', 'jobs/claim-kit/data/new.json',
+                      'jobs/claim-kit/new_runtime.py', 'research/readiness/decisions/new.json',
+                      'jobs/clause-drafts/segment.py', 'README.md'):
+            self.assertFalse(picker.claim_kit_runtime_only(runtime + [extra]), extra)
+            self.assertEqual(picker.for_changes(runtime + [extra], triggers=False, runtime_push=True),
+                             ['claim-kit'], extra)
+
+    def test_compiler_guard_hashes_files_and_fails_closed(self):
+        runtime = ['jobs/claim-kit/completion.py']
+        self.job('claim-kit')
+        compiler = Path('compiler.py')
+        raw = b'compiler version\n'
+        compiler.write_bytes(raw)
+        pins = {str(compiler): (hashlib.sha256(raw).hexdigest(),)}
+        with patch.object(picker, 'CLAIM_KIT_COMPILER_SHA256', pins):
+            self.assertTrue(picker.claim_kit_runtime_only(runtime))
+            compiler.write_bytes(raw + b'from completion import anything\n')
+            self.assertFalse(picker.claim_kit_runtime_only(runtime))
+            self.assertEqual(picker.for_changes(runtime, triggers=False, runtime_push=True), ['claim-kit'])
+            compiler.unlink()
+            with patch.object(picker.subprocess, 'run') as git_show:
+                git_show.return_value.returncode = 1
+                self.assertFalse(picker.claim_kit_runtime_only(runtime))
+                git_show.return_value.returncode = 0
+                git_show.return_value.stdout = raw
+                self.assertTrue(picker.claim_kit_runtime_only(runtime))
+
+    def test_runtime_push_keeps_daily_sweep_and_manual_rebuilds(self):
+        self.job('claim-kit')
+        Path('jobs/claim-kit/DAILY').touch()
+        runtime = ['jobs/claim-kit/completion.py']
+        with patch.object(picker, 'claim_kit_runtime_only', return_value=True):
+            with patch.object(picker, 'changed_files', return_value=runtime):
+                self.assertEqual(self.run_main(EVENT='push', AFTER='x'), {'jobs': '', 'runtime_tests': 'claim-kit'})
+            with patch.object(picker, 'recent_changes', return_value=runtime):
+                self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *'), {'jobs': 'claim-kit'})
+            self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON), {'jobs': 'claim-kit'})
+            self.assertEqual(self.run_main(EVENT='workflow_dispatch', INPUT_JOB='claim-kit'), {'jobs': 'claim-kit'})
+
+
 @unittest.skipUnless((ROOT / 'jobs').is_dir(), 'repository integration fixtures not present')
 class RepositoryWiringTest(unittest.TestCase):
     def setUp(self):
@@ -184,6 +234,40 @@ class RepositoryWiringTest(unittest.TestCase):
         self.assertIn(f'cron: "{picker.DAILY_CRON}"', workflow)
         self.assertIn('cron: "47 */3 * * *"', workflow)
         self.assertIn('SCHEDULE: ${{ github.event.schedule }}', workflow)
+
+
+    def test_runtime_allowlist_excludes_conservative_compiler_closure(self):
+        if not picker.claim_kit_runtime_only(['jobs/claim-kit/completion.py']):
+            self.skipTest('compiler certificate expired; pushes use default rebuild')
+        self.assertFalse(set(picker.CLAIM_KIT_COMPILER_SHA256) & picker.CLAIM_KIT_RUNTIME_ONLY)
+        tree = ast.parse((ROOT / 'jobs/claim-kit/inputs.py').read_text())
+        declared = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign)
+                        and any(isinstance(t, ast.Name) and t.id == 'COMPILER_FILES' for t in n.targets))
+        for path in declared:
+            relative = (ROOT / 'jobs/claim-kit' / path).resolve().relative_to(ROOT).as_posix()
+            self.assertIn(relative, picker.CLAIM_KIT_COMPILER_SHA256)
+        # All static imports, including imports local to a function, stay in the
+        # closure. The three literal dynamic imports are pinned explicitly.
+        modules = {p.stem: p.relative_to(ROOT).as_posix()
+                   for p in (ROOT / 'jobs/claim-kit').glob('*.py')}
+        for relative in picker.CLAIM_KIT_COMPILER_SHA256:
+            path = ROOT / relative
+            if path.is_file():
+                for name in shared_imports(path, set(modules)):
+                    self.assertIn(modules[name], picker.CLAIM_KIT_COMPILER_SHA256, relative)
+        for relative in ('jobs/claim-kit/prior_research.py', 'jobs/norton/model.py',
+                         'jobs/clause-drafts/segment.py', 'research/stage19/code/claim_gate.py'):
+            self.assertIn(relative, picker.CLAIM_KIT_COMPILER_SHA256)
+
+    def test_runtime_ci_runs_tests_without_the_production_job(self):
+        workflow = (ROOT / '.github/workflows/run-jobs.yml').read_text()
+        section = workflow.split('      - name: Materialize claim-kit test fixtures', 1)[1].split(
+            "      - name: Restore each job's bounded download cache", 1)[0]
+        self.assertIn("steps.pick.outputs.runtime_tests == 'claim-kit'", section)
+        self.assertIn("unittest.defaultTestLoader.discover('jobs/claim-kit'", section)
+        self.assertIn("'/research/stage19/code/**' '/research/plans/claim_kit_contract/**'", section)
+        self.assertNotIn('jobs/claim-kit/job.py', section)
+        self.assertNotIn('/output/', section)
 
     def test_real_uploads_select_pinakes(self):
         for path in ['ProQuest Pre-1937 Orders/1873-EO-10.pdf',

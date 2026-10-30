@@ -1,0 +1,58 @@
+{
+  "schema": "eo-cli-entrypoint-engineering-amendment/v1",
+  "completed_utc": "2026-10-30T01:16:41.247803+00:00",
+  "reviewed_candidate": "5366f664998c62bddf67bb00d3020adef3a6cfeb",
+  "verdict": "APPROVE_SUPPORTED_ENTRYPOINT_FIX_CONDITIONAL_ON_NATIVE_CI",
+  "blockers": [],
+  "source_pins": {
+    "research/progress/final-integration-2026-10-29/validate_native.py": {
+      "sha256": "6361dc4f71f806414b4555c3b20602fca59e975711f0b1e1822e5b19ce005af6",
+      "git_blob": "412ad35aefc27e4a6f28a8231b2dc784bc3a986c"
+    },
+    "jobs/claim-kit/kit.py": {
+      "sha256": "04b77aacd3168b4d704d54ee989c3a26c399fbefd83c0fdd269d90259652f424",
+      "git_blob": "b9267a0be8057e061f0a02e6b030b62ae5a42c02"
+    },
+    "jobs/claim-kit/assemble.py": {
+      "sha256": "3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb",
+      "git_blob": "65d55bbaa11904ec37ffa153cddcc4175a9665d5"
+    }
+  },
+  "finding": {
+    "id": "FOLLOWON-5",
+    "discoverer": "coordinator from actual CI40982822620",
+    "state": "fixed_and_independently_reproduced",
+    "problem": "Earlier harness passed -I to kit.py, removing its sibling module path and failing before native view could start. Prior mocked harness checks did not exercise import entrypoint. Earlier harness approval does not establish execution success.",
+    "repair": "Remove -I from all three kit invocations; script, runtime policy and scientific gates unchanged."
+  },
+  "validation": {
+    "checks": {
+      "worktree_matches_research/progress/final-integration-2026-10-29/validate_native.py": true,
+      "worktree_matches_jobs/claim-kit/kit.py": true,
+      "worktree_matches_jobs/claim-kit/assemble.py": true,
+      "three_claimkit_calls_use_script_first": true,
+      "no_isolated_flag_in_harness": true,
+      "no_publish_argument": true,
+      "actual_view_entrypoint_help_passes": true,
+      "actual_complete_entrypoint_help_passes": true,
+      "old_isolated_flag_failure_reproduced": true,
+      "all_profiler_challenge_entrypoint_help_passes": true,
+      "view_lazy_import_and_handled_missing_path": true,
+      "complete_lazy_import_and_handled_missing_path": true,
+      "missing_path_commands_create_no_output": true
+    },
+    "actual_execution": "Non-stubbed view --help and complete --help pass; old -I view --help reproduces missing assemble import. All five profiler/challenge script --help entrypoints pass with ordinary Python. No full-corpus commands run. Actual non-help view and complete invocations on known missing paths also exercise lazy imports and return handled claim-kit missing-file errors (exit2, no traceback); destination remains absent.",
+    "evidence": "/workspace/scratch/21fe24d0bcf0/review/followon-support/cli-entrypoint-check.json",
+    "evidence_sha256": "1d9f8dc21ce5de3de27701c2cb97c4b49c2ce9c76eec16444a8e842a2d5dfe50"
+  },
+  "conditions": [
+    "Retain failed old-flag CI40982822620 and any subsequent same-source failures. Require final exact-source native CI; help passes certify entrypoint loading only, not dossier validity or completion eligibility.",
+    "All prior no-publication, exact-version, source, science and global readiness holds remain. No --publish argument introduced."
+  ],
+  "costs": {
+    "tokens": null,
+    "cash": null,
+    "active_labor_seconds": null
+  },
+  "owner_asks": []
+}

@@ -85,6 +85,17 @@ ready when all its steps are done and either its claim passes the gate in full
 (tier `complete_claim`) or the only remaining gaps are exhausted steps (tier
 `machine_exhausted`). Human verification is not counted here.
 
+The documented exhaustion route applies to the seven research steps only;
+`provisional_status` cannot be exhausted. The loader rejects non-object records,
+blank or non-string search routes, explicitly `WEAK:` ladder proposals and
+explicit `retry_later` / `no_route` outcomes. Before a record grants credit, a
+claim must contain nonblank `unresolved_material_gaps` disclosure. An exception
+actually used is reported as `machine_exhausted`; an unused record does not
+downgrade a complete claim. Active exact source-audit holds remain blocking.
+These checks enforce eligibility and disclosure. Search thoroughness and whether
+each disclosed gap matches its exhausted step still require substantive examination;
+populated route strings do not establish them.
+
 To add a new source of evidence, add its file to `P` in `tracker.py`, its folder
 to `needs.txt`, and a test.
 

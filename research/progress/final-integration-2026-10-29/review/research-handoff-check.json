@@ -1,0 +1,58 @@
+{
+  "schema": "bounded-research-handoff-integrity/v1",
+  "reviewed_utc": "2026-10-30",
+  "pins": {
+    "source": "bbc66a83f4f2343d57f5fb4b840200c7a08f8058",
+    "handoff": "4b4f0c0d892dd644ef413912b9d085dc8ae02da7",
+    "output": "8d5259aadd56703981e3ae204994cae92d9cb882"
+  },
+  "source_baseline": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "runtime_pin": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
+  "runtime_pin_object_present": true,
+  "source_baseline_object_present": true,
+  "adoption_claims": {
+    "attempted": 14,
+    "eligible": 2,
+    "eligible_ids": [
+      "EO:6847A",
+      "EO:6925A"
+    ],
+    "blocked": 8,
+    "route_owner": 4,
+    "exceptions": 0,
+    "claims_published": 0,
+    "human_certifications": 0
+  },
+  "publishable_artifact": {
+    "sha256_expected": "fe5c3fafc4dacbe86e867450d457b94b043182b9f16bf72bd7c15be83e986a6a",
+    "sha256_actual": "fe5c3fafc4dacbe86e867450d457b94b043182b9f16bf72bd7c15be83e986a6a",
+    "matches": true,
+    "lines": 2
+  },
+  "first_control": {
+    "instrument": "EO:6925A",
+    "caught": true,
+    "scoring": "strict",
+    "blind_review_sha256": "757145e4c4623e57357dd4ab730890f9c2913c9df62bce7a78280fd9115114be",
+    "sealed_before_reveal": true,
+    "private_control_key_exposed_in_review": false
+  },
+  "genuine_after_reveal": {
+    "instrument": "EO:6925A",
+    "claim_sha256": "eba666352fb572539a17e0dae6e4d03f93f656efd890e55fac7a0cec968c26ac",
+    "verdict": "upheld_after_reveal",
+    "blind_review_sha256_preserved": true
+  },
+  "scope_integrity": {
+    "canonical_or_code_paths_in_source_to_output_diff": [],
+    "no_canonical_claim_or_status_publication": true,
+    "four_owner_routes_not_replacements": true,
+    "automatic_replacement": false
+  },
+  "external_or_unverified_dependencies": [
+    "APP raw HTML is not committed or independently refetched/rehashed; WARC capture pointers and local mirror metadata are recorded, with mirror transcription explicitly not an authenticated original.",
+    "The work relies on frozen PR104 runtime/source data and previously held primary/reference PDFs; this mechanical review checked Git objects and recorded hashes, not external repository reachability, source authenticity anew, or legal merits."
+  ],
+  "recommendation": "Retain only as qualified research/native completion artifacts on PR107 if root judges compatible. Do not publish canonical claims/status, adopt legal conclusions, or replace owner-controlled existing claims. All four routes remain owner-directed; no replacements were automatically produced.",
+  "limitations": "Mechanical provenance check only; did not rerun scientific review or legal review. The full referenced frozen runtime checkout was not hydrated/replayed in this bounded task."
+}

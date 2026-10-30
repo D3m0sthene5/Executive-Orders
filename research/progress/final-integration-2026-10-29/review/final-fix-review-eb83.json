@@ -1,0 +1,252 @@
+{
+  "schema": "eo-final-integration-fix-engineering-review/v1",
+  "completed_utc": "2026-10-30T00:29:27.738316+00:00",
+  "reviewer": {
+    "identity": "OpenAI Codex; exact serving model identifier is not exposed to this worker",
+    "family": "OpenAI",
+    "separate_delegated_context": true,
+    "tokens": null,
+    "cash": null,
+    "active_labor_seconds": null,
+    "telemetry_note": "Actual model identifier and token/billing telemetry unavailable; no guessed figures."
+  },
+  "scope": {
+    "base": "e69a8b0b0216f44b8c1a37ec4c8ff33ceb8272a4",
+    "initial_candidate": "9a15b63e6db3cae21db6bbe1ed096b63b463cbcf",
+    "checkout_fix_candidate": "25ba05dd9b2c48964d72e7fc7d277637f9d91895",
+    "reviewed_candidate": "eb83f4073a938249bbc64f67696abbd582c205a2",
+    "reviewed_tree": "e07332136e5e833093b8e8e8f33c842e6ffe8018",
+    "checkout_access": "Coordinator checkout read-only; no checkout or GitHub mutation by reviewer. Test snapshots and synthetic Git repositories isolated under review/final-fix-work.",
+    "scientific_approval": false,
+    "human_certification": false
+  },
+  "verdict": "APPROVE",
+  "verdict_scope": "Bounded engineering fixes at exact reviewed bytes approved, conditional on combined integration/native validation below. This does not approve scientific claims, source status, canonical filing, production totals or unobserved remote CI.",
+  "exact_changed_code_and_workflow_files": {
+    ".github/scripts/test_input_attributes.py": {
+      "sha256": "5134442b663095e99877e6c856fcd5145a9130a8c2cc43828d4b543ff0469a4f",
+      "git_blob": "bed1eda12a54b65871a75b1e6dd310dfd93b6a6c"
+    },
+    ".github/scripts/test_roads.py": {
+      "sha256": "baaab7e1ef877be9fb3b3538409af78228329f55438c55ad9fae79c2852b16f5",
+      "git_blob": "cf77d1f55464e591772995fc2152bfb0bfa38e2a"
+    },
+    ".github/workflows/claim-publication-audit.yml": {
+      "sha256": "766c103ebc60a2cca73306415bedd1ed43eb7ba9d8680436beff6e5d3b2b66f8",
+      "git_blob": "43ff4e566a129884d439879fef5cac26a8677a5c"
+    },
+    ".github/workflows/valla-pilot.yml": {
+      "sha256": "936978a7e1a320a84ebb77b199f8cc3ba1fb69766a66ff9a9078746e79cebf47",
+      "git_blob": "f0cffc8448054c001f688b53201908749b2620fa"
+    },
+    "jobs/claim-kit/completion.py": {
+      "sha256": "be9c31f355e7b0f07e35fc3414666de765e5e87a01db48105cf29e1aaca50a74",
+      "git_blob": "29dda1b945928f288d5ecced1d5f6de50ffddab9"
+    },
+    "jobs/claim-kit/fragment_cache.py": {
+      "sha256": "b329497ea08c3673f3cb4d8cd53d8191f2bb833db0c21d67a9de9a36df84755e",
+      "git_blob": "f5d055b2456a9f78ac4e79e447153d9a740dac69"
+    },
+    "jobs/claim-kit/inputs.txt": {
+      "sha256": "19bf254319065406fd64dc9e1273bbc02ab48cce6e94e1290714a4be859af9c5",
+      "git_blob": "348986e3843086ff979174239161cdef7b3fc684"
+    },
+    "jobs/claim-kit/test_completion.py": {
+      "sha256": "e97dea6ebd539785b83b7591432e7e4e85e1b67e39cd7965ec0b5b6028d89cff",
+      "git_blob": "73cbdab13b414b7bb883fbb7fa3cd9da2680f609"
+    },
+    "jobs/claim-kit/test_working_text_index.py": {
+      "sha256": "86f4bd1759261fec16326188743297a1bbcff8c4896c0844aa64c7992e1b6ebd",
+      "git_blob": "582810523eddcc95f5a352a7f82772522b98ccf7"
+    },
+    "jobs/hathi-gpo-orders/.gitattributes": {
+      "sha256": "01d12f012a7e22a4235375ae91867637be67fee693f637899c664f008aa4fd16",
+      "git_blob": "eaedce9f8d7cb85a0fefb6b603602ef5dd6f713f"
+    }
+  },
+  "initial_findings": [
+    {
+      "id": "ENG-1",
+      "disposition": "resolved in code; production freshness still requires native proof",
+      "evidence": "Nested data/*.json now -text !eol. Independent actual-rule clean/smudge fixture passes with core.autocrlf false and true. TARGETS Git blob remains 762278efdaabe762997963e779d52ce2ba595996; source bytes not normalized."
+    },
+    {
+      "id": "ENG-2",
+      "disposition": "resolved for accidental/structurally valid cached-payload corruption",
+      "evidence": "Format v2 participates in inventory key; rows_sha256 binds serialized payload. Unchanged-provider complete_text mutation invalidates cache and reconstructs genuine index; cache suite passes. Cache creation still checks exact dictionaries and key order against native W.Index.",
+      "limitation": "Digest is corruption detection, not authentication against an actor rewriting both rows and digest. CACHE_FORMAT is an explicit implementation format version, not an automatic source-code hash; future parser semantic changes must invalidate/bump it."
+    },
+    {
+      "id": "ENG-3",
+      "disposition": "resolved",
+      "evidence": "Witness now retains lexical candidates and recomputes resolution alongside existence before process reuse. Tests cover existing-link retarget, missing-link retarget, file-to-link, directory-to-link; all compare native index. No mutable provider authority is relaxed."
+    },
+    {
+      "id": "ENG-4",
+      "disposition": "resolved in final workflow, pending actual remote run",
+      "evidence": "PR checks use real PR head and supplied base, full Git history, read-only contents permission, and retained JSON receipt. Main nonmerge pushes compare before SHA; two-parent merge pushes run both parent race audit and actual HEAD^1-to-HEAD tree audit, preserve separate receipts and fail if either audit fails. No automatic conflict adjudication."
+    },
+    {
+      "id": "ENG-5",
+      "disposition": "resolved",
+      "evidence": "Nonempty preexisting record sequence must remain unchanged prefix. Reversal/insertion/replacement cannot silently change last-line winner; reviewed append remains allowed. Both new regressions pass."
+    }
+  ],
+  "review_discovered_and_repaired": [
+    {
+      "id": "FINAL-1",
+      "severity": "high",
+      "path": ".github/workflows/valla-pilot.yml",
+      "problem": "9a15 checkout omitted research/production while newly requiring empty unmaterialized_packages. Four tracked production RATIONALES packages would be absent.",
+      "resolution": "25ba adds research/production. Reviewed final cone checkout covers both excavator and production tracked package roots.",
+      "examples": [
+        "research/production/astra-leverage-2026-10-22/mansfield-preflight/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-cab-v1/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-fcc-v1/RATIONALES.json",
+        "research/production/codex-swarm-20261021/producer/packet-v1/RATIONALES.json"
+      ]
+    },
+    {
+      "id": "FINAL-2",
+      "severity": "medium",
+      "path": ".github/workflows/valla-pilot.yml",
+      "problem": "New lifecycle replay depends on frozen f9c6 baseline objects but shallow checkout did not explicitly fetch them; availability relied on current ancestry depth.",
+      "resolution": "25ba explicitly fetches f9c6d806ad059dcad7875ab3708715f20ea386df and verifies tracker blob, alongside existing 91116f87 pilot fetch. This is a reproducibility hardening, not a demonstrated failure at 9a15: f9c6 is within six levels through PR106 ancestry."
+    },
+    {
+      "id": "FINAL-3",
+      "severity": "high",
+      "path": ".github/workflows/claim-publication-audit.yml",
+      "problem": "Parent-only merge audit ignored claims changes introduced in merge-result tree. Temporary fixture reversed old EO:1 versions in merge commit: --merge-commit returned ok=true while --base HEAD^1 rejected changed sequence.",
+      "resolution": "eb83 adds independent merged-tree audit, retains publication-tree-audit.json, runs both checks even if first fails and aggregates exit status. Static inspection confirms workflow now executes exactly the rejecting audit in retained counterexample.",
+      "evidence_artifact": "final-fix-merge-audit-repro.json"
+    }
+  ],
+  "cross_stream_and_version_checks": {
+    "PR104_input_closure": "Added explicit cross-job Python code globs plus Valla premises and status-history code cover R1-R3/R6. Existing jobs/*/data/** covers claim-checker manifest data. Does not certify R4 untracked factual PDFs, R5 arbitrary future pointers, or R7 whole-research packet scope; no narrowing claimed.",
+    "PR106_review_seal": {
+      "jobs/readiness-tracker/tracker.py": {
+        "expected_sha256": "983748748556d87f1b748bfc139a265c0d1128dbcc4f673a9298e374ecfa2290",
+        "actual_sha256": "983748748556d87f1b748bfc139a265c0d1128dbcc4f673a9298e374ecfa2290",
+        "match": true
+      },
+      "jobs/readiness-tracker/test_tracker.py": {
+        "expected_sha256": "e68b00a886bae8596141174147b6d6c7a0e5bcc3447b07a0813ea8688b2925c7",
+        "actual_sha256": "e68b00a886bae8596141174147b6d6c7a0e5bcc3447b07a0813ea8688b2925c7",
+        "match": true
+      },
+      "jobs/readiness-tracker/README.md": {
+        "expected_sha256": "b3744f2831b54743d8abdc634c3b5f1c0d1011c7c455d50ca1b426784ea981c2",
+        "actual_sha256": "b3744f2831b54743d8abdc634c3b5f1c0d1011c7c455d50ca1b426784ea981c2",
+        "match": true
+      },
+      "research/progress/lifecycle-assurance/replay.py": {
+        "expected_sha256": "58d47dd631a577509349de6b478178a4363c440f1fec880707bfc053fc8b3566",
+        "actual_sha256": "58d47dd631a577509349de6b478178a4363c440f1fec880707bfc053fc8b3566",
+        "match": true
+      },
+      "jobs/claim-checker/checker.py": {
+        "expected_sha256": "3efe68a525f07a959b8267c17884999deb85aac7ae6333dfadfd4d2922a81133",
+        "actual_sha256": "3efe68a525f07a959b8267c17884999deb85aac7ae6333dfadfd4d2922a81133",
+        "match": true
+      },
+      "research/stage19/code/claim_gate.py": {
+        "expected_sha256": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+        "actual_sha256": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+        "match": true
+      },
+      "research/progress/lifecycle-assurance/review/native-independent/RESULTS.json": {
+        "expected_sha256": "5d9759a0b5cb48ead219c466f38655d02197a146e90d30576febc68d05aec368",
+        "actual_sha256": "5d9759a0b5cb48ead219c466f38655d02197a146e90d30576febc68d05aec368",
+        "match": true
+      }
+    },
+    "compiler_whitelist": "All 15 pick_jobs CLAIM_KIT_COMPILER_SHA256 entries match final source bytes. prior_research remains a conservative compiler trigger. Added inputs declaration is outside runtime-only exemption, so integration is not misclassified as solely runtime.",
+    "native_workflow": "Final Valla checkout includes jobs, needed Stage15/19/20/21 paths, readiness, progress, Valla, excavator, production and contract paths. Lifecycle source baseline is explicit. Custody replay calls existing bounded materializer for three Git-backed PDFs; full index asserts absent-package list empty. Native outputs uploaded without canonical promotion.",
+    "publication_workflow": "Full history and real PR head avoid synthetic-merge confusion. Job imports available jobs tree; claim data read from Git objects rather than sparse working tree. Merge-result audit covers ordinary single merge pushes; this is not a historical forensic audit of all earlier commits."
+  },
+  "validation": {
+    "cache_tests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/claim-kit -p test_working_text_index.py",
+      "run": 23,
+      "passed": 22,
+      "skipped": 1,
+      "seconds": 0.31,
+      "skip": "existing explicit real-repository/corpus opt-in"
+    },
+    "completion_tests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/claim-kit -p test_completion.py",
+      "run": 38,
+      "passed": 38,
+      "seconds": 3.283
+    },
+    "attributes_test": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_input_attributes.py",
+      "run": 1,
+      "passed": 1,
+      "seconds": 0.029
+    },
+    "merge_result_counterexample": "Reproduced in isolated temporary Git repository. Parent-only result ok=true; actual merged-tree audit ok=false, existing canonical sequence changed.",
+    "source_checks": "7/7 PR106 seal hashes match; 15/15 compiler whitelist entries match; original TARGETS Git blob retained.",
+    "not_run_by_reviewer": [
+      "Full 485-test claim-kit suite",
+      "Remote Road Windows/Linux or Kean CI",
+      "Real corpus replay, runner rebuild or production freshness publication",
+      "Retained PR104 packet completion dry run"
+    ],
+    "coordinator_reported_not_independently_repeated": "485 local claim-kit tests with 5 existing sparse/corpus skips, focused Road/Valla/checker passes; remote combined CI pending."
+  },
+  "conditions_before_combined_acceptance": [
+    "Pass final exact-tree Road Linux/Windows, Kean, complete claim-kit/Valla and relevant runner/checker suites; preserve every failed receipt and documented skip.",
+    "Execute final workflow publication audit remotely; final YAML must be uploaded and workflow rerun on exact final bytes. Prior 25ba/b8c40 checks do not validate eb83 workflow delta.",
+    "Native lifecycle and three-source custody replays must retain expected qualified outcomes; full Valla inventory must have no unmaterialized packages.",
+    "Real combined claim-kit and Valla builds must be compared against PR104 outputs on identical input generations, with differences explained by exact pins; focused tests do not certify input closure.",
+    "Retained PR104 rehearsal view plus completion dry-run only must retain five eligible and expected publishable SHA or explicitly explain changed pins. Missing/conflicting review versions are not approvals.",
+    "Canonical checker-to-tracker production publication must pass unchanged freshness controls before claiming a new production generation or readiness result."
+  ],
+  "boundaries": [
+    "No scientific or legal review performed; prior source/review qualifications and historical failures remain binding.",
+    "No cache cryptographic authenticity, universal dependency closure, global readiness change or measured efficiency saving inferred.",
+    "No GitHub/main refresh independently performed by reviewer; review is pinned to supplied local candidate objects, not a live-main acceptance.",
+    "Coordinator owns committing this report and recording result/handoff/Kean; reviewer did not edit shared register under read-only assignment."
+  ],
+  "evidence_read": {
+    "initial_review": {
+      "sha256": "4ce2665de221b1b952e43588bada0138923052fd69dcf09250d3e252532308f8",
+      "git_blob": "604883cd88812b83b19fe96ea53fb15d21860b2a"
+    },
+    "input_closure": {
+      "sha256": "0f0e4430828a1533d6c74c84669564d63d5a61e16110c2bdefd79c13d7a957e8",
+      "git_blob": "4c80b3b253156af9739334c5dc6dda32893d2255"
+    },
+    "PR104_handoff": {
+      "sha256": "ec21bb7c4870a3cd19fea3592e6acca4e8ad7a8833d1c7dfebf8caa83972d3a3",
+      "git_blob": "270e3736033c93c0b915c3a2baf42cf7dbdbe9da"
+    },
+    "PR106_seal": {
+      "sha256": "fa6a6838528d5868659dbb75ec52208a2899bda1ae3ac6781b89a272c9cbbd66",
+      "git_blob": "03cb2602b28eab9ee48465d5279802e1c788bfa2"
+    },
+    "counterexamples": [
+      "cache-adversarial.json",
+      "cache-policy-impact.json",
+      "publication-audit-order.json",
+      "line-ending-reproduction.json"
+    ],
+    "standing_instructions": [
+      "AGENTS.md",
+      "HANDOFF/KEAN.md",
+      "HANDOFF/README.md",
+      "jobs/kean/README.md",
+      "newest HANDOFF note excerpts",
+      "jobs/claim-kit/AGENT_PROTOCOL.md"
+    ],
+    "kean_search": "python3 -I jobs/kean/kean.py search cache publication closure integration"
+  },
+  "artifacts": {
+    "final-fix-merge-audit-repro.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/final-fix-merge-audit-repro.json",
+      "sha256": "5171ba68f3bf2f48fade468bef51f2a490c42edb0e838181a893bee33303eaa5"
+    }
+  }
+}

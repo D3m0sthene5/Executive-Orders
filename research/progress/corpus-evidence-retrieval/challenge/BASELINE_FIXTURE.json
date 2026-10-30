@@ -1,0 +1,420 @@
+{
+  "source": "/workspace/scratch/d01b864b34fc/corpus-evidence-retrieval/research/progress/corpus-evidence-retrieval/challenge/BASELINE_CRUDEN.py",
+  "source_sha256": "075ab70f7b312a9b87a106f279502dfd695da0dcaddff49f1eae6bbae9170867",
+  "baseline_sha256": "075ab70f7b312a9b87a106f279502dfd695da0dcaddff49f1eae6bbae9170867",
+  "checks": {
+    "regex_search_output_equal": true,
+    "member_ids_preserved": true,
+    "legacy_projection_equal": true,
+    "fr_citation_not_eo1234": true,
+    "negative_query_empty": true,
+    "suffix_c_not_d": true,
+    "base_not_suffix_c": true,
+    "own_text_excluded": true,
+    "duplicate_paths_retained": true,
+    "clause_drafts_excluded": true
+  },
+  "all_checks_pass": true,
+  "overflow_files": 0,
+  "fixture_files": 14,
+  "legacy_result": {
+    "schema": "cruden-lookups/v1",
+    "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status.",
+    "members": {
+      "EO:1234": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [],
+        "code_mentions": []
+      },
+      "EO:6242": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Code of Fair Competition for the Widget Industry",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": "jobs/held/output/texts/00-own.txt",
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [
+          {
+            "word": "until",
+            "char": 87,
+            "context": "o. 6242 approves the Code of Fair Competition for the Widget Industry until further order."
+          },
+          {
+            "word": "further order",
+            "char": 93,
+            "context": "2 approves the Code of Fair Competition for the Widget Industry until further order."
+          }
+        ],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/01-base.txt",
+            "context": "Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation."
+          },
+          {
+            "file": "jobs/held/output/texts/04-code.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/05-duplicate.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/06-neighbor.txt",
+            "context": "Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked."
+          },
+          {
+            "file": "jobs/held/output/texts/11-unicode-prefix.txt",
+            "context": "İİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242."
+          }
+        ],
+        "code_mentions": [
+          {
+            "file": "jobs/held/output/texts/04-code.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/05-duplicate.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/08-spaces.txt",
+            "context": "Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry."
+          },
+          {
+            "file": "jobs/held/output/texts/11-unicode-prefix.txt",
+            "context": "ir Competition for the Widget Industry. Executive Order No. 6242."
+          }
+        ]
+      },
+      "EO:6242C": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/02-suffix-c.txt",
+            "context": "Executive Order No. 6242-C concerns a different approval."
+          },
+          {
+            "file": "jobs/held/output/texts/08-spaces.txt",
+            "context": "Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry."
+          }
+        ],
+        "code_mentions": []
+      },
+      "EO:6242D": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/03-suffix-d.txt",
+            "context": "Executive Order No. 6242 D concerns another approval."
+          }
+        ],
+        "code_mentions": []
+      },
+      "EO:7777": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [],
+        "code_mentions": []
+      },
+      "EO:9999": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/06-neighbor.txt",
+            "context": "Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked."
+          }
+        ],
+        "code_mentions": []
+      }
+    }
+  },
+  "candidate_result": {
+    "schema": "cruden-lookups/v1",
+    "notice": "Every row is a lead for the producer to read and judge. Nothing here decides identity, an end or a status.",
+    "members": {
+      "EO:1234": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [],
+        "code_mentions": []
+      },
+      "EO:6242": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Code of Fair Competition for the Widget Industry",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": "jobs/held/output/texts/00-own.txt",
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [
+          {
+            "word": "until",
+            "char": 87,
+            "context": "o. 6242 approves the Code of Fair Competition for the Widget Industry until further order."
+          },
+          {
+            "word": "further order",
+            "char": 93,
+            "context": "2 approves the Code of Fair Competition for the Widget Industry until further order."
+          }
+        ],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/01-base.txt",
+            "context": "Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation."
+          },
+          {
+            "file": "jobs/held/output/texts/04-code.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/05-duplicate.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/06-neighbor.txt",
+            "context": "Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked."
+          },
+          {
+            "file": "jobs/held/output/texts/11-unicode-prefix.txt",
+            "context": "İİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242."
+          }
+        ],
+        "code_mentions": [
+          {
+            "file": "jobs/held/output/texts/04-code.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/05-duplicate.txt",
+            "context": "Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242."
+          },
+          {
+            "file": "jobs/held/output/texts/08-spaces.txt",
+            "context": "Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry."
+          },
+          {
+            "file": "jobs/held/output/texts/11-unicode-prefix.txt",
+            "context": "ir Competition for the Widget Industry. Executive Order No. 6242."
+          }
+        ]
+      },
+      "EO:6242C": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/02-suffix-c.txt",
+            "context": "Executive Order No. 6242-C concerns a different approval."
+          },
+          {
+            "file": "jobs/held/output/texts/08-spaces.txt",
+            "context": "Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry."
+          }
+        ],
+        "code_mentions": []
+      },
+      "EO:6242D": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/03-suffix-d.txt",
+            "context": "Executive Order No. 6242 D concerns another approval."
+          }
+        ],
+        "code_mentions": []
+      },
+      "EO:7777": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [],
+        "code_mentions": []
+      },
+      "EO:9999": {
+        "register": {
+          "date": "1933-01-01",
+          "title": "Test order",
+          "president": "Fixture",
+          "best_held": "fixture",
+          "provisional_status": ""
+        },
+        "wpa": [],
+        "original": {
+          "grade": null,
+          "sha256": null,
+          "text_path": null,
+          "text_sha256": null
+        },
+        "page_check": [],
+        "own_text_signals": [],
+        "number_citations": [
+          {
+            "file": "jobs/held/output/texts/06-neighbor.txt",
+            "context": "Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked."
+          }
+        ],
+        "code_mentions": []
+      }
+    }
+  },
+  "candidate_markdown": "# Lookups for this packet (Cruden)\n\nLeads only; read the sources and judge. Full detail: LOOKUPS.json.\n\n## EO:1234: Test order\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: none\n- Number citations in other held texts (0):\n- Code-name mentions in other held texts (0):\n\n## EO:6242: Code of Fair Competition for the Widget Industry\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: 'until'@87: …o. 6242 approves the Code of Fair Competition for the Widget Industry until further order.…; 'further order'@93: …2 approves the Code of Fair Competition for the Widget Industry until further order.…\n- Number citations in other held texts (5):\n  - jobs/held/output/texts/01-base.txt: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation.…\n  - jobs/held/output/texts/04-code.txt: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\n  - jobs/held/output/texts/05-duplicate.txt: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\n  - jobs/held/output/texts/06-neighbor.txt: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\n  - jobs/held/output/texts/11-unicode-prefix.txt: …İİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\n- Code-name mentions in other held texts (4):\n  - jobs/held/output/texts/04-code.txt: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\n  - jobs/held/output/texts/05-duplicate.txt: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\n  - jobs/held/output/texts/08-spaces.txt: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\n  - jobs/held/output/texts/11-unicode-prefix.txt: …ir Competition for the Widget Industry. Executive Order No. 6242.…\n\n## EO:6242C: Test order\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: none\n- Number citations in other held texts (2):\n  - jobs/held/output/texts/02-suffix-c.txt: …Executive Order No. 6242-C concerns a different approval.…\n  - jobs/held/output/texts/08-spaces.txt: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\n- Code-name mentions in other held texts (0):\n\n## EO:6242D: Test order\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: none\n- Number citations in other held texts (1):\n  - jobs/held/output/texts/03-suffix-d.txt: …Executive Order No. 6242 D concerns another approval.…\n- Code-name mentions in other held texts (0):\n\n## EO:7777: Test order\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: none\n- Number citations in other held texts (0):\n- Code-name mentions in other held texts (0):\n\n## EO:9999: Test order\n\n- Register: 1933-01-01; Fixture; best held fixture; status \n- WPA: none\n- Page check: record=none found for the original's sha256\n- Own-text signals: none\n- Number citations in other held texts (1):\n  - jobs/held/output/texts/06-neighbor.txt: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\n- Code-name mentions in other held texts (0):\n",
+  "candidate_stdout": "6 members -> /tmp/cruden-independent-6liz3ikt/packet/LOOKUPS.md\n",
+  "regex_patterns": [
+    "executive\\s+order",
+    "(?<=No\\. )6242",
+    "Widget|1234",
+    "unmatched7777"
+  ],
+  "legacy_regex_stdout": "jobs/held/output/texts/00-own.txt@0: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until fu…\njobs/held/output/texts/00-own.txt@20: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until further ord…\njobs/held/output/texts/00-own.txt@71: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until further order.…\njobs/held/output/texts/01-base.txt@0: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register cita…\njobs/held/output/texts/01-base.txt@20: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation.…\njobs/held/output/texts/01-base.txt@62: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation.…\njobs/held/output/texts/02-suffix-c.txt@0: …Executive Order No. 6242-C concerns a different approval.…\njobs/held/output/texts/02-suffix-c.txt@20: …Executive Order No. 6242-C concerns a different approval.…\njobs/held/output/texts/03-suffix-d.txt@0: …Executive Order No. 6242 D concerns another approval.…\njobs/held/output/texts/03-suffix-d.txt@20: …Executive Order No. 6242 D concerns another approval.…\njobs/held/output/texts/04-code.txt@67: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/04-code.txt@87: …Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/04-code.txt@33: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@67: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@87: …Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@33: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/06-neighbor.txt@0: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is r…\njobs/held/output/texts/06-neighbor.txt@43: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\njobs/held/output/texts/06-neighbor.txt@20: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\njobs/held/output/texts/07-continuation.txt@0: …Executive Orders Nos. 6242-C and 6242-D are listed together.…\njobs/held/output/texts/08-spaces.txt@0: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/08-spaces.txt@20: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/08-spaces.txt@64: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/09-no-the.txt@29: …Code of Fair Competition for Widget Industry.…\njobs/held/output/texts/11-unicode-prefix.txt@151: …İİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/11-unicode-prefix.txt@171: …İİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/11-unicode-prefix.txt@134: …İİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/nested/10-noise.txt@4: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\njobs/held/output/texts/nested/10-noise.txt@10: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\njobs/held/output/texts/nested/10-noise.txt@21: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\n",
+  "candidate_regex_stdout": "jobs/held/output/texts/00-own.txt@0: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until fu…\njobs/held/output/texts/00-own.txt@20: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until further ord…\njobs/held/output/texts/00-own.txt@71: …Executive Order No. 6242 approves the Code of Fair Competition for the Widget Industry until further order.…\njobs/held/output/texts/01-base.txt@0: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register cita…\njobs/held/output/texts/01-base.txt@20: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation.…\njobs/held/output/texts/01-base.txt@62: …Executive Order No. 6242 supersedes a prior direction. 3 F.R. 1234 is the Federal Register citation.…\njobs/held/output/texts/02-suffix-c.txt@0: …Executive Order No. 6242-C concerns a different approval.…\njobs/held/output/texts/02-suffix-c.txt@20: …Executive Order No. 6242-C concerns a different approval.…\njobs/held/output/texts/03-suffix-d.txt@0: …Executive Order No. 6242 D concerns another approval.…\njobs/held/output/texts/03-suffix-d.txt@20: …Executive Order No. 6242 D concerns another approval.…\njobs/held/output/texts/04-code.txt@67: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/04-code.txt@87: …Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/04-code.txt@33: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@67: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@87: …Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/05-duplicate.txt@33: …Code of Fair Competition for the Widget Industry is stayed. Later: Executive Order No. 6242.…\njobs/held/output/texts/06-neighbor.txt@0: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is r…\njobs/held/output/texts/06-neighbor.txt@43: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\njobs/held/output/texts/06-neighbor.txt@20: …Executive Order No. 6242. Text for target. Executive Order No. 9999. The neighboring order is revoked.…\njobs/held/output/texts/07-continuation.txt@0: …Executive Orders Nos. 6242-C and 6242-D are listed together.…\njobs/held/output/texts/08-spaces.txt@0: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/08-spaces.txt@20: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/08-spaces.txt@64: …Executive Order No. 6242-C and Code of Fair Competition for the Widget Industry.…\njobs/held/output/texts/09-no-the.txt@29: …Code of Fair Competition for Widget Industry.…\njobs/held/output/texts/11-unicode-prefix.txt@151: …İİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/11-unicode-prefix.txt@171: …İİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/11-unicode-prefix.txt@134: …İİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ Code of Fair Competition for the Widget Industry. Executive Order No. 6242.…\njobs/held/output/texts/nested/10-noise.txt@4: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\njobs/held/output/texts/nested/10-noise.txt@10: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\njobs/held/output/texts/nested/10-noise.txt@21: …No. 6242; 1234; code widget; unanchored numbers are not EO citations.…\n",
+  "elapsed_seconds": 0.020101109003007878,
+  "scope": "Synthetic fixture coverage; same-family separate-context engineering only; no corpus-wide/legal inference."
+}

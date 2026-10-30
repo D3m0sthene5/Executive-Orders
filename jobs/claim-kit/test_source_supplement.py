@@ -2,19 +2,25 @@
 import copy
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shutil
+import tempfile
 import unittest
 from unittest.mock import patch
 
 import assemble as A
 import batch as B
+import fragment_cache as FC
 import source_supplement as S
 import test_build as F
 
 
 class SourceSupplementTests(unittest.TestCase):
     def setUp(self):
+        cache = tempfile.TemporaryDirectory(); self.addCleanup(cache.cleanup)
+        env = patch.dict(os.environ, {'CLAIM_KIT_CACHE_DIR': cache.name}); env.start(); self.addCleanup(env.stop)
+        FC._SHARED.clear(); self.addCleanup(FC._SHARED.clear)
         self.f = F.BuildIntegrationTests()
         self.f.setUp()
         self.addCleanup(self.f.doCleanups)
@@ -181,6 +187,20 @@ class SourceSupplementTests(unittest.TestCase):
         self.assertEqual((got['grade'], got['sha256'], got['acceptable_as_original'], got['instrument_id']),
                          ('mirror_transcription', 'c'*64, False, 'EO:5'))
         self.assertNotIn('local_path', got)
+
+    def test_prepare_and_verify_build_the_fragment_index_once(self):
+        FC._SHARED.clear()
+        real = FC.W.Index.__init__
+        with patch.object(FC.W.Index, '__init__', autospec=True, side_effect=real) as built:
+            self.prepare()
+            self.assertEqual(built.call_count, 1)
+            self.assertEqual(S.verify(self.repo, self.dest)['orders'], 1)
+            self.assertEqual(built.call_count, 1)
+            # an added provider file is a new inventory and builds a new index
+            path = self.repo/'jobs/app-executive-orders/output/FRAGMENTS.jsonl'
+            path.parent.mkdir(parents=True, exist_ok=True); path.write_text('\n')
+            FC.shared(self.repo)
+            self.assertEqual(built.call_count, 2)
 
     def test_foreign_target_alias_and_duplicate_refused(self):
         for change in [{'instrument_ids':['EO:2']},{'alias':'ACT:EO:1>EO:5'}]:

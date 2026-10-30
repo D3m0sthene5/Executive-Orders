@@ -1,0 +1,7 @@
+# Reusable producer brief
+
+Use the exact runtime and source pins in FREEZE.json. Verify the shared brief hash and its scoped independent review. Prepare explicit unreserved IDs with native claim-kit prepare, attach only verified held excerpts through source_supplement, and read the native view plus complete source texts. Keep every member in decisions.csv, including blocks and owner routes.
+
+Apply SHARED_RESEARCH.md conditionally. A statutory repeal backstop is not a proven first end. Establish each complete inventory, effective condition, earlier event, independent act, residual effect and remaining gap. Preserve before/after text for strike-and-insert amendments under the owner ruling. Use actual performance evidence and supported intervals; deadlines supply neither occurrence nor nonoccurrence. Treat self-executing cancellation/denial separately only after reading the complete order.
+
+Run native apply and batch-check into fresh directories. Preserve unsuccessful versions. Report exact claim hashes, case-specific reasons, sources, substantive search coverage, available time/token data and missing costs. A fresh independent reviewer must inspect exact proposed claims. Do not write canonical claims, edit another producer's files, reuse old reviews after pin changes or declare human certification. Existing-owned cases route to their owner; the pinned supplement helper does not forward replacement preparation authority, so its refusal remains a limitation.

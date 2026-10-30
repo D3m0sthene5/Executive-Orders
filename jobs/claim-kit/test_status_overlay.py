@@ -475,5 +475,158 @@ class OverlayTests(unittest.TestCase):
         self.assertIn("working_claim_status_overlay_label_required", output.getvalue())
 
 
+class ManyOrderTests(unittest.TestCase):
+    """prepare_evidence_many / validate_evidence_many against the single-order functions."""
+    def setUp(self):
+        self.base = OverlayTests("test_reviewed_proposal_has_no_authority_and_experimental_full_dossier")
+        self.base.setUp()
+        self.addCleanup(self.base.doCleanups)
+        self.repo, self.out, self.fixture = self.base.repo, self.base.out, self.base.fixture
+        self.ids = ["EO:1", "EO:4"]
+        self.write_histories()
+
+    def write_histories(self):
+        out = self.repo / "jobs/status-history/output"
+        entries, observations = [], []
+        for n, iid in enumerate(self.ids, 1):
+            row = {"executive_order_number": iid.split(":")[1], "title": "Synthetic research fixture",
+                   "disposition_notes": f"Revoked by Executive Order {n + 4}."}
+            raw = json.dumps({"results": [row]}, sort_keys=True).encode()
+            compressed = gzip.compress(raw, mtime=0)
+            rel = f"jobs/synthetic-history/data/held{n}.json.gz"
+            (self.repo / rel).parent.mkdir(parents=True, exist_ok=True)
+            (self.repo / rel).write_bytes(compressed)
+            obs = {"id": f"OBS:synthetic-{n}", "instrument_id": iid, "kind": "api_observation",
+                   "text": row["disposition_notes"], "source": {
+                       "compressed_path": rel, "compressed_sha256": O._sha(compressed),
+                       "sha256": O._sha(raw), "json_pointer": "/results/0",
+                       "record_sha256": A.canonical_sha(row),
+                       "text_sha256": O._sha(row["disposition_notes"].encode())}}
+            h = {"schema": "eo-status-history/v1", "instrument_id": iid, "legal_cutoff": O.CUTOFF,
+                 "provisional_status": None, "observation_ids": [obs["id"]], "event_ids": [],
+                 "observation_fingerprints": {obs["id"]: A.canonical_sha(obs)},
+                 "event_fingerprints": {}, "flags": [], "temporal_constraints_LEADS_ONLY": [],
+                 "accepted_legal_intervals": [], "current_legal_status": None, "human_certified": False}
+            O._seal(h)
+            name = f"histories/{iid.replace(':', '_')}.json"
+            write_json(out / name, h)
+            entries.append({"instrument_id": iid, "history": name, "fingerprint": h["fingerprint"]})
+            observations.append(obs)
+        write_json(out / "INDEX.json", entries)
+        by_shard = {}
+        for obs in observations:
+            by_shard.setdefault(O._sha(obs["id"].encode())[:2], []).append(obs)
+        for shard, rows in by_shard.items():
+            write_jsonl(out / "observations" / (shard + ".jsonl"), rows)
+
+    def canon(self, evidence):
+        return json.dumps(evidence, sort_keys=True, ensure_ascii=False)
+
+    def singles(self):
+        return {iid: O.prepare_evidence(self.repo, self.out, iid) for iid in self.ids}
+
+    def test_many_is_byte_identical_to_single_for_each_order(self):
+        singles = self.singles()
+        tele = {}
+        many = O.prepare_evidence_many(self.repo, self.out, self.ids, tele)
+        self.assertEqual(list(many), self.ids)
+        for iid in self.ids:
+            self.assertEqual(self.canon(many[iid]), self.canon(singles[iid]))
+        self.assertTrue(O.validate_evidence_many(self.repo, many))
+        self.assertTrue(O.validate_evidence_many(self.repo, list(many.values())))
+
+    def test_shared_scan_is_recorded_once_and_not_double_counted(self):
+        single = {}
+        O.prepare_evidence(self.repo, self.out, "EO:1", single)
+        tele = {}
+        O.prepare_evidence_many(self.repo, self.out, self.ids, tele)
+        for iid in self.ids:
+            self.assertEqual(tele[iid]["compiled_bytes_read"], 0)
+            snap = tele[iid]["shared_snapshot"]
+            self.assertEqual(snap["member_count"], 2)
+            # CLAUSES is read once for the whole set instead of twice per order
+            self.assertLess(snap["compiled_bytes_read"], 2 * single["compiled_bytes_read"])
+            self.assertLessEqual(snap["compiled_shards_read"], single["compiled_shards_read"])
+            self.assertEqual(tele[iid]["corpus_rebuilds"], 0)
+
+    def test_each_shard_is_streamed_once_for_the_whole_set(self):
+        real = O._read_records
+        stems = []
+        def counting(out, summary, stem, telemetry):
+            stems.append(stem)
+            return real(out, summary, stem, telemetry)
+        with patch.object(O, "_read_records", counting):
+            O.prepare_evidence_many(self.repo, self.out, self.ids)
+        self.assertEqual(sorted(stems), sorted(set(stems)))
+        self.assertEqual(set(stems), set(O.COMPILED_STEMS))
+
+    def test_shard_changed_after_the_manifest_is_still_detected(self):
+        real = O._manifest
+        def tamper(*args, **kwargs):
+            result = real(*args, **kwargs)
+            path = self.out / "OWN_TERMS.jsonl"
+            raw = path.read_bytes()
+            path.write_bytes(raw[:-2] + (b"x}" if raw[-2:] != b"x}" else b"y}"))
+            return result
+        with patch.object(O, "_manifest", tamper):
+            with self.assertRaisesRegex(ValueError, "compiled_shard_hash_mismatch|invalid_compiled_record"):
+                O.prepare_evidence_many(self.repo, self.out, self.ids)
+
+    def test_authority_table_change_is_refused_like_single(self):
+        self.fixture.status.write_text(self.fixture.status.read_text(encoding="utf-8") + "EO:4,no\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "already_has_authoritative_provisional_status:EO:4"):
+            O.prepare_evidence(self.repo, self.out, "EO:4")
+        with self.assertRaisesRegex(ValueError, "already_has_authoritative_provisional_status:EO:4"):
+            O.prepare_evidence_many(self.repo, self.out, self.ids)
+
+    def test_unknown_or_duplicate_ids_are_refused(self):
+        with self.assertRaises(ValueError):
+            O.prepare_evidence_many(self.repo, self.out, ["EO:1", "EO:1"])
+        with self.assertRaises(ValueError):
+            O.prepare_evidence_many(self.repo, self.out, [])
+        with self.assertRaises(Exception):
+            O.prepare_evidence_many(self.repo, self.out, ["EO:1", "EO:999"])
+
+    def test_validate_many_raises_exactly_when_single_validation_does(self):
+        many = O.prepare_evidence_many(self.repo, self.out, self.ids)
+        def both(evidences):
+            outcomes = []
+            for call in (lambda: [O.validate_evidence(self.repo, e) for e in evidences],
+                         lambda: O.validate_evidence_many(self.repo, evidences)):
+                try:
+                    call()
+                    outcomes.append(None)
+                except Exception as exc:
+                    outcomes.append((type(exc), str(exc)))
+            self.assertEqual(outcomes[0], outcomes[1])
+            return outcomes[0]
+        evidences = [many[i] for i in self.ids]
+        self.assertIsNone(both(evidences))
+        # stale held source belonging only to the second order
+        held = next(rel for rel in many["EO:4"]["source_fingerprints"] if rel.endswith("held2.json.gz"))
+        (self.repo / held).write_bytes((self.repo / held).read_bytes() + b" ")
+        self.assertIn("stale_held_source", both(evidences)[1])
+        (self.repo / held).write_bytes((self.repo / held).read_bytes()[:-1])
+        self.assertIsNone(both(evidences))
+        # a changed authority table makes every snapshot stale
+        self.fixture.status.write_text(self.fixture.status.read_text(encoding="utf-8") + "EO:99,no\n", encoding="utf-8")
+        self.assertIn("stale_authority_snapshot", both(evidences)[1])
+        # a tampered frozen dossier is refused in a shared validation
+        evidences = [deepcopy(many[i]) for i in self.ids]
+        evidences[1]["base_dossier"]["missing"] = ["tampered"]
+        O._seal(evidences[1])
+        self.fixture.status.write_text(self.fixture.status.read_text(encoding="utf-8").replace("EO:99,no\n", ""), encoding="utf-8")
+        self.assertIn("invalid_frozen_base_dossier", both(evidences)[1])
+        self.assertIn("fingerprint_mismatch", both([{"schema": O.EVIDENCE_SCHEMA}])[1])
+
+    def test_validate_many_reads_shared_tables_once(self):
+        many = O.prepare_evidence_many(self.repo, self.out, self.ids)
+        with patch.object(O, "_authority_tables", wraps=O._authority_tables) as tables, \
+                patch.object(O, "_current_code", wraps=O._current_code) as code, \
+                patch.object(O, "_history_module", wraps=O._history_module) as history:
+            O.validate_evidence_many(self.repo, many)
+        self.assertEqual((tables.call_count, code.call_count, history.call_count), (1, 1, 1))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,376 @@
+{
+ "plan": {
+  "cases": [
+   {
+    "name": "disjoint_t5_t6",
+    "runs": [
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/conc-disjoint",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl",
+      "submitted": null
+     },
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-disjoint",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+      "submitted": null
+     }
+    ]
+   },
+   {
+    "name": "same_id_t6_twice",
+    "runs": [
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-same-a",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+      "submitted": null
+     },
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-same-b",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl",
+      "submitted": null
+     }
+    ]
+   },
+   {
+    "name": "same_id_separate_clones",
+    "cleanup": false,
+    "runs": [
+     {
+      "tree": "$SCRATCH/replay/nra-pre",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-clone-a",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+      "submitted": null
+     },
+     {
+      "tree": "$SCRATCH/replay/nra-clone",
+      "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+      "dest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/conc-clone-b",
+      "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl",
+      "submitted": null
+     }
+    ]
+   }
+  ]
+ },
+ "results": [
+  {
+   "case": "disjoint_t5_t6",
+   "wall_seconds": 347.1,
+   "runs": [
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t5/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl",
+     "returncode": 1,
+     "seconds": 347.01,
+     "read_bytes": 15122673455,
+     "read_calls": 720652,
+     "max_rss_kb": 272528,
+     "counts": {
+      "blocked": 11,
+      "exception": 13
+     },
+     "eligible": [],
+     "claims_published": 0,
+     "published_file_exists": false,
+     "published_sha256": null,
+     "concurrent_disjoint_claim_files": [
+      {
+       "instrument_ids": [
+        "EO:6242A",
+        "EO:6317",
+        "EO:6330",
+        "EO:6379",
+        "EO:6416A",
+        "EO:6428",
+        "EO:6529",
+        "EO:6543E",
+        "EO:6543K",
+        "EO:6557A",
+        "EO:6600",
+        "EO:6631A",
+        "EO:6678",
+        "EO:6756F",
+        "EO:6794",
+        "EO:6921"
+       ],
+       "path": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+       "sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d"
+      }
+     ],
+     "exceptions": [
+      {
+       "claim_sha256": "ec72cd56810063f431703c26d63bd615837015b44848d31f030cfe29d6c3c522",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6322"
+      },
+      {
+       "claim_sha256": "62655391cbbcf3d8620846f1f7a7b55b8f82133919b6a9e0aff5aafa8d1c53ed",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6394"
+      },
+      {
+       "claim_sha256": "cb8c476d6b70fb806d18f4fe0209b21a414b9a57c29222df6dec165f6995d9c4",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6422"
+      },
+      {
+       "claim_sha256": "d598906827945d8a95290c1f42c056290da50b515e89a4cd921d9903620f5b76",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6429"
+      },
+      {
+       "claim_sha256": "e60dd49bce24b139f46120173a7ba59c78232fc67a4d75acef7d7788f15f44d9",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6436"
+      },
+      {
+       "claim_sha256": "00e6e5aa55e354e25f8dabca5f56f71548dd98d5f5583550c0eace1537d636da",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6444A"
+      },
+      {
+       "claim_sha256": "ba1688abd3143a73243c58edcc78c26f9c4d6e6e64e86836f1a6a95049229749",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6481"
+      },
+      {
+       "claim_sha256": "23c3086a3c1b5dc8c1adbf7641fe66b822bcb06d06e49ffdf5a1a2864205b243",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6513A"
+      },
+      {
+       "claim_sha256": "8024d7a1d7a1f5b4fe53cbe00e30ba002ad98b42480cfd5e5c55e7d523740c0e",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6521"
+      },
+      {
+       "claim_sha256": "41e14e0c75b8f66f1226e12d2c84d3cb1e11ee6ba71a76eb3ea49e3ab202c9c9",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6522"
+      },
+      {
+       "claim_sha256": "454025c5625ac94eddd690feae8af36e72be0171d10273f59a78f31a33ecb4b8",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6685"
+      },
+      {
+       "claim_sha256": "7e228a0cd3e01a22686294241b8fa20f12f0ab3299c8d6ecabc28423797a493c",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:6711A"
+      },
+      {
+       "claim_sha256": "1f3a1bb882a2189a4b2eef1d1e508abf7d22e5bdb864eefb9d9f06b4f3e30db8",
+       "error": "changed prior research; prepare a new version",
+       "instrument_id": "EO:7018"
+      }
+     ],
+     "stderr_tail": [
+      "IO_RUN {\"seconds\": 347.01, \"read_bytes\": 15122673455, \"read_calls\": 720652, \"max_rss_kb\": 272528}"
+     ]
+    },
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+     "returncode": 0,
+     "seconds": 102.77,
+     "read_bytes": 8011398078,
+     "read_calls": 240186,
+     "max_rss_kb": 338888,
+     "counts": {
+      "blocked": 8,
+      "eligible": 16
+     },
+     "eligible": [
+      "EO:6242A",
+      "EO:6317",
+      "EO:6330",
+      "EO:6379",
+      "EO:6416A",
+      "EO:6428",
+      "EO:6529",
+      "EO:6543E",
+      "EO:6543K",
+      "EO:6557A",
+      "EO:6600",
+      "EO:6631A",
+      "EO:6678",
+      "EO:6756F",
+      "EO:6794",
+      "EO:6921"
+     ],
+     "claims_published": 16,
+     "published_file_exists": true,
+     "published_sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    }
+   ]
+  },
+  {
+   "case": "same_id_t6_twice",
+   "wall_seconds": 117.0,
+   "runs": [
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+     "returncode": 0,
+     "seconds": 105.73,
+     "read_bytes": 8086238734,
+     "read_calls": 240298,
+     "max_rss_kb": 343264,
+     "counts": {
+      "blocked": 8,
+      "eligible": 16
+     },
+     "eligible": [
+      "EO:6242A",
+      "EO:6317",
+      "EO:6330",
+      "EO:6379",
+      "EO:6416A",
+      "EO:6428",
+      "EO:6529",
+      "EO:6543E",
+      "EO:6543K",
+      "EO:6557A",
+      "EO:6600",
+      "EO:6631A",
+      "EO:6678",
+      "EO:6756F",
+      "EO:6794",
+      "EO:6921"
+     ],
+     "claims_published": 16,
+     "published_file_exists": true,
+     "published_sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    },
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl",
+     "returncode": 1,
+     "seconds": 116.89,
+     "read_bytes": 7231869943,
+     "read_calls": 223129,
+     "max_rss_kb": 338920,
+     "counts": {
+      "blocked": 8,
+      "exception": 16
+     },
+     "eligible": [],
+     "claims_published": 0,
+     "published_file_exists": false,
+     "published_sha256": null,
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [
+      {
+       "error": "packet dependencies changed during completion: research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp",
+       "scope": "batch"
+      }
+     ],
+     "stderr_tail": [
+      "IO_RUN {\"seconds\": 116.89, \"read_bytes\": 7231869943, \"read_calls\": 223129, \"max_rss_kb\": 338920}"
+     ]
+    }
+   ]
+  },
+  {
+   "case": "same_id_separate_clones",
+   "wall_seconds": 114.2,
+   "runs": [
+    {
+     "tree": "nra-pre",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl",
+     "returncode": 0,
+     "seconds": 103.71,
+     "read_bytes": 8086238830,
+     "read_calls": 240298,
+     "max_rss_kb": 347256,
+     "counts": {
+      "blocked": 8,
+      "eligible": 16
+     },
+     "eligible": [
+      "EO:6242A",
+      "EO:6317",
+      "EO:6330",
+      "EO:6379",
+      "EO:6416A",
+      "EO:6428",
+      "EO:6529",
+      "EO:6543E",
+      "EO:6543K",
+      "EO:6557A",
+      "EO:6600",
+      "EO:6631A",
+      "EO:6678",
+      "EO:6756F",
+      "EO:6794",
+      "EO:6921"
+     ],
+     "claims_published": 16,
+     "published_file_exists": true,
+     "published_sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    },
+    {
+     "tree": "nra-clone",
+     "manifest": "research/excavator/claude-nira-sweep-2026-10-29/t6/packet/supp/completion/COMPLETION.json",
+     "target": "research/readiness/claims/claude-2026-10-29-nira-t6-dup.jsonl",
+     "returncode": 0,
+     "seconds": 114.07,
+     "read_bytes": 8480870930,
+     "read_calls": 269504,
+     "max_rss_kb": 347352,
+     "counts": {
+      "blocked": 8,
+      "eligible": 16
+     },
+     "eligible": [
+      "EO:6242A",
+      "EO:6317",
+      "EO:6330",
+      "EO:6379",
+      "EO:6416A",
+      "EO:6428",
+      "EO:6529",
+      "EO:6543E",
+      "EO:6543K",
+      "EO:6557A",
+      "EO:6600",
+      "EO:6631A",
+      "EO:6678",
+      "EO:6756F",
+      "EO:6794",
+      "EO:6921"
+     ],
+     "claims_published": 16,
+     "published_file_exists": true,
+     "published_sha256": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+     "concurrent_disjoint_claim_files": [],
+     "exceptions": [],
+     "stderr_tail": []
+    }
+   ]
+  }
+ ]
+}

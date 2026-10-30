@@ -180,5 +180,153 @@ class PriorResearchTests(unittest.TestCase):
         self.assertEqual(lifecycle.resume_decision(check,self.dossier,[{'id':'source'}],'a'*64,prior_research=self.collect())['action'], 'reopen')
 
 
+COMPLETION = 'eo-claim-kit-completion/v1'
+
+
+class PriorResearchBindingTests(unittest.TestCase):
+    """What changes (or must not change) the embedded prior_research context."""
+    ID = 'EO:11782'
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name).resolve()
+        self.claim = {'schema': 'eo-lifecycle-claim/v1', 'instrument_id': self.ID,
+            'research_rationale': 'Bounded partial research.', 'whole_order_status': 'no',
+            'whole_order_end': None, 'savings_residuals': None, 'unresolved_material_gaps': [],
+            'operative_clauses': []}
+        dossier = {'schema': 'eo-claim-kit-dossier/v1', 'instrument_id': self.ID,
+            'whole_order_status': 'no', 'clauses': [], 'evidence': {}, 'missing': []}
+        dossier['fingerprint'] = batch.canonical_sha(dossier)
+        self.dossiers = {self.ID: dossier}
+        self.write('research/readiness/claims/base.jsonl', {**self.claim, 'research_rationale': 'Canonical.'})
+        self.base = self.collect()
+
+    def write(self, path, *values):
+        p = self.repo / path
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(''.join(json.dumps(v) + '\n' for v in values))
+        return p
+
+    def collect(self, exclude=None):
+        return prior.collect(self.repo, self.dossiers, exclude=exclude)
+
+    def completion_folder(self, name='complete-v1', schema=COMPLETION):
+        folder = 'research/excavator/t1/packet/supp/' + name
+        self.write(folder + '/TALLY.json', {'schema': schema})
+        return folder
+
+    def test_relevant_additions_removals_and_corrections_change_context(self):
+        review = {'instrument_id': self.ID, 'verdict': 'reject', 'claim_path': 'research/x/claim.json',
+                  'claim_sha256': 'f' * 64}
+        for path, value in (('research/new/claim.json', self.claim), ('research/new/REVIEW.json', review),
+                            ('research/new/IN_PROGRESS.json', {'instrument_id': self.ID, 'next': ['read']})):
+            with self.subTest(path=path):
+                before = self.collect()
+                file = self.write(path, value)
+                added = self.collect()
+                self.assertNotEqual(added, before)
+                self.assertIn(path, added['input_file_pins'])
+                file.write_text(json.dumps({**value, 'note': 'corrected'}) + '\n')
+                corrected = self.collect()
+                self.assertNotEqual(corrected['input_file_pins'][path], added['input_file_pins'][path])
+                file.unlink()
+                self.assertEqual(self.collect(), before)
+        edited = self.repo / 'research/readiness/claims/base.jsonl'
+        edited.write_text(json.dumps({**self.claim, 'research_rationale': 'Edited bound file.'}) + '\n')
+        self.assertNotEqual(self.collect(), self.base)
+
+    def test_unrelated_file_without_target_id_leaves_context_identical(self):
+        self.write('research/other/claim.json', {**self.claim, 'instrument_id': 'EO:999'})
+        self.write('research/other/notes.jsonl', {'text': 'nothing relevant'})
+        self.assertEqual(self.collect(), self.base)
+
+    def test_completion_union_copy_is_not_bound_but_same_name_elsewhere_is(self):
+        union = {**self.claim, 'research_rationale': 'Union copy of canonical claims.'}
+        folder = self.completion_folder()
+        self.write(folder + '/TRACKER_CLAIMS.jsonl', union)
+        self.assertEqual(self.collect(), self.base)
+        other = {**self.claim, 'research_rationale': 'Same line outside a completion folder.'}
+        plain = self.write('research/excavator/t2/TRACKER_CLAIMS.jsonl', other)
+        bound = self.collect()
+        self.assertNotEqual(bound, self.base)
+        self.assertIn('research/excavator/t2/TRACKER_CLAIMS.jsonl', bound['input_file_pins'])
+        self.write('research/excavator/t2/TALLY.json', {'schema': 'some-other/v1'})
+        self.assertEqual(self.collect(), bound)
+        (plain.parent / 'TALLY.json').write_text('not json')
+        self.assertEqual(self.collect(), bound)
+        self.assertEqual(len(self.collect()['orders'][self.ID]['versions']), 2)
+
+    def test_completion_folder_other_files_still_bind(self):
+        folder = self.completion_folder()
+        before = self.collect()
+        for name in ('CLAIMS.selected.jsonl', 'CLAIMS.publishable.jsonl', 'receipts/TRACKER_CLAIMS.jsonl'):
+            with self.subTest(name=name):
+                path = folder + '/' + name
+                self.write(path, {**self.claim, 'research_rationale': 'In ' + name})
+                bound = self.collect()
+                self.assertNotEqual(bound, before)
+                self.assertIn(path, bound['input_file_pins'])
+                (self.repo / path).unlink()
+                self.assertEqual(self.collect(), before)
+
+    def test_unrelated_completion_does_not_invalidate_but_target_edit_does(self):
+        folder = self.completion_folder()
+        self.write(folder + '/TRACKER_CLAIMS.jsonl', {**self.claim, 'research_rationale': 'Canonical.'})
+        self.assertEqual(self.collect(), self.base)
+        (self.repo / folder / 'TRACKER_CLAIMS.jsonl').write_text('changed union copy\n')
+        self.assertEqual(self.collect(), self.base)
+        self.write('research/readiness/claims/base.jsonl', {**self.claim, 'research_rationale': 'Corrected.'})
+        self.assertNotEqual(self.collect(), self.base)
+
+    def test_excluded_folder_is_ignored_even_when_nested(self):
+        packet = self.repo / 'research/session/packet'
+        self.write('research/session/packet/supp/IN_PROGRESS.json', {'instrument_id': self.ID, 'next': ['x']})
+        self.write('research/session/packet/claim.json', self.claim)
+        self.assertNotEqual(self.collect(), self.base)
+        self.assertEqual(self.collect(exclude=packet), self.base)
+        self.assertEqual(self.collect(exclude=[str(packet), '']), self.base)
+        self.write('research/session/sibling/claim.json', self.claim)
+        self.assertNotEqual(self.collect(exclude=packet), self.base)
+
+    def test_owner_rulings_are_still_pinned(self):
+        ruling = self.repo / 'research/readiness/owner_rulings/2026-10-29-x.md'
+        ruling.parent.mkdir(parents=True)
+        ruling.write_text('ruling one')
+        first = self.collect()
+        self.assertEqual([r['path'] for r in first['current_rulings']],
+                         ['research/readiness/owner_rulings/2026-10-29-x.md'])
+        ruling.write_text('ruling two')
+        self.assertNotEqual(self.collect()['current_rulings'], first['current_rulings'])
+
+    def test_blinded_control_directory_walk_matches_reveal_scoping(self):
+        control = self.write('research/review/blind/C.json', self.claim)
+        self.write('research/review/blind/FREEZE.json', {'candidates': {'C': prior.sha(control.read_bytes())}})
+        self.write('research/review/CONTROL_REVEAL.json', {'controls': {'C': 'Planted.'}})
+        result = self.collect()
+        self.assertEqual(result['excluded_control_records'][0]['path'], 'research/review/blind/C.json')
+        self.assertEqual(result['excluded_control_records'][0]['binding'], 'exact')
+
+    def test_matcher_equals_substring_predicate(self):
+        import random
+        rng = random.Random(7)
+        alphabet = b'EO:1230 a.+*|\\{}'
+        for _ in range(300):
+            ids = [''.join(rng.choice('EO:123.+') for _ in range(rng.randint(1, 5))) for _ in range(rng.randint(0, 5))]
+            raw = bytes(rng.choice(alphabet) for _ in range(rng.randint(0, 40)))
+            self.assertEqual(prior.id_matcher(ids)(raw), any(i.encode() in raw for i in ids), (ids, raw))
+        self.assertTrue(prior.id_matcher([''])(b'anything'))
+        self.assertFalse(prior.id_matcher([])(b'EO:11782'))
+
+    def test_discovery_order_matches_sorted_rglob(self):
+        for name in ('a/b.json', 'a-b.json', 'a.json', 'A/c.jsonl', 'a/b/c.json', 'z.JSON', '.hidden/h.json', 'x/PACKET.json'):
+            self.write('research/' + name, {'instrument_id': 'EO:1'})
+        (self.repo / 'research/dir.json').mkdir()
+        expected = [p.relative_to(self.repo).as_posix() for p in sorted((self.repo / 'research').rglob('*'))
+                    if p.suffix.lower() in ('.json', '.jsonl') and p.is_file() and p.name not in ('PACKET.json', 'EVIDENCE.json')]
+        found, _, _ = prior.scan_research(self.repo, [])
+        self.assertEqual([item[0] for item in found], expected)
+
+
 if __name__ == '__main__':
     unittest.main()

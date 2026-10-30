@@ -2,14 +2,14 @@
 name: Valla bounded pilot
 on:
   pull_request:
-    paths: ['jobs/valla/**', 'jobs/claim-kit/batch.py', 'jobs/claim-kit/test_batch.py', 'jobs/mountweazel/**', 'research/readiness/method_reviews/**', 'research/readiness/component_attestations/**', 'research/valla/pilot-2026-10-20/METHOD.md', '.github/workflows/valla-pilot.yml']
+    paths: ['jobs/valla/**', 'jobs/claim-kit/**', 'jobs/claim-checker/**', 'jobs/readiness-tracker/**', 'jobs/mountweazel/**', 'research/readiness/method_reviews/**', 'research/readiness/component_attestations/**', 'research/valla/pilot-2026-10-20/METHOD.md', 'research/excavator/claude-nira-sweep-2026-10-29/cruden*.py', 'research/excavator/shared-research-production/**', 'research/progress/corpus-evidence-retrieval/**', 'research/progress/proquest-custody-2026-10-29/**', 'research/progress/final-integration-2026-10-29/validate_native.py', '.github/workflows/valla-pilot.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   bounded-offline-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       GIT_LFS_SKIP_SMUDGE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -22,18 +22,7 @@ jobs:
           sparse-checkout: |
             .github
             jobs
-            research/readiness
-            research/stage19
-            research/stage15/CENSUS
-            research/stage15/LEGAL
-            research/progress
-            research/stage20/output
-            research/stage21/sources_index
-            research/stage21/original_sources
-            research/valla
-            research/plans/claim_kit_contract
-            research/excavator
-            research/diagnostics/pr-merge-20261022
+            research
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -42,6 +31,9 @@ jobs:
         run: |
           git fetch --no-tags --filter=blob:none --depth=1 origin 91116f879978902343dafa88490b9b19587b10da
           git cat-file -e 91116f879978902343dafa88490b9b19587b10da:jobs/claim-kit/batch.py
+          git fetch --no-tags --filter=blob:none --depth=1 origin f9c6d806ad059dcad7875ab3708715f20ea386df
+          git cat-file -e f9c6d806ad059dcad7875ab3708715f20ea386df:jobs/readiness-tracker/tracker.py
+          git fetch --no-tags --filter=blob:none --depth=1 origin 77abf218aa88ed89f4a16f4c93ed1baaf29098e0 e87c9ad658a6708705f83a6dd43fd238f472926d
       - name: Unit and consumer tests
         run: |
           python -m unittest discover -s jobs/valla -p 'test_*.py'
@@ -50,12 +42,58 @@ jobs:
           python -m unittest discover -s jobs/mountweazel -p 'test_paired.py'
           python -I jobs/junto/test_junto.py
           python -I jobs/junto/junto.py check
-          python -m unittest discover -s jobs/claim-checker -p 'test_checker.py'
+          python -m unittest discover -s jobs/claim-checker -p 'test_*.py'
           python -m unittest discover -s jobs/readiness-tracker -p 'test_tracker.py'
+          python -I -m unittest discover -s research/excavator/claude-nira-sweep-2026-10-29 -p 'test_cruden*.py'
       - name: Synthetic isolation
         run: python -I jobs/mountweazel/mountweazel.py check
       - name: Real bounded pilot and actual consumers
         run: python jobs/valla/pilot.py --output '${{ runner.temp }}/valla-pilot' --run-id 'github-${{ github.run_id }}-${{ github.run_attempt }}'
+      - name: Native lifecycle-assurance replay
+        run: python research/progress/lifecycle-assurance/replay.py --out '${{ runner.temp }}/integration-validation/lifecycle'
+      - name: Native three-source custody replay
+        env:
+          REPLAY_OUTPUT: ${{ runner.temp }}/integration-validation/custody
+        run: |
+          python - <<'PY'
+          import importlib.util, os
+          from pathlib import Path
+          path = Path('research/progress/proquest-custody-2026-10-29/validate.py')
+          spec = importlib.util.spec_from_file_location('custody_replay', path)
+          replay = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(replay)
+          replay.OUT = Path(os.environ['REPLAY_OUTPUT'])
+          replay.main()
+          PY
+      - name: Native five-source bounded custody replay
+        env:
+          REPLAY_OUTPUT: ${{ runner.temp }}/integration-validation/custody-follow-on
+        run: |
+          python - <<'PY'
+          import importlib.util, os
+          from pathlib import Path
+          path = Path('research/progress/proquest-custody-2026-10-29/follow-on/replay.py')
+          spec = importlib.util.spec_from_file_location('custody_follow_on', path)
+          replay = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(replay)
+          replay.OUT = Path(os.environ['REPLAY_OUTPUT'])
+          replay.main()
+          PY
+      - name: Retained ordinary claim-kit rehearsal and Cruden comparison
+        env:
+          VALIDATION_OUTPUT: ${{ runner.temp }}/integration-validation/native
+        run: python research/progress/final-integration-2026-10-29/validate_native.py
+      - name: Compile complete Valla package inventory
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}/integration-validation/valla-index
+        run: |
+          python jobs/valla/job.py
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          doc = json.loads((Path(os.environ['OUTPUT_DIR']) / 'INDEX.json').read_text())
+          assert not doc['package_scan']['unmaterialized_packages'], doc['package_scan']
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -63,3 +101,4 @@ jobs:
           path: |
             ${{ runner.temp }}/valla-pilot
             research/valla/pilot-runtime
+            ${{ runner.temp }}/integration-validation

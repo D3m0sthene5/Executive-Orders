@@ -1,0 +1,161 @@
+{
+  "commit": "5366f664998c62bddf67bb00d3020adef3a6cfeb",
+  "checks": {
+    "worktree_matches_research/progress/final-integration-2026-10-29/validate_native.py": true,
+    "worktree_matches_jobs/claim-kit/kit.py": true,
+    "worktree_matches_jobs/claim-kit/assemble.py": true,
+    "three_claimkit_calls_use_script_first": true,
+    "no_isolated_flag_in_harness": true,
+    "no_publish_argument": true,
+    "actual_view_entrypoint_help_passes": true,
+    "actual_complete_entrypoint_help_passes": true,
+    "old_isolated_flag_failure_reproduced": true,
+    "all_profiler_challenge_entrypoint_help_passes": true,
+    "view_lazy_import_and_handled_missing_path": true,
+    "complete_lazy_import_and_handled_missing_path": true,
+    "missing_path_commands_create_no_output": true
+  },
+  "all_checks_pass": true,
+  "calls": [
+    {
+      "label": "retained-view",
+      "command": "view"
+    },
+    {
+      "label": "retained-complete",
+      "command": "complete"
+    },
+    {
+      "label": "shared-complete",
+      "command": "complete"
+    }
+  ],
+  "actual_commands": [
+    {
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "view",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: kit.py view [-h] [--order ORDER | --source SOURCE] packet\n\npositional arguments:\n  packet\n\noptions:\n  -h, --help       show this help message and exit\n  --order ORDER\n  --source SOURCE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "complete",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: kit.py complete [-h] --write WRITE [--publish] manifest\n\npositional arguments:\n  manifest\n\noptions:\n  -h, --help     show this help message and exit\n  --write WRITE\n  --publish\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "jobs/claim-kit/kit.py",
+        "view",
+        "--help"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/21fe24d0bcf0/integration/jobs/claim-kit/kit.py\", line 16, in <module>\n    from assemble import blank_sheet, assemble, check_claim, canonical_sha\nModuleNotFoundError: No module named 'assemble'\n"
+    },
+    {
+      "command": [
+        "python3",
+        "research/progress/corpus-evidence-retrieval/profile/profile_cruden.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: profile_cruden.py [-h] [--full-validation] [--limit-texts LIMIT_TEXTS]\n                         [--cruden-source CRUDEN_SOURCE]\n                         [--reference REFERENCE] [--no-profile]\n                         repo packet out\n\npositional arguments:\n  repo\n  packet\n  out\n\noptions:\n  -h, --help            show this help message and exit\n  --full-validation     Attempt the expensive full native gate separately\n  --limit-texts LIMIT_TEXTS\n                        Explicit microprofile only; first N sorted text files\n  --cruden-source CRUDEN_SOURCE\n                        Use an exact retained legacy or repaired module\n  --reference REFERENCE\n                        Compare exact LOOKUPS JSON and Markdown bytes\n  --no-profile          Unprofiled timing arm; same callable and output\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "research/progress/corpus-evidence-retrieval/challenge/fixture_challenge.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: fixture_challenge.py [-h] --report REPORT\n                            [--overflow-files OVERFLOW_FILES]\n                            source\n\npositional arguments:\n  source\n\noptions:\n  -h, --help            show this help message and exit\n  --report REPORT\n  --overflow-files OVERFLOW_FILES\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "research/progress/corpus-evidence-retrieval/challenge/staleness_challenge.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: staleness_challenge.py [-h] --report REPORT source\n\npositional arguments:\n  source\n\noptions:\n  -h, --help       show this help message and exit\n  --report REPORT\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "research/progress/corpus-evidence-retrieval/challenge/deep_challenge.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: deep_challenge.py [-h] --report REPORT source\n\npositional arguments:\n  source\n\noptions:\n  -h, --help       show this help message and exit\n  --report REPORT\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "research/progress/corpus-evidence-retrieval/challenge/final_contract_challenge.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: final_contract_challenge.py [-h] --report REPORT source\n\npositional arguments:\n  source\n\noptions:\n  -h, --help       show this help message and exit\n  --report REPORT\n",
+      "stderr": ""
+    }
+  ],
+  "source_pins": {
+    "research/progress/final-integration-2026-10-29/validate_native.py": {
+      "sha256": "6361dc4f71f806414b4555c3b20602fca59e975711f0b1e1822e5b19ce005af6",
+      "git_blob": "412ad35aefc27e4a6f28a8231b2dc784bc3a986c"
+    },
+    "jobs/claim-kit/kit.py": {
+      "sha256": "04b77aacd3168b4d704d54ee989c3a26c399fbefd83c0fdd269d90259652f424",
+      "git_blob": "b9267a0be8057e061f0a02e6b030b62ae5a42c02"
+    },
+    "jobs/claim-kit/assemble.py": {
+      "sha256": "3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb",
+      "git_blob": "65d55bbaa11904ec37ffa153cddcc4175a9665d5"
+    }
+  },
+  "lazy_import_commands": [
+    {
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "view",
+        "research/integration-cli-missing-probe"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "claim-kit: [Errno 2] No such file or directory: '/workspace/scratch/21fe24d0bcf0/integration/research/integration-cli-missing-probe/PACKET.json'\n",
+      "expected_handled_missing_path": true
+    },
+    {
+      "command": [
+        "python3",
+        "jobs/claim-kit/kit.py",
+        "complete",
+        "research/integration-cli-missing-probe/COMPLETION.json",
+        "--write",
+        "research/integration-cli-missing-probe-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "claim-kit: [Errno 2] No such file or directory: '/workspace/scratch/21fe24d0bcf0/integration/research/integration-cli-missing-probe/COMPLETION.json'\n",
+      "expected_handled_missing_path": true
+    }
+  ]
+}

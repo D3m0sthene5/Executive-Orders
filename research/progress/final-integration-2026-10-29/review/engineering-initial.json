@@ -1,0 +1,321 @@
+{
+  "schema": "eo-cross-stream-independent-engineering-review/v1",
+  "completed_utc": "2026-10-30T00:20:44.739877+00:00",
+  "reviewer": {
+    "identity": "OpenAI Codex; assigned model inherited; exact serving model identifier not exposed to this worker",
+    "independence": "fresh separate delegated context; engineering only",
+    "tokens": null,
+    "billing": null,
+    "active_labor_seconds": null,
+    "elapsed_seconds": null,
+    "telemetry_note": "No token/billing or prospective start clock telemetry available."
+  },
+  "base": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+  "exact_sources": {
+    "PR103": {
+      "commit": "1cdef3d0c87c57a3f8bd68a6d772fb2458b16563",
+      "files": {
+        ".github/scripts/materialize_job_inputs.py": {
+          "sha256": "2c89d58ffc6b27f127c384a2021f6724180e808456c5409da1923f17463b2df4",
+          "git_blob": "0f6c855e4ca6f0ca9777a81abd2d8085bd5b3816"
+        },
+        ".github/scripts/pick_jobs.py": {
+          "sha256": "f492a1174139e86c24b8c42a268e9a15a941c5e007abb22a34ce9119343f8e7d",
+          "git_blob": "eb0b06a306bf57221d04276c395e47020e2053f3"
+        },
+        ".github/scripts/result_freshness.py": {
+          "sha256": "cd4ba5220fe744371d07873be52c888c7ad7288687b52711a61a5516c4ed2b2c",
+          "git_blob": "764d44e193c7b04d9daa94ef0d9e9408421c0bc5"
+        },
+        ".github/scripts/test_materialize_job_inputs.py": {
+          "sha256": "774167b784e99c89846fd3729a2783d5e88fc8f7b61d305fb5629495c76ea8ae",
+          "git_blob": "1480ffa5a6a8269ba8bc7cd6017e0be99791df00"
+        },
+        ".github/scripts/test_pick_jobs.py": {
+          "sha256": "d937b57a07300f062d4cd907d0533cf98a53aa5477675f3df135d791ed4454f4",
+          "git_blob": "f3fc51e8f13eb33b8764ede13bff02305c5f3d7b"
+        },
+        ".github/scripts/test_result_freshness.py": {
+          "sha256": "c6655b026492bcbb3e10743fa1bb3a23f26cf796bf1a11cb60641ae3e36b8d83",
+          "git_blob": "ee76c81abf6c7b43e2a454ac7db31dad00459265"
+        },
+        ".github/scripts/test_roads.py": {
+          "sha256": "8a3f01141d8a153f400011bbf7c7d31fde9023b7f2a3a8b72713b51ade097115",
+          "git_blob": "ec5035d0eac1052ea818789b3e8a3bab49df806b"
+        },
+        ".github/workflows/run-jobs.yml": {
+          "sha256": "0e3aa1069a2cf4f2be76a365fdceb730fb169d18e0f8f1588eaeddbeff32dc2a",
+          "git_blob": "71b2e2f8fbb96301a0930f77ec60e2c19f052f25"
+        },
+        "jobs/_lib/README.md": {
+          "sha256": "a2f5d5cb07934da310da79b128287d0eb11ab3d7bec307a167cef0d402caf4f6",
+          "git_blob": "a39b04d3edf844c50e2f7a5be7fd018afacf09ba"
+        },
+        "jobs/_lib/fetch_pool.py": {
+          "sha256": "92d848845a245cc97e90b4c264e62894b70f06a2bbe991fe49bd4fcc23ef37a2",
+          "git_blob": "74354b042c293eb781434d8a53aadc0dcad76a07"
+        },
+        "jobs/_lib/test_fetch_pool.py": {
+          "sha256": "f693785974ae69442e35b116c3b78cc129583b001ba305b970cefb02cc98813b",
+          "git_blob": "091a004772a553626e4a29bddc1202e6a99da806"
+        },
+        "jobs/claim-checker/inputs.txt": {
+          "sha256": "65939e9a947b3b6f5c3b54ac72f517fa71da49dd18d19dd275727426a3769a46",
+          "git_blob": "a320918b6c946a104bfdbbfcc71ff7993763961f"
+        },
+        "jobs/claim-checker/needs.txt": {
+          "sha256": "5fdaed76bc63d8f08918676df72ca418724e7d0309d62fc24158821c274395ae",
+          "git_blob": "88b8a950b3798a3ca5f6c129def1e245bbf1a8d6"
+        }
+      }
+    },
+    "PR104": {
+      "commit": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
+      "files": {
+        "jobs/claim-kit/COMPLETION.md": {
+          "sha256": "7319c09d2a6064845eccd79eea4e980fdfeafba6d51d46788affe531b7ea74f3",
+          "git_blob": "aaee31a201642b058f29b2801a0e060487caee79"
+        },
+        "jobs/claim-kit/batch.py": {
+          "sha256": "17534b3bc415d1df0e85571f686a0da2998b754e84559a65d2ee8748ba01eb55",
+          "git_blob": "33519837ee30a9ffe14bbf4d278e52353e2032b5"
+        },
+        "jobs/claim-kit/completion.py": {
+          "sha256": "82f48d96ddc590d33b8f7707768334dc8f2f2959ef1a8849c84fbb03a973b1d0",
+          "git_blob": "4b80ba3c6ab62960300c05f9a94f3147464a73b0"
+        },
+        "jobs/claim-kit/fragment_cache.py": {
+          "sha256": "fd688f0fc386571baaaf613f5ea4578bb5b2088b4b8e471f4247e97eee93d785",
+          "git_blob": "898c3228ee34ae77f7af53d5661d6c785e9e9e01"
+        },
+        "jobs/claim-kit/kit.py": {
+          "sha256": "04b77aacd3168b4d704d54ee989c3a26c399fbefd83c0fdd269d90259652f424",
+          "git_blob": "b9267a0be8057e061f0a02e6b030b62ae5a42c02"
+        },
+        "jobs/claim-kit/prior_research.py": {
+          "sha256": "971946c180a91015c46904c030ad513e76d81671a6dc9cb49d0788cab3a7cc14",
+          "git_blob": "e051133bcd25c3626a7056f78a7eb242ca26e4e7"
+        },
+        "jobs/claim-kit/source_supplement.py": {
+          "sha256": "a5e1d8125e195a14af3e00cdea1e9f622db14c474ccd3853c4c8aa29de6df427",
+          "git_blob": "ec5ad3e051c8dce11f14684797fe23f6a416b7d7"
+        },
+        "jobs/claim-kit/status_overlay.py": {
+          "sha256": "9bb67eaab9d8dfb65179abe4de2e4ca7f01a438bf7c0b7fcd7cb8cb6b891abc1",
+          "git_blob": "1b43242b6e5018a0aea53d4dccfb1795e3872d8b"
+        },
+        "jobs/claim-kit/test_batch.py": {
+          "sha256": "7d5dc3131c9dd3865fa85fde42f79cb14e1c864e0a8004e3b791b550e922f841",
+          "git_blob": "02aee0b0eaea992c80d0e6231360b48010c5a950"
+        },
+        "jobs/claim-kit/test_completion.py": {
+          "sha256": "03423ef7ef4b1e482ce6bef312ad778b0acacc8b8a296864bb0aefbcc75f0d22",
+          "git_blob": "14ab89c44d352ea1b14c4ab8f974f458806510e4"
+        },
+        "jobs/claim-kit/test_prior_research.py": {
+          "sha256": "fe5b9f19a0cbe0bf8dcf0b0a21c70e29a0a03ca9c95f4ba282805aea900835c3",
+          "git_blob": "76444535717b9f4e61f2addb3ca74624f15531f2"
+        },
+        "jobs/claim-kit/test_source_supplement.py": {
+          "sha256": "81ce8ae44fae88a2486b288988d1a34b5d72330c9f34eedcf96dfb8d61d34886",
+          "git_blob": "7708e9e7e281de0a9a09a505a830c5da520d5fdd"
+        },
+        "jobs/claim-kit/test_status_overlay.py": {
+          "sha256": "174f83d8a5aa21abb00d14b3d92966a312f3f526c12e54fb566869192b5c1faf",
+          "git_blob": "4310c660d95b62539acac231870b9ea7eea35a2f"
+        },
+        "jobs/claim-kit/test_working_text_index.py": {
+          "sha256": "76bc9092af657750e320b6526812e0bc2e89e9466d29f3861f9997b8bab22ace",
+          "git_blob": "70eeb969a28259bff6b1dac0944155799b838679"
+        },
+        "jobs/valla/README.md": {
+          "sha256": "eb4bdf0e88676576372325f937dfa43b08c42e698ecf79092905329b00664244",
+          "git_blob": "c919b7cdba00c103f6468987f81b9383ec39ae79"
+        },
+        "jobs/valla/test_valla.py": {
+          "sha256": "b78a07b5ce8a2463735a70dcb495e8ec884cb35633e93740ef8adc82b7eb7b1f",
+          "git_blob": "2e5d2d2db95de0fcf04964f6f7731c42fc2a4ee1"
+        },
+        "jobs/valla/valla.py": {
+          "sha256": "14a371edf8ee9242a32398e396f0046d074df6d661cd458de541baadb26872f6",
+          "git_blob": "e878370e0b0f0c19de2acf387eda6d736b506eba"
+        }
+      }
+    },
+    "PR105": {
+      "commit": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
+      "files": {
+        "jobs/claim-checker/proquest_inputs.py": {
+          "sha256": "cacc3602cf1328441c21537675220fb6fca536ccd960c1a0ceadf0f2596ddab9",
+          "git_blob": "e6f3439fcd33f8958e3290326543f22ccd12c210"
+        },
+        "jobs/claim-checker/test_proquest_inputs.py": {
+          "sha256": "fddf3ae192a357e8dbb9a051daa7b803d7a3043acd2ceab8e13a7d9153a1bcf8",
+          "git_blob": "baaa9f2512f919693bd8a3d797ac9e6e40f5f393"
+        }
+      }
+    }
+  },
+  "verdict": "CHANGES_REQUIRED_BEFORE_COMBINED_ACCEPTANCE",
+  "candidate_acceptability": {
+    "PR103": "Source scheduling/materializer/freshness changes acceptable conditionally; repair inherited nested attributes and pass exact combined/native publication validation. No narrowed production closure certificate.",
+    "PR104": "Not acceptable at frozen source: verified cache hit and process reuse counterexamples; publication audit also needs ordinary workflow wiring and line-order protection. Exact repaired code must receive fresh review.",
+    "PR105": "Bounded stream/custody repair acceptable conditional on exact combined checker/tracker validation; all source/review qualifiers remain."
+  },
+  "findings": [
+    {
+      "id": "ENG-1",
+      "priority": "high",
+      "path": "jobs/hathi-gpo-orders/.gitattributes",
+      "line": 3,
+      "introduced_by": "inherited main and all three streams",
+      "title": "Nested attributes normalize preserved evidence bytes and prevent freshness publication",
+      "evidence": {
+        "base": "f9c6d806ad059dcad7875ab3708715f20ea386df",
+        "path": "jobs/hathi-gpo-orders/data/TARGETS.json",
+        "raw_oid": "762278efdaabe762997963e779d52ce2ba595996",
+        "clean_oid": "eaece5d7dc7dc38a02ab13e37d30bc8905b508b5",
+        "fixed_oid": "762278efdaabe762997963e779d52ce2ba595996",
+        "crlf_count": 6856,
+        "lf_count": 6856,
+        "attributes_before": "jobs/hathi-gpo-orders/data/TARGETS.json: text: set\njobs/hathi-gpo-orders/data/TARGETS.json: eol: lf",
+        "attributes_after": "jobs/hathi-gpo-orders/data/TARGETS.json: text: unset\njobs/hathi-gpo-orders/data/TARGETS.json: eol: unset",
+        "source_sha256": "5cba9fe39d5a10fd465c982dcf70a0d9edf38a29c7c014b0bb97a3411906e380"
+      },
+      "smallest_repair": "Replace nested data/*.json text eol=lf with data/*.json -text -eol; preserve the existing CRLF TARGETS blob. Consider exact path override if minimizing policy surface. Do not normalize source bytes or loosen freshness guard.",
+      "validation": "Isolated clean-hash reproduction gives original 762278efdaabe762997963e779d52ce2ba595996, filtered eaece5d7dc7dc38a02ab13e37d30bc8905b508b5, repaired original hash. Run workflow publication on repaired exact commit."
+    },
+    {
+      "id": "ENG-2",
+      "priority": "high",
+      "path": "jobs/claim-kit/fragment_cache.py",
+      "line": 141,
+      "source_sha256": "fd688f0fc386571baaaf613f5ea4578bb5b2088b4b8e471f4247e97eee93d785",
+      "title": "Structurally valid cache corruption can remove a native working-text hold",
+      "evidence": {
+        "baseline_policy_errors": [
+          "original_representation:working_text_known_incomplete"
+        ],
+        "mutated_cached_policy_errors": [],
+        "cache_status": "hit",
+        "source_provider_unchanged": true,
+        "mutation": "complete_text false -> true in cached row only"
+      },
+      "detail": "Cache envelope validates current provider inventory, key and row shape, but never authenticates derived rows. An unchanged source provider with complete_text=false can be reconstructed from a changed cached row with complete_text=true, producing a cache hit and removing working_text_known_incomplete. This is material policy behavior, not just a display change.",
+      "smallest_repair": "Bind cached payload to an integrity digest and cache/parser implementation version; rebuild on mismatch. A checksum is an accidental-corruption control, not proof against a same-user adversarial rewrite of both data and checksum. Preserve genuine-index equivalence on new cache creation and test structurally valid mutation.",
+      "scope": "Synthetic native policy fixture; no canonical claim/source edited and no production incidence inferred."
+    },
+    {
+      "id": "ENG-3",
+      "priority": "medium",
+      "path": "jobs/claim-kit/fragment_cache.py",
+      "line": 296,
+      "source_sha256": "fd688f0fc386571baaaf613f5ea4578bb5b2088b4b8e471f4247e97eee93d785",
+      "title": "Process reuse misses symlink retargeting",
+      "evidence_artifact": "cache-adversarial.json",
+      "detail": "With unchanged FRAGMENTS and both target text files present, retargeting text_path symlink one.txt to two.txt leaves cached Index pointing at one.txt; fresh W.Index points at two.txt. Witness only checks existence of old resolved paths.",
+      "smallest_repair": "Re-resolve raw cached rows on reuse or record and verify resolution witnesses for original paths and directory symlinks; retain confinement behavior. Add target and parent-directory symlink retarget tests.",
+      "scope": "Supported Path.resolve behavior counterexample; current production symlink prevalence was not established."
+    },
+    {
+      "id": "ENG-4",
+      "priority": "high",
+      "path": "jobs/claim-kit/kit.py",
+      "line": 137,
+      "title": "Separate-clone publication audit is not invoked by ordinary CI",
+      "detail": "publication-audit exists and is documented; no .github workflow or script invokes it at any reviewed source. Git-common-dir lock covers linked worktrees only. Separate clones can commit same-instrument publications to different filenames and merge cleanly. PR104 report explicitly leaves CI wiring to integration.",
+      "smallest_repair": "Wire existing publication-audit into ordinary PR validation using the real PR head and fetched base history, and cover default-branch merge validation or equivalent policy. Preserve output as an audit receipt and nonzero exit on conflict. Do not adjudicate competing claims automatically.",
+      "validation": "Exercise independent branch additions, duplicate on one side, intentional older replacement, malformed records, and correct GitHub synthetic merge/head handling."
+    },
+    {
+      "id": "ENG-5",
+      "priority": "medium",
+      "path": "jobs/claim-kit/completion.py",
+      "line": 807,
+      "source_sha256": "82f48d96ddc590d33b8f7707768334dc8f2f2959ef1a8849c84fbb03a973b1d0",
+      "title": "Publication audit allows reordering old canonical records",
+      "evidence": {
+        "before_last_version": "last",
+        "after_last_version": "first",
+        "added": [],
+        "problems": [],
+        "audit_would_be_ok": true,
+        "scope": "minimal function reproduction using Git byte responses, no canonical file edited"
+      },
+      "detail": "The audit removes old lines from an unordered remaining list. Reversing two existing versions of one instrument produces no added lines and no problems, although native last-line-wins selection changes.",
+      "smallest_repair": "Validate unchanged ordering of preexisting records (prefer unchanged old-byte prefix for append-only files, if consistent with the completion contract) and reject reordering. Add a regression asserting the changed last-line winner is refused."
+    }
+  ],
+  "cross_stream_assessment": {
+    "runner": "Runtime exemption is push-only and restricted to exact runtime/test paths. All 15 compiler whitelist entries match combined source bytes, including the accepted PR104 prior_research variant. prior_research remains conservatively a compiler-triggering edit. Workflow schedules offline tests even if selected jobs list is empty. Unknown compiler versions rebuild.",
+    "materializer": "Only exact example-hello and early-ranger-transcriptions certificates narrow. claim-kit, Valla, checker and tracker remain unaudited and restore historical jobs/** availability. Final source preserves initial-review dynamic provider/implicit import fixes. Do not call compatibility fallback a narrow production success or byte saving.",
+    "freshness": "Scoped metadata enumeration retains fnmatch authority, current working changes, generation conflict checks, predecessor receipt handling and invalid provenance refusal. Checker declarations include all provider output/data plus research/releases; arbitrary root-pointer closure still uncertified. Keep rejection receipts.",
+    "claim_publication": "Lock is shared Git-common-dir O_EXCL transaction around packet/input rechecks and exclusive target creation. Disjoint added claim files are allowed; same selected identities reject. Cache and audit findings remain blockers.",
+    "valla": "Requested-ID context excludes own/same-agent parent package and unrelated lineages; full index uses tracked registry with explicit unmaterialized_packages and 2000 package bound. 36 focused tests passed. Real combined full index must still prove empty unmaterialized_packages.",
+    "proquest": "Claim metadata streamed and hashed per file, preserving strict UTF-8 and 32MB per-file bound. Three identities/three scan-version limit, 8MB file/24MB total restoration budget, confined regular Git blobs, SHA/PDF validation, no overwrite, LFS/refusal receipts remain. 13 focused tests passed. Ordinary checker job already invokes materializer. No source grade or legal effect promoted."
+  },
+  "retained_evidence_read": [
+    "HANDOFF/KEAN.md",
+    "HANDOFF/README.md",
+    "newest entry of every HANDOFF/notes-*.md",
+    "AGENTS.md",
+    "jobs/claim-kit/AGENT_PROTOCOL.md",
+    "jobs/kean/README.md",
+    "PR103 review/INITIAL_REVIEW.json and review/REVIEW.json",
+    "PR103 production/review/REVIEW.json",
+    "PR103 production/REPORT.md and production/proof/REPORT.md",
+    "PR104 SOL_HANDOFF.md and REPORT.md",
+    "PR105 INDEPENDENT_REVIEW.json and REPORT.md"
+  ],
+  "validation": {
+    "materializer": "6 passed",
+    "picker": "22 passed on retry after stage19 prerequisite restored; initial run 22 with 1 environment skip retained",
+    "cache": "17 run, 1 explicit real-repo opt-in skip",
+    "completion": "36 passed; independent retry was inadvertently repeated by sequential suite and both passes retained (72 successful executions, 36 distinct tests)",
+    "valla": "36 passed",
+    "proquest": "13 passed",
+    "freshness": "37 passed in 114.345s after reviewer extraction prerequisites restored; original setup failures retained",
+    "counterexamples": "4 bounded reproductions retained; line endings, cache resolution, cache policy integrity, audit record order",
+    "setup_failures": "First extraction stopped at unavailable claim_kit_contract fixture object in shared partial clone. Restored required stage19 gate and runner files from original Git object source; original checkout working files/index untouched. Initial failing test logs retained.",
+    "completed_focus_distinct_tests": 167,
+    "distinct_tests_note": "22 picker + 6 materializer + 37 freshness + 17 cache (1 skipped) + 36 completion + 36 Valla + 13 ProQuest = 167 discovered, 166 passed, 1 intentional skip; no full-suite claim."
+  },
+  "combined_validation_required": [
+    "Exact repaired source hashes and fresh independent review for changed cache/audit/attribute code",
+    "Road Linux and Windows, Kean, full claim-kit/Valla and relevant runner suites",
+    "Native combined runner claim-kit/Valla outputs against identical input generations, empty Valla unmaterialized_packages",
+    "Retained PR104 rehearsal view and completion dry-run only; five eligible and exact expected publishable bytes or explain pin changes",
+    "Ordinary publication audit exercised automatically",
+    "Canonical checker to tracker production publication succeeds under freshness; no inferred global readiness change",
+    "Keep all historical failures, gate holds, source/review qualifications and compiler freshness failures"
+  ],
+  "boundaries": [
+    "No scientific review, control adjudication, gate waiver, claim publication or GitHub mutation performed.",
+    "Independent workspace only; coordinator checkout not mutated.",
+    "No real combined production job executed by reviewer. Focused fixture passes do not establish corpus outcomes.",
+    "PR104 actual Git source pin is 8adc9396cfd6da015757466b95ca6fa8ab1a4b9a, not the incorrect handoff-comment full SHA.",
+    "Coordinator owns preserving this report and registering result/handoff under repository instructions."
+  ],
+  "artifacts": {
+    "engineering-pins.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/engineering-pins.json",
+      "sha256": "862fe711039c8122b097c77520b49c76acddefee33f499a0f1ed2c68f1b4a760"
+    },
+    "line-ending-reproduction.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/line-ending-reproduction.json",
+      "sha256": "33940f011144f00a8786ba3f8e3e91c02f9d217362f9ee5e7f3564d1de5cb4fd"
+    },
+    "cache-adversarial.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/cache-adversarial.json",
+      "sha256": "59eaec2bb2458a585913e5b0b47c68dc8e232008166781338b89040b00503914"
+    },
+    "cache-policy-impact.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/cache-policy-impact.json",
+      "sha256": "b581e2d9ef21d8cee9cfda3e00f383c7344090e95cbf638608975342005adb87"
+    },
+    "publication-audit-order.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/publication-audit-order.json",
+      "sha256": "f842f54750847ff2923cb5cdffdf1663cdf99c1b3b9c7764ca380874ac7ca3ad"
+    }
+  }
+}

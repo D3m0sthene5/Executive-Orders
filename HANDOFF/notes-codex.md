@@ -1,3 +1,54 @@
+## 2026-10-30 UTC: final integration PR107 includes six reviewed engineering streams
+
+- **Done:** PR103/104/105/106 plus frozenPR108 Cruden,PR109 custody expansion andPR110 qualified research combined with source ancestry and append-only findings. Owner authorization D-20261029-final-cross-stream-integration remains scoped. PR107 is sole final branch; Sol retains implementation ownership.
+- **Verified:** Priorcandidate07280 fullCI/native consumers and ordinary claim-kit build passed;93Valla packages materialized. Currentlocal487claim-kit (4skips),69checker/materializer pass; seven native lifecycle controls preserve expected outcomes. Fresh follow-on reviewer tests source/wiring; final exactCI pending.
+- **Running/next:** Publish final reviewed pin, watch exact CI IDs, merge only qualifying work, then verify currentmain checker→tracker and receipt fingerprints. Native rehearsal/Cruden comparison moved to existing CI due local source-context bound. Manifest/report: research/progress/final-integration-2026-10-29/.
+- **Pending:** PR110 research retained without canonical publication; combined native replay pending. NewValla reasoning source unobserved. FivePDF restoration fits one bounded call; future deferred tails require explicit cursor resumption. EO1547 text mismatch remains.
+- **Asks:** @Owner: none. No canonical scientific adoption or readiness arithmetic from isolated replays.
+
+## 2026-10-29 ET: final cross-stream integration claimed; review in progress
+
+- **Done:** Scoped owner ruling `D-20261029-final-cross-stream-integration` recorded. PR103 notified of final-owner transfer; Sol retains implementation ownership. Exact stream pins and pending states in `research/progress/final-integration-2026-10-29/MANIFEST.json`.
+- **Running:** Fresh independent engineering reviewer; bounded mechanical inventory completed. No background watcher or production refresh launched.
+- **Next:** Combine frozen reviewed sources, repair missing native connections, validate one candidate, merge qualifying work and verify published production generations. New Cruden/shared-research/Valla assignments remain pending until observed handoffs.
+- **Asks:** @Owner: none. Stream owners: post exact frozen sources and retained tests on your PRs.
+- **Do not:** infer readiness from replay sums or scientific adoption from engineering approval. Retain old generations as history until compatible refreshed outputs publish.
+
+## 2026-10-29 ET: production closure continuation, combined handoff pending
+
+- **Done:** Source-only PR103 continuation in separate `sol-runner-next` checkout: checked provider/custody declarations, rejected tracker wildcard, guarded claim-kit runtime-only push tests in existing runner. Exact source review and available costs in `research/progress/sol-runner-friction/production/`; Kean F-20261029-8002.
+- **Proof/limits:** 22 picker,421 baseline unit tests (5 existing skips),257 independent adversarial checks; partial actual matched projection318,427,714 bytes each arm, no savings. No new production narrow certificate, complete matched production run, compiler-freshness approval or combined compatibility claimed.
+- **Next:** Await requested frozen PR104 ready/input-closure handoff (comment6508226006). Observed head71b06f9 is not presumed frozen. Separate combined checkout is prepared from mainf9c6d806 only. Integrate exact source pins there, combine append-only Kean records/regenerate brief, run both OS road/Kean/claim-kit/Valla/PR101 plus isolated native retained rehearsal and matched materialization; publish result separately.
+- **Asks:** @Owner: none. @Opus: provide frozen ready source/closure/rehearsal artifact handoff; Sol owns declarations and combined testing.
+- **Do not:** merge either PR/main, share mutable indices, broaden certificates from an incomplete trace, or describe synthetic/partial projection as complete production savings.
+
+## 2026-10-29 ET: Sol runner friction branch, independent engineering review complete
+
+- **Done:** `sol/runner-friction` from main f9c6d806; scoped freshness tree/index reads, output-excluding startup and skip empty-selection cache restore, version-pinned selective materialization for two audited jobs with broad compatibility fallback, cache I/O attribution. Report: `research/progress/sol-runner-friction/REPORT.md`; Kean F-20261029-8001.
+- **Safety:** Reviewer found undeclared dynamic reads in wrappers, checker and drafts; universal narrowing rejected. Unknown/mixed/changed versions restore historical job outputs. Exact sources, prior successful generations, public manifest/CLI, and PR101 review blinding/frozen comparison remain. No claims/statuses/canonical generations changed.
+- **Proof:** Five actual pinned input maps/hashes equal; FR metadata candidates 97,160 to 13,665. Isolated actual helper fixture proves bytes omitted, equal required hashes, failed-generation preservation and broad fallback. Local checkout expansion is slower; remote transfer, production startup and current model-token savings unmeasured. Fresh independent Sol engineering review approved final hashes with these limits.
+- **Next:** Leave the separate PR unmerged. Combined adoption must test both branches at one pin, preserve Sol/Opus append-only Kean entries and regenerate the brief. Audit complete read closures before granting more narrow-job certificates; missing provider capture discovery is detailed in the review.
+- **Asks:** @Owner: none. @Claude/Opus: do not alter this branch; preserve your separate claim-kit/Valla ownership and run combined compatibility checks before adoption.
+- **Do not:** Merge either PR, infer a project-wide speedup, treat cache captures as current mutable content, share a mutable Git index/scratch, or kill/poll jobs by process-name matching. Final checks and remote CI are recorded in the PR description and validation receipts.
+
+## 2026-10-29 ET: PR105 preserved; two additional ProQuest custody beneficiaries
+
+- **Done:** Separate follow-on branch `codex/proquest-custody-census-20261029` retains PR105 and replaces its hardcoded default selection only after a census established two additional cases. 613 filed rows → 612 effective claims (one superseded excluded), 10,928 source refs, 802 explicit artifact hashes; fresh e87c9ad receipts match every effective version. Additional: EO1547/4782, two exact retained PDFs, ten refs, 84,609 bytes. Two promisor Git objects fetched; no website acquisition or full PDF checkout.
+- **Verified:** 69 checker/materializer +36 tracker tests pass. Fresh independent engineering review validates selection, refusal, shared-artifact deduplication, bounded cursor resumption and 699 unchanged replay inputs. Native three-batch replay: both additional sources verified; EO4782 no→yes ready, EO1547 no→no on existing working-text text-hash mismatch. Original EO254/2171/4354 stay ready. All remain transcription-dependent with replacement/recheck obligations. Four other custody-only FR cases lack an identified retained copy and remain unresolved; no provider extension.
+- **Evidence:** `research/progress/proquest-custody-2026-10-29/follow-on/REPORT.md`, CLAIM_CENSUS.json, SOURCE_ASSOCIATIONS.json, ENGINEERING_REVIEW.json, replay/RESULT.json. Rejected input-drift and source-drift replay attempts retained; final exclusive replay passed. Kean `F-20261029-codex-proquest-census`.
+- **Integration:** PR105's existing native run40976840282 and Linux/Windows/Kean/security CI succeeded. No duplicate heavyweight run dispatched. Sol owns runner/declarations/combined integration; exact contract in follow-on/RUNNER_CONTRACT.md and PR103 comment6511840662. Current single call fits five artifacts; future tails need explicit bounded cursor consumption by Sol. Frozen implementation pin supplied in publication comments. No main write or merge.
+- **Costs:** Two fresh configured gpt-6-luna metadata workers; fresh inherited GPT-6-family engineering reviewer. Exact token/cash/exclusive-worker time unavailable; no savings estimate. Native machine/test timings retained separately, not summed as labor.
+- **Asks:** @Owner: none. Do not alter claim hashes, grades, legal reviews or certification; do not add the isolated gain to any published global count. Reconcile EO1547's exact working-text version through normal reviewed research.
+
+## 2026-10-29 ET: three ProQuest custody holds reproduced and corrected
+
+- **Done:** On isolated branch `codex/proquest-custody-verification-20261029`, traced EO254/2171/4354 through inventory, production packet pins, exact Git blobs and sparse runner. Merged PR94 still aborts on 34,221,195 total claim bytes against its 32 MB aggregate cap; retained production log and local reproduction agree. Streamed per-file metadata checking fixes that failure while preserving PDF bounds, all exact hashes, grades and gates.
+- **Verified:** 53 checker/materializer + 36 tracker tests pass. Native before/after replay changes 15 source refs from custody_record_only to held_bytes_verified; all 18 quotations match. All three tracker rows become ready/complete_claim, remain transcription_dependent, and retain original replacement and quotation recheck obligations. Independent engineering review by configured gpt-6-luna completed. Token/cash telemetry unavailable.
+- **Evidence:** `research/progress/proquest-custody-2026-10-29/REPORT.md`, SOURCE_TRACE.json, replay/RESULT.json and INDEPENDENT_REVIEW.json. Kean `F-20261029-codex-proquest-custody`.
+- **Next:** Review the separate correction PR; fresh canonical checker/tracker publication must precede any dashboard total change. Main and canonical research outputs unchanged by this session; no merge performed.
+- **Asks:** @Owner: none.
+- **Do not:** count this bounded replay as a complete corpus refresh, promote replica scans to originals, or infer human certification. Existing PR103/104 work remains separate.
+
 ## 2026-10-29 UTC: integration merged and bounded pipeline verified
 
 - **Merged:** All twelve original open PRs (54,83,90–99), integration PR100, reviewer-card/CI repair PR101 and concurrent documentation audit PR102. Main reached ac14022d; GitHub verified zero open PRs after PR102. Original source and bot-result ancestry retained; archived research stays qualified.
