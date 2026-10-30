@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "task": "bounded native retained rehearsal validation",
+  "date_utc": "2026-10-30",
+  "worker": {"model": "gpt-6-luna", "tokens": null, "native_runtime_seconds": null},
+  "candidate": {
+    "local_commit": "2fbc45654acedf94ace1c46ace616ecb0b7bee06",
+    "local_tree": "ecb675e9fdefb04190ab9bea44b79ad3ff4b8894",
+    "remote_commit": "07280bbf779550c4d868b07f5bc0ec3a1bb5e3e1",
+    "remote_tree": "61fc0d48468b639cd5f6dc629caf83a656358cde",
+    "runtime_sources_equal": true,
+    "runtime_source_sha256": {
+      "jobs/claim-kit/kit.py": "04b77aacd3168b4d704d54ee989c3a26c399fbefd83c0fdd269d90259652f424",
+      "jobs/claim-kit/completion.py": "1d60037926a9a1e7a3c2f238239e69925743a21615e564c4ae92d908ab4a2b1e"
+    },
+    "authorization_context": "D-20261029-final-cross-stream-integration is present. Candidate includes newer prior-research context that can invalidate the retained packet; no packet pin was changed."
+  },
+  "retained_packet": {
+    "source_commit": "b8199bd30b78ffd1ee11c4e4e35c0bcf98e45b75",
+    "path": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp",
+    "completion_path": "research/excavator/opus-native-rehearsal-2026-10-29/r1/packet/supp/completion/COMPLETION.json",
+    "completion_sha256": "3f7406f03bb0b16ab48149538b4d34e03d3a424b70f5e313d000eb7abfba0867",
+    "packet_sha256": "23c88b44e45fafd99ca8cde79cae2964698a62b65743c3a99ee1191880871d0d",
+    "proposed_claims_sha256": "9ddb845bd75f877ba86c5742e9e4e799f6af1871d5b76d7c223792419a2fd897",
+    "availability": "Exact retained bytes are readable from local Git history; no external acquisition or repinning."
+  },
+  "isolated_checkout": {
+    "path": "/workspace/scratch/21fe24d0bcf0/native-rehearsal-check",
+    "mode": "shared no-checkout clone, separate index",
+    "head": "2fbc45654acedf94ace1c46ace616ecb0b7bee06",
+    "size": "14 MiB",
+    "tracked_index_paths": 97470,
+    "working_tree_files_materialized": 0,
+    "new_source_bytes_materialized": 0
+  },
+  "cli_context_inventory": {
+    "basis": "INPUT_CLOSURE.md plus batch.load_packet, prior_research.scan_research, valla.tracked_rationales, completion.complete, and fragment_cache.provider_inventory",
+    "unique_tracked_prior_research_and_valla_inputs": 8572,
+    "of_these_present_in_integration_working_tree": 158,
+    "of_these_missing_from_integration_working_tree": 8414,
+    "bytes_of_present_subset": 1127302,
+    "tracked_valla_package_files": 279,
+    "valla_package_files_present": 0,
+    "valla_package_files_missing": 279,
+    "missing_blob_objects_confirmed_with_GIT_NO_LAZY_FETCH": 8572,
+    "missing_blob_bytes": null,
+    "missing_blob_bytes_note": "Object-size queries returned missing for these selected blobs. No lazy fetch was enabled. Exact aggregate byte size is unavailable locally; it was not guessed.",
+    "other_required_inputs": [
+      "All packet and source-supplement artifacts, including held text and declared local PDF inputs",
+      "Claim-kit, checker, tracker, Valla and policy code named by the completion input pins",
+      "Current canonical claim files and completion checker/tracker dependencies",
+      "Provider FRAGMENTS inventory; fragment_cache.py documents approximately 230 MB per call",
+      "All tracked research JSON/JSONL inputs scanned by prior_research, not only rows already known to match these orders"
+    ]
+  },
+  "commands": [
+    "git clone --shared --no-checkout /workspace/scratch/21fe24d0bcf0/integration /workspace/scratch/21fe24d0bcf0/native-rehearsal-check",
+    "git update-ref --no-deref HEAD 2fbc45654acedf94ace1c46ace616ecb0b7bee06 && git read-tree 2fbc45654acedf94ace1c46ace616ecb0b7bee06 (isolated clone)",
+    "git show <candidate>:jobs/claim-kit/kit.py | sha256sum; git show <candidate>:jobs/claim-kit/completion.py | sha256sum (both candidates)",
+    "git show b8199bd3:<retained packet files> | sha256sum",
+    "GIT_NO_LAZY_FETCH=1: list candidate research JSON/JSONL and Valla package paths from the tree, query selected object sizes without fetching; selected blob objects were missing",
+    "Bounded git archive size probe was stopped after the shared disk reported 'No space left on device'; no source bytes were retained from it"
+  ],
+  "outcome": {
+    "status": "blocked_before_native_execution",
+    "native_commands_run": [],
+    "blocker": "Complete view/complete context cannot be established from available local bytes: the prior-research scan needs the full selected research JSON/JSONL set, and Valla indexes tracked packages. 8,572 selected blobs are absent locally, with their aggregate size unavailable without fetching them. The completion path also re-hashes the provider FRAGMENTS inventory (documented at approximately 230 MB), leaving no verified basis that all required inputs fit the 250 MB cap. No broad fetch was started. This is a source/context blocker, not a test failure.",
+    "historical_expectation": "The old dry-run expectation of 5 eligible and claims SHA256 9ddb845b... is not validated against current authorization/prior-research context.",
+    "timing_comparability": "No native command or runtime timing was obtained; hash and path inventory results are not runtime-equivalent."
+  },
+  "integrity": {
+    "coordinator_checkout_mutated": false,
+    "packet_re_pinned": false,
+    "reviews_forged_or_modified": false,
+    "scientific_inputs_modified": false,
+    "publish_flag_used": false,
+    "github_changes": false
+  }
+}

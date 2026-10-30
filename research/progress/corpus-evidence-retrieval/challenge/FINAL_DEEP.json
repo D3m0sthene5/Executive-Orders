@@ -1,0 +1,121 @@
+{
+  "source_sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be",
+  "helper_sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873",
+  "checks": {
+    "all_source_hashes_sizes_spans_match": true,
+    "unicode_lower_expansion_span_mapped": true,
+    "cache_changed_digit_features_rejected": true,
+    "cache_omitted_record_rejected": true,
+    "cache_fabricated_prefix_rejected": true,
+    "cache_truncation_rebuild": true,
+    "cache_deletion_rebuild": true,
+    "unreadable_preserved": true,
+    "unreadable_not_emitted": true,
+    "construction_edit_refused": true,
+    "construction_add_refused": true,
+    "construction_delete_refused": true
+  },
+  "all_checks_pass": true,
+  "events": [
+    {
+      "label": "changed_digit_features",
+      "timings": {
+        "cache_state": "rebuild",
+        "cache_errors": [
+          "read: ValueError: payload digest mismatch"
+        ],
+        "bytes_read": 1133,
+        "candidate_bytes_read": 1088,
+        "validation_bytes_read": 1133,
+        "reused_sources": 0,
+        "recomputed_sources": 12,
+        "cache_load_seconds": 6.97149989719037e-05,
+        "source_read_hash_features_seconds": 0.0015095569979166612,
+        "feature_build_seconds": 0.00011166799595230259,
+        "coverage_seconds": 0.0022878499985381495,
+        "construction_seconds": 0.004153173002123367,
+        "final_validation_seconds": 0.0006587239986401983,
+        "cache_write_seconds": 0.0016225870022026356
+      }
+    },
+    {
+      "label": "omitted_record",
+      "timings": {
+        "cache_state": "rebuild",
+        "cache_errors": [
+          "read: ValueError: payload digest mismatch"
+        ],
+        "bytes_read": 1133,
+        "candidate_bytes_read": 1088,
+        "validation_bytes_read": 1133,
+        "reused_sources": 0,
+        "recomputed_sources": 12,
+        "cache_load_seconds": 7.075699977576733e-05,
+        "source_read_hash_features_seconds": 0.0009003979976114351,
+        "feature_build_seconds": 5.221999526838772e-05,
+        "coverage_seconds": 0.0019808180004474707,
+        "construction_seconds": 0.003344755001307931,
+        "final_validation_seconds": 0.000708989999111509,
+        "cache_write_seconds": 0.0025044530011655297
+      }
+    },
+    {
+      "label": "fabricated_prefix",
+      "timings": {
+        "cache_state": "rebuild",
+        "cache_errors": [
+          "read: ValueError: payload digest mismatch"
+        ],
+        "bytes_read": 1133,
+        "candidate_bytes_read": 1088,
+        "validation_bytes_read": 1133,
+        "reused_sources": 0,
+        "recomputed_sources": 12,
+        "cache_load_seconds": 6.392700015567243e-05,
+        "source_read_hash_features_seconds": 0.0009397180001542438,
+        "feature_build_seconds": 0.00010348600335419178,
+        "coverage_seconds": 0.0018527040010667406,
+        "construction_seconds": 0.003121337002085056,
+        "final_validation_seconds": 0.0003920620001736097,
+        "cache_write_seconds": 0.002356999000767246
+      }
+    },
+    {
+      "label": "unreadable",
+      "coverage": {
+        "scope": "Exactly held_texts(): sorted jobs/*/output/texts recursive *.txt, excluding clause-drafts; no acquisition or legal completeness claim.",
+        "tracked_inventory_status": "unavailable: CalledProcessError: Command '['git', '-C', '/tmp/cruden-deep-k4vbtuyv', 'ls-files', '-z', '--', 'jobs']' returned non-zero exit status 128.",
+        "tracked_not_discovered": [],
+        "excluded_clause_drafts": [
+          "jobs/clause-drafts/output/texts/excluded.txt"
+        ],
+        "directory_errors": [],
+        "unreadable_sources": [
+          {
+            "path": "jobs/held/output/texts/01-base.txt",
+            "sha256": null,
+            "bytes": null,
+            "error": "PermissionError: independent fixture unreadable"
+          }
+        ],
+        "discovered_count": 12,
+        "readable_count": 11,
+        "source_bytes": 1033
+      }
+    },
+    {
+      "label": "race_edit",
+      "error": "source changed during verification: jobs/held/output/texts/00-quiet.txt; retry"
+    },
+    {
+      "label": "race_add",
+      "error": "held text inventory changed during search; retry"
+    },
+    {
+      "label": "race_delete",
+      "error": "held text inventory changed during search; retry"
+    }
+  ],
+  "elapsed_seconds": 0.13184746300248662,
+  "scope": "Independent engineering fixture challenge; cache corruption means accidental edit without coherent malicious digest rewrite; no filesystem atomicity or legal inference."
+}

@@ -3,7 +3,7 @@
   "owner": "Codex final integration coordinator",
   "branch": "codex/final-integration-20261029",
   "base": "f9c6d806ad059dcad7875ab3708715f20ea386df",
-  "state": "integration_in_progress",
+  "state": "follow_on_review_and_native_CI_pending",
   "authorization": "D-20261029-final-cross-stream-integration",
   "streams": [
     {
@@ -11,10 +11,20 @@
       "owner": "Sol",
       "pr": 103,
       "source_head": "1cdef3d0c87c57a3f8bd68a6d772fb2458b16563",
-      "state": "review_pending",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
       "blockers": [
-        "combined validation",
-        "CRLF TARGETS.json freshness failure in run40956514088"
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
       ]
     },
     {
@@ -27,23 +37,46 @@
         "70abad212b2fd6c7b9638c1a92f2e64292d4ce4c",
         "b8881afb18f2019ad784cbe6d2dd6f6e55cd948c"
       ],
-      "state": "frozen_review_pending",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
       "blockers": [
-        "combined validation",
-        "publication-audit CI connection"
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
       ],
       "pin_discrepancy": "PR comment expanded SHA is wrong; actual Git object and CI pin used.",
-      "prior_source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a"
+      "prior_source_head": "8adc9396cfd6da015757466b95ca6fa8ab1a4b9a",
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ]
     },
     {
       "stream": "ProQuest custody",
       "owner": "Codex custody session",
       "pr": 105,
       "source_head": "77abf218aa88ed89f4a16f4c93ed1baaf29098e0",
-      "state": "review_pending",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
       "blockers": [
-        "combined validation",
-        "production refresh"
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
+      ],
+      "generated_output_heads": [
+        "e87c9ad658a6708705f83a6dd43fd238f472926d"
       ]
     },
     {
@@ -52,31 +85,77 @@
       "pr": 106,
       "source_head": "f750886a008c09010abc0ab4ae15e4eded6fa7c2",
       "current_head": "0252e3ca5449322310483308434a9b00fa5fb027",
-      "state": "frozen_review_pending",
+      "state": "prior_combination_passed_follow_on_revalidation_pending",
       "blockers": [
-        "combined validation"
+        "final exact-candidate validation",
+        "main producer/consumer refresh"
+      ],
+      "review_evidence": [
+        "review/engineering-initial.json",
+        "review/final-fix-review.json"
+      ],
+      "required_tests": [
+        "Road Linux/Windows",
+        "Kean",
+        "claim-kit/Valla native consumers",
+        "source-backed holds"
       ]
     },
     {
       "stream": "ProQuest measured expansion",
       "owner": "Codex custody session",
-      "state": "announced_unfinished",
-      "branch": "codex/proquest-custody-census-20261029"
+      "state": "integrated_review_pending",
+      "branch": "codex/proquest-custody-census-20261029",
+      "pr": 109,
+      "source_head": "4d2448360a42dca9c3556d128ad1721d0a4eeb0c",
+      "dependencies": [
+        105
+      ],
+      "review_evidence": [
+        "research/progress/proquest-custody-2026-10-29/follow-on/ENGINEERING_REVIEW.json"
+      ],
+      "required_tests": [
+        "69 checker/materializer",
+        "bounded cursor/budget/malformed controls",
+        "five-source native replay",
+        "ordinary job consumption"
+      ],
+      "blockers": [
+        "combined native validation",
+        "main refresh"
+      ]
     },
     {
       "stream": "Valla production reasoning dependency",
       "state": "unobserved_new_assignment",
-      "note": "PR104 runtime context repair does not establish completion of the separate production reasoning assignment."
+      "note": "No new source branch or PR found across130branches; shared research names Valla ownership but does not establish implementation completion."
     },
     {
       "stream": "Cruden retrieval optimization",
-      "state": "unobserved_new_assignment",
-      "note": "Existing merged cruden.py is a baseline, not proof that the new assignment is complete."
+      "owner": "Sol retrieval session",
+      "pr": 108,
+      "source_head": "f3d9fad88e7d0288967b2674d3ef64fba1db3010",
+      "state": "integrated_review_pending",
+      "dependencies": [],
+      "review_evidence": [
+        "research/progress/corpus-evidence-retrieval/challenge/FINAL_REVIEW.json"
+      ],
+      "required_tests": [
+        "11 focused",
+        "61 challenge checks",
+        "identical-input legacy/cold/warm",
+        "changed-corpus invalidation"
+      ],
+      "blockers": [
+        "combined native validation"
+      ]
     },
     {
       "stream": "shared substantive research continuation",
-      "state": "unobserved_new_assignment",
-      "note": "Prior merged NRA work is baseline, not proof the new assignment is complete."
+      "state": "announced_in_progress",
+      "note": "Handoff only; independent research in progress. No frozen result or PR yet.",
+      "branch": "codex/shared-research-production",
+      "source_head": "7f653c20ed1340e8f49a0e55b37a1a1096849873"
     }
   ],
   "production": {
@@ -91,17 +170,16 @@
     }
   },
   "watcher": {
-    "active": true,
-    "mechanism": "bounded functions exec cell61",
-    "run_ids": [
-      40979725898,
-      40979725966,
-      40979725988,
-      40979725923,
-      40979721659
-    ],
-    "interval_seconds": 45,
-    "maximum_polls": 25
+    "active": false,
+    "mechanism": "prior bounded watcher retired after tracked candidates completed; next exact IDs will be recorded in PR comment",
+    "completed_candidate": "07280bbf779550c4d868b07f5bc0ec3a1bb5e3e1",
+    "completed_run_ids": [
+      40980382026,
+      40980382068,
+      40980382117,
+      40980382074,
+      40980376557
+    ]
   },
   "integration_fixes": [
     "nested Hathi byte-preservation attributes and regression",
@@ -111,9 +189,27 @@
     "native lifecycle/custody/Valla combined CI"
   ],
   "pr": 107,
-  "candidate_source_local": "2fbc45654acedf94ace1c46ace616ecb0b7bee06",
+  "candidate_source_local": "d56ba86ca703c14395bd13852aa62f514fc19465",
   "platform": {
     "git_shell_push": "no credentials; using GitHub connector exact trees/parents",
     "manual_workflow_controls": "connector lacks dispatch/cancel; connected local browser unavailable; cloud browser signed out. Automatic runs remain available."
+  },
+  "generated_output_heads": [
+    "a27af5b1181da240bbcc2db31ddcb7de8441518f"
+  ],
+  "validation": {
+    "claimkit": {
+      "tests": 487,
+      "passed": true,
+      "skips": 4,
+      "seconds": 13.28
+    },
+    "checker_materializer": {
+      "tests": 69,
+      "passed": true
+    },
+    "local_lifecycle": "validation/local-lifecycle-results.json",
+    "prior_remote": "validation/candidate-07280-ci.json",
+    "local_rehearsal_block": "validation/local-rehearsal-block.json"
   }
 }

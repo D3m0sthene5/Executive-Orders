@@ -34,7 +34,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     before = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
               for p in (ROOT / "research/readiness/claims").glob("*.jsonl")}
-    materialized = proquest_inputs.materialize(ROOT, OUT / "materialization")
+    materialized = proquest_inputs.materialize(ROOT, OUT / "materialization", ids=IDS)
     assert not materialized["errors"], materialized
     assert {r["instrument_id"] for r in materialized["receipts"]} == IDS
     assert all(r["state"] in {"already_held", "restored_exact_blob"}

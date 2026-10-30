@@ -1,0 +1,312 @@
+{
+  "schema": "eo-final-integration-followon-engineering-review/v1",
+  "completed_utc": "2026-10-30T00:53:45.552662+00:00",
+  "reviewer": {
+    "identity": "OpenAI Codex; exact serving model identifier not exposed",
+    "independence": "fresh separate delegated context; same-family engineering review",
+    "tokens": null,
+    "cash": null,
+    "active_labor_seconds": null,
+    "elapsed_seconds": 422.422,
+    "clock_note": "Prospective clock began after initial handoff/prior-review reads; elapsed includes waiting and is not active labor. No token or billing telemetry available."
+  },
+  "reviewed_candidate": "d56ba86ca703c14395bd13852aa62f514fc19465",
+  "reviewed_tree": "49e2eb0f4c86c95d5e56e6d326f51b41fc36fe64",
+  "original_frozen_test_candidate": "0200b517846bb977c3f70271e3db1f540fe3da16",
+  "upstream_pins": {
+    "PR108": "f3d9fad88e7d0288967b2674d3ef64fba1db3010",
+    "PR109": "4d2448360a42dca9c3556d128ad1721d0a4eeb0c"
+  },
+  "verdict": "APPROVE_BOUNDED_ENGINEERING_CONDITIONAL_ON_EXACT_CANDIDATE_NATIVE_CI",
+  "blockers": [],
+  "verdict_scope": "Exact Cruden, ProQuest materializer, job logging, replay selector, validation harness and workflow changes approved for bounded engineering integration. No production, legal, human-review, scientific or global readiness approval.",
+  "exact_source_pins": {
+    "jobs/claim-checker/test_checker.py": {
+      "sha256": "bbe89806861d40ae67da6bee7c8f3337646e2c5a5e770bab1b6fded6bce9638c",
+      "git_blob": "2ec41da321a76d3d15b22ade43b655fc6c9d758d"
+    },
+    "jobs/claim-checker/test_proquest_inputs.py": {
+      "sha256": "56bab420443547019f0e6bc8655f0aae5163c184b42110c4b25fdc92c41e02ea",
+      "git_blob": "d344810b3d20053241d649930a3b38f978edaa9e"
+    },
+    "jobs/claim-checker/sources.py": {
+      "sha256": "444faa08777b2e83ec3ce7ba5d56d25390e4c9c42381ac722d5d7b9c1063a319",
+      "git_blob": "295a85e5eb369a3cc3fd55acdb89e5866bbb87bb"
+    },
+    "jobs/claim-checker/job.py": {
+      "sha256": "1d9ddb995bc34b75b18e40293d62df6d5fd044d3b6e1b339341162722e67060a",
+      "git_blob": "21815c95e9cb9bb125c5f570c60cb6ea88db9910"
+    },
+    "jobs/claim-checker/proquest_inputs.py": {
+      "sha256": "df104d1faea2c4a029c24c64a6ef3fbc47d6bbe55ed26441c6f9eff4fbb3c660",
+      "git_blob": "c3252fc33d40b02a97168e4994788301de862800"
+    },
+    "jobs/claim-checker/checker.py": {
+      "sha256": "3efe68a525f07a959b8267c17884999deb85aac7ae6333dfadfd4d2922a81133",
+      "git_blob": "45a92fb8957f2fbf4d5bbf8da48ebb80e6e3ac9e"
+    },
+    "jobs/claim-checker/build_opus_index.py": {
+      "sha256": "99c5c3801b87429b6749ce89dda714f00f940db166cbcf15113addf7c06a28ad",
+      "git_blob": "04481f492fec7c76de0fc7875303340e986855df"
+    },
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden.py": {
+      "sha256": "376cfb32f05026899abb94aad937fa1dbdb1fe21266bfc52fd404a965508b2be",
+      "git_blob": "4ca5a3f89a94b67adae74e59c6742fa13456bf30"
+    },
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py": {
+      "sha256": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873",
+      "git_blob": "bd79a136c7e5534f150b20e7098afb8632399e5b"
+    },
+    "research/excavator/claude-nira-sweep-2026-10-29/test_cruden_cache.py": {
+      "sha256": "d7a7dc4a50a90976efac3cfd1d2d3e350582393c1a0b92ad3e08cd569ffdbda9",
+      "git_blob": "b39d0988711aa8f8192f91d5547770f7e399c222"
+    },
+    "research/progress/corpus-evidence-retrieval/challenge/BASELINE_CRUDEN.py": {
+      "sha256": "075ab70f7b312a9b87a106f279502dfd695da0dcaddff49f1eae6bbae9170867",
+      "git_blob": "0687d85e6d378d9a12fa15a379eb2feaeb6563a4"
+    },
+    "research/progress/corpus-evidence-retrieval/challenge/fixture_challenge.py": {
+      "sha256": "c18922adb05ce15981435dedc1b80d161d6628717bd4c0463741b27993a449a5",
+      "git_blob": "f6f9ef5f5c476986be75ebc6532bdbecc6fac62b"
+    },
+    "research/progress/corpus-evidence-retrieval/challenge/staleness_challenge.py": {
+      "sha256": "a3653fdc041c2e80df838334d0949d1a295ebfd89bfed4e5ecc0d0a79ffa8359",
+      "git_blob": "becd13583d325aa1e52d59241e137f38d3e427cc"
+    },
+    "research/progress/corpus-evidence-retrieval/challenge/deep_challenge.py": {
+      "sha256": "01e84a22749a96d73c3a56af6f634e1d166ac4ed20c97aee0c673d72c1d8a08b",
+      "git_blob": "3d73612d063c980fc67c6b3b214dfba474dfbcf3"
+    },
+    "research/progress/corpus-evidence-retrieval/challenge/final_contract_challenge.py": {
+      "sha256": "11daf97a3e05f2215192c6c82df540efad694b6aa199fdf9d4cc86dc58fe5d9f",
+      "git_blob": "67bffa53a12fdb76ae4ed906ef95b25221d2de18"
+    },
+    "research/progress/final-integration-2026-10-29/validate_native.py": {
+      "sha256": "40e6528678976a3b411d1a016a6537f42aa30d75e2a3519b8d430b9d1a2a576b",
+      "git_blob": "d8546d98803cc30aef7521574335d55daf1c591d"
+    },
+    ".github/workflows/valla-pilot.yml": {
+      "sha256": "87f167f56cc0553b96d2e308b663323f960b5ad040da2ffa720a1d22d22cb6e8",
+      "git_blob": "752eda30b0cc45f3631abf5538e4422ba211d1fb"
+    },
+    "research/progress/proquest-custody-2026-10-29/validate.py": {
+      "sha256": "d50e14867b3a370d8bf8216e32c060837eefe00210895bb74e13ea897b87c2d1",
+      "git_blob": "a8403ff3891c90d286b1f87e56788a4bcb20d4ee"
+    },
+    "jobs/claim-kit/working_text.py": {
+      "sha256": "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9",
+      "git_blob": "f3886bf2f62f479142a0ada60b3f223fd8b31447"
+    },
+    "jobs/claim-kit/factual_events.py": {
+      "sha256": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659",
+      "git_blob": "6d6e83bd746265cb677910b49234412857038bf8"
+    },
+    "jobs/norton/model.py": {
+      "sha256": "abb91bf8c851d051f49a745b2706e0d26b929cc16d3159e1cbd7e22b2957de12",
+      "git_blob": "26b80ceefc4609d6e9c9d71e2959e20075b41a1b"
+    }
+  },
+  "material_findings": [
+    {
+      "id": "FOLLOWON-1",
+      "severity": "medium",
+      "state": "fixed_and_independently_tested",
+      "path": "research/progress/final-integration-2026-10-29/validate_native.py",
+      "problem": "Initial harness accepted complete returncode 1 without requiring a tally; an unexpected Python traceback could pass the step.",
+      "resolution": "8119733036eddf747af788833822a2dc6061e815 rejects traceback, requires native claim-kit marker for stale returncode 2, and requires TALLY for complete returncodes 0/1. Seven synthetic exact-block probes pass."
+    },
+    {
+      "id": "FOLLOWON-2",
+      "severity": "test_coverage",
+      "state": "fixed_and_tested",
+      "problem": "Initial 24-file overflow fixture did not exercise both legacy 40/60 truncation limits.",
+      "resolution": "Final harness uses 65; independent run passes all17 checks including both limits."
+    },
+    {
+      "id": "FOLLOWON-3",
+      "severity": "maintenance",
+      "state": "fixed_and_inspected",
+      "problem": "Original workflow path filter omitted added Cruden, ProQuest and harness code scopes.",
+      "resolution": "d56ba86ca703c14395bd13852aa62f514fc19465 includes those paths plus complete claim-kit/checker/tracker code scopes."
+    }
+  ],
+  "validation": {
+    "proquest_unit_tests": {
+      "passed": 29,
+      "seconds": 0.666,
+      "log": "proquest-tests-final.log"
+    },
+    "cruden_unit_tests": {
+      "passed": 11,
+      "seconds": 0.067,
+      "log": "cruden-tests.log"
+    },
+    "retained_challenge_assertions": {
+      "passed": 61,
+      "note": "Overlapping boolean checks, not61 independent tests",
+      "counts": {
+        "fixture": 15,
+        "overflow65": 17,
+        "staleness": 5,
+        "deep": 12,
+        "contract": 12
+      }
+    },
+    "ordinary_job_wiring": {
+      "passed": 8,
+      "artifact": "job-probe.json",
+      "method": "Exact job.py executed with real materializer and native source-field walker in a temporary Git fixture holding nine cited tiny PDFs. Only child test process and checker entrypoint were stubbed. Verified one eight-artifact batch, deferred tail/cursor/selection logging and receipt creation before checker call. Not native corpus validation."
+    },
+    "independent_malformed_metadata_and_cursor": {
+      "passed": 6,
+      "artifact": "malformed-probe.json"
+    },
+    "validation_harness_return_checks": {
+      "passed": 7,
+      "artifact": "harness-probe.json"
+    },
+    "setup_failures": "Two ProQuest extraction test runs failed because reviewer snapshot initially omitted working_text/factual_events, then norton/model dependency. Retained proquest-tests.log and proquest-tests-retry.log. Restored exact frozen dependency bytes only; final29 pass. Initial job probe likewise stopped at missing norton import before fixture work. No runtime implementation fix inferred.",
+    "source_equivalence": "All initially tested runtime/helper/test dependencies byte-identical at final candidate. Only harness and workflow changed after0200; harness tested separately at81197330 bytes; final workflow inspected atd56."
+  },
+  "assessment": {
+    "cruden": "Synthetic ordinary lookups preserve legacy JSON, Markdown and regex stdout, duplicate/suffix/neighboring-text behavior and40/60 limits. Full source bytes are hashed before/after matching; same-size preserved-mtime edits, inventory changes, noncandidate changes, unreadability and corrupted cache rebuild/refusal tested. Literal route exposes exact normalized-text spans and full paths. Helper-code/schema/algorithm changes invalidate cache.",
+    "proquest": "Effective last-file/physical-line claim selection and native source-field enumeration remain. Eight-artifact,8MB artifact and24MB invocation bounds enforced. Only exact permitted ProQuest regular Git blobs matching claim SHA/PDF prefix restored; no overwrite, symlink/traversal/LFS/identity-conflict bypass. Cursor binds commit, metadata hashes and selection. Invalid metadata/cursor refuses before source writes.",
+    "ordinary_consumption": "Default job invokes bounded effective-claim materializer before checker and now exposes selection,attempted bytes/count,cursor and deferred records. Original three-case replay explicitly selects its IDs so broader default selection does not invalidate that experiment.",
+    "resume_limit": "Ordinary job intentionally invokes once without resume. More than eight eligible artifacts or invocation-byte overflow can revisit prefix on later ordinary runs. Explicit cursor API works; default automatic tail completion remains unimplemented and must not be claimed.",
+    "native_ci": "Final workflow keeps30-minute job bound, explicit baseline Git fetches, full research/jobs checkout, five-source custody replay, claim-kit retained dry-run, Cruden cold/warm legacy comparison and full Valla package inventory assertion. No locally observed full-corpus result claimed."
+  },
+  "conditions_before_combined_acceptance": [
+    "Run final candidate workflow/native validations on exact reviewed bytes or prove equivalence; earlier07280 successes do not certify these follow-on additions.",
+    "Inspect native claim-kit view/completion results. A frozen-input refusal is a retained hold, not five eligible claims or approval; explain changed pins and preserve exact reviews.",
+    "Inspect native Cruden legacy/cold/warm byte comparisons, literal full-text evidence access and coverage omissions; local fixtures cannot certify current corpus completeness or timings.",
+    "Inspect native five-source materialization/checker/tracker outputs, preserving EO1547 working-text hold and all transcription/original-replacement/quotation-review qualifications. Do not add isolated EO4782 gain to a global count.",
+    "Canonical production checker-to-tracker refresh must pass unchanged freshness controls before reporting any current global readiness outcome."
+  ],
+  "limitations": [
+    "Cache digest detects accidental corruption, not a writer who recomputes both payload and digest. Two byte checks are not an atomic filesystem snapshot.",
+    "No current main refresh or remote CI independently performed by this reviewer; source review pinned to coordinator-supplied local Git objects.",
+    "Prior scientific, review-version, source-grade and original-authentication holds remain. No source acquisition, canonical claim publication, status/census change or measured total saving.",
+    "Only reviewer scratch artifacts created. Shared checkout,index,register and GitHub untouched. Coordinator owns committing report/support and recording Kean finding/handoff."
+  ],
+  "retained_evidence_read": [
+    "AGENTS.md",
+    "HANDOFF/README.md",
+    "HANDOFF/KEAN.md",
+    "newest HANDOFF notes",
+    "engineering-initial.json",
+    "final-fix-review.json",
+    "final-fix-review-eb83.json",
+    "final-fix-merge-audit-repro.json",
+    "Cruden FINAL_REVIEW.json and ADOPTION.md",
+    "ProQuest follow-on ENGINEERING_REVIEW.json and RUNNER_CONTRACT.md"
+  ],
+  "kean_search": "python3 -I jobs/kean/kean.py search Cruden ProQuest succeeded after transient coordinator merge conflict resolved; sparse search omitted856 tracked notes/reports.",
+  "artifacts": {
+    "contract.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/contract.json",
+      "sha256": "74e5e8eab7a56f84a61c9c47c850972060f9288064cf5bd7d034060b10d9c08b",
+      "bytes": 2463
+    },
+    "contract.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/contract.log",
+      "sha256": "eb197f8112bad9794b93d3a2285c9abd0a94158e34d7fd40cbb4b9ef59f4c31d",
+      "bytes": 644
+    },
+    "cruden-tests.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/cruden-tests.log",
+      "sha256": "913da68fa06e1d650a387f58109036b1a10a58405f53bd2d6790ef2e31f6aea1",
+      "bytes": 1489
+    },
+    "deep.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/deep.json",
+      "sha256": "7a544b72ea2bb8997b41d7d42d1270724cb60bf184d2b5a2c47505d502e07e75",
+      "bytes": 4543
+    },
+    "deep.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/deep.log",
+      "sha256": "d80ebe657004121ec6e7e3bc45c092431df88b7761a538d292f7960088675c34",
+      "bytes": 643
+    },
+    "fixture.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/fixture.json",
+      "sha256": "41d740847f60d6033c8bdd349d87e5503bc956f98eb0f33ee1d04968a5e561a9",
+      "bytes": 43987
+    },
+    "fixture.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/fixture.log",
+      "sha256": "beb6469f4e3d32eb47bc8c177244a106bea27d5344624ef1b5dfd597551da909",
+      "bytes": 680
+    },
+    "harness-probe.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/harness-probe.json",
+      "sha256": "7bcb0eac60ede5c0a4b40e18ed93f52b79af61d166536888c91554f00ebdbb27",
+      "bytes": 534
+    },
+    "harness_probe.py": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/harness_probe.py",
+      "sha256": "9ccbcd78324d2f0e45a45df6bcd12a8c1af62cc416199a6ed2488d4537c3e8af",
+      "bytes": 1964
+    },
+    "job-probe.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/job-probe.json",
+      "sha256": "02d42c3bd8eca57a7174a3b8186ebecff1f779d7a9ffcf54cae4781a6e90aacc",
+      "bytes": 23656
+    },
+    "job_probe.py": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/job_probe.py",
+      "sha256": "61946a8c4037524dcad8599d6ecc0b938b1347ddebd5733ada59a744c59af6c2",
+      "bytes": 3015
+    },
+    "malformed-probe.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/malformed-probe.json",
+      "sha256": "3a2b594bfb459aabd0496c06b6e03a5da518228a5f1e18f8367e666a0a80edc9",
+      "bytes": 314
+    },
+    "malformed_probe.py": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/malformed_probe.py",
+      "sha256": "139fc0cbf65ac4c8ddf4ed13fe08f39e8405a32d4f707454f9069954ef69f135",
+      "bytes": 1336
+    },
+    "overflow.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/overflow.json",
+      "sha256": "0b565a57c932930e3a8d4fca60e4d69c31d74660764d57fcad360209a12d6ee2",
+      "bytes": 391305
+    },
+    "overflow.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/overflow.log",
+      "sha256": "ab0499afd24edcdefaac40c97b254cc4a8b37df6030322d73da4b79ec4636106",
+      "bytes": 751
+    },
+    "pins.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/pins.json",
+      "sha256": "3deb77120a2a8c2346ed7c30cebdbb18edfb59b94350d58ab0b9f14b4eb76de7",
+      "bytes": 4511
+    },
+    "proquest-tests-final.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/proquest-tests-final.log",
+      "sha256": "f159dec365774fd2438db135d266bcbcf60c66d1d775f15fff68832c3be3d1b2",
+      "bytes": 4121
+    },
+    "proquest-tests-retry.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/proquest-tests-retry.log",
+      "sha256": "e0e7384a2c086f46b0748a07eab76ca8c9a854726d2a9965d8adda2f9c5a3a48",
+      "bytes": 21138
+    },
+    "proquest-tests.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/proquest-tests.log",
+      "sha256": "e4c24ab39789c721ec95d9a38f7a500bfd70c2c4037b2c5bfe858ac3d8ebd59e",
+      "bytes": 45620
+    },
+    "staleness.json": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/staleness.json",
+      "sha256": "45b3b230dbbe23fdb778441ce2cc1d314bed058347683d5f0e3d397ca0c710b9",
+      "bytes": 7311
+    },
+    "staleness.log": {
+      "path": "/workspace/scratch/21fe24d0bcf0/review/followon-support/staleness.log",
+      "sha256": "e458923a101228124d3f885f50080012d8b49efc400d1e854bfc8925c276183a",
+      "bytes": 326
+    }
+  },
+  "owner_asks": []
+}
