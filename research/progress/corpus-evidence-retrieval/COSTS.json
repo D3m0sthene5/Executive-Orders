@@ -1,0 +1,36 @@
+{
+  "configured_worker_model": "gpt-6.1-sol",
+  "runtime_sku_independently_exposed": false,
+  "workers": {
+    "profile": {
+      "observed_span_seconds": 1200.05,
+      "span_includes_waits": true,
+      "code_mode_calls_at_least": 76
+    },
+    "implementation": {
+      "prospective_wall_seconds": null,
+      "report": "research/excavator/claude-nira-sweep-2026-10-29/CRUDEN_IMPLEMENTATION_REPORT.json"
+    },
+    "independent_challenge": {
+      "observed_span_seconds": 797.85,
+      "span_includes_waits": true,
+      "exec_calls": 32,
+      "shell_invocations": 44
+    },
+    "producer": {
+      "observed_span_seconds": 336.44310014,
+      "span_includes_waits": true,
+      "outer_tool_turns": 26,
+      "exec_turns": 18,
+      "query_invocations": 2,
+      "query_process_seconds": 11.102604686
+    }
+  },
+  "profile_lossless_repack_seconds": 39.24,
+  "query_lossless_packaging_seconds": 7.429543053,
+  "coordinator_tokens": null,
+  "worker_tokens": null,
+  "cash": null,
+  "setup_exclusive_labor_seconds": null,
+  "notice": "Worker intervals overlap and include waits; do not sum them as exclusive labor. Profile packaging is already inside its span. Earlier setup, initial coordinator timing and token/cash telemetry are unavailable. Single producer assignment has no matched model-usage control."
+}
