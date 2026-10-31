@@ -106,6 +106,14 @@ across host interfaces, not exact Git pack bytes or avoidable network transfer.
 Initial Actions bootstrap and remote CI overhead are separately visible in run
 steps. A cold selective network saving remains unmeasured.
 
+The complete proof passed at source9fc12f9 in run41168642078. Exact native outputs,
+421 input versions and prior generation matched; all97 packages loaded. See
+REPORT.md and validation/COMPARISON.json for costs and limits. Unpack the
+lossless small-receipt archive into validation/production to inspect the original
+metadata, provenance and freshness members. The identical INDEX body is retained
+at baseline Git blob96b0d07d201b22960cdfcc5b553295cce41a5f72; its full provenance
+and member hashes are in validation/production/ARTIFACT_MANIFEST.json.
+
 The dedicated R1 workflow is read-only, bounded to30minutes and the R1 branch.
 Review its final source pin and receipt before treating the production proof as
 complete. It is a reproducibility harness around the existing runner.

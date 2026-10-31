@@ -1,0 +1,440 @@
+﻿2026-10-31T04:27:30.2762140Z Current runner version: '2.338.2'
+2026-10-31T04:27:30.2790066Z ##[group]Runner Image Provisioner
+2026-10-31T04:27:30.2791036Z Hosted Compute Agent
+2026-10-31T04:27:30.2791859Z Version: 20261021.618
+2026-10-31T04:27:30.2792622Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-31T04:27:30.2793442Z Build Date: 2026-10-21T00:45:21Z
+2026-10-31T04:27:30.2794151Z Worker ID: {6451be66-15a9-4dec-a93a-811ec6e50cd4}
+2026-10-31T04:27:30.2794866Z Region: northcentralus
+2026-10-31T04:27:30.2795578Z Cloud: Azure
+2026-10-31T04:27:30.2796157Z ##[endgroup]
+2026-10-31T04:27:30.2799056Z ##[group]Operating System
+2026-10-31T04:27:30.2799804Z Ubuntu
+2026-10-31T04:27:30.2800387Z 26.04.1
+2026-10-31T04:27:30.2800993Z LTS
+2026-10-31T04:27:30.2801534Z ##[endgroup]
+2026-10-31T04:27:30.2802145Z ##[group]Runner Image
+2026-10-31T04:27:30.2802793Z Image: ubuntu-26.04
+2026-10-31T04:27:30.2803422Z Version: 20261025.179.1
+2026-10-31T04:27:30.2805139Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-31T04:27:30.2807013Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+2026-10-31T04:27:30.2808042Z ##[endgroup]
+2026-10-31T04:27:30.2809274Z ##[group]GITHUB_TOKEN Permissions
+2026-10-31T04:27:30.2811490Z Contents: read
+2026-10-31T04:27:30.2812122Z Metadata: read
+2026-10-31T04:27:30.2812785Z ##[endgroup]
+2026-10-31T04:27:30.2814871Z Secret source: Actions
+2026-10-31T04:27:30.2815947Z Cache mode: write
+2026-10-31T04:27:30.2817615Z Prepare workflow directory
+2026-10-31T04:27:30.3154933Z Prepare all required actions
+2026-10-31T04:27:30.3203715Z Getting action download info
+2026-10-31T04:27:30.5222930Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-31T04:27:30.6912449Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-31T04:27:30.7881630Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-31T04:27:31.0681913Z Complete job name: compare
+2026-10-31T04:27:31.1540544Z ##[group]Run actions/checkout@v4
+2026-10-31T04:27:31.1541490Z with:
+2026-10-31T04:27:31.1541972Z   fetch-depth: 1
+2026-10-31T04:27:31.1542465Z   filter: blob:none
+2026-10-31T04:27:31.1542982Z   sparse-checkout-cone-mode: false
+2026-10-31T04:27:31.1544008Z   sparse-checkout: /*
+!/*/
+/.github/**
+/HANDOFF/**
+/jobs/**
+!/jobs/*/output/**
+/research/progress/r1-materializer-followthrough/**
+
+2026-10-31T04:27:31.1545095Z   repository: D3m0sthene5/Executive-Orders
+2026-10-31T04:27:31.1549303Z   token: ***
+2026-10-31T04:27:31.1549786Z   ssh-strict: true
+2026-10-31T04:27:31.1550279Z   ssh-user: git
+2026-10-31T04:27:31.1550769Z   persist-credentials: true
+2026-10-31T04:27:31.1551304Z   clean: true
+2026-10-31T04:27:31.1551779Z   fetch-tags: false
+2026-10-31T04:27:31.1552271Z   show-progress: true
+2026-10-31T04:27:31.1552774Z   lfs: false
+2026-10-31T04:27:31.1553227Z   submodules: false
+2026-10-31T04:27:31.1553746Z   set-safe-directory: true
+2026-10-31T04:27:31.1554324Z   allow-unsafe-pr-checkout: false
+2026-10-31T04:27:31.1555508Z ##[endgroup]
+2026-10-31T04:27:31.5868526Z Syncing repository: D3m0sthene5/Executive-Orders
+2026-10-31T04:27:31.5871050Z ##[group]Getting Git version info
+2026-10-31T04:27:31.5872271Z Working directory is '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-10-31T04:27:31.5874019Z [command]/usr/bin/git version
+2026-10-31T04:27:31.5889723Z git version 2.56.0
+2026-10-31T04:27:31.5910792Z ##[endgroup]
+2026-10-31T04:27:31.5925599Z Temporarily overriding HOME='/home/runner/work/_temp/ece95e2c-4c0d-448b-910d-22652902a83a' before making global git config changes
+2026-10-31T04:27:31.5927336Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T04:27:31.5931128Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:27:31.6000194Z Deleting the contents of '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-10-31T04:27:31.6004967Z ##[group]Initializing the repository
+2026-10-31T04:27:31.6010382Z [command]/usr/bin/git init /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:27:31.6088523Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-31T04:27:31.6091419Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-31T04:27:31.6093472Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-31T04:27:31.6094581Z hint: call:
+2026-10-31T04:27:31.6095476Z hint:
+2026-10-31T04:27:31.6096468Z hint: 	git config --global init.defaultBranch <name>
+2026-10-31T04:27:31.6097514Z hint:
+2026-10-31T04:27:31.6108175Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-31T04:27:31.6129718Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-31T04:27:31.6131493Z hint:
+2026-10-31T04:27:31.6132300Z hint: 	git branch -m <name>
+2026-10-31T04:27:31.6133461Z hint:
+2026-10-31T04:27:31.6134816Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-31T04:27:31.6136650Z Initialized empty Git repository in /home/runner/work/Executive-Orders/Executive-Orders/.git/
+2026-10-31T04:27:31.6139638Z [command]/usr/bin/git remote add origin https://github.com/D3m0sthene5/Executive-Orders
+2026-10-31T04:27:31.6164880Z ##[endgroup]
+2026-10-31T04:27:31.6166465Z ##[group]Disabling automatic garbage collection
+2026-10-31T04:27:31.6168779Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-31T04:27:31.6235872Z ##[endgroup]
+2026-10-31T04:27:31.6237755Z ##[group]Setting up auth
+2026-10-31T04:27:31.6249113Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T04:27:31.6299957Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T04:27:31.6719484Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T04:27:31.6755706Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T04:27:31.7049476Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T04:27:31.7087216Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T04:27:31.7373142Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-31T04:27:31.7508440Z ##[endgroup]
+2026-10-31T04:27:31.7510501Z ##[group]Fetching the repository
+2026-10-31T04:27:31.7514063Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +9fc12f9e37780ae5831fce6d698139920bf51589:refs/remotes/origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:32.2273070Z From https://github.com/D3m0sthene5/Executive-Orders
+2026-10-31T04:27:32.2274023Z  * [new ref]         9fc12f9e37780ae5831fce6d698139920bf51589 -> origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:32.2278513Z ##[endgroup]
+2026-10-31T04:27:32.2279410Z ##[group]Determining the checkout info
+2026-10-31T04:27:32.2281833Z ##[endgroup]
+2026-10-31T04:27:32.2282482Z ##[group]Setting up sparse checkout
+2026-10-31T04:27:32.2289463Z [command]/usr/bin/git config core.sparseCheckout true
+2026-10-31T04:27:32.2327524Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-10-31T04:27:32.2352989Z .git/info/sparse-checkout
+2026-10-31T04:27:32.2361400Z ##[endgroup]
+2026-10-31T04:27:32.2362390Z ##[group]Checking out the ref
+2026-10-31T04:27:32.2373577Z [command]/usr/bin/git checkout --progress --force -B sol/r1-materializer-followthrough refs/remotes/origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:38.2858983Z Updating files:   0% (1/7859)
+2026-10-31T04:27:38.3187449Z Updating files:   1% (79/7859)
+2026-10-31T04:27:38.3293258Z Updating files:   2% (158/7859)
+2026-10-31T04:27:38.3479055Z Updating files:   3% (236/7859)
+2026-10-31T04:27:38.3590982Z Updating files:   3% (283/7859)
+2026-10-31T04:27:38.3848460Z Updating files:   4% (315/7859)
+2026-10-31T04:27:38.3900256Z Updating files:   5% (393/7859)
+2026-10-31T04:27:38.4006329Z Updating files:   6% (472/7859)
+2026-10-31T04:27:38.4074390Z Updating files:   7% (551/7859)
+2026-10-31T04:27:38.4143596Z Updating files:   8% (629/7859)
+2026-10-31T04:27:38.4697260Z Updating files:   9% (708/7859)
+2026-10-31T04:27:38.4769418Z Updating files:  10% (786/7859)
+2026-10-31T04:27:38.4860566Z Updating files:  11% (865/7859)
+2026-10-31T04:27:38.4937382Z Updating files:  12% (944/7859)
+2026-10-31T04:27:38.5031256Z Updating files:  13% (1022/7859)
+2026-10-31T04:27:38.5109803Z Updating files:  14% (1101/7859)
+2026-10-31T04:27:38.5200875Z Updating files:  15% (1179/7859)
+2026-10-31T04:27:38.5282982Z Updating files:  16% (1258/7859)
+2026-10-31T04:27:38.5389471Z Updating files:  17% (1337/7859)
+2026-10-31T04:27:38.5482328Z Updating files:  18% (1415/7859)
+2026-10-31T04:27:38.5566825Z Updating files:  19% (1494/7859)
+2026-10-31T04:27:38.5650316Z Updating files:  20% (1572/7859)
+2026-10-31T04:27:38.5719942Z Updating files:  21% (1651/7859)
+2026-10-31T04:27:38.5795434Z Updating files:  22% (1729/7859)
+2026-10-31T04:27:38.5864457Z Updating files:  23% (1808/7859)
+2026-10-31T04:27:38.5925055Z Updating files:  24% (1887/7859)
+2026-10-31T04:27:38.5982689Z Updating files:  25% (1965/7859)
+2026-10-31T04:27:38.6047627Z Updating files:  26% (2044/7859)
+2026-10-31T04:27:38.6112405Z Updating files:  27% (2122/7859)
+2026-10-31T04:27:38.6170619Z Updating files:  28% (2201/7859)
+2026-10-31T04:27:38.6225493Z Updating files:  29% (2280/7859)
+2026-10-31T04:27:38.6283200Z Updating files:  30% (2358/7859)
+2026-10-31T04:27:38.6335796Z Updating files:  31% (2437/7859)
+2026-10-31T04:27:38.6387424Z Updating files:  32% (2515/7859)
+2026-10-31T04:27:38.6439850Z Updating files:  33% (2594/7859)
+2026-10-31T04:27:38.6491039Z Updating files:  34% (2673/7859)
+2026-10-31T04:27:38.6552003Z Updating files:  35% (2751/7859)
+2026-10-31T04:27:38.6611142Z Updating files:  36% (2830/7859)
+2026-10-31T04:27:38.6669285Z Updating files:  37% (2908/7859)
+2026-10-31T04:27:38.6730072Z Updating files:  38% (2987/7859)
+2026-10-31T04:27:38.6793233Z Updating files:  39% (3066/7859)
+2026-10-31T04:27:38.6856524Z Updating files:  40% (3144/7859)
+2026-10-31T04:27:38.6938948Z Updating files:  41% (3223/7859)
+2026-10-31T04:27:38.7010374Z Updating files:  42% (3301/7859)
+2026-10-31T04:27:38.7096993Z Updating files:  43% (3380/7859)
+2026-10-31T04:27:38.7176899Z Updating files:  44% (3458/7859)
+2026-10-31T04:27:38.7248884Z Updating files:  45% (3537/7859)
+2026-10-31T04:27:38.7321076Z Updating files:  46% (3616/7859)
+2026-10-31T04:27:38.7398711Z Updating files:  47% (3694/7859)
+2026-10-31T04:27:38.7463186Z Updating files:  48% (3773/7859)
+2026-10-31T04:27:38.7533734Z Updating files:  49% (3851/7859)
+2026-10-31T04:27:38.7596040Z Updating files:  50% (3930/7859)
+2026-10-31T04:27:38.7661013Z Updating files:  51% (4009/7859)
+2026-10-31T04:27:38.7724243Z Updating files:  52% (4087/7859)
+2026-10-31T04:27:38.7787347Z Updating files:  53% (4166/7859)
+2026-10-31T04:27:38.7857341Z Updating files:  54% (4244/7859)
+2026-10-31T04:27:38.7932053Z Updating files:  55% (4323/7859)
+2026-10-31T04:27:38.8007498Z Updating files:  56% (4402/7859)
+2026-10-31T04:27:38.8086254Z Updating files:  57% (4480/7859)
+2026-10-31T04:27:38.8214115Z Updating files:  58% (4559/7859)
+2026-10-31T04:27:38.8288224Z Updating files:  59% (4637/7859)
+2026-10-31T04:27:38.8369253Z Updating files:  60% (4716/7859)
+2026-10-31T04:27:38.8465977Z Updating files:  61% (4794/7859)
+2026-10-31T04:27:38.8549461Z Updating files:  62% (4873/7859)
+2026-10-31T04:27:38.8622545Z Updating files:  63% (4952/7859)
+2026-10-31T04:27:38.8700773Z Updating files:  64% (5030/7859)
+2026-10-31T04:27:38.8794076Z Updating files:  65% (5109/7859)
+2026-10-31T04:27:38.8864376Z Updating files:  66% (5187/7859)
+2026-10-31T04:27:38.8929870Z Updating files:  67% (5266/7859)
+2026-10-31T04:27:38.8991900Z Updating files:  68% (5345/7859)
+2026-10-31T04:27:38.9052171Z Updating files:  69% (5423/7859)
+2026-10-31T04:27:38.9131793Z Updating files:  70% (5502/7859)
+2026-10-31T04:27:38.9202281Z Updating files:  71% (5580/7859)
+2026-10-31T04:27:38.9267253Z Updating files:  72% (5659/7859)
+2026-10-31T04:27:38.9338626Z Updating files:  73% (5738/7859)
+2026-10-31T04:27:38.9420813Z Updating files:  74% (5816/7859)
+2026-10-31T04:27:38.9517818Z Updating files:  75% (5895/7859)
+2026-10-31T04:27:38.9619403Z Updating files:  76% (5973/7859)
+2026-10-31T04:27:38.9694528Z Updating files:  77% (6052/7859)
+2026-10-31T04:27:38.9766950Z Updating files:  78% (6131/7859)
+2026-10-31T04:27:38.9846020Z Updating files:  79% (6209/7859)
+2026-10-31T04:27:38.9918893Z Updating files:  80% (6288/7859)
+2026-10-31T04:27:38.9997005Z Updating files:  81% (6366/7859)
+2026-10-31T04:27:39.0077045Z Updating files:  82% (6445/7859)
+2026-10-31T04:27:39.0162087Z Updating files:  83% (6523/7859)
+2026-10-31T04:27:39.0241659Z Updating files:  84% (6602/7859)
+2026-10-31T04:27:39.0320844Z Updating files:  85% (6681/7859)
+2026-10-31T04:27:39.0404890Z Updating files:  86% (6759/7859)
+2026-10-31T04:27:39.0491960Z Updating files:  87% (6838/7859)
+2026-10-31T04:27:39.0577380Z Updating files:  88% (6916/7859)
+2026-10-31T04:27:39.0664742Z Updating files:  89% (6995/7859)
+2026-10-31T04:27:39.0749751Z Updating files:  90% (7074/7859)
+2026-10-31T04:27:39.0835291Z Updating files:  91% (7152/7859)
+2026-10-31T04:27:39.0913432Z Updating files:  92% (7231/7859)
+2026-10-31T04:27:39.1008970Z Updating files:  93% (7309/7859)
+2026-10-31T04:27:39.1129563Z Updating files:  94% (7388/7859)
+2026-10-31T04:27:39.1186376Z Updating files:  95% (7467/7859)
+2026-10-31T04:27:39.1252000Z Updating files:  96% (7545/7859)
+2026-10-31T04:27:39.1531591Z Updating files:  97% (7624/7859)
+2026-10-31T04:27:39.1915494Z Updating files:  98% (7702/7859)
+2026-10-31T04:27:39.2118165Z Updating files:  99% (7781/7859)
+2026-10-31T04:27:39.2118595Z Updating files: 100% (7859/7859)
+2026-10-31T04:27:39.2118898Z Updating files: 100% (7859/7859), done.
+2026-10-31T04:27:39.2947482Z Switched to a new branch 'sol/r1-materializer-followthrough'
+2026-10-31T04:27:39.2952110Z branch 'sol/r1-materializer-followthrough' set up to track 'origin/sol/r1-materializer-followthrough'.
+2026-10-31T04:27:39.4731540Z ##[endgroup]
+2026-10-31T04:27:39.4781212Z [command]/usr/bin/git log -1 --format=%H
+2026-10-31T04:27:39.4808898Z 9fc12f9e37780ae5831fce6d698139920bf51589
+2026-10-31T04:27:39.5130644Z ##[group]Run actions/setup-python@v5
+2026-10-31T04:27:39.5130938Z with:
+2026-10-31T04:27:39.5131155Z   python-version: 3.12
+2026-10-31T04:27:39.5131390Z   check-latest: false
+2026-10-31T04:27:39.5134157Z   token: ***
+2026-10-31T04:27:39.5134385Z   update-environment: true
+2026-10-31T04:27:39.5134652Z   allow-prereleases: false
+2026-10-31T04:27:39.5134883Z   freethreaded: false
+2026-10-31T04:27:39.5135126Z ##[endgroup]
+2026-10-31T04:27:39.6502411Z ##[group]Installed versions
+2026-10-31T04:27:39.6590309Z (node:2418) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:27:39.6591552Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:27:39.6592230Z Successfully set up CPython (3.12.15)
+2026-10-31T04:27:39.6593017Z ##[endgroup]
+2026-10-31T04:27:39.6739082Z ##[group]Run python -m unittest discover -s .github/scripts -p test_valla_materialization.py -v
+2026-10-31T04:27:39.6739849Z [36;1mpython -m unittest discover -s .github/scripts -p test_valla_materialization.py -v[0m
+2026-10-31T04:27:39.6800991Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:27:39.6801407Z env:
+2026-10-31T04:27:39.6801842Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.6802588Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:39.6803649Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.6804287Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.6804949Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.6805600Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:39.6806141Z ##[endgroup]
+2026-10-31T04:27:40.1103010Z test_absent_ignored_target_arrival_after_capture_rejected_without_tree_change (test_valla_materialization.VallaMaterializationTests.test_absent_ignored_target_arrival_after_capture_rejected_without_tree_change) ... ok
+2026-10-31T04:27:40.5297288Z test_actual_runner_preserves_selected_prior_output_on_valla_failure (test_valla_materialization.VallaMaterializationTests.test_actual_runner_preserves_selected_prior_output_on_valla_failure) ... ok
+2026-10-31T04:27:41.3732415Z test_changed_implementation_resolver_and_materializer_both_decline_certificate (test_valla_materialization.VallaMaterializationTests.test_changed_implementation_resolver_and_materializer_both_decline_certificate) ... ok
+2026-10-31T04:27:41.5563101Z test_committed_code_change_with_original_certificate_restores_repository (test_valla_materialization.VallaMaterializationTests.test_committed_code_change_with_original_certificate_restores_repository) ... ok
+2026-10-31T04:27:41.7232520Z test_dynamic_provider_edit_and_working_deletion_do_not_resurrect_head (test_valla_materialization.VallaMaterializationTests.test_dynamic_provider_edit_and_working_deletion_do_not_resurrect_head) ... ok
+2026-10-31T04:27:41.9632906Z test_fixed_protocol_symlink_forces_repository_fallback (test_valla_materialization.VallaMaterializationTests.test_fixed_protocol_symlink_forces_repository_fallback) ... ok
+2026-10-31T04:27:42.1624678Z test_ignored_fixed_protocol_is_captured_and_rejected_when_absent_from_git (test_valla_materialization.VallaMaterializationTests.test_ignored_fixed_protocol_is_captured_and_rejected_when_absent_from_git) ... ok
+2026-10-31T04:27:42.3655317Z test_ignored_live_canonical_seed_is_captured_and_rejected (test_valla_materialization.VallaMaterializationTests.test_ignored_live_canonical_seed_is_captured_and_rejected) ... ok
+2026-10-31T04:27:42.5807596Z test_ignored_untracked_sheet_beside_git_rationales_is_captured_and_rejected (test_valla_materialization.VallaMaterializationTests.test_ignored_untracked_sheet_beside_git_rationales_is_captured_and_rejected) ... ok
+2026-10-31T04:27:43.1016649Z test_malformed_metadata_conservatively_restores_everything (test_valla_materialization.VallaMaterializationTests.test_malformed_metadata_conservatively_restores_everything) ... ok
+2026-10-31T04:27:43.3177057Z test_missing_dependency_arrival_is_tracked_even_when_ignored (test_valla_materialization.VallaMaterializationTests.test_missing_dependency_arrival_is_tracked_even_when_ignored) ... ok
+2026-10-31T04:27:43.5377352Z test_new_dynamic_provider_and_dependency_are_captured (test_valla_materialization.VallaMaterializationTests.test_new_dynamic_provider_and_dependency_are_captured) ... ok
+2026-10-31T04:27:43.7930527Z test_new_ignored_claim_after_capture_changes_native_build_and_rejects (test_valla_materialization.VallaMaterializationTests.test_new_ignored_claim_after_capture_changes_native_build_and_rejects) ... ok
+2026-10-31T04:27:44.0746970Z test_new_ignored_method_provider_after_capture_changes_native_refusals_and_rejects (test_valla_materialization.VallaMaterializationTests.test_new_ignored_method_provider_after_capture_changes_native_refusals_and_rejects) ... ok
+2026-10-31T04:27:44.3258750Z test_new_ignored_unresolved_provider_after_capture_prevents_publication (test_valla_materialization.VallaMaterializationTests.test_new_ignored_unresolved_provider_after_capture_prevents_publication) ... ok
+2026-10-31T04:27:46.0830497Z test_package_triples_add_edit_delete_freshness (test_valla_materialization.VallaMaterializationTests.test_package_triples_add_edit_delete_freshness) ... ok
+2026-10-31T04:27:46.2952365Z test_provider_directory_symlink_forces_repository_fallback (test_valla_materialization.VallaMaterializationTests.test_provider_directory_symlink_forces_repository_fallback) ... ok
+2026-10-31T04:27:46.6231719Z test_real_certificate_native_full_selected_outputs_equal (test_valla_materialization.VallaMaterializationTests.test_real_certificate_native_full_selected_outputs_equal) ... ok
+2026-10-31T04:27:46.9779707Z test_referenced_dependency_edit_delete_and_missing_are_versioned (test_valla_materialization.VallaMaterializationTests.test_referenced_dependency_edit_delete_and_missing_are_versioned) ... ok
+2026-10-31T04:27:47.2146414Z test_same_run_provider_output_and_later_mutation (test_valla_materialization.VallaMaterializationTests.test_same_run_provider_output_and_later_mutation) ... ok
+2026-10-31T04:27:47.4609400Z test_sparse_providers_resolve_historical_and_separate_review_bodies (test_valla_materialization.VallaMaterializationTests.test_sparse_providers_resolve_historical_and_separate_review_bodies) ... ok
+2026-10-31T04:27:47.7386553Z test_sparse_tracked_symlink_ancestor_declines_narrowing (test_valla_materialization.VallaMaterializationTests.test_sparse_tracked_symlink_ancestor_declines_narrowing) ... ok
+2026-10-31T04:27:47.9818418Z test_symlink_parent_traversal_and_external_symlink_decline_narrowing (test_valla_materialization.VallaMaterializationTests.test_symlink_parent_traversal_and_external_symlink_decline_narrowing) ... ok
+2026-10-31T04:27:48.2239296Z test_unknown_certificate_and_committed_changed_code_restore_repository (test_valla_materialization.VallaMaterializationTests.test_unknown_certificate_and_committed_changed_code_restore_repository) ... ok
+2026-10-31T04:27:48.4294505Z test_unresolved_symlink_to_ignored_source_is_broad_and_cannot_publish (test_valla_materialization.VallaMaterializationTests.test_unresolved_symlink_to_ignored_source_is_broad_and_cannot_publish) ... ok
+2026-10-31T04:27:48.4295333Z 
+2026-10-31T04:27:48.4295519Z ----------------------------------------------------------------------
+2026-10-31T04:27:48.4295906Z Ran 25 tests in 8.599s
+2026-10-31T04:27:48.4296089Z 
+2026-10-31T04:27:48.4296188Z OK
+2026-10-31T04:27:48.4575173Z ##[group]Run python research/progress/r1-materializer-followthrough/run_production_comparison.py "$RUNNER_TEMP/r1-comparison"
+2026-10-31T04:27:48.4576080Z [36;1mpython research/progress/r1-materializer-followthrough/run_production_comparison.py "$RUNNER_TEMP/r1-comparison"[0m
+2026-10-31T04:27:48.4611175Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:27:48.4611438Z env:
+2026-10-31T04:27:48.4611725Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:48.4612177Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:48.4612603Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:48.4612985Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:48.4613364Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:48.4613736Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:48.4614068Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:48.4614352Z ##[endgroup]
+2026-10-31T04:34:00.5292047Z Starting full
+2026-10-31T04:34:58.2917701Z Starting selective
+2026-10-31T04:35:05.2426145Z Selected input materialization: {"base_commit": "9fc12f9e37780ae5831fce6d698139920bf51589", "compatibility_fallback_jobs": {}, "input_objects_sha256": "2cba702e2182cb28e9010700929e1a4a22ecfb91340ce7b62b2a875d376b63b3", "jobs": ["valla"], "materialized_bytes": 56372491, "path_count": 426, "per_job": {"valla": {"inputs_sha256": "2cba702e2182cb28e9010700929e1a4a22ecfb91340ce7b62b2a875d376b63b3", "path_count": 426, "sparse_pattern_count": 386}}, "schema": 1, "sparse_pattern_count": 386}
+2026-10-31T04:35:22.4988472Z {
+2026-10-31T04:35:22.4988967Z   "source_pin": "9fc12f9e37780ae5831fce6d698139920bf51589",
+2026-10-31T04:35:22.4989443Z   "selection": [
+2026-10-31T04:35:22.4989734Z     "valla"
+2026-10-31T04:35:22.4989981Z   ],
+2026-10-31T04:35:22.4990734Z   "cache_conditions": "shared fully warmed local Git objects; empty job/download caches per arm; OS page-cache state uncontrolled",
+2026-10-31T04:35:22.4991963Z   "remote_transfer_bytes": null,
+2026-10-31T04:35:22.4992368Z   "scientific_adoption": false,
+2026-10-31T04:35:22.4992728Z   "arms": {
+2026-10-31T04:35:22.4993013Z     "full": {
+2026-10-31T04:35:22.4993314Z       "startup_seconds": 37.55935455499997,
+2026-10-31T04:35:22.4993601Z       "native_seconds": 8.688072788,
+2026-10-31T04:35:22.4993861Z       "materialized": {
+2026-10-31T04:35:22.4994100Z         "path_count": 93673,
+2026-10-31T04:35:22.4994343Z         "bytes": 7938002512
+2026-10-31T04:35:22.4994560Z       },
+2026-10-31T04:35:22.4994753Z       "checkout_receipt": {
+2026-10-31T04:35:22.4995011Z         "mode": "historical broad availability"
+2026-10-31T04:35:22.4995287Z       },
+2026-10-31T04:35:22.4995493Z       "metadata_calls_in_startup": 22,
+2026-10-31T04:35:22.4995771Z       "metadata_stdout_bytes": 11501356,
+2026-10-31T04:35:22.4996047Z       "metadata_seconds": 1.0753928090002205,
+2026-10-31T04:35:22.4996335Z       "host_network_bytes_delta": 191178,
+2026-10-31T04:35:22.4996630Z       "remote_transfer_bytes": 0,
+2026-10-31T04:35:22.4997372Z       "remote_semantics": "no remote configured; shared existing objects",
+2026-10-31T04:35:22.4997948Z       "relevant_inputs_sha256": "2ddbc85bdfa55cae68be334cd7f6044c2a99aaa3ee29603c394e217a242b0ef9",
+2026-10-31T04:35:22.4998419Z       "relevant_input_count": 421,
+2026-10-31T04:35:22.4998851Z       "prior_output_sha256": "5cff3893e0bef84fe35f7cf97e011078d47f439910759cbf1ff74d9242858f3e",
+2026-10-31T04:35:22.4999293Z       "output_sha256": {
+2026-10-31T04:35:22.4999697Z         "INDEX.json": "2a91d3f14eb3681ca8058fd1cdc2cdfd60d82c17ddfed8102ef546fb1b15f32d",
+2026-10-31T04:35:22.5000288Z         "SUMMARY.json": "196c539ba59a3c4e0ab2cf6fc9b70bdabe80fa3057bce3bc2ba9ac5ae5f80f27",
+2026-10-31T04:35:22.5000882Z         "RUNNER_INPUTS.json": "824256a4268db96dddf28c5cc77afbc075f1c7366b0c17b2e4dce7404be9027b"
+2026-10-31T04:35:22.5001446Z       },
+2026-10-31T04:35:22.5001652Z       "package_scan": {
+2026-10-31T04:35:22.5002185Z         "causal_derivation_inferred": false,
+2026-10-31T04:35:22.5002521Z         "excluded_folders": [],
+2026-10-31T04:35:22.5002779Z         "scope": "full_index",
+2026-10-31T04:35:22.5003033Z         "tracked_packages_loaded": 97,
+2026-10-31T04:35:22.5003311Z         "unmaterialized_packages": []
+2026-10-31T04:35:22.5003564Z       }
+2026-10-31T04:35:22.5003747Z     },
+2026-10-31T04:35:22.5003932Z     "selective": {
+2026-10-31T04:35:22.5004168Z       "startup_seconds": 11.732157837999978,
+2026-10-31T04:35:22.5004453Z       "native_seconds": 8.962367239000002,
+2026-10-31T04:35:22.5004718Z       "materialized": {
+2026-10-31T04:35:22.5004955Z         "path_count": 8238,
+2026-10-31T04:35:22.5005198Z         "bytes": 263913198
+2026-10-31T04:35:22.5005416Z       },
+2026-10-31T04:35:22.5005614Z       "checkout_receipt": {
+2026-10-31T04:35:22.5005839Z         "schema": 1,
+2026-10-31T04:35:22.5006126Z         "base_commit": "9fc12f9e37780ae5831fce6d698139920bf51589",
+2026-10-31T04:35:22.5006462Z         "jobs": [
+2026-10-31T04:35:22.5006829Z           "valla"
+2026-10-31T04:35:22.5007096Z         ],
+2026-10-31T04:35:22.5007308Z         "compatibility_fallback_jobs": {},
+2026-10-31T04:35:22.5007592Z         "path_count": 426,
+2026-10-31T04:35:22.5007830Z         "sparse_pattern_count": 386,
+2026-10-31T04:35:22.5008111Z         "materialized_bytes": 56372491,
+2026-10-31T04:35:22.5008557Z         "input_objects_sha256": "2cba702e2182cb28e9010700929e1a4a22ecfb91340ce7b62b2a875d376b63b3",
+2026-10-31T04:35:22.5009002Z         "per_job": {
+2026-10-31T04:35:22.5009209Z           "valla": {
+2026-10-31T04:35:22.5009419Z             "path_count": 426,
+2026-10-31T04:35:22.5009669Z             "sparse_pattern_count": 386,
+2026-10-31T04:35:22.5010088Z             "inputs_sha256": "2cba702e2182cb28e9010700929e1a4a22ecfb91340ce7b62b2a875d376b63b3"
+2026-10-31T04:35:22.5010491Z           }
+2026-10-31T04:35:22.5010708Z         }
+2026-10-31T04:35:22.5011001Z       },
+2026-10-31T04:35:22.5011207Z       "metadata_calls_in_startup": 61,
+2026-10-31T04:35:22.5011639Z       "metadata_stdout_bytes": 25393169,
+2026-10-31T04:35:22.5011921Z       "metadata_seconds": 3.089979555000127,
+2026-10-31T04:35:22.5012196Z       "host_network_bytes_delta": 101584,
+2026-10-31T04:35:22.5012470Z       "remote_transfer_bytes": 0,
+2026-10-31T04:35:22.5012818Z       "remote_semantics": "no remote configured; shared existing objects",
+2026-10-31T04:35:22.5013383Z       "relevant_inputs_sha256": "2ddbc85bdfa55cae68be334cd7f6044c2a99aaa3ee29603c394e217a242b0ef9",
+2026-10-31T04:35:22.5013840Z       "relevant_input_count": 421,
+2026-10-31T04:35:22.5014268Z       "prior_output_sha256": "5cff3893e0bef84fe35f7cf97e011078d47f439910759cbf1ff74d9242858f3e",
+2026-10-31T04:35:22.5014724Z       "output_sha256": {
+2026-10-31T04:35:22.5015116Z         "INDEX.json": "2a91d3f14eb3681ca8058fd1cdc2cdfd60d82c17ddfed8102ef546fb1b15f32d",
+2026-10-31T04:35:22.5015700Z         "SUMMARY.json": "196c539ba59a3c4e0ab2cf6fc9b70bdabe80fa3057bce3bc2ba9ac5ae5f80f27",
+2026-10-31T04:35:22.5016298Z         "RUNNER_INPUTS.json": "824256a4268db96dddf28c5cc77afbc075f1c7366b0c17b2e4dce7404be9027b"
+2026-10-31T04:35:22.5017210Z       },
+2026-10-31T04:35:22.5017491Z       "package_scan": {
+2026-10-31T04:35:22.5017886Z         "causal_derivation_inferred": false,
+2026-10-31T04:35:22.5018323Z         "excluded_folders": [],
+2026-10-31T04:35:22.5018705Z         "scope": "full_index",
+2026-10-31T04:35:22.5019089Z         "tracked_packages_loaded": 97,
+2026-10-31T04:35:22.5019496Z         "unmaterialized_packages": []
+2026-10-31T04:35:22.5019752Z       }
+2026-10-31T04:35:22.5019933Z     }
+2026-10-31T04:35:22.5020112Z   },
+2026-10-31T04:35:22.5020298Z   "construction": {
+2026-10-31T04:35:22.5020520Z     "seconds": 372.020460566,
+2026-10-31T04:35:22.5020771Z     "host_network_bytes_delta": 5076038384,
+2026-10-31T04:35:22.5021258Z     "network_semantics": "host-interface sent+received; not Git pack bytes or avoidable transfer"
+2026-10-31T04:35:22.5021702Z   },
+2026-10-31T04:35:22.5022336Z   "equality": "exact native INDEX/SUMMARY/RUNNER_INPUTS bytes, relevant input map and prior generation",
+2026-10-31T04:35:22.5022932Z   "total_seconds_including_construction_and_verification": 453.989959367
+2026-10-31T04:35:22.5023293Z }
+2026-10-31T04:35:22.5337170Z ##[group]Run actions/upload-artifact@v4
+2026-10-31T04:35:22.5337502Z with:
+2026-10-31T04:35:22.5337883Z   name: r1-production-materialization-9fc12f9e37780ae5831fce6d698139920bf51589
+2026-10-31T04:35:22.5338365Z   path: /home/runner/work/_temp/r1-comparison
+2026-10-31T04:35:22.5338668Z   retention-days: 30
+2026-10-31T04:35:22.5338894Z   if-no-files-found: warn
+2026-10-31T04:35:22.5339131Z   compression-level: 6
+2026-10-31T04:35:22.5339355Z   overwrite: false
+2026-10-31T04:35:22.5339579Z   include-hidden-files: false
+2026-10-31T04:35:22.5339823Z env:
+2026-10-31T04:35:22.5340080Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:35:22.5340506Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:35:22.5340941Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:35:22.5341321Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:35:22.5341715Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:35:22.5342096Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:35:22.5342413Z ##[endgroup]
+2026-10-31T04:35:22.7051809Z (node:6080) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:35:22.7052623Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:35:22.7140690Z With the provided path, there will be 13 files uploaded
+2026-10-31T04:35:22.7141349Z Artifact name is valid!
+2026-10-31T04:35:22.7141606Z Root directory input is valid!
+2026-10-31T04:35:22.9687393Z Beginning upload of artifact content to blob storage
+2026-10-31T04:35:23.3588074Z (node:6080) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-31T04:35:23.6815862Z Uploaded bytes 3099291
+2026-10-31T04:35:23.7162952Z Finished uploading artifact content to blob storage!
+2026-10-31T04:35:23.7168068Z SHA256 digest of uploaded artifact zip is 63526b20feb943086371607103432e3511d71e928c1bb9d3c3f98e45ed3bad9f
+2026-10-31T04:35:23.7169221Z Finalizing artifact upload
+2026-10-31T04:35:24.1367884Z Artifact r1-production-materialization-9fc12f9e37780ae5831fce6d698139920bf51589.zip successfully finalized. Artifact ID 13030233064
+2026-10-31T04:35:24.1369873Z Artifact r1-production-materialization-9fc12f9e37780ae5831fce6d698139920bf51589 has been successfully uploaded! Final size is 3099291 bytes. Artifact ID is 13030233064
+2026-10-31T04:35:24.1375498Z Artifact download URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41168642078/artifacts/13030233064
+2026-10-31T04:35:24.1693204Z Post job cleanup.
+2026-10-31T04:35:24.2918891Z (node:6093) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:35:24.2919638Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:35:24.3073703Z Post job cleanup.
+2026-10-31T04:35:24.4103253Z [command]/usr/bin/git version
+2026-10-31T04:35:24.4137504Z git version 2.56.0
+2026-10-31T04:35:24.4187911Z Temporarily overriding HOME='/home/runner/work/_temp/6f58a79e-bcc1-4853-8dd8-37c694d987a1' before making global git config changes
+2026-10-31T04:35:24.4189447Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T04:35:24.4190711Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:35:24.4235263Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T04:35:24.4309080Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T04:35:24.4943748Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T04:35:24.4981864Z http.https://github.com/.extraheader
+2026-10-31T04:35:24.4995264Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-31T04:35:24.5047010Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T04:35:24.5498933Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T04:35:24.5537676Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T04:35:24.6145625Z Cleaning up orphan processes
+2026-10-31T04:35:24.6610388Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

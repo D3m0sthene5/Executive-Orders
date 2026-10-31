@@ -46,3 +46,56 @@ A separate positive control confirmed a direct record reference to an ignored bo
 The read-only proof harness uses one pinned commit and the same absolute temporary worktree path for both arms, shared prewarmed Git objects, empty per-arm job caches, the same prior generation, actual native runner execution, actual freshness checks and exact output/input-map equality. It has no result publisher and the workflow grants only read access. Construction time and host-interface network deltas are separately disclosed. The arm transfer claim is limited to a local object pool with no remote; OS page-cache state remains uncontrolled. These conditions do not establish cold-network transfer savings or campaign-level savings. A production run and its retained actual outcomes remain necessary; this reviewer did not run the production comparison locally.
 
 Review independence: separate OpenAI reviewer context, inherited model identifier and token/cash telemetry not exposed. No different-family or human review is claimed. Implementation and test corrections were made by the coordinator/worker; this reviewer changed only this review file. No scientific source, canonical claim, legal status or accepted finding was modified or adopted.
+
+## Post-review test wiring addendum
+
+**Uphold the test-only changes at the following exact working hashes.** The coordinator identified published source `9fc12f9e37780ae5831fce6d698139920bf51589`; this addendum pins the inspected local bytes independently of that reported remote publication.
+
+| File | SHA256 |
+|---|---|
+| `.github/scripts/test_roads.py` | `1ca5fea01727c053c118d0d0cfa0787a9f6a109cfd504d05d01c4e35fbd08c9f` |
+| `.github/scripts/test_valla_materialization.py` | `1f84fd151072d38b9d728fd8df1d7ca2ae58296f7e5647046fe05fdf75bcd95a` |
+
+Inspected the complete working diffs: Road now invokes the Valla materialization suite with the same Python interpreter, repository cwd, `check=True` and disabled bytecode writes used by its existing focused script suites. The disposable Git fixture disables automatic CRLF conversion and explicitly enables real symlink semantics before its first commit; this prevents fixture transformations from replacing the byte and alias behavior under test. The remaining test edits align changed-path assertions with the final report dictionary schema. No assertion about native Valla output equality, rejection, source validity or prior-output preservation was weakened.
+
+Reran the focused suite independently on the current environment: **25 tests passed in 8.276 seconds**. This is a local Linux result; this addendum does not infer a Windows CI pass. The 37-test freshness suite was not repeated for these test-only changes. Rehashed the materializer, freshness implementation, certificate, production harness and proof workflow: every hash remains identical to the reviewed table above. No new implementation finding arose, and no production comparison outcome or savings claim is adopted here.
+
+## Production receipt addendum
+
+**Uphold the matched production result for the measured warm local-object conditions.** Independently inspected the downloaded artifact for run `41168642078`, source `9fc12f9e37780ae5831fce6d698139920bf51589`; no rerun or result publication was performed. This addendum supersedes the earlier statement that production results were not yet inspected, while preserving its historical scope.
+
+Recomputed the downloaded ZIP SHA256, compared all 13 ZIP members against the unpacked bytes, verified all 13 production-manifest member hashes and sizes, and verified all 11 retained compressed-receipt members against their retained files. Actual full and selective `INDEX.json`, `SUMMARY.json`, `RUNNER_INPUTS.json`, `FRESHNESS.json` and `runner.log` are byte-identical between arms. Both freshness receipts say `fresh`, contain no problems, and identify the exact production source commit. Both captured scopes are implementation-certified and dynamically complete, with 421 identical input entries and input digest `2ddbc85bdfa55cae68be334cd7f6044c2a99aaa3ee29603c394e217a242b0ef9`; neither contains a broad `*` fallback pattern. The selective checkout receipt records no compatibility fallback.
+
+Both native indexes report 97 tracked **packages**, zero unmaterialized packages, 612 active claims, 783 shared rationale references, zero valid components, zero legal promotions and zero model calls. The package count is not a source count or scientific review count. Independently running `git hash-object` over the actual artifact INDEX yields `96b0d07d201b22960cdfcc5b553295cce41a5f72`, exactly the object ID named by `88cef0253ed735b2a6e612770f25f9148641ce93:jobs/valla/output/INDEX.json`. This verifies the retained baseline content address; the baseline body was not separately fetched into this local sparse checkout. Equality is based on actual native artifact bytes, with no body projection.
+
+| Receipt or actual output | SHA256 |
+|---|---|
+| Downloaded production ZIP | `63526b20feb943086371607103432e3511d71e928c1bb9d3c3f98e45ed3bad9f` |
+| `COMPARISON.json` | `0971df6a8b7c65381552136ac6a53fd9581c5f139bdc75d8a6444b140c6c9af6` |
+| Both actual `INDEX.json` | `2a91d3f14eb3681ca8058fd1cdc2cdfd60d82c17ddfed8102ef546fb1b15f32d` |
+| Both `SUMMARY.json` | `196c539ba59a3c4e0ab2cf6fc9b70bdabe80fa3057bce3bc2ba9ac5ae5f80f27` |
+| Both `RUNNER_INPUTS.json` | `824256a4268db96dddf28c5cc77afbc075f1c7366b0c17b2e4dce7404be9027b` |
+| Both `FRESHNESS.json` | `5c81f083153c1050e0b9108531af2c8f8018d0f7bf3fd211dc2fbc7929d9e805` |
+| Both `runner.log` | `4d357d29f524bb917f298cecc82cf9b76908be3410d00689475497515a11dd34` |
+| Full `METADATA.json` | `c9ab4151c12150730aac886df4e35273dad6cd1e4d8429b0b3f3fdce5ef8a25e` |
+| Selective `METADATA.json` | `950be03e11c36b6c00fd5d446e9845f3766abb6d1d04ab7dac7f9c34808e6c13` |
+| Retained `PRODUCTION_RECEIPTS.tar.gz` | `a4cada72aad85018448ff67c29be8d827dbc2e5c6d6bb2ad445e9e7890a35c6d` |
+| Retained `production/ARTIFACT_MANIFEST.json` | `61afdd372156bf460d22846d44801a69bff9d5c4b3f87686c3dcf5f5f4e4a2ac` |
+
+The two large INDEX bodies are represented in retained repository evidence by their exact pre-existing Git blob and manifest hashes; the downloaded ZIP contains both actual bodies. The retained compressed receipt archive does not pretend to contain those two omitted duplicate bodies.
+
+| Measured quantity | Historical broad arm | Selective arm |
+|---|---:|---:|
+| Entire materialized checkout paths | 93,673 | 8,238 |
+| Entire materialized checkout bytes | 7,938,002,512 | 263,913,198 |
+| Startup seconds | 37.559355 | 11.732158 |
+| Native runner seconds | 8.688073 | 8.962367 |
+| Startup metadata calls | 22 | 61 |
+| Startup metadata stdout bytes | 11,501,356 | 25,393,169 |
+| Startup metadata seconds | 1.075393 | 3.089980 |
+
+The selective declared closure is 426 paths / 56,372,491 bytes; this is distinct from its entire materialized checkout footprint, which includes bootstrap availability. Recomputed metadata sums from the first 22 and 61 records reproduce every reported startup count, byte total and duration. The full metadata files contain 44 and 83 calls respectively, with 22 later verification calls per arm; their totals must not be relabeled as startup costs. Selective startup is lower in this observation, while native execution is slightly slower and metadata overhead is higher.
+
+Construction consumed 372.020461 seconds and the total run including construction and verification consumed 453.989959 seconds. The construction host-interface sent-plus-received delta is 5,076,038,384 bytes. Arm host-interface deltas are 191,178 and 101,584 bytes, despite both arm receipts reporting zero remote Git transfer because neither arm has a configured remote and both reuse prewarmed local objects. Host-interface deltas include unrelated traffic and are not pack bytes or avoided transfer. This is one matched warm-object-pool observation with uncontrolled OS page-cache state. It establishes the recorded checkout-footprint and startup differences under those conditions; it does not establish a cold-network saving, general native-runtime improvement, amortization, campaign savings or scientific progress.
+
+The separately retained small-fixture harness failure is also preserved: `validation/harness-fixture/full/runner.log` SHA256 `91d66c7c20a766f224d816ed884ba1d43ee68c59250d3b9bf0caaf84b5c191d3`, and `validation/harness-fixture/harness.log` SHA256 `d45c34bb882fe8141b09fb9303a89545a4c343c019a5d668c43d6af2d1fca735`. Inspection shows its native Valla build completed, then its copied `cache_cap.py` failed importing missing `fetch_pool`. That fixture omitted a shared-library dependency. It is a retained fixture-setup failure, not a failure of the production comparison whose complete source/library inputs and successful native/freshness receipts were independently inspected above.
