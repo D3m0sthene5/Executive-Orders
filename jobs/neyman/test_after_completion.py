@@ -103,7 +103,7 @@ class CompletionHandoffTests(unittest.TestCase):
         self.assertEqual(result,0)
         args=diagnose.main.call_args[0][0]
         self.assertEqual(args[args.index('--manifest')+1],self.dest+'/IMPORT.json')
-        self.assertTrue(args[-1].endswith('/diagnosis'))
+        self.assertEqual(Path(args[-1]), self.repo.resolve()/self.dest/'diagnosis')
 
     def test_current_receipt_appended_without_rewriting_supplied_history(self):
         before=(self.repo/self.history).read_bytes()

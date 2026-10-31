@@ -1,0 +1,48 @@
+{
+  "schema": "r1-r4-independent-neyman-test-review/v1",
+  "reviewed_at_utc": "2026-10-31T19:09:50.475449+00:00",
+  "verdict": "upheld_test_only_path_assertion",
+  "scope": "Single assertion in NEYMAN optional completion-adapter CLI fixture; no runtime, source-binding, publication or scientific gate changes.",
+  "file": "jobs/neyman/test_after_completion.py",
+  "sha256": "e03a22680283389e2e33323c893d51070637ad72c7fe93145d1b04c24d4d441b",
+  "prior_sha256": "6124c0e4250cfc11fff46bd8502eeeb569eb7d5ce5d6a513e7fe1993b0c482ca",
+  "single_change_verified": "Replacing precisely the new assertion with the old assertion reconstructs exact prior HEAD bytes.",
+  "assessment": "Native Path equality checks the full expected diagnostic destination and handles Windows separators; it is stronger than the previous slash-specific suffix check. Existing pinned-manifest and CLI-success assertions remain.",
+  "unchanged_runtime": {
+    "file": "jobs/neyman/after_completion.py",
+    "sha256": "c8cce77a1cdf6b886fb8322d1d5533309465830372af826578aaeeb489b4236f",
+    "exactly_equal_to_pr113_head": "cd8f9e289f83bc01db9619efcbd482e46e4eb61b"
+  },
+  "independent_validation": {
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_after_completion.CompletionHandoffTests.test_cli_invokes_existing_diagnosis_on_pinned_manifest"
+    ],
+    "cwd": "jobs/neyman",
+    "started_at_utc": "2026-10-31T19:09:50.066099+00:00",
+    "returncode": 0,
+    "tests": 1,
+    "passed": 1,
+    "subprocess_wall_seconds": 0.40926040500016825,
+    "unittest_output": "test_cli_invokes_existing_diagnosis_on_pinned_manifest (test_after_completion.CompletionHandoffTests.test_cli_invokes_existing_diagnosis_on_pinned_manifest) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nOK"
+  },
+  "limits": [
+    "Targeted local execution only; no final Windows remote pass or full NEYMAN-suite result is inferred.",
+    "Coordinator-reported broader Windows progress is not independently reclassified as a completed matrix.",
+    "No new scientific completion, source approval, readiness, admission, certification or savings claim."
+  ],
+  "reviewer_telemetry": {
+    "model": "Inherited OpenAI context; exact runtime variant not exposed",
+    "tokens": null,
+    "cash": null,
+    "complete_labor_seconds": null,
+    "timing_qualification": "The recorded duration measures the test subprocess, not model/review labor."
+  },
+  "writes": [
+    "HANDOFF/r1-r4-neyman-test-review.json"
+  ]
+}
