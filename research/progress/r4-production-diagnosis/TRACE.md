@@ -123,4 +123,3 @@ The exact existing bounded acquisition interface is `REPO_ROOT=. OUTPUT_DIR=<fre
 Accordingly, this bounded trace does not establish a source-ready unfinished scientific case that an existing CLI can honestly advance immediately. It does establish one concrete actionable integration exception to scope before production dispatch, and two genuinely source-blocked counterexamples that must stay unfinished. Root owns any implementation/selection beyond this read-only tracing assignment.
 
 One bounded read-only OpenAI-family worker inherited the parent model. An exact deployed model identifier, actual token totals, billing, complete active labor and a prospectively recorded assignment timer are unavailable to this worker. Tool timings are partial execution observations only. No savings or scientific adoption is inferred. No background job or acquisition was launched. No shared files were edited.
-
