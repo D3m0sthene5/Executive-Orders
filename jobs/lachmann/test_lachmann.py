@@ -269,7 +269,129 @@ class Audit(unittest.TestCase):
             with self.assertRaises(ValueError):
                 L.audit_sample(10, 'seed-x', conf, out, out / 'KEY.json', root)
 
+    def test_only_route_and_exclude_from(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = pathlib.Path(d)
+            (root / 'jobs/domesday-register/output').mkdir(parents=True)
+            (root / 'jobs/p1/output').mkdir(parents=True)
+            lines, regrows = [], ['instrument_id,number,suffix,date,title']
+            for k in range(1, 61):
+                iid = f'EO:{1000 + k}'
+                text = ' '.join(f'term{k}x{j}' for j in range(40)) + f'\nHERBERT HOOVER\nThe White House,\nMarch {k % 28 + 1}, 1929.\n'
+                (root / f'jobs/p1/output/t{k}.txt').write_text(text, encoding='utf-8')
+                route = 'source_heading' if k <= 40 else 'a_number_and_date'
+                lines.append(json.dumps({'instrument_id': iid, 'confirmed': True, 'grade': 'mirror_transcription', 'text_path': f'jobs/p1/output/t{k}.txt',
+                                         'text_sha256': hashlib.sha256(text.encode()).hexdigest(), 'evidence': {'identity_route': route}}))
+                regrows.append(f'{iid},{1000 + k},,1929-03-{k % 28 + 1:02d},Title {k}')
+            (root / 'jobs/domesday-register/output/REGISTER.csv').write_text('\n'.join(regrows) + '\n')
+            conf = root / 'c.jsonl'
+            conf.write_text('\n'.join(lines) + '\n')
+            key1 = root / 'keys' / 'KEY1.json'
+            res = L.audit_sample(10, 's1', conf, root / 'p1', key1, root, only_route='source_heading')
+            self.assertEqual(res['eligible_pool'], 40)
+            k1 = json.loads(key1.read_text())['items']
+            used = {v['instrument_id'] for v in k1.values()} | {v.get('text_from_instrument') for v in k1.values()}
+            self.assertTrue(all(1001 <= int(i.split(':')[1]) <= 1040 for i in used if i))
+            genuine1 = {v['instrument_id'] for v in k1.values() if v['kind'] == 'genuine'}
+            defect1 = {v['instrument_id'] for v in k1.values() if v['kind'] != 'genuine'}
+            res2 = L.audit_sample(10, 's2', conf, root / 'p2', root / 'keys' / 'KEY2.json', root, only_route='source_heading', exclude_from=[key1])
+            self.assertEqual(res2['eligible_pool'], 30)
+            k2 = json.loads((root / 'keys' / 'KEY2.json').read_text())['items']
+            self.assertFalse(genuine1 & {v['instrument_id'] for v in k2.values()})
+            self.assertEqual(L.excluded_ids([key1]), genuine1)   # defect items are not excluded
+            self.assertTrue(defect1)
 
+
+APP_BODY = ("Mrs. Viola B. Pugh, of the District of Columbia, appointed by the Secretary of the Interior August 18, 1921, to the "
+            "position of clerk to sign land patents, is hereby designated as required by law to sign my name to said patents.\n\n"
+            "HERBERT HOOVER\n\nThe White House,\nMarch 7, 1929.\n")
+APP_ROW = {'instrument_id': 'EO:5077', 'sha256': 'a' * 64, 'text_sha256': 'b' * 64, 'date': '1929-03-07',
+           'heading': 'Executive Order 5077-Designating Viola Pugh to sign land patents'}
+WIKI = ("Jump to content\n\nFrom Wikisource\n\nExecutive Order 5077 (1929)\n\n592000Executive Order 5077 \u2014 Designating Viola B. Pugh "
+        "to sign land patents1929President of the United States\n\n{body}\nThis work is in the public domain in the United States.\n"
+        'Retrieved from "https://en.wikisource.org/w/index.php?title=Executive_Order_5077"\n')
+
+
+class SourceHeadingRoute(unittest.TestCase):
+    def app(self, body=APP_BODY, row=APP_ROW, order=ORDER, producer='app-executive-orders'):
+        w = witness(body, producer, sha='a' * 64, tsha='b' * 64)
+        return L.identity_test(order, w, [], {'a' * 64: [row]})
+
+    def test_app_heading_date_title_passes(self):
+        ok, route, reasons, ev = self.app()
+        self.assertTrue(ok, reasons)
+        self.assertEqual(route, 'source_heading')
+        self.assertEqual(ev['source_heading'], APP_ROW['heading'])
+        self.assertLessEqual(len(ev['source_heading']), 120)
+        self.assertIsNone(ev['matched_number'])
+        self.assertTrue(L.identity_test(ORDER, witness(APP_BODY, 'app-transcriptions', sha='a' * 64, tsha='b' * 64), [], {'a' * 64: [APP_ROW]})[0])
+
+    def test_wikisource_title_line_passes(self):
+        w = witness(WIKI.format(body=APP_BODY), 'wikisource-texts')
+        self.assertNotIn('5077', w['body'])
+        ok, route, _, ev = L.identity_test(ORDER, w, [], {})
+        self.assertTrue(ok)
+        self.assertEqual(route, 'source_heading')
+        self.assertTrue(ev['source_heading'].startswith('Executive Order 5077'))
+
+    def test_wikisource_heading_number_differs(self):
+        w = witness(WIKI.format(body=APP_BODY).replace('592000Executive Order 5077', '592000Executive Order 5078'), 'wikisource-texts')
+        self.assertFalse(L.identity_test(ORDER, w, [], {})[0])
+
+    def test_heading_number_differs(self):
+        self.assertFalse(self.app(row=dict(APP_ROW, heading='Executive Order 5078-Designating Viola Pugh to sign land patents'))[0])
+        self.assertFalse(self.app(row=dict(APP_ROW, heading='Proclamation 5077-Designating Viola Pugh'))[0])
+
+    def test_heading_letter_suffix(self):
+        order = dict(ORDER, suffix='A')
+        self.assertFalse(self.app(order=order)[0])
+        self.assertTrue(self.app(order=order, row=dict(APP_ROW, heading='Executive Order 5077-A-Designating Viola Pugh to sign land patents'))[0])
+        self.assertFalse(self.app(row=dict(APP_ROW, heading='Executive Order 5077-A-Designating Viola Pugh to sign land patents'))[0])
+
+    def test_date_missing_fails(self):
+        self.assertFalse(self.app(body=APP_BODY.replace('March 7, 1929', 'sometime'))[0])
+        self.assertFalse(self.app(body=APP_BODY.replace('March 7, 1929', 'March 8, 1929'))[0])
+
+    def test_other_order_heading_in_body_fails(self):
+        self.assertFalse(self.app(body=APP_BODY + "\nExecutive Order 5078. March 9, 1929\n\nAnother order begins.\n")[0])
+
+    def test_partial_register_date_fails(self):
+        order = dict(ORDER, date='1929-03', date_kind='partial', ymd=None)
+        self.assertFalse(self.app(order=order)[0])
+
+    def test_title_overlap_below_threshold_fails(self):
+        order = dict(ORDER, title='Withdrawing public lands in Alaska for reindeer grazing')
+        self.assertFalse(self.app(order=order, row=dict(APP_ROW, heading='Executive Order 5077-Something Else'))[0])
+
+    def test_unmatched_page_record_or_producer_fails(self):
+        self.assertFalse(self.app(row=dict(APP_ROW, text_sha256='c' * 64))[0])
+        self.assertFalse(self.app(row=dict(APP_ROW, instrument_id='EO:5078'))[0])
+        self.assertFalse(self.app(producer='hathi-gpo-orders')[0])
+        self.assertFalse(L.identity_test(ORDER, witness(APP_BODY, 'csc-annual-reports', sha='a' * 64, tsha='b' * 64), [], {'a' * 64: [APP_ROW]})[0])
+
+    def test_route_a_still_first(self):
+        w = witness(GOOD, 'app-executive-orders', sha='a' * 64, tsha='b' * 64)
+        self.assertEqual(L.identity_test(ORDER, w, [], {'a' * 64: [APP_ROW]})[1], 'a_number_and_date')
+
+    def test_assess_with_app_page_record(self):
+        w = witness(APP_BODY, 'app-executive-orders', sha='a' * 64, tsha='b' * 64)
+        rec, _ = L.assess(ORDER, ['ONLY_COMPILED_TRANSCRIPTION_FOUND'], [w], L.Pinakes('/nonexistent'), {'a' * 64: [APP_ROW]}, '/x', StubIndex())
+        self.assertTrue(rec['confirmed'], rec['reasons'])
+        self.assertEqual(rec['evidence']['identity_route'], 'source_heading')
+        self.assertEqual(rec['evidence']['source_heading'], APP_ROW['heading'])
+        self.assertFalse(rec['acceptable_as_original'])
+
+    def test_alternative_start(self):
+        self.assertTrue(L.source_heading_start_test("unrelated words " * 5 + " March 7, 1929 " + "x", ORDER)[0])
+        self.assertTrue(L.source_heading_start_test("Viola Pugh sign land patents designating", ORDER)[0])
+        self.assertFalse(L.source_heading_start_test("nothing relevant at all here", ORDER)[0])
+
+    def test_wikisource_with_page_check_stays_unconfirmed(self):
+        w = witness(WIKI.format(body=APP_BODY), 'wikisource-texts', requires=True)
+        rec, _ = L.assess(ORDER, ['ONLY_COMPILED_TRANSCRIPTION_FOUND'], [w], L.Pinakes('/nonexistent'), {}, '/x', StubIndex())
+        self.assertTrue(rec['identity_confirmed'])
+        self.assertFalse(rec['confirmed'])
+        self.assertIn('pages:no_page_record_rule_for_wikisource-texts', rec['reasons'])
 
 
 

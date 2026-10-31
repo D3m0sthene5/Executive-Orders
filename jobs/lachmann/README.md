@@ -28,11 +28,22 @@ compiled_transcription_lead; ties go to the longest text.
 
 - **identity_confirmed**: (a) the chosen text names the register number as an order number and the register's full date
   appears; or (b) an unnumbered order whose date appears, whose title-word overlap is at least 0.6 and which has an
-  agreeing independent witness; or (c) an agreeing independent witness satisfies (a).
+  agreeing independent witness; or (c) an agreeing independent witness satisfies (a); or (d) "source heading", for the
+  chosen text of an American Presidency Project page (producers app-executive-orders, app-transcriptions) or a Wikisource
+  page (wikisource-texts) whose own heading record names "Executive Order" with exactly this order's number (and letter
+  suffix): the APP page record's heading in `DOCUMENTS.jsonl` / `MIRROR_DOCUMENTS.jsonl` (same instrument, sha256 and
+  `text_sha256` as the witness), or the Wikisource page title line that `body_of` strips as chrome. The register is never
+  the source of the heading. Route (d) also needs the register's full date in the body, title-word overlap of at least
+  0.6 between the register title and either the first 600 characters of the body or the heading, and no heading of
+  another order in the body. Routes are tried in the order (a), (c), (d), so earlier confirmations keep their route.
+  Evidence records `identity_route: "source_heading"` and `source_heading` (at most 120 characters).
 - **complete_text_confirmed**: the text opens with the order (number heading, the register date, or title words; for
   unnumbered orders a recognizable opening), has a closing cue in its last 500 characters (a president's name on its own
   line, THE WHITE HOUSE, or a short dated line past 30 percent of the text) and no heading of a different order after the
   first cue; or an agreeing independent witness passes that test.
+- With route (d), the start test has one alternative rule: the first 400 characters hold the register date or have
+  title overlap of at least 0.6 with the register title. For numbered orders this is already one of the ordinary start
+  tests, so it adds no confirmations by itself; all other completeness checks apply unchanged.
 - **Agreement**: word 3-gram Jaccard at least 0.80 and normalized length ratio between 0.85 and 1.15. Independent means a
   different `produced_by`, `sha256` and `text_sha256`. Independence is by hash and producer, not provenance: a
   Wikisource page that copied the APP text still counts as independent here.
@@ -42,7 +53,7 @@ compiled_transcription_lead; ties go to the longest text.
   fallback in the brief is used. American Presidency Project texts: the page record in `DOCUMENTS.jsonl` or
   `MIRROR_DOCUMENTS.jsonl` with the same sha256 has a heading naming the number, the register date, the held `text_sha256`,
   and subject words found in the text (the check in `jobs/claim-kit/AGENT_PROTOCOL.md`). Other producers have no page rule
-  and stay false.
+  and stay false, so a Wikisource text that requires a page check stays unconfirmed even when route (d) holds.
 - A partial register date (year only or year and month) cannot be matched and fails with `identity:register_date_incomplete`.
 
 ## Outputs
@@ -54,8 +65,12 @@ confirmed, with reasons, for agent review), `SUMMARY.json`, `tests.txt`.
 
 ```
 python3 jobs/lachmann/lachmann.py audit-sample --confirmations OUT/CONFIRMATIONS.jsonl \
-    --packets DIR/packets --key DIR/keys/KEY.json [--n 59] [--seed lachmann-2026-10-31]
+    --packets DIR/packets --key DIR/keys/KEY.json [--n 59] [--seed lachmann-2026-10-31] \
+    [--only-route source_heading] [--exclude-from KEY1.json KEY2.json ...]
 ```
+
+`--only-route` restricts the pool (genuine items, defect sources and donors) to confirmations with that identity route.
+`--exclude-from` takes earlier key files and leaves out the instrument ids of their genuine (non-defect) items.
 
 Draws `n` confirmed orders (deterministic from the seed) plus `max(4, round(0.08 n))` extra defective items, half a header
 over another confirmed order's text (same year when possible) and half a text cut to its first 60 percent. Packets hold an

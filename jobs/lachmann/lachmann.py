@@ -59,6 +59,16 @@ _WIKI_END = re.compile(r'^(?:See [Rr]elated|Amends|Amended by|Revoked by|Revokes
                        r'|^This work is in the public domain', re.M)
 
 
+def wiki_title_line(text):
+    """The Wikisource page title line (page id fused to "Executive Order N — Title") that body_of strips as
+    chrome, without the leading page id; None when the text is not a Wikisource page capture."""
+    if 'From Wikisource' in text[:800] and 'Retrieved from "' in text:
+        m = _WIKI_ID_LINE.search(text)
+        if m:
+            return re.sub(r'^\d+', '', m.group(0)).strip()
+    return None
+
+
 def body_of(text):
     """The order text without the producer's own wrapper (comment header, page chrome).
 
@@ -494,7 +504,67 @@ def independent(a, b):
 # ---------------------------------------------------------------------------
 # The three tests
 
-def identity_test(order, chosen, others):
+APP_PRODUCERS = frozenset(('app-executive-orders', 'app-transcriptions'))
+WIKISOURCE_PRODUCER = 'wikisource-texts'
+HEADING_CHARS = 120
+OPENING_CHARS = 600
+ROUTE_SOURCE_HEADING = 'source_heading'
+# "Executive Order 1001 - Title", "Executive Order No. 1-Title": the first order number a source heading names.
+_SRC_HEADING = re.compile(r'^\W{0,3}executive\s+order\s*(?:no\.?|number)?\s*(?P<tok>[0-9]{1,6})'
+                          r'(?:\s?-?\s?(?P<suf>(?-i:[A-Z]))(?![A-Za-z]))?(?![0-9A-Za-z])', re.I)
+
+
+def source_heading(order, chosen, app_docs):
+    """The heading the source itself gives the chosen witness, or None when it is not an APP or Wikisource page whose
+    heading is a record of the source (APP page record title; Wikisource page title line), never the register's."""
+    producer = chosen['producer']
+    if producer in APP_PRODUCERS:
+        rows = [r for r in (app_docs or {}).get(chosen['sha256'], []) if r.get('instrument_id') == order['instrument_id']
+                and r.get('text_sha256') == chosen['text_sha256']]
+        for row in rows:
+            title = (row.get('heading') or row.get('listing_title') or '').strip()
+            if title:
+                return title
+        return None
+    if producer == WIKISOURCE_PRODUCER:
+        return wiki_title_line(chosen['text'])
+    return None
+
+
+def heading_names_order(heading, order):
+    """The heading opens with "Executive Order" and this order's number (and letter suffix when the register has one)."""
+    m = _SRC_HEADING.match(heading or '')
+    if not m:
+        return False
+    return ((m.group('tok').lstrip('0') or '0') == (str(order['number']).lstrip('0') or '0')
+            and (m.group('suf') or '').upper() == suffix_letter(order['suffix']))
+
+
+def source_heading_route(order, chosen, app_docs):
+    """Identity route (d). (passes, evidence). All four conditions hold: the source's own heading names this order's
+    number, the body holds the register's full date, title words of the body opening or the heading cover at least 0.6 of
+    the register title, and no other order heads a line of the body."""
+    if not order['number'] or order['date_kind'] != 'full':
+        return False, {}
+    heading = source_heading(order, chosen, app_docs)
+    if not heading or not heading_names_order(heading, order):
+        return False, {}
+    body = chosen['body']
+    hits = date_matches(body, order['ymd'])
+    if not hits:
+        return False, {}
+    ov_body = title_overlap(order['title'], body[:OPENING_CHARS])
+    ov_head = title_overlap(order['title'], heading)
+    best = max(o for o in (ov_body, ov_head) if o is not None) if (ov_body is not None or ov_head is not None) else None
+    if best is None or best < TITLE_OVERLAP:
+        return False, {}
+    if other_headings(body, order['number'], order['suffix']):
+        return False, {}
+    return True, {'source_heading': heading[:HEADING_CHARS], 'source_heading_producer': chosen['producer'],
+                  'matched_date': hits[0][0], 'title_overlap_body_opening': ov_body, 'title_overlap_heading': ov_head}
+
+
+def identity_test(order, chosen, others, app_docs=None):
     """(confirmed, route, reasons, evidence). others are (witness, similarity) for independent witnesses."""
     ev, reasons = {}, []
     numbered = bool(order['number'])
@@ -522,6 +592,10 @@ def identity_test(order, chosen, others):
                 ev.update(route_witness={'producer': w['producer'], 'grade': w['grade'], 'sha256': w['sha256']},
                           matched_number=wn[0][0], matched_date=wd[0][0])
                 return True, 'c_agreeing_witness_with_number_and_date', [], ev
+        d_ok, d_ev = source_heading_route(order, chosen, app_docs)
+        if d_ok:
+            ev.update(d_ev)
+            return True, ROUTE_SOURCE_HEADING, [], ev
         if others and not agreeing:
             reasons.append('identity:no_independent_witness_agrees')
         elif not others:
@@ -577,10 +651,10 @@ def dangling_before_signature(text):
     return False
 
 
-def complete_test(order, chosen, others):
+def complete_test(order, chosen, others, identity_route=None):
     """(confirmed, route, reasons, evidence). The chosen text must also be free of numbering gaps and must not
-    break off just before the signature."""
-    ok, route, reasons, ev = _complete_test(order, chosen, others)
+    break off just before the signature. identity_route 'source_heading' enables the alternative start rule."""
+    ok, route, reasons, ev = _complete_test(order, chosen, others, identity_route)
     if dangling_before_signature(chosen['body']):
         ev['dangling_before_signature'] = True
         if ok:
@@ -595,9 +669,27 @@ def complete_test(order, chosen, others):
     return ok, route, reasons, ev
 
 
-def _complete_test(order, chosen, others):
+def source_heading_start_test(text, order):
+    """(passes, evidence). Alternative start used only with identity route (d): APP bodies open directly with the
+    operative text after the heading, so the first 400 characters need the register date or title overlap of at
+    least 0.6 with the register title."""
+    head = text[:START_WINDOW]
+    ev = {'start_snippet': head[:SNIPPET].replace('\n', ' ')}
+    if order['ymd'] and date_matches(head, order['ymd']):
+        ev['start_kind'] = 'source_heading_dateline'
+        return True, ev
+    ov = title_overlap(order['title'], head)
+    if ov is not None and ov >= TITLE_OVERLAP:
+        ev['start_kind'] = 'source_heading_title_words'
+        return True, ev
+    return False, ev
+
+
+def _complete_test(order, chosen, others, identity_route=None):
     """(confirmed, route, reasons, evidence)."""
     ok_s, ev_s = start_test(chosen['body'], order)
+    if not ok_s and identity_route == ROUTE_SOURCE_HEADING:
+        ok_s, ev_s = source_heading_start_test(chosen['body'], order)
     ok_e, why_e, ev_e = end_test(chosen['body'], order)
     ev = dict(ev_s, **ev_e)
     if ok_s and ok_e:
@@ -693,8 +785,8 @@ def assess(order, blockers, witnesses, pinakes, app_docs, repo, index, skipped_h
         if w is not chosen and independent(chosen, w):
             others.append((w, similarity(chosen['body'], w['body'])))
     requires = any(r['requires_page_check'] for r in index.match(W.confirmation(chosen['rec']))) or chosen['rec']['requires_page_check']
-    id_ok, id_route, id_reasons, id_ev = identity_test(order, chosen, others)
-    co_ok, co_route, co_reasons, co_ev = complete_test(order, chosen, others)
+    id_ok, id_route, id_reasons, id_ev = identity_test(order, chosen, others, app_docs)
+    co_ok, co_route, co_reasons, co_ev = complete_test(order, chosen, others, id_route)
     if requires:
         pg_ok, pg_reasons, pg_ev = pages_test(order, chosen, pinakes, app_docs, repo)
     else:
@@ -711,6 +803,8 @@ def assess(order, blockers, witnesses, pinakes, app_docs, repo, index, skipped_h
                          'length_ratio': s['length_ratio'], 'agrees': s['agrees']} for w, s in others]
     ev['first_cue_snippet'] = (co_ev.get('start_snippet') or '')[:SNIPPET]
     ev['last_cue_snippet'] = (co_ev.get('end_cue_snippet') or co_ev.get('end_snippet') or '')[:SNIPPET]
+    if id_route == ROUTE_SOURCE_HEADING:
+        ev['source_heading'] = id_ev.get('source_heading')
     ev['identity_detail'] = id_ev
     ev['complete_detail'] = {k: v for k, v in co_ev.items() if k not in ('start_snippet', 'end_snippet', 'end_cue_snippet')}
     ev['pages_detail'] = pg_ev
@@ -833,13 +927,24 @@ def _clean(text):
     return not any(w in low for w in LEAK_WORDS)
 
 
-def audit_sample(n=59, seed='lachmann-2026-10-31', confirmations=None, packets=None, key_path=None, repo=None):
+def excluded_ids(key_files):
+    """Instrument ids of the genuine (non-defect) items in earlier audit key files."""
+    out = set()
+    for kf in key_files or ():
+        items = json.loads(Path(kf).read_text(encoding='utf-8')).get('items', {})
+        out.update(v['instrument_id'] for v in items.values() if v.get('kind') == 'genuine')
+    return out
+
+
+def audit_sample(n=59, seed='lachmann-2026-10-31', confirmations=None, packets=None, key_path=None, repo=None,
+                 only_route=None, exclude_from=()):
     """Draw n confirmed orders plus planted defects; write blinded packets and a separate key.
 
     Genuine items and the sources of planted defects are drawn only from confirmed orders whose
     text and title hold none of the reviewer-visible words in LEAK_WORDS, so that no packet can hint at its
     purpose. Planted defects: half carry one order's header over another confirmed order's text,
-    half carry a confirmed text cut to its first 60 percent.
+    half carry a confirmed text cut to its first 60 percent. only_route restricts the pool to confirmations whose
+    identity route is that route; exclude_from lists earlier key files whose genuine items are left out of the pool.
     """
     repo = Path(repo or HERE.parents[1])
     confirmations = Path(confirmations or HERE / 'output' / 'CONFIRMATIONS.jsonl')
@@ -851,8 +956,11 @@ def audit_sample(n=59, seed='lachmann-2026-10-31', confirmations=None, packets=N
     register = load_register(repo)
     pinakes = Pinakes(repo)
     pool = []
+    skip = excluded_ids(exclude_from)
     for rec in read_confirmations(confirmations):
-        if not rec.get('confirmed') or rec['instrument_id'] not in register:
+        if not rec.get('confirmed') or rec['instrument_id'] not in register or rec['instrument_id'] in skip:
+            continue
+        if only_route and (rec.get('evidence') or {}).get('identity_route') != only_route:
             continue
         raw = (repo / rec['text_path']).read_bytes()
         if hashlib.sha256(raw).hexdigest() != rec['text_sha256']:
@@ -954,11 +1062,15 @@ def main(argv=None):
     a.add_argument('--key', required=True, help='path of the key file; keep it away from the reviewer')
     a.add_argument('--n', type=int, default=59)
     a.add_argument('--seed', default='lachmann-2026-10-31')
+    a.add_argument('--only-route', default=None, help='restrict the pool to confirmations with this identity route, e.g. source_heading')
+    a.add_argument('--exclude-from', nargs='+', default=[], metavar='KEY.json',
+                   help='earlier KEY.json files; their genuine (non-defect) instrument ids are left out of the pool')
     args = ap.parse_args(argv)
     if args.cmd == 'run':
         print(json.dumps(run(args.repo, args.out), indent=2, sort_keys=True))
     else:
-        res = audit_sample(args.n, args.seed, args.confirmations, args.packets, args.key, args.repo)
+        res = audit_sample(args.n, args.seed, args.confirmations, args.packets, args.key, args.repo,
+                           args.only_route, args.exclude_from)
         print(json.dumps(res, indent=2))
         bad = check_packets(args.packets, args.key)
         print('leak check:', 'clean' if not bad else bad)
