@@ -100,7 +100,7 @@ Outstanding original replacement obligations: 194; quotation rechecks: 194. Thes
 ## Historical census candidates — separate from the 14,972 working identities
 
 - Distinct LOC catalog item candidates: 67 (not yet admitted).
-- LOC item transcripts obtained: 10.
+- LOC item transcripts obtained: 0.
 - LOC items with retained original-page images: 3.
 - Lord indexed date-row appearances awaiting identity authentication: 1,023, including 812 nineteenth-century gap leads.
 **Newly admitted EOs: 0.** Catalog data and manuscripts need independent signer, authority, duplicate and legal inclusion review.
