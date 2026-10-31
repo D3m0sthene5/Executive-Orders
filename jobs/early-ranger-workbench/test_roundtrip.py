@@ -123,7 +123,7 @@ class RoundtripTests(unittest.TestCase):
         if not shutil.which('node'):
             self.skipTest('Node unavailable: cross-language/browser-script checks not run')
         p = subprocess.run(['node', '-e', NODE_RUN], input=json.dumps(values), text=True,
-                           capture_output=True, timeout=20, check=True)
+                           encoding='utf-8', capture_output=True, timeout=20, check=True)
         return json.loads(p.stdout)
 
     def browser(self, doc=None, case=None, raw=None, embedded=False):

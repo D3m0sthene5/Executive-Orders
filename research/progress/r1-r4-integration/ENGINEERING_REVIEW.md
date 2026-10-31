@@ -108,3 +108,66 @@ The original worksheet verifier and read-only native-proof workflow are byte-ide
 | `.github/scripts/run_jobs.py` | `8ed9ddb3150b7878a8de8f6e09b9db0ac35a4f41e45edaaf40a3559050bfdd3e` |
 | `.github/scripts/commit_results.sh` | `322af6acbd6d05e9b63bd42ef0be210b4c1f9e3b295e93fa9f0d05d6bff84171` |
 | `.github/workflows/run-jobs.yml` | `0e3aa1069a2cf4f2be76a365fdceb730fb169d18e0f8f1588eaeddbeff32dc2a` |
+
+## Road temporary-directory configuration addendum — 2026-10-31T18:50:45.381876+00:00
+
+**Uphold this configuration-only fix; actual Windows remote confirmation remains pending.** The coordinator reports run41231091891 exposed a Windows temporary-directory 8.3/long-path alias mismatch in the newly included Valla fixture. Static inspection confirms that fixture constructs an unresolved `Path(tempfile.TemporaryDirectory().name)`, whereas native `valla.build()` resolves its repository root before production reads. The Road test step now supplies both TEMP and TMP from `runner.temp`, avoiding the inherited user-temp alias in that test process and its children. No Valla, fixture, assertion, certificate, runtime or scientific-gate byte changes accompany this adjustment.
+
+Independently parsed the final YAML and verified the unchanged two-OS matrix, read-only permissions and exact Road command; `fail-fast: false` retains the other OS outcome after a failure. Both environment values exactly reference `runner.temp`. Valla implementation and certificate hashes still match the original review. This static configuration check does not reproduce Windows path resolution or establish a successful remote matrix; no additional local test-suite pass is claimed.
+
+Final `.github/workflows/road-tests.yml` SHA-256: `5e9d23c92b80127812deb2f107d6abc309726202e01018dff48ff0cf726f0f0b`. This supersedes only that workflow hash in the preceding addendum; prior source-review hashes and all scientific limitations remain in force.
+
+## Fresh exact-source native artifact review — 2026-10-31T18:53:53.259768+00:00
+
+**Uphold the downloaded native proof receipts at source `9438a8adc19396b5891d770d14ff681138bff795`.** The coordinator identifies successful workflow run41230762353. Independently inspected both supplied downloaded ZIPs and every extracted member: R1 artifact13053638114 has 13 files and native artifact13053772538 has 4. Both complete ZIP SHA-256 values match the supplied pins; all extracted bytes equal their ZIP members. This is read-only native execution evidence, not canonical result publication, a new scientific completion, or a completed final Road matrix.
+
+The actual full/selective INDEX, SUMMARY, RUNNER_INPUTS, FRESHNESS and runner.log are byte-identical. Both captured manifests name the exact source, contain 422 identical input entries with digest `113cf835fefbb8b2d5a7c9caca7a6e5af1058f784403b87052a8a3b0d202a9b1`, and report certified implementation/dynamically complete scope without a broad `*` pattern. Both freshness receipts say fresh with no problems at that source. The selective materialization receipt has no compatibility fallback. Both actual indexes report 97 tracked packages and no unmaterialized packages; their summary retains 612 active claims, 783 shared rationale references, zero valid components, zero legal promotions and zero model calls. Package counts are not independently reviewed source counts.
+
+Independently hashing the actual downloaded INDEX as a Git blob yields `96b0d07d201b22960cdfcc5b553295cce41a5f72`, matching the exact source tree's pre-existing `jobs/valla/output/INDEX.json` object. Thus duplicate INDEX bodies can be represented by that retained content address plus their SHA-256 rather than pretending a compact receipt archive contains them. Any later compact archive still needs its own packaging/hash verification; this addendum verifies the original downloaded bodies.
+
+| Measured quantity | Full arm | Selective arm |
+|---|---:|---:|
+| Entire materialized paths | 93,695 | 8,258 |
+| Entire materialized bytes | 7,949,794,350 | 275,690,417 |
+| Startup seconds | 38.077603 | 11.998191 |
+| Native runner seconds | 8.693263 | 8.929783 |
+| Startup metadata calls | 22 | 61 |
+| Startup metadata stdout bytes | 11,504,186 | 25,399,768 |
+| Startup metadata seconds | 1.436832 | 3.138451 |
+
+Recomputed metadata sums match every startup count, byte total and duration. The complete metadata files contain 44 and 83 calls; each includes 22 later verification calls, which must not be relabeled as startup. The selective declared closure is 427 paths / 56,374,861 bytes, distinct from its entire materialized checkout. Startup is lower in this observation, while native execution is slightly slower and metadata overhead higher.
+
+Construction consumed 372.632608 seconds; total including construction/verification was 457.805104 seconds. Construction host-interface traffic delta was 5,063,778,499 bytes; full/selective arm deltas were 153,911 / 74,469 bytes. The arms each report zero remote Git transfer because they reuse warmed local objects without remotes. Host-interface counts include unrelated traffic and are not Git pack bytes or avoidable network savings. This is one matched warm-object observation with empty per-arm job/download caches and uncontrolled OS page-cache state. No cold-network, campaign, agent-hour, token, amortization or scientific saving follows.
+
+R3's ORIGINAL_BINDINGS receipt, produced before reconstruction, names the exact original worksheet SHA-256 `51b482a13437241d12db3224b1fb5ce58893ed3dee4222942c39ae9004b8f5eb` and all eight original item IDs as unchanged_source, with scientific/human approval false. That original hash matches both the previously independently checked PR114 worksheet and the fresh UI-export receipt. The retained candidate body independently hashes to fresh output pin `29d0fed07b3003c725651e792c14fba09bf342b01d5d90132c9c9b6adfa5daca`; reopening that content-addressed body confirms 67 candidates, all NOT_ADMITTED/HOLD/human_certified false, with eight attributed research proposals. The four replay code hashes match current reviewed implementation. The actual census summary reports zero new admissions/certifications and zero current XML transcripts. These establish version-preserving replay and unchanged research boundaries, not retroactive authentication of embedded historical text, new source examination, formal inclusion or lifecycle truth.
+
+R2's actual comparison has seven frozen rows plus exactly three deliberately omitted-span controls (EO7952, EO8123, EO13613). No new command/identity warning appears for the seven unmodified inventories; their existing boundary leads remain. All three controls gain inventory_command_coverage; EO13613 already had a numbered-section lead in the baseline. Independently checked every retained omitted span and emitted command-gap slice against the exact frozen original text: all match raw character offsets. The repaired preflight hash equals the engineering-reviewed `8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c`. These experimental deletions are diagnostic controls, not production scientific-defect findings or proof of semantic/annex completeness.
+
+| Downloaded receipt / actual bytes | SHA-256 |
+|---|---|
+| R1 downloaded ZIP | `1f8ad31f06712101814e915f7eb4afd180cfff84512155f3b6cfa1c18615d8b0` |
+| Native downloaded ZIP | `82cccbcab06922915f6934a4ac61cece7b93a7751e9fe70c9ac516f7499d6092` |
+| R1 COMPARISON.json | `839ce28e44588f377ab5e88aff4a81c3ff873e2b724d3dc1437847596fe580e2` |
+| Both actual INDEX.json | `2a91d3f14eb3681ca8058fd1cdc2cdfd60d82c17ddfed8102ef546fb1b15f32d` |
+| Both SUMMARY.json | `196c539ba59a3c4e0ab2cf6fc9b70bdabe80fa3057bce3bc2ba9ac5ae5f80f27` |
+| Both RUNNER_INPUTS.json | `3d194a8649c89e45e82109db4d932777556fdd784284627077a54f818f88d8c4` |
+| Both FRESHNESS.json | `5df201eb7892c7d61f88d6384cfcab1b8ed902f82c75deda1285f391ea173397` |
+| Both runner.log | `9f4b969f80252dc41bf0cd273cf08fdad7ddf9eb3c0cd3c3e233664e8e79b6b3` |
+| Full METADATA.json | `174485feadae7659dac143c22e8f4c3261a2a2ad65150abc75a4836c3b07634c` |
+| Selective METADATA.json | `bb4742aa2823ea5065b19e5607c25e53e580b724ff9e0fbc283f081a821d9f0a` |
+| R2_COMPARISON.json | `da8f890f32b23b27b3839239f4df04fec822265921b44c5040a9cd1edb255909` |
+| R3_ORIGINAL_BINDINGS.json | `66e49f57605a109f11384e14d00e9193f43110479cc50ab88dd28755ffb7cc32` |
+| R3_REPLAY_RECEIPT.json | `e15105b47e142795f6a92b304ec3387df6d7baeaec5550265c829fe5b1197665` |
+| R3_CENSUS_SUMMARY.json | `ff9f3646089dcbb22f6ae7f21b628a0850bcd18d9b3b5e3a5a4ba432c7cb6bf4` |
+
+Earlier pending-source-replay statements are superseded only for these exact reviewed downloaded receipts. Ordinary coordinated output publication and final remote Road outcomes remain separate. Existing report sections and independent-review limits are preserved.
+
+## Explicit UTF-8 test transport and retained archive addendum — 2026-10-31T18:55:26.516350+00:00
+
+**Uphold the test-only transport change and verified compact receipt packaging.** The Node subprocess in `test_roundtrip.py` now explicitly uses UTF-8 for text input/output rather than the host's default locale. The existing Unicode/script-delimiter assertion is unchanged; no runtime source, binding, review/admission gate or certificate byte changes. Independently reran `RoundtripTests.test_script_delimiters_in_source_and_notes_roundtrip`: 1 passed in 0.116 unittest seconds. This is a local targeted result; actual Windows remote confirmation remains pending, and no new full-suite result is inferred. Exact final test SHA-256: `dd8cbcd4eaaeadd75ca09d010ddabb689269db8d422c4d27cd9c1027c91bba5c`.
+
+Independently decompressed `validation/NATIVE_RECEIPTS.tar.gz` and compared all 15 regular-file members byte-for-byte with the previously inspected original downloaded artifacts. All 17 manifest entries' sizes and SHA-256 values match actual downloaded bytes. Exactly two INDEX bodies are omitted from the archive; both actual bodies independently hash to existing Git blob `96b0d07d201b22960cdfcc5b553295cce41a5f72`, as explicitly documented. The archive contains all remaining 11 R1 and four native R2/R3 receipts, with no duplicate/path-name substitution. The manifest does not claim the two INDEX bodies are physically in the compact archive.
+
+Archive size is 77,164 bytes; SHA-256 `d74337b05cad9ca48b359b19c0514dd9b6ac914e95ef8ef96d2c96510b7b94d7`; independently computed archive Git blob `d6ff4a25ef07a267b3c234164df681cb6ff9f482`. Manifest SHA-256: `60ae990194d9ffe53300ee7f8525c826e5a869a428a50d3dadc5364f0a976362`. This supersedes only the earlier statement that compact packaging was uninspected.
+
+The fresh proof reviewed above remains actual native evidence at source9438, including exact outputs, source bindings and refusal boundaries; it is not replaced by hash-only certification. Current committed/working Valla closure still matches that proof's reviewed implementation, and the four R3 runtime files remain byte-identical to source9438. No R1 production-proof rerun is claimed for the UTF-8 fixture-only change. Existing scientific, representation, cost and remote-CI qualifications remain unchanged.

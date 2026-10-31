@@ -105,3 +105,18 @@ Second Road run41231091891 reached Windows Valla tests and exposed a test-root
 8.3 alias mismatch (C:\Users\RUNNER~1 vs resolved runneradmin). Road now uses
 runner.temp for TEMP/TMP; Valla implementation/certificate bytes stay unchanged.
 Matrix fail-fast is disabled so an OS-specific failure preserves the other result.
+
+Third Road run41231365697 exposed the Node test transport decoding UTF-8 JSON
+with the Windows locale. The test subprocess now explicitly decodes UTF-8; the
+existing café/script-delimiter round-trip assertion and all runtime bytes remain.
+Native R1/R2/R3 proof41230762353 succeeded at9438a8a. Both downloaded ZIPs and
+all17members were verified independently; retained receipts/manifests are under
+validation/. Five native Valla outputs/log are byte-identical with422input
+entries and97packages/no omissions. Original eight R3 bindings were validated
+before reconstruction; the replay has67unadmitted/held candidates,8proposals,
+0admissions/certifications. Updated measured warm-object startup38.078s->11.998s;
+checkout7,949,794,350->275,690,417bytes. Construction372.633s; nativeexecution
+8.693s->8.930s (no runtime gain); metadataI/Oincreased. No token/cold-network
+or campaign saving follows. Final coordinated production facts belong in
+HANDOFF/r1-r4-final-generation.json so receipt bookkeeping does not become a
+new input under the consumers broad research/progress declarations.
