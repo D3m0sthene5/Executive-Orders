@@ -34,15 +34,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 77; `search` finds the rest)
+## Newest results (6 of 86; `search` finds the rest)
 
+- 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
+- 2026-10-31 F-20261031-r1-production-comparison **worked**: Run matched complete production Valla executions through the existing transactional runner and freshness guard Lesson: Measure full worktree, declared closure, startup, helper metadata and construction separately; retain exact output provenance and independent review; re-establish certificates after implementation-cl…
+- 2026-10-31 F-20261031-r1-audited-valla **partly worked**: Extend the existing runner materializer to the exact Valla production read closure Lesson: Close explicit dynamic pointers and live read membership; bind resolver/runner code; withhold unresolved or unretained inputs rather than narrowing from a successful trace.
 - 2026-10-31 F-20261031-apollo-workflow-review **worked**: Integrate and independently review the existing Apollo Workflow tab Lesson: Separate current tool feeds from dated history; name shared catalog rows at point of use, validate source paths and recover original namesakes instead of guessing. Human certification remains separat…
-- 2026-10-31 F-20261031-1 **worked**: Map every named EO job, campaign and gate by purpose on the dashboard (Workflow tab), with source-cited recor… Lesson: Catalog figures drift from job outputs; read both and show the qualifier rather than pick one. Record a tool's namesake when it is named; Lamm's had to be inferred.
-- 2026-10-30 shared-research-production-2026-10-30 **partly worked**: Independent shared NRA source research, eight outlier/block reconciliations, six fresh native case assignment… Lesson: Preserve exact reviews, blocks and historical owner routes.
-- 2026-10-30 F-20261030-apollo-refresh **partly worked**: Refresh the original Apollo dashboard from the integrated production generation and explain the concurrent se… Lesson: Use published generations for the display; distinguish measured retrieval gains from modeled effort and unadopted research.
-- 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Bind planted controls to the assigned scope as well as the exact version.
-- 2026-10-30 F-20261029-final-integration-1 **partly worked**: Combine concurrent engineering streams and review actual native handoffs Lesson: Verify published generations; retain scientific holds.
-- 2026-10-29 F-20261029-cruden-retrieval **worked**: Profile and repair repeated Cruden corpus lookups with a source-bound feature cache Lesson: Reuse content-verified features; preserve legacy matching and contrary-source access.
-- 2026-10-29 F-20261029-cruden-producer **analysis**: Fresh bounded native EO10673 and EO10772 retrieval assignment with number and literal routes Lesson: Retrieval leads require source review; no scientific approval follows.
+- 2026-10-31 F-20261031-R4-integration **worked**: Explicit ordinary kit.py complete to existing NEYMAN after_completion/diagnose with pinned supplied history a… Lesson: Keep diagnostic receipts separate from immutable scientific tally and preserve every explicit unfinished member.
+- 2026-10-31 F-20261031-R4-action-limit **partly worked**: Use retained NEYMAN diagnoses to find source-ready bounded continuation; inspect EO8915 and EO8992 and replay… Lesson: A diagnostic blocker is not itself a new source need; inspect retained dossier/source/review evidence before repeating retrieval or claiming progress.
 
-Register: 14 owner decisions, 0 answered questions, 77 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 14 owner decisions, 0 answered questions, 86 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
