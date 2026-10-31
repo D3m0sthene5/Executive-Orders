@@ -279,8 +279,10 @@ def closing_cues(text):
 
 
 _HEADING = re.compile(
-    r'^\W{0,3}(?:(?:executive\s+order|exec\.?\s+order|order)\s*(?:no\.?|number)?|no\.)\s*(?P<tok>' + _TOK + r')'
+    r'^\W{0,3}(?:executive\s+order|exec\.?\s+order|order)\s*(?:no\.?|number)?\s*(?P<tok>' + _TOK + r')'
     r'(?:\s?-?\s?(?P<suf>(?-i:[A-Z]))(?![A-Za-z]))?(?![0-9A-Za-z])', re.I)
+# A bare "No. 1234" counts as a heading only when it is the whole line, as in the bracketed [No. 1234] tag.
+_BARE_HEADING = re.compile(r'^\W{0,3}no\.\s*(?P<tok>' + _TOK + r')(?:\s?-?\s?(?P<suf>(?-i:[A-Z]))(?![A-Za-z]))?\s*[\]\)}]?\W{0,3}$', re.I)
 
 
 def other_headings(text, number, suffix=''):
@@ -291,11 +293,15 @@ def other_headings(text, number, suffix=''):
     for raw in text.split('\n'):
         line = raw.strip()
         if line and len(line) <= 160:
-            m = _HEADING.match(line)
+            m = _HEADING.match(line) or _BARE_HEADING.match(line)
             if m:
                 val = _token_value(m.group('tok'))
-                if val is not None and ((val.lstrip('0') or '0') != want or (m.group('suf') or '').upper() != letter):
-                    out.append((pos, line[:SNIPPET]))
+                if val is not None:
+                    val = val.lstrip('0') or '0'
+                    # One extra trailing digit is OCR reading the closing bracket of the order's own [No. n] tag.
+                    same = val == want or (len(val) == len(want) + 1 and val.startswith(want))
+                    if not same or (m.group('suf') or '').upper() != letter:
+                        out.append((pos, line[:SNIPPET]))
         pos += len(raw) + 1
     return out
 
