@@ -2,6 +2,19 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-31, later (Claude, Jacquard wave 2 and Lachmann route d)
+
+- **Jacquard wave 2** (PR #119): full review of every remaining waiver, NRA and Canal Zone lot member; 714 more
+  statuses appended (register 3,403 to 4,291 with wave 1 on merge). Two over-strict wave-1 controls voided after two
+  independent reviewers and the coordinator agreed (EO 370, EO 3031); 59 upheld orders held (cut-off texts, messenger
+  appointments). 325 orders listed for individual review. Kean F-20261031-jacquard-wave2.
+- **Lachmann route (d)** (PR #120): APP page heading plus date and title agreement confirms 910 more working texts
+  (1,674 total); fresh audit 59/59. Kean F-20261031-lachmann-route-d.
+- **Combined simulation:** statuses 4,291; provisional text steps 1,674; ready unchanged at 498 until claims run.
+- **Usage this round:** about 6.6M Sonnet tokens (60 reviewers, 4 auditors, 2 builders); coordinator Opus 5.5.
+- **Next:** claim production for the 888 new statuses whose text is now provisional or original (the ready count
+  moves only through claims); a Wikisource page rule (456 orders); individual review of the 325 listed orders.
+
 ## 2026-10-31 (Claude, Jacquard and Lachmann: status adoption and working-text confirmation)
 
 - **Owner rulings recorded** (`research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md`; Kean
