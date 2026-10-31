@@ -40,6 +40,27 @@ for n in out:
     n['source_pin'] = PIN
     n.setdefault('order', 70 if n.get('status_class') != 'current' else 50)
     n.pop('_group', None)
+def _fix(src, fixes):
+    if not src: return src
+    toks = [t.strip() for t in str(src).split(';')]
+    for k, t in enumerate(toks):
+        for a, b in fixes:
+            if t == a or t.startswith(a) and (len(t) == len(a) or t[len(a)] in ' :/(' or a.endswith('-') or a.endswith('/')):
+                toks[k] = b + t[len(a):]; break
+    return '; '.join(toks)
+for n in out:
+    fixes = ov.get('source_fixes', {}).get(n['id'], [])
+    if fixes:
+        for key in ('results', 'history'):
+            for it in n.get(key, []): it['source'] = _fix(it.get('source', ''), fixes)
+        for s in n.get('sources', []):
+            if s.get('path'): s['path'] = _fix(s['path'], fixes)
+        n['namesake_evidence'] = _fix(n.get('namesake_evidence', ''), fixes)
+    for rep in ov.get('result_replace', {}).get(n['id'], []):
+        new_res = []
+        for it in n.get('results', []):
+            new_res += rep['with'] if rep['match'] in it.get('text', '') else [it]
+        n['results'] = new_res
 for n in out:
     if n['id'] == 'later-events-status-history-current-law':
         n['jobs'] = [j for j in n.get('jobs', []) if 'ofr-codification' not in j]

@@ -98,7 +98,8 @@
    "order": 1
   },
   "human-certification": {
-   "order": 2
+   "order": 2,
+   "role": "A person independent of the AI work reviews the whole lifecycle claim and its cited sources and signs off on that exact version; no tool does this."
   },
   "owner-rulings-and-status-adoption": {
    "order": 0
@@ -179,5 +180,107 @@
   "lambertini-line": {
    "namesake_short": "after Prospero Lambertini"
   }
+ },
+ "source_fixes": {
+  "census-completeness": [
+   [
+    "output/STATUS.json",
+    "jobs/census-completeness/output/STATUS.json"
+   ]
+  ],
+  "census-candidates": [
+   [
+    "output/STATUS.json",
+    "jobs/census-candidates/output/STATUS.json"
+   ]
+  ],
+  "early-orders-hunt": [
+   [
+    "output/STATUS.json",
+    "jobs/early-orders-hunt/output/STATUS.json"
+   ]
+  ],
+  "app-transcriptions": [
+   [
+    "output/STATUS.json",
+    "jobs/app-transcriptions/output/STATUS.json"
+   ]
+  ],
+  "app-footnote-leads": [
+   [
+    "output/STATUS.json",
+    "jobs/app-footnote-leads/output/STATUS.json"
+   ]
+  ],
+  "numbered-early-orders": [
+   [
+    "output/STATUS.json",
+    "jobs/numbered-early-orders/output/STATUS.json"
+   ]
+  ],
+  "poggio-archive-backfill": [
+   [
+    "output/STATUS.json",
+    "jobs/poggio-archive-backfill/output/STATUS.json"
+   ]
+  ],
+  "domesday-register": [
+   [
+    "TOOLS.csv",
+    "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv"
+   ]
+  ],
+  "early-ranger-family": [
+   [
+    "early-ranger-",
+    "jobs/early-ranger-"
+   ]
+  ],
+  "app-executive-orders": [
+   [
+    "INDEX_SUMMARY.json",
+    "jobs/app-executive-orders/output/INDEX_SUMMARY.json"
+   ],
+   [
+    "MIRROR_AUDIT_SUMMARY.md",
+    "jobs/app-executive-orders/output/MIRROR_AUDIT_SUMMARY.md"
+   ]
+  ],
+  "corpus-excavator": [
+   [
+    "output/BASELINE.json",
+    "jobs/corpus-excavator/output/BASELINE.json"
+   ],
+   [
+    "output/SOURCE_PLAN.json",
+    "jobs/corpus-excavator/output/SOURCE_PLAN.json"
+   ]
+  ],
+  "lambertini-line": [
+   [
+    "PRODUCTION_EVIDENCE.md",
+    "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md"
+   ]
+  ]
+ },
+ "source_fixes_note": "Shorthand paths written by the readers, corrected to full paths at the pinned commit after an independent review (2026-10-31). Applied to whole citations only: a citation is rewritten when it equals or starts with the shorthand.",
+ "result_replace": {
+  "independent-ai-review": [
+   {
+    "match": "Sinclair status proposals",
+    "with": [
+     {
+      "date": "2026-10-22",
+      "text": "Sinclair cross-family review (Codex) of the 31 held provisional NO statuses: 29 upheld, 2 need research, 0 rejected; provisional status only, not findings or certification. The owner adopted the 29 by pull request #52.",
+      "source": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_REPORT.md:3"
+     },
+     {
+      "date": "2026-10-22",
+      "text": "Sinclair lean review (four Claude Opus reviewers) of 41 proposals: 39 genuine reviewed, 37 upheld, 2 rejected (EO 9762, EO 12488); both planted errors caught. Same model family as the producer, so its upholds alone could not adopt a status.",
+      "source": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/REPORT.md:7-8"
+     }
+    ]
+   }
+  ]
  }
 }

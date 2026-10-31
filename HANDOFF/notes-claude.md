@@ -14,6 +14,10 @@ Newest entry first. See `README.md` in this folder for the format.
   is the tracker's (498); certified 0 is shown as a separate gate; every past campaign is historical.
 - **Namesakes:** NORTON is Margaret Cross Norton (recovered from Astra's 2026-10-20 naming reply); Lamm is marked
   inferred (Richard Lamm, Colorado's 1976 sunset law); descriptive names show no namesake.
+- **Review round (same day):** Codex's review of `945fa7ec07` asked for four corrections, all made: exact catalog-row
+  labels on shared rows, no timeless certified-zero text, 15 shorthand source paths fixed in provenance (all 302
+  paths now resolve at the pin), and the Sinclair cross-family figures separated from the lean review. Close and
+  Escape now return to the pinned box. Interaction test 111 of 111.
 - **Discrepancies found and left in node caveats** (Lewis 2,376 vs 2,491 agent checks, 15 audit-hold records on 10
   orders, Junto's empty test ledger, Llull 65 vs 90 forecasts, Olney and Justinian with no completion record):
   see `research/progress/remaining-work/workflow/README.md`.
