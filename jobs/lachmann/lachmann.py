@@ -787,7 +787,7 @@ def audit_sample(n=59, seed='lachmann-2026-10-31', confirmations=None, packets=N
     """Draw n confirmed orders plus planted defects; write blinded packets and a separate key.
 
     Genuine items and the sources of planted defects are drawn only from confirmed orders whose
-    text holds none of the reviewer-visible words in LEAK_WORDS, so that no packet can hint at its
+    text and title hold none of the reviewer-visible words in LEAK_WORDS, so that no packet can hint at its
     purpose. Planted defects: half carry one order's header over another confirmed order's text,
     half carry a confirmed text cut to its first 60 percent.
     """
@@ -808,7 +808,7 @@ def audit_sample(n=59, seed='lachmann-2026-10-31', confirmations=None, packets=N
         if hashlib.sha256(raw).hexdigest() != rec['text_sha256']:
             continue
         body = body_of(raw.decode('utf-8'))
-        if _clean(body) and len(body.split()) >= 20:
+        if _clean(body) and _clean(register[rec['instrument_id']]['title']) and len(body.split()) >= 20:
             pool.append((rec['instrument_id'], rec, body))
     pool.sort(key=lambda x: x[0])
     rng = random.Random(seed)
