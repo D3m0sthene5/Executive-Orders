@@ -7,55 +7,63 @@ test_no_claim_cannot_disclose_exhaustion (test_tracker.ExhaustionAssuranceTests.
 test_non_routes_are_rejected_without_crashing (test_tracker.ExhaustionAssuranceTests.test_non_routes_are_rejected_without_crashing) ... ok
 test_prior_retry_discussion_is_not_an_ineligible_marker (test_tracker.ExhaustionAssuranceTests.test_prior_retry_discussion_is_not_an_ineligible_marker) ... ok
 test_unused_exception_does_not_downgrade_complete_claim (test_tracker.ExhaustionAssuranceTests.test_unused_exception_does_not_downgrade_complete_claim) ... ok
+test_agent_confirmation_overrides_the_machine_confirmation (test_tracker.TrackerTest.test_agent_confirmation_overrides_the_machine_confirmation) ... ok
 test_app_transcription_live_and_archive_is_a_lead_never_the_original (test_tracker.TrackerTest.test_app_transcription_live_and_archive_is_a_lead_never_the_original) ... ok
+test_archival_replica_with_page_check_needs_pages_confirmed (test_tracker.TrackerTest.test_archival_replica_with_page_check_needs_pages_confirmed) ... ok
 test_bad_exhausted_record_is_reported_not_counted (test_tracker.TrackerTest.test_bad_exhausted_record_is_reported_not_counted) ... ok
 test_claim_checker_failure_and_stale_check_keep_steps_open (test_tracker.TrackerTest.test_claim_checker_failure_and_stale_check_keep_steps_open) ... ok
 test_claim_steps_need_claim_checker (test_tracker.TrackerTest.test_claim_steps_need_claim_checker) ... ok
 test_claim_with_no_clauses_lights_no_claim_step (test_tracker.TrackerTest.test_claim_with_no_clauses_lights_no_claim_step) ... ok
 test_complete_claim_makes_an_order_ready (test_tracker.TrackerTest.test_complete_claim_makes_an_order_ready) ... ok
+test_confirmation_for_an_incomplete_fragment_is_rejected (test_tracker.TrackerTest.test_confirmation_for_an_incomplete_fragment_is_rejected) ... ok
+test_confirmation_needs_the_held_text_to_exist_and_hash (test_tracker.TrackerTest.test_confirmation_needs_the_held_text_to_exist_and_hash) ... ok
+test_confirmation_never_changes_an_order_with_an_official_original (test_tracker.TrackerTest.test_confirmation_never_changes_an_order_with_an_official_original) ... ok
 test_csc_report_is_a_consumed_lead_never_original_custody (test_tracker.TrackerTest.test_csc_report_is_a_consumed_lead_never_original_custody) ... ok
-test_empty_media_rule_keeps_incomplete_and_policy_invalid_claims_blocked (test_tracker.TrackerTest.test_empty_media_rule_keeps_incomplete_and_policy_invalid_claims_blocked) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpqzrh2ij_/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_keeps_incomplete_and_policy_invalid_claims_blocked (test_tracker.TrackerTest.test_empty_media_rule_keeps_incomplete_and_policy_invalid_claims_blocked) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpbwizlpqh/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_never_exempts_cited_missing_or_ambiguous_media (test_tracker.TrackerTest.test_empty_media_rule_never_exempts_cited_missing_or_ambiguous_media) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp0mvr75zz/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_never_exempts_cited_missing_or_ambiguous_media (test_tracker.TrackerTest.test_empty_media_rule_never_exempts_cited_missing_or_ambiguous_media) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpnj4znwto/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_preserves_exact_source_audit_hold (test_tracker.TrackerTest.test_empty_media_rule_preserves_exact_source_audit_hold) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmyko6ske/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_preserves_exact_source_audit_hold (test_tracker.TrackerTest.test_empty_media_rule_preserves_exact_source_audit_hold) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp1fyt3ee1/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_rejects_current_claim_opus_media_dependencies (test_tracker.TrackerTest.test_empty_media_rule_rejects_current_claim_opus_media_dependencies) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpgbftp4kc/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_rejects_current_claim_opus_media_dependencies (test_tracker.TrackerTest.test_empty_media_rule_rejects_current_claim_opus_media_dependencies) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpxbnymat9/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_rejects_structured_opus_dependencies_without_path_markers (test_tracker.TrackerTest.test_empty_media_rule_rejects_structured_opus_dependencies_without_path_markers) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpyz3ui30e/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_rejects_structured_opus_dependencies_without_path_markers (test_tracker.TrackerTest.test_empty_media_rule_rejects_structured_opus_dependencies_without_path_markers) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpubsgyhxc/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_requires_every_explicit_zero_count (test_tracker.TrackerTest.test_empty_media_rule_requires_every_explicit_zero_count) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpi0xbcemq/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_requires_every_explicit_zero_count (test_tracker.TrackerTest.test_empty_media_rule_requires_every_explicit_zero_count) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp9236muhn/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_media_rule_requires_fresh_complete_checker_receipt (test_tracker.TrackerTest.test_empty_media_rule_requires_fresh_complete_checker_receipt) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp4dpxzfi6/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_media_rule_requires_fresh_complete_checker_receipt (test_tracker.TrackerTest.test_empty_media_rule_requires_fresh_complete_checker_receipt) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_2d59zlp/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_opus_matching_set_is_disclosed_na_after_independent_claim_checks (test_tracker.TrackerTest.test_empty_opus_matching_set_is_disclosed_na_after_independent_claim_checks) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:340: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmppjs2cr8y/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
+test_empty_opus_matching_set_is_disclosed_na_after_independent_claim_checks (test_tracker.TrackerTest.test_empty_opus_matching_set_is_disclosed_na_after_independent_claim_checks) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/test_tracker.py:341: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpwkdm72qq/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv' mode='r' encoding='UTF-8'>
   rows = list(csv.DictReader((self.root / tracker.P["decided"]).open()))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
 test_exact_claim_source_audit_blocks_only_readiness (test_tracker.TrackerTest.test_exact_claim_source_audit_blocks_only_readiness) ... ok
 test_exhausted_step_counts_as_machine_finished (test_tracker.TrackerTest.test_exhausted_step_counts_as_machine_finished) ... ok
 test_fr_originals_high_confidence_counts_and_low_needs_page_check (test_tracker.TrackerTest.test_fr_originals_high_confidence_counts_and_low_needs_page_check) ... ok
+test_invalid_confirmations_are_ignored_and_counted_by_reason (test_tracker.TrackerTest.test_invalid_confirmations_are_ignored_and_counted_by_reason) ... ok
 test_machine_search_counts_when_complete_and_clean (test_tracker.TrackerTest.test_machine_search_counts_when_complete_and_clean) ... ok
 test_machine_search_never_counts_from_a_sample_run (test_tracker.TrackerTest.test_machine_search_never_counts_from_a_sample_run) ... ok
+test_missing_confirmation_files_change_nothing (test_tracker.TrackerTest.test_missing_confirmation_files_change_nothing) ... ok
 test_new_acquisition_feeds_remain_leads_even_with_original_like_flags (test_tracker.TrackerTest.test_new_acquisition_feeds_remain_leads_even_with_original_like_flags) ... ok
 test_official_compilation_counts_like_fr_originals (test_tracker.TrackerTest.test_official_compilation_counts_like_fr_originals) ... ok
 test_official_compilation_without_needs_page_check_flag_does_not_count (test_tracker.TrackerTest.test_official_compilation_without_needs_page_check_flag_does_not_count) ... ok
 test_opus_media_resolved_by_byte_identical_refetch (test_tracker.TrackerTest.test_opus_media_resolved_by_byte_identical_refetch) ... ok
 test_opus_media_uses_opus_media_match_status_when_present (test_tracker.TrackerTest.test_opus_media_uses_opus_media_match_status_when_present) ... ok
+test_other_text_blockers_and_existing_claims_keep_the_step_open (test_tracker.TrackerTest.test_other_text_blockers_and_existing_claims_keep_the_step_open) ... ok
 test_partial_claim_lights_up_only_the_steps_it_satisfies (test_tracker.TrackerTest.test_partial_claim_lights_up_only_the_steps_it_satisfies) ... ok
 test_proquest_replica_scan_is_a_lead_that_needs_a_page_check (test_tracker.TrackerTest.test_proquest_replica_scan_is_a_lead_that_needs_a_page_check) ... ok
 test_richardson_transcription_is_a_lead_never_the_original (test_tracker.TrackerTest.test_richardson_transcription_is_a_lead_never_the_original) ... ok
@@ -63,13 +71,14 @@ test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count (test_tra
 test_source_ladder_retrieval_clears_a_shared_source (test_tracker.TrackerTest.test_source_ladder_retrieval_clears_a_shared_source) ... ok
 test_status_mismatch_keeps_the_ending_step_open (test_tracker.TrackerTest.test_status_mismatch_keeps_the_ending_step_open) ... ok
 test_tampered_source_audit_fails_closed (test_tracker.TrackerTest.test_tampered_source_audit_fails_closed) ... ok
+test_valid_confirmation_makes_the_text_step_provisional_not_done (test_tracker.TrackerTest.test_valid_confirmation_makes_the_text_step_provisional_not_done) ... ok
 test_without_claims_nothing_is_ready_and_blockers_are_specific (test_tracker.TrackerTest.test_without_claims_nothing_is_ready_and_blockers_are_specific) ... ok
 test_working_text_no_disclosure_or_bytes_blocks_even_with_old_checker_pass (test_tracker.TrackerTest.test_working_text_no_disclosure_or_bytes_blocks_even_with_old_checker_pass) ... ok
 test_working_text_ready_tier_retains_source_replacement_and_recheck_debt (test_tracker.TrackerTest.test_working_text_ready_tier_retains_source_replacement_and_recheck_debt) ... ok
 test_working_text_still_needs_other_steps_and_current_checker (test_tracker.TrackerTest.test_working_text_still_needs_other_steps_and_current_checker) ... ok
 
 ----------------------------------------------------------------------
-Ran 45 tests in 1.325s
+Ran 54 tests in 1.512s
 
 OK
 # Readiness tracker
@@ -80,21 +89,23 @@ An order is ready when the machines have finished every step it needs: each step
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 3,403. The other 11,569 have not been researched yet.
+Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 306, 'transcription_dependent': 192}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 194; quotation rechecks: 194. These remain work after readiness.
+Outstanding original replacement obligations: 1,868; quotation rechecks: 1,868. These remain work after readiness.
+
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,674. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5856}.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
-| Has a provisional YES/NO status | 3,403 | 3,403 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 2,547 | 3,403 | 74.8% |
-| Complete inventory of the order's operative clauses | 566 | 3,403 | 16.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 521 | 3,403 | 15.3% |
-| Savings clauses and surviving effects closed | 554 | 3,403 | 16.3% |
-| Search for later contrary sources recorded, no open conflicts | 2,724 | 3,403 | 80.0% |
+| Has a provisional YES/NO status | 4,291 | 4,291 | 100.0% |
+| Original or explicitly reviewed provisional working text saved | 2,606 | 4,291 | 60.7% |
+| Complete inventory of the order's operative clauses | 566 | 4,291 | 13.2% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 521 | 4,291 | 12.1% |
+| Savings clauses and surviving effects closed | 554 | 4,291 | 12.9% |
+| Search for later contrary sources recorded, no open conflicts | 2,724 | 4,291 | 63.5% |
 | Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 839 | 14.9% |
 
@@ -102,8 +113,8 @@ Outstanding original replacement obligations: 194; quotation rechecks: 194. Thes
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 5,160 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 2,746 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
+| 3,674 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,558 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 285 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -118,14 +129,14 @@ Outstanding original replacement obligations: 194; quotation rechecks: 194. Thes
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_PROVISIONAL_STATUS` | 0 | 11,569 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 769 | 7,624 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 757 | 5,160 |
-| `NO_CLAUSE_INVENTORY` | 2,791 | 2,791 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,791 | 2,791 |
-| `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 73 | 2,746 |
-| `FIRST_END_UNPROVED` | 2,398 | 2,398 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 492 | 492 |
+| `NO_PROVISIONAL_STATUS` | 0 | 10,681 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 1,085 | 5,950 |
+| `NO_CLAUSE_INVENTORY` | 3,679 | 3,679 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 3,679 | 3,679 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 1,021 | 3,674 |
+| `FIRST_END_UNPROVED` | 3,286 | 3,286 |
+| `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 127 | 2,558 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,380 | 1,380 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 393 | 393 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 87 | 285 |
@@ -166,6 +177,7 @@ Outstanding original replacement obligations: 194; quotation rechecks: 194. Thes
 - wikisource-texts (lead only, never counted as the original): 1,639
 - csc-annual-reports (lead only, never counted as the original): 798
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
+- lachmann working-text confirmations (provisional text step only, never an original): 7,534
 - opus-media-match status: 1,155
 - source-ladder: 632
 - claim-checker: 612

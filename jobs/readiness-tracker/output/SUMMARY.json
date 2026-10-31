@@ -1,6 +1,6 @@
 {
   "orders_total": 14972,
-  "orders_with_provisional_status": 3403,
+  "orders_with_provisional_status": 4291,
   "ready_for_human_review": 498,
   "ready_by_tier": {
     "complete_claim": 498
@@ -9,8 +9,8 @@
     "original_supported": 306,
     "transcription_dependent": 192
   },
-  "original_replacement_obligations": 194,
-  "quotation_recheck_obligations": 194,
+  "original_replacement_obligations": 1868,
+  "quotation_recheck_obligations": 1868,
   "human_verified": "not counted here; see the Stage 19 tracker",
   "opus_media_not_applicable": [
     "EO:11423",
@@ -19,30 +19,37 @@
     "EO:12391",
     "EO:12504"
   ],
+  "text_step_provisional_working_text": 1674,
+  "working_text_confirmations_counting": 1674,
+  "rejected_working_text_confirmations": {
+    "grade_not_a_working_text_grade": 4,
+    "not_confirmed": 5856
+  },
   "step_done_among_decided": {
     "provisional_status": {
-      "done": 3403,
-      "applicable": 3403
+      "done": 4291,
+      "applicable": 4291
     },
     "original_text": {
-      "done": 2547,
-      "applicable": 3403
+      "done": 2606,
+      "applicable": 4291,
+      "provisional": 513
     },
     "clause_inventory": {
       "done": 566,
-      "applicable": 3403
+      "applicable": 4291
     },
     "ending_or_current_basis": {
       "done": 521,
-      "applicable": 3403
+      "applicable": 4291
     },
     "savings_residuals": {
       "done": 554,
-      "applicable": 3403
+      "applicable": 4291
     },
     "counterevidence": {
       "done": 2724,
-      "applicable": 3403
+      "applicable": 4291
     },
     "shared_sources": {
       "done": 209,
@@ -54,17 +61,17 @@
     }
   },
   "decided_by_steps_done": {
-    "1/6": 443,
-    "1/7": 14,
+    "1/6": 997,
+    "1/7": 12,
     "1/8": 2,
-    "2/6": 469,
-    "2/7": 81,
+    "2/6": 576,
+    "2/7": 75,
     "2/8": 6,
-    "3/6": 1091,
-    "3/7": 430,
+    "3/6": 1318,
+    "3/7": 437,
     "3/8": 34,
     "4/6": 30,
-    "4/7": 69,
+    "4/7": 70,
     "4/8": 166,
     "5/6": 38,
     "5/8": 25,
@@ -75,14 +82,14 @@
     "8/8": 1
   },
   "orders_blocked_by": {
-    "NO_PROVISIONAL_STATUS": 11569,
-    "NO_OFFICIAL_SOURCE_LOCATED": 7624,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 5160,
-    "NO_CLAUSE_INVENTORY": 2791,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 2791,
-    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2746,
-    "FIRST_END_UNPROVED": 2398,
-    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 492,
+    "NO_PROVISIONAL_STATUS": 10681,
+    "NO_OFFICIAL_SOURCE_LOCATED": 5950,
+    "NO_CLAUSE_INVENTORY": 3679,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3679,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3674,
+    "FIRST_END_UNPROVED": 3286,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2558,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1380,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 393,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 285,
@@ -99,19 +106,19 @@
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
-    "NO_CLAUSE_INVENTORY": 2791,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 2791,
-    "FIRST_END_UNPROVED": 2398,
-    "NO_OFFICIAL_SOURCE_LOCATED": 769,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 757,
-    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 492,
+    "NO_CLAUSE_INVENTORY": 3679,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 3679,
+    "FIRST_END_UNPROVED": 3286,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1380,
+    "NO_OFFICIAL_SOURCE_LOCATED": 1085,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 1021,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 393,
     "OPUS_MEDIA_NONE_CITED": 212,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 127,
     "CLAIM_INCOMPLETE": 88,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 87,
-    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 73,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 27,
@@ -126,13 +133,13 @@
     {
       "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
       "kind": "machine_job",
-      "orders_unblocked": 5160,
+      "orders_unblocked": 3674,
       "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
     },
     {
       "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
       "kind": "agent_check",
-      "orders_unblocked": 2746,
+      "orders_unblocked": 2558,
       "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
     },
     {
@@ -217,6 +224,7 @@
       "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
       "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl + jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl + jobs/numbered-early-orders/output/FRAGMENTS.jsonl + jobs/wikisource-texts/output/FRAGMENTS.jsonl + jobs/csc-annual-reports/output/FRAGMENTS.jsonl",
       "archival_replica_fragments": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
+      "working_text_confirmations": "jobs/lachmann/output/CONFIRMATIONS.jsonl + jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl",
       "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
       "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
       "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
@@ -242,6 +250,7 @@
       "wikisource-texts (lead only, never counted as the original)": 1639,
       "csc-annual-reports (lead only, never counted as the original)": 798,
       "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
+      "lachmann working-text confirmations (provisional text step only, never an original)": 7534,
       "opus-media-match status": 1155,
       "source-ladder": 632,
       "claim-checker": 612,

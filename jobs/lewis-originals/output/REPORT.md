@@ -1,27 +1,27 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-10-29T16:51:19Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-10-31T22:13:26Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 5306 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5251).
+**Scope: 5403 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5348).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_phrase_search | manual_lead | 2663 |
-| gpo_bound_volumes | in_volume_range_not_found | 1188 |
+| proquest_phrase_search | manual_lead | 2636 |
+| gpo_bound_volumes | in_volume_range_not_found | 1124 |
 | ofr_hoover_compilation | in_volume_range_not_found | 474 |
 | federal_register | in_ofr_catalog_no_citation | 431 |
+| proquest_local | pinakes_file_record_pages_unchecked | 286 |
 | federal_register | fr_era_not_in_ofr_catalog | 185 |
 | federal_register | queued_result_not_published | 128 |
 | federal_register | retrieval_recorded_needs_review | 115 |
-| proquest_local | pinakes_file_record_pages_unchecked | 98 |
 | federal_register | queued_not_attempted_budget | 22 |
 | proquest_supplied_link | awaiting_acquisition | 2 |
 
 ## ProQuest folder
 
-2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 98 of them are in Lewis's scope and 2652 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 100 for orders in this scope.
+2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 286 of them are in Lewis's scope and 2464 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 288 for orders in this scope.
 
 Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2750 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
 
@@ -33,8 +33,8 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 | Owner | Orders |
 |---|---:|
-| owner | 2665 |
-| agent_check | 2491 |
+| owner | 2638 |
+| agent_check | 2615 |
 | machine_job | 150 |
 
 ## First twenty rows
@@ -64,7 +64,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 5306 targets advanced this run (4921 never searched yet); 1038 of 1500 requests used. 5821 hits on file, 78 pages confirmed to name the order (52 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 5403 targets advanced this run (4918 never searched yet); 597 of 1500 requests used. 7086 hits on file, 83 pages confirmed to name the order (54 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -80,9 +80,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | govinfo_search_page | ok |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | ok |
-| loc_manuscripts | ok |
-| loc_newspapers | ok |
+| loc_books | http_429 |
+| loc_manuscripts | http_429 |
+| loc_newspapers | http_429 |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
