@@ -524,7 +524,7 @@ class AssemblyTests(unittest.TestCase):
         (official.parent/'FRAGMENTS.jsonl').write_text(json.dumps(fragment)+'\n')
         for _, source in A.W.references(claim):
             if source.get('acceptable_as_original') is False:
-                source.update(text_path=str(official.relative_to(self.repo)), url=data['url'], acceptable_as_original=True)
+                source.update(text_path=official.relative_to(self.repo).as_posix(), url=data['url'], acceptable_as_original=True)
                 source.pop('grade')
         claim.pop('working_text')
         errors, dependent = A.W.policy(claim, self.repo)

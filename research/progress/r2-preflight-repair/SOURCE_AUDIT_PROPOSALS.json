@@ -1,0 +1,395 @@
+{
+  "schema": "r2-source-audit-proposals/v1",
+  "base": "88cef0253ed735b2a6e612770f25f9148641ce93",
+  "action": "proposal_only_existing_owner_and_independent_review_routes",
+  "canonical_changes": false,
+  "effective_claims_examined": false,
+  "review_artifacts": {
+    "core": {
+      "path": "research/progress/r2-preflight-repair/source-review/COMPARISON_REVIEW.json",
+      "sha256": "15b0d2adb5caddc2bd6ca147f6a3305cbaa20a7fe05bdf907b1849f143adb1f7"
+    },
+    "annex": {
+      "path": "research/progress/r2-preflight-repair/source-review/ANNEX_COMPARISON.json",
+      "sha256": "293f288245f2e590d27cf285a0b848a93daa268455a973cdca09daf81c1ea678"
+    }
+  },
+  "core_case_proposals": [
+    {
+      "id": "C7952",
+      "instrument_id": "EO:7952",
+      "scope": "current segmentation lead only; no native dossier exists",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_7952.json",
+        "frozen_sha256": "3e5d67c0fff148a33a98b3c44d38cb38edf4f5b54e0b9c59b8bc96243a44a004",
+        "inventory_kind": "current excavate.segment lead on held FR text; no native dossier exists",
+        "inventory_pin": {
+          "code_path": "jobs/claim-kit/excavate.py",
+          "sha256": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_7952.txt",
+        "text_sha256": "535af6ae9000f1bc31173c6ff191ef5fb7c6f2084121b52e963cacdbb40e6d9d",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/c086b81bda2abc5b549e2ecd40e2e08d807f67e1c3c251bc04d7d34c1ce78fd9.pdf",
+        "source_sha256": "c086b81bda2abc5b549e2ecd40e2e08d807f67e1c3c251bc04d7d34c1ce78fd9",
+        "pdf_pages": [
+          1
+        ]
+      },
+      "severity": "no inventory omission established",
+      "source_location": "PDF p1 / printed1995, left bottom through middle top",
+      "finding": "Frozen sole-paragraph inventory [1878,2403) contains the revocation and contingent plat-filing effective provision. Grouping them together is acceptable if the condition is retained; a separate unit is not mandatory. Neighbor EO7951 reservation/until-revoked language is excluded correctly.",
+      "proposed_action": "Exact-version source-boundary audit can confirm selected order boundaries and completeness of these two operative components, preserving the unresolved occurrence/date of plat filing.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 1878,
+          "char_end": 2403,
+          "purpose": "complete target command and effective condition",
+          "text_sha256": "c4ce99ea08458164c00f308a1b3623c4f02d41f904af4c08e8313c4546c5d2f1",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C8083",
+      "instrument_id": "EO:8083",
+      "scope": "current native dossier projection",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_8083.json",
+        "frozen_sha256": "f790132e6019769590986986f8d53392bacaa92d1a96473c0fe84058a7dcbe8b",
+        "inventory_kind": "current committed native dossier original/inventory projection",
+        "inventory_pin": {
+          "path": "jobs/claim-kit/output/dossiers/EO_8083.json",
+          "sha256": "beb37fb7e78e145a03ebce564a5869b319049d22804a24aa99ee7cb42e1111f0"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_8083.txt",
+        "text_sha256": "b48fce6aa710030e8d1debf73ec45d811d858b57eff0f868590f54d11f0b8c85",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/2142d741af3eee91f82959bf294682ea42b9b4cf53019c56edaed69bfa79db57.pdf",
+        "source_sha256": "2142d741af3eee91f82959bf294682ea42b9b4cf53019c56edaed69bfa79db57",
+        "pdf_pages": [
+          1
+        ]
+      },
+      "severity": "semantic partition defect; no missing command text established",
+      "source_location": "PDF p1 / printed1577, left and middle columns",
+      "finding": "Native #lead ends at \"subdivision\" [794,1632); #d starts at citation \"(d) of section3\" [1634,2692). This embedded citation is not an independent subsection boundary. The extension's proviso and second eligible class are split from its opening; #d combines the rest of extension, replacement rule, recommendation, footnote, supersession and effective date. All printed operative content is present across the union, but the current scopes do not represent independent complete commands. The recommendation and citation must be recognized as context, not separate ongoing duties.",
+      "proposed_action": "Propose inventory correction on this pinned native dossier: group full extension including proviso and both classes; separate replacement rule including removal-protection limitation; separate supersession and effective date or preserve explicit attachment. Keep recommendation/footnote as reviewed context. Re-review any dependent current claim only after checking its actual exact version and prior review prerequisites.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 794,
+          "char_end": 1790,
+          "purpose": "authority plus full retirement extension; trim authority optionally",
+          "text_sha256": "b228ccc2d371fa31c58863dee15df3cc57379d1cfe723075811f0be4cfcf0611",
+          "slice_verified": true
+        },
+        {
+          "char_start": 1791,
+          "char_end": 2362,
+          "purpose": "replacement-rule paragraph including both sentences",
+          "text_sha256": "242281822325fae75200419b3885c34b248b13564adad43ad19e573b93226d6b",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2458,
+          "char_end": 2640,
+          "purpose": "supersession paragraph",
+          "text_sha256": "0ce6e173faafa69c3d4b7e6deb66d1f46d1dd3ed80e89b6e66080a44d9a31494",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2641,
+          "char_end": 2692,
+          "purpose": "effective-date paragraph",
+          "text_sha256": "a837560bf3e982886ab830bcdf806f24c7f6dfc835535fe183012d4991275008",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C8123",
+      "instrument_id": "EO:8123",
+      "scope": "current native dossier projection",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_8123.json",
+        "frozen_sha256": "ac275e9b00e7297d0dccb75144864e8a8839f5af685f650c1439374fd105c70e",
+        "inventory_kind": "current committed native dossier original/inventory projection",
+        "inventory_pin": {
+          "path": "jobs/claim-kit/output/dossiers/EO_8123.json",
+          "sha256": "fa38898d1cdb1062e2d2d3d2e781eea44f1e0e41fbaa0b80ff5219561ffbacc8"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_8123.txt",
+        "text_sha256": "2ff16439575882e6a03aadc4a93040418765661e03f4fbf008fc7a8af624c6f8",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/66244c4c065274e85cb83aa3cb3ea366689c343c80b846bf04e719bb2553f126.pdf",
+        "source_sha256": "66244c4c065274e85cb83aa3cb3ea366689c343c80b846bf04e719bb2553f126",
+        "pdf_pages": [
+          4
+        ]
+      },
+      "severity": "no inventory omission established",
+      "source_location": "PDF p4 / printed1996, right column",
+      "finding": "Native whole inventory [5036,5945) contains reservation, valid-rights savings, legal land description, wildlife/entry prohibition with Secretary's regulatory exception, and refuge naming. One compound unit is acceptable only if all components and their differing effects are considered. Source-first examiner's \"within or controlled\" transcription is wrong; high-resolution source confirms \"owned or controlled\" as in frozen text.",
+      "proposed_action": "Exact-version source-boundary audit can confirm target selection and all three operative components. Do not create a correction hold merely because the inventory uses one unit.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 5036,
+          "char_end": 5945,
+          "purpose": "complete target body",
+          "text_sha256": "78e2fe72b382beb6aa8d592ebfd23b2b195705c0ea4b2304ac6c734b8ae68327",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C8220",
+      "instrument_id": "EO:8220",
+      "scope": "current segmentation lead only; no native dossier exists",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_8220.json",
+        "frozen_sha256": "c96ec035fcb74e861e671bb3ea7b03c12b016272d7bbb5b42675bdc213dc03dd",
+        "inventory_kind": "current excavate.segment lead on held FR text; no native dossier exists",
+        "inventory_pin": {
+          "code_path": "jobs/claim-kit/excavate.py",
+          "sha256": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_8220.txt",
+        "text_sha256": "caa922cc67dea341147084b841506b6b1f58eb326954d1da36eee101d32451da",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/f752216018af2ff66c13bb2073ba643f4216214657edc12d9af803069883feeb.pdf",
+        "source_sha256": "f752216018af2ff66c13bb2073ba643f4216214657edc12d9af803069883feeb",
+        "pdf_pages": [
+          1
+        ]
+      },
+      "severity": "neighbor-footnote contamination in segmentation lead",
+      "source_location": "PDF p1 / printed3565, left-to-middle columns",
+      "finding": "Both numbered revocation paragraphs and both land descriptions are present. However #1 embeds \"13 F.R.739 DI.\" [2122,2136), footnote1 belonging to neighboring EO8219's EO7848 citation. It is not EO8220 command text. No production claim defect is inferred because this case has no native dossier.",
+      "proposed_action": "Propose source-text/inventory cleanup in research: exclude neighboring footnote from operative quote while retaining the held raw OCR representation and source reference. A disjoint-span correction must preserve the sentence relationship across the removed footnote. No legal outcome follows.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 2005,
+          "char_end": 2122,
+          "purpose": "paragraph1 pre-footnote portion",
+          "text_sha256": "5f29e766eca9f78093a94f09e31e00b5cf0297830c4ea82770dfa3c4ceb18a26",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2137,
+          "char_end": 2352,
+          "purpose": "paragraph1 continuation and land description; offsets require exact slicing on application",
+          "text_sha256": "9ae59d890ba3150ae8ac858aa315f4d816292a90367472b480f129e586b10bec",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2353,
+          "char_end": 2669,
+          "purpose": "paragraph2",
+          "text_sha256": "7637b00601bcbf8934098a5522d49ac5af1043acddf7d55edc14fb634bc118ce",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C8729",
+      "instrument_id": "EO:8729",
+      "scope": "current segmentation lead only; no native dossier exists",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_8729.json",
+        "frozen_sha256": "db93dea3b5bf08f85e092fdf9d5bc52dfe6362730f6b17c1d19726e3156c6e5f",
+        "inventory_kind": "current excavate.segment lead on held FR text; no native dossier exists",
+        "inventory_pin": {
+          "code_path": "jobs/claim-kit/excavate.py",
+          "sha256": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_8729.txt",
+        "text_sha256": "5dbc75a379921ed5a11cd89a2bdcbb94e54e86737ee7eb6e0f2071e2f2314cab",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/90661dd2cbb3cbc08346649b816bf5477f7d2ed2a1a88ecb6cbe652dfc3f2173.pdf",
+        "source_sha256": "90661dd2cbb3cbc08346649b816bf5477f7d2ed2a1a88ecb6cbe652dfc3f2173",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      },
+      "severity": "interleaved page matter in segmentation lead",
+      "source_location": "PDF pp1–2 / printed1791–1792, middle-column cross-page correction",
+      "finding": "The sole correction command to EO8680/8682/8683 is textually present, but #whole [3800,7994) includes heading and an extensive contents/masthead/publication-information block [4111,7666) between \"oc-\" and \"curring\". Source footnotes1/2 cite 6FR1014/1015; their omission from operative inventory is not a missed command. No native dossier exists.",
+      "proposed_action": "Propose exact-source audit and corrected representation/disjoint command quote: join the correction sentence across its true middle-column page continuation, retain target citations as context, exclude contents and masthead. Do not change canonical claim/status from this lead.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 3800,
+          "char_end": 4111,
+          "purpose": "heading and first correction-sentence portion",
+          "text_sha256": "6eaf0fb40d79b3a48ef9c854636b1615215bf393974121afded1d03c944299e5",
+          "slice_verified": true
+        },
+        {
+          "char_start": 7666,
+          "char_end": 7994,
+          "purpose": "correction continuation to paragraph end",
+          "text_sha256": "01727fc9d1a8078270603860fc51032be9c23620c3ea586b91d23f0cefc07567",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C8930",
+      "instrument_id": "EO:8930",
+      "scope": "current segmentation lead only; no native dossier exists",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_8930.json",
+        "frozen_sha256": "ffe685766af47f5ccfbb1d1c87afabfd47ece805a0f26b2c929ce102fb9f4817",
+        "inventory_kind": "current excavate.segment lead on held FR text; no native dossier exists",
+        "inventory_pin": {
+          "code_path": "jobs/claim-kit/excavate.py",
+          "sha256": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_8930.txt",
+        "text_sha256": "6c5e5fb41970728bc6319ab3f96c339cbdb7195ffdbbc605360e54818fc38084",
+        "raw_pdf": "jobs/astra-source-retention/output/pdf/adeff4bc367ff6c17eadb97c7eff8127997f1c7bebea7b387f674c82aa2e9b54.pdf",
+        "source_sha256": "adeff4bc367ff6c17eadb97c7eff8127997f1c7bebea7b387f674c82aa2e9b54",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      },
+      "severity": "recital misclassification, wrong section parents and interleaved page matter in segmentation lead",
+      "source_location": "PDF pp1–2 / printed5613–5614, left/middle columns",
+      "finding": "No printed operative EO command is absent from the union of frozen inventory spans. But #1/#2/#3 select the quoted convention ArticleX within WHEREAS as if they were ordinary numbered commands. #3 also includes later recitals/enacting formula. #sec1 incorporates section2 heading; section2(a)–(g) are incorrectly named #sec1-a–g. #sec3 includes page contents/masthead and section4 heading; section4(a)–(f) are incorrectly named #sec3-a–f. #sec3-f fuses optional section4 representation, section5 chair/meetings/Board-approved committees/affiliates and section6 reimbursement. This risks conflating quoted treaty context and EO duties and omitting independent legal analysis even though character coverage is broad. No native dossier exists.",
+      "proposed_action": "Propose corrected segmentation/inventory for research: classify ArticleX as embedded convention recital context without declaring it legally irrelevant; expose true sections1–6, complete seven section2 duties, section3 service-use qualifications, mandatory/optional section4 composition, section5 approval limits and section6 reimbursement permission. Resolve treaty independent force separately if a lifecycle claim depends on it. Preserve source text; do not silently discard convention material.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 1279,
+          "char_end": 2424,
+          "purpose": "embedded convention paragraphs and subsequent recital/enacting context; not ordinary EO numbered commands",
+          "text_sha256": "bb9ac3a85a19c5d6b0e65301095b826bd5399de3e9c6aaec5b3c3d1163a1276e",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2425,
+          "char_end": 2643,
+          "purpose": "true section1",
+          "text_sha256": "a6d35cb3937a01120790fe2fc340cc826310534e48d5219a5991b1d605c951f0",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2644,
+          "char_end": 4130,
+          "purpose": "true section2 and seven duties",
+          "text_sha256": "50f82b1586ca647d56fc68d819a098494387e2079c767defab6e7c23c06b0834",
+          "slice_verified": true
+        },
+        {
+          "char_start": 4131,
+          "char_end": 4458,
+          "purpose": "section3 first-page content",
+          "text_sha256": "d899a03a04619e17f3fcc51b3e3810d5032d6c764795447e8be19606911f9854",
+          "slice_verified": true
+        },
+        {
+          "char_start": 7835,
+          "char_end": 7972,
+          "purpose": "section3 second-page continuation",
+          "text_sha256": "1a9e31170278abc10a4e112fe5b4adb42cb0b4550288afdc920aca02112a7a90",
+          "slice_verified": true
+        },
+        {
+          "char_start": 7973,
+          "char_end": 8868,
+          "purpose": "true section4 including composition and optional representatives",
+          "text_sha256": "8fdacf3a47d57e83d18cccf1fb2af7e6f5f50093f76933ea9ce7910535dbbe37",
+          "slice_verified": true
+        },
+        {
+          "char_start": 8869,
+          "char_end": 9244,
+          "purpose": "true section5",
+          "text_sha256": "f118c5b5b06b479a9ae3f112f3b4dbd1d904e99a7daa60954a5f3b2ed47f120e",
+          "slice_verified": true
+        },
+        {
+          "char_start": 9245,
+          "char_end": 9404,
+          "purpose": "true section6",
+          "text_sha256": "8c18b61ef428afd9ee630ba2210291127a18bad1b721bd9f1f71b91d2bff228b",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    },
+    {
+      "id": "C13613",
+      "instrument_id": "EO:13613",
+      "scope": "current native dossier projection",
+      "version": {
+        "frozen_dossier": "research/progress/r2-preflight-repair/frozen/EO_13613.json",
+        "frozen_sha256": "2a2c08bed5b566673547add3cfdbe7c4f0f25ffbedf7e62d041547c2f98b6ea2",
+        "inventory_kind": "current committed native dossier original/inventory projection",
+        "inventory_pin": {
+          "path": "jobs/claim-kit/output/dossiers/EO_13613.json",
+          "sha256": "5964e45a15be5c4b4abfe0065877719e5f1aa7ceaee6c34d71cb6f31c1b6ea38"
+        },
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13613.txt",
+        "text_sha256": "370f9a3e1ceb2ae2c808140b384bb14a39aae0a9046b79ef8412c8ebfef80654",
+        "raw_pdf": "research/stage21/original_sources/EO_13613.pdf",
+        "source_sha256": "1990abda179c7e9148632f49dc3e0830a23307ab7c6eb44e6f0578d82156ba38",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      },
+      "severity": "authority-only operative lead and page-furniture contamination; no omitted source command established",
+      "source_location": "PDF pp1–2 / printed31155–31156",
+      "finding": "Native #lead [718,957) contains only authority/enacting formula; treating it as a separately dischargeable command would be unnecessary. Native #sec3 [2658,3244) contains the full two-target revocation then production furniture beginning [2968,3244). All true sections1–4, nine ranked offices, acting/eligibility exceptions and presidential discretion are present. Independent scope units require relational reading: offices inherit section1 statutory/section2 limits.",
+      "proposed_action": "Propose exact-version inventory correction to classify authority formula as context and trim #sec3 to revocation [2658,2967). Retain section4 judicial-review limitation and full section2(a)–(c). Do not infer status or rewrite any dependent claim without its exact-version review prerequisites.",
+      "suggested_held_text_spans": [
+        {
+          "char_start": 718,
+          "char_end": 957,
+          "purpose": "authority context only",
+          "text_sha256": "2bc5cffbd530e0b4e7ee6f43b4ce621290011daff3664d7e6068f9332b31a4b6",
+          "slice_verified": true
+        },
+        {
+          "char_start": 2658,
+          "char_end": 2967,
+          "purpose": "revocation without page furniture",
+          "text_sha256": "eb89c1e00ed7183cfaa693d5bb867fc31241a94c2fe2de11a363225515e1a50e",
+          "slice_verified": true
+        }
+      ],
+      "canonical_action": "none; proposal only"
+    }
+  ],
+  "heldout_case_proposals": {
+    "actions": [
+      "A12978-1",
+      "A12978-2",
+      "A12978-3",
+      "A12978-4"
+    ],
+    "canonical_changes": false,
+    "claim_review": "Actual prior claim and required independent/human/different-family reviews were not examined; no canonical status, claim or hold adopted. Native metadata acceptable_as_original/grade values are not independently authenticated by this diagnostic.",
+    "legal_limits": "No statute/current predicate, later sanctions/designation or emergency continuation/termination examined. No legal/status adoption."
+  },
+  "heldout_version": {
+    "instrument_id": "EO:12978",
+    "at": "2026-10-31T04:25:30.853450+00:00",
+    "selection": "Held-out attachment validation extension after repair; core seven-case freeze unchanged; no tuning permitted from extension.",
+    "raw_pdf": "research/stage21/original_sources/EO_12978.pdf",
+    "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+    "pdf_pages": [
+      1,
+      2
+    ],
+    "text_path": "jobs/fr-originals/data/full_run/texts/EO_12978.txt",
+    "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+    "native_dossier_path": "jobs/claim-kit/output/dossiers/EO_12978.json",
+    "native_dossier_sha256": "f8273bb8ff6604083fdb7b7e5cf42af436b113ee9fb7a1b2d01ba1324a63b9b6",
+    "frozen_dossier": "research/progress/r2-preflight-repair/attachment-frozen/EO_12978.json",
+    "frozen_sha256": "61cb17e9dd5d47467ff9247fb346d424ba4a49cd5421dc90e697ed04bd815e50",
+    "preflight_sha256": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c"
+  },
+  "limits": "Native dossier projections and segmentation leads were compared, not all effective canonical claims/reviews. No holds, automatic invalidation, promotion or status inference."
+}

@@ -18,7 +18,7 @@ class EvidencePreflightTests(unittest.TestCase):
                   'evidence': {}, 'clauses': [], 'actor_provisions': []}
 
     def source(self, name, text, raw_sha='a' * 64):
-        (self.repo / name).write_text(text, encoding='utf-8')
+        (self.repo / name).write_bytes(text.encode('utf-8'))
         return {'text_path': name, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),
                 'sha256': raw_sha, 'url': 'https://example.gov/' + name}
 
@@ -127,6 +127,115 @@ class EvidencePreflightTests(unittest.TestCase):
         self.assertIn('conditional_report_sunset', self.kinds())
         self.original('The Commission shall report within thirty days.')
         self.assertNotIn('conditional_report_sunset', self.kinds())
+
+    def test_discovery_reproductions_numbered_identity_and_unnumbered_command(self):
+        self.original('EXECUTIVE ORDER 8119\nSection 1. Florence Lake withdrawn.\n')
+        self.d['instrument_id'] = 'EO:8123'
+        task = next(t for t in preflight.inspect(self.d, self.repo)['tasks'] if t['kind'] == 'original_identity')
+        self.assertEqual(task['observed_identity'], 'EO:8119')
+        self.assertEqual(task['headings'][0]['char_start'], 0)
+        text = ('Instrument: EO:2\nExecutive Order 2\nSection 1. Board established.\n'
+                'The Secretary shall separately issue instructions.\n')
+        self.d['instrument_id'] = 'EO:2'
+        self.original(text)
+        a, b = text.index('Section 1.'), text.index('The Secretary')
+        self.d['clauses'] = [{'char_start': a, 'char_end': b}]
+        before = deepcopy(self.d)
+        task = next(t for t in preflight.inspect(self.d, self.repo)['tasks'] if t['kind'] == 'inventory_command_coverage')
+        gap = task['uncovered_regions'][0]
+        self.assertEqual(text[gap['char_start']:gap['char_end']], gap['text'])
+        self.assertEqual(gap['text'], 'The Secretary shall separately issue instructions.')
+        self.assertEqual(gap['line'], 4)
+        self.assertEqual(task['availability'], 'possible_omitted_command')
+        self.assertEqual(self.d, before)
+
+    def test_heading_references_amendments_and_multi_order_sources_are_distinct(self):
+        for heading in ('EXECUTIVE ORDER No. 8119', 'E X E C U T I V E  O R D E R 8 1 1 9',
+                        'EXECUTIVE ORDER\n8119', 'Executive Order 8119-A—Title'):
+            self.original(heading+'\nSection 1. I hereby establish a board.\n')
+            self.assertIn('original_identity', self.kinds(), heading)
+        for reference in ('Executive Order 3 is hereby amended.',
+                          'Executive Order No. 3 of January 1, 2000.',
+                          'The Secretary shall implement Executive Order 3.'):
+            self.original('Executive Order 2\n'+reference+'\nTHE WHITE HOUSE\n')
+            self.assertNotIn('original_identity', self.kinds(), reference)
+        self.original('Executive Order 1\nI hereby establish a board.\nTHE WHITE HOUSE\n'
+                      'Executive Order 3\nI hereby revoke a board.\nTHE WHITE HOUSE\n')
+        self.assertIn('original_boundary', self.kinds())
+        self.assertNotIn('original_identity', self.kinds())
+        self.original('Executive Order 1\nI hereby establish a board.\nTHE WHITE HOUSE\n'
+                      'Executive Order 2\nI hereby revoke a board.\nTHE WHITE HOUSE\n'
+                      'Executive Order 3\nOther text.\nTHE WHITE HOUSE\n')
+        self.assertNotIn('original_identity', self.kinds())
+
+    def test_partial_and_disjoint_ranges_cannot_hide_a_command_tail(self):
+        text = ('Executive Order 2\nSection 1. Board established.\n'
+                'The Secretary shall submit annual reports.\nTHE WHITE HOUSE\n')
+        item = self.original(text)
+        a = text.index('Section 1.')
+        tail = text.index('submit')
+        end = text.index('THE WHITE HOUSE')
+        self.d['clauses'] = [{'char_start': a, 'char_end': tail},
+                             {'char_start': tail, 'char_end': end}]
+        self.assertNotIn('inventory_command_coverage', self.kinds())
+        self.d['clauses'].pop()
+        self.assertIn('inventory_command_coverage', self.kinds())
+        self.d['clauses'] = [dict(item, source=dict(item['source'], text_path='other.txt'))]
+        self.assertIn('inventory_command_coverage', self.kinds())
+        self.d['clauses'] = [dict(item, source=dict(item['source'], sha256='b' * 64))]
+        self.assertIn('inventory_command_coverage', self.kinds())
+        self.d['clauses'] = [{'char_start': a, 'char_end': end, 'text': 'wrong quote'}]
+        self.assertIn('inventory_command_coverage', self.kinds())
+        self.d['clauses'] = [{'char_start': False, 'char_end': len(text)}]
+        self.assertIn('inventory_command_coverage', self.kinds())
+
+    def test_recitals_formulas_and_titles_do_not_warn_as_omitted_commands(self):
+        text = ('Executive Order 2\nWHEREAS the statute provides that the board shall report;\n\n'
+                'By the authority vested in me, it is hereby ordered as follows:\n\n'
+                'Section 1. The Secretary shall submit a report.\nTHE WHITE HOUSE\n')
+        self.original(text)
+        a, b = text.index('Section 1.'), text.index('THE WHITE HOUSE')
+        self.d['clauses'] = [{'char_start': a, 'char_end': b}]
+        self.assertNotIn('inventory_command_coverage', self.kinds())
+        self.original('Executive Order 2\nI hereby find that work is complete.\nTHE WHITE HOUSE\n')
+        self.d['clauses'] = []
+        self.assertNotIn('inventory_command_coverage', self.kinds())
+
+    def test_machine_recital_label_cannot_prove_absence_of_a_duty(self):
+        self.original('Executive Order 2\nBy virtue of the authority vested in me, '
+                      'the Secretary shall submit a report.\nTHE WHITE HOUSE\n')
+        self.d['clauses'] = []
+        task = next(t for t in preflight.inspect(self.d, self.repo)['tasks'] if t['kind'] == 'inventory_command_coverage')
+        self.assertEqual(task['uncovered_regions'][0]['classification'], 'machine_recital_with_command_signal')
+
+    def test_post_signature_schedule_and_neighbor_commands_are_not_body_gaps(self):
+        text = ('Executive Order 2\nSection 1. I hereby establish a board.\nTHE WHITE HOUSE\n'
+                'January 1, 2000\nSCHEDULE\nThe Secretary shall preserve these forms.\n'
+                'Executive Order 3\nThe Secretary shall create another board.\nTHE WHITE HOUSE\n')
+        self.original(text)
+        a, b = text.index('Section 1.'), text.index('THE WHITE HOUSE')
+        self.d['clauses'] = [{'char_start': a, 'char_end': b}]
+        self.assertNotIn('inventory_command_coverage', self.kinds())
+
+    def test_intervening_numbered_document_does_not_license_legacy_command_scan(self):
+        self.original('EXECUTIVE ORDER\nFirst document.\nEXECUTIVE ORDER 9000\n'
+                      'The Secretary shall establish a board.\nTHE WHITE HOUSE\n'
+                      'January 1, 2000\n[No. 2]\n[F. R. Doc. target]\n')
+        self.d['clauses'] = []
+        self.assertIn('original_boundary', self.kinds())
+        self.assertNotIn('inventory_command_coverage', self.kinds())
+
+    def test_quoted_amendment_payload_is_a_qualified_lead_across_paragraph_layouts(self):
+        for separator in ('\n', '\n\n'):
+            text = ('Executive Order 2\nSection 1. Executive Order 1 is amended as follows:'
+                    +separator+'"The Secretary shall publish a report."\nTHE WHITE HOUSE\n')
+            self.original(text)
+            a, b = text.index('Section 1.'), text.index('"The Secretary')
+            self.d['clauses'] = [{'char_start':a,'char_end':b}]
+            task = next(t for t in preflight.inspect(self.d,self.repo)['tasks'] if t['kind']=='inventory_command_coverage')
+            gap = task['uncovered_regions'][0]
+            self.assertEqual(gap['classification'],'quoted_command_candidate')
+            self.assertEqual(text[gap['char_start']:gap['char_end']],gap['text'])
 
 
 if __name__ == '__main__':

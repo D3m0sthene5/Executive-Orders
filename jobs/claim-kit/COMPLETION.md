@@ -257,3 +257,9 @@ genuine proposed claims (scratch exports, review subsets) inside the packet fold
 the packet's own folder (`collect(..., exclude=folder)`); the same-agent supplement-parent exclusion applies to
 the Valla context alone. A copy elsewhere under `research/` is a new version of a member's claim, and it correctly
 invalidates the packet with `changed prior research`.
+
+## Optional completion-to-diagnosis handoff
+
+Use explicit `--diagnostic-history`, `--diagnostic-base-commit` and `--diagnostic-write` options on `kit.py complete` when retained history is available. Repeat `--diagnostic-research-attempt` for unfinished cohort members; optionally supply existing effort/checkpoint/question records. See [NEYMAN's invocation contract](../neyman/AFTER_COMPLETION.md#explicit-invocation-from-ordinary-completion).
+
+Scientific receipts finish first. Diagnostic success/refusal appears in a separate `DIAGNOSTIC.json` and CLI object; diagnostic errors cannot invalidate a legitimate scientific completion or alter its exit code. Missing labor/history coverage remains unknown. Diagnosis neither launches next actions nor adopts statuses or claims.

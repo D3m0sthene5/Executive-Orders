@@ -2,9 +2,10 @@
 import csv
 from copy import deepcopy
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import prior_research as prior
 
@@ -67,7 +68,7 @@ class StatusContinuityTests(unittest.TestCase):
         self.dossiers = {self.iid: {'instrument_id': self.iid, 'clauses': [], 'fingerprint': 'd'*64}}
 
     def write_text(self, path, value):
-        p = self.repo/path;p.parent.mkdir(parents=True, exist_ok=True);p.write_text(value)
+        p = self.repo/path;p.parent.mkdir(parents=True, exist_ok=True);p.write_bytes(value.encode('utf-8'))
 
     def write(self, path, value):
         self.write_text(path, json.dumps(value)+'\n')
@@ -92,6 +93,28 @@ class StatusContinuityTests(unittest.TestCase):
         self.assertFalse(item['automatic_approval'])
         self.assertTrue(all(r['full_lifecycle_approved'] is False for r in item['reviews']))
         self.assertEqual(context['automatic_approvals'], 0)
+
+    def test_windows_paths_bind_posix_manifest_and_reject_missing_evidence_hash(self):
+        # Emulate the native Windows parent path while retaining real filesystem
+        # access to this fixture. The review manifest keeps repository POSIX paths.
+        def native_path(value, *args, **kwargs):
+            if value == self.decision_path and not args and not kwargs:
+                return PureWindowsPath(value)
+            return Path(value, *args, **kwargs)
+        with patch.object(prior, 'Path', side_effect=native_path):
+            item = self.item()
+            self.assertEqual(item['evidence']['canonical_binding'], 'exact')
+            self.assertEqual([r['version_binding'] for r in item['reviews']], ['exact', 'exact'])
+            self.assertEqual(item['adoption']['state'], 'recorded_provisional_status_for_review')
+            cross = deepcopy(self.cross)
+            cross['verdicts'][0]['input_files'][1].pop('sha256')
+            self.write(self.cross_path, cross)
+            item = self.item()
+            review = next(r for r in item['reviews'] if r['path'] == self.cross_path)
+            self.assertEqual(review['version_binding'], 'stale_or_mismatched')
+            self.assertEqual(review['dependency_state'], 'reconciliation_required')
+            self.assertTrue(any(p['state'] == 'missing_or_invalid_review_input_sha256'
+                                for p in item['reconciliation_tasks']))
 
     def test_changed_and_missing_source_are_explicit_reconciliation(self):
         before = self.collect()

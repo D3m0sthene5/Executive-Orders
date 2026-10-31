@@ -12,7 +12,8 @@ import re
 from production_receipts import Reader, import_production, require, tally
 
 
-def build(repo, history, finals, base_commit, dest, research_attempts=(), effort_receipts=()):
+def build(repo, history, finals, base_commit, dest, research_attempts=(), effort_receipts=(),
+          current=None, checkpoints=(), questions=()):
     reader = Reader(repo)
     require(re.fullmatch(r'[0-9a-f]{40}', base_commit), 'exact production base commit required')
     dest = reader.path(dest)
@@ -22,12 +23,17 @@ def build(repo, history, finals, base_commit, dest, research_attempts=(), effort
     finals = list(dict.fromkeys(finals))
     require(len(finals) <= 20 and len(research_attempts) <= 100 and len(effort_receipts) <= 100,
             'bounded completion/attempt/effort selection required')
+    require(len(checkpoints) <= 100 and len(questions) <= 100, 'bounded diagnostic context required')
     history_ref = reader.ref(history)
     index = reader.value(history_ref)
     invocations = index.get('invocations')
     require(isinstance(invocations, list) and 1 <= len(invocations) <= 200,
             'explicit nonempty completion history required (at most 200)')
     refs = [{'path': r['path'], 'sha256': r['sha256']} for r in invocations]
+    if current is not None:
+        current = reader.path(current).relative_to(reader.root).as_posix()
+        refs.append(reader.ref(current + '/TALLY.json'))
+    require(len(refs) <= 200, 'at most 200 supplied/current completion receipts required')
     attempts = [tally(reader, ref) for ref in refs]
     history_hashes = {a['receipt']['sha256'] for a in attempts}
     observed = {r['instrument_id'] for a in attempts for r in a['outcomes']}
@@ -54,10 +60,19 @@ def build(repo, history, finals, base_commit, dest, research_attempts=(), effort
     require(not missing, 'unfinished members need explicit research-attempt receipts; refusing to drop: ' + ', '.join(missing))
     require(selection, 'no selected production members')
     effort_refs = [reader.ref(path) for path in effort_receipts]
+    checkpoint_refs = [reader.ref(path) for path in checkpoints]
+    question_refs = [reader.ref(path) for path in questions]
     # Preserve the input versions read while deriving the selection.
     for path, digest in list(reader.pins.items()):
         reader.raw({'path': path, 'sha256': digest})
     dest.mkdir(parents=True, exist_ok=False)
+    supplied_history = history_ref
+    if current is not None:
+        # The ordinary invocation's receipt only exists after completion. Keep
+        # the supplied index intact, then append that exact receipt explicitly.
+        combined = dest / 'COMPLETION_HISTORY.json'
+        combined.write_text(json.dumps({'invocations': refs, 'supplied_history': history_ref}, indent=2) + '\n')
+        history_ref = reader.ref(combined.relative_to(reader.root).as_posix())
     selected = dest / 'SELECTION.json'
     selected.write_text(json.dumps([selection[i] for i in sorted(selection)], indent=2) + '\n', encoding='utf-8')
     manifest = {'schema': 'neyman.production-import/1', 'base_commit': base_commit,
@@ -65,6 +80,8 @@ def build(repo, history, finals, base_commit, dest, research_attempts=(), effort
                 'selection': reader.ref(selected.relative_to(reader.root).as_posix()),
                 'completion_index': history_ref, 'research_attempts': research_refs,
                 'effort_receipts': effort_refs,
+                'checkpoints': checkpoint_refs, 'questions': question_refs,
+                'supplied_history': supplied_history,
                 'history_coverage': 'Only explicitly supplied invocations; missing sessions are not zero-cost or absent.'}
     path = dest / 'IMPORT.json'
     path.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
@@ -90,11 +107,15 @@ def main(argv=None):
     p.add_argument('--final', action='append', default=[], help='final completion folder; repeat for multiple batches')
     p.add_argument('--research-attempt', action='append', default=[])
     p.add_argument('--effort', action='append', default=[])
+    p.add_argument('--current', help='explicit just-finished completion folder to append to supplied history')
+    p.add_argument('--checkpoint', action='append', default=[], help='existing source-blocked checkpoint')
+    p.add_argument('--question', action='append', default=[], help='existing discriminating-question record')
     p.add_argument('--base-commit', required=True)
     p.add_argument('--write', required=True, help='new research/neyman/production-diagnostics run folder')
     a = p.parse_args(argv)
     try:
-        path, _ = build(a.repo, a.history, a.final, a.base_commit, a.write, a.research_attempt, a.effort)
+        path, _ = build(a.repo, a.history, a.final, a.base_commit, a.write, a.research_attempt, a.effort,
+                        a.current, a.checkpoint, a.question)
         # Existing diagnostic implementation owns all interpretation, report and cost rules.
         import diagnose
         repo = Path(a.repo).resolve()

@@ -1,0 +1,81 @@
+# One integration invocation of the existing runner. No new scheduler or gates.
+name: R1-R4 coordinated production verification
+on:
+  workflow_run:
+    workflows: [Run jobs]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: write
+  pull-requests: read
+env:
+  GIT_LFS_SKIP_SMUDGE: '1'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Match the authorized integration merge only
+        id: guard
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMPLETED_SOURCE: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          merged=$(gh pr view 117 --repo "$GITHUB_REPOSITORY" --json mergedAt,mergeCommit --jq 'if .mergedAt then .mergeCommit.oid else "unmerged" end')
+          if [ "$merged" = "$COMPLETED_SOURCE" ]; then
+            echo 'enabled=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Different run; no integration work selected.'
+          fi
+      - uses: actions/checkout@v4
+        if: steps.guard.outputs.enabled == 'true'
+        with:
+          ref: main
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+      - uses: actions/setup-python@v5
+        if: steps.guard.outputs.enabled == 'true'
+        with:
+          python-version: '3.12'
+      - name: Order the bounded existing consumers
+        if: steps.guard.outputs.enabled == 'true'
+        run: |
+          python - <<'PY'
+          import os, sys
+          sys.path.insert(0, '.github/scripts')
+          import pick_jobs
+          names = ['claim-kit', 'claim-checker', 'readiness-tracker', 'valla',
+                   'early-ranger-workbench', 'census-candidates', 'neyman', 'case-bundles']
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              stream.write('JOBS=' + ' '.join(pick_jobs.ordered(names)) + '\n')
+          PY
+      - name: Materialize actual inputs and prior generations
+        if: steps.guard.outputs.enabled == 'true'
+        run: python .github/scripts/materialize_job_inputs.py
+      - name: Run existing native consumers
+        if: steps.guard.outputs.enabled == 'true'
+        env:
+          TRIGGER: R1-R4 authorized coordinated verification
+        run: bash .github/scripts/run_jobs.sh
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outputs.enabled == 'true'
+        with:
+          name: r1-r4-production-${{ github.run_id }}
+          path: oversized/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Publish through existing transactional freshness guard
+        if: always() && steps.guard.outputs.enabled == 'true'
+        env:
+          EVENT: workflow_run
+          BRANCH: main
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash .github/scripts/commit_results.sh

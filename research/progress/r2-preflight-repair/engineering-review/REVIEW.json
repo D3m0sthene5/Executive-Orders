@@ -1,0 +1,1700 @@
+{
+  "schema": "r2-independent-engineering-review/v1",
+  "reviewer": "/root/engineering_review",
+  "scope": "Independent engineering review of R2 evidence_preflight.py and adjacent tests; other implementation read-only.",
+  "base_commit": "88cef0253ed735b2a6e612770f25f9148641ce93",
+  "remote_main_verified": "88cef0253ed735b2a6e612770f25f9148641ce93",
+  "reviewed_at": "2026-10-31T04:24:47.909687+00:00",
+  "reviewed_sha256": {
+    "jobs/claim-kit/evidence_preflight.py": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c",
+    "jobs/claim-kit/test_evidence_preflight.py": "6cb1aa2370f2d8ad66f1076592711dedf62e83cc67b524e9bfc2a8b481f5f606",
+    "jobs/claim-kit/test_evidence_preflight_real.py": "d23efc404cf66c50f283bd96796f9d431c2393b9c75bda8ee842aa9796307af7",
+    "jobs/claim-kit/excavate.py": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d",
+    "jobs/clause-drafts/segment.py": "0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573",
+    "research/progress/r2-preflight-repair/engineering-review/probes.py": "ed10727af342ef0ac6624b9562457ade40df5dab1cce74f0bde647844b1fc132",
+    "research/progress/r2-preflight-repair/FREEZE.json": "4499430c9700d92aa79b61cd202156c099cbb3937f42443432b8fddd2e59ad00",
+    "research/progress/r2-preflight-repair/COMPARISON.json": "da8f890f32b23b27b3839239f4df04fec822265921b44c5040a9cd1edb255909",
+    "research/progress/r2-preflight-repair/FREEZE_CORRECTION.json": "a8091ea04b956297ff6fab82c631f6daa7bf83e3ef4c4fc52597b691eecd43b7",
+    "research/progress/r2-preflight-repair/PRE_CORRECTION_FREEZE.json": "9c155b8eaddd278a5f8431057363584cb7e99715f1e3795fd447bb6d14507c26"
+  },
+  "verdict": "upheld_for_bounded_diagnostic_use_with_integration_handoff",
+  "unresolved_owned_implementation_defects": [],
+  "assessment": [
+    "New identity, boundary and command-gap diagnostics remain source-review leads. They neither authenticate a source nor approve an inventory or infer a legal outcome.",
+    "Raw Unicode character offsets, exact source slices, text/source hashes, page and line receipts are preserved. Dossier mutation was not observed in focused tests or any of 38 independent probes.",
+    "Malformed numeric ranges, incorrect quotes and contradictory text/source hash declarations cannot credit command coverage in final reviewed code. Complete disjoint/overlapping coverage suppresses the new command warning.",
+    "A target in a multi-order source is bounded before neighboring commands; ambiguous bare headings retain boundary review. Recitals, formulas and post-signature annexes do not acquire semantic completeness approval.",
+    "No new external package dependency is introduced. Existing clause-drafts locator code is newly exercised broadly, and consumer dependency receipts need the explicit integration follow-up below."
+  ],
+  "resolved_review_findings": [
+    {
+      "id": "ENG-R2-1",
+      "priority": "P2",
+      "initial_finding": "Contradictory clause.source.sha256 with otherwise identical text path/hash was credited toward complete coverage.",
+      "resolution": "Final _inventory_ranges rejects explicitly contradictory raw hashes, including sha256/local_file_sha256 fallback. Added synthetic regression and independent conflicting_sha256 probe both produce a review lead."
+    },
+    {
+      "id": "ENG-R2-2",
+      "priority": "P2",
+      "initial_finding": "Quoted amendment payload omitted from the inventory was missed after a blank paragraph boundary while the no-blank form warned.",
+      "resolution": "Final quotation handling emits a qualified quoted_command_candidate lead for both layouts. New regression and independent separate_paragraph_quoted_amendment probe pass."
+    },
+    {
+      "id": "ENG-R2-3",
+      "priority": "P3",
+      "initial_finding": "Real-source omission regression could silently exercise zero controls when COMPARISON results were empty.",
+      "resolution": "Final test asserts exactly three controls with the expected instrument-ID set. Final independent 22-test run passes after this assertion and source hydration newline correction."
+    }
+  ],
+  "required_integration_handoff": [
+    {
+      "id": "ENG-R2-I1",
+      "owner": "root/integrator",
+      "priority": "P2",
+      "paths": [
+        "jobs/claim-kit/batch.py:472",
+        "jobs/claim-kit/batch.py:533",
+        "jobs/claim-kit/completion.py:390"
+      ],
+      "finding": "Packet/apply/completion preflight_dependency_sha256 equality currently names only excavate.py, while the new diagnostics execute jobs/clause-drafts/segment.py for every original.",
+      "qualification": "This expands a pre-existing dependency closure gap: _extent already used that locator for trailing-number documents. Existing inputs.txt does include segment.py for runner materialization, so missing runtime materialization is not asserted.",
+      "action": "Pin the exact clause-drafts locator dependency in consumer preparation/apply/completion checks and test changed-dependency refusal before claiming complete integration. Those consumers were outside this reviewer write scope."
+    }
+  ],
+  "remaining_diagnostic_limits": [
+    "This is a finite lexical screen, not a semantic clause inventory. Must/will wording, title/all-caps heuristics and other OCR failures can escape command coverage.",
+    "WHEREAS recitals and post-signature annexes remain outside body-gap detection. Their absence from tasks supplies no legal or inventory approval.",
+    "Capitalized reference lines and period-free dated order references may look like generic headings and conservatively trigger boundary review. Duplicate target headings may select the first located document. These are bounded parser ambiguities, not authoritative wrong-order determinations.",
+    "Quoted material may now generate review leads even when it is merely a statute/form quotation; continuation sentences are not a complete quotation-state classifier."
+  ],
+  "validation": [
+    {
+      "command": "python3 -B -m unittest discover -s jobs/claim-kit -p 'test_evidence_preflight*.py' -v",
+      "tests": 22,
+      "passed": 22,
+      "skipped": 0,
+      "seconds_reported": 0.077
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/claim-kit -p test_excavate.py",
+      "tests": 29,
+      "passed": 26,
+      "skipped": 3,
+      "seconds_reported": 0.024,
+      "skip_reason": "Existing native FR source texts not hydrated for three tests."
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/claim-kit -p test_original_identity.py",
+      "tests": 7,
+      "passed": 7,
+      "skipped": 0,
+      "seconds_reported": 0.052
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/claim-kit -p test_batch.py",
+      "tests": 17,
+      "passed": 17,
+      "skipped": 0,
+      "seconds_reported": 0.526
+    },
+    {
+      "command": "python3 -B research/progress/r2-preflight-repair/engineering-review/probes.py",
+      "cases": 38,
+      "invariant_failures": 0,
+      "asserted_invariants": [
+        "no dossier mutation",
+        "every emitted gap is an exact nonempty raw-source span"
+      ],
+      "final_probe_seconds": 0.03855649899924174
+    }
+  ],
+  "initial_environment_failures": [
+    "Before parent hydration, excavate contract test lacked four example JSONL files, original-identity setup lacked stage19 claim_gate.py, and all 17 batch tests stopped at that missing fixture. These were sparse-checkout absences, not source deletions or demonstrated regressions.",
+    "Parent hydrated missing fixtures and final independent reruns above pass. No reviewer hydration or implementation/canonical edit was performed."
+  ],
+  "probe_results": {
+    "cases": [
+      {
+        "name": "omitted_unnumbered",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "complete_disjoint",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "overlapping_complete",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "malformed_start_None",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 18
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "malformed_start_{}",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 18
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "malformed_start_'bad'",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 18
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "malformed_start_True",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 18
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "malformed_start_-3",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "malformed_start_3.5",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 18
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "conflicting_text_path",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "conflicting_text_sha256",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "conflicting_sha256",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "wrong_quote",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "d3ba930bb0797d40a2d22c3d4441aa506ad14887a9e2d78323b3830c7e514676",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 122,
+              "body_start": 18,
+              "body_end": 107,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 29,
+                "char_end": 61,
+                "text": "The Board is hereby established.",
+                "context_char_start": 29,
+                "context_char_end": 61,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 63,
+                "char_end": 106,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 63,
+                "context_char_end": 106,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "reference_Executive Order 3 is hereby amended.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "4deef092e8aa8955d2705f7ff9394d122c37e5be858eeab1bd41e254754ca5ae",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 114,
+              "body_start": 18,
+              "body_end": 99,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 54,
+                "text": "Executive Order 3 is hereby amended.",
+                "context_char_start": 18,
+                "context_char_end": 54,
+                "signals": [
+                  "is hereby amended"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              },
+              {
+                "char_start": 55,
+                "char_end": 98,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 55,
+                "context_char_end": 98,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 3
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "Executive Order 3 is hereby amended.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "reference_Executive Order No. 3 of January 1, 2000.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "ded6c63db4efcf86ea315de63f1a53a1d63db63ecac9b218f0c85d0c29c8a410",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 119,
+              "body_start": 18,
+              "body_end": 104,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 60,
+                "char_end": 103,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 60,
+                "context_char_end": 103,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 3
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "reference_Executive Order 3 Is Hereby Amended.",
+        "kinds": [
+          "original_boundary"
+        ],
+        "tasks": [
+          {
+            "kind": "original_boundary",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "No unambiguous target document was located among the printed headings. Inspect complete source pages before aligning inventory spans.",
+            "availability": "neighboring_documents_require_page_review",
+            "headings": [
+              {
+                "observed_identity": "EO:2",
+                "char_start": 0,
+                "char_end": 17,
+                "text": "Executive Order 2"
+              },
+              {
+                "observed_identity": "EO:3",
+                "char_start": 18,
+                "char_end": 35,
+                "text": "Executive Order 3"
+              }
+            ],
+            "text_path": "source.txt",
+            "text_sha256": "186fbdfa67231ff0d5fa7445b11db05dbc6a953040dbeef6730969c9091840a8"
+          }
+        ],
+        "gap_texts": []
+      },
+      {
+        "name": "reference_Executive Order No. 3 of January 1, 2000",
+        "kinds": [
+          "original_boundary"
+        ],
+        "tasks": [
+          {
+            "kind": "original_boundary",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "No unambiguous target document was located among the printed headings. Inspect complete source pages before aligning inventory spans.",
+            "availability": "neighboring_documents_require_page_review",
+            "headings": [
+              {
+                "observed_identity": "EO:2",
+                "char_start": 0,
+                "char_end": 17,
+                "text": "Executive Order 2"
+              },
+              {
+                "observed_identity": "EO:3",
+                "char_start": 18,
+                "char_end": 39,
+                "text": "Executive Order No. 3"
+              }
+            ],
+            "text_path": "source.txt",
+            "text_sha256": "543d48b6b1234c5c8ccb493c81264ed40b665c68d4dc5c030e24f39f0110ae09"
+          }
+        ],
+        "gap_texts": []
+      },
+      {
+        "name": "multi_order_target_middle",
+        "kinds": [
+          "inventory_command_coverage",
+          "inventory_section_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "7cdf66206fae792631c66491431a9dff8fc1ce480cff7a7c778573600e0bcc6f",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 76,
+              "char_end": 198,
+              "body_start": 94,
+              "body_end": 183,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 105,
+                "char_end": 137,
+                "text": "The Board is hereby established.",
+                "context_char_start": 105,
+                "context_char_end": 137,
+                "signals": [
+                  "is hereby established"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 5
+              },
+              {
+                "char_start": 139,
+                "char_end": 182,
+                "text": "The Secretary shall publish annual reports.",
+                "context_char_start": 139,
+                "context_char_end": 182,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 7
+              }
+            ],
+            "segmentation_warnings": []
+          },
+          {
+            "kind": "inventory_section_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Numbered section headings in the selected original lie outside the proposed inventory.",
+            "availability": "inventory_incomplete",
+            "uncovered_sections": [
+              {
+                "section": "1",
+                "char_start": 94
+              }
+            ]
+          }
+        ],
+        "gap_texts": [
+          "The Board is hereby established.",
+          "The Secretary shall publish annual reports."
+        ]
+      },
+      {
+        "name": "duplicate_target_heading",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "41e24c1206f8f98c19cf83992794cd1bd7e957dce8cc87365cc4234b4658e697",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 75,
+              "body_start": 18,
+              "body_end": 60,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 59,
+                "text": "The Secretary shall create a first board.",
+                "context_char_start": 18,
+                "context_char_end": 59,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Secretary shall create a first board."
+        ]
+      },
+      {
+        "name": "two_bare_headings",
+        "kinds": [
+          "original_boundary"
+        ],
+        "tasks": [
+          {
+            "kind": "original_boundary",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Multiple unnumbered Executive Order headings occur on the held pages. Metadata identity does not establish which document supplies the inventory.",
+            "availability": "neighboring_documents_require_page_review",
+            "heading_offsets": [
+              0,
+              74
+            ]
+          }
+        ],
+        "gap_texts": []
+      },
+      {
+        "name": "bare_target_numbered_neighbor",
+        "kinds": [
+          "original_boundary"
+        ],
+        "tasks": [
+          {
+            "kind": "original_boundary",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "No unambiguous target document was located among the printed headings. Inspect complete source pages before aligning inventory spans.",
+            "availability": "neighboring_documents_require_page_review",
+            "headings": [
+              {
+                "observed_identity": "EO:3",
+                "char_start": 74,
+                "char_end": 91,
+                "text": "Executive Order 3"
+              }
+            ],
+            "text_path": "source.txt",
+            "text_sha256": "b4e5ee879e0e938bf2285d727799bdd2a8d03dec7128feafb7f0907ffbda2da4"
+          }
+        ],
+        "gap_texts": []
+      },
+      {
+        "name": "lead_WHEREAS the law provides that the Secretary shall submit a report;",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "lead_By the authority vested in me, it is hereby ordered as follows:",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "lead_By the authority vested in me, the Secretary shall submit a report.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "1d115a0196e519efaa5d226e900d2544e20292af6d8a677b589a19050bc2b29a",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 101,
+              "body_start": 18,
+              "body_end": 86,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 85,
+                "text": "By the authority vested in me, the Secretary shall submit a report.",
+                "context_char_start": 18,
+                "context_char_end": 85,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "machine_recital_with_command_signal",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": [
+              "no_operative_unit_found"
+            ]
+          }
+        ],
+        "gap_texts": [
+          "By the authority vested in me, the Secretary shall submit a report."
+        ]
+      },
+      {
+        "name": "lead_I hereby find that public work is complete.",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "lead_\"The Secretary shall submit an annual report.\"",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "96aec85bb71ce93bb08434db9e0c33a3611ad7fb9cc057eb8bbc02343789a25f",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 80,
+              "body_start": 18,
+              "body_end": 65,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 64,
+                "text": "\"The Secretary shall submit an annual report.\"",
+                "context_char_start": 18,
+                "context_char_end": 64,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "quoted_command_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "\"The Secretary shall submit an annual report.\""
+        ]
+      },
+      {
+        "name": "lead_'The Secretary shall submit an annual report.'",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "85c14baf3855ca7613cd24015af9813b6a1c470fb462cfe49853e0f4220f05a1",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 80,
+              "body_start": 18,
+              "body_end": 65,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 64,
+                "text": "'The Secretary shall submit an annual report.'",
+                "context_char_start": 18,
+                "context_char_end": 64,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "'The Secretary shall submit an annual report.'"
+        ]
+      },
+      {
+        "name": "lead_The Secretary is hereby directed to submit an annual report.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "53ab9645371f78b4a3e5a52d56bcfc082247c1e0c59d94062af19fff4f3030dd",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 94,
+              "body_start": 18,
+              "body_end": 79,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 78,
+                "text": "The Secretary is hereby directed to submit an annual report.",
+                "context_char_start": 18,
+                "context_char_end": 78,
+                "signals": [
+                  "is hereby directed"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "The Secretary is hereby directed to submit an annual report."
+        ]
+      },
+      {
+        "name": "lead_The Secretary must submit an annual report.",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "lead_The Secretary will submit an annual report.",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      },
+      {
+        "name": "quoted_continuation",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "df116be6d0b05b49bc37cf45c065903e901a7edb121f8df8e880740125a10543",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 156,
+              "body_start": 18,
+              "body_end": 141,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 64,
+                "char_end": 102,
+                "text": "\"The Secretary shall publish a report.",
+                "context_char_start": 29,
+                "context_char_end": 102,
+                "signals": [
+                  "shall",
+                  "shall"
+                ],
+                "classification": "quoted_command_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 3
+              },
+              {
+                "char_start": 103,
+                "char_end": 140,
+                "text": "The Board shall issue a certificate.\"",
+                "context_char_start": 103,
+                "context_char_end": 140,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "\"The Secretary shall publish a report.",
+          "The Board shall issue a certificate.\""
+        ]
+      },
+      {
+        "name": "omitted_amendment_quoted_payload",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "1c829757ee192a437e36873a81dc3561ff909a4549c4d12ada9ea214bf7a6fcb",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 127,
+              "body_start": 18,
+              "body_end": 112,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 72,
+                "char_end": 111,
+                "text": "\"The Secretary shall publish a report.\"",
+                "context_char_start": 29,
+                "context_char_end": 111,
+                "signals": [
+                  "is amended",
+                  "shall"
+                ],
+                "classification": "quoted_command_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 3
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "\"The Secretary shall publish a report.\""
+        ]
+      },
+      {
+        "name": "ocr_or_prohibition_T his order sh all become effective upon the report.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "1fb1a46ecf38882c8904d9dd079ff35013cb2af9a267c1182da86de987a9920a",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 86,
+              "body_start": 18,
+              "body_end": 71,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 70,
+                "text": "T his order sh all become effective upon the report.",
+                "context_char_start": 18,
+                "context_char_end": 70,
+                "signals": [
+                  "sh all"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "T his order sh all become effective upon the report."
+        ]
+      },
+      {
+        "name": "ocr_or_prohibition_It is unlawful to transfer the parcel.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "6fef882a2897c3edc35ae3f00985f649660b0725906f40382754c64145497608",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 72,
+              "body_start": 18,
+              "body_end": 57,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 56,
+                "text": "It is unlawful to transfer the parcel.",
+                "context_char_start": 18,
+                "context_char_end": 56,
+                "signals": [
+                  "It is unlawful"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "It is unlawful to transfer the parcel."
+        ]
+      },
+      {
+        "name": "ocr_or_prohibition_No person shall transfer the parcel.",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "09024f75010ab94567aae40f032516c40d66685bfeefd2e62242f3a85b02cb4e",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 70,
+              "body_start": 18,
+              "body_end": 55,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 18,
+                "char_end": 54,
+                "text": "No person shall transfer the parcel.",
+                "context_char_start": 18,
+                "context_char_end": 54,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 2
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "No person shall transfer the parcel."
+        ]
+      },
+      {
+        "name": "ocr_or_prohibition_THIS ORDER SHALL BECOME EFFECTIVE IMMEDIATELY.",
+        "kinds": [
+          "original_boundary"
+        ],
+        "tasks": [
+          {
+            "kind": "original_boundary",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "No unambiguous target document was located among the printed headings. Inspect complete source pages before aligning inventory spans.",
+            "availability": "neighboring_documents_require_page_review",
+            "headings": [
+              {
+                "observed_identity": "EO:2",
+                "char_start": 0,
+                "char_end": 17,
+                "text": "Executive Order 2"
+              }
+            ],
+            "text_path": "source.txt",
+            "text_sha256": "1359fdc3d8c3bd148090f95f4fa4a1e6e28c69ed957f6e9a5289ec2cc8750f73"
+          }
+        ],
+        "gap_texts": []
+      },
+      {
+        "name": "separate_paragraph_quoted_amendment",
+        "kinds": [
+          "inventory_command_coverage"
+        ],
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "source.txt",
+            "text_sha256": "f44ce80088f60b491d8c967b2b85d0002daa7fc00d648802efa6e9a3b780ff71",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 0,
+              "char_end": 126,
+              "body_start": 18,
+              "body_end": 111,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 71,
+                "char_end": 110,
+                "text": "\"The Secretary shall publish a report.\"",
+                "context_char_start": 71,
+                "context_char_end": 110,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "quoted_command_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": []
+          }
+        ],
+        "gap_texts": [
+          "\"The Secretary shall publish a report.\""
+        ]
+      },
+      {
+        "name": "post_signature_annex",
+        "kinds": [],
+        "tasks": [],
+        "gap_texts": []
+      }
+    ],
+    "count": 38,
+    "no_mutation": true,
+    "exact_spans": true
+  },
+  "independence_and_scope": {
+    "source_review_initial_findings_read": false,
+    "primary_page_legal_source_examination": "Separate source reviewer responsibility; not claimed by this engineering review.",
+    "canonical_data_or_implementation_written": false,
+    "reviewer_written_paths": [
+      "research/progress/r2-preflight-repair/engineering-review/REVIEW.json",
+      "research/progress/r2-preflight-repair/engineering-review/probes.py"
+    ],
+    "delegation": "No subagents spawned.",
+    "handoff_register": "Coordinator owns Kean/HANDOFF integration; reviewer restricted to these two deliverable paths."
+  },
+  "costs_and_limits": {
+    "model": "Inherited configured OpenAI GPT-6-family model; precise runtime ID/tier unavailable to worker and coordinator. No override used.",
+    "tokens": null,
+    "cash": null,
+    "full_worker_elapsed_seconds": null,
+    "first_explicit_clock_utc": "2026-10-31T04:21:58Z",
+    "observed_lower_bound_interval_seconds": 169.909702,
+    "elapsed_qualification": "First explicit clock was captured after substantive review began. This interval is a lower bound, not full worker elapsed or active labor. Test durations are separately reported.",
+    "task_budget": "No explicit token/time cap supplied; bounded file scope and adversarial-review remit. Token and cash telemetry unavailable; no savings claim."
+  },
+  "final_recheck": "Final 22-test run independently passed after exact-count assertion and EO8930 terminal-newline hydration correction; source-examined evidence remains separate from this engineering review. All three implementation/test hashes below matched before sealing."
+}
