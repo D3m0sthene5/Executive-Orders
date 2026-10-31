@@ -8,3 +8,9 @@ Run via GitHub Actions "Run jobs" with name \`census-candidates\`, or set OUTPUT
 - SUMMARY.json / CENSUS_READINESS.md — separate candidate progress track including unverified Lord appearances, with source hashes.
 
 The job cannot admit a new executive order, change any status, or issue human approval. A reviewer must separately authenticate physical content, issuer capacity, duplicates, legal inclusion, and chronology before a candidate can enter the principal census. Original pages are linked to their already preserved repository paths; this job does not refetch or redistribute them.
+
+## Source-bound research handoff
+
+`--research-worksheet FILE` retains workbench v2 research proposals alongside the exact LOC candidate after rebuilding and validating its current source binding. Repeated worksheets are retained; exceptions remain in `research_notes` / `RESEARCH_IMPORTS.json`. Only current attributed AI proposals enter `research_proposals`; no proposal changes legal inclusion, membership, source grade or certification.
+
+Use the same explicit `--retained-workbench`, `--include-retained-facsimiles` and repeated `--facsimile-custody` source options as the exporting workbench. Materialize those optional inputs and the existing workbench helper files before invoking the adapter. See [the versioned contract and exercised replay](../../research/progress/r3-ranger-roundtrip/INTEGRATION.md).
