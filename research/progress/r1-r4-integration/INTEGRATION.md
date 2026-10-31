@@ -86,3 +86,17 @@ integration recommendation remain research follow-ups, not approved outcomes.
 Complete model tokens/cache/cash and exclusive labor telemetry are unavailable.
 Root coordinates integration; separate bounded implementation and independent
 engineering contexts are disclosed without inventing usage counters.
+
+## Production invocation and CI fixture correction
+
+First remote Road run41230766138 exposed two missing contract-example fixtures:
+its checkout omitted research/plans/claim_kit_contract. Add the existing fixture
+directory rather than skip the assertions. Windows was cancelled by fail-fast.
+The browser was signed out, so no workflow was launched there. A one-use
+workflow_run adapter waits for the ordinary main Run jobs invocation at exactly
+PR117 merge commit, then orders eight existing consumers with pick_jobs.ordered
+and invokes the unchanged materializer/run_jobs/commit_results tools. It grants
+no new narrow certificate, performs no scientific adoption, and does not fan out
+to unrelated acquisition jobs. Subsequent unrelated runs fail its exact-merge
+guard and select no work. This is a bounded integration invocation, not a new
+production framework. Final implementation closure/certificate is unchanged.
