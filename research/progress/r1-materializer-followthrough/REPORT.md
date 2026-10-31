@@ -8,7 +8,7 @@ relevant input versions and prior output generation also matched exactly.
 
 Source: `9fc12f9e37780ae5831fce6d698139920bf51589`.
 Read-only proof: run41168642078, job124441594349, artifact13030233064.
-Both arms loaded all97 tracked packages, with zero unmaterialized packages.
+Both arms loaded all 97 tracked packages, with zero unmaterialized packages.
 No job implementation, shared library, canonical claim, status, source grade,
 readiness result or human certification was changed by this repair.
 
@@ -26,7 +26,7 @@ readiness result or human certification was changed by this repair.
 | Relevant input versions | 421 | 421 |
 | Remote transfer within measured arms | 0 | 0 |
 
-The worktree reduction is96.68%, and observed startup is25.827s shorter.
+The worktree reduction is 96.68%, and observed startup is25.827s shorter.
 Native runtime did not improve. Closing/verifying the read contract added
 helper metadata work; those extra costs are included in startup. Instrumented
 call counters cover Python materializer/freshness helpers, including provider
@@ -46,12 +46,14 @@ one matched host comparison, not a repeatability distribution or a cold-network
 experiment. Background host-interface activity was191,178/101,584 bytes and is
 not attributed to the job.
 
-Constructing the complete old-availability object pool cost372.020s and observed
+Constructing the complete old-availability object pool cost 372.020s and observed
 5,076,038,384 host-interface sent+received bytes. Exact Git pack/remote transfer
 bytes are unmeasured. Total script time including construction, both arms,
-native execution, scans, copies, equality checks and cleanup was453.990s.
+native execution, scans, copies, equality checks and cleanup was 453.990s.
 Actions checkout/setup,25 focused tests (8.599s), upload and independent review
-are additional costs, visible in retained logs and COSTS.json. No cold transfer,
+are additional costs, visible in retained logs, COSTS.json and the per-job
+hosted-wall ledger validation/CI_COST_LEDGER.json. Running or future automatic
+CI remains an unmeasured additional cost, not zero. No cold transfer,
 model-token, overall research-labor or campaign saving is claimed.
 
 The ordinary runner also succeeded on source9fc12f9 with `example-hello valla`:
@@ -63,7 +65,7 @@ ordinary integration; its different selection is not the matched baseline.
 INPUT_AUDIT.md records every runtime read family. Fresh independent static and
 engineering workers examined branches beyond the historical PR104 trace. The
 25 new native/adversarial tests,37 existing freshness tests,6 materializer tests
-and36 Valla tests passed. The focused suite is wired into the ordinary Linux and
+and 36 Valla tests passed. The focused suite is wired into the ordinary Linux and
 Windows road entrypoint. Final CI outcomes are in VALIDATION.json.
 
 Independent review rejected concrete intermediate implementations: symlinks
@@ -88,9 +90,9 @@ complete shared-library closure and both actual runners succeeded.
 
 ## Retained artifacts and integration
 
-validation/production/ARTIFACT_MANIFEST.json pins all13 original archive members
+validation/production/ARTIFACT_MANIFEST.json pins all 13 original archive members
 and the ZIP SHA256. Exact small receipts/logs/metadata are losslessly retained in
-validation/PRODUCTION_RECEIPTS.tar.gz. The two13,962,185-byte INDEX bodies are
+validation/PRODUCTION_RECEIPTS.tar.gz. The two 13,962,185-byte INDEX bodies are
 byte-identical to the already-retained baseline Git blob
 `96b0d07d201b22960cdfcc5b553295cce41a5f72`, path
 `jobs/valla/output/INDEX.json` at base88cef025; no duplicate corpus body is added.

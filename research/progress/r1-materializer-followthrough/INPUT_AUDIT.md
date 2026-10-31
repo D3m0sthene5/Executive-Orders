@@ -3,9 +3,9 @@
 Baseline: `88cef0253ed735b2a6e612770f25f9148641ce93`.
 Production evidence: `HANDOFF/final-integration-evidence-2026-10-30.json` records
 run40987576100, source3c21be6f109278be15e68181d050cc788014bc19. Valla succeeded
-in48s, indexing612 active claims,783 shared rationale references,11 textual
-leads and97 tracked packages with none missing. Its materializer used
-`unaudited_job` fallback and accounted93,620 paths. These are input-closure
+in 48s, indexing 612 active claims,783 shared rationale references, 11 textual
+leads and 97 tracked packages with none missing. Its materializer used
+`unaudited_job` fallback and accounted 93,620 paths. These are input-closure
 paths, not measured avoidable remote transfer. Valla produced no legal promotion.
 
 ## Supported execution
@@ -74,7 +74,7 @@ but cannot be published without retained, branch-verifiable bytes.
 ## Costs and limits
 
 No worker token/cash counters or complete exclusive labor telemetry are exposed.
-The read-audit worker reported about10minutes; review and adversarial workers
+The read-audit worker reported about 10 minutes; review and adversarial workers
 used fresh OpenAI contexts with inherited model configuration. Actual model-tier
 identifiers were not exposed in these workers. No different-family/human review
 or scientific adoption is claimed. Initial rejected resolver versions and their
