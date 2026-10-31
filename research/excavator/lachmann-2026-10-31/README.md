@@ -20,8 +20,8 @@ items to four separate-context Claude auditors (Sonnet 5.5, 16 items each).
 Both rule changes target the defect found and were tested on a fresh sample of orders never audited before. The
 refinement was sequential (the rule was tightened twice before a sample passed), which slightly weakens the nominal
 95% bound; the two failures share one cause, damaged land descriptions in machine-read compilations, which both
-new checks address. Of the 7,534 orders in scope, 764 are confirmed (all with number-and-date identity; 567 machine-
-read government printings and 197 ProQuest replica scans); the rest stay open with reasons in `RESIDUAL.csv`. The
+new checks address. Of the 7,534 orders in scope, 764 are confirmed (all with number-and-date identity; 576 machine-
+read government printings and 188 ProQuest replica scans); the rest stay open with reasons in `RESIDUAL.csv`. The
 largest blockers are transcriptions that carry no order number (APP, Wikisource) and texts without a recognizable
 opening; an agent pass or a bridge from the APP heading could reach more of them.
 
