@@ -1,3 +1,11 @@
+## 2026-10-30 ET: Apollo dashboard refreshed; parallel-session results explained
+
+- **Done:** Updated all seven CSV feeds in the existing Claude Apollo artifact, preserving the rocket and frozen Mission weights. Saved data matched after reload. Official production `35b9a7585d` replaces the 488 local preview: 498 ready, 306 original-supported / 192 transcription-dependent, 612 matching receipts, 0 human-certified. Mission 11.615%, T+12h42m; 14,067 remaining agent-hours are model estimates.
+- **Evidence:** `research/progress/remaining-work/snapshots/2026-10-30/` retains CSVs, exact hashes/input pins, prior preview, screenshot and display limitations. Updated `research/progress/README.md` explains four follow-on sessions plus earlier runner/claim-kit work and integration; prior narrative retained as history. Kean `F-20261030-apollo-refresh`.
+- **Validation/costs:** Existing builders only; independent coordinator aggregate reconciliation; exact seven-feed reload readback. One bounded configured gpt-6-luna worker generated the data; coordinator corrected catalog attribution and outdated replay language. Tokens, cash and complete labor timing unknown; no savings claimed for this refresh.
+- **Limits:** Some source descriptions / Tool map introduction retain older preview and pending-policy prose; UI exposes CSV edits, not application code. The automatic 21-month pace projection is not validated. Scientific holds, census, claims and readiness generation unchanged.
+- **Asks:** @Owner: none. No background work remains after publication.
+
 ## 2026-10-30 UTC: final integration merged and production verified
 
 - **Done:** PR107 merged as `3c21be6f109278be15e68181d050cc788014bc19`, reviewed/tested tree `7d1fd9d23d24215ec56548abeed44dc825de102b`. PR103/104/105/106/108/110 reconciled through ancestry; PR109 closed as incorporated, preserving its later branch outputs as history. Scoped authorization `D-20261029-final-cross-stream-integration` exercised; no scientific authority substituted.

@@ -1,5 +1,36 @@
 # Executive Orders — research progress dashboard
 
+**[Open the Apollo rocket dashboard](https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#apollo)** · [October 30 UTC data and provenance](remaining-work/snapshots/2026-10-30/README.md)
+
+## Current result — verified October 30, 2026 (New York)
+
+The combined production run finished **October 29 at 10:18 p.m. EDT** (October 30 at 02:18:57 UTC). It published **498 ready-for-human-review dossiers / 14,972 working identities (3.33%)**: **306 original-supported and 192 transcription-dependent**. All **612 effective claim versions** have matching checker receipts. The readiness generation is `35b9a7585d83529cfe7287fb30094273db8cd449`, from [run 40987576100](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/40987576100).
+
+The previous official generation had 395 ready orders. The new generation adds **103 and loses none**: 99 additions lacked checker receipts in the earlier generation; four are demonstrated source-custody repairs. These are observed production results, not summed replay gains. **Human-certified whole histories remain zero.** All ten exact-version source-audit holds and 194 original-replacement / 194 quotation-recheck obligations remain. Provisional statuses remain 3,403; the historical census is incomplete and the legal cutoff remains October 14.
+
+## What the parallel sessions did
+
+Four follow-on sessions worked alongside two earlier engineering sessions, followed by final integration:
+
+| Session | Plain-English result |
+|---|---|
+| ProQuest custody — PR105/109 | Made PDFs already retained in Git accessible to the checker. Five exact PDFs were restored; EO254, EO2171, EO4354 and EO4782 are ready, while EO1547 still has a text identity/grade problem. |
+| Lifecycle assurance — PR106 | Strengthened the rules for advertising a dossier as ready. Five invalid test cases are refused; two permitted controls still pass, including properly disclosed exhausted searches. |
+| Cruden retrieval — PR108 | Stopped rebuilding the same corpus searches repeatedly. The matched seven-order search fell from 90.90 seconds to 13.99 seconds initially and 8.85 seconds on reuse, with identical results. Total research/review and model-cost savings were not measured. |
+| Shared research — PR110 | Independently examined reusable NRA research and the exceptions to it. Retained useful qualified findings; the combined run has two changed-context exceptions, eight blocked assignments and four historical owner routes, with no current eligible completion or canonical filing. |
+| Runner — PR103 | Kept outputs tied to the actual inputs and implementation that produced them. Combined Linux/Windows checks passed; the ordinary tracker used the same run's checker results. Large fallback checkouts remain necessary for unaudited job selections. |
+| Claim-kit / Valla runtime — PR104 | Repaired repeated verification/index work, context loading, concurrent publication and review-scope checks. Claim-kit consumed current Valla output and all 97 tracked packages loaded. Five retained submissions need refreshed packets and exact review. A separately proposed new reasoning-dependency capability had no confirmed implementation handoff. |
+| Integration — PR107/111 | Combined the branches, fixed conflicts, retained independent engineering review, merged the improvements and verified the actual production result above. |
+
+[Final manifest](../../HANDOFF/final-integration-2026-10-30.json) · [Validation and performance evidence](../../HANDOFF/final-integration-evidence-2026-10-30.json) · [Current tracker summary](../../jobs/readiness-tracker/output/SUMMARY.json)
+
+Apollo's frozen model places the project at **11.615% of weighted steps complete, T+12h42m**, with **84,940 open steps** and **14,067 modeled agent-hours** remaining. This includes partial work on unfinished dossiers. The hours and pace extrapolation are planning estimates. Its 16,286-order planning goal includes positive president-level APP gaps; it is distinct from the 14,972 working identities and is not an exhaustive historical census.
+
+## Earlier October 28–29 narrative (retained history)
+
+The figures and generated-dashboard links below describe an earlier checkpoint. Use the current tracker and October 30 snapshot above for the current result.
+
+
 **[Original rocket dashboard](https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#apollo)** · [October 29 visual data and provenance](remaining-work/snapshots/2026-10-29/README.md)
 
 **[Open the current generated dashboard](../../jobs/daily-digest/output/DASHBOARD.md)** · [Exact data and input hashes](../../jobs/daily-digest/output/DASHBOARD.json) · [Per-order readiness](../../jobs/readiness-tracker/output/READINESS_BY_ORDER.csv) · [Daily changes](../../jobs/daily-digest/output/DIGEST.md)
