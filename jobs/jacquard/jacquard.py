@@ -97,6 +97,32 @@ def load_config(path=None):
     return read_json(path or HERE / "lots.json")
 
 
+def is_wave2(cfg):
+    """Wave 2 and later configs ('wave' >= 2) plant at least 3 controls per lot and may plant known failures."""
+    return int(cfg.get("wave", 1)) >= 2
+
+
+def rule_lot_of(lot_cfg):
+    """The LOT_RULES.md card that applies to a lot; the lot's own name unless the config names another."""
+    return lot_cfg.get("rule_lot") or lot_cfg["lot"]
+
+
+def load_reviewed_ids(repo, cfg):
+    """Instrument ids already reviewed in an earlier wave: every sampled id of its SAMPLES.json and every id
+    (claimed or text side) of its CONTROL_KEY.json items. Paths come from cfg['exclude_reviewed_from']."""
+    ids = set()
+    for rel in cfg.get("exclude_reviewed_from", []):
+        doc = read_json(Path(repo) / rel)
+        for lot in (doc.get("lots") or {}).values():
+            if isinstance(lot, dict):
+                ids.update(lot.get("sampled_ids") or [])
+        for item in (doc.get("items") or {}).values():
+            for field in ("instrument_id", "text_instrument_id"):
+                if item.get(field):
+                    ids.add(item[field])
+    return ids
+
+
 def load_register(repo):
     header, rows = read_csv(Path(repo) / REGISTER_REL)
     return header, {r["instrument_id"]: r for r in rows}
@@ -155,11 +181,15 @@ def select_lots(repo, cfg, types_rows=None, register=None):
     """Return (members_by_lot, counts_by_lot, calibration_rows)."""
     types_rows = load_types(repo) if types_rows is None else types_rows
     register = load_register(repo)[1] if register is None else register
+    track_reviewed = "exclude_reviewed_from" in cfg
+    reviewed = load_reviewed_ids(repo, cfg)
     members, counts = {}, {}
     for lot in cfg["lots"]:
         name = lot["lot"]
         c = {"type_rows": 0, "rule_mismatch": 0, "confidence_excluded": 0, "year_excluded": 0,
              "already_in_register": 0, "text_missing": 0, "members": 0}
+        if track_reviewed:
+            c["previously_reviewed"] = 0
         got = []
         for r in types_rows:
             if r["type"] != lot["type"]:
@@ -173,6 +203,8 @@ def select_lots(repo, cfg, types_rows=None, register=None):
                 c["year_excluded"] += 1
             elif r["instrument_id"] in register:
                 c["already_in_register"] += 1
+            elif r["instrument_id"] in reviewed:
+                c["previously_reviewed"] += 1
             elif not text_exists(repo, r["text_path"]):
                 c["text_missing"] += 1
             else:
@@ -236,18 +268,23 @@ def step_sample(out, cfg):
         ids = [r["instrument_id"] for r in by.get(lot["lot"], [])]
         s = sample_lot(cfg, lot["lot"], ids)
         s["bound_if_zero_failures"] = cp_upper(0, s["sample_n"]) if s["mode"] == "sampled" else None
+        if lot.get("rule_lot"):
+            s["rule_lot"] = lot["rule_lot"]
         lots[lot["lot"]] = s
     doc = {"schema": "eo-jacquard-samples/v1", "seed": cfg["seed"], "sample_size": cfg["sample_size"],
            "full_review_max": cfg["full_review_max"], "lots": lots,
            "lots_csv_sha256": hashlib.sha256((Path(out) / "LOTS.csv").read_bytes()).hexdigest()}
+    if "wave" in cfg:
+        doc["wave"] = cfg["wave"]
     write_json(Path(out) / "SAMPLES.json", doc)
     return doc
 
 
 # ---------------------------------------------------------------- packets
 
-def control_count(sample_n):
-    return max(2, round(0.08 * sample_n))
+def control_count(sample_n, cfg=None):
+    """Planted controls for a lot: max(2, round(0.08 n)); wave 2 and later use a floor of 3."""
+    return max(3 if cfg is not None and is_wave2(cfg) else 2, round(0.08 * sample_n))
 
 
 def claimed_title(row, reg=None):
@@ -287,14 +324,85 @@ def make_text(repo, rel):
     return raw
 
 
-def plan_lot(cfg, lot, members, sampled_ids, mode, pool):
+def known_failure_candidates(repo, cfg, rule_lot, types_by_id, register):
+    """Wave-1 failures usable as known-failure controls for a lot whose rule card is rule_lot, sorted by id.
+
+    A candidate is an INDIVIDUAL_REVIEW.csv row of that lot whose reasons include type_does_not_fit and neither
+    identity_mismatch nor identity_cannot_tell, whose order is a TYPES row with a held text and not in the register.
+    Returns TYPES rows, each tagged with the wave-1 item id as '_wave1_item'."""
+    rel = cfg.get("known_failure_controls_from")
+    if not rel:
+        return []
+    got = {}
+    for r in read_csv(Path(repo) / rel)[1]:
+        if r["lot"] != rule_lot:
+            continue
+        reasons = {x.split(":")[0].strip() for x in r["reasons"].split(" | ")}
+        if "type_does_not_fit" not in reasons or reasons & {"identity_mismatch", "identity_cannot_tell"}:
+            continue
+        row = types_by_id.get(r["instrument_id"])
+        if row is None or r["instrument_id"] in register or not text_exists(repo, row["text_path"]):
+            continue
+        got[r["instrument_id"]] = dict(row, _wave1_item=r["item_id"])
+    return [got[k] for k in sorted(got)]
+
+
+def split_controls(n_ctrl, n_known_available):
+    """Controls per kind for wave 2: n_ctrl split as evenly as possible over known_failure, intruder, text_swap
+    (extra controls go to the kinds in that priority order). Known failures that are not available are replaced
+    by intruders and text swaps, split evenly with the intruder taking an odd one."""
+    base, rem = divmod(n_ctrl, 3)
+    want_known = base + (1 if rem > 0 else 0)
+    known = min(want_known, n_known_available)
+    rest = n_ctrl - known
+    if known == want_known:
+        intruder = base + (1 if rem > 1 else 0)
+    else:
+        intruder = rest - rest // 2
+    return {"known_failure": known, "intruder": intruder, "text_swap": rest - intruder}
+
+
+def plan_lot_w2(cfg, lot, by_id, sampled, items, pool, known_pool):
+    """Wave-2 controls: known failures, then intruders, then text swaps (partners drawn from the lot members,
+    every swap uses two members that appear in no other swap)."""
+    n_ctrl = control_count(len(sampled), cfg)
+    split = split_controls(n_ctrl, len(known_pool))
+    rng = random.Random(sha_seed(cfg["seed"] + ":controls:" + lot))
+    ids = sorted(by_id)
+    n_swap = split["text_swap"]
+    pairs = []
+    if n_swap and 2 * n_swap <= len(sampled) and 2 * n_swap <= len(ids):
+        a_ids = rng.sample(sampled, n_swap)
+        rest = [i for i in ids if i not in set(a_ids)]
+        b_ids = rng.sample(rest, n_swap)
+        pairs = list(zip(a_ids, b_ids))
+    n_intruder = split["intruder"] + (n_swap - len(pairs))     # a swap that cannot be formed becomes an intruder
+    free_pool = sorted(pool, key=lambda r: r["instrument_id"])
+    if len(free_pool) < n_intruder:
+        raise RuntimeError(f"no intruder candidates for lot {lot}")
+    krng = random.Random(sha_seed(cfg["seed"] + ":known_failure:" + lot))
+    cands = sorted(known_pool, key=lambda r: r["instrument_id"])
+    for row in (krng.sample(cands, split["known_failure"]) if split["known_failure"] else []):
+        items.append({"kind": "known_failure", "claim": row, "text": row})
+    for _ in range(n_intruder):
+        row = free_pool.pop(rng.randrange(len(free_pool)))
+        items.append({"kind": "intruder", "claim": row, "text": row})
+    for a, b in pairs:
+        items.append({"kind": "text_swap", "claim": by_id[a], "text": by_id[b], "a": a, "b": b})
+    return items
+
+
+def plan_lot(cfg, lot, members, sampled_ids, mode, pool, known_pool=None):
     """Return list of item dicts for one lot (genuine + controls), unshuffled.
 
-    members: LOTS rows of the lot; pool: TYPES rows eligible as intruders for this lot.
+    members: LOTS rows of the lot; pool: TYPES rows eligible as intruders for this lot;
+    known_pool: wave-1 failures eligible as known-failure controls (wave 2 only).
     """
     by_id = {r["instrument_id"]: r for r in members}
     sampled = sorted(sampled_ids)
     items = [{"kind": "genuine", "claim": by_id[i], "text": by_id[i]} for i in sampled]
+    if is_wave2(cfg):
+        return plan_lot_w2(cfg, lot, by_id, sampled, items, pool, known_pool or [])
     n_ctrl = control_count(len(sampled))
     rng = random.Random(sha_seed(cfg["seed"] + ":controls:" + lot))
     free_pool = sorted(pool, key=lambda r: r["instrument_id"])
@@ -326,12 +434,13 @@ def plan_lot(cfg, lot, members, sampled_ids, mode, pool):
 
 
 def arrange_batches(cfg, lot, items):
-    """Shuffle and split into batches of at most MAX_BATCH; keep each text-swap away from its own twins."""
+    """Shuffle and split into batches of at most cfg['batch_size'] (default MAX_BATCH); keep each text-swap away
+    from its own twins."""
     rng = random.Random(sha_seed(cfg["seed"] + ":shuffle:" + lot))
     order = list(items)
     rng.shuffle(order)
     n = len(order)
-    nb = max(1, math.ceil(n / MAX_BATCH))
+    nb = max(1, math.ceil(n / cfg.get("batch_size", MAX_BATCH)))
     sizes = [n // nb + (1 if i < n % nb else 0) for i in range(nb)]
     batches, k = [], 0
     for s in sizes:
@@ -388,7 +497,14 @@ def step_packets(repo, out, cfg, packets_dir, key_file):
     domesday = load_domesday(repo)
     register = load_register(repo)[1]
     all_members = {r["instrument_id"] for rows in by.values() for r in rows}
+    shielded = all_members | load_reviewed_ids(repo, cfg)
+    if cfg.get("known_failure_controls_from"):          # a known-failure order is never also an intruder or a swap text
+        shielded |= {r["instrument_id"] for r in read_csv(Path(repo) / cfg["known_failure_controls_from"])[1]}
+    types_by_id = {r["instrument_id"]: r for r in types_rows}
+    used_known = set()
     key = {"schema": "eo-jacquard-key/v1", "seed": cfg["seed"], "items": {}, "lots": {}}
+    if is_wave2(cfg):
+        key["wave"] = cfg["wave"]
     packets_dir.mkdir(parents=True, exist_ok=True)
     for lot in cfg["lots"]:
         name = lot["lot"]
@@ -396,14 +512,21 @@ def step_packets(repo, out, cfg, packets_dir, key_file):
         if not members:
             continue
         s = samples["lots"][name]
-        pool = intruder_pool(cfg, name, types_rows, register, repo, all_members)
-        items = plan_lot(cfg, name, members, s["sampled_ids"], s["mode"], pool)
+        pool = intruder_pool(cfg, name, types_rows, register, repo, shielded)
+        known_pool = [r for r in known_failure_candidates(repo, cfg, rule_lot_of(lot), types_by_id, register)
+                      if r["instrument_id"] not in used_known]
+        items = plan_lot(cfg, name, members, s["sampled_ids"], s["mode"], pool, known_pool)
+        used_known.update(it["claim"]["instrument_id"] for it in items if it["kind"] == "known_failure")
         batches = arrange_batches(cfg, name, items)
         lot_dir = packets_dir / name
         if lot_dir.exists():
             shutil.rmtree(lot_dir)
         key["lots"][name] = {"mode": s["mode"], "genuine": len(s["sampled_ids"]), "controls": len(items) - len(s["sampled_ids"]),
                              "items": len(items), "batches": len(batches)}
+        if is_wave2(cfg):
+            key["lots"][name]["rule_lot"] = rule_lot_of(lot)
+            key["lots"][name]["controls_by_kind"] = {k: sum(1 for it in items if it["kind"] == k)
+                                                     for k in ("known_failure", "intruder", "text_swap")}
         for bi, batch in enumerate(batches, 1):
             bdir = lot_dir / f"batch-{bi:02d}"
             (bdir / "texts").mkdir(parents=True)
@@ -423,6 +546,8 @@ def step_packets(repo, out, cfg, packets_dir, key_file):
                                          "text_instrument_id": it["text"]["instrument_id"]}
                 if it["kind"] == "text_swap":
                     key["items"][item_id]["twins_in_other_batches"] = bool(it.get("separated"))
+                if it["kind"] == "known_failure":
+                    key["items"][item_id]["wave1_item_id"] = claim["_wave1_item"]
             with open(bdir / "items.jsonl", "w", encoding="utf-8", newline="\n") as fh:
                 fh.write("\n".join(lines) + "\n")
     write_json(key_file, key)
@@ -512,6 +637,8 @@ def control_caught(kind, rev):
         return False
     if kind == "intruder":
         return (not rev["type_fits"]) or (not rev["status_no_supported"])
+    if kind == "known_failure":
+        return not rev["status_no_supported"]
     if kind == "text_swap":
         return rev["identity"] == "mismatch"
     raise ValueError(kind)
@@ -606,6 +733,8 @@ def accept_lot(lot_name, sample, verification, member_ids):
     mode, n = sample["mode"], sample["sample_n"]
     base = {"mode": mode, "lot_size": sample["lot_size"], "sample_n": n, "failures": None, "upper_bound_95": None,
             "adoptable_ids": [], "adoption_route": None, "individual_review_ids": [], "rereview_batches": []}
+    if sample.get("rule_lot"):
+        base["rule_lot"] = sample["rule_lot"]
     if verification is None or verification["rereview_batches"]:
         base["status"] = "pending_rereview"
         base["rereview_batches"] = ["(no reviews)"] if verification is None else verification["rereview_batches"]
@@ -658,8 +787,12 @@ def step_accept(out):
 
 # ---------------------------------------------------------------- propose
 
-def origin_text(lot, route):
+def origin_text(lot, route, rule_lot=None, seed=None):
+    """decision_origin. Wave 1 names its own lot; a later wave also names the rule card and its own directory."""
     word = {"sampled": "sampled", "full": "full", "individual": "individual"}[route]
+    if rule_lot:
+        return (f"jacquard-{lot}-{ORIGIN_DATE}:ai_class_status ({word} review "
+                f"research/excavator/{seed}/{lot}; rule card {rule_lot}; ruling {RULING})")
     return (f"jacquard-{lot}-{ORIGIN_DATE}:ai_class_status ({word} review "
             f"research/excavator/jacquard-{ORIGIN_DATE}/{lot}; ruling {RULING})")
 
@@ -675,7 +808,8 @@ def build_rows(header, acceptance, register_ids):
             row = {c: "" for c in header}
             row.update(TEMPLATE_ROW)
             row.update({"instrument_id": iid, "provisional_substantive_status": "no",
-                        "decision_origin": origin_text(lot, a["adoption_route"])})
+                        "decision_origin": origin_text(lot, a["adoption_route"], a.get("rule_lot"),
+                                                       acceptance.get("seed"))})
             rows.append(row)
     return rows, skipped
 

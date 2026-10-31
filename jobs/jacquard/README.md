@@ -112,7 +112,40 @@ adoptable order: status `no`, `decision_origin` =
 and the fixed template values for the other columns (counts 0, `human_certified_by_this_release` = no).
 Orders already in the register are skipped.
 
+## Wave 2 (`lots_wave2.json`)
+
+Wave 2 reviews, in full, the orders of three wave-1 lots that were not reviewed in wave 1 (L1 waivers, L4 NRA
+codes, L5 Canal Zone). Run every step with `--config jobs/jacquard/lots_wave2.json` (`--config` works on all
+steps; `job.py` reads the `JACQUARD_CONFIG` environment variable). The config has `"wave": 2`, seed
+`jacquard-2026-10-31-w2`, and `full_review_max` 100000, so every lot is mode `full`.
+
+- **Lots.** Lot names are `L1R`, `L4R`, `L5R`; `rule_lot` (`L1`, `L4`, `L5`) names the `LOT_RULES.md` card that
+  applies. `SAMPLES.json`, the key and `ACCEPTANCE.json` record it, and `decision_origin` becomes
+  `jacquard-L1R-2026-10-31:ai_class_status (full review research/excavator/jacquard-2026-10-31-w2/L1R; rule card L1; ruling 2026-10-31-jacquard-and-working-texts)`.
+- **Exclusions.** Beyond the register, a lot excludes every `instrument_id` in the files named by
+  `exclude_reviewed_from`: all sampled ids of the wave-1 `SAMPLES.json` and every id in the wave-1
+  `CONTROL_KEY.json` items (genuine, intruder, and both sides of swaps). `SELECT.json` counts them as
+  `previously_reviewed`. The same ids are never intruders or swap partners.
+- **Controls.** Count per lot is max(3, round(0.08 x genuine items)), split as evenly as possible with extra
+  controls going in this order: known failure, intruder, text swap.
+  - *Known failure*: a wave-1 `INDIVIDUAL_REVIEW.csv` row whose `lot` equals the lot's `rule_lot`, whose reasons
+    include `type_does_not_fit` and neither `identity_mismatch` nor `identity_cannot_tell` (matched on whole
+    reason labels, not on free text inside an outlier note), whose order is a TYPES row with a held text and is
+    not in the register. It is presented normally (claimed number, date and title from the register data as for
+    any item, its own held text). Caught when `status_no_supported` is false. Each such order is used at most
+    once across all lots; if fewer are available than the split asks for, intruders and text swaps take the rest.
+  - *Intruder*: as in wave 1, from `control_types`, minus all reviewed and excluded ids.
+  - *Text swap*: as in wave 1, partner B drawn from the lot members; the swap, A's genuine item and B's genuine
+    item are placed in three different batches. Each swap uses two members that no other swap uses.
+- **Batches.** `batch_size` (20) is the most items in a batch; sizes are as even as possible. Item ids carry the
+  lot name (`L1R-B07-13`), so they never repeat a wave-1 id.
+- **Accept and propose.** Every upheld order in a valid batch is adoptable individually; failures go to
+  `INDIVIDUAL_REVIEW.csv`. `propose` skips ids already in the register, which now holds the 174 wave-1 rows.
+
+Wave 1 keeps its behaviour: `lots.json` produces the same `SAMPLES.json` as before (a test compares it with the
+wave-1 file).
+
 ## Files
 
-`job.py` (select + sample), `jacquard.py` (library and CLI), `lots.json`, `needs.txt`, `test_jacquard.py`
+`job.py` (select + sample), `jacquard.py` (library and CLI), `lots.json`, `lots_wave2.json`, `needs.txt`, `test_jacquard.py`
 (`python3 -I jobs/jacquard/test_jacquard.py`).

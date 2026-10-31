@@ -19,12 +19,12 @@ def main():
     out = Path(os.environ.get("OUTPUT_DIR", HERE / "output"))
     repo = Path(os.environ.get("REPO_ROOT", HERE.parents[1])).resolve()
     out.mkdir(parents=True, exist_ok=True)
-    cfg = jacquard.load_config(HERE / "lots.json")
+    cfg = jacquard.load_config(os.environ.get("JACQUARD_CONFIG") or HERE / "lots.json")
     members, counts, calibration = jacquard.step_select(repo, out, cfg)
     samples = jacquard.step_sample(out, cfg)
     summary = {"seed": cfg["seed"], "sample_size": cfg["sample_size"], "full_review_max": cfg["full_review_max"],
                "lots": {k: dict(counts[k], mode=samples["lots"][k]["mode"], sample_n=samples["lots"][k]["sample_n"],
-                                controls_to_plant=jacquard.control_count(samples["lots"][k]["sample_n"]))
+                                controls_to_plant=jacquard.control_count(samples["lots"][k]["sample_n"], cfg))
                         for k in counts},
                "needed_folders_beyond_jobs": jacquard.needed_dirs(members),
                "calibration": calibration}

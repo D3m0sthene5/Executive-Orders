@@ -80,6 +80,8 @@ def write_reviews(reviews_dir, packets_dir, key, overrides=None, kinds_caught=Tr
                 rev = good_review(iid, text)
                 if kind == "intruder" and kinds_caught:
                     rev.update(type_fits=False, status_no_supported=False)
+                if kind == "known_failure" and kinds_caught:
+                    rev.update(type_fits=False, status_no_supported=False, operative_quote="")
                 if kind == "text_swap" and kinds_caught:
                     rev.update(identity="mismatch", status_no_supported=False, operative_quote="")
                 rev.update(overrides.get(iid, {}))
@@ -361,6 +363,261 @@ class Pipeline(unittest.TestCase):
         self.assertIn("full review", [x for x in got if x["instrument_id"] == "EO:300"][0]["decision_origin"])
         self.assertNotIn("EO:903", {x["instrument_id"] for x in got})
         self.assertEqual(sorted(x["instrument_id"] for x in got), sorted({x["instrument_id"] for x in got}))
+
+
+# ---------------------------------------------------------------- wave 2
+
+W1_DIR = "research/excavator/w1"
+CFG2 = {"schema": "x", "wave": 2, "seed": "test-seed-w2", "sample_size": 10, "full_review_max": 100000,
+        "exclude_reviewed_from": [W1_DIR + "/SAMPLES.json", W1_DIR + "/CONTROL_KEY.json"],
+        "known_failure_controls_from": W1_DIR + "/INDIVIDUAL_REVIEW.csv", "batch_size": 20,
+        "lots": [{"lot": "AR", "rule_lot": "A", "type": "alpha", "rule_id": "TR-A", "confidence": ["high", "medium"],
+                  "max_year": 1917},
+                 {"lot": "BR", "rule_lot": "B", "type": "beta", "rule_id": "TR-B", "confidence": ["high"]}],
+        "control_types": {"AR": ["gamma"], "BR": ["gamma"]}}
+REVIEW_COLS = ["lot", "instrument_id", "item_id", "reasons", "lot_decision"]
+REVIEW_ROWS = [
+    ("A", "EO:520", "A-B01-02", "type_does_not_fit | status_no_not_supported | outliers_flagged: names no person"),
+    ("A", "EO:521", "A-B01-03", "identity_mismatch | type_does_not_fit | status_no_not_supported"),
+    ("A", "EO:522", "A-B01-04", "identity_cannot_tell | type_does_not_fit"),
+    ("A", "EO:523", "A-B01-05", "status_no_not_supported"),
+    ("A", "EO:524", "A-B01-06", "type_does_not_fit | status_no_not_supported"),
+    ("A", "EO:99999", "A-B01-07", "type_does_not_fit"),          # not a TYPES row
+    ("A", "EO:500", "A-B01-08", "type_does_not_fit"),            # in the register
+    ("B", "EO:525", "B-B01-02", "type_does_not_fit"),
+    ("B", "EO:526", "B-B01-03", "type_does_not_fit | status_no_not_supported"),
+]
+
+
+def make_wave1_files(repo):
+    d = Path(repo) / W1_DIR
+    d.mkdir(parents=True)
+    (d / "SAMPLES.json").write_text(json.dumps({"lots": {
+        "A": {"sampled_ids": ["EO:100", "EO:101", "EO:102"]}, "B": {"sampled_ids": ["EO:300"]}}}))
+    (d / "CONTROL_KEY.json").write_text(json.dumps({"items": {
+        "A-B01-01": {"instrument_id": "EO:103", "text_instrument_id": "EO:103", "kind": "genuine"},
+        "A-B01-09": {"instrument_id": "EO:104", "text_instrument_id": "EO:105", "kind": "text_swap"},
+        "B-B01-09": {"instrument_id": "EO:501", "text_instrument_id": "EO:501", "kind": "intruder"}},
+        "lots": {"A": {"batches": 1}}}))
+    with open(d / "INDIVIDUAL_REVIEW.csv", "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(REVIEW_COLS)
+        for lot, iid, item, reasons in REVIEW_ROWS:
+            w.writerow([lot, iid, item, reasons, "rejected"])
+
+
+class Wave2(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        t = Path(self.tmp.name)
+        self.repo, self.out, self.packets, self.keyf, self.reviews = t / "repo", t / "out", t / "packets", t / "key/CONTROL_KEY.json", t / "reviews"
+        self.repo.mkdir()
+        make_repo(self.repo, n_alpha=60, n_beta=6, n_gamma=30)
+        make_wave1_files(self.repo)
+        self.cfg = CFG2
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_to_packets(self, cfg=None):
+        cfg = cfg or self.cfg
+        J.step_select(self.repo, self.out, cfg)
+        J.step_sample(self.out, cfg)
+        return J.step_packets(self.repo, self.out, cfg, self.packets, self.keyf)
+
+    def test_exclusions_remove_wave1_ids(self):
+        reviewed = J.load_reviewed_ids(self.repo, self.cfg)
+        self.assertEqual(reviewed, {"EO:100", "EO:101", "EO:102", "EO:300", "EO:103", "EO:104", "EO:105", "EO:501"})
+        members, counts, _ = J.select_lots(self.repo, self.cfg)
+        ids = {r["instrument_id"] for r in members["AR"]} | {r["instrument_id"] for r in members["BR"]}
+        self.assertFalse(ids & reviewed)
+        self.assertEqual(len(members["AR"]), 60 - 6)        # EO:100-105 are alpha
+        self.assertEqual(len(members["BR"]), 5)
+        self.assertEqual(counts["AR"]["previously_reviewed"], 6)
+        self.assertEqual(counts["BR"]["previously_reviewed"], 1)
+        # without the option the same ids stay members and no counter is added
+        members1, counts1, _ = J.select_lots(self.repo, {k: v for k, v in self.cfg.items() if k != "exclude_reviewed_from"})
+        self.assertEqual(len(members1["AR"]), 60)
+        self.assertNotIn("previously_reviewed", counts1["AR"])
+
+    def test_exclusions_apply_to_intruders(self):
+        key, errors, _ = self.run_to_packets()
+        self.assertEqual(errors, [])
+        for v in key["items"].values():
+            if v["kind"] == "intruder":
+                self.assertNotEqual(v["instrument_id"], "EO:501")      # wave-1 intruder
+                self.assertNotEqual(v["instrument_id"], "EO:500")      # register
+                self.assertNotIn(v["instrument_id"], {"EO:520", "EO:521", "EO:522", "EO:523", "EO:524", "EO:525", "EO:526"})
+
+    def test_known_failure_candidates_filter(self):
+        types_by_id = {r["instrument_id"]: r for r in J.load_types(self.repo)}
+        register = J.load_register(self.repo)[1]
+        a = J.known_failure_candidates(self.repo, self.cfg, "A", types_by_id, register)
+        self.assertEqual([r["instrument_id"] for r in a], ["EO:520", "EO:524"])
+        self.assertEqual([r["_wave1_item"] for r in a], ["A-B01-02", "A-B01-06"])
+        b = J.known_failure_candidates(self.repo, self.cfg, "B", types_by_id, register)
+        self.assertEqual([r["instrument_id"] for r in b], ["EO:525", "EO:526"])
+        self.assertEqual(J.known_failure_candidates(self.repo, self.cfg, "C", types_by_id, register), [])
+        self.assertEqual(J.known_failure_candidates(self.repo, {}, "A", types_by_id, register), [])
+
+    def test_split_controls(self):
+        self.assertEqual(J.control_count(10, self.cfg), 3)
+        self.assertEqual(J.control_count(10), 2)
+        self.assertEqual(J.control_count(700, self.cfg), 56)
+        for n, want in ((3, (1, 1, 1)), (4, (2, 1, 1)), (5, (2, 2, 1)), (56, (19, 19, 18))):
+            s = J.split_controls(n, 99)
+            self.assertEqual((s["known_failure"], s["intruder"], s["text_swap"]), want)
+        s = J.split_controls(56, 6)
+        self.assertEqual((s["known_failure"], s["intruder"], s["text_swap"]), (6, 25, 25))
+        s = J.split_controls(4, 0)
+        self.assertEqual((s["known_failure"], s["intruder"], s["text_swap"]), (0, 2, 2))
+
+    def test_packets_controls_and_ids(self):
+        key, errors, _ = self.run_to_packets()
+        self.assertEqual(errors, [])
+        self.assertEqual(key["wave"], 2)
+        ar, br = key["lots"]["AR"], key["lots"]["BR"]
+        self.assertEqual((ar["genuine"], ar["controls"]), (54, 4))      # round(0.08 * 54) = 4
+        self.assertEqual(ar["controls_by_kind"], {"known_failure": 2, "intruder": 1, "text_swap": 1})
+        self.assertEqual((br["genuine"], br["controls"]), (5, 3))
+        self.assertEqual(br["controls_by_kind"], {"known_failure": 1, "intruder": 1, "text_swap": 1})
+        self.assertEqual((ar["rule_lot"], br["rule_lot"]), ("A", "B"))
+        self.assertEqual(ar["mode"], "full")
+        self.assertEqual(ar["batches"], 3)
+        for iid, v in key["items"].items():
+            self.assertTrue(iid.startswith(v["lot"] + "-B"))
+            self.assertRegex(iid, r"^(AR|BR)-B\d\d-\d\d$")
+            if v["kind"] == "known_failure":
+                self.assertEqual(v["instrument_id"], v["text_instrument_id"])
+                self.assertIn(v["instrument_id"], {"EO:520", "EO:524", "EO:525", "EO:526"})
+                self.assertTrue(v["wave1_item_id"])
+        for p in self.packets.rglob("*"):
+            if p.is_file():
+                self.assertNotIn("known_failure", p.read_text().lower())
+        # claimed fields of a known failure come from its own TYPES row, text is its own held text
+        kf = sorted(i for i, v in key["items"].items() if v["kind"] == "known_failure" and v["lot"] == "AR")[0]
+        bd = self.packets / "AR" / key["items"][kf]["batch"]
+        item = [json.loads(l) for l in (bd / "items.jsonl").read_text().splitlines() if json.loads(l)["item_id"] == kf][0]
+        n = key["items"][kf]["instrument_id"].split(":")[1]
+        self.assertEqual((item["claimed_number"], item["claimed_title"]), (n, "Title number " + n))
+        self.assertIn(f"Order {n} body text", (bd / "texts" / f"{kf}.txt").read_text())
+
+    def test_known_failure_never_reused_across_lots(self):
+        cfg = json.loads(json.dumps(self.cfg))
+        cfg["lots"][1]["rule_lot"] = "A"                 # both lots draw on the same two candidates (EO:520, EO:524)
+        key, errors, _ = self.run_to_packets(cfg)
+        self.assertEqual(errors, [])
+        used = [v["instrument_id"] for v in key["items"].values() if v["kind"] == "known_failure"]
+        self.assertEqual(len(used), len(set(used)))
+        self.assertEqual(sorted(used), ["EO:520", "EO:524"])
+        self.assertEqual(key["lots"]["AR"]["controls_by_kind"]["known_failure"], 2)
+        self.assertEqual(key["lots"]["BR"]["controls_by_kind"], {"known_failure": 0, "intruder": 2, "text_swap": 1})
+        self.assertEqual(key["lots"]["BR"]["controls"], 3)
+
+    def test_text_swaps_use_distinct_members_in_other_batches(self):
+        key, _, _ = self.run_to_packets()
+        swaps = [(i, v) for i, v in key["items"].items() if v["kind"] == "text_swap" and v["lot"] == "AR"]
+        self.assertTrue(swaps)
+        members = {r["instrument_id"] for r in J.read_lots_csv(self.out)["AR"]}
+        genuine = {v["instrument_id"]: v["batch"] for v in key["items"].values() if v["lot"] == "AR" and v["kind"] == "genuine"}
+        for iid, v in swaps:
+            self.assertIn(v["instrument_id"], members)
+            self.assertIn(v["text_instrument_id"], members)
+            self.assertNotEqual(v["instrument_id"], v["text_instrument_id"])
+            self.assertTrue(v["twins_in_other_batches"])
+            self.assertNotEqual(genuine[v["instrument_id"]], v["batch"])
+            self.assertNotEqual(genuine[v["text_instrument_id"]], v["batch"])
+            self.assertNotEqual(genuine[v["instrument_id"]], genuine[v["text_instrument_id"]])
+
+    def test_batch_size_respected(self):
+        cfg = dict(self.cfg, batch_size=8)
+        key, errors, _ = self.run_to_packets(cfg)
+        self.assertEqual(errors, [])
+        self.assertEqual(key["lots"]["AR"]["batches"], 8)            # ceil(58 / 8)
+        for b in (self.packets / "AR").glob("batch-*"):
+            n = len((b / "items.jsonl").read_text().splitlines())
+            self.assertTrue(7 <= n <= 8, n)
+        cfg = {k: v for k, v in self.cfg.items() if k != "batch_size"}
+        key, _, _ = self.run_to_packets(cfg)
+        self.assertEqual(key["lots"]["AR"]["batches"], 3)            # default 20
+
+    def test_known_failure_grading(self):
+        rev = good_review("X", "some text here now", status_no_supported=False)
+        self.assertTrue(J.control_caught("known_failure", rev))
+        self.assertTrue(J.control_caught("known_failure", dict(rev, type_fits=False)))
+        self.assertFalse(J.control_caught("known_failure", dict(rev, status_no_supported=True)))
+        self.assertFalse(J.control_caught("known_failure", dict(rev, status_no_supported=True, type_fits=False)))
+        self.assertFalse(J.control_caught("known_failure", None))
+        self.assertFalse(J.control_caught("known_failure", dict(rev, identity="bogus")))     # schema problem
+
+    def test_missed_known_failure_invalidates_batch(self):
+        key, _, _ = self.run_to_packets()
+        kf = sorted(i for i, v in key["items"].items() if v["kind"] == "known_failure" and v["lot"] == "BR")[0]
+        write_reviews(self.reviews, self.packets, key, {kf: {"type_fits": False, "status_no_supported": True,
+                                                              "operative_quote": "Order"}})
+        res = J.step_verify(self.reviews, self.keyf, self.packets, self.out)["lots"]["BR"]
+        self.assertEqual(res["batches"]["batch-01"]["status"], "invalid")
+        self.assertEqual(res["batches"]["batch-01"]["missed_controls"], [kf])
+        self.assertEqual(res["batches"]["batch-01"]["controls"][kf]["kind"], "known_failure")
+
+    def test_accept_and_propose_full_individual(self):
+        key, _, _ = self.run_to_packets()
+        gen = sorted(i for i, v in key["items"].items() if v["lot"] == "AR" and v["kind"] == "genuine")
+        write_reviews(self.reviews, self.packets, key, {gen[0]: {"status_no_supported": False}})
+        J.step_verify(self.reviews, self.keyf, self.packets, self.out)
+        acc = J.step_accept(self.out)
+        a = acc["lots"]["AR"]
+        self.assertEqual((a["status"], a["mode"], a["failures"], a["rule_lot"]), ("full_review_complete", "full", 1, "A"))
+        self.assertEqual(len(a["adoptable_ids"]), 53)
+        self.assertEqual(len(acc["lots"]["BR"]["adoptable_ids"]), 5)
+        rows = list(csv.DictReader(open(self.out / "INDIVIDUAL_REVIEW.csv")))
+        self.assertEqual([r["instrument_id"] for r in rows], [key["items"][gen[0]]["instrument_id"]])
+        # one adoptable order is already in the register: it is skipped
+        reg = self.repo / J.REGISTER_REL
+        with open(reg, "a", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=REG_COLS, lineterminator="\n")
+            w.writerow({c: "x" for c in REG_COLS} | {"instrument_id": "EO:301", "provisional_substantive_status": "no"})
+        prop, skipped = J.step_propose(self.repo, self.out)
+        self.assertEqual((len(prop), skipped), (53 + 5 - 1, ["EO:301"]))
+        got = {r["instrument_id"]: r for r in csv.DictReader(open(self.out / "PROPOSED_STATUS_ROWS.csv"))}
+        self.assertNotIn("EO:301", got)
+        self.assertEqual(got["EO:106"]["decision_origin"],
+                         "jacquard-AR-2026-10-31:ai_class_status (full review research/excavator/test-seed-w2/AR; "
+                         "rule card A; ruling 2026-10-31-jacquard-and-working-texts)")
+        self.assertIn("jacquard-BR-2026-10-31:ai_class_status (full review research/excavator/test-seed-w2/BR; rule card B;",
+                      got["EO:302"]["decision_origin"])
+
+    def test_cli_config_option_on_every_step(self):
+        cfgf = Path(self.tmp.name) / "cfg2.json"
+        cfgf.write_text(json.dumps(self.cfg))
+        base = ["--repo", str(self.repo), "--out", str(self.out), "--config", str(cfgf),
+                "--packets-dir", str(self.packets), "--key-file", str(self.keyf), "--reviews", str(self.reviews)]
+        self.assertEqual(J.main(["select"] + base), 0)
+        self.assertEqual(J.main(["sample"] + base), 0)
+        self.assertEqual(J.main(["packets"] + base), 0)
+        key = json.loads(self.keyf.read_text())
+        write_reviews(self.reviews, self.packets, key)
+        for step in ("verify", "accept", "propose"):
+            self.assertEqual(J.main([step] + base), 0)
+        self.assertEqual(json.loads((self.out / "SAMPLES.json").read_text())["lots"]["AR"]["rule_lot"], "A")
+
+    def test_wave2_config_file(self):
+        cfg = J.load_config(Path(J.__file__).resolve().parent / "lots_wave2.json")
+        self.assertEqual((cfg["wave"], cfg["seed"], cfg["batch_size"]), (2, "jacquard-2026-10-31-w2", 20))
+        self.assertEqual([(l["lot"], l["rule_lot"]) for l in cfg["lots"]], [("L1R", "L1"), ("L4R", "L4"), ("L5R", "L5")])
+
+
+class Wave1Regression(unittest.TestCase):
+    W1 = Path(__file__).resolve().parents[2] / "research/excavator/jacquard-2026-10-31"
+
+    @unittest.skipUnless((W1 / "SAMPLES.json").is_file() and (W1 / "LOTS.csv").is_file(), "wave-1 records not present")
+    def test_wave1_config_reproduces_samples_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "LOTS.csv").write_bytes((self.W1 / "LOTS.csv").read_bytes())
+            J.step_sample(tmp, J.load_config())
+            self.assertEqual(json.loads((Path(tmp) / "SAMPLES.json").read_text()),
+                             json.loads((self.W1 / "SAMPLES.json").read_text()))
+            self.assertEqual((Path(tmp) / "SAMPLES.json").read_text(), (self.W1 / "SAMPLES.json").read_text())
 
 
 if __name__ == "__main__":
