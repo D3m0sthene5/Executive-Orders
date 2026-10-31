@@ -2,6 +2,23 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-31 (Claude, Apollo dashboard audit)
+
+- **Checked:** all eight live feeds of the Apollo dashboard (artifact 531KGTebdrgdeUitKhp8du) are byte-identical,
+  after CRLF normalization, to `research/progress/remaining-work/snapshots/2026-10-30/` and
+  `workflow/WORKFLOW_NODES.csv`. Readiness generation `35b9a7585d` (498 ready, 3,403 provisional statuses, 0
+  human-certified) is still the newest on main; PR #117 (Codex R1-R4 integration) is open and unmerged, so the
+  figures will need a refresh once it lands and the tracker republishes.
+- **Fixed:** `build_toolmap.py` on main lacked the Pinakes lane, so a rebuild would have moved 2,644 ProQuest
+  scan-held orders into "Clark: identity unknown". Ported the branch from artifact commit 928962fc; the builder
+  now reproduces the live `TOOLMAP_WORKLOAD.csv` exactly. Updated three stale dataset descriptions (they cited
+  the superseded 488 preview) and two Tool-map notes (the transcription rule is applied through filed claims on
+  main, not by merging `claude/justinian-1`, which never merged; owner questions are open in KEAN.md).
+- **Finding for whoever plans next:** statuses have not moved since Oct 22. 49,325 of 75,742 open steps (65%) are
+  "earlier step first", waiting on the status step, and ready orders cannot exceed 3,403 until status adoption
+  scales. Pre-1937 orders without machine history carry about 7,700 of the 14,067 modeled agent-hours. Kean
+  `F-20261031-apollo-audit`; owner asks A-20261021-3 and A-20261028-4 decide whether that bottleneck can move.
+
 ## 2026-10-31 (Claude, Minard: the Workflow tab on the remaining-work dashboard)
 
 - **Built** a fifth dashboard tab, Workflow (`#workflow`): 79 named jobs, past campaigns, the agent review
