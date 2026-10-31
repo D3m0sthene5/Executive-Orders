@@ -81,3 +81,30 @@ These are 250 test executions / 248 passes / 2 inherited skips, not 250 claimed 
 | `jobs/valla/job.py` | `feedae908579f1698e510aef3c75b6fdc07e436b4c61d8439bd3096c13455fc4` |
 
 Any later material implementation/declaration/workflow change needs exact recheck. Later report/register additions do not retroactively establish pending production or CI outcomes.
+
+## CI and bounded production invocation addendum — 2026-10-31T18:48:30.491436+00:00
+
+**Uphold the invocation/fixture fixes at the hashes below; no new blocking finding.** Existing review sections above remain byte-for-byte unchanged (pre-addendum report SHA-256 `1adfa3c58492bdef34c0b840214d69b60201c2c3eba2414dce2e6171945115b8`). Inspected local commit `b0ef0650bb81f955eb3e40f3acb4d03e6ef220e8` and exact working bytes; this addendum does not claim a completed remote proof, Road result or production publication.
+
+Road checkout now includes the exact `research/plans/claim_kit_contract` fixture tree used by two existing tests. No assertions or runtime implementations change. Independently reran those exact assembly/excavator contract-example tests: 2 passed in 0.007 unittest seconds. The coordinator reports the preceding remote Road attempt failed because those four fixtures were absent; this review does not turn that failure or the coordinator's full local Road pass into an independent remote CI pass.
+
+The new adapter listens only for completed `Run jobs` workflows on main. Its PR117 merged-commit equality guard skips unmerged/different-source events; every subsequent execution/checkout/publication step requires that guard output. Explicit permissions are `contents: write` for the unchanged publisher and `pull-requests: read` for the GitHub merge query. No event artifacts are executed; checkout uses trusted main. It waits for that ordinary Run jobs invocation to finish and then captures current main, including any outputs it published. This is a source-gated adapter, not a durable exactly-once guarantee: rerunning the same matching event can invoke it again. Unrelated later sources select nothing.
+
+Independently parsed the YAML, checked permissions and downstream conditions, ran shell syntax checks for every run block, and exercised the exact shell guard with stubbed GitHub-query outputs for unmerged, different and matching commits. All three cases behaved correctly. No live write or workflow dispatch was performed. `pick_jobs.ordered()` selected exactly these eight existing consumers and satisfied every selected predecessor edge: `valla claim-kit claim-checker census-candidates readiness-tracker early-ranger-workbench neyman case-bundles`. It does not call the broad consumer/acquisition selector.
+
+Materialization, native runner and transactional publisher are unchanged. Publication still uses per-attempt `publish_output`, branch input/output freshness checks, and guarded reconciliation; failures retain the existing refusal/prior-generation behavior. An always-run publication step does not confer scientific eligibility. Waiting for one completed workflow does not eliminate unrelated concurrent runs, so the retained freshness checks remain necessary.
+
+The original worksheet verifier and read-only native-proof workflow are byte-identical to published-source pin `9438a8adc19396b5891d770d14ff681138bff795` as read from local Git objects. Neither the fixture workflow nor this separate adapter changes the native R1 implementation closure: both committed and working signatures remain `07fef593187848774aef7e91420a9df75fc2586717a0bebddc58c05c33f7de77`. No previous code-review hash is superseded. Production facts should remain outside broad consumed progress roots or require a fresh capture. Source/readiness/census/human/legal/savings boundaries above remain in force.
+
+| Addendum file | SHA-256 |
+|---|---|
+| `.github/workflows/road-tests.yml` | `a053fdf37fc895fa7394759fa63e7d2d5528df5bff08804717f045b1db56bf89` |
+| `.github/workflows/r1-r4-production.yml` | `7ae8346ab06b47c95f677becfffc9f012b024d98bccc3fdba9e9ed9f07a15bea` |
+| `.github/workflows/r1-materializer-proof.yml` | `72b6cd5bc39045793c33d08212d7400df82128fc4cb14a587121338317254437` |
+| `research/progress/r1-r4-integration/verify_retained_worksheet.py` | `dae5d813eb0f7f3a3525f2fabba42851ca51b9c9d5d2d08c69c2dea75560242a` |
+| `.github/scripts/pick_jobs.py` | `f492a1174139e86c24b8c42a268e9a15a941c5e007abb22a34ce9119343f8e7d` |
+| `.github/scripts/materialize_job_inputs.py` | `81d83bb72d7df96a160127e503042bade9d2e5c2382d830cefa1475c6edc5a88` |
+| `.github/scripts/run_jobs.sh` | `14e425f4ccfab7192128ed3633bcdcd9ec5727e6920ad2699d616725ccca6eb4` |
+| `.github/scripts/run_jobs.py` | `8ed9ddb3150b7878a8de8f6e09b9db0ac35a4f41e45edaaf40a3559050bfdd3e` |
+| `.github/scripts/commit_results.sh` | `322af6acbd6d05e9b63bd42ef0be210b4c1f9e3b295e93fa9f0d05d6bff84171` |
+| `.github/workflows/run-jobs.yml` | `0e3aa1069a2cf4f2be76a365fdceb730fb169d18e0f8f1588eaeddbeff32dc2a` |

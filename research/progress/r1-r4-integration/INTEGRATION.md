@@ -100,3 +100,8 @@ no new narrow certificate, performs no scientific adoption, and does not fan out
 to unrelated acquisition jobs. Subsequent unrelated runs fail its exact-merge
 guard and select no work. This is a bounded integration invocation, not a new
 production framework. Final implementation closure/certificate is unchanged.
+
+Second Road run41231091891 reached Windows Valla tests and exposed a test-root
+8.3 alias mismatch (C:\Users\RUNNER~1 vs resolved runneradmin). Road now uses
+runner.temp for TEMP/TMP; Valla implementation/certificate bytes stay unchanged.
+Matrix fail-fast is disabled so an OS-specific failure preserves the other result.

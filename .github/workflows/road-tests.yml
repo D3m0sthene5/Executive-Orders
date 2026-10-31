@@ -16,6 +16,7 @@ concurrency:
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -34,3 +35,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python .github/scripts/test_roads.py
+        env:
+          # Windows' inherited user TEMP may use an 8.3 alias while Path.resolve
+          # returns its long name. Keep fixture roots on the runner's own path.
+          TEMP: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
