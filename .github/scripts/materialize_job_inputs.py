@@ -1,7 +1,7 @@
 """Restore selected inputs while preserving unaudited dynamic job reads.
 
 The non-cone bootstrap includes job code/data but omits output generations.
-Two exact engineering-reviewed versions expand their declared closure and prior
+Exact engineering-reviewed versions expand their declared closure and prior
 outputs. Other or changed versions restore all jobs/ for compatibility.
 """
 from __future__ import annotations
@@ -22,6 +22,15 @@ NARROW_SIGNATURES = {
     "example-hello": "11168c38449395ac4700647d15f9a1b1341f0cf2a54ebf9fddea1031ef3f05a8",
     "early-ranger-transcriptions": "aa21dad4f0858cb2ed807f5942586cb5917504af3ce8a85976cdf5ae90c1b5cc",
 }
+CERTIFICATE_FILE = Path(__file__).with_name('materialization_certificates.json')
+# A separate certificate avoids a self-referential hash while binding the
+# materializer and dynamic resolver themselves, as well as job code/declarations.
+try:
+    value = json.loads(CERTIFICATE_FILE.read_text(encoding='utf-8'))['valla']
+    if isinstance(value, str) and freshness.re.fullmatch('[0-9a-f]{64}', value):
+        NARROW_SIGNATURES['valla'] = value
+except (OSError, ValueError, KeyError, TypeError):
+    pass
 
 
 def git(*args, input=None):
@@ -61,16 +70,26 @@ def directory_pattern(path):
 
 
 def narrow_signature(name, ref="HEAD"):
-    entries = tree_entries(ref, [f"jobs/{name}", "jobs/_lib"])
+    if name == 'valla':
+        return freshness.valla_signature(ref)
+    roots = [f"jobs/{name}", "jobs/_lib"]
+    entries = tree_entries(ref, roots)
     entries = {p: value for p, value in entries.items()
                if not freshness.under(p, f"jobs/{name}/output")}
     return entries_digest(entries)
 
 
 def fallback_jobs(names, ref="HEAD"):
-    return {name: ("unaudited_job" if name not in NARROW_SIGNATURES else "audited_version_changed")
+    result = {name: ("unaudited_job" if name not in NARROW_SIGNATURES else "audited_version_changed")
             for name in names
             if name not in NARROW_SIGNATURES or narrow_signature(name, ref) != NARROW_SIGNATURES[name]}
+    if 'valla' in names:
+        declared = freshness.scope('valla')
+        if not declared['dynamic_complete']:
+            result['valla'] = 'unresolved_dynamic_inputs'
+        elif not declared['implementation_certified'] and 'valla' not in result:
+            result['valla'] = 'audited_worktree_changed'
+    return result
 
 
 def input_closure(names, ref="HEAD"):
@@ -85,6 +104,12 @@ def input_closure(names, ref="HEAD"):
         # to the freshness manifest itself.
         own = tree_entries(ref, [f"jobs/{name}"])
         declared_scope = freshness.scope(name)
+        if name == 'valla' and (not declared_scope['dynamic_complete']
+                               or not declared_scope['implementation_certified']
+                               or git('rev-parse', ref) != git('rev-parse', 'HEAD')):
+            # Unknown implementations may introduce new pointer fields or
+            # imports. Preserve all repository availability, not only jobs/.
+            declared_scope = {**declared_scope, 'patterns': ['*']}
         declared = freshness.tracked_entries(ref, declared_scope)
         entries = {**own, **declared}
         by_job[name] = entries
@@ -102,6 +127,8 @@ def input_closure(names, ref="HEAD"):
         by_job_patterns[name] = ({directory_pattern(root) for root in root_dirs}
                                  | {literal_pattern(root) for root in root_files}
                                  | {literal_pattern(p) for p in exact})
+        if name == 'valla' and declared_scope['patterns'] == ['*']:
+            by_job_patterns[name] = {'/**'}
     fallback = fallback_jobs(names, ref)
     if fallback:
         # Existing jobs dynamically enumerate outputs and import siblings that

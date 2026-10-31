@@ -1,0 +1,551 @@
+﻿2026-10-31T04:27:30.1079281Z Current runner version: '2.338.2'
+2026-10-31T04:27:30.1103795Z ##[group]Runner Image Provisioner
+2026-10-31T04:27:30.1104688Z Hosted Compute Agent
+2026-10-31T04:27:30.1105629Z Version: 20261021.618
+2026-10-31T04:27:30.1106348Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-31T04:27:30.1107078Z Build Date: 2026-10-21T00:45:21Z
+2026-10-31T04:27:30.1107849Z Worker ID: {bfeff990-8915-44be-87c2-22a8a89aa7bd}
+2026-10-31T04:27:30.1108568Z Region: northcentralus
+2026-10-31T04:27:30.1109187Z Cloud: Azure
+2026-10-31T04:27:30.1109775Z ##[endgroup]
+2026-10-31T04:27:30.1111265Z ##[group]Operating System
+2026-10-31T04:27:30.1112047Z Ubuntu
+2026-10-31T04:27:30.1112581Z 26.04.1
+2026-10-31T04:27:30.1113131Z LTS
+2026-10-31T04:27:30.1113699Z ##[endgroup]
+2026-10-31T04:27:30.1114249Z ##[group]Runner Image
+2026-10-31T04:27:30.1114943Z Image: ubuntu-26.04
+2026-10-31T04:27:30.1115771Z Version: 20261025.179.1
+2026-10-31T04:27:30.1117152Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-31T04:27:30.1118777Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+2026-10-31T04:27:30.1119832Z ##[endgroup]
+2026-10-31T04:27:30.1120961Z ##[group]GITHUB_TOKEN Permissions
+2026-10-31T04:27:30.1122936Z Contents: write
+2026-10-31T04:27:30.1123569Z Metadata: read
+2026-10-31T04:27:30.1124118Z ##[endgroup]
+2026-10-31T04:27:30.1126548Z Secret source: Actions
+2026-10-31T04:27:30.1127530Z Cache mode: write
+2026-10-31T04:27:30.1128386Z Prepare workflow directory
+2026-10-31T04:27:30.1708242Z Prepare all required actions
+2026-10-31T04:27:30.1782062Z Getting action download info
+2026-10-31T04:27:30.4192519Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-31T04:27:30.5329715Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-31T04:27:30.5930377Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-10-31T04:27:30.6553058Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-31T04:27:30.8409826Z Complete job name: run
+2026-10-31T04:27:30.9297310Z ##[group]Run actions/checkout@v4
+2026-10-31T04:27:30.9298199Z with:
+2026-10-31T04:27:30.9298645Z   fetch-depth: 0
+2026-10-31T04:27:30.9299107Z   filter: blob:none
+2026-10-31T04:27:30.9299586Z   sparse-checkout-cone-mode: false
+2026-10-31T04:27:30.9300335Z   sparse-checkout: /*
+!/*/
+/.github/**
+/HANDOFF/**
+/jobs/**
+!/jobs/*/output/**
+
+2026-10-31T04:27:30.9301155Z   repository: D3m0sthene5/Executive-Orders
+2026-10-31T04:27:30.9305685Z   token: ***
+2026-10-31T04:27:30.9306166Z   ssh-strict: true
+2026-10-31T04:27:30.9306616Z   ssh-user: git
+2026-10-31T04:27:30.9307069Z   persist-credentials: true
+2026-10-31T04:27:30.9307790Z   clean: true
+2026-10-31T04:27:30.9308252Z   fetch-tags: false
+2026-10-31T04:27:30.9308707Z   show-progress: true
+2026-10-31T04:27:30.9309313Z   lfs: false
+2026-10-31T04:27:30.9309759Z   submodules: false
+2026-10-31T04:27:30.9310214Z   set-safe-directory: true
+2026-10-31T04:27:30.9310734Z   allow-unsafe-pr-checkout: false
+2026-10-31T04:27:30.9311593Z env:
+2026-10-31T04:27:30.9312047Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:30.9312529Z ##[endgroup]
+2026-10-31T04:27:31.1730932Z Syncing repository: D3m0sthene5/Executive-Orders
+2026-10-31T04:27:31.1733715Z ##[group]Getting Git version info
+2026-10-31T04:27:31.1735457Z Working directory is '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-10-31T04:27:31.1737543Z [command]/usr/bin/git version
+2026-10-31T04:27:31.1766199Z git version 2.56.0
+2026-10-31T04:27:31.1786799Z ##[endgroup]
+2026-10-31T04:27:31.1842462Z Temporarily overriding HOME='/home/runner/work/_temp/7f125b0f-d889-4238-a8cb-8a5166d9b907' before making global git config changes
+2026-10-31T04:27:31.1845569Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T04:27:31.1848085Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:27:31.1934156Z Deleting the contents of '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-10-31T04:27:31.1946284Z ##[group]Initializing the repository
+2026-10-31T04:27:31.1947671Z [command]/usr/bin/git init /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:27:31.2048125Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-31T04:27:31.2050331Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-31T04:27:31.2051596Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-31T04:27:31.2052705Z hint: call:
+2026-10-31T04:27:31.2053143Z hint:
+2026-10-31T04:27:31.2053765Z hint: 	git config --global init.defaultBranch <name>
+2026-10-31T04:27:31.2054591Z hint:
+2026-10-31T04:27:31.2055461Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-31T04:27:31.2056686Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-31T04:27:31.2057691Z hint:
+2026-10-31T04:27:31.2058465Z hint: 	git branch -m <name>
+2026-10-31T04:27:31.2059396Z hint:
+2026-10-31T04:27:31.2060561Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-31T04:27:31.2062466Z Initialized empty Git repository in /home/runner/work/Executive-Orders/Executive-Orders/.git/
+2026-10-31T04:27:31.2074110Z [command]/usr/bin/git remote add origin https://github.com/D3m0sthene5/Executive-Orders
+2026-10-31T04:27:31.2123756Z ##[endgroup]
+2026-10-31T04:27:31.2125408Z ##[group]Disabling automatic garbage collection
+2026-10-31T04:27:31.2128330Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-31T04:27:31.2164758Z ##[endgroup]
+2026-10-31T04:27:31.2166917Z ##[group]Setting up auth
+2026-10-31T04:27:31.2172158Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T04:27:31.2208966Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T04:27:31.2640578Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T04:27:31.2682947Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T04:27:31.2962340Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T04:27:31.2998847Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T04:27:31.3269458Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-31T04:27:31.3310399Z ##[endgroup]
+2026-10-31T04:27:31.3311868Z ##[group]Fetching the repository
+2026-10-31T04:27:31.3322766Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-31T04:27:33.0004291Z From https://github.com/D3m0sthene5/Executive-Orders
+2026-10-31T04:27:33.0006566Z  * [new branch]      app-executive-orders    -> origin/app-executive-orders
+2026-10-31T04:27:33.0008861Z  * [new branch]      app-executive-orders-5gjo5p -> origin/app-executive-orders-5gjo5p
+2026-10-31T04:27:33.0011057Z  * [new branch]      archive-all-research-progress-20261017 -> origin/archive-all-research-progress-20261017
+2026-10-31T04:27:33.0013571Z  * [new branch]      astra/apollo-audit-20261020-1407utc -> origin/astra/apollo-audit-20261020-1407utc
+2026-10-31T04:27:33.0016231Z  * [new branch]      astra/campaign-acceleration-20261024 -> origin/astra/campaign-acceleration-20261024
+2026-10-31T04:27:33.0018855Z  * [new branch]      astra/cumulative-research-20261024 -> origin/astra/cumulative-research-20261024
+2026-10-31T04:27:33.0022307Z  * [new branch]      astra/dashboard-refresh-20261028 -> origin/astra/dashboard-refresh-20261028
+2026-10-31T04:27:33.0024890Z  * [new branch]      astra/deterministic-production-20261024 -> origin/astra/deterministic-production-20261024
+2026-10-31T04:27:33.0028827Z  * [new branch]      astra/early-census-library-hookup-20261017 -> origin/astra/early-census-library-hookup-20261017
+2026-10-31T04:27:33.0031873Z  * [new branch]      astra/leverage-campaign-20261022 -> origin/astra/leverage-campaign-20261022
+2026-10-31T04:27:33.0034623Z  * [new branch]      astra/lightweight-01-cotton-20261029 -> origin/astra/lightweight-01-cotton-20261029
+2026-10-31T04:27:33.0038142Z  * [new branch]      astra/lightweight-02-proquest-20261029 -> origin/astra/lightweight-02-proquest-20261029
+2026-10-31T04:27:33.0041311Z  * [new branch]      astra/lightweight-03-x1-20261029 -> origin/astra/lightweight-03-x1-20261029
+2026-10-31T04:27:33.0044309Z  * [new branch]      astra/lightweight-04-lewis-20261029 -> origin/astra/lightweight-04-lewis-20261029
+2026-10-31T04:27:33.0047704Z  * [new branch]      astra/lightweight-05-land-20261029 -> origin/astra/lightweight-05-land-20261029
+2026-10-31T04:27:33.0050817Z  * [new branch]      astra/lightweight-06-neyman-20261029 -> origin/astra/lightweight-06-neyman-20261029
+2026-10-31T04:27:33.0053812Z  * [new branch]      astra/portfolio-repair-20261020 -> origin/astra/portfolio-repair-20261020
+2026-10-31T04:27:33.0056763Z  * [new branch]      astra/production-2026-10-17 -> origin/astra/production-2026-10-17
+2026-10-31T04:27:33.0059521Z  * [new branch]      astra/production-families-2026-10-18 -> origin/astra/production-families-2026-10-18
+2026-10-31T04:27:33.0063320Z  * [new branch]      astra/project-tier-audit-2026-10-29 -> origin/astra/project-tier-audit-2026-10-29
+2026-10-31T04:27:33.0066530Z  * [new branch]      astra/road-1-family-rules -> origin/astra/road-1-family-rules
+2026-10-31T04:27:33.0069141Z  * [new branch]      astra/road-2-case-bundles -> origin/astra/road-2-case-bundles
+2026-10-31T04:27:33.0072116Z  * [new branch]      astra/road-3-runner-speed -> origin/astra/road-3-runner-speed
+2026-10-31T04:27:33.0075529Z  * [new branch]      astra/rocket-dashboard-2026-10-29 -> origin/astra/rocket-dashboard-2026-10-29
+2026-10-31T04:27:33.0078274Z  * [new branch]      astra/side-2026-10-18   -> origin/astra/side-2026-10-18
+2026-10-31T04:27:33.0081319Z  * [new branch]      astra/source-first-production-20261023 -> origin/astra/source-first-production-20261023
+2026-10-31T04:27:33.0084130Z  * [new branch]      census-completeness     -> origin/census-completeness
+2026-10-31T04:27:33.0086810Z  * [new branch]      claude/app-ingest-2959a8 -> origin/claude/app-ingest-2959a8
+2026-10-31T04:27:33.0089357Z  * [new branch]      claude/astra-brief-f2a36a -> origin/claude/astra-brief-f2a36a
+2026-10-31T04:27:33.0091910Z  * [new branch]      claude/checker-crossjob-text -> origin/claude/checker-crossjob-text
+2026-10-31T04:27:33.0094247Z  * [new branch]      claude/cotton-b1        -> origin/claude/cotton-b1
+2026-10-31T04:27:33.0096777Z  * [new branch]      claude/cotton-custody   -> origin/claude/cotton-custody
+2026-10-31T04:27:33.0099660Z  * [new branch]      claude/cs-waiver-rule   -> origin/claude/cs-waiver-rule
+2026-10-31T04:27:33.0102470Z  * [new branch]      claude/dazzling-gates-4xkkzo -> origin/claude/dazzling-gates-4xkkzo
+2026-10-31T04:27:33.0106258Z  * [new branch]      claude/dossier-identity -> origin/claude/dossier-identity
+2026-10-31T04:27:33.0109031Z  * [new branch]      claude/eloquent-pascal-tb4qpc -> origin/claude/eloquent-pascal-tb4qpc
+2026-10-31T04:27:33.0112253Z  * [new branch]      claude/fr-pages-extracts -> origin/claude/fr-pages-extracts
+2026-10-31T04:27:33.0114852Z  * [new branch]      claude/great-ptolemy-9r6zah -> origin/claude/great-ptolemy-9r6zah
+2026-10-31T04:27:33.0117628Z  * [new branch]      claude/junto-1727       -> origin/claude/junto-1727
+2026-10-31T04:27:33.0119968Z  * [new branch]      claude/justinian-1      -> origin/claude/justinian-1
+2026-10-31T04:27:33.0122583Z  * [new branch]      claude/justinian-adoption-1 -> origin/claude/justinian-adoption-1
+2026-10-31T04:27:33.0125365Z  * [new branch]      claude/kean-evidence-decides -> origin/claude/kean-evidence-decides
+2026-10-31T04:27:33.0127924Z  * [new branch]      claude/kean-need-to-share -> origin/claude/kean-need-to-share
+2026-10-31T04:27:33.0130999Z  * [new branch]      claude/kean-status-ask  -> origin/claude/kean-status-ask
+2026-10-31T04:27:33.0134391Z  * [new branch]      claude/land-probe       -> origin/claude/land-probe
+2026-10-31T04:27:33.0137625Z  * [new branch]      claude/mansfield-1      -> origin/claude/mansfield-1
+2026-10-31T04:27:33.0140355Z  * [new branch]      claude/minard-workflow-map -> origin/claude/minard-workflow-map
+2026-10-31T04:27:33.0142995Z  * [new branch]      claude/modest-cray-m5124u -> origin/claude/modest-cray-m5124u
+2026-10-31T04:27:33.0145752Z  * [new branch]      claude/namier-prosopography -> origin/claude/namier-prosopography
+2026-10-31T04:27:33.0148591Z  * [new branch]      claude/nra-pilots-filing -> origin/claude/nra-pilots-filing
+2026-10-31T04:27:33.0150914Z  * [new branch]      claude/poggio-backfill  -> origin/claude/poggio-backfill
+2026-10-31T04:27:33.0153117Z  * [new branch]      claude/production-b1    -> origin/claude/production-b1
+2026-10-31T04:27:33.0155843Z  * [new branch]      claude/production-b1a   -> origin/claude/production-b1a
+2026-10-31T04:27:33.0158117Z  * [new branch]      claude/production-b1bc  -> origin/claude/production-b1bc
+2026-10-31T04:27:33.0160388Z  * [new branch]      claude/proquest-wording -> origin/claude/proquest-wording
+2026-10-31T04:27:33.0162912Z  * [new branch]      claude/registered-grade -> origin/claude/registered-grade
+2026-10-31T04:27:33.0166382Z  * [new branch]      claude/schechter-nira-sweep -> origin/claude/schechter-nira-sweep
+2026-10-31T04:27:33.0168922Z  * [new branch]      claude/schechter-retention -> origin/claude/schechter-retention
+2026-10-31T04:27:33.0171637Z  * [new branch]      claude/shared-statutes  -> origin/claude/shared-statutes
+2026-10-31T04:27:33.0175921Z  * [new branch]      claude/shepard-fr-pages -> origin/claude/shepard-fr-pages
+2026-10-31T04:27:33.0179950Z  * [new branch]      claude/spent-probe      -> origin/claude/spent-probe
+2026-10-31T04:27:33.0183796Z  * [new branch]      claude/status-proposals-b1 -> origin/claude/status-proposals-b1
+2026-10-31T04:27:33.0188306Z  * [new branch]      claude/tiered-delegation-rule -> origin/claude/tiered-delegation-rule
+2026-10-31T04:27:33.0192143Z  * [new branch]      claude/x1-class-engine  -> origin/claude/x1-class-engine
+2026-10-31T04:27:33.0195763Z  * [new branch]      codex/continuous-research-20261024 -> origin/codex/continuous-research-20261024
+2026-10-31T04:27:33.0199063Z  * [new branch]      codex/continuous-retention-final-20261025 -> origin/codex/continuous-retention-final-20261025
+2026-10-31T04:27:33.0203283Z  * [new branch]      codex/continuous-sources-20261025 -> origin/codex/continuous-sources-20261025
+2026-10-31T04:27:33.0206412Z  * [new branch]      codex/corpus-excavator-20261018 -> origin/codex/corpus-excavator-20261018
+2026-10-31T04:27:33.0209360Z  * [new branch]      codex/counterexample-first-20261026 -> origin/codex/counterexample-first-20261026
+2026-10-31T04:27:33.0212289Z  * [new branch]      codex/diagnostic-report-20261020 -> origin/codex/diagnostic-report-20261020
+2026-10-31T04:27:33.0215283Z  * [new branch]      codex/eo-workflow-swarm-20261021 -> origin/codex/eo-workflow-swarm-20261021
+2026-10-31T04:27:33.0218101Z  * [new branch]      codex/final-integration-20261029 -> origin/codex/final-integration-20261029
+2026-10-31T04:27:33.0220614Z  * [new branch]      codex/gap-census-20261018 -> origin/codex/gap-census-20261018
+2026-10-31T04:27:33.0223125Z  * [new branch]      codex/hathi-gpo-orders-20261018 -> origin/codex/hathi-gpo-orders-20261018
+2026-10-31T04:27:33.0226327Z  * [new branch]      codex/hidden-workflow-friction-20261029 -> origin/codex/hidden-workflow-friction-20261029
+2026-10-31T04:27:33.0229189Z  * [new branch]      codex/integrate-eo-20261029 -> origin/codex/integrate-eo-20261029
+2026-10-31T04:27:33.0232044Z  * [new branch]      codex/mountweazel-layout-20261029 -> origin/codex/mountweazel-layout-20261029
+2026-10-31T04:27:33.0235531Z  * [new branch]      codex/neyman-production-diagnostics-20261025 -> origin/codex/neyman-production-diagnostics-20261025
+2026-10-31T04:27:33.0238761Z  * [new branch]      codex/nmb-record-series-20261025 -> origin/codex/nmb-record-series-20261025
+2026-10-31T04:27:33.0241550Z  * [new branch]      codex/norton-reuse-test-20261025 -> origin/codex/norton-reuse-test-20261025
+2026-10-31T04:27:33.0244270Z  * [new branch]      codex/pre-1937-sources-20261018 -> origin/codex/pre-1937-sources-20261018
+2026-10-31T04:27:33.0247438Z  * [new branch]      codex/production-cost-trace-20261026 -> origin/codex/production-cost-trace-20261026
+2026-10-31T04:27:33.0250529Z  * [new branch]      codex/production-line-audit-20261029 -> origin/codex/production-line-audit-20261029
+2026-10-31T04:27:33.0253682Z  * [new branch]      codex/proquest-custody-census-20261029 -> origin/codex/proquest-custody-census-20261029
+2026-10-31T04:27:33.0257607Z  * [new branch]      codex/proquest-custody-verification-20261029 -> origin/codex/proquest-custody-verification-20261029
+2026-10-31T04:27:33.0260852Z  * [new branch]      codex/repair-integration-20261020 -> origin/codex/repair-integration-20261020
+2026-10-31T04:27:33.0263671Z  * [new branch]      codex/shared-research-production -> origin/codex/shared-research-production
+2026-10-31T04:27:33.0267068Z  * [new branch]      codex/sinclair-cross-family-review-20261022 -> origin/codex/sinclair-cross-family-review-20261022
+2026-10-31T04:27:33.0270328Z  * [new branch]      codex/source-boundary-audit-20261026 -> origin/codex/source-boundary-audit-20261026
+2026-10-31T04:27:33.0272992Z  * [new branch]      codex/stall-probe-20261020 -> origin/codex/stall-probe-20261020
+2026-10-31T04:27:33.0275948Z  * [new branch]      codex/valla-current-validation-20261020 -> origin/codex/valla-current-validation-20261020
+2026-10-31T04:27:33.0278927Z  * [new branch]      codex/wikisource-texts-20261018 -> origin/codex/wikisource-texts-20261018
+2026-10-31T04:27:33.0281747Z  * [new branch]      corps-of-discovery-lewis-clark -> origin/corps-of-discovery-lewis-clark
+2026-10-31T04:27:33.0284120Z  * [new branch]      csc-annual-reports      -> origin/csc-annual-reports
+2026-10-31T04:27:33.0286410Z  * [new branch]      early-orders-hunt       -> origin/early-orders-hunt
+2026-10-31T04:27:33.0288558Z  * [new branch]      fix/tracker-empty-clauses -> origin/fix/tracker-empty-clauses
+2026-10-31T04:27:33.0290851Z  * [new branch]      indian-reservations-1912 -> origin/indian-reservations-1912
+2026-10-31T04:27:33.0292939Z  * [new branch]      integrate-tools         -> origin/integrate-tools
+2026-10-31T04:27:33.0294914Z  * [new branch]      isthmian-canal-1911     -> origin/isthmian-canal-1911
+2026-10-31T04:27:33.0297129Z  * [new branch]      job/claim-checker       -> origin/job/claim-checker
+2026-10-31T04:27:33.0299041Z  * [new branch]      job/claim-drafts        -> origin/job/claim-drafts
+2026-10-31T04:27:33.0300973Z  * [new branch]      job/clause-drafts       -> origin/job/clause-drafts
+2026-10-31T04:27:33.0302893Z  * [new branch]      job/current-law         -> origin/job/current-law
+2026-10-31T04:27:33.0304794Z  * [new branch]      job/later-events        -> origin/job/later-events
+2026-10-31T04:27:33.0306996Z  * [new branch]      job/opus-media-match    -> origin/job/opus-media-match
+2026-10-31T04:27:33.0308997Z  * [new branch]      job/source-ladder       -> origin/job/source-ladder
+2026-10-31T04:27:33.0311238Z  * [new branch]      lifecycle-assurance-2026-10-29 -> origin/lifecycle-assurance-2026-10-29
+2026-10-31T04:27:33.0313329Z  * [new branch]      main                    -> origin/main
+2026-10-31T04:27:33.0315360Z  * [new branch]      numbered-early-orders   -> origin/numbered-early-orders
+2026-10-31T04:27:33.0317383Z  * [new branch]      official-fixity         -> origin/official-fixity
+2026-10-31T04:27:33.0319344Z  * [new branch]      ofr-codification-1989   -> origin/ofr-codification-1989
+2026-10-31T04:27:33.0321504Z  * [new branch]      ofr-compilations        -> origin/ofr-compilations
+2026-10-31T04:27:33.0323491Z  * [new branch]      opus/packet-friction    -> origin/opus/packet-friction
+2026-10-31T04:27:33.0325703Z  * [new branch]      parallel-runs           -> origin/parallel-runs
+2026-10-31T04:27:33.0328086Z  * [new branch]      proquest-download-handoff-20261019 -> origin/proquest-download-handoff-20261019
+2026-10-31T04:27:33.0330760Z  * [new branch]      proquest-pdf-upload-20261021 -> origin/proquest-pdf-upload-20261021
+2026-10-31T04:27:33.0332982Z  * [new branch]      readiness-tracker       -> origin/readiness-tracker
+2026-10-31T04:27:33.0334929Z  * [new branch]      richardson-volumes      -> origin/richardson-volumes
+2026-10-31T04:27:33.0337330Z  * [new branch]      shared-runner-and-handoff -> origin/shared-runner-and-handoff
+2026-10-31T04:27:33.0339402Z  * [new branch]      sol-claim-kit           -> origin/sol-claim-kit
+2026-10-31T04:27:33.0341585Z  * [new branch]      sol/corpus-evidence-retrieval -> origin/sol/corpus-evidence-retrieval
+2026-10-31T04:27:33.0343830Z  * [new branch]      sol/neyman-20261020     -> origin/sol/neyman-20261020
+2026-10-31T04:27:33.0345923Z  * [new branch]      sol/norton-20261020     -> origin/sol/norton-20261020
+2026-10-31T04:27:33.0348078Z  * [new branch]      sol/norton-20261020-verified -> origin/sol/norton-20261020-verified
+2026-10-31T04:27:33.0350609Z  * [new branch]      sol/r1-materializer-followthrough -> origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:33.0353029Z  * [new branch]      sol/r3-ranger-roundtrip -> origin/sol/r3-ranger-roundtrip
+2026-10-31T04:27:33.0355179Z  * [new branch]      sol/runner-friction     -> origin/sol/runner-friction
+2026-10-31T04:27:33.0357275Z  * [new branch]      sol/status-review-batch-1 -> origin/sol/status-review-batch-1
+2026-10-31T04:27:33.0359334Z  * [new branch]      sol/valla-20261020      -> origin/sol/valla-20261020
+2026-10-31T04:27:33.0361632Z  * [new branch]      stage17-unified-evidence-20261017 -> origin/stage17-unified-evidence-20261017
+2026-10-31T04:27:33.0364098Z  * [new branch]      unblock-claims          -> origin/unblock-claims
+2026-10-31T04:27:33.0366103Z  * [new branch]      wire-new-sources        -> origin/wire-new-sources
+2026-10-31T04:27:33.0367907Z  * [new branch]      wpa-lists               -> origin/wpa-lists
+2026-10-31T04:27:33.0371287Z [command]/usr/bin/git branch --list --remote origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:33.0373278Z   origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:33.0376379Z [command]/usr/bin/git rev-parse refs/remotes/origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:33.0378289Z 9fc12f9e37780ae5831fce6d698139920bf51589
+2026-10-31T04:27:33.0381004Z ##[endgroup]
+2026-10-31T04:27:33.0382421Z ##[group]Determining the checkout info
+2026-10-31T04:27:33.0384013Z ##[endgroup]
+2026-10-31T04:27:33.0385641Z ##[group]Setting up sparse checkout
+2026-10-31T04:27:33.0387055Z [command]/usr/bin/git config core.sparseCheckout true
+2026-10-31T04:27:33.0389858Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-10-31T04:27:33.0391418Z .git/info/sparse-checkout
+2026-10-31T04:27:33.0394000Z ##[endgroup]
+2026-10-31T04:27:33.0395535Z ##[group]Checking out the ref
+2026-10-31T04:27:33.0398066Z [command]/usr/bin/git checkout --progress --force -B sol/r1-materializer-followthrough refs/remotes/origin/sol/r1-materializer-followthrough
+2026-10-31T04:27:37.2406817Z Updating files:   0% (1/7858)
+2026-10-31T04:27:37.2965583Z Updating files:   0% (35/7858)
+2026-10-31T04:27:37.3268996Z Updating files:   1% (79/7858)
+2026-10-31T04:27:37.3370300Z Updating files:   2% (158/7858)
+2026-10-31T04:27:37.3697472Z Updating files:   3% (236/7858)
+2026-10-31T04:27:37.4229367Z Updating files:   4% (315/7858)
+2026-10-31T04:27:37.4281552Z Updating files:   5% (393/7858)
+2026-10-31T04:27:37.4386819Z Updating files:   6% (472/7858)
+2026-10-31T04:27:37.4450633Z Updating files:   7% (551/7858)
+2026-10-31T04:27:37.4510499Z Updating files:   8% (629/7858)
+2026-10-31T04:27:37.5003149Z Updating files:   9% (708/7858)
+2026-10-31T04:27:37.5072507Z Updating files:  10% (786/7858)
+2026-10-31T04:27:37.5156713Z Updating files:  11% (865/7858)
+2026-10-31T04:27:37.5235707Z Updating files:  12% (943/7858)
+2026-10-31T04:27:37.5322652Z Updating files:  13% (1022/7858)
+2026-10-31T04:27:37.5397616Z Updating files:  14% (1101/7858)
+2026-10-31T04:27:37.5482287Z Updating files:  15% (1179/7858)
+2026-10-31T04:27:37.5559748Z Updating files:  16% (1258/7858)
+2026-10-31T04:27:37.5659855Z Updating files:  17% (1336/7858)
+2026-10-31T04:27:37.5749575Z Updating files:  18% (1415/7858)
+2026-10-31T04:27:37.5832361Z Updating files:  19% (1494/7858)
+2026-10-31T04:27:37.5913709Z Updating files:  20% (1572/7858)
+2026-10-31T04:27:37.5982953Z Updating files:  21% (1651/7858)
+2026-10-31T04:27:37.6057244Z Updating files:  22% (1729/7858)
+2026-10-31T04:27:37.6120791Z Updating files:  23% (1808/7858)
+2026-10-31T04:27:37.6181741Z Updating files:  24% (1886/7858)
+2026-10-31T04:27:37.6239677Z Updating files:  25% (1965/7858)
+2026-10-31T04:27:37.6304187Z Updating files:  26% (2044/7858)
+2026-10-31T04:27:37.6368413Z Updating files:  27% (2122/7858)
+2026-10-31T04:27:37.6423970Z Updating files:  28% (2201/7858)
+2026-10-31T04:27:37.6480511Z Updating files:  29% (2279/7858)
+2026-10-31T04:27:37.6537264Z Updating files:  30% (2358/7858)
+2026-10-31T04:27:37.6591207Z Updating files:  31% (2436/7858)
+2026-10-31T04:27:37.6643530Z Updating files:  32% (2515/7858)
+2026-10-31T04:27:37.6695007Z Updating files:  33% (2594/7858)
+2026-10-31T04:27:37.6748881Z Updating files:  34% (2672/7858)
+2026-10-31T04:27:37.6808851Z Updating files:  35% (2751/7858)
+2026-10-31T04:27:37.6866583Z Updating files:  36% (2829/7858)
+2026-10-31T04:27:37.6924451Z Updating files:  37% (2908/7858)
+2026-10-31T04:27:37.6982743Z Updating files:  38% (2987/7858)
+2026-10-31T04:27:37.7041847Z Updating files:  39% (3065/7858)
+2026-10-31T04:27:37.7102247Z Updating files:  40% (3144/7858)
+2026-10-31T04:27:37.7159672Z Updating files:  41% (3222/7858)
+2026-10-31T04:27:37.7221935Z Updating files:  42% (3301/7858)
+2026-10-31T04:27:37.7283682Z Updating files:  43% (3379/7858)
+2026-10-31T04:27:37.7341410Z Updating files:  44% (3458/7858)
+2026-10-31T04:27:37.7411596Z Updating files:  45% (3537/7858)
+2026-10-31T04:27:37.7478972Z Updating files:  46% (3615/7858)
+2026-10-31T04:27:37.7546523Z Updating files:  47% (3694/7858)
+2026-10-31T04:27:37.7603887Z Updating files:  48% (3772/7858)
+2026-10-31T04:27:37.7669081Z Updating files:  49% (3851/7858)
+2026-10-31T04:27:37.7729886Z Updating files:  50% (3929/7858)
+2026-10-31T04:27:37.7788493Z Updating files:  51% (4008/7858)
+2026-10-31T04:27:37.7851828Z Updating files:  52% (4087/7858)
+2026-10-31T04:27:37.7916801Z Updating files:  53% (4165/7858)
+2026-10-31T04:27:37.7984850Z Updating files:  54% (4244/7858)
+2026-10-31T04:27:37.8059987Z Updating files:  55% (4322/7858)
+2026-10-31T04:27:37.8137238Z Updating files:  56% (4401/7858)
+2026-10-31T04:27:37.8214778Z Updating files:  57% (4480/7858)
+2026-10-31T04:27:37.8339828Z Updating files:  58% (4558/7858)
+2026-10-31T04:27:37.8412541Z Updating files:  59% (4637/7858)
+2026-10-31T04:27:37.8493979Z Updating files:  60% (4715/7858)
+2026-10-31T04:27:37.8587813Z Updating files:  61% (4794/7858)
+2026-10-31T04:27:37.8669222Z Updating files:  62% (4872/7858)
+2026-10-31T04:27:37.8741730Z Updating files:  63% (4951/7858)
+2026-10-31T04:27:37.8818373Z Updating files:  64% (5030/7858)
+2026-10-31T04:27:37.8908710Z Updating files:  65% (5108/7858)
+2026-10-31T04:27:37.8977140Z Updating files:  66% (5187/7858)
+2026-10-31T04:27:37.9041262Z Updating files:  67% (5265/7858)
+2026-10-31T04:27:37.9103540Z Updating files:  68% (5344/7858)
+2026-10-31T04:27:37.9161695Z Updating files:  69% (5423/7858)
+2026-10-31T04:27:37.9239116Z Updating files:  70% (5501/7858)
+2026-10-31T04:27:37.9307289Z Updating files:  71% (5580/7858)
+2026-10-31T04:27:37.9368628Z Updating files:  72% (5658/7858)
+2026-10-31T04:27:37.9439037Z Updating files:  73% (5737/7858)
+2026-10-31T04:27:37.9519721Z Updating files:  74% (5815/7858)
+2026-10-31T04:27:37.9588841Z Updating files:  75% (5894/7858)
+2026-10-31T04:27:37.9671383Z Updating files:  76% (5973/7858)
+2026-10-31T04:27:37.9745799Z Updating files:  77% (6051/7858)
+2026-10-31T04:27:37.9817203Z Updating files:  78% (6130/7858)
+2026-10-31T04:27:37.9892795Z Updating files:  79% (6208/7858)
+2026-10-31T04:27:37.9964525Z Updating files:  80% (6287/7858)
+2026-10-31T04:27:38.0040779Z Updating files:  81% (6365/7858)
+2026-10-31T04:27:38.0120580Z Updating files:  82% (6444/7858)
+2026-10-31T04:27:38.0199530Z Updating files:  83% (6523/7858)
+2026-10-31T04:27:38.0277230Z Updating files:  84% (6601/7858)
+2026-10-31T04:27:38.0351790Z Updating files:  85% (6680/7858)
+2026-10-31T04:27:38.0429746Z Updating files:  86% (6758/7858)
+2026-10-31T04:27:38.0513490Z Updating files:  87% (6837/7858)
+2026-10-31T04:27:38.0596436Z Updating files:  88% (6916/7858)
+2026-10-31T04:27:38.0681590Z Updating files:  89% (6994/7858)
+2026-10-31T04:27:38.0764851Z Updating files:  90% (7073/7858)
+2026-10-31T04:27:38.0850556Z Updating files:  91% (7151/7858)
+2026-10-31T04:27:38.0926019Z Updating files:  92% (7230/7858)
+2026-10-31T04:27:38.1019824Z Updating files:  93% (7308/7858)
+2026-10-31T04:27:38.1163266Z Updating files:  94% (7387/7858)
+2026-10-31T04:27:38.1171358Z Updating files:  94% (7455/7858)
+2026-10-31T04:27:38.1228048Z Updating files:  95% (7466/7858)
+2026-10-31T04:27:38.1294597Z Updating files:  96% (7544/7858)
+2026-10-31T04:27:38.1549683Z Updating files:  97% (7623/7858)
+2026-10-31T04:27:38.1880937Z Updating files:  98% (7701/7858)
+2026-10-31T04:27:38.2039339Z Updating files:  99% (7780/7858)
+2026-10-31T04:27:38.2039768Z Updating files: 100% (7858/7858)
+2026-10-31T04:27:38.2822654Z Updating files: 100% (7858/7858), done.
+2026-10-31T04:27:38.2823234Z Switched to a new branch 'sol/r1-materializer-followthrough'
+2026-10-31T04:27:38.2828548Z branch 'sol/r1-materializer-followthrough' set up to track 'origin/sol/r1-materializer-followthrough'.
+2026-10-31T04:27:38.4758239Z ##[endgroup]
+2026-10-31T04:27:38.4762001Z [command]/usr/bin/git log -1 --format=%H
+2026-10-31T04:27:38.4788060Z 9fc12f9e37780ae5831fce6d698139920bf51589
+2026-10-31T04:27:38.5051050Z ##[group]Run actions/setup-python@v5
+2026-10-31T04:27:38.5051343Z with:
+2026-10-31T04:27:38.5051554Z   python-version: 3.12
+2026-10-31T04:27:38.5051774Z   check-latest: false
+2026-10-31T04:27:38.5054460Z   token: ***
+2026-10-31T04:27:38.5054674Z   update-environment: true
+2026-10-31T04:27:38.5054920Z   allow-prereleases: false
+2026-10-31T04:27:38.5055361Z   freethreaded: false
+2026-10-31T04:27:38.5055573Z env:
+2026-10-31T04:27:38.5055759Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:38.5055975Z ##[endgroup]
+2026-10-31T04:27:38.6394987Z ##[group]Installed versions
+2026-10-31T04:27:38.6491759Z (node:2450) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:27:38.6492472Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:27:38.6493408Z Successfully set up CPython (3.12.15)
+2026-10-31T04:27:38.6494205Z ##[endgroup]
+2026-10-31T04:27:38.6658360Z ##[group]Run python .github/scripts/pick_jobs.py
+2026-10-31T04:27:38.6658802Z [36;1mpython .github/scripts/pick_jobs.py[0m
+2026-10-31T04:27:38.6706333Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:27:38.6706599Z env:
+2026-10-31T04:27:38.6706801Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:38.6707109Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.6707580Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:38.6708021Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.6708403Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.6708782Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.6709162Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:38.6709481Z   EVENT: push
+2026-10-31T04:27:38.6709668Z   SCHEDULE: 
+2026-10-31T04:27:38.6710061Z   INPUT_JOB: 
+2026-10-31T04:27:38.6710302Z   BEFORE: 0000000000000000000000000000000000000000
+2026-10-31T04:27:38.6710618Z   AFTER: 9fc12f9e37780ae5831fce6d698139920bf51589
+2026-10-31T04:27:38.6710905Z   DEFAULT_BRANCH: main
+2026-10-31T04:27:38.6711114Z ##[endgroup]
+2026-10-31T04:27:38.7455029Z Jobs to run: example-hello, valla
+2026-10-31T04:27:38.7632405Z ##[group]Run actions/cache@v4
+2026-10-31T04:27:38.7632661Z with:
+2026-10-31T04:27:38.7632849Z   path: .job-cache
+2026-10-31T04:27:38.7633158Z   key: job-downloads-v1-sol/r1-materializer-followthrough-41168642033-1
+2026-10-31T04:27:38.7633621Z   restore-keys: job-downloads-v1-sol/r1-materializer-followthrough-
+
+2026-10-31T04:27:38.7633978Z   enableCrossOsArchive: false
+2026-10-31T04:27:38.7634210Z   fail-on-cache-miss: false
+2026-10-31T04:27:38.7634419Z   lookup-only: false
+2026-10-31T04:27:38.7634618Z   save-always: false
+2026-10-31T04:27:38.7634796Z env:
+2026-10-31T04:27:38.7634964Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:38.7635539Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.7635993Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:38.7636424Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.7636801Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.7656381Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:38.7656908Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:38.7657257Z ##[endgroup]
+2026-10-31T04:27:38.8747621Z (node:2462) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:27:38.8748360Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:27:39.0019073Z Cache not found for input keys: job-downloads-v1-sol/r1-materializer-followthrough-41168642033-1, job-downloads-v1-sol/r1-materializer-followthrough-
+2026-10-31T04:27:39.0129799Z ##[group]Run python .github/scripts/materialize_job_inputs.py
+2026-10-31T04:27:39.0130257Z [36;1mpython .github/scripts/materialize_job_inputs.py[0m
+2026-10-31T04:27:39.0157888Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:27:39.0158120Z env:
+2026-10-31T04:27:39.0158304Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:39.0158589Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.0158995Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:39.0159398Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.0159751Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.0160121Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:39.0160497Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:39.0160812Z   JOBS: example-hello valla
+2026-10-31T04:27:39.0161024Z ##[endgroup]
+2026-10-31T04:27:45.6769628Z Selected input materialization: {"base_commit": "9fc12f9e37780ae5831fce6d698139920bf51589", "compatibility_fallback_jobs": {}, "input_objects_sha256": "1833dcac6c9bf175e3114fccd2fe0ec30c8092d1ea6c72ce6ef7b8cd810df722", "jobs": ["example-hello", "valla"], "materialized_bytes": 61468881, "path_count": 448, "per_job": {"example-hello": {"inputs_sha256": "0689338f544227261a0f56413fe9e242ebd15d97412ac87e5b0eee6f61f036c0", "path_count": 52, "sparse_pattern_count": 5}, "valla": {"inputs_sha256": "2cba702e2182cb28e9010700929e1a4a22ecfb91340ce7b62b2a875d376b63b3", "path_count": 426, "sparse_pattern_count": 386}}, "schema": 1, "sparse_pattern_count": 388}
+2026-10-31T04:27:45.6889608Z ##[group]Run bash .github/scripts/run_jobs.sh
+2026-10-31T04:27:45.6889975Z [36;1mbash .github/scripts/run_jobs.sh[0m
+2026-10-31T04:27:45.6920654Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:27:45.6920903Z env:
+2026-10-31T04:27:45.6921095Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:27:45.6921400Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:45.6921847Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:27:45.6922452Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:45.6922835Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:45.6923211Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:27:45.6923590Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:27:45.6923925Z   JOBS: example-hello valla
+2026-10-31T04:27:45.6924148Z   DOWNSTREAM_ONLY: 
+2026-10-31T04:27:45.6924356Z   TRIGGER: push by D3m0sthene5
+2026-10-31T04:27:45.6924614Z   GOOGLE_CSE_KEY: 
+2026-10-31T04:27:45.6924806Z   GOOGLE_CSE_CX: 
+2026-10-31T04:27:45.6924994Z   BING_SEARCH_KEY: 
+2026-10-31T04:27:45.6925427Z   BRAVE_SEARCH_KEY: 
+2026-10-31T04:27:45.6925631Z   SERPAPI_KEY: 
+2026-10-31T04:27:45.6925822Z   NARA_API_KEY: 
+2026-10-31T04:27:45.6926007Z   GOVINFO_API_KEY: 
+2026-10-31T04:27:45.6926198Z ##[endgroup]
+2026-10-31T04:27:45.7407566Z ##[group]Job example-hello
+2026-10-31T04:27:46.6018112Z {
+2026-10-31T04:27:46.6018581Z   "python": "3.12.15",
+2026-10-31T04:27:46.6046157Z   "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43",
+2026-10-31T04:27:46.6049594Z   "cpus": 4,
+2026-10-31T04:27:46.6049965Z   "free_disk_gb": 93.6,
+2026-10-31T04:27:46.6055533Z   "stage19_files_visible": [
+2026-10-31T04:27:46.6055997Z     "CLAIM_SCHEMA.md",
+2026-10-31T04:27:46.6056412Z     "FUNNEL.md",
+2026-10-31T04:27:46.6056762Z     "LOC_LIVE_TRIAL.json",
+2026-10-31T04:27:46.6057158Z     "README.md",
+2026-10-31T04:27:46.6057483Z     "code",
+2026-10-31T04:27:46.6057801Z     "output",
+2026-10-31T04:27:46.6058152Z     "ranger_output"
+2026-10-31T04:27:46.6058492Z   ]
+2026-10-31T04:27:46.6058772Z }
+2026-10-31T04:27:51.6903567Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-10-31T04:27:51.7022073Z ##[endgroup]
+2026-10-31T04:27:51.7022586Z ##[group]Job valla
+2026-10-31T04:28:00.0621005Z {"active_claims":612,"examined_dependencies":0,"legal_promotions":0,"model_calls":0,"shared_rationale_references":783,"textual_leads":11,"valid_components":0}
+2026-10-31T04:28:01.5289123Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-10-31T04:28:01.5389776Z ##[endgroup]
+2026-10-31T04:28:01.5545677Z ##[group]Run actions/upload-artifact@v4
+2026-10-31T04:28:01.5546162Z with:
+2026-10-31T04:28:01.5546465Z   name: oversized-outputs-41168642033
+2026-10-31T04:28:01.5546849Z   path: oversized/
+2026-10-31T04:28:01.5547166Z   if-no-files-found: ignore
+2026-10-31T04:28:01.5547524Z   retention-days: 90
+2026-10-31T04:28:01.5547876Z   compression-level: 6
+2026-10-31T04:28:01.5548176Z   overwrite: false
+2026-10-31T04:28:01.5548467Z   include-hidden-files: false
+2026-10-31T04:28:01.5548841Z env:
+2026-10-31T04:28:01.5549185Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:28:01.5549607Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:01.5550131Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:28:01.5550652Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:01.5551202Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:01.5551779Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:01.5552304Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:28:01.5552705Z ##[endgroup]
+2026-10-31T04:28:01.7215351Z (node:2598) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:28:01.7216709Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:28:01.7317221Z With the provided path, there will be 4 files uploaded
+2026-10-31T04:28:01.7322108Z Artifact name is valid!
+2026-10-31T04:28:01.7323049Z Root directory input is valid!
+2026-10-31T04:28:01.9761000Z Beginning upload of artifact content to blob storage
+2026-10-31T04:28:02.0155808Z (node:2598) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-31T04:28:02.1567778Z Uploaded bytes 17184
+2026-10-31T04:28:02.1932845Z Finished uploading artifact content to blob storage!
+2026-10-31T04:28:02.1933876Z SHA256 digest of uploaded artifact zip is 64e0a7c55683dcfd1146fe9005ed997d3efef17fc5ecda1becd507007b762d6a
+2026-10-31T04:28:02.1936293Z Finalizing artifact upload
+2026-10-31T04:28:02.6635774Z Artifact oversized-outputs-41168642033.zip successfully finalized. Artifact ID 13029703475
+2026-10-31T04:28:02.6636786Z Artifact oversized-outputs-41168642033 has been successfully uploaded! Final size is 17184 bytes. Artifact ID is 13029703475
+2026-10-31T04:28:02.6641634Z Artifact download URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41168642033/artifacts/13029703475
+2026-10-31T04:28:02.6780319Z ##[group]Run bash .github/scripts/commit_results.sh
+2026-10-31T04:28:02.6780710Z [36;1mbash .github/scripts/commit_results.sh[0m
+2026-10-31T04:28:02.6813285Z shell: /usr/bin/bash -e {0}
+2026-10-31T04:28:02.6813540Z env:
+2026-10-31T04:28:02.6813737Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-10-31T04:28:02.6814043Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:02.6814496Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-31T04:28:02.6814942Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:02.6815621Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:02.6816015Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-31T04:28:02.6816404Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-31T04:28:02.6816746Z   JOBS: example-hello valla
+2026-10-31T04:28:02.6816974Z   EVENT: push
+2026-10-31T04:28:02.6817239Z   BRANCH: sol/r1-materializer-followthrough
+2026-10-31T04:28:02.6817685Z   RUN_URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41168642033
+2026-10-31T04:28:02.6818093Z ##[endgroup]
+2026-10-31T04:28:08.1561483Z Results pushed to sol/r1-materializer-followthrough.
+2026-10-31T04:28:08.1657660Z Post job cleanup.
+2026-10-31T04:28:08.2727967Z (node:2778) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:28:08.2728855Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:28:08.2908680Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/Executive-Orders/Executive-Orders --files-from manifest.txt --use-compress-program zstdmt
+2026-10-31T04:28:08.4128904Z (node:2778) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-31T04:28:08.5409340Z Sent 556 of 556 (100.0%), 0.0 MBs/sec
+2026-10-31T04:28:08.6330560Z Cache saved with key: job-downloads-v1-sol/r1-materializer-followthrough-41168642033-1
+2026-10-31T04:28:08.6443416Z Post job cleanup.
+2026-10-31T04:28:08.7633715Z (node:2798) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T04:28:08.7634654Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T04:28:08.7777886Z Post job cleanup.
+2026-10-31T04:28:08.8781684Z [command]/usr/bin/git version
+2026-10-31T04:28:08.8856503Z git version 2.56.0
+2026-10-31T04:28:08.8898383Z Temporarily overriding HOME='/home/runner/work/_temp/7d5d5b66-fc29-4ae8-b1ed-da86db3b85cf' before making global git config changes
+2026-10-31T04:28:08.8900108Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T04:28:08.8907290Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-10-31T04:28:08.8955982Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T04:28:08.8998674Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T04:28:08.9456527Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T04:28:08.9488969Z http.https://github.com/.extraheader
+2026-10-31T04:28:08.9507165Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-31T04:28:08.9546255Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T04:28:09.0023739Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T04:28:09.0061057Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T04:28:09.0620351Z Cleaning up orphan processes
+2026-10-31T04:28:09.0986351Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

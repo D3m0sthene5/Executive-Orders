@@ -1,0 +1,250 @@
+{
+  "schema": "r2-annex-heldout-comparison/v1",
+  "reviewed_at_utc": "2026-10-31T04:27:34.705743+00:00",
+  "instrument_id": "EO:12978",
+  "selection": "Held-out attachment validation extension after repair; core seven-case freeze unchanged; no tuning permitted from extension.",
+  "independence": {
+    "source_first_sealed_before_attachment_freeze_inventory_and_diagnostic_reveal": true,
+    "source_first_artifact": "research/progress/r2-preflight-repair/source-review/ANNEX_SOURCE_FIRST.json",
+    "source_first_sha256": "2196295e3f9e9b8bc956714ed03fe26f58744d6ca9c4edb87e1961e6804590ec",
+    "model": "Inherited OpenAI GPT-6 family configuration; exact runtime model/version not exposed",
+    "human_certification": false,
+    "different_family_certification": false
+  },
+  "pins": {
+    "attachment_source_card": {
+      "path": "research/progress/r2-preflight-repair/ATTACHMENT_SOURCE_CARD.json",
+      "sha256": "140b481b2bab87402e5ae81b893cff6cc356349efaf05b8b4eb5a2e8cfb56094"
+    },
+    "attachment_freeze": {
+      "path": "research/progress/r2-preflight-repair/ATTACHMENT_FREEZE.json",
+      "sha256": "bd735cfcdad5e7833fac64d151c89f95f493d88a4a920b293d9d0c9dda209c31"
+    },
+    "frozen": {
+      "instrument_id": "EO:12978",
+      "at": "2026-10-31T04:25:30.853450+00:00",
+      "selection": "Held-out attachment validation extension after repair; core seven-case freeze unchanged; no tuning permitted from extension.",
+      "raw_pdf": "research/stage21/original_sources/EO_12978.pdf",
+      "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+      "pdf_pages": [
+        1,
+        2
+      ],
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_12978.txt",
+      "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+      "native_dossier_path": "jobs/claim-kit/output/dossiers/EO_12978.json",
+      "native_dossier_sha256": "f8273bb8ff6604083fdb7b7e5cf42af436b113ee9fb7a1b2d01ba1324a63b9b6",
+      "frozen_dossier": "research/progress/r2-preflight-repair/attachment-frozen/EO_12978.json",
+      "frozen_sha256": "61cb17e9dd5d47467ff9247fb346d424ba4a49cd5421dc90e697ed04bd815e50",
+      "preflight_sha256": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c"
+    },
+    "baseline_code_sha256": "0698661c59f5384fae99dac7586bbbc572793283abac5803f12482f4ae546242",
+    "patched_code_sha256": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c",
+    "compare_path": "research/progress/r2-preflight-repair/compare.py",
+    "compare_sha256": "ac5df749a87c4d54d85e8779ab9461e64278e510e1324f12f45ecb31d135c3b4",
+    "excavate_path": "jobs/claim-kit/excavate.py",
+    "excavate_sha256": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d"
+  },
+  "verification": {
+    "raw_source_hash_match": true,
+    "held_text_hash_match": true,
+    "frozen_projection_hash_match": true,
+    "native_dossier_hash_match": true,
+    "pages_rendered": [
+      1,
+      2
+    ],
+    "pages_visually_inspected": [
+      1,
+      2
+    ],
+    "printed_pages": [
+      54579,
+      54580
+    ],
+    "replay": "After source-first seal, imported compare, called compare.baseline() then compare.run(old,dossier) and compare.run(compare.patched,dossier). compare.run asserts input dossier unchanged.",
+    "no_implementation_changes_from_extension": true
+  },
+  "source_inventory_comparison": {
+    "scope": "exact current native dossier original/inventory projection; not a filed claim review",
+    "original_evidence": "Full held original evidence includes all six body sections, introductory emergency declaration and post-signature annex. Missing inventory coverage is distinct from absent source acquisition.",
+    "body": "Sections1–6 content is present across submitted inventory, including statutory/regulatory qualifications, section1 classes and subitems, section2 prohibitions, five definitions, section4 Treasury authority/redelegation/agency direction, section5 noncreation, and section6 effective instant/transmittal/publication. The independent emergency declaration before section1 is absent from inventory.",
+    "annex": "All four names are present in original evidence but absent from every clause. Section1(a) references the Annex, so membership is substantive scope. No separate modal in the Annex is required for this incorporated list to matter.",
+    "annex_source_location": "PDF p2 / printed54580, beneath signature/WhiteHouse/date and first billing-code line, above FRDoc95-26569 filing block.",
+    "emergency_source_location": "PDF p1 / printed54579, immediately after authority recital, before section1.",
+    "source_backed_missing_inventory_components": [
+      {
+        "id": "A12978-1",
+        "classification": "operative body declaration omitted from inventory",
+        "source_span": {
+          "char_start": 1040,
+          "char_end": 1486,
+          "text": "I, WILLIAM J. CLINTON, President of the United States of America, find\nthat the actions of significant foreign narcotics traffickers centered in Colom-\nbia, and the unparalleled violence, corruption, and harm that they cause\nin the United States and abroad, constitute an unusual and extraordinary\nthreat to the national security, foreign policy, and economy of the United\nStates, and hereby declare a national emergency to deal with that threat.",
+          "text_sha256": "ff7d4cd85b2346ab32f7cfd4285427aedee060701915e67ceb9a53f61e78426e",
+          "role": "Complete finding and national emergency declaration before section1",
+          "slice_verified": true
+        },
+        "proposed_action": "Prepare exact-version inventory correction for complete finding/declaration. Source reading establishes the declaration text, not truth of all stated factual premises or subsequent emergency continuations."
+      },
+      {
+        "id": "A12978-2",
+        "classification": "incorporated post-signature annex membership omitted from inventory",
+        "source_span": {
+          "char_start": 5679,
+          "char_end": 5795,
+          "text": "ANNEX\nGilberto Rodriguez Orejuela\nMiguel Angel Rodriguez Orejuela\nJose´ Santacruz London˜ o\nHelmer Herrera Buitrago\n",
+          "text_sha256": "cf59f57f7293d8ad84245ac1e910e518373cf8bd9ecbe74bd795c4284e76c666",
+          "role": "ANNEX label and four named members; exclude later publication furniture",
+          "slice_verified": true
+        },
+        "incorporating_span": {
+          "char_start": 1986,
+          "char_end": 2044,
+          "text": "(a) the foreign persons listed in the Annex to this order;",
+          "text_sha256": "4762f159c26e571b93819a9ced549b900078edb931edbb2c3fe17ec01d225298",
+          "role": "section1(a) annex incorporation",
+          "slice_verified": true
+        },
+        "visual_members": [
+          "Gilberto Rodriguez Orejuela",
+          "Miguel Angel Rodriguez Orejuela",
+          "José Santacruz Londoño",
+          "Helmer Herrera Buitrago"
+        ],
+        "held_text_note": "Held text mechanically renders accented name Jose´ Santacruz London˜ o; use exact held bytes in spans and preserve visual reading separately rather than silently rewriting source. Names identify membership at issuance, not current legal designation status.",
+        "proposed_action": "Prepare exact-version source/inventory proposal to retain Annex membership as incorporated scope under section1(a), with explicit connection to blocking rule and its exceptions. It need not be falsely classified as four standalone commands."
+      }
+    ],
+    "other_semantic_findings": [
+      {
+        "id": "A12978-3",
+        "finding": "Roman subitems under section1(b) are mislabeled #sec1-i and #sec1-i-ii, suggesting wrong hierarchy. Both significant-role and support alternatives are physically present; source shows they are sibling criteria (b)(i)/(ii), linked by or.",
+        "proposed_action": "Correct hierarchy only with exact-version inventory proposal; preserve governing Treasury consultation and section1 exceptions."
+      },
+      {
+        "id": "A12978-4",
+        "finding": "Native #sec3-b [3522,3753) includes page2 marker/header [3635,3753). Native #sec6-b [5527,5620) includes signature artifact œ– at[5618,5620). Neither extra is operative.",
+        "proposed_action": "Trim definition(b) to[3522,3634) and transmittal/publication direction to[5527,5617), after exact slice verification.",
+        "proposed_spans": [
+          {
+            "char_start": 3522,
+            "char_end": 3634,
+            "text": "(b) the term ‘‘entity’’ means a partnership, association, corporation, or other\norganization, group or subgroup;",
+            "text_sha256": "2c606c824441f8380d737ed5978e4a05fa71774b70b910668ef4fd769899d5b8",
+            "role": "definition(b) without page furniture",
+            "slice_verified": true
+          },
+          {
+            "char_start": 5527,
+            "char_end": 5617,
+            "text": "(b) This order shall be transmitted to the Congress and published in the\nFederal Register.",
+            "text_sha256": "965c063e0a11c915498642fa0affc9cb19a60bdfcdc6eb04f4b020281a826e49",
+            "role": "section6(b) without signature artifact",
+            "slice_verified": true
+          }
+        ]
+      }
+    ]
+  },
+  "diagnostic_results": {
+    "baseline": {
+      "tasks": [],
+      "held_text_receipts": {
+        "jobs/fr-originals/data/full_run/texts/EO_12978.txt": {
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "characters": 5861,
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "raw_custody": "requires_actual_claim_checker"
+        }
+      },
+      "custody_validation": "required_from_actual_claim_checker",
+      "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+    },
+    "patched": {
+      "tasks": [
+        {
+          "kind": "inventory_command_coverage",
+          "shared_key": "ORIGINAL:EO:12978",
+          "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+          "availability": "possible_omitted_command",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12978.txt",
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "document_extent": {
+            "char_start": 604,
+            "char_end": 5838,
+            "body_start": 705,
+            "body_end": 5621,
+            "heading_style": "numbered"
+          },
+          "uncovered_regions": [
+            {
+              "char_start": 1054,
+              "char_end": 1486,
+              "text": "CLINTON, President of the United States of America, find\nthat the actions of significant foreign narcotics traffickers centered in Colom-\nbia, and the unparalleled violence, corruption, and harm that they cause\nin the United States and abroad, constitute an unusual and extraordinary\nthreat to the national security, foreign policy, and economy of the United\nStates, and hereby declare a national emergency to deal with that threat.",
+              "context_char_start": 1054,
+              "context_char_end": 1486,
+              "signals": [
+                "hereby declare"
+              ],
+              "classification": "clause_candidate",
+              "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+              "pdf_page": 1,
+              "line": 23
+            }
+          ],
+          "segmentation_warnings": [
+            "incomplete_unsplit_sub_markers_sec3(b):3"
+          ]
+        }
+      ],
+      "held_text_receipts": {
+        "jobs/fr-originals/data/full_run/texts/EO_12978.txt": {
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "characters": 5861,
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "raw_custody": "requires_actual_claim_checker"
+        }
+      },
+      "custody_validation": "required_from_actual_claim_checker",
+      "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+    }
+  },
+  "warning_adjudication": {
+    "baseline": "No warning; misses both actual native-inventory omitted components.",
+    "patched": "One correct inventory_command_coverage warning on declaration [1054,1486); it omits the beginning I,WILLIAMJ. from quoted warning because sentence segmentation splits at J., but retained declaration language supplies a valid review lead. No unnecessary new warning.",
+    "annex": "No annex warning. Located body_end5621 precedes Annex5679; _command_gaps excludes annex_after_signature and lexical screen would not establish membership completeness without incorporation analysis. Full source/attachment review remains necessary."
+  },
+  "metrics": {
+    "heldout_cases": 1,
+    "planted_controls": 0,
+    "actual_missing_inventory_components_reviewed": 2,
+    "baseline_detected_components": 0,
+    "baseline_missed_components": 2,
+    "patched_detected_components": 1,
+    "patched_missed_components": 1,
+    "patched_new_warning_tasks": 1,
+    "patched_new_warning_regions": 1,
+    "new_unnecessary_command_warnings": 0,
+    "annex_named_members_missing_from_inventory": 4,
+    "annex_members_are_not_four_independent_commands": true,
+    "core_seven_case_metrics_unchanged": true,
+    "qualification": "Held-out purposive one-case result. No prevalence/recall estimate. Do not merge with three planted-control cases as though labels or sampling units were identical."
+  },
+  "proposals_only": {
+    "actions": [
+      "A12978-1",
+      "A12978-2",
+      "A12978-3",
+      "A12978-4"
+    ],
+    "canonical_changes": false,
+    "claim_review": "Actual prior claim and required independent/human/different-family reviews were not examined; no canonical status, claim or hold adopted. Native metadata acceptable_as_original/grade values are not independently authenticated by this diagnostic.",
+    "legal_limits": "No statute/current predicate, later sanctions/designation or emergency continuation/termination examined. No legal/status adoption."
+  },
+  "cost": {
+    "tokens": "Unavailable; no reliable runtime usage telemetry exposed",
+    "wall_time": "Not exactly instrumented; source-only seal and post-reveal timestamps recorded",
+    "tools": "exec_command, Python hashlib/JSON, pdftoppm, view_image; compare.baseline and patched.inspect via compare.run"
+  }
+}

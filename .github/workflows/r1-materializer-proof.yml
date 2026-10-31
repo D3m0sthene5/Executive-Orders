@@ -1,0 +1,77 @@
+name: R1 matched Valla materialization proof
+on:
+  push:
+    branches: [sol/r1-materializer-followthrough, codex/r1-r4-final-integration]
+    paths:
+      - '.github/scripts/materialize_job_inputs.py'
+      - '.github/scripts/result_freshness.py'
+      - '.github/scripts/materialization_certificates.json'
+      - '.github/workflows/r1-materializer-proof.yml'
+      - 'jobs/valla/needs.txt'
+      - 'jobs/valla/inputs.txt'
+      - 'jobs/valla/triggers.txt'
+      - 'research/progress/r1-materializer-followthrough/run_production_comparison.py'
+permissions:
+  contents: read
+concurrency:
+  group: r1-materializer-proof-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+            /research/progress/r1-materializer-followthrough/**
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Focused adversarial regressions
+        run: python -m unittest discover -s .github/scripts -p test_valla_materialization.py -v
+      - name: Same-pin full versus selective native Valla runner
+        env:
+          GIT_LFS_SKIP_SMUDGE: '1'
+        run: python research/progress/r1-materializer-followthrough/run_production_comparison.py "$RUNNER_TEMP/r1-comparison"
+      - name: Combined native diagnostic and worksheet routes
+        if: github.ref_name == 'codex/r1-r4-final-integration'
+        env:
+          GIT_LFS_SKIP_SMUDGE: '1'
+        run: |
+          # Reuse the proof's warmed retained job inputs. These are isolated
+          # research replays; this read-only workflow cannot publish results.
+          git fetch --filter=blob:none --depth=1 origin 88cef0253ed735b2a6e612770f25f9148641ce93
+          git sparse-checkout add '/research/progress/r2-preflight-repair/**' '/research/progress/r3-ranger-roundtrip/**' '/research/stage22/**' '/research/stage18/data/**' '/research/stage14/LORD/**' '/research/stage15/CENSUS/**'
+          git sparse-checkout add '/research/progress/r1-r4-integration/**'
+          mkdir -p "$RUNNER_TEMP/r1-r4-native"
+          python research/progress/r1-r4-integration/verify_retained_worksheet.py "$RUNNER_TEMP/r1-r4-native/R3_ORIGINAL_BINDINGS.json"
+          python research/progress/r2-preflight-repair/compare.py
+          python research/progress/r3-ranger-roundtrip/replay.py
+          mkdir -p "$RUNNER_TEMP/r1-r4-native"
+          cp research/progress/r2-preflight-repair/COMPARISON.json "$RUNNER_TEMP/r1-r4-native/R2_COMPARISON.json"
+          cp research/progress/r3-ranger-roundtrip/REPLAY_RECEIPT.json "$RUNNER_TEMP/r1-r4-native/R3_REPLAY_RECEIPT.json"
+          cp research/progress/r3-ranger-roundtrip/census/SUMMARY.json "$RUNNER_TEMP/r1-r4-native/R3_CENSUS_SUMMARY.json"
+      - uses: actions/upload-artifact@v4
+        if: always() && github.ref_name == 'codex/r1-r4-final-integration'
+        with:
+          name: r1-r4-native-${{ github.sha }}
+          path: ${{ runner.temp }}/r1-r4-native
+          retention-days: 30
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1-production-materialization-${{ github.sha }}
+          path: ${{ runner.temp }}/r1-comparison
+          retention-days: 30
+          if-no-files-found: warn

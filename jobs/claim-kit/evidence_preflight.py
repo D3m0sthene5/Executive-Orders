@@ -10,7 +10,7 @@ import hashlib
 from pathlib import Path
 import re
 
-from excavate import _extent
+from excavate import _clause_locator, _extent, _page, _sentence_spans, _trailing_extent
 
 
 HEX64 = re.compile(r"[0-9a-f]{64}", re.I)
@@ -20,6 +20,110 @@ UNNUMBERED_ORDER = re.compile(r"(?im)^[ \t]*EXECUTIVE[ \t]+ORDER[ \t]*$")
 NUMBERED_ORDER = re.compile(r"(?im)^[ \t]*Executive[ \t]+Order[ \t]+(?:No\.?[ \t]+)?([0-9]+[A-Z]?)(?![\w])")
 INSTRUMENT = re.compile(r"(?m)^Instrument:\s*(EO:[^\s]+)")
 REPORT_SUNSET = re.compile(r"\b(?:shall\s+)?term\s*inate\b[^.;]{0,180}\b(?:after|upon)\b[^.;]{0,100}\breport\b", re.I | re.S)
+# Signals for review, never a semantic clause inventory. Recitals, quotations,
+# footnotes and extracted page layout can all affect the meaning of these words.
+COMMAND = re.compile(
+    r'\bshall\b|\bit\s+is\s+unlawful\b|\bI\s+(?:hereby\s+)?(?:order|direct|extend|establish|revoke|amend)\b|'
+    r'\b(?:is|are)\s+(?:hereby\s+)?(?:ordered|directed|authorized|designated|'
+    r'established|extended|revoked|amended|withdrawn|reserved)\b|'
+    r'\bhereby\s+(?:order|direct|prescribe|establish|designate|authorize|declare|'
+    r'extend|revoke|amend|exempt|withdraw|reserve)\b', re.I)
+
+
+def _identity(number):
+    return 'EO:' + re.sub(r'[ \t\-‐–]', '', number).upper().lstrip('0')
+
+
+def _uncovered(a, b, ranges):
+    """Subtract the union of sorted inventory spans; retain raw source offsets."""
+    for start, end in ranges:
+        if end <= a:
+            continue
+        if start >= b:
+            break
+        if a < start:
+            yield a, start
+        a = max(a, end)
+    if a < b:
+        yield a, b
+
+
+def _inventory_ranges(dossier, source, body):
+    ranges = []
+    for clause in dossier.get('clauses', []):
+        if not isinstance(clause, dict):
+            continue
+        a, b = clause.get('char_start'), clause.get('char_end')
+        if type(a) is not int or type(b) is not int or not 0 <= a < b <= len(body):
+            continue
+        declared = clause.get('source')
+        if declared is not None and (not isinstance(declared, dict) or
+                any(declared.get(k) != source.get(k) for k in ('text_path', 'text_sha256'))):
+            continue
+        if declared:
+            raw = declared.get('sha256') or declared.get('local_file_sha256')
+            expected_raw = source.get('sha256') or source.get('local_file_sha256')
+            if raw and expected_raw and raw != expected_raw:
+                continue
+        quote = clause.get('text')
+        if quote is not None and quote != body[a:b]:
+            continue
+        ranges.append((a, b))
+    return sorted(ranges)
+
+
+def _command_gaps(iid, body, source, ranges, locator, loc):
+    """Review leads from existing segmentation, including suspicious recitals.
+
+    A partition or a machine non-operative label is not semantic proof. Ordinary
+    WHEREAS recitals are skipped; authority-led duty language stays a disclosed
+    ambiguity. Annexes outside the located body need full-source review.
+    """
+    segmented = locator.segment(body, loc, iid)
+    # Reuse the segmenter's OCR spacing convention for the modal in historical
+    # held texts (e.g. EO7952's "sh all"); never rewrite the source itself.
+    command = re.compile(r'\b' + locator.fuzzy('shall') + r'\b|' + COMMAND.pattern, re.I)
+    candidates = [(c['start'], c['end'], 'clause_candidate') for c in segmented['clauses']
+                  if c['clause_kind'] != 'annex_after_signature']
+    candidates += [(c['start'], c['end'], 'machine_recital_with_command_signal')
+                   for c in segmented['recitals']
+                   if not re.match(r'\s*W[ ]?HEREAS\b', body[c['start']:c['end']], re.I)]
+    gaps, seen = [], set()
+    for start, end, classification in candidates:
+        start, end = max(start, loc.body_start), min(end, loc.body_end)
+        for pa, pb in locator.paragraphs(body, start, end):
+            for sa, sb in _sentence_spans(body[pa:pb]):
+                a, b = pa + sa, pa + sb
+                text = body[a:b]
+                # Ordinary WHEREAS recitals and bare enacting formulas are
+                # not commands. Quoted material inside a body candidate may
+                # be an amendment payload; expose it with qualified labeling.
+                if re.match(r'\s*W[ ]?HEREAS\b', text, re.I) or locator.ENACTING_ONLY.fullmatch(' '.join(text.split())):
+                    continue
+                signals = list(command.finditer(text))
+                if not signals:
+                    continue
+                formula = locator.OPERATIVE_PHRASE.search(text)
+                if len(signals) == 1 and formula and locator.ENACTING_ONLY.fullmatch(' '.join(text[formula.start():].split())):
+                    continue
+                for ga, gb in _uncovered(a, b, ranges):
+                    ga, gb = locator._trim(body, ga, gb)
+                    # A skipped title/authority prefix before an otherwise
+                    # covered command is not an omitted command. Retain a
+                    # truncated command tail even when its modal is covered.
+                    if gb <= a + signals[0].start():
+                        continue
+                    if (ga, gb) in seen or not re.search(r'[A-Za-z]{2}', locator.reading_text(body, ga, gb)):
+                        continue
+                    seen.add((ga, gb))
+                    gaps.append({'char_start': ga, 'char_end': gb, 'text': body[ga:gb],
+                                 'context_char_start': a, 'context_char_end': b,
+                                 'signals': [m[0] for m in signals],
+                                 'classification': 'quoted_command_candidate' if re.match(r'\s*["“]', body[ga:gb]) else classification,
+                                 'reason': 'Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.',
+                                 'pdf_page': _page(body, ga, source),
+                                 'line': body.count('\n', 0, ga) + 1})
+    return gaps, segmented['warnings']
 
 
 def inspect(dossier, repo):
@@ -104,7 +208,45 @@ possible omission; they never select a replacement or declare either complete.
             add('original_boundary', original_id,
                 'Multiple unnumbered Executive Order headings occur on the held pages. Metadata identity does not establish which document supplies the inventory.',
                 'neighboring_documents_require_page_review', heading_offsets=[m.start() for m in headers])
-        ranges = [(c.get('char_start'), c.get('char_end')) for c in dossier.get('clauses', [])]
+        locator = _clause_locator()
+        numbered = [m for m in locator.GENERIC_HEADING.finditer(body) if locator._valid_generic(body, m)]
+        bare_headers = [h for h in headers if not any(m.start() == h.start() for m in numbered)]
+        loc = locator.locate_order(body, iid[3:]) if iid.startswith('EO:') else None
+        if loc and loc.heading_style == 'trailing_number' and _trailing_extent(iid, body) is None:
+            loc = None  # Preserve the existing intervening-numbered-document refusal.
+        observed = [{'observed_identity': _identity(m[1] + (m[2] or m[3] or '')),
+                     'char_start': m.start(), 'char_end': m.end(), 'text': m[0]}
+                    for m in numbered]
+        if loc is None and observed:
+            if len(observed) == 1 and observed[0]['observed_identity'] != _identity(iid[3:]) and not bare_headers:
+                add('original_identity', original_id,
+                    'The only recognized document heading names another order. Confirm document/page boundaries; references and multi-order sources need source examination.',
+                    'identity_requires_source_review', observed_identity=observed[0]['observed_identity'],
+                    headings=observed, text_path=source['text_path'], text_sha256=source['text_sha256'])
+            else:
+                add('original_boundary', original_id,
+                    'No unambiguous target document was located among the printed headings. Inspect complete source pages before aligning inventory spans.',
+                    'neighboring_documents_require_page_review', headings=observed,
+                    text_path=source['text_path'], text_sha256=source['text_sha256'])
+        elif loc is None and len(headers) <= 1:
+            # Attributed body-only / unnumbered text remains eligible for leads,
+            # never for machine identity approval. Multiple bare headings remain
+            # ambiguous rather than selecting the first neighboring instrument.
+            loc = locator.locate_order(body, iid[3:], hint_unnumbered=True) if headers else locator.locate_body_only(body)
+        if loc:
+            gaps, warnings = _command_gaps(iid, body, source, _inventory_ranges(dossier, source, body), locator, loc)
+            if gaps:
+                add('inventory_command_coverage', original_id,
+                    'Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.',
+                    'possible_omitted_command', text_path=source['text_path'],
+                    text_sha256=source['text_sha256'], source_sha256=source.get('sha256'),
+                    document_extent={'char_start': loc.doc_start, 'char_end': loc.doc_end,
+                                     'body_start': loc.body_start, 'body_end': loc.body_end,
+                                     'heading_style': loc.heading_style},
+                    uncovered_regions=gaps, segmentation_warnings=warnings)
+        # Preserve the existing heading-only diagnostic contract. The new
+        # command diagnostic above additionally checks exact quoted coverage.
+        ranges = [(c.get('char_start'), c.get('char_end')) for c in dossier.get('clauses', []) if isinstance(c, dict)]
         uncovered = []
         body_start, body_end = _extent(iid, body)
         for match in SECTION.finditer(body, body_start, body_end):

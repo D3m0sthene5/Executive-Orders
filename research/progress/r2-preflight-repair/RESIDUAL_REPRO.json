@@ -1,0 +1,163 @@
+{
+  "baseline_code_sha256": "0698661c59f5384fae99dac7586bbbc572793283abac5803f12482f4ae546242",
+  "fixtures": [
+    {
+      "fixture": "wrong_heading",
+      "dossier": {
+        "instrument_id": "EO:8123",
+        "original_source_id": "ORIGINAL:EO:8123",
+        "actor_provisions": [],
+        "evidence": {
+          "ORIGINAL:EO:8123": {
+            "text": "EXECUTIVE ORDER 8119\nSection 1. Florence Lake withdrawn.\n",
+            "char_start": 0,
+            "char_end": 57,
+            "source": {
+              "text_path": "text.txt",
+              "text_sha256": "d025cffb6fe66377098ab34ceaa52c4812bd352015bb000c14cd571cb4c134a2",
+              "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          }
+        },
+        "clauses": [
+          {
+            "char_start": 0,
+            "char_end": 57
+          }
+        ]
+      },
+      "baseline": {
+        "tasks": [],
+        "held_text_receipts": {
+          "text.txt": {
+            "text_sha256": "d025cffb6fe66377098ab34ceaa52c4812bd352015bb000c14cd571cb4c134a2",
+            "characters": 57,
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_custody": "requires_actual_claim_checker"
+          }
+        },
+        "custody_validation": "required_from_actual_claim_checker",
+        "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+      },
+      "patched": {
+        "tasks": [
+          {
+            "kind": "original_identity",
+            "shared_key": "ORIGINAL:EO:8123",
+            "reason": "The only recognized document heading names another order. Confirm document/page boundaries; references and multi-order sources need source examination.",
+            "availability": "identity_requires_source_review",
+            "observed_identity": "EO:8119",
+            "headings": [
+              {
+                "observed_identity": "EO:8119",
+                "char_start": 0,
+                "char_end": 20,
+                "text": "EXECUTIVE ORDER 8119"
+              }
+            ],
+            "text_path": "text.txt",
+            "text_sha256": "d025cffb6fe66377098ab34ceaa52c4812bd352015bb000c14cd571cb4c134a2"
+          }
+        ],
+        "held_text_receipts": {
+          "text.txt": {
+            "text_sha256": "d025cffb6fe66377098ab34ceaa52c4812bd352015bb000c14cd571cb4c134a2",
+            "characters": 57,
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_custody": "requires_actual_claim_checker"
+          }
+        },
+        "custody_validation": "required_from_actual_claim_checker",
+        "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+      }
+    },
+    {
+      "fixture": "omitted_unnumbered",
+      "dossier": {
+        "instrument_id": "EO:2",
+        "original_source_id": "ORIGINAL:EO:2",
+        "actor_provisions": [],
+        "evidence": {
+          "ORIGINAL:EO:2": {
+            "text": "Instrument: EO:2\nExecutive Order 2\nSection 1. Board established.\nThe Secretary shall separately issue instructions.\n",
+            "char_start": 0,
+            "char_end": 116,
+            "source": {
+              "text_path": "text.txt",
+              "text_sha256": "3179bdda7cc19b77d7f24a45ed1cf6291365164c14c4f62cdbc07fbebed1ba2e",
+              "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          }
+        },
+        "clauses": [
+          {
+            "char_start": 35,
+            "char_end": 65
+          }
+        ]
+      },
+      "baseline": {
+        "tasks": [],
+        "held_text_receipts": {
+          "text.txt": {
+            "text_sha256": "3179bdda7cc19b77d7f24a45ed1cf6291365164c14c4f62cdbc07fbebed1ba2e",
+            "characters": 116,
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_custody": "requires_actual_claim_checker"
+          }
+        },
+        "custody_validation": "required_from_actual_claim_checker",
+        "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+      },
+      "patched": {
+        "tasks": [
+          {
+            "kind": "inventory_command_coverage",
+            "shared_key": "ORIGINAL:EO:2",
+            "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+            "availability": "possible_omitted_command",
+            "text_path": "text.txt",
+            "text_sha256": "3179bdda7cc19b77d7f24a45ed1cf6291365164c14c4f62cdbc07fbebed1ba2e",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "document_extent": {
+              "char_start": 17,
+              "char_end": 116,
+              "body_start": 35,
+              "body_end": 116,
+              "heading_style": "numbered"
+            },
+            "uncovered_regions": [
+              {
+                "char_start": 65,
+                "char_end": 115,
+                "text": "The Secretary shall separately issue instructions.",
+                "context_char_start": 65,
+                "context_char_end": 115,
+                "signals": [
+                  "shall"
+                ],
+                "classification": "clause_candidate",
+                "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+                "pdf_page": null,
+                "line": 4
+              }
+            ],
+            "segmentation_warnings": [
+              "no_signature_block_found"
+            ]
+          }
+        ],
+        "held_text_receipts": {
+          "text.txt": {
+            "text_sha256": "3179bdda7cc19b77d7f24a45ed1cf6291365164c14c4f62cdbc07fbebed1ba2e",
+            "characters": 116,
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_custody": "requires_actual_claim_checker"
+          }
+        },
+        "custody_validation": "required_from_actual_claim_checker",
+        "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+      }
+    }
+  ]
+}

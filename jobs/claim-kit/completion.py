@@ -387,7 +387,7 @@ def selected_claim(inputs, member, manifest, planted, held):
                 packet.get('policy_code_sha256') == batch.policy_code_pins() and
                 packet.get('assembler_code_sha256') == batch.file_sha(Path(batch.__file__).with_name('assemble.py')) and
                 packet.get('preflight_code_sha256') == batch.file_sha(Path(batch.__file__).with_name('evidence_preflight.py')) and
-                packet.get('preflight_dependency_sha256') == {'excavate.py': batch.file_sha(Path(batch.__file__).with_name('excavate.py'))},
+                packet.get('preflight_dependency_sha256') == batch.preflight_dependency_pins(),
                 'packet code changed; prepare and review a new version')
         dossier = deepcopy(dossiers[iid])  # the cached packet snapshot is shared and immutable
     gate_errors = _gate(inputs.repo).validate_claim(claim, expected_status=claim.get('whole_order_status'))
@@ -623,7 +623,45 @@ class PublicationLock:
                 pass
 
 
-def complete(repo, manifest_path, dest, publish=False):
+def diagnose_completion(repo, dest, options):
+    """Optional, one-way NEYMAN handoff after immutable scientific receipts.
+
+    Diagnostic errors have their own receipt and never change a gate, selection,
+    publication or scientific exit status. No history is inferred by scanning.
+    """
+    started = time.monotonic()
+    receipt = {'schema': 'eo-claim-kit-diagnostic/v1', 'status': 'refused',
+               'scientific_completion_unchanged': True, 'agent_labor_seconds': None,
+               'model_tokens': None, 'model_cost': None}
+    try:
+        for key in ('history', 'base_commit', 'write'):
+            require(options.get(key), 'diagnostic ' + key + ' required')
+        folder = dest.relative_to(repo).as_posix()
+        script = repo / 'jobs/neyman/after_completion.py'
+        command = [sys.executable, str(script), '--repo', str(repo),
+                   '--history', str(options['history']), '--base-commit', str(options['base_commit']),
+                   '--write', str(options['write']), '--current', folder]
+        for value in options.get('final', []) or [folder]:
+            command += ['--final', str(value)]
+        for key in ('research_attempt', 'effort', 'checkpoint', 'question'):
+            for value in options.get(key, []):
+                command += ['--' + key.replace('_', '-'), str(value)]
+        receipt.update(command=command, adapter_sha256=batch.file_sha(script))
+        result = subprocess.run(command, cwd=repo, capture_output=True, text=True, timeout=60)
+        receipt.update(status='succeeded' if result.returncode == 0 else 'refused',
+                       returncode=result.returncode, stdout=result.stdout, stderr=result.stderr,
+                       output=str(options['write']))
+    except (ValueError, KeyError, TypeError, OSError, subprocess.TimeoutExpired) as exc:
+        receipt['error'] = str(exc)
+    receipt['wall_seconds'] = time.monotonic() - started
+    try:
+        batch.dump(dest / 'DIAGNOSTIC.json', receipt)
+    except OSError as exc:
+        receipt['receipt_error'] = str(exc)  # still visible in the CLI result
+    return receipt
+
+
+def complete(repo, manifest_path, dest, publish=False, *, diagnosis=None):
     started = time.monotonic()
     start_utc = datetime.now(timezone.utc).isoformat()
     repo, dest = Path(repo).resolve(), Path(dest).resolve()
@@ -788,9 +826,12 @@ def complete(repo, manifest_path, dest, publish=False):
             batch.dump(dest / 'PUBLICATION.json', publication)
             tally['claims_published'] = len(selected) if mode == 'own_claims' else 0
             batch.dump(dest / 'TALLY.json', tally)
-        return tally
     finally:
         lock.release()
+    if diagnosis is not None:
+        # Keep TALLY.json byte-stable: diagnostics may read its exact pin.
+        tally = dict(tally, diagnostic=diagnose_completion(repo, dest, diagnosis))
+    return tally
 
 
 CANONICAL_CLAIM_FILE = re.compile(r'research/readiness/claims/[^/]+\.jsonl')

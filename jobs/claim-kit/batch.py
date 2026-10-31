@@ -48,6 +48,11 @@ def safe(root,rel):
     if not p.is_relative_to(root):raise ValueError('path outside repository: '+str(rel))
     return p
 def file_sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def preflight_dependency_pins():
+    """Pin the source modules used by the live evidence preflight."""
+    source_root=Path(__file__).resolve().parents[2]
+    return {'excavate.py':file_sha(source_root/'jobs/claim-kit/excavate.py'),
+            'jobs/clause-drafts/segment.py':file_sha(source_root/'jobs/clause-drafts/segment.py')}
 def rows(path):
     with path.open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
 def csv_write(path,fields,values):
@@ -247,6 +252,7 @@ def family_groups(dossiers):
 def load_packet(folder,repo,check_sources=True):
     packet=json.loads((folder/'PACKET.json').read_bytes());fp=packet.pop('fingerprint',None)
     if packet.get('schema')!=SCHEMA or digest(canon(packet).encode())!=fp:raise ValueError('changed work package')
+    if packet.get('preflight_dependency_sha256')!=preflight_dependency_pins():raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
         if ((folder/'SOURCE_SUPPLEMENT.json').exists() or
@@ -469,7 +475,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'codec_code_sha256':file_sha(Path(__file__)),'assembler_code_sha256':file_sha(Path(__file__).with_name('assemble.py')),
         'preflight_code_sha256':file_sha(Path(__file__).with_name('evidence_preflight.py')),
         'policy_code_sha256':policy_code_pins(),
-        'preflight_dependency_sha256':{'excavate.py':file_sha(Path(__file__).with_name('excavate.py'))},
+        'preflight_dependency_sha256':preflight_dependency_pins(),
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
     from prior_research import collect
     packet['prior_research'] = collect(repo, dossiers, exclude=dest)
@@ -530,7 +536,6 @@ def apply(repo,folder,write):
     if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
     if packet['assembler_code_sha256']!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
     if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
-    if packet.get('preflight_dependency_sha256')!={'excavate.py':file_sha(Path(__file__).with_name('excavate.py'))}:raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
     order_rows=rows(folder/'decisions.csv');clause_rows=rows(folder/'clauses.csv');shared=json.loads((folder/'RATIONALES.json').read_bytes())
     counts=Counter(r.get('instrument_id') for r in order_rows)
     if set(counts)!=set(dossiers) or any(n!=1 for n in counts.values()):raise ValueError('decision rows must name every packet member exactly once')
