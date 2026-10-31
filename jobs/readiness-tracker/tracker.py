@@ -99,6 +99,10 @@ J = {
     # order, matched by file name only, with a machine text. A lead with byte evidence, never counted as the original
     # until a person compares the pages and the codebook assigns the grade (acceptable_as_original stays false).
     "archival_replica_fragments": ["jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl"],
+    # Standalone working-text confirmations (jobs/lachmann). The agent-reviewed file is read second, so its line for an
+    # instrument replaces the machine line. They can only make the text step `provisional`, never an original.
+    "working_text_confirmations": ["jobs/lachmann/output/CONFIRMATIONS.jsonl",
+                                   "jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl"],
     "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
     "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
     "ladder_sources": ["jobs/source-ladder/output/SOURCES.jsonl"],
@@ -112,6 +116,20 @@ J = {
     "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
     "cl_status": "jobs/current-law/output/STATUS.json",
 }
+
+# Owner ruling of 2026-10-31 (extends the 2026-10-21 transcription-as-text ruling): a standalone check that confirms an
+# order's working text (right order, complete text, pages checked) before any claim exists lets the text step be
+# `provisional` for that order. It is counted separately, never as an original; the grade, the replace-and-recheck
+# note and the obligations stay, and a later claim reuses the confirmation.
+CONFIRMATION_RULING = "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md"
+CONFIRMATION_SCHEMA = "eo-lachmann-confirmation/v1"
+CONFIRMATION_METHODS = frozenset({"machine", "agent"})
+PROVISIONAL_FLAG = "TEXT_PROVISIONAL_WORKING_TEXT"
+# Text-step blockers a confirmation may clear. Any other text blocker (an official copy found but not page-checked,
+# an official URL not yet downloaded, a claim's working-text errors) keeps the step open.
+PROVISIONAL_LEAD_BLOCKERS = frozenset({"ONLY_COMPILED_TRANSCRIPTION_FOUND", "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"})
+PROVISIONAL_CLEARABLE_BLOCKERS = PROVISIONAL_LEAD_BLOCKERS | {"NO_OFFICIAL_SOURCE_LOCATED"}
+PINNED_FIELDS = ("instrument_id", "grade", "sha256", "text_sha256", "text_path")
 
 # Opus media blockers, from opus-media-match's media_gap / media_status.
 OPUS_GAP_BLOCKER = {
@@ -282,6 +300,20 @@ def load_job_outputs(root):
         replica |= ids
         used[f"{job} (archival replica scan, lead only until a page check and a codebook grade)"] = len(ids) if paths else None
 
+    # Working-text confirmations: the last line per instrument wins, later files (agent review) after earlier ones.
+    confirmations, malformed_confirmations = {}, 0
+    paths = existing(J["working_text_confirmations"])
+    for path in paths:
+        rows, more = read_jsonl([path])
+        problems += more
+        for r in rows:
+            if isinstance(r, dict) and isinstance(r.get("instrument_id"), str):
+                confirmations[r["instrument_id"]] = r
+            else:
+                malformed_confirmations += 1
+    used["lachmann working-text confirmations (provisional text step only, never an original)"] = (
+        len(confirmations) if paths else None)
+
     status_path = os.path.join(root, J["opus_status"])
     opus_status = None
     if os.path.exists(status_path):
@@ -321,6 +353,7 @@ def load_job_outputs(root):
     search = load_machine_search(root, problems)
     used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
     return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription, "replica": replica,
+            "confirmations": confirmations, "malformed_confirmations": malformed_confirmations,
             "opus_status": opus_status, "ladder_found": ladder_found,
             "opus_missing": opus_missing, "search": search,
             "checker": checker, "used": used}, problems
@@ -379,6 +412,54 @@ def machine_search_record(i, search):
     ]
 
 
+def confirmation_rejection(c, index, root):
+    """Why a working-text confirmation cannot count, or None when it counts."""
+    if (c.get("schema") != CONFIRMATION_SCHEMA or not isinstance(c.get("instrument_id"), str)
+            or c.get("method") not in CONFIRMATION_METHODS):
+        return "malformed_record_or_unknown_schema_or_method"
+    if c.get("acceptable_as_original") is not False:
+        return "acceptable_as_original_not_false"
+    if c.get("grade") not in W.GRADES:
+        return "grade_not_a_working_text_grade"
+    if c.get("confirmed") is not True:
+        return "not_confirmed"
+    if c.get("identity_confirmed") is not True:
+        return "identity_not_confirmed"
+    if c.get("complete_text_confirmed") is not True:
+        return "complete_text_not_confirmed"
+    matches = [r for r in index.by_sha.get(W.source_sha({"sha256": c.get("sha256")}) or "", [])
+               if all(r.get(k) == c.get(k) for k in PINNED_FIELDS)]
+    if not matches:
+        return "pinned_fields_match_no_loaded_fragment"
+    # Fail closed: a page check is required unless both the confirmation and every matching fragment say it is not.
+    if ((c.get("requires_page_check") is not False or any(r["requires_page_check"] for r in matches))
+            and c.get("pages_confirmed") is not True):
+        return "pages_not_confirmed_but_page_check_required"
+    if any(r.get("complete_text") is False for r in matches):
+        return "fragment_declares_text_incomplete"
+    try:
+        raw = W._child(root, c["text_path"]).read_bytes()
+    except (OSError, ValueError, KeyError):
+        return "text_file_missing_or_hash_mismatch"
+    if hashlib.sha256(raw).hexdigest() != c.get("text_sha256"):
+        return "text_file_missing_or_hash_mismatch"
+    return None
+
+
+def counting_confirmations(root, jobs, index):
+    """({id: confirmation}, {reason: count}) after the exact-pin checks above."""
+    counting, rejected = {}, collections.Counter()
+    if jobs["malformed_confirmations"]:
+        rejected["malformed_record_or_unknown_schema_or_method"] += jobs["malformed_confirmations"]
+    for i, c in jobs["confirmations"].items():
+        reason = confirmation_rejection(c, index, root)
+        if reason:
+            rejected[reason] += 1
+        else:
+            counting[i] = c
+    return counting, dict(sorted(rejected.items()))
+
+
 def build(root, *, planning_closures=None):
     # In-memory counterfactuals only; ordinary jobs never supply this argument.
     if planning_closures is not None:
@@ -425,6 +506,7 @@ def build(root, *, planning_closures=None):
     orders = []
     machine_searched = set()
     working_index = W.Index(root)
+    confirmed_texts, confirmation_rejections = counting_confirmations(root, jobs, working_index)
     for i in universe:
         d = decided.get(i)
         status = d["provisional_substantive_status"] if d else None
@@ -474,6 +556,8 @@ def build(root, *, planning_closures=None):
                  or any(o.get("needs_page_check") is False for o in official)
                  or i in jobs["opus_text"])
         steps["original_text"] = saved or from_claim("original_text")
+        text_provisional = None  # the counting confirmation that makes the text step provisional
+        flags = []  # informational, never blockers
         if not steps["original_text"]:
             if fr is not None or official:
                 blockers["original_text"].append("ORIGINAL_FOUND_NEEDS_PAGE_CHECK")
@@ -487,6 +571,15 @@ def build(root, *, planning_closures=None):
             if i in jobs["replica"]:
                 # A ProQuest replica scan is on file: a person must compare its pages before the codebook can grade it.
                 blockers["original_text"].append("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK")
+            # Owner ruling 2026-10-31: before any claim exists, a counting standalone confirmation of a working
+            # text lets the step be provisional when only the lead blockers stand in the way. It is not an original.
+            if (claim is None and i in confirmed_texts
+                    and set(blockers["original_text"]) <= PROVISIONAL_CLEARABLE_BLOCKERS
+                    and set(blockers["original_text"]) & PROVISIONAL_LEAD_BLOCKERS):
+                text_provisional = confirmed_texts[i]
+                steps["original_text"] = True  # satisfied for readiness and step counts; shown as `provisional`
+                blockers.pop("original_text", None)
+                flags.append(PROVISIONAL_FLAG)
 
         # 3-6. need a claim (partial claims light up the steps they satisfy)
         for step, code in (
@@ -613,17 +706,25 @@ def build(root, *, planning_closures=None):
             "ready_tier": ("machine_exhausted" if exhausted_steps else "complete_claim") if ready else "",
             "exhausted_steps": "|".join(exhausted_steps),
             "claim_present": "yes" if claim else "no",
-            "text_evidence_tier": "transcription_dependent" if dependent_texts else ("original_supported" if steps['original_text'] else "missing"),
-            "original_copy_replacement_required": "yes" if dependent_texts else "no",
-            "quotation_recheck_required": "yes" if dependent_texts else "no",
+            "text_evidence_tier": ("transcription_dependent" if dependent_texts or text_provisional
+                                   else ("original_supported" if steps['original_text'] else "missing")),
+            "original_copy_replacement_required": "yes" if dependent_texts or text_provisional else "no",
+            "quotation_recheck_required": "yes" if dependent_texts or text_provisional else "no",
+            "informational_flags": "|".join(flags),
+            "provisional_text_grade": text_provisional["grade"] if text_provisional else "",
+            "provisional_text_method": text_provisional["method"] if text_provisional else "",
+            "provisional_text_sha256": text_provisional["text_sha256"] if text_provisional else "",
             "working_text_policy_errors": "|".join(working_errors),
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
             "opus_media_applicability_note": opus_media_note,
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
-            **{f"step_{s}": ("done" if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
+            **{f"step_{s}": (("provisional" if s == "original_text" and text_provisional else "done")
+                             if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
     build.job_outputs_used = jobs["used"]
+    build.confirmation_rejections = confirmation_rejections
+    build.confirmations_counting = len(confirmed_texts)
     build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
     return orders, problems
 
@@ -677,6 +778,9 @@ def summarise(orders, problems):
     step_done = {s: sum(o[f"step_{s}"] == "done" for o in decided) for s in STEP_NAMES}
     step_applicable = {s: sum(o[f"step_{s}"] != "n/a" for o in decided) for s in STEP_NAMES}
     ladder = collections.Counter((o["steps_done"], o["steps_applicable"]) for o in decided)
+    # `done` means done by an original (or a claim); a provisional text step is counted apart, yet it is a satisfied
+    # step in steps_done and decided_by_steps_done.
+    provisional_decided = sum(o["step_original_text"] == "provisional" for o in decided)
 
     # Actions that clear one blocker for many orders at once.
     unlocks = [
@@ -719,7 +823,12 @@ def summarise(orders, problems):
         "human_verified": "not counted here; see the Stage 19 tracker",
         "opus_media_not_applicable": sorted(o["instrument_id"] for o in orders
                                             if o.get("opus_media_applicability_note")),
-        "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s]} for s in STEP_NAMES},
+        "text_step_provisional_working_text": sum(o["step_original_text"] == "provisional" for o in orders),
+        "working_text_confirmations_counting": getattr(build, "confirmations_counting", 0),
+        "rejected_working_text_confirmations": getattr(build, "confirmation_rejections", {}),
+        "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s],
+                                        **({"provisional": provisional_decided} if s == "original_text" else {})}
+                                    for s in STEP_NAMES},
         "decided_by_steps_done": {f"{k[0]}/{k[1]}": v for k, v in sorted(ladder.items())},
         "orders_blocked_by": dict(blocker_orders.most_common()),
         "decided_orders_blocked_by": dict(blocker_decided.most_common()),
@@ -767,6 +876,9 @@ def write_outputs(out, orders, summary, inputs):
         "",
         f"Ready by text evidence: {s['ready_by_text_evidence_tier']}. Provisional working texts do not authenticate originals.",
         f"Outstanding original replacement obligations: {s['original_replacement_obligations']:,}; quotation rechecks: {s['quotation_recheck_obligations']:,}. These remain work after readiness.",
+        "",
+        f"Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): {s['text_step_provisional_working_text']:,}. "
+        f"Confirmations rejected: {s['rejected_working_text_confirmations'] or 'none'}.",
         "",
         "## Steps finished (orders with a provisional status)",
         "",

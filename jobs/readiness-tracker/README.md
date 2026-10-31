@@ -37,6 +37,42 @@ disclosed transcription or ProQuest scan to satisfy the text step provisionally.
 the original-supported route; `jobs/claim-kit/working_text.py` implements the
 separate provisional working-text gate.
 
+## Provisional text step from a standalone confirmation
+
+The owner's October 31 ruling (`research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md`)
+extends the October 21 ruling (`research/readiness/owner_rulings/2026-10-21-transcription-as-text.md`). When a
+standalone check confirms an order's working text (right order, complete text, pages checked) before any claim
+exists, the tracker marks that order's text step `provisional`. It reads `jobs/lachmann/output/CONFIRMATIONS.jsonl`
+and, when present, `AGENT_CONFIRMATIONS.jsonl`; the last line for an instrument wins, so an agent line replaces a
+machine line.
+
+A confirmation counts only when `confirmed`, `identity_confirmed` and `complete_text_confirmed` are true,
+`pages_confirmed` is true wherever a page check is required (by the confirmation or by the fragment), and
+`acceptable_as_original` is false. Its grade must be a working-text grade, and its `instrument_id`, `grade`,
+`sha256`, `text_sha256` and `text_path` must equal one fragment record already loaded for that order. The file at
+`text_path` must exist and hash to `text_sha256`. Anything else is ignored and counted by reason in
+`rejected_working_text_confirmations` in `SUMMARY.json`.
+
+It applies only to an order with no claim whose text step would stay open solely for
+`ONLY_COMPILED_TRANSCRIPTION_FOUND` and/or `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` (plus
+`NO_OFFICIAL_SOURCE_LOCATED`). Those blockers are removed and the informational flag
+`TEXT_PROVISIONAL_WORKING_TEXT` appears in `informational_flags` (never in `blockers`). An order with an official
+original is untouched. After a claim exists, the claim's own gates and checker decide the text step and reuse the
+confirmation through `claim.working_text`.
+
+Counting rules:
+
+- `step_original_text` is `provisional`, not `done`. The order's `steps_done` and `decided_by_steps_done` treat
+  it as satisfied. `step_done_among_decided.original_text.done` still means done by an original (or a claim) and
+  `.provisional` counts these orders. `text_step_provisional_working_text` counts them across all orders.
+- `text_evidence_tier` is `transcription_dependent`, never `original_supported`; the order keeps its original
+  replacement and quotation recheck obligations, and both obligation totals include it. The grade label and the
+  standing note (`replace and re-check quotes when an official copy is retrieved`) carry over.
+- `provisional_text_grade`, `provisional_text_method` and `provisional_text_sha256` in `READINESS_BY_ORDER.csv`
+  let a claim reuse the confirmation.
+- A confirmation cannot make an order ready by itself: every other step and the claim and checker gates are
+  unchanged, and an order with no claim is never ready.
+
 ## Steps per order
 
 | Step | Done when |

@@ -14,6 +14,7 @@ import unittest
 
 import tracker
 
+W_NOTE = tracker.W.NOTE
 REAL_ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = {"url": "https://www.govinfo.gov/x.pdf", "sha256": "a" * 64, "page_or_item": "p. 1"}
 
@@ -584,6 +585,187 @@ class TrackerTest(unittest.TestCase):
         orders, _ = self.run_tracker([claim])
         self.assertEqual(orders['EO:2']['ready_for_human_review'], 'no')
 
+
+    # --- Owner ruling 2026-10-31: a standalone confirmation makes the text step provisional ---
+
+    CONFIRMED = "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+    AGENT_CONFIRMED = "jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl"
+
+    def confirmation_fixture(self, iid="EO:3", lane="app", needs_page_check=False, **over):
+        """A held working text, its fragment record, and a matching confirmation line."""
+        text = f"Order {iid}: the board shall report by June 30, 1950."
+        rel = f"jobs/{'app-executive-orders' if lane == 'app' else 'pinakes-proquest-ingest'}/output/texts/{iid.replace(':', '_')}.txt"
+        self.write(rel, text)
+        digest = hashlib.sha256(text.encode()).hexdigest()
+        grade = "mirror_transcription" if lane == "app" else "archival_replica_scan_pending_codebook"
+        data = {"url": "https://example.org/x", "sha256": "d" * 64, "text_path": rel, "text_sha256": digest,
+                "grade": grade, "acceptable_as_original": False, "needs_page_check": needs_page_check}
+        fragment = {"kind": "original_representation", "instrument_id": iid, "data": data}
+        frag_path = (tracker.J["compiled_transcription_fragments"][1] if lane == "app"
+                     else tracker.J["archival_replica_fragments"][0])
+        conf = {"schema": "eo-lachmann-confirmation/v1", "instrument_id": iid, "grade": grade, "sha256": "d" * 64,
+                "text_sha256": digest, "text_path": rel, "acceptable_as_original": False,
+                "requires_page_check": needs_page_check, "identity_confirmed": True,
+                "complete_text_confirmed": True, "pages_confirmed": True if needs_page_check else None,
+                "confirmed": True, "method": "machine", "witnesses": [], "evidence": [], "reasons": [],
+                "ruling": tracker.CONFIRMATION_RULING, "standing_note": W_NOTE}
+        conf.update(over)
+        return frag_path, json.dumps(fragment) + "\n", conf
+
+    def jsonl(self, *rows):
+        return "".join(json.dumps(r) + "\n" for r in rows)
+
+    def test_valid_confirmation_makes_the_text_step_provisional_not_done(self):
+        frag_path, frag, conf = self.confirmation_fixture()
+        base, base_s = self.run_tracker(files={frag_path: frag})
+        self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", base["EO:3"]["blockers"])
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf)})
+        o = orders["EO:3"]
+        self.assertEqual(o["step_original_text"], "provisional")
+        self.assertNotIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", o["blockers"])
+        self.assertNotIn("NO_OFFICIAL_SOURCE_LOCATED", o["blockers"])
+        self.assertNotIn("TEXT_PROVISIONAL_WORKING_TEXT", o["blockers"])
+        self.assertEqual(o["informational_flags"], "TEXT_PROVISIONAL_WORKING_TEXT")
+        self.assertEqual((o["provisional_text_grade"], o["provisional_text_method"], o["provisional_text_sha256"]),
+                         ("mirror_transcription", "machine", conf["text_sha256"]))
+        # a satisfied step in the ladder, but never counted as done-by-original
+        self.assertEqual(o["steps_done"], base["EO:3"]["steps_done"] + 1)
+        self.assertEqual(s["step_done_among_decided"]["original_text"]["done"],
+                         base_s["step_done_among_decided"]["original_text"]["done"])
+        self.assertEqual(s["step_done_among_decided"]["original_text"]["provisional"], 1)
+        self.assertEqual(s["text_step_provisional_working_text"], 1)
+        self.assertEqual(s["working_text_confirmations_counting"], 1)
+        self.assertEqual(s["rejected_working_text_confirmations"], {})
+        self.assertEqual(sum(s["decided_by_steps_done"].values()), s["orders_with_provisional_status"])
+        # never ready by itself; the tier is transcription_dependent and the debts are counted
+        self.assertEqual(o["ready_for_human_review"], "no")
+        self.assertEqual(o["text_evidence_tier"], "transcription_dependent")
+        self.assertEqual((o["original_copy_replacement_required"], o["quotation_recheck_required"]), ("yes", "yes"))
+        self.assertEqual(s["original_replacement_obligations"], base_s["original_replacement_obligations"] + 1)
+        self.assertEqual(s["quotation_recheck_obligations"], base_s["quotation_recheck_obligations"] + 1)
+        self.assertNotIn("TEXT_PROVISIONAL_WORKING_TEXT", s["orders_blocked_by"])
+        # every other step and blocker is unchanged
+        for step in tracker.STEP_NAMES[2:]:
+            self.assertEqual(o[f"step_{step}"], base["EO:3"][f"step_{step}"])
+
+    def test_archival_replica_with_page_check_needs_pages_confirmed(self):
+        frag_path, frag, conf = self.confirmation_fixture(lane="replica", needs_page_check=True)
+        self.assertIs(conf["pages_confirmed"], True)
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "provisional")
+        self.assertNotIn("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        # the fragment still demands a page check even if the confirmation claims none is required
+        bad = dict(conf, requires_page_check=False, pages_confirmed=None)
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(bad)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(s["rejected_working_text_confirmations"], {"pages_not_confirmed_but_page_check_required": 1})
+
+    def test_invalid_confirmations_are_ignored_and_counted_by_reason(self):
+        frag_path, frag, conf = self.confirmation_fixture(needs_page_check=True)
+        cases = {
+            "pinned_fields_match_no_loaded_fragment": dict(conf, text_sha256="0" * 64),
+            "pinned_fields_match_no_loaded_fragment ": dict(conf, grade="compiled_transcription"),
+            "pages_not_confirmed_but_page_check_required": dict(conf, pages_confirmed=False),
+            "not_confirmed": dict(conf, confirmed=False),
+            "identity_not_confirmed": dict(conf, identity_confirmed=False),
+            "complete_text_not_confirmed": dict(conf, complete_text_confirmed=False),
+            "acceptable_as_original_not_false": dict(conf, acceptable_as_original=True),
+            "grade_not_a_working_text_grade": dict(conf, grade="official_original"),
+            "malformed_record_or_unknown_schema_or_method": dict(conf, schema="other/v1"),
+        }
+        for reason, bad in cases.items():
+            with self.subTest(reason=reason):
+                orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(bad)})
+                o = orders["EO:3"]
+                self.assertEqual(o["step_original_text"], "open")
+                self.assertIn("ONLY_COMPILED_TRANSCRIPTION_FOUND", o["blockers"])
+                self.assertEqual(o["informational_flags"], "")
+                self.assertEqual(o["text_evidence_tier"], "missing")
+                self.assertEqual(s["text_step_provisional_working_text"], 0)
+                self.assertEqual(s["rejected_working_text_confirmations"], {reason.strip(): 1})
+                self.assertEqual(s["working_text_confirmations_counting"], 0)
+
+    def test_confirmation_needs_the_held_text_to_exist_and_hash(self):
+        frag_path, frag, conf = self.confirmation_fixture()
+        (self.root / conf["text_path"]).write_text("changed after the confirmation", encoding="utf-8")
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(s["rejected_working_text_confirmations"], {"text_file_missing_or_hash_mismatch": 1})
+        (self.root / conf["text_path"]).unlink()
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+
+    def test_confirmation_for_an_incomplete_fragment_is_rejected(self):
+        frag_path, frag, conf = self.confirmation_fixture()
+        record = json.loads(frag)
+        record["data"]["complete_text"] = False
+        orders, s = self.run_tracker(files={frag_path: json.dumps(record) + "\n", self.CONFIRMED: self.jsonl(conf)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(s["rejected_working_text_confirmations"], {"fragment_declares_text_incomplete": 1})
+
+    def test_confirmation_never_changes_an_order_with_an_official_original(self):
+        frag_path, frag, conf = self.confirmation_fixture(iid="EO:1")
+        fr = json.dumps({"instrument_id": "EO:1", "kind": "original_representation",
+                         "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": False}})
+        files = {frag_path: frag, self.CONFIRMED: self.jsonl(conf), tracker.J["fr_fragments"][1]: fr + "\n"}
+        orders, s = self.run_tracker(files=files)
+        o = orders["EO:1"]
+        self.assertEqual(o["step_original_text"], "done")
+        self.assertEqual(o["text_evidence_tier"], "original_supported")
+        self.assertEqual((o["original_copy_replacement_required"], o["quotation_recheck_required"]), ("no", "no"))
+        self.assertEqual((o["informational_flags"], o["provisional_text_grade"]), ("", ""))
+        self.assertEqual(s["text_step_provisional_working_text"], 0)
+        self.assertEqual(s["original_replacement_obligations"], 0)
+        # an order whose causal queue already preserves its original (EO:2) is likewise untouched
+        frag_path2, frag2, conf2 = self.confirmation_fixture(iid="EO:2")
+        orders, s = self.run_tracker(files={frag_path2: frag2, self.CONFIRMED: self.jsonl(conf2)})
+        self.assertEqual(orders["EO:2"]["step_original_text"], "done")
+        self.assertEqual(orders["EO:2"]["text_evidence_tier"], "original_supported")
+
+    def test_other_text_blockers_and_existing_claims_keep_the_step_open(self):
+        frag_path, frag, conf = self.confirmation_fixture()
+        # an official copy found but not page-checked still needs its own check
+        fr = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
+                         "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": True}})
+        orders, _ = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf),
+                                            tracker.J["fr_fragments"][1]: fr + "\n"})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        # once a claim exists the claim's own checks decide the text step
+        claim = dict(copy.deepcopy(COMPLETE_NO_CLAIM), instrument_id="EO:3")
+        orders, _ = self.run_tracker([claim], checked=None,
+                                     files={frag_path: frag, self.CONFIRMED: self.jsonl(conf),
+                                            tracker.J["fr_fragments"][1]: ""})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(orders["EO:3"]["ready_for_human_review"], "no")
+
+    def test_agent_confirmation_overrides_the_machine_confirmation(self):
+        frag_path, frag, conf = self.confirmation_fixture()
+        agent = dict(conf, method="agent")
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf),
+                                            self.AGENT_CONFIRMED: self.jsonl(agent)})
+        self.assertEqual(orders["EO:3"]["provisional_text_method"], "agent")
+        self.assertEqual(s["text_step_provisional_working_text"], 1)
+        # an agent line that does not confirm replaces a machine line that did
+        refused = dict(conf, method="agent", confirmed=False, pages_confirmed=False)
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf),
+                                            self.AGENT_CONFIRMED: self.jsonl(refused)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertEqual(s["rejected_working_text_confirmations"], {"not_confirmed": 1})
+        # an agent line that confirms replaces a machine line that did not
+        orders, s = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(dict(conf, confirmed=False)),
+                                            self.AGENT_CONFIRMED: self.jsonl(agent)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "provisional")
+        self.assertEqual(s["rejected_working_text_confirmations"], {})
+        self.assertEqual(tracker.build.job_outputs_used[
+            "lachmann working-text confirmations (provisional text step only, never an original)"], 1)
+
+    def test_missing_confirmation_files_change_nothing(self):
+        orders, s = self.run_tracker()
+        self.assertEqual(s["text_step_provisional_working_text"], 0)
+        self.assertEqual(s["rejected_working_text_confirmations"], {})
+        self.assertIsNone(tracker.build.job_outputs_used[
+            "lachmann working-text confirmations (provisional text step only, never an original)"])
 
 
 class ExhaustionAssuranceTests(unittest.TestCase):
