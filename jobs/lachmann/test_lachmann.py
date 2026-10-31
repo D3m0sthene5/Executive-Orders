@@ -286,5 +286,15 @@ class NumberingGapTest(unittest.TestCase):
         self.assertEqual(L.numbering_gaps("no numbers here 762"), [])
 
 
+class DanglingSignatureTest(unittest.TestCase):
+    def test_list_cut_before_signature_fails(self):
+        import lachmann as L
+        self.assertTrue(L.dangling_before_signature("sec. 35, lots 3 to 6,\nsec. 36, lots 6 and 7,\nHERBERT HOOVER\nThe White House,"))
+
+    def test_finished_sentence_passes(self):
+        import lachmann as L
+        self.assertFalse(L.dangling_before_signature("restored to the public domain.\nHERBERT HOOVER\nThe White House,"))
+
+
 if __name__ == '__main__':
     unittest.main()

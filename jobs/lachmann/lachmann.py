@@ -566,9 +566,26 @@ def numbering_gaps(text):
     return gaps
 
 
+def dangling_before_signature(text):
+    """The last non-empty line before the first signature line ends mid-list (comma, semicolon, hyphen, or a
+    connective), so operative text was lost before the signature (EO 5252 in the 2026-10-31 audit)."""
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if is_signature(line):
+            prev = next((l.strip() for l in reversed(lines[:i]) if l.strip()), '')
+            return bool(prev) and bool(re.search(r'([,;\-]|\b(and|or|of|the|to|in))\s*$', prev, re.I))
+    return False
+
+
 def complete_test(order, chosen, others):
-    """(confirmed, route, reasons, evidence). The chosen text must also be free of numbering gaps."""
+    """(confirmed, route, reasons, evidence). The chosen text must also be free of numbering gaps and must not
+    break off just before the signature."""
     ok, route, reasons, ev = _complete_test(order, chosen, others)
+    if dangling_before_signature(chosen['body']):
+        ev['dangling_before_signature'] = True
+        if ok:
+            return False, None, ['complete:dangling_before_signature'], ev
+        reasons = reasons + ['complete:dangling_before_signature']
     gaps = numbering_gaps(chosen['body'])
     if gaps:
         ev['numbering_gaps'] = gaps[:5]
