@@ -1,0 +1,1573 @@
+<style>
+  .eo { display: grid; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); }
+  .eo-page { display: grid; gap: var(--cds-gap-lg); }
+  .eo-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .eo-takeaway { margin: var(--cds-gap-xs) 0 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); max-width: 72ch; }
+  .eo-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
+  .eo-tabs button { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); background: transparent; color: var(--color-fg-muted); border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; }
+  .eo-tabs button[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .eo-tabs button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .eo-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .eo-tile, .eo-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .eo-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eo-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin-top: var(--cds-gap-xs); }
+  .eo-tile-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-xs); font-variant-numeric: tabular-nums; }
+  .eo-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .eo-card-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); max-width: 78ch; }
+  .eo-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--cds-gap-sm); }
+  .eo-toggle { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+  .eo-toggle button { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); background: transparent; color: var(--color-fg-muted); border: 0; cursor: pointer; }
+  .eo-toggle button[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .eo-toggle button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .eo-map { position: relative; min-height: 26rem; }
+  .eo-map svg { display: block; }
+  .eo-map .leaf:focus { outline: none; }
+  .eo-map .leaf:focus rect, .eo-map .leaf:hover rect { stroke: var(--color-fg); stroke-width: 1.5; }
+  .eo-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 18rem; font-variant-numeric: tabular-nums; z-index: 2; }
+  .eo-tip .t1 { color: var(--cds-text-secondary); }
+  .eo-tip .t2 { display: flex; gap: var(--cds-gap-xs); align-items: baseline; margin-top: 2px; }
+  .eo-tip .sw, .eo-legend .sw { width: .625rem; height: .625rem; border-radius: 2px; flex: none; transform: translateY(1px); }
+  .eo-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-xs) var(--cds-gap-md); margin-top: var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
+  .eo-legend div { display: flex; gap: var(--cds-gap-xs); align-items: baseline; min-width: 0; }
+  .eo-legend .v { margin-left: auto; color: var(--color-fg-muted); font-variant-numeric: tabular-nums; padding-left: var(--cds-gap-sm); white-space: nowrap; }
+  .eo-notes { font-size: var(--cds-font-size-body); max-width: 78ch; margin: 0; padding-left: 1.1rem; display: grid; gap: var(--cds-gap-xs); }
+  .eo-tablebox { max-height: 30rem; overflow: auto; }
+  .eo-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .eo-table th { position: sticky; top: 0; background: var(--color-panel); text-align: right; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: bottom; }
+  .eo-table td { text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .eo-table th.l, .eo-table td.l { text-align: left; }
+  .eo-table td.when { min-width: 14rem; }
+  .eo-table .gap { color: var(--color-warn); }
+  .eo-pill { display: inline-block; padding: 0 .4rem; border-radius: 999px; border: 1px solid var(--color-border-line); white-space: nowrap; }
+  .eo-pill.measured, .eo-pill.calibrated { border-color: var(--color-ok); color: var(--color-ok); }
+  @media (max-width: 40rem) { .eo-table .hide-narrow { display: none; } }
+  .eo-lanes { display: grid; gap: var(--cds-gap-sm); }
+  .eo-lane-row { display: grid; grid-template-columns: minmax(9rem, 13rem) 1fr; gap: var(--cds-gap-sm); align-items: center; min-width: 0; }
+  .eo-lane-row .nm { font-size: var(--cds-font-size-caption); min-width: 0; }
+  .eo-lane-row .nm b { display: block; font-weight: var(--cds-font-weight-medium); }
+  .eo-lane-row .nm span { color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .eo-bar-track { display: flex; height: 1.75rem; border-radius: 4px; overflow: hidden; gap: 2px; min-width: 0; }
+  .eo-seg { position: relative; min-width: 0; cursor: default; }
+  .eo-seg:focus { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .eo-seg .lbl { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: var(--cds-font-size-caption); color: var(--color-fg); font-variant-numeric: tabular-nums; overflow: hidden; white-space: nowrap; }
+  .eo-chips { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); margin-top: var(--cds-gap-xs); }
+  .eo-chip { font-size: var(--cds-font-size-caption); padding: 0 .45rem; border-radius: 999px; border: 1px solid var(--color-border-line); color: var(--color-fg-muted); white-space: nowrap; }
+  .eo-chip.on { color: var(--color-fg); border-color: var(--color-fg-muted); }
+  .eo-status { display: inline-block; padding: 0 .4rem; border-radius: 999px; border: 1px solid var(--color-border-line); white-space: nowrap; font-size: var(--cds-font-size-caption); }
+  .eo-status.wired, .eo-status.active, .eo-status.adopted { border-color: var(--color-ok); color: var(--color-ok); }
+  .eo-status.unwired, .eo-status.lead_only, .eo-status.proposals, .eo-status.waiting_on_owner, .eo-status.probe, .eo-status.pilot, .eo-status.held, .eo-status.open_pr { border-color: var(--color-warn); color: var(--color-warn); }
+  .eo-status.stopped, .eo-status.not_built { color: var(--color-fg-muted); }
+  .eo-kind { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  @media (max-width: 40rem) { .eo-lane-row { grid-template-columns: 1fr; } }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .eo-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .eo-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+  .eo-flight { position: relative; min-height: 17rem; }
+  .eo-flight svg { display: block; overflow: visible; }
+  .eo-flight .trail-done { fill: none; stroke: var(--color-fg); stroke-width: 2; stroke-linecap: round; }
+  .eo-flight .trail-left { fill: none; stroke: var(--color-fg-muted); stroke-width: 1.5; stroke-dasharray: 1 6; stroke-linecap: round; }
+  .eo-flight .ms circle { fill: var(--color-panel); stroke: var(--color-fg-muted); stroke-width: 1.5; }
+  .eo-flight .ms.passed circle { fill: var(--color-fg); stroke: var(--color-panel); stroke-width: 2; }
+  .eo-flight .ms text { font-size: 11.5px; fill: var(--color-fg-muted); }
+  .eo-flight .ms text.nm { fill: var(--color-fg); font-weight: 500; }
+  .eo-flight .crumb { fill: var(--color-fg); stroke: var(--color-panel); stroke-width: 2; }
+  .eo-flight .earth-sea { fill: color-mix(in oklab, #2c6fc4 82%, var(--color-panel)); }
+  .eo-flight .earth-land { fill: color-mix(in oklab, #3b915a 80%, var(--color-panel)); }
+  .eo-flight .earth-ice { fill: color-mix(in oklab, #ffffff 70%, var(--color-panel)); }
+  .eo-flight .moon { fill: color-mix(in oklab, var(--color-fg) 20%, var(--color-panel)); }
+  .eo-flight .crater { fill: color-mix(in oklab, var(--color-fg) 30%, var(--color-panel)); }
+  .eo-flight .star { fill: var(--color-fg-muted); opacity: .45; }
+  .eo-flight .ship-body { fill: var(--color-panel); stroke: var(--color-fg); stroke-width: 1.4; stroke-linejoin: round; }
+  .eo-flight .ship-dark { fill: var(--color-fg); }
+  .eo-flight .ship-window { fill: color-mix(in oklab, #2c6fc4 82%, var(--color-panel)); stroke: var(--color-fg); stroke-width: 1; }
+  .eo-flight .ship-flame { fill: #f0922b; }
+  .eo-flight .ship-flame-in { fill: #ffd25e; }
+  .eo-flight .here text { font-size: 12px; fill: var(--color-fg); font-variant-numeric: tabular-nums; }
+  .eo-flight .here text.sub { fill: var(--color-fg-muted); }
+  .eo-flight .scale-note { font-size: 11px; fill: var(--color-fg-muted); }
+  .eo-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .eo-spark { position: relative; min-height: 13rem; }
+  .eo-spark svg { display: block; overflow: visible; }
+  .eo-spark .ln { fill: none; stroke: var(--color-fg); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .eo-spark .dot { fill: var(--color-fg); stroke: var(--color-panel); stroke-width: 2; }
+  .eo-spark .grid line { stroke: var(--color-border-line); }
+  .eo-spark .grid text, .eo-spark .ax text { font-size: 11px; fill: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .eo-spark .note { font-size: 11px; fill: var(--color-fg-muted); }
+  .eo-spark .cross { stroke: var(--color-fg-muted); stroke-width: 1; }
+  .wf-wrap { position: relative; }
+  .wf-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-md); }
+  .wf-search { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); min-width: min(100%, 16rem); flex: 1 1 14rem; max-width: 22rem; }
+  .wf-search:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 1px; }
+  .wf-count { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .wf-map { position: relative; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); align-items: start; gap: var(--cds-gap-md) var(--cds-gap-sm); padding-top: 104px;
+    background-image: radial-gradient(color-mix(in oklab, var(--color-fg) 9%, transparent) 1px, transparent 1px); background-size: 18px 18px; border-radius: var(--cds-radius); }
+  .wf-map.mid { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 8px; }
+  .wf-map.narrow { grid-template-columns: 1fr; padding-top: 8px; gap: var(--cds-gap-lg); }
+  .wf-overlay { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+  .wf-overlay .flow { fill: none; stroke: var(--color-fg-muted); stroke-width: 1.5; }
+  .wf-overlay .loop { fill: none; stroke: var(--color-fg-muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
+  .wf-overlay .loop-label { font-size: 11px; fill: var(--color-fg-muted); paint-order: stroke; stroke: var(--color-panel); stroke-width: 5px; stroke-linejoin: round; }
+  .wf-overlay .tie { fill: none; stroke: var(--color-fg); stroke-width: 1.4; opacity: .55; }
+  .wf-stage { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; background: color-mix(in oklab, var(--color-panel) 88%, transparent); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); }
+  .wf-stage.final { border-style: solid; border-color: var(--color-fg-muted); }
+  .wf-stage h3 { margin: 0; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); letter-spacing: .02em; display: flex; align-items: baseline; gap: 6px; }
+  .wf-stage h3 .n { font-variant-numeric: tabular-nums; color: var(--color-fg-muted); font-weight: 400; }
+  .wf-stage .blurb { font-size: 11.5px; color: var(--color-fg-muted); line-height: 1.3; margin: 0 0 4px; }
+  .wf-stage .loopnote { font-size: 11px; color: var(--color-fg-muted); margin: 4px 0 0; padding-top: 4px; border-top: 1px dashed var(--color-border-line); }
+  .wf-airlock { margin: 6px 0 2px; padding-top: 6px; border-top: 2px dashed var(--color-fg-muted); font-size: 11px; color: var(--color-fg-muted); }
+  .wf-node { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer; font-size: 12px; line-height: 1.25; padding: 6px 20px 6px 10px; border-radius: 8px;
+    background: var(--color-panel); border: 1px solid var(--color-border-line); color: var(--color-fg); position: relative; transition: opacity var(--cds-dur-slow); overflow-wrap: anywhere; }
+  .wf-node::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 0 3px 3px 0; background: var(--wf-accent, var(--color-fg-muted)); }
+  .wf-node .nm { display: block; font-weight: var(--cds-font-weight-medium); }
+  .wf-node .sub { display: block; font-size: 11px; color: var(--color-fg-muted); margin-top: 1px; }
+  .wf-node.campaign { border-style: dashed; }
+  .wf-node.gate { border-width: 1.5px; border-color: var(--color-fg); border-radius: 2px 14px 2px 14px; }
+  .wf-node.proposal { border-style: dotted; opacity: .8; }
+  .wf-node.protocol { border-style: double; border-width: 3px; padding: 4px 6px 4px 8px; }
+  .wf-node.historical { background: color-mix(in oklab, var(--color-panel) 70%, var(--color-bg)); }
+  .wf-node.historical .nm { font-weight: 400; }
+  .wf-node .dot { position: absolute; right: 7px; top: 8px; width: 7px; height: 7px; border-radius: 50%; }
+  .wf-node .dot.current { background: var(--color-ok); }
+  .wf-node .dot.historical { background: transparent; border: 1.5px solid var(--color-fg-muted); width: 5px; height: 5px; }
+  .wf-node .dot.proposed { background: transparent; border: 1.5px dotted var(--color-fg-muted); width: 5px; height: 5px; }
+  .wf-node:hover, .wf-node:focus-visible { border-color: var(--color-fg); }
+  .wf-node:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .wf-node[aria-pressed="true"] { border-color: var(--color-fg); box-shadow: 0 0 0 2px var(--color-fg) inset; }
+  .wf-node.dim { opacity: .28; }
+  .wf-node.linked { border-color: var(--color-fg); }
+  .wf-support { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; background: color-mix(in oklab, var(--color-panel) 88%, transparent); border: 1px dashed var(--color-fg-muted); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); }
+  .wf-support .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); gap: 6px; }
+  .wf-support h3 { margin: 0; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+  .wf-support .blurb { font-size: 11.5px; color: var(--color-fg-muted); margin: 0; }
+  .wf-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-md); }
+  .wf-legend span.k { display: inline-flex; align-items: center; gap: 6px; }
+  .wf-legend i { display: inline-block; width: 18px; height: 12px; border: 1px solid var(--color-fg-muted); border-radius: 4px; background: var(--color-panel); }
+  .wf-legend i.campaign { border-style: dashed; } .wf-legend i.gate { border-color: var(--color-fg); border-radius: 1px 7px 1px 7px; } .wf-legend i.proposal { border-style: dotted; } .wf-legend i.protocol { border-style: double; border-width: 3px; }
+  .wf-legend i.dotc { width: 7px; height: 7px; border-radius: 50%; border: 0; background: var(--color-ok); }
+  .wf-legend i.doth { width: 6px; height: 6px; border-radius: 50%; }
+  .wf-hover { position: absolute; z-index: 5; width: min(22rem, calc(100% - 16px)); background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-sm) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); }
+  .wf-hover .t { font-weight: var(--cds-font-weight-medium); font-size: 13px; }
+  .wf-hover .ns, .wf-detail .ns { color: var(--color-fg-muted); margin-top: 2px; }
+  .wf-hover p { margin: 6px 0 0; }
+  .wf-hover .hint { color: var(--color-fg-muted); margin-top: 6px; }
+  .wf-hover a, .wf-detail a { color: var(--color-fg); text-decoration: underline; text-underline-offset: 2px; }
+  .wf-detail { margin-top: var(--cds-gap-md); }
+  .wf-detail[hidden] { display: none; }
+  .wf-detail .hd { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--cds-gap-sm); }
+  .wf-detail h2 { margin: 0; }
+  .wf-detail .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .wf-detail .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-md) var(--cds-gap-lg); margin-top: var(--cds-gap-md); }
+  .wf-detail h4 { margin: 0 0 4px; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
+  .wf-detail ul { margin: 0; padding-left: 1.1rem; font-size: var(--cds-font-size-caption); display: grid; gap: 4px; }
+  .wf-detail .when { font-variant-numeric: tabular-nums; color: var(--color-fg-muted); margin-right: 4px; }
+  .wf-detail .role { font-size: var(--cds-font-size-body); max-width: 72ch; margin: var(--cds-gap-sm) 0 0; }
+  .wf-detail .x { font: inherit; font-size: var(--cds-font-size-caption); background: transparent; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); color: var(--color-fg-muted); padding: 2px 8px; cursor: pointer; }
+  .wf-detail .x:focus-visible, .wf-detail .jump:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .wf-detail .jump { font: inherit; font-size: var(--cds-font-size-caption); background: transparent; border: 1px solid var(--color-border-line); border-radius: 999px; color: var(--color-fg); padding: 0 8px; cursor: pointer; margin: 0 4px 4px 0; }
+  .wf-filter { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+  .wf-filter button { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); background: transparent; color: var(--color-fg-muted); border: 0; cursor: pointer; }
+  .wf-filter button[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .wf-filter button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .wf-row { margin: 6px 0 0; font-size: var(--cds-font-size-caption); }
+  .wf-detail .wf-row { font-size: var(--cds-font-size-body); margin-top: var(--cds-gap-sm); }
+  .wf-row .ns { display: inline; }
+</style>
+
+<div class="eo">
+  <header class="eo-head" id="top">
+    <h1>Executive orders: work left before human review</h1>
+    <p class="eo-takeaway" id="mission" data-source="mission_log lane_totals">—</p>
+  </header>
+
+  <nav class="eo-tabs" role="tablist" aria-label="Views">
+    <button type="button" role="tab" id="tab-steps" aria-controls="steps" aria-selected="true">Steps left</button>
+    <button type="button" role="tab" id="tab-effort" aria-controls="effort" aria-selected="false">AI effort</button>
+    <button type="button" role="tab" id="tab-toolmap" aria-controls="toolmap" aria-selected="false">Tool map</button>
+    <button type="button" role="tab" id="tab-apollo" aria-controls="apollo" aria-selected="false">Mission</button>
+    <button type="button" role="tab" id="tab-workflow" aria-controls="workflow" aria-selected="false">Workflow</button>
+  </nav>
+
+  <!-- Page 1: open steps by count -->
+  <section class="eo-page" id="steps" role="tabpanel" aria-labelledby="tab-steps">
+    <p class="eo-takeaway dash-skeleton" data-source="totals" id="takeaway">—</p>
+    <div class="eo-tiles" id="headline">
+      <div class="eo-tile">
+        <div class="eo-tile-label">Orders the American Presidency Project counts</div>
+        <div class="eo-tile-value dash-skeleton" data-source="totals" data-field="app_total" data-row="0">—</div>
+        <div class="eo-tile-note">George Washington to Oct 16, 2026</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Ready for human review now</div>
+        <div class="eo-tile-value dash-skeleton" data-source="totals" data-field="ready" data-row="0">—</div>
+        <div class="eo-tile-note"><span data-source="totals" data-field="ready_share" data-row="0">—</span> of the orders APP counts</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Research steps still open</div>
+        <div class="eo-tile-value dash-skeleton" data-source="totals" data-field="open_total" data-row="0">—</div>
+        <div class="eo-tile-note"><span data-source="totals" data-field="done_total" data-row="0">—</span> steps done (<span data-source="totals" data-field="done_share" data-row="0">—</span> of all steps)</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Orders APP counts that the project does not hold yet</div>
+        <div class="eo-tile-value dash-skeleton" data-source="totals" data-field="not_yet" data-row="0">—</div>
+        <div class="eo-tile-note">Mostly unnumbered orders from before 1907</div>
+      </div>
+    </div>
+
+    <div class="eo-card" id="treemap">
+      <div class="eo-bar">
+        <h2>Where the open work is</h2>
+        <div class="eo-toggle" role="group" aria-label="Group the chart by">
+          <button type="button" data-map="steps" data-mode="kind" aria-pressed="true">By kind of work</button>
+          <button type="button" data-map="steps" data-mode="president" aria-pressed="false">By president</button>
+        </div>
+      </div>
+      <p class="eo-card-note">Each rectangle's area is the number of open steps: one step for one order. Color is the kind of work. Hover or tab to a rectangle for its count.</p>
+      <div class="eo-map" id="map-steps" data-source="open_work"></div>
+      <div class="eo-legend" id="legend-steps" data-source="by_kind"></div>
+    </div>
+
+    <div class="eo-card" id="method">
+      <h2>How to read this</h2>
+      <ul class="eo-notes">
+        <li><b>The goal.</b> A complete account of every order APP counts: is it still in effect, and why or why not, with sources, finished by machine and ready for a person to check. An order is ready when every step below is done or recorded as searched to the end.</li>
+        <li><b>The steps</b> come from the project's readiness tracker: first yes/no, an official copy of the text, a list of every operative clause, proof of how it ended or what keeps it in force, parts that outlive it, a search of later law for contrary sources, and (for some orders) cited sources and evidence images.</li>
+        <li><b>Orders not yet in the project.</b> For each president, where APP counts more orders than the project holds, each missing order adds one step to find and admit it, plus the six core steps. Where the project holds more than APP (Coolidge, and a few undated orders), nothing is subtracted.</li>
+        <li><b>Steps are not equal effort.</b> The AI effort tab weighs each step by how long it would take an AI agent with the project's current tools.</li>
+        <li><b>Human review comes after.</b> No order has been independently certified by a person yet, and nothing here changes that count.</li>
+      </ul>
+    </div>
+
+    <div class="eo-card" id="by-president-table">
+      <h2>By president</h2>
+      <p class="eo-card-note">APP's count against what the project holds. Before 1945 APP's counts include unnumbered orders.</p>
+      <div class="eo-tablebox">
+        <table class="eo-table" data-source="by_president" data-row-key="president">
+          <thead><tr>
+            <th class="l" data-field="president">President</th>
+            <th data-field="app_count">APP count</th>
+            <th data-field="project_orders">In project</th>
+            <th data-field="not_yet_in_project">Not yet in project</th>
+            <th data-field="has_provisional_status" class="hide-narrow">Have a first yes/no</th>
+            <th data-field="ready_for_human_review">Ready</th>
+            <th data-field="open_total">Open steps</th>
+          </tr></thead>
+          <tbody id="pres-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 2: open steps weighted by AI effort -->
+  <section class="eo-page" id="effort" role="tabpanel" aria-labelledby="tab-effort" hidden>
+    <p class="eo-takeaway dash-skeleton" data-source="effort_totals" id="effort-takeaway">—</p>
+    <div class="eo-tiles">
+      <div class="eo-tile">
+        <div class="eo-tile-label">AI agent-hours left, central estimate</div>
+        <div class="eo-tile-value dash-skeleton" data-source="effort_totals" data-field="hours" data-row="0">—</div>
+        <div class="eo-tile-note">One agent with the project's tools, including AI review</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Plausible range</div>
+        <div class="eo-tile-value dash-skeleton"><span data-source="effort_totals" data-field="hours_low" data-row="0">—</span>–<span data-source="effort_totals" data-field="hours_high" data-row="0">—</span></div>
+        <div class="eo-tile-note">Half to twice the central estimate</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Average per order APP counts</div>
+        <div class="eo-tile-value dash-skeleton"><span data-source="effort_totals" data-field="minutes_per_order" data-row="0">—</span> min</div>
+        <div class="eo-tile-note">Across all <span data-source="effort_totals" data-field="app_total" data-row="0">—</span> orders</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Share in the legal-judgment steps</div>
+        <div class="eo-tile-value dash-skeleton" data-source="effort_totals" data-field="legal_share" data-row="0">—</div>
+        <div class="eo-tile-note">Clauses, ending, outliving parts, contrary sources</div>
+      </div>
+    </div>
+
+    <div class="eo-card" id="effort-treemap">
+      <div class="eo-bar">
+        <h2>Where the AI effort goes</h2>
+        <div class="eo-toggle" role="group" aria-label="Group the chart by">
+          <button type="button" data-map="effort" data-mode="kind" aria-pressed="true">By kind of work</button>
+          <button type="button" data-map="effort" data-mode="president" aria-pressed="false">By president</button>
+        </div>
+      </div>
+      <p class="eo-card-note">The same open steps as the Steps left tab, every one of them counted, but each rectangle's area is the estimated AI agent-hours for its steps. A step the tools have mostly done is small; a step the tools cannot help with is large. Hover or tab to a rectangle for its hours and step count.</p>
+      <div class="eo-map" id="map-effort" data-source="effort_work"></div>
+      <div class="eo-legend" id="legend-effort" data-source="effort_by_kind"></div>
+    </div>
+
+    <div class="eo-card" id="effort-method">
+      <h2>How the effort was estimated</h2>
+      <ul class="eo-notes">
+        <li><b>Unit.</b> An agent-hour is one AI agent working for an hour with the project's tools, including the independent AI reviewer that checks it. Agents running in parallel finish sooner on the calendar but use the same agent-hours. Human review is not included.</li>
+        <li><b>Each step gets a tier</b> from what the GitHub jobs already hold for that order: machine clause drafts (clause-drafts), histories of later changes (status-history, later-events, family-rules), official originals found (fr-originals, numbered-early-orders), claim drafts that leave only judgment (claim-drafts), and the source fetcher (source-ladder). The table below lists every tier with its minutes per step.</li>
+        <li><b>The anchor.</b> In Codex's batch pilot, two independent runs each took six prepared modern orders through a producer, an independent reviewer and corrections, with all times and tokens recorded. Each run upheld one of its six, which puts a finished dossier on a well-tooled modern order at about half an agent-hour. The calibrated tiers split that time. The assumed tiers scale it up by how much less the tools do.</li>
+        <li><b>Claim drafts.</b> For orders that already have a claim draft, the draft's own size estimate makes the four legal steps smaller or larger.</li>
+        <li><b>Limits.</b> Most weights are judgments, not measurements; the project has not yet run its planned instrumented pilot. Read the hours as within a factor of two. The comparison between kinds of work and between presidents is sturdier than the total.</li>
+      </ul>
+    </div>
+
+    <div class="eo-card" id="effort-tiers">
+      <h2>The effort model, tier by tier</h2>
+      <p class="eo-card-note">Measured and calibrated weights are marked green; the rest are assumptions to replace when the pilot is run.</p>
+      <div class="eo-tablebox">
+        <table class="eo-table" data-source="effort_tiers" data-row-key="tier">
+          <thead><tr>
+            <th class="l" data-field="kind">Kind of work</th>
+            <th class="l" data-field="tier">Tier</th>
+            <th class="l hide-narrow" data-field="when">When it applies</th>
+            <th data-field="minutes_per_step">Minutes per step</th>
+            <th class="l hide-narrow" data-field="basis">Basis</th>
+            <th data-field="open_steps">Open steps</th>
+            <th data-field="agent_hours">Agent-hours</th>
+          </tr></thead>
+          <tbody id="tier-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- Page 3: who does which step -->
+  <section class="eo-page" id="toolmap" role="tabpanel" aria-labelledby="tab-toolmap" hidden>
+    <p class="eo-takeaway dash-skeleton" data-source="lane_totals" id="toolmap-takeaway">—</p>
+    <div class="eo-tiles">
+      <div class="eo-tile">
+        <div class="eo-tile-label">Open steps a wired job can do by itself</div>
+        <div class="eo-tile-value dash-skeleton" data-source="lane_totals" data-field="orders" data-where="lane=machine_queued">—</div>
+        <div class="eo-tile-note">Fetch queues and re-fetch lists; no judgment needed</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Open steps with a machine draft or lead, waiting for an agent claim</div>
+        <div class="eo-tile-value dash-skeleton" data-source="lane_totals" data-field="orders" data-where="lane=ai_judgment">—</div>
+        <div class="eo-tile-note">Automatable with AI judgment plus independent AI review</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Open steps blocked on an owner ruling</div>
+        <div class="eo-tile-value dash-skeleton" data-source="lane_totals" data-field="orders" data-where="lane=owner_ruling">—</div>
+        <div class="eo-tile-note">Transcription-as-copy; report deadlines</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Open steps no job or lead reaches today</div>
+        <div class="eo-tile-value dash-skeleton" data-source="lane_totals" data-field="orders" data-where="lane=no_route">—</div>
+        <div class="eo-tile-note">Mostly pre-1937 orders with no copy anywhere free</div>
+      </div>
+    </div>
+
+    <div class="eo-card" id="lane-chart">
+      <h2>Each step's open work, by who can do it</h2>
+      <p class="eo-card-note">One bar per step; its length is the number of orders with that step open. Colour says who can move it: a machine job that only has to run, something ruled or drafted but not yet wired into the tracker, an agent claim line, an owner ruling still needed, the owner working by hand, an earlier step, or nothing yet. The chips under each bar name the tools that serve it. Hover or tab to a segment for its count.</p>
+      <div class="eo-lanes" id="lanes" data-source="workload"></div>
+      <div class="eo-legend" id="legend-lanes" data-source="lane_totals"></div>
+    </div>
+
+    <div class="eo-card" id="toolmap-method">
+      <h2>How to read this</h2>
+      <ul class="eo-notes">
+        <li><b>Automated and done</b> is not shown here; it is in the done counts on the other tabs (texts fetched, machine searches recorded, clauses drafted).</li>
+        <li><b>Automated, just run it</b> (machine queued): a wired job already covers it. The source ladder and the Opus re-fetch list only need runner time.</li>
+        <li><b>Ruled or drafted, not wired yet</b>: the owner ruled on Oct 21 that a labeled transcription may satisfy the text step for now, so the transcription-only orders moved here from "owner ruling", and the 2,750 orders with the owner's ProQuest replica scans joined them on Oct 22. The tracker rule is written and tested on branch <code>claude/justinian-1</code>; these orders count once that branch merges to main. Lambertini's drafted counter-evidence records sit here too.</li>
+        <li><b>Agent claim</b>: a machine draft or lead exists and a proven agent line (Lambertini, Rastell, X1 rules, Bowditch Y1, Pullman's packets now that report deadlines are ruled) can finish it with independent AI review. This is where every ready order has come from. First Pullman run, Oct 22: 16 orders attempted, 11 claims upheld, 3 rejected, 2 of 2 planted defects caught; a thin-packet variant measured no token saving.</li>
+        <li><b>Owner ruling</b>: empty since Oct 21. All eight open rulings were made; see <code>research/readiness/owner_rulings/</code>. The Justinian generator (branch <code>claude/justinian-1</code>) has drafted 30 more class-level questions for the next poll.</li>
+        <li><b>Owner doing it by hand</b>: nearly empty since Oct 22. The owner's 2,750 ProQuest replica scans were ingested (Pinakes) and now sit in "ruled or drafted, not wired" with a page check owed; what remains by hand is a handful of ProQuest links still awaiting acquisition. Lewis's 2,663 phrase searches stay routed to the owner, but those orders already hold a transcription, so they appear in the transcription lane.</li>
+        <li><b>Earlier step first</b> is the largest lane: an order with no first yes/no cannot have its clauses, ending or savings worked. <b>No route</b> is now small: Clark's number-only orders with no lead anywhere.</li>
+        <li><b>Human review</b> comes after all of this and is not automated: 0 certified.</li>
+      </ul>
+    </div>
+
+    <div class="eo-card" id="tools-table">
+      <h2>The tools, by name</h2>
+      <p class="eo-card-note">Every named job and agent line, what it does, which steps it serves, and what it has measurably contributed. Namesakes are the designers' choices. Green: wired into the tracker or producing ready orders. Amber: built but not counted, or waiting. Grey: stopped or not built.</p>
+      <div class="eo-tablebox">
+        <table class="eo-table" data-source="tools" data-row-key="tool">
+          <thead><tr>
+            <th class="l" data-field="tool">Tool</th>
+            <th class="l hide-narrow" data-field="namesake">Named for</th>
+            <th class="l" data-field="kind">Kind</th>
+            <th class="l hide-narrow" data-field="steps">Steps</th>
+            <th class="l" data-field="status">Status</th>
+            <th class="l" data-field="contribution">Measured contribution</th>
+            <th class="l hide-narrow" data-field="what_it_does">What it does</th>
+          </tr></thead>
+          <tbody id="tools-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 4: mission tracker -->
+  <section class="eo-page" id="apollo" role="tabpanel" aria-labelledby="tab-mission" hidden>
+    <p class="eo-takeaway dash-skeleton" data-source="mission_log" id="mission-takeaway">—</p>
+
+    <div class="eo-card" id="flight-card">
+      <h2>Earth to the first step</h2>
+      <p class="eo-card-note">Apollo 11 took 109 hours 24 minutes from liftoff to Armstrong's first step. Here the first step is every executive order with a complete dossier ready for human review. The rocket sits at the share of all readiness work that is done, weighted by how long each kind of step takes an AI agent, and the arc is Apollo 11's own mission clock. Dots behind the rocket are earlier days. The arc is mission time, not miles, and the planets are not to scale.</p>
+      <div class="eo-flight" id="flight" data-source="mission_log"></div>
+    </div>
+
+    <div class="eo-tiles">
+      <div class="eo-tile">
+        <div class="eo-tile-label">Mission clock</div>
+        <div class="eo-tile-value dash-skeleton" data-source="mission_log" id="m-clock">—</div>
+        <div class="eo-tile-note" id="m-clock-note">of T+109h 24m to the first step</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Work done</div>
+        <div class="eo-tile-value dash-skeleton" data-source="mission_log" id="m-done">—</div>
+        <div class="eo-tile-note" id="m-done-note">effort-weighted share of all readiness steps</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Complete dossiers</div>
+        <div class="eo-tile-value dash-skeleton" data-source="mission_log" id="m-ready">—</div>
+        <div class="eo-tile-note" id="m-ready-note">ready for human review</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Human-certified</div>
+        <div class="eo-tile-value dash-skeleton" data-source="mission_log" id="m-cert">—</div>
+        <div class="eo-tile-note">the moonwalk itself; starts after the first step</div>
+      </div>
+    </div>
+
+    <div class="eo-two">
+      <div class="eo-card">
+        <h2>Work done, by day</h2>
+        <p class="eo-card-note">Effort-weighted share of every readiness step, last tracker snapshot each day.</p>
+        <div class="eo-spark" id="spark-progress" data-source="mission_log"></div>
+      </div>
+      <div class="eo-card">
+        <h2>Complete dossiers, by day</h2>
+        <p class="eo-card-note">Orders ready for human review, last tracker snapshot each day.</p>
+        <div class="eo-spark" id="spark-ready" data-source="mission_log"></div>
+      </div>
+    </div>
+
+    <div class="eo-card">
+      <h2>Flight log</h2>
+      <p class="eo-card-note">One row per day the readiness tracker changed on main. Newest first.</p>
+      <div class="eo-tablebox">
+        <table class="eo-table" data-source="mission_log" data-row-key="date">
+          <thead><tr><th class="l">Date</th><th class="l">Phase</th><th>Clock</th><th>Work done</th><th>Complete dossiers</th><th class="hide-narrow">Provisional statuses</th></tr></thead>
+          <tbody id="flight-log"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="eo-card">
+      <h2>How this is measured</h2>
+      <ul class="eo-notes">
+        <li><b>The goal</b> is every order the American Presidency Project counts, plus the few the project holds that it does not, each with all readiness steps done. That is the moment of the first step. Human certification comes after it and is not counted here.</li>
+        <li><b>Work done</b> counts every done and open step the readiness tracker records, plus the steps owed by orders the project has not found yet. Each step is weighted by the effort model's average agent-minutes for its kind, frozen on Oct 28 so later model changes do not move past days.</li>
+        <li><b>The clock</b> is work done times Apollo 11's 109 hours 24 minutes. Milestones are Apollo 11's: leaving Earth orbit at T+2h 44m, lunar orbit at T+75h 50m, landing at T+102h 46m, first step at T+109h 24m.</li>
+        <li><b>The record</b> starts Oct 17, when the readiness tracker first ran. Work done before that day appears as the starting position, not as a launch. The jump on Oct 18 is the first night the tracker counted the Federal Register originals and the machines' later-law searches.</li>
+        <li><b>Built by</b> <code>research/progress/remaining-work/build_mission_log.py</code> (Capcom) from the tracker's history on main.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page 5: workflow map -->
+  <section class="eo-page" id="workflow" role="tabpanel" aria-labelledby="tab-workflow" hidden>
+    <p class="eo-takeaway dash-skeleton" data-source="workflow_nodes mission_log" id="wf-takeaway">—</p>
+
+    <div class="eo-card">
+      <h2>How an order travels, and who moves it</h2>
+      <p class="eo-card-note">Each box is a named job, a past research campaign, or a human decision point, placed by its purpose. Orders loop: most stop at a gate, go back for a missing source or a correction, and come round again. Ready for human review is not certification; a person certifies. Hover or focus a box for a summary; click or press Enter to pin the full record below.</p>
+      <div class="wf-tools">
+        <input class="wf-search" id="wf-search" type="search" placeholder="Search jobs, namesakes, roles" aria-label="Search jobs">
+        <div class="wf-filter" role="group" aria-label="Show">
+          <button type="button" data-wf="all" aria-pressed="true">All</button>
+          <button type="button" data-wf="current" aria-pressed="false">Current</button>
+          <button type="button" data-wf="historical" aria-pressed="false">Historical</button>
+          <button type="button" data-wf="proposed" aria-pressed="false">Proposed</button>
+        </div>
+        <span class="wf-count" id="wf-count" aria-live="polite"></span>
+      </div>
+      <div class="wf-wrap" id="wf-wrap">
+        <div class="wf-map dash-skeleton" id="wf-map" data-source="workflow_nodes"></div>
+      </div>
+      <div class="wf-legend" aria-label="Legend">
+        <span class="k"><i></i>Named software</span>
+        <span class="k"><i class="campaign"></i>Past research campaign</span>
+        <span class="k"><i class="protocol"></i>Agent review procedure</span>
+        <span class="k"><i class="gate"></i>Human or owner gate</span>
+        <span class="k"><i class="proposal"></i>Proposed, not built</span>
+        <span class="k"><i class="dotc"></i>Current</span>
+        <span class="k"><i class="doth"></i>Historical</span>
+        <span class="k">Solid arrows: the usual direction. Dashed arcs: the loops back.</span>
+      </div>
+    </div>
+
+    <div class="eo-card wf-detail" id="wf-detail" hidden aria-live="polite"></div>
+
+    <div class="eo-card">
+      <h2>How to read this</h2>
+      <ul class="eo-notes">
+        <li><b>Placement</b> is by purpose, not by run order. A job can serve several stages; its box sits where most of its work lands, and its record lists what it feeds.</li>
+        <li><b>Current</b> means code that runs now. <b>Historical</b> covers past research campaigns and stopped lines, whatever their old label said. <b>Proposed</b> was never built.</li>
+        <li><b>Catalog stats</b> come from the live tools dataset (TOOLS.csv). Each tool's figures keep their own date and qualifiers, and they overlap: never add tools' ready contributions together. The ready count shown is the tracker's own.</li>
+        <li><b>Namesakes</b> are what the project recorded, with the place it was recorded. Where the project never recorded one, the record says so or labels a reasoned guess as inferred.</li>
+        <li><b>Built from</b> <code>research/progress/remaining-work/workflow/WORKFLOW_NODES.json</code> by <code>build_workflow_nodes.py</code>, which checks every catalog name against TOOLS.csv.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+  dash.calc('totals', {
+    inputs: ['by_president'],
+    title: 'Headline totals',
+    description: 'Sums over presidents; shares of APP orders and of all steps.',
+    fn: (by_president) => {
+      const sum = (k) => by_president.reduce((a, r) => a + Number(r[k]), 0);
+      const open = sum('open_total'), done = sum('done_total'), app = sum('app_count');
+      return [{
+        app_total: app, ready: sum('ready_for_human_review'), open_total: open, done_total: done,
+        not_yet: sum('not_yet_in_project'), ready_share: sum('ready_for_human_review') / app,
+        done_share: done / (done + open),
+      }];
+    },
+  });
+  dash.calc('by_kind', {
+    inputs: ['open_work'],
+    title: 'Open steps by kind of work',
+    description: 'Open steps summed over presidents for each kind of work.',
+    fn: (open_work) => {
+      const m = new Map();
+      for (const r of open_work) {
+        const k = m.get(r.kind) || { kind: r.kind, step_order: Number(r.step_order), open_steps: 0 };
+        k.open_steps += Number(r.open_steps);
+        m.set(r.kind, k);
+      }
+      return [...m.values()].sort((a, b) => a.step_order - b.step_order);
+    },
+  });
+  dash.calc('effort_by_kind', {
+    inputs: ['effort_work'],
+    title: 'AI agent-hours by kind of work',
+    description: 'Estimated agent-hours and open steps summed over presidents for each kind of work.',
+    fn: (effort_work) => {
+      const m = new Map();
+      for (const r of effort_work) {
+        const k = m.get(r.kind) || { kind: r.kind, step_order: Number(r.step_order), agent_hours: 0, open_steps: 0 };
+        k.agent_hours += Number(r.agent_minutes) / 60;
+        k.open_steps += Number(r.open_steps);
+        m.set(r.kind, k);
+      }
+      return [...m.values()].sort((a, b) => a.step_order - b.step_order);
+    },
+  });
+  dash.calc('effort_totals', {
+    inputs: ['effort_work', 'by_president'],
+    title: 'AI effort totals',
+    description: 'Total estimated agent-hours, a half-to-double range, minutes per APP order, the share in the four legal-judgment steps, the three largest presidents, and minutes per order for the slowest and fastest presidents with at least 100 orders.',
+    fn: (effort_work, by_president) => {
+      const mins = effort_work.reduce((a, r) => a + Number(r.agent_minutes), 0);
+      const legalKinds = ['List every operative clause', 'Prove how it ended or what keeps it in force', 'Close parts that outlive it', 'Search later law for contrary sources'];
+      const legal = effort_work.filter((r) => legalKinds.includes(r.kind)).reduce((a, r) => a + Number(r.agent_minutes), 0);
+      const app = by_president.reduce((a, r) => a + Number(r.app_count), 0);
+      const byPres = new Map();
+      for (const r of effort_work) byPres.set(r.president, (byPres.get(r.president) || 0) + Number(r.agent_minutes));
+      const top = [...byPres.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
+      const perOrder = by_president.filter((r) => Number(r.app_count) >= 100 && byPres.has(r.president))
+        .map((r) => [r.president, byPres.get(r.president) / Number(r.app_count)]).sort((a, b) => b[1] - a[1]);
+      const hi = perOrder[0], lo = perOrder[perOrder.length - 1];
+      const ending = effort_work.filter((r) => r.kind === 'Prove how it ended or what keeps it in force').reduce((a, r) => a + Number(r.agent_minutes), 0);
+      return [{
+        hours: mins / 60, hours_low: mins / 60 * 0.5, hours_high: mins / 60 * 2,
+        app_total: app, minutes_per_order: mins / app, legal_share: legal / mins, ending_share: ending / mins,
+        top1: top[0][0], top2: top[1][0], top3: top[2][0], top3_share: (top[0][1] + top[1][1] + top[2][1]) / mins,
+        slowest: hi[0], slowest_minutes: hi[1], fastest: lo[0], fastest_minutes: lo[1],
+      }];
+    },
+  });
+
+  dash.calc('lane_totals', {
+    inputs: ['workload'],
+    title: 'Open steps by lane',
+    description: 'Open order-steps summed over steps for each lane (who can do the work).',
+    fn: (workload) => {
+      const m = new Map();
+      for (const r of workload) {
+        const k = m.get(r.lane) || { lane: r.lane, lane_order: Number(r.lane_order), orders: 0 };
+        k.orders += Number(r.orders);
+        m.set(r.lane, k);
+      }
+      return [...m.values()].sort((a, b) => a.lane_order - b.lane_order);
+    },
+  });
+
+  (() => {
+    const fmt = d3.format(','), pct = d3.format('.1%'), pct0 = d3.format('.0%');
+    const hrs = (h) => h >= 100 ? fmt(Math.round(h)) : h >= 10 ? d3.format('.0f')(h) : d3.format('.1f')(h);
+    const compact = (n) => n >= 10000 ? new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(n) : fmt(Math.round(n));
+    const color = (order) => dash.colors[(order - 1) % dash.colors.length];
+    const fail = (el) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'eo-fail'; d.textContent = 'Failed to load'; el.append(d); };
+
+    // Tabs
+    const tabs = [...document.querySelectorAll('.eo-tabs [role=tab]')];
+    let current = 'steps';
+    const show = (id, link = true) => {
+      current = id;
+      tabs.forEach((t) => t.setAttribute('aria-selected', t.getAttribute('aria-controls') === id));
+      document.getElementById('steps').hidden = id !== 'steps';
+      document.getElementById('effort').hidden = id !== 'effort';
+      document.getElementById('toolmap').hidden = id !== 'toolmap';
+      document.getElementById('apollo').hidden = id !== 'apollo';
+      document.getElementById('workflow').hidden = id !== 'workflow';
+      if (link) dash.setLink(id);
+      drawAll();
+    };
+    tabs.forEach((t) => t.addEventListener('click', () => show(t.getAttribute('aria-controls'))));
+
+    // Treemaps
+    const modes = { steps: 'kind', effort: 'kind' };
+    document.querySelectorAll('.eo-toggle button').forEach((b) => b.addEventListener('click', () => {
+      modes[b.dataset.map] = b.dataset.mode;
+      document.querySelectorAll(`.eo-toggle button[data-map="${b.dataset.map}"]`).forEach((o) => o.setAttribute('aria-pressed', o === b));
+      drawAll();
+    }));
+
+    const MAPS = {
+      steps: { box: 'map-steps', source: 'open_work', value: (r) => Number(r.open_steps), label: (v) => compact(v),
+        tip: (r, total) => [`${fmt(r.steps)} open steps`, `${pct(r.v / total)} of all open steps`] },
+      effort: { box: 'map-effort', source: 'effort_work', value: (r) => Number(r.agent_minutes) / 60, label: (v) => hrs(v) + ' h',
+        tip: (r, total) => [`${hrs(r.v)} agent-hours · ${fmt(r.steps)} open steps`, `about ${d3.format('.1f')(r.v * 60 / r.steps)} min per step · ${pct(r.v / total)} of all effort`] },
+    };
+
+    function drawMap(key) {
+      const cfg = MAPS[key], mode = modes[key];
+      const box = document.getElementById(cfg.box);
+      const d = dash.data(cfg.source);
+      if (d.status === 'error') { fail(box); return; }
+      if (d.status !== 'ok') { box.replaceChildren(); box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const rows = d.data.map((r) => ({ president: r.president, kind: r.kind, korder: Number(r.step_order), steps: Number(r.open_steps), v: cfg.value(r) })).filter((r) => r.v > 0);
+      const total = d3.sum(rows, (r) => r.v);
+      const W = Math.max(280, box.clientWidth);
+      if (!box.clientWidth) return;
+      const H = W < 520 ? 620 : Math.round(Math.min(680, Math.max(440, W * 0.58)));
+      box.style.minHeight = H + 'px';
+
+      const groups = d3.groups(rows, (r) => (mode === 'kind' ? r.kind : r.president)).map(([name, items]) => ({
+        name, children: items.map((r) => ({ name: mode === 'kind' ? r.president : r.kind, value: r.v, row: r })),
+      }));
+      const root = d3.hierarchy({ name: 'all', children: groups }).sum((n) => n.value || 0).sort((a, b) => b.value - a.value);
+      const head = 18, bigEnough = (n) => (n.value / total) * W * H > 9000;
+      d3.treemap().tile(d3.treemapSquarify.ratio(1.3)).size([W, H]).paddingInner(2).paddingOuter(0)
+        .paddingTop((n) => (n.depth === 1 && bigEnough(n) ? head : 0)).round(true)(root);
+
+      const uid = key + '-' + mode;
+      const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+        .attr('aria-label', `Treemap of ${key === 'effort' ? 'estimated AI agent-hours' : 'open steps'} by ${mode === 'kind' ? 'kind of work, then president' : 'president, then kind of work'}`);
+      const defs = svg.append('defs');
+
+      root.children.filter(bigEnough).forEach((n, i) => {
+        const cid = `eo-h-${uid}-${i}`;
+        defs.append('clipPath').attr('id', cid).append('rect').attr('x', n.x0).attr('y', n.y0).attr('width', Math.max(0, n.x1 - n.x0 - 4)).attr('height', head);
+        const t = svg.append('text').attr('clip-path', `url(#${cid})`).attr('x', n.x0 + 2).attr('y', n.y0 + 13)
+          .attr('fill', 'var(--color-fg)').attr('font-size', 12).attr('font-weight', 600);
+        t.append('tspan').text(n.data.name);
+        t.append('tspan').attr('fill', 'var(--color-fg-muted)').attr('font-weight', 400).text('  ' + cfg.label(n.value));
+      });
+
+      const leaves = svg.append('g').selectAll('g').data(root.leaves()).join('g')
+        .attr('class', 'leaf').attr('tabindex', 0)
+        .attr('aria-label', (n) => `${n.data.row.president}, ${n.data.row.kind}: ${cfg.label(n.value)}`)
+        .attr('transform', (n) => `translate(${n.x0},${n.y0})`);
+      leaves.append('rect').attr('width', (n) => Math.max(0, n.x1 - n.x0)).attr('height', (n) => Math.max(0, n.y1 - n.y0)).attr('rx', 3)
+        .attr('fill', (n) => color(n.data.row.korder)).attr('fill-opacity', 0.5)
+        .attr('stroke', (n) => color(n.data.row.korder)).attr('stroke-width', 1);
+      leaves.each(function (n, i) {
+        const w = n.x1 - n.x0, h = n.y1 - n.y0;
+        if (w < 46 || h < 30) return;
+        const g = d3.select(this);
+        const cid = `eo-c-${uid}-${i}`;
+        g.append('clipPath').attr('id', cid).append('rect').attr('width', w - 4).attr('height', h);
+        const t = g.append('text').attr('clip-path', `url(#${cid})`).attr('fill', 'var(--color-fg)').attr('font-size', 11.5);
+        t.append('tspan').attr('x', 5).attr('y', 15).text(n.data.name);
+        if (h >= 42) t.append('tspan').attr('x', 5).attr('y', 30).attr('fill', 'var(--color-fg-muted)').text(cfg.label(n.value));
+      });
+
+      box.replaceChildren(svg.node());
+      const tip = document.createElement('div'); tip.className = 'eo-tip'; tip.hidden = true; box.append(tip);
+      const showTip = (event, n) => {
+        const r = n.data.row;
+        const t1 = document.createElement('div'); t1.className = 't1'; t1.textContent = r.president;
+        const t2 = document.createElement('div'); t2.className = 't2';
+        const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = color(r.korder);
+        const nm = document.createElement('span'); nm.textContent = r.kind;
+        t2.append(sw, nm);
+        const lines = cfg.tip(r, total).map((s) => { const e = document.createElement('div'); e.style.marginTop = '2px'; e.textContent = s; return e; });
+        tip.replaceChildren(t1, t2, ...lines);
+        tip.hidden = false;
+        const bw = box.clientWidth, scale = bw / W;
+        let x, y;
+        if (event && event.type !== 'focus') { const b = box.getBoundingClientRect(); x = event.clientX - b.left + 12; y = event.clientY - b.top + 12; }
+        else { x = (n.x0 + 6) * scale; y = (n.y0 + 6) * scale; }
+        const tw = tip.offsetWidth, th = tip.offsetHeight;
+        if (x + tw > bw) x = Math.max(0, x - tw - 24);
+        if (y + th > box.clientHeight) y = Math.max(0, y - th - 24);
+        tip.style.left = x + 'px'; tip.style.top = y + 'px';
+      };
+      leaves.on('mousemove', showTip).on('focus', showTip).on('mouseleave', () => { tip.hidden = true; }).on('blur', () => { tip.hidden = true; });
+    }
+
+    function drawLegend(elId, source, valueOf) {
+      const el = document.getElementById(elId);
+      const k = dash.data(source);
+      if (k.status === 'error') { fail(el); return; }
+      if (k.status !== 'ok') { el.replaceChildren(); return; }
+      el.replaceChildren(...k.data.map((r) => {
+        const row = document.createElement('div');
+        const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = color(r.step_order);
+        const nm = document.createElement('span'); nm.textContent = r.kind;
+        const v = document.createElement('span'); v.className = 'v'; v.textContent = valueOf(r);
+        row.append(sw, nm, v);
+        return row;
+      }));
+    }
+
+    function drawTotals() {
+      const t = dash.data('totals');
+      const marks = document.querySelectorAll('[data-source="totals"]');
+      if (t.status !== 'ok' || !t.data.length) return;
+      const r = t.data[0];
+      const f = { app_total: fmt(r.app_total), ready: fmt(r.ready), open_total: fmt(r.open_total), done_total: fmt(r.done_total), not_yet: fmt(r.not_yet), ready_share: pct(r.ready_share), done_share: pct(r.done_share) };
+      marks.forEach((m) => { m.classList.remove('dash-skeleton'); if (m.dataset.field) m.textContent = f[m.dataset.field]; });
+      document.getElementById('takeaway').textContent =
+        `${fmt(r.open_total)} research steps are still open before every one of the ${fmt(r.app_total)} orders APP counts has a finished account of whether it is in effect and why. ${fmt(r.ready)} orders (${pct(r.ready_share)}) are ready for human review today. Most of the open work is the deep legal steps, not finding texts.`;
+    }
+
+    function drawEffortTotals() {
+      const t = dash.data('effort_totals');
+      const marks = document.querySelectorAll('[data-source="effort_totals"]');
+      if (t.status !== 'ok' || !t.data.length) return;
+      const r = t.data[0];
+      const f = { hours: fmt(Math.round(r.hours)), hours_low: compact(r.hours_low), hours_high: compact(r.hours_high), app_total: fmt(r.app_total), minutes_per_order: fmt(Math.round(r.minutes_per_order)), legal_share: pct0(r.legal_share) };
+      marks.forEach((m) => { m.classList.remove('dash-skeleton'); if (m.dataset.field) m.textContent = f[m.dataset.field]; });
+      document.querySelectorAll('#effort .eo-tile-value.dash-skeleton').forEach((m) => m.classList.remove('dash-skeleton'));
+      document.getElementById('effort-takeaway').textContent =
+        `About ${fmt(Math.round(r.hours))} AI agent-hours of work remain, roughly ${fmt(Math.round(r.minutes_per_order))} minutes for each order APP counts. Proving how each order ended or what keeps it in force is the largest block (${pct0(r.ending_share)}). ${r.top1}, ${r.top2} and ${r.top3} account for ${pct0(r.top3_share)} between them. Orders from before 1937 cost the most because the tools hold the least for them: about ${fmt(Math.round(r.slowest_minutes))} minutes per order under ${r.slowest}, against about ${fmt(Math.round(r.fastest_minutes))} under ${r.fastest}.`;
+    }
+
+    function drawPresTable() {
+      const body = document.getElementById('pres-body');
+      const p = dash.data('by_president');
+      if (p.status !== 'ok') { body.replaceChildren(); return; }
+      body.replaceChildren(...p.data.map((r) => {
+        const tr = document.createElement('tr');
+        const cells = [r.president, fmt(+r.app_count), fmt(+r.project_orders), fmt(+r.not_yet_in_project), fmt(+r.has_provisional_status), fmt(+r.ready_for_human_review), fmt(+r.open_total)];
+        cells.forEach((c, i) => {
+          const td = document.createElement('td'); td.textContent = c;
+          if (i === 0) td.className = 'l';
+          if (i === 3 && +r.not_yet_in_project > 0) td.className = 'gap';
+          if (i === 4) td.classList.add('hide-narrow');
+          tr.append(td);
+        });
+        return tr;
+      }));
+    }
+
+    function drawTierTable() {
+      const body = document.getElementById('tier-body');
+      const p = dash.data('effort_tiers');
+      if (p.status !== 'ok') { body.replaceChildren(); return; }
+      body.replaceChildren(...p.data.map((r) => {
+        const tr = document.createElement('tr');
+        const kind = document.createElement('td'); kind.className = 'l'; kind.textContent = r.kind;
+        const tier = document.createElement('td'); tier.className = 'l'; tier.textContent = r.tier;
+        const when = document.createElement('td'); when.className = 'l when hide-narrow'; when.textContent = r.when;
+        const mins = document.createElement('td'); mins.textContent = r.minutes_per_step;
+        const basis = document.createElement('td'); basis.className = 'l hide-narrow';
+        const pill = document.createElement('span'); const b = r.basis.split(':')[0];
+        pill.className = 'eo-pill ' + b; pill.textContent = b; pill.title = r.basis;
+        basis.append(pill);
+        const n = document.createElement('td'); n.textContent = fmt(+r.open_steps);
+        const h = document.createElement('td'); h.textContent = fmt(Math.round(+r.agent_hours));
+        tr.append(kind, tier, when, mins, basis, n, h);
+        return tr;
+      }));
+    }
+
+    const LANE_NAMES = { machine_queued: 'Automated, just run it', machine_unwired: 'Ruled or drafted, not wired into the tracker yet', ai_judgment: 'Agent claim with AI review', owner_ruling: 'Owner ruling needed', owner_action: 'Owner doing it by hand', prerequisite: 'Earlier step first', no_route: 'No route today' };
+    const laneColor = (order) => dash.colors[(order - 1) % dash.colors.length];
+
+    function drawLanes() {
+      const box = document.getElementById('lanes');
+      const d = dash.data('workload');
+      if (d.status === 'error') { fail(box); return; }
+      if (d.status !== 'ok') { box.replaceChildren(); box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const rows = d.data.map((r) => ({ step: r.step, label: r.step_label, so: Number(r.step_order), lane: r.lane, lo: Number(r.lane_order), n: Number(r.orders), tools: r.tools }));
+      const steps = d3.groups(rows, (r) => r.step).sort((a, b) => a[1][0].so - b[1][0].so);
+      const max = d3.max(steps, ([, rs]) => d3.sum(rs, (r) => r.n)) || 1;
+      let tip = box.parentElement.querySelector('.eo-tip');
+      if (!tip) { tip = document.createElement('div'); tip.className = 'eo-tip'; tip.hidden = true; box.parentElement.style.position = 'relative'; box.parentElement.append(tip); }
+      box.replaceChildren(...steps.map(([step, rs]) => {
+        rs.sort((a, b) => a.lo - b.lo);
+        const total = d3.sum(rs, (r) => r.n);
+        const row = document.createElement('div'); row.className = 'eo-lane-row';
+        const nm = document.createElement('div'); nm.className = 'nm';
+        const b = document.createElement('b'); b.textContent = rs[0].label;
+        const sp = document.createElement('span'); sp.textContent = fmt(total) + ' open';
+        nm.append(b, sp);
+        const right = document.createElement('div'); right.style.minWidth = '0';
+        const track = document.createElement('div'); track.className = 'eo-bar-track';
+        track.style.width = (100 * total / max) + '%';
+        rs.forEach((r) => {
+          const seg = document.createElement('div'); seg.className = 'eo-seg'; seg.tabIndex = 0;
+          seg.style.flex = r.n + ' 0 0'; seg.style.background = laneColor(r.lo); seg.style.opacity = '0.55';
+          seg.setAttribute('aria-label', `${r.label}, ${LANE_NAMES[r.lane]}: ${fmt(r.n)} orders`);
+          const lbl = document.createElement('span'); lbl.className = 'lbl'; lbl.textContent = r.n / max > 0.06 ? fmt(r.n) : '';
+          seg.append(lbl);
+          const show = (ev) => {
+            tip.replaceChildren();
+            const t1 = document.createElement('div'); t1.className = 't1'; t1.textContent = r.label;
+            const t2 = document.createElement('div'); t2.className = 't2';
+            const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = laneColor(r.lo);
+            const n1 = document.createElement('span'); n1.textContent = LANE_NAMES[r.lane];
+            t2.append(sw, n1);
+            const t3 = document.createElement('div'); t3.style.marginTop = '2px'; t3.textContent = `${fmt(r.n)} orders (${pct(r.n / total)} of this step)`;
+            const t4 = document.createElement('div'); t4.style.marginTop = '2px'; t4.style.color = 'var(--cds-text-secondary)'; t4.textContent = r.tools || '';
+            tip.append(t1, t2, t3, t4); tip.hidden = false;
+            const host = box.parentElement.getBoundingClientRect();
+            const sr = seg.getBoundingClientRect();
+            let x = (ev && ev.clientX ? ev.clientX : sr.left + 8) - host.left + 12, y = sr.bottom - host.top + 6;
+            if (x + tip.offsetWidth > host.width) x = Math.max(0, host.width - tip.offsetWidth - 4);
+            tip.style.left = x + 'px'; tip.style.top = y + 'px';
+          };
+          seg.addEventListener('mousemove', show); seg.addEventListener('focus', show);
+          seg.addEventListener('mouseleave', () => { tip.hidden = true; }); seg.addEventListener('blur', () => { tip.hidden = true; });
+          track.append(seg);
+        });
+        const chips = document.createElement('div'); chips.className = 'eo-chips';
+        const seen = new Set();
+        rs.forEach((r) => (r.tools || '').split(' / ').filter(Boolean).forEach((t) => {
+          if (seen.has(t)) return; seen.add(t);
+          const c = document.createElement('span'); c.className = 'eo-chip' + (r.lane === 'ai_judgment' || r.lane === 'machine_queued' ? ' on' : ''); c.textContent = t; chips.append(c);
+        }));
+        right.append(track, chips);
+        row.append(nm, right);
+        return row;
+      }));
+    }
+
+    function drawLaneLegend() {
+      const el = document.getElementById('legend-lanes');
+      const k = dash.data('lane_totals');
+      if (k.status === 'error') { fail(el); return; }
+      if (k.status !== 'ok') { el.replaceChildren(); return; }
+      el.replaceChildren(...k.data.map((r) => {
+        const row = document.createElement('div');
+        const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = laneColor(r.lane_order);
+        const nm = document.createElement('span'); nm.textContent = LANE_NAMES[r.lane] || r.lane;
+        const v = document.createElement('span'); v.className = 'v'; v.textContent = fmt(r.orders);
+        row.append(sw, nm, v);
+        return row;
+      }));
+    }
+
+    function drawToolmapTotals() {
+      const t = dash.data('lane_totals');
+      if (t.status !== 'ok' || !t.data.length) return;
+      const by = Object.fromEntries(t.data.map((r) => [r.lane, r.orders]));
+      document.querySelectorAll('[data-source="lane_totals"][data-where]').forEach((m) => {
+        m.classList.remove('dash-skeleton');
+        const lane = m.dataset.where.split('=')[1];
+        m.textContent = fmt(by[lane] || 0);
+      });
+      const total = d3.sum(t.data, (r) => r.orders);
+      const auto = (by.machine_queued || 0) + (by.machine_unwired || 0) + (by.ai_judgment || 0);
+      const el = document.getElementById('toolmap-takeaway');
+      el.classList.remove('dash-skeleton');
+      el.textContent = `Of ${fmt(total)} open order-steps, ${fmt(auto)} (${pct0(auto / total)}) can be moved by a machine job or an agent claim line that already exists. ${fmt(by.owner_ruling || 0)} wait on an owner ruling, ${fmt(by.prerequisite || 0)} wait on an earlier step, and ${fmt(by.no_route || 0)} have no route today. The gap is not missing tools: it is rulings, runner time on the queues, and old texts nobody can fetch for free.`;
+    }
+
+    function drawToolsTable() {
+      const body = document.getElementById('tools-body');
+      const p = dash.data('tools');
+      if (p.status !== 'ok') { body.replaceChildren(); return; }
+      const kinds = { acquisition: 'fetches sources', machine_pipeline: 'machine pipeline', agent_line: 'agent claim line', judgment_gate: 'gate', governance: 'measurement / planning', saver: 'token saver' };
+      body.replaceChildren(...p.data.map((r) => {
+        const tr = document.createElement('tr');
+        const cells = [
+          ['tool', r.tool, 'l'], ['namesake', r.namesake, 'l hide-narrow'], ['kind', kinds[r.kind] || r.kind, 'l eo-kind'],
+          ['steps', (r.steps || '').split('|').join(', '), 'l hide-narrow'], ['status', r.status, 'l'],
+          ['contribution', r.contribution, 'l'], ['what', r.what_it_does, 'l hide-narrow'],
+        ];
+        cells.forEach(([k, v, cls]) => {
+          const td = document.createElement('td'); td.className = cls;
+          if (k === 'status') { const pill = document.createElement('span'); pill.className = 'eo-status ' + v; pill.textContent = v.replace(/_/g, ' '); td.append(pill); }
+          else td.textContent = v;
+          tr.append(td);
+        });
+        return tr;
+      }));
+    }
+
+    function drawMission() {
+      const el = document.getElementById('mission');
+      const m = missionRows(), l = dash.data('lane_totals');
+      if (m.status !== 'ok' || !m.data.length) { el.textContent = ''; return; }
+      const L = m.data[m.data.length - 1];
+      let s = `Mission status in Apollo terms, where the first step is every order with a complete dossier ready for human review: ${L.phase.toLowerCase()}, ${clock(L.met)} of T+109h 24m (${dayFmt(L.date)}). ${pct(L.p)} of the work is done; ${fmt(L.ready)} orders have a complete dossier; ${fmt(L.cert)} are human-certified.`;
+      if (l.status === 'ok') {
+        const by = Object.fromEntries(l.data.map((x) => [x.lane, x.orders]));
+        s += ` Of the open steps, ${fmt((by.machine_queued || 0) + (by.machine_unwired || 0) + (by.ai_judgment || 0))} can be flown by existing jobs and agent lines, ${fmt(by.prerequisite || 0)} wait on an earlier step and ${fmt(by.owner_ruling || 0)} on an owner ruling.`;
+      }
+      el.textContent = s + ' The Mission tab shows the flight.';
+    }
+
+    // Mission tab (Capcom): position on Apollo 11's clock, from MISSION_LOG.csv
+    const MET_END = 109 + 24 / 60 + 15 / 3600;
+    const MS = [
+      { key: 'launch', name: 'Launch', h: 0, when: '13:32 UTC, Jul 16, 1969' },
+      { key: 'tli', name: 'Leave Earth orbit', h: 2 + 44 / 60 + 26 / 3600, when: '16:16 UTC, Jul 16, 1969' },
+      { key: 'loi', name: 'Lunar orbit', h: 75 + 50 / 60, when: '17:22 UTC, Jul 19, 1969' },
+      { key: 'landing', name: 'Landing', h: 102 + 45 / 60 + 39 / 3600, when: '20:17 UTC, Jul 20, 1969' },
+      { key: 'first_step', name: 'First step', h: MET_END, when: '02:56 UTC, Jul 21, 1969' },
+    ];
+    const PACE_FROM = '2026-10-18';  // Oct 17 to 18 is the tracker starting to count held work, not a day's progress
+    const clock = (h) => { const m = Math.round(h * 60); return `T+${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`; };
+    const parseDay = d3.utcParse('%Y-%m-%d'), dayFmt = d3.utcFormat('%b %-d'), pct2 = d3.format('.2%');
+    function missionRows() {
+      const d = dash.data('mission_log');
+      if (d.status !== 'ok') return d;
+      const data = d.data.map((r) => ({
+        date: parseDay(r.date), ready: +r.ready_for_human_review, statuses: +r.provisional_statuses,
+        goal: +r.orders_goal, p: +r.progress, met: +r.met_hours, phase: r.phase, cert: +r.human_certified,
+      })).filter((r) => r.date).sort((a, b) => a.date - b.date);
+      return { status: 'ok', data };
+    }
+    function pace(rows) {
+      const L = rows[rows.length - 1];
+      const back = d3.utcDay.offset(L.date, -7), floor = parseDay(PACE_FROM);
+      const usable = rows.filter((r) => r.date >= floor);
+      if (usable.length < 2) return null;
+      const R = [...usable].reverse().find((r) => r.date <= back) || usable[0];
+      const days = (L.date - R.date) / 864e5;
+      if (!days) return null;
+      const rate = (L.p - R.p) / days;
+      return { from: R, days, delta: L.p - R.p, eta: rate > 0 ? (1 - L.p) / rate : Infinity };
+    }
+    const span = (days) => !isFinite(days) ? null : days >= 730 ? `${d3.format('.1f')(days / 365.25)} years` : days >= 60 ? `${Math.round(days / 30.44)} months` : `${Math.round(days)} days`;
+    const mkTip = (box) => { const t = document.createElement('div'); t.className = 'eo-tip'; t.hidden = true; box.append(t); return t; };
+    const fillTip = (tip, box, title, lines, px, py) => {
+      const t1 = document.createElement('div'); t1.className = 't1'; t1.textContent = title;
+      tip.replaceChildren(t1, ...lines.map((s) => { const e = document.createElement('div'); e.style.marginTop = '2px'; e.textContent = s; return e; }));
+      tip.hidden = false;
+      let x = px + 14, y = py + 14;
+      const bw = box.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+      if (x + tw > bw) x = Math.max(0, px - tw - 14);
+      if (y + th > box.clientHeight) y = Math.max(0, py - th - 14);
+      tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    };
+
+    function drawMissionTiles() {
+      const m = missionRows();
+      const ids = ['mission-takeaway', 'm-clock', 'm-done', 'm-ready', 'm-cert'];
+      if (m.status !== 'ok' || !m.data.length) return;
+      ids.forEach((i) => document.getElementById(i).classList.remove('dash-skeleton'));
+      const L = m.data[m.data.length - 1];
+      document.getElementById('m-clock').textContent = clock(L.met);
+      document.getElementById('m-clock-note').textContent = `of T+109h 24m to the first step · ${L.phase.toLowerCase()} on ${dayFmt(L.date)}`;
+      document.getElementById('m-done').textContent = pct(L.p);
+      document.getElementById('m-ready').textContent = fmt(L.ready);
+      document.getElementById('m-ready-note').textContent = `of ${fmt(L.goal)} orders (${pct(L.ready / L.goal)}), ready for human review`;
+      document.getElementById('m-cert').textContent = fmt(L.cert);
+      const pc = pace(m.data);
+      let s = `${L.phase} at ${clock(L.met)} of T+109h 24m, as of ${dayFmt(L.date)}: ${pct(L.p)} of the work is done and ${fmt(L.ready)} of ${fmt(L.goal)} orders have a complete dossier. Most of the trip, like Apollo 11's, is the long coast.`;
+      if (pc) {
+        const eta = span(pc.eta);
+        s += ` In the ${Math.round(pc.days)} days since ${dayFmt(pc.from.date)} the tracker recorded ${d3.format('.2f')(pc.delta * 100)} points of movement` +
+          (eta ? `; at that pace the first step is about ${eta} away.` : '; at that pace it does not arrive.');
+      }
+      document.getElementById('mission-takeaway').textContent = s;
+    }
+
+    function drawFlight() {
+      const box = document.getElementById('flight');
+      const m = missionRows();
+      if (m.status === 'error') { fail(box); return; }
+      if (m.status !== 'ok' || !m.data.length) { box.replaceChildren(); box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const W = box.clientWidth;
+      if (!W) return;
+      const narrow = W < 560, H = narrow ? 230 : 310;
+      box.style.minHeight = H + 'px';
+      const rows = m.data, L = rows[rows.length - 1];
+      const re = narrow ? 30 : 46, rm = Math.round(re * 0.42);
+      const E = { x: re + 6, y: H - re - 30 }, Mo = { x: W - rm - 14, y: rm + 46 };
+      const a0 = -40 * Math.PI / 180, a1 = 165 * Math.PI / 180;
+      const S = { x: E.x + re * Math.cos(a0), y: E.y + re * Math.sin(a0) };
+      const T = { x: Mo.x + rm * Math.cos(a1), y: Mo.y + rm * Math.sin(a1) };
+      const dx = T.x - S.x;
+      const lift = narrow ? 0.62 : 0.95;
+      const d = `M${S.x},${S.y} C${S.x + dx * 0.22},${Math.max(10, S.y - H * lift)} ${S.x + dx * 0.72},${Math.max(10, T.y - H * 0.42)} ${T.x},${T.y}`;
+      const svg = d3.create('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('role', 'img').attr('aria-label', `Rocket at ${clock(L.met)} of 109 hours 24 minutes, ${pct(L.p)} of the work done, on ${dayFmt(L.date)}`);
+      box.replaceChildren(svg.node());
+      const trail = svg.append('path').attr('class', 'trail-left').attr('d', d);
+      const path = trail.node(), len = path.getTotalLength();
+      const at = (f) => path.getPointAtLength(Math.max(0, Math.min(1, f)) * len);
+      const angle = (f) => { const a = at(f - 0.004), b = at(f + 0.004); return Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI; };
+      const f = L.met / MET_END;
+      svg.append('path').attr('class', 'trail-done').attr('d', d).attr('stroke-dasharray', `${f * len} ${len}`);
+      // Earth
+      const cid = 'earthclip' + Math.round(W);
+      svg.append('clipPath').attr('id', cid).append('circle').attr('cx', E.x).attr('cy', E.y).attr('r', re);
+      const earth = svg.append('g');
+      earth.append('circle').attr('class', 'earth-sea').attr('cx', E.x).attr('cy', E.y).attr('r', re);
+      const land = earth.append('g').attr('clip-path', `url(#${cid})`);
+      [[-0.35, -0.15, 0.42, 0.28, -20], [0.3, 0.25, 0.3, 0.42, 25], [0.05, 0.62, 0.38, 0.14, 0]].forEach(([u, v, rx, ry, rot]) =>
+        land.append('ellipse').attr('class', 'earth-land').attr('cx', E.x + u * re).attr('cy', E.y + v * re).attr('rx', rx * re).attr('ry', ry * re)
+          .attr('transform', `rotate(${rot} ${E.x + u * re} ${E.y + v * re})`));
+      land.append('ellipse').attr('class', 'earth-ice').attr('cx', E.x).attr('cy', E.y - re * 0.98).attr('rx', re * 0.5).attr('ry', re * 0.16);
+      // Moon
+      svg.append('circle').attr('class', 'moon').attr('cx', Mo.x).attr('cy', Mo.y).attr('r', rm);
+      [[-0.35, -0.25, 0.22], [0.3, 0.15, 0.17], [-0.05, 0.45, 0.12], [0.35, -0.42, 0.1]].forEach(([u, v, r]) =>
+        svg.append('circle').attr('class', 'crater').attr('cx', Mo.x + u * rm).attr('cy', Mo.y + v * rm).attr('r', r * rm));
+      // milestones
+      const msPts = MS.map((s) => ({ ...s, f: s.h / MET_END, pt: at(s.h / MET_END) }));
+      const g = svg.append('g');
+      msPts.forEach((s) => {
+        const k = g.append('g').attr('class', 'ms' + (L.met >= s.h ? ' passed' : ''));
+        if (s.key !== 'launch' && s.key !== 'first_step') k.append('circle').attr('cx', s.pt.x).attr('cy', s.pt.y).attr('r', 4);
+        if (narrow && s.key === 'tli') return;  // marker only on phones; its name is in the hover
+        let x = s.pt.x, y = s.pt.y, anchor = 'middle', dy1 = -24;
+        if (s.key === 'launch') { x = E.x; y = E.y + re + 4; dy1 = 14; }
+        if (s.key === 'tli') { x = s.pt.x + 10; anchor = 'start'; dy1 = 16; }
+        if (s.key === 'loi') { dy1 = -26; }
+        if (s.key === 'landing') { x = s.pt.x - 8; anchor = 'end'; dy1 = 20; }
+        if (s.key === 'first_step') { x = Mo.x + rm; y = Mo.y + rm + 4; anchor = 'end'; dy1 = 14; }
+        const t = k.append('text').attr('text-anchor', anchor);
+        t.append('tspan').attr('class', 'nm').attr('x', x).attr('y', y + dy1).text(s.name);
+        if (!narrow && s.key !== 'launch') t.append('tspan').attr('x', x).attr('y', y + dy1 + 14).text(clock(s.h));
+      });
+      // earlier days
+      rows.slice(0, -1).forEach((r) => { const p = at(r.met / MET_END); g.append('circle').attr('class', 'crumb').attr('cx', p.x).attr('cy', p.y).attr('r', 3); });
+      // rocket
+      const p = at(f), s = narrow ? 0.85 : 1.1;
+      const ship = svg.append('g').attr('transform', `translate(${p.x},${p.y}) rotate(${angle(f)}) scale(${s})`);
+      ship.append('path').attr('class', 'ship-flame').attr('d', 'M-13,-3.6 Q-27,0 -13,3.6 Z');
+      ship.append('path').attr('class', 'ship-flame-in').attr('d', 'M-13,-2 Q-20,0 -13,2 Z');
+      ship.append('path').attr('class', 'ship-dark').attr('d', 'M-11,-5 L-17,-11 L-6,-5 Z M-11,5 L-17,11 L-6,5 Z');
+      ship.append('path').attr('class', 'ship-body').attr('d', 'M-13,-5.5 L6,-5.5 Q15,-5.5 20,0 Q15,5.5 6,5.5 L-13,5.5 Z');
+      ship.append('path').attr('class', 'ship-dark').attr('d', 'M13.5,-3.6 Q17,-2 20,0 Q17,2 13.5,3.6 Z');
+      ship.append('circle').attr('class', 'ship-window').attr('cx', 4).attr('cy', 0).attr('r', 2.6);
+      // "you are here"
+      const here = svg.append('g').attr('class', 'here');
+      const ang = angle(f) * Math.PI / 180;
+      let nx = -Math.sin(ang), ny = Math.cos(ang);
+      if (ny < 0) { nx = -nx; ny = -ny; }
+      const hx = Math.min(Math.max(p.x + nx * 26, 8), W - 8), hy = Math.min(p.y + ny * 26 + 10, H - 22);
+      const anchor = nx >= -0.2 ? 'start' : 'end';
+      const ht = here.append('text').attr('text-anchor', anchor);
+      ht.append('tspan').attr('x', hx).attr('y', hy).attr('font-weight', 600).text(`Here, ${dayFmt(L.date)}`);
+      ht.append('tspan').attr('class', 'sub').attr('x', hx).attr('y', hy + 15).text(`${clock(L.met)} · ${pct(L.p)} done`);
+      // stars, placed by a fixed seed so they do not jump between redraws; kept off the trail and the labels
+      const boxes = [...svg.node().querySelectorAll('text')].map((t) => t.getBBox());
+      const trailPts = d3.range(0, 1.0001, 0.01).map(at);
+      let seed = 1969;
+      const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+      const stars = svg.insert('g', ':first-child');
+      for (let i = 0; i < Math.round(W / 14); i++) {
+        const x = rnd() * W, y = rnd() * (H - 10) + 5, r = 0.6 + rnd() * 0.8;
+        if (Math.hypot(x - E.x, y - E.y) < re + 10 || Math.hypot(x - Mo.x, y - Mo.y) < rm + 10) continue;
+        if (trailPts.some((q) => Math.hypot(q.x - x, q.y - y) < 12)) continue;
+        if (boxes.some((bb) => x > bb.x - 6 && x < bb.x + bb.width + 6 && y > bb.y - 6 && y < bb.y + bb.height + 6)) continue;
+        stars.append('circle').attr('class', 'star').attr('cx', x).attr('cy', y).attr('r', r);
+      }
+      // hover: nearest day or milestone
+      const tip = mkTip(box);
+      const targets = [
+        ...rows.map((r) => ({ kind: 'day', r, pt: at(r.met / MET_END) })),
+        ...msPts.map((m) => ({ kind: 'ms', m, pt: m.key === 'launch' ? { x: E.x, y: E.y } : m.key === 'first_step' ? { x: Mo.x, y: Mo.y } : m.pt })),
+      ];
+      svg.on('mousemove', (ev) => {
+        const [mx, my] = d3.pointer(ev);
+        const best = d3.least(targets, (t) => Math.hypot(t.pt.x - mx, t.pt.y - my));
+        const dist = Math.hypot(best.pt.x - mx, best.pt.y - my);
+        const reach = best.kind === 'ms' && (best.m.key === 'launch') ? re + 6 : best.kind === 'ms' && best.m.key === 'first_step' ? rm + 10 : 16;
+        if (dist > reach) { tip.hidden = true; return; }
+        if (best.kind === 'day') {
+          const r = best.r;
+          fillTip(tip, box, dayFmt(r.date) + (r === L ? ' (latest)' : ''), [`${r.phase} · ${clock(r.met)}`, `${pct(r.p)} of the work done`, `${fmt(r.ready)} complete dossiers · ${fmt(r.statuses)} provisional statuses`], best.pt.x, best.pt.y);
+        } else {
+          const ms = best.m;
+          fillTip(tip, box, `Apollo 11: ${ms.name}`, [`${clock(ms.h)} · ${ms.when}`, `Here it means ${pct(ms.h / MET_END)} of the work done`], best.pt.x, best.pt.y);
+        }
+      }).on('mouseleave', () => { tip.hidden = true; });
+    }
+
+    function drawSpark(id, acc, yFmt, note) {
+      const box = document.getElementById(id);
+      const m = missionRows();
+      if (m.status === 'error') { fail(box); return; }
+      if (m.status !== 'ok' || !m.data.length) { box.replaceChildren(); box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const W = box.clientWidth;
+      if (!W) return;
+      const H = 200, mg = { l: 46, r: 14, t: 14, b: 26 };
+      const rows = m.data, L = rows[rows.length - 1];
+      let dom = d3.extent(rows, (r) => r.date);
+      if (+dom[0] === +dom[1]) dom = [d3.utcDay.offset(dom[0], -1), d3.utcDay.offset(dom[1], 1)];
+      const x = d3.scaleUtc().domain(dom).range([mg.l, W - mg.r]);
+      const y = d3.scaleLinear().domain([0, (d3.max(rows, acc) || 1) * 1.15]).nice(4).range([H - mg.b, mg.t]);
+      const svg = d3.create('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+      box.replaceChildren(svg.node());
+      const grid = svg.append('g').attr('class', 'grid');
+      y.ticks(4).forEach((v) => {
+        grid.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y(v)).attr('y2', y(v));
+        grid.append('text').attr('x', mg.l - 6).attr('y', y(v) + 4).attr('text-anchor', 'end').text(yFmt(v));
+      });
+      const ax = svg.append('g').attr('class', 'ax');
+      const nt = Math.max(2, Math.min(rows.length, Math.floor((W - mg.l) / 64)));
+      x.ticks(Math.min(nt, d3.utcDay.count(dom[0], dom[1]) || 1)).forEach((t) =>
+        ax.append('text').attr('x', x(t)).attr('y', H - 6).attr('text-anchor', 'middle').text(dayFmt(t)));
+      svg.append('path').attr('class', 'ln').attr('d', d3.line().x((r) => x(r.date)).y((r) => y(acc(r)))(rows));
+      svg.append('g').selectAll('circle').data(rows).join('circle').attr('class', 'dot').attr('cx', (r) => x(r.date)).attr('cy', (r) => y(acc(r))).attr('r', 4);
+      svg.append('text').attr('class', 'note').attr('x', x(L.date) - 6).attr('y', y(acc(L)) - 10).attr('text-anchor', 'end')
+        .attr('fill', 'var(--color-fg)').text(yFmt(acc(L)));
+      if (note && W >= 420) {
+        const r = rows.find((q) => d3.utcFormat('%Y-%m-%d')(q.date) === note.day);
+        if (r) svg.append('text').attr('class', 'note').attr('x', x(r.date) + 8).attr('y', y(acc(r)) + 18).text(note.text);
+      }
+      const cross = svg.append('line').attr('class', 'cross').attr('y1', mg.t).attr('y2', H - mg.b).attr('visibility', 'hidden');
+      const tip = mkTip(box);
+      svg.append('rect').attr('x', mg.l).attr('y', 0).attr('width', W - mg.l - mg.r).attr('height', H).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          const [mx] = d3.pointer(ev);
+          const r = d3.least(rows, (q) => Math.abs(x(q.date) - mx));
+          cross.attr('x1', x(r.date)).attr('x2', x(r.date)).attr('visibility', 'visible');
+          fillTip(tip, box, dayFmt(r.date), [yFmt(acc(r)), `${r.phase} · ${clock(r.met)}`], x(r.date), y(acc(r)));
+        })
+        .on('mouseleave', () => { tip.hidden = true; cross.attr('visibility', 'hidden'); });
+    }
+
+    function drawFlightLog() {
+      const body = document.getElementById('flight-log');
+      const m = missionRows();
+      if (m.status !== 'ok') { body.replaceChildren(); return; }
+      body.replaceChildren(...[...m.data].reverse().map((r) => {
+        const tr = document.createElement('tr');
+        [[dayFmt(r.date), 'l'], [r.phase, 'l'], [clock(r.met), ''], [pct2(r.p), ''], [fmt(r.ready), ''], [fmt(r.statuses), 'hide-narrow']].forEach(([v, c]) => {
+          const td = document.createElement('td'); if (c) td.className = c; td.textContent = v; tr.append(td);
+        });
+        return tr;
+      }));
+    }
+
+    function drawApollo() {
+      drawMissionTiles(); drawFlight();
+      drawSpark('spark-progress', (r) => r.p, d3.format('.1%'), { day: '2026-10-18', text: 'originals and machine searches first counted' });
+      drawSpark('spark-ready', (r) => r.ready, fmt);
+      drawFlightLog();
+    }
+    let lastFlightW = 0;
+    new ResizeObserver(() => {
+      const w = document.getElementById('flight').clientWidth;
+      if (current === 'apollo' && w && w !== lastFlightW) { lastFlightW = w; drawApollo(); }
+    }).observe(document.getElementById('flight'));
+
+    // Workflow tab: named jobs placed by purpose (WORKFLOW_NODES.csv); catalog stats joined from the tools dataset
+    const WF_STAGES = [
+      { key: 'discover', name: 'Discover', blurb: 'Learn that an order exists' },
+      { key: 'identify', name: 'Identify', blurb: 'Establish its identity, date and number if any' },
+      { key: 'acquire', name: 'Acquire and check', blurb: 'Get source copies and prove what they are' },
+      { key: 'draft', name: 'Draft', blurb: 'Clause lists, dossiers and decision sheets' },
+      { key: 'research', name: 'Research', blurb: 'Status, how it ended, what survives, contrary sources' },
+      { key: 'review', name: 'Independent review', blurb: 'A separate AI checks the work, with planted errors' },
+      { key: 'verify', name: 'Mechanical checks', blurb: 'Code checks quotes, sources and gates' },
+      { key: 'ready', name: 'Human review', blurb: 'A complete dossier waits for a person' },
+    ];
+    const WF_LOOPS = [
+      { from: 'review', to: 'research', lift: 30, label: 'rejected: back to research', note: 'Rejected or corrected claims go back to Research.' },
+      { from: 'research', to: 'acquire', lift: 30, label: 'missing source: fetch request', note: 'A source a claim needs but the project lacks becomes a fetch request.' },
+      { from: 'verify', to: 'research', lift: 66, label: 'failed check or audit hold', note: 'A failed check or an audit hold reopens a step.' },
+      { from: 'verify', to: 'acquire', lift: 104, label: 'tracker blockers: fetch or page check', note: 'Tracker blockers become fetch requests and page checks.' },
+    ];
+    const WF_KIND = { software: 'Named software', campaign: 'Past research campaign', protocol: 'Agent review procedure', gate: 'Human or owner gate', proposal: 'Proposed, not built' };
+    const WF_STATUS = { current: 'Current', historical: 'Historical', proposed: 'Proposed' };
+    const REPO = 'https://github.com/D3m0sthene5/Executive-Orders';
+    const J = (s, d = []) => { if (!s) return d; try { const v = JSON.parse(s); return v == null ? d : v; } catch (e) { return d; } };
+    function srcLink(src, pin) {
+      if (!src) return null;
+      const s = String(src).trim();
+      if (/^https?:\/\//.test(s)) return s.split(/\s/)[0];
+      if (/^[0-9a-f]{7,40}$/.test(s)) return `${REPO}/commit/${s}`;
+      const m = s.split(/\s/)[0].match(/^([A-Za-z0-9_.\-\/]+?)(?::(\d+)(?:-(\d+))?)?$/);
+      if (!m || !m[1].includes('/') && !m[1].includes('.')) return null;
+      return `${REPO}/blob/${pin}/${m[1]}` + (m[2] ? `#L${m[2]}` + (m[3] ? `-L${m[3]}` : '') : '');
+    }
+    function wfRows() {
+      const d = dash.data('workflow_nodes');
+      if (d.status !== 'ok') return d;
+      const t = dash.data('tools');
+      const tools = t.status === 'ok' ? new Map(t.data.map((r) => [r.tool, r])) : new Map();
+      const data = d.data.map((r) => ({
+        ...r, order: +r.order || 0, inputs: J(r.inputs_json), outputs: J(r.outputs_json), results: J(r.results_json),
+        history: J(r.history_json), feeds: J(r.feeds_json), caveats: J(r.caveats_json), sources: J(r.sources_json),
+        jobs: J(r.jobs_json), tool: tools.get(r.catalog_tool) || null,
+      }));
+      return { status: 'ok', data, byId: new Map(data.map((n) => [n.id, n])) };
+    }
+    let wfFilter = 'all', wfQuery = '', wfPinned = null, wfHoverId = null, wfHideT = null, wfModel = null, wfMode = 'wide', wfBound = false, wfQuiet = false, wfStill = false;
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+    const ext = (href, text) => { const a = el('a', null, text); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; };
+    function wfMatches(n) {
+      if (wfFilter !== 'all' && n.status_class !== wfFilter) return false;
+      if (!wfQuery) return true;
+      const hay = [n.name, n.namesake_text, n.role, n.catalog_tool, ...(n.jobs || [])].join(' ').toLowerCase();
+      return wfQuery.split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+    }
+    function wfApply() {
+      if (!wfModel) return;
+      let shown = 0;
+      document.querySelectorAll('#wf-map .wf-node').forEach((b) => {
+        const n = wfModel.byId.get(b.dataset.id), ok = n && wfMatches(n);
+        if (ok) shown++;
+        b.classList.toggle('dim', !ok);
+      });
+      document.getElementById('wf-count').textContent = `${shown} of ${wfModel.data.length} matching`;
+      wfMarkLinks();
+    }
+    function wfLinked(id) {
+      const n = wfModel && wfModel.byId.get(id);
+      if (!n) return new Set();
+      const s = new Set(n.feeds || []);
+      wfModel.data.forEach((m) => { if ((m.feeds || []).includes(id)) s.add(m.id); });
+      s.delete(id);
+      return s;
+    }
+    function wfMarkLinks() {
+      const focus = wfHoverId || wfPinned, linked = focus ? wfLinked(focus) : new Set();
+      document.querySelectorAll('#wf-map .wf-node').forEach((b) => {
+        b.classList.toggle('linked', linked.has(b.dataset.id));
+        b.setAttribute('aria-pressed', String(b.dataset.id === wfPinned));
+      });
+      wfTies();
+    }
+    function namesakeLine(n, parent) {
+      const p = el('div', 'ns');
+      const st = n.namesake_status;
+      if (st === 'none') { p.textContent = 'A descriptive name, not named for anyone.'; parent.append(p); return; }
+      if (!n.namesake_text || st === 'undocumented') { p.textContent = 'Namesake: not recorded by the project.'; parent.append(p); return; }
+      p.append(st === 'inferred' ? 'Probably named for ' : 'Named for ');
+      const title = n.wikipedia_url ? decodeURIComponent(n.wikipedia_url.split('/wiki/')[1]).replace(/_/g, ' ') : '';
+      if (title) {
+        p.append(ext(n.wikipedia_url, title));
+        const rest = n.namesake_text && n.namesake_text !== title ? n.namesake_text : '';
+        if (rest) p.append(el('span', null, `. ${rest.replace(/\.$/, '')}.`));
+      } else p.append(n.namesake_text);
+      if (st === 'inferred') p.append(' (inferred; the project never recorded it)');
+      parent.append(p);
+    }
+    function rowShared(n) {
+      if (!n.catalog_tool || !wfModel) return 0;
+      return wfModel.data.filter((m) => m.catalog_tool === n.catalog_tool).length;
+    }
+    function rowLabel(n) {
+      const p = el('p', 'wf-row');
+      p.append(el('b', null, 'Catalog row: '), n.catalog_tool);
+      const k = rowShared(n), grouped = /\u00b7| · /.test(n.catalog_tool);
+      if (k > 1 || grouped) p.append(el('span', 'ns', ' The row\u2019s figures cover every job it names' + (k > 1 ? ` (${k} boxes on this map share it)` : '') + ', not this one alone.'));
+      return p;
+    }
+    function statLine(n) {
+      if (n.id === 'ready-for-human-review' || n.id === 'human-certification') {
+        const m = missionRows();
+        if (m.status === 'ok' && m.data.length) {
+          const L = m.data[m.data.length - 1];
+          return n.id === 'human-certification' ? `Human-certified: ${fmt(L.cert)}. Not automated.` : `Latest tracker: ${fmt(L.ready)} of ${fmt(L.goal)} orders ready for human review (${dayFmt(L.date)}).`;
+        }
+      }
+      if (n.tool && n.tool.contribution) return `Row figures: ${n.tool.contribution}`;
+      const r = (n.results || [])[0];
+      return r ? `${r.date ? r.date + ': ' : ''}${r.text}` : '';
+    }
+    function wfHoverShow(n, anchor) {
+      clearTimeout(wfHideT);
+      const wrap = document.getElementById('wf-wrap');
+      let card = document.getElementById('wf-hover');
+      if (!card) {
+        card = el('div', 'wf-hover'); card.id = 'wf-hover'; card.setAttribute('role', 'tooltip'); card.hidden = true; wrap.append(card);
+        card.addEventListener('mouseenter', () => clearTimeout(wfHideT));
+        card.addEventListener('mouseleave', wfHoverHide);
+      }
+      wfHoverId = n.id;
+      const t = el('div', 't', n.name);
+      card.replaceChildren(t);
+      namesakeLine(n, card);
+      card.append(el('p', null, n.role || ''));
+      if (n.tool) card.append(rowLabel(n));
+      const s = statLine(n);
+      if (s) card.append(el('p', null, s.length > 220 ? s.slice(0, 217) + '…' : s));
+      card.append(el('div', 'hint', wfPinned === n.id ? 'Pinned below. Click again or press Escape to close.' : 'Click or press Enter for the full record.'));
+      card.hidden = false;
+      const wb = wrap.getBoundingClientRect(), ab = anchor.getBoundingClientRect();
+      const cw = card.offsetWidth, ch = card.offsetHeight;
+      let x = Math.min(Math.max(0, ab.left - wb.left), Math.max(0, wb.width - cw));
+      let y = ab.bottom - wb.top + 6;
+      if (y + ch > wb.height && ab.top - wb.top - ch - 6 > 0) y = ab.top - wb.top - ch - 6;
+      card.style.left = x + 'px'; card.style.top = y + 'px';
+      wfMarkLinks();
+    }
+    function wfHoverHide() {
+      clearTimeout(wfHideT);
+      wfHideT = setTimeout(() => {
+        const card = document.getElementById('wf-hover'); if (card) card.hidden = true;
+        wfHoverId = null; wfMarkLinks();
+      }, 180);
+    }
+    function wfClose() {
+      // Close the pinned record and take the reader back to the box they pinned, without reopening its hover card
+      const prev = wfPinned;
+      if (!prev) return;
+      wfPinned = null;
+      clearTimeout(wfHideT);
+      const card = document.getElementById('wf-hover'); if (card) card.hidden = true;
+      wfHoverId = null;
+      wfDetail();
+      wfMarkLinks();
+      const b = document.querySelector(`#wf-map .wf-node[data-id="${CSS.escape(prev)}"]`);
+      wfStill = true;  // a stationary pointer that ends up over a box after the scroll does not reopen a card
+      if (b) { wfQuiet = true; b.focus({ preventScroll: true }); wfQuiet = false; b.scrollIntoView({ block: 'center' }); }
+    }
+    function wfPin(id, scroll) {
+      if (wfPinned === id) { wfClose(); return; }
+      wfPinned = id;
+      const card = document.getElementById('wf-hover'); if (card) card.hidden = true;
+      wfHoverId = null;
+      wfDetail();
+      wfMarkLinks();
+      if (wfPinned && scroll) document.getElementById('wf-detail').scrollIntoView({ block: 'nearest' });
+    }
+    function listBlock(parent, title, items, render) {
+      const box = el('div');
+      box.append(el('h4', null, title));
+      if (!items || !items.length) { box.append(el('p', 'eo-card-note', 'None recorded.')); parent.append(box); return; }
+      const ul = el('ul');
+      items.forEach((it) => { const li = el('li'); render(li, it); ul.append(li); });
+      box.append(ul); parent.append(box);
+    }
+    function srcLinks(parent, src, pin, word) {
+      const parts = String(src || '').split(/;\s*/).map((s) => s.trim()).filter(Boolean);
+      parts.forEach((s, i) => {
+        if (i) parent.append(', ');
+        const href = srcLink(s, pin);
+        const label = word && parts.length === 1 ? word : s.replace(/^.*\//, '').replace(/^(.{40}).+$/, '$1…');
+        parent.append(href ? ext(href, label) : el('span', 'when', s));
+      });
+    }
+    function dated(li, it, pin) {
+      if (it.date) li.append(el('span', 'when', it.date));
+      li.append(it.text || '');
+      if (it.source) { li.append(' ('); srcLinks(li, it.source, pin, 'source'); li.append(')'); }
+    }
+    function wfDetail() {
+      const box = document.getElementById('wf-detail');
+      const n = wfPinned && wfModel && wfModel.byId.get(wfPinned);
+      if (!n) { box.hidden = true; box.replaceChildren(); return; }
+      const pin = n.source_pin || 'main';
+      const hd = el('div', 'hd');
+      const left = el('div');
+      left.append(el('h2', null, n.name));
+      const badges = el('div', 'badges');
+      const stage = WF_STAGES.find((s) => s.key === n.stage);
+      [WF_KIND[n.kind] || n.kind, WF_STATUS[n.status_class] || n.status_class, stage ? stage.name : 'Cross-stage support'].forEach((b) => badges.append(el('span', 'eo-chip', b)));
+      left.append(badges);
+      const x = el('button', 'x', 'Close'); x.type = 'button'; x.addEventListener('click', wfClose);
+      hd.append(left, x);
+      box.replaceChildren(hd);
+      namesakeLine(n, box);
+      if (n.namesake_note || n.namesake_evidence) {
+        const p = el('div', 'ns');
+        if (n.namesake_note) p.append(n.namesake_note + ' ');
+        if (n.namesake_evidence) { p.append('Recorded in '); srcLinks(p, n.namesake_evidence, pin); p.append('.'); }
+        box.append(p);
+      }
+      box.append(el('p', 'role', n.role || ''));
+      const live = statLine(n);
+      if (n.id === 'ready-for-human-review' || n.id === 'human-certification') box.append(el('p', 'eo-card-note', live));
+      const cols = el('div', 'cols');
+      listBlock(cols, 'Takes in', n.inputs, (li, it) => li.append(it));
+      listBlock(cols, 'Produces', n.outputs, (li, it) => li.append(it));
+      if (n.tool) box.append(rowLabel(n));
+      if (n.tool) {
+        listBlock(cols, `Catalog row \u201c${n.catalog_tool}\u201d (live tools dataset)`, [n.tool], (li, t) => {
+          li.append(el('span', 'when', t.status));
+          li.append(t.contribution || '');
+          if (t.what_it_does) { li.append(el('br')); li.append(el('span', 'when', t.what_it_does)); }
+        });
+      }
+      listBlock(cols, 'Results, newest first', n.results, (li, it) => dated(li, it, pin));
+      const hist = (n.history || []).length ? n.history : (n.history_note ? [{ text: n.history_note }] : []);
+      listBlock(cols, 'Earlier iterations', hist, (li, it) => dated(li, it, pin));
+      listBlock(cols, 'What it does not establish', n.caveats, (li, it) => li.append(it));
+      const rel = el('div');
+      rel.append(el('h4', null, 'Connected jobs'));
+      const feeds = (n.feeds || []).filter((id) => wfModel.byId.has(id));
+      const from = wfModel.data.filter((m) => (m.feeds || []).includes(n.id)).map((m) => m.id);
+      [['Feeds', feeds], ['Fed by', from]].forEach(([lab, ids]) => {
+        const p = el('p', 'eo-card-note'); p.append(`${lab}: `);
+        if (!ids.length) p.append('none recorded');
+        ids.forEach((id) => { const b = el('button', 'jump', wfModel.byId.get(id).name); b.type = 'button'; b.addEventListener('click', () => { wfPin(id, true); const t = document.querySelector(`#wf-map .wf-node[data-id="${CSS.escape(id)}"]`); if (t) t.focus(); }); p.append(b); });
+        rel.append(p);
+      });
+      cols.append(rel);
+      const srcs = [...(n.sources || []), ...(n.jobs || []).map((j) => ({ label: j, path: j }))];
+      listBlock(cols, 'Sources in the repository', srcs, (li, s) => {
+        const href = srcLink(s.url || s.path, pin);
+        li.append(href ? ext(href, s.label || s.path) : (s.label || s.path));
+      });
+      box.append(cols);
+      box.append(el('p', 'eo-card-note', `Sources pinned to commit ${String(pin).slice(0, 10)}.`));
+      box.hidden = false;
+    }
+    function wfNode(n, accentColor) {
+      const b = el('button', `wf-node ${n.kind} ${n.status_class}`); b.type = 'button'; b.dataset.id = n.id;
+      b.style.setProperty('--wf-accent', accentColor);
+      b.append(el('span', 'nm', n.label || n.name));
+      if (n.namesake_short) b.append(el('span', 'sub', n.namesake_short));
+      b.append(el('span', `dot ${n.status_class}`));
+      b.setAttribute('aria-label', `${n.name}. ${WF_KIND[n.kind] || n.kind}, ${(WF_STATUS[n.status_class] || n.status_class).toLowerCase()}. ${n.role || ''}`);
+      b.addEventListener('mouseenter', () => { if (!wfStill) wfHoverShow(n, b); });
+      b.addEventListener('mouseleave', wfHoverHide);
+      b.addEventListener('focus', () => { if (!wfQuiet) wfHoverShow(n, b); });
+      b.addEventListener('blur', wfHoverHide);
+      b.addEventListener('click', () => wfPin(n.id, true));
+      return b;
+    }
+    function wfTies() {
+      const map = document.getElementById('wf-map');
+      const svg = map && map.querySelector('svg.wf-overlay');
+      if (!svg) return;
+      d3.select(svg).selectAll('.tie').remove();
+      const focus = wfHoverId || wfPinned;
+      if (!focus || wfMode === 'narrow') return;
+      const mb = map.getBoundingClientRect();
+      const src = map.querySelector(`.wf-node[data-id="${CSS.escape(focus)}"]`);
+      if (!src) return;
+      const a = src.getBoundingClientRect();
+      wfLinked(focus).forEach((id) => {
+        const t = map.querySelector(`.wf-node[data-id="${CSS.escape(id)}"]`);
+        if (!t) return;
+        const b = t.getBoundingClientRect();
+        const x1 = (a.left + a.right) / 2 - mb.left, y1 = (a.top + a.bottom) / 2 - mb.top, x2 = (b.left + b.right) / 2 - mb.left, y2 = (b.top + b.bottom) / 2 - mb.top;
+        const mx = (x1 + x2) / 2, my = Math.min(y1, y2) - 30;
+        d3.select(svg).append('path').attr('class', 'tie').attr('d', `M${x1},${y1} Q${mx},${my} ${x2},${y2}`);
+      });
+    }
+    function wfOverlay(map) {
+      const old = map.querySelector('svg.wf-overlay'); if (old) old.remove();
+      const mb = map.getBoundingClientRect();
+      const svg = d3.select(map).append('svg').attr('class', 'wf-overlay').attr('width', mb.width).attr('height', mb.height).attr('aria-hidden', 'true');
+      const mk = svg.append('defs').append('marker').attr('id', 'wf-arrow').attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+        .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto-start-reverse');
+      mk.append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', 'var(--color-fg-muted)');
+      const cols = [...map.querySelectorAll('.wf-stage')];
+      const r = (e) => { const b = e.getBoundingClientRect(); return { x: b.left - mb.left, y: b.top - mb.top, w: b.width, h: b.height }; };
+      for (let i = 0; i < cols.length - 1; i++) {
+        const a = r(cols[i]), b = r(cols[i + 1]);
+        let d;
+        if (Math.abs(a.y - b.y) < 4) { const y = a.y + 20; d = `M${a.x + a.w + 1},${y} L${b.x - 1},${y}`; }
+        else if (wfMode === 'narrow') { const x0 = a.x + 24; d = `M${x0},${a.y + a.h + 2} L${x0},${b.y - 2}`; }
+        else { const x1 = a.x + a.w / 2, y1 = a.y + a.h + 2, x2 = b.x + b.w / 2, y2 = b.y - 2, ym = (y1 + y2) / 2; d = `M${x1},${y1} C${x1},${ym} ${x2},${ym} ${x2},${y2}`; }
+        svg.append('path').attr('class', 'flow').attr('d', d).attr('marker-end', 'url(#wf-arrow)');
+      }
+      if (wfMode === 'wide') {
+        WF_LOOPS.forEach((L) => {
+          const a = r(cols[WF_STAGES.findIndex((s) => s.key === L.from)]), b = r(cols[WF_STAGES.findIndex((s) => s.key === L.to)]);
+          const x1 = a.x + a.w / 2, x2 = b.x + b.w / 2, y0 = a.y - 3;
+          svg.append('path').attr('class', 'loop').attr('d', `M${x1},${y0} C${x1},${y0 - L.lift} ${x2},${y0 - L.lift} ${x2},${y0}`).attr('marker-end', 'url(#wf-arrow)');
+          svg.append('text').attr('class', 'loop-label').attr('x', (x1 + x2) / 2).attr('y', y0 - L.lift * 0.75 - 4).attr('text-anchor', 'middle').text(L.label);
+        });
+      }
+      wfTies();
+    }
+    function drawWorkflow() {
+      const map = document.getElementById('wf-map');
+      const m = wfRows();
+      if (m.status === 'error') { fail(map); return; }
+      if (m.status !== 'ok') { map.replaceChildren(); map.classList.add('dash-skeleton'); return; }
+      map.classList.remove('dash-skeleton');
+      wfModel = m;
+      const W = map.clientWidth;
+      if (!W) return;
+      wfMode = W >= 980 ? 'wide' : W >= 620 ? 'mid' : 'narrow';
+      map.classList.toggle('mid', wfMode === 'mid'); map.classList.toggle('narrow', wfMode === 'narrow');
+      const by = d3.group(m.data, (n) => n.stage);
+      const sorted = (k) => (by.get(k) || []).slice().sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+      const kids = [];
+      WF_STAGES.forEach((s, i) => {
+        const col = el('div', 'wf-stage' + (s.key === 'ready' ? ' final' : '')); col.dataset.stage = s.key;
+        const list = sorted(s.key), acc = dash.colors[i % dash.colors.length];
+        col.style.setProperty('--wf-accent', acc);
+        const h = el('h3'); h.append(el('span', null, `${i + 1}. ${s.name}`), el('span', 'n', String(list.length)));
+        col.append(h, el('p', 'blurb', s.blurb));
+        list.forEach((n) => {
+          if (n.id === 'human-certification') col.append(el('div', 'wf-airlock', 'Not automated: a person certifies.'));
+          col.append(wfNode(n, acc));
+        });
+        WF_LOOPS.filter((L) => L.from === s.key).forEach((L) => col.append(el('p', 'loopnote', L.note)));
+        kids.push(col);
+      });
+      const sup = sorted('support');
+      if (sup.length) {
+        const band = el('div', 'wf-support');
+        band.append(el('h3', null, `Across every stage: coordination, measurement, planning and runners (${sup.length})`),
+          el('p', 'blurb', 'These serve the whole line. None of them moves an order by itself.'));
+        const row = el('div', 'row');
+        sup.forEach((n) => row.append(wfNode(n, 'var(--color-fg-muted)')));
+        band.append(row); kids.push(band);
+      }
+      map.replaceChildren(...kids);
+      if (wfPinned && !m.byId.has(wfPinned)) wfPinned = null;
+      wfApply();
+      wfDetail();
+      requestAnimationFrame(() => wfOverlay(map));
+      // headline
+      const mr = missionRows(), tk = document.getElementById('wf-takeaway');
+      const c = d3.rollup(m.data, (v) => v.length, (n) => n.status_class);
+      let s = `${m.data.length} named jobs, past campaigns and human gates: ${fmt(c.get('current') || 0)} current, ${fmt(c.get('historical') || 0)} historical, ${fmt(c.get('proposed') || 0)} proposed.`;
+      if (mr.status === 'ok' && mr.data.length) { const L = mr.data[mr.data.length - 1]; s += ` Ready for human review now: ${fmt(L.ready)} of ${fmt(L.goal)} orders (${dayFmt(L.date)}). Human-certified: ${fmt(L.cert)}.`; }
+      tk.textContent = s; tk.classList.remove('dash-skeleton');
+      if (!wfBound) {
+        wfBound = true;
+        document.addEventListener('mousemove', (e) => { if (wfStill && (e.movementX || e.movementY)) wfStill = false; });
+        document.getElementById('wf-search').addEventListener('input', (e) => { wfQuery = e.target.value.trim().toLowerCase(); wfApply(); });
+        document.querySelectorAll('.wf-filter button').forEach((b) => b.addEventListener('click', () => {
+          wfFilter = b.dataset.wf;
+          document.querySelectorAll('.wf-filter button').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+          wfApply();
+        }));
+        document.getElementById('workflow').addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') { if (wfPinned) wfClose(); else { const card = document.getElementById('wf-hover'); if (card) card.hidden = true; wfHoverId = null; wfMarkLinks(); } }
+        });
+        let lastW = 0;
+        new ResizeObserver(() => {
+          const w = document.getElementById('wf-wrap').clientWidth;
+          if (current === 'workflow' && w && w !== lastW) { lastW = w; drawWorkflow(); }
+        }).observe(document.getElementById('wf-wrap'));
+      }
+    }
+
+    function drawAll() {
+      drawMission();
+      if (current === 'toolmap') {
+        drawToolmapTotals(); drawLanes(); drawLaneLegend(); drawToolsTable();
+      } else if (current === 'workflow') {
+        drawWorkflow();
+      } else if (current === 'apollo') {
+        drawApollo();
+      } else if (current === 'steps') {
+        drawTotals(); drawMap('steps'); drawLegend('legend-steps', 'by_kind', (r) => fmt(r.open_steps)); drawPresTable();
+      } else {
+        drawEffortTotals(); drawMap('effort'); drawLegend('legend-effort', 'effort_by_kind', (r) => fmt(Math.round(r.agent_hours)) + ' h'); drawTierTable();
+      }
+    }
+
+    const named = location.hash.slice(1);
+    if (named === 'effort' || named === 'steps' || named === 'toolmap' || named === 'apollo' || named === 'workflow') show(named, false);
+    dash.onData(drawAll);
+  })();
+</script>

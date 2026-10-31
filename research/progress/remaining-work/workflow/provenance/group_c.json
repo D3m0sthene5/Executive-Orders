@@ -1,0 +1,1591 @@
+[
+ {
+  "id": "clause-drafts",
+  "name": "Clause drafts",
+  "catalog_tool": "clause-drafts",
+  "jobs": [
+   "jobs/clause-drafts"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "draft",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Splits each held order text into numbered operative clauses and saves them as a machine-made draft inventory that a person must still check.",
+  "inputs": [
+   "held order texts (Federal Register, American Presidency Project copies, Opus release zip)",
+   "census of 14,972 orders"
+  ],
+  "outputs": [
+   "draft clause inventories (FRAGMENTS.jsonl, CLAUSES.csv)",
+   "texts set aside for identity doubt (IDENTITY_QUARANTINE.csv)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-28",
+    "text": "Found that 76 drafts of transcribed pages drop the order's final date line when the date is irregular (for example \"June 30 1934.\"), so a whole-text quotation fails the checker for those orders. At the pinned commit the date pattern still requires a comma, so no fix is recorded.",
+    "source": "F-20261028-13 in jobs/kean/register/findings.jsonl:57; jobs/clause-drafts/segment.py:51"
+   },
+   {
+    "date": "2026-10-24",
+    "text": "Output of run 40056070366: 9,919 of 14,972 orders had candidate text; 9,761 drafts written (6,659 segmented \"good\", 3,102 \"partial\"), 70,615 clauses; 149 orders not segmented, 9 held back for identity doubt. 4,964 drafts rest on American Presidency Project transcriptions.",
+    "source": "jobs/clause-drafts/output/SUMMARY.json; jobs/clause-drafts/output/STATUS.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-18",
+    "text": "Added American Presidency Project pages as a fallback input, labelled transcription-based.",
+    "source": "c358a18974"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Hooked into the readiness tracker with the other first machine jobs.",
+    "source": "2bbab31376"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Job added (\"job 3\").",
+    "source": "acf7ddb31d"
+   }
+  ],
+  "feeds": [
+   "claim-drafts",
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "\"Good\" means only that the automatic structure checks found no problem, never that the law was read.",
+   "Clause boundaries, kinds and target orders are machine guesses; legal fields are left empty.",
+   "Does not prove a saved copy is authentic and never changes a status or count."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "claim-drafts",
+  "name": "Claim drafts",
+  "catalog_tool": "claim-drafts",
+  "jobs": [
+   "jobs/claim-drafts"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "draft",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Pre-fills one draft whole-lifecycle claim for every order that has a provisional status, and lists exactly what a research agent still has to decide.",
+  "inputs": [
+   "clause drafts",
+   "later-events, current-law and OFR 1989 leads",
+   "Federal Register and Opus originals",
+   "provisional statuses (3,403)"
+  ],
+  "outputs": [
+   "draft claims (DRAFT_CLAIMS.jsonl)",
+   "to-do list per order (TODO_BY_ORDER.csv)",
+   "conflict list (CONFLICTS.csv)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Output of the scheduled run finished 2026-10-29T07:08:32Z: 3,403 drafts, all for decided orders; 1,145 have only judgment fields left (210 yes, 935 no); 434 orders carry at least one conflict. None of the 3,403 machine search records is filled in as a claim field.",
+    "source": "jobs/claim-drafts/output/SUMMARY.json; jobs/claim-drafts/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Pilot use: Mansfield drew its pool from the \"only judgment left\" rows of the to-do list; the label hid missing, truncated or misassociated evidence in several orders.",
+    "source": "research/excavator/mansfield-2026-10-22/REPORT.md:3-14; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:181-189"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Reads the Namier person-name leads when drafting.",
+    "source": "0f3c96bdc1; ca73981fdb"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Made the embedded claim checker offline-only; before this it inherited a 400-download allowance despite promising no network use.",
+    "source": "ed84d9acc9; jobs/claim-drafts/README.md:11-17"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "Wired in the printed-volume jobs (OFR compilations, Richardson, OFR 1989 Codification).",
+    "source": "bf5eb9e67b; 150c0457eb"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Job added (\"job 8\").",
+    "source": "05fc1aafff"
+   }
+  ],
+  "feeds": [
+   "claim-kit-case-bundles",
+   "lambertini-job"
+  ],
+  "caveats": [
+   "Drafts are not accepted lifecycle claims; a draft committed unchanged turns on no readiness step except the original-text step.",
+   "Every judgment field (state, first end, savings, rationale) is left empty on purpose.",
+   "The claim-checker verdict in the to-do list covers only copied sources and quotations, never that the claim passes."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "claim-kit-case-bundles",
+  "name": "Claim kit and case bundles",
+  "catalog_tool": "claim-kit · case-bundles",
+  "jobs": [
+   "jobs/claim-kit",
+   "jobs/case-bundles"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "draft",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Freezes one evidence dossier and one blank decision sheet per order, then turns an agent's reviewed decision sheet into a full claim; case-bundles packs each dossier into a single startup file.",
+  "inputs": [
+   "census",
+   "held texts declared by source jobs",
+   "claim drafts",
+   "status-history fragments",
+   "Valla sealed context",
+   "owner rulings"
+  ],
+  "outputs": [
+   "dossiers and decision sheets",
+   "exact-slice evidence",
+   "ranked families",
+   "one-fetch startup packets (case-bundles)",
+   "assembled claims after an agent decides"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Output of run 40987576100 (finished 2026-10-30T02:17:03Z): 3,403 dossiers for decided orders; 14,884 of 14,972 orders with held text; 41,564 distinct held text artifacts; 280 texts refused as the order's own text by the identity gate; 11,569 status leads for undecided identities; 0 claims assembled by the build itself.",
+    "source": "jobs/claim-kit/output/SUMMARY.json; jobs/claim-kit/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Case-bundles run: 3,403 packets, each under the 30,000-byte cap (largest 29,894); median startup fetches per order 10 before, 1 after. The catalog records an earlier historical benchmark of 9 to 1.",
+    "source": "jobs/case-bundles/output/METRICS.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:14"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Same-input machine path on a real batch: 214.0 s with the earlier code, 53.5 s repaired, identical claims; the report states this is not evidence of a model-token saving.",
+    "source": "research/excavator/opus-native-rehearsal-2026-10-29/REPORT.md; F-20261029-7002 in jobs/kean/register/findings.jsonl:68"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "Matched A/B of compact packets against ordinary preparation: producer time fell 33% but total input tokens rose 21.8% and elapsed time 5.4%; one proposal upheld per arm.",
+    "source": "F-20261018-2 in jobs/kean/register/findings.jsonl:5; research/excavator/2026-10-18/batch-pilot/COST_COMPARISON.json"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "First 50-order claim-kit pilot in expected-easy families: 12 accepted, 38 unable, first-pass rejection 16.7%, no cost reduction.",
+    "source": "F-20261018-4 in jobs/kean/register/findings.jsonl:7"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Planted-control reviews are bound to the seeded task scope; a probe-scope review no longer earns control credit.",
+    "source": "b1890d7a0c; F-20261030-7001 in jobs/kean/register/findings.jsonl:74"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "PR104 repairs: request-scoped Valla context, one verified fragment index per run; a real completion went from 506 s and 0 filed to 122 s and 16 filed on identical pinned inputs.",
+    "source": "0f98bc73b9; 4d0253cdf3; F-20261029-7001 in jobs/kean/register/findings.jsonl:67"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Original-selection fix: tiered ranking plus an identity gate; 69 of 14,886 orders with held text change their original, 8 of them among decided dossiers. A grade bug had labelled 1,824 of 3,403 dossiers' transcriptions \"derivative_lead\".",
+    "source": "jobs/claim-kit/FIX_NOTES.md; F-20261028-4 in jobs/kean/register/findings.jsonl:43"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Number citations without a change verb now make the citing order a known actor (known pairs 16,626 to 17,763 in the local rebuild).",
+    "source": "F-20261028-12 in jobs/kean/register/findings.jsonl:56"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "Offline whole-corpus claim kit built.",
+    "source": "71b283f108"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "x1-class-engine"
+  ],
+  "caveats": [
+   "Nothing here chooses or changes legal status; every legal field needs an agent's approval and a separate reviewer.",
+   "Dossiers hold only what is held; 280 texts were refused as order text and an unheld source stays a gap.",
+   "Packaging benefits are real for startup fetches but the matched test did not show a total token saving.",
+   "Claim-kit runs after Valla (jobs/claim-kit/after.txt); Valla reads canonical claims and reviews, not kit output, so there is no cycle."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "family-rules",
+  "name": "Family rules",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/family-rules",
+   "jobs/family-rule-sources",
+   "jobs/family-rule-tail"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Checks whether one reviewed rule about a shared ending order (for example EO 12553) can safely end a whole family of orders, and blocks every order where a proof piece is missing.",
+  "inputs": [
+   "agent-written rule files",
+   "dossiers and saved texts (51,201 scanned)",
+   "later-events and current-law leads"
+  ],
+  "outputs": [
+   "one certificate per target order (most blocked)",
+   "whole-order-end candidates only for certificates that pass"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Non-NRA transfer screen of the EO 12379 family found 9 actor-source copies and 123 target-original copies but no raw original bytes through the indexed records, so no ready cohort.",
+    "source": "research/excavator/shared-research-production/REPORT.md:42-44"
+   },
+   {
+    "date": "2026-10-24",
+    "text": "Output of run 40056070366: 25 rules, 748 target orders, all 748 blocked, 0 passed the bounded checks. Every one of the 748 lacks verified original custody and reviewed independent clauses; 744 carry independent-clause or savings leads.",
+    "source": "jobs/family-rules/output/SUMMARY.json; jobs/family-rules/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Postmortem of the first family-rule sprint: it aimed at 300 ready orders and delivered 1; first legal reviews failed at 20% and 83%. Of the targets then checked, 552 of 571 had no located original text.",
+    "source": "F-20261017-2 and F-20261017-3 in jobs/kean/register/findings.jsonl:2-3"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-17",
+    "text": "Rules for the top five families (EO 12553, 14148, 9830, 12379, 11490) completed with exact text hashes.",
+    "source": "765dc02bf3; jobs/family-rules/README.md:3-7"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Bounded source-ladder request for the two missing acting texts (EO 12379, EO 11490) and a one-off recovery of EO 11490's revocation section.",
+    "source": "db7d0dae53 (family-rule-sources); 81b04a436d (family-rule-tail)"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Family proof engine built; largest ending families discovered.",
+    "source": "81b04a436d; ad1d1b0fa3"
+   }
+  ],
+  "feeds": [
+   "claim-drafts"
+  ],
+  "caveats": [
+   "A certificate never fills a claim, changes a status or proves that unsaved sources hold no counterexample.",
+   "The proposition that these certificates unlock whole families has not been shown in production (0 of 748 pass).",
+   "family-rule-sources and family-rule-tail are one-off bounded fetch jobs from 2026-10-17, not recurring producers."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "later-events-status-history-current-law",
+  "name": "Later events, status history and current law",
+  "catalog_tool": "later-events · status-history · current-law · ofr-codification-1989",
+  "jobs": [
+   "jobs/later-events",
+   "jobs/status-history",
+   "jobs/current-law",
+   "jobs/ofr-codification-1989"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (descriptive names; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Reads the Federal Register catalog, the 1989 OFR codification, the U.S. Code and the eCFR by machine to list which later acts amended or ended each order and where it still appears in law.",
+  "inputs": [
+   "Federal Register catalog and disposition notes",
+   "1989 OFR Codification",
+   "U.S. Code release point 119-121",
+   "eCFR",
+   "order texts"
+  ],
+  "outputs": [
+   "later-event edges and whole-order-end candidates",
+   "dated status histories",
+   "U.S. Code and eCFR mention leads"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "status-history output: 7,650 of 14,972 identities have a history; 15,772 editorial edges seen, 15,660 span-verified against raw notes; 0 legal findings and 0 census admissions.",
+    "source": "jobs/status-history/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "later-events output: 6,938 catalog records and 17,521 text documents read; 23,858 candidate edges; 1,871 orders with a whole-order-end candidate; 0 statuses changed, 0 legal conclusions.",
+    "source": "jobs/later-events/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "Status-history pilot produced no readiness gain at the time; it later fed Bowditch's Y1 status sweep, the only probe of that day to pass.",
+    "source": "F-20261018-3 in jobs/kean/register/findings.jsonl:6"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "current-law output: 3,195 orders mentioned in the U.S. Code or eCFR, 1,813 with predicate leads, using U.S. Code release point 119-121 (through Pub. L. 119-121 of 2026-10-09).",
+    "source": "jobs/current-law/output/SUMMARY.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-18",
+    "text": "status-history job added to compile dated histories across the corpus.",
+    "source": "f3ee24abb0"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "later-events also scans American Presidency Project order texts; transcription wording never withholds an OFR full end.",
+    "source": "8c3411270f"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "later-events (job 4) and current-law (job 5) added.",
+    "source": "46b71448c1; aa8daacd38"
+   }
+  ],
+  "feeds": [
+   "claim-drafts",
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Everything is a lead or candidate, never a legal finding; OFR notes are editorial cross-references that can be wrong or partial.",
+   "A date shown is the acting order's date, not a proven effective date.",
+   "An empty catalog note proves nothing about present effect.",
+   "Output dates differ per job (Oct 17, 19 and 22 at the pinned commit); this node mixes four jobs and no count may be added across them."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "x1-class-engine",
+  "name": "X1 class engine",
+  "catalog_tool": "X1 class engine",
+  "jobs": [
+   "jobs/x1-class-engine",
+   "research/production/x1-2026-10-19"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "none given beyond the catalog label \"first of the excavator series\"",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:16",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Sorts the old (before 1937) orders into types, drafts one reviewed ending rule per type and groups look-alike orders into review sheets of at most 50 rows.",
+  "inputs": [
+   "WPA 1944 numbered list",
+   "American Presidency Project titles",
+   "held texts",
+   "claim-kit clause spans",
+   "retained event sources"
+  ],
+  "outputs": [
+   "order types (TYPES.csv)",
+   "22 type rules",
+   "event candidates",
+   "look-alike clusters",
+   "batch review sheets"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Run output: 8,014 pre-1937 orders typed (land 3,028; spent 2,153; standing 1,878; swept 861; unknown 94); the summary states it is lead-only.",
+    "source": "jobs/x1-class-engine/output/SUMMARY.json; jobs/x1-class-engine/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "Pilot: only 52 of 8,014 had both a provisional status and a held text; 6 submitted, 5 upheld by an independent AI reviewer, 1 rejected, 46 blocked. On the branch run the tracker counted the 5 as ready (130 to 135).",
+    "source": "research/production/x1-2026-10-19/REPORT.md:77-101"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "Fresh holdout of 80 orders: exact type 90% (95% CI 82-95%), class 95%; 42 of the 80 labels used the same WPA summaries the classifier reads, so that part is agreement, not independent validation.",
+    "source": "research/production/x1-2026-10-19/REPORT.md:24-37; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:167"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "22 type rules approved only as lead patterns after four rounds of independent AI review; 656 texts in 132 clusters; 128 sheets.",
+    "source": "research/production/x1-2026-10-19/REPORT.md:13-16"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Event sources are now read from every job's published source records; a run published 8 of 8 held event sources with phrases found (before, 7 of 8 showed pending).",
+    "source": "6e29340a9f; research/excavator/claude-nira-sweep-2026-10-29/REPORT.md:97-101"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Production-line audit found X1 omits five held passing texts; repair proposed in an unmerged stack.",
+    "source": "F-20261029-4 and F-20261029-93 in jobs/kean/register/findings.jsonl:53,59"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "Type rules rewritten in round 2 after independent review.",
+    "source": "3f113746d1"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "First build: classifier, rules, event register, clusterer, sheets.",
+    "source": "3acdb137cb"
+   }
+  ],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Every output is a lead; no type, rule or sheet decides an order or touches the human-certified count (0).",
+   "The report's 463 hours saved is a model recalibration, not measured labor (tool-tier audit).",
+   "Direct production was modest: five claims from 52 attempted, the rest blocked by missing evidence.",
+   "The risk-tiered (20% audit) review path is off by default; the owner has not approved it."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "lambertini-job",
+  "name": "Lambertini job (savings and counterevidence readings)",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/lambertini"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "Prospero Lambertini (Benedict XIV), who formalized the devil's advocate's search for counterevidence",
+   "evidence": "jobs/lambertini/README.md:3",
+   "wikipedia_title_unverified": "Pope Benedict XIV"
+  },
+  "role": "Reads each ending order once and prepares shared savings readings for every order it ends, plus draft records of searches for contrary evidence.",
+  "inputs": [
+   "claim drafts and tracker output",
+   "Federal Register texts",
+   "later-events and current-law output",
+   "WPA numbered list"
+  ],
+  "outputs": [
+   "savings packets per acting order",
+   "savings prefill per order",
+   "draft counterevidence search records",
+   "sampling pools for probes"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Output (run finished 2026-10-29T07:15:51Z): 109 savings packets covering 835 target orders (EO 12553 alone 334); 584 draft counterevidence records (15 no lead, 94 contrary or WPA lead, 475 original text still open).",
+    "source": "jobs/lambertini/output/SUMMARY.json; jobs/lambertini/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "First probe: the savings prefill agreed with reviewers on 4 of 6 claims and was overruled twice.",
+    "source": "research/excavator/lambertini-2026-10-20/REPORT.md:18-29"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Repaired research acceptance, source provenance and cost accounting.",
+    "source": "491c0524d2"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Job added with the first probe.",
+    "source": "9ea12957c7"
+   }
+  ],
+  "feeds": [],
+  "caveats": [
+   "Prefills and draft search records are leads a reader confirms; nothing here closes a step.",
+   "The readiness tracker does not read these outputs; a record counts only if a producer copies it into a claim after reading it.",
+   "Pre-1937 draft search records still wait on an owner ruling about adequacy (design question Q-L2)."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "cruden-retrieval-cache",
+  "name": "Cruden retrieval cache",
+  "catalog_tool": "Cruden retrieval cache (PR108)",
+  "jobs": [
+   "research/excavator/claude-nira-sweep-2026-10-29/cruden.py"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Alexander Cruden, whose 1737 concordance listed every occurrence of every word of the Bible",
+   "evidence": "research/excavator/claude-nira-sweep-2026-10-29/cruden.py:3",
+   "wikipedia_title_unverified": "Alexander Cruden"
+  },
+  "role": "Looks up, for each order in a research packet, every held text that cites its number or code name, and now caches the search features so repeat lookups are faster.",
+  "inputs": [
+   "prepared packet folder",
+   "all held order texts (33,118 files)"
+  ],
+  "outputs": [
+   "LOOKUPS.md and LOOKUPS.json per packet",
+   "companion file with source hashes and coverage"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Matched seven-order run on the integrated generation: 90.903 s legacy, 13.989 s cold cache, 8.847 s warm; JSON and Markdown outputs identical; more bytes are read; not an end-to-end research saving.",
+    "source": "HANDOFF/notes-codex.md:15; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:42; F-20261029-final-integration-1 in jobs/kean/register/findings.jsonl:86"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Earlier profile on the PR108 branch: 71.010 s original, 11.569 s cold, 5.541 s warm; exact output across four packets; 11 focused tests and 61 independent overlapping checks pass.",
+    "source": "F-20261029-cruden-retrieval in jobs/kean/register/findings.jsonl:75; research/progress/corpus-evidence-retrieval/REPORT.md"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Native producer assignment (EO 10673, EO 10772): 2 query runs over 33,118 readable texts, 19 full hit-source reads, legacy output byte-identical; documented a duplicate-path self-hit, neighboring-regulation signals and an OCR suffix miss.",
+    "source": "F-20261029-cruden-producer in jobs/kean/register/findings.jsonl:76"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Before the cache, a seven-order lookup was the largest remaining machine cost in the PR104 rehearsal (113.6 s).",
+    "source": "F-20261029-7002 in jobs/kean/register/findings.jsonl:68"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Source-bound feature cache added (PR108); legacy matching and the old search command are kept.",
+    "source": "1163323191; research/excavator/claude-nira-sweep-2026-10-29/CRUDEN.md:39-60"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Created in the NIRA sweep so producers stop rebuilding search scripts.",
+    "source": "348071d07d; research/excavator/claude-nira-sweep-2026-10-29/REPORT.md:114-121"
+   }
+  ],
+  "feeds": [
+   "pr104-native-research",
+   "shared-research-continuation-pr110"
+  ],
+  "caveats": [
+   "Producer-operated script that reads a prepared packet folder; not a jobs/ runner dependency.",
+   "A match is a lead, and no match is evidence of absence; nothing about authenticity, identity or legal effect follows.",
+   "The cache is disposable and checked against source bytes; it is not a custody record.",
+   "In the NIRA sweep, batches using Cruden cost less but the saving was not attributed to the tool."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "lifecycle-assurance",
+  "name": "Lifecycle assurance",
+  "catalog_tool": "Lifecycle assurance (PR106)",
+  "jobs": [
+   "research/progress/lifecycle-assurance",
+   "jobs/readiness-tracker"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "verify",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Tightens the ready-for-human-review check so a claim cannot count as ready on exhausted-search credit unless its status was adopted and its gaps were disclosed.",
+  "inputs": [
+   "retained EO 12970 claim and exact Federal Register PDF",
+   "claim-checker and tracker code"
+  ],
+  "outputs": [
+   "tracker repairs (jobs/readiness-tracker/tracker.py)",
+   "replay of seven test variants",
+   "control-scope finding handed to PR104"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "All ten distinct exact-version source-audit holds remain blocked after integration.",
+    "source": "HANDOFF/notes-codex.md:12; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:43"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Planted-control reviews are now tied to the lifecycle task scope; all 59 resolvable historical control reviews were whole-case; 479 claim-kit tests pass.",
+    "source": "F-20261030-7001 in jobs/kean/register/findings.jsonl:74"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "On one source-backed order, the repaired tracker blocked 5 invalid variants and kept the 2 permitted controls ready (unchanged claim; properly disclosed exhausted search); 45 tracker and 50 checker tests pass. Canonical exhaustion records were empty, so no change to the published ready total is claimed.",
+    "source": "research/progress/lifecycle-assurance/REPORT.md:9-21"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Found that a control review of an unrelated scope could count as caught at the completion gate; routed to PR104.",
+    "source": "research/progress/lifecycle-assurance/REPORT.md:27; F-20261029-9102 in jobs/kean/register/findings.jsonl:72"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Tracker now enforces the documented exhaustion prerequisites.",
+    "source": "f750886a00; 0252e3ca54"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "The seven test variants are one order tested seven ways, not seven researched orders.",
+   "Tracker readiness is mechanical; it does not reconstruct reviewer independence or actual source reading.",
+   "No scientific status or certification is inferred."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "lambertini-line",
+  "name": "Lambertini probes (savings and counterevidence claims)",
+  "catalog_tool": "Lambertini",
+  "jobs": [
+   "research/excavator/lambertini-2026-10-20",
+   "jobs/lambertini"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Prospero Lambertini (Benedict XIV), who formalized the devil's advocate's search for counterevidence",
+   "evidence": "jobs/lambertini/README.md:3; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:17",
+   "wikipedia_title_unverified": "Pope Benedict XIV"
+  },
+  "role": "A past run of agents that wrote lifecycle claims for orders sharing one ending order, with an independent AI reviewer checking each claim.",
+  "inputs": [
+   "Lambertini job savings packets",
+   "claim-kit dossiers"
+  ],
+  "outputs": [
+   "reviewed claim lines in research/readiness/claims",
+   "probe outcome files"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit at pin 73d99f6: 93 currently ready cases are associated with 102 filed identities; the catalog's older \"120+ ready, about $1.55 each\" is a historical figure not re-verified.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:95-103; F-20261020-5 in jobs/kean/register/findings.jsonl:17"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probe P1: 6 of 20 upheld (0.30), 0 savings states overturned; only 4 could close a step at once. Scale II: 20 of 24 upheld, 3 of 3 plants caught.",
+    "source": "research/excavator/lambertini-2026-10-20/REPORT.md:18-29; research/excavator/lambertini-2026-10-20/scale/OUTCOME.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Scale III: 52 of 82 upheld (0.634); plants caught 5 of 5 in the five scored batches, three batches unscored; 3 claims checker-unverified.",
+    "source": "research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Coda: 11 of 12 upheld, 2 of 2 plants caught. ViaPar line: 2 of 8 effective upheld, gate failed, stopped.",
+    "source": "research/excavator/lambertini-2026-10-20/coda/OUTCOME.json; research/excavator/lambertini-2026-10-20/viapar/OUTCOME.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Lambertini III's gate-pass outcome was later corrected to \"untested\": only one plant was inserted against a rule of at least two of three.",
+    "source": "PRODUCTION_EVIDENCE.md:97; jobs/llull/ledger/outcomes.jsonl (O-20261020-50)"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Lambertini III batch 02 (8 claims) had no review packet and was unscored; its orders were re-run in the coda.",
+    "source": "research/excavator/lambertini-2026-10-20/instruments/OUTCOME.json"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "All review is AI review; certified count stays 0.",
+   "Ready-case associations overlap other lines and are not additive; the catalog status \"active\" is historical.",
+   "Per-order savings and counterevidence judgment stay with the reader."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "rastell",
+  "name": "Rastell (acting-provision records)",
+  "catalog_tool": "Rastell",
+  "jobs": [
+   "research/excavator/rastell-2026-10-20",
+   "jobs/claim-kit/act_overrides.py"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "John Rastell, early English law printer",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:18",
+   "wikipedia_title_unverified": "John Rastell"
+  },
+  "role": "A past run of agents that found the exact provision where an acting order names the order it ends (mostly the EO 12553 and EO 9830 families), so claim-kit could cite it.",
+  "inputs": [
+   "700-order pool of decided not-ready orders",
+   "held acting-order texts"
+  ],
+  "outputs": [
+   "reviewed ACT provision records (163 ingested by claim-kit)",
+   "claims on enabled orders"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit at pin 73d99f6: 35 filed identities across five claim sublines, all 35 currently ready; these are claims, not 163 histories.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:105-111"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probe: 57 of 69 records upheld (0.826); gate failed because no plants were ever inserted. EO 12553 subline batches 03-08: 108 of 120 upheld, 12 of 12 plants caught. A scratch claim-kit build ingested 163 records and refused 2.",
+    "source": "research/excavator/rastell-2026-10-20/REPORT.md:3-46"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Day review: 6 of 6 claimed Rastell orders became ready; catalog gives 20+ ready (historical).",
+    "source": "research/production/day-review-2026-10-20/REPORT.md:11-13; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:18"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "R12553 nonboard scale: 24 of 42 records upheld, 6 of 6 plants caught, 9 claims filed.",
+    "source": "32af06b712"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "claim-kit gained a reviewed, hash-checked ACT-record ingestion path.",
+    "source": "research/excavator/rastell-2026-10-20/REPORT.md:35; HANDOFF/notes-claude.md:347"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probe run; no ingestion path yet.",
+    "source": "c52fdb8f46"
+   }
+  ],
+  "feeds": [
+   "claim-kit-case-bundles",
+   "tycho-pullman-blackstone"
+  ],
+  "caveats": [
+   "An ACT record locates a provision; it is not a completed history.",
+   "The R12553 gate was later corrected to untested because the registered plant condition was not exercised.",
+   "Ends rest on the EO 12553 on-signing reading and are upper bounds for orders with earlier-end leads."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "lamm",
+  "name": "Lamm (fixed-term and sunset orders)",
+  "catalog_tool": "Lamm",
+  "jobs": [
+   "research/excavator/lamm-2026-10-20"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (the repo does not say who or what Lamm is named for)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A past run of agents that wrote claims for orders that end by their own fixed term or sunset date.",
+  "inputs": [
+   "577-order own-term pool",
+   "held texts (mostly compiled transcriptions)"
+  ],
+  "outputs": [
+   "own-term end records",
+   "claim lines for sunset orders"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit at pin 73d99f6: 12 filed identities, 9 currently ready; the easy population ran out. Catalog: stopped, sunsets exhausted.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:127-131; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:19"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probe: 23 of 40 own-term ends upheld (0.575) but 0 claims enabled, every upheld end resting on a transcription; gate void because no plants were inserted.",
+    "source": "research/excavator/lamm-2026-10-20/REPORT.md:14-30"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Sunsets II: 3 of 3 plants caught; 10 claim lines copied and all passed the checker. Sunsets III: 38 attempted, 5 own-term ends upheld, 2 claims; 84 emergency-board report-date fetch lines queued.",
+    "source": "research/excavator/lamm-2026-10-20/sunsets/REPORT.md:5-21; research/excavator/lamm-2026-10-20/sunsets3/OUTCOME.json; HANDOFF/notes-claude.md:332"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Lines stopped: Lamm sunsets exhausted.",
+    "source": "HANDOFF/notes-claude.md:341"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Sunset remainder and report-date queue (Lamm III).",
+    "source": "de6749c8d7"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probe run.",
+    "source": "f4073ec66d"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "source-ladder"
+  ],
+  "caveats": [
+   "Not a general result for all spent orders; the easy sunset population was small.",
+   "Upheld ends on transcriptions still need the original-text step.",
+   "Owner rulings on \"until\" dates and \"further exempt\" were later given (2026-10-21)."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "bowditch",
+  "name": "Bowditch (status probes Y1 and Y2)",
+  "catalog_tool": "Bowditch",
+  "jobs": [
+   "research/excavator/bowditch-2026-10-20"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Nathaniel Bowditch, navigator",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:20",
+   "wikipedia_title_unverified": "Nathaniel Bowditch"
+  },
+  "role": "Two past random probes of the funnel plan: Y1 proposed provisional yes/no statuses for orders with none, and Y2 tried to write modern claims in bulk.",
+  "inputs": [
+   "Y1 pool of 4,271 modern orders with no status",
+   "Y2 pool of 2,022 modern orders with draft but no claim"
+  ],
+  "outputs": [
+   "15 NO status proposals (later adopted)",
+   "3 filed claims"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "The 15 Y1 proposals were adopted by owner pull request #51 and counted among the 3,403 provisional statuses; none is a ready whole history.",
+    "source": "bb36bd7a20; research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv (decision_origin); research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:121-125"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Y1: 50 attempted, 15 NO proposals accepted, 0 of 15 reviewer disagreements, about 1.5 combined minutes each; reviewer was a single pass of the same model family. A calibrated Opus re-review upheld 15 of 15 (3 with defects).",
+    "source": "research/excavator/bowditch-2026-10-20/REPORT.md:30-34; 65009a0bd7"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Y2: 50 attempted, 3 upheld (6%) against a target of at least 50%; 2 of 5 submitted claims rejected. Failed the gate and was not scaled.",
+    "source": "research/excavator/bowditch-2026-10-20/REPORT.md:23-28; F-20261020-2 in jobs/kean/register/findings.jsonl:14"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Y1 recheck with a calibrated reviewer after the first probe.",
+    "source": "65009a0bd7"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Probes run; 53 fetch requests added to the queue.",
+    "source": "46f91fdac2; research/excavator/bowditch-2026-10-20/REPORT.md:43"
+   }
+  ],
+  "feeds": [
+   "owner-rulings-and-status-adoption",
+   "claim-checker-readiness-tracker",
+   "source-ladder"
+  ],
+  "caveats": [
+   "Status proposals are AI hypotheses, not findings.",
+   "Y2 failed mainly because most orders had no held ending instrument or current-law predicate.",
+   "Small samples, so rates are noisy."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "sinclair",
+  "name": "Sinclair (status sweep with cross-family review)",
+  "catalog_tool": "Sinclair",
+  "jobs": [
+   "research/excavator/sinclair-2026-10-20"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Upton Sinclair",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:21",
+   "wikipedia_title_unverified": "Upton Sinclair"
+  },
+  "role": "A past sweep that proposed provisional NO statuses for modern orders with none, then had a second AI model family review them before the owner adopted any.",
+  "inputs": [
+   "4,137-order Y1 pool",
+   "blind Opus reviewers",
+   "Codex cross-family reviewer"
+  ],
+  "outputs": [
+   "29 adopted provisional NO statuses",
+   "2 proposals held for research"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Lean review of 41 proposals (39 genuine, 2 planted): 37 upheld, 2 rejected, both plants caught.",
+    "source": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/REPORT.md:7-20"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Codex cross-family review of 31: 29 upheld, 2 need research (EO 9380, EO 9593), 0 rejected; statuses 3,374 to 3,403 once the owner merged PR #52; 3 of 3 fresh plants caught.",
+    "source": "research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_REPORT.md:3-9; 44f794a92c; F-20261022-3 in jobs/kean/register/findings.jsonl:39"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Sweep of 150 orders: 42 proposed, 35 NO upheld by reviewers, 6 of 6 planted errors caught; probe gate failed (batch 01 had 4 accepted, 5 needed); batches 01-05 were stale and could not be filed until re-frozen.",
+    "source": "research/excavator/sinclair-2026-10-20/REPORT.md:3-35"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-22",
+    "text": "Adoption limited to the 15 approved Bowditch rows; Sinclair kept pending cross-family review.",
+    "source": "da79279f89"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Six disputed proposals held separately from the 46 pending adoptions.",
+    "source": "316aa11976"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "First adoption commit: 52 rows (15 Bowditch and 37 Sinclair upheld in the lean review).",
+    "source": "e07f115f12"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Sweep run; batch 06 re-frozen as the only current proposals.",
+    "source": "a512aac257"
+   }
+  ],
+  "feeds": [
+   "owner-rulings-and-status-adoption"
+  ],
+  "caveats": [
+   "Statuses are provisional AI hypotheses, not findings or certification.",
+   "Only EO 10704 and EO 13975 of the 29 are currently ready (tool-tier audit); do not add status and lifecycle contributions.",
+   "The catalog's \"2 rejected\" differs from the cross-family report (2 need research, 0 rejected)."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "craigellachie",
+  "name": "Craigellachie (last-step claims)",
+  "catalog_tool": "Craigellachie",
+  "jobs": [
+   "research/excavator/craigellachie-2026-10-20",
+   "research/excavator/craigellachie-ii-2026-10-20"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "the last-spike ceremony on the Canadian Pacific",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:22",
+   "wikipedia_title_unverified": "Craigellachie, British Columbia"
+  },
+  "role": "A past run that tried to finish orders whose only open step was the ending, and found none could be finished because the needed sources were not held.",
+  "inputs": [
+   "23 last-step orders (all provisional NO)",
+   "5-order retry after fetches"
+  ],
+  "outputs": [
+   "block reasons",
+   "27 source fetch requests"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit: zero upheld from 28 attempts; stopping was useful discipline but the line has no direct completion contribution.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:231-235"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Craigellachie I: 23 attempted, 0 upheld, all 23 blocked and judged justified (report dates, statutes, a pay-period date not held); forecast upheld rate 0.15 against 0.0 measured.",
+    "source": "research/excavator/craigellachie-2026-10-20/REPORT.md:3-22"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Craigellachie II after fetches: 5 attempted, 0 upheld, 1 rejected (EO 11367, a later order removed the inserted words), 4 justified blocks; no plants scored.",
+    "source": "research/excavator/craigellachie-ii-2026-10-20/REPORT.md:1-22"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Second run after the fetches; fetch defects found.",
+    "source": "cade0ba952"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "First run; 27 fetch requests queued.",
+    "source": "439e274ab4"
+   }
+  ],
+  "feeds": [
+   "source-ladder"
+  ],
+  "caveats": [
+   "\"One step left\" did not make unheld report dates, statutes or regulations disappear.",
+   "Stopped; no claims were filed."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "tycho-pullman-blackstone",
+  "name": "Tycho, Pullman and Blackstone (owner question packets)",
+  "catalog_tool": "Tycho · Pullman · Blackstone",
+  "jobs": [
+   "research/excavator/pullman-2026-10-20",
+   "research/excavator/blackstone-2026-10-20"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Pullman: the 1894 Pullman strike; Blackstone: his Commentaries on repeal and re-enactment; Tycho: the catalog says Tycho Brahe and the repo gives no reason",
+   "evidence": "research/excavator/pullman-2026-10-20/README.md:3; research/excavator/blackstone-2026-10-20/README.md:3; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:23",
+   "wikipedia_title_unverified": "Pullman Strike"
+  },
+  "role": "Pre-staged evidence packets and a written question that let the owner rule once on report deadlines and strike-and-insert amendments, so whole groups of orders could proceed.",
+  "inputs": [
+   "EO 12553 emergency-board targets",
+   "strike-and-insert orders",
+   "committed claims"
+  ],
+  "outputs": [
+   "98 staged packets (Pullman)",
+   "7 blocked orders and options A/B/C (Blackstone)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Catalog records a Justinian run on Pullman orders (16 of 100 attempted, 14 reviewed, 11 upheld, 3 rejected, 2 of 2 plants caught). Its completion report was not found on main or the inspected branch, so the 11 are historical and unverified.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:23; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:207-213"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Pullman: 98 packets pre-staged without agents (89 core, 9 extra); 63 core packets fully staged. These are packets, not histories.",
+    "source": "research/excavator/pullman-2026-10-20/README.md:5-27; 7e9ae7249e"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Blackstone: 7 orders blocked on strike-and-insert; committed claims split 43 \"ends\" against 28 \"continues\". The owner ruled on 2026-10-21: report-deadline option C, strike-and-insert option B.",
+    "source": "research/excavator/blackstone-2026-10-20/README.md; d7d102b269; research/readiness/owner_rulings/2026-10-21-report-deadline.md; research/readiness/owner_rulings/2026-10-21-strike-and-insert.md"
+   }
+  ],
+  "history": [],
+  "history_note": "no iteration history recorded beyond the two single-commit packets (7e9ae7249e, d7d102b269)",
+  "feeds": [
+   "owner-rulings-and-status-adoption"
+  ],
+  "caveats": [
+   "Packet counts (98) differ from the catalog's \"100 Pullman orders\"; the repo does not reconcile them.",
+   "No claim was written by these folders and the ruling is not decided in them.",
+   "Current production by this line is unverified."
+  ]
+ },
+ {
+  "id": "mansfield",
+  "name": "Mansfield (judgment-only claims)",
+  "catalog_tool": "Mansfield",
+  "jobs": [
+   "research/excavator/mansfield-2026-10-22"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Lord Mansfield, who cleared a clogged docket by deciding the cases that were already ripe",
+   "evidence": "research/excavator/mansfield-2026-10-22/PROTOCOL.md:3; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:36",
+   "wikipedia_title_unverified": "William Murray, 1st Earl of Mansfield"
+  },
+  "role": "A past run that wrote full claims for modern orders whose drafts said only judgment was left, with an independent Opus review of every line.",
+  "inputs": [
+   "743-order \"only judgment left\" pool from the claim-drafts to-do list",
+   "claim-kit packets"
+  ],
+  "outputs": [
+   "14 filed claim lines",
+   "block reasons for 16 orders"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit: the \"only judgment left\" label hid missing, truncated or misassociated evidence, and a material-omission control failed; pull request #54 stayed open and unmerged.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:181-189"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Codex review and integration under current evidence rules: 12 new exact claims, 25 cited text/hash pairs checked, four current-rule audit holds recorded.",
+    "source": "F-20261029-94 in jobs/kean/register/findings.jsonl:60"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "30 orders attempted: 14 claims filed, 16 blocked, 9 genuine blind-upheld and 0 genuine rejected, 4 of 5 plants caught; gate failed at 0.30 upheld per attempt against 0.5 (0.47 counting after-reveal re-reviews); about $55 (estimated from transcript size).",
+    "source": "research/excavator/mansfield-2026-10-22/REPORT.md:16-40; F-20261022-2 in jobs/kean/register/findings.jsonl:34"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Branch work integrated with preserved evidence holds.",
+    "source": "230649a935"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Pool, seeded batch plan and protocol written.",
+    "source": "14ae1f849c"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "The YES stratum was never attempted.",
+   "The $55 is an estimate, not billing data.",
+   "Not a current process; the catalog status \"stopped\" stands."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "olney",
+  "name": "Olney (emergency-board and strike-and-insert claims)",
+  "catalog_tool": "Olney",
+  "jobs": [],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "Richard Olney, who after the Pullman strike wrote the railway arbitration law",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:37",
+   "wikipedia_title_unverified": "Richard Olney"
+  },
+  "role": "A planned run to finish the emergency-board and strike-and-insert claims for the 84 Pullman and Blackstone orders that earlier work did not reach, under the owner's Oct 21 rulings.",
+  "inputs": [
+   "84 unattempted Pullman and Blackstone orders"
+  ],
+  "outputs": [
+   "none recovered"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Catalog records only a start (22:11 UTC) and a cap of about $120. No Olney completion directory exists on main and no claude/olney-1 branch was found, so no outcome or ready-order credit is established.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:37; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:215-221; research/progress/remaining-work/snapshots/2026-10-29/TOOLS_REFRESH_AUDIT.json:21"
+   }
+  ],
+  "history": [],
+  "history_note": "no iteration history recorded; the Mansfield brief says claude/olney-1 did not exist on origin on 2026-10-22",
+  "feeds": [],
+  "caveats": [
+   "The catalog status \"active\" is historical, not a running process.",
+   "Absence of a report is not proof that no work happened."
+  ]
+ },
+ {
+  "id": "justinian",
+  "name": "Justinian (owner question generator)",
+  "catalog_tool": "Justinian",
+  "jobs": [
+   "research/progress/branch-recovery-2026-10-29/legacy/claude-justinian-1"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "support",
+  "namesake": {
+   "text": "Justinian's Digest, the law reduced to settled questions",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:34",
+   "wikipedia_title_unverified": "Digest (Roman law)"
+  },
+  "role": "Meant to turn open blockers into multiple-choice questions for the owner so one ruling settles a whole class of orders.",
+  "inputs": [
+   "open blockers by class",
+   "the recorded owner rulings"
+  ],
+  "outputs": [
+   "30 class-level owner questions (per the catalog; file not found at the pin)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Catalog states 30 class-level owner questions were drafted, ordered by orders settled and checked against eight recorded rulings (branch claude/justinian-1). The questions file and a completion report were not found at the pin; the archived branch holds only a Junto contract, a seed and a pool-id list.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:34; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:211; research/progress/branch-recovery-2026-10-29/legacy/claude-justinian-1/ARCHIVE_NOTICE.md"
+   }
+  ],
+  "history": [],
+  "history_note": "no iteration history recorded",
+  "feeds": [
+   "owner-rulings-and-status-adoption"
+  ],
+  "caveats": [
+   "The catalog says \"wired\", but no current code or output was found; treat as historical.",
+   "The \"Justinian run\" of 16 Pullman orders is described under the Tycho row and is unverified.",
+   "Preserved branch material is archival; nothing in it is activated."
+  ]
+ },
+ {
+  "id": "nira-sweep",
+  "name": "NIRA code-approval sweep",
+  "catalog_tool": "",
+  "jobs": [
+   "research/excavator/claude-nira-sweep-2026-10-29"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (named for the subject, the NIRA codes of fair competition; no person)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A past run that did the shared legal analysis of the NIRA repeal once, reviewed it, and then worked the NIRA code-approval orders through the ordinary claim route in seven batches.",
+  "inputs": [
+   "NIRA code-approval orders",
+   "independently reviewed shared analysis",
+   "claim-kit packets"
+  ],
+  "outputs": [
+   "91 filed claims",
+   "41 blocked or held orders with causes",
+   "Cruden and cost tools"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "132 orders attempted: 91 claims upheld by blind review and filed, 41 blocked or held; 10 of 10 valid planted controls caught. Isolated tracker replays started from the then-published 395 ready.",
+    "source": "research/excavator/claude-nira-sweep-2026-10-29/REPORT.md:3-9; F-20261029-5 in jobs/kean/register/findings.jsonl:54"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Weighted tokens per filed claim: 1.75M for the one ordinary-route batch of six against about 0.24M for batches t2, t4, t5 and t6 using the shared analysis; matched six-order pair 7.01M against 3.26M. The report calls the payback figures estimates.",
+    "source": "research/excavator/claude-nira-sweep-2026-10-29/REPORT.md:35-73"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Cruden lookups, transcript cost table and completion-manifest writer added.",
+    "source": "348071d07d"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Shared analysis committed after independent review (one planted false proposition caught, five corrections).",
+    "source": "e10d2c3bf8; research/excavator/claude-nira-sweep-2026-10-29/REPORT.md:27-33"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "cruden-retrieval-cache"
+  ],
+  "caveats": [
+   "All review is same-family (Anthropic, separate contexts); a different-family check was prepared but not run.",
+   "The 155 status-gated NRA orders received no claims; the baseline is a single batch of six.",
+   "Found that committing in-flight packets stales every packet; the fix needed owner approval (question A-20261029-1).",
+   "The later PR110 work did not approve the shared universal June 14, 1935 first-ending inference."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "spent-order-probe",
+  "name": "Spent-order probe (PR #74)",
+  "catalog_tool": "",
+  "jobs": [
+   "research/excavator/claude-spent-probe-2026-10-28"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A past 20-order test of whether simple pre-1937 orders that end by their own terms could be taken through claim-kit with blind review and planted controls.",
+  "inputs": [
+   "20 pre-1937 own-terms orders (retirement exemptions, closing days, eight-hour suspensions)",
+   "held working-text transcriptions"
+  ],
+  "outputs": [
+   "15 filed claims"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Tool-tier audit at pin 73d99f6: 13 of the 15 filed cases remain ready.",
+    "source": "research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:76-80"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "20 attempted, 15 claims filed after blind review, both planted controls caught; ready count then moved 285 to 300. EO 7208 held (live-harvested page has changed); 4 eight-hour orders blocked.",
+    "source": "F-20261028-7 in jobs/kean/register/findings.jsonl:46; 5f5c5e9c54"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Audited effort: 88.45 recorded worker-minutes over 15 filed claims is 5.90 minutes per filed claim; coordinator time is not counted.",
+    "source": "F-20261028-9 in jobs/kean/register/findings.jsonl:48; research/progress/tool-tier-audit-2026-10-29/PRODUCTION_EVIDENCE.md:76-93"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "An earlier 20-order attempt was mostly blocked by tool defects (2 submittable, 18 blocked); the grade-inference and date-lookup bugs were fixed before the rerun.",
+    "source": "F-20261028-4 in jobs/kean/register/findings.jsonl:43"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Final probe commit with claims and control receipts.",
+    "source": "a295e926ff"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "Does not transfer to land, standing or civil-service-waiver orders.",
+   "The follow-on scale batches (106 attempted, 88 filed, PR #75) are a separate line not described here.",
+   "Same-family review. Of the separate scale batches, 3 filed cases (EO 254, 2171, 4354) were still under source-byte holds at the audit."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "pr104-native-research",
+  "name": "PR104 native rehearsal",
+  "catalog_tool": "",
+  "jobs": [
+   "research/excavator/opus-native-rehearsal-2026-10-29"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (named for a pull request number; no person)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A past real-batch test of the repaired claim-kit and Valla code on seven NIRA orders: fresh packets, blind review with a planted control, and the native completion step.",
+  "inputs": [
+   "7 NIRA orders",
+   "shared NIRA analysis",
+   "repaired claim-kit and Valla code"
+  ],
+  "outputs": [
+   "5 isolated eligible claims in the rehearsal tree only",
+   "2 retained blocks"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Retained completion on the integrated generation: 7 attempted, 5 changed-prior-research exceptions, 2 blocked, 0 currently eligible or published. Valla loaded 97 packages and examined 0 reasoning dependencies.",
+    "source": "HANDOFF/final-integration-2026-10-30.json:52; HANDOFF/notes-codex.md:14; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:30"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "In the isolated rehearsal: 5 plain approvals upheld and eligible, EO 6254 and EO 6438 held, planted control EO 6310 caught; nothing written to the canonical claims.",
+    "source": "research/excavator/opus-native-rehearsal-2026-10-29/REPORT.md:11-36"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Same inputs, machine path 214.0 s before and 53.5 s after the repairs; model-token totals do not support a saving claim.",
+    "source": "research/excavator/opus-native-rehearsal-2026-10-29/REPORT.md:38-73"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Rehearsal committed (isolated tree; adoption dry run reproduced the same bytes).",
+    "source": "b8199bd30b"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Folded into integration PR #107 with PRs 103, 104, 105, 106, 108, 109 and 110.",
+    "source": "3c21be6f10; HANDOFF/notes-codex.md:11"
+   }
+  ],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Engineering validation only; code adoption is not scientific acceptance.",
+   "Old packets refuse changed prior research; new packet versions and exact reviews are required before any filing.",
+   "The new Valla reasoning-dependency capability was implemented but not observed in production."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "shared-research-continuation-pr110",
+  "name": "Shared research continuation (PR110)",
+  "catalog_tool": "Shared research continuation (PR110)",
+  "jobs": [
+   "research/excavator/shared-research-production"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (named for a pull request number; no person)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A past run that reviewed shared NRA source research again with a second AI model family and applied it to 14 orders, keeping exact blocks and owner routes.",
+  "inputs": [
+   "shared NRA brief",
+   "14 orders (6 new, 8 reconciliations)",
+   "Cruden lookups"
+  ],
+  "outputs": [
+   "reviewed applications",
+   "eight block records and four owner routes"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Integrated completion: 14 assignments, 2 changed-prior-research exceptions, 8 blocked, 4 owner routes, 0 currently eligible or published.",
+    "source": "HANDOFF/final-integration-2026-10-30.json:162; HANDOFF/notes-codex.md:14; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:44"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "The run's own isolated native replay had counted 2 eligible (EO 6847A, EO 6925A) and a tracker move from 395 to 397; this was not reproduced on the integrated generation and is not adopted.",
+    "source": "research/excavator/shared-research-production/REPORT.md:5-16; research/progress/final-integration-2026-10-29/REPORT.md:57"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Retained as qualified research with original ancestry; no canonical claim or status write.",
+    "source": "research/progress/final-integration-2026-10-29/REPORT.md:57"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Delivery linked and remote scope verified.",
+    "source": "4b4f0c0d89"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Shared conditions reviewed and two isolated native claims completed.",
+    "source": "bbc66a83f4"
+   }
+  ],
+  "feeds": [
+   "owner-rulings-and-status-adoption"
+  ],
+  "caveats": [
+   "A common first-ending date for all NRA orders is not established; the June 14, 1935 repeal event is supported but its universal first-ending use is not approved.",
+   "Both would-be new rows were transcription-dependent and needed original replacement.",
+   "A bounded non-NRA transfer screen (EO 12379) found no source-ready cohort."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "owner-rulings-and-status-adoption",
+  "name": "Owner rulings and status adoption",
+  "catalog_tool": "",
+  "jobs": [
+   "research/readiness/owner_rulings",
+   "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
+  ],
+  "kind": "gate",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (descriptive name; the repo states no namesake)",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Where the owner decides legal-method questions and adopts AI-proposed provisional statuses by merging a pull request, so agents may then proceed on whole groups of orders.",
+  "inputs": [
+   "owner question packets",
+   "AI status proposals with independent review"
+  ],
+  "outputs": [
+   "written owner rulings",
+   "adopted provisional statuses (3,403 rows)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Kean brief lists 11 questions waiting for the owner (including A-20261028-4 on who may adopt statuses for orders with none, and A-20261021-3 on sampled review) and one owner decision only partly wired into the tools (D-20261021-transcriptions).",
+    "source": "HANDOFF/KEAN.md:11-23, 30-33"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Fourteen rulings and decisions are on file, dated 2026-10-21 to 2026-10-29: report deadlines (option C), strike-and-insert (option B), unnamed instruments (option C), until dates, EO 10449, transcriptions as working text, ProQuest, status adoption by pull request.",
+    "source": "research/readiness/owner_rulings/ (14 files)"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Statuses file (last changed this day) has 3,403 provisional statuses (2,998 no, 405 yes), including 15 Bowditch and 29 Sinclair adoptions by owner pull request; human-certified whole-lifecycle count is 0.",
+    "source": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv; research/excavator/sinclair-2026-10-20/lean-review-2026-10-22/CROSS_FAMILY_REPORT.md:3-9"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-22",
+    "text": "Adoption commits in order: 52 rows proposed (e07f115f12), six disputed held (316aa11976), limited to 15 Bowditch (da79279f89), then 29 Sinclair proposed after cross-family review (fceb974e5b).",
+    "source": "e07f115f12; 316aa11976; da79279f89; fceb974e5b"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Owner ruling: adopt the 15 Bowditch proposals; send Sinclair's 41 through a lean independent review first.",
+    "source": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md"
+   }
+  ],
+  "feeds": [
+   "claim-drafts",
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Adopted statuses are provisional AI hypotheses, not findings or certification.",
+   "Rulings are not all verified against tool behavior; Kean lists five as \"not yet checked against the tools\".",
+   "Some blocked groups wait here: e.g. about 200 spent and about 2,980 land orders have no status."
+  ],
+  "history_note": ""
+ }
+]

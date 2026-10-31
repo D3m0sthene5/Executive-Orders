@@ -1,3 +1,11 @@
+## 2026-10-31: Apollo Workflow tab published and independently reviewed
+
+- **Done:** Added Workflow to the original private Apollo artifact, with79 jobs/campaigns/gates across discovery, identity, sources, drafting, research, independent review, mechanical checks and human review; cross-stage support has its own lane. Hover/focus supplies namesakes and links; click/Enter pins dated results/history and source links. Search and status filters preserve the map's spatial context.
+- **Review:** Frozen source `04ed4cac94b18f41512310959655542e97bf520c` approved by a fresh independent engineering reviewer after shared-stat attribution, hardcoded-count, source-path and Sinclair-history corrections; mobile Close/Escape returns to the selected box.111 retained interaction checks;6 builder tests; independent offline JSON/CSV equality and301 normalized source paths. Live browser readback and screenshot in `research/progress/remaining-work/workflow/REVIEW.md` and `APOLLO_WORKFLOW.jpg`. Kean `F-20261031-apollo-workflow-review`.
+- **Use:** Source archived in `research/progress/remaining-work/dashboard/index.html`. Existing tools/mission feeds continue supplying current statistics; `build_workflow_nodes.py` supplies the new workflow metadata feed. All seven old feeds and four old tabs preserved. NORTON's original Margaret Cross Norton naming recovered; Lamm remains explicitly inferred.
+- **Limits/costs:** No scientific records, holds or authority changed; readiness generation remains35b9a7585d (498ready,0human-certified). No production rerun needed for this UI change. Bounded Sol inventory plus fresh independent engineering review; authoring session displayed Opus5.5High with Sonnet5.5 readers. Exact isolated tokens/cost/time unavailable; no savings claimed.
+- **Asks:** @Owner: none. No background monitoring remains after final publication.
+
 ## 2026-10-30 ET: Apollo dashboard refreshed; parallel-session results explained
 
 - **Done:** Updated all seven CSV feeds in the existing Claude Apollo artifact, preserving the rocket and frozen Mission weights. Saved data matched after reload. Official production `35b9a7585d` replaces the 488 local preview: 498 ready, 306 original-supported / 192 transcription-dependent, 612 matching receipts, 0 human-certified. Mission 11.615%, T+12h42m; 14,067 remaining agent-hours are model estimates.

@@ -1,0 +1,1079 @@
+[
+ {
+  "id": "fr-originals-pages",
+  "name": "Federal Register originals and pages",
+  "catalog_tool": "fr-originals",
+  "jobs": [
+   "jobs/fr-originals",
+   "jobs/fr-pages"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Fetches the official govinfo Federal Register printing of each order (and, for fr-pages, specific wanted pages such as Public Land Orders), saves the order's own pages and records which file and pages the text came from.",
+  "inputs": [
+   "OFR executive-order index snapshot (6,939 records, 1937-2026)",
+   "census of orders",
+   "fr-pages wanted list (30 Public Land Order pages)",
+   "Shepard PLO table"
+  ],
+  "outputs": [
+   "order text per order",
+   "source records with sha256 and page range",
+   "claim fragments (location_verified false)",
+   "page-extract PDFs for fr-pages",
+   "not-found list with reasons"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "fr-pages: 30 wanted pages, 30 held (9 high, 3 medium, 18 low location confidence), 28 committed page-extract PDFs, 2 record-only, 0 failures. Location leads, not authenticated transcriptions.",
+    "source": "jobs/fr-pages/output/SUMMARY.json; jobs/fr-pages/README.md:9-10"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "fr-originals: 6,497 of 7,214 orders in scope found (catalog: 6,497 Federal Register originals); 717 not found (436 'not received for publication', 275 from 1936, which the index does not cover). After the pdfplumber recheck 6,229 are high confidence, 121 medium, 147 low; 268 still need a page check.",
+    "source": "jobs/fr-originals/output/SUMMARY.json; jobs/fr-originals/data/full_run/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:2"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Opt-in recheck of 421 medium/low finds upgraded 155 to high, left 266 unchanged, 0 errors.",
+    "source": "jobs/fr-originals/data/full_run/RECHECK_SUMMARY.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "fr-pages linked to held Public Land Order extracts and native supplements; optional acquisition bounded.",
+    "source": "1d278e2108"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "fr-pages added with the Shepard index for land orders; then changed to commit only page extracts, never whole issues.",
+    "source": "f193e992f6; 4aebda7864"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Recheck pass for medium/low finds added; the full 7,214-order run was committed to data/full_run.",
+    "source": "104560da5a; dbeafb6082"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Parallel worker processes added for the multi-hour download.",
+    "source": "18ab8899f7"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "fr-originals added as job 2 alongside the source ladder.",
+    "source": "b80769c0a3"
+   }
+  ],
+  "feeds": [
+   "official-fixity",
+   "claim-checker-readiness-tracker",
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Source custody and location leads only; location_verified is false for every fragment (no person has looked at the pages).",
+   "Only high confidence may count without a page check; medium and low carry needs_page_check (jobs/fr-originals/README.md:59-63).",
+   "OCR text of old scans contains errors and neighbouring documents.",
+   "fr-pages is not in the catalog as its own row; it is grouped here because it reuses the same locator.",
+   "Changes no status or count."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "source-ladder",
+  "name": "Source ladder (Panizzi)",
+  "catalog_tool": "source-ladder (Panizzi)",
+  "jobs": [
+   "jobs/source-ladder"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Antonio Panizzi, British Museum cataloguer (as stated in the catalog); the code names its upgrade rounds PANIZZI and PANIZZI-2.",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:3; jobs/source-ladder/embedded_cites.py:1",
+   "wikipedia_title_unverified": "Anthony Panizzi"
+  },
+  "role": "Walks a ladder of official routes (govinfo, eCFR, statutes, Federal Register, board reports) for every source request agents or other jobs queue, saving each document with its hash, and finds citations buried in prose.",
+  "inputs": [
+   "research/readiness/FETCH_QUEUE.jsonl requests",
+   "Opus re-fetch URLs",
+   "shared-source requests from stage 20",
+   "OFR index snapshot"
+  ],
+  "outputs": [
+   "source records (SOURCES.jsonl) with sha256",
+   "saved document texts and report records",
+   "attempt, exhausted-proposal and rejected-prior-source logs"
+  ],
+  "results": [
+   {
+    "date": "2026-10-24",
+    "text": "Run finished 2026-10-24T02:59Z: 632 sources found covering 747 orders (544 document texts, 88 report records), 23 new in that run; 1,818 items in queue, 182 worked, 132 with no route; 47 network requests, 822,061,830 bytes downloaded.",
+    "source": "jobs/source-ladder/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:3"
+   },
+   {
+    "date": "2026-10-24",
+    "text": "Of the 17 rejected FETCH_QUEUE rows examined at 91116f8, 15 were corrected into valid requests and 2 stayed partly unresolved (EO8586, EO9518 need their ending instruments identified).",
+    "source": "jobs/source-ladder/README.md:39-62"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-26",
+    "text": "Six-case sequencing trial completed; five source-reviewed proposals filed.",
+    "source": "3eebf83f88"
+   },
+   {
+    "date": "2026-10-25",
+    "text": "NMB record-series route added to bridge an order date to a board-appointment date through institutional records.",
+    "source": "1caa42af95"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Panizzi II: report/transmittal-date route (NMB, WCPD, Public Papers) and fixes for gzip, truncated Public Laws, wrong-edition CFR/USC; later the same day, re-walks of PDFs whose kept pages miss the requested pages.",
+    "source": "d9d00c8857; 8da0010272"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Panizzi: citations embedded in prose, Public Law and Reorganization Plan routes, queue-first bounded plan.",
+    "source": "b5aeb93d0a"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Added as job 1 with fr-originals.",
+    "source": "b80769c0a3"
+   }
+  ],
+  "feeds": [
+   "official-fixity",
+   "claim-checker-readiness-tracker",
+   "lewis-originals",
+   "shepard-citations"
+  ],
+  "caveats": [
+   "Finds are retrieval results, not authenticated originals; every retained receipt is revalidated and known-invalid ones are quarantined.",
+   "A local-association screen is a heuristic; a found edition does not show which provision was in force on a given day.",
+   "Lewis proposes new requests, but the owner must enqueue them (jobs/lewis-originals/README.md:69-72), so this is a loop, not a one-pass chain.",
+   "Catalog numbers are the Oct 24 run; they overlap other tools' counts and must not be summed."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "official-fixity",
+  "name": "Official fixity check",
+  "catalog_tool": "official-fixity",
+  "jobs": [
+   "jobs/official-fixity"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Compares the fingerprint (sha256) of each govinfo file the project holds with the fingerprint GPO itself publishes, to show the copy is byte-for-byte what GPO publishes.",
+  "inputs": [
+   "every jobs/*/output/SOURCES.jsonl govinfo file",
+   "fr-originals full run",
+   "family rule files",
+   "GPO PREMIS preservation records"
+  ],
+  "outputs": [
+   "FIXITY.csv per file",
+   "MATCHED_BY_SHA256.json lookup",
+   "orders with a GPO-matched file"
+  ],
+  "results": [
+   {
+    "date": "2026-10-24",
+    "text": "5,159 files checked: 3,436 match, 5 partial match, 1,718 not listed (single-document PDFs from 1995 on, which GPO's records do not list); 0 mismatches; 5,070 orders have a GPO-matched file.",
+    "source": "jobs/official-fixity/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:4"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "First measurement: 300 files in 10 s with 6 workers; 291 match, 9 not listed, 0 mismatches.",
+    "source": "jobs/official-fixity/README.md:20-21"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-17",
+    "text": "Added together with the pdfplumber recheck pass and byte-stable fixtures.",
+    "source": "6de84f9cfe"
+   }
+  ],
+  "feeds": [],
+  "caveats": [
+   "Custody evidence only: proves byte identity with GPO's file, not that the file is the right order or authentic.",
+   "Not-listed files keep only the project's own hash.",
+   "Nothing here changes a status or count."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "opus-media-match",
+  "name": "Opus media match",
+  "catalog_tool": "opus-media-match",
+  "jobs": [
+   "jobs/opus-media-match"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Reads what is printed on each Opus evidence PDF or page image and matches it to the order it belongs to, then lists which original files must still be re-fetched.",
+  "inputs": [
+   "Opus Stage 11 evidence zip (496 PDFs and images)",
+   "Opus case records (1,155 orders)",
+   "Stage 20 member map"
+  ],
+  "outputs": [
+   "MATCHES.csv per file/order pair",
+   "OPUS_CASE_MEDIA_STATUS.csv (1,155 rows)",
+   "REFETCH_LIST.jsonl (848 URLs)",
+   "fragments"
+  ],
+  "results": [
+   {
+    "date": "2026-10-18",
+    "text": "496 files processed (0 hash mismatches); 1,155 case statuses; 848 re-fetch URLs covering 492 accepted orders; of 844 accepted Opus orders 364 have a unique_supported file, 68 ambiguous only, 412 no member signal; 143 fragments written.",
+    "source": "jobs/opus-media-match/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:5"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "The tracker summary published at 02:18:57Z still shows OPUS_MEDIA_REFETCH_NEEDED = 431 orders.",
+    "source": "jobs/readiness-tracker/output/SUMMARY.json:86"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-17",
+    "text": "Job added; then REFETCH_LIST.jsonl added.",
+    "source": "3c93c45e0b; 15adfd361f"
+   }
+  ],
+  "history_note": "No later iteration recorded; one run on 2026-10-18 (STATUS.json).",
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "official-fixity"
+  ],
+  "caveats": [
+   "unique_supported means content-supported for a pair, not one order per file; most pairs are cited sources, not the order's own printing.",
+   "Machine leads only; no authenticity, ending or legal status.",
+   "The 431 figure is the tracker's own count and is not additive with other tools' counts."
+  ]
+ },
+ {
+  "id": "csc-annual-reports",
+  "name": "Civil Service Commission annual reports",
+  "catalog_tool": "csc-annual-reports",
+  "jobs": [
+   "jobs/csc-annual-reports"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Cuts the texts of WPA-cited gap orders (waiver orders) out of the Civil Service Commission's printed annual reports.",
+  "inputs": [
+   "840 target ids from GAP_ROUTES.csv",
+   "CITATIONS.csv (WPA entries)",
+   "GovInfo Serial Set report PDFs"
+  ],
+  "outputs": [
+   "order text per located order",
+   "fragments graded compiled_transcription_lead",
+   "per-citation results"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "798 of 840 targeted orders located (625 high, 141 medium, 32 low); 42 not located; 37 report packages fetched, 5.1 GB. Catalog: case-level page checks and claim confirmation remain required.",
+    "source": "jobs/csc-annual-reports/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-21",
+    "text": "Wired into the readiness tracker as a working-text source.",
+    "source": "ed84d9acc9"
+   },
+   {
+    "date": "2026-10-19",
+    "text": "Job added; offline trial on the FY 1917 report located 67 of 68 cited orders.",
+    "source": "4a523701fc; jobs/csc-annual-reports/README.md:32"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "shepard-citations"
+  ],
+  "caveats": [
+   "A report printing is not the original order; fragments are acceptable_as_original false and need_page_check true.",
+   "The WPA date is a lead, not a verified signing date.",
+   "The report for FY 1904 is not held; 'CSA' pamphlet citations are not covered."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "transcription-sources",
+  "name": "Public transcription sources",
+  "catalog_tool": "hathi-gpo-orders · numbered-early-orders · early-orders-hunt · wikisource-texts · app-executive-orders",
+  "jobs": [
+   "jobs/hathi-gpo-orders",
+   "jobs/wikisource-texts",
+   "jobs/richardson-volumes"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Collects public transcriptions and printed copies of old orders (government bound volumes, volunteer Wikisource pages, Richardson's 1896-99 compilation) so a labeled transcription can stand in as provisional working text.",
+  "inputs": [
+   "list of 1,712 missing orders 5076-7531",
+   "1,639 planned Wikisource pages",
+   "Richardson vols. VI, VII, IX",
+   "Internet Archive and Commons scans"
+  ],
+  "outputs": [
+   "order texts with page and revision custody",
+   "fragments with acceptable_as_original false",
+   "missing lists"
+  ],
+  "results": [
+   {
+    "date": "2026-10-18",
+    "text": "hathi-gpo-orders: 1,531 of 1,712 targets saved (781 Internet Archive Hoover volumes, 689 Commons GPO scans by OCR, 54 Federal Register issues, 7 Wikisource scan pages); 181 still missing; 0 authenticated originals.",
+    "source": "jobs/hathi-gpo-orders/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "wikisource-texts: 1,639 of 1,639 planned orders saved, 0 failed; first 200 requests had 0 failures.",
+    "source": "jobs/wikisource-texts/output/REPORT.txt:3-4"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "richardson-volumes: 442 order texts (213 vol. VI, 75 vol. VII, 154 vol. IX); 68 census orders receive a text and fragment.",
+    "source": "jobs/richardson-volumes/README.md ('Measured 2026-10-17'); jobs/richardson-volumes/output/STATUS.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-21",
+    "text": "Owner ruling D-20261021-transcriptions: a labeled transcription may satisfy the text step provisionally; nothing becomes an original.",
+    "source": "HANDOFF/KEAN.md:32"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "HathiTrust access refused; 1,531 texts recovered through other permitted routes; Wikisource texts saved.",
+    "source": "d1db64856b; f0e367dad4; c8f01ef0ec"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Richardson volumes job added.",
+    "source": "413e1ea839"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "shepard-citations",
+   "lewis-originals"
+  ],
+  "caveats": [
+   "Transcriptions are not originals; every record states acceptable_as_original false and needs comparison with its scan.",
+   "hathi-gpo-orders and wikisource-texts have no scheduled job.py (explicit local invocation only), so outputs are a one-time accumulated corpus.",
+   "The catalog row also names numbered-early-orders, early-orders-hunt and app-executive-orders, which are covered by another group.",
+   "The 192 transcription-dependent ready orders of the 2026-10-30 tracker span all working-text sources and are not this node's count.",
+   "richardson-volumes folds into this node although its own catalog row does not exist; Richardson text is a printed compilation, a lead only."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "official-compilations",
+  "name": "Official compilations",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/ofr-compilations",
+   "jobs/isthmian-canal-1911",
+   "jobs/indian-reservations-1912"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Turns government-printed volumes of pre-Federal-Register orders (Hoover's orders, Canal Zone orders, Indian reservation orders) into one text per order with exact dates and page citations.",
+  "inputs": [
+   "OFR/GPO 1974 Hoover vol. II text layer",
+   "GPO 1911 Isthmian Canal book",
+   "GPO 1912 Indian reservations book",
+   "census of orders"
+  ],
+  "outputs": [
+   "order texts",
+   "fragments for census orders",
+   "census leads (dates, orders missing from census)",
+   "amend/revoke leads"
+  ],
+  "results": [
+   {
+    "date": "2026-10-20",
+    "text": "ofr-compilations: 526 orders printed (EO 5550-6070 plus five lettered), 523 high, 3 medium; 500 census orders get a text and fragment.",
+    "source": "jobs/ofr-compilations/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "isthmian-canal-1911: 177 contents entries; 105 EO ids mapped to census and 105 fragments; 103 of 107 presidential-order dates confirmed by the document's own dateline.",
+    "source": "jobs/isthmian-canal-1911/output/SUMMARY.json; jobs/isthmian-canal-1911/README.md:29-34"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "indian-reservations-1912: 309 acts (276 orders, 4 proclamations); 55 numbered orders matched in the census, 55 fragments, 0 decided orders matched.",
+    "source": "jobs/indian-reservations-1912/output/SUMMARY.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-17",
+    "text": "All three jobs added the same week: Hoover vol. II, Indian reservations 1855-1912, Isthmian Canal 1904-1911.",
+    "source": "d7a3324a90; 6c344e3a3d; 0a1f07a251"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "shepard-citations"
+  ],
+  "caveats": [
+   "Texts are OCR of printed compilations; medium confidence entries need a page check.",
+   "The tracker counts these fragments under the same rule as fr-originals (only finds not flagged needs_page_check): jobs/readiness-tracker/tracker.py:82-85.",
+   "Hoover vol. I (EO 5076-5549) is not held.",
+   "Census leads only; no identity or status is admitted by these jobs."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "ofr-codification-1989",
+  "name": "OFR 1989 codification",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/ofr-codification-1989"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Reads the Office of the Federal Register's 1989 book to report which orders were still in force on January 20, 1989 and which later document ended the others.",
+  "inputs": [
+   "Codification of Presidential Proclamations and Executive Orders 1945-1989 text layer",
+   "census",
+   "later-events edges"
+  ],
+  "outputs": [
+   "CODIFIED_1989.csv",
+   "DISPOSITION_1989.csv",
+   "status leads",
+   "census leads"
+  ],
+  "results": [
+   {
+    "date": "2026-10-19",
+    "text": "555 distinct executive orders identified from SOURCE lines (602 SOURCE lines including 47 proclamations; EO confidence 420 high, 135 medium); 465 agree with the project's provisional status and 90 are flagged CHECK, including 89 decided NO but codified as in force in 1989.",
+    "source": "jobs/ofr-codification-1989/output/SUMMARY.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-18",
+    "text": "Removed readiness-tracker from after.txt to break a run-order cycle.",
+    "source": "390fa519e8"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Job added; later fixes for split OCR rows and acting orders.",
+    "source": "acc8aea4e4; c575485764"
+   }
+  ],
+  "feeds": [
+   "shepard-citations"
+  ],
+  "caveats": [
+   "Editorial consolidated texts as amended to 1989-01-20; never offered as original text and no original_representation fragments emitted.",
+   "A catalog row groups it with later-events, status-history and current-law, so the exact catalog tool value is left blank here.",
+   "Status leads only; changes no provisional status."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "lewis-originals",
+  "name": "Lewis",
+  "catalog_tool": "Lewis",
+  "jobs": [
+   "jobs/lewis-originals"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Meriwether Lewis; the code describes Lewis and Clark as a pair (Lewis finds the official original, Clark establishes what an order is).",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:7; jobs/lewis-originals/README.md:3",
+   "wikipedia_title_unverified": "Meriwether Lewis"
+  },
+  "role": "For every order held only as a transcription, works out the route to its official original and who must act (owner, agent or machine job), and searches the open web for it.",
+  "inputs": [
+   "orders blocked ONLY_COMPILED_TRANSCRIPTION_FOUND",
+   "Clark's handoff of identified orders",
+   "Pinakes ProQuest records",
+   "OFR catalog"
+  ],
+  "outputs": [
+   "ROUTES.csv",
+   "proposed fetch requests for the source ladder",
+   "web leads",
+   "report"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Scope 5,306 orders (5,251 transcription-only, 13 Clark-identified, 42 outside the census). By action owner: 2,665 owner, 2,491 agent check, 150 machine job. 265 handoff proposals recorded. Only 98 of the 2,750 ProQuest PDFs are for orders in scope.",
+    "source": "jobs/lewis-originals/output/SUMMARY.json; jobs/lewis-originals/output/REPORT.md"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Routes joined to existing acquisition results; duplicate requests suppressed.",
+    "source": "0682ccea10"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Adapted to Pinakes order schema without rescanning PDFs.",
+    "source": "e56a90f3e7"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Added with Clark, then taken online (web search stage); initial scope was 4,644 orders.",
+    "source": "a1eef48bc7; fb2bfe9817; jobs/lewis-originals/README.md:10-14"
+   }
+  ],
+  "feeds": [
+   "source-ladder",
+   "clark-discovery"
+  ],
+  "caveats": [
+   "Downloads no originals itself; a web page it confirms is a lead, never a saved source.",
+   "Changes no readiness step or count; a verified ProQuest file is a lead with byte evidence.",
+   "The catalog says 2,376 agent checks and 'published Oct 30'; the pinned summary (generated 2026-10-29T16:51Z) shows 2,491 agent checks.",
+   "Proposed requests only enter the queue when the owner enqueues them."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "pinakes-proquest-ingest",
+  "name": "Pinakes (ProQuest ingest)",
+  "catalog_tool": "Pinakes (Codex swarm)",
+  "jobs": [
+   "jobs/pinakes-proquest-ingest"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Callimachus's Pinakes, the catalogue of the Library of Alexandria.",
+   "evidence": "jobs/pinakes-proquest-ingest/README.md:3",
+   "wikipedia_title_unverified": "Pinakes"
+  },
+  "role": "Takes every ProQuest 'Replica of Original' PDF the owner uploaded, verifies it, picks one file per order, extracts machine text and publishes records the tracker, Lewis, Clark and Domesday read.",
+  "inputs": [
+   "owner's ProQuest Pre-1937 Orders PDFs (two folders)",
+   "owner's 2,765-link list",
+   "census"
+  ],
+  "outputs": [
+   "INVENTORY.csv, ORDERS.csv",
+   "text per order",
+   "fragments graded archival_replica_scan_pending_codebook",
+   "missing-from-upload list"
+  ],
+  "results": [
+   {
+    "date": "2026-10-28",
+    "text": "ProQuest facts: 2,807 PDF files, 2,751 unique by sha256, 1 stray/bad; 2,750 census orders have a PDF (1900s 286, 1910s 1,040, 1920s 1,401); texts 2,297 from the PDF layer and 453 by OCR, 2,440 usable and 310 low quality (probably handwritten); owner's link list 2,765 links, 15 without a PDF.",
+    "source": "jobs/pinakes-proquest-ingest/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:35"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "ProQuest custody repair (PR105/109): 5 exact PDFs restored from Git for the checker; EO254, EO2171, EO4354 and EO4782 become ready for human review; EO1547's bytes verify but its working-text identity/grade mismatch still holds it. Still transcription-dependent, 0 human-certified.",
+    "source": "research/progress/README.md:17; research/progress/proquest-custody-2026-10-29/REPORT.md:1-7; research/progress/proquest-custody-2026-10-29/follow-on/REPORT.md:1-8"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Checker helper changed to stream claims and apply a per-file byte guard so the three, then two more, exact PDFs can be materialized.",
+    "source": "research/progress/proquest-custody-2026-10-29/REPORT.md:57-64"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Stale ProQuest wording removed; waiver rule recorded as contradicting the evidence ruling.",
+    "source": "096f1f029f"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Connected to the readiness tracker, Lewis, Clark and Domesday under the owner's 2026-10-21 rulings.",
+    "source": "ed84d9acc9; jobs/pinakes-proquest-ingest/README.md:35-46"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker",
+   "lewis-originals",
+   "clark-discovery",
+   "domesday-register",
+   "shepard-citations"
+  ],
+  "caveats": [
+   "A replica scan is provisional working text, never counted as the original; acceptable_as_original false, needs_page_check true.",
+   "File names, not page contents, identify the order; no identity, grade or legal status changes.",
+   "Lewis reports signature results as not reported for the 2,750 inventory records (unknown, not failed).",
+   "Open owner question A-20261021-2: class-notes PDF uploaded by mistake in the public ProQuest folder (HANDOFF/KEAN.md:16).",
+   "Catalog row is shared with pinakes-htr (modeled as a separate node)."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "pinakes-htr",
+  "name": "Pinakes HTR",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/pinakes-htr"
+  ],
+  "kind": "campaign",
+  "status_class": "historical",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Same Pinakes name as the ProQuest ingest (Callimachus's catalogue).",
+   "evidence": "jobs/pinakes-htr/README.md:3",
+   "wikipedia_title_unverified": "Pinakes"
+  },
+  "role": "Re-reads the roughly 310 handwritten ProQuest scans that fail the text screen using two vision models and tesseract and marks the words the readings disagree on.",
+  "inputs": [
+   "310 ProQuest orders failing the text-quality screen"
+  ],
+  "outputs": [
+   "three machine readings per order",
+   "compare files marking unconfirmed words",
+   "page-check sample sheet"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "310 orders / 555 pages compared: 111,052 words, 79.3% confirmed by both models, 23 orders under 50% confirmed; status machine_hypothesis, counts_toward_certification false.",
+    "source": "jobs/pinakes-htr/output/SUMMARY.json; jobs/pinakes-htr/INTEGRATION_NOTE.md:1-5"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Recovered from branch corps-of-discovery-lewis-clark and integrated as a historical experiment; no model run during integration.",
+    "source": "jobs/pinakes-htr/INTEGRATION_NOTE.md; 230649a935"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Model bake-off on three sample pages chose the two Qwen-derived readers.",
+    "source": "jobs/pinakes-htr/README.md:29-47"
+   }
+  ],
+  "feeds": [],
+  "caveats": [
+   "Machine hypotheses for searching and routing only; not source texts, no fragments, no tracker input.",
+   "Runs on the owner's PC with a GPU only; no runner job.",
+   "Reference readings for the bake-off are absent; its error rates are not reproducible.",
+   "Agreement between two Qwen-derived models is not independent verification; every page-check field is blank."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "cotton-capture-custody",
+  "name": "Cotton capture custody",
+  "catalog_tool": "cotton-capture-custody",
+  "jobs": [
+   "jobs/cotton-capture-custody"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Sir Robert Cotton (1571-1631), whose library preserved manuscripts that would otherwise have been lost.",
+   "evidence": "jobs/cotton-capture-custody/README.md:3",
+   "wikipedia_title_unverified": "Robert Cotton"
+  },
+  "role": "Re-fetches the exact archived web-page bytes that published claims cite and keeps them only if their hash matches the recorded one, so the checker can prove custody.",
+  "inputs": [
+   "source hashes cited by published claims",
+   "wanted list",
+   "Common Crawl/Wayback capture records"
+  ],
+  "outputs": [
+   "captured bytes by sha256",
+   "SOURCES.jsonl",
+   "failures list"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Published run 2026-10-29T02:27Z: 526 captures published; 1,111 wanted hashes, 7 failed fetches, 578 non-web records.",
+    "source": "jobs/cotton-capture-custody/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:38"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Three later reruns failed their own tests (02:32Z, 03:39Z, 07:15Z); the prior published output is retained.",
+    "source": "jobs/_attempts/cotton-capture-custody/40806662372-1/STATUS.json; 40812953907-1; 40829686426-1"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Test environment leakage fixed and custody ordered before checking.",
+    "source": "496f114210"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Stopped requesting the live APP site; archive captures for 516 orders added; copies for NRA batches and later-event captures.",
+    "source": "af735f136f; 2c5d3a0092; 3e73b266de"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Job added to commit exact bytes of web sources claims cite.",
+    "source": "9614bd0590"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "Custody copies only: a matching hash shows these are the bytes the producer recorded, not that the page is authentic.",
+   "Changes no claim, status or count; certified 0.",
+   "A live APP page is preserved only through an archive capture of the same URL."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "astra-source-retention",
+  "name": "Astra source retention",
+  "catalog_tool": "astra-source-retention",
+  "jobs": [
+   "jobs/astra-source-retention"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Keeps the exact bytes of specifically requested source PDFs, with hashes and selected-page text, so later claims can cite a verifiable held copy.",
+  "inputs": [
+   "up to 30 requested URLs from REQUESTS.json already in the fetch queue",
+   "exact held files with expected hashes"
+  ],
+  "outputs": [
+   "retained PDFs",
+   "selected-page text and PNGs",
+   "SOURCES.jsonl records"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "19 of 19 requested sources retained; 265 accumulated source records; 13 imported objects (130,497,560 bytes); 7 HTTP requests. The Schechter opinion PDF and selected pages remain held.",
+    "source": "jobs/astra-source-retention/output/SUMMARY.json; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:39"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Schechter opinion PDF and six shared statutes retained.",
+    "source": "e85e170151; f80a09880a"
+   },
+   {
+    "date": "2026-10-26",
+    "text": "Series of exact-primary-PDF retentions for production and the six-case comparison.",
+    "source": "cf4fdf9b2d; 484fa8889e; e8ca8c8d21"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "Machine custody artifacts pending independent visual/source review.",
+   "Creates no claims, statuses, exhaustion records, legal findings or readiness changes.",
+   "'Astra' namesake not established in the repo."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "cassiodorus",
+  "name": "Cassiodorus",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/cassiodorus"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "acquire",
+  "namesake": {
+   "text": "Cassiodorus, whose monastery at Vivarium copied and kept the texts later ages could check against.",
+   "evidence": "jobs/cassiodorus/README.md:3-4",
+   "wikipedia_title_unverified": "Cassiodorus"
+  },
+  "role": "Keeps the raw bytes of the American Presidency Project pages that claims cite so the checker can re-hash them (custody for transcriptions).",
+  "inputs": [
+   "APP pages cited by claims and packet proposals",
+   "MIRROR_DOCUMENTS.jsonl capture records"
+  ],
+  "outputs": [
+   "raw page bytes by sha256",
+   "SOURCES.jsonl"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "13 requested, 10 kept, 2 hash mismatches, 1 with no capture record; 0 statuses changed.",
+    "source": "jobs/cassiodorus/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "In the first Namier batch all seven independently upheld claims were stopped by custody_record_only alone (36 rows).",
+    "source": "jobs/cassiodorus/README.md:12-17"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Added with the Namier batch.",
+    "source": "ca73981fdb"
+   }
+  ],
+  "feeds": [
+   "claim-checker-readiness-tracker"
+  ],
+  "caveats": [
+   "Makes a transcription verifiable as the one the claim read; does not grade the source or authenticate an original.",
+   "acceptable_as_original stays false; no row in the catalog TOOLS.csv.",
+   "The cloud agent container cannot reach Common Crawl; capture runs on GitHub's runner."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "shepard-citations",
+  "name": "Shepard citation index",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/shepard-citations"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "Frank Shepard, whose citator (first published 1873) listed every later court decision citing a given case.",
+   "evidence": "jobs/shepard-citations/README.md:3-4",
+   "wikipedia_title_unverified": "Shepard's Citations"
+  },
+  "role": "For each early or land order, lists every later instrument that cites it and the relation word printed nearby ('revoked', 'modified'), as leads for the ending research.",
+  "inputs": [
+   "BLM Public Land Order tables (24 PDFs)",
+   "1989 OFR disposition table",
+   "held order texts",
+   "Wikisource notes",
+   "Federal Register codification guides"
+  ],
+  "outputs": [
+   "EDGES.csv citation leads",
+   "PLO_TABLE.csv (7,866 rows)",
+   "reserve index",
+   "unresolved list"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "10,597 citation edges; 3,547 land targets, 1,054 with any edge, 617 with an ending candidate; 30,725 held texts scanned.",
+    "source": "jobs/shepard-citations/output/SUMMARY.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Added after the land probe showed the ending instrument is quick to find once the right index is used; fr-pages added alongside.",
+    "source": "f193e992f6; jobs/shepard-citations/README.md:15-19"
+   }
+  ],
+  "feeds": [
+   "claim-kit-case-bundles",
+   "fr-originals-pages"
+  ],
+  "caveats": [
+   "Every row is a lead, not a finding: a relation word printed near a citation does not show the citing instrument did that to that order.",
+   "Citation leads, not legal findings; reserve-to-order links are inferences.",
+   "Changes no status or count; certified 0.",
+   "No catalog TOOLS.csv row for Shepard."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "job-runner-freshness",
+  "name": "Job runner and freshness (PR103)",
+  "catalog_tool": "Job runner and freshness (PR103)",
+  "jobs": [
+   ".github/scripts/run_jobs.py",
+   ".github/scripts/result_freshness.py",
+   ".github/scripts/pick_jobs.py",
+   ".github/workflows/run-jobs.yml",
+   "jobs/README.md",
+   "jobs/_attempts"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Runs the bounded production jobs on GitHub, ties each saved result to the exact inputs and code that produced it, and keeps a failed attempt rather than overwriting the last good output.",
+  "inputs": [
+   "jobs/<name>/ folders with needs.txt, inputs.txt, after.txt, triggers.txt",
+   "changed paths on push or sweep"
+  ],
+  "outputs": [
+   "jobs/<name>/output/",
+   "RUNNER_INPUTS.json fingerprints",
+   "retained failed attempts under jobs/_attempts"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Catalog: runner engineering adopted and verified through Linux/Windows road checks, Kean and native consumers; engineering validation does not establish global efficiency savings. Large fallback checkouts remain necessary for unaudited job selections.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:41; research/progress/README.md:21"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Pinned checkout narrowing: five scopes had identical selected hashes; fr-originals tree candidates fell 97,160 to 13,665 locally; no measured remote or total-token saving. Checker/tracker narrow certificates were withheld.",
+    "source": "jobs/kean/register/findings.jsonl:65-66"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Freshness reads scoped to declared inputs; selective output checkout gated by reviewed exact versions (Kean F-20261029-8001); runtime-only compiler scheduling guarded (PR103 source 1cdef3d0).",
+    "source": "c2b5985ad5; dab242ad8f; 1cdef3d0c8"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Compiler fingerprints repaired; successful generations preserved.",
+    "source": "ec13121674"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Roads 1-3 integrated: parallel byte custody, bounded resumable caches, final runner benchmark.",
+    "source": "5a772e05ff; ed69a90b0b"
+   }
+  ],
+  "feeds": [],
+  "caveats": [
+   "Engineering only; no scientific status, count or certification follows.",
+   "Code adoption is not scientific acceptance (merged through PR107).",
+   "Undeclared dynamic reads still force broad fallback checkouts."
+  ],
+  "history_note": ""
+ },
+ {
+  "id": "rattle-watch-light-push",
+  "name": "Rattle Watch and light pushes",
+  "catalog_tool": "",
+  "jobs": [
+   ".github/scripts/run_jobs.py",
+   ".github/scripts/pick_jobs.py",
+   ".github/scripts/test_rattle_watch.py",
+   "jobs/README.md"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "New Amsterdam's rattle watch (1658), night watchmen who walked the streets calling the hour.",
+   "evidence": ".github/scripts/run_jobs.py:41",
+   "wikipedia_title_unverified": "Rattle watch"
+  },
+  "role": "Prints a heartbeat line a minute for each running job and stops a job that is silent and idle for 20 minutes; separately, a push starts only the edited job and everything else waits for a three-hourly sweep.",
+  "inputs": [
+   "running job output, CPU and network use",
+   "changed paths on push",
+   "triggers.txt patterns"
+  ],
+  "outputs": [
+   "[Rattle Watch] log lines",
+   "stall stop with exit 124",
+   "push picker limited to edited jobs",
+   "12-request cap for web-search consumers"
+  ],
+  "results": [
+   {
+    "date": "2026-10-28",
+    "text": "Motivating measurement: 37 of the last 100 runs failed after a median 60 minutes, mostly as blocked dependents; one owner-ruling file selected 14 jobs including Clark's hour-long web search.",
+    "source": "jobs/kean/register/findings.jsonl:42 (F-20261028-3)"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Picker tests: 17 pass plus the full road suite (light-push commit); tests in test_rattle_watch.py run by the road tests.",
+    "source": "8cce1892c0; 148b64e0f6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Owner ruling: pushes stay light; a push runs only a job whose own folder or the runner changed, and a sweep every three hours runs consumers.",
+    "source": "8cce1892c0; jobs/README.md:24-31"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Rattle Watch added: heartbeat, 20-minute stall stop (per-job STALL_MINUTES), 12-request cap for downstream web-search jobs.",
+    "source": "148b64e0f6; jobs/README.md:62-73"
+   }
+  ],
+  "feeds": [],
+  "caveats": [
+   "Measures effort and failure rates of the pipeline, not research results.",
+   "Savings are not measured beyond the failure snapshot cited."
+  ],
+  "history_note": ""
+ }
+]
