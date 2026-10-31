@@ -443,7 +443,7 @@ class CompletionTests(B.BatchTests):
     def test_disjoint_claims_file_during_run_publishes_and_is_receipted(self):
         self.setup_two()
         path, text = self.disjoint_file()
-        result = self.complete_with(self.after_checker(lambda: path.write_text(text)))
+        result = self.complete_with(self.after_checker(lambda: path.write_bytes(text.encode('utf-8'))))
         self.assertEqual(result['eligible'], ['EO:1', 'EO:2'])
         self.assertEqual(self.target.read_bytes(), self.producer.read_bytes())
         row = {'path': path.relative_to(self.repo).as_posix(), 'sha256': batch.digest(text.encode()), 'instrument_ids': ['EO:99']}

@@ -120,3 +120,25 @@ checkout7,949,794,350->275,690,417bytes. Construction372.633s; nativeexecution
 or campaign saving follows. Final coordinated production facts belong in
 HANDOFF/r1-r4-final-generation.json so receipt bookkeeping does not become a
 new input under the consumers broad research/progress declarations.
+
+Final Windows expansion run41231782184 exposed LF/CRLF fixture mismatches and
+one real false-staleness bug: status_context formed a Windows-backslash
+EVIDENCE.json key then exact-compared it with POSIX manifest references. The
+production fix canonicalizes only that key with .as_posix(); exact source/review
+comparison remains required. Four fixture modules now write their declared
+UTF-8 bytes/use POSIX source paths; deliberate CRLF cases remain. Full local
+claim-kit510executions/5existing skips pass, including a Windows-path positive
+review binding and missing-evidence-hash refusal. The policy-helper byte change
+properly invalidates old packet policy pins; no historical review is repinned.
+Valla certified runtime and R2/R3 native implementations remain byte-identical
+to fresh proof9438; optional completion/context routes are rerun on the combined
+code. No wider selective-runner certificate is granted.
+
+Valla pilot41230766145 passed unit/consumer, lifecycle and custody stages, then
+its older Cruden benchmark packet correctly refused the newly required
+preflight dependency receipt. The existing native rehearsal now records only
+that exact ValueError/message as native_frozen_input_refusal_requires_review,
+disclaims a current benchmark comparison and stops dependent timing arms. Other
+errors still fail. No old packet/review is repinned, current load/apply/completion
+refusals remain, and canonical-claim equality is still asserted. Historical
+Cruden measurements retain their original source scope.

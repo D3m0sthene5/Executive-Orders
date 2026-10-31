@@ -183,7 +183,7 @@ def status_context(repo, iid, decisions, reviews, pin, adoption_rows):
     result = []
     attached = set()
     for record, decision in decisions:
-        evidence_path = str(Path(record['path']).parent / 'EVIDENCE.json')
+        evidence_path = (Path(record['path']).parent / 'EVIDENCE.json').as_posix()
         evidence_pin = pin(evidence_path)
         evidence = load(evidence_path)
         evidence_state = 'missing_or_unreadable'

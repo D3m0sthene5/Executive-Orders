@@ -18,7 +18,7 @@ class EvidencePreflightTests(unittest.TestCase):
                   'evidence': {}, 'clauses': [], 'actor_provisions': []}
 
     def source(self, name, text, raw_sha='a' * 64):
-        (self.repo / name).write_text(text, encoding='utf-8')
+        (self.repo / name).write_bytes(text.encode('utf-8'))
         return {'text_path': name, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),
                 'sha256': raw_sha, 'url': 'https://example.gov/' + name}
 
