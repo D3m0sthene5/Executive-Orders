@@ -34,13 +34,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 86; `search` finds the rest)
+## Newest results (6 of 87; `search` finds the rest)
 
+- 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
 - 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
 - 2026-10-31 F-20261031-r1-production-comparison **worked**: Run matched complete production Valla executions through the existing transactional runner and freshness guard Lesson: Measure full worktree, declared closure, startup, helper metadata and construction separately; retain exact output provenance and independent review; re-establish certificates after implementation-cl…
 - 2026-10-31 F-20261031-r1-audited-valla **partly worked**: Extend the existing runner materializer to the exact Valla production read closure Lesson: Close explicit dynamic pointers and live read membership; bind resolver/runner code; withhold unresolved or unretained inputs rather than narrowing from a successful trace.
 - 2026-10-31 F-20261031-apollo-workflow-review **worked**: Integrate and independently review the existing Apollo Workflow tab Lesson: Separate current tool feeds from dated history; name shared catalog rows at point of use, validate source paths and recover original namesakes instead of guessing. Human certification remains separat…
 - 2026-10-31 F-20261031-R4-integration **worked**: Explicit ordinary kit.py complete to existing NEYMAN after_completion/diagnose with pinned supplied history a… Lesson: Keep diagnostic receipts separate from immutable scientific tally and preserve every explicit unfinished member.
-- 2026-10-31 F-20261031-R4-action-limit **partly worked**: Use retained NEYMAN diagnoses to find source-ready bounded continuation; inspect EO8915 and EO8992 and replay… Lesson: A diagnostic blocker is not itself a new source need; inspect retained dossier/source/review evidence before repeating retrieval or claiming progress.
 
-Register: 14 owner decisions, 0 answered questions, 86 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 15 owner decisions, 0 answered questions, 87 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
