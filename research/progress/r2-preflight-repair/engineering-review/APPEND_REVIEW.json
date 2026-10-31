@@ -1,0 +1,68 @@
+{
+  "schema": "r2-independent-engineering-append-review/v1",
+  "reviewer": "/root/engineering_review",
+  "reviewed_at": "2026-10-31T04:29:08.621753+00:00",
+  "scope": "Test-only EO12978 held-out attachment regression append. No implementation tuning or substantive legal/source adoption.",
+  "verdict": "upheld_test_only_append",
+  "findings": [],
+  "reviewed_sha256": {
+    "jobs/claim-kit/evidence_preflight.py": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c",
+    "jobs/claim-kit/test_evidence_preflight_real.py": "2e5e2c4ab02b6bccc3327b6a3bcc4d8b9e34c26b7fc85760db475f977baa8305",
+    "jobs/claim-kit/test_evidence_preflight.py": "6cb1aa2370f2d8ad66f1076592711dedf62e83cc67b524e9bfc2a8b481f5f606",
+    "research/progress/r2-preflight-repair/ATTACHMENT_FREEZE.json": "bd735cfcdad5e7833fac64d151c89f95f493d88a4a920b293d9d0c9dda209c31",
+    "research/progress/r2-preflight-repair/attachment-frozen/EO_12978.json": "61cb17e9dd5d47467ff9247fb346d424ba4a49cd5421dc90e697ed04bd815e50",
+    "jobs/fr-originals/data/full_run/texts/EO_12978.txt": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+    "research/progress/r2-preflight-repair/engineering-review/REVIEW.json": "1981ed33f877c189417679917abdc25c1e9e84fc064c0861e93a55e230ff9f3a"
+  },
+  "prior_review_preserved": true,
+  "core_code_unchanged": true,
+  "append_only_proof": {
+    "prior_real_test_sha256": "d23efc404cf66c50f283bd96796f9d431c2393b9c75bda8ee842aa9796307af7",
+    "method": "Remove exactly the new test method and its separating newline in memory; remaining bytes reconstruct prior reviewed test hash."
+  },
+  "validation": {
+    "focused_command": "python3 -B -m unittest discover -s jobs/claim-kit -p 'test_evidence_preflight*.py' -v",
+    "tests": 23,
+    "passed": 23,
+    "skipped": 0,
+    "seconds_reported": 0.104,
+    "independent_actual_dossier_probe": {
+      "instrument_id": "EO:12978",
+      "baseline_commit": "88cef0253ed735b2a6e612770f25f9148641ce93",
+      "baseline_task_kinds": [],
+      "final_task_kinds": [
+        "inventory_command_coverage"
+      ],
+      "exact_gap": {
+        "char_start": 1054,
+        "char_end": 1486,
+        "pdf_page": 1,
+        "line": 23,
+        "contains": "hereby declare a national emergency"
+      },
+      "no_dossier_mutation": true,
+      "all_gap_quotes_exact": true,
+      "all_gaps_end_within_located_body": true
+    },
+    "source_and_frozen_dossier_hashes": "New test uses dossier() to verify actual bytes against ATTACHMENT_FREEZE before inspection; independent review pins the exact manifest and inputs above."
+  },
+  "limits": [
+    "This eighth case is a held-out validation extension; original seven-case cohort remains separate.",
+    "The new test correctly checks the emergency-declaration diagnostic and body boundary. It does not claim a complete inventory or measure annex-member coverage.",
+    "The separate claim that the annex contains four missing named members belongs to independent source examination. This append review did not re-adjudicate primary pages or read source-review findings.",
+    "Original REVIEW.json diagnostic limits and required root-owned batch/completion dependency-pin handoff remain in force."
+  ],
+  "costs_and_scope": {
+    "model": "Inherited configured OpenAI GPT-6-family model; precise runtime ID/tier unavailable. No model override.",
+    "tokens": null,
+    "cash": null,
+    "full_append_elapsed_seconds": null,
+    "timing_qualification": "Full worker elapsed not instrumented. Final focused test duration above is measured unittest elapsed, not total labor.",
+    "budget": "No explicit token/time budget; bounded test-only append scope.",
+    "writes": [
+      "research/progress/r2-preflight-repair/engineering-review/APPEND_REVIEW.json"
+    ],
+    "implementation_or_canonical_edits": false,
+    "subagents_spawned": false
+  }
+}

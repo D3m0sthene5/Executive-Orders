@@ -1,0 +1,69 @@
+{
+  "at": "2026-10-31T04:26:37.825320+00:00",
+  "baseline_code_sha256": "0698661c59f5384fae99dac7586bbbc572793283abac5803f12482f4ae546242",
+  "patched_code_sha256": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c",
+  "results": {
+    "baseline": {
+      "tasks": [],
+      "held_text_receipts": {
+        "jobs/fr-originals/data/full_run/texts/EO_12978.txt": {
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "characters": 5861,
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "raw_custody": "requires_actual_claim_checker"
+        }
+      },
+      "custody_validation": "required_from_actual_claim_checker",
+      "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+    },
+    "patched": {
+      "tasks": [
+        {
+          "kind": "inventory_command_coverage",
+          "shared_key": "ORIGINAL:EO:12978",
+          "reason": "Potentially omitted command-like regions in the located document require source/inventory comparison. Machine classifications and complete character coverage do not establish semantic completeness.",
+          "availability": "possible_omitted_command",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_12978.txt",
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "document_extent": {
+            "char_start": 604,
+            "char_end": 5838,
+            "body_start": 705,
+            "body_end": 5621,
+            "heading_style": "numbered"
+          },
+          "uncovered_regions": [
+            {
+              "char_start": 1054,
+              "char_end": 1486,
+              "text": "CLINTON, President of the United States of America, find\nthat the actions of significant foreign narcotics traffickers centered in Colom-\nbia, and the unparalleled violence, corruption, and harm that they cause\nin the United States and abroad, constitute an unusual and extraordinary\nthreat to the national security, foreign policy, and economy of the United\nStates, and hereby declare a national emergency to deal with that threat.",
+              "context_char_start": 1054,
+              "context_char_end": 1486,
+              "signals": [
+                "hereby declare"
+              ],
+              "classification": "clause_candidate",
+              "reason": "Command-like sentence has substantive text outside submitted inventory; verify its scope against the complete source pages.",
+              "pdf_page": 1,
+              "line": 23
+            }
+          ],
+          "segmentation_warnings": [
+            "incomplete_unsplit_sub_markers_sec3(b):3"
+          ]
+        }
+      ],
+      "held_text_receipts": {
+        "jobs/fr-originals/data/full_run/texts/EO_12978.txt": {
+          "text_sha256": "4b78c8218a2031868c21fcf2c8e225fb954d6639a9a03e656fdcedbcb66f0342",
+          "characters": 5861,
+          "source_sha256": "43643d633b661d86454bb273471e9bdf80ecaa33084d521afc39301ac7509826",
+          "raw_custody": "requires_actual_claim_checker"
+        }
+      },
+      "custody_validation": "required_from_actual_claim_checker",
+      "notice": "Diagnostic only: no source selected or authenticated, no inventory approved, no legal outcome inferred."
+    }
+  }
+}
