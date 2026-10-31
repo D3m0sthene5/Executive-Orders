@@ -63,6 +63,8 @@ class VallaMaterializationTests(unittest.TestCase):
         self.git('init', '-q')
         self.git('config', 'user.email', 'fixture@example.invalid')
         self.git('config', 'user.name', 'Fixture')
+        self.git('config', 'core.autocrlf', 'false')
+        self.git('config', 'core.symlinks', 'true')
         self.commit('fixture implementation and evidence')
         self.F = load(self.repo / '.github/scripts/result_freshness.py', 'fixture_freshness')
         old = sys.modules.get('result_freshness')

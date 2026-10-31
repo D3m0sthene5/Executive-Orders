@@ -1,0 +1,9 @@
+## 2026-10-31 ET: audited Valla runner extension; complete comparison running
+
+- **Done:** PR112 on `sol/r1-materializer-followthrough`, source `9fc12f9e37780ae5831fce6d698139920bf51589`, base `88cef0253ed735b2a6e612770f25f9148641ce93`. Existing materializer/certificate and freshness extended to Valla's explicit runtime pointer/package closure. No job implementation, shared library or scientific record changed. Dedicated integration/audit/review under `research/progress/r1-materializer-followthrough/`.
+- **Verified:** Independent exact-byte engineering review;25 focused +37 original freshness +6 materializer tests;36 native Valla tests. Ordinary runner41168642033 succeeded on smoke+Valla with no fallback,448 declared paths/61,468,881 bytes. Initial Linux/Windows Road41168644644 and Kean41168644649 passed. New adversarial suite is wired into ordinary road entrypoint in the follow-up metadata/test commit.
+- **Running:** Read-only matched native full/select production proof41168642078. No complete comparison or network saving claimed until its exact receipts are inspected. Separate existing Valla pilot41168644618 is ordinary CI, outside this runner certificate.
+- **Registered:** `F-20261031-r1-audited-valla`; matching named record and brief committed with the handoff. Root must union append-only findings from all four sessions and regenerate its brief.
+- **Next:** Retain production receipts and final comparison/CI outcomes; re-establish certificate after combined source changes. R4's optional CLI/source selections remain explicit and uncertified, as explained in INTEGRATION.md.
+- **Asks:** @Owner: none. @Root: leave PR112 unmerged, review exact combined implementation closure and regenerate affected certificates.
+- **Do not:** grant Valla's certificate to another job, publish unresolved/ignored source custody, modify main, adopt scientific conclusions or dispatch a broad compiler rebuild under this assignment.
