@@ -1,5 +1,5 @@
 """Integrate actual ranger sources into a separate candidate, never the EO census."""
-import csv,hashlib,json,os,re,subprocess,sys
+import argparse,csv,hashlib,importlib.util,json,os,re,subprocess,sys
 from pathlib import Path
 from urllib.parse import urlparse
 ROOT=Path(os.environ.get("REPO_ROOT",Path(__file__).resolve().parents[2]))
@@ -28,7 +28,7 @@ def item_id(url):
   x=re.fullmatch(r"/item/([A-Za-z0-9_-]+)/?",u.path)
   return x.group(1).lower() if x else None
  except (TypeError,ValueError):return None
-def build(root=ROOT,out=OUT):
+def build(root=ROOT,out=OUT,research_worksheets=(),retained_workbench=None,include_facsimiles=False,facsimile_custodies=()):
  paths={k:root/v for k,v in INPUTS.items()}
  required=("curated","item_metadata","page_images","lord","early_sources","census")
  absent=[k for k in required if not paths[k].is_file()]
@@ -82,17 +82,47 @@ def build(root=ROOT,out=OUT):
   a["titles"].sort();a["dates"].sort();a["source_paths"].sort()
   a["original_pages"].sort(key=lambda z:z["path"])
   a["grade"]="SAVED_MASTER_PAGES_UNREVIEWED" if a["original_pages"] else ("LOC_XML_TRANSCRIPTION_UNREVIEWED" if a["transcription"] else ("LOC_METADATA_UNREVIEWED" if a.get("item_metadata_retrieved") else "SEARCH_LEAD_ONLY"))
+ research_imports=[]
+ if research_worksheets:
+  spec=importlib.util.spec_from_file_location("r3_workbench",Path(__file__).parents[1]/"early-ranger-workbench/job.py")
+  wb=importlib.util.module_from_spec(spec);spec.loader.exec_module(wb)
+  cases=wb.build_cases(root,retained_workbench,include_facsimiles,facsimile_custodies)
+  for worksheet in research_worksheets:
+   worksheet=Path(worksheet)
+   document=wb.rt.read_worksheet(worksheet)
+   checked=wb.rt.validate_worksheet(document,cases)
+   for check in checked:
+    evidence={"worksheet":str(worksheet.relative_to(root)) if worksheet.is_relative_to(root) else str(worksheet),
+              "worksheet_sha256":hashfile(worksheet),**check}
+    row=records.get(check["item_id"])
+    if row is None:
+     evidence["validation"]="conflicting_representation"
+    else:
+     row.setdefault("research_notes",[]).append(evidence)
+     proposal=wb.rt.validated_proposal(check)
+     if proposal is not None:
+      row.setdefault("research_proposals",[]).append({"proposal":proposal,"reviewer":check["notes"]["reviewer"],
+       "worksheet_sha256":evidence["worksheet_sha256"],"source_binding":check["entry"]["source_binding"],
+       "validation":"unchanged_source","scientific_approval":False})
+    research_imports.append(evidence)
+ (out/"RESEARCH_IMPORTS.json").write_text(json.dumps(research_imports,ensure_ascii=False,indent=2)+"\n")
  (out/"ITEM_CANDIDATES.jsonl").write_text("".join(json.dumps(a,sort_keys=True,ensure_ascii=False)+"\n" for a in items),encoding="utf-8")
  with (out/"ITEM_CANDIDATES.csv").open("w",encoding="utf-8",newline="") as f:
   cols=["candidate_id","url","grade","date_hints","title_hints","transcribed","master_pages","legal_inclusion","human_certified"]
   w=csv.DictWriter(f,fieldnames=cols);w.writeheader()
   for a in items:w.writerow({"candidate_id":a["candidate_id"],"url":a["url"],"grade":a["grade"],"date_hints":" | ".join(a["dates"]),"title_hints":" | ".join(a["titles"]),"transcribed":bool(a["transcription"]),"master_pages":len(a["original_pages"]),"legal_inclusion":"HOLD","human_certified":"no"})
  (out/"UNLINKED_EARLY_REPRESENTATIONS.json").write_text(json.dumps(source_rep,indent=2),encoding="utf-8")
- m={"schema":"eo-early-candidate-register/v1","input_hashes":{k:hashfile(p) for k,p in paths.items() if p.is_file()},"distinct_LOC_item_ID_candidates":len(items),"items_with_LOC_XML_transcript":sum(bool(x["transcription"]) for x in items),"items_with_saved_original_pages":sum(bool(x["original_pages"]) for x in items),"saved_original_pages_referenced":sum(len(x["original_pages"]) for x in items),"Lord_index_appearances_UNAUTHENTICATED":len(lord_ids),"Lord_19c_gap_rows":len(lord19),"Lord_19c_not_in_Lord_main":len(lord19-lord_ids),"uncrosswalked_historical_source_representations":len(source_rep),"newly_admitted_EOs":0,"independent_human_certifications":0,"no_date_only_identity_merges":True}
+ m={"schema":"eo-early-candidate-register/v1","input_hashes":{k:hashfile(p) for k,p in paths.items() if p.is_file()},"distinct_LOC_item_ID_candidates":len(items),"items_with_LOC_XML_transcript":sum(bool(x["transcription"]) for x in items),"items_with_saved_original_pages":sum(bool(x["original_pages"]) for x in items),"saved_original_pages_referenced":sum(len(x["original_pages"]) for x in items),"Lord_index_appearances_UNAUTHENTICATED":len(lord_ids),"Lord_19c_gap_rows":len(lord19),"Lord_19c_not_in_Lord_main":len(lord19-lord_ids),"uncrosswalked_historical_source_representations":len(source_rep),"source_bound_AI_research_proposals":sum(len(x.get("research_proposals",[])) for x in items),"research_note_records":len(research_imports),"newly_admitted_EOs":0,"independent_human_certifications":0,"no_date_only_identity_merges":True}
  (out/"SUMMARY.json").write_text(json.dumps(m,indent=2,sort_keys=True)+"\n")
  (out/"CENSUS_READINESS.md").write_text("# Candidate census separate from 14,972 working EOs\n\n"+str(len(items))+" distinct LOC item IDs; "+str(m["items_with_LOC_XML_transcript"])+" transcripts, "+str(m["saved_original_pages_referenced"])+" stored page-image links. "+str(len(lord_ids))+" Lord appearances remain unverified index entries.\n\n**Zero candidates admitted; zero independent certifications.** Same-day dates are never used as identity keys. Review signer, original pages, scope, duplicates and legal codebook 2.0.0 before admitting any instrument.\n")
  print(json.dumps(m,indent=2))
 if __name__=="__main__":
  r=subprocess.run([sys.executable,"-m","unittest","discover","-s",str(Path(__file__).parent),"-p","test_*.py"])
  if r.returncode:raise SystemExit("Tests failed, no output built")
- build()
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument("--research-worksheet",action="append",default=[])
+ parser.add_argument("--retained-workbench")
+ parser.add_argument("--facsimile-custody",action="append",default=[])
+ parser.add_argument("--include-retained-facsimiles",action="store_true")
+ args=parser.parse_args()
+ build(research_worksheets=args.research_worksheet,retained_workbench=args.retained_workbench,include_facsimiles=args.include_retained_facsimiles,facsimile_custodies=args.facsimile_custody)

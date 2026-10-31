@@ -19,7 +19,7 @@ import inputs
 corpus = inputs.load_corpus(str(ROOT))
 held = {t["instrument_id"] for t in corpus["texts"]}
 with open(ROOT / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv", encoding="utf-8") as fh:
-    held |= {r["instrument_id"] for r in csv.DictReader(fh) if r["step_original_text"] == "done"}
+    held |= {r["instrument_id"] for r in csv.DictReader(fh) if r["step_original_text"] in ("done", "provisional")}
 print(f"held: {len(held)} via claim-kit texts and readiness tracker", file=sys.stderr)
 job_out = Path(__file__).resolve().parent / "output"
 for name in ("FRAGMENTS.jsonl", "MIRROR_FRAGMENTS.jsonl"):

@@ -39,7 +39,7 @@ The files are append-only. To change an entry, add a new line with the same `id`
 Kean is built to cost less than the reading it replaces. Before it, the start-up rule was to read every file in
 `HANDOFF/`, about 250 KB of agent notes (roughly 60,000 tokens) per session as of 2026-10-28. The brief is capped at 8 KB (a test
 fails above that) and lists only what an agent must act on: open owner questions, decisions the tools do not yet
-carry out, and the ten newest results, one line each. Everything older stays reachable through `search`, which runs
+carry out, and the six newest results, one line each. Everything older stays reachable through `search`, which runs
 locally and prints at most eight short hits. The check runs on GitHub's machines, so it costs agents nothing, and it
 ignores the brief's drift section so that fixing old wording elsewhere never fails an unrelated pull request.
 Recording is one command per result, owner decision or owner question; routine progress stays in agents' notes.

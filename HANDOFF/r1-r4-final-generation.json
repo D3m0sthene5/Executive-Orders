@@ -1,0 +1,1939 @@
+{
+  "schema": "r1-r4-final-integration-receipt/v1",
+  "pr": 117,
+  "source": "8cd1f53968e961cd85805f1bc682b2f083a72c65",
+  "native_proof": {
+    "run": 41230762353,
+    "source": "9438a8adc19396b5891d770d14ff681138bff795",
+    "outcome": "succeeded",
+    "artifacts": [
+      13053638114,
+      13053772538
+    ]
+  },
+  "independent_review": "research/progress/r1-r4-integration/ENGINEERING_REVIEW.md",
+  "first_branch_production": {
+    "run": 41230762368,
+    "source": "9438a8adc19396b5891d770d14ff681138bff795",
+    "runtime": "native jobs completed",
+    "publication": "refused",
+    "freshness_receipt": {
+      "schema": 1,
+      "result": "rejected",
+      "branch_commit": "3bfad7636c71897aa988ceb3d12eb32cf65f1f13",
+      "jobs": [
+        "example-hello",
+        "census-candidates",
+        "valla",
+        "claim-kit",
+        "early-ranger-workbench",
+        "kean",
+        "neyman"
+      ],
+      "problems": [
+        {
+          "job": "claim-kit",
+          "reason": "inputs_changed",
+          "captured_inputs_sha256": "2d369858d043b00411a10a504e2fae83267cc1373180021c038a888c18f06b3a",
+          "branch_inputs_sha256": "b4ee0b36abcb71b40a3f77187871ed3af36904c276b2837a708319e74700c3f7",
+          "changed_path_count": 4,
+          "changed_paths": [
+            {
+              "path": "research/progress/r1-r4-integration/ENGINEERING_REVIEW.md",
+              "captured": null,
+              "branch": "100644:10746cc5edfcf45addff8b600d761f169e5b4997"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/INTEGRATION.md",
+              "captured": "100644:34a1d195850eb3afb6b71811501bf0f1bde3f226",
+              "branch": "100644:d88c2c502b54c1ece2678c2ad37c475cd2b76fa7"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/LOCAL_VALIDATION.json",
+              "captured": null,
+              "branch": "100644:d74650e1ea2bc98000b75886c1b8037f45a0cead"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/PUBLIC_SOURCE_ATTESTATION.json",
+              "captured": null,
+              "branch": "100644:5ec0bf3f127470d23b57d3c637e185c13f4bf82c"
+            }
+          ]
+        },
+        {
+          "job": "neyman",
+          "reason": "inputs_changed",
+          "captured_inputs_sha256": "e101aff7a279ff025ed7859130570308107106c6d03f394b4d09ae28c62bed21",
+          "branch_inputs_sha256": "91a4e0fd7c6cb68070393c02b33fb3a46a75ee31031d08c60411ea7057baa148",
+          "changed_path_count": 4,
+          "changed_paths": [
+            {
+              "path": "research/progress/r1-r4-integration/ENGINEERING_REVIEW.md",
+              "captured": null,
+              "branch": "100644:10746cc5edfcf45addff8b600d761f169e5b4997"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/INTEGRATION.md",
+              "captured": "100644:34a1d195850eb3afb6b71811501bf0f1bde3f226",
+              "branch": "100644:d88c2c502b54c1ece2678c2ad37c475cd2b76fa7"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/LOCAL_VALIDATION.json",
+              "captured": null,
+              "branch": "100644:d74650e1ea2bc98000b75886c1b8037f45a0cead"
+            },
+            {
+              "path": "research/progress/r1-r4-integration/PUBLIC_SOURCE_ATTESTATION.json",
+              "captured": null,
+              "branch": "100644:5ec0bf3f127470d23b57d3c637e185c13f4bf82c"
+            }
+          ]
+        }
+      ],
+      "input_generations": {
+        "example-hello": {},
+        "census-candidates": {},
+        "valla": {},
+        "claim-kit": {
+          "example-hello": "same_run_candidate",
+          "census-candidates": "same_run_candidate",
+          "valla": "same_run_candidate",
+          "early-ranger-workbench": "captured_base",
+          "kean": "captured_base",
+          "neyman": "captured_base"
+        },
+        "early-ranger-workbench": {},
+        "kean": {},
+        "neyman": {
+          "claim-kit": "same_run_candidate"
+        }
+      },
+      "action": "Rerun these jobs on the current branch; retained outputs were not published."
+    }
+  },
+  "coordinated_main_production": {
+    "run": 41235195596,
+    "job": 124637374301,
+    "source": "87e829fea1cddb7abcd258f813ea467be2601059",
+    "published_generation": "a563c88a45900cadc221e76533af2bb591270839",
+    "publication_parent": "2caafc1ce38ecdb5bfb81ca41a6dd6d457e04e35",
+    "outcome": "success",
+    "native_phase_seconds": 2416,
+    "materialization_phase_seconds": 238,
+    "publication_phase_seconds": 202,
+    "actual_guard": "Accepted and safely retried non-fast-forward metadata advance; Results pushed to main at20:26:35UTC",
+    "immutable_published_input_audit": "HANDOFF/r1-r4-published-input-audit.json",
+    "input_map_mismatches": 0,
+    "artifact_receipt": "HANDOFF/r1-r4-production-artifact.json",
+    "all8attempts_success": true,
+    "all8artifact_manifests_byte_identical_to_published": true,
+    "job_statuses": {
+      "valla": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T19:43:05Z",
+        "job": "valla",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T19:42:56Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "claim-kit": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T19:54:10Z",
+        "job": "claim-kit",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T19:43:05Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "claim-checker": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:17:35Z",
+        "job": "claim-checker",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T19:54:11Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "census-candidates": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:18:26Z",
+        "job": "census-candidates",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T20:17:35Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "readiness-tracker": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:19:29Z",
+        "job": "readiness-tracker",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T20:18:26Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "early-ranger-workbench": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:20:21Z",
+        "job": "early-ranger-workbench",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T20:19:29Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "neyman": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:21:18Z",
+        "job": "neyman",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T20:20:21Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      },
+      "case-bundles": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "87e829fea1cddb7abcd258f813ea467be2601059",
+        "exit_code": 0,
+        "finished_utc": "2026-10-31T20:23:11Z",
+        "job": "case-bundles",
+        "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41235195596",
+        "started_utc": "2026-10-31T20:21:18Z",
+        "trigger": "R1-R4 authorized coordinated verification"
+      }
+    },
+    "per_job_transaction_seconds": {
+      "valla": 9.0,
+      "claim-kit": 665.0,
+      "claim-checker": 1404.0,
+      "census-candidates": 51.0,
+      "readiness-tracker": 63.0,
+      "early-ranger-workbench": 52.0,
+      "neyman": 57.0,
+      "case-bundles": 113.0
+    },
+    "timing_scope": "Per-job transactions include capture/materialization, installs, embedded tests and native job execution; not isolated algorithm timings.",
+    "compiler_code_sha256_matched": {
+      "../clause-drafts/segment.py": "0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573",
+      "act_overrides.py": "8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280",
+      "assemble.py": "3f6b92ec04cfb07d4d561db5e482bc74c16f14c7ef095666b715f3c7505c7bdb",
+      "build.py": "e662bc493ce6bb07d5b550e05c0af2843d82ae61311ae416e7191f1ce074d281",
+      "current_evidence.py": "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c",
+      "excavate.py": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d",
+      "factual_events.py": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659",
+      "inputs.py": "6ca64e4c65479bd1f363386981e25f390e38295eb3b5a38f9ca316deca60f2dd",
+      "lifecycle_obligations.py": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
+      "population.py": "299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859",
+      "working_text.py": "81de05d41220a7db6fe43a774a13ffd8ab00353573b16ef9ea15ce1088d06bb9"
+    },
+    "compiler_counts": {
+      "act_overrides_ingested": 219,
+      "act_overrides_refused": 4,
+      "assembled_claims": 0,
+      "decided_orders": 3403,
+      "declared_text_representations": 142532,
+      "distinct_held_text_artifacts": 41564,
+      "dossiers": 3403,
+      "families": 4515,
+      "generic_references_excluded": 221,
+      "held_texts_scanned": 41564,
+      "known_pairs": 22433,
+      "located_actor_pairs": 10916,
+      "orders_with_held_text": 14884,
+      "printed_reference_only_pairs": 622,
+      "status_leads": 11569,
+      "texts_refused_as_order_text": 280,
+      "universe_orders": 14972
+    },
+    "readiness": {
+      "orders_total": 14972,
+      "orders_with_provisional_status": 3403,
+      "ready_for_human_review": 498,
+      "ready_by_tier": {
+        "complete_claim": 498
+      },
+      "ready_by_text_evidence_tier": {
+        "original_supported": 306,
+        "transcription_dependent": 192
+      },
+      "original_replacement_obligations": 194,
+      "quotation_recheck_obligations": 194,
+      "human_verified": "not counted here; see the Stage 19 tracker",
+      "opus_media_not_applicable": [
+        "EO:11423",
+        "EO:11649",
+        "EO:12073",
+        "EO:12391",
+        "EO:12504"
+      ],
+      "step_done_among_decided": {
+        "provisional_status": {
+          "done": 3403,
+          "applicable": 3403
+        },
+        "original_text": {
+          "done": 2547,
+          "applicable": 3403
+        },
+        "clause_inventory": {
+          "done": 566,
+          "applicable": 3403
+        },
+        "ending_or_current_basis": {
+          "done": 521,
+          "applicable": 3403
+        },
+        "savings_residuals": {
+          "done": 554,
+          "applicable": 3403
+        },
+        "counterevidence": {
+          "done": 2724,
+          "applicable": 3403
+        },
+        "shared_sources": {
+          "done": 209,
+          "applicable": 236
+        },
+        "opus_media": {
+          "done": 125,
+          "applicable": 839
+        }
+      },
+      "decided_by_steps_done": {
+        "1/6": 443,
+        "1/7": 14,
+        "1/8": 2,
+        "2/6": 469,
+        "2/7": 81,
+        "2/8": 6,
+        "3/6": 1091,
+        "3/7": 430,
+        "3/8": 34,
+        "4/6": 30,
+        "4/7": 69,
+        "4/8": 166,
+        "5/6": 38,
+        "5/8": 25,
+        "6/6": 492,
+        "6/7": 5,
+        "6/8": 1,
+        "7/7": 6,
+        "8/8": 1
+      },
+      "orders_blocked_by": {
+        "NO_PROVISIONAL_STATUS": 11569,
+        "NO_OFFICIAL_SOURCE_LOCATED": 7624,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 5160,
+        "NO_CLAUSE_INVENTORY": 2791,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 2791,
+        "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2746,
+        "FIRST_END_UNPROVED": 2398,
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 492,
+        "OPUS_MEDIA_REFETCH_NEEDED": 431,
+        "CURRENT_BASIS_UNPROVED": 393,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 285,
+        "OPUS_MEDIA_NONE_CITED": 212,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+        "CLAIM_INCOMPLETE": 88,
+        "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+        "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+        "SHARED_SOURCE_NOT_RETRIEVED": 27,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+        "OPEN_SOURCE_AUDIT": 10,
+        "CLAIM_CHECK_FAILED": 7,
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2,
+        "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
+      },
+      "decided_orders_blocked_by": {
+        "NO_CLAUSE_INVENTORY": 2791,
+        "SAVINGS_RESIDUALS_NOT_CLOSED": 2791,
+        "FIRST_END_UNPROVED": 2398,
+        "NO_OFFICIAL_SOURCE_LOCATED": 769,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 757,
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 492,
+        "OPUS_MEDIA_REFETCH_NEEDED": 431,
+        "CURRENT_BASIS_UNPROVED": 393,
+        "OPUS_MEDIA_NONE_CITED": 212,
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+        "CLAIM_INCOMPLETE": 88,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 87,
+        "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 73,
+        "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+        "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+        "SHARED_SOURCE_NOT_RETRIEVED": 27,
+        "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+        "OPEN_SOURCE_AUDIT": 10,
+        "CLAIM_CHECK_FAILED": 7,
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2,
+        "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+        "NO_PROVISIONAL_STATUS": 0
+      },
+      "shared_unlocks": [
+        {
+          "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+          "kind": "machine_job",
+          "orders_unblocked": 5160,
+          "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        },
+        {
+          "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
+          "kind": "agent_check",
+          "orders_unblocked": 2746,
+          "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
+        },
+        {
+          "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+          "kind": "machine_job",
+          "orders_unblocked": 431,
+          "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+        },
+        {
+          "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+          "kind": "agent_check",
+          "orders_unblocked": 285,
+          "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        },
+        {
+          "action": "Retrieve shared source EO::4314",
+          "kind": "one_source",
+          "orders_unblocked": 10,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"
+        },
+        {
+          "action": "Retrieve shared source EO::6868",
+          "kind": "one_source",
+          "orders_unblocked": 6,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"
+        },
+        {
+          "action": "Retrieve shared source USC::48 U.S.C. 863)",
+          "kind": "one_source",
+          "orders_unblocked": 3,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)"
+        },
+        {
+          "action": "Retrieve shared source EO::6964",
+          "kind": "one_source",
+          "orders_unblocked": 3,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964"
+        },
+        {
+          "action": "Retrieve shared source EO::6910",
+          "kind": "one_source",
+          "orders_unblocked": 3,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910"
+        },
+        {
+          "action": "Retrieve shared source CFR::26 CFR 458.324",
+          "kind": "one_source",
+          "orders_unblocked": 2,
+          "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324"
+        },
+        {
+          "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+          "kind": "agent_check",
+          "orders_unblocked": 1,
+          "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
+        }
+      ],
+      "input_problems": [],
+      "historical_census_candidates_OUTSIDE_DENOMINATOR": {
+        "distinct_LOC_item_ID_candidates": 67,
+        "LOC_transcribed_items": 0,
+        "LOC_items_with_original_page_images": 3,
+        "Lord_index_appearances_UNAUTHENTICATED": 1023,
+        "Lord_19c_gap_appearances": 812,
+        "newly_admitted_EOs": 0,
+        "separate_from_14972_census": true
+      },
+      "inputs": {
+        "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+        "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+        "causal": "research/stage19/output/CAUSAL_QUEUE.csv",
+        "crosswalk": "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv",
+        "custody": "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv",
+        "shared": "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv",
+        "statute": "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv",
+        "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
+        "claims": "research/readiness/claims/*.jsonl",
+        "exhausted": "research/readiness/EXHAUSTED.jsonl",
+        "job_outputs": {
+          "fr_fragments": "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl + jobs/fr-originals/output/FRAGMENTS.jsonl",
+          "opus_fragments": "jobs/opus-media-match/output/FRAGMENTS.jsonl",
+          "official_compilation_fragments": "jobs/ofr-compilations/output/FRAGMENTS.jsonl + jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl + jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
+          "compiled_transcription_fragments": "jobs/richardson-volumes/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/FRAGMENTS.jsonl + jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl + jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl + jobs/numbered-early-orders/output/FRAGMENTS.jsonl + jobs/wikisource-texts/output/FRAGMENTS.jsonl + jobs/csc-annual-reports/output/FRAGMENTS.jsonl",
+          "archival_replica_fragments": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
+          "opus_status": "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv",
+          "opus_refetch": "jobs/opus-media-match/output/REFETCH_LIST.jsonl",
+          "ladder_sources": "jobs/source-ladder/output/SOURCES.jsonl",
+          "checker": "jobs/claim-checker/output/PER_CLAIM.json",
+          "le_summary": "jobs/later-events/output/SUMMARY.json",
+          "le_catalog": "jobs/later-events/output/CATALOG_INDEX.csv",
+          "le_conflicts": "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv",
+          "le_status": "jobs/later-events/output/STATUS.json",
+          "cl_summary": "jobs/current-law/output/SUMMARY.json",
+          "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
+          "cl_status": "jobs/current-law/output/STATUS.json"
+        },
+        "job_outputs_used": {
+          "fr-originals": 6497,
+          "opus-media-match fragments": 122,
+          "ofr-compilations": 500,
+          "isthmian-canal-1911": 105,
+          "indian-reservations-1912": 55,
+          "richardson-volumes (lead only, never counted as the original)": 68,
+          "app-executive-orders (lead only, never counted as the original)": 9902,
+          "hathi-gpo-orders (lead only, never counted as the original)": 1531,
+          "numbered-early-orders (lead only, never counted as the original)": 184,
+          "wikisource-texts (lead only, never counted as the original)": 1639,
+          "csc-annual-reports (lead only, never counted as the original)": 798,
+          "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
+          "opus-media-match status": 1155,
+          "source-ladder": 632,
+          "claim-checker": 612,
+          "machine later-source search": 6938
+        }
+      }
+    },
+    "checker_summary": {
+      "schema": "eo-claim-check/v1",
+      "job": "claim-checker",
+      "legal_cutoff": "2026-10-14",
+      "claim_files": [
+        "astra-2026-10-17-p12553a.jsonl",
+        "astra-2026-10-17-p12553b.jsonl",
+        "astra-2026-10-17-p3originals.jsonl",
+        "astra-2026-10-17-pother.jsonl",
+        "astra-2026-10-18-p3complete.jsonl",
+        "astra-cumulative-2026-10-24.jsonl",
+        "astra-source-first-2026-10-24.jsonl",
+        "claude-2026-10-18-codif-b0.jsonl",
+        "claude-2026-10-18-codif-b1.jsonl",
+        "claude-2026-10-18-codif-b2.jsonl",
+        "claude-2026-10-18-codif-b3.jsonl",
+        "claude-2026-10-18-codif-b4.jsonl",
+        "claude-2026-10-18-codif-b5.jsonl",
+        "claude-2026-10-18-codif-b6.jsonl",
+        "claude-2026-10-18-codif-b7.jsonl",
+        "claude-2026-10-19-x1-pilot.jsonl",
+        "claude-2026-10-28-production-b1a.jsonl",
+        "claude-2026-10-28-production-b1b.jsonl",
+        "claude-2026-10-28-production-b1c.jsonl",
+        "claude-2026-10-28-spent-probe.jsonl",
+        "claude-2026-10-29-nira-t1.jsonl",
+        "claude-2026-10-29-nira-t2.jsonl",
+        "claude-2026-10-29-nira-t3.jsonl",
+        "claude-2026-10-29-nira-t4.jsonl",
+        "claude-2026-10-29-nira-t5.jsonl",
+        "claude-2026-10-29-nira-t6.jsonl",
+        "claude-b0-producer-2026-10-29-nira.jsonl",
+        "claude-bowditch-y2-01-2026-10-20.jsonl",
+        "claude-bowditch-y2-02-2026-10-20.jsonl",
+        "claude-lambertini-b02-2026-10-20.jsonl",
+        "claude-lambertini-i01-2026-10-20.jsonl",
+        "claude-lambertini-i03-2026-10-20.jsonl",
+        "claude-lambertini-i04-2026-10-20.jsonl",
+        "claude-lambertini-i05-2026-10-20.jsonl",
+        "claude-lambertini-i06-2026-10-20.jsonl",
+        "claude-lambertini-i07-2026-10-20.jsonl",
+        "claude-lambertini-i08-2026-10-20.jsonl",
+        "claude-lambertini-iv01-2026-10-20.jsonl",
+        "claude-lambertini-iv02b-2026-10-20.jsonl",
+        "claude-lambertini-p1-2026-10-20.jsonl",
+        "claude-lambertini-rr4-2026-10-20.jsonl",
+        "claude-lambertini-s01-2026-10-20.jsonl",
+        "claude-lambertini-s02-2026-10-20.jsonl",
+        "claude-lambertini-s03-2026-10-20.jsonl",
+        "claude-lamm-s03-2026-10-20.jsonl",
+        "claude-lamm-s04-2026-10-20.jsonl",
+        "claude-lamm-t01-2026-10-20.jsonl",
+        "claude-lamm-t02-2026-10-20.jsonl",
+        "claude-mansfield-b01-2026-10-22.jsonl",
+        "claude-mansfield-b02-2026-10-22.jsonl",
+        "claude-mansfield-b03-2026-10-22.jsonl",
+        "claude-nearready-2026-10-20.jsonl",
+        "claude-pagechk3-01-2026-10-20.jsonl",
+        "claude-r12553nb-01-2026-10-20.jsonl",
+        "claude-r12553nb-s2-2026-10-20.jsonl",
+        "claude-r12553nb-s3-2026-10-20.jsonl",
+        "claude-r12553nb-s4-2026-10-20.jsonl",
+        "claude-r12553nb-s5-2026-10-20.jsonl",
+        "claude-r12553nb-s6-2026-10-20.jsonl",
+        "claude-r9830-01-2026-10-20.jsonl",
+        "claude-r9830-s1-2026-10-20.jsonl",
+        "claude-r9830-s2-2026-10-20.jsonl",
+        "claude-r9830-s3-2026-10-20.jsonl",
+        "claude-rastell-c01-2026-10-20.jsonl",
+        "claude-rastell-c02-2026-10-20.jsonl",
+        "claude-viapar-m-2026-10-20.jsonl",
+        "claude-viapar-p-2026-10-20.jsonl",
+        "claude-y2lead-01-2026-10-20.jsonl",
+        "claude-y2lead-02-2026-10-20.jsonl",
+        "codex-continuous-prior-2026-10-25.jsonl",
+        "codex-continuous-prior-b04-2026-10-25.jsonl",
+        "codex-counterexample-20261026-7975a.jsonl",
+        "codex-counterexample-20261026-whole.jsonl",
+        "codex-production-cost-trace-20261026-b1.jsonl",
+        "codex-production-cost-trace-20261026-b2.jsonl",
+        "codex-swarm-2026-10-21.jsonl"
+      ],
+      "claim_lines_found": 613,
+      "job_limit": null,
+      "claims_checked": 613,
+      "claims_parse_errors": 0,
+      "claims_checker_errors": 0,
+      "orders_with_claim": 612,
+      "claims_all_checks_passed": 516,
+      "claims_mechanical_pass": 606,
+      "claims_mechanical_unverified": 4,
+      "claims_mechanical_fail": 3,
+      "claims_gate_passed": 523,
+      "steps_checker_passed_effective_claims": {
+        "original_text": 579,
+        "clause_inventory": 566,
+        "ending_or_current_basis": 521,
+        "savings_residuals": 554,
+        "counterevidence": 556
+      },
+      "check_results": {
+        "source_held": {
+          "pass": 10923,
+          "skip": 7
+        },
+        "source_identity": {
+          "pass": 4486
+        },
+        "quote_verbatim": {
+          "fail": 7,
+          "pass": 13955
+        },
+        "date_valid": {
+          "pass": 13853
+        },
+        "date_after_signing": {
+          "pass": 5435
+        },
+        "order_exists": {
+          "pass": 6180
+        },
+        "working_text_policy": {
+          "fail": 12,
+          "pass": 192
+        },
+        "factual_event_policy": {},
+        "structural_gate": {
+          "fail": 733,
+          "pass": 523
+        },
+        "parse": {},
+        "checker_error": {}
+      },
+      "source_status_counts": {
+        "custody_record_only": 7,
+        "gpo_published_hash_match": 4408,
+        "held_bytes_in_release_or_repo": 85,
+        "held_bytes_verified": 6430
+      },
+      "source_identity_counts": {
+        "recorded_for_this_order": 4486
+      },
+      "quote_status_counts": {
+        "exact": 13944,
+        "normalised": 11,
+        "not_found": 7
+      },
+      "source_status_policy": {
+        "held_bytes_verified": "pass",
+        "held_bytes_in_release_or_repo": "pass",
+        "gpo_published_hash_match": "pass",
+        "custody_record_only": "skip"
+      },
+      "claim_checks_csv": {
+        "mode": "non_pass_rows",
+        "rows_written": 759,
+        "rows_total": 56306,
+        "max_mb": 50.0,
+        "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
+      },
+      "held_copies_indexed_by_origin": {
+        "jobs/app-executive-orders/output/SOURCES.jsonl": 792,
+        "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
+        "jobs/astra-source-retention/output/SOURCES.jsonl": 265,
+        "jobs/cassiodorus/output/SOURCES.jsonl": 10,
+        "jobs/clark-discovery/output/SOURCES.jsonl": 11,
+        "jobs/clause-drafts/output/SOURCES.jsonl": 9761,
+        "jobs/cotton-capture-custody/output/SOURCES.jsonl": 526,
+        "jobs/current-law/output/SOURCES.jsonl": 110,
+        "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
+        "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
+        "jobs/fr-originals/output/SOURCES.jsonl": 6497,
+        "jobs/fr-pages/output/SOURCES.jsonl": 30,
+        "jobs/hathi-gpo-orders/output/SOURCES.jsonl": 1531,
+        "jobs/indian-reservations-1912/data/PROVENANCE.json": 1,
+        "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl": 55,
+        "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
+        "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
+        "jobs/later-events/output/SOURCES.jsonl": 17528,
+        "jobs/lewis-originals/output/SOURCES.jsonl": 856,
+        "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
+        "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
+        "jobs/ofr-compilations/data/PROVENANCE.json": 1,
+        "jobs/ofr-compilations/output/FRAGMENTS.jsonl": 500,
+        "jobs/opus-media-match/output/SOURCES.jsonl": 496,
+        "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": 2750,
+        "jobs/richardson-volumes/data/PROVENANCE.json": 3,
+        "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
+        "jobs/shepard-citations/output/SOURCES.jsonl": 24,
+        "jobs/source-ladder/output/SOURCES.jsonl": 632,
+        "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
+        "opus_media_member_map": 496,
+        "opus_stage11_fetch_meta": 9203,
+        "opus_stage11_manifest": 27237,
+        "pinakes_replica_fragments": 2750,
+        "stage18_source_manifest": 25,
+        "stage20_statute_fetch_index": 7,
+        "stage21_acquisition_log": 160,
+        "stage21_custody": 160
+      },
+      "held_distinct_sha256": 47084,
+      "opus_text_pack_texts": 0,
+      "signing_dates_loaded": {
+        "identity_layer_year_only": 14854,
+        "jobs/fr-originals/output/NOT_FOUND.csv": 441,
+        "jobs/pinakes-proquest-ingest/output/ORDERS.csv": 2520,
+        "stage14_fetch_manifest": 1144,
+        "stage21_crosswalk": 402
+      },
+      "gate_error_step_mapping_from": "jobs/readiness-tracker/tracker.py",
+      "pypdf_available": true,
+      "fetch": null,
+      "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only"
+    },
+    "census_summary": {
+      "Lord_19c_gap_rows": 812,
+      "Lord_19c_not_in_Lord_main": 0,
+      "Lord_index_appearances_UNAUTHENTICATED": 1023,
+      "distinct_LOC_item_ID_candidates": 67,
+      "independent_human_certifications": 0,
+      "input_hashes": {
+        "census": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f",
+        "curated": "76f14062d6fdd850b284a3e792273b4e6c7dae230c4119f49f3a9628b07ea00c",
+        "early_sources": "a9e0a0ea0265bed41356dec913a95a598181e8ae82ae2d0fba894c17a7169a09",
+        "item_metadata": "add12711101fc1ab6b52a30628aec93b034c6018a523b75eff09946aa06e7268",
+        "loc_reparse": "cf49a4da7b798ce62e098b057a700047f42d09790496deeb52570576c2adb9dc",
+        "loc_triage": "e04db36335cdb5952d51c58f0deb264caa9bbc27049ae9592a88cd040b0f0bac",
+        "lord": "7303bed0ca9f337353edac22a69c891b2cc47a9403a7c65d9024bc9e456ebfca",
+        "lord19": "2e6327ffa97afcba625a1f281cbaee7e3d6bff534266f5fe6186c4cbffb22d2c",
+        "page_images": "9b06375198cca0d547404b60c101ca33e6d29a8d931862a75fa62a12654a4afa",
+        "transcriptions": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "items_with_LOC_XML_transcript": 0,
+      "items_with_saved_original_pages": 3,
+      "newly_admitted_EOs": 0,
+      "no_date_only_identity_merges": true,
+      "research_note_records": 0,
+      "saved_original_pages_referenced": 10,
+      "schema": "eo-early-candidate-register/v1",
+      "source_bound_AI_research_proposals": 0,
+      "uncrosswalked_historical_source_representations": 5
+    },
+    "permanent_publication_log": {
+      "path": "HANDOFF/r1-r4-publication-log.txt",
+      "sha256": "5b1b1eb1001d78e20b4f43c1410e5059ccea904cd9823eab85f65688fef37c4c",
+      "scope": "Exact publisher step and cleanup excerpt from actual native job log; whole job success confirmed through GitHub Actions API."
+    }
+  },
+  "scientific_adoption": false,
+  "scientific_recommendations": [
+    "R2 exact-version source audit/correction proposals remain unadopted; incorporated annex names still missed.",
+    "R3 eight inclusion/hold/duplicate proposals require historical inclusion and identity procedure; all remain unadmitted and uncertified.",
+    "R4 productive scientific continuation remains open; EO8915 earlier-event evidence, EO8992 existing-source authority-key registration review."
+  ],
+  "remaining_bottlenecks": [
+    "Unaudited dynamic consumers still use broad jobs availability; Valla's certificate is invocation-specific.",
+    "Broad research/progress dependencies invalidate claim-kit/NEYMAN even for integration bookkeeping, proved by first branch refusal.",
+    "Cold network, whole-project startup, complete research labor and model-token savings remain unmeasured.",
+    "Independent scientific review, original replacement/quotation recheck, missing-source and status-adoption gates remain substantive work.",
+    "Native mixed8materialization238seconds; most jobs remain unaudited/broad fallback.",
+    "Native checker1404seconds and compiler665seconds transactions dominate. Checker heartbeat used approximately60CPU-seconds per minute for most22minutes; low network most of interval. Profile index/source/quotation and repeated processing; do not assume downloads caused the wait.",
+    "The one-use verification invocation did not restore ordinary action download caches; it is not a matched whole-project performance benchmark.",
+    "Older runtime-only compiler-push exemption fingerprint expires after real prior_research.py change; not blindly renewed."
+  ],
+  "last_implementation_fix": {
+    "file": "jobs/claim-kit/prior_research.py",
+    "sha256": "593efd1250e2e515623df44c438ea1258be12d553d4d1290c15c717950293fc7",
+    "effect": "Canonical POSIX evidence manifest key; exact mismatch refusal retained; old policy packets require fresh review."
+  },
+  "local_final_claimkit": {
+    "executions": 510,
+    "skips": 5,
+    "failures": 0
+  },
+  "reused_compatible_workbench_generation": "0a1a962c9a87ea4e8bde7998863381380130c392",
+  "integration_merge": "e00fffbd3527fc4e4f81151e514ed7787f6f5cd9",
+  "source_prs": {
+    "R1": {
+      "pr": 112,
+      "head": "711e7b8931b69f75e47c8247c575052f6609c9bd"
+    },
+    "R2": {
+      "pr": 115,
+      "head": "348d8700dbfbf6a39e871fda7630956c43700872"
+    },
+    "R3": {
+      "pr": 114,
+      "head": "b7b35b5401dba64d07398b68772719cecb6c2137"
+    },
+    "R4": {
+      "pr": 113,
+      "head": "cd8f9e289f83bc01db9619efcbd482e46e4eb61b"
+    }
+  },
+  "engineering_ci": {
+    "run": 41232992052,
+    "source": "8cd1f53968e961cd85805f1bc682b2f083a72c65",
+    "linux": "passed966executions8skips",
+    "windows": "passed966executions8skips",
+    "unique_test_count_claimed": false
+  },
+  "native_consumer_rehearsal": {
+    "run": 41232590447,
+    "source": "dcde7153691b619ba1e3f905e3be8f42a60cb96c",
+    "outcome": "succeeded",
+    "reuse_scope": "Later changes are exact native destination assertion in a NEYMAN test plus HANDOFF review and valid NEYMAN derived outputs. Runtime byte hashes and exact Valla422inputmap match reviewed proof. Final current-source pilot also tracked separately.",
+    "final_current_source_run": 41232992064,
+    "final_current_source_outcome": "success",
+    "final_current_source_job": 124630857934,
+    "final_pilot_reported_checkout_head": "51fd37e7fe748c2214a6aff6333ad8a5ac1319ae",
+    "final_pilot_checkout_note": "GitHub PR merge checkout reported by the bounded pilot; PR source8cd1f539. Retained pilot observations do not renew old attestations."
+  },
+  "protected_scientific_files": {
+    "changed_since_base": [],
+    "paths": [
+      "research/readiness/claims",
+      "research/readiness/SOURCE_AUDIT_HOLDS.jsonl",
+      "research/readiness/owner_rulings",
+      "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
+    ],
+    "comparison_base": "f46d8e63e72778141a666ac0ac70b9325c5a429f",
+    "comparison_published_generation": "a563c88a45900cadc221e76533af2bb591270839"
+  },
+  "ordinary_main_run": 41234105609,
+  "authorization": {
+    "owner_instruction": "You are the sole final integration owner and are authorized to review, resolve conflicts, make necessary integration fixes, merge qualifying engineering work and verify production. Scientific adoption retains its existing authority.",
+    "scope": "This R1-R4 integration; not a ruling on standing future merge permission."
+  },
+  "certificate_source_note": "CERTIFICATE_REESTABLISHMENT.json includes a local intermediate committed source9f978fe6. PUBLIC_SOURCE_ATTESTATION.json identifies the published proof source9438a8a; exact certified closure and all422inputentries equal the final implementation. No unretained local commit is needed to reproduce the public proof.",
+  "second_branch_production": {
+    "run": 41232585154,
+    "source": "dcde7153691b619ba1e3f905e3be8f42a60cb96c",
+    "runtime": "native compiler completed3403dossiers/41564heldtextartifacts",
+    "publication": "refused after separately published NEYMAN frame advanced",
+    "freshness_receipt": {
+      "schema": 1,
+      "result": "rejected",
+      "branch_commit": "53688c29206b011265d1e7c86fd8c1633ef8407a",
+      "jobs": [
+        "claim-kit"
+      ],
+      "problems": [
+        {
+          "job": "claim-kit",
+          "reason": "inputs_changed",
+          "captured_inputs_sha256": "a054b229f3a8e996be7e482cf17f480e1d40c4228e2c8dd7f89e4caa53f0b9e8",
+          "branch_inputs_sha256": "0e3a9172a1587047f539065809eb86bdb44f3c6d07d83b24d952b81e9ee61f8f",
+          "changed_path_count": 7,
+          "changed_paths": [
+            {
+              "path": "jobs/neyman/output/FRAME.jsonl",
+              "captured": "100644:e8201160a555be070bd619cec5e0223fb8d0980a",
+              "branch": "100644:ef2d55899fb575d897347a262eda7011c39dc4e1"
+            },
+            {
+              "path": "jobs/neyman/output/FRAME.md",
+              "captured": "100644:371f1815f2fbf591a7ee08e884256420c3aeb655",
+              "branch": "100644:4930572c8360c27438aa66eb969c8716ba7b0f9c"
+            },
+            {
+              "path": "jobs/neyman/output/MANIFEST.json",
+              "captured": "100644:00b54504a3b6617a24ddacd7980761cc2e69af3a",
+              "branch": "100644:0bc0a9b68e030d279bc281a603b0fce181b086d1"
+            },
+            {
+              "path": "jobs/neyman/output/RUNNER_INPUTS.json",
+              "captured": "100644:9a6242a81d100ad1d9a9f475068cdc6760956bb6",
+              "branch": "100644:7dbe73deefb5bb0a9fe18e969e4fb13af86f11aa"
+            },
+            {
+              "path": "jobs/neyman/output/STATUS.json",
+              "captured": "100644:23382a1519f289d0b5524a82b3c6ff69683fe8b5",
+              "branch": "100644:285b1bc2ce5b0c2eac4cd43e1af45cf3fa315669"
+            },
+            {
+              "path": "jobs/neyman/output/STRATA.json",
+              "captured": "100644:7c3a3042597aa8e62f73b79e86d0ae206803fc5a",
+              "branch": "100644:c338d19d8b85396c7b29d5068695d071b4cdb1f3"
+            },
+            {
+              "path": "jobs/neyman/output/log.txt",
+              "captured": "100644:1a6b4881d1383b8cc89b067f6614a8b401e00928",
+              "branch": "100644:3d2eaa1d7c863bad0a7ccfadb8a1f6fbfe2e0a58"
+            }
+          ]
+        }
+      ],
+      "input_generations": {
+        "claim-kit": {}
+      },
+      "action": "Rerun these jobs on the current branch; retained outputs were not published."
+    }
+  },
+  "existing_text_followup": {
+    "record": "HANDOFF/r1-r4-EO8992-followup.json",
+    "verified_retained_text_bytes": 2647,
+    "verified_retained_text_sha256": "b5cfe2b37730ac7ed306c84d074ce009d78432d69a279793690273c00e1a2bd1",
+    "scientific_adoption": false
+  },
+  "measured_benefits": {
+    "scope": "One matched warm-object native Valla comparison at public proof source9438; not a campaign or cold-network estimate",
+    "worktree_bytes": {
+      "full": 7949794350,
+      "selective": 275690417
+    },
+    "worktree_paths": {
+      "full": 93695,
+      "selective": 8258
+    },
+    "startup_seconds": {
+      "full": 38.0776034,
+      "selective": 11.998191339
+    },
+    "native_execution_seconds": {
+      "full": 8.69326308,
+      "selective": 8.92978296
+    },
+    "metadata_startup_calls": {
+      "full": 22,
+      "selective": 61
+    },
+    "metadata_startup_seconds": {
+      "full": 1.4368,
+      "selective": 3.13845
+    },
+    "selective_declared_closure": {
+      "paths": 427,
+      "bytes": 56374861
+    },
+    "input_entries_compared": 422,
+    "native_output_files_byte_identical": 5,
+    "packages": 97,
+    "construction_seconds": 372.63260798,
+    "construction_host_interface_bytes": 5063778499,
+    "whole_proof_seconds": 457.805103538,
+    "git_transfer_bytes_each_arm": 0,
+    "network_note": "Git objects prewarmed; host interface bytes are not Git transfer. OS cache uncontrolled. Empty per-arm job caches. Construction is additional cost.",
+    "tokens_cash_and_total_labor_savings": null,
+    "r2_diagnostic_omission_controls": {
+      "before": 1,
+      "after": 3,
+      "total": 3,
+      "population_inference_supported": false,
+      "interpretation": "Inventory-specific omission diagnostics: baseline section warning1 vs repaired command warnings3; excludes existing boundary-review tasks."
+    },
+    "r3_retained_proposals": 8,
+    "r3_census_candidates": 67,
+    "r3_admissions": 0,
+    "r3_certifications": 0,
+    "r4_new_productive_scientific_action": false,
+    "r3_scope": "Isolated source9438 replay; eight proposals are not default published census imports."
+  },
+  "coordinated_invocation_retirement": {
+    "commit": "2caafc1ce38ecdb5bfb81ca41a6dd6d457e04e35",
+    "receipt": "HANDOFF/r1-r4-invocation-start.json",
+    "all_eight_scope_tree_maps_equal_to_source": true,
+    "reason": "Prevent duplicate invocation after intended run passed exact-source guard; active compiled run continues."
+  },
+  "current_dashboard": "Unchanged:498ready from prior compatible published generation agrees with newly verified a563c88a. No replay sums or scientific adoption.",
+  "overlapping_scheduled_sweep": {
+    "run": 41234844158,
+    "source": "e00fffbd3527fc4e4f81151e514ed7787f6f5cd9",
+    "runtime": "completed",
+    "publication": "refused; newer ordinary generation was already published",
+    "freshness_receipt": {
+      "schema": 1,
+      "result": "rejected",
+      "branch_commit": "2caafc1ce38ecdb5bfb81ca41a6dd6d457e04e35",
+      "jobs": [
+        "census-candidates",
+        "readiness-tracker",
+        "case-bundles",
+        "valla",
+        "claim-kit",
+        "clark-discovery",
+        "corpus-excavator",
+        "lambertini",
+        "neyman",
+        "neyman-pilot",
+        "lewis-originals",
+        "domesday-register",
+        "early-ranger-workbench",
+        "example-hello",
+        "kean"
+      ],
+      "problems": [
+        {
+          "job": "census-candidates",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "valla",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "claim-kit",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "neyman",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "early-ranger-workbench",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "example-hello",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "kean",
+          "reason": "concurrent_output_advanced",
+          "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+        },
+        {
+          "job": "claim-kit",
+          "reason": "inputs_changed",
+          "captured_inputs_sha256": "4070b3540259ac3c86b32229f79f097ee11095bc1cd168bcadf822f6d3f87f1f",
+          "branch_inputs_sha256": "b3101848f4b3e246ac7b390a0512f5de243a4766f858a8d96cb389ef68abc523",
+          "changed_path_count": 17,
+          "changed_paths": [
+            {
+              "path": "jobs/early-ranger-workbench/output/CASES.json",
+              "captured": "100644:b8e10d8f2e5831d10b7e5605e04f900adcae8833",
+              "branch": "100644:47e470f0cb6d266301d4cbca5f75c68386259fc0"
+            },
+            {
+              "path": "jobs/early-ranger-workbench/output/EARLY_SOURCE_REVIEW_WORKBENCH.html",
+              "captured": "100644:5e583eee2031e6c5f0d84cddb9d2655fffe8f5bf",
+              "branch": "100644:5ba781418f04f0b1abf4fd14053597291749f115"
+            },
+            {
+              "path": "jobs/early-ranger-workbench/output/RUNNER_INPUTS.json",
+              "captured": "100644:160e5e15fcad69260561dc0d2b2ee67fb53c0fc8",
+              "branch": "100644:9bbf005a4cafa950a2750aa9e9df0b74e4ad5ab2"
+            },
+            {
+              "path": "jobs/early-ranger-workbench/output/STATUS.json",
+              "captured": "100644:0506ea4957cad13abf371d9306cfe2b6e7db9c20",
+              "branch": "100644:321583476a8616533e0556ea6bbe0d3f92ebdb55"
+            },
+            {
+              "path": "jobs/early-ranger-workbench/output/WORKBENCH_METRICS.json",
+              "captured": "100644:4cbfb89f4c7e74f9de7fe0dbe7004dca325949bd",
+              "branch": "100644:9f67978f64f4eeed27f5760f7e6ed78dd0823d51"
+            },
+            {
+              "path": "jobs/early-ranger-workbench/output/log.txt",
+              "captured": "100644:4cbfb89f4c7e74f9de7fe0dbe7004dca325949bd",
+              "branch": "100644:9f67978f64f4eeed27f5760f7e6ed78dd0823d51"
+            },
+            {
+              "path": "jobs/example-hello/output/RUNNER_INPUTS.json",
+              "captured": "100644:25acbb20e2d3acbd1f2053ee0fec353692a9e33b",
+              "branch": "100644:39d7c89c6470867b61620c9e4bcad64f57961dd6"
+            },
+            {
+              "path": "jobs/example-hello/output/STATUS.json",
+              "captured": "100644:4d419a205089fb95fae161e42c1ada9f154d1266",
+              "branch": "100644:5fc15cecb3eae810ca925f3cf2571ca47907b3c1"
+            },
+            {
+              "path": "jobs/kean/output/KEAN.md",
+              "captured": "100644:36bd13cba47b396adb51137ded05a83c2a8436b8",
+              "branch": "100644:0d68440115b46f8a8b8b3c0bdd2ad16174626c4a"
+            },
+            {
+              "path": "jobs/kean/output/RUNNER_INPUTS.json",
+              "captured": "100644:2f7f0bea5b0f257ed989867094db068bbd0b246c",
+              "branch": "100644:cc551d1d5e294aaf46e8249c978c9dfe91ab2bb7"
+            },
+            {
+              "path": "jobs/kean/output/STATUS.json",
+              "captured": "100644:9598d6fc34af7b18f33dc53e20d6ec399f4b50a5",
+              "branch": "100644:c7045bc421163150be0dcc7b5f785c9345c07fd7"
+            },
+            {
+              "path": "jobs/kean/output/SUMMARY.json",
+              "captured": "100644:405cbba10e8d32930b9365d527bc01edb96b403f",
+              "branch": "100644:e5509481f868e75b2c50c2b488ae6ce14097cbf2"
+            },
+            {
+              "path": "jobs/kean/output/log.txt",
+              "captured": "100644:79c58c09786bdc4f18ad2d61c665ffca070e4875",
+              "branch": "100644:50f7a5568aa1f7235f4cdc4b8b9b93ea5b6908a8"
+            },
+            {
+              "path": "jobs/neyman/output/MANIFEST.json",
+              "captured": "100644:0bc0a9b68e030d279bc281a603b0fce181b086d1",
+              "branch": "100644:56acc968f6d9959d9e94e1fda2441b1d192a77ec"
+            },
+            {
+              "path": "jobs/neyman/output/RUNNER_INPUTS.json",
+              "captured": "100644:7dbe73deefb5bb0a9fe18e969e4fb13af86f11aa",
+              "branch": "100644:9bc90c2dbceeeed71980ad7d4cd7757b78366cee"
+            },
+            {
+              "path": "jobs/neyman/output/STATUS.json",
+              "captured": "100644:285b1bc2ce5b0c2eac4cd43e1af45cf3fa315669",
+              "branch": "100644:a2226394ea4b5be46a15d537efe96ebc84716754"
+            },
+            {
+              "path": "jobs/neyman/output/log.txt",
+              "captured": "100644:3d2eaa1d7c863bad0a7ccfadb8a1f6fbfe2e0a58",
+              "branch": "100644:18fdfe735cae2b337c75961829035d9d21fa1951"
+            }
+          ]
+        }
+      ],
+      "input_generations": {
+        "census-candidates": {},
+        "readiness-tracker": {
+          "census-candidates": "same_run_candidate",
+          "lewis-originals": "same_run_candidate"
+        },
+        "case-bundles": {
+          "readiness-tracker": "same_run_candidate"
+        },
+        "valla": {},
+        "claim-kit": {
+          "census-candidates": "same_run_candidate",
+          "readiness-tracker": "same_run_candidate",
+          "case-bundles": "same_run_candidate",
+          "valla": "same_run_candidate",
+          "clark-discovery": "captured_base",
+          "corpus-excavator": "captured_base",
+          "lambertini": "captured_base",
+          "neyman": "unmatched",
+          "neyman-pilot": "captured_base",
+          "lewis-originals": "captured_base",
+          "domesday-register": "captured_base",
+          "early-ranger-workbench": "unmatched",
+          "example-hello": "unmatched",
+          "kean": "unmatched"
+        },
+        "clark-discovery": {
+          "readiness-tracker": "same_run_candidate"
+        },
+        "corpus-excavator": {
+          "census-candidates": "same_run_candidate",
+          "readiness-tracker": "same_run_candidate",
+          "claim-kit": "same_run_candidate"
+        },
+        "lambertini": {
+          "readiness-tracker": "same_run_candidate",
+          "claim-kit": "same_run_candidate"
+        },
+        "neyman": {
+          "readiness-tracker": "same_run_candidate",
+          "claim-kit": "same_run_candidate",
+          "corpus-excavator": "same_run_candidate"
+        },
+        "neyman-pilot": {
+          "claim-kit": "same_run_candidate",
+          "neyman": "same_run_candidate"
+        },
+        "lewis-originals": {
+          "readiness-tracker": "same_run_candidate",
+          "clark-discovery": "same_run_candidate"
+        },
+        "domesday-register": {
+          "readiness-tracker": "same_run_candidate",
+          "clark-discovery": "same_run_candidate",
+          "lewis-originals": "same_run_candidate"
+        },
+        "early-ranger-workbench": {},
+        "example-hello": {},
+        "kean": {}
+      },
+      "action": "Rerun these jobs on the current branch; retained outputs were not published."
+    }
+  },
+  "effective_claim_receipt_verification": {
+    "effective_instruments": 612,
+    "current_checker_run": 41235195596,
+    "all_effective_claim_keys_and_sha256_equal_to_previously_verified_generation": true,
+    "prior_verified_generation": "35b9a7585d83529cfe7287fb30094273db8cd449",
+    "protected_canonical_claim_tree_unchanged": true,
+    "scope": "Receipt identity/version compatibility, not a new legal review."
+  },
+  "production_proquest_materialization": {
+    "schema": "eo-proquest-materialization/2",
+    "commit": "87e829fea1cddb7abcd258f813ea467be2601059",
+    "input_sha256": {
+      "research/readiness/claims/astra-2026-10-17-p12553a.jsonl": "b3b4e784cc1822e2aa90e3191db43ec2c90887398b9477b23bb27abc1160dfe8",
+      "research/readiness/claims/astra-2026-10-17-p12553b.jsonl": "2c650f156a5961e1a290c472451ae143d9931aea300a1e3de97bc9ef71695c24",
+      "research/readiness/claims/astra-2026-10-17-p3originals.jsonl": "bb72c432d2e5e463bb4bd552b5f09654758ffee8031bc05b28897a29444ec55b",
+      "research/readiness/claims/astra-2026-10-17-pother.jsonl": "04178d56a1f25d785ef9dc859d6d1c9439256a55541bf155b17f5e8c53d01efe",
+      "research/readiness/claims/astra-2026-10-18-p3complete.jsonl": "1cf54964882321ba69cb623306bb9122f4a55983041a54863d4bae3926388894",
+      "research/readiness/claims/astra-cumulative-2026-10-24.jsonl": "8561b4e0edb35196a5e885ce76e6a70eb493ca7363cc4eb98f6e78ba00754b8a",
+      "research/readiness/claims/astra-source-first-2026-10-24.jsonl": "577a310974bec18286ee8bdc107118ac7dc2a3c20923e8764a52d2aae582c017",
+      "research/readiness/claims/claude-2026-10-18-codif-b0.jsonl": "1667184da881d742e468fe035aa3eedda6dd3be36949ac90faa4c368441ec29b",
+      "research/readiness/claims/claude-2026-10-18-codif-b1.jsonl": "ad802121f3908ab386762bda3f78303033544d5acb16d95de3ad9ca7443b417c",
+      "research/readiness/claims/claude-2026-10-18-codif-b2.jsonl": "eccaa5fe557d41c23befa0144c3b5ceb50a2ed590e11db57d7c67193c00b4610",
+      "research/readiness/claims/claude-2026-10-18-codif-b3.jsonl": "56540f4157563fc7590507546a8455fed2e3639e9900dd51644cc40e0d0fbb1d",
+      "research/readiness/claims/claude-2026-10-18-codif-b4.jsonl": "3d70d169c9e60afa9e57bda74275ac1302d2ff64141241bd999800b6157797c1",
+      "research/readiness/claims/claude-2026-10-18-codif-b5.jsonl": "1d2dc73c124011d77a11bcd12c3cbc5a52d599a5175ab8d1d2bd7ba004c3e6e7",
+      "research/readiness/claims/claude-2026-10-18-codif-b6.jsonl": "721d67c3f7fa07d4e94a6aa37d98bfce1f36b7a572bd7ade07a64a7f3ff03cb3",
+      "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl": "adb93481b83b0702ba3a46e9dc21c22956652540b102844fb5d2aa71cb53d4d7",
+      "research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl": "96fcf83d04d9a5950b567a96e735b8905cdf8d578da905541ee5c240273ad0cf",
+      "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl": "efdad7eab3f36e9ad1178e9f9617ff0deddbfa87ca78f738bfc426c11cbc704b",
+      "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl": "a253e0417c61dfb4f4e1c77ad3af5ebfe83b380e4d629f341fa21381fe45bf83",
+      "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl": "3c3565692794068f2e20b2b47b24f6f72cd8f2db9c68f57321a8da82fb07c9a8",
+      "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl": "31cbd7554af8864a0d0f25d33df81da4482c48e433f2e6e9d8e8be9a91ed5c80",
+      "research/readiness/claims/claude-2026-10-29-nira-t1.jsonl": "b1a9154dc51089c7a17b080ac94be97341acf636dc4205dc6697262a40291529",
+      "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl": "da1a87ec9f5154fa42ff29ba7a020b7e3acfe99e7cc8ec9c3223882603e49e75",
+      "research/readiness/claims/claude-2026-10-29-nira-t3.jsonl": "e19520cfd17dbb04c7fc699d8e00b975c5792503f56be9af29e166ec32425913",
+      "research/readiness/claims/claude-2026-10-29-nira-t4.jsonl": "13356773bd441cc6cc452dbf2b2756fab0b33bf794042e7f73df655e6c9be7ee",
+      "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl": "c3936fcd8fa6d43dc87908a6ee07984f5c5efb5a88aca4e480a04679e73dbcd3",
+      "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+      "research/readiness/claims/claude-b0-producer-2026-10-29-nira.jsonl": "ac1c897c17c2b6b459c89f1fb5ff119dd4edf1a98d2c1644913d69f66b5c225d",
+      "research/readiness/claims/claude-bowditch-y2-01-2026-10-20.jsonl": "b057707650d20d09ff326f37f3007a141508e7b28ac0db587397dde28b0ab4f4",
+      "research/readiness/claims/claude-bowditch-y2-02-2026-10-20.jsonl": "dbb0df83d958c2de069ffe925202c666e21644cf077bd959954847d21e467f24",
+      "research/readiness/claims/claude-lambertini-b02-2026-10-20.jsonl": "749132c0b0eb800e8d84846c99e19a8b55d82a5f86f8888179b945b50d8404ff",
+      "research/readiness/claims/claude-lambertini-i01-2026-10-20.jsonl": "eaddd412f6c7eb6bb23b91d28aa15193883a5c679b742e98152877e4277a9728",
+      "research/readiness/claims/claude-lambertini-i03-2026-10-20.jsonl": "3c808af1a5cf536fba2568209f7b7becc25941a41a1eb62a9b827a8a5dae45d0",
+      "research/readiness/claims/claude-lambertini-i04-2026-10-20.jsonl": "f1fe2cf8572aad9e0800c713c746bd21770d7e21aa533a714329e0ff62573c04",
+      "research/readiness/claims/claude-lambertini-i05-2026-10-20.jsonl": "823dafd027ac58895084dcd005b2fcb0966e0a7b960b6ed7af88f4cbb4a29350",
+      "research/readiness/claims/claude-lambertini-i06-2026-10-20.jsonl": "638033c43925f6bf0ef1c10e5929b40c51bcacba911da43a1fbf3f0242c79e3b",
+      "research/readiness/claims/claude-lambertini-i07-2026-10-20.jsonl": "6291aefc5ef1d8dda881b6a0b06db2f3f3be370eab1b79888ca1ce1275b8f4ee",
+      "research/readiness/claims/claude-lambertini-i08-2026-10-20.jsonl": "7945cf09ed2ae1bf31e916c69bd53efa90ff597dbb91877c26abc675239baeab",
+      "research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl": "977052d86a619732bb9ca65e2f35e083a4da44789b284af68b29cae7796f175c",
+      "research/readiness/claims/claude-lambertini-iv02b-2026-10-20.jsonl": "4e825aee5d235a9938a235fffb0a8e906a4587385ffe1721713b7f37609ce78e",
+      "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl": "f86f6a866f18e0bb1801ea30f7a5ab3f44dab59b853df877f7ea432ae3e01c2d",
+      "research/readiness/claims/claude-lambertini-rr4-2026-10-20.jsonl": "74ee6ff8e8cf48b49f2840d2f64b86e65d4e34ed2d025007d576b684668dfeb0",
+      "research/readiness/claims/claude-lambertini-s01-2026-10-20.jsonl": "15f24f5ff5aba016bee03e1bf4ef6a705e772f3e44fe40d569da86cbe0b1e886",
+      "research/readiness/claims/claude-lambertini-s02-2026-10-20.jsonl": "98e19d8ded8e07f657c96e600dea3541cb15bbc5e684f57ddb7f7d3db9233cb0",
+      "research/readiness/claims/claude-lambertini-s03-2026-10-20.jsonl": "7f711905369ddcb7389c423c6f91977142b2d534b4619901281ded4c68b233fa",
+      "research/readiness/claims/claude-lamm-s03-2026-10-20.jsonl": "854ca338659c8c5188f7ede1c151387d07627c86eba800bd4f3be5c0be682ea4",
+      "research/readiness/claims/claude-lamm-s04-2026-10-20.jsonl": "d47d78c927b7006866b71e4777086852d6625d9432f0094bbecf9a91ca1d8628",
+      "research/readiness/claims/claude-lamm-t01-2026-10-20.jsonl": "f21678a1ab5372a1af31e23c0037a27f933e1e44191889ebbef36d81d10368a8",
+      "research/readiness/claims/claude-lamm-t02-2026-10-20.jsonl": "88c9cb971b766698fa3913f0deabea2ab48e547d79ab0b824037d3b47239c9b4",
+      "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl": "f775ea3a68844679ef180f88438c3e66b55aa31bf58b2d41b7af93741094b21f",
+      "research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl": "4756fc816d2e9ad6f9c10d5306110dc65cc368ac4d966d0d0812ca303af0493f",
+      "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl": "e966a03744258d02e4475fed4ca93171eb39de375a31e17812b0414a38fa0ccd",
+      "research/readiness/claims/claude-nearready-2026-10-20.jsonl": "adad549b5ddfbac3bdc688b0aaf14653a7b7e9bb2be4afbede6663e259575b7f",
+      "research/readiness/claims/claude-pagechk3-01-2026-10-20.jsonl": "ce56d3c1a4770064f42afc8c8e132bf831cbd3ccbde2152d80d0eb0efbed7451",
+      "research/readiness/claims/claude-r12553nb-01-2026-10-20.jsonl": "31fa86241151a2d0ea8acff280e6f25d91385bbc3b9f41ca02632e51ea0dbc7e",
+      "research/readiness/claims/claude-r12553nb-s2-2026-10-20.jsonl": "a39deb8e52eb37d40b2e9f0c97aaea72b797d92ec6b359a83dc5d4931708aa16",
+      "research/readiness/claims/claude-r12553nb-s3-2026-10-20.jsonl": "19524038776ebf49cb6789295f92e487623ad8c13e4e281fd0019d86f13a4bef",
+      "research/readiness/claims/claude-r12553nb-s4-2026-10-20.jsonl": "877e173a108dd62edb95fff2827fda78497458c0806b4e1634590a640d8e6797",
+      "research/readiness/claims/claude-r12553nb-s5-2026-10-20.jsonl": "97505d2e2e3af4996b2163abddabfc81687fae4002eaa95bceb273865092585b",
+      "research/readiness/claims/claude-r12553nb-s6-2026-10-20.jsonl": "48a9af669edeabcb324711b68d06f70d1d3402906494e985938c1466dc4c2f58",
+      "research/readiness/claims/claude-r9830-01-2026-10-20.jsonl": "0fd7ff75ce418a26676025ac89e21f29292b01f277217eb93876cbefc35a6de8",
+      "research/readiness/claims/claude-r9830-s1-2026-10-20.jsonl": "b4893fa1504ceb98c7d6f7d16d5c948b136a1ebf3f45e15a43544d523023a4dd",
+      "research/readiness/claims/claude-r9830-s2-2026-10-20.jsonl": "259423f0a4445f327beda0934aac22a26fd2f4fcccd3fefa02118307cd73624e",
+      "research/readiness/claims/claude-r9830-s3-2026-10-20.jsonl": "818b050d6f9e67d4e9c2fb7569a1aab5fbac1a411077d4a351347e110191e702",
+      "research/readiness/claims/claude-rastell-c01-2026-10-20.jsonl": "1efb0e00214f9eb89d3a2389eb751993d5f48989e378438abb0332087ada6d1f",
+      "research/readiness/claims/claude-rastell-c02-2026-10-20.jsonl": "0587d7897c1dbd8d42b7f3437cf9290d0283c205382a28e304f91a7faba74b50",
+      "research/readiness/claims/claude-viapar-m-2026-10-20.jsonl": "1f187aeae7f6a516e8a97caf0b715595ab83a1909cc90903c49abd101c3b15e3",
+      "research/readiness/claims/claude-viapar-p-2026-10-20.jsonl": "2cd90e66c2ddfc238acfbf79850119ea75ddfa4ef3cc3dfc30c7558f4f34f8b2",
+      "research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl": "4e848c8aaf4282e54b04c43702d6903bccb253e01ad82f34564e49a280585833",
+      "research/readiness/claims/claude-y2lead-02-2026-10-20.jsonl": "75836d784468a8a54940dad6465ea0d300d231b1f6d45dd5c1df6a1c727ebcea",
+      "research/readiness/claims/codex-continuous-prior-2026-10-25.jsonl": "7fb4a50a6a4cbbc755e6adb4a6860433cb221cb4d70c01bb11b4d63329260512",
+      "research/readiness/claims/codex-continuous-prior-b04-2026-10-25.jsonl": "ea65c152f54f3b6fbdfd0f9d8f91de8b7de19674c21143cbbfeacc347e4d77e9",
+      "research/readiness/claims/codex-counterexample-20261026-7975a.jsonl": "e0d7244951475404d2115b0e4ae95fc6be6028bf49b8e52a505013b06b0c2c67",
+      "research/readiness/claims/codex-counterexample-20261026-whole.jsonl": "915d682e4bfe81e7e244e73f125f8402b83181f4ef8a88a9e7981acd7e7ea015",
+      "research/readiness/claims/codex-production-cost-trace-20261026-b1.jsonl": "8e40c3b4bb2171d765cbd34b54c18d8554bc7fa4e33f4295daf5da137a892886",
+      "research/readiness/claims/codex-production-cost-trace-20261026-b2.jsonl": "9aaad3572e5efe390dd568b5d3444b22aa77c7acebbf798daa677aec26ab8236",
+      "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
+      "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": "5cd4502e5e261bfe0ec7803c4673707a7dbb4da6dec424a8bfab055f7a38639c"
+    },
+    "selection_sha256": "23a68593e21fcf2aa08bb67597d72285809717c3222b6f21da02b1d3734cf9b4",
+    "next_cursor": null,
+    "bounds": {
+      "max_artifacts": 8,
+      "max_artifact_bytes": 8000000,
+      "max_invocation_bytes": 24000000
+    },
+    "bytes_read": 271942,
+    "artifacts_attempted": 5,
+    "artifacts": [
+      {
+        "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+        "claims": {
+          "EO:254": {
+            "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1",
+            "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4",
+            "references": [
+              {
+                "field": "operative_clauses[0].first_end.source",
+                "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+                "source_instrument_id": "EO:254"
+              },
+              {
+                "field": "operative_clauses[0].original_source",
+                "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+                "source_instrument_id": "EO:254"
+              },
+              {
+                "field": "original_representation",
+                "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+                "source_instrument_id": "EO:254"
+              },
+              {
+                "field": "savings_residuals.source",
+                "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+                "source_instrument_id": "EO:254"
+              },
+              {
+                "field": "whole_order_end.source",
+                "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+                "source_instrument_id": "EO:254"
+              }
+            ]
+          }
+        },
+        "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf",
+        "association_paths": [
+          "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf"
+        ],
+        "association_conflict": false,
+        "state": "restored_exact_blob",
+        "bytes_read": 78595,
+        "git_blob": "b1115190baaace0021f97ef277769d77ab713de8",
+        "git_object_present_before_read": false,
+        "git_object_fetch_attempted": true
+      },
+      {
+        "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+        "claims": {
+          "EO:1547": {
+            "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1",
+            "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b",
+            "references": [
+              {
+                "field": "operative_clauses[0].first_end.source",
+                "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+                "source_instrument_id": "EO:1547"
+              },
+              {
+                "field": "operative_clauses[0].original_source",
+                "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+                "source_instrument_id": "EO:1547"
+              },
+              {
+                "field": "original_representation",
+                "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+                "source_instrument_id": "EO:1547"
+              },
+              {
+                "field": "savings_residuals.source",
+                "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+                "source_instrument_id": "EO:1547"
+              },
+              {
+                "field": "whole_order_end.source",
+                "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+                "source_instrument_id": "EO:1547"
+              }
+            ]
+          }
+        },
+        "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf",
+        "association_paths": [
+          "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf"
+        ],
+        "association_conflict": false,
+        "state": "restored_exact_blob",
+        "bytes_read": 33614,
+        "git_blob": "95abb648384b9b3ef1ad5334f4564b71c5ff53a1",
+        "git_object_present_before_read": false,
+        "git_object_fetch_attempted": true
+      },
+      {
+        "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+        "claims": {
+          "EO:2171": {
+            "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1",
+            "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158",
+            "references": [
+              {
+                "field": "operative_clauses[0].first_end.source",
+                "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+                "source_instrument_id": "EO:2171"
+              },
+              {
+                "field": "operative_clauses[0].original_source",
+                "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+                "source_instrument_id": "EO:2171"
+              },
+              {
+                "field": "original_representation",
+                "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+                "source_instrument_id": "EO:2171"
+              },
+              {
+                "field": "savings_residuals.source",
+                "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+                "source_instrument_id": "EO:2171"
+              },
+              {
+                "field": "whole_order_end.source",
+                "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+                "source_instrument_id": "EO:2171"
+              }
+            ]
+          }
+        },
+        "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf",
+        "association_paths": [
+          "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf"
+        ],
+        "association_conflict": false,
+        "state": "restored_exact_blob",
+        "bytes_read": 42225,
+        "git_blob": "3d2a039149294f8f6d9914176620098501282ecc",
+        "git_object_present_before_read": false,
+        "git_object_fetch_attempted": true
+      },
+      {
+        "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+        "claims": {
+          "EO:4354": {
+            "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1",
+            "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484",
+            "references": [
+              {
+                "field": "operative_clauses[0].first_end.source",
+                "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+                "source_instrument_id": "EO:4354"
+              },
+              {
+                "field": "operative_clauses[0].original_source",
+                "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+                "source_instrument_id": "EO:4354"
+              },
+              {
+                "field": "original_representation",
+                "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+                "source_instrument_id": "EO:4354"
+              },
+              {
+                "field": "savings_residuals.source",
+                "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+                "source_instrument_id": "EO:4354"
+              },
+              {
+                "field": "whole_order_end.source",
+                "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+                "source_instrument_id": "EO:4354"
+              }
+            ]
+          }
+        },
+        "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf",
+        "association_paths": [
+          "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf"
+        ],
+        "association_conflict": false,
+        "state": "restored_exact_blob",
+        "bytes_read": 66513,
+        "git_blob": "a8261a859dbc648f392c76001d834738dcc9a75e",
+        "git_object_present_before_read": false,
+        "git_object_fetch_attempted": true
+      },
+      {
+        "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+        "claims": {
+          "EO:4782": {
+            "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2",
+            "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc",
+            "references": [
+              {
+                "field": "operative_clauses[0].first_end.source",
+                "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+                "source_instrument_id": "EO:4782"
+              },
+              {
+                "field": "operative_clauses[0].original_source",
+                "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+                "source_instrument_id": "EO:4782"
+              },
+              {
+                "field": "original_representation",
+                "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+                "source_instrument_id": "EO:4782"
+              },
+              {
+                "field": "savings_residuals.source",
+                "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+                "source_instrument_id": "EO:4782"
+              },
+              {
+                "field": "whole_order_end.source",
+                "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+                "source_instrument_id": "EO:4782"
+              }
+            ]
+          }
+        },
+        "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf",
+        "association_paths": [
+          "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf"
+        ],
+        "association_conflict": false,
+        "state": "restored_exact_blob",
+        "bytes_read": 50995,
+        "git_blob": "07c1f130ef290d4b12571da268b8d50490f1d3a1",
+        "git_object_present_before_read": false,
+        "git_object_fetch_attempted": true
+      }
+    ],
+    "receipts": [
+      {
+        "instrument_id": "EO:254",
+        "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf",
+        "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1",
+        "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:1547",
+        "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf",
+        "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1",
+        "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:2171",
+        "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf",
+        "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1",
+        "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:4354",
+        "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf",
+        "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1",
+        "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:4782",
+        "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf",
+        "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2",
+        "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "new_source_acquisitions": 0,
+    "git_fetch_note": "Exact retained objects may be fetched; transport/pack bytes are not measured.",
+    "legal_effect": "none; ordinary checker must verify"
+  },
+  "production_proquest_materialization_summary": {
+    "artifacts_attempted": 5,
+    "bytes_read": 271942,
+    "next_cursor": null,
+    "errors": [],
+    "receipts": [
+      {
+        "instrument_id": "EO:254",
+        "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf",
+        "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1",
+        "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
+            "source_instrument_id": "EO:254"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:1547",
+        "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf",
+        "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1",
+        "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e",
+            "source_instrument_id": "EO:1547"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:2171",
+        "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf",
+        "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1",
+        "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7",
+            "source_instrument_id": "EO:2171"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:4354",
+        "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf",
+        "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1",
+        "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da",
+            "source_instrument_id": "EO:4354"
+          }
+        ]
+      },
+      {
+        "instrument_id": "EO:4782",
+        "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf",
+        "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+        "state": "restored_exact_blob",
+        "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2",
+        "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc",
+        "references": [
+          {
+            "field": "operative_clauses[0].first_end.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "operative_clauses[0].original_source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "original_representation",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "savings_residuals.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          },
+          {
+            "field": "whole_order_end.source",
+            "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138",
+            "source_instrument_id": "EO:4782"
+          }
+        ]
+      }
+    ]
+  },
+  "closure_status": "Engineering integrated, independently reviewed, merged and coordinated production verified. Scientific recommendations remain unadopted; R4 novel productive scientific continuation remains open.",
+  "coordination_metadata_scope": {
+    "paths": "HANDOFF/r1-r4-*; HANDOFF/KEAN.md; HANDOFF/notes-codex.md; jobs/kean/register/decisions.jsonl; jobs/kean/register/findings.jsonl",
+    "all_eight_live_scope_matcher_results": "zero selected paths",
+    "kean_brief_bytes": 7853,
+    "kean_strict_errors": 0,
+    "kean_strict_warnings": 0,
+    "publication_plan": "Metadata-only commit based on a563c88a with skip-ci; full8input tree maps checked before main lease update. No derived job output regeneration."
+  },
+  "final_independent_result_review": {
+    "reviewer": "fresh inherited GPT-6-family engineering context /root/r_integration_review",
+    "verdict": "no_blocking_overclaim",
+    "scope": "Actual publication log, final receipt,8immutable input-generation audits, scientific/performance limits and coordination handoff",
+    "correction_incorporated": "Named exact protected-tree baseline and included actual provisional-status authority CSV; verified empty diff.",
+    "scientific_adoption": false,
+    "tokens_cash": null
+  }
+}

@@ -110,6 +110,16 @@ try:
         run("cruden-" + label, [profiler, ROOT, native_packet, OUT / label,
                                "--no-profile", *extra], env=cache_env)
         result = json.loads((OUT / label / "RESULT.json").read_text())
+        if result["cruden"].get("completed") is False:
+            # The retained benchmark packet predates the exact preflight
+            # dependency receipt. Preserve its native refusal; do not repin an
+            # old packet/review or infer a new timing comparison from it.
+            assert result["cruden"].get("exception") == "ValueError" and result["cruden"].get("error") == (
+                "evidence preflight dependencies changed; prepare a reviewed package"), result
+            records[-1]["profile"] = result
+            records[-1]["outcome"] = "native_frozen_input_refusal_requires_review"
+            records[-1]["benchmark_comparison_supported"] = False
+            break
         assert result["cruden"]["completed"], result
         if label != "legacy":
             assert all(result["reference_equivalence"].values()), result

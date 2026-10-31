@@ -1,0 +1,42 @@
+{
+  "schema": "r4-eo8992-registration-followup/v1",
+  "source": "e00fffbd3527fc4e4f81151e514ed7787f6f5cd9",
+  "status": "unadopted_engineering_recommendation",
+  "trigger": "Existing NEYMAN R4 diagnosis; current published tracker still blocks EO8992 on shared sourceEO::6964 and Opus media.",
+  "existing_reports": [
+    "research/progress/r4-production-diagnosis/TRACE.md",
+    "research/neyman/production-diagnostics/r4-native/diagnosis/OBSERVATIONS.jsonl"
+  ],
+  "consumer_functions": [
+    "jobs/readiness-tracker/tracker.py:build shared_missing/retrieved",
+    "jobs/source-ladder/ladder_queue.py:shared_source_wanted"
+  ],
+  "demonstrated_gap": "Tracker retrieval recognizes Stage20 flag/acquired statute pair/source-ladder wanted-ID; current APP source registry entry has no shared authority-key linkage. This specific branch does not establish the source is absent.",
+  "current_APP_registry": {
+    "path": "jobs/app-executive-orders/output/SOURCES.jsonl",
+    "source_id": "app-executive-orders:EO:6964:232db8bc27d4",
+    "raw_page_sha256": "232db8bc27d459d028be2361888d2f1dc1100e1c786620de2eb6ba6aa88f2a69",
+    "raw_page_retained_in_git": false,
+    "text_path": "jobs/app-executive-orders/output/texts/executive-order-6964-withdrawal-for-classification-all-public-land-certain-states.live.txt",
+    "text_sha256": "b5cfe2b37730ac7ed306c84d074ce009d78432d69a279793690273c00e1a2bd1",
+    "grade": "mirror_transcription",
+    "acceptable_as_original": false,
+    "retained_text_hash_verified_by_root": true,
+    "retained_text_bytes": 2647
+  },
+  "representation_caution": "Frozen member actor text has a title wrapper and different exact hash8a4f1f0e...; retain distinct source versions. No review is transferred to a different representation.",
+  "next_bounded_task": "Use the existing source-book/source-ladder/tracker interfaces to propose a version-bound alias/registration linking existing APP text to EO::6964; preserve grade/provenance, independently validate citation-role coverage, replay only target blocker. Do not fake wanted/acquisition receipts or redownload the same source.",
+  "remaining_independent_blocker": "Opus media match; no readiness gain from registration alone.",
+  "scientific_approval": false,
+  "human_certification": false,
+  "new_scientific_finding_claimed": false,
+  "verification": "Root read current registry row and exact consumer code; retained text hash verification recorded separately in final receipt. No source-content/legal adjudication.",
+  "worker": {
+    "configured_model": "gpt-6-luna",
+    "tokens": null,
+    "cash": null,
+    "exclusive_labor_seconds": null,
+    "files_or_refs_changed": false
+  },
+  "frozen_actor_text_sha256": "8a4f1f0ebcc1c76827acc0785f7379ceb9795f0f4beabf1c5080106632f9eb77"
+}

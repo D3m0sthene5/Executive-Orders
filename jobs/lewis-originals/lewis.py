@@ -210,7 +210,9 @@ def load_scope(root, readiness, universe):
     """Orders Lewis works: transcription-only (tracker) plus Clark's handoff. id -> reason."""
     scope, skipped = {}, []
     for iid, r in readiness.items():
-        if r.get("step_original_text") == "open" and "ONLY_COMPILED_TRANSCRIPTION_FOUND" in (r.get("blockers") or ""):
+        # A provisional working text (owner ruling 2026-10-31) keeps the original as the goal: still route it.
+        if (r.get("step_original_text") == "provisional"
+                or (r.get("step_original_text") == "open" and "ONLY_COMPILED_TRANSCRIPTION_FOUND" in (r.get("blockers") or ""))):
             if ident.parse_eo_id(iid) is None:  # unnumbered census rows (EO:UN:...) have no number to route by
                 skipped.append(iid)
                 continue

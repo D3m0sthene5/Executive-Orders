@@ -1,0 +1,74 @@
+{
+  "schema": "r3-independent-engineering-review/v1",
+  "reviewer": "separate-context OpenAI Codex worker /root/engineering_review",
+  "model": "inherited GPT-6 family; exact configured variant not exposed to worker",
+  "scientific_approval": false,
+  "human_certification": false,
+  "git_head": "88cef0253ed735b2a6e612770f25f9148641ce93",
+  "test_command": "python3 -m unittest discover -s jobs/early-ranger-workbench -p test_roundtrip.py -v",
+  "tests": 39,
+  "exit_code": 0,
+  "started_at_utc": "2026-10-31T04:22:04.068813+00:00",
+  "ended_at_utc": "2026-10-31T04:22:05.780576+00:00",
+  "focused_test_wall_seconds": 1.7117482460016618,
+  "code_sha256_before": {
+    "jobs/early-ranger-workbench/job.py": "9e31902bf48af4e269bfcaf32ec2365f6c981e3ea82c530c83798114950b9ba7",
+    "jobs/early-ranger-workbench/roundtrip.py": "039c897eecfcadab8498cb3cf30430a1e1e26503e379766e1acebd476b207d7e",
+    "jobs/early-ranger-workbench/roundtrip.js": "f816fc70fcc15971feaa7cf2b8baa6bd17e3126a7637ee953e20a5fed64864b7",
+    "jobs/early-ranger-workbench/test_roundtrip.py": "ecd73ec63c04c5442d2c9ae05357fe0412a93f87bbccc3b6584093c504786cad",
+    "jobs/census-candidates/job.py": "245ef5c39ba5c2b1a41cc9b64b946861b071ea8a928662473f5c2ccc22157a42"
+  },
+  "code_sha256_after": {
+    "jobs/early-ranger-workbench/job.py": "9e31902bf48af4e269bfcaf32ec2365f6c981e3ea82c530c83798114950b9ba7",
+    "jobs/early-ranger-workbench/roundtrip.py": "039c897eecfcadab8498cb3cf30430a1e1e26503e379766e1acebd476b207d7e",
+    "jobs/early-ranger-workbench/roundtrip.js": "f816fc70fcc15971feaa7cf2b8baa6bd17e3126a7637ee953e20a5fed64864b7",
+    "jobs/early-ranger-workbench/test_roundtrip.py": "ecd73ec63c04c5442d2c9ae05357fe0412a93f87bbccc3b6584093c504786cad",
+    "jobs/census-candidates/job.py": "245ef5c39ba5c2b1a41cc9b64b946861b071ea8a928662473f5c2ccc22157a42"
+  },
+  "code_stable_during_tests": true,
+  "total_worker_wall_seconds": null,
+  "tokens": null,
+  "cash_cost": null,
+  "cost_note": "Only final focused test subprocess timed prospectively. Complete worker interval and token/cash telemetry unavailable, not zero. Earlier runs and implementation/review time are additional.",
+  "findings": [
+    {
+      "id": "R3-ENG-1",
+      "issue": "Browser JSON.parse silently accepted duplicate worksheet keys while Python rejected them.",
+      "resolution": "Shared strict browser parser rejects repeated/escaped duplicate keys. Generated HTML regression passes.",
+      "status": "resolved"
+    },
+    {
+      "id": "R3-ENG-2",
+      "issue": "Displayed images loaded mutable GitHub main, while worksheet bindings hashed retained local bytes.",
+      "resolution": "Generated HTML embeds exact byte-verified JPEG/PNG data URIs; raw download links use a source ref. Exact data-URI hash regression passes.",
+      "status": "resolved"
+    },
+    {
+      "id": "R3-ENG-3",
+      "issue": "Transcript could change between source hash and later display read.",
+      "resolution": "Displayed transcript bytes are compared to captured source SHA before generation. Deterministically reproduced race now rejects.",
+      "status": "resolved"
+    }
+  ],
+  "harness_correction": "A first version used two event-loop turns for async WebCrypto initialization and produced one false failure. Final harness waits for actual UI initialization with bounded timeout.",
+  "boundaries_verified": [
+    "Current binding imports preserve note text and research proposal attribution.",
+    "Changed transcript, XML, page, metadata and facsimile source versions remain noncurrent.",
+    "Missing sources, wrong candidate IDs, duplicate current IDs and mismatched representations block proposal use.",
+    "Six validation classes agree between Python and JavaScript.",
+    "Generated HTML invokes real import/export event handlers; stale and v1 notes remain quarantined through subsequent exports, even after original bytes return.",
+    "Nested historical validation labels cannot self-upgrade notes.",
+    "Census import retains NOT_ADMITTED/HOLD/human_certified false and zero admission/certification metrics, including hostile note fields.",
+    "Retained facsimile grade stays explicit and data URI bytes match bound SHA.",
+    "Prior candidate, transcription inventory provenance and page custody provenance mutations each make exported notes stale."
+  ],
+  "limits": [
+    "Synthetic bounded fixtures only; no legal/source-content adjudication.",
+    "Node VM executes actual generated JavaScript with a minimal DOM stub; not a browser layout/accessibility or image-decoding test.",
+    "No network or full repository suite.",
+    "No combined production rollout or source-content truth/certification inferred.",
+    "Three substantive code fixes were made by coordinator, not by independent reviewer."
+  ],
+  "verdict": "PASS bounded engineering review",
+  "fixture_correction": "When coordinator extended candidate_version to cover prior Stage22 record, census fixture correctly became stale because setup and generated corpus had different prior records. Fixture corrected to share exact prior record; three explicit provenance-change tests added. Prior failure retained."
+}

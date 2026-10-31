@@ -1,0 +1,185 @@
+{
+  "artifact": 13056950160,
+  "run": 41235195596,
+  "zip_sha256": "db204594c69a4ee658498f6e5784dc4d7b3175233a0a2b5eb19b46908b45ab3b",
+  "zip_bytes": 8196726,
+  "members": [
+    {
+      "name": "runner-freshness/ATTEMPTS.json",
+      "bytes": 672,
+      "sha256": "21ae3417d9bafa0f11c4daa8d7365cae1164f382dd1669674e027690e9e3416f"
+    },
+    {
+      "name": "runner-freshness/CHECKOUT_INPUTS.json",
+      "bytes": 2229,
+      "sha256": "96b1e7ad09e06feaea9d63050f78246bc6eeb8494704479791dce016ef264a73"
+    },
+    {
+      "name": "runner-freshness/case-bundles-inputs.json",
+      "bytes": 1117626,
+      "sha256": "acbc4d7d6e858da5003be8c157c1cd31fa58ca0586b80da8f68f8556bfc42f3b",
+      "published_git_blob": "750362fac67dd89b931dfd40ee346f3d5c607b1e",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/census-candidates-inputs.json",
+      "bytes": 13294,
+      "sha256": "42b765b20a4f348965a81e05f468f0423fe1b26cccd9d1fe2caf7497add2cd13",
+      "published_git_blob": "419364f29d9e560a65e38c474c29d2541a966588",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/claim-checker-inputs.json",
+      "bytes": 12530028,
+      "sha256": "9d74abb426300e2a8fee5746fffb0309ad400f46e25f7b052b31b3439fd9a0f0",
+      "published_git_blob": "9cbdedfd98b96f1009bbd4b084dad62d5f7106ce",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/claim-kit-inputs.json",
+      "bytes": 11673801,
+      "sha256": "c924e30263bf3211cde89a2f5feb1c61dc6c1ff2265309ce662dec2eb4492a86",
+      "published_git_blob": "93fe007c724d29976cd7c5b84f39cdd3ee579bbb",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/early-ranger-workbench-inputs.json",
+      "bytes": 8631,
+      "sha256": "f3b2bb9426af005e7ab1fee7dc21a55ef90627ea44e699646139606cdff33d90",
+      "published_git_blob": "c07f012249719c553a8b9abfb8cb44ed222d459e",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/neyman-inputs.json",
+      "bytes": 984614,
+      "sha256": "799f5d8570645a1c849b1ade0dadc8d4a4701c94c817a298a37af7979f81f261",
+      "published_git_blob": "3413df9e900d889aceb5b641cdc02cc30f018052",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/readiness-tracker-inputs.json",
+      "bytes": 8985129,
+      "sha256": "1e5a51c67a15b808a666fc11a73a7d7ecdc2782382054661bf90132296a597d1",
+      "published_git_blob": "6b877676dc830946e061a5e278eb181a52d176d0",
+      "byte_identical_to_published_manifest": true
+    },
+    {
+      "name": "runner-freshness/valla-inputs.json",
+      "bytes": 117878,
+      "sha256": "6544190c468a5ec3247ae9eb51f2830fe68996c85ef7024a5739bcd50b3193c4",
+      "published_git_blob": "a9e54812281016067e23cb5c4ddee0f7b82e9641",
+      "byte_identical_to_published_manifest": true
+    }
+  ],
+  "attempts": [
+    {
+      "exit_code": 0,
+      "job": "valla",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "claim-kit",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "claim-checker",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "census-candidates",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "readiness-tracker",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "early-ranger-workbench",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "neyman",
+      "publish_output": true
+    },
+    {
+      "exit_code": 0,
+      "job": "case-bundles",
+      "publish_output": true
+    }
+  ],
+  "materialization": {
+    "base_commit": "87e829fea1cddb7abcd258f813ea467be2601059",
+    "compatibility_fallback_jobs": {
+      "case-bundles": "unaudited_job",
+      "census-candidates": "unaudited_job",
+      "claim-checker": "unaudited_job",
+      "claim-kit": "unaudited_job",
+      "early-ranger-workbench": "unaudited_job",
+      "neyman": "unaudited_job",
+      "readiness-tracker": "unaudited_job"
+    },
+    "input_objects_sha256": "ac89ee4eef37bccfee8da12a4f346f5fe8510021dce98fa70fb17e77c2670f84",
+    "jobs": [
+      "valla",
+      "claim-kit",
+      "claim-checker",
+      "census-candidates",
+      "readiness-tracker",
+      "early-ranger-workbench",
+      "neyman",
+      "case-bundles"
+    ],
+    "materialized_bytes": 8373168480,
+    "path_count": 95284,
+    "per_job": {
+      "case-bundles": {
+        "inputs_sha256": "cb372359f6ce4a7346ce7da64f63338ad24099118fa5bcdbafa19addaf32d16a",
+        "path_count": 81762,
+        "sparse_pattern_count": 6670
+      },
+      "census-candidates": {
+        "inputs_sha256": "819509b9f0c3e14a221da8b769f757508170ffe55f52fb05cb37c3ba2cde14d8",
+        "path_count": 80398,
+        "sparse_pattern_count": 17
+      },
+      "claim-checker": {
+        "inputs_sha256": "ac89ee4eef37bccfee8da12a4f346f5fe8510021dce98fa70fb17e77c2670f84",
+        "path_count": 95284,
+        "sparse_pattern_count": 69730
+      },
+      "claim-kit": {
+        "inputs_sha256": "2064b54fcd8cf67f0a2ff08e1072c119fcddeac08e6988fce8eeef92012a2a43",
+        "path_count": 94360,
+        "sparse_pattern_count": 63943
+      },
+      "early-ranger-workbench": {
+        "inputs_sha256": "2252314a5605441dcd56e1738db6a8124bdaaa8717eca6f72c990da09a6585f7",
+        "path_count": 80385,
+        "sparse_pattern_count": 9
+      },
+      "neyman": {
+        "inputs_sha256": "d8b937a9448c2ac2f0edda3f8d3da1712838b0664bd8f43dc6786eec606cfb2c",
+        "path_count": 81981,
+        "sparse_pattern_count": 40
+      },
+      "readiness-tracker": {
+        "inputs_sha256": "1bf7df17c430c841c0c5417a18c27aabb1f660d86724ebbe3a3939bf728db7a7",
+        "path_count": 93886,
+        "sparse_pattern_count": 27560
+      },
+      "valla": {
+        "inputs_sha256": "f206b24e25eb7d7fa350e8fed1de1f716b5bfca0cdb6fc9649e553034ccfaf5d",
+        "path_count": 427,
+        "sparse_pattern_count": 386
+      }
+    },
+    "schema": 1,
+    "sparse_pattern_count": 79760
+  }
+}

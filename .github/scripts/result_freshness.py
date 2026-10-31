@@ -23,6 +23,30 @@ import sys
 
 MANIFEST = "RUNNER_INPUTS.json"
 NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+VALLA_CERTIFICATE_ROOTS = ['jobs/valla', 'jobs/_lib',
+                           '.github/scripts/materialize_job_inputs.py',
+                           '.github/scripts/result_freshness.py',
+                           '.github/scripts/run_jobs.py', '.github/scripts/run_jobs.sh',
+                           '.github/workflows/run-jobs.yml']
+
+
+def valla_implementation_scope():
+    return {'roots': VALLA_CERTIFICATE_ROOTS, 'patterns': [], 'exclude': 'jobs/valla/output'}
+
+
+def valla_signature(ref='HEAD'):
+    return digest(tree(ref, valla_implementation_scope()))
+
+
+def valla_certified():
+    try:
+        certificate = json.loads(Path(__file__).with_name('materialization_certificates.json').read_text('utf-8'))['valla']
+        return (not any(v.startswith('120000:') for v in tree('HEAD', valla_implementation_scope()).values())
+                and isinstance(certificate, str) and re.fullmatch('[0-9a-f]{64}', certificate)
+                and valla_signature() == certificate
+                and digest(working(valla_implementation_scope())) == certificate)
+    except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError):
+        return False
 
 
 def git(*args, input=None):
@@ -35,6 +59,131 @@ def lines(path):
         return []
     return [s for line in p.read_text(encoding="utf-8").splitlines()
             if (s := line.split("#", 1)[0].strip())]
+
+
+def valla_references():
+    """Resolve runner build's explicit review pointers, including sparse providers.
+
+    This is an engineering read closure, not review validation. Over-select fields
+    even in refused records; Valla remains the authority for their meaning.
+    Unsupported metadata restores the broad repository instead of guessing.
+    """
+    folders = ('research/readiness/method_reviews',
+               'research/readiness/component_attestations')
+    providers = {}
+    try:
+        inventory = git('ls-files', '-t', '-z', '--', *folders)
+    except subprocess.CalledProcessError:
+        return [], False
+    for record in inventory.split(b'\0'):
+        if record:
+            tag, raw = record.split(b' ', 1)
+            p = raw.decode('utf-8')
+            if str(PurePosixPath(p).parent) in folders and p.endswith('.jsonl'):
+                providers[p] = tag == b'S'
+    for folder in folders:
+        for p in Path(folder).glob('*.jsonl'):
+            providers.setdefault(p.as_posix(), False)
+    root = Path.cwd().resolve()
+    references = set(providers)
+    ancestors = set()
+
+    def add(value):
+        if not isinstance(value, str):
+            raise ValueError('non-string Valla reference')
+        raw = Path(value)
+        if '..' in raw.parts:
+            raise ValueError('parent traversal Valla reference')
+        lexical = Path(os.path.abspath(root / raw))
+        # Symlink resolution depends on checkout state. Decline narrowing for
+        # either a live or tracked symlink, including a sparse ancestor.
+        if lexical.is_relative_to(root):
+            parts = lexical.relative_to(root).parts
+            for i in range(1, len(parts) + 1):
+                p = root.joinpath(*parts[:i])
+                ancestors.add(p.relative_to(root).as_posix())
+                if p.is_symlink():
+                    raise ValueError('symlink Valla reference')
+        resolved = lexical.resolve()
+        # Valla.safe refuses external paths before reading them.
+        if not resolved.is_relative_to(root):
+            return
+        rel = resolved.relative_to(root).as_posix()
+        if rel == '.':
+            raise ValueError('repository directory reference')
+        references.add(rel)
+        for p in references:
+            if any(c in p for c in ('\n', '\r', '\\', ':')):
+                raise ValueError('unsupported Valla reference path')
+
+    try:
+        for provider, sparse in providers.items():
+            path = Path(provider)
+            add(provider)
+            if path.exists():
+                raw = path.read_bytes()
+            elif sparse:
+                raw = git('show', 'HEAD:' + provider)
+            else:
+                continue  # A working deletion is not an old HEAD provider.
+            for line in raw.decode('utf-8').splitlines():
+                if not line.strip():
+                    continue
+                record = json.loads(line)
+                if not isinstance(record, dict):
+                    raise ValueError('non-object Valla record')
+                for field in ('review_ref', 'reviewed_claim_ref'):
+                    if field in record:
+                        add(record[field]['path'])
+                for dep in record.get('dependencies', []):
+                    if dep['kind'] in ('file', 'rule'):
+                        add(dep['key'])
+        if ancestors:
+            entries = git('ls-tree', '-z', 'HEAD', '--', *(':(literal)' + p for p in sorted(ancestors)))
+            for entry in entries.split(b'\0'):
+                if entry:
+                    header, raw = entry.split(b'\t', 1)
+                    if header.startswith(b'120000 ') and raw.decode() in ancestors:
+                        raise ValueError('tracked symlink Valla reference')
+    except (ValueError, KeyError, TypeError, AttributeError, OSError, RuntimeError, UnicodeError, subprocess.CalledProcessError):
+        return [], False
+    return sorted(references), True
+
+
+def valla_linked_inputs(declared):
+    """Every read family can contain an alias, including fixed protocol paths."""
+    entries = tracked_entries('HEAD', declared)
+    paths = set(entries) | set(literal_prefixes(declared))
+    ancestors = {str(parent) for p in paths for parent in (PurePosixPath(p), *PurePosixPath(p).parents)
+                 if str(parent) != '.'}
+    if any(Path(p).is_symlink() for p in ancestors):
+        return True
+    if ancestors:
+        metadata = git('ls-tree', '-z', 'HEAD', '--', *(':(literal)' + p for p in sorted(ancestors)))
+        for entry in metadata.split(b'\0'):
+            if entry:
+                header, raw = entry.split(b'\t', 1)
+                if header.startswith(b'120000 ') and raw.decode() in ancestors:
+                    return True
+    return False
+
+
+def valla_direct_reads(patterns):
+    """Live fixed reads and sheet siblings of Git-discovered packages.
+
+    Valla does not apply Git ignore rules when opening these files. Retain
+    absent siblings too, so arrivals and deletions remain observable.
+    """
+    paths = {p for p in patterns if not re.search(r'[*?\[]', p)}
+    for folder in ('claims', 'component_attestations', 'method_reviews'):
+        paths.update(p.as_posix() for p in Path('research/readiness', folder).glob('*.jsonl'))
+    registry = git('ls-files', '-z', '--', 'research/excavator/**/RATIONALES.json',
+                   'research/production/**/RATIONALES.json')
+    for raw in registry.split(b'\0'):
+        if raw:
+            folder = PurePosixPath(raw.decode('utf-8')).parent
+            paths.update(str(folder / name) for name in ('RATIONALES.json', 'decisions.csv', 'clauses.csv'))
+    return paths
 
 
 def scope(name):
@@ -50,12 +199,29 @@ def scope(name):
     # This job explicitly enumerates the corpus, rather than just after.txt.
     if name == "daily-digest":
         patterns += ["jobs/*/output/SUMMARY.json", "jobs/*/output/STATUS.json", "HANDOFF/notes-*.md"]
+    referenced_files = []
+    dynamic_complete = True
+    implementation_certified = False
+    if name == 'valla':
+        referenced_files, dynamic_complete = valla_references()
+        implementation_certified = bool(valla_certified())
+        referenced_files = sorted(set(referenced_files) | valla_direct_reads(patterns))
+        roots += referenced_files
+        if dynamic_complete and valla_linked_inputs({'roots': roots, 'patterns': patterns,
+                                                     'exclude': f'jobs/{name}/output'}):
+            dynamic_complete = False
+        if not dynamic_complete or not implementation_certified:
+            patterns += ['*']
     for value in roots + patterns:
         p = PurePosixPath(value)
         if p.is_absolute() or ".." in p.parts or "\\" in value or ":" in value:
             raise ValueError(f"Unsafe input declaration: {value!r}")
-    return {"roots": sorted(set(p.rstrip("/") for p in roots)),
-            "patterns": sorted(set(patterns)), "exclude": f"jobs/{name}/output"}
+    result = {"roots": sorted(set(p.rstrip("/") for p in roots)),
+              "patterns": sorted(set(patterns)), "exclude": f"jobs/{name}/output"}
+    if name == 'valla':
+        result.update(referenced_files=referenced_files, dynamic_complete=dynamic_complete,
+                      implementation_certified=implementation_certified)
+    return result
 
 
 def under(path, root):
@@ -189,6 +355,10 @@ def working(declared=None):
             forced.append(p)
         entries[p] = mode + ":" + oid
     changed_paths = set()
+    # Exact record pointers can name ignored caches or same-run untracked files.
+    # Git's --exclude-standard inventory cannot version those bytes by itself.
+    if declared is not None:
+        changed_paths.update(declared.get('referenced_files', []))
     if prefixes is None:
         args = ["ls-files", "--modified", "--deleted", "--others", "--exclude-standard", "-z"]
         changed = git(*args)
@@ -254,6 +424,8 @@ def check(ref, names, report):
             if m["schema"] != 1 or m["job"] != name or digest(m["inputs"]) != m["inputs_sha256"]:
                 raise ValueError("Invalid provenance manifest")
             declared = m["scope"]
+            if name == 'valla' and declared.get('dynamic_complete') is not True:
+                raise ValueError('Unresolved Valla read closure; full fallback is available but publication requires a closed input scope')
             if (not isinstance(m["inputs"], dict)
                     or not all(isinstance(declared[k], list) for k in ("roots", "patterns"))
                     or declared["exclude"] != f"jobs/{name}/output"
@@ -310,6 +482,26 @@ def check(ref, names, report):
             generations[name][producer] = generation
             projected = {p: v for p, v in projected.items() if not under(p, f"jobs/{producer}/output")}
             projected.update(chosen)
+        if name == 'valla':
+            # Direct file reads may include ignored live files or previously
+            # absent targets. Recheck after execution; do not substitute a
+            # later selected producer's generation for the captured one.
+            current_scope = scope('valla')
+            if not current_scope['dynamic_complete']:
+                problems.append({'job': name, 'reason': 'unresolved_read_closure_after_execution'})
+            refs = [p for p in set(m['scope'].get('referenced_files', []))
+                    | set(current_scope.get('referenced_files', []))
+                    if not any(under(p, f'jobs/{producer}/output') for producer in names)]
+            direct_scope = {'roots': refs, 'patterns': [], 'exclude': f'jobs/{name}/output',
+                            'referenced_files': refs}
+            before, after = select(expected, direct_scope), working(direct_scope)
+            if before != after:
+                problems.append({'job': name, 'reason': 'referenced_input_changed_during_run',
+                                 'changed_paths': [{'path': p, 'captured': before.get(p), 'working': after.get(p)}
+                                                   for p in sorted(before.keys() | after.keys())
+                                                   if before.get(p) != after.get(p)]})
+            if m['scope'].get('implementation_certified') and not valla_certified():
+                problems.append({'job': name, 'reason': 'certified_implementation_changed_during_run'})
         expected, actual = m["inputs"], select(projected, m["scope"])
         changed = sorted(p for p in expected.keys() | actual.keys() if expected.get(p) != actual.get(p))
         if changed:

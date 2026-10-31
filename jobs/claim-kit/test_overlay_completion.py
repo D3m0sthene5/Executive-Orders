@@ -1,6 +1,5 @@
 """Completion consumes exact experimental overlays without adopting statuses."""
 from copy import deepcopy
-import importlib.util
 import json
 import os
 from pathlib import Path
@@ -10,10 +9,7 @@ from unittest.mock import patch
 
 REPO = Path(os.environ.get('CLAIM_KIT_TEST_REPO', str(Path(__file__).resolve().parents[2])))
 sys.path.insert(0, str(REPO/'jobs/claim-kit'))
-spec = importlib.util.spec_from_file_location('completion', Path(__file__).with_name('completion.py'))
-C = importlib.util.module_from_spec(spec)
-sys.modules['completion'] = C
-spec.loader.exec_module(C)
+import completion as C
 import batch
 import status_overlay as O
 from test_status_overlay import OverlayTests
