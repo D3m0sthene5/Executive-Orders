@@ -2,6 +2,38 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-10-31, later (Claude, Jacquard wave 2 and Lachmann route d)
+
+- **Jacquard wave 2** (PR #119): full review of every remaining waiver, NRA and Canal Zone lot member; 714 more
+  statuses appended (register 3,403 to 4,291 with wave 1 on merge). Two over-strict wave-1 controls voided after two
+  independent reviewers and the coordinator agreed (EO 370, EO 3031); 59 upheld orders held (cut-off texts, messenger
+  appointments). 325 orders listed for individual review. Kean F-20261031-jacquard-wave2.
+- **Lachmann route (d)** (PR #120): APP page heading plus date and title agreement confirms 910 more working texts
+  (1,674 total); fresh audit 59/59. Kean F-20261031-lachmann-route-d.
+- **Combined simulation:** statuses 4,291; provisional text steps 1,674; ready unchanged at 498 until claims run.
+- **Usage this round:** about 6.6M Sonnet tokens (60 reviewers, 4 auditors, 2 builders); coordinator Opus 5.5.
+- **Next:** claim production for the 888 new statuses whose text is now provisional or original (the ready count
+  moves only through claims); a Wikisource page rule (456 orders); individual review of the 325 listed orders.
+
+## 2026-10-31 (Claude, Jacquard and Lachmann: status adoption and working-text confirmation)
+
+- **Owner rulings recorded** (`research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md`; Kean
+  D-20261031-jacquard, D-20261031-claude-reviewers, D-20261031-working-text-step; answers A-20261021-3 and
+  A-20261028-4): sampled class adoption with a zero-miss 59-order test; separate-context Claude reviewers may decide;
+  a confirmed standalone working text closes the text step provisionally, counted separately.
+- **Jacquard** (`jobs/jacquard`, branch `claude/jacquard-loom`): six lots, 325 blinded items, 25/25 planted errors
+  caught, no lot passed. 174 individually upheld NO statuses appended to the register in this branch (owner merge
+  adopts; 3,403 to 3,577). 126 failures in `research/excavator/jacquard-2026-10-31/INDIVIDUAL_REVIEW.csv`.
+  Lesson: X1 types are heterogeneous; define lots by text features. Kean F-20261031-jacquard-wave1.
+- **Lachmann** (`jobs/lachmann`, tracker change, Lewis keeps routing originals; branch `claude/lachmann-collation`):
+  764 of 7,534 working texts confirmed after three audits (final round 59/59, planted 5/5). After merge the tracker
+  marks those text steps `provisional` and adds their replacement and recheck obligations. Kean F-20261031-lachmann.
+- **Usage:** builders Sonnet 5.5 (138k, 156k, 188k tokens); 20 Jacquard reviewers about 2.03M; 12 Lachmann auditors
+  about 1.03M; coordinator Opus 5.5. Certified count 0.
+- **Next:** per-order review of the remaining L4 (80) and L5 (164) members or a text-feature lot for L1 (799
+  members, 81% uphold rate in the sample); a Lachmann bridge for APP/Wikisource texts without a printed number.
+  Both PRs touch disjoint files from Codex PR #117. Merge order does not matter; the tracker sweep regenerates.
+
 ## 2026-10-31 (Claude, Minard: the Workflow tab on the remaining-work dashboard)
 
 - **Built** a fifth dashboard tab, Workflow (`#workflow`): 79 named jobs, past campaigns, the agent review
