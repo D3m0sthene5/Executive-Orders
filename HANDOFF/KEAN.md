@@ -34,8 +34,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (8 of 75; `search` finds the rest)
+## Newest results (8 of 76; `search` finds the rest)
 
+- 2026-10-31 F-20261031-1 **worked**: Map every named EO job, campaign and gate by purpose on the dashboard (Workflow tab), with source-cited recor… Lesson: Catalog figures drift from job outputs; read both and show the qualifier rather than pick one. Record a tool's namesake when it is named; Lamm's had to be inferred.
 - 2026-10-30 shared-research-production-2026-10-30 **partly worked**: Independent shared NRA source research, eight outlier/block reconciliations, six fresh native case assignment… Lesson: Preserve exact reviews, blocks and historical owner routes.
 - 2026-10-30 F-20261030-apollo-refresh **partly worked**: Refresh the original Apollo dashboard from the integrated production generation and explain the concurrent se… Lesson: Use published generations for the display; distinguish measured retrieval gains from modeled effort and unadopted research.
 - 2026-10-30 F-20261030-7001 **worked**: Bind planted-control reviews to the seeded lifecycle task scope in completion.controls(), from the lifecycle-… Lesson: Bind planted controls to the assigned scope as well as the exact version.
@@ -43,6 +44,5 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-29 F-20261029-cruden-retrieval **worked**: Profile and repair repeated Cruden corpus lookups with a source-bound feature cache Lesson: Reuse content-verified features; preserve legacy matching and contrary-source access.
 - 2026-10-29 F-20261029-cruden-producer **analysis**: Fresh bounded native EO10673 and EO10772 retrieval assignment with number and literal routes Lesson: Retrieval leads require source review; no scientific approval follows.
 - 2026-10-29 F-20261029-codex-proquest-custody **worked**: Verify and repair custody for EO254, EO2171 and EO4354 Lesson: A corpus-wide metadata budget can silently prevent narrow source materialization; test production-size selection and downstream readiness separately.
-- 2026-10-29 F-20261029-codex-proquest-census **partly worked**: Census effective claims and scale retained ProQuest restoration after PR105 Lesson: Use effective versions and pinned bytes; expose bounded deferred tails; preserve scientific holds.
 
-Register: 14 owner decisions, 0 answered questions, 75 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 14 owner decisions, 0 answered questions, 76 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

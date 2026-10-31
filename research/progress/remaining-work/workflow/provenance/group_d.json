@@ -1,0 +1,1398 @@
+[
+ {
+  "id": "valla",
+  "name": "Valla",
+  "catalog_tool": "Valla",
+  "jobs": [
+   "jobs/valla",
+   "research/valla/pilot-2026-10-20"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "review",
+  "namesake": {
+   "text": "Lorenzo Valla, who exposed the Donation of Constantine (stated in the catalog; the job README itself states no namesake)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:30",
+   "wikipedia_title_unverified": "Lorenzo Valla"
+  },
+  "role": "Before dossiers are assembled, Valla indexes the reasoning premises behind existing claims, flags shared premises for independent re-examination, and seals that reading context into each review packet; it never decides law or changes a claim.",
+  "inputs": [
+   "canonical claims in research/readiness/claims",
+   "explicit method and component review records",
+   "source dependencies and held-text references",
+   "small versioned premise library (premises.json)"
+  ],
+  "outputs": [
+   "reasoning-lineage index (INDEX.json, SUMMARY.json)",
+   "sealed context inside each claim-kit packet (PACKET.json, READ.md, view)",
+   "owner-routable correction packets"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Published run 40987576100 (finished 2026-10-30T02:05:44Z): 612 active claims scanned, 783 shared-rationale references, 11 textual leads, 0 examined dependencies, 0 valid components, 0 model calls, 0 legal promotions. The full reasoning-dependency capability is implemented, but integrated production examined no dependencies.",
+    "source": "jobs/valla/output/SUMMARY.json; jobs/valla/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "PR104 native retained completion: 7 attempted, 5 changed-prior-research exceptions, 2 blocked, 0 current eligible or published; engineering accepted with retained refusals; no canonical filing.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:30"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Context-scoping repair (audit items H01-H07) on identical pinned inputs: a real completion with a concurrent publication went from 506 s and 0 filed to 122 s and 16 filed; apply 143.7 s to 8.8 s; batch-check 158.8 s to 29.3 s; 7 false invalidations removed while all 18 relevant perturbations still invalidate. These are machine-time measurements, not a research saving.",
+    "source": "jobs/kean/register/findings.jsonl:67 (F-20261029-7001)"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Bounded pilot: 331 active claims scanned, 11 exact span leads across 8 claims; five specific first-end assertions held through the existing exact audit-hold route (branch ready count 230 to 225); no net rework saving measured; recall and precision not estimated.",
+    "source": "research/valla/pilot-2026-10-20/REPORT.md:3-8,21-40; jobs/kean/register/findings.jsonl:37 (F-20261021-2)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Packet context scoped to the requested instruments, per-query package bounds, once-per-invocation verification (H01-H07); later review fixes for lock placement and Windows paths.",
+    "source": "commits 0f98bc73b9, c26393eb78"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Valla exposed an optional working_text layout cue on reviewer cards; reviewer-only normalization that keeps disclosures and original hashes was added to Mountweazel and the leak scan extended.",
+    "source": "jobs/kean/register/findings.jsonl:63 (F-20261029-97); commit 1f6d524c3c"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Repairs after merge: historical-gate replay, archived inventories, current Valla validation without renewing frozen attestations.",
+    "source": "commits cad6e4026e, 4275ac2e42"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "First build: trace exact premises and preserve explicitly reviewed preparation.",
+    "source": "commit 4ff5ff51c0"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "claim-kit",
+   "readiness-tracker",
+   "junto"
+  ],
+  "caveats": [
+   "Runs BEFORE claim-kit and reads canonical claims and explicit review records, never claim-kit's generated output (no cycle): jobs/valla/README.md:17-23; jobs/claim-kit/after.txt lists valla.",
+   "A text match is a lead, not a finding: even identical normalized text establishes no legal identity, dependency or error (README.md:33-35). Three of the eleven pilot spans only say no express sunset exists and were not treated as proof of an error (pilot REPORT.md:42-48).",
+   "Valla cannot create source-audit holds; the five holds on EO 13792, 13101, 13148, 13783 and 13807 came from separate independent examination of its leads (README.md:111-114; research/readiness/SOURCE_AUDIT_HOLDS.jsonl:2-6). The 'readiness-tracker' feed is that indirect, human/agent-written route.",
+   "Integrated production examined 0 dependencies and found 0 valid components, so the new reasoning-dependency capability is unobserved at scale.",
+   "Code adoption through the main integration (PR107) is not scientific acceptance; every proposed correction still needs independent whole-case review (README.md:109-110).",
+   "Owner question A-20261029-1 (change to how packet context counts committed packages) is still listed open in HANDOFF/KEAN.md:23 at this commit.",
+   "Junto receives only an owner-seeded, unverified 'valla_rework_salvage' hypothesis; the pilot's preparation timings cannot establish rework savings (README.md:133-146)."
+  ]
+ },
+ {
+  "id": "mountweazel",
+  "name": "Mountweazel",
+  "catalog_tool": "Mountweazel",
+  "jobs": [
+   "jobs/mountweazel"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "review",
+  "namesake": {
+   "text": "Lillian Virginia Mountweazel, the invented fountain designer planted in the 1975 New Columbia Encyclopedia to catch copiers",
+   "evidence": "jobs/mountweazel/README.md:3-4",
+   "wikipedia_title_unverified": "Lillian Virginia Mountweazel"
+  },
+  "role": "Mixes already-upheld claims with copies that carry one known planted defect, then scores whether an AI reviewer catches the planted flaws, so a reviewer's quality is measured instead of assumed.",
+  "inputs": [
+   "real, already-upheld claims",
+   "documented defect operators (D1-D13 taxonomy)",
+   "reviewer verdicts on a blinded batch",
+   "sealed answer key held outside the repository"
+  ],
+  "outputs": [
+   "blinded review batch and sealed key (outside the repo)",
+   "per-defect catch rates with intervals",
+   "fixtures the claim gate must reject",
+   "controlled fictional reasoning pairs"
+  ],
+  "results": [
+   {
+    "date": "2026-10-20",
+    "text": "Experiment MW-C2: 40 real claims with 10 artifact-free plants (D3 x2, D4, D6 x3, D7 x2, D8 x2). Opus with held sources caught 8 of 10 mechanically, adjudicated down to 7 of 10 (earlier-event omission D6: 0 of 3); Opus packet-only 9 of 10; Sonnet with sources 6 of 10. One experiment, small n.",
+    "source": "jobs/llull/ledger/outcomes.jsonl:3,49; jobs/llull/ledger/base_rates.json:503-509; jobs/mountweazel/README.md:136"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Trial MW-C1 found three seeding faults (a rationale-rewrite tell, a recurring duty mistaken for a one-time duty, a coverage-count test matching '49 Stat.'); all fixed for new batches.",
+    "source": "jobs/mountweazel/README.md:90-95"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Reviewer-card disclosure layout normalized without changing claim payloads; exact-copy leak scanning extended; preservation and leak regressions pass.",
+    "source": "jobs/kean/register/findings.jsonl:63 (F-20261029-97); commit 1f6d524c3c"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Normalize reviewer card disclosure layout without changing claim payloads.",
+    "source": "commit 1f6d524c3c"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Strict scoring and blinding corrections: a flag must match the affected locus and material issue; old keys report blinding as unknown.",
+    "source": "jobs/mountweazel/README.md:119-131"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Post-merge test fixes; first built as a work-in-progress snapshot with Llull.",
+    "source": "commits 701a32c6fc, 15b4b4d856"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "independent-ai-review"
+  ],
+  "caveats": [
+   "Tests reviewer quality only; it is not a certification authority and changes no claim, status, codebook or human review (README.md:10).",
+   "Has no job.py on purpose, so the GitHub runner never executes it and it publishes no output folder (README.md:103); it is exercised by manual commands and by the portfolio-repair-check test suite.",
+   "Blinding is instructed, not technically enforced under one account; a harness roundtrip is not a reviewer-sensitivity result (README.md:116-117,128).",
+   "Plant wording is mechanical; the designed separate seeder agent and two plant checkers are not built (README.md:96-97).",
+   "The 7-to-9-of-10 catch rate is one October 20 experiment, not a standing measure of current review quality; the 10-of-10 planted controls in the NIRA sweep (jobs/kean/register/findings.jsonl:54) are not attributed to Mountweazel in that finding.",
+   "Track C 'upheld' means it passes the claim gate, not human certification (README.md:100)."
+  ]
+ },
+ {
+  "id": "neyman",
+  "name": "NEYMAN",
+  "catalog_tool": "NEYMAN · NORTON",
+  "jobs": [
+   "jobs/neyman"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Jerzy Neyman (stated in the catalog only; the NEYMAN README states no namesake)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:31",
+   "wikipedia_title_unverified": "Jerzy Neyman"
+  },
+  "role": "Draws a reproducible probability sample from the known unfinished orders to measure what an investigation attempt really costs and where it stalls; it measures work and does not do the research.",
+  "inputs": [
+   "per-order census and readiness-tracker rows",
+   "claim-kit dossier and status leads",
+   "frozen config (seed 1727, 24 attempts)"
+  ],
+  "outputs": [
+   "sampling frame (FRAME.jsonl) and joint strata",
+   "frozen prospective sample manifest",
+   "optional diagnosis of real completion receipts"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Frame refresh (run 40829686426, finished 2026-10-29T07:22:47Z): 14,577 known unfinished of 14,972 orders, 2,944 actual joint cells, 24 prospective attempts.",
+    "source": "jobs/neyman/output/FRAME.md; jobs/neyman/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Original probability-sampled pilot: all 24 fixed attempts were blocked by missing prerequisites; no completions and no measured effort.",
+    "source": "jobs/kean/register/findings.jsonl:36 (F-20261021-1)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Connected ordinary completion history to the existing diagnostic importer.",
+    "source": "commit 82a2efff32"
+   },
+   {
+    "date": "2026-10-25",
+    "text": "Imported real production receipts and diagnosed scoped blockers (diagnose.py, production_receipts.py).",
+    "source": "commit a7ccb64a11"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Added the survey, frozen pilot and Junto finder with quality gate.",
+    "source": "commit 2796c06aeb"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "neyman-pilot",
+   "junto"
+  ],
+  "caveats": [
+   "Changes no codebook, admission, status, claim, exhaustion record or certification; sampling guides the campaign and does not replace exhaustive research (README.md:97).",
+   "The 14,577 unfinished figure is the frame at the 2026-10-29 refresh, before the 498-ready generation; it is not a current count.",
+   "Its three saver ideas are owner-seeded and unverified; no import earns Junto savings credit (README.md:91,131).",
+   "Catalog row 'NEYMAN · NORTON' covers this job, neyman-pilot and norton; the catalog_tool value is repeated on each of the three nodes."
+  ]
+ },
+ {
+  "id": "neyman-pilot",
+  "name": "NEYMAN pilot",
+  "catalog_tool": "NEYMAN · NORTON",
+  "jobs": [
+   "jobs/neyman-pilot",
+   "research/neyman"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Jerzy Neyman (stated in the catalog only)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:31",
+   "wikipedia_title_unverified": "Jerzy Neyman"
+  },
+  "role": "Runs the frozen NEYMAN sample as an offline prerequisite check, recording for each of 24 orders what is missing before research could start.",
+  "inputs": [
+   "frozen sample manifest from the neyman job",
+   "held dossiers and undecided-status leads"
+  ],
+  "outputs": [
+   "per-attempt observations and outcomes",
+   "planning-only tracker replays",
+   "sanitized aggregate for Junto"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Run 40829686426 (finished 2026-10-29T07:26:14Z): 24 attempts, all 24 blocked_prerequisite; 0 complete dossiers, 0 human certifications, 0 legal decisions, 0 observed model API calls. Machine execution lower bound 3.896 s; no population completion total, interval or date is justified.",
+    "source": "jobs/neyman-pilot/output/SUMMARY.json:3-10; jobs/neyman-pilot/output/REPORT.md:3-9"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Six planning-only prerequisite combinations were run through the real tracker; they created no evidence and do not validate causal effects.",
+    "source": "jobs/neyman-pilot/output/REPORT.md:12-13"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-21",
+    "text": "First pilot, same outcome: 24 of 24 attempts blocked.",
+    "source": "jobs/kean/register/findings.jsonl:36 (F-20261021-1)"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Added with the NEYMAN survey, then explicit consumer re-run after the isolated-mode Junto import fix.",
+    "source": "commits 2796c06aeb, 5af540cf27, 34143c234f"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "junto"
+  ],
+  "caveats": [
+   "A tiny sample of blocked attempts measures what is missing, not effort; completion cost needs review, correction and integration costs that were unavailable.",
+   "It does not run on every frame refresh; consumers are run explicitly (neyman README.md:141).",
+   "Catalog row 'NEYMAN · NORTON' is shared with neyman and norton."
+  ]
+ },
+ {
+  "id": "norton",
+  "name": "NORTON",
+  "catalog_tool": "NEYMAN · NORTON",
+  "jobs": [
+   "jobs/norton",
+   "research/readiness/factual"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "research",
+  "namesake": {
+   "text": "undocumented (the catalog says only 'Norton's shared factual questions' and does not identify Norton)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:31",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Pools exact unresolved factual questions that recur across orders (such as whether a duty moved to another agency), finds candidate evidence in held sources, and lets separately reviewed answers serve as cited facts without deciding any legal effect.",
+  "inputs": [
+   "own-term, claim and reviewer records",
+   "held primary texts",
+   "owner-seeded question registry (research/readiness/factual)"
+  ],
+  "outputs": [
+   "question, application, evidence and review registry records",
+   "FRAGMENTS shared_factual_obligations exposed in claim-kit dossiers",
+   "proposed fetch requests (never appended automatically)",
+   "holds and census counts"
+  ],
+  "results": [
+   {
+    "date": "2026-10-28",
+    "text": "Run 40783352006 (finished 2026-10-28T23:28:44Z) census: 9 registered questions, 3 reviewed answers, 3 reviewed applications, 7,474 extracted obligations, 20,186 held texts scanned, 9,922 source and route holds, 0 additional integrated ready cases. The review type of the 3 reviewed items is not broken out in that file.",
+    "source": "jobs/norton/output/CENSUS.json:2,13-16; jobs/norton/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-25",
+    "text": "Codex test of answering a shared factual question once stopped at its first gate: the ordinary batch already investigates a shared fact once.",
+    "source": "jobs/kean/register/findings.jsonl:25 (F-20261025-1)"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Pilot: seven orders, four questions; zero independently reviewed reusable answers.",
+    "source": "jobs/kean/register/findings.jsonl:38 (F-20261021-3)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-22",
+    "text": "Restored authorized population and provisional evidence preparation.",
+    "source": "commit 421344af92"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Added the narrow registry, source routes, consumers and pilot preregistration; fixed rebuilding consumers; ran bounded verification.",
+    "source": "commits 7cc49520f3, 4607d8cd8a, 2516620032"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "claim-kit",
+   "junto"
+  ],
+  "caveats": [
+   "Reviewed factual answers and separately reviewed clause applications may feed FACT evidence only; they cannot supply original representations, first ends, current predicates or savings (jobs/norton/README.md:55-60). Legal effect stays unresolved.",
+   "Never fetches, decides legal status, writes a claim or certifies anyone (README.md:3-7); human acceptance needs an independent human factual review, an AI review is labeled ai_reviewed (README.md:25-27).",
+   "Pilot-sized: 'no expansion beyond the first pilot' and a twelve-order registry cap (README.md:12,68); the two Pullman transmittal candidates have no review and emit no facts (README.md:64-68).",
+   "Stage chosen: research (it produces factual evidence for claims) even though it was listed in the review group; its internal reviews are factual AI reviews, not lifecycle review.",
+   "Catalog row 'NEYMAN · NORTON' is shared with neyman and neyman-pilot."
+  ]
+ },
+ {
+  "id": "independent-ai-review",
+  "name": "Independent AI review (blind, with planted controls)",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/claim-kit",
+   "research/readiness/reviews"
+  ],
+  "kind": "gate",
+  "status_class": "current",
+  "stage": "review",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A separate AI reviewer in a fresh context re-checks each producer's claim against held sources, with planted defects mixed in, and only reviewed versions can be selected for filing; status adoption additionally requires a reviewer from a different model family.",
+  "inputs": [
+   "producer claim version (exact line and hash)",
+   "held sources and sealed packet",
+   "planted control claims",
+   "a different-context reviewer"
+  ],
+  "outputs": [
+   "review records (reviewer, model family, independence flags, scope, verdict)",
+   "control adjudications and after-reveal reviews",
+   "exceptions kept for the owner"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "NIRA code-approval sweep: 132 orders attempted, 91 claims upheld by blind review and filed, 41 blocked or held; 10 of 10 valid planted controls caught. One campaign, not a standing rate.",
+    "source": "jobs/kean/register/findings.jsonl:54 (F-20261029-5)"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Namier serial exemptions: blind review upheld 7 of 7 genuine cards and rejected the planted control.",
+    "source": "jobs/kean/register/findings.jsonl:58 (F-20261028-14)"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Sinclair status proposals: 41 NO proposals; Claude lean review upheld 37; Codex cross-family review upheld and adopted 29, 6 held on parent-ending grounds, 2 rejected.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:21"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Bowditch Y1: Opus re-review with held sources and the D6 later-event check upheld 15 of 15, but the reviewer was the producer's model family.",
+    "source": "jobs/llull/ledger/outcomes.jsonl:4; jobs/kean/register/findings.jsonl:13"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Planted-control reviews are now bound to the seeded lifecycle task's scope, not the reviewer's self-declared scope (found by the PR106 reproduction).",
+    "source": "jobs/kean/register/findings.jsonl:74 (F-20261030-7001)"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Owner rule: strongest model coordinates; independent-review, blinding and different-family requirements unchanged.",
+    "source": "research/readiness/owner_rulings/2026-10-29-tiered-delegation.md:24-27"
+   },
+   {
+    "date": "2026-10-24",
+    "text": "Owner standing rule: a fresh research context and a separate independent reviewer exchange exact pinned artifacts; disclose model families and obey any different-family requirement.",
+    "source": "AGENTS.md:24-33"
+   },
+   {
+    "date": "2026-10-21",
+    "text": "Owner ruling: the 15 Bowditch proposals adopted; the 41 Sinclair proposals get a lean review by one independent AI reviewer of a different model family, with held sources, the D6 check and planted controls.",
+    "source": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md:3-14"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "claim-checker"
+  ],
+  "caveats": [
+   "Independence is recorded as explicit provenance (family name, independent flag, separate context), not proven by software: jobs/claim-kit/COMPLETION.md:99-101.",
+   "An AI review is never a human review; claim-kit completion 'preserves source/legal judgment in independent records' and 'human certification remains separate' (jobs/claim-kit/BATCH.md:16-23).",
+   "Not a standalone job: the step is a protocol enforced inside claim-kit's complete command (review fields at COMPLETION.md:81-102, planted controls at :116+) and AGENTS.md; the node is drawn from those documents.",
+   "Kind 'gate' here is an AI procedural gate, not a human decision point.",
+   "Open owner questions at this commit: whether a separate-context Claude reviewer with planted controls may adopt a status (A-20261028-4, jobs/kean/register/asks.jsonl:10) and whether sampled review of machine-written claims is allowed (A-20261021-3, asks.jsonl:5).",
+   "Bowditch Y1's 0 of 15 disagreements came from a same-family reviewer and say little about reviewer quality (jobs/mountweazel/README.md:7-9)."
+  ]
+ },
+ {
+  "id": "claim-gate",
+  "name": "Claim gate (Stage 19)",
+  "catalog_tool": "",
+  "jobs": [
+   "research/stage19/code/claim_gate.py",
+   "research/stage19/CLAIM_SCHEMA.md"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "verify",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "The project's own structural rulebook for a whole-lifecycle claim: it refuses a claim that lacks required evidence fields, dates or a recorded review assertion, but it proves nothing about the law.",
+  "inputs": [
+   "a lifecycle claim (JSON)",
+   "the order's provisional status",
+   "legal cutoff 2026-10-14"
+  ],
+  "outputs": [
+   "pass or a list of gate errors per claim",
+   "canonical claim fingerprint (claim_sha)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "In the published checker run 40987576100, 523 of 613 claim lines passed the structural gate (the checker imports this gate rather than copying it).",
+    "source": "jobs/claim-checker/output/SUMMARY.json (claims_gate_passed); jobs/claim-checker/README.md:41"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-26",
+    "text": "Last change to the gate file: removed repeated whole-file hashing.",
+    "source": "commit 1d71d0150e"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Present at the start of the readiness work (earliest commit touching the file in this checkout).",
+    "source": "commit 0197c75c5c"
+   }
+  ],
+  "history_note": "Only two commits touch the file at this pin; no fuller iteration history recorded.",
+  "feeds": [
+   "claim-checker"
+  ],
+  "caveats": [
+   "Passing the gate means a dossier has the required fields and a recorded review assertion; it does not prove the legal judgment (research/stage19/code/claim_gate.py:1-6).",
+   "Mountweazel's seeded fixtures are built so this gate rejects them, while de-flagged copies pass, so plants test judgment not mechanics (jobs/mountweazel/README.md:61-65).",
+   "The file also holds validate_review (line 114), the structure of a human review, which is the only route to certification; this node does not perform it."
+  ]
+ },
+ {
+  "id": "claim-checker",
+  "name": "Claim checker",
+  "catalog_tool": "claim-checker · readiness-tracker",
+  "jobs": [
+   "jobs/claim-checker"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "verify",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A plain program (no AI) that re-checks every filed claim's quotations, source copies, order identity, dates, order numbers and structure against the project's held source bytes, and writes a receipt tied to the exact claim hash.",
+  "inputs": [
+   "claims in research/readiness/claims",
+   "held source bytes and custody records (47,084 distinct hashes indexed)",
+   "the claim gate"
+  ],
+  "outputs": [
+   "per-claim receipts (PER_CLAIM.json) matched by claim SHA-256",
+   "check rows and SUMMARY.json"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Published run 40987576100 (input commit 3c21be6f10; finished 2026-10-30T02:04:56Z): 613 claim lines checked for 612 orders; 606 mechanical pass, 4 unverified, 3 fail; 516 passed every check; 0 parse or checker errors. The tracker reports 612 matching effective-claim receipts.",
+    "source": "jobs/claim-checker/output/SUMMARY.json:83-92; research/progress/README.md:7"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Quotations: 13,944 exact, 11 normalised, 7 not found; source custody: 6,430 held bytes verified, 4,408 GPO published-hash matches, 85 held in release or repo, 7 custody-record-only (not counted as passed).",
+    "source": "jobs/claim-checker/output/SUMMARY.json (quote_status_counts, source_status_counts)"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "ProQuest follow-on: five exact retained PDFs became visible to the ordinary checker; EO 254, EO 2171, EO 4354 and EO 4782 are ready, EO 1547 stays held for a text identity/grade mismatch.",
+    "source": "research/progress/README.md:17; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:35"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Integrated Cruden and bounded ProQuest follow-ons; ProQuest scan inputs materialized before checking; custody ordered before checking.",
+    "source": "commits 4ef71ff4cc, d59aa7af11, 496f114210"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Verify archived APP captures and Commons files by re-fetching their bytes; follow a source text path into another job's output.",
+    "source": "commits 5ee1b18a93, 6c417f6647"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Added as job 7: mechanical checks of submitted claims.",
+    "source": "commit e4a1aeca57"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "readiness-tracker"
+  ],
+  "caveats": [
+   "Establishes custody, quotation, identity, date and structure checks only; human certification remains a separate measure (jobs/claim-checker/README.md:19-22).",
+   "A matching receipt may contain failures: receipt coverage never creates readiness; 'custody_record_only' sources count as unverified, not passed.",
+   "It costs no model tokens (README.md:7) and cannot judge whether a legal ending, scope or savings reading is right; a separate reviewer must (jobs/claim-kit/BATCH.md:80-82).",
+   "A partial local checkout can give different custody results; the production figures come from the shared runner with full inputs (README.md:13-15).",
+   "The catalog row 'claim-checker · readiness-tracker' covers both this node and readiness-tracker; the string is repeated on both."
+  ]
+ },
+ {
+  "id": "readiness-tracker",
+  "name": "Readiness tracker",
+  "catalog_tool": "claim-checker · readiness-tracker",
+  "jobs": [
+   "jobs/readiness-tracker",
+   "research/readiness"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "verify",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "For every working order it counts which research steps are machine-done and marks an order 'ready for human review' only when all steps are done, an exact checker receipt matches, and no exact-version audit hold applies.",
+  "inputs": [
+   "checker receipts (PER_CLAIM.json)",
+   "claims, exhausted-step records and source-audit holds in research/readiness",
+   "census, status, custody and source-job outputs"
+  ],
+  "outputs": [
+   "TRACKER.md, SUMMARY.json",
+   "READINESS_BY_ORDER.csv (14,972 rows)",
+   "SHARED_UNLOCKS.csv (one action to many orders)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Published generation 35b9a7585d (run 40987576100, finished 2026-10-30T02:18:57Z): 498 ready of 14,972 working identities, all tier complete_claim; 306 original-supported and 192 transcription-dependent; 3,403 provisional statuses; 194 original-replacement and 194 quotation-recheck obligations remain; human-certified count not computed here.",
+    "source": "jobs/readiness-tracker/output/SUMMARY.json:2-8,14; research/progress/README.md:7"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Against the previous official generation (395 ready) it adds 103 and loses none: 99 additions lacked checker receipts earlier and four are demonstrated source-custody repairs. Production results, not summed replay gains.",
+    "source": "research/progress/README.md:9"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Daily first-parent checkpoints of the ready count: 285 (10-24), 310 (10-28), 395 (10-29), 498 (10-30); 0 at the 10-17 checkpoint. Each is a separate generation; the gains were not produced by one tool.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/MISSION_LOG.csv"
+   },
+   {
+    "date": "2026-10-29",
+    "text": "Enforced documented exhaustion prerequisites (lifecycle assurance, PR106).",
+    "source": "commit f750886a00"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Removed stale ProQuest wording; refreshed the dashboard from current claims and dated tracker receipts.",
+    "source": "commits 096f1f029f, dfd0047109"
+   },
+   {
+    "date": "2026-10-23",
+    "text": "Explicitly empty optional Opus-media matching counts as inapplicable after full evidence checks.",
+    "source": "commit 889b0bfb89"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "First build, with a rule that a claim with no clauses lights no claim step.",
+    "source": "commits 0197c75c5c, a79cc0c527"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "ready-for-human-review",
+   "daily-digest",
+   "capcom"
+  ],
+  "caveats": [
+   "'Ready' counts finished machine work; human verification is not counted here (jobs/readiness-tracker/README.md:86; output/SUMMARY.json:14).",
+   "Ten exact-source audit holds are retained (research/progress/README.md:9). The hold file has 15 records on 10 distinct orders, all state 'unresolved' (EO 9789, 13792, 13101, 13148, 13783, 13807, 10622, 11040, 11078, 9922; 11 independent AI source audits and 4 independent AI integration audits): research/readiness/SOURCE_AUDIT_HOLDS.jsonl. An active hold reopens the counterevidence step and withholds readiness (README.md:104-110); a hold cannot confer acceptance.",
+   "Mechanical, not a review: it does not reconstruct independent AI review provenance or transitive receipt generations (research/progress/lifecycle-assurance/REPORT.md:28).",
+   "192 of the 498 rest on labeled transcriptions under the owner's 2026-10-21 working-text ruling; original replacement and quotation rechecks stay obligations and the source's original-authentication grade is unchanged (README.md:25-31).",
+   "A tracker-only rerun cannot credit a new or revised claim with an old receipt; run claim-checker first (README.md:20-22). New filings are never added arithmetically to a published count (research/progress/README.md:102).",
+   "The 498 is one generation's mechanical total and overlaps the work of every tool upstream; do not add or attribute it to any single tool."
+  ]
+ },
+ {
+  "id": "lifecycle-assurance-pr106",
+  "name": "Lifecycle assurance (PR106)",
+  "catalog_tool": "Lifecycle assurance (PR106)",
+  "jobs": [
+   "jobs/readiness-tracker",
+   "research/progress/lifecycle-assurance"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "verify",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A tightening of the readiness rules so an order cannot be advertised as ready by an exhaustion record that lacks an adopted status or a disclosed gap; it is a control on the checking stage, not new research.",
+  "inputs": [
+   "retained EO 12970 claim and its Federal Register PDF (test fixture)",
+   "the actual checker and tracker run on isolated copies"
+  ],
+  "outputs": [
+   "tracker change enforcing exhaustion prerequisites",
+   "nine regression tests including 512 bounded exhaustion cases",
+   "reproduction that led to a planted-control scope check"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Seven isolated versions of one source-backed order: the unchanged control stays ready; five invalid versions are blocked (missing savings with no disclosed gap, WEAK ladder note, searched:[null], status removed with provisional_status exhausted, no claim with exhausted roles); one permitted disclosed-gap exhaustion stays ready as machine_exhausted. 45 tracker and 50 checker tests passed locally.",
+    "source": "research/progress/lifecycle-assurance/REPORT.md:9-21; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:43"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "All ten production exact-version source-audit holds remain blocked; no scientific status or certification inferred.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:43"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Its reproduction led claim-kit to bind planted-control reviews to the seeded task's scope; 479 claim-kit tests pass.",
+    "source": "jobs/kean/register/findings.jsonl:74 (F-20261030-7001)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Tracker exhaustion rules enforced (commit f750886a00); merged into main through the PR107 integration.",
+    "source": "commit f750886a00; research/progress/README.md:18"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "readiness-tracker"
+  ],
+  "caveats": [
+   "These are seven tests of one order, not seven researched orders and not production readiness losses; canonical EXHAUSTED.jsonl was empty at the baseline, so no published ready total changed (REPORT.md:19).",
+   "Stage chosen: verify (it hardens the tracker's ready gate and the planted-control check); listed under support in the assignment.",
+   "Code adoption is not scientific acceptance; no codebook, status or certification changed (REPORT.md:3).",
+   "The tracker's ready count remains mechanical: reviewer independence, source examination and publication discipline stay trusted assumptions (REPORT.md:28)."
+  ]
+ },
+ {
+  "id": "ready-for-human-review",
+  "name": "Ready for human review",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/readiness-tracker"
+  ],
+  "kind": "gate",
+  "status_class": "current",
+  "stage": "ready",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "The handoff line: a dossier whose machine steps are all done and mechanically checked is set aside for a person to review; it is a count of finished machine work, not a verdict.",
+  "inputs": [
+   "tracker row with every applicable step done",
+   "an exact matching checker receipt",
+   "no active source-audit hold"
+  ],
+  "outputs": [
+   "ready-for-human-review list (READINESS_BY_ORDER.csv)",
+   "TRACKER.md headline count"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "498 ready-for-human-review dossiers of 14,972 working identities (3.33%): 306 original-supported, 192 transcription-dependent; 612 matching effective-claim receipts; generation 35b9a7585d, run 40987576100 finished 2026-10-30T02:18:57Z.",
+    "source": "research/progress/README.md:7"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Human-certified whole histories remain 0.",
+    "source": "research/progress/README.md:9,53"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-24",
+    "text": "Ready count at the daily checkpoints: 285 (2026-10-24), 310 (10-28), 395 (10-29), 498 (10-30).",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/MISSION_LOG.csv"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "human-certification"
+  ],
+  "caveats": [
+   "Readiness is not certification. The tracker's own wording is that machines have finished every step 'so only human verification remains' (research/readiness/README.md:5) and 'Human verification is not counted here' (jobs/readiness-tracker/README.md:86).",
+   "No AI or mechanical pass confers certification (research/progress/README.md:53); the owner's rules say never to auto-promote one evidence tier to another (AGENTS.md:17); neither readiness, AI review nor Mountweazel's catch rate supplies human certification (research/progress/lifecycle-assurance/MAP.md:15).",
+   "Ten exact-source audit holds, 194 original-replacement and 194 quotation-recheck obligations remain outside this count (research/progress/README.md:9).",
+   "No automated queue or assignment of ready dossiers to named human reviewers was found in the repository at this pin; unconfirmed."
+  ]
+ },
+ {
+  "id": "human-certification",
+  "name": "Human certification",
+  "catalog_tool": "",
+  "jobs": [
+   "research/stage19/output/PROGRESS.json",
+   "research/stage19/CLAIM_SCHEMA.md"
+  ],
+  "kind": "gate",
+  "status_class": "current",
+  "stage": "ready",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "A person independent of the AI work reviews the whole lifecycle claim and its cited sources and signs off on that exact version; no tool does this and the count is zero.",
+  "inputs": [
+   "a ready dossier (exact claim SHA-256)",
+   "a separate independent_human review with decision 'uphold' and rationale",
+   "checked source URLs or archival items"
+  ],
+  "outputs": [
+   "certified whole-lifecycle history (count)"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Published human-certified whole histories: 0 of 14,972; the Stage 19 progress register shows independently_reviewed_whole_lifecycle_complete = 0.",
+    "source": "research/progress/README.md:53; research/stage19/output/PROGRESS.json:10; README.md:13"
+   }
+  ],
+  "history": [],
+  "history_note": "no iteration history recorded",
+  "feeds": [],
+  "caveats": [
+   "Owner/human only and not automated: the tracker counts an identity only with a separate independent_human review matching the claim hash (research/stage19/CLAIM_SCHEMA.md:3,12); a changed claim invalidates an older review.",
+   "No AI or mechanical pass confers certification (research/progress/README.md:53,100). Bulk machine review must never inflate the zero count.",
+   "The Stage 19 progress file is the published certification record; its older structural-claim and provisional-status totals are not current research counts (research/progress/README.md:56).",
+   "Every owner ruling in research/readiness/owner_rulings that states a count keeps 'Certified: 0' (e.g. 2026-10-21-transcription-as-text.md:22)."
+  ]
+ },
+ {
+  "id": "kean",
+  "name": "Kean",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/kean",
+   "HANDOFF/KEAN.md"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Thomas Kean, chair of the 9/11 Commission, which found agencies held the pieces but did not share them",
+   "evidence": "jobs/kean/README.md:3",
+   "wikipedia_title_unverified": "Thomas Kean"
+  },
+  "role": "Keeps one shared register of owner decisions, owner questions and recorded results so no agent session repeats or forgets what another already learned, and generates the short brief every session reads first.",
+  "inputs": [
+   "owner decisions",
+   "questions for the owner",
+   "dated experiment results with ids",
+   "owner-ruling and REPORT files (checked for coverage)"
+  ],
+  "outputs": [
+   "register files (decisions, asks, findings)",
+   "HANDOFF/KEAN.md brief (capped at 8 KB)",
+   "a pull-request check that fails on gaps"
+  ],
+  "results": [
+   {
+    "date": "2026-10-31",
+    "text": "Run 41164523490 (finished 2026-10-31T03:32:03Z): 14 owner decisions, 75 findings, 11 open owner questions, 16 older reports not yet summarized; no errors or warnings.",
+    "source": "jobs/kean/output/SUMMARY.json; jobs/kean/output/STATUS.json; HANDOFF/KEAN.md:48"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Standing rule added: coordinate by model tier and delegate bounded work (recorded as an owner decision).",
+    "source": "commit 905dccee02"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Added the Rattle Watch to the job runner and folded ChatGPT history into Kean.",
+    "source": "commit 148b64e0f6"
+   },
+   {
+    "date": "2026-10-28",
+    "text": "Created after a week in which the owner's ProQuest ruling was not reflected in the tracker and owner questions stayed in one agent's notes.",
+    "source": "commit fc8f1e387f; jobs/kean/README.md:5-8"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "A register of what agents recorded, not an evidence base: findings are the recording agent's own account and a result held only in a chat is lost until recorded (README.md:34).",
+   "At this pin one owner decision (transcriptions as working text) is only partly carried out by the tools and five more are 'not yet checked against the tools' (HANDOFF/KEAN.md:30-33).",
+   "Entries are append-only; the latest revision of an id is current (README.md:22). Counts in the brief change as agents add entries."
+  ]
+ },
+ {
+  "id": "hamilton-token-audit",
+  "name": "Hamilton token audit",
+  "catalog_tool": "Hamilton",
+  "jobs": [
+   "jobs/hamilton-token-audit",
+   "research/production/hamilton-2026-10-20"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Alexander Hamilton, first Treasury audit (stated in the catalog; the job README states no namesake)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:25",
+   "wikipedia_title_unverified": "Alexander Hamilton"
+  },
+  "role": "Reads saved agent-session transcripts offline, rebuilds every model call and attributes token cost to what caused it, so wasteful steps can be seen; it verifies no saving.",
+  "inputs": [
+   "saved transcript pages kept outside the repository",
+   "optional independently reported session totals and a dated price schedule"
+  ],
+  "outputs": [
+   "per-session token and cost-cause profiles",
+   "coverage reconciliation of earlier profiles",
+   "observed usage a Junto finder can read"
+  ],
+  "results": [
+   {
+    "date": "2026-10-20",
+    "text": "First audit of five sessions, in API list-price value (not what the owner paid): about $816 (Stage 9/11 research, only 5% of transcript downloaded), $54 (X1 build), about $20+, $5, $2. In X1 the coordinator's main thread made 258 calls at a 421k median context (72% of input-side cost) versus the 11 helpers' 277 calls at 122k (28%).",
+    "source": "research/production/hamilton-2026-10-20/REPORT.md:12-26"
+   },
+   {
+    "date": "2026-10-30",
+    "text": "Catalog: $0 verified saved; profiled the X1 and Justinian coordinator windows.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:25"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Regression run 39475524967 (finished 2026-10-20T19:27:29Z) hashed the five preserved profiles and reported which lack enough category totals to validate their old scaling.",
+    "source": "jobs/hamilton-token-audit/output/COVERAGE_RECONCILIATION.json; jobs/hamilton-token-audit/output/STATUS.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Cause labels no longer echo variable assignments; later repair of acceptance, provenance and cost accounting; no duplicate telemetry service built.",
+    "source": "commits 7027ab30ca, 491c0524d2; jobs/hamilton-token-audit/README.md:30"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "junto"
+  ],
+  "caveats": [
+   "Does not infer an invoice, a full-session capture or a verified saving from a partial transcript (README.md:3); context attribution uses characters/4 and a setup proxy, and the diagnostic views overlap and must not be added together (README.md:18).",
+   "Five sessions are a small sample; the ranking is sturdier than any percentage (research/production/hamilton-2026-10-20/REPORT.md:55-60).",
+   "Hamilton's proposed tools (Revere, Watchman, Spare setup, Quiet protocol) are its estimates and each needed a probe (research/production/hamilton-2026-10-20/REPORT.md:43)."
+  ]
+ },
+ {
+  "id": "junto",
+  "name": "Junto",
+  "catalog_tool": "Junto (Clausewitz · Gallatin finders)",
+  "jobs": [
+   "jobs/junto"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Benjamin Franklin's Junto (1727), the Philadelphia club that kept only the ideas that worked in practice",
+   "evidence": "jobs/junto/README.md:3",
+   "wikipedia_title_unverified": "Junto (club)"
+  },
+  "role": "Collects ideas for saving tokens from several finder scripts and scores each idea only by savings that a small before-and-after test actually measured; estimates never count.",
+  "inputs": [
+   "audit data from finders (Hamilton, friction, wasted_work, NEYMAN, NORTON, Valla)",
+   "measured before/after tests with session ids"
+  ],
+  "outputs": [
+   "candidate ledger",
+   "scoreboard (output/SCOREBOARD.json)",
+   "finder proposals"
+  ],
+  "results": [
+   {
+    "date": "2026-10-24",
+    "text": "Scoreboard (run 40056070366): six finders, 18 candidates, all unverified; 0 resolved tests; verified savings $0; known overhead $10.18 API token value with 1 unknown-cost record.",
+    "source": "jobs/junto/output/SCOREBOARD.json; jobs/junto/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "20 candidate savers, 0 measured tests, $0 verified; per-session estimates $0.06 to $6.",
+    "source": "jobs/kean/register/findings.jsonl:16 (F-20261020-4)"
+   },
+   {
+    "date": "2026-10-18",
+    "text": "Related matched A/B test of compact case packets (not a Junto ledger test): producer time fell 33% but total input tokens rose 21.8%.",
+    "source": "jobs/kean/register/findings.jsonl:5 (F-20261018-2)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "First run, all candidates unverified; later renumbering of ledger ids and NEYMAN/NORTON finders and a contract interface added.",
+    "source": "commits f968a236ef, cf5b66e6ab, f2ae6daeea, 648d7c8d56"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "The catalog's 'first measured test Oct 22 (T-20261022-1): $2.15 vs $1.99 per accepted claim, 14 units' is not present in the committed ledger: jobs/junto/ledger/tests.jsonl is empty and the scoreboard shows 0 resolved tests at this pin (catalog row research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:26).",
+   "A saving counts only after a measured test; a verified result is evidence for the observed pilot only (README.md:14-18).",
+   "Savers themselves (Revere, Watchman, Spare setup, Quiet protocol) are 'not built by Junto' (README.md:8).",
+   "Its measurements concern token cost, not research correctness or readiness."
+  ]
+ },
+ {
+  "id": "llull",
+  "name": "Llull",
+  "catalog_tool": "Llull",
+  "jobs": [
+   "jobs/llull"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Ramon Llull's Ars Magna (c. 1305), paper wheels crossing every term with every other term",
+   "evidence": "jobs/llull/README.md:3",
+   "wikipedia_title_unverified": "Ramon Llull"
+  },
+  "role": "Registers a forecast before a research plan runs and scores the forecast against the measured outcome afterward, so planning claims are checked against what actually happened.",
+  "inputs": [
+   "plan forecasts with a measured reference class",
+   "measured outcomes with source paths"
+  ],
+  "outputs": [
+   "calibration and self-score reports",
+   "ledger check",
+   "pre-mortem questions and ranked actions"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Calibration at run 39839871604: 90 forecasts, 62 quantities scored across 20 experiments, 74 resolved; multiple quantities from one experiment are correlated.",
+    "source": "jobs/llull/output/CALIBRATION.json:187-191; jobs/llull/output/STATUS.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Postmortem of the first 23 plans: 15 scored, 12 fell short, delivering a median 3.6% of forecast; main causes were unmeasured prerequisites (8) and rates carried from easy pilots (5).",
+    "source": "jobs/kean/register/findings.jsonl:18 (F-20261020-6)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "October 20 repair appended corrected outcomes (MW-C2 adjudicated 7/10; two untested plant gates) while keeping the original 8/10 in history.",
+    "source": "jobs/llull/README.md:125-137; commit 15b4b4d856"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "Earns trust only from measured outcomes and changes no codebook, claim status, tier or the certified count of 0 (README.md:7-8).",
+   "The catalog's '65 forecasts' does not match the 90 forecast lines at this pin; the difference is not reconciled here.",
+   "Last published run is 2026-10-22; later plans (Oct 23 onward) are not in this output.",
+   "Scores are descriptive, not independent studies."
+  ]
+ },
+ {
+  "id": "polya",
+  "name": "Polya",
+  "catalog_tool": "Polya",
+  "jobs": [
+   "jobs/polya"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "George Polya, How to Solve It (1945): if you cannot solve the problem, change it",
+   "evidence": "jobs/polya/README.md:3",
+   "wikipedia_title_unverified": "George Pólya"
+  },
+  "role": "Measures, from committed outputs, how many not-ready orders one unit of work (a shared source, an ending instrument, an owner ruling) could move forward one step, to find leverage beyond the single order.",
+  "inputs": [
+   "readiness-tracker per-order rows",
+   "later-events edges",
+   "claim-kit families and missing sources"
+  ],
+  "outputs": [
+   "frame comparison (COMPARE.json/.md)",
+   "ranked leverage by frame",
+   "candidate actions for Llull"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "On the 2026-10-29 tracker generation (395 ready, 14,577 not ready; repo head adcf881ef7e) the owner/codebook-decision frame reaches 13,083 orders, 89.8% of the not-ready orders, through 6 units.",
+    "source": "jobs/polya/output/COMPARE.md:1,3,12; jobs/polya/output/STATUS.json (run 40829686426)"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Created to measure alternative units of work after plans keyed on the single order missed (series plan 4,134 h assumed vs 463 measured).",
+    "source": "commit 6706468f35; jobs/polya/README.md:5-7"
+   }
+  ],
+  "history_note": "",
+  "feeds": [
+   "llull"
+  ],
+  "caveats": [
+   "Reach is not yield: counts are orders a unit could advance one step, not orders made ready, hours or dollars (README.md:13); frames overlap and reaches must not be added (README.md:18).",
+   "Computed on the 395-ready generation, not the current 498.",
+   "Never changes the codebook, a status or the certified count (0)."
+  ]
+ },
+ {
+  "id": "portfolio-repair-check",
+  "name": "Portfolio repair check",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/portfolio-repair-check"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "An output-only test harness that re-runs the regression suites of several tools and the real claim checker on six repaired claims to confirm the October 20 portfolio repair still holds.",
+  "inputs": [
+   "regression suites (Panizzi, Rastell, Lamm, Hamilton, Mountweazel, Polya, Llull, Junto, Lambertini)",
+   "sealed historical repair packet",
+   "six effective canonical claims and ten frozen GovInfo hash/URL pairs"
+  ],
+  "outputs": [
+   "VALIDATION.json",
+   "CHECKER_ACCEPTANCE.json",
+   "SOURCE_VERIFICATION.json",
+   "current seven-case packet provenance"
+  ],
+  "results": [
+   {
+    "date": "2026-10-22",
+    "text": "Run 39802916101 (finished 2026-10-22T16:11:29Z): the actual checker ran on six claims (EO 13792, 13101, 13148, 13783, 13807 plus positive control EO 13037); all six passed mechanical and structural checks; 0 LLM calls.",
+    "source": "jobs/portfolio-repair-check/output/VALIDATION.json; jobs/portfolio-repair-check/output/CHECKER_ACCEPTANCE.json; jobs/portfolio-repair-check/output/STATUS.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Wired bounded portfolio validation; later fixed fixtures to stay outside the repository and added historical-gate replay.",
+    "source": "commits 7247771207, d0527136ca, cad6e4026e"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "A mechanical pass does not lift the audit holds: the five order holds remain a separate reason to withhold readiness (README.md:19-21; research/readiness/SOURCE_AUDIT_HOLDS.jsonl:2-11).",
+   "Tests the repair, finds no new evidence, and runs no paid research (README.md:3-8).",
+   "Last published run is 2026-10-22; its triggers include Mountweazel and claim-kit code, so it reruns when those change (triggers.txt)."
+  ]
+ },
+ {
+  "id": "leverage-campaign-check",
+  "name": "Leverage campaign check",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/leverage-campaign-check"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "An offline replay that runs the real claim checker and then the readiness tracker on a fixed input snapshot, with network downloads disabled, to confirm a source-custody repair changed nothing it should not.",
+  "inputs": [
+   "existing acquisition and preparation receipts and held bytes (no new downloads)",
+   "a pinned input checkpoint named in RUN.md"
+  ],
+  "outputs": [
+   "VALIDATION.json and COMMAND_RECEIPTS.json",
+   "checker and tracker outputs under output/shared-source"
+  ],
+  "results": [
+   {
+    "date": "2026-10-24",
+    "text": "Run 40056070366 (finished 2026-10-24T05:18:11Z), input commit d66f404065: claim-checker 246.2 s then readiness-tracker 16.2 s, both exit 0, network verification disabled; 0 new claims, 0 status changes, 0 human certifications, canonical outputs unmodified; model tokens not recorded.",
+    "source": "jobs/leverage-campaign-check/output/shared-source/VALIDATION.json"
+   },
+   {
+    "date": "2026-10-23",
+    "text": "Earlier full-core replay (run 39885190210, input 0b20fea321): NORTON 61.2 s, claim-kit 626.6 s, claim-checker 202.6 s, tracker 15.3 s, Polya 8.7 s; 916.5 machine seconds in total; also 0 new claims and 0 certifications.",
+    "source": "jobs/leverage-campaign-check/output/VALIDATION.json"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-23",
+    "text": "Verified recovered sources and exact empty media applicability through real consumers.",
+    "source": "commit 42da5c3caa"
+   },
+   {
+    "date": "2026-10-22",
+    "text": "Created with the restored authorized population and provisional evidence preparation.",
+    "source": "commit 421344af92"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "Output-only replay: an output commit does not prove it ran; read the outer STATUS.json and receipts (README.md:7; RUN.md).",
+   "Produces no legal approval, status adoption or human certification (README.md:7).",
+   "Times are machine wall seconds, not research effort; last published run is 2026-10-24.",
+   "Why it is called 'leverage' is undocumented in the files read."
+  ]
+ },
+ {
+  "id": "daily-digest",
+  "name": "Daily digest and dashboard",
+  "catalog_tool": "",
+  "jobs": [
+   "jobs/daily-digest"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Each day it renders the readiness headline, changes since yesterday, top unlocks and newest handoff asks into a short digest and a research dashboard, without model calls or readiness decisions.",
+  "inputs": [
+   "published tracker and checker outputs",
+   "status register and filed claims",
+   "daily job summaries"
+  ],
+  "outputs": [
+   "HANDOFF/DIGEST.md (at most 149 lines)",
+   "DASHBOARD.md and DASHBOARD.json",
+   "daily snapshot of summaries"
+  ],
+  "results": [
+   {
+    "date": "2026-10-29",
+    "text": "Run 40810986684 (finished 2026-10-29T03:17:22Z) published the digest; the committed digest at this pin reports the 395-ready generation dated 2026-10-28, older than the 498 generation.",
+    "source": "jobs/daily-digest/output/STATUS.json; jobs/daily-digest/output/DIGEST.md:1-6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Published a verified dashboard checkpoint with portable timestamp rendering and dated tracker receipts.",
+    "source": "commit d270607dd6"
+   },
+   {
+    "date": "2026-10-17",
+    "text": "Created with the daily handoff digest and case startup bundles.",
+    "source": "commit ce5ca36980"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "Display only: the ready count always comes from the published tracker with its generation date, and human certification comes only from the separate Stage 19 record (README.md:23-29).",
+   "Matching receipts may contain failures; receipt coverage never creates readiness (README.md:21-22).",
+   "A combined refresh runs claim-checker, then readiness-tracker, then daily-digest; a failed or older generation stays labeled (research/progress/README.md:102)."
+  ]
+ },
+ {
+  "id": "capcom",
+  "name": "Capcom",
+  "catalog_tool": "Capcom",
+  "jobs": [
+   "research/progress/remaining-work"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Apollo Mission Control's capsule communicator, the one voice that told the crew where they stood",
+   "evidence": "research/progress/remaining-work/build_mission_log.py:3",
+   "wikipedia_title_unverified": "Capsule communicator"
+  },
+  "role": "Turns each day's readiness checkpoint into the project's position on an Apollo 11 mission clock, using fixed effort weights, so progress can be tracked over time.",
+  "inputs": [
+   "readiness tracker history on main (one snapshot per UTC day)",
+   "frozen effort weights (MISSION_WEIGHTS.csv)",
+   "Apollo 11 milestones"
+  ],
+  "outputs": [
+   "MISSION_LOG.csv",
+   "mission progress percentage and mission elapsed time"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Checkpoint at 35b9a7585d: 498 ready, 11.615% effort-weighted progress, T+12.707 h, 0 human certified (previous checkpoint 2026-10-29: 395 ready, 11.07%, T+12.111 h).",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/MISSION_LOG.csv; research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:40"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-29",
+    "text": "Builder and frozen weights integrated while recovering branch work; original frozen weights unchanged.",
+    "source": "commit 230649a935; jobs/kean/register/findings.jsonl:62 (F-20261029-96)"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "Progress is a modeled effort-weighted share of open steps, not a measure of legal completion; weights are average model minutes per open step frozen on first build (build_mission_log.py:7-17).",
+   "Human certification is not counted here and stays 0 (build_mission_log.py:22-23).",
+   "Goal denominator is inconsistent in the files read: docstring says 16,239 APP-counted orders, MISSION_LOG.csv carries 16,286.",
+   "Dashboard figures are display values; the ready count comes from the tracker."
+  ]
+ },
+ {
+  "id": "revere",
+  "name": "Revere",
+  "catalog_tool": "Revere",
+  "jobs": [
+   "HANDOFF",
+   "research/plans/CONTINUOUS_PROTOCOL.md"
+  ],
+  "kind": "software",
+  "status_class": "current",
+  "stage": "support",
+  "namesake": {
+   "text": "Paul Revere, the relay rider (stated in the catalog and Hamilton's report)",
+   "evidence": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:24; research/production/hamilton-2026-10-20/REPORT.md:47",
+   "wikipedia_title_unverified": "Paul Revere"
+  },
+  "role": "At each phase end a long-running coordinator writes a short state file and a fresh session continues from it, so no coordinator context grows huge.",
+  "inputs": [
+   "coordinator's compact state file / HANDOFF notes"
+  ],
+  "outputs": [
+   "a fresh session continuing from the handoff"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Catalog: phase handoffs in use since Oct 20. No matched before/after test of Revere's cost effect is recorded; Junto lists 0 resolved tests.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:24; jobs/junto/output/SCOREBOARD.json"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Hamilton's estimate: about 40% off an X1-like session (a coordinator at 150k instead of 421k). An estimate, not a result; Junto judged Revere to exceed the $10 test round on gross cost.",
+    "source": "research/production/hamilton-2026-10-20/REPORT.md:47; research/production/junto-2026-10-20/REPORT.md:106"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Proposed by Hamilton, then written into the continuous protocol: hand off to a fresh coordinator when context passes about 400k.",
+    "source": "research/production/hamilton-2026-10-20/REPORT.md:47; research/plans/CONTINUOUS_PROTOCOL.md:12"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "A working practice (handoff state files and HANDOFF notes), not a named program; kind 'software' is the closest available label.",
+   "The size of any saving is unmeasured; no verified saving is recorded.",
+   "The HANDOFF notes also carry owner-facing asks, which since Oct 28 must cite Kean ids (HANDOFF/README.md:20)."
+  ]
+ },
+ {
+  "id": "watchman-spare-setup-quiet-protocol",
+  "name": "Watchman, Spare setup and Quiet protocol",
+  "catalog_tool": "Watchman · Spare setup · Quiet protocol",
+  "jobs": [
+   "research/production/hamilton-2026-10-20"
+  ],
+  "kind": "proposal",
+  "status_class": "proposed",
+  "stage": "support",
+  "namesake": {
+   "text": "undocumented",
+   "evidence": "",
+   "wikipedia_title_unverified": ""
+  },
+  "role": "Three token-saving ideas from Hamilton's audit that were never built: watch pull requests from outside the big session, trim the fixed setup every call re-reads, and keep outputs short.",
+  "inputs": [
+   "Hamilton's cost attribution"
+  ],
+  "outputs": [
+   "none built"
+  ],
+  "results": [
+   {
+    "date": "2026-10-30",
+    "text": "Catalog status not_built: proposed by Hamilton, untested.",
+    "source": "research/progress/remaining-work/snapshots/2026-10-30/TOOLS.csv:33"
+   },
+   {
+    "date": "2026-10-20",
+    "text": "Hamilton's estimates (unverified): Watchman removes most of the ~15% spent waiting; Spare setup unknown until measured (each 10k off the setup saves about 1.4% per call); Quiet protocol 5-15%.",
+    "source": "research/production/hamilton-2026-10-20/REPORT.md:48-50"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "text": "Proposed in Hamilton's first audit; Junto catalogues them as savers 'not built by Junto'.",
+    "source": "research/production/hamilton-2026-10-20/REPORT.md:41-50; jobs/junto/README.md:8"
+   }
+  ],
+  "history_note": "",
+  "feeds": [],
+  "caveats": [
+   "Not built and untested; no verified saving. Hamilton: 'These are estimates. Each needs a probe' (research/production/hamilton-2026-10-20/REPORT.md:43).",
+   "A different tool, the Rattle Watch in .github/scripts/run_jobs.py (named for New Amsterdam's night watch), monitors job runs; the repository does not present it as Watchman and it is not counted here."
+  ]
+ }
+]
