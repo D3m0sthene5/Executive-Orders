@@ -1,0 +1,86 @@
+{
+  "schema": "eo-claim-kit-completion/v1",
+  "attempted": 6,
+  "counts": {
+    "unresolved": 5,
+    "blocked": 1
+  },
+  "submitted": 0,
+  "controls": [
+    {
+      "instrument_id": "EO:8083",
+      "planted_claim_sha256": "22b8d516a6af14fa736bd44011aa992ea5fe1a14b5c322387c9aca6abfff0668",
+      "caught": true,
+      "scoring": "strict"
+    },
+    {
+      "instrument_id": "EO:8126",
+      "planted_claim_sha256": "021fe246b8c016b9932c1317d2b06eac9e920b5587b30289ea057ceca9d5b09e",
+      "caught": true,
+      "scoring": "strict"
+    },
+    {
+      "instrument_id": "EO:8992",
+      "planted_claim_sha256": "cd45ffe63232ae0210f6505b5a04927f5d5a3f354af3e253726edc3b8eabf7e9",
+      "caught": true,
+      "scoring": "strict"
+    }
+  ],
+  "plants_placed": 3,
+  "plants_caught": 3,
+  "eligible": [],
+  "claims_published": 0,
+  "source_review_upheld": 0,
+  "eligible_per_attempt": 0.0,
+  "independent_human_certifications": 0,
+  "exceptions": 1,
+  "concurrent_disjoint_claim_files": [],
+  "packet_loads": {},
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-10-31T04:22:59.223467+00:00",
+  "finished_utc": "2026-10-31T04:22:59.233285+00:00",
+  "wall_seconds": 0.009831855997617822,
+  "model_tokens": null,
+  "model_cost": null,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "diagnostic": {
+    "schema": "eo-claim-kit-diagnostic/v1",
+    "status": "succeeded",
+    "scientific_completion_unchanged": true,
+    "agent_labor_seconds": null,
+    "model_tokens": null,
+    "model_cost": null,
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/f362c7e8417b/r4/jobs/neyman/after_completion.py",
+      "--repo",
+      "/workspace/scratch/f362c7e8417b/r4",
+      "--history",
+      "research/progress/r4-production-diagnosis/examples/HISTORY.json",
+      "--base-commit",
+      "1caa42af95705e452d0e02425c7d9ceb9ed5ba7c",
+      "--write",
+      "research/neyman/production-diagnostics/r4-native",
+      "--current",
+      "research/progress/r4-production-diagnosis/examples/native-complete",
+      "--final",
+      "research/excavator/counterexample-first-2026-10-26/complete-publish-v2",
+      "--final",
+      "research/excavator/counterexample-first-2026-10-26/packet/continuation-7975a-v2/complete-publish-v1",
+      "--research-attempt",
+      "research/excavator/counterexample-first-2026-10-26/EO_8915_ATTEMPT.v2.json",
+      "--effort",
+      "research/excavator/counterexample-first-2026-10-26/EFFORT.json",
+      "--effort",
+      "research/excavator/counterexample-first-2026-10-26/PUBLICATION_EFFORT.json",
+      "--checkpoint",
+      "research/excavator/counterexample-first-2026-10-26/packet/producers/EO_8915/BLOCKED_CHECKPOINT.v2.json"
+    ],
+    "adapter_sha256": "a158ecc677db31506df49f2d28b18b04ed6f658a09bdf0930064679d90457554",
+    "returncode": 0,
+    "stdout": "{\"censored_orders\": 0, \"completion_machine_seconds_lower_bound\": 370.23283142199944, \"completion_machine_seconds_total\": 370.23283142199944, \"completion_occupied_wall_seconds\": 370.23275089263916, \"diagnoses\": {\"ready_in_isolated_replay\": 2, \"requires_scoped_assessment\": 4}, \"failed_completion_invocations\": 1, \"net_hours_saved\": null, \"observed_orders\": 6, \"population_inference_supported\": false, \"primary_cost_bottleneck\": \"not_identified_with_available_effort_coverage\", \"ready_in_isolated_replay\": 2, \"research_attempts\": 1, \"reviewed_partials\": 0, \"reviewed_whole_case_proposals\": 5, \"total_agent_hours\": null, \"unique_completion_invocations\": 4, \"verified_savings\": false, \"worker_effort_coverage\": \"partial_observed_intervals\"}\n",
+    "stderr": "",
+    "output": "research/neyman/production-diagnostics/r4-native",
+    "wall_seconds": 0.07263070999761112
+  }
+}

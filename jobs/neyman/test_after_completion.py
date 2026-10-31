@@ -105,5 +105,35 @@ class CompletionHandoffTests(unittest.TestCase):
         self.assertEqual(args[args.index('--manifest')+1],self.dest+'/IMPORT.json')
         self.assertTrue(args[-1].endswith('/diagnosis'))
 
+    def test_current_receipt_appended_without_rewriting_supplied_history(self):
+        before=(self.repo/self.history).read_bytes()
+        path,data=self.run_it(current=self.folder)
+        self.assertEqual((self.repo/self.history).read_bytes(),before)
+        self.assertEqual(len(data['attempts']),1)
+        self.assertEqual(len(data['duplicate_receipt_aliases']),1)
+        manifest=json.loads(path.read_text())
+        self.assertEqual(manifest['supplied_history']['path'],self.history)
+        self.assertTrue(manifest['completion_index']['path'].endswith('/COMPLETION_HISTORY.json'))
+
+    def test_new_current_unfinished_member_still_cannot_disappear(self):
+        other='research/excavator/fixture/current'
+        self.write(other+'/TALLY.json',dict(self.receipt,outcomes=[{'instrument_id':'EO:2','outcome':'blocked'}]))
+        with self.assertRaisesRegex(ValueError,'refusing to drop: EO:2'):
+            self.run_it(current=other)
+
+    def test_question_is_forwarded_to_existing_diagnosis(self):
+        reader=Reader(self.repo)
+        question=self.write('research/excavator/fixture/question.json',{
+            'schema':'neyman.discriminating-question/1','instrument_id':'EO:1','assessor':'fixture',
+            'question':'Is the dated report held?', 'needed_observation':'Exact dated report',
+            'suggested_existing_route':'Existing source-ladder explicit plan',
+            'alternatives':['The report is held','The report still requires acquisition'],
+            'basis':[reader.ref(self.folder+'/TALLY.json')]})
+        path,_=self.run_it(questions=[question])
+        import diagnose
+        reader=Reader(self.repo)
+        data=diagnose.diagnose(reader,json.loads(path.read_text()))
+        self.assertEqual(data['observations'][0]['next_questions'][0]['question'],'Is the dated report held?')
+
 
 if __name__=='__main__': unittest.main()

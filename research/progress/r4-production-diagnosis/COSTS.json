@@ -1,0 +1,76 @@
+{
+  "schema": "r4.observed-costs/1",
+  "model_tokens": null,
+  "cash": null,
+  "complete_session_agent_hours": null,
+  "savings": null,
+  "coverage": "Partial deterministic invocation timings only. Setup/reasoning/reading/correction/worker total labor unavailable; timings cannot become agent labor.",
+  "workers": [
+    {
+      "role": "coordinator",
+      "model": "inherited OpenAI GPT-6-family; exact deployed subvariant unavailable",
+      "fresh": false
+    },
+    {
+      "role": "producer_consumer_trace",
+      "model": "inherited OpenAI GPT-6-family; exact deployed subvariant unavailable",
+      "fresh": true,
+      "tokens": null,
+      "elapsed_seconds": null
+    },
+    {
+      "role": "engineering_review",
+      "model": "inherited OpenAI GPT-6-family; exact deployed subvariant unavailable",
+      "fresh": true,
+      "tokens": null,
+      "elapsed_seconds": null
+    }
+  ],
+  "observed": {
+    "native_completion_machine_seconds": 0.009831855997617822,
+    "native_diagnostic_subprocess_seconds": 0.07263070999761112,
+    "native_scientific_exceptions": 1,
+    "tests": [
+      {
+        "name": "claim-kit-completion",
+        "command": [
+          "python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "jobs/claim-kit",
+          "-p",
+          "test_completion*.py",
+          "-q"
+        ],
+        "returncode": 0,
+        "wall_seconds": 3.6462406699938583
+      },
+      {
+        "name": "neyman",
+        "command": [
+          "python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "jobs/neyman",
+          "-p",
+          "test_*.py",
+          "-q"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.35388220399909187
+      }
+    ],
+    "nmb_source_route_machine_seconds": 0.07660523999948055
+  },
+  "failures_retained": [
+    "Partial-clone checkout attempted unrelated blobs and was interrupted; connector materialization used pinned main instead.",
+    "Initial source-byte materialization lost trailing blank lines; exact pinned bytes restored before native import/route checks.",
+    "First NMB output destination refused by existing route; next fresh allowed directory succeeded.",
+    "Native retained-cohort engineering replay has a missing historical DESIGN.json receipt exception; no current scientific submissions or adoption asserted."
+  ],
+  "repeated_work": "Three old completion invocations remain in supplied history. New invocation explicitly appended; duplicate receipts deduplicate in regressions. NMB replay repeats an existing completed route and claims no new research benefit."
+}
