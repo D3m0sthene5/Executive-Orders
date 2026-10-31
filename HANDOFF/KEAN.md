@@ -34,13 +34,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 89; `search` finds the rest)
+## Newest results (6 of 90; `search` finds the rest)
 
 - 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
 - 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
 - 2026-10-31 F-20261031-r1-production-comparison **worked**: Run matched complete production Valla executions through the existing transactional runner and freshness guard Lesson: Measure full worktree, declared closure, startup, helper metadata and construction separately; retain exact output provenance and independent review; re-establish certificates after implementation-cl…
 - 2026-10-31 F-20261031-r1-audited-valla **partly worked**: Extend the existing runner materializer to the exact Valla production read closure Lesson: Close explicit dynamic pointers and live read membership; bind resolver/runner code; withhold unresolved or unretained inputs rather than narrowing from a successful trace.
 - 2026-10-31 F-20261031-lachmann **worked**: Lachmann machine collation confirming working texts (identity, completeness, pages) for transcription- and sc… Lesson: Machine-read compilations damage land descriptions; test internal continuity, not only opening and closing. Most unconfirmed orders are APP or Wikisource texts without a printed number; a heading bri…
-- 2026-10-31 F-20261031-jacquard-wave1 **partly worked**: Jacquard sampled class adoption of provisional NO statuses for six X1 lots (one-person waivers to 1917, retir… Lesson: X1 types are broader than their labels (class-wide Retirement Act orders, NRA administrative orders, waivers for positions, Panama Railroad matters, neighbour texts in compiled volumes); class adopti…
+- 2026-10-31 F-20261031-jacquard-wave2 **worked**: Full per-order Jacquard review of every remaining member of the waiver (797), NRA (78) and Canal Zone (162) l… Lesson: Full review at about 8k Sonnet tokens per adopted status beats sampling when lots are heterogeneous. Known-failure controls inherit the strictness of the reviewer who failed them; vet them before pla…
 
-Register: 18 owner decisions, 2 answered questions, 89 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 90 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
