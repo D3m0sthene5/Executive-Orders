@@ -1,0 +1,10 @@
+## 2026-10-31 ET: R3 source-bound Early-Ranger round trip, leave unmerged
+
+- **Done:** Branch `sol/r3-ranger-roundtrip` from `88cef0253ed735b2a6e612770f25f9148641ce93`; repaired existing workbench/census-candidates source-version handoff. V2 binds exact item/candidate, inventory provenance and actual source bytes; stale/missing/conflicting/unknown and v1 notes remain unverified. Attributed AI proposals are retained beside candidates; no admission inference.
+- **Exercised:** Six priority title leads plus actual Madison–Armstrong copy-witness investigation. Native export/import/UI/census replay: 8 source-bound proposals, 67 NOT_ADMITTED/HOLD candidates, 0 certifications. Older embedded transcripts explicitly separated from empty current XML inventory. `research/progress/r3-ranger-roundtrip/INTEGRATION.md`, exact pins in `REPLAY_RECEIPT.json`.
+- **Review:** 39 focused workbench regressions + 2 existing census tests. Separate strong OpenAI source examiner viewed 42 media files; initial seal, producer comparisons and exact worksheet review retained. Same-family AI examination only. Original producer findings and corrections remain attributed; no lifecycle/status/census adoption. Kean `F-20261031-R3-roundtrip`, `F-20261031-R3-sources`.
+- **Delegation/costs:** Four configured gpt-6-luna workers (crosswalk/three bounded source assignments), two gpt-6-astra reviewers; Root kept integration/legal judgment. Tokens, cash and complete labor unknown; bounded measured intervals qualified in `COSTS.json`/receipts. No savings claim.
+- **Next:** Root integrates unmerged PR; adopt helper files with job changes, union R3 Kean entries and regenerate brief, rerun focused/native checks against combined source pins. Optional custody inputs require explicit materialization; no runner/dependency edit made.
+- **Running:** None after final review. No production/research job dispatched; ordinary PR CI may run.
+- **Asks:** @Owner: none.
+- **Do not:** merge, alter authoritative identities/statuses/counts, infer final issuance from catalog titles, infer human/different-family certification, or reopen the pending June1932 admission question.
