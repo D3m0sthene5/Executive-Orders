@@ -545,7 +545,40 @@ def identity_test(order, chosen, others):
     return False, None, reasons, ev
 
 
+_NUMBERED_ITEM = re.compile(r'^\s*(\d{1,2})\.\s+\S', re.M)
+_SECTION = re.compile(r'^\s*(?:sec(?:tion)?\.?|§)\s*(\d{1,2})\b', re.M | re.I)
+
+
+def numbering_gaps(text):
+    """Forward jumps in a numbered sequence (1, 2, 7) show text lost inside the order, e.g. OCR that dropped
+    courses of a metes-and-bounds description (EO 5528 in the 2026-10-31 audit). Restarts are allowed."""
+    gaps = []
+    for pattern, family in ((_NUMBERED_ITEM, 'item'), (_SECTION, 'section')):
+        nums = [int(m.group(1)) for m in pattern.finditer(text)]
+        if 1 not in nums:
+            continue
+        prev = None
+        for n in nums:
+            if prev is not None and n > prev + 1 and n - prev <= 12:
+                gaps.append(f'{family}:{prev}->{n}')
+            if prev is None or n > prev or n == 1:
+                prev = n
+    return gaps
+
+
 def complete_test(order, chosen, others):
+    """(confirmed, route, reasons, evidence). The chosen text must also be free of numbering gaps."""
+    ok, route, reasons, ev = _complete_test(order, chosen, others)
+    gaps = numbering_gaps(chosen['body'])
+    if gaps:
+        ev['numbering_gaps'] = gaps[:5]
+        if ok:
+            return False, None, ['complete:numbering_gap'], ev
+        reasons = reasons + ['complete:numbering_gap']
+    return ok, route, reasons, ev
+
+
+def _complete_test(order, chosen, others):
     """(confirmed, route, reasons, evidence)."""
     ok_s, ev_s = start_test(chosen['body'], order)
     ok_e, why_e, ev_e = end_test(chosen['body'], order)

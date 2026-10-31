@@ -270,5 +270,21 @@ class Audit(unittest.TestCase):
                 L.audit_sample(10, 'seed-x', conf, out, out / 'KEY.json', root)
 
 
+
+
+
+class NumberingGapTest(unittest.TestCase):
+    def test_gap_in_numbered_courses_is_caught(self):
+        import lachmann as L
+        text = "1. 334 deg 240.8 feet to a pipe;\n2. 322 deg 942.9 feet;\n1,949.4 feet along\n7. Thence to the beginning."
+        self.assertEqual(L.numbering_gaps(text), ['item:2->7'])
+
+    def test_continuous_and_restarting_sequences_pass(self):
+        import lachmann as L
+        self.assertEqual(L.numbering_gaps("1. a\n2. b\n3. c\n1. d\n2. e"), [])
+        self.assertEqual(L.numbering_gaps("Section 1. a\nSec. 2. b\nSec. 3. c"), [])
+        self.assertEqual(L.numbering_gaps("no numbers here 762"), [])
+
+
 if __name__ == '__main__':
     unittest.main()
