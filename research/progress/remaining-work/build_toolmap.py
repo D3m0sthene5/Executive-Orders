@@ -12,8 +12,10 @@ For every open readiness step the tracker records, puts the order into one lane:
   no_route           no copy, lead or job reaches it today
 
 Owner rulings of 2026-10-21 (research/readiness/owner_rulings/) are applied: report
-deadlines and strike-and-insert no longer block; transcriptions may satisfy the text
-step once the tracker rule is wired (until then they sit in machine_unwired).
+deadlines and strike-and-insert no longer block. Under the Oct 21 ruling a labeled transcription,
+or the owner's ProQuest replica scan (Pinakes, ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK), may satisfy
+the text step provisionally once a filed claim confirms the working text case by case; until then
+the tracker keeps the step open and these orders sit in machine_unwired.
 
 Lane membership is decided from the tracker's own blockers plus committed job
 outputs (X1 types, claim-drafts, Lambertini, claim-kit families). Counts are
@@ -109,7 +111,9 @@ def main():
             if "ORIGINAL_FOUND_NEEDS_PAGE_CHECK" in bl:
                 put("original_text", "ai_judgment", "page check")
             elif lead_text:
-                put("original_text", "machine_unwired", "transcription ruled usable; tracker rule pending (Lewis routes the original)")
+                put("original_text", "machine_unwired", "labeled transcription usable provisionally under the Oct 21 ruling; case-level confirmation and original route remain")
+            elif "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK" in bl:
+                put("original_text", "machine_unwired", "ProQuest replica scan held (Pinakes); Oct 21 ruling allows labeled transcription provisionally; case-level working-text confirmation and page check remain required")
             elif owner == "machine_job":
                 put("original_text", "machine_queued", "Lewis → source-ladder fetch request")
             elif owner == "agent_check":
