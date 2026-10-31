@@ -1,0 +1,25 @@
+{
+  "schema": "r1-r4-one-use-invocation/v1",
+  "integration_pr": 117,
+  "integration_merge": "e00fffbd3527fc4e4f81151e514ed7787f6f5cd9",
+  "ordinary_main_run": 41234105609,
+  "ordinary_published_generation": "87e829fea1cddb7abcd258f813ea467be2601059",
+  "coordinated_run": 41235195596,
+  "coordinated_source": "87e829fea1cddb7abcd258f813ea467be2601059",
+  "guard": "passed exact PR117 merge/source check",
+  "job": 124637374301,
+  "ordered_selection": [
+    "valla",
+    "claim-kit",
+    "claim-checker",
+    "census-candidates",
+    "readiness-tracker",
+    "early-ranger-workbench",
+    "neyman",
+    "case-bundles"
+  ],
+  "retired_workflow": ".github/workflows/r1-r4-production.yml",
+  "reason": "The intended run has passed its guard, checked out source and begun materialization. Retire the source-gated one-use trigger before another scheduled Run jobs completion at the same merge SHA can start a duplicate. The active compiled workflow continues; its definition is retained at the exact coordinated source pin.",
+  "input_scope_check": "Deletion and this HANDOFF receipt select no paths in any of the eight native consumer scopes; no runtime/scientific input changes.",
+  "scientific_adoption": false
+}
