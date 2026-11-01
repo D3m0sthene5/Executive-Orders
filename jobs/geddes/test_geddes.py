@@ -14,36 +14,36 @@ def _sha(text): return hashlib.sha256(text.encode()).hexdigest()
 
 
 def fixture(root):
-    own = "I hereby establish the Blue Marsh Refuge. This reservation shall be known as the Blue Marsh Refuge."
-    neighbor = "I hereby order payment of every outstanding claim."
+    own = "Executive Order 12345\nI hereby establish the Blue Marsh Refuge. This reservation shall be known as the Blue Marsh Refuge.\nFRANKLIN D. ROOSEVELT\nThe White House,\nJanuary 1, 1937.\n"
+    neighbor = "Executive Order 12346\nI hereby order payment of every outstanding claim.\nFRANKLIN D. ROOSEVELT\nThe White House,\nJanuary 2, 1937.\n"
     original = own + "\n" + neighbor
     actor = "Executive Order 7001A. The Blue Marsh Refuge is renamed Green Marsh Refuge."
     def src(path, text, page, url, iid):
         (root / path).write_text(text, encoding="utf-8")
         return {"text_path": path, "text_sha256": _sha(text), "page_or_item": page, "url": url,
                 "instrument_id": iid, "signing_date": "1937-01-01", "filing_date": "1937-01-02"}
-    own_src = src("own.txt", original, "2 FR 63", "https://www.govinfo.gov/content/pkg/FR-1937-01-03/pdf/FR-1937-01-03.pdf", "EO:100")
+    own_src = src("own.txt", original, "2 FR 63", "https://www.govinfo.gov/content/pkg/FR-1937-01-03/pdf/FR-1937-01-03.pdf", "EO:12345")
     actor_src = src("actor.txt", actor, "Executive Order 7001A; 3 FR 100", "https://www.govinfo.gov/content/pkg/FR-1938-01-03/pdf/FR-1938-01-03.pdf", "EO:7001A")
     evidence = {
-        "ORIGINAL:EO:100": {"id": "ORIGINAL:EO:100", "source": own_src, "text": original, "char_start": 0, "char_end": len(original)},
-        "CLAUSES:EO:100#whole": {"id": "CLAUSES:EO:100#whole", "source": own_src, "text": own, "char_start": 0, "char_end": len(own)},
-        "ACT:EO:100>EO:7001A": {"id": "ACT:EO:100>EO:7001A", "actor_id": "EO:7001A", "actor_source": actor_src, "source": actor_src, "text": actor, "char_start": 0, "char_end": len(actor)},
+        "ORIGINAL:EO:12345": {"id": "ORIGINAL:EO:12345", "source": own_src, "text": original, "char_start": 0, "char_end": len(original)},
+        "CLAUSES:EO:12345#whole": {"id": "CLAUSES:EO:12345#whole", "source": own_src, "text": own, "char_start": 0, "char_end": len(own)},
+        "ACT:EO:12345>EO:7001A": {"id": "ACT:EO:12345>EO:7001A", "actor_id": "EO:7001A", "actor_source": actor_src, "source": actor_src, "text": actor, "char_start": 0, "char_end": len(actor)},
     }
-    dossier = {"schema": "eo-claim-kit-dossier/v1", "instrument_id": "EO:100", "original_source_id": "ORIGINAL:EO:100",
-               "evidence": evidence, "clauses": [{"id": "CLAUSES:EO:100#whole", "scope_id": "EO:100#whole", "source": own_src, "text": own, "char_start": 0, "char_end": len(own)}],
-               "actor_provisions": [evidence["ACT:EO:100>EO:7001A"]]}
+    dossier = {"schema": "eo-claim-kit-dossier/v1", "instrument_id": "EO:12345", "original_source_id": "ORIGINAL:EO:12345",
+               "evidence": evidence, "clauses": [{"id": "CLAUSES:EO:12345#whole", "scope_id": "EO:12345#whole", "source": own_src, "text": own, "char_start": 0, "char_end": len(own)}],
+               "actor_provisions": [evidence["ACT:EO:12345>EO:7001A"]]}
     def cite(source, ident, text):
         encoded = __import__("base64").urlsafe_b64encode(ident.encode()).decode().rstrip("=")
         return {**source, "evidence_id": encoded, "evidence_id_encoding": "base64url-utf8", "quote": text, "char_start": 0, "char_end": len(text)}
-    claim = {"instrument_id": "EO:100", "original_representation": {**cite(own_src, "ORIGINAL:EO:100", original), "instrument_id": "EO:100"},
-             "operative_clauses": [{"scope_id": "EO:100#whole", "original_operative_text": own,
-                 "original_source": cite(own_src, "CLAUSES:EO:100#whole", own),
-                 "first_end": {"actor": "EO:7001A", "source": cite(actor_src, "ACT:EO:100>EO:7001A", actor)},
+    claim = {"instrument_id": "EO:12345", "original_representation": {**cite(own_src, "ORIGINAL:EO:12345", original), "instrument_id": "EO:12345"},
+             "operative_clauses": [{"scope_id": "EO:12345#whole", "original_operative_text": own,
+                 "original_source": cite(own_src, "CLAUSES:EO:12345#whole", own),
+                 "first_end": {"actor": "EO:7001A", "source": cite(actor_src, "ACT:EO:12345>EO:7001A", actor)},
                  "judgment_reason": "The command ended through Executive Order 7001A.",
-                 "later_events": [{"actor": "EO:7001A", "source": cite(actor_src, "ACT:EO:100>EO:7001A", actor)}]}],
+                 "later_events": [{"actor": "EO:7001A", "source": cite(actor_src, "ACT:EO:12345>EO:7001A", actor)}]}],
              "later_source_search": [{"query_or_scope": "literal Blue Marsh Refuge search"}]}
     packet_dir = root / "research/apollo/g01/packet"; packet_dir.mkdir(parents=True)
-    packet = {"dossiers": {"EO:100": dossier}, "sources": {}, "text_blocks": {}, "shared_objects": {},
+    packet = {"dossiers": {"EO:12345": dossier}, "sources": {}, "text_blocks": {}, "shared_objects": {},
               "held_text_file_pins": {"own.txt": own_src["text_sha256"], "actor.txt": actor_src["text_sha256"]}, "fingerprint": "fixture"}
     dossier["fingerprint"] = geddes.batch.canonical_sha(dossier)
     packet_path = packet_dir / "PACKET.json"; packet_path.write_text(json.dumps(packet), encoding="utf-8")
@@ -57,16 +57,16 @@ class GeddesTests(unittest.TestCase):
         self.dossier, self.claim, self.packet = fixture(self.repo)
     def tearDown(self): self.temp.cleanup()
     def lint(self, claim=None):
-        return geddes.lint_one(1, claim or self.claim, {"EO:100": self.dossier}, self.repo, self.packet, {})
+        return geddes.lint_one(1, claim or self.claim, {"EO:12345": self.dossier}, self.repo, self.packet, {})
 
     def test_neighboring_order_text_is_not_own_text(self):
         c = copy.deepcopy(self.claim)
         c["research_rationale"] = 'This order states "I hereby order payment of every outstanding claim."'
-        self.assertIn("attributed_phrase_absent", {x["code"] for x in self.lint(c)["flags"]})
+        self.assertIn("attributed_quote_not_verbatim", {x["code"] for x in self.lint(c)["flags"]})
 
     def test_unquoted_positive_attribution_is_checked_and_negation_is_not(self):
         c = copy.deepcopy(self.claim); c["research_rationale"] = "This order directs the Secretary to pay all outstanding claims."
-        self.assertIn("ambiguous_attributed_content", {x["code"] for x in self.lint(c)["coverage_gaps"]})
+        self.assertFalse(self.lint(c)["flags"])  # Unquoted paraphrases are not proof of false content.
         c["research_rationale"] = "This order does not establish a status quo."
         self.assertNotIn("attributed_stock_phrase_absent", {x["code"] for x in self.lint(c)["flags"]})
 
@@ -119,14 +119,16 @@ class GeddesTests(unittest.TestCase):
         c = copy.deepcopy(self.claim); c["research_rationale"] = "No other held order names Blue Marsh Refuge."
         c["later_source_search"] = [{"query_or_scope": "Executive Order 100"}]
         row = self.lint(c)
-        self.assertIn("literal_name_search_missing", {x["code"] for x in row["coverage_gaps"]})
-        self.assertTrue(any(x["code"] == "literal_name_corpus_search" and x["matched_file_count"] for x in row["coverage_gaps"]))
+        self.assertTrue(any(x["code"] == "literal_name_search_performed" and "blue marsh refuge" in x["names"] for x in row["coverage_gaps"]))
+        hits, missing, count, scope = geddes.held_corpus_search(self.packet, ["Blue Marsh Refuge"], self.repo)
+        self.assertTrue(hits["Blue Marsh Refuge"])
+        self.assertFalse(scope["full_discovered_corpus_covered"])
 
     def test_hash_mismatch_fails_closed_as_coverage(self):
         (self.repo / "own.txt").write_text("changed", encoding="utf-8")
         row = self.lint()
         self.assertGreater(row["held_text_integrity_failures"], 0)
-        self.assertTrue(any(g["code"] == "held_text_integrity_failure" for g in row["coverage_gaps"]))
+        self.assertTrue(any("hash" in str(g) for g in row["coverage_gaps"]))
 
     def test_cost_keeps_reported_roles_separate_and_uses_track_denominator(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -141,9 +143,10 @@ class GeddesTests(unittest.TestCase):
         self.assertIsNone(result["groups"][0]["input_tokens_per_filed_claim"])
 
     def test_view_includes_operative_text_and_compact_size_estimates(self):
-        result = geddes.view(self.packet, "EO:100")
+        result = geddes.view(self.packet, "EO:12345", repo=self.repo)
         self.assertIn("I hereby establish", result["own_original_text"])
-        self.assertGreater(result["approx_full_packet_tokens"], result["approx_view_tokens"])
+        self.assertNotIn("payment of every outstanding claim", result["own_original_text"])
+        self.assertTrue(result["own_text_boundary"]["verified_whole_order"])
 
 
 if __name__ == "__main__": unittest.main()

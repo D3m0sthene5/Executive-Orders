@@ -1,0 +1,69 @@
+{
+  "probes": [
+    {
+      "name": "wrong_suffix_bound_by_subject",
+      "pass": true,
+      "expected_mismatch_flag": true,
+      "output": {
+        "flags": [
+          {
+            "code": "reasoning_order_identity_mismatch",
+            "field": "claim.research_rationale",
+            "detail": "reasoning identifies EO 7001; hash-verified lookup and APP publisher title/date identify EO 7001I",
+            "source_path": "beta.txt"
+          }
+        ],
+        "coverage_gaps": []
+      }
+    },
+    {
+      "name": "correct_suffix",
+      "pass": true,
+      "expected_mismatch_flag": false,
+      "output": {
+        "flags": [],
+        "coverage_gaps": []
+      }
+    },
+    {
+      "name": "correct_unsuffixed_collision",
+      "pass": true,
+      "expected_mismatch_flag": false,
+      "output": {
+        "flags": [],
+        "coverage_gaps": []
+      }
+    },
+    {
+      "name": "unbound_wrong_date",
+      "pass": true,
+      "expected_mismatch_flag": false,
+      "output": {
+        "flags": [],
+        "coverage_gaps": []
+      }
+    },
+    {
+      "name": "publisher_index_same_stat_mutation",
+      "pass": false,
+      "expected": "Changed publisher identity must invalidate cached metadata",
+      "output": {
+        "flags": [
+          {
+            "code": "reasoning_order_identity_mismatch",
+            "field": "claim.research_rationale",
+            "detail": "reasoning identifies EO 7001; hash-verified lookup and APP publisher title/date identify EO 7001I",
+            "source_path": "beta.txt"
+          }
+        ],
+        "coverage_gaps": []
+      }
+    }
+  ],
+  "passed": 4,
+  "total": 5,
+  "module_sha256": "e48601917aea4111e0567235ff47e842e202901920b86e40898bf11f8ec8dddc",
+  "probe_sha256": "6d578da9b522a27b9ca25868a80ced0dcfd4433d76bac1569b2d5a26631b31b9",
+  "elapsed_seconds": 0.010417622000204574,
+  "scientific_approval": false
+}

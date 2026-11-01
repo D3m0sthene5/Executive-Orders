@@ -1,165 +1,97 @@
-# Geddes and Apollo retries — incomplete, 2026-11-01
+# Geddes repair, 2026-11-01
 
-This follow-up files **0 new claims**. Apollo's 254 filed claims are unchanged.
-Geddes is an experimental advisory implementation, and its requested accuracy
-targets are **not met**. The 40 rejected genuine versions are reconciled into
-fresh-assignment inputs, but no fresh packet was prepared and no Sonnet
-production, Opus review, new control experiment, or publication was performed.
-The certified whole-lifecycle count remains **0**.
+Geddes now catches **20/40 exact Apollo review defects**, up from 9/40. It flags
+**18/254 filed claims**, down from 55. Independent inspection supports all 18
+current warnings: 16 source-wording discrepancies and 2 missing-event-record
+inconsistencies. The bounded audit found **0 false flags and 0 indeterminate
+flags** among those 18; it does not certify any whole claim.
 
-## Base and scope
+The original conservative comparison counted *every* flagged filed claim as a
+false positive. That unchanged total-warning metric is 18, still above 5. It is
+reported separately from the source-adjudicated false-positive measure; the
+repair does not suppress genuine quotation problems to obtain a smaller count.
 
-PR121 was open and unmerged when checked. Work branches from
-`claude/apollo-moon`, commit `40eb4b561ad657413169dae72bc0262efd4b119d`,
-and the follow-up PR targets that branch. The required Kean/handoff/AGENTS and
-CLAUDE instructions were read, then
-`python3 -I jobs/kean/kean.py search lint telemetry resubmit apollo` was run.
-No existing Apollo packet, canonical claim, status, codebook or human review
-was edited. No packet folder was committed while another was in flight.
+## What changed
 
-## Geddes implementation and limits
+- Complete own-order text is located with the existing clause-drafts locator,
+  including recitals, heading and signature while excluding neighboring orders.
+  APP items additionally bind the retained publisher ID/title/date/URL/node and
+  text hash; URL slugs need not repeat suffixes. Native validated inventory
+  overrides are respected. Unresolved boundaries abstain explicitly.
+- Concepts tolerate OCR whitespace/soft hyphens. Verbatim quotations retain
+  their case and punctuation and are compared to their own cited spans,
+  including first-ending sources. A paraphrase is not rejected merely because
+  it differs from literal source wording.
+- Acting-order suffixes in reasoning bind the dated subject to a hash-pinned
+  lookup candidate and retained APP record. The six missed suffix/FR cases now
+  flag. FR volume/page/issue dates are compared to the identified own or actor
+  source, never to unrelated signing or filing dates.
+- Later-event checks preserve grammatical actor/object roles and treat explicit
+  other-section discussion as a scope gap, rather than an automatically missing
+  event. Distinct declared later events still require source-backed records.
+- Name checks search literal names over an exact Git-retained jobs/**/texts TXT
+  inventory, excluding clause-drafts. 'This code' is an unresolved antecedent,
+  not a proper name. Publisher identities, dates and exact text spans bind
+  positive counterexamples. Missing corpus members prevent negative conclusions;
+  equal counts never substitute for equal membership. Snapshot bytes are
+  reverified before output, including same-size/restored-mtime mutations and
+  changes between source capture and verification.
 
-`jobs/geddes/geddes.py` provides `lint`, `view` (stdout or `--write`) and `cost`.
-The implementation reuses claim-kit's existing packet decoder. It verifies
-held-text hashes, keeps source/integrity gaps distinct from advisory flags,
-preserves the target clause envelope rather than trusting an EO filename,
-and checks quotation case and spans against their own cited source.
-Missing actor sources and literal-name searches are disclosed. Corpus caches
-are scoped and invalidated on observed file changes; conflicting pins are
-reported. A job adapter, dependencies, README and GitHub Actions test workflow
-are supplied. No readiness-tracker job-name registration list was found;
-the tracker was not changed.
+The documented mandatory pre-handback lint step remains advisory. Claim-kit's
+frozen review contract is unchanged; no lint output adopts a status or review
+verdict. No claims, statuses, codebook, source grades or human reviews were
+changed. No new claim was filed; certified remains 0. This follow-up repairs
+Geddes only; the separately requested Sonnet/Opus resubmission remains unrun.
 
-The documented producer handback step is `batch-check`, then `geddes lint`,
-inspection/correction or disclosure of its output, then ordinary blind review.
-This option was chosen instead of modifying batch-check because an advisory
-development tool must not change claim-kit's frozen review dependency contract,
-status, review verdict, eligibility or publication gates. The linter never reads
-the review records. The separate evaluation harness uses them only as labels.
+## Evidence and comparison
 
-The minimum requested coverage is not fully delivered: arbitrary prose
-attributions remain heuristic; structured source/actor checks do not reliably
-bind every suffix or FR detail in free-form reasoning (including Apollo's three
-known suffix and three FR-detail cases); some quoted/paraphrased source claims
-are missed. Literal-name scans cover the verified Apollo packet-held union,
-not the entire held corpus. Recitals outside the proven clause envelope remain
-unchecked or flagged for inspection; legitimate recitals and inventory overrides
-can therefore receive scope flags. These limitations matter to routine use.
-Do not treat a clean result as completed source examination or deploy this as
-an automatic rejection rule.
+`repair/EVALUATION.json` verifies exact rejected-version and canonical-filed
+claim bytes, physical records and packet inputs. It pins all five implementation
+modules, not merely the CLI wrapper. `repair/INPUT_PINS.json` separately binds
+newly consulted retained publisher metadata and unchanged helper code to base
+`b37dcc438c62d2cc159081a1d5a01d44b63a9981`. These are additional present-corpus
+inputs, not retrospectively invented Apollo review dependencies.
 
-## Retrospective results
+`repair/review/FINAL_EXACT_CORRELATION.json` independently matches 20 flags to the
+exact historical defects. `repair/review/FINAL_FILED_FLAG_AUDIT.json` contains
+all 18 filed-version warning examinations, exact source/claim hashes and spans.
+Five recommendation-line absences and 11 exact quotation/punctuation mismatches
+are source-supported. EO10010 and EO6539A explicitly describe later events that
+have no later_events records. External EO10015/7020 passages corroborate those
+examples; EO6900 is classified only for the internal reason/empty-list
+inconsistency, not a newly verified legal proposition. No other claim is
+silently corrected or rejected.
 
-`evaluate.py` verifies the exact historical claim files, records and packets
-against the Apollo commit. It compares 40 genuine rejected versions and the
-actual 254 canonical filed versions, with filed/proposed equality checks.
-All 1,346 unique held-text pins were restored and independently rehashed with
-zero conflicts, missing bytes or mismatches. This is byte integrity, not original
-authentication or new legal review.
+All 42 unit tests and 29 independent adversarial/collision probes pass locally.
+The independent source/body coverage gap count fell 81→10→4. The four filed
+own-body abstentions are EO6206A, EO6964B, EO12176 and EO12189. Rejected EO12891
+also abstains on this check. None is a clean result.
+The tests preserve neighboring-order, legitimate-recital, original/actor quote,
+wrong-identity, suffix-collision, source mutation and snapshot-race refusals.
 
-| Measure | Result | Requested target |
-|---|---:|---:|
-| Exact recorded review defects caught | **9/40 (22.5%)** | At least 12/40 |
-| Rejected versions with any flag | 15/40 | Not a recall measure |
-| Filed claims with flags | **55/254 (21.7%)** | At most 5/254 |
+The local checkout verifies all 1,346 Apollo-held text pins, but it is sparse
+relative to the full tracked name-search corpus. The local name check reports
+39,770 members, 1,074 verified and 38,696 missing. That local result proves no
+all-held-text negative. A PR benchmark workflow now materializes the retained
+text corpus (without PDF collections), reruns the exact 294-version comparison
+and uploads pinned results. Its result must be recorded separately from this
+local comparison.
 
-The nine defect matches are EO6875, 10634, 11013, 11314, 11329, 11431, 12095,
-12398 and 12429. Unrelated flags on six other rejected versions receive no
-recall credit. `DEFECT_CORRELATION.json` records the coordinator's comparison
-to each exact reviewer defect; it is not a new whole-case review. For the
-requested filed-set metric all flagged filed claims count as comparator false
-positives. They have not each been newly adjudicated, so this is not a claim
-that every old filed claim or every Geddes warning is substantively correct.
-Both requested thresholds fail.
+## Cost and retained history
 
-This is retrospective work on a known development set, not held-out validation.
-Initial failed comparisons and the corrections they motivated are retained in
-`measurements/DEVELOPMENT_FAILURES.json` and review records. No per-EO allowlist
-or review verdict is used by the implementation.
+New source-correct g03 views total 646,575 bytes for 24 orders versus 8,842,721
+bytes for the prior whole bundle. This is a static payload measurement, not
+actual cache-token or research-cost savings. No live producer experiment ran.
+The cost report still reproduces the four Apollo track/role groups and keeps
+missing usage unknown. `repair/TELEMETRY.json` records the two configured
+gpt-6-sol workers and gpt-6-astra independent reviewer, prospective times and
+unavailable token/active-time values. No usage totals were fabricated.
 
-Two large raw diagnostics are retained losslessly in `DIAGNOSTICS.tar.gz`;
-`DIAGNOSTICS_INDEX.json` records each original path, size and SHA256. Extract
-from this report directory with `tar -xzf DIAGNOSTICS.tar.gz` to restore the
-referenced raw paths. The archive was reopened and every member byte-compared.
-
-## Payload and cost measurements
-
-The real g03 batch has 24 packet members. Its READ.md, LOOKUPS.json and
-LOOKUPS.details.json total **8,842,721 bytes**. All 24 Geddes order-view files
-together total **634,144 bytes**, a **92.8% smaller payload** than reading that
-whole bundle once. `measurements/PAYLOAD_SIZE.json` pins the inputs and every
-view output. Rereading the whole bundle once per order would be 212,225,304
-bytes; that is an explicit hypothetical read pattern, not observed usage.
-
-**Actual cache-read tokens saved: unknown. Actual tokens/time saved per new
-filed claim: unknown.** There was no Track B model run. Byte counts and bytes/4
-display estimates are not Sonnet cache telemetry, money saved, or proof that
-Geddes reduces total research cost. The false flags also create correction work.
-
-`measurements/APOLLO_COST.json` reproduces the retained CSV's four track/role
-groups, with 127 filed claims per track:
-
-| Track and role | Output tokens/filed | Cache-read tokens/filed | Active seconds/filed |
-|---|---:|---:|---:|
-| NRA producer | 5,202.58 | 816,905.33 | 79.14 |
-| NRA reviewer | 1,621.50 | 312,930.80 | 36.15 |
-| General producer | 9,274.57 | 2,171,291.19 | 147.28 |
-| General reviewer | 2,857.17 | 607,146.66 | 45.72 |
-
-This is independent arithmetic over the retained CSV, not a re-audit of its
-unavailable private transcripts. `cost` supports explicit future filed-count
-sidecars and preserves missing usage as null, including fractional active time.
-
-## Track B: exact inputs, execution blocked
-
-`inventory/build_inventory.py` reconciles 35 blind genuine rejections plus
-five rejected genuine after-reveal versions: EO6876, 8163, 10103, 10915 and
-12095. Assertions enforce 40 distinct exact versions, 6 NRA/34 general, source
-file/record hashes, the five after-reveal identities, control exclusion and
-owner holds. The output batches are NRA6, general20 and general14, with every
-prior claim and exact reviewer defect retained.
-
-EO6471A and 7016 remain excluded under open A-20261031-1. The six original
-completion drops remain excluded; restoring working text here did not establish
-their missing PDF/mirror custody or resolve quote/checker OCR mismatches.
-
-The available collaboration runtime exposes OpenAI agents, with no configured
-Sonnet/Opus route in this workspace. No models were relabeled or substituted
-for the required scientific roles. Fresh prepare also needs the retained
-compiled outputs and complete preparation context materialized and validated
-on the intended base; absence in this sparse checkout does not establish that
-the repository lacks those outputs or that regeneration is necessary.
-
-Resume by fixing the lint precision/coverage gaps, making the required execution
-route available, validating prepare dependencies and preparing three **new**
-packets. Give each Sonnet producer its exact retry row, require source-based
-correction or a named block, retain pre-handback lint and then use fresh Opus
-blind reviewers. Reuse Apollo's plant/reveal/finish tools with current paths,
-keep control adjudication with the coordinator, publish sequentially under the
-lock only with zero misses, and commit only once no packets remain in flight.
-Historical Apollo controls confer no control credit on these unrun retries.
-
-## Verification and worker costs
-
-Exact implementation SHA256:
-`3472f558def50808177602e7e86472e156286c32aa2fed460e2563d3e94f398b`.
-Independent engineering evidence is in `review/FINAL_REVIEW.json` and
-`review/REVIEW_OUTCOME.json`: 20 independent/targeted probes, 14 unit tests,
-18 acceptance checks, actual retained CLI, source boundaries, supplementary
-lookup fallback, actual shared memo/hash, cost arithmetic and unchanged
-claim-kit contract. These engineering checks pass; they do not overcome the
-failed accuracy comparison or approve any claim.
-
-| Worker | Configured model | Tokens / active time | Measured time |
-|---|---|---|---|
-| Geddes engineering | gpt-6-luna | Unavailable | Full session unavailable |
-| Rejection inventory | gpt-6-luna | Unavailable | Full session unavailable |
-| Independent engineering review | gpt-6-astra | Unavailable | 1,099.014s prospective wall including waits; final check 0.766s |
-
-The same workers resumed after hydration interruptions; no duplicates were
-started. `TELEMETRY_AVAILABILITY.json` distinguishes unknown measurements from
-zero. Apollo's `tools/moon_telemetry.py` was inspected, but these collaboration
-tools supply neither its required per-worker transcript files nor per-message
-usage records. No fabricated transcript adapter or token totals were created.
-Coordinator, hydration and correction costs are not measured, and no net saving
-is claimed.
+The earlier failed 9/40 and 55/254 comparison remains intact in the original
+artifacts and `repair/baseline/REPORT_before.md`. `DIAGNOSTICS.tar.gz` and its
+index retain the original large diagnostics losslessly. Intermediate repaired
+comparisons, fixture corrections and failures are retained under repair/;
+known-development-set performance is not held-out validation or scientific
+review. One superseded local-v1 derived evaluation was overwritten before
+checkpointing; its old seal remains explicitly superseded, without a claim of
+byte-exact recovery. Current and future evaluations are checkpointed by SHA256. PR122 stays on claude/geddes-resubmit; no merge is authorized here.

@@ -1,0 +1,220 @@
+{
+  "passed": 3,
+  "total": 4,
+  "probes": [
+    {
+      "name": "industry_alone_is_not_code",
+      "pass": true,
+      "expected_counterexample": false,
+      "output": {
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": "0d4e798a2e5408ce49296e0294458a818e9fee2a",
+            "inventory_kind": "tracked_jobs_texts",
+            "inventory_sha256": "123e084ceab3b0ed428ba96f0c62cb8f46766cb9a19d41163270be0c1e87f0c2",
+            "tracked_files": 1,
+            "verified_files": 1,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": true,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "name_alias_entity_unverified",
+            "field": "claim.research_rationale",
+            "path": "jobs/app-executive-orders/output/texts/actor.txt",
+            "detail": "Industry words matched, but the source does not locally identify the asserted fair-competition code."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "cotton textile code",
+              "cotton textile"
+            ],
+            "after_date": null,
+            "counterexamples": 0,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ]
+      }
+    },
+    {
+      "name": "fair_competition_code_context",
+      "pass": true,
+      "expected_counterexample": true,
+      "output": {
+        "flags": [
+          {
+            "code": "literal_name_counterexample",
+            "field": "claim.research_rationale",
+            "assertion": "No other held order names Cotton Textile Code",
+            "counterexamples": [
+              {
+                "instrument_id": "EO:14002",
+                "date": "1935-01-01",
+                "text_path": "jobs/app-executive-orders/output/texts/actor.txt",
+                "text_sha256": "7b3c35f5fbe3bcd922a0e3137699cfa451394459009d75e0df9d9823f49367a8",
+                "char_start": 67,
+                "char_end": 81,
+                "quote": "Cotton Textile",
+                "matched_literal_name": "cotton textile",
+                "publisher_title": "Executive Order 14002\u2014Industry Disputes",
+                "publisher_url": "https://www.presidency.ucsb.edu/documents/actor",
+                "publisher_index_sha256": "1b3fc2eee3f87c59bfd320b137554e689df5226eac1c0fe4e22c9fe122015a9d"
+              }
+            ],
+            "detail": "A distinct held publisher-identified order contains the asserted name; inspect the source before retaining this negative assertion."
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": "8fe9c3feee96dbeab65297f62fb952bd37b9f7a0",
+            "inventory_kind": "tracked_jobs_texts",
+            "inventory_sha256": "165e19c4725424d1226c9d2031654853e0b8745ad4cd898ed98ca4e5d5e13fc4",
+            "tracked_files": 1,
+            "verified_files": 1,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": true,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "cotton textile code",
+              "cotton textile"
+            ],
+            "after_date": null,
+            "counterexamples": 1,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ]
+      }
+    },
+    {
+      "name": "literal_full_code_name",
+      "pass": true,
+      "expected_counterexample": true,
+      "output": {
+        "flags": [
+          {
+            "code": "literal_name_counterexample",
+            "field": "claim.research_rationale",
+            "assertion": "No other held order names Cotton Textile Code",
+            "counterexamples": [
+              {
+                "instrument_id": "EO:14002",
+                "date": "1935-01-01",
+                "text_path": "jobs/app-executive-orders/output/texts/actor.txt",
+                "text_sha256": "c856082c640cfc18d0884e2714fccf1473e6804d53ca68c6287778b6a828a993",
+                "char_start": 27,
+                "char_end": 46,
+                "quote": "Cotton Textile Code",
+                "matched_literal_name": "cotton textile code",
+                "publisher_title": "Executive Order 14002\u2014Industry Disputes",
+                "publisher_url": "https://www.presidency.ucsb.edu/documents/actor",
+                "publisher_index_sha256": "1b3fc2eee3f87c59bfd320b137554e689df5226eac1c0fe4e22c9fe122015a9d"
+              }
+            ],
+            "detail": "A distinct held publisher-identified order contains the asserted name; inspect the source before retaining this negative assertion."
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": "2c8bc83e0e867e2988b2f7cbd3d5ca002b339bb3",
+            "inventory_kind": "tracked_jobs_texts",
+            "inventory_sha256": "3c5cbab665d1936249ab445d387035168adef389c8af0f4bfadb1aee3dd44825",
+            "tracked_files": 1,
+            "verified_files": 1,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": true,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "cotton textile code",
+              "cotton textile"
+            ],
+            "after_date": null,
+            "counterexamples": 1,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ]
+      }
+    },
+    {
+      "name": "alias_context_cannot_use_unverified_reread",
+      "pass": false,
+      "expected": "A new unverified raw context cannot support a flag pinned to earlier industry-only bytes",
+      "output": {
+        "flags": [
+          {
+            "code": "literal_name_counterexample",
+            "field": "claim.research_rationale",
+            "assertion": "No other held order names Cotton Textile Code",
+            "counterexamples": [
+              {
+                "instrument_id": "EO:14002",
+                "date": "1935-01-01",
+                "text_path": "jobs/app-executive-orders/output/texts/actor.txt",
+                "text_sha256": "2d38edb3d3c1788fe32f72fb3ce846bb9e49f448cbf826cf6c58ecf2fbb0b0a9",
+                "char_start": 51,
+                "char_end": 65,
+                "quote": "Cotton Textile",
+                "matched_literal_name": "cotton textile",
+                "publisher_title": "Executive Order 14002\u2014Industry Disputes",
+                "publisher_url": "https://www.presidency.ucsb.edu/documents/actor",
+                "publisher_index_sha256": "1b3fc2eee3f87c59bfd320b137554e689df5226eac1c0fe4e22c9fe122015a9d"
+              }
+            ],
+            "detail": "A distinct held publisher-identified order contains the asserted name; inspect the source before retaining this negative assertion."
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": "c16f9471adaab63a34d1b0890df1eb749fafaf35",
+            "inventory_kind": "tracked_jobs_texts",
+            "inventory_sha256": "123e084ceab3b0ed428ba96f0c62cb8f46766cb9a19d41163270be0c1e87f0c2",
+            "tracked_files": 1,
+            "verified_files": 1,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": true,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "cotton textile code",
+              "cotton textile"
+            ],
+            "after_date": null,
+            "counterexamples": 1,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ]
+      },
+      "verified_input_sha256": "2d38edb3d3c1788fe32f72fb3ce846bb9e49f448cbf826cf6c58ecf2fbb0b0a9",
+      "changed_raw_sha256": "5bd8c10cf239505b59aa443e544f9ca17919504064694254d7be1f577e096782"
+    }
+  ],
+  "module_sha256": "4360286784c384e30814ca357e256b009cc861124c5027d8a12d878ffcff7edf",
+  "code_stable_during_run": true,
+  "wall_seconds": 0.12610374799987767,
+  "scope": "Independent synthetic engineering probes only"
+}

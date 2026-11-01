@@ -1,0 +1,34 @@
+{
+  "schema": "geddes-repair-worker-telemetry/v1",
+  "workers": [
+    {
+      "task": "source_checks",
+      "configured_model": "gpt-6-sol",
+      "start_utc": "2026-11-01T21:20:07.829245571Z",
+      "full_wall_seconds": null,
+      "active_seconds": null,
+      "tokens": null,
+      "note": "Two bounded phases on the same worker; exact total end marker unavailable; source/CHECK.json pins prospective start."
+    },
+    {
+      "task": "citation_checks",
+      "configured_model": "gpt-6-sol",
+      "start_utc": "2026-11-01T21:20:11Z",
+      "end_utc": "2026-11-01T21:32:43.123032+00:00",
+      "wall_seconds": 751.7097418170006,
+      "active_seconds": null,
+      "tokens": null
+    },
+    {
+      "task": "independent_review",
+      "configured_model": "gpt-6-astra",
+      "prospective_local_wall_seconds": 1747.609,
+      "active_seconds": null,
+      "tokens": null,
+      "note": "Wall includes waits, source reads and tests; native continuation is separate."
+    }
+  ],
+  "tokens_note": "Collaboration runtime does not export compatible per-message usage transcripts. moon_telemetry.py cannot produce actual totals from unavailable transcripts; unknown remains null.",
+  "new_claims_filed": 0,
+  "model_cache_tokens_saved": null
+}

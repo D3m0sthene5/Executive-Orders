@@ -22,7 +22,7 @@ def publish_status(status, exit_code, error=None):
     (OUT / "STATUS.json").write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 try:
-    test = subprocess.run([sys.executable, "-I", str(JOB / "test_geddes.py")], cwd=ROOT,
+    test = subprocess.run([sys.executable, "-I", "-m", "unittest", "discover", "-s", str(JOB), "-p", "test_*.py"], cwd=ROOT,
                           text=True, capture_output=True)
     summary["tests"] = {"exit_code": test.returncode, "output": test.stdout + test.stderr}
     if test.returncode: raise RuntimeError("Geddes unit tests failed")

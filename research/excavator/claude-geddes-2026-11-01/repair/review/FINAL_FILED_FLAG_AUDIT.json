@@ -1,0 +1,534 @@
+{
+  "evaluation_sha256": "d022441d376001df32a7f6af2dc418d7282df399fe6e2a4fd2e0937800efbf48",
+  "module_sha256": {
+    "geddes.py": "aece609ab3c9b97af64f90cc6fc9b17dbbe05613d3a3d01dc4a4563f6b5ac370",
+    "source_checks.py": "e394ed3c1c700ca255d8a4131d79668181ab78bd29ee63e11f2f756ad5355806",
+    "citation_checks.py": "e7c2963f48d549c89f8a853a614cfd0a581dc8ac25d58747b9be50a5389baa77",
+    "event_checks.py": "390887ac6476da5d1741f215bbc99d6beac94172b0de6db3df3aa7e82ef57308",
+    "name_checks.py": "4392356d9ed4a269053aed364c24b0597d234ad1bfe820c4ea05630b97e859f2"
+  },
+  "flagged_filed_claims": 18,
+  "source_supported_claims": 16,
+  "structurally_supported_claims": 2,
+  "false_flagged_claims": 0,
+  "indeterminate_flagged_claims": 0,
+  "original_metric_target_met": false,
+  "original_metric_note": "Original target counted all flagged filed claims, so18 exceeds5 despite independent classification finding no unsupported flags among these18. Do not silently substitute an adjudicated false-positive metric.",
+  "scope": "Independent bounded engineering/source audit; coordinator retains legal judgment. No newly accepted/rejected canonical claim, scientific model substitution or certified human review.",
+  "rows": [
+    {
+      "instrument_id": "EO:10010",
+      "classification": "supported_structural_omission",
+      "flags": [
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:10010#whole",
+          "actor": "EO:10015",
+          "reasoning_sentence": "Executive Order 10015 (signed November 1948, effective as of October 18, 1948) amended this order by adding six carriers to List A and renaming two List B organizations",
+          "detail": "Reasoning describes EO:10015 as a later actor but this clause has no source-backed later_events entry for it."
+        }
+      ],
+      "claim_path": "research/readiness/claims/claude-2026-10-31-apollo-g03.jsonl",
+      "claim_file_sha256": "e37c05a0fd04b69e91a725e6dc95cfb3621dd2568c7cd3c3e4b09d7b5fe05de4",
+      "claim_physical_record_sha256": "642693083a11257bc11360670a4a4ab65a129d4eaf302405a36c212b1ecb29f2",
+      "claim_reasons": [
+        "Terminated by Executive Order 12553, signed February 25, 1986, which orders that the listed Executive Orders, and any amendments thereto, are revoked, with no stated delayed effective date and no saving clause; the effective date is therefore the signing date, 1986-02-25. The table of revoked orders in the held text of Executive Order 12553 lists number 10010 with the subject \"Creating an emergency board to investigate railroad labor disputes\". This order created a board of three members to investigate the dispute between the Akron & Barberton Belt Railroad Company and other carriers named in List A and employees represented by the sixteen railway labor organizations named in List B, barred interested members, required a report within thirty days of October 18, 1948 (due by November 17, 1948), and froze changes in conditions from that date until thirty days after the report. Under the owner ruling of 2026-10-21 on report deadlines, the report deadline and the end of the standstill are spent facts, functionally spent after the board reported and the standstill ran, and they are not the end; the order remained on the books until this express revocation. Executive Order 10015 (signed November 1948, effective as of October 18, 1948) amended this order by adding six carriers to List A and renaming two List B organizations. It is an amendment, not an end, because it left the order in force; it is not recorded as a later event on this clause because the only record of it in this order's dossier cites a transcription while an official Federal Register copy is held, and the policy requires the official copy. Executive Order 10015 has its own claim in this packet and ends on the same date."
+      ],
+      "later_events_empty_verified": true,
+      "review_note": "Reasoning expressly describes amendments/later events while the matching clause later_events is empty. This exactly supports the source-backed-event omission warning; it does not independently settle every event legal effect or whole lifecycle.",
+      "source_examination": [
+        {
+          "instrument_id": "EO:10015",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_10015.txt",
+          "text_sha256": "117838559ff84b610ca16bc986f1570765a5f85332a478a45707600352f482f1",
+          "span": [
+            2032,
+            3574
+          ],
+          "source_excerpt": "EXECUTIVE ORDER 10015\nAmendment of E xecutive O rder N o. \n10010, Creating an E mergency B oard \nTo Investigate Disputes  B etween  the \nAkron & B arberton B elt R ailroad \nCompany  and Other Carriers, and Cer\u00ad\ntain of T heir E mployees\nBy virtue of authority vested in me by \nsection 10 of the Railway Labor Act, as \namended (45 H  S. C. 160), Executive Or\u00ad\nder No. 10010 of October 18, 1948, en\u00ad\ntitled \u201cCreating an Emergency Board to\nInvestigate Disputes between the Akron \n& Barberton Belt Railroad Company and \nOther Carriers, and Certain of Their Em\u00ad\nployees,\u201d  is hereby amended as follows:\n1 . The following-named carriers are \nhereby added to the list of carriers com\u00ad\nprising List A attached to and made a \npart of the said Executive order;\nThe New York & Long Branch Railroad  \nCompany\nWharton & Northern Railroad\nJersey Central Transportation Company\nGrand Central Terminals\nState University Railroad Company\nWoodstock & Blockton Railway Company\n2. The railway labor organizations des\u00ad\nignated in List B attached to and made \na part of the said Executive order as \n\u201cBrotherhood of Railway Carmen of \nAmerica\u201d and \u201cHotel and Restaurant \nEmployes* International Alliance and \nBartenders\u2019 Int. League of America\u201d are \nhereby designated respectively as \u201cBroth\u00ad\nerhood Railway Carmen of America\u201d and \n\u201cHotel & Restaurant Employees and Bar- \ntenders\u2019 International Union.\u201d\nThis order shall be effective as of Octo\u00ad\nber 18, 1948.\nHarry S. T ruman\nThe W hite House,\nNovember 5,1948.\n[F. R. Doc. 48-9888; Filed, Nov. 8, 1948;\n11:17 a. m.j\n",
+          "note": "Own actor heading/body expressly amends EO10010 lists and gives retroactive effective date. Source wrapper also contains other orders, excluded from this span."
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:6487B",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "approval_recommended",
+          "detail": "claim.research_rationale.independent_command_check: attributed approval recommended is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6487-b-approval-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+            "text_sha256": "95cc9e06b023b30ca9e1d21545110fc3b2415beea7a91047d95ecf8b8225f4d3",
+            "char_start": 0,
+            "char_end": 1700,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6487B",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-12-09",
+              "listing_instrument_id": "EO:6487B",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6487-b-approval-code-fair-competition-for-the-distilled-spirits-rectifying"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "011973fc716ad658e380466775e148edb01a37f2b4ef6ec23187a1a5850c6dae"
+    },
+    {
+      "instrument_id": "EO:6811",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "approval_recommended",
+          "detail": "claim.research_rationale.independent_command_check: attributed approval recommended is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6811-approval-amendment-the-code-fair-competition-for-the-distilled.txt",
+            "text_sha256": "6a41f31ee747e21c59f0702a4c2d39f5e904e190d812cb2352001e0c8c19b61c",
+            "char_start": 0,
+            "char_end": 1975,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6811",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1934-08-04",
+              "listing_instrument_id": "EO:6811",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6811-approval-amendment-the-code-fair-competition-for-the-distilled"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "069c9660b9103b4c03d79c652114e9c5ec0846ad7647a3d8390911149ca29cc4"
+    },
+    {
+      "instrument_id": "EO:6945",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "approval_recommended",
+          "detail": "claim.research_rationale.independent_command_check: attributed approval recommended is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+            "text_sha256": "b05f2814c8550aa8a62025b0dc77ea4e50007fdbf101b712bd2d6d5d99f82551",
+            "char_start": 0,
+            "char_end": 888,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6945",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1935-01-10",
+              "listing_instrument_id": "EO:6945",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "2c5b2d1c1b25d121448ea609425a0af97f884318f212e14c10f5874fe610dfde"
+    },
+    {
+      "instrument_id": "EO:6954",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "approval_recommended",
+          "detail": "claim.research_rationale.independent_command_check: attributed approval recommended is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6954-amending-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+            "text_sha256": "33a2ed811c3cddb98acf2c70817192af3ea057cc20b23ceb9726bb92f8b9a0a8",
+            "char_start": 0,
+            "char_end": 888,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6954",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1935-01-31",
+              "listing_instrument_id": "EO:6954",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6954-amending-code-fair-competition-for-the-distilled-spirits-rectifying"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "3be18030f545c555df1129721a845f670e89d1c283f5e8f88adb860a95973d2e"
+    },
+    {
+      "instrument_id": "EO:7000",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "approval_recommended",
+          "detail": "claim.research_rationale.independent_command_check: attributed approval recommended is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-7000-amending-code-fair-competition-for-the-distilled-spirits-industry.txt",
+            "text_sha256": "ffde00e8ec8097950bda70a38227d2667056ed297c0414a3090091f9c6fbd15a",
+            "char_start": 0,
+            "char_end": 872,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:7000",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1935-04-05",
+              "listing_instrument_id": "EO:7000",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-7000-amending-code-fair-competition-for-the-distilled-spirits-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "0d7cb64aaaf76e38c6a6ade4572f8abb5a51e2d9f258943a3d0a2f4d5d4a7a0c"
+    },
+    {
+      "instrument_id": "EO:6293",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6293-code-fair-competition-for-the-textile-bag-industry.txt",
+            "text_sha256": "04b6a5aeecad967f2c5c46d62a6584f589cd8bf833f7f5969901a99b7dd59170",
+            "char_start": 0,
+            "char_end": 1228,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6293",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-09-18",
+              "listing_instrument_id": "EO:6293",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6293-code-fair-competition-for-the-textile-bag-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "829fa5ab093ef0594774a7d2252846fb19bbb0a03efb16516bed82df065cf41d"
+    },
+    {
+      "instrument_id": "EO:6310",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6310-code-fair-competition-for-the-textile-machinery-manufacturing.txt",
+            "text_sha256": "62b6fa52021acd70c9e97be0a11af01759d121003d1a69cb64154ac578ef0dd9",
+            "char_start": 0,
+            "char_end": 1249,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6310",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-10-03",
+              "listing_instrument_id": "EO:6310",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6310-code-fair-competition-for-the-textile-machinery-manufacturing"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "1acbfc7b928b7c416b9fdde3f26297ae5d4a37b6987e7751769b84d136e69179"
+    },
+    {
+      "instrument_id": "EO:6331E",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6331-e-code-fair-competition-for-the-throwing-industry.txt",
+            "text_sha256": "ae2c97468f5f7079cce985fb94fdb582e32d84ff97f4301f8b6c39515a70164a",
+            "char_start": 0,
+            "char_end": 1211,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6331E",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-10-11",
+              "listing_instrument_id": "EO:6331E",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6331-e-code-fair-competition-for-the-throwing-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "a970ee3f86ff14debe64aa5afb43366f9d1350ccce875f0351e1cfa552c643f5"
+    },
+    {
+      "instrument_id": "EO:6358",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6358-code-fair-competition-for-the-steel-tubular-and-firebox-boiler.txt",
+            "text_sha256": "119d117e33a697f31e3e2df44d73c9f01f1d663689de6f5d9eea7f6c2f5d85ae",
+            "char_start": 0,
+            "char_end": 1249,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6358",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-10-23",
+              "listing_instrument_id": "EO:6358",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6358-code-fair-competition-for-the-steel-tubular-and-firebox-boiler"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "f98d6b79d4fadcb42475edb7c2b4c6aa9e96b5e7b66209795dd7bd45d21df255"
+    },
+    {
+      "instrument_id": "EO:6377",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6377-code-fair-competition-for-the-terra-cotta-industry.txt",
+            "text_sha256": "5e7b063a215572eeb602e9ab29f6210faa2e195e110971315b38b30e4d827e20",
+            "char_start": 0,
+            "char_end": 1229,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6377",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-10-31",
+              "listing_instrument_id": "EO:6377",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6377-code-fair-competition-for-the-terra-cotta-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "4afcb97989e051641bc74c821fea3e6df4c934fd91622a8f9ac999fab4859884"
+    },
+    {
+      "instrument_id": "EO:6386",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6386-code-fair-competition-for-the-steel-casting-industry.txt",
+            "text_sha256": "ba4f1a96976bc2f1188b0600da9c0b671822c687b0dd2513f2d0c92b3dc70f1b",
+            "char_start": 0,
+            "char_end": 1230,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6386",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-11-02",
+              "listing_instrument_id": "EO:6386",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6386-code-fair-competition-for-the-steel-casting-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "260d2bc1039d34b686f792056da4a480b1d98a1ab2129d2e628e9a5c6177359b"
+    },
+    {
+      "instrument_id": "EO:6389",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6389-code-fair-competition-for-the-soap-and-glycerine-manufacturing.txt",
+            "text_sha256": "d5e0cd02f00cdc9de73d6d70d32933ebd6ec0544a7e8ebfbc53cdf902db7916f",
+            "char_start": 0,
+            "char_end": 1258,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6389",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-11-02",
+              "listing_instrument_id": "EO:6389",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6389-code-fair-competition-for-the-soap-and-glycerine-manufacturing"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "8748e189a42856f2511cd5a03d06a1e2f31d033a7d9d71b43891589d7e0335a0"
+    },
+    {
+      "instrument_id": "EO:6392",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6392-code-fair-competition-for-stock-exchange-firms.txt",
+            "text_sha256": "8f7def0fd9d5f8b7ad590ae11451875b4322456270521e10d09add9e474ce243",
+            "char_start": 0,
+            "char_end": 1221,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6392",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-11-04",
+              "listing_instrument_id": "EO:6392",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6392-code-fair-competition-for-stock-exchange-firms"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "f0e1bb479fa003967b91b0b64048d655210ff46ab4dde1668a31fcf9331d2052"
+    },
+    {
+      "instrument_id": "EO:6401",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6401-code-fair-competition-for-the-washing-and-ironing-machine.txt",
+            "text_sha256": "2291ba33a757fdbe0c4e80abbaab30c7482e43d9d94a406db385c1936fba1828",
+            "char_start": 0,
+            "char_end": 1258,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6401",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-11-04",
+              "listing_instrument_id": "EO:6401",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6401-code-fair-competition-for-the-washing-and-ironing-machine"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "70598edbf9ac83da60ce81bd824b33484c0fae525108a7a93a8c444309c5377d"
+    },
+    {
+      "instrument_id": "EO:6503",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6503-code-fair-competition-for-the-valve-and-fittings-manufacturing.txt",
+            "text_sha256": "233e14f9cdead7cb6618fb4972b5795aa503133e1bd2d95dc453cd2e5be76814",
+            "char_start": 0,
+            "char_end": 1419,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6503",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-12-15",
+              "listing_instrument_id": "EO:6503",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6503-code-fair-competition-for-the-valve-and-fittings-manufacturing"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "717cbac7940be63d754df66c60ec5e3c35b8bbb613ff109caee2252183c8e962"
+    },
+    {
+      "instrument_id": "EO:6531",
+      "classification": "supported_source_discrepancy",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.research_rationale.independent_command_check: attributed quotation 'Approval recommended: Hugh S. Johnson, Administrator' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6531-code-fair-competition-for-the-silverware-manufacturing-industry.txt",
+            "text_sha256": "a8a4694978781688acfa248bc271c2818677af3894d67e56edaf3b6edf2dc676",
+            "char_start": 0,
+            "char_end": 1237,
+            "boundary": "identified_app_item",
+            "source_id": "ORIGINAL:EO:6531",
+            "publisher_listing": {
+              "index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+              "index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+              "listing_date": "1933-12-23",
+              "listing_instrument_id": "EO:6531",
+              "listing_url": "https://www.presidency.ucsb.edu/documents/executive-order-6531-code-fair-competition-for-the-silverware-manufacturing-industry"
+            }
+          }
+        }
+      ],
+      "exact_audit": "FINAL_FILED_SOURCE_AUDIT.json",
+      "claim_physical_record_sha256": "b6c1fb57532b0408b12621a6ca99d8842087d9d3f5cacab42674c3e13a677833"
+    },
+    {
+      "instrument_id": "EO:6539A",
+      "classification": "supported_structural_omission",
+      "flags": [
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:6539A#corrected-1",
+          "actor": "EO:6900",
+          "reasoning_sentence": "No held record shows this code cancelled or suspended before June 14, 1935; EO 6900 and EO 7020 amend the code and are later events, not ends.",
+          "detail": "Reasoning describes EO:6900 as a later actor but this clause has no source-backed later_events entry for it."
+        },
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:6539A#corrected-1",
+          "actor": "EO:7020",
+          "reasoning_sentence": "No held record shows this code cancelled or suspended before June 14, 1935; EO 6900 and EO 7020 amend the code and are later events, not ends.",
+          "detail": "Reasoning describes EO:7020 as a later actor but this clause has no source-backed later_events entry for it."
+        }
+      ],
+      "claim_path": "research/readiness/claims/claude-2026-10-31-apollo-n09.jsonl",
+      "claim_file_sha256": "a39d35517157ee5d83edd78fc2762e3378919c8fd9c2159f70bb2c463cd3628a",
+      "claim_physical_record_sha256": "8ea142b11e565910440230396660faf9e3e652cd519ca9c34efc2b8140fffc9e",
+      "claim_reasons": [
+        "Terminated by statute on June 14, 1935. The sole operative command approves the Code of Fair Competition for the Wine Industry under title I of the National Industrial Recovery Act ('do hereby approve said Code of Fair Competition for the Wine Industry.'); the introductory recital and the five numbered findings command nothing. Actor: Congress, S.J. Res. 113, section 2, approved June 14, 1935. Legal basis for the first end. An approval of a code under section 3 of title I of the National Industrial Recovery Act had legal effect only through section 3: under 3(b) the code's provisions became the standards of fair competition for the trade or industry and a violation in or affecting interstate or foreign commerce was an unfair method of competition under the Federal Trade Commission Act, under 3(c) the district courts could restrain violations and district attorneys were directed to sue, and under 3(f) each violation was a misdemeanor (the section 3 excerpt held in this packet). Section 2 of S.J. Res. 113, approved June 14, 1935 (49 Stat. 375), repealed 'All the provisions of Title I of such Act delegating power to the President to approve or prescribe codes of fair competition and providing for the enforcement of such codes' and states no effective date other than its approval. That repeal removed the power the approval rested on and every provision through which the approved code was enforced, which is the reason (not a default date) that it ends the prospective operative effect of this command on June 14, 1935. Schechter Poultry Corp. v. United States, 295 U.S. 495 (decided May 27, 1935), held the section 3 code-making delegation unconstitutional ('we hold the code provisions here in question to be invalid'); the held excerpts record that as a validity characterization (an approval under an unconstitutional delegation was void from issuance under the doctrine then prevailing, and May 27, 1935 is when that was declared), not as an end date, because the judgment cancelled no other approving order and a later doctrine treats a measure's earlier existence as an operative fact. June 16, 1935 is not an end: section 1 of the resolution replaced the two-year expiry in section 2(c) with April 1, 1936, and nothing in the resolution defers section 2. No held record shows this code cancelled or suspended before June 14, 1935; EO 6900 and EO 7020 amend the code and are later events, not ends."
+      ],
+      "later_events_empty_verified": true,
+      "review_note": "Reasoning expressly describes amendments/later events while the matching clause later_events is empty. This exactly supports the source-backed-event omission warning; it does not independently settle every event legal effect or whole lifecycle.",
+      "source_examination": [
+        {
+          "instrument_id": "EO:7020",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-7020-amending-code-fair-competition-for-the-wine-industry.txt",
+          "text_sha256": "26466d12d15896a87d7171ff47b2fc3362c292446035ebac28549c83c06dbd79",
+          "span": [
+            0,
+            837
+          ],
+          "source_excerpt": "Whereas the Federal Alcohol Control Administration has submitted for my approval amendments to the Code of Fair Competition for the Wine Industry and has rendered its report and recommendations and findings thereon; and\n\nWhereas due notice of public hearing on said proposed amendments has been given and a public hearing thereon has been held pursuant to such notice;\n\nNow, Therefore, by virtue of and pursuant to the authority vested in me by Title I of the National Industrial Recovery Act of June 16, 1933 (ch. 90, 48 Stat. 195), and in order to effectuate the purposes of said Title, I hereby approve said amendments and modify my previous approval of the Code of Fair Competition for the Wine Industry to include an approval of said Code in its entirety as hereby amended.\n\nFRANKLIN D. ROOSEVELT\n\nThe White House,\n\nApril 19, 1935.\n",
+          "note": "Independently read Wine Industry code amendment. EO6900 actor text was not located in this bounded audit; no external legal-effect conclusion on6900 is made."
+        }
+      ]
+    }
+  ],
+  "utc": "2026-11-01T22:05:33.565731+00:00",
+  "binding_refresh_note": "All18 exact flags and claim physical-record hashes unchanged; every previously audited source file rehashed against its audit pin."
+}

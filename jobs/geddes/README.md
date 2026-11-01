@@ -19,21 +19,29 @@ under `coverage_gaps` / integrity counts. It emits defect flags separately from
 missing-coverage records. Flags identify source-comparison discrepancies for
 human follow-up; they are not automatic rejection rules.
 
-Checks compare attributed quotations and known carry-over phrases to the
-target order's bounded text span; test target and later-actor suffixes against
-their pinned identifiers; compare Federal Register page and issue-date metadata
-to the same pinned event source; detect named later instruments without a
-matching source-backed event record; and check verbatim operative and later
-event quotations against their own cited sources. Missing event/search coverage
-and literal-name search coverage are reported separately from defect flags.
-No-other-order assertions search names rather than numeric IDs in the union of
-Apollo packet-pinned held texts, report unavailable/conflicting files, and make
-the bounded corpus limitation explicit. Apollo's lookup metadata describes
-33,118 discovered and readable held texts (plus 9,761 clause-draft exclusions);
-the packets pin only a subset (1,346 unique source files in this run). Geddes
-does not establish a corpus-wide negative. Heuristics can miss paraphrases and
-produce false positives. They do not establish source authenticity or legal
-effect.
+The source, citation, event and literal-name checks are separate small modules.
+Own-order absence checks require a verified complete body located with the
+existing clause-drafts locator, or a corroborated individual APP publisher
+item. Recitals are included, neighboring orders excluded, and native inventory
+overrides validated. Unresolved boundaries produce coverage gaps. Concepts
+allow OCR whitespace/soft-hyphen repairs; quotations preserve case and
+punctuation and bind to their own exact original/actor source spans.
+
+Reasoning citations bind the date and subject to retained publisher metadata
+and hash-pinned lookup candidates, including ambiguous suffixed/unsuffixed
+siblings. Federal Register issue dates are not signing or filing dates.
+Later-event checks preserve grammatical actor/object and clause scope. They
+do not decide the legal effect of a candidate instrument.
+
+Name assertions search proper literal names over the exact Git-retained
+`jobs/**/texts/**/*.txt` membership, excluding clause-drafts. A phrase such as
+"this code" requires its named antecedent; it is never searched as a proper
+name. Positive counterexamples bind publisher identity/date and exact source
+spans. Missing or changed files prevent full-corpus coverage. Exported packets
+without Git get an explicitly bounded packet-pin fallback, never a full-scope
+label. Corpus snapshots reverify the actual bytes searched before returning
+output; matching file counts and unchanged timestamps prove neither identity
+nor integrity. A completed scan is not a legal-effect or authenticity verdict.
 
 `view` renders a decoded one-order dossier with an order-scoped original text span,
 matching shared analysis for the NRA batches, relevant prior research, mechanical
@@ -57,10 +65,23 @@ claim-kit checker or review contract as part of Geddes.
 ## Inputs
 
 No static job-name registry exists in the runner; the `jobs/geddes/` folder
-name is the runner registration. `needs.txt` lists the bounded data folders
-needed by the manual job. The job
+name is the runner registration. `needs.txt` declares literal helper roots; `inputs.txt` uses the existing
+runner fnmatch contract for source TXT files (including selected-page/singular
+text folders), publisher metadata and research packets. No new materializer
+certificate is granted. The job
 runs unit checks and telemetry accounting by default; it lints only the single
 directory explicitly supplied through `GEDDES_APPLIED_DIR`. It never sweeps
 historical applied directories. The command-line linter can also run locally
 against any applied directory and its frozen packet. Unit tests use temporary
 synthetic packets and never infer legal findings.
+
+## Validation and interpretation
+
+Run all checks with `python3 -I -m unittest discover -s jobs/geddes -p 'test_*.py'`.
+The PR workflow also runs the exact historical comparison with the retained
+text corpus. The research report under
+`research/excavator/claude-geddes-2026-11-01/REPORT.md` distinguishes exact
+historical recall, total warnings on filed claims, independently supported
+source/schema discrepancies, false flags, and indeterminate warnings. Do not
+assume every previously filed claim is source-perfect or suppress a genuine
+verbatim mismatch to meet a total-warning target.
