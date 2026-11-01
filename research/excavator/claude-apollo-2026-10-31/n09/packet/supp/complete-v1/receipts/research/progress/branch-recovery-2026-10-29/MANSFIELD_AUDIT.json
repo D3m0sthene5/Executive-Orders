@@ -1,0 +1,47 @@
+{
+  "schema": "eo-integration-source-audit/v1",
+  "date": "2026-10-29",
+  "reviewer": "separate OpenAI review context, coordinated by Codex",
+  "scope": "PR54 exact claim versions against current evidence rules; conservative holds, not a substitute legal conclusion or human certification",
+  "validation": {
+    "new_claims": 12,
+    "identity_overlap_with_prior_main": 0,
+    "current_structural_gate_passes": 12,
+    "cited_text_path_hash_pairs_verified": 25
+  },
+  "items": [
+    {
+      "instrument_id": "EO:10622",
+      "claim_sha256": "8c248b9f8abdc938550eba36deb29fb604c054baaa0ad3e433bbf761553fe085",
+      "claim_path": "research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl",
+      "claim_line": 1,
+      "reason": "Current protocol bars treating custody-only PEB111 report material and a dated transmittal as proof of actual report submission and the consequent standstill expiration. Obtain admissible event evidence and fresh review.",
+      "verdict": "hold_pending_current_rule_reconciliation"
+    },
+    {
+      "instrument_id": "EO:11040",
+      "claim_sha256": "07b095eae389293fbafd7bfc20e441d2e579ae423af71e3ccb79e026410a0e96",
+      "claim_path": "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl",
+      "claim_line": 1,
+      "reason": "The report date is only in rationale rather than a structured later_event. The cover and transmittal disagree on the order number and the day is garbled. Reconcile the actual page and current report-deadline ruling before fresh review.",
+      "verdict": "hold_pending_current_rule_reconciliation"
+    },
+    {
+      "instrument_id": "EO:11078",
+      "claim_sha256": "cf322071f653bc65469d997ac15f4a97bc69425803378968f12edab2595369ec",
+      "claim_path": "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl",
+      "claim_line": 2,
+      "reason": "Actual report-submission date remains unknown while unresolved_material_gaps is empty. Reconcile that missing event evidence with the current evidence-decides ruling before fresh review.",
+      "verdict": "hold_pending_current_rule_reconciliation"
+    },
+    {
+      "instrument_id": "EO:9922",
+      "claim_sha256": "c6b47a03d474afe19505d046494568ddb348021606bedc519575f13176baba12",
+      "claim_path": "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl",
+      "claim_line": 5,
+      "reason": "Actual report date is unknown, the acting provision was not located, and OCR does not reliably pair the number and subject columns. Original-page verification and current-rule reconciliation are required.",
+      "verdict": "hold_pending_current_rule_reconciliation"
+    }
+  ],
+  "other_review_limits": "EO13032,10972,10312,5825 were upheld after reveal; b02 missed a D6 control. Historical review labels and failed campaign conversion gate remain unchanged."
+}
