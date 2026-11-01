@@ -1,0 +1,58 @@
+name: Geddes advisory lint
+
+on:
+  push:
+    paths:
+      - 'jobs/geddes/**'
+      - '.github/workflows/geddes.yml'
+  pull_request:
+    paths:
+      - 'jobs/geddes/**'
+      - '.github/workflows/geddes.yml'
+  workflow_dispatch:
+    inputs:
+      applied_dir:
+        description: Applied proposal directory, relative to repository root
+        required: false
+        default: research/excavator/claude-apollo-2026-10-31/g01/packet/supp/applied-v3
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /jobs/geddes/**
+            /jobs/claim-kit/*.py
+            /jobs/norton/model.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Geddes unit tests
+        run: python3 -I jobs/geddes/test_geddes.py
+      - name: Materialize selected source inputs
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        run: |
+          git sparse-checkout add \
+            'jobs/app-executive-orders/**' 'jobs/fr-originals/**' 'jobs/clause-drafts/**' \
+            'jobs/source-ladder/**' 'jobs/astra-source-retention/**' 'jobs/opus-media-match/**' \
+            'jobs/pinakes-proquest-ingest/**' 'jobs/wikisource-texts/**' 'jobs/hathi-gpo-orders/**' \
+            'jobs/ofr-compilations/**' 'jobs/family-rule-tail/**' 'jobs/family-rule-sources/**' \
+            'research/excavator/claude-apollo-2026-10-31/**' \
+            'research/excavator/claude-nira-sweep-2026-10-29/**'
+      - name: Run source-based advisory lint
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        env:
+          APPLIED_DIR: ${{ inputs.applied_dir }}
+        run: python3 -I jobs/geddes/geddes.py lint "$APPLIED_DIR" > geddes-lint.json
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        with:
+          name: geddes-lint-${{ github.run_id }}
+          path: geddes-lint.json

@@ -1,0 +1,19 @@
+{
+  "code_closure": [
+    "jobs/geddes/*.py",
+    "jobs/claim-kit/*.py",
+    "jobs/norton/*.py",
+    "jobs/clause-drafts/*.py"
+  ],
+  "command": [
+    "python3",
+    "-I",
+    "jobs/geddes/geddes.py",
+    "--help"
+  ],
+  "exit": 0,
+  "stdout": "usage: geddes.py [-h] {lint,view,cost} ...\n\nDeterministic, source-based advisory checks for claim-kit applied proposals.\nGeddes never reads or scores review verdicts. Defect flags are reproducible\ncomparisons against frozen packet data and held text; missing inputs/coverage\nare reported separately and are not defects.\n\npositional arguments:\n  {lint,view,cost}\n\noptions:\n  -h, --help        show this help message and exit\n",
+  "stderr": "",
+  "wall_seconds": 0.1291671829999359,
+  "scope": "import closure smoke, not full hosted Actions run"
+}

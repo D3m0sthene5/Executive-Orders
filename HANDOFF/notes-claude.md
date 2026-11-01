@@ -1,3 +1,13 @@
+## 2026-11-01: Geddes draft and exact Apollo retry inventory; execution incomplete
+
+- **Done:** `jobs/geddes/` advisory lint/order view/cost, unit-test workflow and explicit pre-handback step; frozen claim-kit contract unchanged. Base `claude/apollo-moon` at `40eb4b5` because PR121 was open. Exact 40 retry versions in `research/excavator/claude-geddes-2026-11-01/inventory/`, grouped NRA 6/general 20/general 14.
+- **Accuracy:** 9/40 exact review defects caught; 15 rejected versions with any flag; 55/254 filed comparator flags. Both targets fail. Read REPORT.md/DEFECT_CORRELATION.json; do not call 15 recall or infer clean claims. Corpus/name/prose and recital/inventory-boundary gaps remain.
+- **Measurement:** Actual g03 bundle 8,842,721 bytes versus 24 views 634,144 bytes. Cache tokens/net savings unknown. Four Apollo cost groups reproduced. Two gpt-6-luna workers and gpt-6-astra engineering reviewer; tokens/active labor unavailable; reviewer 1,099.014s prospective wall includes waits. Telemetry availability and failed development passes retained.
+- **Validation:** 14 unit tests, 20 independent/targeted probes, 18 acceptance checks pass at code 3472f558; scientific quality thresholds do not. Kean brief 7,795 bytes at registration; strict check passes. Findings F-20261101-geddes-lint/retries/cost.
+- **Blocked/Next:** No fresh packet, Sonnet producer, Opus scientific reviewer, new controls or publication. 0 new claims; certified 0. Make required runtime available and repair lint precision, validate complete prepare context, then fresh prepare/review/complete sequentially under lock; commit only after packets finish. Never reuse committed Apollo packets for apply.
+- **Asks:** Execution-route decision for the owner is registered as `A-20261101-geddes-models` (required models or explicit substitution).
+- **Do not:** count retrospective flags as independent review; auto-reject on lint; change canonical claims/statuses/codebook/human reviews or certified count. EO6471A/7016 remain under A-20261031-1; six custody/OCR drops remain excluded.
+
 # Claude's handoff notes
 
 Newest entry first. See `README.md` in this folder for the format.
