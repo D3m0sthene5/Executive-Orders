@@ -2,9 +2,9 @@
 
 - **Done:** Repaired full-order/recital boundaries, native inventory overrides, source-specific verbatim quotations, reasoning suffix/FR bindings, event actor/scope, and literal-name corpus identity/cache guards. Existing PR122 branch; canonical claims/statuses/codebook/human reviews unchanged, certified 0.
 - **Evidence:** `research/excavator/claude-geddes-2026-11-01/REPORT.md` and `repair/`. Local exact recall 20/40 (was 9); 18/254 filed claims flagged (was 55). Independent audit supports all 18: 16 wording discrepancies + 2 missing event-record inconsistencies; 0 false/indeterminate in the examined set. Original total-warning metric remains 18>5; do not conflate it with audited false positives.
-- **Validation:** 42 unit tests and 29 independent probes pass. Four filed order-body abstentions plus rejected EO12891 remain disclosed. All 1,346 Apollo text pins verified; local name corpus sparse (1,074/39,770). PR workflow now tests full retained text corpus and uploads exact comparison receipts; native result pending at this entry.
-- **Costs:** Two configured gpt-6-sol workers and gpt-6-astra reviewer; prospective clocks in repair/TELEMETRY.json, token/active-time measurements unavailable. No measured model saving or new filing is claimed. Kean F-20261101-geddes-repair.
-- **Next:** Check full-corpus benchmark and independently examine any additional warnings; preserve immutable source/claim versions and truthful coverage. Track B scientific roles remain unrun under existing A-20261101-geddes-models.
+- **Validation:** 42 unit tests and 29 independent probes pass. Four filed order-body abstentions plus rejected EO12891 remain disclosed. All 1,346 Apollo text pins verified; local name corpus sparse (1,074/39,770). Hosted benchmark41355823118 passes:39,770/39,770 text members verified, no missing/changed files, exact same flags; raw native artifact/hash index retained. Hosted unit tests/Kean pass.
+- **Costs:** Two configured gpt-6-sol workers and gpt-6-astra reviewer; prospective clocks in repair/TELEMETRY.json, token/active-time measurements unavailable. No measured model saving or new filing is claimed. Kean F-20261101-geddes-repair/native.
+- **Next:** Review PR122; preserve immutable source/claim versions and truthful coverage. Track B scientific roles remain unrun under existing A-20261101-geddes-models.
 - **Asks:** @Owner: none for this programming repair.
 - **Do not:** suppress actual quote discrepancies to meet a warning-count target, change already-filed claims, or turn diagnostic warnings into scientific judgments.
 

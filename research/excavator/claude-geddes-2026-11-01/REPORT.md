@@ -74,8 +74,24 @@ relative to the full tracked name-search corpus. The local name check reports
 39,770 members, 1,074 verified and 38,696 missing. That local result proves no
 all-held-text negative. A PR benchmark workflow now materializes the retained
 text corpus (without PDF collections), reruns the exact 294-version comparison
-and uploads pinned results. Its result must be recorded separately from this
-local comparison.
+and uploads pinned results. The hosted result is recorded separately below.
+
+The [hosted benchmark](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41355823118)
+passed on head `05179576e675741b6188fea18f9959bb4a5f8f64` (PR merge
+`8e77a84a05ba50afeecc43235d67eb1e196c8a0a`). It verified **39,770/39,770**
+tracked text members, no missing or changed members, and produced exactly the
+same rejected and filed flags as the local run. All five module hashes match
+the independent local seal. `repair/native/EVALUATION.json` has SHA256
+`9e1d8c4b3973ea69bb8550187d5da25d2c01aea6f9792e8c793fc566d3dd1d34`.
+`ARTIFACT.zip` preserves all 28 native artifact members, verified against the
+GitHub artifact digest; `ARTIFACT_INDEX.json`, `RECEIPT.json` and `RUN.json`
+record custody and source scope. Full text coverage does not remove the five
+own-body abstentions or establish a corpus-wide legal conclusion. Hosted unit
+tests and Kean passed as well. Independent `repair/review/NATIVE_REVIEW.json`
+recomputes exact native inventory membership, checks all 28 artifact members,
+all frozen inputs, module pins, both exact comparator member sets and unchanged
+flags. The reviewer relied on the pinned hosted run for 39,770 source-byte
+checks; those bytes were not independently rehydrated locally.
 
 ## Cost and retained history
 

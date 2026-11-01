@@ -36,13 +36,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 96; `search` finds the rest)
+## Newest results (6 of 97; `search` finds the rest)
 
+- 2026-11-02 F-20261101-geddes-native **partly worked**: Verify repaired Geddes on full held corpus Lesson: Keep raw native receipt and distinguish true warnings from false positives.
 - 2026-11-01 F-20261101-geddes-retries **stopped at gate**: Reconcile Apollo retry inputs Lesson: Keep exact defects and hashes; never substitute review models silently.
 - 2026-11-01 F-20261101-geddes-repair **partly worked**: Repair Geddes source binding Lesson: Separate true source problems from false flags; never hide abstentions.
 - 2026-11-01 F-20261101-geddes-lint **partly worked**: Test Geddes advisory lint Lesson: Source-role probes do not establish production precision.
 - 2026-11-01 F-20261101-geddes-cost **analysis**: Measure Geddes order views and Apollo cost Lesson: Payload reduction is not measured cache-token savings.
 - 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
-- 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
 
-Register: 18 owner decisions, 2 answered questions, 96 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 97 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
