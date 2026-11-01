@@ -8,7 +8,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (10)
 
 - **A-20261018-1** (2026-10-18, Claude): Send the drafted archival reference and scan requests (National Archives letters-received series and others)? *Pre-1862 orders have no other route to an original; none of the drafted requests has been sent.*
 - **A-20261019-1** (2026-10-19, Claude): Approve, trial or reject risk-tiered review (a lighter independent review for low-risk cases)? *X1's model projected it would cut the post-series remainder from 11,256 to 10,027 agent-hours; that figure is an assumption, never measured.*
@@ -19,6 +19,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **A-20261028-2** (2026-10-28, Claude): Make the Kean check a required status check for main (GitHub Settings > Branches)? *Without it a failing Kean check is visible but does not stop a merge.*
 - **A-20261028-3** (2026-10-28, Claude): Add to ChatGPT's custom instructions: 'For the Executive-Orders project, first read HANDOFF/KEAN.md in D3m0sthene5/Executive-Orders and record results there before ending'? *Kean reaches only sessions that open the repository; this line brings ChatGPT chats that do not.*
 - **A-20261029-1** (2026-10-29, Claude): Approve a Valla change so a packet's context excludes its own and unrelated committed packages, and raise the 100-package limit? *Committing any packet now stales every packet in flight, and 76 of the 100-package hard limit are tracked; the permission layer refused the change because it relaxes an integrity check.*
+- **A-20261031-1** (2026-10-31, Claude): Keep claims EO 6471A, 7016 (blinding slip)? *Apollo REPORT.md*
 
 ## Standing owner requirements
 
@@ -34,7 +35,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 91; `search` finds the rest)
+## Newest results (6 of 92; `search` finds the rest)
 
 - 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
 - 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
@@ -43,4 +44,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-10-31 F-20261031-lachmann-route-d **worked**: Lachmann identity route (d): APP or Wikisource page heading as number evidence when the body has the register… Lesson: Publisher page headings are usable identity evidence when tied to the body by date and title; APP omits annexed maps, so map-bearing orders still need originals. 456 Wikisource orders pass identity b…
 - 2026-10-31 F-20261031-lachmann **worked**: Lachmann machine collation confirming working texts (identity, completeness, pages) for transcription- and sc… Lesson: Machine-read compilations damage land descriptions; test internal continuity, not only opening and closing. Most unconfirmed orders are APP or Wikisource texts without a printed number; a heading bri…
 
-Register: 18 owner decisions, 2 answered questions, 91 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 92 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
