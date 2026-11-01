@@ -8,7 +8,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (10)
+## Waiting for the owner (11)
 
 - **A-20261018-1** (2026-10-18, Claude): Send the drafted archival reference and scan requests (National Archives letters-received series and others)? *Pre-1862 orders have no other route to an original; none of the drafted requests has been sent.*
 - **A-20261019-1** (2026-10-19, Claude): Approve, trial or reject risk-tiered review (a lighter independent review for low-risk cases)? *X1's model projected it would cut the post-series remainder from 11,256 to 10,027 agent-hours; that figure is an assumption, never measured.*
@@ -20,6 +20,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **A-20261028-3** (2026-10-28, Claude): Add to ChatGPT's custom instructions: 'For the Executive-Orders project, first read HANDOFF/KEAN.md in D3m0sthene5/Executive-Orders and record results there before ending'? *Kean reaches only sessions that open the repository; this line brings ChatGPT chats that do not.*
 - **A-20261029-1** (2026-10-29, Claude): Approve a Valla change so a packet's context excludes its own and unrelated committed packages, and raise the 100-package limit? *Committing any packet now stales every packet in flight, and 76 of the 100-package hard limit are tracked; the permission layer refused the change because it relaxes an integrity check.*
 - **A-20261031-1** (2026-10-31, Claude): Keep claims EO 6471A, 7016 (blinding slip)? *Apollo REPORT.md*
+- **A-20261101-geddes-models** (2026-11-01, Codex): Provide Sonnet/Opus execution or authorize substitute models for Apollo retries? *This runtime exposes only OpenAI agents; 40 retries remain unrun.*
 
 ## Standing owner requirements
 
@@ -35,13 +36,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 92; `search` finds the rest)
+## Newest results (6 of 95; `search` finds the rest)
 
+- 2026-11-01 F-20261101-geddes-retries **stopped at gate**: Reconcile Apollo retry inputs Lesson: Keep exact defects and hashes; never substitute review models silently.
+- 2026-11-01 F-20261101-geddes-lint **partly worked**: Test Geddes advisory lint Lesson: Source-role probes do not establish production precision.
+- 2026-11-01 F-20261101-geddes-cost **analysis**: Measure Geddes order views and Apollo cost Lesson: Payload reduction is not measured cache-token savings.
 - 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
 - 2026-10-31 F-20261031-r1-r4-integration **partly worked**: Integrate R1-R4 through existing materializer, preflight, Early-Ranger and NEYMAN routes Lesson: Review exact consumer dependencies and publish a coordinated generation; engineering receipts never adopt science.
 - 2026-10-31 F-20261031-r1-production-comparison **worked**: Run matched complete production Valla executions through the existing transactional runner and freshness guard Lesson: Measure full worktree, declared closure, startup, helper metadata and construction separately; retain exact output provenance and independent review; re-establish certificates after implementation-cl…
-- 2026-10-31 F-20261031-r1-audited-valla **partly worked**: Extend the existing runner materializer to the exact Valla production read closure Lesson: Close explicit dynamic pointers and live read membership; bind resolver/runner code; withhold unresolved or unretained inputs rather than narrowing from a successful trace.
-- 2026-10-31 F-20261031-lachmann-route-d **worked**: Lachmann identity route (d): APP or Wikisource page heading as number evidence when the body has the register… Lesson: Publisher page headings are usable identity evidence when tied to the body by date and title; APP omits annexed maps, so map-bearing orders still need originals. 456 Wikisource orders pass identity b…
-- 2026-10-31 F-20261031-lachmann **worked**: Lachmann machine collation confirming working texts (identity, completeness, pages) for transcription- and sc… Lesson: Machine-read compilations damage land descriptions; test internal continuity, not only opening and closing. Most unconfirmed orders are APP or Wikisource texts without a printed number; a heading bri…
 
-Register: 18 owner decisions, 2 answered questions, 92 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 95 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
