@@ -1,3 +1,11 @@
+## 2026-11-02 ET: Apollo Job tiers published and live-verified — PR124
+
+- **Published:** Original private artifact https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#tiers, page15 from exact source401d7bd3909f97ec7b49f00f2a73a0f25f37cf59; tools46 rows/v10; workflow82 nodes/v3. New Job tiers85 assessments, dated results/limits/source links, search and kind/tier filters. Six older feeds and rocket preserved. Source PR124 remains open; no main merge.
+- **Verified:** All six live tabs, reload route, tier search/detail/Escape/filter/empty state, workflow sources, recent-session toggle,46 tool rows/82 nodes and Mission SVG/498-ready/0-certified. Initial v14 failed in the host because a JSON DOM script was removed; v15 uses one executable script and button/hidden-panel controls. Local 390px layout inspected. Publisher confirmed earlier two prose edits were already preserved. Snapshot README/MANIFEST/JOB_TIERS.png retain evidence.
+- **Counts:** Checked mainb3fc50647c; tracker last ranOct31, same per-order blob asOct30. Still498 (306 original-supported+192 transcription-dependent),194 replacement/recheck obligations each. Apollo254 and Erasmus52 filings (including20 replacements) are later and await recount. No scientific jobs, status/source-grade adoption or human certification.
+- **Review/costs:** Independent configured gpt-6-sol reader/reviewer; corrected integrated Cruden timings, Mansfield12 integrated/four held and source-record shape, then approved. Root retained judgment/integration; authoring session Opus5.5High only published exact files. Tokens, active labor/cash unavailable; no savings claimed. Kean F-20261102-apollo-tiers and F-20261102-apollo-tiers-live.
+- **Next/Asks:** @Owner: none. Review PR124; ratings are editorial within-role usefulness judgments, not scientific authority or measured ROI. No watcher or background research remains.
+
 ## 2026-11-02 ET: Apollo main refresh and Job tiers prepared
 
 - **Done:** Checked main b3fc50647c after PR123. Updated retained dashboard with pinned current-work strip, 85 editorial tier assessments and 82 workflow nodes; tools catalog now 46 dated rows. Independent configured gpt-6-sol review corrected Cruden timing, stale Mansfield integration and source-list shape. Evidence in research/progress/remaining-work/snapshots/2026-11-02/.

@@ -10,4 +10,4 @@ The October 29 audit is retained as historical evidence, not silently overwritte
 
 The bounded read-only assessment worker used configured gpt-6-sol; exact tokens, active time and cash are unavailable. Root retained editorial judgments and integration. No new scientific production, status adoption, evidence-grade change or certification occurred.
 
-Local QA uses an isolated temporary dataset host, not a new hosted dashboard. Syntax and six existing workflow-builder checks passed; search, evidence dialog, Escape and F filtering were exercised in a browser. Final publication and independent review status are recorded in the dated snapshot README.
+Local QA uses an isolated temporary dataset host, not a new hosted dashboard. Syntax and six existing workflow-builder checks passed; search, evidence dialog, Escape and F filtering were exercised in a browser. Final publication and independent review status are recorded in the dated snapshot README. The real host requires one executable script: the builder now replaces comment-delimited JS literal data, not a separate application/json element. Final live page v15 passed all six tabs and new interactions.
