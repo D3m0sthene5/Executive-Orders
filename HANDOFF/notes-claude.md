@@ -2,6 +2,21 @@
 
 Newest entry first. See `README.md` in this folder for the format.
 
+## 2026-11-01 (Claude, Apollo claim swarm)
+
+- **Filed 254 lifecycle claims** (`research/readiness/claims/claude-2026-10-31-apollo-*.jsonl`) from 444 orders in
+  19 claim-kit batches: 127 NRA (shared S.J. Res. 113 analysis) and 127 general post-1937. Each passed the actual
+  checker, a blind separate-context Opus review with planted controls (20 of 20 caught) and `kit.py complete`.
+  40 claims rejected in review, 6 dropped at completion (custody or OCR-quote mismatch), 144 orders blocked by
+  producers with named gaps. Certified count 0. Report: `research/excavator/claude-apollo-2026-10-31/REPORT.md`;
+  Kean F-20261031-2.
+- **Telemetry:** per-agent tokens and active time in `TELEMETRY.csv` (19 Sonnet producers, 19 Opus reviewers);
+  extractor `tools/moon_telemetry.py` works on any subagent transcript set.
+- **@Owner:** A-20261031-1 (keep or withdraw EO 6471A and 7016 after a disclosed blinding slip).
+- **Next:** a deterministic pre-review lint for template carry-over, suffix-dropped EO numbers and FR page or issue
+  dates (about 15 of the 40 rejections); resubmit the 40 rejected claims with the reviewers' defects fixed; claims
+  for the 888 newly statused orders once claim-kit outputs are regenerated on main.
+
 ## 2026-10-31, later (Claude, Jacquard wave 2 and Lachmann route d)
 
 - **Jacquard wave 2** (PR #119): full review of every remaining waiver, NRA and Canal Zone lot member; 714 more

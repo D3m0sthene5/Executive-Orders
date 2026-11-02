@@ -1,0 +1,89 @@
+[
+  {
+    "error": "actual checker did not pass exact version",
+    "instrument_id": "EO:10570",
+    "receipts": [
+      {
+        "all_checks_passed": false,
+        "check_counts": {
+          "date_after_signing": {
+            "pass": 2
+          },
+          "date_valid": {
+            "pass": 10
+          },
+          "factual_event_policy": {},
+          "order_exists": {
+            "pass": 2
+          },
+          "quote_verbatim": {
+            "fail": 3,
+            "pass": 3
+          },
+          "source_held": {
+            "pass": 5
+          },
+          "source_identity": {
+            "pass": 2
+          },
+          "structural_gate": {
+            "pass": 1
+          },
+          "working_text_policy": {}
+        },
+        "claim_key": "research/excavator/claude-apollo-2026-10-31/g05/packet/complete-v1/CLAIMS.selected.jsonl:9",
+        "claim_sha256": "b6f0c0567597e6b2437a2059797e6477a870ee5c4954626fa920c97cf867586e",
+        "effective_for_tracker": true,
+        "failures": [
+          "quote_verbatim:not_found@operative_clauses[0].original_operative_text",
+          "quote_verbatim:not_found@operative_clauses[0].original_source.quote",
+          "quote_verbatim:not_found@original_representation.quote"
+        ],
+        "failures_total": 3,
+        "file": "research/excavator/claude-apollo-2026-10-31/g05/packet/complete-v1/CLAIMS.selected.jsonl",
+        "gate_claim_level_errors": [],
+        "gate_errors": [],
+        "gate_passed": true,
+        "instrument_id": "EO:10570",
+        "line": 9,
+        "mechanical_result": "fail",
+        "provisional_status": "no",
+        "steps": {
+          "clause_inventory": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "fail",
+            "present": true
+          },
+          "counterevidence": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "ending_or_current_basis": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "original_text": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "fail",
+            "present": true
+          },
+          "savings_residuals": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          }
+        },
+        "text_evidence_tier": "original_supported",
+        "unverified": [],
+        "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+      }
+    ]
+  }
+]
