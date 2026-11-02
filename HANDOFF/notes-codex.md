@@ -1,3 +1,10 @@
+## 2026-11-02 ET: five exact raw-source prerequisites retained and audited
+
+- **Done:** Existing retention run41497558869 succeeded; publisheda3fbcbfe retains all5exact PDFs(47,090,803bytes),20page texts and5selected-text files. Independent configuredgpt-6.1-sol custody audit rehashes actualGitbytes and proves oldsource265→270/attempt343→348prefixes;allprior artifactIDs preserved,zero deletions. Kean F-20261102-erasmus-retention-native; NATIVE_CUSTODY_REVIEW.json and SOURCE_INTEGRATION_REVIEW.json in research/progress/erasmus-board-source-readiness-2026-11-02/.
+- **Limits:** NoPNGs(renderer unavailable);3empty page texts. Actualsource-page examination/freshpackets/scientificreview remain required. RequestedtargetIDs remain unauthenticated;no claim/status/grade/census/certification changed. Native fetch/extract24.962s excludes setup/publication;complete token/cash/labor unknown.
+- **Integration:** Sourceoutput1866blobs/modes/paths andnewerKeanoutput remain exacta3fbbytes while currentmain126is merged;no actualGitconflict occurred despite earlierAPI dirty state. Rootowns qualifyingmerge and remainingLachmann/dashboardintegration under resumed scopedauthorization.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: recover existing source handoffs and prepare exact retention
 
 - **Done:** Existing source_supplement route demonstrated on four Erasmus targets; no replacement runtime. Fresh native-v2 supplies PLO1704 to EO8129/8163 and Proc2416 to EO8163 with18 source pins. Initial missing-Proc replay/report mismatch is retained and corrected; old packets not renewed.34 focused tests+8 independent refusal probes pass. All4 unresolved/0 claims/0 statuses. Kean F-20261102-held-actor-handoff; report/pins in research/progress/held-actor-handoff-2026-11-02/.

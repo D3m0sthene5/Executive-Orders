@@ -1,0 +1,748 @@
+{
+  "schema": "eo-retention-custody-engineering-review/v1",
+  "verdict": "approve_published_custody_outputs_with_rendering_limit",
+  "reviewed_commit": "a3fbcbfe960c417e006a821b1a053a0bb3e482e7",
+  "execution_base_commit": "9f8065d7fa40d4b825596d04cfc8f81850d85fc3",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41497558869",
+  "review_scope": "Independent byte-level custody and publication review only; no source-page interpretation, legal identity, source grade, legal effect, readiness or scientific adoption approval.",
+  "summary": {
+    "generated_utc": "2026-11-02T18:11:09Z",
+    "manifest_sha256": "56f9ff14b077aa11a02e5fe718e7b9527b6d69d640413631ca7dfde985f66aaf",
+    "queue_sha256": "9727ec71497bc09590c9a248f92f20ab0bbe724a2173af91c8e4c95847c8fe5c",
+    "requested": 5,
+    "attempted": 5,
+    "retained": 5,
+    "previous_attempts_preserved": 343,
+    "previous_source_records": 265,
+    "source_records_after": 270,
+    "imported_objects": 0,
+    "imported_bytes": 0,
+    "extractions_completed": 5,
+    "http_requests": 7,
+    "download_bytes": 47090803,
+    "wall_seconds": 24.96205742799998,
+    "model_usage": null,
+    "reviewer_role": null,
+    "legal_findings": false,
+    "exhaustion_findings": false
+  },
+  "checks": {
+    "five_expected_raw_pdf_hashes_independently_recomputed": true,
+    "raw_byte_total": 47090803,
+    "structural_pdf_page_counts_verified": true,
+    "twenty_selected_page_text_hashes_verified": true,
+    "five_selected_text_hashes_and_concatenations_verified": true,
+    "five_content_addressed_generation_hashes_verified": true,
+    "requested_for_separate_from_empty_instrument_ids": true,
+    "no_grade_or_original_approval_in_new_sources": true,
+    "source_receipt_old_prefix_bytes": 261561,
+    "source_receipt_old_prefix_sha256": "0befb671b7b08f4a01e4e7189ecc7a85db41b27f5891c899db0cf5dbf4d17ae7",
+    "source_records_before": 265,
+    "source_records_after": 270,
+    "full_old_source_byteprefix_preserved": true,
+    "attempt_records_before": 343,
+    "attempt_records_after": 348,
+    "old_attempt_record_prefix_preserved": true,
+    "prior_tree_paths": 1836,
+    "published_tree_paths": 1866,
+    "prior_paths_deleted": [],
+    "all_prior_nonmetadata_artifact_git_ids_preserved": true,
+    "prior_nonmetadata_paths_preserved": 1830,
+    "rewritten_metadata": [
+      "RESULTS.json",
+      "RUNNER_INPUTS.json",
+      "SOURCES.jsonl",
+      "STATUS.json",
+      "SUMMARY.json",
+      "log.txt"
+    ],
+    "new_paths": [
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-1.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-2.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-3.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-4.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-5.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-6.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-7.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-8.txt",
+      "pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/selected-pages.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-1.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-2.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-3.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-4.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-5.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-6.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-7.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-8.txt",
+      "pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/selected-pages.txt",
+      "pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/page-3.txt",
+      "pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/selected-pages.txt",
+      "pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-1.txt",
+      "pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-2.txt",
+      "pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/selected-pages.txt",
+      "pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/page-1.txt",
+      "pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/selected-pages.txt",
+      "pdf/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7.pdf",
+      "pdf/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71.pdf",
+      "pdf/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f.pdf",
+      "pdf/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026.pdf",
+      "pdf/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa.pdf"
+    ],
+    "catalogue_raw_paths_missing_from_published_git_tree": [],
+    "current_oversized_files_moved": [],
+    "prior_oversized_files_moved": [],
+    "publication_scope": [
+      "jobs/astra-source-retention/output/RESULTS.json",
+      "jobs/astra-source-retention/output/RUNNER_INPUTS.json",
+      "jobs/astra-source-retention/output/SOURCES.jsonl",
+      "jobs/astra-source-retention/output/STATUS.json",
+      "jobs/astra-source-retention/output/SUMMARY.json",
+      "jobs/astra-source-retention/output/log.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-1.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-2.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-3.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-4.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-5.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-6.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-7.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-8.txt",
+      "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/selected-pages.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-1.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-2.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-3.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-4.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-5.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-6.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-7.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-8.txt",
+      "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/selected-pages.txt",
+      "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/page-3.txt",
+      "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/selected-pages.txt",
+      "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-1.txt",
+      "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-2.txt",
+      "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/selected-pages.txt",
+      "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/page-1.txt",
+      "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/selected-pages.txt",
+      "jobs/astra-source-retention/output/pdf/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7.pdf",
+      "jobs/astra-source-retention/output/pdf/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71.pdf",
+      "jobs/astra-source-retention/output/pdf/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f.pdf",
+      "jobs/astra-source-retention/output/pdf/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026.pdf",
+      "jobs/astra-source-retention/output/pdf/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa.pdf",
+      "jobs/kean/output/KEAN.md",
+      "jobs/kean/output/RUNNER_INPUTS.json",
+      "jobs/kean/output/STATUS.json",
+      "jobs/kean/output/SUMMARY.json",
+      "jobs/kean/output/log.txt"
+    ],
+    "runner_manifest_queue_hashes_match_reviewed_inputs": true
+  },
+  "verified_sources": [
+    {
+      "requested_for": [
+        "EO:11343"
+      ],
+      "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-170-Report.pdf",
+      "raw_sha256": "5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71",
+      "raw_bytes": 1810396,
+      "raw_pdf_page_count": 40,
+      "selected_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "page_text_pins": [
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-1.txt",
+          "bytes": 585,
+          "sha256": "afaeb6a080e27cc9879c239e6e28110e0ab103d93cd8e9074b620ab199d0646b",
+          "pdf_page": 1
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-2.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "pdf_page": 2
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-3.txt",
+          "bytes": 1169,
+          "sha256": "4ab7536557b08031351cc7c1a15437660d58befdb00cef0e5d0608247cecc5c7",
+          "pdf_page": 3
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-4.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "pdf_page": 4
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-5.txt",
+          "bytes": 2135,
+          "sha256": "7840078fe17f2ca453973c8460470ccd3a50870219df9221a060a4fec441cf0e",
+          "pdf_page": 5
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-6.txt",
+          "bytes": 3007,
+          "sha256": "8a527670905fce823cde527574c14caefdc50029cc0f526df507c9bd3a6368ff",
+          "pdf_page": 6
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-7.txt",
+          "bytes": 2249,
+          "sha256": "a4853600f248a1a045730cc946a5432027da793b8c6172732d5bc25dc751c60f",
+          "pdf_page": 7
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-8.txt",
+          "bytes": 2859,
+          "sha256": "d111112d0e223028d7df34697adf36483ec95bc6536e6f69bb7f118a90cd3e2a",
+          "pdf_page": 8
+        }
+      ],
+      "selected_text_path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/selected-pages.txt",
+      "selected_text_sha256": "7b95d18eec670d116b46b524d0d15dc8b89415685ddc2a012c7cd23adfd33493",
+      "generation_sha256": "a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144",
+      "document_identity_asserted": false,
+      "rendered_images": 0
+    },
+    {
+      "requested_for": [
+        "EO:12095"
+      ],
+      "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-189-Report.pdf",
+      "raw_sha256": "060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7",
+      "raw_bytes": 759760,
+      "raw_pdf_page_count": 20,
+      "selected_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "page_text_pins": [
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-1.txt",
+          "bytes": 434,
+          "sha256": "63cb7448775353512684fd8abcf6881e543680af1e65d5c88e7f5b1143e6b740",
+          "pdf_page": 1
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-2.txt",
+          "bytes": 137,
+          "sha256": "e6c432aee285654b9901739f7a8bd8df3abba214c80524351036dc78ef691220",
+          "pdf_page": 2
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-3.txt",
+          "bytes": 1465,
+          "sha256": "e62c60d14935ccd767af65b52f55f605f18fac09613461c4d7d14d699df638a2",
+          "pdf_page": 3
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-4.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "pdf_page": 4
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-5.txt",
+          "bytes": 2077,
+          "sha256": "cffc3ef31c112cb09b4f1a378a1d317557c2aa6753a1c506d3dec8b5e4322b0e",
+          "pdf_page": 5
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-6.txt",
+          "bytes": 2464,
+          "sha256": "35f294ae001f25f7b9608f283b82940a2c06b7f76cddb3aecce7ee0120ba90e3",
+          "pdf_page": 6
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-7.txt",
+          "bytes": 2652,
+          "sha256": "4b3ac43f4e9f5b4f048f33ea17d54ef170b0cb0bf75871bd650a6e41c6f7a42f",
+          "pdf_page": 7
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-8.txt",
+          "bytes": 2840,
+          "sha256": "c70bf2179f35847b1f0920fe32cce4b30e7078a5310cc38d59ef7c77e2206711",
+          "pdf_page": 8
+        }
+      ],
+      "selected_text_path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/selected-pages.txt",
+      "selected_text_sha256": "846647fc8a2a410934737174d0c60e8fdef2cf461e04d37a7de21305d9be55b2",
+      "generation_sha256": "e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97",
+      "document_identity_asserted": false,
+      "rendered_images": 0
+    },
+    {
+      "requested_for": [
+        "EO:13062"
+      ],
+      "url": "https://www.govinfo.gov/content/pkg/FR-1997-10-02/pdf/97-26364.pdf",
+      "raw_sha256": "9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026",
+      "raw_bytes": 156567,
+      "raw_pdf_page_count": 2,
+      "selected_pdf_pages": [
+        1,
+        2
+      ],
+      "page_text_pins": [
+        {
+          "path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-1.txt",
+          "bytes": 2994,
+          "sha256": "605424dfaffa101f53fbba8746cd3bebed0158a5c5158056d21280a0a7bc32de",
+          "pdf_page": 1
+        },
+        {
+          "path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-2.txt",
+          "bytes": 2061,
+          "sha256": "5dcaa4c88b50745a6f935318167d5fdd2ad98ee4c7f1272419db18cae5e1f82c",
+          "pdf_page": 2
+        }
+      ],
+      "selected_text_path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/selected-pages.txt",
+      "selected_text_sha256": "cc0c3e2c81ffad842e7d76bcc7a8b56d8a62a85bd737288bf09a55aa18191b1e",
+      "generation_sha256": "de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca",
+      "document_identity_asserted": false,
+      "rendered_images": 0
+    },
+    {
+      "requested_for": [
+        "EO:11026"
+      ],
+      "url": "https://www.govinfo.gov/content/pkg/FR-1962-06-15/pdf/FR-1962-06-15.pdf",
+      "raw_sha256": "7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f",
+      "raw_bytes": 35388126,
+      "raw_pdf_page_count": 32,
+      "selected_pdf_pages": [
+        3
+      ],
+      "page_text_pins": [
+        {
+          "path": "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/page-3.txt",
+          "bytes": 2223,
+          "sha256": "74eb2956b88b727937fe10cd1c97600ee079e59b60c72d48f07ca490b0691550",
+          "pdf_page": 3
+        }
+      ],
+      "selected_text_path": "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/selected-pages.txt",
+      "selected_text_sha256": "16554a66a9b41677a590735799407ff411dc43dbeb351cfede651f102f6692e3",
+      "generation_sha256": "71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9",
+      "document_identity_asserted": false,
+      "rendered_images": 0
+    },
+    {
+      "requested_for": [
+        "EO:9949"
+      ],
+      "url": "https://www.govinfo.gov/content/pkg/FR-1959-02-14/pdf/FR-1959-02-14.pdf",
+      "raw_sha256": "f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa",
+      "raw_bytes": 8975954,
+      "raw_pdf_page_count": 32,
+      "selected_pdf_pages": [
+        1
+      ],
+      "page_text_pins": [
+        {
+          "path": "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/page-1.txt",
+          "bytes": 5316,
+          "sha256": "58806e96ef4f4c980d696d92ad27076bf9245bbc1154f5d5ff1e43ea3c9b2c2f",
+          "pdf_page": 1
+        }
+      ],
+      "selected_text_path": "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/selected-pages.txt",
+      "selected_text_sha256": "0e2135a18c768de80e7a2b8b08652d27fdbaa49389386748283741f366798610",
+      "generation_sha256": "1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812",
+      "document_identity_asserted": false,
+      "rendered_images": 0
+    }
+  ],
+  "rendering_limit": {
+    "published_images_for_new_five_sources": 0,
+    "selected_pages_without_images": 20,
+    "reported_errors": [
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 1,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 2,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 3,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 4,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 5,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 6,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 7,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 8,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 1,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 2,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 3,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 4,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 5,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 6,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 7,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 8,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:13062"
+        ],
+        "pdf_page": 1,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:13062"
+        ],
+        "pdf_page": 2,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:11026"
+        ],
+        "pdf_page": 3,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      },
+      {
+        "requested_for": [
+          "EO:9949"
+        ],
+        "pdf_page": 1,
+        "error": "pdftoppm unavailable; retained PDF still needs visual review"
+      }
+    ],
+    "meaning": "pdftoppm was unavailable; no image hashes exist to validate. Retained PDFs still need visual/source examination.",
+    "empty_page_texts": [
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 2,
+        "text_path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-2.txt"
+      },
+      {
+        "requested_for": [
+          "EO:11343"
+        ],
+        "pdf_page": 4,
+        "text_path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-4.txt"
+      },
+      {
+        "requested_for": [
+          "EO:12095"
+        ],
+        "pdf_page": 4,
+        "text_path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-4.txt"
+      }
+    ],
+    "empty_text_notice": "Three selected page text blobs are present but empty; this is not proof those source pages contain no relevant material."
+  },
+  "prior_oversized_artifact_limit": "All committed prior retention artifact paths and object IDs are preserved and every catalogue raw path exists in Git. Root reports the separate run uploadoversized companion contained4smallfiles/50012bytes; this reviewer did not inspect that transient artifact and makes no global artifact-absence claim.",
+  "limits": [
+    "PDF structure/hash checks do not authenticate document identity or extraction fidelity.",
+    "Prior artifact preservation compared Git paths/object IDs; prior PDF bytes were not all independently rehashed.",
+    "No raw sources checked out and no root/shared sources modified; latest5PDF and25text blobs read from pinned Git objects.",
+    "An overly broad Git blob-size enumeration initially caused lazy fetching of prior blobs and was stopped; final preservation audit uses tree IDs without blob sizes.",
+    "Root retains authority to merge; this review grants custody-output scope only, no research conclusion or cost saving."
+  ],
+  "review_machine_seconds": 8.493490337999901,
+  "pins": [
+    {
+      "path": "jobs/astra-source-retention/output/pdf/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71.pdf",
+      "bytes": 1810396,
+      "sha256": "5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-1.txt",
+      "bytes": 585,
+      "sha256": "afaeb6a080e27cc9879c239e6e28110e0ab103d93cd8e9074b620ab199d0646b",
+      "pdf_page": 1
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-2.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pdf_page": 2
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-3.txt",
+      "bytes": 1169,
+      "sha256": "4ab7536557b08031351cc7c1a15437660d58befdb00cef0e5d0608247cecc5c7",
+      "pdf_page": 3
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-4.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pdf_page": 4
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-5.txt",
+      "bytes": 2135,
+      "sha256": "7840078fe17f2ca453973c8460470ccd3a50870219df9221a060a4fec441cf0e",
+      "pdf_page": 5
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-6.txt",
+      "bytes": 3007,
+      "sha256": "8a527670905fce823cde527574c14caefdc50029cc0f526df507c9bd3a6368ff",
+      "pdf_page": 6
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-7.txt",
+      "bytes": 2249,
+      "sha256": "a4853600f248a1a045730cc946a5432027da793b8c6172732d5bc25dc751c60f",
+      "pdf_page": 7
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/page-8.txt",
+      "bytes": 2859,
+      "sha256": "d111112d0e223028d7df34697adf36483ec95bc6536e6f69bb7f118a90cd3e2a",
+      "pdf_page": 8
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71/a8eaf3599d2bdb8dfcf23f7aa3a36cfb62004646924f62c9b9cf3d7323506144/selected-pages.txt",
+      "bytes": 12171,
+      "sha256": "7b95d18eec670d116b46b524d0d15dc8b89415685ddc2a012c7cd23adfd33493"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pdf/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7.pdf",
+      "bytes": 759760,
+      "sha256": "060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-1.txt",
+      "bytes": 434,
+      "sha256": "63cb7448775353512684fd8abcf6881e543680af1e65d5c88e7f5b1143e6b740",
+      "pdf_page": 1
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-2.txt",
+      "bytes": 137,
+      "sha256": "e6c432aee285654b9901739f7a8bd8df3abba214c80524351036dc78ef691220",
+      "pdf_page": 2
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-3.txt",
+      "bytes": 1465,
+      "sha256": "e62c60d14935ccd767af65b52f55f605f18fac09613461c4d7d14d699df638a2",
+      "pdf_page": 3
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-4.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pdf_page": 4
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-5.txt",
+      "bytes": 2077,
+      "sha256": "cffc3ef31c112cb09b4f1a378a1d317557c2aa6753a1c506d3dec8b5e4322b0e",
+      "pdf_page": 5
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-6.txt",
+      "bytes": 2464,
+      "sha256": "35f294ae001f25f7b9608f283b82940a2c06b7f76cddb3aecce7ee0120ba90e3",
+      "pdf_page": 6
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-7.txt",
+      "bytes": 2652,
+      "sha256": "4b3ac43f4e9f5b4f048f33ea17d54ef170b0cb0bf75871bd650a6e41c6f7a42f",
+      "pdf_page": 7
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/page-8.txt",
+      "bytes": 2840,
+      "sha256": "c70bf2179f35847b1f0920fe32cce4b30e7078a5310cc38d59ef7c77e2206711",
+      "pdf_page": 8
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7/e701fd044aeab84ab7a25ff99e6e3f908eaa74fb7a5cb29eb6431f6738279e97/selected-pages.txt",
+      "bytes": 12236,
+      "sha256": "846647fc8a2a410934737174d0c60e8fdef2cf461e04d37a7de21305d9be55b2"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pdf/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026.pdf",
+      "bytes": 156567,
+      "sha256": "9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-1.txt",
+      "bytes": 2994,
+      "sha256": "605424dfaffa101f53fbba8746cd3bebed0158a5c5158056d21280a0a7bc32de",
+      "pdf_page": 1
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/page-2.txt",
+      "bytes": 2061,
+      "sha256": "5dcaa4c88b50745a6f935318167d5fdd2ad98ee4c7f1272419db18cae5e1f82c",
+      "pdf_page": 2
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026/de0029c82d06dc29531172694d9aa0f65270f196a113216453c6359691b970ca/selected-pages.txt",
+      "bytes": 5096,
+      "sha256": "cc0c3e2c81ffad842e7d76bcc7a8b56d8a62a85bd737288bf09a55aa18191b1e"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pdf/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f.pdf",
+      "bytes": 35388126,
+      "sha256": "7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/page-3.txt",
+      "bytes": 2223,
+      "sha256": "74eb2956b88b727937fe10cd1c97600ee079e59b60c72d48f07ca490b0691550",
+      "pdf_page": 3
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f/71c3d93e4303248e4844054bf0dca1ecb82222bb9ce0046de50e3534f0c3c8e9/selected-pages.txt",
+      "bytes": 2243,
+      "sha256": "16554a66a9b41677a590735799407ff411dc43dbeb351cfede651f102f6692e3"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pdf/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa.pdf",
+      "bytes": 8975954,
+      "sha256": "f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/page-1.txt",
+      "bytes": 5316,
+      "sha256": "58806e96ef4f4c980d696d92ad27076bf9245bbc1154f5d5ff1e43ea3c9b2c2f",
+      "pdf_page": 1
+    },
+    {
+      "path": "jobs/astra-source-retention/output/pages/f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa/1bd9d027cdb115c942073bfc20e75072e136ac997eb1aab4e9c4a9d10fbe0812/selected-pages.txt",
+      "bytes": 5336,
+      "sha256": "0e2135a18c768de80e7a2b8b08652d27fdbaa49389386748283741f366798610"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/SUMMARY.json",
+      "bytes": 651,
+      "sha256": "98ede119f5bbe6d4a3c8d5380e7ff6aaeb81e17879a85ec511dc794035e3aa24"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/STATUS.json",
+      "bytes": 578,
+      "sha256": "c42fca355a770d2416b6826302f43f19694d9e3445054b86667eaa581c556ee1"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/RUNNER_INPUTS.json",
+      "bytes": 123030,
+      "sha256": "54331e7a055bd0304166c553a2db44409b6789ac4b6990c1874db800e0e80fe7"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/SOURCES.jsonl",
+      "bytes": 266503,
+      "sha256": "ac24bc4938e32b587f75b206fe1cfc23844e32d0857e57736fd00f0a0a8d0ed9"
+    },
+    {
+      "path": "jobs/astra-source-retention/output/RESULTS.json",
+      "bytes": 1060961,
+      "sha256": "0d5c71746f4b5efff3d5dd685d64b035717b124372d08f7e91cb19528e9d78a3"
+    }
+  ]
+}
