@@ -8,8 +8,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PAGE = HERE.parent / 'dashboard' / 'index.html'
-START = '<script type="application/json" id="eo-tier-assessment">'
-END = '</script><!-- /eo-tier-assessment -->'
+START = '/* eo-tier-assessment */'
+END = '/* /eo-tier-assessment */'
 
 
 def main():
