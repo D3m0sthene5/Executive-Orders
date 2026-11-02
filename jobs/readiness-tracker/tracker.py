@@ -413,37 +413,8 @@ def machine_search_record(i, search):
 
 
 def confirmation_rejection(c, index, root):
-    """Why a working-text confirmation cannot count, or None when it counts."""
-    if (c.get("schema") != CONFIRMATION_SCHEMA or not isinstance(c.get("instrument_id"), str)
-            or c.get("method") not in CONFIRMATION_METHODS):
-        return "malformed_record_or_unknown_schema_or_method"
-    if c.get("acceptable_as_original") is not False:
-        return "acceptable_as_original_not_false"
-    if c.get("grade") not in W.GRADES:
-        return "grade_not_a_working_text_grade"
-    if c.get("confirmed") is not True:
-        return "not_confirmed"
-    if c.get("identity_confirmed") is not True:
-        return "identity_not_confirmed"
-    if c.get("complete_text_confirmed") is not True:
-        return "complete_text_not_confirmed"
-    matches = [r for r in index.by_sha.get(W.source_sha({"sha256": c.get("sha256")}) or "", [])
-               if all(r.get(k) == c.get(k) for k in PINNED_FIELDS)]
-    if not matches:
-        return "pinned_fields_match_no_loaded_fragment"
-    # Fail closed: a page check is required unless both the confirmation and every matching fragment say it is not.
-    if ((c.get("requires_page_check") is not False or any(r["requires_page_check"] for r in matches))
-            and c.get("pages_confirmed") is not True):
-        return "pages_not_confirmed_but_page_check_required"
-    if any(r.get("complete_text") is False for r in matches):
-        return "fragment_declares_text_incomplete"
-    try:
-        raw = W._child(root, c["text_path"]).read_bytes()
-    except (OSError, ValueError, KeyError):
-        return "text_file_missing_or_hash_mismatch"
-    if hashlib.sha256(raw).hexdigest() != c.get("text_sha256"):
-        return "text_file_missing_or_hash_mismatch"
-    return None
+    """Keep text-step counting and claim-kit reuse on the same source-bound rule."""
+    return W.confirmation_rejection(c, index, root)
 
 
 def counting_confirmations(root, jobs, index):

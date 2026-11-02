@@ -132,7 +132,7 @@ def blank_sheet(dossier, agent=""):
     refs = [r.get("source", {}) for r in _records(dossier).values()
             if isinstance(r, dict) and r.get("source", {}).get("acceptable_as_original") is False]
     if refs:
-        sheet["working_text"] = W.blank(refs)
+        sheet["working_text"] = W.blank(refs, dossier.get("working_text_confirmation"))
     return sheet
 
 
@@ -324,6 +324,17 @@ def _check_claim(claim, repo, dossier=None):
             representation = claim.get("original_representation")
             if not isinstance(representation, dict) or _reference_id(representation) != dossier.get("original_source_id"):
                 errors.append("original_source_id_mismatch")
+            prior = dossier.get("working_text_confirmation")
+            if prior is not None:
+                try:
+                    W.require_current_confirmation(dossier, repo)
+                except ValueError:
+                    errors.append("working_text:prior_confirmation_stale")
+                confirmed = (claim.get("working_text") or {}).get("confirmations", [])
+                expected = [c for c in confirmed if isinstance(c, dict) and c.get("prior_confirmation") == prior]
+                if len(expected) != 1 or expected[0] != next((c for c in W.blank(
+                        [dossier["evidence"][dossier["original_source_id"]]["source"]], prior)["confirmations"]), None):
+                    errors.append("working_text:prior_confirmation_changed")
 
     clauses = claim.get("operative_clauses", [])
     if isinstance(clauses, list):
@@ -427,6 +438,11 @@ def _assemble(sheet, dossier, repo):
                               ("source_grade", "kind", "role", "type", "origin"))
     provisional = original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False
     if provisional:
+        if dossier.get("working_text_confirmation") is not None:
+            try:
+                W.require_current_confirmation(dossier, repo)
+            except ValueError:
+                errors.append("working_text:prior_confirmation_stale")
         if original.get("grade") not in W.GRADES or original.get("acceptable_as_original") is not False:
             errors.append("lead_is_not_original:working_text_grade_required")
         if not isinstance(sheet.get("working_text"), dict):

@@ -1,7 +1,7 @@
 """Persistent and in-process reuse of the fragment-provider Index (working_text.Index).
 
-working_text.py is a pinned compiler file, so it is not touched. This module returns a genuine
-working_text.Index. Parsing ~230 MB of FRAGMENTS*.jsonl and resolving ~30k text paths took ~7.5 s per
+This module returns a genuine working_text.Index and is pinned with working_text.py in both
+compiler and direct batch policy fingerprints. Parsing ~230 MB of FRAGMENTS*.jsonl and resolving ~30k text paths took ~7.5 s per
 process; here the parsed raw original_representation rows are cached outside the repository, keyed by
 the COMPLETE provider inventory (repo-relative path, byte size, sha256 of every matched file, re-globbed
 and re-hashed on every use; never mtimes). The filesystem-dependent resolution (both candidate text
@@ -334,9 +334,10 @@ def policy_index(repo):
     assemble.check_claim calls working_text.policy(claim, repo) without an index, so every checked
     claim rebuilt the complete provider index (about 8 s each). Inside this context the default index
     is shared(repo), which re-hashes the complete provider inventory and re-checks every consulted
-    text path and its resolution on each call, so the result equals a fresh construction. assemble.py and
-    working_text.py stay byte-identical (both are in the compiler fingerprint); an explicit index
-    argument is never replaced, and the original function is restored on exit.
+    text path and its resolution on each call, so the result equals a fresh construction.
+    Standalone-confirmation matching also calls shared() by default, covering assembly checks
+    outside this context. An explicit index argument is never replaced, and the original
+    function is restored on exit.
     """
     original = W.policy
 

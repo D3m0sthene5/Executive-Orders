@@ -16,6 +16,7 @@ from excavate import segment, own_terms, acting_provision, discover_mentions, ch
 from assemble import blank_sheet, canonical_sha, assemble
 from lifecycle_obligations import obligations
 import working_text as W
+import fragment_cache
 
 CUTOFF = '2026-10-14'
 
@@ -178,7 +179,7 @@ def unlocated_reason(source_event):
     if proposal.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
     return TARGET_NOT_LOCATED
 
-def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None):
+def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None, prior_confirmation=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
     evidence={}
@@ -269,6 +270,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
         'missing':sorted(set(missing)),
         'lifecycle_obligations':obligations(iid, clauses, terms, acts),
         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
+    if prior_confirmation is not None:
+        dossier['working_text_confirmation']=prior_confirmation
     if iid in corpus.get('status_histories',{}):
         dossier['status_history']=corpus['status_histories'][iid]
     if corpus.get('factual_obligations',{}).get(iid):
@@ -464,6 +467,8 @@ def build(repo, out, cache=None):
     for target,actor,_ in pairs:known_actors_by[target].add(actor)
     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
+    confirmation_records=W.load_confirmations(repo)
+    confirmation_index=fragment_cache.shared(repo) if confirmation_records else None
     families=collections.defaultdict(set)
     index=[]
     with ShardedJsonl(out/'CLAUSES.jsonl') as cf, ShardedJsonl(out/'OWN_TERMS.jsonl') as tf, ShardedJsonl(out/'ACTING_PROVISIONS.jsonl') as af, ShardedJsonl(out/'CHAINS.jsonl') as chf, ShardedJsonl(out/'STATUS_LEADS.jsonl') as sf, ShardedJsonl(out/'OVERLAY_INPUTS.jsonl') as of:
@@ -484,16 +489,19 @@ def build(repo, out, cache=None):
                 families['source:'+str(src.get('sha256') or src.get('url'))].add(iid)
             chain_rec=chain(iid,acts,generic_refs_excluded=generic_total)
             line(chf,chain_rec)
+            original=selected.get(iid,{}).get('source',{})
+            prior=W.matching_confirmation(original,repo,confirmation_records,confirmation_index) if confirmation_records else None
             if iid not in corpus['statuses']:
                 draft=corpus['drafts'].get(iid,{})
                 search_ids={s.get('search_id') for s in draft.get('_draft',{}).get('proposals',{}).get('later_source_search_machine',[])}
                 line(of,{'schema':'eo-claim-kit-overlay-input/v1','instrument_id':iid,
+                         **({'working_text_confirmation':prior} if prior is not None else {}),
                          'selected':{k:v for k,v in selected[iid].items() if k!='text'} if iid in selected else None,
                          'draft':draft,'machine_searches':{k:v for k,v in corpus['machine_searches'].items() if k in search_ids},
                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
+            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
             name=filename(iid)
             dump(out/'dossiers'/(name+'.json'),dossier)
             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))

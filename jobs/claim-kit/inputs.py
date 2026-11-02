@@ -23,7 +23,7 @@ from collections import defaultdict
 
 UNIVERSE = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
 COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
-                  "assemble.py", "act_overrides.py", "lifecycle_obligations.py", "working_text.py", "population.py", "factual_events.py",
+                  "assemble.py", "fragment_cache.py", "act_overrides.py", "lifecycle_obligations.py", "working_text.py", "population.py", "factual_events.py",
                   "../clause-drafts/segment.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")

@@ -1,3 +1,12 @@
+## 2026-11-02 ET: exact confirmed-text reuse and existing-cache integration
+
+- **Done:** Lachmann confirmations now flow into fresh ordinary decided/undecided dossiers and sheets, preserving provisional grades/replacement/quote-recheck obligations and scientific gates. Exact records/fragments/source versions and negative agent overrides revalidated on preparation/loading/direct policy. Kean F-20261102-lachmann-reuse; report, native initial/final replays, code/artifact pins and both independent reviews in research/progress/lachmann-verified-text-reuse/.
+- **Integration repair:** Root caught repeated fresh source-index construction in initial correctness-approved patch. Final route uses existing fragment_cache.shared; every use rehashes provider inventory and revalidates lexical/path witnesses; confirmation/text bytes stay fresh. Cache helper joins compiler/direct-policy fingerprints. Measured native fixture14 genuine constructions becomes1, not a corpus runtime/model saving.
+- **Validation:**524 claim-kit tests(7 disclosed skips),54 tracker,46 Lachmann;41 independent probes, including stale sealed packet, helper/source/fragment mutation, path escape and negative override. Final fresh EO1079 build/prepare/apply emits0 claims. Separate configured gpt-6.1-sol engineering review approves; full token/cash/labor unknown. No source/legal/human certification.
+- **State:** Root PR125 population contract and PR126 Cruden merged. PR127 exact source requests prepared; source acquisition/compiler generation still require native results. Root maintains scoped merge authority from resumed owner request; no standing future permission inferred.
+- **Next:** Land reviewed combined route after hosted checks, run existing retention and native production, inspect exact receipts; archived actor/demo packets remain historical and must never be renewed by hand.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: recover existing source handoffs and prepare exact retention
 
 - **Done:** Existing source_supplement route demonstrated on four Erasmus targets; no replacement runtime. Fresh native-v2 supplies PLO1704 to EO8129/8163 and Proc2416 to EO8163 with18 source pins. Initial missing-Proc replay/report mismatch is retained and corrected; old packets not renewed.34 focused tests+8 independent refusal probes pass. All4 unresolved/0 claims/0 statuses. Kean F-20261102-held-actor-handoff; report/pins in research/progress/held-actor-handoff-2026-11-02/.

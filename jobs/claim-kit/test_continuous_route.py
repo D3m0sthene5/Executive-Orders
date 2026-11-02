@@ -36,6 +36,23 @@ class ContinuousRouteTests(unittest.TestCase):
         self.assertEqual(kit.load_dossier(self.out,'EO:1',self.repo),ds['EO:1'])
         self.assertIn('one investigation',(folder/'READ.md').read_text())
 
+    def test_undecided_reuses_exact_confirmation_and_refuses_later_negative_review(self):
+        self.fixture.fixture.confirmed_derivative('EO:1')
+        self.fixture.fixture.run_build()
+        folder=self.prepare();packet,ds=batch.load_packet(folder,self.repo)
+        prior=ds['EO:1']['working_text_confirmation']
+        self.assertIsNone(ds['EO:1']['whole_order_status'])
+        row=batch.rows(folder/'decisions.csv')[0]
+        self.assertTrue(json.loads(row['working_text'])['confirmations'][0]['identity_confirmed'])
+        self.assertEqual(row['approved'],'false')
+        c=dict(prior['record'],method='agent',confirmed=False)
+        from test_build import write_jsonl
+        write_jsonl(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',[c])
+        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+            batch.load_packet(folder,self.repo)
+        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+            O.validate_evidence(self.repo,json.loads((self.repo/packet['undecided_evidence']['EO:1']['path']).read_bytes()))
+
     def test_changed_frozen_input_and_wrong_reservation_are_rejected(self):
         folder=self.prepare();packet,_=batch.load_packet(folder,self.repo)
         evidence=self.repo/packet['undecided_evidence']['EO:1']['path']
