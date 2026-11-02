@@ -144,7 +144,7 @@
       "text": "Executive Orber.\nAll employees of plants commandeered by the Ordnano Jeputnient and\nall employees under agency contracts, either for the construction or for the\nconstruction and operation of Ordnance plants, are hereby excepted from the\nprovisions of the civil service act and rules.\nWOODROW WILSON\nTHE~ WHITE ROUSE,\n19 March., 1918.\n[No. 2822]\nCx t ««\n/L\nk ' :' .."
     }
   },
-  "fingerprint": "a956cb4e8f8447150326088ce2741ada44a6833e6468d07af93953fb6f9ef4bd",
+  "fingerprint": "546861d53a951535ab1f7bf146702023121fc5f70928f32b2b1fac8cae2cb365",
   "instrument_id": "EO:2822",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -201,6 +201,19 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "coverage_warning": "no personal name parsed from the order's title, WPA summary or held text",
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
@@ -224,5 +237,73 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl",
+        "grade": "archival_replica_scan_pending_codebook",
+        "instrument_id": "EO:2822",
+        "requires_page_check": true,
+        "sha256": "e05e54895f074a31d1a3d66a4469034629792a11032ae494b57c4be8d7ba54d3",
+        "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2822.txt",
+        "text_sha256": "d7438b25e4603b8c0e6a37f2131c1b1ab7a0bb9378639ba4b9109b7afbad7891",
+        "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1918-eo-2822"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "signature",
+          "start_kind": "number_heading"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "., 1918. [No. 2822] Cx t «« /L k ' :' ..",
+        "identity_detail": {},
+        "identity_route": "a_number_and_date",
+        "last_cue_snippet": "WOODROW WILSON",
+        "matched_date": "19 March., 1918",
+        "matched_number": "No. 2822",
+        "pages_detail": {
+          "first_page_match": "No. 2822",
+          "page_text_available": false,
+          "pages": 1,
+          "pdf_file": "PT1-1918-EO-2822.pdf",
+          "text_source": "layer"
+        },
+        "register_date": "1918-03-19",
+        "register_number": "2822",
+        "similarity": [],
+        "skipped_witnesses": [],
+        "text_chars": 365
+      },
+      "grade": "archival_replica_scan_pending_codebook",
+      "identity_confirmed": true,
+      "instrument_id": "EO:2822",
+      "method": "machine",
+      "pages_confirmed": true,
+      "reasons": [],
+      "requires_page_check": true,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "e05e54895f074a31d1a3d66a4469034629792a11032ae494b57c4be8d7ba54d3",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2822.txt",
+      "text_sha256": "d7438b25e4603b8c0e6a37f2131c1b1ab7a0bb9378639ba4b9109b7afbad7891",
+      "witnesses": [
+        {
+          "grade": "archival_replica_scan_pending_codebook",
+          "producer": "pinakes-proquest-ingest",
+          "sha256": "e05e54895f074a31d1a3d66a4469034629792a11032ae494b57c4be8d7ba54d3",
+          "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2822.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }

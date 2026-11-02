@@ -30,19 +30,19 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 ## Owner decisions not yet carried out by the tools (3)
 
 - **D-20261021-transcriptions** (partly wired): A labeled transcription (APP, Richardson, CSC reports, HathiTrust, Wikisource, or the owner's ProQuest scans) may satisfy the text step provisionally; originals remain the goal and nothing becomes acceptable_as_original. A claim-kit grade-inference bug labeled 1,824 of 3,403 dossiers' transcriptions 'derivative_lead', which the working-text gate rejects; fixed in jobs/claim-kit/inputs.py, effective after claim-kit regenerates.
-- **D-20261031-jacquard** (partly wired): For X1 spent and swept classes, a pre-defined lot's provisional NO statuses may be adopted from a random sample with planted errors, zero misses allowed, 59 orders (95% upper bound 5%) or every order in small classes; flagged outliers go to individual review; adoption by owner-merged PR; statuses p… Built and run on claude/jacquard-loom; 174 statuses await owner merge; no lot passed yet
-- **D-20261031-working-text-step** (partly wired): When a standalone check confirms an order's working text (right order, complete text, pages checked) before any claim exists, the tracker may mark the text step done provisionally, counted separately and never as an original; grade label and replace-and-recheck note carry over; claims reuse the con… On claude/lachmann-collation (PR pending); tracker regenerates on main after merge
+- **D-20261031-jacquard** (partly wired): For X1 spent and swept classes, a pre-defined lot's provisional NO statuses may be adopted from a random sample with planted errors, zero misses allowed, 59 orders (95% upper bound 5%) or every order in small classes; flagged outliers go to individual review; adoption by owner-merged PR; statuses p… PR119 merged 888 individual NOs (4,291 total); no sampled lot passed. PR125 pins reconciled.
+- **D-20261031-working-text-step** (partly wired): When a standalone check confirms an order's working text (right order, complete text, pages checked) before any claim exists, the tracker may mark the text step done provisionally, counted separately and never as an original; grade label and replace-and-recheck note carry over; claims reuse the con… PR120 merged 1,674 confirmations; PR128 exact reuse passes. Final main refresh pending.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 103; `search` finds the rest)
+## Newest results (6 of 108; `search` finds the rest)
 
 - 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
+- 2026-11-02 F-20261102-lachmann-reuse **worked**: Reuse exact standalone Lachmann working-text checks in ordinary claim-kit preparation Lesson: Reuse only the current exact source-bound confirmation; a changed record or declaration needs a new packet. Text verification never approves legal judgment or original authentication.
+- 2026-11-02 F-20261102-held-actor-retained-replay **worked**: Use newly retained raw PDFs in a fresh final-runtime four-order supplement replay Lesson: Fresh exact-byte evidence access is useful preparation, never proof that an instrument applies or ends a command
 - 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
 - 2026-11-02 F-20261102-erasmus-retention-prepared **partly worked**: Resolve board-report and missing-raw prerequisites through existing queued retention Lesson: Separate metadata leads from retained raw custody; use ordinary queued acquisition and never widen held_text_lead policy to unlock cases
 - 2026-11-02 F-20261102-erasmus-retention-native **worked**: Execute existing queued retention on five exact missing raw sources and independently audit published custody Lesson: Verify actual committed bytes and append-only custody; extraction does not establish page examination or legal endings
-- 2026-11-02 F-20261102-cruden-table-recovery **worked**: Recover bounded opt-in Cruden table-cell lookup and compare unchanged legacy routes Lesson: Expose source-bound table leads separately; preserve conservative ordinary lookups and do not infer legal effect
-- 2026-11-02 F-20261101-geddes-native **partly worked**: Verify repaired Geddes on full held corpus Lesson: Keep raw native receipt and distinguish true warnings from false positives.
 
-Register: 18 owner decisions, 2 answered questions, 103 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 108 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

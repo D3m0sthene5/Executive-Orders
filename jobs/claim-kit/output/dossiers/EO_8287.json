@@ -242,7 +242,7 @@
       "text": "Chase, senior ordnance engineer, Navy Department, who was exempted from compulsory retirement for age for a period of one year by Executive Order No. 8011 of November 19, 1938, be further exempted from such compulsory retirement for a period of one year:"
     }
   },
-  "fingerprint": "7cf6da0947277a07a28f10daeb2e7ac4cfd09b7a4a06726c016be354cc7bf100",
+  "fingerprint": "b2b653e9b9146ab036b6c303dbe16405d869cf8e4e942330b45b900180d5f421",
   "instrument_id": "EO:8287",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -307,6 +307,18 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
@@ -334,5 +346,77 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8287",
+        "requires_page_check": true,
+        "sha256": "76a768a38a95118fb91130eb320d04d357f72f969b947c1e2aea79a85643a15c",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8287-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "99af396b8ef505d60fbb63474c2ab95fc1530105f22a1e1322f044f9dc32c34f",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8287-exemption-arthur-h-chase-from-compulsory-retirement-for-age"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "signature",
+          "start_kind": "title_words"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Arthur H. Chase, seni",
+        "identity_detail": {
+          "source_heading": "Executive Order 8287—Exemption of Arthur H. Chase From Compulsory Retirement for Age",
+          "source_heading_producer": "app-executive-orders",
+          "title_overlap_body_opening": 0.8333,
+          "title_overlap_heading": 1.0
+        },
+        "identity_route": "source_heading",
+        "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+        "matched_date": "November 18, 1939",
+        "matched_number": null,
+        "pages_detail": {
+          "app_date": "1939-11-18",
+          "app_heading": "Executive Order 8287—Exemption of Arthur H. Chase From Compulsory Retirement for",
+          "app_subject_overlap": 0.8333
+        },
+        "register_date": "1939-11-18",
+        "register_number": "8287",
+        "similarity": [],
+        "skipped_witnesses": [],
+        "source_heading": "Executive Order 8287—Exemption of Arthur H. Chase From Compulsory Retirement for Age",
+        "text_chars": 684
+      },
+      "grade": "mirror_transcription",
+      "identity_confirmed": true,
+      "instrument_id": "EO:8287",
+      "method": "machine",
+      "pages_confirmed": true,
+      "reasons": [],
+      "requires_page_check": true,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "76a768a38a95118fb91130eb320d04d357f72f969b947c1e2aea79a85643a15c",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/app-executive-orders/output/texts/executive-order-8287-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt",
+      "text_sha256": "99af396b8ef505d60fbb63474c2ab95fc1530105f22a1e1322f044f9dc32c34f",
+      "witnesses": [
+        {
+          "grade": "mirror_transcription",
+          "producer": "app-executive-orders",
+          "sha256": "76a768a38a95118fb91130eb320d04d357f72f969b947c1e2aea79a85643a15c",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-8287-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }

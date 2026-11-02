@@ -242,7 +242,7 @@
       "text": "Armstrong from compulsory retirement for age for a period of one year ending January 31, 1940."
     }
   },
-  "fingerprint": "c6114c521bb38c86fd2c1583feb2359ea9f86d2441d5b50d6912cd67ab624152",
+  "fingerprint": "a98cb6202f1933515a63291d4d4d23ec4f821ef396adc96d76358028fe774690",
   "instrument_id": "EO:8032",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -306,6 +306,18 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
@@ -335,5 +347,77 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8032",
+        "requires_page_check": true,
+        "sha256": "46e40da542fe20a6eb37efad4977fd094acf21502ceaf0bfb6e5be1be8c57541",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8032-exemption-mrs-cora-m-armstrong-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "d421da99a5b647ba8c14be4a100d12667e97d41f66a37c231ccc7aacc17b93d4",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8032-exemption-mrs-cora-m-armstrong-from-compulsory-retirement-for-age"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "signature",
+          "start_kind": "title_words"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Mrs. Cora M. Armstron",
+        "identity_detail": {
+          "source_heading": "Executive Order 8032—Exemption of Mrs. Cora M. Armstrong From Compulsory Retirement For Age",
+          "source_heading_producer": "app-executive-orders",
+          "title_overlap_body_opening": 0.8571,
+          "title_overlap_heading": 1.0
+        },
+        "identity_route": "source_heading",
+        "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+        "matched_date": "January 10, 1939",
+        "matched_number": null,
+        "pages_detail": {
+          "app_date": "1939-01-10",
+          "app_heading": "Executive Order 8032—Exemption of Mrs. Cora M. Armstrong From Compulsory Retirem",
+          "app_subject_overlap": 0.8571
+        },
+        "register_date": "1939-01-10",
+        "register_number": "8032",
+        "similarity": [],
+        "skipped_witnesses": [],
+        "source_heading": "Executive Order 8032—Exemption of Mrs. Cora M. Armstrong From Compulsory Retirement For Age",
+        "text_chars": 721
+      },
+      "grade": "mirror_transcription",
+      "identity_confirmed": true,
+      "instrument_id": "EO:8032",
+      "method": "machine",
+      "pages_confirmed": true,
+      "reasons": [],
+      "requires_page_check": true,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "46e40da542fe20a6eb37efad4977fd094acf21502ceaf0bfb6e5be1be8c57541",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/app-executive-orders/output/texts/executive-order-8032-exemption-mrs-cora-m-armstrong-from-compulsory-retirement-for-age.txt",
+      "text_sha256": "d421da99a5b647ba8c14be4a100d12667e97d41f66a37c231ccc7aacc17b93d4",
+      "witnesses": [
+        {
+          "grade": "mirror_transcription",
+          "producer": "app-executive-orders",
+          "sha256": "46e40da542fe20a6eb37efad4977fd094acf21502ceaf0bfb6e5be1be8c57541",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-8032-exemption-mrs-cora-m-armstrong-from-compulsory-retirement-for-age.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }
