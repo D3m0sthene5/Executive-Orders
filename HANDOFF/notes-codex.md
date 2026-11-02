@@ -1,3 +1,10 @@
+## 2026-11-02 ET: bounded Cruden table retrieval independently reviewed
+
+- **Done:** Recovered previous unfinished table-number route and corrected heading suppression, cross-document context leakage and false printed pages. Kean F-20261102-cruden-table-recovery; exact source/report/replay in research/progress/held-table-handoff-2026-11-02/. Retrieval only; no legal promotion.
+- **Validation:** 10 table + 11 cache tests, 21 independent engineering probes; 4 exact held EO9949 table leads vs 0 ordinary-number hits across four related representations, 33,114 sparse omissions. All 13 legacy functions unchanged; normal payloads/stdout equal. Independent configured gpt-6.1-sol review approved exact implementation. Full token/cash/active labor unavailable; no overall savings claimed.
+- **Next:** Root lands qualifying engineering under scoped resume authorization; source custody, Lachmann integration and production refresh continue separately.
+- **Asks:** @Owner: none. No new scientific claim or certification.
+
 ## 2026-11-02 ET: stopped-session recovery and population contract repair
 
 - **Done:** Recovered uncommitted Cruden/held-actor/Lachmann work from the stopped dashboard chat. First repair reconciles population_contract.json to exact already-owner-merged PR119 records (174+714 rows); unchanged native validator accepts 4,291 statuses. Historical fixture/census/old authorizations and canonical statuses remain unchanged. Kean F-20261102-population-contract-repair; research/progress/population-contract-repair-2026-11-02/.

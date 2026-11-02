@@ -7,6 +7,7 @@ script path. No dependencies beyond the standard library are required.
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py lookups PACKET_DIR
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py number EO:10673 EO:10772 --write /tmp/number-results.json
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py literal "Fitness of American Youth" --write /tmp/name-results.json
+python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py table-number EO:9949 --write /tmp/table-leads.json
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py search 'Executive\s+Order.*10673'
 ```
 
@@ -28,6 +29,28 @@ matches per query per file, with full match counts and explicit truncation. Use
 `--write`, the complete JSON, including the source inventory, goes to stdout.
 `search` is the unchanged uncached regex full scan with its original stdout and
 three-match-per-file behavior; it does not produce the new coverage companion.
+
+`table-number` is a separate opt-in lead route. It uses the same held-text
+snapshot and decimal postings, then accepts a bare-number cell only under a
+`No. Subject` heading preceded by the explicit "following Executive Orders,
+and any amendments thereto, are revoked" introduction. The row must start
+with the complete queried 3–5 digit number (and exact optional attached or
+hyphenated uppercase letter suffix) followed
+on that line by an alphabetic subject. It refuses prose mentions, number-only
+split columns, embedded/neighboring numbers and parent/suffix collisions. It
+returns up to three rows per source with full matching counts, source hash,
+exact number, row, subject, heading and revocation-introduction spans. Repeated
+headings inherit context until a recognized signature, White House line, filing,
+editorial note, billing code or new numbered order/proclamation heading; a later
+explicit introduction can start a new table. These are bounded layout heuristics,
+not a general table parser: unknown document boundaries, wrapped subjects and
+OCR errors still require complete-source inspection. Physical PDF page is returned
+only for a valid held page marker, and printed page only for an explicit
+`<page> Federal Register` header near that marker. A source without page markers
+reports null pages and a table-section ordinal, which is not a physical page.
+The complete source must still be checked; a table lead is not an ACT conclusion
+or automatic closure. This route does not alter `lookups`, `number`, `literal`,
+`search`, or the cached feature format.
 
 The searched universe remains exactly the existing sorted
 `jobs/*/output/texts/**/*.txt` discovery, excluding `clause-drafts`. No sources are
@@ -71,4 +94,5 @@ Focused synthetic checks:
 
 ```
 python3 -I research/excavator/claude-nira-sweep-2026-10-29/test_cruden_cache.py
+python3 -I research/excavator/claude-nira-sweep-2026-10-29/test_cruden_table.py
 ```
