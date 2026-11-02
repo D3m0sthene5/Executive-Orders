@@ -1,3 +1,12 @@
+## 2026-11-02 ET: stopped-session recovery and population contract repair
+
+- **Done:** Recovered uncommitted Cruden/held-actor/Lachmann work from the stopped dashboard chat. First repair reconciles population_contract.json to exact already-owner-merged PR119 records (174+714 rows); unchanged native validator accepts 4,291 statuses. Historical fixture/census/old authorizations and canonical statuses remain unchanged. Kean F-20261102-population-contract-repair; research/progress/population-contract-repair-2026-11-02/.
+- **Validation:** 18 population regressions and 507 complete claim-kit tests pass (5 skips); independent configured gpt-6.1-sol review approves 24 exact pins and 13 real-data refusal probes. Exact private token/cash/active labor totals unavailable. No scientific adoption or readiness increase inferred.
+- **Running:** Recovery workstreams use isolated checkouts; root owns integration and qualifying merges under the owner's prior-chat authorization, explicitly resumed here after stopping the old run. Fresh production run will follow validated repairs; no new run dispatched yet.
+- **Next:** Merge first repair after hosted checks, integrate independently reviewed Cruden and Lachmann changes, demonstrate existing source supplements and finish board-report custody requests.
+- **Asks:** @Owner: none. Standing future-merge question remains separate from this scoped authorization.
+- **Do not:** renew old packet fingerprints, turn diagnostic/source access into legal approval, or edit canonical statuses/claims to evade the contract.
+
 ## 2026-10-31 UTC: revised R1-R4 integrated and coordinated production verified
 
 - **Merged:** PR117 combines exact R1/112, R2/115, R3/114 and R4/113 pins with independent engineering review. Implementation source8cd1f539; mergee00fffbd. Each extends its existing route; no replacement production/scientific framework.
