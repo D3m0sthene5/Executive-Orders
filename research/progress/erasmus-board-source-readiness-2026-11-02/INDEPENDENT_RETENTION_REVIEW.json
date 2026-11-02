@@ -1,0 +1,220 @@
+{
+  "schema": "eo-retention-integration-engineering-review/v1",
+  "verdict": "approve_existing_bounded_queued_fetcher_preparation",
+  "reviewed_commit": "337f3d968b3139e55549aff2519afaa4cbff97b7",
+  "queue_comparison_base": "f07b023133640f288fd44c10c5176888c49f23e2",
+  "reviewer": "Separate OpenAI agent context; independent of root queue/default integration. Previously reviewed actor artifacts; no legal review. Exact model/tokens/cash unavailable.",
+  "scope": "Approve exact current queue/default manifest as inputs for the existing bounded retention fetcher. This is no source-content, source-grade, legal-effect, identity, readiness, certification or scientific-adoption approval. Reviewer did not dispatch acquisition.",
+  "queue_checks": {
+    "old_prefix_bytes": 594878,
+    "old_prefix_sha256": "bf03a49c897da7599cac7aa735c0bbc3f4797b7b64ce5e1cec8019ac4da8386a",
+    "all_old_bytes_preserved": true,
+    "new_bytes": 597251,
+    "appended_bytes": 2373,
+    "appended_rows": 4,
+    "append_matches_exact_board2_then_actor2_proposals": true,
+    "new_pairs_absent_from_base_and_occur_once_now": [
+      [
+        "EO:11343",
+        "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-170-Report.pdf"
+      ],
+      [
+        "EO:12095",
+        "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-189-Report.pdf"
+      ],
+      [
+        "EO:11026",
+        "https://www.govinfo.gov/content/pkg/FR-1962-06-15/pdf/FR-1962-06-15.pdf"
+      ],
+      [
+        "EO:9949",
+        "https://www.govinfo.gov/content/pkg/FR-1959-02-14/pdf/FR-1959-02-14.pdf"
+      ]
+    ],
+    "EO13062_pair_reused_from_base_once": true,
+    "exact_four_request_retry": "Original request_contract.enqueue_requests accepted all4 as valid; Path.open guarded against write modes; retry attempted no writes and queue bytes unchanged."
+  },
+  "manifest_checks": {
+    "actual_default_equals_board_with13062_plus_actor_proposed": true,
+    "requests": 5,
+    "distinct_urls": 5,
+    "total_requested_pages": 20,
+    "expected_hash_on_every_request": true,
+    "bounded_positive_integer_pages": true,
+    "all_exact_target_URL_pairs_in_actual_queue": true,
+    "known_hash_witness": "Each exact URL/expected SHA256 pair independently matched pinned-base source-ladder or fr-originals catalogue row; historical metadata only, not newly hashed PDF custody.",
+    "combined_receipt_queue_and_default_hashes_match_actual": true,
+    "manifest": [
+      {
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-170-Report.pdf",
+        "instrument_ids": [
+          "EO:11343"
+        ],
+        "expected_sha256": "5a7a3638cdd0d3d0614bcc0f37e5ddb86cab8e4c2c5f0fdae6e72565c2104a71",
+        "pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-189-Report.pdf",
+        "instrument_ids": [
+          "EO:12095"
+        ],
+        "expected_sha256": "060e9e9dbce19691f22a58039c2cfb0de7637147a6626d6f631760b09d6e0cd7",
+        "pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1997-10-02/pdf/97-26364.pdf",
+        "instrument_ids": [
+          "EO:13062"
+        ],
+        "expected_sha256": "9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026",
+        "pages": [
+          1,
+          2
+        ]
+      },
+      {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1962-06-15/pdf/FR-1962-06-15.pdf",
+        "instrument_ids": [
+          "EO:11026"
+        ],
+        "expected_sha256": "7dfadd0c42279cf10b8e842c13ebdcd9a860d90b37da0862d2e5b421d33bab1f",
+        "pages": [
+          3
+        ]
+      },
+      {
+        "url": "https://www.govinfo.gov/content/pkg/FR-1959-02-14/pdf/FR-1959-02-14.pdf",
+        "instrument_ids": [
+          "EO:9949"
+        ],
+        "expected_sha256": "f337a3b16522261cc147d92721a7fdea67ee17bfb1d9d155d45667455b09adaa",
+        "pages": [
+          1
+        ]
+      }
+    ]
+  },
+  "independent_validation": {
+    "existing_retention_tests": {
+      "command": "python3 -B -m unittest discover -s jobs/astra-source-retention -p test_retention.py",
+      "tests": 12,
+      "outcome": "pass",
+      "reported_test_seconds": 0.047
+    },
+    "actual_default_validate_manifest": "pass against actual current FETCH_QUEUE",
+    "fourteen_additional_refusals": [
+      "unqueued_target",
+      "missing_actual_exact_pair",
+      "duplicate_url",
+      "insecure_URL",
+      "over30requests",
+      "zero_page",
+      "boolean_page",
+      "noninteger_page",
+      "over40pages",
+      "malformed_expected_hash",
+      "unhashed_retained_import",
+      "wrong_held_bytes_expected_hash",
+      "missing_held_object",
+      "escaping_retained_path"
+    ],
+    "all_refusals_observed": true,
+    "git_diff_check": "pass",
+    "runtime_needs_inputs_tests_equal_base": true,
+    "integration_scope": "337f3d968 changes only queue/default, integration report/review and shared Kean/HANDOFF records. No raw source, source-grade policy, claim, status, census or scientific gate file changed by that integration commit.",
+    "base_branch_history_limit": "Base-to-branch includes unrelated prior upstream population-contract adoption; it is outside this bounded retention review.",
+    "working_tree_clean": true
+  },
+  "limitations": [
+    "No current remote source response or real source acquisition was tested; future fetched bytes must meet unchanged exact-hash checks.",
+    "Existing retention bounds and preservation/quarantine behavior remain unchanged. The12 existing tests exercise mocked-network/import generations, not these sources content.",
+    "A retained PDF or metadata receipt does not authenticate instrument identity, establish report delivery, resolve PEB internal identity conflicts, or prove legal ending.",
+    "After exact custody, source inspection and fresh native packet preparation plus ordinary scientific/review gates remain required.",
+    "No cost, token, cash, readiness or research-throughput saving established."
+  ],
+  "pins": [
+    {
+      "path": "research/readiness/FETCH_QUEUE.jsonl",
+      "bytes": 597251,
+      "sha256": "9727ec71497bc09590c9a248f92f20ab0bbe724a2173af91c8e4c95847c8fe5c"
+    },
+    {
+      "path": "jobs/astra-source-retention/REQUESTS.json",
+      "bytes": 1459,
+      "sha256": "56f9ff14b077aa11a02e5fe718e7b9527b6d69d640413631ca7dfde985f66aaf"
+    },
+    {
+      "path": "jobs/astra-source-retention/job.py",
+      "bytes": 13577,
+      "sha256": "46edd83dacfd05708ba220a7eb7744200bb55d383d21153dbf4dd1fa5f474f03"
+    },
+    {
+      "path": "jobs/astra-source-retention/test_retention.py",
+      "bytes": 10328,
+      "sha256": "5ae66f926af54d447e1d2ec18e63bd8862954dadcd0fad500a266e24caedabbc"
+    },
+    {
+      "path": "jobs/astra-source-retention/inputs.txt",
+      "bytes": 1089,
+      "sha256": "efc408f365dcbbbba50a2bd4307148ca62600ed5ed23c855ede3af3811ccee4e"
+    },
+    {
+      "path": "jobs/astra-source-retention/needs.txt",
+      "bytes": 91,
+      "sha256": "4fb2c7e98f995a2a940a169f16385a42e271ac143da911f08fe14881407eda6c"
+    },
+    {
+      "path": "jobs/source-ladder/request_contract.py",
+      "bytes": 11673,
+      "sha256": "212a7cb69238f5113e9e044b8751c39277024ea442c02cd5d0b38bbd7dc48bd2"
+    },
+    {
+      "path": "research/progress/erasmus-board-source-readiness-2026-11-02/COMBINED_RETENTION_PREPARATION.json",
+      "bytes": 603,
+      "sha256": "1eae73d5de0065b12bd84b1e9bb69dbc17dd453c03c9a3543a33215eeea2ce75"
+    },
+    {
+      "path": "research/progress/erasmus-board-source-readiness-2026-11-02/RETENTION_REQUESTS.with-13062.json",
+      "bytes": 934,
+      "sha256": "b3cedf4e5b89a7776ed349f7dce107d59682653abbd7edb083b7acab5d116b02"
+    },
+    {
+      "path": "research/progress/erasmus-board-source-readiness-2026-11-02/FETCH_QUEUE_APPEND.jsonl",
+      "bytes": 1232,
+      "sha256": "eb3a859365d04abe3150337c574c3c45ce102cd3fcb3bf395622e8be38198aac"
+    },
+    {
+      "path": "research/progress/erasmus-board-source-readiness-2026-11-02/PREVIOUS_DEFAULT_REQUESTS.json",
+      "bytes": 5495,
+      "sha256": "9d6994ffcbe2b75e245aedbe5831a718de358942724a0d15f09a1bf59b31177a"
+    },
+    {
+      "path": "research/progress/held-actor-handoff-2026-11-02/RETENTION_REQUESTS.proposed.json",
+      "bytes": 528,
+      "sha256": "08d766570ba6e15ab3e3be2419f0fbdb4c719a50f360e6baca57cf87a972f5ec"
+    },
+    {
+      "path": "research/progress/held-actor-handoff-2026-11-02/FETCH_QUEUE.proposed.jsonl",
+      "bytes": 1119,
+      "sha256": "13e407c515b03787b6b00fb5f645d4ef781c25c2d9ecf22b8ae7f4e30a2d620c"
+    }
+  ]
+}

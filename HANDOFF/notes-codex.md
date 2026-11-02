@@ -1,3 +1,34 @@
+## 2026-11-02 ET: five exact raw-source prerequisites retained and audited
+
+- **Done:** Existing retention run41497558869 succeeded; publisheda3fbcbfe retains all5exact PDFs(47,090,803bytes),20page texts and5selected-text files. Independent configuredgpt-6.1-sol custody audit rehashes actualGitbytes and proves oldsource265→270/attempt343→348prefixes;allprior artifactIDs preserved,zero deletions. Kean F-20261102-erasmus-retention-native; NATIVE_CUSTODY_REVIEW.json and SOURCE_INTEGRATION_REVIEW.json in research/progress/erasmus-board-source-readiness-2026-11-02/.
+- **Limits:** NoPNGs(renderer unavailable);3empty page texts. Actualsource-page examination/freshpackets/scientificreview remain required. RequestedtargetIDs remain unauthenticated;no claim/status/grade/census/certification changed. Native fetch/extract24.962s excludes setup/publication;complete token/cash/labor unknown.
+- **Integration:** Sourceoutput1866blobs/modes/paths andnewerKeanoutput remain exacta3fbbytes while currentmain126is merged;no actualGitconflict occurred despite earlierAPI dirty state. Rootowns qualifyingmerge and remainingLachmann/dashboardintegration under resumed scopedauthorization.
+- **Asks:** @Owner: none.
+
+## 2026-11-02 ET: recover existing source handoffs and prepare exact retention
+
+- **Done:** Existing source_supplement route demonstrated on four Erasmus targets; no replacement runtime. Fresh native-v2 supplies PLO1704 to EO8129/8163 and Proc2416 to EO8163 with18 source pins. Initial missing-Proc replay/report mismatch is retained and corrected; old packets not renewed.34 focused tests+8 independent refusal probes pass. All4 unresolved/0 claims/0 statuses. Kean F-20261102-held-actor-handoff; report/pins in research/progress/held-actor-handoff-2026-11-02/.
+- **Custody:** Existing board-report route needs actual PDFs; no grade-policy gap established. Appended exact2 board+2 actor requests, preserved whole queue byteprefix/retry idempotency; existing EO13062 request reused. Existing retention default now5 exact-hash bounded requests; previous19 retained.12 retention tests pass; combined metadata receipt and source inventory in research/progress/erasmus-board-source-readiness-2026-11-02/. Kean F-20261102-erasmus-retention-prepared. No acquisition yet at this commit.
+- **Authority/cost:** Owner explicitly resumed authorized improvements/qualifying merges after stopping old chat. Root integrates; configured gpt-6.1-sol separate engineering review, no legal/human certification. Complete token/cash/active labor unknown; no readiness or research-saving gain inferred.
+- **Next:** Qualifying merges and existing retention run, then source-page examination/fresh packets/ordinary scientific review. EO9949/11026 and board cases remain blocked until actual source prerequisites pass. Do not relabel held_text_lead, infer report receipt, or auto-adopt legal endings.
+- **Asks:** @Owner: none.
+
+## 2026-11-02 ET: bounded Cruden table retrieval independently reviewed
+
+- **Done:** Recovered previous unfinished table-number route and corrected heading suppression, cross-document context leakage and false printed pages. Kean F-20261102-cruden-table-recovery; exact source/report/replay in research/progress/held-table-handoff-2026-11-02/. Retrieval only; no legal promotion.
+- **Validation:** 10 table + 11 cache tests, 21 independent engineering probes; 4 exact held EO9949 table leads vs 0 ordinary-number hits across four related representations, 33,114 sparse omissions. All 13 legacy functions unchanged; normal payloads/stdout equal. Independent configured gpt-6.1-sol review approved exact implementation. Full token/cash/active labor unavailable; no overall savings claimed.
+- **Next:** Root lands qualifying engineering under scoped resume authorization; source custody, Lachmann integration and production refresh continue separately.
+- **Asks:** @Owner: none. No new scientific claim or certification.
+
+## 2026-11-02 ET: stopped-session recovery and population contract repair
+
+- **Done:** Recovered uncommitted Cruden/held-actor/Lachmann work from the stopped dashboard chat. First repair reconciles population_contract.json to exact already-owner-merged PR119 records (174+714 rows); unchanged native validator accepts 4,291 statuses. Historical fixture/census/old authorizations and canonical statuses remain unchanged. Kean F-20261102-population-contract-repair; research/progress/population-contract-repair-2026-11-02/.
+- **Validation:** 18 population regressions and 507 complete claim-kit tests pass (5 skips); independent configured gpt-6.1-sol review approves 24 exact pins and 13 real-data refusal probes. Exact private token/cash/active labor totals unavailable. No scientific adoption or readiness increase inferred.
+- **Running:** Recovery workstreams use isolated checkouts; root owns integration and qualifying merges under the owner's prior-chat authorization, explicitly resumed here after stopping the old run. Fresh production run will follow validated repairs; no new run dispatched yet.
+- **Next:** Merge first repair after hosted checks, integrate independently reviewed Cruden and Lachmann changes, demonstrate existing source supplements and finish board-report custody requests.
+- **Asks:** @Owner: none. Standing future-merge question remains separate from this scoped authorization.
+- **Do not:** renew old packet fingerprints, turn diagnostic/source access into legal approval, or edit canonical statuses/claims to evade the contract.
+
 ## 2026-11-02 ET: small remaining dossier handoffs assessed
 
 - **Done:** Read-only mainb3fc50647c assessment. Strongest scalable gap: Lachmann confirmations reach tracker but not claim-kit blank sheets;1,674 is a candidate ceiling. Strongest direct pilot: four Erasmus packets need already-held later-instrument evidence IDs through existing supplements. Board-report facts and Cruden bare-number table leads remain bounded follow-ups. Full source trace: research/progress/remaining-work/tiers/HANDOFF_OPPORTUNITIES.md.

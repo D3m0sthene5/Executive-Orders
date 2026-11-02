@@ -6,6 +6,7 @@ Named for Alexander Cruden, whose 1737 concordance listed every occurrence of ev
     python3 -I cruden.py search REGEX [REGEX ...] # legacy uncached regex full scan; unchanged stdout
     python3 -I cruden.py number EO:6242 [EO:6242C ...] --write RESULTS.json
     python3 -I cruden.py literal "Fitness of American Youth" --write RESULTS.json
+    python3 -I cruden.py table-number EO:9949 --write TABLE_LEADS.json
 
 `lookups` reports, for every member of a prepared (or supplemented) packet:
   * the census register row (date, title, president, best held copy) and the WPA 1944 numbered-list entry;
@@ -315,12 +316,130 @@ def source_search(kind, queries, write=None):
     return result
 
 
+TABLE_HEADER = re.compile(r"(?m)^[ \t]*No\.[ \t]+Subject\.?[ \t]*$")
+TABLE_INTRO = re.compile(r"following\s+Executive\s+Orders\s*,?\s+and\s+any\s+amendments\s+thereto\s*,?\s+are\s+revoked\s*:", re.I)
+TABLE_ROW = re.compile(r"(?m)^([0-9]{3,5})(?:-?([A-Z]))?[ \t]+([A-Za-z][^\n]{7,})$")
+# Recognized document endings/starts stop context for *all* later headings, not
+# just the current section. Unknown layouts remain outside this bounded parser.
+TABLE_BOUNDARY = re.compile(
+    r"(?im)^[ \t]*(?:RONALD[ \t]+REAGAN|(?:THE[ \t]+)?W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E\b|"
+    r"\[Filed with|\[FR[ \t]+Doc\.|Editorial[ \t]+note:|Billing[ \t]+code\b|"
+    r"Executive[ \t]+Order[ \t]+(?:No\.[ \t]*)?[0-9]+\b|Proclamation[ \t]+[0-9]+\b).*$")
+PDF_PAGE = re.compile(r"(?m)^=== PDF page ([0-9]+) of ([0-9]+) ===$")
+FR_PAGE = re.compile(r"(?m)^[ \t]*([0-9]{1,6})[ \t]+Federal Register\b[^\n]*$")
+
+
+def table_rows(text):
+    """Yield same-line cells within a bounded, explicitly introduced EO table.
+
+    Repeated headings inherit context only until a recognized document boundary.
+    Split-column OCR is deliberately refused; a retrieved row is still a lead.
+    """
+    headers = list(TABLE_HEADER.finditer(text))
+    active_intro = None
+    previous_end = 0
+    for index, header in enumerate(headers):
+        prefix = text[previous_end:header.start()]
+        if TABLE_BOUNDARY.search(prefix):
+            active_intro = None
+        # A prior unrelated heading must not hide a later explicit introduction.
+        for intro in TABLE_INTRO.finditer(text, max(previous_end, header.start() - 700), header.start()):
+            if not TABLE_BOUNDARY.search(text, intro.end(), header.start()):
+                active_intro = intro
+        previous_end = header.end()
+        if active_intro is None:
+            continue
+        stop = headers[index + 1].start() if index + 1 < len(headers) else len(text)
+        boundary = TABLE_BOUNDARY.search(text, header.end(), stop)
+        section_end = boundary.start() if boundary else stop
+        for row in TABLE_ROW.finditer(text, header.end(), section_end):
+            yield (row.group(1), row.group(2) or "", row.start(1),
+                   row.end(2) if row.group(2) else row.end(1),
+                   row.start(), row.end(), row.start(3), row.end(3),
+                   header.start(), header.end(), index + 1,
+                   active_intro.start(), active_intro.end())
+        if boundary:
+            active_intro = None
+
+
+def table_page(text, position):
+    """Report only an actual marker and an explicit Federal Register header."""
+    markers = list(PDF_PAGE.finditer(text, 0, position))
+    if not markers or not 1 <= int(markers[-1].group(1)) <= int(markers[-1].group(2)):
+        return {"pdf_page": None, "printed_page": None, "page_basis": "No valid page marker in held text; table section is not a physical page."}
+    marker = markers[-1]
+    # Page metadata is confined to the first 350 characters before the row and
+    # must identify Federal Register furniture; subject digits are not pages.
+    furniture = FR_PAGE.search(text, marker.end(), min(position, marker.end() + 350))
+    return {"pdf_page": int(marker.group(1)), "printed_page": furniture.group(1) if furniture else None,
+            "page_basis": "Held text PDF page marker; printed page only from an explicit Federal Register header."}
+
+
+def table_number_search(queries, write=None):
+    """Opt-in, bounded table-cell leads; legacy number/literal outputs untouched."""
+    started = time.perf_counter()
+    queries = list(dict.fromkeys(queries))
+    if not queries or any(not re.fullmatch(r"EO:[0-9]+[A-Z]?", q) for q in queries):
+        raise ValueError("table-number queries must be exact EO:<digits>[A-Z] identifiers")
+    targets = {q: re.fullmatch(r"EO:([0-9]+)([A-Z]?)", q).groups() for q in queries}
+    snapshot = Snapshot(REPO, held_texts)
+    out = {q: {"hits": [], "matching_files": 0, "matches": 0, "per_file_limit": 3,
+               "truncated": False} for q in queries}
+    t = time.perf_counter()
+    for record in snapshot.candidates([digits for digits, _ in targets.values()]):
+        text = snapshot.read_source(record)
+        counts = dict.fromkeys(queries, 0)
+        for digits, suffix, a, b, ra, rb, sa, sb, ha, hb, section, ia, ib in table_rows(text):
+            for q, target in targets.items():
+                if (digits, suffix) != target:
+                    continue
+                counts[q] += 1
+                if counts[q] <= 3:
+                    hit = source_hit(record, text, a, b)
+                    hit.update({"route": "bare-number-column-in-revoked-executive-orders-table",
+                                "row_char_start": ra, "row_char_end": rb,
+                                "row": text[ra:rb], "subject_char_start": sa, "subject_char_end": sb,
+                                "subject": text[sa:sb], "header_char_start": ha, "header_char_end": hb,
+                                "header": text[ha:hb], "table_section": section,
+                                "introduction_char_start": ia, "introduction_char_end": ib,
+                                "introduction": text[ia:ib]})
+                    hit.update(table_page(text, a))
+                    out[q]["hits"].append(hit)
+        for q, count in counts.items():
+            if count:
+                out[q]["matching_files"] += 1
+                out[q]["matches"] += count
+                out[q]["truncated"] |= count > 3
+    search_seconds = time.perf_counter() - t
+    snapshot.verify()
+    result = {"schema": "cruden-table-number/v1", "kind": "table-number",
+              "notice": "Table-cell retrieval leads only. Inspect the complete held source and source page; no identity, legal effect, status, original authentication, or closure determination.",
+              "queries": out, "corpus": snapshot.details(), "search_seconds": search_seconds,
+              "total_seconds": time.perf_counter() - started,
+              "timing_scope": "Retrieval and verification before output serialization/writes; outer process wall time includes output.",
+              "offsets": "Zero-based half-open Unicode character offsets in replacement-decoded universal-newline text; raw SHA256 binds the file, not byte offsets."}
+    serialized = json.dumps(result, ensure_ascii=False, indent=1) + "\n"
+    if write is None:
+        print(serialized, end="")
+    else:
+        path = Path(write).resolve()
+        path.write_bytes(serialized.encode("utf-8"))
+        print(json.dumps({"result": str(path), "sha256": hashlib.sha256(serialized.encode("utf-8")).hexdigest(),
+                          "snapshot_sha256": snapshot.snapshot_sha256,
+                          "queries": {q: {"matches": v["matches"], "matching_files": v["matching_files"],
+                                          "returned_hits": len(v["hits"]), "truncated": v["truncated"]}
+                                      for q, v in out.items()},
+                          "coverage": {key: snapshot.coverage[key] for key in ("discovered_count", "readable_count", "source_bytes")},
+                          "tracked_not_discovered": len(snapshot.coverage["tracked_not_discovered"])}))
+    return result
+
+
 if __name__ == "__main__":
     if len(sys.argv) >= 3 and sys.argv[1] == "lookups":
         lookups(sys.argv[2])
     elif len(sys.argv) >= 3 and sys.argv[1] == "search":
         search(sys.argv[2:])
-    elif len(sys.argv) >= 3 and sys.argv[1] in ("number", "literal"):
+    elif len(sys.argv) >= 3 and sys.argv[1] in ("number", "literal", "table-number"):
         args = sys.argv[2:]
         destination = None
         if "--write" in args:
@@ -331,6 +450,9 @@ if __name__ == "__main__":
             del args[index:index + 2]
         if not args:
             raise ValueError("at least one query is required")
-        source_search(sys.argv[1], args, destination)
+        if sys.argv[1] == "table-number":
+            table_number_search(args, destination)
+        else:
+            source_search(sys.argv[1], args, destination)
     else:
         print(__doc__)

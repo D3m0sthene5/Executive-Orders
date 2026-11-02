@@ -1,0 +1,173 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "verdict": "approve",
+  "head": "ea0e09699058422704770e03c0875f80c706e38d",
+  "base": "f07b023133640f288fd44c10c5176888c49f23e2",
+  "scope": "Opt-in Cruden table-cell retrieval route; engineering only",
+  "exact_file_sha256": {
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden.py": "89e070ed37d94479657bdc9b5a33bd0f08f22c99601f23f9d246fcf361fac9e3",
+    "research/excavator/claude-nira-sweep-2026-10-29/cruden_cache.py": "ab8704b1243a1e059a9b973623c1eaa20a92b90cb6d8e979e1bb46e62c444873",
+    "research/excavator/claude-nira-sweep-2026-10-29/CRUDEN.md": "571b822d66a27c7d45de24e470e29a8875a0f3f3d1b398b24014c1f936545f2a",
+    "research/excavator/claude-nira-sweep-2026-10-29/test_cruden_table.py": "cc645e52d659f98f9e7176cde28622d21f54677ba74244aa8168d23758f4a08d",
+    "research/excavator/claude-nira-sweep-2026-10-29/test_cruden_cache.py": "d7a7dc4a50a90976efac3cfd1d2d3e350582393c1a0b92ad3e08cd569ffdbda9",
+    "research/progress/held-table-handoff-2026-11-02/EXAMPLE.json": "56db452bc4847cbfb3484e429a2efdbeb3072982cbfc0c65749dfd051130b073",
+    "research/progress/held-table-handoff-2026-11-02/REPLAY.json": "ae1df8f2a67879108f430f5df7860f937997f962e512d502c81aaac0fef85e6a",
+    "research/progress/held-table-handoff-2026-11-02/verify_held.py": "e5d08ed93a27396c216d36d36fec231462c8c925d67d0aaa7a3386a7f2d1b24c",
+    "research/progress/held-table-handoff-2026-11-02/REPORT.md": "6a7b162b8b2530ec292ffabb5e6d9b7e4ada6ca9d55fde419b7a8c4665270771",
+    "research/progress/held-table-handoff-2026-11-02/PINS.json": "bddd77c9ef3850f7de92e0257b633ea36fac76ae509dcb1d70fac8e0b19a86aa"
+  },
+  "findings": [],
+  "native_tests": [
+    {
+      "command": "python3 -IB research/excavator/claude-nira-sweep-2026-10-29/test_cruden_table.py",
+      "tests": 10,
+      "skips": 0,
+      "exit_code": 0,
+      "seconds": 0.114
+    },
+    {
+      "command": "python3 -IB research/excavator/claude-nira-sweep-2026-10-29/test_cruden_cache.py",
+      "tests": 11,
+      "skips": 0,
+      "exit_code": 0,
+      "seconds": 0.081
+    },
+    {
+      "command": "git diff --check f07b023133640f288fd44c10c5176888c49f23e2 ea0e09699058422704770e03c0875f80c706e38d",
+      "exit_code": 0
+    }
+  ],
+  "independent_probes": [
+    {
+      "name": "unintroduced isolated header refuses",
+      "result": "pass"
+    },
+    {
+      "name": "suffix exact ''",
+      "result": "pass"
+    },
+    {
+      "name": "suffix exact 'A'",
+      "result": "pass"
+    },
+    {
+      "name": "suffix exact '-A'",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 19949 Amending neighbor.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 99490 Amending neighbor.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 9949. Amending prose.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 9949a Amending lowercase suffix.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: (9949) Amending prose.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 9949\nSubject in next column.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: x9949 Amending embedded number.",
+      "result": "pass"
+    },
+    {
+      "name": "lookalike refuses: 9949 12345",
+      "result": "pass"
+    },
+    {
+      "name": "context expires and restarts: Executive Order No. 12554",
+      "result": "pass"
+    },
+    {
+      "name": "context expires and restarts: Proclamation 10000",
+      "result": "pass"
+    },
+    {
+      "name": "context expires and restarts: [FR Doc. 86-4455 Filed 3-1-86]",
+      "result": "pass"
+    },
+    {
+      "name": "context expires and restarts: White House,",
+      "result": "pass"
+    },
+    {
+      "name": "context expires and restarts: RONALD REAGAN",
+      "result": "pass"
+    },
+    {
+      "name": "normalized CRLF UTF8 replacement multibyte exact spans and raw hash",
+      "result": "pass"
+    },
+    {
+      "name": "noncandidate deletion refuses before output publication",
+      "result": "pass"
+    },
+    {
+      "name": "persistent unreadable source disclosed in coverage with surviving hit",
+      "result": "pass"
+    },
+    {
+      "name": "latest invalid marker blocks older page attribution",
+      "result": "pass"
+    }
+  ],
+  "held_replay": {
+    "path": "/workspace/scratch/2ce4a2b0ce32/reviews/cruden-held-replay.json",
+    "sha256": "b2169a9c3fc1f3c580879960a26eee1ff6efb5b283d5ec9ed34492d872900ec3",
+    "matches": 4,
+    "matching_files": 4,
+    "tracked_not_discovered": 33114,
+    "files_and_bytes": "4 related representations / 312413 bytes",
+    "exact_spans_and_source_hashes_verified": true,
+    "legacy_functions_AST_equal": 13,
+    "number_and_literal_payload_and_source_inventory_equal": true,
+    "regex_stdout_byte_equal": true,
+    "table_call_seconds": 0.11557894299949112,
+    "method": "Producer replay executed with only final REPLAY destination redirected to reviewer scratch; separate probes independently authored."
+  },
+  "boundary_assessment": {
+    "opt_in_only": true,
+    "legacy_functions_and_cache_format_unchanged": true,
+    "source_mutation_and_inventory_change_refuse": true,
+    "static_missing_and_unreadable_sources_disclosed": true,
+    "suffix_and_parent_exactness": true,
+    "recognized_document_boundaries_expire_context": true,
+    "unknown_boundaries_remain_explicit_bounded_heuristic_limitation": true,
+    "no_claim_status_census_source_grade_or_legal_promotion": true
+  },
+  "limitations": [
+    "Not general table parsing: unknown document boundaries, wrapped subjects and OCR can miss or produce noisy leads, as documentation states.",
+    "Four held hits are related representations of one table, not four independent legal sources.",
+    "No full lookups packet replay, full-corpus scan, new legal/source certification, or total saving established.",
+    "Kean/HANDOFF writes left to coordinator under read-only assignment."
+  ],
+  "costs": {
+    "model": "GPT-6 based Codex; inherited exact configured tier not exposed",
+    "family": "OpenAI",
+    "full_session_seconds": null,
+    "tokens": null,
+    "cash": null,
+    "active_labor_seconds": null,
+    "bounded_probe_started_utc": "2026-11-02T17:54:14.025026+00:00",
+    "bounded_probe_seconds": 0.04162869199899433,
+    "earlier_review_time": "not instrumented; unknown, not zero",
+    "savings_claimed": false,
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "high",
+    "configuration_source": "Coordinator supplied configured identity under repository AGENTS delegation rule",
+    "self_observed_model": "GPT-6 based Codex; exact model tier not introspectable"
+  },
+  "tree_mutation": "None; tests use temporary directories and -B; replay output redirected to reviewer scratch."
+}
