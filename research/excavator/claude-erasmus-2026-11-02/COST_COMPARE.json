@@ -1,0 +1,275 @@
+{
+  "schema": "geddes-cost-compare/v1",
+  "baseline": {
+    "source": "research/excavator/claude-apollo-2026-10-31/TELEMETRY.csv",
+    "filed_claims": {
+      "NRA": 127,
+      "General": 127
+    }
+  },
+  "new": {
+    "source": "research/excavator/claude-erasmus-2026-11-02/TELEMETRY.csv",
+    "filed_claims": {
+      "NRA": 24,
+      "General": 28
+    }
+  },
+  "rows": [
+    {
+      "track": "General",
+      "role": "producer",
+      "agents": {
+        "baseline": 10,
+        "new": 6
+      },
+      "filed_claims": {
+        "baseline": 127,
+        "new": 28
+      },
+      "metrics": {
+        "tokens_total_input": {
+          "baseline_total": 282766292,
+          "new_total": 80109750,
+          "baseline_per_filed_claim": 2226506.24,
+          "new_per_filed_claim": 2861062.5,
+          "ratio_new_over_baseline": 1.285,
+          "unknown_because": []
+        },
+        "cache_read_input_tokens": {
+          "baseline_total": 275753981,
+          "new_total": 78838634,
+          "baseline_per_filed_claim": 2171291.19,
+          "new_per_filed_claim": 2815665.5,
+          "ratio_new_over_baseline": 1.2968,
+          "unknown_because": []
+        },
+        "output_tokens": {
+          "baseline_total": 1177871,
+          "new_total": 374674,
+          "baseline_per_filed_claim": 9274.57,
+          "new_per_filed_claim": 13381.21,
+          "ratio_new_over_baseline": 1.4428,
+          "unknown_because": []
+        },
+        "active_seconds": {
+          "baseline_total": 18704,
+          "new_total": 4878,
+          "baseline_per_filed_claim": 147.28,
+          "new_per_filed_claim": 174.21,
+          "ratio_new_over_baseline": 1.1828,
+          "unknown_because": []
+        }
+      },
+      "verdict": "new run used 29.7% more cache-read tokens per filed claim for General/producer"
+    },
+    {
+      "track": "General",
+      "role": "reviewer",
+      "agents": {
+        "baseline": 10,
+        "new": 6
+      },
+      "filed_claims": {
+        "baseline": 127,
+        "new": 28
+      },
+      "metrics": {
+        "tokens_total_input": {
+          "baseline_total": 78985146,
+          "new_total": 36015387,
+          "baseline_per_filed_claim": 621930.28,
+          "new_per_filed_claim": 1286263.82,
+          "ratio_new_over_baseline": 2.0682,
+          "unknown_because": []
+        },
+        "cache_read_input_tokens": {
+          "baseline_total": 77107626,
+          "new_total": 35224342,
+          "baseline_per_filed_claim": 607146.66,
+          "new_per_filed_claim": 1258012.21,
+          "ratio_new_over_baseline": 2.072,
+          "unknown_because": []
+        },
+        "output_tokens": {
+          "baseline_total": 362860,
+          "new_total": 154955,
+          "baseline_per_filed_claim": 2857.17,
+          "new_per_filed_claim": 5534.11,
+          "ratio_new_over_baseline": 1.9369,
+          "unknown_because": []
+        },
+        "active_seconds": {
+          "baseline_total": 5806,
+          "new_total": 2199,
+          "baseline_per_filed_claim": 45.72,
+          "new_per_filed_claim": 78.54,
+          "ratio_new_over_baseline": 1.7178,
+          "unknown_because": []
+        }
+      },
+      "verdict": "new run used 107.2% more cache-read tokens per filed claim for General/reviewer"
+    },
+    {
+      "track": "NRA",
+      "role": "producer",
+      "agents": {
+        "baseline": 9,
+        "new": 3
+      },
+      "filed_claims": {
+        "baseline": 127,
+        "new": 24
+      },
+      "metrics": {
+        "tokens_total_input": {
+          "baseline_total": 105858494,
+          "new_total": 25171223,
+          "baseline_per_filed_claim": 833531.45,
+          "new_per_filed_claim": 1048800.96,
+          "ratio_new_over_baseline": 1.2583,
+          "unknown_because": []
+        },
+        "cache_read_input_tokens": {
+          "baseline_total": 103746977,
+          "new_total": 24598811,
+          "baseline_per_filed_claim": 816905.33,
+          "new_per_filed_claim": 1024950.46,
+          "ratio_new_over_baseline": 1.2547,
+          "unknown_because": []
+        },
+        "output_tokens": {
+          "baseline_total": 660728,
+          "new_total": 147337,
+          "baseline_per_filed_claim": 5202.58,
+          "new_per_filed_claim": 6139.04,
+          "ratio_new_over_baseline": 1.18,
+          "unknown_because": []
+        },
+        "active_seconds": {
+          "baseline_total": 10051,
+          "new_total": 1629,
+          "baseline_per_filed_claim": 79.14,
+          "new_per_filed_claim": 67.88,
+          "ratio_new_over_baseline": 0.8577,
+          "unknown_because": []
+        }
+      },
+      "verdict": "new run used 25.5% more cache-read tokens per filed claim for NRA/producer"
+    },
+    {
+      "track": "NRA",
+      "role": "reviewer",
+      "agents": {
+        "baseline": 9,
+        "new": 3
+      },
+      "filed_claims": {
+        "baseline": 127,
+        "new": 24
+      },
+      "metrics": {
+        "tokens_total_input": {
+          "baseline_total": 42059382,
+          "new_total": 13457836,
+          "baseline_per_filed_claim": 331176.24,
+          "new_per_filed_claim": 560743.17,
+          "ratio_new_over_baseline": 1.6932,
+          "unknown_because": []
+        },
+        "cache_read_input_tokens": {
+          "baseline_total": 39742212,
+          "new_total": 13114793,
+          "baseline_per_filed_claim": 312930.8,
+          "new_per_filed_claim": 546449.71,
+          "ratio_new_over_baseline": 1.7462,
+          "unknown_because": []
+        },
+        "output_tokens": {
+          "baseline_total": 205931,
+          "new_total": 65341,
+          "baseline_per_filed_claim": 1621.5,
+          "new_per_filed_claim": 2722.54,
+          "ratio_new_over_baseline": 1.679,
+          "unknown_because": []
+        },
+        "active_seconds": {
+          "baseline_total": 4591,
+          "new_total": 926,
+          "baseline_per_filed_claim": 36.15,
+          "new_per_filed_claim": 38.58,
+          "ratio_new_over_baseline": 1.0672,
+          "unknown_because": []
+        }
+      },
+      "verdict": "new run used 74.6% more cache-read tokens per filed claim for NRA/reviewer"
+    },
+    {
+      "track": "tooling",
+      "role": "builder",
+      "agents": {
+        "baseline": "unknown",
+        "new": 2
+      },
+      "filed_claims": {
+        "baseline": "unknown",
+        "new": "unknown"
+      },
+      "metrics": {
+        "tokens_total_input": {
+          "baseline_total": "unknown",
+          "new_total": 29214724,
+          "baseline_per_filed_claim": "unknown",
+          "new_per_filed_claim": "unknown",
+          "ratio_new_over_baseline": "unknown",
+          "unknown_because": [
+            "baseline: track/role absent from this run",
+            "new: no filed-claim count for this track"
+          ]
+        },
+        "cache_read_input_tokens": {
+          "baseline_total": "unknown",
+          "new_total": 28715151,
+          "baseline_per_filed_claim": "unknown",
+          "new_per_filed_claim": "unknown",
+          "ratio_new_over_baseline": "unknown",
+          "unknown_because": [
+            "baseline: track/role absent from this run",
+            "new: no filed-claim count for this track"
+          ]
+        },
+        "output_tokens": {
+          "baseline_total": "unknown",
+          "new_total": 163075,
+          "baseline_per_filed_claim": "unknown",
+          "new_per_filed_claim": "unknown",
+          "ratio_new_over_baseline": "unknown",
+          "unknown_because": [
+            "baseline: track/role absent from this run",
+            "new: no filed-claim count for this track"
+          ]
+        },
+        "active_seconds": {
+          "baseline_total": "unknown",
+          "new_total": 3317,
+          "baseline_per_filed_claim": "unknown",
+          "new_per_filed_claim": "unknown",
+          "ratio_new_over_baseline": "unknown",
+          "unknown_because": [
+            "baseline: track/role absent from this run",
+            "new: no filed-claim count for this track"
+          ]
+        }
+      },
+      "verdict": "cache-read tokens per filed claim for tooling/builder: unknown (baseline: track/role absent from this run; new: no filed-claim count for this track)"
+    }
+  ],
+  "verdicts": [
+    "new run used 29.7% more cache-read tokens per filed claim for General/producer",
+    "new run used 107.2% more cache-read tokens per filed claim for General/reviewer",
+    "new run used 25.5% more cache-read tokens per filed claim for NRA/producer",
+    "new run used 74.6% more cache-read tokens per filed claim for NRA/reviewer",
+    "cache-read tokens per filed claim for tooling/builder: unknown (baseline: track/role absent from this run; new: no filed-claim count for this track)"
+  ],
+  "errors": [],
+  "note": "Per filed claim = track/role total divided by that track's filed-claim count. Ratio = new / baseline. 'unknown' means an input was missing; it is never treated as zero. Active seconds retain fractions."
+}

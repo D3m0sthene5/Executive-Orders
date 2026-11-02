@@ -1,0 +1,223 @@
+{
+ "batch": "r3",
+ "orders": [
+  {
+   "instrument_id": "EO:10319",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g04/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g04/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "file_sha256": "9edad24fa62c0034ba9a0002a12c6f0345f577fc8465e3898bdc8f47b9a0bae6",
+    "line": 21,
+    "record_sha256": "c851f771166795aac97102199a0a383ffeae6947f7ca2ec2390270b40b8e729e"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (Inventory)",
+     "claim_says": "'the creation of the board, its thirty-day report deadline, the non-derogation sentence and the Defense Production Act compliance sentence and the status-quo sentence restating section 10 are all within the single whole-order clause'",
+     "source_says": "EO 10319 has no non-derogation sentence (it neither mentions EO 10155 nor the Secretary of the Army); its operative text is the creation and disinterest sentence, the thirty-day report sentence, the section 502 Defense Production Act compliance sentence and the status-quo sentence"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10634",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g05/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g05/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "eb480d8f8c99523faa2a1d0bc0d2e7fd777579fca63ea66aea829325cb1b4c45",
+    "line": 14,
+    "record_sha256": "fe18a48e499135d56aa7d220770af9b0c87eff680e7c41d9fc849e6825077230"
+   },
+   "defects": [
+    {
+     "claim_says": "later_events is empty; the rationale says EO 10773, EO 11051 and EO 11725 'are recorded as later events in the reason, not as ends'",
+     "field": "operative_clauses[0].later_events / research_rationale",
+     "source_says": "EO 10773 s.3-4(b)(14) and EO 11051 s.601 amend references in EO 10634 to the determining office, and EO 11725 s.3(7) transfers its function. The strike-and-insert ruling requires each amendment to be recorded as a later_event with date, actor, mechanism and before/after text. None is recorded."
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10693",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g05/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g05/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "eb480d8f8c99523faa2a1d0bc0d2e7fd777579fca63ea66aea829325cb1b4c45",
+    "line": 17,
+    "record_sha256": "9e183d06300ee2beaaabb34530717a7c04266308e1938e8027df208d1713d8c4"
+   },
+   "defects": [
+    {
+     "claim_says": "No board report for this order is held in the packet ... so the actual report date and the end of the standstill are not recorded",
+     "field": "operative_clauses[0].judgment_reason / research_rationale",
+     "source_says": "The packet dossier holds NMB Emergency Board No. 116's report (queue_EO_10693_Actual_report_..._c19da2b877.txt), dated March 15, 1957, with a transmittal letter of the same date. The report-deadline ruling requires the report date and the computed standstill end (1957-04-14) to be recorded."
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10843",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g06/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g06/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "55f2830e386a251d3f1721a7a7402e433ba39550b084feeaaf144d050ddf0247",
+    "line": 5,
+    "record_sha256": "2e52823fc39075e3fea57b02ab13775b48247de2cd61fff9e595d7d2317297c7"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10843#whole].judgment_reason",
+     "claim_says": "The dossier holds only an American Presidency Project transcription row for 10848 as a located provision, so the cited source is the whole held Federal Register text of EO 12553",
+     "source_says": "The packet dossier holds Federal Register located-provision records for EO 10848 (ACT:EO:10843>EO:10848, 24 FR 8401, jobs/fr-originals text), which the claim itself cites as its later-event source (evidence_id decodes to ACT:EO:10843>EO:10848); the APP-transcription-only records are those for EO 12553 (ACT:EO:10843>EO:12553 and variants, grade mirror_transcription)"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10915",
+   "kind": "rejected_in_review",
+   "review_phase": "after_reveal",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g06/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g06/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "55f2830e386a251d3f1721a7a7402e433ba39550b084feeaaf144d050ddf0247",
+    "line": 12,
+    "record_sha256": "8d41f4b487085842be8b6d5329eba8e8dd3b5c2522e117307742ffc105773c85"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10915#lead].judgment_reason (and research_rationale earlier_end_check)",
+     "claim_says": "Other later orders that amend EO 10900 (EO 10972, EO 11036, EO 11963, EO 12148) concern other sections: ... a new subsection of section 1 ... (EO 10972, 11036, 11963, 12148 (amendments of other sections of EO 10900))",
+     "source_says": "EO 11963 (January 19, 1977, 42 FR 4325) section 2: 'Executive Order No. 10900, as amended, is further amended by revoking Section 5 thereof and redesignating Sections 6, 7 and 8 as Sections 5, 6 and 7 respectively.' Section 6 at that date was the Director of the Food-for-Peace Program section inserted by EO 10915 section 1 (original section 5 of EO 10900 was the reservation of reporting functions), so EO 11963 renumbered this very clause as section 5"
+    },
+    {
+     "field": "operative_clauses[EO:10915#lead].later_events",
+     "claim_says": "only EO 11252 (1965-11-01) recorded",
+     "source_says": "EO 11963 section 2 redesignated the inserted section 6 as section 5 on 1977-01-19; this change to the tracked clause should be recorded as a later event (it is not an end; the clause survived as section 5 until EO 12220 section 1-501)"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:10989",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g07/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g07/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7aeb15f077f5787b5f18169ec26e54b0d404ddd6d555a83adba091ff9b3d012b",
+    "line": 2,
+    "record_sha256": "f4a1a10286d6a6a787273dfb8d1adb97d1016f89af5d0d8e584e76355552a4aa"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (searches)",
+     "claim_says": "Federal Register catalog disposition notes (2 machine hits, the revocation note on this order and the matching note on EO 12553)",
+     "source_says": "EDGES.csv shows the revocation note on EO 10989 and the matching note on EO 11157 (LE-fe9dc3b051ef, LE-d99fd96970a9); EO 12553 does not list 10989 and no catalog note links them"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11013",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g07/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g07/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7aeb15f077f5787b5f18169ec26e54b0d404ddd6d555a83adba091ff9b3d012b",
+    "line": 6,
+    "record_sha256": "223a104e84ac13b6a7e8990d42726050c3cdbd8a8e1f04271714b5e13107c4fb"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[0].judgment_reason",
+     "claim_says": "The report deadline and standstill are spent facts recorded without an end date",
+     "source_says": "EO 11013 (27 FR 3373) is a Labor Management Relations Act section 206 board of inquiry; it contains no standstill. Its terms are: report on or before April 11, 1962, and the Board continues in existence after its report until terminated by the President"
+    },
+    {
+     "field": "research_rationale (member checks: independent_command_check, scope_check)",
+     "claim_says": "the standstill is recited from the statute and depends on the board's creation and report; the inventory spans ... the statutory standstill recital",
+     "source_says": "No standstill recital appears anywhere in the held text; the order has no Railway Labor Act content"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11026",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g07/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g07/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7aeb15f077f5787b5f18169ec26e54b0d404ddd6d555a83adba091ff9b3d012b",
+    "line": 8,
+    "record_sha256": "f9d81f440956d630b9f6fbee25ca75fdae8e810aa93d759d4b506843351deb36"
+   },
+   "defects": [
+    {
+     "field": "research_rationale / operative_clauses[0].later_events",
+     "claim_says": "The 1962-06-13 rewording of the same first paragraph is therefore disclosed here as an earlier candidate, not claimed as the end; its source is the held text of EO 11029, which is not one of the cited sources of this claim.",
+     "source_says": "The owner ruling of 2026-10-21 on unnamed instruments, which the claim invokes, requires the unnamed event to be recorded as a disclosed earlier candidate 'with its source pinned where held'. EO 11029 is held (jobs/fr-originals/data/full_run/texts/EO_11029.txt, 27 FR 5699), yet the claim expressly leaves it unpinned and records no event"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11036",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g07/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g07/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7aeb15f077f5787b5f18169ec26e54b0d404ddd6d555a83adba091ff9b3d012b",
+    "line": 12,
+    "record_sha256": "68e8291fad34dc24189b33505c3197a64c475ab752f4898039e3b49ad166d6e2"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (searches)",
+     "claim_says": "2 machine hits, the revocation note on this order and the matching note on EO 12553",
+     "source_says": "EO 12553 does not list 11036 (held text searched); the catalog revocation note on 11036 names EO 12220 (LE-3ec9620d9851)"
+    },
+    {
+     "field": "research_rationale (member checks: earlier_end_check)",
+     "claim_says": "Executive Order 12148 (1979-07-20), in section 5-108, revokes only Section 4(d)(2) of Executive Order 10900",
+     "source_says": "EO 12148 revokes Section 4(d)(2) of EO 10900 in section 5-107; section 5-108 revokes EO 10952"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11138",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g07/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g07/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7aeb15f077f5787b5f18169ec26e54b0d404ddd6d555a83adba091ff9b3d012b",
+    "line": 19,
+    "record_sha256": "8e157125db060f170c6009c71a4fd6cdf348d18b3984c0be40a2deb41b5a5882"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (member checks: independent_command_check)",
+     "claim_says": "The parent order EO 9721 continues under its own terms and is not part of this claim.",
+     "source_says": "EO 10804 section 2 (Feb. 12, 1959, held text jobs/fr-originals/data/full_run/texts/EO_10804.txt) revoked EO 9721 and EO 10103, keeping them in effect only for certain employees serving on the enactment date of the Federal Employees International Organization Service Act and for vested rights; EO 12553 also lists 9721 and 10103 (catalog edges EO:12553 to EO:9721 and EO:10103). The parent order does not continue at the cutoff"
+    },
+    {
+     "field": "research_rationale (member checks: earlier_end_check)",
+     "claim_says": "No held source shows an earlier revocation ... The parent order EO 9721 is not claimed here",
+     "source_says": "The claim does not consider EO 10804's 1959 revocation, with savings, of the parent that this 1964 order modifies. That event bears on whether the waiver operated within the saved scope, and it is not addressed"
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11195",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g08/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g08/packet/applied-v1/CLAIMS.proposed.jsonl",
+    "file_sha256": "26581b2536967f48eefe40e5762d67fafe2a4c6e983ca5f1684f34495ce5e030",
+    "line": 3,
+    "record_sha256": "e377f3377fdd379a8508964364d3c61d095b51bd930704159c53fc4894cc472f"
+   },
+   "defects": [
+    {
+     "claim_says": "Bounded search read for this order: ... and a full read of EO 12553 (held FR text, 33,227 characters).",
+     "field": "research_rationale (bounded search)",
+     "source_says": "EO 12553 does not name EO 11195 (no row 11195 in its table); the ending instrument is EO 12060 (43 FR 21315, 1,871-character held text). The search account names the wrong instrument as the full read and omits EO 12060 from the list."
+    }
+   ]
+  }
+ ]
+}

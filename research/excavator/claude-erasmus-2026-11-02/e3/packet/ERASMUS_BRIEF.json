@@ -1,0 +1,61 @@
+{
+ "batch": "e3",
+ "orders": [
+  {
+   "instrument_id": "EO:12121",
+   "kind": "rejected_in_review",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g09/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g09/packet/applied-v1/CLAIMS.proposed.jsonl",
+    "file_sha256": "567e48e87df985c60604f101b0bfeca2cbb1372b22884431786d60f64f955e2e",
+    "line": 19,
+    "record_sha256": "4bd4b3825b152adc69d8cac45736bcdbc039ededaf6e0de443d7782baa86aab2"
+   },
+   "second_attempt": {
+    "path": "research/excavator/claude-erasmus-2026-11-02/r4/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "note": "Erasmus resubmission, rejected in blind review"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (member check earlier_end_check)",
+     "claim_says": "current-law:usc and current-law:ecfr record no hit",
+     "source_says": "jobs/current-law records one U.S. Code mention (ORDERS_CURRENT_LAW.csv usc_mentions=1; MENTIONS.csv usc:23f802d2b69d): the OLRC note at 42 U.S.C. 7101 reads 'Ex. Ord. No. 12083 ... as amended by Ex. Ord. No. 12121 ... was revoked by Ex. Ord. No. 12379, § 20, Aug. 17, 1982'"
+    }
+   ],
+   "first_attempt_defects": [
+    {
+     "field": "operative_clauses[EO:12121#whole].judgment_reason and research_rationale earlier_end_check",
+     "claim_says": "No instrument other than EO 12379 is shown to have ended this order or its parent before 1982-08-17; no unnamed earlier candidate is disclosed",
+     "source_says": "The clause's whole content adds two officials, the Director of the Community Services Administration and the Chairman of the Council on Wage and Price Stability. A held source, jobs/ofr-codification-1989/output/texts/EO_12344.txt (OFR editorial note), states that the Community Services Administration was abolished by Pub. L. 97-35 (1981). The 2026-10-21 unnamed-instruments ruling requires every claim to record such an unnamed event as a disclosed earlier candidate end, with its source pinned where held. The claim omits it and does not examine whether the Council on Wage and Price Stability still existed in 1982. If both offices had ceased, nothing in the order still operated before EO 12379."
+    }
+   ]
+  },
+  {
+   "instrument_id": "EO:11436",
+   "kind": "rejected_in_review",
+   "prior_claim": {
+    "path": "research/excavator/claude-apollo-2026-10-31/g08/packet/complete-v1/receipts/research/excavator/claude-apollo-2026-10-31/g08/packet/applied-v1/CLAIMS.proposed.jsonl",
+    "file_sha256": "26581b2536967f48eefe40e5762d67fafe2a4c6e983ca5f1684f34495ce5e030",
+    "line": 19,
+    "record_sha256": "9bbc6da956c0a095bf5bdeb7e9408d8a2149fc8c51a8697d27904f070b83a82c"
+   },
+   "second_attempt": {
+    "path": "research/excavator/claude-erasmus-2026-11-02/r4/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "note": "Erasmus resubmission, rejected in blind review"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[0].judgment_reason and research_rationale (National Emergencies Act source pin, three occurrences)",
+     "claim_says": "text sha256 9af91c5062c556d26e97baaa68d89a4aa6cbfbb51937898bc13ef801d78a350 (63 hex characters)",
+     "source_says": "jobs/source-ladder/output/texts/queue_EO_10976_Pub._L._94-412_..._d1e4940870.txt hashes to 9af91c5062c556d26e97baaad68d89a4aa6cbfbb51937898bc13ef801d78a350"
+    }
+   ],
+   "first_attempt_defects": [
+    {
+     "claim_says": "the pre-1981 text of 10 U.S.C. 5711(b) and 6386(c), which the order cites as its authority, is not held",
+     "field": "operative_clauses[0].judgment_reason and research_rationale (earlier_end_check)",
+     "source_says": "EO 11436 cites only 'section 6386 (c) of title 10 of the United States Code'; section 5711(b) is cited by EO 11284, not by this order. The claim's own research_rationale correctly says the order cites section 6386(c)."
+    }
+   ]
+  }
+ ]
+}

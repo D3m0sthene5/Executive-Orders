@@ -1,3 +1,23 @@
+## 2026-11-02 (Claude, Erasmus resubmission and Geddes wiring)
+
+- **Filed 52 claims** (`research/readiness/claims/claude-2026-11-02-erasmus-*.jsonl`): 32 of the 40 Apollo rejects
+  recovered, plus corrections superseding 20 filed Apollo claims (all 18 Geddes flags plus EO 6684C and 6321). Every
+  claim passed the checker, a blind Opus review with a planted control (10 of 10 caught) and `kit.py complete`.
+  Certified count 0. Report: `research/excavator/claude-erasmus-2026-11-02/REPORT.md`; Kean F-20261101-1.
+- **Geddes:** `kit.py batch-check` now runs it and writes `GEDDES_LINT.json`; `--geddes-strict` plus
+  `geddes.py gate` block review until each flag is answered; new consistency and citing checks (Apollo recall
+  20/40 to 35/40); `telemetry.py` and `cost --compare`; slim view extended with the gaps producers reported.
+  `source_supplement.py` now carries replacement routing so filed NRA claims can be corrected. Tests: Geddes 89,
+  claim-kit batch and supplement pass.
+- **Measured:** fixed per-agent cost dominates (a one-order producer read 5.2M cached tokens); the slim view did
+  not lower cost per order on resubmissions, which add work per order. Telemetry in `TELEMETRY.csv`.
+- **Still flagged on filed claims:** EO 11547, 11646, 12060 (false "no hit" U.S. Code searches) and EO 11303
+  (exhaustion wording; correction rejected). Kean A-20261101-geddes-models (Codex) is moot now that Claude ran the
+  retries; the owner may close it.
+- **@Owner:** none new; A-20261031-1 still open.
+- **Next:** correct the four flagged filed claims in one larger batch; give packets evidence ids for held later
+  orders and accept graded board-report texts, which together block 7 orders.
+
 ## 2026-11-01: Geddes source repair and exact warning audit
 
 - **Done:** Repaired full-order/recital boundaries, native inventory overrides, source-specific verbatim quotations, reasoning suffix/FR bindings, event actor/scope, and literal-name corpus identity/cache guards. Existing PR122 branch; canonical claims/statuses/codebook/human reviews unchanged, certified 0.

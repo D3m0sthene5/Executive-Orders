@@ -16,8 +16,10 @@ import re
 import sys
 from collections import Counter
 from collections import defaultdict
+from contextlib import contextmanager
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
+import time
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "jobs/claim-kit"))
@@ -27,6 +29,8 @@ import source_checks as SC
 import citation_checks as CC
 import event_checks as EC
 import name_checks as NC
+import consistency_checks as CON
+import citing_checks as CIT
 
 SCHEMA = "geddes-lint/v1"
 FR_RE = re.compile(r"(?<!\w)(\d{1,3})\s+F\.?\s*R\.?\s+(\d+)(?!\d)", re.I)
@@ -267,8 +271,9 @@ def lint_one(line, claim, dossiers, repo: Path, packet_path=None, corpus_cache=N
                 "coverage_gaps": [{"code": "packet_member_missing"}]}
     cache = {} if corpus_cache is None else corpus_cache
     flags, gaps = [], []
-    for name, module in (("source", SC), ("citation", CC), ("event", EC), ("name", NC)):
-        result = module.check(claim, dossier, repo, packet_path, cache.setdefault(name, {}))
+    for name, module in (("source", SC), ("citation", CC), ("event", EC), ("name", NC), ("consistency", CON), ("citing", CIT)):
+        # Citing checks share the name module's snapshot-verified corpus cache.
+        result = module.check(claim, dossier, repo, packet_path, cache.setdefault("name" if module is CIT else name, {}))
         flags.extend(result["flags"])
         gaps.extend(result["coverage_gaps"])
     original = claim.get("original_representation") or {}
@@ -300,12 +305,60 @@ def lint_one(line, claim, dossiers, repo: Path, packet_path=None, corpus_cache=N
             "held_text_integrity_failures": sum("hash" in str(g) or "integrity" in str(g) for g in gaps)}
 
 
+SPAN_KEYS = ("span", "flagged_text", "quote", "phrase", "assertion", "reasoning_sentence")
+
+
+def flag_id_for(instrument_id, flag):
+    """Deterministic 16-hex id over instrument, code, scope and the flagged text or detail."""
+    span = next((flag[k] for k in SPAN_KEYS if isinstance(flag.get(k), str) and flag[k].strip()), "")
+    detail = flag.get("detail") if isinstance(flag.get("detail"), str) else ""
+    if not span and not detail:
+        # No text field at all: bind the id to the whole flag so distinct flags stay distinct.
+        detail = json.dumps({k: v for k, v in flag.items() if k != "flag_id"}, sort_keys=True, ensure_ascii=False, default=str)
+    material = "\x1f".join([str(instrument_id or ""), str(flag.get("code") or ""), str(flag.get("scope_id") or ""), span, detail])
+    return hashlib.sha256(material.encode("utf-8")).hexdigest()[:16]
+
+
+def stamp_flag_ids(rows):
+    """Give every flag a stable flag_id, keeping any id a check already supplied."""
+    for row in rows:
+        for flag in row.get("flags", []):
+            if isinstance(flag, dict) and not flag.get("flag_id"):
+                flag["flag_id"] = flag_id_for(row.get("instrument_id"), flag)
+    return rows
+
+
+@contextmanager
+def _count_file_reads():
+    """Count the distinct files, and total reads, made through Path.read_bytes/read_text."""
+    state = {"paths": set(), "calls": 0}
+    original_bytes, original_text = Path.read_bytes, Path.read_text
+
+    def read_bytes(self):
+        state["paths"].add(str(self.absolute())); state["calls"] += 1
+        return original_bytes(self)
+
+    def read_text(self, *args, **kwargs):
+        state["paths"].add(str(self.absolute())); state["calls"] += 1
+        return original_text(self, *args, **kwargs)
+    Path.read_bytes, Path.read_text = read_bytes, read_text
+    try:
+        yield state
+    finally:
+        Path.read_bytes, Path.read_text = original_bytes, original_text
+
+
 def lint(applied: Path, repo=REPO):
-    packet_path, packet, dossiers, claims = load_context(applied)
-    with NC.Snapshot(repo) as name_cache:
-        corpus_cache = {"name": name_cache}
-        rows = [lint_one(n, c, dossiers, Path(repo).resolve(), packet_path, corpus_cache) for n, c in claims]
+    started = time.monotonic()
+    with _count_file_reads() as reads:
+        packet_path, packet, dossiers, claims = load_context(applied)
+        with NC.Snapshot(repo) as name_cache:
+            corpus_cache = {"name": name_cache}
+            rows = [lint_one(n, c, dossiers, Path(repo).resolve(), packet_path, corpus_cache) for n, c in claims]
+    stamp_flag_ids(rows)
     result = {"schema": SCHEMA, "mode": "advisory_source_comparison", "packet": str(packet_path),
+              "seconds": round(time.monotonic() - started, 3),
+              "files_read": len(reads["paths"]), "file_reads": reads["calls"],
               "packet_fingerprint": packet.get("fingerprint"), "claims_checked": len(rows),
               "defect_flags": sum(len(r["flags"]) for r in rows),
               "coverage_gaps": sum(len(r["coverage_gaps"]) for r in rows),
@@ -331,7 +384,179 @@ def _markdown_sections(text):
     return sections
 
 
-def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | None = None):
+VIEW_CAPS = {"machine_searches": 12, "chain_events": 25, "citable_evidence": 40, "clause_inventory": 40,
+             "draft_clause_rows": 40, "questions_per_clause": 6, "text_chars": 600, "reason_chars": 2000,
+             "claim_bytes": 20000, "claim_string_chars": 400}
+
+
+def _cap_list(items, limit):
+    """Return (items shown, bound report); a long list keeps its true total and says it was cut."""
+    items = list(items)
+    return items[:limit], {"total": len(items), "shown": min(len(items), limit), "truncated": len(items) > limit}
+
+
+def _cap_text(value, limit):
+    if not isinstance(value, str) or len(value) <= limit: return value
+    return value[:limit] + f"... [truncated; {len(value)} characters in all]"
+
+
+def _source_brief(source):
+    source = source if isinstance(source, dict) else {}
+    return {k: source.get(k) for k in ("page_or_item", "signing_date", "url", "text_path") if source.get(k) is not None}
+
+
+def _machine_searches_view(dossier):
+    rows = []
+    for m in dossier.get("machine_searches") or []:
+        if not isinstance(m, dict): continue
+        entry = m.get("entry") if isinstance(m.get("entry"), dict) else {}
+        search_id = m.get("search_id")
+        rows.append({"search_id": search_id,
+                     "kind": str(search_id).split(":", 1)[0] if search_id else None,
+                     "searched_by": entry.get("searched_by"), "checked_on": entry.get("checked_on"),
+                     "complete": m.get("complete"),
+                     "machine_hits_for_this_order": m.get("machine_hits_for_this_order"),
+                     "coverage": {"repository": _cap_text(entry.get("repository"), VIEW_CAPS["text_chars"]),
+                                  "query_or_scope": _cap_text(entry.get("query_or_scope"), VIEW_CAPS["text_chars"]),
+                                  "scope_note": _cap_text(m.get("scope_note"), VIEW_CAPS["text_chars"])}})
+    shown, bound = _cap_list(rows, VIEW_CAPS["machine_searches"])
+    hits = [r["machine_hits_for_this_order"] for r in rows]
+    bound["hit_total"] = sum(hits) if hits and all(type(h) is int for h in hits) else "unknown"
+    bound["incomplete_searches"] = sum(r["complete"] is not True for r in rows)
+    return {"searches": shown, "bound": bound,
+            "note": "Machine searches are leads and coverage statements run before this packet was frozen; they are not independent review."}
+
+
+def _later_events_view(dossier):
+    chain = dossier.get("chain") if isinstance(dossier.get("chain"), dict) else {}
+    evidence = dossier.get("evidence") if isinstance(dossier.get("evidence"), dict) else {}
+    by_actor = defaultdict(list)
+    citable = []
+    for ident, record in sorted(evidence.items()):
+        if not isinstance(record, dict) or ident.startswith(("CLAUSES:", "TERM:", "ORIGINAL:")): continue
+        actor = record.get("actor_id")
+        by_actor[actor].append(ident)
+        source = record.get("actor_source") or record.get("source")
+        citable.append({"evidence_id": ident, "role": record.get("role"), "actor_id": actor, **_source_brief(source)})
+    events = []
+    for event in chain.get("events") or []:
+        if not isinstance(event, dict): continue
+        events.append({"id": event.get("id"), "actor_id": event.get("actor_id"), "signing_date": event.get("signing_date"),
+                       "verb": event.get("verb"), "how_named": event.get("how_named"), "confidence": event.get("confidence"),
+                       "sections_touched": event.get("sections_touched"), "notes": _cap_text(event.get("notes"), VIEW_CAPS["text_chars"]),
+                       "provision_text": _cap_text(event.get("provision_text"), VIEW_CAPS["text_chars"]),
+                       "source": _source_brief(event.get("source")),
+                       "citable_evidence_ids": by_actor.get(event.get("actor_id"), [])})
+    shown_events, event_bound = _cap_list(events, VIEW_CAPS["chain_events"])
+    shown_evidence, evidence_bound = _cap_list(citable, VIEW_CAPS["citable_evidence"])
+    return {"chain": {"id": chain.get("id"), "confidence": chain.get("confidence"), "notes": chain.get("notes"),
+                      "generic_refs_excluded": chain.get("generic_refs_excluded"), "events": shown_events, "bound": event_bound},
+            "citable_evidence": {"records": shown_evidence, "bound": evidence_bound,
+                                 "note": "Evidence ids a later_events entry may cite from this packet (actor texts and actor provisions). A later instrument absent from this list is not citable from the packet."},
+            "actor_contexts": [c for c in (dossier.get("actor_contexts") or []) if isinstance(c, dict)][:VIEW_CAPS["citable_evidence"]]}
+
+
+def _packet_side_file(packet_path, name):
+    folder = Path(packet_path).resolve().parent
+    for candidate in (folder / name, folder.parent / name):
+        if candidate.is_file(): return candidate
+    return None
+
+
+def _clause_inventory_view(dossier, iid, packet_path):
+    obligations = {o.get("scope_id"): o for o in dossier.get("lifecycle_obligations") or [] if isinstance(o, dict)}
+    rows = []
+    for clause in dossier.get("clauses") or []:
+        if not isinstance(clause, dict): continue
+        ob = obligations.get(clause.get("scope_id"), {})
+        questions, q_bound = _cap_list(ob.get("questions") or [], VIEW_CAPS["questions_per_clause"])
+        rows.append({"id": clause.get("id"), "scope_id": clause.get("scope_id"), "kind": clause.get("kind"), "label": clause.get("label"),
+                     "pdf_page": clause.get("pdf_page"), "char_start": clause.get("char_start"), "char_end": clause.get("char_end"),
+                     "lifecycle_state": ob.get("state"), "established_ending": ob.get("established_ending"),
+                     "wording_features": ob.get("wording_features"), "own_term_evidence_ids": ob.get("own_term_evidence_ids"),
+                     "later_actor_evidence_ids": ob.get("later_actor_evidence_ids"),
+                     "questions": [_cap_text(q, VIEW_CAPS["text_chars"]) for q in questions], "questions_bound": q_bound})
+    inventory, inventory_bound = _cap_list(rows, VIEW_CAPS["clause_inventory"])
+    out = {"clauses": inventory, "bound": inventory_bound,
+           "dossier_draft_gate_errors": dossier.get("draft_gate_errors"), "dossier_draft_material_gaps": dossier.get("draft_material_gaps")}
+    sheet = _packet_side_file(packet_path, "clauses.csv")
+    if sheet is None:
+        out["draft_sheet"] = {"present": False}
+        return out
+    shared = {}
+    rationales = _packet_side_file(packet_path, "RATIONALES.json")
+    if rationales:
+        try: shared = read_json(rationales)
+        except (OSError, ValueError): shared = {}
+    def resolve(value):
+        if isinstance(value, str) and value.startswith("@rationale:") and isinstance(shared.get(value.split(":", 1)[1]), str):
+            return shared[value.split(":", 1)[1]]
+        return value
+    with sheet.open(encoding="utf-8-sig", newline="") as f:
+        mine = [r for r in csv.DictReader(f) if r.get("instrument_id") == iid]
+    known = {c.get("scope_id") for c in dossier.get("clauses") or [] if isinstance(c, dict)}
+    drafts = [{"scope_id": r.get("scope_id"), "in_dossier_inventory": r.get("scope_id") in known, "state": r.get("state"),
+               "end_id": r.get("end_id"), "effective_date": r.get("effective_date"), "mechanism": r.get("mechanism"),
+               "reason": _cap_text(resolve(r.get("reason")), VIEW_CAPS["reason_chars"]),
+               "inventory_source_id": r.get("inventory_source_id"),
+               "inventory_char_start": r.get("inventory_char_start"), "inventory_char_end": r.get("inventory_char_end"),
+               "inventory_reason": _cap_text(resolve(r.get("inventory_reason")), VIEW_CAPS["reason_chars"])} for r in mine]
+    shown, bound = _cap_list(drafts, VIEW_CAPS["draft_clause_rows"])
+    out["draft_sheet"] = {"present": True, "path": str(sheet), "rows": shown, "bound": bound,
+                          "note": "Working draft sheet from the packet folder (state, ending and reason as last written by whoever filled it). It is a prior draft, not evidence."}
+    return out
+
+
+def _shrink_strings(value, limit):
+    if isinstance(value, str): return _cap_text(value, limit)
+    if isinstance(value, list): return [_shrink_strings(v, limit) for v in value]
+    if isinstance(value, dict): return {k: _shrink_strings(v, limit) for k, v in value.items()}
+    return value
+
+
+def _canonical_claim_view(iid, repo, full_claim=False):
+    """Latest claim for the order across research/readiness/claims, resolved as batch.owners does (last file, last line)."""
+    found = None
+    folder = Path(repo) / "research/readiness/claims"
+    needle = json.dumps(iid)
+    for path in sorted(folder.glob("*.jsonl")) if folder.is_dir() else []:
+        for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if needle not in line: continue
+            try: claim = json.loads(line)
+            except ValueError: continue
+            if isinstance(claim, dict) and claim.get("instrument_id") == iid:
+                found = (path, n, claim)
+    if found is None:
+        return {"found": False, "note": "No filed claim for this order under research/readiness/claims."}
+    path, n, claim = found
+    full_bytes = len(json.dumps(claim, ensure_ascii=False).encode("utf-8"))
+    shrunk = not full_claim and full_bytes > VIEW_CAPS["claim_bytes"]
+    return {"found": True, "path": path.relative_to(Path(repo)).as_posix(), "line": n, "owner": path.stem,
+            "claim_sha256": batch.canonical_sha(claim), "claim_full_bytes": full_bytes,
+            "claim_strings_truncated": shrunk,
+            "claim": _shrink_strings(claim, VIEW_CAPS["claim_string_chars"]) if shrunk else claim,
+            "status": "prior draft",
+            "note": "The current filed claim for this order, shown as a prior draft. It is not evidence; re-derive each point from the sources."
+                    + (f" Strings longer than {VIEW_CAPS['claim_string_chars']} characters are cut because the whole claim is {full_bytes} bytes; read the line at path/line, or rerun with --full-claim, for the complete text." if shrunk else "")}
+
+
+def view_summary(compact):
+    """Short stdout summary used with --write, so the full view is not printed twice."""
+    counts = {k: (len(v) if isinstance(v, (list, dict)) else v) for k, v in compact.items()
+              if k in ("clauses", "source_catalogue", "lookup_leads", "bounded_name_search")}
+    return {"instrument_id": compact.get("instrument_id"), "written_to": compact.get("written_to"),
+            "view_bytes": compact.get("view_bytes"), "approx_view_tokens": compact.get("approx_view_tokens"),
+            "approx_full_packet_tokens": compact.get("approx_full_packet_tokens"),
+            "own_text_boundary": compact.get("own_text_boundary"),
+            "machine_searches": (compact.get("machine_searches") or {}).get("bound"),
+            "later_event_chain": ((compact.get("later_events_chain") or {}).get("chain") or {}).get("bound"),
+            "citable_evidence": ((compact.get("later_events_chain") or {}).get("citable_evidence") or {}).get("bound"),
+            "clause_inventory": (compact.get("clause_inventory") or {}).get("bound"),
+            "current_canonical_claim": {k: (compact.get("current_canonical_claim") or {}).get(k) for k in ("found", "path", "line")},
+            "section_counts": counts}
+
+
+def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | None = None, full_claim: bool = False):
     repo = Path(repo or REPO).resolve()
     packet = read_json(packet_path); dossiers = batch.decode(packet)
     iid = eo if eo.startswith("EO:") else "EO:" + eo
@@ -389,9 +614,15 @@ def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | Non
                 "scope_note": "Batch-level shared context. It makes no order-specific determination; read this order's own text and sources."}
         else:
             compact["shared_analysis_memo"] = {"missing": "SHARED_ANALYSIS.md not available", "coverage_gap": True}
+    compact["machine_searches"] = _machine_searches_view(dossier)
+    compact["later_events_chain"] = _later_events_view(dossier)
+    compact["clause_inventory"] = _clause_inventory_view(dossier, iid, packet_path)
+    compact["current_canonical_claim"] = _canonical_claim_view(iid, repo, full_claim)
+    compact["view_caps"] = dict(VIEW_CAPS)
     compact["packet_fingerprint"] = packet.get("fingerprint")
     compact_bytes = len(json.dumps(compact, ensure_ascii=False).encode("utf-8"))
     packet_bytes = Path(packet_path).stat().st_size
+    compact["view_bytes"] = compact_bytes
     compact["approx_view_tokens"] = (compact_bytes + 3) // 4
     compact["approx_full_packet_tokens"] = (packet_bytes + 3) // 4
     compact["approx_size_reduction_tokens"] = max(0, (packet_bytes - compact_bytes) // 4)
@@ -410,8 +641,7 @@ def cost(path: Path, filed_manifest: Path | None = None):
     groups = {}
     errors = []
     for row in rows:
-        batch_id = row.get("batch", "")
-        track = row.get("track") or ("NRA" if batch_id.lower().startswith("n") else "General" if batch_id.lower().startswith("g") else "unknown")
+        track = _track_of(row)
         key = (track, row.get("role", ""), row.get("model", ""))
         g = groups.setdefault(key, {"rows": 0, "sums": defaultdict(Decimal), "reported": Counter(), "errors": []})
         g["rows"] += 1
@@ -469,17 +699,232 @@ def cost(path: Path, filed_manifest: Path | None = None):
             "note": "blank telemetry stays unknown; active seconds retain fractions; actual token cost savings are unknown"}
 
 
+UNKNOWN = "unknown"
+COMPARE_SCHEMA = "geddes-cost-compare/v1"
+# tokens_total_input is derived (input + cache creation + cache read) when the CSV lacks that column.
+COMPARE_METRICS = ("tokens_total_input", "cache_read_input_tokens", "output_tokens", "active_seconds")
+COMPARE_LABELS = {"tokens_total_input": "input tokens (total)", "cache_read_input_tokens": "cache-read tokens",
+                  "output_tokens": "output tokens", "active_seconds": "active seconds"}
+
+
+def _track_of(row):
+    batch_id = (row.get("batch") or "").lower()
+    return row.get("track") or ("NRA" if batch_id.startswith("n") else "General" if batch_id.startswith("g") else "unknown")
+
+
+def _clean_number(raw, integer):
+    """Return a non-negative Decimal, None when blank, or raise InvalidOperation."""
+    if raw is None or not str(raw).strip(): return None
+    value = Decimal(str(raw).strip())
+    if not value.is_finite() or value < 0: raise InvalidOperation
+    if integer and value != value.to_integral_value(): raise InvalidOperation
+    return value
+
+
+def _row_metrics(row):
+    """Per-row values for the compared metrics; None means unknown, never zero."""
+    out = {}
+    for col in ("tokens_total_input", "cache_read_input_tokens", "output_tokens", "active_seconds",
+                "input_tokens", "cache_creation_input_tokens"):
+        try: out[col] = _clean_number(row.get(col), col != "active_seconds")
+        except InvalidOperation: out[col] = None
+    if out["tokens_total_input"] is None:
+        parts = [out["input_tokens"], out["cache_creation_input_tokens"], out["cache_read_input_tokens"]]
+        out["tokens_total_input"] = None if any(v is None for v in parts) else sum(parts)
+    return out
+
+
+def _run_totals(path):
+    """Sum compared metrics per (track, role); a metric is unknown if any agent row lacks it."""
+    with Path(path).open(encoding="utf-8-sig", newline="") as f: rows = list(csv.DictReader(f))
+    groups = {}
+    for row in rows:
+        g = groups.setdefault((_track_of(row), row.get("role", "")), {"agents": 0, "sums": {m: Decimal(0) for m in COMPARE_METRICS}, "missing": Counter()})
+        g["agents"] += 1
+        values = _row_metrics(row)
+        for m in COMPARE_METRICS:
+            if values[m] is None: g["missing"][m] += 1
+            else: g["sums"][m] += values[m]
+    return groups
+
+
+def _load_filed(path):
+    """Read a filed-claims JSON map such as {"filed_claims": {"NRA": 127}} into track -> int."""
+    filed, errors = {}, []
+    if not path: return filed, errors
+    manifest = read_json(path)
+    if not isinstance(manifest, dict): raise ValueError(f"{path}: filed-claims JSON must be an object")
+    for k, v in manifest.get("filed_claims", manifest).items():
+        try:
+            value = Decimal(str(v))
+            if isinstance(v, bool) or not value.is_finite() or value < 0 or value != value.to_integral_value(): raise ValueError
+            filed[str(k)] = int(value)
+        except (TypeError, ValueError, InvalidOperation): errors.append({"filed_manifest": str(k), "value": v, "reason": "invalid_denominator"})
+    return filed, errors
+
+
+def _num(value):
+    return int(value) if value == value.to_integral_value() else float(value)
+
+
+def _per_claim(group, metric, denominator):
+    """Return (value, reason); value is UNKNOWN when any input to it is missing."""
+    if group is None: return UNKNOWN, "track/role absent from this run"
+    if group["missing"][metric]: return UNKNOWN, f"{group['missing'][metric]} of {group['agents']} agent rows lack {metric}"
+    if not denominator: return UNKNOWN, "no filed-claim count for this track"
+    return round(float(group["sums"][metric]) / denominator, 2), None
+
+
+def cost_compare(baseline: Path, new: Path, filed_baseline: Path | None = None, filed_new: Path | None = None):
+    base_groups, new_groups = _run_totals(baseline), _run_totals(new)
+    base_filed, e1 = _load_filed(filed_baseline)
+    new_filed, e2 = _load_filed(filed_new)
+    rows, verdicts = [], []
+    for track, role in sorted(set(base_groups) | set(new_groups)):
+        bg, ng = base_groups.get((track, role)), new_groups.get((track, role))
+        entry = {"track": track, "role": role, "agents": {"baseline": bg["agents"] if bg else UNKNOWN, "new": ng["agents"] if ng else UNKNOWN},
+                 "filed_claims": {"baseline": base_filed.get(track, UNKNOWN), "new": new_filed.get(track, UNKNOWN)}, "metrics": {}}
+        for metric in COMPARE_METRICS:
+            b, why_b = _per_claim(bg, metric, base_filed.get(track))
+            n, why_n = _per_claim(ng, metric, new_filed.get(track))
+            m = {"baseline_total": _num(bg["sums"][metric]) if bg and not bg["missing"][metric] else UNKNOWN,
+                 "new_total": _num(ng["sums"][metric]) if ng and not ng["missing"][metric] else UNKNOWN,
+                 "baseline_per_filed_claim": b, "new_per_filed_claim": n}
+            reasons = [f"baseline: {why_b}" if why_b else None, f"new: {why_n}" if why_n else None]
+            if UNKNOWN in (b, n): ratio = UNKNOWN
+            elif b == 0: ratio, reasons = UNKNOWN, reasons + ["baseline value is zero, so the ratio is undefined"]
+            else: ratio = round(n / b, 4)
+            m["ratio_new_over_baseline"] = ratio
+            m["unknown_because"] = [r for r in reasons if r] if ratio == UNKNOWN else []
+            entry["metrics"][metric] = m
+        label, cache = f"{track}/{role}", entry["metrics"]["cache_read_input_tokens"]
+        r = cache["ratio_new_over_baseline"]
+        if r == UNKNOWN:
+            line = f"cache-read tokens per filed claim for {label}: unknown ({'; '.join(cache['unknown_because'])})"
+        else:
+            pct = round(abs(1 - r) * 100, 1)
+            line = (f"new run used the same number of cache-read tokens per filed claim for {label}" if pct == 0 else
+                    f"new run used {pct:g}% {'fewer' if r < 1 else 'more'} cache-read tokens per filed claim for {label}")
+        entry["verdict"] = line
+        verdicts.append(line)
+        rows.append(entry)
+    return {"schema": COMPARE_SCHEMA, "baseline": {"source": str(baseline), "filed_claims": base_filed},
+            "new": {"source": str(new), "filed_claims": new_filed}, "rows": rows, "verdicts": verdicts,
+            "errors": e1 + e2,
+            "note": "Per filed claim = track/role total divided by that track's filed-claim count. Ratio = new / baseline. "
+                    "'unknown' means an input was missing; it is never treated as zero. Active seconds retain fractions."}
+
+
+RESOLUTIONS_SCHEMA = "geddes-resolutions/v1"
+RESOLUTIONS_NAME = "GEDDES_RESOLUTIONS.json"
+RESPONSES = ("fixed_in_new_version", "disputed", "order_blocked")
+
+
+def load_resolutions(path: Path, required: bool = False):
+    """Return the parsed resolutions document, or None when an optional file is absent."""
+    path = Path(path)
+    if not path.is_file():
+        if required: raise FileNotFoundError(f"resolutions file not found: {path}")
+        return None
+    doc = read_json(path)
+    if not isinstance(doc, dict) or doc.get("schema") != RESOLUTIONS_SCHEMA or not isinstance(doc.get("resolutions"), list):
+        raise ValueError(f"{path}: expected an object with schema {RESOLUTIONS_SCHEMA!r} and a resolutions list")
+    return doc
+
+
+def gate_check(lint_result, resolutions_doc):
+    """Pure gate: passes only when every current flag has a valid resolution with a non-empty note."""
+    stamp_flag_ids(lint_result.get("results", []))
+    valid, invalid = {}, []
+    for i, entry in enumerate((resolutions_doc or {}).get("resolutions", [])):
+        problems = []
+        if not isinstance(entry, dict): invalid.append({"index": i, "reason": "entry_not_an_object"}); continue
+        if not isinstance(entry.get("flag_id"), str) or not entry["flag_id"].strip(): problems.append("flag_id_missing")
+        if entry.get("response") not in RESPONSES: problems.append(f"response_not_one_of_{'|'.join(RESPONSES)}")
+        if not isinstance(entry.get("note"), str) or not entry["note"].strip(): problems.append("note_empty")
+        if problems: invalid.append({"index": i, "flag_id": entry.get("flag_id"), "reason": ",".join(problems)}); continue
+        valid.setdefault(entry["flag_id"], []).append(entry)
+    resolved, unresolved, current = [], [], set()
+    for row in lint_result.get("results", []):
+        for flag in row.get("flags", []):
+            fid = flag.get("flag_id"); current.add(fid)
+            matches = [e for e in valid.get(fid, []) if e.get("instrument_id") in (None, row.get("instrument_id"))]
+            if matches:
+                resolved.append({"flag_id": fid, "instrument_id": row.get("instrument_id"), "response": matches[0]["response"]})
+                continue
+            item = {"flag_id": fid, "instrument_id": row.get("instrument_id"), "line": row.get("line"), "code": flag.get("code"),
+                    "scope_id": flag.get("scope_id"), "detail": flag.get("detail")}
+            if fid in valid: item["reason"] = "resolution_instrument_id_does_not_match"
+            else: item["reason"] = "no_valid_resolution"
+            unresolved.append(item)
+    return {"schema": "geddes-gate/v1", "passed": not unresolved, "flags": len(resolved) + len(unresolved),
+            "resolved": len(resolved), "unresolved_count": len(unresolved), "unresolved": unresolved,
+            "resolved_flags": resolved, "invalid_resolutions": invalid,
+            "stale_resolutions": sorted(set(valid) - current),
+            "note": "Coverage gaps are reported by lint and are not gated here. A gate pass shows only that every flag has a documented response; it is not a legal or review conclusion."}
+
+
+def gate(applied: Path, resolutions: Path | None = None, repo=REPO):
+    """Re-lint the applied directory so the flags are current, then apply the resolutions file."""
+    applied = Path(applied)
+    path = Path(resolutions) if resolutions else applied / RESOLUTIONS_NAME
+    doc = load_resolutions(path, required=resolutions is not None)
+    result = gate_check(lint(applied, repo), doc)
+    result["resolutions_path"] = str(path) if doc is not None else None
+    return result
+
+
+def lint_for_kit(applied: Path, repo=REPO, strict: bool = False):
+    """Lint for claim-kit batch-check: write GEDDES_LINT.json and return the compact summary."""
+    started = time.monotonic()
+    applied = Path(applied).resolve()
+    result = lint(applied, repo)
+    (applied / "GEDDES_LINT.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    flagged = []
+    for row in result["results"]:
+        if row["flags"] and row["instrument_id"] not in flagged: flagged.append(row["instrument_id"])
+    summary = {"flags": result["defect_flags"], "flagged_claims": flagged, "coverage_gaps": result["coverage_gaps"],
+               "path": "GEDDES_LINT.json", "seconds": 0}
+    if strict:
+        try:
+            outcome = gate_check(result, load_resolutions(applied / RESOLUTIONS_NAME))
+            summary["gate"] = {"passed": outcome["passed"], "unresolved": [u["flag_id"] for u in outcome["unresolved"]],
+                               "resolutions_path": RESOLUTIONS_NAME}
+        except (OSError, ValueError) as exc:
+            summary["gate"] = {"passed": False, "error": f"{type(exc).__name__}: {exc}"}
+    summary["seconds"] = round(time.monotonic() - started, 3)
+    return summary
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
     x = sub.add_parser("lint"); x.add_argument("applied", type=Path); x.add_argument("--repo", type=Path, default=REPO)
+    x = sub.add_parser("gate", help="exit 0 only when every current lint flag has a resolution with a note")
+    x.add_argument("applied", type=Path); x.add_argument("--resolutions", type=Path); x.add_argument("--repo", type=Path, default=REPO)
     x = sub.add_parser("view"); x.add_argument("packet", type=Path); x.add_argument("eo"); x.add_argument("--write", type=Path); x.add_argument("--repo", type=Path, default=REPO)
-    x = sub.add_parser("cost"); x.add_argument("telemetry", type=Path); x.add_argument("--filed-manifest", type=Path)
+    x.add_argument("--full-claim", action="store_true", help="include the current filed claim without shortening long strings")
+    x = sub.add_parser("cost", help="summarize one telemetry CSV, or compare it (as NEW) against --compare BASELINE")
+    x.add_argument("telemetry", type=Path, metavar="TELEMETRY_OR_NEW.csv"); x.add_argument("--filed-manifest", type=Path)
+    x.add_argument("--compare", type=Path, metavar="BASELINE.csv"); x.add_argument("--filed-baseline", type=Path); x.add_argument("--filed-new", type=Path)
     a = p.parse_args(argv)
+    if a.cmd == "cost" and not a.compare and (a.filed_baseline or a.filed_new):
+        p.error("--filed-baseline and --filed-new require --compare")
     try:
-        result = lint(a.applied, a.repo) if a.cmd == "lint" else view(a.packet, a.eo, a.write, a.repo) if a.cmd == "view" else cost(a.telemetry, a.filed_manifest)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
-        return 0
+        code = 0
+        if a.cmd == "lint": result = lint(a.applied, a.repo)
+        elif a.cmd == "gate":
+            result = gate(a.applied, a.resolutions, a.repo)
+            if not result["passed"]:
+                code = 1
+                for u in result["unresolved"]:
+                    print(f"UNRESOLVED {u['flag_id']} {u['instrument_id']} {u['code']}: {u['detail']}", file=sys.stderr)
+        elif a.cmd == "view": result = view(a.packet, a.eo, a.write, a.repo, a.full_claim)
+        elif a.compare: result = cost_compare(a.compare, a.telemetry, a.filed_baseline, a.filed_new)
+        else: result = cost(a.telemetry, a.filed_manifest)
+        printed = view_summary(result) if a.cmd == "view" and a.write else result
+        print(json.dumps(printed, ensure_ascii=False, indent=2))
+        return code
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(json.dumps({"error": f"{type(exc).__name__}: {exc}"}), file=sys.stderr)
         return 2

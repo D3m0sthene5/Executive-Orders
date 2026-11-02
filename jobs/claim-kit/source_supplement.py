@@ -134,7 +134,12 @@ def prepare(repo, parent, declaration_file, agent, dest):
     paths = {iid: folder / (B.filename(iid) + '.json') for iid in derived}
     for iid, d in derived.items():
         B.dump(paths[iid], d)
-    stats = B.prepare(repo, parent, dest, list(derived), agent, dossier_paths=paths)
+    # A supplement of an owner-reviewable replacement packet stays a replacement packet: B.prepare
+    # would otherwise refuse every already-claimed order. The parent's routing decides; nothing is inferred.
+    replacement = any(r.get('route') == 'owner_reviewable_replacement_proposal'
+                      for r in packet.get('ownership', {}).values() if isinstance(r, dict))
+    stats = B.prepare(repo, parent, dest, list(derived), agent, dossier_paths=paths,
+                      replacement_proposal=replacement)
     receipt = {'schema': 'eo-source-excerpt-prepare-receipt/v1', **provenance,
                'instrument_ids': list(derived), 'native_prepare': stats,
                'wall_seconds': time.monotonic() - started,

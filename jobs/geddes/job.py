@@ -43,7 +43,14 @@ try:
         (OUT / "LINT.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         summary["lint"] = {"status": "one_explicit_applied_directory_linted", "path": "LINT.json",
                            "claims_checked": result["claims_checked"], "defect_flags": result["defect_flags"],
-                           "coverage_gaps": result["coverage_gaps"]}
+                           "coverage_gaps": result["coverage_gaps"], "seconds": result["seconds"],
+                           "files_read": result["files_read"]}
+        # Informational only: the job reports gate status and never fails because flags are unresolved.
+        try:
+            gate = geddes.gate_check(result, geddes.load_resolutions(path / geddes.RESOLUTIONS_NAME))
+            summary["lint"]["gate"] = {"passed": gate["passed"], "flags": gate["flags"], "unresolved": gate["unresolved_count"]}
+        except (OSError, ValueError) as exc:
+            summary["lint"]["gate"] = {"passed": False, "error": f"{type(exc).__name__}: {exc}"}
     else:
         summary["lint"] = {"status": "not_run", "reason": "GEDDES_APPLIED_DIR was not supplied"}
     (OUT / "SUMMARY.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
