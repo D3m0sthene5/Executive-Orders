@@ -1,3 +1,10 @@
+## 2026-11-02 ET: small remaining dossier handoffs assessed
+
+- **Done:** Read-only mainb3fc50647c assessment. Strongest scalable gap: Lachmann confirmations reach tracker but not claim-kit blank sheets;1,674 is a candidate ceiling. Strongest direct pilot: four Erasmus packets need already-held later-instrument evidence IDs through existing supplements. Board-report facts and Cruden bare-number table leads remain bounded follow-ups. Full source trace: research/progress/remaining-work/tiers/HANDOFF_OPPORTUNITIES.md.
+- **Freshness:** PR119/120 already merged (888 statuses,1,674 text confirmations); tracker/compiler generation still predates them. Refresh existing ordered production before selecting another cohort. Dashboard map omitted separate Jacquard/Lachmann nodes; add them in a catalog correction, preserving latest-published498 headline until native refresh.
+- **Scope/costs:** No implementation, acquisition, scientific job, adoption, grade or count change. Bounded configured gpt-6-sol reader; tokens/complete labor/cash unavailable. Kean F-20261102-dossier-handoffs.
+- **Next/Asks:** Reproduce exact confirmation-to-packet reuse and four source-ID cases before coding. @Owner: none. Do not repeat already-merged wiring or infer completed dossiers from candidate counts.
+
 ## 2026-11-02 ET: Apollo Job tiers published and live-verified — PR124
 
 - **Published:** Original private artifact https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#tiers, page15 from exact source401d7bd3909f97ec7b49f00f2a73a0f25f37cf59; tools46 rows/v10; workflow82 nodes/v3. New Job tiers85 assessments, dated results/limits/source links, search and kind/tier filters. Six older feeds and rocket preserved. Source PR124 remains open; no main merge.
