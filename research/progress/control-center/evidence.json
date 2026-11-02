@@ -1,0 +1,175 @@
+{
+  "asOf": "2026-11-02",
+  "commit": "a16ad07f021b2508904c028a7bf48763091c18df",
+  "tiers": [
+    {
+      "title": "Original-supported",
+      "description": "460 ready dossiers have original-supported text. Independent human review still checks the cited pages and the legal history.",
+      "path": "jobs/readiness-tracker/output/SUMMARY.json",
+      "key": "original_supported",
+      "count": 460
+    },
+    {
+      "title": "Transcription-dependent",
+      "description": "324 ready dossiers rely on a disclosed provisional working text. Replace it with an original when available and recheck the quotations.",
+      "path": "jobs/readiness-tracker/output/SUMMARY.json",
+      "key": "transcription_dependent",
+      "count": 324
+    },
+    {
+      "title": "Confirmed working text",
+      "description": "Lachmann pins the selected text and records identity, completeness and page checks. A qualifying confirmation can provisionally close the text step.",
+      "path": "jobs/lachmann/README.md",
+      "key": "provisional_working_text"
+    },
+    {
+      "title": "Lead only",
+      "description": "Compiled transcriptions, catalog entries and unexamined archival replicas guide retrieval. A working-text confirmation or page examination is a separate event.",
+      "path": "jobs/readiness-tracker/output/TRACKER.md",
+      "key": "lead_only"
+    }
+  ],
+  "statuses": [
+    {
+      "title": "Provisional YES",
+      "description": "405 admitted identities have a provisional substantive YES. A complete YES claim requires a continuing legal predicate through October 14, 2026.",
+      "path": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+      "count": 405,
+      "state": "Provisional"
+    },
+    {
+      "title": "Provisional NO",
+      "description": "3,886 admitted identities have a provisional substantive NO. A complete NO claim must establish the first ending of all operative clauses and account for surviving effects.",
+      "path": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
+      "count": 3886,
+      "state": "Provisional"
+    },
+    {
+      "title": "No provisional status",
+      "description": "10,681 working identities lack an adopted YES or NO. A proposed status stays outside the register until authorized adoption.",
+      "path": "jobs/readiness-tracker/output/TRACKER.md",
+      "count": 10681,
+      "state": "Unknown"
+    },
+    {
+      "title": "Census candidate",
+      "description": "67 distinct Library of Congress catalog items await inclusion review. The census records 1,023 unverified Lord index appearances separately.",
+      "path": "jobs/census-candidates/output/CENSUS_READINESS.md",
+      "state": "Unadmitted"
+    },
+    {
+      "title": "Machine exhausted",
+      "description": "An applicable step can carry a documented search-to-end record. Keep its exact routes and material gap visible to the human reviewer.",
+      "path": "research/readiness/README.md",
+      "state": "Disclosed gap"
+    },
+    {
+      "title": "AI-reviewed",
+      "description": "An independent model examines the frozen claim and its sources. Completion requires the applicable controls, review scope and version-matched receipts.",
+      "path": "jobs/claim-kit/COMPLETION.md",
+      "state": "AI review"
+    },
+    {
+      "title": "Ready for human review",
+      "description": "784 dossiers meet the published tracker’s applicable requirements. Their evidence tiers and disclosed exhaustion determine what the human reviewer must inspect.",
+      "path": "jobs/readiness-tracker/output/TRACKER.md",
+      "count": 784,
+      "state": "Machine ready"
+    },
+    {
+      "title": "Human-certified",
+      "description": "The published register records zero independently reviewed complete whole histories. The human reviewer’s uphold must match the exact claim hash and cover each cited source.",
+      "path": "research/stage19/output/PROGRESS.json",
+      "count": 0,
+      "state": "Independent human"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Examine the four held-actor cases",
+      "description": "EO 8129, 8163, 9949 and 11026 now have source-excerpt IDs. All four remain unresolved after the retained replay.",
+      "path": "research/progress/held-actor-handoff-2026-11-02/native-v3-retained/REPORT.md",
+      "state": "Open",
+      "stage": "Source review",
+      "dependency": "Fresh ordinary packets, retained pages and source spans",
+      "next": "Inspect the actual pages and the extent of each instrument. EO 11029 names EO 11025. Determine whether it applies to EO 11026 before using it.",
+      "pr": 127
+    },
+    {
+      "title": "Inspect the five retained PDFs",
+      "description": "The recovery verified five raw hashes and 20 selected page-text hashes. No PNGs were retained, and three selected page texts are empty.",
+      "path": "research/progress/erasmus-board-source-readiness-2026-11-02/NATIVE_CUSTODY_REVIEW.json",
+      "state": "Open",
+      "stage": "Evidence custody",
+      "dependency": "Retained PDFs, source identity and transmittal pages",
+      "next": "Inspect the PDF pages directly. For EO 12095, reconcile PEB-189 with the Board 95-504 identifier before interpreting the report.",
+      "pr": 127
+    },
+    {
+      "title": "Replace provisional working texts",
+      "description": "The tracker records 1,875 original-replacement obligations and 1,875 quotation rechecks. Obligations can survive machine readiness.",
+      "path": "jobs/readiness-tracker/output/SUMMARY.json",
+      "state": "Open",
+      "stage": "Original text",
+      "dependency": "Source-ladder or archival original and a version-matched claim",
+      "next": "Retrieve the original, compare its pages with the working text, and recheck each quotation."
+    },
+    {
+      "title": "Review the historical census candidates",
+      "description": "The 67 distinct catalog candidates remain outside the 14,972 working identities. Date matches alone do not establish identity.",
+      "path": "jobs/census-candidates/output/CENSUS_READINESS.md",
+      "state": "Open",
+      "stage": "Discovery",
+      "dependency": "Original pages, signer, authority, duplicates and codebook inclusion review",
+      "next": "Inspect the catalog item by exact LOC identity and file the research disposition for independent admission review."
+    },
+    {
+      "title": "Recheck failed claims",
+      "description": "Seven provisionally classified orders carry CLAIM_CHECK_FAILED in the tracker generation. A receipt can describe a failure.",
+      "path": "jobs/readiness-tracker/output/TRACKER.md",
+      "state": "Open",
+      "stage": "Claim checking",
+      "dependency": "Latest claim version and its exact checker receipt",
+      "next": "Inspect the per-order blocker and the failed step. Run claim-checker before readiness-tracker after a correction."
+    },
+    {
+      "title": "Hand a ready dossier to a human",
+      "description": "The independent reviewer must read each cited source, test earlier cessation and savings, and identify the exact frozen claim.",
+      "path": "research/stage19/CLAIM_SCHEMA.md",
+      "state": "Human review",
+      "stage": "Certification",
+      "dependency": "Scope-complete claim, its SHA-256 and a separate independent human reviewer",
+      "next": "Record the human decision and examined sources through the project’s review process. A changed claim needs a fresh review."
+    },
+    {
+      "title": "Recover the accepted population",
+      "description": "Claim-kit refused 4,291 adopted rows against the former 3,403-row contract. PR 125 pinned the accepted adoption inputs and preserved the canonical status rows.",
+      "path": "HANDOFF/final-recovery-20261102.json",
+      "state": "Recovered",
+      "stage": "Claim preparation",
+      "dependency": "PR 119 adoption, corresponding owner ruling, independent review and holds",
+      "next": "Use the newly generated packet for any subsequent scientific review.",
+      "pr": 125
+    },
+    {
+      "title": "Recover Cruden table lookup",
+      "description": "The bounded lookup found EO 9949 in four representations of one table where ordinary number search returned zero. Related representations share the same source.",
+      "path": "research/progress/held-table-handoff-2026-11-02/REPORT.md",
+      "state": "Recovered",
+      "stage": "Later-source search",
+      "dependency": "Pinned source text and the table’s introductory wording",
+      "next": "Verify the cited row on the actual source page and examine legal effect separately.",
+      "pr": 126
+    },
+    {
+      "title": "Preserve blind-review disclosures",
+      "description": "PR 129 repaired a source-note layout cue in reviewer cards. The Valla pilot materialized 139 packages and produced zero legal promotions.",
+      "path": "HANDOFF/notes-codex.md",
+      "state": "Recovered",
+      "stage": "Independent AI review",
+      "dependency": "Blind-review packet and semantic control adjudication",
+      "next": "Keep substantive disclosures and preserve the earlier pilot failures in their historical records.",
+      "pr": 129
+    }
+  ]
+}

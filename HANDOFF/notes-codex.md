@@ -1,3 +1,10 @@
+## 2026-11-02 ET: repository production control center and Sol assignment
+
+- **Done:** Added the read-only Site assets and operator brief under `research/progress/control-center/`. The top-level README links both. The brief separates a targeted production wave from a fresh probability sample of the unfinished inventory and specifies auditable token/time coverage. Kean F-20261102-codex-control-center records the handoff.
+- **Next:** Rebaseline from the checker and tracker receipts before assigning the next Sol production wave. Count newly ready identities against the successful published generation.
+- **Running:** No production job dispatched by this documentation change.
+- **Asks:** @Owner: none. Scientific classifications and certificates remain with their existing authorities.
+
 ## 2026-11-02 ET: recovery completed; final main native generation audited
 
 - **Done:** PR124-129 merged. Population contract now pins the already-adopted 4,291 rows; Cruden table leads, five exact retained PDFs, source handoffs, exact Lachmann reuse and the published dashboard archive are integrated. The extra preexisting source-notes layout cue is fixed without erasing disclosures or weakening control-copy detection.
