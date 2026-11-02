@@ -1,0 +1,25 @@
+{
+  "schema": "eo-source-kean-integration/v1",
+  "source_head": "a1f273508611fa9bf629636b23ac863360759fa2",
+  "current_main": "33c860ecaa36084f798785e8b4ebdbe02ec9673d",
+  "source_previous_head": "8ad1281b8afae986726e067c72898f2c18484ad7",
+  "source_head_changes": [
+    "jobs/kean/output/KEAN.md",
+    "jobs/kean/output/RUNNER_INPUTS.json",
+    "jobs/kean/output/STATUS.json",
+    "jobs/kean/output/SUMMARY.json",
+    "jobs/kean/output/log.txt"
+  ],
+  "source_findings": 103,
+  "main_findings": 100,
+  "source_native_commit_run": "8ad1281b8afae986726e067c72898f2c18484ad7",
+  "source_native_run": 41499422731,
+  "source_native_finished": "2026-11-02T18:22:11Z",
+  "main_native_finished": "2026-11-02T18:11:25Z",
+  "resolution": "Preserve source head in full, including exact newer native Kean output; it includes the source findings and custody result absent from main's earlier generation. Do not relabel native commit_run or rewrite receipt hashes.",
+  "retention_output": "All 1866 retained custody paths remain unchanged from audited a3fbcbfe: source head differs from already-verified 8ad only in five Kean output files.",
+  "runtime_or_scientific_changes": 0,
+  "prior_independent_integration": "research/progress/erasmus-board-source-readiness-2026-11-02/SOURCE_INTEGRATION_REVIEW.json",
+  "custody_audit": "research/progress/erasmus-board-source-readiness-2026-11-02/NATIVE_CUSTODY_REVIEW.json",
+  "note": "The previous ref update lost its expected-head lease when the automatic Kean job published a1f. This integration uses the actual new head and current main. Final metadata-only merge does not rerun acquisition."
+}
