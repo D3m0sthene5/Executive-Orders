@@ -36,13 +36,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 97; `search` finds the rest)
+## Newest results (6 of 102; `search` finds the rest)
 
+- 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
+- 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
+- 2026-11-02 F-20261102-erasmus-retention-prepared **partly worked**: Resolve board-report and missing-raw prerequisites through existing queued retention Lesson: Separate metadata leads from retained raw custody; use ordinary queued acquisition and never widen held_text_lead policy to unlock cases
+- 2026-11-02 F-20261102-cruden-table-recovery **worked**: Recover bounded opt-in Cruden table-cell lookup and compare unchanged legacy routes Lesson: Expose source-bound table leads separately; preserve conservative ordinary lookups and do not infer legal effect
 - 2026-11-02 F-20261101-geddes-native **partly worked**: Verify repaired Geddes on full held corpus Lesson: Keep raw native receipt and distinguish true warnings from false positives.
 - 2026-11-01 F-20261101-geddes-retries **stopped at gate**: Reconcile Apollo retry inputs Lesson: Keep exact defects and hashes; never substitute review models silently.
-- 2026-11-01 F-20261101-geddes-repair **partly worked**: Repair Geddes source binding Lesson: Separate true source problems from false flags; never hide abstentions.
-- 2026-11-01 F-20261101-geddes-lint **partly worked**: Test Geddes advisory lint Lesson: Source-role probes do not establish production precision.
-- 2026-11-01 F-20261101-geddes-cost **analysis**: Measure Geddes order views and Apollo cost Lesson: Payload reduction is not measured cache-token savings.
-- 2026-10-31 F-20261031-root-r1-r4-production **worked**: Integrate R1-R4 and verify one production generation Lesson: Certify exact invocations; keep diagnostics out of science; freeze inputs before expensive runs. Broad dependencies caused refused publication.
 
-Register: 18 owner decisions, 2 answered questions, 97 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 102 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
