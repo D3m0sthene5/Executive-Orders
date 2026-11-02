@@ -1,0 +1,463 @@
+{
+  "code_stable_during_run": true,
+  "probes": [
+    {
+      "name": "legitimate_recital_outside_clause_envelope",
+      "pass": true,
+      "expected": "No false absence for recital within correct own-order boundaries",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "neighbor_quote_excluded",
+      "pass": true,
+      "expected": "Neighbor quote cannot establish own text",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "attributed_quote_not_verbatim",
+            "detail": "claim.research_rationale: attributed quotation 'I hereby order payment of every outstanding claim.' is absent verbatim from the verified order body",
+            "source": {
+              "text_path": "own.txt",
+              "text_sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df",
+              "char_start": 0,
+              "char_end": 264,
+              "boundary": "numbered",
+              "source_id": "ORIGINAL:EO:100"
+            }
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "valid_inventory_override",
+      "pass": true,
+      "expected": "Valid reconstructed override outside old clause envelope accepted",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "own_quote_cannot_be_supported_by_actor",
+      "pass": true,
+      "expected": "Actor wording cannot validate own quote",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "attributed_quote_not_verbatim",
+            "detail": "claim.research_rationale: attributed quotation 'The Blue Marsh Refuge is renamed Green Marsh Refuge.' is absent verbatim from the verified order body",
+            "source": {
+              "text_path": "own.txt",
+              "text_sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df",
+              "char_start": 0,
+              "char_end": 264,
+              "boundary": "numbered",
+              "source_id": "ORIGINAL:EO:100"
+            }
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "actor_quote_cannot_be_supported_by_own",
+      "pass": true,
+      "expected": "Own wording cannot validate actor quote",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "first_end_quote_not_in_cited_source",
+            "detail": "claim.operative_clauses[0].first_end.source: quotation differs from the pinned source span",
+            "source": {
+              "text_path": "actor.txt",
+              "text_sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f",
+              "char_start": 0,
+              "char_end": 107,
+              "source_id": "ACT:EO:100>EO:7001A"
+            }
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "malformed_explicit_actor_span",
+      "pass": true,
+      "expected": "Malformed explicit span must not silently fall back to full-file quote match",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "cited_quote_span_unverified",
+            "path": "claim.operative_clauses[0].first_end.source"
+          }
+        ],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "actual_actor_suffix_loss",
+      "pass": true,
+      "expected": "Source-bound actor suffix mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "suffix_dropped",
+            "detail": "Claim actor EO 7001 differs from the verified actor record EO 7001A.",
+            "source_id": "ACT:EO:100>EO:7001A"
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "signing_and_filing_not_publication",
+      "pass": true,
+      "expected": "Signing/filing dates are not issue-date errors",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "wrong_own_fr_page",
+      "pass": true,
+      "expected": "Explicit own FR page mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "fr_citation_mismatch",
+            "field": "claim.research_rationale",
+            "detail": "reasoning cites 2 FR 73; pinned original cites [('2', '63')]",
+            "source_id": "ORIGINAL:EO:100"
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "wrong_own_fr_issue",
+      "pass": true,
+      "expected": "Explicit own FR issue mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "fr_issue_date_mismatch",
+            "field": "claim.research_rationale",
+            "detail": "reasoning says issue 1937-01-04; pinned original issue is 1937-01-03",
+            "source_id": "ORIGINAL:EO:100"
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "object_not_actor_in_later_events_sentence",
+      "pass": true,
+      "expected": "Object EO99 must not require its own event",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "object_in_plural_later_events_context",
+      "pass": true,
+      "expected": "Plural event context does not turn EO99 object into actor",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "explicit_other_section_amendment",
+      "pass": true,
+      "expected": "Explicit other-section amendment is not asserted event on tracked clause",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "historical_parent_amendment",
+      "pass": true,
+      "expected": "Historical parent description is not later event",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "unclassified_instrument_mention",
+            "scope_id": "EO:100#main",
+            "actor": "EO:77",
+            "detail": "Acting versus prior-parent context requires source examination."
+          }
+        ],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "missing_active_actor",
+      "pass": true,
+      "expected": "Active actor EO7002 must be recorded",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "later_instrument_named_without_event_source",
+            "scope_id": "EO:100#main",
+            "actor": "EO:7002",
+            "reasoning_sentence": "Executive Order 7002 amended this order.",
+            "detail": "Reasoning describes EO:7002 as a later actor but this clause has no source-backed later_events entry for it."
+          }
+        ],
+        "coverage_gaps": [],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "no_other_order_number_only",
+      "pass": true,
+      "expected": "Number query alone does not prove literal-name coverage; linter may itself run and disclose the literal scan",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": null,
+            "inventory_kind": "packet_pins_only",
+            "inventory_sha256": "03b8baba676230161c37a244198a8dcddb9690cf8165a612d167ae4af4dd69cf",
+            "tracked_files": 2,
+            "verified_files": 2,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": false,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "name_publisher_identity_index_unavailable_or_changed",
+            "detail": "Literal matches cannot be linked to another order without the retained publisher identity index."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "blue marsh refuge"
+            ],
+            "after_date": null,
+            "counterexamples": 0,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "same_size_same_mtime_hash_mutation",
+      "pass": true,
+      "expected": "Rehash content rather than trusting size+mtime cache",
+      "output": [
+        {
+          "Blue Marsh Refuge": [
+            {
+              "path": "actor.txt",
+              "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f",
+              "char_start": 36,
+              "char_end": 53,
+              "quote": "Blue Marsh Refuge"
+            },
+            {
+              "path": "own.txt",
+              "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df",
+              "char_start": 20,
+              "char_end": 37,
+              "quote": "Blue Marsh Refuge"
+            }
+          ]
+        },
+        [
+          {
+            "path": "extra.txt",
+            "reason": "hash_or_pin_conflict"
+          }
+        ],
+        3,
+        {
+          "inventory_commit": null,
+          "inventory_kind": "packet_pins_only",
+          "inventory_sha256": "b12f2b139d9fb66c02bdb38e8b57be83e94479a1b0465d2ddf7f6c8dee70ff13",
+          "tracked_files": 3,
+          "verified_files": 2,
+          "missing_files": 0,
+          "changed_files": [
+            "extra.txt"
+          ],
+          "full_discovered_corpus_covered": false,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        }
+      ]
+    },
+    {
+      "name": "packet_pin_set_change",
+      "pass": true,
+      "expected": "New missing corpus pin invalidates cache and appears in coverage",
+      "output": [
+        {
+          "Blue Marsh Refuge": [
+            {
+              "path": "actor.txt",
+              "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f",
+              "char_start": 36,
+              "char_end": 53,
+              "quote": "Blue Marsh Refuge"
+            },
+            {
+              "path": "extra.txt",
+              "sha256": "51988a8bfafff41277f5703a25392348c273147332a6f968ce320ad42a9c6a49",
+              "char_start": 0,
+              "char_end": 17,
+              "quote": "Blue Marsh Refuge"
+            },
+            {
+              "path": "own.txt",
+              "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df",
+              "char_start": 20,
+              "char_end": 37,
+              "quote": "Blue Marsh Refuge"
+            }
+          ]
+        },
+        [
+          {
+            "path": "missing.txt",
+            "reason": "file_unavailable"
+          }
+        ],
+        4,
+        {
+          "inventory_commit": null,
+          "inventory_kind": "packet_pins_only",
+          "inventory_sha256": "8663bc4ac129cc9b7e3f60ed2b5ea57e1c7b2b39082fda9f523328d12fbbef63",
+          "tracked_files": 4,
+          "verified_files": 3,
+          "missing_files": 1,
+          "changed_files": [],
+          "full_discovered_corpus_covered": false,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        }
+      ]
+    },
+    {
+      "name": "numeric_coverage_not_identity_coverage",
+      "pass": true,
+      "expected": "A matching numeric count is not exact full-corpus identity coverage",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "literal_name_corpus_scope",
+            "inventory_commit": null,
+            "inventory_kind": "packet_pins_only",
+            "inventory_sha256": "b12f2b139d9fb66c02bdb38e8b57be83e94479a1b0465d2ddf7f6c8dee70ff13",
+            "tracked_files": 3,
+            "verified_files": 3,
+            "missing_files": 0,
+            "changed_files": [],
+            "full_discovered_corpus_covered": false,
+            "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+          },
+          {
+            "code": "name_publisher_identity_index_unavailable_or_changed",
+            "detail": "Literal matches cannot be linked to another order without the retained publisher identity index."
+          },
+          {
+            "code": "literal_name_search_performed",
+            "field": "claim.research_rationale",
+            "names": [
+              "blue marsh refuge"
+            ],
+            "after_date": null,
+            "counterexamples": 0,
+            "negative_established": false,
+            "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+          }
+        ],
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "snapshot_between_read_and_state_mutation",
+      "pass": true,
+      "expected": "Snapshot final check is bound to the bytes actually cached, not a later reread",
+      "mutation_performed": true,
+      "error": "held corpus changed during literal-name search: extra.txt"
+    }
+  ],
+  "passed": 20,
+  "total": 20,
+  "code_pins": {
+    "jobs/geddes/citation_checks.py": "e7c2963f48d549c89f8a853a614cfd0a581dc8ac25d58747b9be50a5389baa77",
+    "jobs/geddes/event_checks.py": "390887ac6476da5d1741f215bbc99d6beac94172b0de6db3df3aa7e82ef57308",
+    "jobs/geddes/geddes.py": "aece609ab3c9b97af64f90cc6fc9b17dbbe05613d3a3d01dc4a4563f6b5ac370",
+    "jobs/geddes/job.py": "93148ca0a4a1ddda5c456885b6d0dea130698177406a717cc7488be80ad2438b",
+    "jobs/geddes/name_checks.py": "857cf9d2f98388c706c11f93916c9022a0b09d8ba7bd103da48211fab7fe9234",
+    "jobs/geddes/source_checks.py": "e394ed3c1c700ca255d8a4131d79668181ab78bd29ee63e11f2f756ad5355806",
+    "jobs/geddes/test_citation_checks.py": "8729b804efc19f64eb70e5b77a9cc37c725ecf17c093203accff333bb25317c1",
+    "jobs/geddes/test_event_name_checks.py": "833aa48be06385bad49717d9b881fcc03a126027f830127aca67757e3a8e8374",
+    "jobs/geddes/test_geddes.py": "4e8b23585e28bf721c71a0d89575cda2fb04f3260479655595e2357d9f757f4c",
+    "jobs/geddes/test_source_checks.py": "126b9ca3ec2553179d214eb113e46e1255c35c35a8abb42b7a6a2b3070019929"
+  },
+  "probe_sha256": "671c66794dc018b6098f018ac41cf274e13db728852a39a79281e2011bec8a6b",
+  "elapsed_seconds": 0.07334351600002265,
+  "scientific_approval": false,
+  "tokens": null
+}

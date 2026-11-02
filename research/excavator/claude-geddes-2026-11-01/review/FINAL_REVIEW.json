@@ -1,0 +1,176 @@
+{
+  "schema": "geddes-independent-engineering-review/v1",
+  "outcome": "engineering_checks_pass",
+  "checks": [
+    {
+      "name": "independent_probes.py executes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent adversarial probes",
+      "pass": true,
+      "detail": {
+        "passed": 17,
+        "total": 17
+      }
+    },
+    {
+      "name": "real_boundary_probe.py executes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "view_excludes_previous_neighbor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "view_retains_target_name",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "attribution_rejects_neighbor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "lookup_parent_matches",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "worker meaningful unit tests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "actual telemetry arithmetic General producer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "actual telemetry arithmetic General reviewer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "actual telemetry arithmetic NRA producer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "actual telemetry arithmetic NRA reviewer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "missing telemetry unknown and decimal seconds retained",
+      "pass": true,
+      "detail": {
+        "track": "General",
+        "role": "producer",
+        "model": "m",
+        "agents": 1,
+        "field_coverage": {
+          "input_tokens": {
+            "rows_reported": 1,
+            "rows_total": 1,
+            "complete": true
+          },
+          "output_tokens": {
+            "rows_reported": 0,
+            "rows_total": 1,
+            "complete": false
+          },
+          "cache_creation_input_tokens": {
+            "rows_reported": 0,
+            "rows_total": 1,
+            "complete": false
+          },
+          "cache_read_input_tokens": {
+            "rows_reported": 0,
+            "rows_total": 1,
+            "complete": false
+          },
+          "tool_calls": {
+            "rows_reported": 0,
+            "rows_total": 1,
+            "complete": false
+          },
+          "active_seconds": {
+            "rows_reported": 1,
+            "rows_total": 1,
+            "complete": true
+          }
+        },
+        "input_tokens": 5,
+        "output_tokens": null,
+        "cache_creation_input_tokens": null,
+        "cache_read_input_tokens": null,
+        "tool_calls": null,
+        "active_seconds": 1.5,
+        "errors": []
+      }
+    },
+    {
+      "name": "NRA matching shared memo has actual sections",
+      "pass": true,
+      "detail": {
+        "instrument_id": "EO:6258A",
+        "section_titles": [
+          "Conclusion",
+          "Events that do not end a code approval",
+          "What each order still needs"
+        ]
+      }
+    },
+    {
+      "name": "NRA shared memo hash verified",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frozen claim-kit contract unchanged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "native retained applied CLI runs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "implementation pins unchanged during review",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "implementation_pins": {
+    "jobs/geddes/geddes.py": "3472f558def50808177602e7e86472e156286c32aa2fed460e2563d3e94f398b",
+    "jobs/geddes/test_geddes.py": "c13bd24b5a76026ae00dfba8f999d71a1833225e4ae2b9772b92e6c684934b48",
+    "jobs/geddes/job.py": "1a91d987e637ea4369c2e970afe92af6f15f864a804d5f1cc9fd0375c4575ff2",
+    "jobs/geddes/README.md": "ae2b3ba3c1c03f624a98cc73b75869a3656db2769e230d462c9eb6de86f4fc75",
+    "jobs/geddes/needs.txt": "51f9c98778fd2640af36b94163cb0c4f273f32d634c637095b73a0bfd30dc83d",
+    ".github/workflows/geddes.yml": "a9041d655afcad613e13190a328479514882352e86ddd5e6faae2399d86a3e9a"
+  },
+  "review_script_sha256": "c917dd1df0a702700a71b805818419995d16eeafef0f5c6d937c7d21787348e9",
+  "model": "gpt-6-astra",
+  "tokens": null,
+  "active_labor_seconds": null,
+  "final_check_start_utc": "2026-11-01T04:35:56.035026+00:00",
+  "final_check_end_utc": "2026-11-01T04:35:56.801564+00:00",
+  "final_check_wall_seconds": 0.7664551759999085,
+  "prospective_probe_phase_wall_seconds_including_wait": 1064.558447239,
+  "earlier_read_setup_seconds": null,
+  "scientific_review": false,
+  "legal_certification": false,
+  "limitations": [
+    "Independent same-family AI engineering review only.",
+    "Exact synthetic acceptance and retained-source boundary checks; not complete semantic coverage.",
+    "Retrospective recall/false-positive adjudication remains with coordinator.",
+    "No hosted GitHub Actions run claimed; local declared-dependency/import and native CLI tests only.",
+    "Wall time includes waiting; active labor and token usage unavailable."
+  ]
+}
