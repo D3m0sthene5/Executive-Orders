@@ -1,0 +1,32 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "base": "aeafe6ef3b5d53d38d34b6fec7fc25fb8851efd0",
+  "reviewer": "root coordinator, independent of delegated patch producer",
+  "result": "approved_for_hosted_validation",
+  "cause": "Preexisting optional source_notes key reveals a card layout difference. Existing working_text normalization alone is insufficient.",
+  "review": [
+    "Existing values and grades preserved; absent notes receive null only in presentation.",
+    "Canonical claims and raw fixture/base fingerprints unchanged.",
+    "Original layout assertion preserved.",
+    "Scanner retains raw, prior working-text-only and new normalized exact-copy forms.",
+    "No legal, source authentication, canonical status or review acceptance inferred."
+  ],
+  "root_verification": {
+    "mixed_disclosure_regression": "passed",
+    "raw_legacy_new_copy_scanner_regression": "passed",
+    "paired_control_tests": 2,
+    "diff_check": "passed"
+  },
+  "runtime_file_sha256": {
+    "jobs/mountweazel/mountweazel.py": "d0fa54243ce9a76e986a7cf9fb1283641460e71ad795743d41bd583090b21d76",
+    "jobs/mountweazel/test_mountweazel.py": "0a591cc09d6877f169c0c9bc648677703eb5ae5ab56b5d7910d6b06ce5fa7910",
+    "jobs/mountweazel/README.md": "8e6f91b9b85e6f54d7525707c5017ec154a2f53a7116ff5534540dff79fac3a1"
+  },
+  "limits": [
+    "Full hosted Valla workflow still required.",
+    "Root source snapshot has partial corpus; no full local scan acceptance claimed.",
+    "Final main production run41504614771 remains fixed and untouched."
+  ],
+  "producer_model": "gpt-6.1-sol high",
+  "complete_tokens_cash_labor": "unavailable"
+}

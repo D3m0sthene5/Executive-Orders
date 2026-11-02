@@ -315,13 +315,14 @@ PROVENANCE_ONLY = ("claim_kit",)
 def claim_card(claim):
     """Reviewer presentation only; never use this view as a canonical claim.
 
-    Preserve substantive working-text disclosures and source-grade labels. An
-    absent disclosure is shown as null in every card, so the optional key alone
+    Preserve substantive working-text disclosures, source notes and source-grade labels.
+    Absent disclosures or notes are shown as null in every card, so the optional keys alone
     cannot identify a real item. Pool, fixture and review fingerprints retain
     their original payloads, including the absent/present distinction.
     """
     body = {k: v for k, v in claim.items() if k not in PROVENANCE_ONLY}
     body.setdefault("working_text", None)
+    body.setdefault("source_notes", None)
     return body
 
 
@@ -731,7 +732,7 @@ def seed_cmd(args):
                                    "reason": "text", "confidence": "0-1"},
                 "item_sha256": item_files}
     if track == "C":
-        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. Source-grade labels are unchanged."
+        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. source_notes is always shown; null means no source notes were supplied. Source-grade labels are unchanged."
     (batch_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
@@ -1267,7 +1268,13 @@ def check(repo, fixtures_dir):
         plant_hashes.add(sha(payload))
         plant_hashes.add(sha(_deflag(payload)))
         if fx.get("track", "C") == "C":
-            plant_hashes.add(sha(claim_card(_deflag(payload))))
+            card = claim_card(_deflag(payload))
+            plant_hashes.add(sha(card))
+            # Preserve exact-copy recognition of cards rendered before source_notes
+            # normalization; raw flagged and de-flagged payload hashes stay above.
+            if "source_notes" not in payload:
+                card.pop("source_notes")
+                plant_hashes.add(sha(card))
         plant_hashes.add(sha({k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}))
         if isinstance(fx.get("leak_needles"), list):
             needles.update(n.encode("utf-8") for n in fx["leak_needles"])

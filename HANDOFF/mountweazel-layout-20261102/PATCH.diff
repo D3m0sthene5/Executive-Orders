@@ -1,0 +1,106 @@
+diff --git a/jobs/mountweazel/README.md b/jobs/mountweazel/README.md
+index a2788993..55730501 100644
+--- a/jobs/mountweazel/README.md
++++ b/jobs/mountweazel/README.md
+@@ -29,10 +29,11 @@ python3 -I jobs/mountweazel/test_mountweazel.py
+   the repository**. Seeded share is 20 to 30 percent, derived from the seed, and is not stated in the batch.
+   Each order appears at most once per batch; pass the other batch's orders to `--exclude-orders` so an order is
+   real in one batch and a plant in another.
+-  Track C cards always show `working_text`: JSON null means the source claim supplied no disclosure;
++  Track C cards always show `working_text` and `source_notes`: JSON null means the source claim supplied no disclosure or notes;
+   an existing disclosure and all source-grade labels remain unchanged. This is a presentation copy,
+   not a canonical claim: original claims, fixture payloads, review hashes and base fingerprints retain
+-  their original bytes and fields. The leak checker also recognizes this presentation form.
++  their original bytes and fields. The leak checker recognizes this presentation form and the earlier
++  working-text-only normalization, as well as original raw payloads.
+ - **score** reads reviewer verdicts (a JSON list or JSONL of `item_id`, `decision`, `locus`, `reason`,
+   `confidence`; decision is `accept`, `reject`, `block_justified` or `block_not_justified`). It reports, per
+   defect type and pooled: strict catch (a flag that matches the material issue and affected clause), lenient catch
+diff --git a/jobs/mountweazel/mountweazel.py b/jobs/mountweazel/mountweazel.py
+index d9d8d91e..8e9518d0 100644
+--- a/jobs/mountweazel/mountweazel.py
++++ b/jobs/mountweazel/mountweazel.py
+@@ -315,13 +315,14 @@ PROVENANCE_ONLY = ("claim_kit",)
+ def claim_card(claim):
+     """Reviewer presentation only; never use this view as a canonical claim.
+ 
+-    Preserve substantive working-text disclosures and source-grade labels. An
+-    absent disclosure is shown as null in every card, so the optional key alone
++    Preserve substantive working-text disclosures, source notes and source-grade labels.
++    Absent disclosures or notes are shown as null in every card, so the optional keys alone
+     cannot identify a real item. Pool, fixture and review fingerprints retain
+     their original payloads, including the absent/present distinction.
+     """
+     body = {k: v for k, v in claim.items() if k not in PROVENANCE_ONLY}
+     body.setdefault("working_text", None)
++    body.setdefault("source_notes", None)
+     return body
+ 
+ 
+@@ -731,7 +732,7 @@ def seed_cmd(args):
+                                    "reason": "text", "confidence": "0-1"},
+                 "item_sha256": item_files}
+     if track == "C":
+-        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. Source-grade labels are unchanged."
++        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. source_notes is always shown; null means no source notes were supplied. Source-grade labels are unchanged."
+     (batch_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
+     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
+@@ -1267,7 +1268,13 @@ def check(repo, fixtures_dir):
+         plant_hashes.add(sha(payload))
+         plant_hashes.add(sha(_deflag(payload)))
+         if fx.get("track", "C") == "C":
+-            plant_hashes.add(sha(claim_card(_deflag(payload))))
++            card = claim_card(_deflag(payload))
++            plant_hashes.add(sha(card))
++            # Preserve exact-copy recognition of cards rendered before source_notes
++            # normalization; raw flagged and de-flagged payload hashes stay above.
++            if "source_notes" not in payload:
++                card.pop("source_notes")
++                plant_hashes.add(sha(card))
+         plant_hashes.add(sha({k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}))
+         if isinstance(fx.get("leak_needles"), list):
+             needles.update(n.encode("utf-8") for n in fx["leak_needles"])
+diff --git a/jobs/mountweazel/test_mountweazel.py b/jobs/mountweazel/test_mountweazel.py
+index 3a370250..310ab63a 100644
+--- a/jobs/mountweazel/test_mountweazel.py
++++ b/jobs/mountweazel/test_mountweazel.py
+@@ -77,6 +77,8 @@ class SeedTests(Base):
+                       "confirmations": [{"grade": "compiled_transcription", "identity_confirmed": True,
+                                          "complete_text_confirmed": True, "pages_confirmed": True}]}
+         pool[real]["claim"]["working_text"] = copy.deepcopy(disclosure)
++        source_notes = [{"source": source, "note": "Synthetic source limits must remain visible."}]
++        pool[real]["claim"]["source_notes"] = copy.deepcopy(source_notes)
+         frozen = copy.deepcopy(pool)
+         with mock.patch.object(mw, "load_claim_pool", return_value=pool):
+             out, fx = self.seed("mixed", n=4, extra=("--codes", "D3", "--share", "0.25"))
+@@ -87,12 +89,14 @@ class SeedTests(Base):
+             card = json.loads((out / f"batch/items/{item['item_id']}.json").read_text())["claim"]
+             shapes.add(tuple(sorted(card)))
+             self.assertEqual(card["working_text"], disclosure if item["base_order"] == real else None)
++            self.assertEqual(card.get("source_notes"), source_notes if item["base_order"] == real else None)
+             self.assertEqual(card["original_representation"], source)
+             self.assertNotIn("claim_kit", card)
+             if item["is_seeded"]:
+                 fixture = json.loads((fx / (item["item_id"] + ".seeded.json")).read_text())
+                 self.assertEqual(fixture["base"]["sha256"], mw.sha(pool[item["base_order"]]["claim"]))
+                 self.assertNotIn("working_text", fixture["seeded_payload"])
++                self.assertNotIn("source_notes", fixture["seeded_payload"])
+                 # The raw payload remains the original plus its one documented mutation.
+                 raw = mw._deflag(fixture["seeded_payload"])
+                 expected = copy.deepcopy(pool[item["base_order"]]["claim"])
+@@ -207,9 +211,11 @@ class CheckTests(Base):
+         # isolated exact-copy check: both required marker errors still apply.
+         self.assertTrue(mw.check(repo, fx)["ok"])
+         target = repo / "jobs/other/claims.jsonl"
+-        target.write_text(json.dumps(mw.claim_card(payload)) + "\n")
+-        result = mw.check(repo, fx)
+-        self.assertTrue(any(p["problem"] == "exact copy of a planted item" for p in result["problems"]), result)
++        legacy_card = dict(mw.claim_card(payload)); legacy_card.pop("source_notes")
++        for card in (payload, legacy_card, mw.claim_card(payload)):
++            target.write_text(json.dumps(card) + "\n")
++            result = mw.check(repo, fx)
++            self.assertTrue(any(p["problem"] == "exact copy of a planted item" for p in result["problems"]), result)
+         target.write_text(json.dumps(dict(mw.claim_card(payload), research_rationale="different real fixture")) + "\n")
+         self.assertTrue(mw.check(repo, fx)["ok"])
+ 
