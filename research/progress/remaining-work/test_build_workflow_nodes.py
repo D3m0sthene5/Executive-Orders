@@ -52,7 +52,8 @@ class BuildTests(unittest.TestCase):
 
     def test_committed_metadata_builds_and_covers_the_catalog(self):
         nodes = json.load(open(HERE / "workflow" / "WORKFLOW_NODES.json", encoding="utf-8"))
-        tools = {r["tool"] for r in csv.DictReader(open(HERE / "snapshots" / "2026-10-30" / "TOOLS.csv", encoding="utf-8"))}
+        catalog = sorted((HERE / "snapshots").glob("*/TOOLS.csv"))[-1]
+        tools = {r["tool"] for r in csv.DictReader(open(catalog, encoding="utf-8"))}
         self.assertEqual({n["catalog_tool"] for n in nodes if n.get("catalog_tool")}, tools)
         ids = {n["id"] for n in nodes}
         self.assertIn("ready-for-human-review", ids); self.assertIn("human-certification", ids)
@@ -65,3 +66,4 @@ class BuildTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

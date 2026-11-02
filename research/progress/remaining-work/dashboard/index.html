@@ -172,6 +172,35 @@
   .wf-row { margin: 6px 0 0; font-size: var(--cds-font-size-caption); }
   .wf-detail .wf-row { font-size: var(--cds-font-size-body); margin-top: var(--cds-gap-sm); }
   .wf-row .ns { display: inline; }
+
+  .eo-current { margin: var(--cds-gap-md) 0; padding: var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); }
+  .eo-current p { margin: 6px 0; font-size: var(--cds-font-size-caption); line-height: 1.6; }
+  .eo-current summary { cursor:pointer; font-weight:600; }
+  .jt-intro { max-width:76ch; line-height:1.6; }
+  .jt-controls { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:20px 0; }
+  .jt-controls input,.jt-controls select { font:inherit; color:var(--color-fg); background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:6px; padding:9px 12px; min-width:0; }
+  .jt-controls input { flex:1; min-width:190px; }
+  .jt-count { font-variant-numeric:tabular-nums; color:var(--color-fg-muted); font-size:var(--cds-font-size-caption); }
+  .jt-row { display:grid; grid-template-columns:76px minmax(0,1fr); border:1px solid var(--color-border-line); border-radius:9px; overflow:hidden; margin:12px 0; }
+  .jt-label { padding:16px 5px; background:var(--jt-color); color:#161616; text-align:center; display:flex; flex-direction:column; justify-content:center; gap:6px; }
+  .jt-label strong { font-size:28px; font-weight:700; }
+  .jt-label span { font-size:11px; }
+  .jt-items { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:8px; padding:12px; background:var(--color-panel); }
+  .jt-item { text-align:left; padding:11px 12px; border:1px solid var(--color-border-line); border-radius:6px; background:transparent; color:var(--color-fg); font:inherit; cursor:pointer; }
+  .jt-item:hover { border-color:var(--color-fg-muted); }
+  .jt-item:focus-visible { outline:2px solid var(--color-fg); outline-offset:2px; }
+  .jt-item b { display:block; font-size:13px; line-height:1.4; }
+  .jt-item small { display:block; font-size:11px; color:var(--color-fg-muted); margin-top:5px; line-height:1.4; }
+  .jt-empty { margin:4px; color:var(--color-fg-muted); font-size:13px; grid-column:1/-1; }
+  .jt-dialog { background:var(--color-panel); color:var(--color-fg); border:1px solid var(--color-border-line); border-radius:12px; padding:24px; width:min(660px,calc(100vw - 32px)); max-height:85vh; overflow:auto; box-sizing:border-box; }
+  .jt-dialog::backdrop { background:rgba(0,0,0,.55); }
+  .jt-dialog h2 { margin:0 0 10px; font-family:var(--font-anthropic-serif); font-weight:400; }
+  .jt-dialog h3 { font-size:14px; margin-top:22px; }
+  .jt-dialog p,.jt-dialog li { font-size:14px; line-height:1.65; }
+  .jt-dialog .jt-close { float:right; margin:0 0 12px 16px; padding:7px 12px; background:transparent; color:inherit; border:1px solid var(--color-border-line); border-radius:6px; cursor:pointer; }
+  .jt-dialog a { overflow-wrap:anywhere; }
+  @media(max-width:500px) { .jt-row { grid-template-columns:48px minmax(0,1fr); } .jt-items { grid-template-columns:1fr; padding:8px; } .jt-label strong { font-size:24px; } .jt-dialog { padding:18px; } }
+
 </style>
 
 <div class="eo">
@@ -180,12 +209,24 @@
     <p class="eo-takeaway" id="mission" data-source="mission_log lane_totals">—</p>
   </header>
 
+  <aside class="eo-current" aria-label="Latest project update">
+    <p><b>Main checked November 2, 2026</b> · <a href="https://github.com/D3m0sthene5/Executive-Orders/commit/b3fc50647cfc6f153ac2497ad2e172de69213295" target="_blank" rel="noopener noreferrer">b3fc50647c</a> · PR123 merged.</p>
+    <p><b>498 ready for human review</b> (306 original-supported, 192 transcription-dependent) · <b>0 human-certified</b>. Latest tracker run: October 31. Its per-order data is unchanged from the October 30 mission checkpoint. New filings await a fresh production recount.</p>
+    <details><summary>What the recent sessions accomplished</summary>
+      <p><b>Apollo:</b> 444 orders attempted; 254 claims filed after review and completion; 40 review rejects, 6 completion drops and 144 producer blocks. Later source checks identified corrections. <a href="https://github.com/D3m0sthene5/Executive-Orders/blob/b3fc50647cfc6f153ac2497ad2e172de69213295/research/excavator/claude-apollo-2026-10-31/REPORT.md" target="_blank" rel="noopener noreferrer">Report</a></p>
+      <p><b>Erasmus:</b> filed 32 recovered rejects and 20 superseding corrections, with 10/10 planted controls caught. Four filed claims still need attention; these 52 filings are not 52 additional ready dossiers. <a href="https://github.com/D3m0sthene5/Executive-Orders/blob/b3fc50647cfc6f153ac2497ad2e172de69213295/research/excavator/claude-erasmus-2026-11-02/REPORT.md" target="_blank" rel="noopener noreferrer">Report</a></p>
+      <p><b>Geddes:</b> source and consistency lint now runs in batch-check, with optional strict flag resolution. It catches 35/40 known Apollo defects after tuning; all five live Erasmus defects were missed initially. Independent review remains essential. Slim views have no demonstrated cost reduction in this run.</p>
+      <p><b>The four concurrent R1–R4 repairs:</b> a smaller verified Valla checkout; better preflight warnings; source-version-bound Early Ranger worksheets; and optional completion-to-NEYMAN diagnosis. All eight coordinated production jobs published successfully. R4 has not yet demonstrated a newly productive research continuation. <a href="https://github.com/D3m0sthene5/Executive-Orders/blob/b3fc50647cfc6f153ac2497ad2e172de69213295/HANDOFF/r1-r4-final-generation.json" target="_blank" rel="noopener noreferrer">Production receipt</a></p>
+      <p>Counts are pinned observations. The mission clock and agent-hours remain modeled; tool contributions overlap. Evidence grades, replacement obligations and human review requirements still apply.</p>
+    </details>
+  </aside>
   <nav class="eo-tabs" role="tablist" aria-label="Views">
     <button type="button" role="tab" id="tab-steps" aria-controls="steps" aria-selected="true">Steps left</button>
     <button type="button" role="tab" id="tab-effort" aria-controls="effort" aria-selected="false">AI effort</button>
     <button type="button" role="tab" id="tab-toolmap" aria-controls="toolmap" aria-selected="false">Tool map</button>
     <button type="button" role="tab" id="tab-apollo" aria-controls="apollo" aria-selected="false">Mission</button>
     <button type="button" role="tab" id="tab-workflow" aria-controls="workflow" aria-selected="false">Workflow</button>
+    <button type="button" role="tab" id="tab-tiers" aria-controls="tiers" aria-selected="false">Job tiers</button>
   </nav>
 
   <!-- Page 1: open steps by count -->
@@ -395,7 +436,7 @@
   </section>
 
   <!-- Page 4: mission tracker -->
-  <section class="eo-page" id="apollo" role="tabpanel" aria-labelledby="tab-mission" hidden>
+  <section class="eo-page" id="apollo" role="tabpanel" aria-labelledby="tab-apollo" hidden>
     <p class="eo-takeaway dash-skeleton" data-source="mission_log" id="mission-takeaway">—</p>
 
     <div class="eo-card" id="flight-card">
@@ -463,6 +504,23 @@
     </div>
   </section>
 
+
+  <section class="eo-page" id="tiers" role="tabpanel" aria-labelledby="tab-tiers" hidden>
+    <h2>Which jobs are earning their place?</h2>
+    <p class="jt-intro">An editorial S–F assessment of demonstrated usefulness within each role, checked against main on November 2. Acquisition earns credit for usable evidence; production for reviewed outputs; safeguards for catching defects. These are judgments, not measured return-on-investment scores.</p>
+    <p class="jt-intro">Click a job for its rationale, dated results, limits and source links. Historical outcomes stay dated. Unranked covers human gates, proposals and outcomes that could not be verified. Tool contributions overlap and must not be added together.</p>
+    <div class="jt-controls">
+      <input type="search" id="jt-search" aria-label="Search job tiers" placeholder="Search jobs, evidence or limitations…">
+      <label>Kind <select id="jt-kind"><option value="all">All kinds</option><option value="software">Software</option><option value="campaign">Campaigns &amp; experiments</option><option value="protocol">Review procedures</option><option value="gate">Human gates</option><option value="proposal">Proposals</option></select></label>
+      <label>Tier <select id="jt-tier"><option value="all">All tiers</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option><option>F</option><option value="U">Unranked</option></select></label>
+    </div>
+    <p id="jt-count" class="jt-count" role="status" aria-live="polite"></p>
+    <div id="jt-board"></div>
+    <p class="eo-card-note">F is reserved here for the tested compact-packet savings claim that increased measured cost. Low yield caused by missing sources does not by itself justify F. The older October 29 audit used a harsher scale for some failed production shortcuts; these grades reassess the tool's demonstrated role and keep the experiment separate.</p>
+    <details class="eo-current"><summary>How the tiers are judged</summary><div id="jt-method"></div></details>
+  </section>
+  <dialog id="jt-dialog" class="jt-dialog" aria-labelledby="jt-detail-title"><button type="button" class="jt-close" id="jt-close">Close</button><div id="jt-detail"></div></dialog>
+
   <!-- Page 5: workflow map -->
   <section class="eo-page" id="workflow" role="tabpanel" aria-labelledby="tab-workflow" hidden>
     <p class="eo-takeaway dash-skeleton" data-source="workflow_nodes mission_log" id="wf-takeaway">—</p>
@@ -509,6 +567,8 @@
     </div>
   </section>
 </div>
+
+<script type="application/json" id="eo-tier-assessment">{"schema_version":1,"checked_date":"2026-11-02","source_pin":"b3fc50647cfc6f153ac2497ad2e172de69213295","basis":"Editorial assessment of demonstrated contribution within each role, operational use and the quality of retained evidence; not a measured ROI score or scientific approval.","definitions":{"S":"Exceptional demonstrated contribution or central functioning integrity infrastructure","A":"Strong demonstrated results within a bounded role","B":"Useful specialist or support with material limits","C":"Mixed, immature or weakly converted results","D":"Poor demonstrated conversion or unmet central objective","F":"A tested proposition with adverse measured results","U":"Authority gate, proposal or insufficient verified outcome"},"ratings":[{"id":"claim-kit-case-bundles","tier":"S","reason":"The ordinary preparation, apply, review and completion route used by productive campaigns; exact-version refusals and reviewed filing make it central infrastructure."},{"id":"independent-ai-review","tier":"S","reason":"Caught consequential defects that producers and lint missed. Apollo/Erasmus retain actual blinded controls and corrections; success on those controls does not prove broad sensitivity."},{"id":"claim-checker","tier":"S","reason":"Rechecks exact source custody, quotations and structure, blocking unsupported completion. Its mechanical acceptance still requires substantive review."},{"id":"readiness-tracker","tier":"S","reason":"Keeps filings, complete dossiers, source grades and audit holds distinct. Latest published 498 is reproducible; it is an older generation than the new claims."},{"id":"fr-originals-pages","tier":"S","reason":"A reusable evidence foundation: 6,497 FR representations with exact-page provenance. Pending location checks remain explicit."},{"id":"official-fixity","tier":"S","reason":"Compares retained bytes with GPO-published hashes, giving strong reusable custody evidence. It does not authenticate a signed original or establish legal effect."},{"id":"apollo-swarm","tier":"S","reason":"Largest recent reviewed filing campaign: 254/444, with 20/20 date controls caught. Strong scale within held-source cohorts, qualified by rejects, missing bytes and later corrections."},{"id":"domesday-register","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"app-executive-orders","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"app-transcriptions","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"source-ladder","tier":"A","reason":"The common source-request and custody route has 632 retained records covering 747 orders in the cited snapshot. Queue size and legal review limit conversion."},{"id":"transcription-sources","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"official-compilations","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"pinakes-proquest-ingest","tier":"A","reason":"2,750 census-order replica scans give broad usable working-text coverage. Handwriting, page checks and original replacement remain work."},{"id":"job-runner-freshness","tier":"A","reason":"R1–R4 is merged and ordinary eight-job publication verified. Valla startup and checkout size improved in matched runs; overhead and absent network/model savings remain disclosed."},{"id":"cruden-retrieval-cache","tier":"A","reason":"Measured source-bound lookup repair preserves legacy outputs: matched seven-order baseline 90.903 s, cold 13.989 s and warm 8.847 s in the integrated evidence. This is a bounded machine result, not total research savings."},{"id":"lifecycle-assurance","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"lambertini-line","tier":"A","reason":"Substantial reviewed shared-ending production; historical control-scoring problems qualify the contribution and prevent a universal quality claim."},{"id":"nira-sweep","tier":"A","reason":"Filed 91/132 with 10/10 valid controls caught. Productive shared evidence, bounded by member-specific conditions and 41 blocked/held cases."},{"id":"mountweazel","tier":"A","reason":"Planted controls reveal reviewer blind spots, including omitted later events. Calibration earns credit; a small control set never certifies a reviewer universally."},{"id":"claim-gate","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"kean","tier":"A","reason":"Working shared memory and compact startup context, now used across sessions. Its stale asks and historical contradictions still require checking the cited evidence."},{"id":"astra-source-retention","tier":"A","reason":"Strong retained evidence or functioning infrastructure in its stated role. Its dated results below establish the scope; no exclusive readiness or total-cost credit is inferred."},{"id":"ofr-codification-1989","tier":"A","reason":"Government disposition evidence underpins productive codification research. A catalog disposition remains evidence to examine for the first ending."},{"id":"rastell","tier":"A","reason":"Precise acting-provision recovery supported 35 ready identities in the dated audit. Supporting ACT records are not additional complete histories."},{"id":"spent-order-probe","tier":"A","reason":"Thirteen ready identities from fifteen filed in the dated audit, with source-replacement duties retained. The measured 5.90 worker-minutes per filing excludes unmeasured coordinator work."},{"id":"erasmus-resubmission","tier":"A","reason":"Recovered 32 rejects and corrected 20 earlier filings through the native route, with 10/10 controls caught. Outstanding cases and four still-flagged filed claims limit the result."},{"id":"clark-discovery","tier":"B","reason":"Finds number gaps, cited unknowns and identity leads without admitting them. Useful navigation, limited verified identity conversion."},{"id":"early-orders-hunt","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"numbered-early-orders","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"corpus-excavator","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"poggio-archive-backfill","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"opus-media-match","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"csc-annual-reports","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"lewis-originals","tier":"B","reason":"Useful original-source routing and handoffs; thousands of allocated routes are not thousands of recovered originals."},{"id":"cotton-capture-custody","tier":"B","reason":"526 archived captures have practical custody value. Prior rerun failures and source-role limits remain separate from retained evidence."},{"id":"cassiodorus","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"shepard-citations","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"rattle-watch-light-push","tier":"B","reason":"Useful job heartbeats, stall stops and selective triggers. No measured post-change campaign-wide failure or cost reduction is established."},{"id":"clause-drafts","tier":"B","reason":"Makes explicit machine inventories for researcher correction. Source-boundary repairs improved reliability; segmentation is not independent completeness review."},{"id":"claim-drafts","tier":"B","reason":"3,403 structured draft dossiers reduce assembly work and expose questions. A judgment-only label has repeatedly concealed source prerequisites."},{"id":"later-events-status-history-current-law","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"lambertini-job","tier":"B","reason":"Useful bounded source, research or supporting work. Its dated result establishes the output; leads and overlaps do not establish additional complete histories."},{"id":"sinclair","tier":"B","reason":"29/31 cross-family reviewed provisional statuses were adopted; two needed more research. Status adoption is narrower than whole histories."},{"id":"llull","tier":"B","reason":"Records forecasts and their failures, exposing large overprediction. The estimator remains unproven as a general cost predictor."},{"id":"daily-digest","tier":"B","reason":"Practical model-free reporting, but a digest may lag the tracker and must retain its generation date."},{"id":"capcom","tier":"B","reason":"Preserves a fixed, modeled Apollo clock and actual checkpoint history. A visual measure of work is not a validated completion-date forecast."},{"id":"lamm","tier":"B","reason":"Nine ready of twelve filed in the dated audit. Useful narrow sunset production whose easy population ran out."},{"id":"geddes","tier":"B","reason":"Now routinely integrated and finds real source defects; 35/40 retrospective recall is development-set performance. All five live Erasmus defects were initially missed, so independent review remains essential."},{"id":"census-completeness","tier":"C","reason":"Documents missing early-history coverage and biased lower bounds. Estimated unseen orders are not authenticated admissions."},{"id":"census-candidates","tier":"C","reason":"Keeps unauthenticated candidates outside the denominator; the repaired round trip supports research without establishing newly admitted EOs."},{"id":"domesday-tool-audit-2026-10-20","tier":"C","reason":"Useful dated accountability and source pointers; its 225-ready baseline cannot serve as the current scoreboard."},{"id":"early-ranger-family","tier":"C","reason":"Source-bound worksheet import now works, but the examined replay produced eight proposals and zero admissions. Catalog and manuscript research still need authentication."},{"id":"app-footnote-leads","tier":"C","reason":"Extracts editorial publication and amendment leads; few ending links and no legal-effect conclusion follow."},{"id":"library-survey","tier":"C","reason":"A bounded reading-library experiment; longer extracted text and two printed OCR successes do not measure handwriting accuracy."},{"id":"namier","tier":"C","reason":"A useful same-person search index. A name match is a research lead, and no independent marginal completion gain is established."},{"id":"eo-identity-lib","tier":"C","reason":"Shared parsing and date/title lookups reduce duplication; the independent contribution is not separately measured."},{"id":"pinakes-htr","tier":"C","reason":"Preserves divergent handwriting readings, but no gold-standard accuracy or completion gain is established."},{"id":"tycho-pullman-blackstone","tier":"C","reason":"Useful foundation with limited demonstrated conversion or independent effect. The cited output is retained without claiming production-scale completion."},{"id":"pr104-native-research","tier":"C","reason":"Real route validation retained five changed-prior-research exceptions and two blocks, with zero currently eligible claims in the integrated rehearsal."},{"id":"shared-research-continuation-pr110","tier":"C","reason":"Two isolated eligible cases became changed-prior-research exceptions on integration. Reviewed research is retained; no integrated gain is claimed."},{"id":"neyman","tier":"C","reason":"The existing completion-to-diagnosis bridge now runs optionally with pinned history. The source-ready productive continuation remains unproved."},{"id":"neyman-pilot","tier":"C","reason":"All 24 sampled attempts were prerequisite-blocked. Useful diagnosis of missing inputs, insufficient completed effort data for a campaign estimate."},{"id":"norton","tier":"C","reason":"Retains reusable factual questions and reviewed records, but no additional integrated ready cases or eliminated investigation is established."},{"id":"hamilton-token-audit","tier":"C","reason":"Makes high fixed context and incomplete cost attribution visible. No matched whole-project saving follows from the audit."},{"id":"portfolio-repair-check","tier":"C","reason":"Useful bounded regression of six claims, preserving exact holds. A test harness is not new substantive production."},{"id":"leverage-campaign-check","tier":"C","reason":"Runs the actual checker and tracker in an isolated replay. Validates repair compatibility without creating new claims."},{"id":"revere","tier":"C","reason":"Context handoffs are in use, but no matched before/after total-cost measurement establishes the claimed efficiency benefit."},{"id":"valla","tier":"C","reason":"Source-bound context and exact holds are useful, but current production examined zero reasoning dependencies. Infrastructure improvement is demonstrated; broad scientific reuse is not."},{"id":"polya","tier":"C","reason":"Finds shared opportunities, but reach means advancing a step rather than completing an order. Realized completion and savings remain unproved."},{"id":"x1-class-engine","tier":"C","reason":"Useful classification and routing, with only five ready cases from the earlier 52-attempt pilot. Projected hours saved are modeled."},{"id":"family-rules","tier":"D","reason":"The examined certificate route passed 0/748 because prerequisites were missing. Poor demonstrated conversion; this is not evidence that shared source packaging is useless."},{"id":"craigellachie","tier":"D","reason":"No upheld claims in 28 attempts: the one-step-left selection concealed missing sources. Stopping preserved standards, but production yield was zero."},{"id":"junto","tier":"D","reason":"Useful strict accounting, but the committed scoreboard has zero resolved tests and zero verified savings. The optimization objective remains unmet."},{"id":"mansfield","tier":"C","reason":"Twelve exact versions were integrated via PR100, with four named audit holds preserved. Useful bounded output, qualified by the judgment-only selection hiding missing sources and a missed omission control. No exclusive readiness gain is recomputed here."},{"id":"bowditch","tier":"D","reason":"Status work supplied 15 adopted Y1 proposals; the Y2 scaling claim was weak (3/50 upheld, Y2LEAD 7/50 with a failed gate). D reflects that production proposition."},{"id":"olney","tier":"U","reason":"No verified completion receipt was recovered in the cited audit. An old start and budget are insufficient for an effectiveness grade."},{"id":"justinian","tier":"U","reason":"Historical catalog claims lack the matching primary completion record. Unranked until the outcome can be verified."},{"id":"owner-rulings-and-status-adoption","tier":"U","reason":"An authority boundary, not a competing software job. Research proposals do not become adopted statuses through this rating."},{"id":"ready-for-human-review","tier":"U","reason":"A published milestone, not a tool to score. Latest tracker count is 498 and remains separate from human certification."},{"id":"human-certification","tier":"U","reason":"A person independently certifies the exact lifecycle version; zero documented certifications at the current source pin. Not a software performance grade."},{"id":"watchman-spare-setup-quiet-protocol","tier":"U","reason":"Proposed and unbuilt. No tested outcome supports a performance grade."},{"id":"codification-production","tier":"S","reason":"Held named revocations made the codification cohorts highly productive: 129 currently ready identities from 176 filed in the Oct29 audit. This is an older association, not a fresh marginal gain.","record":{"id":"codification-production","name":"Codification swarm","label":"Codification swarm","stage":"research","kind":"campaign","status_class":"historical","role":"Historical production","source_pin":"b3fc50647cfc6f153ac2497ad2e172de69213295","results":[{"date":"2026-10-29","text":"129 of the then-395 ready cases were associated with this producer family. Current readiness is 498, and this association has not been re-attributed.","source":"research/progress/tool-tier-audit-2026-10-29/REPORT.md"}],"caveats":["Dated historical assessment; not re-attributed against later filings."],"sources":["research/progress/tool-tier-audit-2026-10-29/REPORT.md"]}},{"id":"own-terms-production","tier":"S","reason":"106 attempts, 99 source-reviewed/upheld, 88 filed and 85 ready in the dated audit, with 6/6 controls caught. Strong bounded yield; provisional text and replacement duties qualify the result.","record":{"id":"own-terms-production","name":"October 28 own-terms production","label":"October 28 own-terms production","stage":"research","kind":"campaign","status_class":"historical","role":"Historical production","source_pin":"b3fc50647cfc6f153ac2497ad2e172de69213295","results":[{"date":"2026-10-29","text":"The audit associated 85 ready identities with the scale batches; most depended on provisional working text. Do not add this count to other tools or later campaign filings.","source":"research/progress/tool-tier-audit-2026-10-29/REPORT.md"}],"caveats":["Dated historical assessment; not re-attributed against later filings."],"sources":["research/progress/tool-tier-audit-2026-10-29/REPORT.md"]}},{"id":"compact-packet-ab","tier":"F","reason":"The tested optimization increased input tokens 21.78% and sequential elapsed 5.42% after review/correction, with one upheld result per arm. F applies to this savings claim, not all structured dossier tools.","record":{"id":"compact-packet-ab","name":"Compact evidence-packet A/B savings claim","label":"Compact evidence-packet A/B savings claim","stage":"support","kind":"campaign","status_class":"historical","role":"Historical experiment","source_pin":"b3fc50647cfc6f153ac2497ad2e172de69213295","results":[{"date":"2026-10-29","text":"A small matched experiment failed its cost objective; no universal conclusion about compact packets follows.","source":"research/progress/tool-tier-audit-2026-10-29/REPORT.md"}],"caveats":["Dated historical assessment; not re-attributed against later filings."],"sources":["research/progress/tool-tier-audit-2026-10-29/REPORT.md"]}}]}</script><!-- /eo-tier-assessment -->
 
 <script>
   dash.calc('totals', {
@@ -612,6 +672,7 @@
       document.getElementById('toolmap').hidden = id !== 'toolmap';
       document.getElementById('apollo').hidden = id !== 'apollo';
       document.getElementById('workflow').hidden = id !== 'workflow';
+      document.getElementById('tiers').hidden = id !== 'tiers';
       if (link) dash.setLink(id);
       drawAll();
     };
@@ -1551,9 +1612,59 @@
       }
     }
 
+
+    const JT = JSON.parse(document.getElementById('eo-tier-assessment').textContent);
+    const JT_ORDER = ['S','A','B','C','D','F','U'];
+    const JT_COLORS = {S:'#f3a397',A:'#edc17e',B:'#acd2a5',C:'#a6cbe3',D:'#bfb3d9',F:'#e899a9',U:'#c5c7c7'};
+    let jtSignature = '', jtLastFocus = null;
+    function jtRecords() {
+      const w = wfRows();
+      if (w.status !== 'ok') return w;
+      const records = JT.ratings.map(r => ({...r, node:r.record || w.byId.get(r.id)}));
+      return {status:'ok',data:records};
+    }
+    function jtOpen(r, button) {
+      const n=r.node, box=document.getElementById('jt-detail'); box.replaceChildren(); jtLastFocus=button;
+      const h=el('h2',null,n.name); h.id='jt-detail-title'; box.append(h);
+      box.append(el('p','jt-count',`${r.tier==='U'?'Unranked':'Tier '+r.tier} · ${n.kind} · ${n.status_class} · assessment November 2, 2026`));
+      box.append(el('h3',null,'Why this rating'),el('p',null,r.reason));
+      box.append(el('h3',null,'What it does'),el('p',null,n.role));
+      box.append(el('h3',null,'Dated evidence'));
+      (n.results||[]).slice(0,4).forEach(v=>{
+        box.append(el('p',null,`${v.date}: ${v.text}`));
+        String(v.source||'').split(';').forEach(source=>{const href=srcLink(source, n.source_pin||JT.source_pin); if(href) box.append(ext(href, source.trim()),document.createElement('br'));});
+      });
+      if((n.caveats||[]).length){box.append(el('h3',null,'Limits'));const ul=el('ul');n.caveats.forEach(v=>ul.append(el('li',null,v)));box.append(ul);}
+      box.append(el('p','jt-count','Ratings do not adopt statuses, approve legal conclusions, or create human certification. Figures from different jobs overlap.'));
+      document.getElementById('jt-dialog').showModal();
+    }
+    document.getElementById('jt-close').addEventListener('click',()=>document.getElementById('jt-dialog').close());
+    document.getElementById('jt-dialog').addEventListener('close',()=>{if(jtLastFocus?.isConnected)jtLastFocus.focus();});
+    function drawJobTiers(force=false) {
+      const d=jtRecords(),board=document.getElementById('jt-board'),count=document.getElementById('jt-count');
+      if(d.status!=='ok'){count.textContent=d.status==='error'?'Failed to load job evidence.':'Loading job evidence…';return;}
+      if(d.data.some(r=>!r.node)){count.textContent='The workflow evidence feed is incomplete; refresh its dataset before using these ratings.';board.replaceChildren();return;}
+      const q=document.getElementById('jt-search').value.trim().toLowerCase(),kind=document.getElementById('jt-kind').value,tier=document.getElementById('jt-tier').value;
+      const signature=JSON.stringify([q,kind,tier,d.data.map(r=>r.id)]);
+      if(!force&&signature===jtSignature)return;jtSignature=signature;board.replaceChildren();
+      const matches=d.data.filter(r=>(kind==='all'||r.node.kind===kind)&&(tier==='all'||r.tier===tier)&&q.split(/\s+/).every(word=>JSON.stringify([r.node.name,r.node.role,r.reason,r.node.results,r.node.caveats]).toLowerCase().includes(word)));
+      count.textContent=`${matches.length} of ${d.data.length} entries matching · ${d.data.filter(r=>r.tier!=='U').length} graded · source main ${JT.source_pin.slice(0,10)}`;
+      if(!matches.length){board.append(el('p','jt-empty','No jobs match these filters. Clear the search or choose All kinds / All tiers.'));return;}
+      JT_ORDER.filter(t=>tier==='all'||t===tier).forEach(t=>{
+        const list=matches.filter(r=>r.tier===t).sort((a,b)=>a.node.name.localeCompare(b.node.name));if(!list.length)return;
+        const row=el('section','jt-row');row.style.setProperty('--jt-color',JT_COLORS[t]);row.setAttribute('aria-label',t==='U'?'Unranked':'Tier '+t);
+        const label=el('div','jt-label');label.append(el('strong',null,t==='U'?'—':t),el('span',null,`${list.length} ${t==='U'?'unranked':'entries'}`));label.title=JT.definitions[t];
+        const items=el('div','jt-items');list.forEach(r=>{const b=el('button','jt-item');b.type='button';b.dataset.job=r.id;b.setAttribute('aria-haspopup','dialog');b.title=r.reason;b.append(el('b',null,r.node.label||r.node.name),el('small',null,`${r.node.kind} · ${r.node.status_class}`));b.addEventListener('click',()=>jtOpen(r,b));items.append(b);});row.append(label,items);board.append(row);
+      });
+    }
+    ['jt-search','jt-kind','jt-tier'].forEach(id=>document.getElementById(id).addEventListener(id==='jt-search'?'input':'change',()=>drawJobTiers(true)));
+    const method=document.getElementById('jt-method');JT_ORDER.forEach(t=>method.append(el('p',null,`${t==='U'?'Unranked':t}: ${JT.definitions[t]}.`)));
+
     function drawAll() {
       drawMission();
-      if (current === 'toolmap') {
+      if (current === 'tiers') {
+        drawJobTiers();
+      } else if (current === 'toolmap') {
         drawToolmapTotals(); drawLanes(); drawLaneLegend(); drawToolsTable();
       } else if (current === 'workflow') {
         drawWorkflow();
@@ -1567,7 +1678,8 @@
     }
 
     const named = location.hash.slice(1);
-    if (named === 'effort' || named === 'steps' || named === 'toolmap' || named === 'apollo' || named === 'workflow') show(named, false);
+    if (named === 'effort' || named === 'steps' || named === 'toolmap' || named === 'apollo' || named === 'workflow' || named === 'tiers') show(named, false);
     dash.onData(drawAll);
   })();
 </script>
+

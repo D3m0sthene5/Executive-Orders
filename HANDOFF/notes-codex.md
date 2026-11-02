@@ -1,3 +1,11 @@
+## 2026-11-02 ET: Apollo main refresh and Job tiers prepared
+
+- **Done:** Checked main b3fc50647c after PR123. Updated retained dashboard with pinned current-work strip, 85 editorial tier assessments and 82 workflow nodes; tools catalog now 46 dated rows. Independent configured gpt-6-sol review corrected Cruden timing, stale Mansfield integration and source-list shape. Evidence in research/progress/remaining-work/snapshots/2026-11-02/.
+- **Counts:** Current tracker last ran Oct31, still498 ready (306 original-supported+192 transcription-dependent), exact same per-order Git blob as Oct30. Apollo254 and Erasmus52 filings are later;20 Erasmus corrections are replacements. Human-certified0. No production/research job or scientific adoption.
+- **Validation:** Six builder tests, script syntax and local tier search/dialog/Escape/F filter pass. Authoring publication and full live feed checks pending at this commit. Existing six readiness/effort/mission feeds preserved; replace only tools/workflow_nodes and page in the original private artifact.
+- **Kean/costs:** F-20261102-apollo-tiers. Bounded worker configured gpt-6-sol; tokens, active labor and cash unavailable. No savings inferred.
+- **Next:** Publish exact page and two feeds, verify six tabs/rocket/new records and update this handoff with result. @Owner: none.
+
 ## 2026-10-31 UTC: revised R1-R4 integrated and coordinated production verified
 
 - **Merged:** PR117 combines exact R1/112, R2/115, R3/114 and R4/113 pins with independent engineering review. Implementation source8cd1f539; mergee00fffbd. Each extends its existing route; no replacement production/scientific framework.
@@ -325,3 +333,4 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Running:** PR50 live run 39802916101; that branch is untouched by this cleanup. Reconcile its final fresh outputs before integrating generated results from other branches.
 - **Next:** Owner adoption remains a separate merge decision; the six holds require resolution through the existing review process. PR48's GitGuardian flag was independently verified as a historical test-log SHA-256, not a credential; no security control was disabled.
 - **Do not:** Change the codebook, source-audit holds, human certifications or original review verdicts. No per-order research was performed; model tokens/cash/active labor were not measured. This append-only handoff avoids a concurrent top-of-file insertion conflict with PR50's existing Codex notes; consolidate ordering after integration.
+

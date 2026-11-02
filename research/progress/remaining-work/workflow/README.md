@@ -82,3 +82,8 @@ reopening its hover card until the pointer moves.
    `python3 workflow/provenance/check_paths.py` and `python3 -m unittest test_build_workflow_nodes`.
 3. Upload `workflow/WORKFLOW_NODES.csv` to the dashboard and point the `workflow_nodes` dataset at it.
    A catalog-only refresh needs none of this: the page reads the live `tools` dataset.
+
+
+## November 2 direct refresh
+
+The current JSON/CSV now has 82 records (Apollo, Erasmus and Geddes added) and new dated results for R1–R4, tracker, Valla, review and Kean. The earlier four-reader provenance still reproduces the original 79-node version only. For this refresh, `WORKFLOW_NODES.json` is authoritative; do not rerun the old merge and discard the later records. Catalog input is now `snapshots/2026-11-02/TOOLS.csv` (46 rows). New namesake links were not invented: Apollo and Erasmus naming comes from their reports; Geddes is undocumented in the inspected naming sources.
